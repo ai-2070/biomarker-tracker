@@ -1,0 +1,44 @@
+{
+  "id": "oily-fish-tg",
+  "lever": "Eating oily fish",
+  "intervention": "Eating oily fish (the whole food)",
+  "kind": "food",
+  "outcome": "Triglycerides",
+  "direction": "decrease",
+  "grade": "moderate",
+  "summary": "In 14 trials, eating oily fish lowered triglycerides slightly (about 0.11 mmol/L on average) and raised HDL a little. This whole-food effect is much smaller than that of high-dose supplements.",
+  "whyThisGrade": [
+    "Meta-analysis of 14 randomised trials (1,378 people)",
+    "Small average effect",
+    "Fish contains many nutrients, so the effect can't be put down to omega-3 alone"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "triglycerides",
+      "helpsWhen": "high"
+    },
+    {
+      "biomarkerId": "hdl",
+      "helpsWhen": "low"
+    }
+  ],
+  "foods": {
+    "nutrient": "epaDha",
+    "foodIds": [
+      "16-394",
+      "16-424",
+      "16-418",
+      "16-420"
+    ]
+  },
+  "studies": [
+    {
+      "pmid": "28992469",
+      "doi": "10.1016/j.atherosclerosis.2017.09.028",
+      "title": "Consumption of fish and vascular risk factors: A systematic review and meta-analysis of intervention studies",
+      "year": 2017,
+      "studyType": "meta-analysis",
+      "n": 1378
+    }
+  ]
+}

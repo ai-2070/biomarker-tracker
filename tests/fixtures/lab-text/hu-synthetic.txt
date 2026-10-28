@@ -1,0 +1,14 @@
+Minta Labor Kft.   1234 Budapest, Példa utca 1.
+Név: Minta Anna   Születési dátum: 1990.02.14.   TAJ: 000 000 000
+Mintavétel ideje: 2025.01.08. 07:40
+Vizsgálat   Eredmény   Mértékegység   Referencia tartomány
+Fehérvérsejtszám   6,1   G/l   4,0 - 10,0
+Hemoglobin   128   g/l   120 - 160
+Vérlemezke   302   G/l   150 - 400
+Glükóz   5,1   mmol/l   3,9 - 6,0
+Kreatinin   71   µmol/l   49 - 90
+Koleszterin   5,4   mmol/l   < 5,2
+Triglicerid   1,1   mmol/l   < 1,7
+Ferritin szérum   18   µg/l   13 - 150
+D-vitamin   48   nmol/l   75 - 250
+Alkalikus foszfatáz   64   U/l   35 - 105

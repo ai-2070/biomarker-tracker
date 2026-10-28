@@ -1,0 +1,56 @@
+{
+  "id": "rdw",
+  "name": "Red cell distribution width",
+  "abbreviation": "RDW",
+  "category": "Blood count",
+  "aliases": [
+    "RDW",
+    "RDW-CV",
+    "Red cell distribution width",
+    "Red blood cell distribution width",
+    "Erythrozytenverteilungsbreite"
+  ],
+  "loinc": [
+    "788-0"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 11.5,
+      "high": 14.5
+    }
+  ],
+  "summary": "RDW shows how much your red blood cells vary in size. A higher number means a wider mix of small and large cells.",
+  "high": {
+    "meaning": "A high RDW means red cell sizes vary more than usual, which is common in early iron, B12 or folate deficiency. In large studies, higher RDW is also linked with higher health risks, though the reasons are not fully understood.",
+    "commonCauses": [
+      "Iron, vitamin B12 or folate deficiency",
+      "Recent blood loss",
+      "Chronic inflammation"
+    ]
+  },
+  "low": {
+    "meaning": "A low RDW is not known to be a problem.",
+    "commonCauses": []
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "25535770",
+      "doi": "10.3109/10408363.2014.992064",
+      "title": "Red blood cell distribution width: A simple parameter with multiple clinical applications",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

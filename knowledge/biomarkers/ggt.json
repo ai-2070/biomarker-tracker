@@ -1,0 +1,73 @@
+{
+  "id": "ggt",
+  "name": "Gamma-glutamyl transferase",
+  "abbreviation": "GGT",
+  "category": "Liver",
+  "aliases": [
+    "GGT",
+    "Gamma-GT",
+    "γ-GT",
+    "GGTP",
+    "Gamma-glutamyl transferase",
+    "Gamma-glutamyltransferase",
+    "Gamma-Glutamyltransferase",
+    "Gamma-glutamil-transzferáz",
+    "Gamma-glutamyltransférase",
+    "Gamma glutamil transferasa",
+    "Gamma glutamil transferasi"
+  ],
+  "loinc": [
+    "2324-2"
+  ],
+  "canonicalUnit": "U/L",
+  "conversions": {
+    "U/L": 1,
+    "IU/L": 1,
+    "µkat/L": 60
+  },
+  "defaultRanges": [
+    {
+      "high": 60,
+      "sex": "m"
+    },
+    {
+      "high": 40,
+      "sex": "f"
+    }
+  ],
+  "summary": "GGT is a liver enzyme that is sensitive to alcohol, some medicines and problems with bile flow.",
+  "high": {
+    "meaning": "A high GGT is common with regular alcohol use and fatty liver. Together with a high ALP it points to the bile ducts.",
+    "commonCauses": [
+      "Alcohol",
+      "Fatty liver",
+      "Some medicines (e.g. some anti-seizure drugs)",
+      "Bile duct problems"
+    ]
+  },
+  "low": {
+    "meaning": "A low GGT is not a concern.",
+    "commonCauses": []
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 8.2,
+    "ciLow": 6.7,
+    "ciHigh": 12,
+    "studies": 5,
+    "analyte": "g-glutamyl transferase activity",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "27995906",
+      "doi": "10.1038/ajg.2016.517",
+      "title": "ACG Clinical Guideline: Evaluation of Abnormal Liver Chemistries",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}

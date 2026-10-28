@@ -1,0 +1,42 @@
+{
+  "id": "folate-foods",
+  "lever": "Folate-rich foods (beans, lentils, green vegetables)",
+  "intervention": "Eating more folate-rich foods",
+  "kind": "food",
+  "outcome": "Blood folate",
+  "direction": "increase",
+  "grade": "moderate",
+  "summary": "Legumes, green vegetables and some fruits are rich in folate, and many breads and cereals are fortified. Serum folate mostly reflects what you've eaten recently. If you could become pregnant, talk to your doctor about folic acid.",
+  "whyThisGrade": [
+    "Clinical guideline",
+    "Cooking can destroy folate; the numbers are for the cooked foods as listed"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "folate",
+      "helpsWhen": "low"
+    }
+  ],
+  "foods": {
+    "nutrient": "folate",
+    "foodIds": [
+      "13-661",
+      "13-630",
+      "13-524",
+      "13-573",
+      "14-324",
+      "13-660",
+      "13-503",
+      "14-327"
+    ]
+  },
+  "studies": [
+    {
+      "pmid": "24942828",
+      "doi": "10.1111/bjh.12959",
+      "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

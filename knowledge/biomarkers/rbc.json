@@ -1,0 +1,89 @@
+{
+  "id": "rbc",
+  "name": "Red blood cells",
+  "abbreviation": "RBC",
+  "category": "Blood count",
+  "aliases": [
+    "Red blood cells",
+    "Red blood cell count",
+    "RBC",
+    "Erythrocytes",
+    "Erythrozyten",
+    "Vörösvértest",
+    "Vörösvértestszám",
+    "Globules rouges",
+    "Hématies",
+    "Eritrocitos",
+    "Eritrociti"
+  ],
+  "loinc": [
+    "789-8"
+  ],
+  "canonicalUnit": "10^12/L",
+  "conversions": {
+    "10^12/L": 1,
+    "10^6/µL": 1,
+    "T/L": 1,
+    "/pL": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 4.5,
+      "high": 5.9,
+      "sex": "m"
+    },
+    {
+      "low": 4,
+      "high": 5.2,
+      "sex": "f"
+    }
+  ],
+  "summary": "This is the number of red blood cells in a set volume of blood. Red cells carry oxygen from the lungs to the rest of the body.",
+  "high": {
+    "meaning": "A high red cell count usually goes with a high haemoglobin. It can come from dehydration, smoking or living at altitude. Some inherited conditions, such as thalassaemia trait, give many small red cells.",
+    "commonCauses": [
+      "Dehydration",
+      "Smoking",
+      "Living at high altitude",
+      "Thalassaemia trait (many small cells)",
+      "Bone marrow conditions (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low red cell count usually goes with anaemia. Haemoglobin is the more useful number to look at.",
+    "commonCauses": [
+      "Iron, vitamin B12 or folate deficiency",
+      "Blood loss",
+      "Chronic illness or inflammation",
+      "Pregnancy"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 2.8,
+    "ciLow": 1.4,
+    "ciHigh": 4,
+    "studies": 6,
+    "analyte": "Erythrocytes",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

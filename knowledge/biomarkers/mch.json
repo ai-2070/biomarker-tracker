@@ -1,0 +1,75 @@
+{
+  "id": "mch",
+  "name": "Mean cell haemoglobin",
+  "abbreviation": "MCH",
+  "category": "Blood count",
+  "aliases": [
+    "MCH",
+    "Mean corpuscular hemoglobin",
+    "Mean cell haemoglobin",
+    "Mean cell hemoglobin",
+    "Teneur corpusculaire moyenne en hémoglobine",
+    "TCMH",
+    "Hemoglobina corpuscular media",
+    "HCM"
+  ],
+  "loinc": [
+    "785-6"
+  ],
+  "canonicalUnit": "pg",
+  "conversions": {
+    "pg": 1,
+    "fmol": 16.11
+  },
+  "defaultRanges": [
+    {
+      "low": 27,
+      "high": 33
+    }
+  ],
+  "summary": "MCH is the average amount of haemoglobin inside one red blood cell. It usually moves together with MCV, the cell size.",
+  "high": {
+    "meaning": "A high MCH usually means the red cells are larger than usual, as with low vitamin B12 or folate.",
+    "commonCauses": [
+      "Vitamin B12 or folate deficiency",
+      "Regular alcohol use",
+      "Liver disease"
+    ]
+  },
+  "low": {
+    "meaning": "A low MCH means each red cell carries less haemoglobin, most often because of iron deficiency.",
+    "commonCauses": [
+      "Iron deficiency",
+      "Thalassaemia trait",
+      "Long-term inflammation"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 0.7,
+    "ciLow": 0.3,
+    "ciHigh": 1.6,
+    "studies": 7,
+    "analyte": "Mean corpuscular haemoglobin (MCH)",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23301732",
+      "doi": "10.1056/nejmcp1113996",
+      "title": "Clinical practice. Vitamin B12 deficiency",
+      "year": 2013,
+      "studyType": "review"
+    }
+  ]
+}

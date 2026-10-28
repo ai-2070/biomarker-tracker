@@ -1,0 +1,77 @@
+{
+  "id": "alt",
+  "name": "Alanine aminotransferase",
+  "abbreviation": "ALT",
+  "category": "Liver",
+  "aliases": [
+    "ALT",
+    "ALAT",
+    "GPT",
+    "SGPT",
+    "ALT (GPT)",
+    "Alanine aminotransferase",
+    "Alanine transaminase",
+    "Alanin-Aminotransferase",
+    "GPT (ALAT)",
+    "Glutamát-piruvát transzamináz",
+    "Alanine aminotransférase",
+    "Alanina aminotransferasa",
+    "Alanina aminotransferasi"
+  ],
+  "loinc": [
+    "1742-6"
+  ],
+  "canonicalUnit": "U/L",
+  "conversions": {
+    "U/L": 1,
+    "IU/L": 1,
+    "µkat/L": 60
+  },
+  "defaultRanges": [
+    {
+      "high": 50,
+      "sex": "m"
+    },
+    {
+      "high": 35,
+      "sex": "f"
+    }
+  ],
+  "rangeNote": "Lab limits vary a lot. The American College of Gastroenterology suggests a truly healthy upper limit of about 29–33 U/L for men and 19–25 U/L for women.",
+  "summary": "ALT is an enzyme found mainly in liver cells. When liver cells are irritated or damaged, more ALT leaks into the blood.",
+  "high": {
+    "meaning": "A high ALT points to stress on the liver. The most common cause is fat building up in the liver.",
+    "commonCauses": [
+      "Fatty liver",
+      "Alcohol",
+      "Some medicines and supplements",
+      "Viral hepatitis",
+      "Hard exercise before the test (muscle)"
+    ]
+  },
+  "low": {
+    "meaning": "A low ALT is not a concern.",
+    "commonCauses": []
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 12.4,
+    "ciLow": 9.3,
+    "ciHigh": 16,
+    "studies": 5,
+    "analyte": "Alanine transaminase (ALT)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "27995906",
+      "doi": "10.1038/ajg.2016.517",
+      "title": "ACG Clinical Guideline: Evaluation of Abnormal Liver Chemistries",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}

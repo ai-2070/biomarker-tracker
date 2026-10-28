@@ -1,0 +1,41 @@
+{
+  "id": "replace-saturated-fat-ldl",
+  "lever": "Swapping saturated fats for unsaturated fats",
+  "intervention": "Replacing saturated fat (fatty meat, butter, cheese, coconut and palm oil) with unsaturated fats (olive or rapeseed oil, nuts, seeds, oily fish)",
+  "kind": "diet",
+  "outcome": "LDL and total cholesterol",
+  "direction": "decrease",
+  "grade": "high",
+  "summary": "Replacing saturated fats with unsaturated fats lowers LDL cholesterol. This is one of the main dietary recommendations in European guidelines for high cholesterol.",
+  "whyThisGrade": [
+    "Randomised trials summarised in a Cochrane review",
+    "Recommended in European guidelines",
+    "Trials differed in what replaced the saturated fat"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "ldl",
+      "helpsWhen": "high"
+    },
+    {
+      "biomarkerId": "total_cholesterol",
+      "helpsWhen": "high"
+    }
+  ],
+  "studies": [
+    {
+      "pmid": "32827219",
+      "doi": "10.1002/14651858.cd011737.pub3",
+      "title": "Reduction in saturated fat intake for cardiovascular disease",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

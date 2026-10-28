@@ -1,0 +1,96 @@
+{
+  "id": "ferritin",
+  "name": "Ferritin",
+  "category": "Iron & vitamins",
+  "aliases": [
+    "Ferritin",
+    "Ferritin (S)",
+    "Ferritin szérum",
+    "Serum ferritin",
+    "Ferritine",
+    "Ferritina"
+  ],
+  "loinc": [
+    "2276-4"
+  ],
+  "canonicalUnit": "µg/L",
+  "conversions": {
+    "µg/L": 1,
+    "ng/mL": 1,
+    "pmol/L": 0.445
+  },
+  "defaultRanges": [
+    {
+      "low": 30,
+      "high": 400,
+      "sex": "m"
+    },
+    {
+      "low": 15,
+      "high": 150,
+      "sex": "f"
+    }
+  ],
+  "rangeNote": "Ferritin also rises with inflammation, so a 'normal' ferritin can hide low iron when CRP is high.",
+  "summary": "Ferritin is the protein that stores iron. Its blood level is the most common way to estimate your iron stores.",
+  "high": {
+    "meaning": "A high ferritin can mean too much stored iron, but far more often it reflects inflammation, liver strain or excess body fat.",
+    "commonCauses": [
+      "Inflammation or infection",
+      "Liver conditions, including fatty liver",
+      "Regular alcohol use",
+      "Iron overload (e.g. haemochromatosis)"
+    ]
+  },
+  "low": {
+    "meaning": "A low ferritin means iron stores are low, even before anaemia appears.",
+    "commonCauses": [
+      "Blood loss, including heavy periods",
+      "Low iron intake",
+      "Poor iron absorption (e.g. coeliac disease)",
+      "Pregnancy",
+      "Frequent blood donation"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "vitamin-c-with-meals-iron"
+    },
+    {
+      "evidenceId": "tea-coffee-with-meals-iron"
+    },
+    {
+      "evidenceId": "haem-iron-foods"
+    },
+    {
+      "evidenceId": "iron-supplements-ferritin"
+    }
+  ],
+  "biologicalVariation": {
+    "cvi": 12.9,
+    "ciLow": 12.8,
+    "ciHigh": 16.9,
+    "studies": 2,
+    "analyte": "Ferritin",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "creatinine",
+  "name": "Creatinine",
+  "category": "Kidney",
+  "aliases": [
+    "Creatinine",
+    "Serum creatinine",
+    "CREA",
+    "Kreatinin",
+    "Créatinine",
+    "Creatinina"
+  ],
+  "loinc": [
+    "2160-0"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1,
+    "mg/dL": 88.42
+  },
+  "defaultRanges": [
+    {
+      "low": 62,
+      "high": 106,
+      "sex": "m"
+    },
+    {
+      "low": 44,
+      "high": 80,
+      "sex": "f"
+    }
+  ],
+  "summary": "Creatinine is a waste product from normal muscle activity. Healthy kidneys filter it out, so its blood level is used to estimate kidney function.",
+  "high": {
+    "meaning": "A high creatinine can mean the kidneys are filtering less well. It is also higher in people with more muscle and after heavy exercise or a large meat meal.",
+    "commonCauses": [
+      "Reduced kidney function",
+      "Dehydration",
+      "High muscle mass",
+      "Intense exercise before the test",
+      "Creatine supplements",
+      "Some medicines"
+    ]
+  },
+  "low": {
+    "meaning": "A low creatinine usually reflects low muscle mass and is rarely a concern on its own.",
+    "commonCauses": [
+      "Low muscle mass",
+      "Pregnancy",
+      "Older age"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 4.4,
+    "ciLow": 2.3,
+    "ciHigh": 4.7,
+    "studies": 15,
+    "analyte": "Creatinine",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "38490803",
+      "doi": "10.1016/j.kint.2023.10.018",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

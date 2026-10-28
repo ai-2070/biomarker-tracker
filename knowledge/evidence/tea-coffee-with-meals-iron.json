@@ -1,0 +1,37 @@
+{
+  "id": "tea-coffee-with-meals-iron",
+  "lever": "Tea or coffee between meals rather than with them",
+  "intervention": "Drinking tea, coffee or cocoa with a meal",
+  "kind": "habit",
+  "outcome": "Iron absorption from that meal",
+  "direction": "decrease",
+  "grade": "moderate",
+  "summary": "Tea, coffee, cocoa and many herbal teas contain polyphenols that strongly reduce how much iron is absorbed from a meal. Having them between meals avoids this.",
+  "whyThisGrade": [
+    "Large, consistent effect in absorption studies (50–90% less iron absorbed from the meal)",
+    "Studies measured single meals; the effect on long-term iron stores is less certain"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "ferritin",
+      "helpsWhen": "low"
+    },
+    {
+      "biomarkerId": "iron",
+      "helpsWhen": "low"
+    },
+    {
+      "biomarkerId": "transferrin_saturation",
+      "helpsWhen": "low"
+    }
+  ],
+  "studies": [
+    {
+      "pmid": "10999016",
+      "doi": "10.1017/s0007114599000537",
+      "title": "Inhibition of non-haem iron absorption in man by polyphenolic-containing beverages",
+      "year": 1999,
+      "studyType": "rct"
+    }
+  ]
+}

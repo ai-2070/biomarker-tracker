@@ -1,0 +1,85 @@
+{
+  "id": "ft4",
+  "name": "Free thyroxine",
+  "abbreviation": "FT4",
+  "category": "Thyroid",
+  "aliases": [
+    "FT4",
+    "fT4",
+    "Free T4",
+    "Free thyroxine",
+    "Freies T4",
+    "Freies Thyroxin",
+    "Szabad T4",
+    "T4 libre",
+    "Tiroxina libre",
+    "FT4 (S)"
+  ],
+  "loinc": [
+    "3024-7"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "ng/dL": 12.87,
+    "ng/L": 1.287
+  },
+  "defaultRanges": [
+    {
+      "low": 12,
+      "high": 22
+    }
+  ],
+  "summary": "FT4 is the main hormone made by the thyroid, measured in the form that is free to act in the body. It is read together with TSH.",
+  "high": {
+    "meaning": "A high FT4 with a low TSH usually means an overactive thyroid.",
+    "commonCauses": [
+      "Overactive thyroid (e.g. Graves' disease)",
+      "Too much thyroid hormone medicine",
+      "Biotin supplements (can interfere with some tests)"
+    ]
+  },
+  "low": {
+    "meaning": "A low FT4 with a high TSH usually means an underactive thyroid.",
+    "commonCauses": [
+      "Underactive thyroid (e.g. Hashimoto's)",
+      "Severe illness",
+      "Pituitary problems (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 4.8,
+    "ciLow": 4.6,
+    "ciHigh": 9.5,
+    "studies": 5,
+    "analyte": "Thyroxine - free (FT4)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "28336049",
+      "doi": "10.1016/s0140-6736(17)30703-1",
+      "title": "Hypothyroidism",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27521067",
+      "doi": "10.1089/thy.2016.0229",
+      "title": "2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis",
+      "year": 2016,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "27038492",
+      "doi": "10.1016/s0140-6736(16)00278-6",
+      "title": "Hyperthyroidism",
+      "year": 2016,
+      "studyType": "review"
+    }
+  ]
+}

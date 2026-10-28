@@ -1,0 +1,71 @@
+{
+  "id": "egfr",
+  "name": "Estimated glomerular filtration rate",
+  "abbreviation": "eGFR",
+  "category": "Kidney",
+  "aliases": [
+    "eGFR",
+    "GFR",
+    "eGFR (CKD-EPI)",
+    "Estimated GFR",
+    "Estimated glomerular filtration rate",
+    "GFR (CKD-EPI)",
+    "eGFR CKD-EPI",
+    "Glomeruläre Filtrationsrate",
+    "Becsült GFR",
+    "DFG estimé",
+    "Filtrado glomerular estimado",
+    "Velocità di filtrazione glomerulare"
+  ],
+  "loinc": [
+    "98979-8",
+    "62238-1"
+  ],
+  "canonicalUnit": "mL/min/1.73m²",
+  "conversions": {
+    "mL/min/1.73m²": 1,
+    "mL/min": 1,
+    "mL/min/1.73": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 60
+    }
+  ],
+  "rangeNote": "KDIGO groups: 90 or more is normal; 60–89 is mildly reduced (often normal with age); below 60 for 3 months or more is chronic kidney disease. Many labs report values above 60 or 90 simply as \">60\" or \">90\".",
+  "summary": "eGFR estimates how much blood your kidneys filter each minute. Labs calculate it from creatinine (and sometimes cystatin C), age and sex.",
+  "high": {
+    "meaning": "A high eGFR is generally fine. Very high values can happen with low muscle mass, because the estimate is based on creatinine.",
+    "commonCauses": [
+      "Low muscle mass",
+      "Pregnancy"
+    ]
+  },
+  "low": {
+    "meaning": "A lower eGFR means the kidneys are filtering less. A single low value can be temporary; doctors look for values that stay low over 3 months.",
+    "commonCauses": [
+      "Chronic kidney disease",
+      "Dehydration",
+      "High muscle mass or creatine supplements (falsely low)",
+      "Some medicines",
+      "Ageing"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "38490803",
+      "doi": "10.1016/j.kint.2023.10.018",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "34554658",
+      "doi": "10.1056/nejmoa2102953",
+      "title": "New Creatinine- and Cystatin C-Based Equations to Estimate GFR without Race",
+      "year": 2021,
+      "studyType": "observational"
+    }
+  ]
+}

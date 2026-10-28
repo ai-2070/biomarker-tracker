@@ -1,0 +1,87 @@
+{
+  "id": "iron",
+  "name": "Iron (serum)",
+  "category": "Iron & vitamins",
+  "aliases": [
+    "Iron",
+    "Serum iron",
+    "Fe",
+    "Iron (S)",
+    "Eisen",
+    "Szérum vas",
+    "Fer sérique",
+    "Hierro",
+    "Sideremia",
+    "Ferro"
+  ],
+  "loinc": [
+    "2498-4"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1,
+    "µg/dL": 0.179
+  },
+  "defaultRanges": [
+    {
+      "low": 10,
+      "high": 30
+    }
+  ],
+  "rangeNote": "Serum iron swings a lot during the day and after meals. Ferritin and transferrin saturation say more about iron stores.",
+  "summary": "This measures the iron circulating in your blood, bound to its carrier protein, transferrin.",
+  "high": {
+    "meaning": "A high serum iron can follow a recent iron-rich meal or supplement. Together with a high transferrin saturation it can point to iron overload.",
+    "commonCauses": [
+      "Recent iron supplement or meal",
+      "Iron overload (e.g. haemochromatosis)",
+      "Liver damage"
+    ]
+  },
+  "low": {
+    "meaning": "A low serum iron can mean iron deficiency, but it also drops during infections and inflammation.",
+    "commonCauses": [
+      "Iron deficiency",
+      "Inflammation or infection",
+      "Time of day (lower in the evening)"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "vitamin-c-with-meals-iron"
+    },
+    {
+      "evidenceId": "tea-coffee-with-meals-iron"
+    },
+    {
+      "evidenceId": "haem-iron-foods"
+    }
+  ],
+  "biologicalVariation": {
+    "cvi": 27.6,
+    "ciLow": 19.8,
+    "ciHigh": 30.4,
+    "studies": 4,
+    "analyte": "Iron",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35662478",
+      "doi": "10.1016/j.jhep.2022.03.033",
+      "title": "EASL Clinical Practice Guidelines on haemochromatosis",
+      "year": 2022,
+      "studyType": "guideline"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "mchc",
+  "name": "Mean cell haemoglobin concentration",
+  "abbreviation": "MCHC",
+  "category": "Blood count",
+  "aliases": [
+    "MCHC",
+    "Mean corpuscular hemoglobin concentration",
+    "Mean cell haemoglobin concentration",
+    "Concentration corpusculaire moyenne en hémoglobine",
+    "CCMH",
+    "Concentración de hemoglobina corpuscular media",
+    "CHCM"
+  ],
+  "loinc": [
+    "786-4"
+  ],
+  "canonicalUnit": "g/L",
+  "conversions": {
+    "g/L": 1,
+    "g/dL": 10,
+    "mmol/L": 16.11
+  },
+  "defaultRanges": [
+    {
+      "low": 320,
+      "high": 360
+    }
+  ],
+  "summary": "MCHC is how concentrated the haemoglobin is inside red blood cells. It varies little in healthy people.",
+  "high": {
+    "meaning": "A high MCHC is uncommon. It can be a measurement artefact or point to an inherited red cell shape condition.",
+    "commonCauses": [
+      "Sample problems (e.g. clumping or high blood fats)",
+      "Hereditary spherocytosis (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low MCHC means red cells are paler than usual, most often from iron deficiency.",
+    "commonCauses": [
+      "Iron deficiency",
+      "Thalassaemia trait"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 1,
+    "ciLow": 0.5,
+    "ciHigh": 1.8,
+    "studies": 8,
+    "analyte": "Mean corpuscular haemoglobin concentration (MCHC)",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

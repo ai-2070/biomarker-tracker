@@ -1,0 +1,113 @@
+import "fake-indexeddb/auto";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { parseBackup } from "../../src/core/backup";
+import {
+  addMeasurement,
+  addProtocol,
+  createExperiment,
+  endExperiment,
+  deleteProtocol,
+  saveProtocol,
+  deleteEverything,
+  exportAll,
+  getProfile,
+  importBackup,
+  measurementsFor,
+  setProfile,
+  TrackerDB,
+} from "../../src/db/db";
+
+let db: TrackerDB;
+let n = 0;
+
+beforeEach(async () => {
+  n += 1;
+  db = new TrackerDB(`test-${n}`);
+  await db.open();
+});
+afterEach(async () => {
+  await db.delete();
+});
+
+const sample = { biomarkerId: "ferritin", value: 40, originalValue: 40, originalUnit: "µg/L", date: "2024-01-01", source: "manual" as const };
+
+describe("db", () => {
+  it("stores and queries measurements per biomarker, sorted by date", async () => {
+    await addMeasurement({ ...sample, date: "2024-06-01" }, db);
+    await addMeasurement({ ...sample, date: "2023-06-01" }, db);
+    await addMeasurement({ ...sample, biomarkerId: "b12" }, db);
+    const ferritin = await measurementsFor("ferritin", db);
+    expect(ferritin.map((m) => m.date)).toEqual(["2023-06-01", "2024-06-01"]);
+  });
+
+  it("exports a backup that passes validation and restores it", async () => {
+    await addMeasurement(sample, db);
+    await setProfile({ sex: "f" }, db);
+    const json = JSON.parse(JSON.stringify(await exportAll(new Date(), db)));
+    const parsed = parseBackup(json);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+
+    await deleteEverything(db);
+    expect(await db.measurements.count()).toBe(0);
+    expect(await getProfile(db)).toEqual({});
+
+    await importBackup(parsed.backup, "replace", db);
+    expect(await db.measurements.count()).toBe(1);
+    expect(await getProfile(db)).toEqual({ sex: "f" });
+  });
+
+  it("merge keeps existing data and does not duplicate", async () => {
+    const id = await addMeasurement(sample, db);
+    const backup = await exportAll(new Date(), db);
+    await addMeasurement({ ...sample, date: "2024-02-01" }, db);
+    await importBackup(backup, "merge", db);
+    expect(await db.measurements.count()).toBe(2);
+    expect(await db.measurements.get(id)).toBeDefined();
+  });
+
+  it("merge keeps the current profile", async () => {
+    await setProfile({ sex: "m" }, db);
+    const backup = await exportAll(new Date(), db);
+    await setProfile({ sex: "f" }, db);
+    await importBackup(backup, "merge", db);
+    expect(await getProfile(db)).toEqual({ sex: "f" });
+  });
+
+  it("adds, ends, reopens and deletes a log entry", async () => {
+    const id = await addProtocol({ label: "Iron 30 mg", category: "supplement", start: "2024-01-01" }, db);
+    await saveProtocol({ id, label: "Iron 30 mg", category: "supplement", start: "2024-01-01", end: "2024-03-01" }, db);
+    expect((await db.protocols.get(id))?.end).toBe("2024-03-01");
+    await saveProtocol({ id, label: "Iron 30 mg", category: "supplement", start: "2024-01-01" }, db);
+    expect((await db.protocols.get(id))?.end).toBeUndefined();
+    await deleteProtocol(id, db);
+    expect(await db.protocols.count()).toBe(0);
+  });
+
+  it("creates an experiment with a linked log entry, and ends both", async () => {
+    const id = await createExperiment({ change: "2 kiwis a day", category: "diet", markerIds: ["ferritin"], start: "2024-03-01", retestAfterDays: 56 }, db);
+    const e = (await db.experiments.get(id))!;
+    const p = (await db.protocols.get(e.protocolId!))!;
+    expect(p).toMatchObject({ label: "2 kiwis a day", category: "diet", start: "2024-03-01" });
+    await endExperiment(id, "2024-05-01", db);
+    expect((await db.experiments.get(id))!.end).toBe("2024-05-01");
+    expect((await db.protocols.get(e.protocolId!))!.end).toBe("2024-05-01");
+  });
+
+  it("includes experiments in backups and restores them", async () => {
+    await createExperiment({ change: "x", category: "diet", markerIds: ["ferritin"], start: "2024-03-01", retestAfterDays: 28 }, db);
+    const parsed = parseBackup(JSON.parse(JSON.stringify(await exportAll(new Date(), db))));
+    expect(parsed.ok && parsed.backup.experiments.length).toBe(1);
+    await deleteEverything(db);
+    expect(await db.experiments.count()).toBe(0);
+    if (parsed.ok) await importBackup(parsed.backup, "replace", db);
+    expect(await db.experiments.count()).toBe(1);
+  });
+
+  it("replace removes data that is not in the backup", async () => {
+    const backup = await exportAll(new Date(), db);
+    await addMeasurement(sample, db);
+    await importBackup(backup, "replace", db);
+    expect(await db.measurements.count()).toBe(0);
+  });
+});

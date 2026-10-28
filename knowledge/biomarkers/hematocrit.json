@@ -1,0 +1,87 @@
+{
+  "id": "hematocrit",
+  "name": "Haematocrit",
+  "abbreviation": "Hct",
+  "category": "Blood count",
+  "aliases": [
+    "Hematocrit",
+    "Haematocrit",
+    "Hct",
+    "HCT",
+    "Packed cell volume",
+    "PCV",
+    "Hämatokrit",
+    "Hematokrit",
+    "Hématocrite",
+    "Hematocrito",
+    "Ematocrito"
+  ],
+  "loinc": [
+    "4544-3"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1,
+    "L/L": 100
+  },
+  "defaultRanges": [
+    {
+      "low": 40,
+      "high": 50,
+      "sex": "m"
+    },
+    {
+      "low": 36,
+      "high": 46,
+      "sex": "f"
+    }
+  ],
+  "summary": "Haematocrit is the share of your blood volume taken up by red blood cells. Some labs write it as a fraction, for example 0.42 L/L instead of 42 %.",
+  "high": {
+    "meaning": "A high haematocrit means the blood is thicker with red cells, often from dehydration or smoking.",
+    "commonCauses": [
+      "Dehydration",
+      "Smoking",
+      "Living at high altitude",
+      "Testosterone therapy",
+      "Bone marrow conditions (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low haematocrit usually goes with anaemia.",
+    "commonCauses": [
+      "Iron, vitamin B12 or folate deficiency",
+      "Blood loss",
+      "Chronic illness",
+      "Pregnancy"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 2.8,
+    "ciLow": 2.2,
+    "ciHigh": 3.1,
+    "studies": 7,
+    "analyte": "Haematocrit (Hct)",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

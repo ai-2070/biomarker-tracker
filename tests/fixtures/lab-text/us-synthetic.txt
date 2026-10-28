@@ -1,0 +1,19 @@
+EXAMPLE DIAGNOSTICS LLC
+Patient: DOE, JANE   DOB: 04/09/1979   MRN: 0000000
+Collected: 03/11/2024 07:52 AM   Received: 03/11/2024
+Test   Result   Flag   Units   Reference Interval
+WBC   7.2      x10E3/uL   3.4-10.8
+RBC   4.41      x10E6/uL   3.77-5.28
+Hemoglobin   12.9      g/dL   11.1-15.9
+Platelets   288      x10E3/uL   150-450
+Glucose   104   H   mg/dL   70-99
+BUN   15      mg/dL   6-24
+Creatinine   0.82      mg/dL   0.57-1.00
+eGFR   93      mL/min/1.73   >59
+ALT (SGPT)   19      IU/L   0-32
+Cholesterol, Total   188      mg/dL   100-199
+Triglycerides   96      mg/dL   0-149
+HDL Cholesterol   61      mg/dL   >39
+LDL Cholesterol Calc   109   H   mg/dL   0-99
+Vitamin D, 25-Hydroxy   31.5      ng/mL   30.0-100.0
+TSH   2.140      uIU/mL   0.450-4.500

@@ -1,0 +1,42 @@
+{
+  "id": "oat-beta-glucan-ldl",
+  "lever": "Oats and barley (beta-glucan fibre)",
+  "intervention": "Diets including oat beta-glucan, a soluble fibre in oats and barley",
+  "kind": "food",
+  "outcome": "LDL cholesterol",
+  "direction": "decrease",
+  "grade": "high",
+  "summary": "Oats contain beta-glucan, a soluble fibre that lowers LDL cholesterol. Across 58 trials the average drop was about 0.19 mmol/L (about 7 mg/dL): a real but modest effect.",
+  "whyThisGrade": [
+    "Meta-analysis of 58 randomised trials",
+    "The average effect is modest",
+    "Many trials used foods enriched with extra oat beta-glucan"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "ldl",
+      "helpsWhen": "high"
+    },
+    {
+      "biomarkerId": "total_cholesterol",
+      "helpsWhen": "high"
+    }
+  ],
+  "foods": {
+    "nutrient": "fibre",
+    "foodIds": [
+      "11-788"
+    ],
+    "note": "The food table lists total fibre. Beta-glucan itself isn't measured."
+  },
+  "studies": [
+    {
+      "pmid": "27724985",
+      "doi": "10.1017/s000711451600341x",
+      "title": "The effect of oat β-glucan on LDL-cholesterol, non-HDL-cholesterol and apoB for CVD risk reduction: a systematic review and meta-analysis of randomised-controlled trials",
+      "year": 2016,
+      "studyType": "meta-analysis",
+      "n": 3974
+    }
+  ]
+}

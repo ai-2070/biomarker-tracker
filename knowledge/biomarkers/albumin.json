@@ -1,0 +1,73 @@
+{
+  "id": "albumin",
+  "name": "Albumin",
+  "category": "Liver",
+  "aliases": [
+    "Albumin",
+    "Serum albumin",
+    "ALB",
+    "Albumin (S)",
+    "Albumine",
+    "Albúmina",
+    "Albumina"
+  ],
+  "loinc": [
+    "1751-7"
+  ],
+  "canonicalUnit": "g/L",
+  "conversions": {
+    "g/L": 1,
+    "g/dL": 10
+  },
+  "defaultRanges": [
+    {
+      "low": 35,
+      "high": 50
+    }
+  ],
+  "summary": "Albumin is the main protein in blood plasma. It is made by the liver and helps keep fluid inside blood vessels and carry hormones, drugs and nutrients.",
+  "high": {
+    "meaning": "A high albumin usually means the blood is more concentrated than usual, most often from not drinking enough fluid.",
+    "commonCauses": [
+      "Dehydration",
+      "Tight tourniquet or long standing before the blood draw"
+    ]
+  },
+  "low": {
+    "meaning": "A low albumin can reflect inflammation, liver or kidney problems, or not getting enough protein.",
+    "commonCauses": [
+      "Inflammation or acute illness",
+      "Liver disease",
+      "Protein loss through the kidneys or gut",
+      "Malnutrition"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 2.5,
+    "ciLow": 1.2,
+    "ciHigh": 3,
+    "studies": 14,
+    "analyte": "Albumin",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "27995906",
+      "doi": "10.1038/ajg.2016.517",
+      "title": "ACG Clinical Guideline: Evaluation of Abnormal Liver Chemistries",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}

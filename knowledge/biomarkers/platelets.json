@@ -1,0 +1,80 @@
+{
+  "id": "platelets",
+  "name": "Platelets",
+  "abbreviation": "PLT",
+  "category": "Blood count",
+  "aliases": [
+    "Platelets",
+    "Platelet count",
+    "PLT",
+    "Thrombocytes",
+    "Thrombozyten",
+    "Trombocita",
+    "Vérlemezke",
+    "Plaquettes",
+    "Plaquetas",
+    "Piastrine"
+  ],
+  "loinc": [
+    "777-3"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 150,
+      "high": 400
+    }
+  ],
+  "criticalRange": {
+    "low": 20,
+    "high": 1000
+  },
+  "summary": "Platelets are small cell fragments that help blood clot and stop bleeding.",
+  "high": {
+    "meaning": "A high platelet count is most often a reaction to inflammation, infection or iron deficiency. Rarely it comes from a bone marrow condition.",
+    "commonCauses": [
+      "Inflammation or infection",
+      "Iron deficiency",
+      "After surgery or blood loss",
+      "After spleen removal",
+      "Bone marrow conditions (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low platelet count can make bruising and bleeding easier when it is very low. Mild drops are common and often temporary.",
+    "commonCauses": [
+      "Clumping in the tube (a false low)",
+      "Viral infections",
+      "Some medicines",
+      "Pregnancy",
+      "Liver disease",
+      "Immune conditions"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 7.2,
+    "ciLow": 6.6,
+    "ciHigh": 10,
+    "studies": 7,
+    "analyte": "Thrombocytes",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "36126009",
+      "title": "Thrombocytopenia: Evaluation and Management",
+      "year": 2022,
+      "studyType": "review"
+    }
+  ]
+}

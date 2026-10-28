@@ -1,0 +1,77 @@
+{
+  "id": "triglycerides",
+  "name": "Triglycerides",
+  "abbreviation": "TG",
+  "category": "Lipids",
+  "aliases": [
+    "Triglycerides",
+    "TG",
+    "TRIG",
+    "Triglyceride",
+    "Triglicerid",
+    "Triglycérides",
+    "Triglicéridos",
+    "Trigliceridi"
+  ],
+  "loinc": [
+    "2571-8"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.01129
+  },
+  "defaultRanges": [
+    {
+      "high": 1.7
+    }
+  ],
+  "rangeNote": "This range is for a fasting sample. Triglycerides rise for several hours after a meal.",
+  "summary": "Triglycerides are the main type of fat in the blood. The body uses them for energy and stores extra calories as triglycerides.",
+  "high": {
+    "meaning": "High triglycerides are linked with heart risk and, when very high, with pancreatitis.",
+    "commonCauses": [
+      "Not fasting before the test",
+      "Insulin resistance or diabetes",
+      "Alcohol",
+      "Diet high in sugar and refined carbohydrates",
+      "Genetics",
+      "Some medicines"
+    ]
+  },
+  "low": {
+    "meaning": "Low triglycerides are generally not a concern.",
+    "commonCauses": []
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "omega-3-supplements-tg"
+    },
+    {
+      "evidenceId": "oily-fish-tg"
+    },
+    {
+      "evidenceId": "less-alcohol-tg"
+    }
+  ],
+  "biologicalVariation": {
+    "cvi": 19.8,
+    "ciLow": 17.8,
+    "ciHigh": 24,
+    "studies": 29,
+    "analyte": "Triglycerides",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

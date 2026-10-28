@@ -1,0 +1,75 @@
+{
+  "id": "total_cholesterol",
+  "name": "Total cholesterol",
+  "category": "Lipids",
+  "aliases": [
+    "Total cholesterol",
+    "Cholesterol",
+    "Cholesterol, total",
+    "Gesamtcholesterin",
+    "Cholesterin",
+    "Koleszterin",
+    "Össz-koleszterin",
+    "Cholestérol total",
+    "Colesterol total",
+    "Colesterolo totale"
+  ],
+  "loinc": [
+    "2093-3"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.02586
+  },
+  "defaultRanges": [
+    {
+      "high": 5.2
+    }
+  ],
+  "summary": "Total cholesterol is all the cholesterol in your blood, including LDL and HDL. On its own it says less than the parts that make it up.",
+  "high": {
+    "meaning": "A high total cholesterol is often driven by high LDL, but can also come from high HDL. Look at the separate values.",
+    "commonCauses": [
+      "High LDL",
+      "Genetics",
+      "Diet",
+      "Underactive thyroid"
+    ]
+  },
+  "low": {
+    "meaning": "A low total cholesterol is generally not a concern.",
+    "commonCauses": [
+      "Cholesterol-lowering medicines",
+      "Genetics"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "oat-beta-glucan-ldl"
+    },
+    {
+      "evidenceId": "replace-saturated-fat-ldl"
+    }
+  ],
+  "biologicalVariation": {
+    "cvi": 5.4,
+    "ciLow": 5,
+    "ciHigh": 6.6,
+    "studies": 36,
+    "analyte": "Cholesterol",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

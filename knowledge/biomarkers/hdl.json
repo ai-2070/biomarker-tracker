@@ -1,0 +1,77 @@
+{
+  "id": "hdl",
+  "name": "HDL cholesterol",
+  "abbreviation": "HDL-C",
+  "category": "Lipids",
+  "aliases": [
+    "HDL cholesterol",
+    "HDL-C",
+    "HDL",
+    "HDL-Cholesterin",
+    "HDL-koleszterin",
+    "HDL-cholestérol",
+    "Colesterol HDL",
+    "Colesterolo HDL"
+  ],
+  "loinc": [
+    "2085-9"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.02586
+  },
+  "defaultRanges": [
+    {
+      "low": 1,
+      "sex": "m"
+    },
+    {
+      "low": 1.2,
+      "sex": "f"
+    }
+  ],
+  "summary": "HDL helps carry cholesterol away from tissues back to the liver. Low HDL is linked with higher heart risk.",
+  "high": {
+    "meaning": "A high HDL is usually fine. Raising HDL with medicines has not been shown to reduce heart risk.",
+    "commonCauses": [
+      "Genetics",
+      "Regular exercise",
+      "Alcohol"
+    ]
+  },
+  "low": {
+    "meaning": "A low HDL is linked with higher heart risk and often comes together with high triglycerides.",
+    "commonCauses": [
+      "Insulin resistance",
+      "Smoking",
+      "Low physical activity",
+      "Genetics"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "oily-fish-tg"
+    }
+  ],
+  "biologicalVariation": {
+    "cvi": 5.7,
+    "ciLow": 4.7,
+    "ciHigh": 7.9,
+    "studies": 24,
+    "analyte": "HDL cholesterol",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "omega-3-supplements-tg",
+  "lever": "High-dose omega-3 (EPA/DHA), under medical supervision",
+  "intervention": "Prescription-strength omega-3 fatty acid (EPA and DHA) supplements",
+  "kind": "supplement",
+  "outcome": "Triglycerides",
+  "direction": "decrease",
+  "grade": "high",
+  "summary": "High doses of EPA and DHA lower triglycerides substantially in people with high levels. These doses are used under medical supervision; ordinary over-the-counter capsules contain much less.",
+  "whyThisGrade": [
+    "Many randomised trials, reviewed by the American Heart Association",
+    "Large effects need prescription-level doses"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "triglycerides",
+      "helpsWhen": "high"
+    }
+  ],
+  "caution": "High doses can increase bleeding risk together with blood thinners.",
+  "hideWhen": [
+    "anticoagulant"
+  ],
+  "studies": [
+    {
+      "pmid": "31422671",
+      "doi": "10.1161/cir.0000000000000709",
+      "title": "Omega-3 Fatty Acids for the Management of Hypertriglyceridemia: A Science Advisory From the American Heart Association",
+      "year": 2019,
+      "studyType": "guideline"
+    }
+  ]
+}

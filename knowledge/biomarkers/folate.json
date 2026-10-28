@@ -1,0 +1,76 @@
+{
+  "id": "folate",
+  "name": "Folate (serum)",
+  "category": "Iron & vitamins",
+  "aliases": [
+    "Folate",
+    "Folic acid",
+    "Serum folate",
+    "Folsäure",
+    "Folat",
+    "Folsav",
+    "Folates",
+    "Acide folique",
+    "Ácido fólico",
+    "Folati",
+    "Acido folico"
+  ],
+  "loinc": [
+    "2284-8"
+  ],
+  "canonicalUnit": "nmol/L",
+  "conversions": {
+    "nmol/L": 1,
+    "ng/mL": 2.266,
+    "µg/L": 2.266
+  },
+  "defaultRanges": [
+    {
+      "low": 7
+    }
+  ],
+  "rangeNote": "Serum folate reflects recent intake; one folate-rich meal can raise it. Below about 7 nmol/L (3 ng/mL) is usually considered deficient.",
+  "summary": "Folate (vitamin B9) is needed to make DNA and new red blood cells. It comes from leafy greens, legumes and fortified foods.",
+  "high": {
+    "meaning": "A high folate usually comes from supplements or fortified foods and is not harmful in itself. High folate intake can hide the anaemia of vitamin B12 deficiency.",
+    "commonCauses": [
+      "Supplements",
+      "Fortified foods"
+    ]
+  },
+  "low": {
+    "meaning": "A low folate can lead to anaemia with large red cells. Before and in early pregnancy, enough folate is important for the baby.",
+    "commonCauses": [
+      "Low intake of vegetables and legumes",
+      "Regular alcohol use",
+      "Poor absorption (e.g. coeliac disease)",
+      "Some medicines (e.g. methotrexate)",
+      "Pregnancy"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "folate-foods"
+    }
+  ],
+  "biologicalVariation": {
+    "cvi": 11.2,
+    "ciLow": 10.3,
+    "ciHigh": 13,
+    "studies": 3,
+    "analyte": "Folate",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "24942828",
+      "doi": "10.1111/bjh.12959",
+      "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

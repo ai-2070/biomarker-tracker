@@ -1,0 +1,79 @@
+{
+  "id": "alp",
+  "name": "Alkaline phosphatase",
+  "abbreviation": "ALP",
+  "category": "Liver",
+  "aliases": [
+    "Alkaline phosphatase",
+    "ALP",
+    "ALKP",
+    "AP",
+    "Alkalische Phosphatase",
+    "Alkalikus foszfatáz",
+    "Phosphatase alcaline",
+    "PAL",
+    "Fosfatasa alcalina",
+    "Fosfatasi alcalina"
+  ],
+  "loinc": [
+    "6768-6"
+  ],
+  "canonicalUnit": "U/L",
+  "conversions": {
+    "U/L": 1,
+    "IU/L": 1,
+    "µkat/L": 60
+  },
+  "defaultRanges": [
+    {
+      "low": 40,
+      "high": 130
+    }
+  ],
+  "rangeNote": "Normal values are higher in children, teenagers and during pregnancy because of bone growth and the placenta.",
+  "summary": "ALP is an enzyme found mainly in the liver, bile ducts and bones. It is used to check for problems with bile flow and bone turnover.",
+  "high": {
+    "meaning": "A high ALP can point to a blocked or irritated bile flow, or to increased bone activity.",
+    "commonCauses": [
+      "Bile duct or liver problems",
+      "Bone growth or healing",
+      "Vitamin D deficiency",
+      "Pregnancy"
+    ]
+  },
+  "low": {
+    "meaning": "A low ALP is uncommon and can be linked to low zinc or magnesium, or rare inherited conditions.",
+    "commonCauses": [
+      "Low zinc or magnesium",
+      "Rare inherited conditions"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 5.2,
+    "ciLow": 2.6,
+    "ciHigh": 6,
+    "studies": 10,
+    "analyte": "Alkaline phosphatase (ALP) - total",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "27995906",
+      "doi": "10.1038/ajg.2016.517",
+      "title": "ACG Clinical Guideline: Evaluation of Abnormal Liver Chemistries",
+      "year": 2017,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

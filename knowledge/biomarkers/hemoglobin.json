@@ -1,0 +1,88 @@
+{
+  "id": "hemoglobin",
+  "name": "Haemoglobin",
+  "abbreviation": "Hb",
+  "category": "Blood count",
+  "aliases": [
+    "Hemoglobin",
+    "Haemoglobin",
+    "Hb",
+    "HGB",
+    "Hämoglobin",
+    "Hémoglobine",
+    "Hemoglobina",
+    "Emoglobina"
+  ],
+  "loinc": [
+    "718-7"
+  ],
+  "canonicalUnit": "g/L",
+  "conversions": {
+    "g/L": 1,
+    "g/dL": 10,
+    "mmol/L": 16.11
+  },
+  "defaultRanges": [
+    {
+      "low": 130,
+      "high": 170,
+      "sex": "m"
+    },
+    {
+      "low": 120,
+      "high": 155,
+      "sex": "f"
+    }
+  ],
+  "criticalRange": {
+    "low": 70
+  },
+  "summary": "Haemoglobin is the protein in red blood cells that carries oxygen around the body. A low level is called anaemia.",
+  "high": {
+    "meaning": "A high haemoglobin can come from dehydration, smoking, living at high altitude or, rarely, a bone marrow condition.",
+    "commonCauses": [
+      "Dehydration",
+      "Smoking",
+      "Living at high altitude",
+      "Testosterone therapy",
+      "Bone marrow conditions (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low haemoglobin (anaemia) can cause tiredness and shortness of breath. It has many causes, the most common being iron deficiency.",
+    "commonCauses": [
+      "Iron deficiency",
+      "Blood loss, including heavy periods",
+      "Vitamin B12 or folate deficiency",
+      "Chronic illness or inflammation"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 2.7,
+    "ciLow": 1.7,
+    "ciHigh": 3.6,
+    "studies": 10,
+    "analyte": "Haemoglobin (Hb)",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "ast",
+  "name": "Aspartate aminotransferase",
+  "abbreviation": "AST",
+  "category": "Liver",
+  "aliases": [
+    "AST",
+    "ASAT",
+    "GOT",
+    "SGOT",
+    "AST (GOT)",
+    "Aspartate aminotransferase",
+    "Aspartate transaminase",
+    "Aspartat-Aminotransferase",
+    "GOT (ASAT)",
+    "Glutamát-oxálacetát transzamináz",
+    "Aspartate aminotransférase",
+    "Aspartato aminotransferasa",
+    "Aspartato aminotransferasi"
+  ],
+  "loinc": [
+    "1920-8"
+  ],
+  "canonicalUnit": "U/L",
+  "conversions": {
+    "U/L": 1,
+    "IU/L": 1,
+    "µkat/L": 60
+  },
+  "defaultRanges": [
+    {
+      "high": 50,
+      "sex": "m"
+    },
+    {
+      "high": 35,
+      "sex": "f"
+    }
+  ],
+  "summary": "AST is an enzyme found in the liver, but also in muscles and the heart. It is read together with ALT.",
+  "high": {
+    "meaning": "A high AST can come from the liver or from muscle. If ALT is normal, muscle (for example after hard exercise) is a common reason.",
+    "commonCauses": [
+      "Hard exercise or muscle injury",
+      "Fatty liver",
+      "Alcohol",
+      "Some medicines",
+      "Viral hepatitis"
+    ]
+  },
+  "low": {
+    "meaning": "A low AST is not a concern.",
+    "commonCauses": []
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 8.4,
+    "ciLow": 6.2,
+    "ciHigh": 13.5,
+    "studies": 4,
+    "analyte": "Aspartate transaminase (AST)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "27995906",
+      "doi": "10.1038/ajg.2016.517",
+      "title": "ACG Clinical Guideline: Evaluation of Abnormal Liver Chemistries",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}

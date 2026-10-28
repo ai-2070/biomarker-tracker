@@ -1,0 +1,86 @@
+{
+  "version": "6.9",
+  "hitCount": 3130,
+  "request": {
+    "queryString": "(TITLE_ABS:\"ferritin\") AND (PUB_TYPE:\"review\" OR PUB_TYPE:\"systematic review\" OR PUB_TYPE:\"meta-analysis\") AND SRC:MED"
+  },
+  "resultList": {
+    "result": [
+      {
+        "id": "42832553",
+        "source": "MED",
+        "pmid": "42832553",
+        "doi": "10.1371/journal.pone.0359790",
+        "title": "Serum ferritin in children with Attention Deficit Hyperactivity Disorder (ADHD): A systematic review and meta-analysis.",
+        "authorString": "Gedfie S, Gashaw M, Adisu A, Bazezew A, Jemal A, Alula MT, Alemu BB, Nigatie M, Tefera Z, Yimer BE, Gashaw Y, Ashagre...",
+        "journalInfo": {
+          "journal": {
+            "title": "PloS one",
+            "medlineAbbreviation": "PLoS One"
+          }
+        },
+        "pubYear": "2026",
+        "abstractText": "<h4>Background</h4>Attention-deficit/hyperactivity disorder (ADHD) is a common childhood neurodevelopmental disorder of uncertain etiology. Iron is crucial for brain function and dopamine regulation, but prior studies examining its association with ADHD have produced inconsistent results. This systematic review and meta-analysis aimed to compare serum ferritin concentrations in children with ADHD versus healthy controls.<h4>Method</h4>This systematic review and meta-analysis was conducted in accordance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines. A comprehensive literature search was conducted across PubMed/MEDLINE, Scopus, Science Direct, and Google Scholar to identify eligible studies. Statistical analyses were performed using STATA version 17, and a random-effects model was applied to estimate the pooled mean difference (MD) and standardized mean difference (SMD). Heterogeneity across included studies was assessed using Higgins' I2 test. Publication bias was evaluated visually using funnel plots and statistically via Egger's weighted regression test.<h4>Results</h4>A total of 7643 articles were identified, of which 21 studies (including 4,058 ADHD cases and 4,533 controls) were included in the final meta-analysis. The pooled mean difference (MD) in serum ferritin levels between children with ADHD and healthy controls was -9.74 (95% CI: -16.50, -2.98). Subgroup analyses were conducted to explore heterogeneity. By continent, the highest pooled MD was observed in Africa (-19.28, 95% CI: -40.73, 2.17) and the lowest in North America (-1.42, 95% CI: -6.98, 4.13). By publication year, studies published before 2015 showed a pooled MD of -1.94 (95% CI: -2.31, -1.58), compared to -19.43 (95% CI: -34.37, -4.49) for those published after 2016. By sample size, smaller studies (<199 participants) yielded a higher MD (-12.12, 95% CI: -21.91, -2.34) than larger studies (≥200 participants; -7.64, 95% CI: -17.33, 2.05). By study design, the pooled MD was -1.95 (95% CI: -2.31, -1.59) for case-control studies and -14.85 (95% CI: -27.07, -2.63) for comparative cross-sectional studies. In the subgroup analysis based on ADHD diagnostic criteria, the DSM-IV-TR criteria yielded the largest mean difference (-16.56, 95% CI: -28.23, -4.89).<h4>Conclusion</h4>Lower serum ferritin levels (pooled MD: -9.74) are associated with ADHD in children. Accordingly, screening for serum ferritin and enhanced iron supplementation should be considered in this population. Future longitudinal studies are needed to clarify the causal relationship between iron deficiency and ADHD severity.",
+        "pubTypeList": {
+          "pubType": [
+            "Meta-Analysis",
+            "Systematic Review",
+            "Journal Article"
+          ]
+        },
+        "isOpenAccess": "N"
+      },
+      {
+        "id": "42687675",
+        "source": "MED",
+        "pmid": "42687675",
+        "pmcid": "PMC13539213",
+        "doi": "10.1002/cam4.72150",
+        "title": "Association of Ferritin Levels With Cytokine Release Syndrome in CAR T-Cell Therapy: A Systematic Review and Meta-Analysis.",
+        "authorString": "Sah R, Bhattarai A, Shah S, Mehta R, Sah S, Solangi Z, Sorescu GP.",
+        "journalInfo": {
+          "journal": {
+            "title": "Cancer medicine",
+            "medlineAbbreviation": "Cancer Med"
+          }
+        },
+        "pubYear": "2026",
+        "abstractText": "<h4>Background</h4>Ferritin elevation is frequently observed during cytokine release syndrome (CRS) following CAR T-cell therapy; however, its independent clinical utility as a predictive or prognostic biomarker remains uncertain. We performed a systematic review critically evaluating the timing-specific and context-dependent role of ferritin in CRS risk stratification and outcomes.<h4>Methods</h4>We systematically searched PubMed, Web of Science, and Scopus for studies evaluating ferritin in CAR T-cell recipients. We performed structured qualitative synthesis with semi-quantitative comparison across studies, including direction-of-effect analysis and threshold stratification. We also performed a meta-analysis on the association of progression-free survival (PFS) and overall survival (OS) based on pre-infusion ferritin levels using a random-effects model.<h4>Results</h4>Fifteen studies (n = 1671) were included. Elevated pre-infusion ferritin (commonly ≥ 400 ng/mL) was associated with higher CRS incidence and severity in most studies (10/12), but its independent predictive value was inconsistent. Post-infusion ferritin demonstrated a consistent association with CRS severity across all studies (9/9), with extreme elevations (> 10,000 ng/mL) observed in high-grade CRS. However, ferritin lacked specificity as a standalone biomarker and performed more robustly when integrated into multimarker models (e.g., cytokines, EASIX score). Survival associations were heterogeneous and likely confounded by disease burden and systemic inflammation. Interestingly, meta-analysis showed that pre-infusion ferritin levels were significantly associated with worse PFS [HR: 2.18 (1.74-2.73), p < 0.00001, I<sup>2</sup> = 0%] and worse OS [HR: 2.97 (2.22-3.97), p < 0.00001, I<sup>2</sup> = 0%]. Potential publication bias was not identified in this analysis.<h4>Conclusion</h4>Ferritin is best interpreted as a dynamic inflammatory correlate rather than an independent predictor of CRS. Its clinical utility in CRS prediction lies in risk enrichment when combined with other biomarkers and clinical scores, rather than as a standalone decision tool. Nevertheless, pre-infusion levels may be useful in predicting worse PFS and OS given the standardization of timing, thresholds, and integration into predictive models.",
+        "pubTypeList": {
+          "pubType": [
+            "Meta-Analysis",
+            "Systematic Review",
+            "review-article",
+            "Review",
+            "Journal Article"
+          ]
+        },
+        "isOpenAccess": "Y"
+      },
+      {
+        "id": "42575304",
+        "source": "MED",
+        "pmid": "42575304",
+        "doi": "10.1016/j.jinf.2026.106826",
+        "title": "Core biomarkers and early detection criteria of cytokine storm triggered by infectious diseases: A systematic review and meta analysis.",
+        "authorString": "Yin J, Huang X, Ou X, Xu S, Zhang J, Wang S, Sun J, Wu J, Qiao G, Cao Y, Song Q.",
+        "journalInfo": {
+          "journal": {
+            "title": "The Journal of infection",
+            "medlineAbbreviation": "J Infect"
+          }
+        },
+        "pubYear": "2026",
+        "abstractText": "<h4>Objective</h4>Cytokine storm (CS) is a critical immunopathological mechanism contributing to disease severity, organ failure, and mortality in infectious diseases. However, standardized clinical diagnostic criteria, particularly for early-stage CS, remain lacking. This systematic review and meta-analysis aimed to identify core diagnostic biomarkers and summarize early detection criteria for CS.<h4>Methods</h4>PubMed, Scopus, Embase, and the Cochrane Library were searched for eligible studies published between 2001 and 2025. Study selection, quality assessment, and data extraction were conducted according to predefined criteria.<h4>Results</h4>15 studies were included. Interleukin-6 (IL-6), Interleukin-10 (IL-10), C-reactive protein (CRP), serum ferritin and D-dimer were identified as core biomarkers of CS. Eight studies proposed quantitative diagnostic thresholds, including IL-6 (23-40 pg/mL), IL-10 (57 pg/mL), CRP (46-100 mg/L), serum ferritin (250-1000 ng/mL), and D-dimer (1.5-4.9 μg/mL), while nine studies relied on qualitative biomarker changes and/or clinical manifestations. Meta-analysis demonstrated that elevated levels of IL-6 (OR=11.43), CRP (OR=4.85), serum ferritin (OR=9.61), D-dimer (OR=4.60), and IL-10 (OR=7.97) were significantly associated with increased in-hospital mortality. Subgroup and sensitivity analyzes confirmed the robustness of these findings, with moderate heterogeneity observed for CRP (I²=70.9%). IL-6 (23-40 pg/mL) and IL-10 (57 pg/mL) may serve as potential early detection criteria for CS.<h4>Conclusion</h4>IL-6, IL-10, serum ferritin, CRP, and D-dimer represent core diagnostic biomarkers of CS and are significantly associated with increased in-hospital mortality in infectious diseases.",
+        "pubTypeList": {
+          "pubType": [
+            "Meta-Analysis",
+            "Systematic Review",
+            "Journal Article"
+          ]
+        },
+        "isOpenAccess": "N"
+      }
+    ]
+  }
+}

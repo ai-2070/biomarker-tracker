@@ -1,0 +1,85 @@
+{
+  "id": "wbc",
+  "name": "White blood cells",
+  "abbreviation": "WBC",
+  "category": "Blood count",
+  "aliases": [
+    "White blood cells",
+    "White blood cell count",
+    "WBC",
+    "Leukocytes",
+    "Leucocytes",
+    "Leukozyten",
+    "Fehérvérsejt",
+    "Fehérvérsejtszám",
+    "Leukocyta",
+    "Leucocitos",
+    "Leucociti",
+    "White cell count",
+    "WCC"
+  ],
+  "loinc": [
+    "6690-2"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 4,
+      "high": 11
+    }
+  ],
+  "summary": "White blood cells are the cells of your immune system. The count shows how many are in a set volume of blood.",
+  "high": {
+    "meaning": "A high count usually means the body is fighting an infection or reacting to stress or inflammation.",
+    "commonCauses": [
+      "Infection",
+      "Inflammation",
+      "Smoking",
+      "Physical or emotional stress",
+      "Steroid medicines",
+      "Blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low count can follow viral infections or be caused by some medicines. Some healthy people naturally have lower counts.",
+    "commonCauses": [
+      "Recent viral infection",
+      "Some medicines",
+      "Natural variation, more common in people of African descent",
+      "Bone marrow problems (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 11.1,
+    "ciLow": 8.9,
+    "ciHigh": 15.9,
+    "studies": 9,
+    "analyte": "Leukocytes",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-10-28"
+  },
+  "sources": [
+    {
+      "pmid": "11087187",
+      "title": "Leukocytosis: basics of clinical assessment",
+      "year": 2000,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "neutrophil_pct",
+  "name": "Neutrophils (%)",
+  "category": "Blood count",
+  "aliases": [
+    "Neutrophils %",
+    "Neutrophils (%)",
+    "Neutrophil %",
+    "NEUT%",
+    "Segmented neutrophils",
+    "Neutrophile",
+    "Neutrophile Granulozyten",
+    "Neutrofil granulocita",
+    "Neutrophiles",
+    "Neutrófilos",
+    "Neutrofili"
+  ],
+  "loinc": [
+    "770-8"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 40,
+      "high": 75
+    }
+  ],
+  "rangeNote": "The absolute neutrophil count (cells per litre) is often more useful than the percentage.",
+  "summary": "Neutrophils are the most common white blood cells and the first to respond to bacterial infections. This value is their share of all white cells.",
+  "high": {
+    "meaning": "A higher share of neutrophils is common with bacterial infections, stress, intense exercise or steroid medicines.",
+    "commonCauses": [
+      "Bacterial infection",
+      "Physical or emotional stress",
+      "Steroid medicines",
+      "Smoking"
+    ]
+  },
+  "low": {
+    "meaning": "A lower share is common during viral infections, when lymphocytes rise. Some healthy people naturally have lower neutrophil counts.",
+    "commonCauses": [
+      "Viral infections",
+      "Some medicines",
+      "Natural variation, more common in people of African or Middle Eastern descent"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "11087187",
+      "title": "Leukocytosis: basics of clinical assessment",
+      "year": 2000,
+      "studyType": "review"
+    }
+  ]
+}
