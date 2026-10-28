@@ -17,6 +17,8 @@ export type Route =
   | { name: "experiments" }
   | { name: "experiment-new"; marker?: string; change?: string }
   | { name: "experiment"; id: string }
+  | { name: "setup" }
+  | { name: "profiles" }
   | { name: "not-found" };
 
 export function parseHash(hash: string): Route {
@@ -38,6 +40,8 @@ export function parseHash(hash: string): Route {
     return ask ? { name: "assistant", ask } : { name: "assistant" };
   }
   if (parts[0] === "biological-age" && parts.length === 1) return { name: "phenoage" };
+  if (parts[0] === "setup" && parts.length === 1) return { name: "setup" };
+  if (parts[0] === "profiles" && parts.length === 1) return { name: "profiles" };
   if (parts[0] === "import" && parts.length === 1) return { name: "import" };
   if (parts[0] === "experiments" && parts.length === 1) return { name: "experiments" };
   if (parts[0] === "experiments" && parts[1] === "new" && parts.length === 2) {
@@ -56,6 +60,10 @@ export function parseHash(hash: string): Route {
 
 export function href(route: Route): string {
   switch (route.name) {
+    case "setup":
+      return "#/setup";
+    case "profiles":
+      return "#/profiles";
     case "overview":
       return "#/";
     case "add":

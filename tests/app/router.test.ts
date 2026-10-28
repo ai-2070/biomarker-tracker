@@ -25,6 +25,8 @@ describe("router", () => {
       { name: "experiment-new", marker: "ferritin", change: "Kiwis & oats" },
       { name: "experiment", id: "abc-123" },
       { name: "data", tab: "models" },
+      { name: "setup" },
+      { name: "profiles" },
       { name: "assistant" },
       { name: "assistant", ask: "What affects LDL?" },
     ];

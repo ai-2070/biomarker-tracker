@@ -3,6 +3,7 @@ import { Field } from "@base-ui/react/field";
 import { todayIso } from "../../core/dates";
 import {
   durationDays,
+  safetyLabels,
   safetyNotes,
   sortProtocols,
   validateProtocol,
@@ -16,11 +17,12 @@ import { ConfirmDialog } from "../components/ConfirmDialog";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate, formatDuration } from "../format";
-import { useProtocols } from "../hooks";
+import { useProfile, useProtocols } from "../hooks";
 import { href } from "../router";
 
 export function LogPage({ prefill }: { prefill?: string }) {
   const entries = useProtocols();
+  const profile = useProfile();
   const [adding, setAdding] = useState(prefill !== undefined);
   const [editing, setEditing] = useState<string | null>(null);
   const today = todayIso();
@@ -37,7 +39,7 @@ export function LogPage({ prefill }: { prefill?: string }) {
       </PageTitle>
 
       <div className="flex flex-col gap-5">
-        <SafetyNotices notes={safetyNotes(ongoing.map((p) => p.label))} />
+        <SafetyNotices notes={safetyNotes(safetyLabels(ongoing, profile))} />
 
         <a
           href={href({ name: "experiments" })}

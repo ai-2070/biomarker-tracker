@@ -10,6 +10,7 @@ import { agentInstalled, hermesConnected, isAgent, setHermesConnection, testAgen
 import { ask, type ChatMessage } from "./assistant";
 import { handleMcp, setBridgePort } from "./bridge";
 import { openRouterModels } from "./openrouter";
+import * as profiles from "./profiles";
 import { parseSnapshot } from "./healthTools";
 import * as mcp from "./mcp";
 import { assistantCheck, describeModelError, readyModel } from "./models";
@@ -17,7 +18,9 @@ import { addSkill, deleteSkill, getSkill, listSkills, setSkillEnabled } from "./
 import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./store";
 import { generateText } from "ai";
 
-export const MAX_BODY = 5 * 1024 * 1024;
+export const MAX_BODY = 20 * 1024 * 1024;
+/** Uploads (scanned files, backup zips). */
+const MAX_UPLOAD = 200 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "dist");
 
 class HttpError extends Error {
@@ -163,6 +166,88 @@ route("DELETE", "/api/mcp/([a-z0-9-]+)", async ([id]) => {
   return { ok: true };
 });
 
+// Profiles: one folder per person (profiles.ts)
+
+const ID = "([a-z0-9][a-z0-9-]{0,59})";
+route("GET", "/api/profiles", () => ({ profiles: profiles.listProfiles(), active: profiles.activeProfile(), root: profiles.PROFILES() }));
+route("POST", "/api/profiles", (_p, body) => {
+  const created = profiles.createProfile(body);
+  profiles.setActiveProfile(created.id);
+  return { profile: created };
+});
+route("PUT", "/api/profiles/active", (_p, body) => {
+  profiles.setActiveProfile(str(body.id, 60) ?? "");
+  return { ok: true };
+});
+route("GET", `/api/profiles/${ID}/data`, ([id]) => profiles.getProfileData(id!));
+route("PUT", `/api/profiles/${ID}/data`, ([id], body) => {
+  profiles.saveProfileData(id!, body);
+  return { ok: true };
+});
+route("DELETE", `/api/profiles/${ID}`, ([id]) => {
+  profiles.deleteProfile(id!);
+  return { ok: true, active: profiles.activeProfile() };
+});
+route("POST", `/api/profiles/${ID}/reveal`, ([id]) => {
+  profiles.revealFolder(id!);
+  return { ok: true };
+});
+route("GET", `/api/profiles/${ID}/files`, ([id]) => ({ files: profiles.listFiles(id!) }));
+route("DELETE", `/api/profiles/${ID}/files/([^/]+)`, ([id, name]) => {
+  profiles.deleteFile(id!, decodeURIComponent(name!));
+  return { ok: true };
+});
+
+/** Routes that send or receive files instead of JSON. */
+type RawHandler = (params: string[], req: http.IncomingMessage, res: http.ServerResponse, url: URL) => Promise<void> | void;
+const rawRoutes: { method: string; re: RegExp; fn: RawHandler }[] = [];
+const rawRoute = (method: string, pattern: string, fn: RawHandler) => rawRoutes.push({ method, re: new RegExp(`^${pattern}$`), fn });
+
+const sendFile = (res: http.ServerResponse, data: Buffer, type: string, fileName: string, download: boolean) =>
+  res
+    .writeHead(200, {
+      "content-type": type,
+      "content-length": data.length,
+      "content-disposition": `${download ? "attachment" : "inline"}; filename*=UTF-8''${encodeURIComponent(fileName)}`,
+      "cache-control": "no-store",
+    })
+    .end(data);
+
+rawRoute("GET", `/api/profiles/${ID}/backup`, ([id], _req, res) => {
+  const b = profiles.backupZip(id!);
+  sendFile(res, b.data, "application/zip", b.fileName, true);
+});
+rawRoute("GET", `/api/profiles/${ID}/files/([^/]+)`, ([id, name], _req, res, url) => {
+  const f = profiles.readFile(id!, decodeURIComponent(name!));
+  sendFile(res, f.data, f.entry.type, f.entry.originalName, url.searchParams.has("download"));
+});
+rawRoute("POST", `/api/profiles/${ID}/files`, async ([id], req, res, url) => {
+  const data = await readRaw(req, profiles.MAX_FILE);
+  const file = profiles.addFile(id!, url.searchParams.get("name") ?? "file", data, url.searchParams.get("note") ?? undefined);
+  res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ file }));
+});
+rawRoute("POST", "/api/profiles/restore", async (_p, req, res) => {
+  const created = profiles.restoreZip(await readRaw(req, MAX_UPLOAD));
+  profiles.setActiveProfile(created.id);
+  res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ profile: created }));
+});
+
+function readRaw(req: http.IncomingMessage, max: number): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    let size = 0;
+    const chunks: Buffer[] = [];
+    req.on("data", (c: Buffer) => {
+      size += c.length;
+      if (size > max) {
+        reject(new HttpError(413, "The file is too large."));
+        req.destroy();
+      } else chunks.push(c);
+    });
+    req.on("end", () => resolve(Buffer.concat(chunks)));
+    req.on("error", reject);
+  });
+}
+
 // Assistant
 
 route("POST", "/api/assistant", async (_p, body) => {
@@ -263,13 +348,24 @@ export function createServer(port: number): http.Server {
     }
     if (!url.pathname.startsWith("/api/")) return method === "GET" ? serveStatic(url.pathname, res) : send(405, { error: "Not allowed." });
     if (!allowedWrite(method, req.headers)) return send(403, { error: "This request isn't allowed." });
+    const raw = rawRoutes.find((x) => x.method === method && x.re.test(url.pathname));
+    if (raw) {
+      try {
+        await raw.fn(raw.re.exec(url.pathname)!.slice(1), req, res, url);
+      } catch (e) {
+        if (res.headersSent) return;
+        const status = e instanceof HttpError || e instanceof profiles.ProfileError ? e.status : 400;
+        send(status, { error: e instanceof Error ? e.message : "Something went wrong." });
+      }
+      return;
+    }
     const r = routes.find((x) => x.method === method && x.re.test(url.pathname));
     if (!r) return send(404, { error: "Not found." });
     try {
       const body = method === "GET" ? {} : await readBody(req);
       send(200, await r.fn(r.re.exec(url.pathname)!.slice(1), body));
     } catch (e) {
-      if (e instanceof HttpError) return send(e.status, { error: e.message });
+      if (e instanceof HttpError || e instanceof profiles.ProfileError) return send(e.status, { error: e.message });
       send(400, { error: e instanceof Error ? e.message : "Something went wrong." });
     }
   });

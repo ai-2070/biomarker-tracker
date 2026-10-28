@@ -44,6 +44,8 @@ export interface Settings {
   mcp: McpServerConfig[];
   /** The ready-made MCP servers were added once; removing one later keeps it removed. */
   mcpSeeded?: boolean;
+  /** The profile (folder in data/profiles) the app has open. */
+  activeProfile?: string;
 }
 
 export interface Secrets {
@@ -58,7 +60,7 @@ const SECRETS = () => dataPath("secrets.json");
 
 export function getSettings(): Settings {
   const s = readJSON<Partial<Settings>>(SETTINGS(), {});
-  return { providers: s.providers ?? {}, skillsOff: s.skillsOff ?? [], mcp: s.mcp ?? [], ...(s.assistant ? { assistant: s.assistant } : {}), ...(s.mcpSeeded ? { mcpSeeded: true } : {}) };
+  return { providers: s.providers ?? {}, skillsOff: s.skillsOff ?? [], mcp: s.mcp ?? [], ...(s.assistant ? { assistant: s.assistant } : {}), ...(s.mcpSeeded ? { mcpSeeded: true } : {}), ...(typeof s.activeProfile === "string" ? { activeProfile: s.activeProfile } : {}) };
 }
 
 export function saveSettings(s: Settings): void {

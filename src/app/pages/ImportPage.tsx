@@ -8,6 +8,7 @@ import { flagMeasurement, isAlreadySaved, isCritical } from "../../core/trends";
 import { listUnits } from "../../core/units";
 import type { Measurement } from "../../core/types";
 import { addMeasurements } from "../../db/db";
+import { uploadFile, useProfiles } from "../profiles";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { UnitSelect } from "../components/UnitSelect";
@@ -33,14 +34,26 @@ interface Row {
 
 type Step =
   | { name: "pick" }
-  | { name: "review"; fileName: string; report: ParsedReport }
-  | { name: "done"; saved: Measurement[]; skipped: number };
+  | { name: "review"; fileName: string; file?: File; report: ParsedReport }
+  | { name: "done"; saved: Measurement[]; skipped: number; kept?: string; keepError?: string };
 
 // US-style dates (month first) only for US English.
 const monthFirst = typeof navigator !== "undefined" && navigator.language === "en-US";
 
 export function ImportPage() {
   const [step, setStep] = useState<Step>({ name: "pick" });
+  const { mode, active } = useProfiles();
+
+  /** After saving, the PDF itself goes into the profile folder, next to the results read from it. */
+  async function saved(saved: Measurement[], skipped: number, file: File | undefined, date: string | undefined) {
+    if (!file || mode !== "folders" || !active) return setStep({ name: "done", saved, skipped });
+    try {
+      const f = await uploadFile(active.id, file, `Lab report${date ? ` from ${date}` : ""}, ${saved.length} ${saved.length === 1 ? "result" : "results"} saved`);
+      setStep({ name: "done", saved, skipped, kept: f.originalName });
+    } catch (e) {
+      setStep({ name: "done", saved, skipped, keepError: e instanceof Error ? e.message : "unknown error" });
+    }
+  }
 
   return (
     <>
@@ -48,22 +61,36 @@ export function ImportPage() {
         Import a lab report
       </PageTitle>
       {step.name === "pick" && (
-        <PickFile onParsed={(fileName, text) => setStep({ name: "review", fileName, report: parseLabText(text, BIOMARKERS, { monthFirst }) })} />
+        <PickFile onParsed={(fileName, text, file) => setStep({ name: "review", fileName, ...(file ? { file } : {}), report: parseLabText(text, BIOMARKERS, { monthFirst }) })} />
       )}
       {step.name === "review" && (
         <Review
           fileName={step.fileName}
           report={step.report}
           onCancel={() => setStep({ name: "pick" })}
-          onSaved={(saved, skipped) => setStep({ name: "done", saved, skipped })}
+          onSaved={(list, skipped, date) => void saved(list, skipped, step.file, date)}
         />
       )}
-      {step.name === "done" && <Done saved={step.saved} skipped={step.skipped} onAnother={() => setStep({ name: "pick" })} />}
+      {step.name === "done" && (
+        <>
+          {step.kept && (
+            <Notice role="status" className="mb-4">
+              The report <span className="font-medium text-ink">{step.kept}</span> is kept in this profile's folder (Settings → Your data → Files).
+            </Notice>
+          )}
+          {step.keepError && (
+            <Notice tone="warn" className="mb-4">
+              The results were saved, but the PDF couldn't be kept in the profile folder: {step.keepError}
+            </Notice>
+          )}
+          <Done saved={step.saved} skipped={step.skipped} onAnother={() => setStep({ name: "pick" })} />
+        </>
+      )}
     </>
   );
 }
 
-function PickFile({ onParsed }: { onParsed: (fileName: string, text: string) => void }) {
+function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file?: File) => void }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pasted, setPasted] = useState("");
@@ -74,7 +101,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string) => 
     setBusy(true);
     try {
       const { readPdfText } = await import("../pdf");
-      onParsed(file.name, await readPdfText(file));
+      onParsed(file.name, await readPdfText(file), file);
     } catch (e) {
       setError(e instanceof Error ? e.message : "This file couldn't be read.");
     } finally {
@@ -148,7 +175,7 @@ function Review({
   fileName: string;
   report: ParsedReport;
   onCancel: () => void;
-  onSaved: (saved: Measurement[], skipped: number) => void;
+  onSaved: (saved: Measurement[], skipped: number, date: string) => void;
 }) {
   const existing = useAllMeasurements();
   const today = todayIso();
@@ -207,7 +234,7 @@ function Review({
     }
     setSaving(true);
     try {
-      onSaved(await addMeasurements(toSave), skipped);
+      onSaved(await addMeasurements(toSave), skipped, date);
     } finally {
       setSaving(false);
     }

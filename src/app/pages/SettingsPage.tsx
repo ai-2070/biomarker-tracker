@@ -5,6 +5,7 @@ import { McpSettings } from "../components/settings/McpSettings";
 import { ModelsSettings } from "../components/settings/ModelsSettings";
 import { SkillsSettings } from "../components/settings/SkillsSettings";
 import { Notice, PageTitle } from "../components/ui";
+import { useProfiles } from "../profiles";
 import { href, type SettingsTab } from "../router";
 import { DataSettings } from "./DataPage";
 
@@ -37,9 +38,11 @@ function NeedsServer({ children }: { children: ReactNode }) {
 }
 
 export function SettingsPage({ tab = "data" }: { tab?: SettingsTab }) {
+  const { mode } = useProfiles();
+  const sub = tab === "data" && mode === "folders" ? "This profile's details, files and backups. Everything is kept in its folder on this computer." : SUBTITLE[tab];
   return (
     <>
-      <PageTitle sub={SUBTITLE[tab]}>Settings</PageTitle>
+      <PageTitle sub={sub}>Settings</PageTitle>
       <Tabs.Root value={tab} onValueChange={(v) => (location.hash = href({ name: "data", tab: v as SettingsTab }))}>
         <Tabs.List className="relative mb-6 flex gap-1 overflow-x-auto border-b border-line">
           {TABS.map((t) => (
