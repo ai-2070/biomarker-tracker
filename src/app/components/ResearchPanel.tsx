@@ -4,9 +4,9 @@ import type { BiomarkerDef } from "../../core/types";
 import { useServerStatus } from "../api";
 import { markerTerms, searchPapers, type Paper, type SearchFilter, type SearchResult } from "../../research/papers";
 import { nameInSentence } from "../knowledge";
-import { href } from "../router";
+import { openBrain } from "../brain/store";
 import { ChoiceGroup } from "./ChoiceGroup";
-import { Button, Card, LinkButton, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
+import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
 
 const KIND_LABEL: Record<Paper["kind"], string> = {
   guideline: "Guideline",
@@ -146,14 +146,14 @@ function AskAssistantLink({ def, critical }: { def: BiomarkerDef; critical: bool
   if (server === undefined) return null;
   return (
     <Notice title="Questions about these studies?">
-      <p>The assistant can read studies, weigh the evidence and explain it, citing only studies it actually retrieved.</p>
+      <p>Brain can read studies, weigh the evidence and explain it, citing only studies it actually retrieved.</p>
       <div className="mt-3">
         {server ? (
-          <LinkButton variant="secondary" href={href({ name: "assistant", ask: `What does research say about what affects my ${nameInSentence(def)}?` })}>
-            Ask the assistant
-          </LinkButton>
+          <Button variant="secondary" onClick={() => openBrain({ draft: `What does research say about what affects my ${nameInSentence(def)}?` })}>
+            Ask Brain
+          </Button>
         ) : (
-          <span className="text-sm">Start the app with <code className="font-mono">bun run start</code> to use the assistant.</span>
+          <span className="text-sm">Start the app with <code className="font-mono">bun run start</code> to use Brain.</span>
         )}
       </div>
     </Notice>

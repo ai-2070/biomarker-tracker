@@ -106,3 +106,50 @@ export const MinusIcon = (p: P) => (
     <path d="M5 12h14" />
   </Icon>
 );
+
+export const BrainIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 5.5a3 3 0 0 0-5.6-1.4A3 3 0 0 0 4 8.6a3.2 3.2 0 0 0 .3 5.7A3.4 3.4 0 0 0 9 19.6a2.9 2.9 0 0 0 3-1.4Z" />
+    <path d="M12 5.5a3 3 0 0 1 5.6-1.4A3 3 0 0 1 20 8.6a3.2 3.2 0 0 1-.3 5.7 3.4 3.4 0 0 1-4.7 5.3 2.9 2.9 0 0 1-3-1.4" />
+    <path d="M12 5.5v12.7M8.5 9.5a2.5 2.5 0 0 0 1.5 2.3M15.5 9.5a2.5 2.5 0 0 1-1.5 2.3M7.5 15h1.5M16.5 15H15" />
+  </Icon>
+);
+
+export const PaperclipIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="m20 11.5-7.8 7.8a5 5 0 0 1-7.1-7.1l8.1-8.1a3.3 3.3 0 0 1 4.7 4.7l-8.1 8.1a1.7 1.7 0 0 1-2.4-2.4l7.4-7.4" />
+  </Icon>
+);
+
+export const SendIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 19V5M6 11l6-6 6 6" />
+  </Icon>
+);
+
+export const StopIcon = (p: P) => (
+  <Icon {...p}>
+    <rect x="7" y="7" width="10" height="10" rx="2" fill="currentColor" stroke="none" />
+  </Icon>
+);
+
+export const NewChatIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5" />
+    <path d="M4 4v4.5h4.5" />
+  </Icon>
+);
+
+export const ToolsIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M9 3.5v4M15 3.5v4M6.5 7.5h11v3.5a5.5 5.5 0 0 1-11 0Z" />
+    <path d="M12 16.5v4" />
+  </Icon>
+);
+
+export const FileIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M13.5 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-10Z" />
+    <path d="M13.5 3.5v5h5" />
+  </Icon>
+);

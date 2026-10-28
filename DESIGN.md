@@ -159,7 +159,7 @@ A neutral, slightly cool white palette with a single deep green and two state co
 ### Primary
 - **Chart Green** (`accent`): the primary button, active navigation, links, focus ring, caret and selection tint. In dark mode it brightens.
 - **Line Green** (`chart-line`, `chart-band`): the person's own data line in every chart, the dots on it, and (at 10–15% opacity) the reference-range band and the gap between biological and calendar age.
-- **Mint Wash** (`accent-soft`): active nav background, highlighted select options, chosen radio cards, ongoing log bars on the timeline, the Ask panel (at 60%).
+- **Mint Wash** (`accent-soft`): active nav background, highlighted select options, chosen radio cards, ongoing log bars on the timeline, the Ask Brain panel (at 60%), Brain's user messages and avatar.
 
 ### Secondary (state)
 - **Lab Amber** (`warn`, `warn-soft`): a result outside its reference range; the example-profile banner; "Due" re-tests.
@@ -203,7 +203,7 @@ A neutral, slightly cool white palette with a single deep green and two state co
 
 ## Layout
 
-App shell: on large screens (≥1024px) a fixed 256px white sidebar with a hairline right border; content is offset by it. Below that, a sticky top bar (logo, Add, profile) and a fixed bottom tab bar (Dashboard, Blood, Log, Ask, More), both `surface` at 95% with a light backdrop blur and safe-area padding.
+App shell: on large screens (≥1024px) a fixed 256px white sidebar with a hairline right border; content is offset by it. Below that, a sticky top bar (logo, Add, profile) and a fixed bottom tab bar (Dashboard, Blood, Log, Brain, More), both `surface` at 95% with a light backdrop blur and safe-area padding.
 
 Content column: centred, `max-w-4xl` for most pages, `max-w-7xl` for wide pages (Dashboard). Horizontal padding 16px → 24px (sm) → 40px (lg); bottom padding 112px on phones to clear the tab bar.
 

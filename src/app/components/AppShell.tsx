@@ -3,7 +3,9 @@ import { Dialog } from "@base-ui/react/dialog";
 import { useProfile } from "../hooks";
 import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
-import { AgeIcon, ChatIcon, CloseIcon, DashboardIcon, DropIcon, FlaskIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
+import { Brain } from "../brain/Brain";
+import { openBrain, useBrain } from "../brain/store";
+import { AgeIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, FlaskIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
 import { ProfileMenu } from "./ProfileMenu";
 import { buttonStyles, cx } from "./ui";
 
@@ -27,7 +29,6 @@ const BODY: NavItem = { label: "Body", to: { name: "soon", section: "body" }, ic
 const LOG: NavItem = { label: "Supplements & log", to: { name: "log" }, icon: PillIcon, active: (r) => r.name === "log" };
 const EXPERIMENTS: NavItem = { label: "Experiments", to: { name: "experiments" }, icon: FlaskIcon, active: (r) => r.name.startsWith("experiment") };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
-const ASK: NavItem = { label: "Ask", to: { name: "assistant" }, icon: ChatIcon, active: (r) => r.name === "assistant" };
 const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: SettingsIcon, active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup" };
 
 const GROUPS: { label?: string; items: NavItem[] }[] = [
@@ -35,7 +36,6 @@ const GROUPS: { label?: string; items: NavItem[] }[] = [
   { label: "Health", items: [BLOOD, AGE, BODY] },
   { label: "Habits", items: [LOG, EXPERIMENTS] },
   { label: "Connect", items: [DEVICES] },
-  { label: "Insights", items: [ASK] },
 ];
 
 function Logo({ className }: { className?: string }) {
@@ -105,7 +105,7 @@ function Sidebar({ route }: { route: Route }) {
   );
 }
 
-const TABS: NavItem[] = [DASHBOARD, { ...BLOOD, label: "Blood" }, { ...LOG, label: "Log" }, ASK];
+const TABS: NavItem[] = [DASHBOARD, { ...BLOOD, label: "Blood" }, { ...LOG, label: "Log" }];
 
 function BottomTabs({ route }: { route: Route }) {
   const [open, setOpen] = useState(false);
@@ -130,6 +130,9 @@ function BottomTabs({ route }: { route: Route }) {
               </li>
             );
           })}
+          <li>
+            <BrainTab />
+          </li>
           <li>
             <button
               type="button"
@@ -161,6 +164,23 @@ function BottomTabs({ route }: { route: Route }) {
         </Dialog.Portal>
       </Dialog.Root>
     </>
+  );
+}
+
+/** Phones and tablets open Brain from the bottom tabs (large screens have the pill at the bottom). */
+function BrainTab() {
+  const { open } = useBrain();
+  return (
+    <button
+      type="button"
+      onClick={() => openBrain()}
+      aria-haspopup="dialog"
+      aria-expanded={open}
+      className={cx("flex min-h-14 w-full flex-col items-center justify-center gap-0.5 text-[11px]", open ? "font-medium text-accent" : "text-ink-2")}
+    >
+      <BrainIcon />
+      Brain
+    </button>
   );
 }
 
@@ -216,7 +236,7 @@ export function AppShell({ route, wide, children }: { route: Route; wide: boolea
       <Sidebar route={route} />
       <TopBar />
       <div className="lg:pl-64">
-        <main id="main" tabIndex={-1} className={cx("mx-auto w-full px-4 pt-5 pb-28 outline-none sm:px-6 lg:px-10 lg:pt-8 lg:pb-12", wide ? "max-w-7xl" : "max-w-4xl")}>
+        <main id="main" tabIndex={-1} className={cx("mx-auto w-full px-4 pt-5 pb-28 outline-none sm:px-6 lg:px-10 lg:pt-8 lg:pb-28", wide ? "max-w-7xl" : "max-w-4xl")}>
           <div className="mb-5 flex flex-col gap-2 empty:hidden">
             <AppBanners />
           </div>
@@ -225,12 +245,13 @@ export function AppShell({ route, wide, children }: { route: Route; wide: boolea
             <p className="font-medium text-ink">Not medical advice. Not a medical device.</p>
             <p>
               {mode === "folders" ? "Each profile is kept in a folder on this computer." : "Your data stays in this browser."} It's only sent to an AI model when
-              you ask the assistant. Free and open source.
+              you ask Brain. Free and open source.
             </p>
           </footer>
         </main>
       </div>
       <BottomTabs route={route} />
+      <Brain />
     </div>
   );
 }

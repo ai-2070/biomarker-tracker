@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
 /** Calls to the app's own local server. The x-bt header marks requests from this page. */
-export async function api<T>(method: "GET" | "POST" | "PUT" | "DELETE", path: string, body?: unknown): Promise<T> {
+export async function api<T>(method: "GET" | "POST" | "PUT" | "DELETE", path: string, body?: unknown, signal?: AbortSignal): Promise<T> {
   const res = await fetch(path, {
     method,
+    ...(signal ? { signal } : {}),
     headers: { "content-type": "application/json", ...(method === "GET" ? {} : { "x-bt": "1" }) },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });

@@ -45,6 +45,7 @@
   --animate-enter-back: enter-back 360ms var(--ease-soft) both;
   --animate-fade: fade 220ms ease-out both;
   --animate-dot: dot 1.2s ease-in-out infinite;
+  --animate-brain-in: brain-in 300ms var(--ease-soft) both;
 
   @keyframes enter {
     from {
@@ -67,6 +68,12 @@
   @keyframes fade {
     from {
       opacity: 0;
+    }
+  }
+  @keyframes brain-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
     }
   }
   @keyframes dot {
@@ -172,6 +179,11 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+}
+
+/* Brain's question box: the box around it shows focus instead. */
+#brain-question:focus-visible {
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
