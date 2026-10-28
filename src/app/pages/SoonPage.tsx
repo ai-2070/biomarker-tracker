@@ -1,18 +1,8 @@
 import type { SoonSection } from "../router";
-import { BodyIcon, PhoneSyncIcon } from "../components/icons";
+import { PhoneSyncIcon } from "../components/icons";
 import { PageTitle } from "../components/ui";
 
 const SECTIONS: Record<SoonSection, { title: string; sub: string; points: string[] }> = {
-  body: {
-    title: "Body",
-    sub: "Coming soon. Measurements that are not blood tests, next to your results on the same timeline.",
-    points: [
-      "Weight, waist and body fat",
-      "Blood pressure and resting heart rate",
-      "Typed in by hand, or synced from your phone (see Devices)",
-      "Charts with normal ranges, like your blood markers",
-    ],
-  },
   devices: {
     title: "Devices",
     sub: "Coming soon. Your phone and wearables, synced to this computer without a cloud account.",
@@ -27,7 +17,7 @@ const SECTIONS: Record<SoonSection, { title: string; sub: string; points: string
 /** An honest placeholder for a section that is planned but not built. */
 export function SoonPage({ section }: { section: SoonSection }) {
   const s = SECTIONS[section];
-  const Icon = section === "body" ? BodyIcon : PhoneSyncIcon;
+  const Icon = PhoneSyncIcon;
   return (
     <>
       <PageTitle sub={s.sub}>{s.title}</PageTitle>

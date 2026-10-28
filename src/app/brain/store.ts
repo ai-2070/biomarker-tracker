@@ -4,7 +4,7 @@ import { assistantProfile } from "../../core/profile";
 import type { Measurement } from "../../core/types";
 import { db, getProfile } from "../../db/db";
 import { api } from "../api";
-import { BIOMARKERS } from "../knowledge";
+import { BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
 
@@ -130,7 +130,7 @@ export async function addFiles(files: File[]): Promise<void> {
         text = r.text;
         ocr = r.ocr;
       }
-      const report = parseLabText(text, BIOMARKERS, { monthFirst });
+      const report = parseLabText(text, BLOOD_MARKERS, { monthFirst });
       if (report.rows.length > 0) {
         // Lab results: checked by the person in a review card, never sent as text.
         set((s) => ({

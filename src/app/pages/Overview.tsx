@@ -10,11 +10,13 @@ import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from ".
 import { SafetyNotices } from "../components/SafetyNotices";
 import { DueExperiments } from "../components/DueExperiments";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
-import { BIOMARKER_MAP, CATEGORY_ORDER, fullName } from "../knowledge";
+import { BIOMARKER_MAP, CATEGORY_ORDER, bloodOnly, fullName } from "../knowledge";
 import { href, type ResultsFilter } from "../router";
 
 export function Overview({ show }: { show?: ResultsFilter }) {
-  const all = useAllMeasurements();
+  const everything = useAllMeasurements();
+  // Body measurements have their own page.
+  const all = everything && bloodOnly(everything);
   const profile = useProfile();
   const units = useDisplayUnits();
   const protocols = useProtocols() ?? [];

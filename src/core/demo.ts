@@ -37,6 +37,12 @@ export const DEMO_UNITS: Record<string, string> = {
   tsh: "mIU/L",
   b12: "pmol/L",
   alt: "U/L",
+  weight: "kg",
+  waist: "cm",
+  body_fat: "%",
+  bp_systolic: "mmHg",
+  bp_diastolic: "mmHg",
+  resting_hr: "bpm",
 };
 
 /** Small, repeatable random numbers (mulberry32). */
@@ -133,6 +139,23 @@ export function demoProfile(today: string): DemoData {
   lipids(addDays(expStart, -45), 3.8);
   lipids(addDays(expStart, 88), 3.2);
   lipids(addDays(expStart, 96), 3.1);
+
+  // Body: measured at home about once a month for the last two years. Blood pressure and resting
+  // heart rate drift down slowly; waist goes from just above to just below the usual limit.
+  for (let k = 0; k < 24; k++) {
+    const date = addDays(today, -7 - (23 - k) * 30);
+    const t = k / 23;
+    const body = (biomarkerId: string, value: number) => {
+      n += 1;
+      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "manual" });
+    };
+    body("weight", wobble(68.8 - t * 1.2, 0.008, 0.1));
+    body("body_fat", wobble(31 - t * 1.5, 0.02, 0.1));
+    body("bp_systolic", Math.round(wobble(133 - t * 10, 0.02, 1)));
+    body("bp_diastolic", Math.round(wobble(85 - t * 6, 0.025, 1)));
+    body("resting_hr", Math.round(wobble(67 - t * 5, 0.03, 1)));
+    if (k % 3 === 0) body("waist", wobble(82 - t * 3.5, 0.005, 0.5));
+  }
 
   const protocols: ProtocolEntry[] = [
     { id: "example-log-iron", label: "Iron bisglycinate 25 mg every other day", category: "supplement", start: addDays(draws[3]!, 9), end: addDays(draws[5]!, 20) },

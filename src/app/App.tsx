@@ -4,7 +4,9 @@ import { api, type ServerStatus } from "./api";
 import { AppShell, PlainShell } from "./components/AppShell";
 import { Notice } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
-import { DashboardPage } from "./pages/DashboardPage";
+import { BloodDashboardPage } from "./pages/DashboardPage";
+import { BodyPage } from "./pages/BodyPage";
+import { HomePage } from "./pages/HomePage";
 import { SoonPage } from "./pages/SoonPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { openBrain } from "./brain/store";
@@ -94,7 +96,7 @@ export function App() {
   const ctx: ProfilesState = { mode: b.mode, profiles: b.profiles, active: b.profiles.find((p) => p.id === b.activeId) ?? null, refresh };
   return (
     <ProfilesContext.Provider value={ctx}>
-      <AppShell route={route} wide={route.name === "dashboard"}>
+      <AppShell route={route} wide={route.name === "dashboard" || route.name === "blood" || route.name === "body"}>
         <Suspense fallback={<p className="text-ink-2">Loading…</p>}>
           {/* Keyed by page, so each page fades in when you go to it. */}
           <div key={pageKey(route)} className="animate-enter">
@@ -109,7 +111,11 @@ export function App() {
 function Page({ route, root, mode }: { route: Route; root?: string; mode: "folders" | "browser" }) {
   switch (route.name) {
     case "dashboard":
-      return <DashboardPage />;
+      return <HomePage />;
+    case "blood":
+      return <BloodDashboardPage />;
+    case "body":
+      return <BodyPage key={route.add ? "add" : ""} add={route.add} />;
     case "soon":
       return <SoonPage key={route.section} section={route.section} />;
     case "overview":

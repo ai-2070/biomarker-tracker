@@ -68,7 +68,9 @@ export type BiomarkerCategory =
   | "Thyroid"
   | "Iron & vitamins"
   | "Electrolytes"
-  | "Inflammation";
+  | "Inflammation"
+  /** Not a blood test: weight, waist, blood pressure, heart rate. */
+  | "Body";
 
 export interface BiomarkerDef {
   id: string;

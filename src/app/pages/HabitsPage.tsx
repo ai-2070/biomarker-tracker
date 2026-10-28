@@ -128,7 +128,13 @@ function HabitCard({ habit: h, all, tested, today }: { habit: Habit; all: Measur
     <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-4">
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
-          <p className="font-medium break-words">{h.label}</p>
+          {h.watch ? (
+            <a href={href({ name: "experiment", id: h.watch.id })} className="font-medium break-words text-ink underline-offset-2 hover:text-accent hover:underline">
+              {h.label}
+            </a>
+          ) : (
+            <p className="font-medium break-words">{h.label}</p>
+          )}
           <p className="text-sm text-ink-2">
             {CATEGORY_LABEL[h.category]} ·{" "}
             {planned ? `starts ${formatDate(h.start)}` : h.end ? `${formatDate(h.start)} – ${formatDate(h.end)}` : `since ${formatDate(h.start)}`}

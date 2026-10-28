@@ -6,7 +6,19 @@ import { loadDefs } from "../helpers";
 const today = "2026-10-28";
 const demo = demoProfile(today);
 const defs = loadDefs();
-const d = buildDashboard({ ...demo, profile: demo.person, defs, today });
+// The blood tests dashboard sees blood results only; body measurements get their own.
+const isBody = (id: string) => defs.get(id)?.category === "Body";
+const d = buildDashboard({ ...demo, measurements: demo.measurements.filter((m) => !isBody(m.biomarkerId)), profile: demo.person, defs, today });
+const body = buildDashboard({ ...demo, measurements: demo.measurements.filter((m) => isBody(m.biomarkerId)), profile: demo.person, defs, today });
+
+describe("body dashboard", () => {
+  it("has the six body measurements, measured monthly", () => {
+    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "resting_hr", "waist", "weight"]);
+    expect(body.draws).toHaveLength(24);
+    expect(body.critical).toHaveLength(0);
+    expect(body.bioAge).toHaveLength(0);
+  });
+});
 
 describe("dashboard summary", () => {
   it("counts markers in range against those that can be judged", () => {

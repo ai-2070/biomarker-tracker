@@ -23,13 +23,14 @@ Local-first and evidence-first. Data lives in a folder per person on the user's 
 - Runs as a local web app (Vite + React) with a small local server on 127.0.0.1; also works as a static page with one browser-only profile.
 - Data comes from typed results, lab-report PDFs, photos and scanned PDFs (on-device OCR), backups, and an example profile with made-up data.
 - An optional assistant uses a model the user chooses (Claude Code by default, EU/US zero-retention APIs, or local models) plus medical/nutrition skills and MCP research servers.
-- Planned (not built): a **Body** section (weight, blood pressure, resting heart rate and similar), and **Devices**: an Android companion app (APK) that reads **Health Connect** on the phone and syncs to this computer over the local network.
+- **Body**: weight, waist, body fat, blood pressure and resting heart rate, typed in by hand, with its own dashboard; the main dashboard combines blood tests and body.
+- Planned (not built): **Devices**: an Android companion app (APK) that reads **Health Connect** on the phone and syncs to this computer over the local network.
 
 ## Capabilities and Constraints
 
 - Today: profiles (folders), results with charts and reference ranges, critical-value banners, biological age (PhenoAge), knowledge base for 37 markers, evidence-graded food and habit levers, supplements/diet/medicine log, self-experiments with noise-aware before/after, research panel, assistant, settings (data, AI models, skills, MCP servers, appearance, about).
 - Safety rules from CLAUDE.md are binding: no diagnosis, no personal doses, "talk to your doctor" for out-of-range or risky situations, critical values first.
-- Body and Devices are shown in navigation as "Soon" until they exist; nothing fake inside them.
+- Devices is shown in navigation as "Soon" until it exists; nothing fake inside it.
 - Must work at 360 px width, keyboard navigable, readable contrast, reduced-motion respected.
 
 ## Brand Commitments

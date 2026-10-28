@@ -23,6 +23,10 @@ describe("router", () => {
     expect(parseHash("#/experiments/new?marker=ldl&change=Oats")).toEqual({ name: "habits", add: "Oats", marker: "ldl" });
     expect(parseHash("#/experiments/new")).toEqual({ name: "habits", add: "" });
   });
+  it("opens Body from its old Soon address", () => {
+    expect(parseHash("#/soon/body")).toEqual({ name: "body" });
+    expect(parseHash("#/body?add=1")).toEqual({ name: "body", add: true });
+  });
   it("treats anything else as not found", () => {
     expect(parseHash("#main")).toEqual({ name: "not-found" });
     expect(parseHash("#/marker")).toEqual({ name: "not-found" });
@@ -35,6 +39,9 @@ describe("router", () => {
       { name: "data", tab: "models" },
       { name: "dashboard" },
       { name: "soon", section: "devices" },
+      { name: "blood" },
+      { name: "body" },
+      { name: "body", add: true },
       { name: "data", tab: "about" },
       { name: "setup" },
       { name: "profiles" },

@@ -51,6 +51,17 @@ describe("example profile (made-up data)", () => {
     expect(s.draws.filter((d) => d.approximate.length > 0)).toHaveLength(1);
   });
 
+  it("has two years of body measurements: waist goes below the usual limit, blood pressure stays below 140/90", () => {
+    const body = demo.measurements.filter((m) => ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr"].includes(m.biomarkerId));
+    expect(body.length).toBeGreaterThan(100);
+    expect(body.every((m) => m.lab === undefined)).toBe(true);
+    const waist = body.filter((m) => m.biomarkerId === "waist").sort((a, b) => a.date.localeCompare(b.date));
+    expect(waist[0]!.value).toBeGreaterThan(80);
+    expect(waist.at(-1)!.value).toBeLessThan(80);
+    expect(body.filter((m) => m.biomarkerId === "bp_systolic").every((m) => m.value < 140)).toBe(true);
+    expect(body.filter((m) => m.biomarkerId === "bp_diastolic").every((m) => m.value < 90)).toBe(true);
+  });
+
   it("has a finished diet experiment where LDL fell by more than test-to-test noise", () => {
     const e = demo.experiments[0]!;
     expect(demo.protocols.some((p) => p.id === e.protocolId)).toBe(true);

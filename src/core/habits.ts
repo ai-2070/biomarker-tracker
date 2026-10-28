@@ -26,6 +26,8 @@ export const HABIT_HINTS: readonly { words: RegExp; markers: readonly string[] }
   { words: /statin|ezetimibe/i, markers: ["ldl", "total_cholesterol"] },
   { words: /metformin|\bsugar\b|low.?carb|keto/i, markers: ["hba1c", "glucose", "triglycerides"] },
   { words: /\btea\b|\bcoffee\b/i, markers: ["ferritin"] },
+  { words: /walk|\brun|jog|cycl|swim|exercise|workout|cardio|zone 2|steps/i, markers: ["resting_hr", "bp_systolic", "bp_diastolic"] },
+  { words: /\bsalt\b|sodium/i, markers: ["bp_systolic", "bp_diastolic"] },
 ];
 
 /** Suggested markers for a habit, the ones with results first. */

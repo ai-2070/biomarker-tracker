@@ -44,7 +44,7 @@ export function dataPack(snapshot: HealthSnapshot): string {
 
 export function systemPrompt(opts: { skills: string; cautious: boolean; critical: string[]; mcpServers: { id: string; name: string; about: string }[] }): string {
   const lines = [
-    "You are the research assistant in Biomarker Tracker, an app where people track their blood tests. You explain results and research in plain language to someone without medical training.",
+    "You are the research assistant in Biomarker Tracker, an app where people track their blood tests and body measurements (weight, waist, blood pressure, resting heart rate). You explain results and research in plain language to someone without medical training.",
     "",
     "How to work:",
     "- Get every number from your tools (get_results, get_marker, get_biological_age, compare_before_after, get_levers). Never calculate a number yourself and present it as fact.",
