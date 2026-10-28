@@ -18,7 +18,7 @@ afterEach(() => vi.unstubAllGlobals());
 describe('about', () => {
   it("gives the version and licence from package.json and the repo, without asking GitHub", async () => {
     const a = await aboutInfo();
-    expect(a).toEqual({ name: 'Blacksite', version: pkg.version, repo: REPO.slug, url: REPO.url, license: pkg.license, stars: null });
+    expect(a).toEqual({ name: 'Biomarker Tracker', version: pkg.version, repo: REPO.slug, url: REPO.url, license: pkg.license, stars: null });
     expect(github).not.toHaveBeenCalled();
   });
 

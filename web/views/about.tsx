@@ -1,4 +1,4 @@
-// Settings > About: which Blacksite this is, where it lives on GitHub (with a star button), and this PC's
+// Settings > About: which Biomarker Tracker this is, where it lives on GitHub (with a star button), and this PC's
 // address and data folder.
 import { useEffect, useState } from 'react';
 import { GET } from '../core.ts';
@@ -8,7 +8,7 @@ import { REPO, repoLink } from '../../shared/about.ts';
 import type { AboutInfo } from '../../shared/types.ts';
 import { AI_VERSION } from './settings.tsx';
 
-/** The Blacksite mark (public/icon.svg): a lime wedge. */
+/** The Biomarker Tracker mark (public/icon.svg): a lime wedge. */
 export const BrandMark = ({ size = 48 }: { size?: number }) => (
   <svg className="flex-none rounded-box border border-line bg-bg p-2 text-accent" viewBox="0 0 64 64" width={size} height={size} aria-hidden="true">
     <path d="M14 50 L50 14 L50 50 Z" fill="currentColor" />

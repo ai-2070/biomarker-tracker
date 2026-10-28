@@ -141,7 +141,7 @@ describe('desktop updates (latest.json)', () => {
 
   it('the app checks the release this repo publishes, signed with a key', () => {
     const conf = JSON.parse(fs.readFileSync(path.join(ROOT, 'src-tauri', 'tauri.conf.json'), 'utf8')) as { plugins: { updater: { pubkey: string; endpoints: string[] } }; bundle: { createUpdaterArtifacts?: unknown } };
-    expect(conf.plugins.updater.endpoints).toEqual(['https://github.com/ai-2070/blacksite/releases/latest/download/latest.json']);
+    expect(conf.plugins.updater.endpoints).toEqual(['https://github.com/ai-2070/biomarker-tracker/releases/latest/download/latest.json']);
     expect(Buffer.from(conf.plugins.updater.pubkey, 'base64').toString('utf8')).toMatch(/^untrusted comment: minisign public key/);
     // local builds work without the private key: CI turns update files on
     expect(conf.bundle.createUpdaterArtifacts).toBeUndefined();

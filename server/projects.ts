@@ -6,10 +6,7 @@ import { listProjects, saveProjects, activeProject, setActiveProject, log } from
 import type { Project } from '../shared/types.ts';
 import type { ProjectPeek } from './projectsync.ts';
 
-const PROJECTS_ROOT = path.join(HOME, 'Documents', 'Blacksite');
-// Where projects went before the app was called Blacksite. They stay there (each project knows its
-// own folder); this is only searched for project folders the dashboard doesn't know yet.
-const OLD_PROJECTS_ROOT = path.join(HOME, 'Documents', 'My Dashboard');
+const PROJECTS_ROOT = path.join(HOME, 'Documents', 'Biomarker Tracker');
 const SKIP = new Set(['node_modules', '.git', '.next', 'dist', 'build', '.venv', '__pycache__', '.cache']);
 
 export function projectsRoot(): string {
@@ -223,7 +220,7 @@ export function overview(peek: (folder: string) => ProjectPeek | null = () => nu
   };
   const known = new Set(list.map((p) => path.resolve(p.brainPath).toLowerCase()));
   const found: FoundFolder[] = [];
-  for (const root of [PROJECTS_ROOT, OLD_PROJECTS_ROOT]) {
+  for (const root of [PROJECTS_ROOT]) {
     try {
       for (const e of fs.readdirSync(root, { withFileTypes: true })) {
         if (!e.isDirectory()) continue;

@@ -136,7 +136,7 @@ export async function think(system: string, user: string, { tools = '', cwd, tim
   if (bm.provider === 'openrouter' && key) {
     const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
-      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json', 'X-Title': 'Blacksite' },
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json', 'X-Title': 'Biomarker Tracker' },
       body: JSON.stringify({ model: bm.model, messages: [systemMessage(bm.model, system), { role: 'user', content: user }], session_id: brainSession(system), max_tokens: maxTokens, ...(bm.effort ? { reasoning: { effort: bm.effort } } : {}), ...(onPart ? { stream: true } : {}) }),
       signal: AbortSignal.timeout(timeout),
     });

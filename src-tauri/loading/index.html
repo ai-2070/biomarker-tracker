@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Blacksite</title>
+    <title>Biomarker Tracker</title>
     <style>
       :root {
         color-scheme: dark;
@@ -51,7 +51,7 @@
   <body>
     <main id="main">
       <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#121311" /><path d="M16 48 L48 16 L48 48 Z" fill="#c4ff3d" /></svg>
-      <h1 id="title">Starting Blacksite…</h1>
+      <h1 id="title">Starting Biomarker Tracker…</h1>
       <p id="text">This takes a few seconds.</p>
       <div class="bar"><i></i></div>
       <div id="details">
@@ -76,7 +76,7 @@
         }
         if (!info || !info.error) return;
         document.getElementById('main').className = 'error';
-        document.getElementById('title').textContent = info.title || 'Blacksite could not start';
+        document.getElementById('title').textContent = info.title || 'Biomarker Tracker could not start';
         document.getElementById('text').textContent = info.error;
         document.getElementById('log').textContent = info.log || '(unknown)';
       }

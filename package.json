@@ -1,9 +1,9 @@
 {
-  "name": "blacksite",
+  "name": "biomarker-tracker",
   "version": "0.1.0",
   "private": true,
   "license": "MIT OR Apache-2.0",
-  "description": "Run AI agents and teams from one local workspace: a live 3D map, team chats, Claude Code, Codex and local models, MCP tools, Outbox and Artifacts. No account, runs on your computer.",
+  "description": "Track your bloodwork and research it with AI agents: medical and nutrition research teams on a live 3D map, any zero-data-retention model, MCP tools and skills. Runs on your computer.",
   "keywords": [
     "ai-agents",
     "multi-agent",
@@ -23,13 +23,13 @@
     "typescript",
     "threejs"
   ],
-  "homepage": "https://github.com/ai-2070/blacksite#readme",
+  "homepage": "https://github.com/ai-2070/biomarker-tracker#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ai-2070/blacksite.git"
+    "url": "git+https://github.com/ai-2070/biomarker-tracker.git"
   },
   "bugs": {
-    "url": "https://github.com/ai-2070/blacksite/issues"
+    "url": "https://github.com/ai-2070/biomarker-tracker/issues"
   },
   "type": "module",
   "main": "server/index.ts",

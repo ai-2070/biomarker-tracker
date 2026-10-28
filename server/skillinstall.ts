@@ -68,7 +68,7 @@ async function token(): Promise<string | null> {
 }
 async function headers(): Promise<Record<string, string>> {
   const t = await token();
-  return { 'user-agent': 'blacksite', accept: 'application/vnd.github+json', ...(t ? { authorization: `Bearer ${t}` } : {}) };
+  return { 'user-agent': 'biomarker-tracker', accept: 'application/vnd.github+json', ...(t ? { authorization: `Bearer ${t}` } : {}) };
 }
 async function api<T>(p: string): Promise<{ ok: boolean; status: number; json: T | null }> {
   const r = await fetch(`https://api.github.com${p}`, { headers: await headers(), signal: AbortSignal.timeout(TIMEOUT) });
@@ -117,7 +117,7 @@ const safeRel = (rel: string) => rel.length > 0 && rel.length < 300 && !rel.spli
 async function download(link: GitHubLink, ref: string, file: string): Promise<Buffer> {
   const url = `https://raw.githubusercontent.com/${link.owner}/${link.repo}/${ref.split('/').map(encodeURIComponent).join('/')}/${file.split('/').map(encodeURIComponent).join('/')}`;
   const t = await token();
-  const r = await fetch(url, { headers: { 'user-agent': 'blacksite', ...(t ? { authorization: `Bearer ${t}` } : {}) }, signal: AbortSignal.timeout(TIMEOUT) });
+  const r = await fetch(url, { headers: { 'user-agent': 'biomarker-tracker', ...(t ? { authorization: `Bearer ${t}` } : {}) }, signal: AbortSignal.timeout(TIMEOUT) });
   if (!r.ok) throw new Error(`couldn't download ${file} (${r.status})`);
   const buf = Buffer.from(await r.arrayBuffer());
   if (buf.length > MAX_FILE) throw new Error(`${file} is too big`);

@@ -129,7 +129,7 @@ export function codexRequest<T = unknown>(method: string, params: unknown, timeo
         }
       }
     });
-    send({ id: 1, method: 'initialize', params: { clientInfo: { name: 'blacksite', version: '1' } } });
+    send({ id: 1, method: 'initialize', params: { clientInfo: { name: 'biomarker-tracker', version: '1' } } });
   });
 }
 
@@ -164,6 +164,6 @@ export type ResetOutcome = 'reset' | 'nothingToReset' | 'noCredit' | 'alreadyRed
 export async function useCodexReset(creditId?: string | null): Promise<{ outcome: ResetOutcome; limits: CodexLimits | null }> {
   const r = await codexRequest<{ outcome?: unknown }>('account/rateLimitResetCredit/consume', { idempotencyKey: crypto.randomUUID(), creditId: creditId || null });
   const outcome = (['reset', 'nothingToReset', 'noCredit', 'alreadyRedeemed'] as const).find((o) => o === r?.outcome);
-  if (!outcome) throw new Error('Codex gave an answer this version of Blacksite does not know.');
+  if (!outcome) throw new Error('Codex gave an answer this version of Biomarker Tracker does not know.');
   return { outcome, limits: await codexLimits({ force: true }) };
 }

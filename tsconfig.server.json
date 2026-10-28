@@ -4,5 +4,5 @@
     "lib": ["ES2023"],
     "types": ["node", "bun"]
   },
-  "include": ["server/**/*.ts", "shared/**/*.ts", "scripts/**/*.ts", "tests/server/**/*.ts", "vitest.config.ts"]
+  "include": ["server/**/*.ts", "shared/**/*.ts", "scripts/**/*.ts", "tests/server/**/*.ts", "tests/health/**/*.ts", "vitest.config.ts"]
 }

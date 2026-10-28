@@ -134,7 +134,7 @@ function WorkflowsList() {
             <div key={t.name} className="card">
               <div className="card-title">{t.name}</div>
               <div className="card-sub">{t.description}</div>
-              <div className="hint">{missing.length ? `Uses: ${t.needs.join(', ')}. Missing ${missing.join(', ')} (add from Agent library > Blacksite, or pick other agents after).` : `Uses: ${t.needs.join(', ')}`}</div>
+              <div className="hint">{missing.length ? `Uses: ${t.needs.join(', ')}. Missing ${missing.join(', ')} (add from Agent library > Built-in, or pick other agents after).` : `Uses: ${t.needs.join(', ')}`}</div>
               <div className="card-foot">
                 <button className="btn small" onClick={() => void useTemplate(t)}>Use template</button>
               </div>

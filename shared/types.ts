@@ -873,7 +873,7 @@ export interface CodexResetResult {
   limits: UsageLimits;
 }
 
-/** GET /api/about: which Blacksite this is and where it lives on GitHub. */
+/** GET /api/about: which Biomarker Tracker this is and where it lives on GitHub. */
 export interface AboutInfo {
   name: string;
   version: string;

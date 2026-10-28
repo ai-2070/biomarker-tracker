@@ -1,4 +1,4 @@
-/* Blacksite: field green on cast black, mono labels. Built by scripts/build-web.ts into public/dist/app.css.
+/* Biomarker Tracker (look from Blacksite): field green on cast black, mono labels. Built by scripts/build-web.ts into public/dist/app.css.
    Layers, lowest first: Tailwind's theme and reset with our element styles (base.css), the chats' OpenUI
    stylesheet (added by the build), the shared pieces (components.css), then utilities, which win over
    everything. */

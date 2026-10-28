@@ -123,7 +123,7 @@ function providerOf(agent: Agent): Provider {
   if (!base) throw new Error(`${p.label} has no address. Set it in Settings.`);
   if (p.needsKey && !key) throw new Error('Add your OpenRouter key in Settings first.');
   const headers: Record<string, string> = { 'content-type': 'application/json', authorization: `Bearer ${key}` };
-  if (id === 'openrouter') Object.assign(headers, { 'HTTP-Referer': `http://localhost:${PORT}`, 'X-Title': 'Blacksite' });
+  if (id === 'openrouter') Object.assign(headers, { 'HTTP-Referer': `http://localhost:${PORT}`, 'X-Title': 'Biomarker Tracker' });
   return { id, base, headers };
 }
 

@@ -19,6 +19,14 @@ export default defineConfig({
       },
       {
         test: {
+          // the health core (shared/health) and the knowledge base: pure functions, no data folder
+          name: 'health',
+          include: ['tests/health/**/*.test.ts'],
+          environment: 'node',
+        },
+      },
+      {
+        test: {
           name: 'web',
           include: ['tests/web/**/*.test.{ts,tsx}'],
           environment: 'happy-dom',

@@ -6,7 +6,7 @@ import { fetchJSON } from './util.ts';
 import { extractZip, safeEntryName, writeInside } from './unzip.ts';
 
 // Poly Haven asks API users to send their own User-Agent.
-const UA = 'Blacksite (local AI agent dashboard)';
+const UA = 'Biomarker Tracker (local research app)';
 const HEADERS = { 'User-Agent': UA };
 // Downloads only come from the libraries' own file hosts, whatever an API answer says.
 const FILE_HOSTS = new Set(['dl.polyhaven.org', 'ambientcg.com', 'acg-download.struffelproductions.com']);

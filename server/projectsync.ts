@@ -228,7 +228,7 @@ export function saveProject(id: string): SaveStatus | null {
     noLinks(out, path.join(out, 'README.txt'));
     fs.writeFileSync(
       path.join(out, 'README.txt'),
-      'Blacksite keeps this project\'s agents, teams, chats, knowledge, memories (MEMORY.md), the skills it uses and their earlier versions here (auto-saved).\nOpen this folder as a project in the dashboard ("Open a folder…") to load them again.\nNo keys or passwords are stored here.\n',
+      'Biomarker Tracker keeps this project\'s agents, teams, chats, knowledge, memories (MEMORY.md), the skills it uses and their earlier versions here (auto-saved).\nOpen this folder as a project in the dashboard ("Open a folder…") to load them again.\nNo keys or passwords are stored here.\n',
     );
     saved.set(id, { at: Date.now(), agents: agents.length, teams: teams.length });
     return saved.get(id) ?? null;

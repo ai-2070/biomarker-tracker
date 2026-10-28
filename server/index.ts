@@ -1,5 +1,5 @@
-// Blacksite: a local, login-free command center for agents, tools, programs, MCP servers and social accounts.
-// Listens on 127.0.0.1 only. Run: node server/index.js [--port 4800] [--no-open]
+// Biomarker Tracker: bloodwork tracking plus a local, login-free command center for research agents, tools and MCP servers.
+// Listens on 127.0.0.1 only. Run: node server/index.js [--port 4820] [--no-open]
 import http from 'node:http';
 import fs from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -931,7 +931,7 @@ del('/api/accounts/reddit/:id', async ({ id }) => {
   reddit.disconnectReddit(id);
   return social.listAccounts();
 });
-post<{ platform?: string }>('/api/social/test', async (_p, body) => ({ message: body.platform === 'discord' ? await social.sendDiscord('Test from Blacksite ✅') : await social.sendTelegram('Test from Blacksite ✅') }));
+post<{ platform?: string }>('/api/social/test', async (_p, body) => ({ message: body.platform === 'discord' ? await social.sendDiscord('Test from Biomarker Tracker ✅') : await social.sendTelegram('Test from Biomarker Tracker ✅') }));
 
 get('/api/artifacts', async () => artifactStore.list().sort((a, b) => b.createdAt! - a.createdAt!));
 del('/api/artifacts/:id', async ({ id }) => {
@@ -1388,7 +1388,7 @@ programs.startRunningWatch();
 
 server.on('error', (e: NodeJS.ErrnoException) => {
   if (e.code === 'EADDRINUSE') {
-    console.log(`Blacksite is already running at http://localhost:${PORT}`);
+    console.log(`Biomarker Tracker is already running at http://localhost:${PORT}`);
     if (OPEN) openWithShell(`http://localhost:${PORT}`);
     process.exit(0);
   }
@@ -1398,7 +1398,7 @@ server.on('error', (e: NodeJS.ErrnoException) => {
 store.migrateGlobalOutbox();
 server.listen(PORT, '127.0.0.1', () => {
   const url = `http://localhost:${PORT}`;
-  console.log(`\n  Blacksite is running at ${url}\n  Data folder: ${dataPath()}\n  Press Ctrl+C to stop.\n`);
+  console.log(`\n  Biomarker Tracker is running at ${url}\n  Data folder: ${dataPath()}\n  Press Ctrl+C to stop.\n`);
   log('system', 'Dashboard started');
   if (OPEN) void pageReady.then(() => openWithShell(url));
 });

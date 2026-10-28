@@ -1,4 +1,4 @@
-// Which Blacksite this is (the version in package.json) and its GitHub stars.
+// Which Biomarker Tracker this is (the version in package.json) and its GitHub stars.
 // Stars are only fetched when asked for (Settings > About), at most once an hour.
 import path from 'node:path';
 import { ROOT, readJSON, fetchJSON } from './util.ts';
@@ -13,7 +13,7 @@ async function stars(): Promise<number | null> {
   if (starCache && Date.now() - starCache.at < HOUR) return starCache.n;
   let n: number | null = null;
   try {
-    const r = await fetchJSON<{ stargazers_count?: unknown }>(`https://api.github.com/repos/${REPO.slug}`, { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'Blacksite' }, timeout: 5000 });
+    const r = await fetchJSON<{ stargazers_count?: unknown }>(`https://api.github.com/repos/${REPO.slug}`, { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'biomarker-tracker' }, timeout: 5000 });
     n = typeof r.stargazers_count === 'number' ? r.stargazers_count : null;
   } catch {
     // offline, rate-limited, or a private repo (404 without a login): no count, and don't ask again for an hour

@@ -1,14 +1,14 @@
 // Send one message to an agent and print what happens live. Handy for checking an agent works.
-//   node scripts/try-agent.js <agentId> "message" [--port 4800] [--approve]
+//   node scripts/try-agent.js <agentId> "message" [--port 4820] [--approve]
 // --approve allows every permission request automatically (testing only).
 import WebSocket from 'ws';
 import type { Approval, Chat, RunEvent } from '../shared/types.ts';
 
 const [agentId, text] = process.argv.slice(2);
-const port = process.argv.includes('--port') ? process.argv[process.argv.indexOf('--port') + 1] : '4800';
+const port = process.argv.includes('--port') ? process.argv[process.argv.indexOf('--port') + 1] : '4820';
 const autoApprove = process.argv.includes('--approve');
 if (!agentId || !text) {
-  console.log('Usage: node scripts/try-agent.js <agentId> "message" [--port 4800] [--approve]');
+  console.log('Usage: node scripts/try-agent.js <agentId> "message" [--port 4820] [--approve]');
   process.exit(1);
 }
 const base = `http://localhost:${port}/api`;

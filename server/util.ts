@@ -15,7 +15,7 @@ export const DATA = process.env.DASH_DATA ? path.resolve(process.env.DASH_DATA) 
 export const BRIDGE_SCRIPT = ((js) => (fs.existsSync(js) ? js : path.join(ROOT, 'server', 'mcp-bridge.ts')))(path.join(ROOT, 'server', 'mcp-bridge.js'));
 export const HOME = os.homedir();
 export const IS_WIN = process.platform === 'win32';
-export let PORT = Number(process.env.DASH_PORT || 4800);
+export let PORT = Number(process.env.DASH_PORT || 4820);
 export function setPort(p: number | string | undefined | null) {
   PORT = Number(p) || PORT;
 }

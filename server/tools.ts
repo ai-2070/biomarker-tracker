@@ -298,7 +298,7 @@ const TOOLS: ToolDef[] = [
     run: async ({ url, max_chars = 20000 }: { url: string; max_chars?: number }) => {
       if (!/^https?:\/\//i.test(url)) throw new Error('Only http(s) URLs.');
       // (never the dashboard itself, not even through a redirect)
-      const { res, url: final } = await agentFetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) blacksite/0.1.0' }, signal: AbortSignal.timeout(30000) });
+      const { res, url: final } = await agentFetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) biomarker-tracker/0.1.0' }, signal: AbortSignal.timeout(30000) });
       const type = res.headers.get('content-type') || '';
       let body = await res.text();
       if (/html/i.test(type)) body = htmlToText(body);

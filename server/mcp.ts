@@ -976,7 +976,7 @@ async function connect(name: string, { test = false } = {}): Promise<Client> {
   if (cfg.enabled === false && !test) throw new Error(`The MCP server "${name}" is turned off.`);
   if (clients.has(name)) return clients.get(name)!;
   const job = (async () => {
-    const client = new Client({ name: 'blacksite', version: '0.1.0' });
+    const client = new Client({ name: 'biomarker-tracker', version: '0.1.0' });
     if (cfg.type === 'stdio') {
       const { command, args } = resolveCommand(cfg.command, cfg.args || []);
       // stderr ignored: an unread pipe fills up and freezes the server process.
@@ -989,7 +989,7 @@ async function connect(name: string, { test = false } = {}): Promise<Client> {
         await client.connect(new StreamableHTTPClientTransport(url, { requestInit }));
       } catch (e) {
         // Older servers only speak SSE.
-        const c2 = new Client({ name: 'blacksite', version: '0.1.0' });
+        const c2 = new Client({ name: 'biomarker-tracker', version: '0.1.0' });
         await c2.connect(new SSEClientTransport(url, { requestInit }));
         c2.onclose = () => clients.delete(name);
         return c2;

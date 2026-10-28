@@ -24,7 +24,7 @@ function craft(payload: Record<string, unknown>): Buffer {
 }
 
 describe('workspace backups', () => {
-  it('writes one file in <home>/Blacksite Backups with the project, its chats and knowledge, every skill and preset, and no keys', async () => {
+  it('writes one file in <home>/Biomarker Tracker Backups with the project, its chats and knowledge, every skill and preset, and no keys', async () => {
     setSecret('anthropicKey', 'sk-ant-sentinel-not-in-backups-777');
     const p = await createProject({ name: 'Backed Up', mode: 'new', folder: folder('backed-up'), description: 'Launch work' });
     fs.writeFileSync(path.join(p.brainPath, 'PROJECT.md'), '# Backed Up\n\nThe plan.');
@@ -43,7 +43,7 @@ describe('workspace backups', () => {
     saveAgentPreset(b.id, { name: 'Editor preset' });
 
     const r = backup.createBackup(p.id);
-    expect(path.dirname(r.file)).toBe(path.join(os.homedir(), 'Blacksite Backups'));
+    expect(path.dirname(r.file)).toBe(path.join(os.homedir(), 'Biomarker Tracker Backups'));
     expect(r.name).toMatch(/^backed-up-\d{4}-\d\d-\d\d_\d\d-\d\d-\d\d\.dashbackup$/);
     expect(r.summary).toMatchObject({ name: 'Backed Up', agents: 2, teams: 1, routines: 1, chats: 1, knowledgeFiles: 1 });
     expect(r.summary.skills).toBeGreaterThanOrEqual(1);

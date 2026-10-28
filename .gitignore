@@ -12,3 +12,7 @@ public/.dist-tmp/
 
 # Desktop release files gathered by scripts/desktop-release.ts
 release/
+
+# Never commit real lab reports or health data
+*.pdf
+!tests/**/fixtures/**/*.pdf

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // MCP server (stdio) that exposes the dashboard's tools to Claude Code, Hermes or any MCP client.
 // It forwards every call to the running dashboard, which applies the agent's permissions and approvals.
-//   DASH_PORT   dashboard port (default 4800)
+//   DASH_PORT   dashboard port (default 4820)
 //   DASH_TOKEN  internal token from data/.internal-token (read automatically when unset)
 //   DASH_AGENT  which agent is calling (its tool groups and autonomy apply)
 import fs from 'node:fs';
@@ -26,7 +26,7 @@ interface BridgeCallResult {
 }
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const port = process.env.DASH_PORT || '4800';
+const port = process.env.DASH_PORT || '4820';
 let token = process.env.DASH_TOKEN;
 if (!token) {
   try {

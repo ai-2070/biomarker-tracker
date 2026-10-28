@@ -1,6 +1,6 @@
 // The tray icon. Closing the window hides it instead of quitting, so agents keep working and the
-// server keeps running. The icon (or its "Open Blacksite" item) brings the window back, and
-// "Quit Blacksite" really quits.
+// server keeps running. The icon (or its "Open Biomarker Tracker" item) brings the window back, and
+// "Quit Biomarker Tracker" really quits.
 //
 // If the tray icon can't be made, closing the window quits as before. (Some Linux desktops make
 // it but never show it: there, opening the app again brings the window back.)
@@ -26,11 +26,11 @@ pub fn start(app: &AppHandle) {
 }
 
 fn build(app: &AppHandle) -> tauri::Result<()> {
-    let open_item = MenuItem::with_id(app, OPEN, "Open Blacksite", true, None::<&str>)?;
-    let quit_item = MenuItem::with_id(app, QUIT, "Quit Blacksite", true, None::<&str>)?;
+    let open_item = MenuItem::with_id(app, OPEN, "Open Biomarker Tracker", true, None::<&str>)?;
+    let quit_item = MenuItem::with_id(app, QUIT, "Quit Biomarker Tracker", true, None::<&str>)?;
     let menu = Menu::with_items(app, &[&open_item, &quit_item])?;
     let mut tray = TrayIconBuilder::with_id("main")
-        .tooltip("Blacksite")
+        .tooltip("Biomarker Tracker")
         .menu(&menu)
         // a left click opens the window; the menu is on the right click
         .show_menu_on_left_click(false)

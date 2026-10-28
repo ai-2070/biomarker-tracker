@@ -1,5 +1,7 @@
 # AGENTS.md
 
+> **Biomarker Tracker** is built on Blacksite. This guide is Blacksite's and still applies to all platform code. What the product must and must not do (health data, zero-data-retention providers, safety) is in `CLAUDE.md`; the health core is `shared/health/` with tests in `tests/health/`. The app runs on port 4820 (desktop 14820–14830).
+
 Guidance for AI coding agents working in this repo. For what the app does from a user's point of
 view, read `README.md`; `docs/guide.md` is the long version of it.
 

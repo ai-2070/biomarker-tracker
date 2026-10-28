@@ -80,7 +80,7 @@ const SCOPES = 'identity submit read history mysubreddits';
 const load = () => readJSON<AccountsFile>(ACCOUNTS_FILE, { x: {} });
 const save = (a: AccountsFile) => writeJSON(ACCOUNTS_FILE, a);
 
-const userAgent = (username = '') => `windows:blacksite:0.1.0 (by /u/${username || getSettings().reddit?.username || 'blacksite'})`;
+const userAgent = (username = '') => `windows:biomarker-tracker:0.1.0 (by /u/${username || getSettings().reddit?.username || 'biomarker-tracker'})`;
 
 export function redditAccounts(): RedditAccount[] {
   return Object.values(load().reddit || {}).map(({ id, username, autopost, connectedAt, icon }) => ({ id, username, autopost: !!autopost, connectedAt, icon }));

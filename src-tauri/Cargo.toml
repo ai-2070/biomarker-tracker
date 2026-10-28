@@ -1,8 +1,8 @@
 [package]
-name = "blacksite"
+name = "biomarker-tracker"
 # The app's version comes from package.json (see "version" in tauri.conf.json).
 version = "0.1.0"
-description = "Blacksite desktop app: runs the dashboard's server and shows it in its own window"
+description = "Biomarker Tracker desktop app: runs the dashboard's server and shows it in its own window"
 edition = "2021"
 rust-version = "1.90"
 publish = false

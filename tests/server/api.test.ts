@@ -157,7 +157,7 @@ describe('backups', () => {
   it('backs up a project into the home folder and restores it from an upload or from the backups folder', async () => {
     const st = await (await req('/api/state')).json();
     const made = await (await req(`/api/projects/${st.project.id}/backup`, { method: 'POST', headers: json })).json();
-    expect(made.file.startsWith(path.join(tmp, 'home', 'Blacksite Backups'))).toBe(true);
+    expect(made.file.startsWith(path.join(tmp, 'home', 'Biomarker Tracker Backups'))).toBe(true);
     const list = await (await req('/api/backups')).json();
     expect(list.backups.map((b: { name: string }) => b.name)).toContain(made.name);
 

@@ -6,7 +6,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 // written before the dashboard makes its default project (nothing has imported the store yet)
-const brain = path.join(os.homedir(), 'Documents', 'Blacksite', 'My workspace');
+const brain = path.join(os.homedir(), 'Documents', 'Biomarker Tracker', 'My workspace');
 fs.mkdirSync(path.join(brain, '.dashboard'), { recursive: true });
 fs.writeFileSync(
   path.join(brain, '.dashboard', 'project.json'),
