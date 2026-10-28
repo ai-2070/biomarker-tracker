@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 import { buildDashboard } from "../../core/dashboard";
-import { demoBodyMeasurements } from "../../core/demo";
+import { DEMO_BODY_IDS, demoBodyMeasurements } from "../../core/demo";
 import { addMeasurements } from "../../db/db";
 import { todayIso } from "../../core/dates";
-import { BloodPressureFigure, BmiFigure, BodyEntryForm, RestingHrFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
+import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure, RestingHrFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { PlusIcon } from "../components/icons";
 import { Button, Card, Notice } from "../components/ui";
-import { formatDate } from "../format";
+import { formatDate, lowerFirst } from "../format";
 import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
@@ -67,17 +67,19 @@ export function BodyPage({ add }: { add?: boolean }) {
           They're on your charts below.
         </Notice>
       )}
-      {empty && profile.example && <ExampleBodyData />}
+      {profile.example && <ExampleBodyData have={new Set(body.map((m) => m.biomarkerId))} />}
       {(adding || empty) && form}
 
       {!empty && (
         <>
-          <section aria-label="Key figures" className="stagger grid grid-cols-2 gap-3 lg:grid-cols-5">
+          <section aria-label="Key figures" className="stagger grid grid-cols-2 gap-3 lg:grid-cols-4">
             <WeightFigure ms={body} />
             <BmiFigure ms={body} profile={profile} />
+            <BmrFigure ms={body} profile={profile} />
             <WaistFigure ms={body} profile={profile} />
             <BloodPressureFigure ms={body} profile={profile} />
-            <RestingHrFigure ms={body} className="max-lg:col-span-2" />
+            <RestingHrFigure ms={body} />
+            <GlucoseFigure ms={body} profile={profile} className="col-span-2" />
           </section>
 
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
@@ -88,6 +90,8 @@ export function BodyPage({ add }: { add?: boolean }) {
                 <ul className="mt-2 flex list-disc flex-col gap-1.5 pl-5 text-sm text-ink-2">
                   <li>BMI and waist size are rough guides to health risk, not verdicts. BMI can't tell muscle from fat.</li>
                   <li>Home blood pressure runs lower than in a clinic. One high reading isn't a diagnosis; repeated ones are worth discussing with a doctor.</li>
+                  <li>Basal metabolic rate is an estimate of the energy your body uses at rest. It isn't a target, and not a reason to eat less; for changes to your weight, talk to your doctor or a dietitian.</li>
+                  <li>Home glucose meters can be about 15 % off. A diagnosis always needs a lab test.</li>
                   <li>Day-to-day swings are normal. Measure the same way and at the same time of day, and follow the trend.</li>
                 </ul>
                 <p className="mt-3 text-sm text-ink-2">
@@ -108,24 +112,32 @@ export function BodyPage({ add }: { add?: boolean }) {
 }
 
 /** Example profiles made before body measurements existed can get the example's body data. Never offered on a real profile. */
-function ExampleBodyData() {
+function ExampleBodyData({ have }: { have: ReadonlySet<string> }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   async function add() {
     setBusy(true);
     setError(null);
     try {
-      await addMeasurements(demoBodyMeasurements(todayIso()).map(({ id: _id, ...m }) => m));
+      await addMeasurements(
+        demoBodyMeasurements(todayIso())
+          .filter((m) => !have.has(m.biomarkerId))
+          .map(({ id: _id, ...m }) => m),
+      );
+      setBusy(false);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't add the example data.");
       setBusy(false);
     }
   }
+  const missing = DEMO_BODY_IDS.filter((id) => !have.has(id));
+  if (missing.length === 0) return null;
+  const names = missing.map((id) => lowerFirst(BIOMARKER_MAP.get(id)?.name ?? id));
   return (
     <section className="flex flex-col gap-3 rounded-xl border border-warn/25 bg-warn-soft p-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-ink">
-        <span className="font-medium">This example profile has no body measurements yet.</span>{" "}
-        <span className="text-ink-2">Add two years of made-up weight, waist, blood pressure and heart rate to see how this page works.</span>
+        <span className="font-medium">{have.size === 0 ? "This example profile has no body measurements yet." : "This example profile is missing some of the example's body data."}</span>{" "}
+        <span className="text-ink-2">Add made-up {names.length > 3 ? "weight, waist, blood pressure, heart rate and glucose" : names.join(", ")} readings to see how this page works.</span>
       </p>
       <Button variant="secondary" className="shrink-0" disabled={busy} onClick={() => void add()}>
         {busy ? "Adding…" : "Add example body data"}

@@ -12,8 +12,8 @@ const d = buildDashboard({ ...demo, measurements: demo.measurements.filter((m) =
 const body = buildDashboard({ ...demo, measurements: demo.measurements.filter((m) => isBody(m.biomarkerId)), profile: demo.person, defs, today });
 
 describe("body dashboard", () => {
-  it("has the six body measurements, measured monthly", () => {
-    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "resting_hr", "waist", "weight"]);
+  it("has the seven body measurements, measured monthly", () => {
+    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "glucose_home", "resting_hr", "waist", "weight"]);
     expect(body.draws).toHaveLength(24);
     expect(body.critical).toHaveLength(0);
     expect(body.bioAge).toHaveLength(0);

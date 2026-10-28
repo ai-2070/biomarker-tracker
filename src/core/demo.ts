@@ -43,6 +43,7 @@ export const DEMO_UNITS: Record<string, string> = {
   bp_systolic: "mmHg",
   bp_diastolic: "mmHg",
   resting_hr: "bpm",
+  glucose_home: "mmol/L",
 };
 
 /** Small, repeatable random numbers (mulberry32). */
@@ -60,7 +61,8 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-const BODY_IDS = new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr"]);
+export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "glucose_home"];
+const BODY_IDS = new Set(DEMO_BODY_IDS);
 
 /**
  * Only the example's body measurements, for example profiles made before body measurements existed.
@@ -155,9 +157,9 @@ export function demoProfile(today: string): DemoData {
   for (let k = 0; k < 24; k++) {
     const date = addDays(today, -7 - (23 - k) * 30);
     const t = k / 23;
-    const body = (biomarkerId: string, value: number) => {
+    const body = (biomarkerId: string, value: number, extra: Partial<Measurement> = {}) => {
       n += 1;
-      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "manual" });
+      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "manual", ...extra });
     };
     body("weight", wobble(68.8 - t * 1.2, 0.008, 0.1));
     body("body_fat", wobble(31 - t * 1.5, 0.02, 0.1));
@@ -165,6 +167,9 @@ export function demoProfile(today: string): DemoData {
     body("bp_diastolic", Math.round(wobble(85 - t * 6, 0.025, 1)));
     body("resting_hr", Math.round(wobble(67 - t * 5, 0.03, 1)));
     if (k % 3 === 0) body("waist", wobble(82 - t * 3.5, 0.005, 0.5));
+    // Home glucose: a fasting reading each month, an after-meal one every other month, all in range.
+    body("glucose_home", wobble(5.0, 0.05, 0.1), { fasted: true });
+    if (k % 2 === 1) body("glucose_home", wobble(6.6, 0.06, 0.1), { fasted: false });
   }
 
   const protocols: ProtocolEntry[] = [

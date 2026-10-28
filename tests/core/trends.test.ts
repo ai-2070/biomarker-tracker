@@ -38,6 +38,14 @@ describe("resolveRange", () => {
   it("ignores an empty lab range", () => {
     expect(resolveRange(def("sodium"), { labRange: {} })?.source).toBe("default");
   });
+  it("uses the fasting or after-meal range when the reading says which", () => {
+    const g = def("glucose_home");
+    expect(resolveRange(g, { fasted: true })).toMatchObject({ low: 3.9, high: 5.5 });
+    expect(resolveRange(g, { fasted: false })).toMatchObject({ low: 3.9, high: 7.8 });
+    expect(resolveRange(g, {})).toMatchObject({ low: 3.9, high: 11 });
+    // Markers without such ranges are unaffected.
+    expect(resolveRange(def("sodium"), { fasted: true })).toMatchObject({ low: 135, high: 145 });
+  });
   it("supports one-sided ranges", () => {
     expect(resolveRange(def("hdl"), {}, { sex: "f" })).toEqual({ low: 1.2, high: undefined, source: "default" });
   });

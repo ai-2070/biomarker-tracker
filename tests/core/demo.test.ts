@@ -65,7 +65,10 @@ describe("example profile (made-up data)", () => {
   it("can give just the body measurements, for older example profiles", () => {
     const body = demoBodyMeasurements(today);
     expect(body.length).toBeGreaterThan(100);
-    expect(new Set(body.map((m) => m.biomarkerId))).toEqual(new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr"]));
+    expect(new Set(body.map((m) => m.biomarkerId))).toEqual(new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "glucose_home"]));
+    const glucose = body.filter((m) => m.biomarkerId === "glucose_home");
+    expect(glucose.some((m) => m.fasted === true) && glucose.some((m) => m.fasted === false)).toBe(true);
+    expect(glucose.every((m) => (m.fasted ? m.value <= 5.5 : m.value < 7.8))).toBe(true);
     expect(demoBodyMeasurements(today)).toEqual(body);
   });
 

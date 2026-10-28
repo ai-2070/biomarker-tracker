@@ -76,6 +76,7 @@ export function validateBiomarkerDef(v: unknown): string[] {
         if (!isObj(r) || (r.low === undefined && r.high === undefined)) errs.push("each range needs low or high");
         else if (isNum(r.low) && isNum(r.high) && r.low >= r.high) errs.push("range low must be below high");
         else if (isObj(r) && r.sex !== undefined && r.sex !== "m" && r.sex !== "f") errs.push("range sex must be m or f");
+        else if (isObj(r) && r.fasted !== undefined && typeof r.fasted !== "boolean") errs.push("range fasted must be true or false");
       }
     }
   }

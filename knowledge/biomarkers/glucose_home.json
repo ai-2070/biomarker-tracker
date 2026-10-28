@@ -1,0 +1,44 @@
+{
+  "id": "glucose_home",
+  "name": "Blood glucose (home meter)",
+  "category": "Body",
+  "aliases": ["Blood glucose (home meter)", "Home blood glucose", "Glucose meter reading", "Fingerstick glucose", "Blutzucker (Messgerät)", "Vércukor (mérő)"],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.0555
+  },
+  "defaultRanges": [
+    { "low": 3.9, "high": 5.5, "fasted": true },
+    { "low": 3.9, "high": 7.8, "fasted": false },
+    { "low": 3.9, "high": 11 }
+  ],
+  "criticalRange": { "low": 3, "high": 22.2 },
+  "rangeNote": "Fasting (nothing to eat for 8 hours): 3.9–5.5 mmol/L (70–99 mg/dL); 5.6–6.9 is called impaired fasting glucose. About 2 hours after a meal: below 7.8 mmol/L (140 mg/dL). At any time, 11.1 (200) or more with symptoms such as thirst and passing a lot of urine needs a doctor. Below 3.0 (54) is a significant low. Home meters can be about 15 % off, and a diagnosis needs a lab test.",
+  "summary": "The sugar level in your blood right now, from a finger-prick meter or a sensor. It moves through the day with meals, activity, stress and sleep, so the time of day and whether you'd eaten matter for reading it.",
+  "high": {
+    "meaning": "A high fasting reading, or high readings long after meals, can be an early sign of prediabetes or diabetes. One reading isn't a diagnosis: a lab test (fasting glucose or HbA1c) is.",
+    "commonCauses": ["A recent meal or sugary drink", "Illness or infection", "Stress or poor sleep", "Some medicines (for example steroids)", "Prediabetes or diabetes"]
+  },
+  "low": {
+    "meaning": "Low blood sugar can cause shakiness, sweating, confusion or fainting. In people without diabetes medicines it is uncommon; repeated lows are worth discussing with a doctor.",
+    "commonCauses": ["Diabetes medicines such as insulin or sulfonylureas", "Long fasting or hard exercise", "Alcohol", "A meter or sensor error"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39651986",
+      "doi": "10.2337/dc25-S002",
+      "title": "2. Diagnosis and Classification of Diabetes: Standards of Care in Diabetes-2025",
+      "year": 2025,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "27872155",
+      "doi": "10.2337/dc16-2215",
+      "title": "Glucose Concentrations of Less Than 3.0 mmol/L (54 mg/dL) Should Be Reported in Clinical Trials: A Joint Position Statement of the American Diabetes Association and the European Association for the Study of Diabetes",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}
