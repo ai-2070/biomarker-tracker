@@ -3,7 +3,7 @@
 /*
  * Medical look: white and calm. Type from agents-office (Instrument Serif for headings,
  * Inter for text, Kode Mono for small labels), bundled with the app, never loaded from a font service.
- * Light values here, dark values in the media query below. Text colours meet 4.5:1 on their
+ * Light (white) is the default. Dark only when chosen in Settings (html[data-theme="dark"]). Text colours meet 4.5:1 on their
  * surfaces; chart colours were checked with a colour-blindness and contrast validator.
  */
 @theme {
@@ -11,18 +11,18 @@
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-mono: "Kode Mono Variable", ui-monospace, Menlo, monospace;
 
-  --color-page: #fdfff8;
+  --color-page: #ffffff;
   --color-surface: #ffffff;
-  --color-sunken: #f5f6f1;
-  --color-ink: #151414;
-  --color-ink-2: #5a5a5a;
-  --color-muted: #6e6c66;
-  --color-line: #e8e6df;
-  --color-line-strong: #d5d3cb;
+  --color-sunken: #f5f7f9;
+  --color-ink: #12161b;
+  --color-ink-2: #545b65;
+  --color-muted: #69707a;
+  --color-line: #e4e7eb;
+  --color-line-strong: #cfd4da;
 
   --color-accent: #17785d;
   --color-accent-ink: #ffffff;
-  --color-accent-soft: #e7f4ee;
+  --color-accent-soft: #e8f5f0;
 
   --color-chart-line: #1e9070;
   --color-chart-band: #1e9070;
@@ -37,37 +37,36 @@
   --color-danger-strong: #b4391e;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-page: #15161a;
-    --color-surface: #1e1f24;
-    --color-sunken: #26272d;
-    --color-ink: #eceae3;
-    --color-ink-2: #a3a098;
-    --color-muted: #94918a;
-    --color-line: #2c2d33;
-    --color-line-strong: #3d3e45;
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-page: #15161a;
+  --color-surface: #1e1f24;
+  --color-sunken: #26272d;
+  --color-ink: #eceae3;
+  --color-ink-2: #a3a098;
+  --color-muted: #94918a;
+  --color-line: #2c2d33;
+  --color-line-strong: #3d3e45;
 
-    --color-accent: #3dbf98;
-    --color-accent-ink: #0f1013;
-    --color-accent-soft: #15302a;
+  --color-accent: #3dbf98;
+  --color-accent-ink: #0f1013;
+  --color-accent-soft: #15302a;
 
-    --color-chart-line: #2aa382;
-    --color-chart-band: #2aa382;
-    --color-chart-out: #e0644e;
+  --color-chart-line: #2aa382;
+  --color-chart-band: #2aa382;
+  --color-chart-out: #e0644e;
 
-    --color-ok: #4cc79e;
-    --color-ok-soft: #15302a;
-    --color-warn: #e3b341;
-    --color-warn-soft: #33290f;
-    --color-danger: #f08a74;
-    --color-danger-soft: #3a1c15;
-    --color-danger-strong: #c24a33;
-  }
+  --color-ok: #4cc79e;
+  --color-ok-soft: #15302a;
+  --color-warn: #e3b341;
+  --color-warn-soft: #33290f;
+  --color-danger: #f08a74;
+  --color-danger-soft: #3a1c15;
+  --color-danger-strong: #c24a33;
 }
 
 html {
-  color-scheme: light dark;
+  color-scheme: light;
   -webkit-text-size-adjust: 100%;
 }
 

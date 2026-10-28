@@ -8,6 +8,7 @@ import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { Button, Card, Notice } from "../components/ui";
 import { useAllMeasurements, useProfile } from "../hooks";
+import { getThemeChoice, setThemeChoice, type ThemeChoice } from "../theme";
 
 type SexChoice = Sex | "unset";
 
@@ -38,6 +39,8 @@ export function DataSettings() {
           {/* Keyed so the fields pick up the saved value once it has loaded. */}
           <BirthMonthField key={profile.birthMonth ?? "none"} profile={profile} />
         </Card>
+
+        <AppearanceCard />
 
         <BackupCard count={all?.length ?? 0} />
         <RestoreCard />
@@ -206,6 +209,28 @@ function StorageCard() {
           {asked && !persisted && <p className="text-sm text-ink-2">Not granted yet. Regular backups are the safest option.</p>}
         </>
       )}
+    </Card>
+  );
+}
+
+function AppearanceCard() {
+  const [theme, setTheme] = useState<ThemeChoice>(getThemeChoice);
+  return (
+    <Card className="flex flex-col gap-4">
+      <h2 className="font-serif text-2xl font-normal">Appearance</h2>
+      <ChoiceGroup<ThemeChoice>
+        label="Colours"
+        value={theme}
+        onChange={(v) => {
+          setTheme(v);
+          setThemeChoice(v);
+        }}
+        options={[
+          { value: "light", label: "Light" },
+          { value: "dark", label: "Dark" },
+          { value: "system", label: "Match my device" },
+        ]}
+      />
     </Card>
   );
 }
