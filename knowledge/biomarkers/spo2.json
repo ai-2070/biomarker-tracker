@@ -1,0 +1,40 @@
+{
+  "id": "spo2",
+  "name": "Blood oxygen",
+  "abbreviation": "SpO₂",
+  "category": "Body",
+  "aliases": ["Blood oxygen", "SpO2", "SpO₂", "Oxygen saturation", "Pulse oximetry", "Sauerstoffsättigung", "Véroxigénszint", "Oxigénszaturáció"],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [{ "low": 95 }],
+  "criticalRange": { "low": 90 },
+  "rangeNote": "Healthy adults are usually 95–100 % at rest. Below 92 % at rest, or breathlessness, needs prompt medical advice; below 90 % is urgent. Watches and rings are less accurate than a finger clip, can read low during sleep, cold hands or movement, and overestimate oxygen in people with darker skin. Some lung conditions have a lower target set by a doctor.",
+  "summary": "How much of the haemoglobin in your blood is carrying oxygen, measured through the skin with light. Watches usually measure it during sleep.",
+  "high": {
+    "meaning": "There's no upper limit to worry about for a reading taken in ordinary air.",
+    "commonCauses": []
+  },
+  "low": {
+    "meaning": "Low oxygen can come from lung or heart problems, a chest infection, or breathing pauses during sleep. A single low watch reading is often a sensor issue; repeated low readings, or a low reading with breathlessness, need a doctor.",
+    "commonCauses": ["Sensor issue (movement, cold hands, loose strap)", "Chest infection", "Lung disease", "Sleep apnoea", "High altitude"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "28507176",
+      "doi": "10.1136/thoraxjnl-2016-209729",
+      "title": "BTS guideline for oxygen use in adults in healthcare and emergency settings",
+      "year": 2017,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "33326721",
+      "doi": "10.1056/NEJMc2029240",
+      "title": "Racial Bias in Pulse Oximetry Measurement",
+      "year": 2020,
+      "studyType": "observational"
+    }
+  ]
+}

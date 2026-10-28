@@ -1,0 +1,31 @@
+{
+  "id": "heart_rate",
+  "name": "Heart rate (daily average)",
+  "category": "Body",
+  "aliases": ["Heart rate (daily average)", "Average heart rate", "Daily heart rate", "Durchschnittlicher Puls", "Átlagos pulzus"],
+  "canonicalUnit": "bpm",
+  "conversions": {
+    "bpm": 1,
+    "/min": 1
+  },
+  "rangeNote": "There is no standard range for a whole day's average: it includes sleep, walking and exercise. It's most useful compared with your own past days. Usually from a watch or ring.",
+  "summary": "Your average heart rate over a day, from a watch, ring or chest strap. It rises with activity, heat, stress, illness, alcohol and poor sleep, so a run of higher days can be an early sign that something is off.",
+  "high": {
+    "meaning": "Days with a higher average than usual often follow illness, alcohol, poor sleep, heat or stress. A persistently high or irregular heart rate with symptoms needs a doctor.",
+    "commonCauses": ["More activity that day", "Fever or illness", "Alcohol or caffeine", "Poor sleep or stress", "Heat or dehydration"]
+  },
+  "low": {
+    "meaning": "A lower average is common with good fitness or a restful day.",
+    "commonCauses": ["Good fitness", "A quiet day", "Some heart medicines (beta blockers)"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "32023264",
+      "doi": "10.1371/journal.pone.0227709",
+      "title": "Inter- and intraindividual variability in daily resting heart rate and its associations with age, sex, sleep, BMI, and time of year: Retrospective, longitudinal cohort study of 92,457 adults",
+      "year": 2020,
+      "studyType": "observational"
+    }
+  ]
+}

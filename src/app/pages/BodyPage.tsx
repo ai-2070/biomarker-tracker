@@ -3,7 +3,8 @@ import { buildDashboard } from "../../core/dashboard";
 import { DEMO_BODY_IDS, demoBodyMeasurements } from "../../core/demo";
 import { addMeasurements } from "../../db/db";
 import { todayIso } from "../../core/dates";
-import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure, RestingHrFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
+import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure, LatestFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
+import { BODY_GROUPS } from "../../core/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { PlusIcon } from "../components/icons";
@@ -12,6 +13,9 @@ import { formatDate, lowerFirst } from "../format";
 import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
+
+/** Shown as a figure on this page, so not repeated as a tile. */
+const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
 export function BodyPage({ add }: { add?: boolean }) {
@@ -72,19 +76,39 @@ export function BodyPage({ add }: { add?: boolean }) {
 
       {!empty && (
         <>
-          <section aria-label="Key figures" className="stagger grid grid-cols-2 gap-3 lg:grid-cols-4">
-            <WeightFigure ms={body} />
-            <BmiFigure ms={body} profile={profile} />
-            <BmrFigure ms={body} profile={profile} />
-            <WaistFigure ms={body} profile={profile} />
-            <BloodPressureFigure ms={body} profile={profile} />
-            <RestingHrFigure ms={body} />
-            <GlucoseFigure ms={body} profile={profile} className="col-span-2" />
-          </section>
+          {BODY_GROUPS.map((g) => {
+            // Charts for what the figures above don't already show (each figure opens its own chart).
+            const markers = inBodyOrder(d.markers.filter((m) => (g.fields as readonly string[]).includes(m.def.id) && !FIGURED.has(m.def.id)));
+            return (
+              <section key={g.id} aria-labelledby={`body-${g.id}`} className="flex flex-col gap-3">
+                <h2 id={`body-${g.id}`} className="font-serif text-2xl font-normal">
+                  {g.title}
+                </h2>
+                <div className="stagger grid grid-cols-2 gap-3 lg:grid-cols-4">
+                  {g.id === "size" && (
+                    <>
+                      <WeightFigure ms={body} />
+                      <BmiFigure ms={body} profile={profile} />
+                      <BmrFigure ms={body} profile={profile} />
+                      <WaistFigure ms={body} profile={profile} />
+                    </>
+                  )}
+                  {g.id === "heart" && (
+                    <>
+                      <BloodPressureFigure ms={body} profile={profile} />
+                      <LatestFigure ms={body} id="resting_hr" label="Resting heart rate" profile={profile} />
+                      <LatestFigure ms={body} id="hrv_resting" label="Resting HRV" profile={profile} />
+                      <LatestFigure ms={body} id="spo2" label="Blood oxygen" profile={profile} />
+                    </>
+                  )}
+                  {g.id === "sugar" && <GlucoseFigure ms={body} profile={profile} className="col-span-2" />}
+                </div>
+                {markers.length > 0 && <MarkerGrid markers={markers} title={`${g.title}: more`} hideTitle limit={12} />}
+              </section>
+            );
+          })}
 
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-            <MarkerGrid markers={inBodyOrder(d.markers)} title="Measurements" limit={12} />
-            <aside className="flex flex-col gap-4">
+          <div className="grid gap-4 lg:grid-cols-2">
               <section className={cardStyles}>
                 <h2 className="font-serif text-xl font-normal">About these numbers</h2>
                 <ul className="mt-2 flex list-disc flex-col gap-1.5 pl-5 text-sm text-ink-2">
@@ -92,6 +116,7 @@ export function BodyPage({ add }: { add?: boolean }) {
                   <li>Home blood pressure runs lower than in a clinic. One high reading isn't a diagnosis; repeated ones are worth discussing with a doctor.</li>
                   <li>Basal metabolic rate is an estimate of the energy your body uses at rest. It isn't a target, and not a reason to eat less; for changes to your weight, talk to your doctor or a dietitian.</li>
                   <li>Home glucose meters can be about 15 % off. A diagnosis always needs a lab test.</li>
+                  <li>Watches and rings estimate heart rate, HRV and blood oxygen; compare them with your own past readings rather than with other people.</li>
                   <li>Day-to-day swings are normal. Measure the same way and at the same time of day, and follow the trend.</li>
                 </ul>
                 <p className="mt-3 text-sm text-ink-2">
@@ -102,8 +127,7 @@ export function BodyPage({ add }: { add?: boolean }) {
                   ).
                 </p>
               </section>
-              <HabitsPanel protocols={protocols} experiments={experiments ?? []} all={all ?? []} today={today} />
-            </aside>
+            <HabitsPanel protocols={protocols} experiments={experiments ?? []} all={all ?? []} today={today} />
           </div>
         </>
       )}

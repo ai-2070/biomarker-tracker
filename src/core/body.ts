@@ -9,8 +9,27 @@ import type { BiomarkerDef, Measurement } from "./types";
  * dashboard. BMI and waist-to-height are computed here, never stored.
  */
 
-export type BodyField = "weight" | "waist" | "body_fat" | "bp_systolic" | "bp_diastolic" | "resting_hr" | "glucose_home";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "glucose_home"];
+export type BodyField =
+  | "weight"
+  | "waist"
+  | "body_fat"
+  | "bp_systolic"
+  | "bp_diastolic"
+  | "resting_hr"
+  | "heart_rate"
+  | "exercise_hr"
+  | "hrv"
+  | "hrv_resting"
+  | "spo2"
+  | "glucose_home";
+export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home"];
+
+/** Body measurements in groups, for the Body dashboard and the entry form. */
+export const BODY_GROUPS: readonly { id: "size" | "heart" | "sugar"; title: string; fields: readonly BodyField[] }[] = [
+  { id: "size", title: "Size and composition", fields: ["weight", "waist", "body_fat"] },
+  { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2"] },
+  { id: "sugar", title: "Blood sugar", fields: ["glucose_home"] },
+];
 
 /** Values outside these (canonical unit) are almost certainly typos, e.g. 1765 for 176.5. */
 export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
@@ -20,6 +39,11 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   bp_systolic: { min: 60, max: 280 },
   bp_diastolic: { min: 30, max: 180 },
   resting_hr: { min: 25, max: 220 },
+  heart_rate: { min: 25, max: 220 },
+  exercise_hr: { min: 40, max: 230 },
+  hrv: { min: 2, max: 300 },
+  hrv_resting: { min: 2, max: 300 },
+  spo2: { min: 50, max: 100 },
   glucose_home: { min: 1, max: 35 },
 };
 

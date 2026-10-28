@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { parseBackup } from "../../src/core/backup";
 import { addDays } from "../../src/core/dates";
-import { DEMO_UNITS, demoProfile, demoBodyMeasurements } from "../../src/core/demo";
+import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "../../src/core/demo";
 import { analyzeMarker } from "../../src/core/experiments";
 import { summarizePhenoAge } from "../../src/core/phenoageDraws";
 import { isActiveOn } from "../../src/core/protocols";
@@ -65,7 +65,8 @@ describe("example profile (made-up data)", () => {
   it("can give just the body measurements, for older example profiles", () => {
     const body = demoBodyMeasurements(today);
     expect(body.length).toBeGreaterThan(100);
-    expect(new Set(body.map((m) => m.biomarkerId))).toEqual(new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "glucose_home"]));
+    expect(new Set(body.map((m) => m.biomarkerId))).toEqual(new Set(DEMO_BODY_IDS));
+    expect(body.filter((m) => m.biomarkerId === "spo2").every((m) => m.value >= 95 && m.value <= 100)).toBe(true);
     const glucose = body.filter((m) => m.biomarkerId === "glucose_home");
     expect(glucose.some((m) => m.fasted === true) && glucose.some((m) => m.fasted === false)).toBe(true);
     expect(glucose.every((m) => (m.fasted ? m.value <= 5.5 : m.value < 7.8))).toBe(true);

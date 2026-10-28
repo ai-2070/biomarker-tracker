@@ -173,15 +173,28 @@ export function BloodPressureFigure({ ms, profile, className }: { ms: Measuremen
   );
 }
 
-export function RestingHrFigure({ ms, className }: { ms: Measurement[]; className?: string }) {
-  const series = sortByDate(ms.filter((m) => m.biomarkerId === "resting_hr"));
+const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2"]);
+const UNIT_WORDS: Record<string, string> = { bpm: "beats a minute" };
+
+/** The latest reading of one body measurement, with its change over about 3 months. */
+export function LatestFigure({ ms, id, label, profile, className }: { ms: Measurement[]; id: BodyField; label: string; profile: Profile; className?: string }) {
+  const unit = useUnit(id);
+  const def = BIOMARKER_MAP.get(id)!;
+  const series = sortByDate(ms.filter((m) => m.biomarkerId === id));
   const last = series.at(-1);
+  const flag = last ? flagMeasurement(def, last, profile) : undefined;
   return (
-    <Figure label="Resting heart rate" href={href({ name: "marker", id: "resting_hr" })} className={className} foot={last ? (sinceEarlier(series, "resting_hr", "bpm") ?? formatDate(last.date)) : "Not measured yet"}>
+    <Figure
+      label={label}
+      href={href({ name: "marker", id })}
+      className={className}
+      foot={last ? (sinceEarlier(series, id, unit) ?? formatDate(last.date)) : DEVICE_FIELDS.has(id) ? "From a watch or ring, or type it in" : "Not measured yet"}
+    >
       {last ? (
-        <p className="flex items-baseline gap-1.5">
-          <span className={big}>{Math.round(last.value)}</span>
-          <span className="text-ink-2">beats a minute</span>
+        <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
+          <span className={cx(big, flag?.startsWith("critical") && "text-danger")}>{showMeasurement(def, last, unit)}</span>
+          <span className="text-ink-2">{UNIT_WORDS[unit] ?? unit}</span>
+          {flag && flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}
         </p>
       ) : (
         <p className="font-serif text-4xl text-ink-2">–</p>
@@ -196,13 +209,25 @@ export function inBodyOrder(markers: DashboardMarker[]): DashboardMarker[] {
   return [...markers].sort((a, b) => (order.get(a.def.id) ?? 9) - (order.get(b.def.id) ?? 9));
 }
 
-/** One line per body measurement with a small trend line: for the main dashboard. Blood pressure is one row. */
+/** The main dashboard shows these; the rest are on the Body page. */
+const SUMMARY_IDS = new Set(["weight", "waist", "bp_systolic", "resting_hr", "hrv_resting", "spo2", "glucose_home"]);
+const SUMMARY_LABEL: Record<string, string> = {
+  weight: "Weight",
+  waist: "Waist",
+  bp_systolic: "Blood pressure",
+  resting_hr: "Resting heart rate",
+  hrv_resting: "Resting HRV",
+  spo2: "Blood oxygen",
+  glucose_home: "Blood glucose",
+};
+
+/** One line per key body measurement with a small trend line: for the main dashboard. Blood pressure is one row. */
 export function BodySummaryList({ markers }: { markers: DashboardMarker[] }) {
   const units = useDisplayUnits();
   const dia = markers.find((m) => m.def.id === "bp_diastolic");
   return (
     <ul className="flex flex-col divide-y divide-line">
-      {inBodyOrder(markers.filter((m) => m.def.id !== "bp_diastolic")).map((m) => {
+      {inBodyOrder(markers.filter((m) => SUMMARY_IDS.has(m.def.id))).map((m) => {
         const bp = m.def.id === "bp_systolic";
         const unit = displayUnitFor(m.def, units[m.def.id]);
         const flag = bp && dia && dia.flag !== "normal" && dia.flag !== "unknown" && (m.flag === "normal" || m.flag === "unknown") ? dia.flag : m.flag;
@@ -210,7 +235,7 @@ export function BodySummaryList({ markers }: { markers: DashboardMarker[] }) {
         return (
           <li key={m.def.id}>
             <a href={href({ name: "marker", id: m.def.id })} className="grid min-h-12 grid-cols-[minmax(0,1fr)_5rem_auto] items-center gap-3 py-1.5 text-ink no-underline hover:bg-sunken">
-              <span className="truncate text-sm font-medium">{bp ? "Blood pressure" : shortName(m.def)}</span>
+              <span className="truncate text-sm font-medium">{SUMMARY_LABEL[m.def.id] ?? shortName(m.def)}</span>
               <Sparkline series={m.series.slice(-12)} {...(m.range ? { range: m.range } : {})} tone={tone} />
               <span className="flex items-center justify-end gap-2 text-sm whitespace-nowrap tabular-nums">
                 {bp && dia ? `${Math.round(m.latest.value)}/${Math.round(dia.latest.value)}` : showMeasurement(m.def, m.latest, unit)} <span className="text-ink-2">{unit}</span>
@@ -231,6 +256,11 @@ const FIELD_LABEL: Record<BodyField, string> = {
   bp_systolic: "Top number (systolic)",
   bp_diastolic: "Bottom number (diastolic)",
   resting_hr: "Resting heart rate",
+  heart_rate: "Heart rate, day average",
+  exercise_hr: "Heart rate during exercise",
+  hrv: "HRV",
+  hrv_resting: "Resting HRV (overnight)",
+  spo2: "Blood oxygen (SpO₂)",
   glucose_home: "Blood glucose",
 };
 
@@ -325,6 +355,17 @@ export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
         </div>
         <p className="text-sm text-ink-2">Sit quietly for 5 minutes first. Many monitors also show your pulse: that's your resting heart rate.</p>
       </fieldset>
+      <details className="group rounded-xl border border-line p-3 open:pb-4">
+        <summary className="min-h-10 cursor-pointer content-center font-medium">Heart rate, HRV and blood oxygen (usually from a watch or ring)</summary>
+        <div className="mt-3 grid gap-4 sm:grid-cols-3">
+          {field("heart_rate", { suffix: "bpm" })}
+          {field("exercise_hr", { suffix: "bpm" })}
+          {field("spo2", { suffix: "%" })}
+          {field("hrv", { suffix: "ms" })}
+          {field("hrv_resting", { suffix: "ms" })}
+        </div>
+        <p className="mt-3 text-sm text-ink-2">HRV here is RMSSD, as most rings and Android watches show it. Apple Watch shows SDNN, a different measure.</p>
+      </details>
       <fieldset className="flex flex-col gap-3">
         <legend className={cx(formLabel, "mb-1")}>Blood glucose (home meter)</legend>
         <div className="grid gap-4 sm:grid-cols-3">

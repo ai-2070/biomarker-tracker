@@ -22,11 +22,11 @@ export const HABIT_HINTS: readonly { words: RegExp; markers: readonly string[] }
   { words: /folate|folic/i, markers: ["folate"] },
   { words: /\boats?\b|oatmeal|porridge|barley|beta.?glucan|psyllium|fib(re|er)/i, markers: ["ldl", "total_cholesterol"] },
   { words: /saturated|olive oil|plant.?based|vegan|vegetarian/i, markers: ["ldl", "total_cholesterol"] },
-  { words: /alcohol|\bbeer\b|\bwine\b|sober/i, markers: ["triglycerides", "ggt"] },
+  { words: /alcohol|\bbeer\b|\bwine\b|sober/i, markers: ["triglycerides", "ggt", "hrv_resting"] },
   { words: /statin|ezetimibe/i, markers: ["ldl", "total_cholesterol"] },
   { words: /metformin|\bsugar\b|low.?carb|keto/i, markers: ["hba1c", "glucose", "glucose_home", "triglycerides"] },
   { words: /\btea\b|\bcoffee\b/i, markers: ["ferritin"] },
-  { words: /walk|\brun|jog|cycl|swim|exercise|workout|cardio|zone 2|steps/i, markers: ["resting_hr", "bp_systolic", "bp_diastolic"] },
+  { words: /walk|\brun|jog|cycl|swim|exercise|workout|cardio|zone 2|steps/i, markers: ["resting_hr", "hrv_resting", "bp_systolic", "bp_diastolic"] },
   { words: /\bsalt\b|sodium/i, markers: ["bp_systolic", "bp_diastolic"] },
 ];
 

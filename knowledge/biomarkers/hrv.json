@@ -1,0 +1,37 @@
+{
+  "id": "hrv",
+  "name": "Heart rate variability",
+  "abbreviation": "HRV",
+  "category": "Body",
+  "aliases": ["Heart rate variability", "HRV", "HRV (RMSSD)", "RMSSD", "Herzratenvariabilität", "Szívfrekvencia-variabilitás"],
+  "canonicalUnit": "ms",
+  "conversions": {
+    "ms": 1
+  },
+  "rangeNote": "There's no single normal value: HRV falls with age and differs a lot between people, so compare it with your own baseline. This is RMSSD, the measure most rings and Android watches report; Apple Watch reports SDNN, a different measure, so don't mix the two.",
+  "summary": "The small changes in time between heartbeats (RMSSD, in milliseconds). Higher usually means the calming side of the nervous system is more active. It moves day to day with sleep, alcohol, illness, stress and training.",
+  "high": {
+    "meaning": "Higher than your usual is generally a sign of recovery and good fitness. A sudden very high or erratic value can also come from an irregular heartbeat or a sensor error.",
+    "commonCauses": ["Good sleep and recovery", "Better fitness", "Irregular heartbeat (rarely)"]
+  },
+  "low": {
+    "meaning": "Lower than your usual often follows poor sleep, alcohol, illness, stress or hard training. A low value on its own isn't a diagnosis.",
+    "commonCauses": ["Poor sleep", "Alcohol", "Illness or fever", "Stress", "Hard training", "Ageing"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "8598068",
+      "title": "Heart rate variability: standards of measurement, physiological interpretation and clinical use. Task Force of the European Society of Cardiology and the North American Society of Pacing and Electrophysiology",
+      "year": 1996,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29034226",
+      "doi": "10.3389/fpubh.2017.00258",
+      "title": "An Overview of Heart Rate Variability Metrics and Norms",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ]
+}
