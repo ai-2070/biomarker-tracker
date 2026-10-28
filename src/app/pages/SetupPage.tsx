@@ -156,7 +156,7 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
               title={existingResults > 0 && first ? "Go to my results" : "Not now"}
               text={existingResults > 0 && first ? "Open the profile with the results already in this browser." : "Open the empty profile."}
               disabled={busy}
-              onClick={() => void finish(href({ name: "overview" }))}
+              onClick={() => void finish(href({ name: "dashboard" }))}
             />
           </div>
           <p className={helpStyles}>The assistant is optional. Set it up later in Settings → AI models.</p>

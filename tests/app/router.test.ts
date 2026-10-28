@@ -3,8 +3,9 @@ import { href, parseHash, type Route } from "../../src/app/router";
 
 describe("router", () => {
   it("parses known routes", () => {
-    expect(parseHash("")).toEqual({ name: "overview" });
-    expect(parseHash("#/")).toEqual({ name: "overview" });
+    expect(parseHash("")).toEqual({ name: "dashboard" });
+    expect(parseHash("#/")).toEqual({ name: "dashboard" });
+    expect(parseHash("#/results")).toEqual({ name: "overview" });
     expect(parseHash("#/add")).toEqual({ name: "add" });
     expect(parseHash("#/add?marker=ferritin")).toEqual({ name: "add", marker: "ferritin" });
     expect(parseHash("#/marker/crp_hs")).toEqual({ name: "marker", id: "crp_hs" });
@@ -25,6 +26,8 @@ describe("router", () => {
       { name: "experiment-new", marker: "ferritin", change: "Kiwis & oats" },
       { name: "experiment", id: "abc-123" },
       { name: "data", tab: "models" },
+      { name: "dashboard" },
+      { name: "soon", section: "devices" },
       { name: "data", tab: "about" },
       { name: "setup" },
       { name: "profiles" },

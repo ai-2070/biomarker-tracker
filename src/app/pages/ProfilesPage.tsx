@@ -70,7 +70,7 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
       // The open profile is gone: open another one, or start setup.
       if (left[0]) await switchProfile(left[0].id);
       else {
-        location.hash = href({ name: "overview" });
+        location.hash = href({ name: "dashboard" });
         location.reload();
       }
     } else if (r) await ctx.refresh();

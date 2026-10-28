@@ -6,6 +6,7 @@ A free, open-source, local-first web app for tracking your bloodwork over the ye
 
 ## Status
 
+- v0.12: sidebar layout and a Dashboard home: biological age, markers in range and to watch, a multi-year timeline of blood tests, biological age and supplements, marker charts, what you're taking now, experiments. Body and Devices (Android Health Connect sync) are marked as coming soon.
 - Settings has tabs for Your data (person, "A bit more", files, backups), AI models, Skills, MCP servers, Appearance and About (version, source code).
 - v0.11: import a lab report from a photo or a scanned PDF. Text recognition runs on this device (English, German, Hungarian); nothing is uploaded. The review screen asks to check every value, and values far outside the lab's own range (a lost decimal point) are unticked with a note. Example profile with made-up data for trying the app.
 - v0.10: profiles. Each person is a folder on this computer with their details (name, birth month, sex, height, diet, smoking, conditions, allergies, notes), results, log, experiments and scanned lab reports. A setup wizard on first start and for each new profile; switch profiles from the header; back up a profile as a .zip, restore it, show its folder, delete it. Imported lab PDFs are kept in the profile.
