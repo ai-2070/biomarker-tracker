@@ -4,8 +4,11 @@
 import { createContext, useContext, useSyncExternalStore } from "react";
 import { liveQuery } from "dexie";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
+import { createBackup } from "../core/backup";
+import { todayIso } from "../core/dates";
+import { demoProfile } from "../core/demo";
 import { profilesInFolder, zipStore } from "../core/zipStore";
-import { db, getProfile } from "../db/db";
+import { db, getProfile, importBackup, setOnboarded } from "../db/db";
 import { api } from "./api";
 
 export interface ProfileSummary {
@@ -205,6 +208,25 @@ async function restoreZip(zip: Blob): Promise<ProfileSummary> {
 
 async function openLoaded(id: string, to: string): Promise<void> {
   await loadIntoBrowser(id);
+  location.hash = to;
+  location.reload();
+}
+
+/**
+ * Creates a profile filled with made-up example data (src/core/demo.ts) and opens it.
+ * In a browser-only copy of the app it replaces what is in this browser, so only offer it there when it's empty.
+ */
+export async function createExampleProfile(mode: "folders" | "browser", to = "#/"): Promise<void> {
+  const d = demoProfile(todayIso());
+  if (mode === "folders") {
+    await flushSaving();
+    stopSaving();
+    const { profile } = await api<{ profile: ProfileSummary }>("POST", "/api/profiles", d);
+    await openLoaded(profile.id, to);
+    return;
+  }
+  await importBackup(createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()), "replace");
+  await setOnboarded();
   location.hash = to;
   location.reload();
 }

@@ -27,3 +27,8 @@ export function todayIso(now: Date = new Date()): string {
   const d = String(now.getDate()).padStart(2, "0");
   return `${y}-${m}-${d}`;
 }
+
+/** The ISO date `days` days after (or before, if negative) an ISO date. */
+export function addDays(iso: string, days: number): string {
+  return new Date((dayNumber(iso) + days) * 86_400_000).toISOString().slice(0, 10);
+}
