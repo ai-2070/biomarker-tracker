@@ -71,6 +71,14 @@ export function formatPercent(fraction: number): string {
   return p > 0 ? `+${p}%` : `−${Math.abs(p)}%`;
 }
 
+/** Sleep as people say it: 7.4 → "7 h 24 min". */
+export function formatHours(hours: number): string {
+  const total = Math.round(hours * 60);
+  const h = Math.floor(total / 60);
+  const m = total % 60;
+  return h === 0 ? `${m} min` : m === 0 ? `${h} h` : `${h} h ${m} min`;
+}
+
 /** "12 days", "3 months", "2 years". Rounded for reading, not for calculation. */
 export function formatDuration(days: number): string {
   if (days < 1) return "0 days";

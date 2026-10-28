@@ -1,4 +1,4 @@
-import { PLAUSIBLE, type BodyField } from "../body";
+import { PLAUSIBLE, SLEEP_FIELDS, type BodyField } from "../body";
 import { isIsoDate } from "../dates";
 
 /**
@@ -183,6 +183,8 @@ export function guessColumn(header: string, index: number, family = ""): ColumnG
   const skip = (reason: string): ColumnGuess => ({ ...base, field: null, unit: "", reason });
   const health = /heart|\bhr\b|hrv|rmssd|pulse|weight|oxygen|spo2|saturation/;
   if (/\bsdnn\b/.test(h)) return skip("HRV as SDNN (Apple's measure), not RMSSD: the two can't be mixed.");
+  const sleep = sleepColumn(h, f, base);
+  if (sleep !== "not sleep") return sleep;
   if (/\b(seven|weekly|week|monthly|month|baseline|last \d+ days?)\b/.test(h) && health.test(h)) return skip("An average over several days, not one day's value.");
   if (/\b(max|maximum|min|minimum|peak|lowest|highest|zone|zones|count|calories|kcal|steps|distance|duration|seconds|minutes|confidence|error|lower bound|upper bound)\b/.test(h) && (health.test(h) || health.test(f)))
     return skip("Not a daily average (a minimum, maximum, zone or count).");
@@ -217,6 +219,74 @@ export function guessColumn(header: string, index: number, family = ""): ColumnG
   if (/glucose|blood sugar/.test(h)) return { ...base, field: "glucose_home", unit: /mg/.test(h) ? "mg/dL" : "mmol/L" };
   if (/weight|body ?mass|gewicht|súly/.test(h) && !/lean|muscle|bone|water|skeletal/.test(h)) return { ...base, field: "weight", unit: /\blbs?\b|pound/.test(h) ? "lb" : "kg" };
   return undefined;
+}
+
+// ---- Sleep ----------------------------------------------------------------------------------------
+
+/** The unit a sleep column's header names; "auto" when it doesn't (decided from the values, see sleepUnit). */
+function sleepUnitOf(h: string): string {
+  if (/\(min\)|\bmins?\b|\bminutes\b/.test(h)) return "min";
+  if (/\(h\)|\bhrs?\b|\bhours?\b/.test(h)) return "h";
+  if (/\(s\)|\bsecs?\b|\bseconds\b/.test(h)) return "s";
+  return "auto";
+}
+
+/** A night's sleep in hours, minutes or seconds, from the size of the numbers (7.4, 444 or 26640). */
+export function sleepUnit(values: readonly number[]): "h" | "min" | "s" {
+  const sorted = [...values].sort((a, b) => a - b);
+  const median = sorted[Math.floor(sorted.length / 2)] ?? 0;
+  return median > 1000 ? "s" : median > 24 ? "min" : "h";
+}
+
+/**
+ * Sleep columns: total time asleep, deep and REM. Light sleep is only used to add up a total when a
+ * file has stages but no total (see withSleepTotal). Companies' sleep scores aren't imported.
+ * "not sleep" lets other rules look at the column.
+ */
+function sleepColumn(h: string, f: string, base: { index: number; header: string }): ColumnGuess | undefined | "not sleep" {
+  const inSleepFile = /sleep/.test(f);
+  if (!/sleep|asleep|\bsws\b|\brem/.test(h) && !(inSleepFile && /\bdeep\b|\blight\b|shallow|\brem|total/.test(h))) return "not sleep";
+  // Fitbit's per-stage summary of older logs repeats the total ("levels summary asleep minutes").
+  if (/summary (asleep|restless|awake)/.test(h)) return undefined;
+  // Heart rate, HRV, breathing or temperature during sleep: handled by the other rules.
+  if (/heart|hrv|rmssd|\bhr\b|spo2|oxygen|breath|respirat|temperature|temp\b/.test(h)) return "not sleep";
+  if (/score|performance|quality|index/.test(h)) return { ...base, field: null, unit: "", reason: "A company's own sleep score, not a measurement." };
+  if (/efficiency|latency|fall asleep|in bed|awake|wake|need|debt|consistency|disturbance|regularity|restless|onset|start|end\b|stop|count|thirty|30 ?day|bedtime|nap|goal|interruption|percent|%/.test(h)) return undefined;
+  const unit = sleepUnitOf(h);
+  if (/\bdeep\b|slow ?wave|\bsws\b/.test(h)) return { ...base, field: "sleep_deep", unit };
+  if (/\brem/.test(h)) return { ...base, field: "sleep_rem", unit };
+  if (/\blight\b|shallow|\bcore\b/.test(h)) return { ...base, field: null, unit, reason: "Light sleep: used to add up total sleep when the file has no total." };
+  if (/asleep|total sleep|sleep duration|sleep time|^sleep( \(.*\))?$|^total/.test(h)) return { ...base, field: "sleep_duration", unit };
+  return undefined;
+}
+
+/**
+ * Files with sleep stages but no total (Garmin, Zepp) get one: deep + light + REM, added up per row.
+ * Returned as an extra column so it goes through the same steps as the others.
+ */
+export function withSleepTotal(t: { headers: string[]; data: string[][] }, family: string): { headers: string[]; data: string[][] } {
+  const guesses = t.headers.map((h, i) => guessColumn(h, i, family));
+  if (guesses.some((g) => g?.field === "sleep_duration")) return t;
+  const deep = guesses.find((g) => g?.field === "sleep_deep");
+  const light = guesses.find((g) => g?.field === null && /light|shallow|core/i.test(g.header) && g.reason?.startsWith("Light sleep"));
+  if (!deep || !light) return t;
+  const rem = guesses.find((g) => g?.field === "sleep_rem");
+  const parts = [deep, light, ...(rem ? [rem] : [])];
+  const unit = deep.unit === "auto" ? "" : ` (${deep.unit})`;
+  // Named so it reads as a total, not as one of the stages it adds up.
+  const header = `Total sleep (added up from stages)${unit}`;
+  const data = t.data.map((r) => {
+    const nums = parts.map((g) => toNumber(r[g.index] ?? ""));
+    return [...r, nums.every((n) => n !== undefined) ? String(nums.reduce((a, b) => a! + b!, 0)) : ""];
+  });
+  return { headers: [...t.headers, header], data };
+}
+
+/** For sleep, the date that names the night: the morning you woke up, when the file says so. */
+export function sleepDateColumn(headers: string[], data: string[][] = [], monthFirst = false): number {
+  // Only a column that holds dates ("wakeTime" in Zepp files is minutes awake, not a time).
+  const holdsDates = (i: number) => data.length === 0 || data.slice(0, 5).some((r) => toIsoDate(r[i] ?? "", monthFirst));
+  return headers.findIndex((h, i) => /date of sleep|wake ?(onset|up|time)|sleep ?end|^end ?(time|date)?$/i.test(normalizeHeader(h)) && holdsDates(i));
 }
 
 // ---- Dates ----------------------------------------------------------------------------------------
@@ -262,24 +332,14 @@ export interface DailySeries {
   dropped: number;
 }
 
-/** Averages readings per day. Readings that can't be real are dropped and counted. */
+/**
+ * One value per day: the average of that day's readings, or for sleep the sum (a night recorded in
+ * pieces, plus naps). Readings, or for sleep whole nights, that can't be real are dropped and counted.
+ */
 export function dailyAverages(field: BodyField, unit: string, from: string, readings: Iterable<{ date: string; value: number }>, toCanonical: (v: number) => number): DailySeries {
-  const sums = new Map<string, { sum: number; n: number }>();
-  let dropped = 0;
-  const p = PLAUSIBLE[field];
-  for (const r of readings) {
-    const c = toCanonical(r.value);
-    if (!Number.isFinite(c) || c < p.min || c > p.max) {
-      dropped++;
-      continue;
-    }
-    const s = sums.get(r.date) ?? { sum: 0, n: 0 };
-    s.sum += r.value;
-    s.n++;
-    sums.set(r.date, s);
-  }
-  const days = [...sums.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, { sum, n }]) => ({ date, value: Math.round((sum / n) * 10) / 10, readings: n }));
-  return { field, unit, from, days, dropped };
+  const tally = new DailyTally();
+  for (const r of readings) tally.add(from, field, unit, r.date, r.value, toCanonical);
+  return tally.series()[0] ?? { field, unit, from, days: [], dropped: 0 };
 }
 
 /** Readings of one column of a CSV table, by day. */
@@ -294,6 +354,40 @@ export function columnReadings(data: string[][], dateCol: number, g: ColumnGuess
     out.push({ date, value });
   }
   return out;
+}
+
+export interface TableColumn {
+  header: string;
+  /** Null: recognised but not imported (see `reason`). */
+  field: BodyField | null;
+  unit: string;
+  reason?: string;
+  readings: { date: string; value: number }[];
+}
+
+/**
+ * Everything one table gives: its columns with their readings by day. Sleep columns are dated by the
+ * morning (when the file says when the night ended), get a total from their stages when the file has
+ * none, and get their unit from the numbers when the header doesn't say. `dated` is false when no
+ * column holds dates.
+ */
+export function readTable(path: string, table: { headers: string[]; data: string[][] }, monthFirst = false): { columns: TableColumn[]; other: string[]; dated: boolean } {
+  const family = fileFamily(path);
+  const t = withSleepTotal(table, family);
+  const dateCol = findDateColumn(t.headers, t.data, monthFirst);
+  if (dateCol === -1) return { columns: [], other: [], dated: false };
+  const sleepCol = sleepDateColumn(t.headers, t.data, monthFirst);
+  const columns: TableColumn[] = [];
+  const other: string[] = [];
+  t.headers.forEach((h, i) => {
+    if (i === dateCol || i === sleepCol) return;
+    const g = guessColumn(h, i, family);
+    if (!g) return void other.push(h);
+    if (!g.field) return void columns.push({ header: h, field: null, unit: "", ...(g.reason ? { reason: g.reason } : {}), readings: [] });
+    const readings = columnReadings(t.data, SLEEP_FIELDS.has(g.field) && sleepCol !== -1 ? sleepCol : dateCol, g, monthFirst);
+    columns.push({ header: h, field: g.field, unit: g.unit === "auto" ? sleepUnit(readings.map((r) => r.value)) : g.unit, readings });
+  });
+  return { columns, other, dated: true };
 }
 
 // ---- Apple Health export.xml -----------------------------------------------------------------------
@@ -334,6 +428,10 @@ export function appleRecords(xml: string, skipped: Map<string, string>): AppleRe
     const tag = m[0];
     const type = attr(tag, "type");
     if (!type) continue;
+    if (type === "HKCategoryTypeIdentifierSleepAnalysis") {
+      for (const r of appleSleep(tag)) out.push(r);
+      continue;
+    }
     const known = APPLE_TYPES[type];
     if (!known) continue;
     if ("skip" in known) {
@@ -354,6 +452,31 @@ export function appleRecords(xml: string, skipped: Map<string, string>): AppleRe
   return out;
 }
 
+/** "2026-03-01 23:10:00 +0100" as a time. */
+function appleTime(s: string | undefined): number {
+  const m = /^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) ([+-]\d{2})(\d{2})$/.exec(s ?? "");
+  return m ? Date.parse(`${m[1]}T${m[2]}${m[3]}:${m[4]}`) : NaN;
+}
+
+/**
+ * One piece of a night from Apple Health, in hours, dated by when it ended (the morning). Each phone,
+ * watch or app that records sleep is kept apart ("Sleep (Apple Watch)"), so the same night isn't
+ * counted twice; the review shows where they overlap.
+ */
+function appleSleep(tag: string): AppleReading[] {
+  const stage = (attr(tag, "value") ?? "").replace("HKCategoryValueSleepAnalysis", "");
+  if (!/^Asleep/.test(stage)) return []; // InBed and Awake aren't sleep
+  const end = attr(tag, "endDate");
+  const hours = (appleTime(end) - appleTime(attr(tag, "startDate"))) / 3_600_000;
+  const date = toIsoDate(end ?? "");
+  if (!date || !(hours > 0)) return [];
+  const source = attr(tag, "sourceName") ?? "Apple Health";
+  const out: AppleReading[] = [{ key: `Sleep (${source})`, field: "sleep_duration", unit: "h", date, value: hours }];
+  if (stage === "AsleepDeep") out.push({ key: `Deep sleep (${source})`, field: "sleep_deep", unit: "h", date, value: hours });
+  if (stage === "AsleepREM") out.push({ key: `REM sleep (${source})`, field: "sleep_rem", unit: "h", date, value: hours });
+  return out;
+}
+
 /** Where the last complete record ends, so the rest is carried into the next piece. */
 export function safeCut(xml: string): number {
   let end = 0;
@@ -369,17 +492,19 @@ export function safeCut(xml: string): number {
  * keeps only a sum and a count per source and day.
  */
 export class DailyTally {
-  private readonly bySource = new Map<string, { field: BodyField; unit: string; days: Map<string, { sum: number; n: number }>; dropped: number }>();
+  private readonly bySource = new Map<string, { field: BodyField; unit: string; toCanonical: (v: number) => number; days: Map<string, { sum: number; n: number }>; dropped: number }>();
 
   add(from: string, field: BodyField, unit: string, date: string, value: number, toCanonical: (v: number) => number): void {
     let s = this.bySource.get(from);
     if (!s) {
-      s = { field, unit, days: new Map(), dropped: 0 };
+      s = { field, unit, toCanonical, days: new Map(), dropped: 0 };
       this.bySource.set(from, s);
     }
     const c = toCanonical(value);
     const p = PLAUSIBLE[field];
-    if (!Number.isFinite(c) || c < p.min || c > p.max) {
+    // Sleep pieces are checked as a whole night (in series()); other readings one by one.
+    const bad = SLEEP_FIELDS.has(field) ? !Number.isFinite(c) || c < 0 || c > p.max : !Number.isFinite(c) || c < p.min || c > p.max;
+    if (bad) {
       s.dropped++;
       return;
     }
@@ -390,12 +515,23 @@ export class DailyTally {
   }
 
   series(): DailySeries[] {
-    return [...this.bySource.entries()].map(([from, s]) => ({
-      field: s.field,
-      unit: s.unit,
-      from,
-      dropped: s.dropped,
-      days: [...s.days.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, { sum, n }]) => ({ date, value: Math.round((sum / n) * 10) / 10, readings: n })),
-    }));
+    return [...this.bySource.entries()].map(([from, s]) => {
+      const sum = SLEEP_FIELDS.has(s.field);
+      const p = PLAUSIBLE[s.field];
+      let dropped = s.dropped;
+      const days: DailySeries["days"] = [];
+      for (const [date, { sum: total, n }] of [...s.days.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+        const value = sum ? total : total / n;
+        if (sum) {
+          const c = s.toCanonical(value);
+          if (c < p.min || c > p.max) {
+            dropped++;
+            continue;
+          }
+        }
+        days.push({ date, value: Math.round(value * 10) / 10, readings: n });
+      }
+      return { field: s.field, unit: s.unit, from, dropped, days };
+    });
   }
 }

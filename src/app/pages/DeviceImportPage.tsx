@@ -5,12 +5,10 @@ import { BODY_FIELDS, type BodyField } from "../../core/body";
 import {
   DailyTally,
   appleRecords,
-  columnReadings,
   dailyAverages,
   fileFamily,
-  findDateColumn,
-  guessColumn,
   jsonTable,
+  readTable,
   parseCsv,
   safeCut,
   tableOf,
@@ -93,27 +91,21 @@ interface Candidate {
 function tableCandidates(path: string, table: { headers: string[]; data: string[][] }, into: Map<string, Candidate>, skipped: Read["skipped"], ignored: Read["ignored"]): boolean {
   const family = fileFamily(path);
   const file = path.split("/").pop()!;
-  const dateCol = findDateColumn(table.headers, table.data, monthFirst);
-  if (dateCol === -1) return false;
-  let found = false;
-  const other: string[] = [];
-  table.headers.forEach((h, i) => {
-    if (i === dateCol) return;
-    const g = guessColumn(h, i, family);
-    if (!g) return void other.push(h);
-    found = true;
-    if (!g.field) {
-      if (!skipped.some((x) => x.what === h && x.family === family)) skipped.push({ file, what: h, reason: g.reason ?? "Not used.", family });
-      return;
+  const t = readTable(path, table, monthFirst);
+  if (!t.dated) return false;
+  for (const c of t.columns) {
+    if (!c.field) {
+      if (!skipped.some((x) => x.what === c.header && x.family === family)) skipped.push({ file, what: c.header, reason: c.reason ?? "Not used.", family });
+      continue;
     }
-    const key = `${family}|${h}`;
-    const c = into.get(key) ?? { family, header: h, field: g.field, unit: g.unit, file, files: 0, readings: [] };
-    c.files++;
-    for (const r of columnReadings(table.data, dateCol, g, monthFirst)) c.readings.push(r);
-    into.set(key, c);
-  });
-  if (other.length && !ignored.some((x) => x.family === family)) ignored.push({ file, columns: other, family });
-  return found;
+    const key = `${family}|${c.header}`;
+    const cand = into.get(key) ?? { family, header: c.header, field: c.field, unit: c.unit, file, files: 0, readings: [] };
+    cand.files++;
+    for (const r of c.readings) cand.readings.push(r);
+    into.set(key, cand);
+  }
+  if (t.other.length && !ignored.some((x) => x.family === family)) ignored.push({ file, columns: t.other, family });
+  return t.columns.length > 0;
 }
 
 /** Apple Health's export.xml, read in pieces so a file of a gigabyte or more works. */
@@ -154,16 +146,16 @@ const pickStyles =
 
 /** Where each app hides its export. */
 const SOURCES: [string, string][] = [
-  ["Apple Health", "Health app → your picture → Export All Health Data. Choose the zip (or export.xml). Apple's HRV is a different measure (SDNN) and isn't imported."],
-  ["Fitbit", "Google Takeout (takeout.google.com) → Fitbit. Choose the zip or the Fitbit folder: heart rate, resting heart rate, HRV, SpO2 and weight are read."],
+  ["Apple Health", "Health app → your picture → Export All Health Data. Choose the zip (or export.xml): heart rate, blood oxygen, sleep stages, workouts, weight and more. Apple's HRV is a different measure (SDNN) and isn't imported."],
+  ["Fitbit", "Google Takeout (takeout.google.com) → Fitbit. Choose the zip or the Fitbit folder: heart rate, resting heart rate, HRV, SpO2, sleep and weight are read."],
   ["Google Fit", "Google Takeout → Fit. Choose the zip or \"Daily activity metrics.csv\"."],
   ["Samsung Health", "Settings → Download personal data. Choose the folder: heart rate, oxygen saturation, weight and blood pressure files are read."],
-  ["Garmin", "Garmin account → Data management → Export your data (arrives by email). Choose the zip or folder; daily summaries give resting heart rate and SpO2. Or export a Connect report as CSV."],
-  ["Oura", "membership.ouraring.com → Export data → CSV."],
-  ["Whoop", "Whoop app → Settings → Data export. Choose the zip or physiological_cycles.csv and workouts.csv."],
+  ["Garmin", "Garmin account → Data management → Export your data (arrives by email). Choose the zip or folder; daily summaries give resting heart rate and SpO2, sleep files the night's stages. Or export a Connect report as CSV."],
+  ["Oura", "membership.ouraring.com → Export data → CSV (sleep, resting heart rate, HRV)."],
+  ["Whoop", "Whoop app → Settings → Data export. Choose the zip, or physiological_cycles.csv, sleeps.csv and workouts.csv."],
   ["Withings", "Withings app → profile → Download my data. Choose the zip or weight.csv and bp.csv."],
   ["Polar", "account.polar.com → Download your data. Choose the zip or folder; training sessions give exercise heart rate."],
-  ["Zepp / Amazfit", "Zepp app → profile → Settings → Export data. Choose the zip or folder (heart rate, body, sport)."],
+  ["Zepp / Amazfit", "Zepp app → profile → Settings → Export data. Choose the zip or folder (heart rate, sleep, body, sport)."],
   ["Huawei Health", "Huawei ID → Privacy centre → Request your data → Health. Choose the zip or folder."],
 ];
 
@@ -258,7 +250,7 @@ export function DeviceImportPage() {
       <a href={href({ name: "body" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
         <span aria-hidden="true">←</span> Body
       </a>
-      <PageTitle sub="Heart rate, resting heart rate, HRV, blood oxygen, workouts, weight and blood pressure from the files your watch, ring or phone app exports. Read on this computer; you check everything before it's saved.">
+      <PageTitle sub="Heart rate, resting heart rate, HRV, blood oxygen, sleep, workouts, weight and blood pressure from the files your watch, ring or phone app exports. Read on this computer; you check everything before it's saved.">
         Import from a device
       </PageTitle>
 

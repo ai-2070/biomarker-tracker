@@ -21,13 +21,20 @@ export type BodyField =
   | "hrv"
   | "hrv_resting"
   | "spo2"
-  | "glucose_home";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home"];
+  | "glucose_home"
+  | "sleep_duration"
+  | "sleep_deep"
+  | "sleep_rem";
+export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem"];
+
+/** Sleep is counted per night (dated by the morning you woke up): readings on one day add up, naps included. */
+export const SLEEP_FIELDS: ReadonlySet<BodyField> = new Set(["sleep_duration", "sleep_deep", "sleep_rem"]);
 
 /** Body measurements in groups, for the Body dashboard and the entry form. */
-export const BODY_GROUPS: readonly { id: "size" | "heart" | "sugar"; title: string; fields: readonly BodyField[] }[] = [
+export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "sugar"; title: string; fields: readonly BodyField[] }[] = [
   { id: "size", title: "Size and composition", fields: ["weight", "waist", "body_fat"] },
   { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2"] },
+  { id: "sleep", title: "Sleep", fields: ["sleep_duration", "sleep_deep", "sleep_rem"] },
   { id: "sugar", title: "Blood sugar", fields: ["glucose_home"] },
 ];
 
@@ -45,6 +52,10 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   hrv_resting: { min: 2, max: 300 },
   spo2: { min: 50, max: 100 },
   glucose_home: { min: 1, max: 35 },
+  // Stages of 0 usually mean "no stage data" (older devices), so they're left out rather than saved.
+  sleep_duration: { min: 0.25, max: 18 },
+  sleep_deep: { min: 0.05, max: 8 },
+  sleep_rem: { min: 0.05, max: 8 },
 };
 
 /** Body mass index, kg/m². Only for adult heights between 100 and 250 cm. */
@@ -153,4 +164,18 @@ export function validateBodyEntry(
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };
   return { ok: true, measurements: out };
+}
+
+/**
+ * Average of the readings in the `days` days up to the latest one (e.g. the last week of sleep), when
+ * there are at least `min` of them; otherwise undefined.
+ */
+export function recentAverage(series: readonly Measurement[], days = 7, min = 3): { value: number; count: number } | undefined {
+  const sorted = sortByDate(series);
+  const last = sorted.at(-1);
+  if (!last) return undefined;
+  const from = new Date(Date.parse(last.date) - (days - 1) * 86_400_000).toISOString().slice(0, 10);
+  const recent = sorted.filter((m) => m.date >= from);
+  if (recent.length < min) return undefined;
+  return { value: recent.reduce((s, m) => s + m.value, 0) / recent.length, count: recent.length };
 }

@@ -1,0 +1,46 @@
+{
+  "id": "sleep_duration",
+  "name": "Sleep",
+  "category": "Body",
+  "aliases": ["Sleep", "Total sleep", "Sleep duration", "Total sleep time", "Asleep duration", "Schlafdauer", "Alvásidő"],
+  "canonicalUnit": "h",
+  "conversions": {
+    "h": 1,
+    "min": 0.016666666666666666,
+    "s": 0.0002777777777777778
+  },
+  "rangeNote": "Adults are advised to sleep at least 7 hours a night regularly; 7–9 hours suits most. One short night isn't a problem, so single nights aren't flagged: look at the average over a week or more. More than 9 can be right for young adults, after sleep loss or during illness. Counted per night and dated by the morning you woke up; naps on the same day are added.",
+  "summary": "Time actually asleep in a night, from a watch, ring, phone app or your own note. Not time in bed: lying awake doesn't count.",
+  "high": {
+    "meaning": "Long sleep is usually fine. Regularly needing much more than 9 hours, or still feeling tired after it, is worth mentioning to a doctor.",
+    "commonCauses": ["Catching up after short nights", "Illness or recovery", "Some medicines", "Low mood"]
+  },
+  "low": {
+    "meaning": "Regularly sleeping less than 7 hours is linked to worse mood, concentration, blood sugar and blood pressure over time. Ongoing trouble sleeping or loud snoring with pauses in breathing is worth discussing with a doctor.",
+    "commonCauses": ["Late bedtimes or early alarms", "Stress", "Caffeine or alcohol", "Shift work", "Pain", "Sleep apnoea or insomnia"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "26039963",
+      "doi": "10.5665/sleep.4716",
+      "title": "Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29073412",
+      "doi": "10.1016/j.sleh.2014.12.010",
+      "title": "National Sleep Foundation's sleep time duration recommendations: methodology and results summary",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "33378539",
+      "doi": "10.1093/sleep/zsaa291",
+      "title": "Performance of seven consumer sleep-tracking devices compared with polysomnography",
+      "year": 2021,
+      "studyType": "observational"
+    }
+  ]
+}

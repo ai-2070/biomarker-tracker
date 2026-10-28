@@ -28,6 +28,7 @@ export const HABIT_HINTS: readonly { words: RegExp; markers: readonly string[] }
   { words: /\btea\b|\bcoffee\b/i, markers: ["ferritin"] },
   { words: /walk|\brun|jog|cycl|swim|exercise|workout|cardio|zone 2|steps/i, markers: ["resting_hr", "hrv_resting", "bp_systolic", "bp_diastolic"] },
   { words: /\bsalt\b|sodium/i, markers: ["bp_systolic", "bp_diastolic"] },
+  { words: /sleep|bedtime|bed time|\bscreens?\b|caffeine|coffee|alcohol|\bbeer\b|\bwine\b/i, markers: ["sleep_duration", "sleep_deep", "sleep_rem"] },
 ];
 
 /** Suggested markers for a habit, the ones with results first. */

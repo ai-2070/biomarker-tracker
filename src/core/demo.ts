@@ -49,6 +49,9 @@ export const DEMO_UNITS: Record<string, string> = {
   hrv: "ms",
   hrv_resting: "ms",
   spo2: "%",
+  sleep_duration: "h",
+  sleep_deep: "h",
+  sleep_rem: "h",
 };
 
 /** Small, repeatable random numbers (mulberry32). */
@@ -66,7 +69,7 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home"];
+export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem"];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
 
 /**
@@ -182,6 +185,10 @@ export function demoProfile(today: string): DemoData {
     body("hrv", Math.round(wobble(34 + t * 5, 0.08, 1)));
     body("hrv_resting", Math.round(wobble(41 + t * 7, 0.07, 1)));
     body("spo2", Math.round(wobble(97, 0.008, 1)));
+    // Sleep (a monthly sample night; a synced watch gives every night): a little longer over time.
+    body("sleep_duration", wobble(6.9 + t * 0.4, 0.05, 0.1));
+    body("sleep_deep", wobble(1.1, 0.12, 0.1));
+    body("sleep_rem", wobble(1.5, 0.1, 0.1));
   }
 
   const protocols: ProtocolEntry[] = [

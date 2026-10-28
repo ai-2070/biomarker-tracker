@@ -1,0 +1,40 @@
+{
+  "id": "sleep_rem",
+  "name": "REM sleep",
+  "abbreviation": "REM",
+  "category": "Body",
+  "aliases": ["REM sleep", "REM sleep duration", "Rapid eye movement sleep", "REM-Schlaf", "REM alvás"],
+  "canonicalUnit": "h",
+  "conversions": {
+    "h": 1,
+    "min": 0.016666666666666666,
+    "s": 0.0002777777777777778
+  },
+  "rangeNote": "There's no target to reach. REM sleep is roughly 20–25 % of sleep in adults, mostly in the second half of the night. Wearables estimate it and often misjudge it; compare nights on the same device.",
+  "summary": "Time in rapid eye movement (REM) sleep, the stage with most dreaming. As measured by a wearable, it's an estimate.",
+  "high": {
+    "meaning": "More REM than usual often follows a night with too little of it.",
+    "commonCauses": ["Rebound after short nights or alcohol"]
+  },
+  "low": {
+    "meaning": "Less REM than usual often follows alcohol, a short night (REM is mostly late in the night) or some medicines.",
+    "commonCauses": ["Alcohol", "Waking early", "Some antidepressants", "Device estimate"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "15586779",
+      "doi": "10.1093/sleep/27.7.1255",
+      "title": "Meta-analysis of quantitative sleep parameters from childhood to old age in healthy individuals: developing normative sleep values across the human lifespan",
+      "year": 2004,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "30789439",
+      "doi": "10.1249/MSS.0000000000001947",
+      "title": "Wearable Sleep Technology in Clinical and Research Settings",
+      "year": 2019,
+      "studyType": "review"
+    }
+  ]
+}

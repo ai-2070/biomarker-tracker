@@ -15,7 +15,7 @@ import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
 
 /** Shown as a figure on this page, so not repeated as a tile. */
-const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home"]);
+const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
 export function BodyPage({ add }: { add?: boolean }) {
@@ -106,6 +106,13 @@ export function BodyPage({ add }: { add?: boolean }) {
                       <LatestFigure ms={body} id="spo2" label="Blood oxygen" profile={profile} />
                     </>
                   )}
+                  {g.id === "sleep" && (
+                    <>
+                      <LatestFigure ms={body} id="sleep_duration" label="Sleep, latest night" profile={profile} className="col-span-2" />
+                      <LatestFigure ms={body} id="sleep_deep" label="Deep sleep" profile={profile} />
+                      <LatestFigure ms={body} id="sleep_rem" label="REM sleep" profile={profile} />
+                    </>
+                  )}
                   {g.id === "sugar" && <GlucoseFigure ms={body} profile={profile} className="col-span-2" />}
                 </div>
                 {markers.length > 0 && <MarkerGrid markers={markers} title={`${g.title}: more`} hideTitle limit={12} />}
@@ -121,7 +128,7 @@ export function BodyPage({ add }: { add?: boolean }) {
                   <li>Home blood pressure runs lower than in a clinic. One high reading isn't a diagnosis; repeated ones are worth discussing with a doctor.</li>
                   <li>Basal metabolic rate is an estimate of the energy your body uses at rest. It isn't a target, and not a reason to eat less; for changes to your weight, talk to your doctor or a dietitian.</li>
                   <li>Home glucose meters can be about 15 % off. A diagnosis always needs a lab test.</li>
-                  <li>Watches and rings estimate heart rate, HRV and blood oxygen; compare them with your own past readings rather than with other people.</li>
+                  <li>Watches and rings estimate heart rate, HRV, blood oxygen and sleep stages; compare them with your own past readings rather than with other people. Company sleep scores aren't imported: they're each company's own formula.</li>
                   <li>Day-to-day swings are normal. Measure the same way and at the same time of day, and follow the trend.</li>
                 </ul>
                 <p className="mt-3 text-sm text-ink-2">
