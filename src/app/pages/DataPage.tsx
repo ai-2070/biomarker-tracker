@@ -1,51 +1,59 @@
 import { useEffect, useRef, useState } from "react";
+import { useLiveQuery } from "dexie-react-hooks";
 import { parseBackup, type Backup } from "../../core/backup";
 import { todayIso } from "../../core/dates";
-import type { Sex } from "../../core/types";
-import { deleteEverything, exportAll, importBackup, setProfile, type ImportMode } from "../../db/db";
-import { BirthMonthField } from "../components/BirthMonthField";
+import type { Profile } from "../../core/types";
+import { deleteEverything, exportAll, getProfile, importBackup, setProfile, type ImportMode } from "../../db/db";
+import { api } from "../api";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Button, Card, Notice } from "../components/ui";
-import { useAllMeasurements, useProfile } from "../hooks";
+import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
+import { Button, Card, LinkButton, Notice, buttonStyles, cx, errorStyles } from "../components/ui";
+import { useAllMeasurements } from "../hooks";
+import { fileUrl, uploadFile, useProfiles, type StoredFile } from "../profiles";
+import { href } from "../router";
 import { getThemeChoice, setThemeChoice, type ThemeChoice } from "../theme";
-
-type SexChoice = Sex | "unset";
 
 /** "Your data" tab of the settings page. */
 export function DataSettings() {
-  const profile = useProfile();
+  const { mode, active } = useProfiles();
   const all = useAllMeasurements();
+  // undefined while loading, so the form starts from the saved values.
+  const saved = useLiveQuery(() => getProfile(), []);
+  const folders = mode === "folders" && !!active;
 
   return (
-    <>
-      <div className="flex flex-col gap-5">
-        <Card className="flex flex-col gap-5">
-          <h2 className="font-serif text-2xl font-normal">About you</h2>
-          <ChoiceGroup<SexChoice>
-            label="Sex for reference ranges"
-            help="Some markers, like ferritin and haemoglobin, have different typical ranges for women and men. This is only used to pick the range."
-            value={profile.sex ?? "unset"}
-            onChange={(v) => {
-              const { sex: _old, ...rest } = profile;
-              void setProfile(v === "unset" ? rest : { ...rest, sex: v });
-            }}
-            options={[
-              { value: "f", label: "Female" },
-              { value: "m", label: "Male" },
-              { value: "unset", label: "Prefer not to say" },
-            ]}
-          />
-          {/* Keyed so the fields pick up the saved value once it has loaded. */}
-          <BirthMonthField key={profile.birthMonth ?? "none"} profile={profile} />
+    <div className="flex flex-col gap-5">
+      {saved && <PersonCard initial={saved} nameRequired={folders} />}
+      {folders && <FilesCard profileId={active.id} />}
+      {folders && (
+        <Card className="flex flex-col gap-3">
+          <h2 className="font-serif text-2xl font-normal">Back up or delete this profile</h2>
+          <p className="text-ink-2">
+            Everything is kept in a folder on this computer and saved as you go:
+            <span className="mt-1 block font-mono text-xs break-all">{active.folder}</span>
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <a href={`/api/profiles/${active.id}/backup`} className={buttonStyles.primary} download>
+              Back up (.zip)
+            </a>
+            <Button variant="secondary" onClick={() => void api("POST", `/api/profiles/${active.id}/reveal`)}>
+              Show folder
+            </Button>
+            <LinkButton variant="quiet" href={href({ name: "profiles" })}>
+              All profiles
+            </LinkButton>
+          </div>
         </Card>
+      )}
 
-        <AppearanceCard />
+      <AppearanceCard />
 
-        <BackupCard count={all?.length ?? 0} />
-        <RestoreCard />
-        <StorageCard />
+      <BackupCard count={all?.length ?? 0} />
+      <RestoreCard />
+      {!folders && <StorageCard />}
 
+      {!folders && (
         <Card className="flex flex-col gap-3">
           <h2 className="font-serif text-2xl font-normal">Delete all data</h2>
           <p className="text-ink-2">Removes every result and setting from this browser. Download a backup first if you want to keep them.</p>
@@ -60,8 +68,125 @@ export function DataSettings() {
             />
           </div>
         </Card>
+      )}
+    </div>
+  );
+}
+
+/** The person's details, saved as they are typed (to the profile folder too). */
+function PersonCard({ initial, nameRequired }: { initial: Profile; nameRequired: boolean }) {
+  const [draft, setDraft] = useState<Profile>(initial);
+  const [more, setMore] = useState(false);
+  const nameMissing = nameRequired && !draft.name?.trim();
+
+  function change(p: Profile) {
+    setDraft(p);
+    // A profile folder always needs a name; keep the last one until a new one is typed.
+    if (!nameRequired || p.name?.trim()) void setProfile(p);
+  }
+
+  return (
+    <Card className="flex flex-col gap-5">
+      <h2 className="font-serif text-2xl font-normal">{draft.name?.trim() ? `About ${draft.name.trim()}` : "About you"}</h2>
+      <ProfileBasics value={draft} onChange={change} nameRequired={nameRequired} />
+      {nameMissing && <p className={errorStyles}>A profile needs a name. Until you add one, the old name is kept.</p>}
+      <div className="border-t border-line pt-4">
+        <button type="button" aria-expanded={more} onClick={() => setMore(!more)} className="min-h-11 font-medium text-accent underline-offset-2 hover:underline">
+          {more ? "Hide more details" : "More details: height, diet, smoking, conditions, allergies, notes"}
+        </button>
+        {more && (
+          <div className="mt-4">
+            <ProfileDetails value={draft} onChange={change} showNotes />
+          </div>
+        )}
       </div>
-    </>
+    </Card>
+  );
+}
+
+const sizeText = (n: number) => (n < 1024 * 1024 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`);
+
+/** Scanned lab reports and other documents kept in the profile folder. */
+function FilesCard({ profileId }: { profileId: string }) {
+  const [files, setFiles] = useState<StoredFile[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const load = () => api<{ files: StoredFile[] }>("GET", `/api/profiles/${profileId}/files`).then((r) => setFiles(r.files));
+  useEffect(() => {
+    void load().catch(() => setFiles([]));
+  }, [profileId]);
+
+  async function add(list: FileList | null) {
+    if (!list?.length) return;
+    setBusy(true);
+    setError(null);
+    try {
+      for (const f of Array.from(list)) await uploadFile(profileId, f, "Added by hand");
+      await load();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "The file couldn't be saved.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <Card className="flex flex-col gap-3">
+      <h2 className="font-serif text-2xl font-normal">Files</h2>
+      <p className="text-ink-2">Lab reports you import are kept here, next to the results read from them. You can add other documents too (PDF, images, text).</p>
+      {files === null ? (
+        <p className="text-ink-2">Loading…</p>
+      ) : files.length === 0 ? (
+        <p className="text-ink-2">No files yet.</p>
+      ) : (
+        <ul className="flex flex-col divide-y divide-line rounded-lg border border-line">
+          {files
+            .slice()
+            .reverse()
+            .map((f) => (
+              <li key={f.name} className="flex flex-col gap-1 p-3 sm:flex-row sm:items-center sm:gap-3">
+                <div className="min-w-0 flex-1">
+                  <a href={fileUrl(profileId, f.name)} target="_blank" rel="noopener noreferrer" className="font-medium break-all text-accent underline-offset-2 hover:underline">
+                    {f.originalName}
+                  </a>
+                  <p className="text-sm text-ink-2">
+                    {new Date(f.addedAt).toLocaleDateString()} · {sizeText(f.size)}
+                    {f.note ? ` · ${f.note}` : ""}
+                  </p>
+                </div>
+                <div className="-ml-3 flex gap-1 sm:ml-0">
+                  <a href={fileUrl(profileId, f.name, true)} className={cx(buttonStyles.quiet, "text-sm")}>
+                    Download
+                  </a>
+                  <ConfirmDialog
+                    trigger="Delete"
+                    triggerVariant="quiet"
+                    triggerClassName="text-sm"
+                    title="Delete this file?"
+                    description={`"${f.originalName}" will be removed from the profile folder. Results read from it stay.`}
+                    confirmLabel="Delete file"
+                    onConfirm={async () => {
+                      await api("DELETE", `/api/profiles/${profileId}/files/${encodeURIComponent(f.name)}`);
+                      await load();
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
+        </ul>
+      )}
+      {error && (
+        <Notice tone="danger" role="alert">
+          {error}
+        </Notice>
+      )}
+      <div>
+        <label className={cx(buttonStyles.secondary, "cursor-pointer focus-within:outline-2 focus-within:outline-accent", busy && "pointer-events-none opacity-50")}>
+          {busy ? "Saving…" : "Add a file"}
+          <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.txt,.csv" className="sr-only" disabled={busy} onChange={(e) => void add(e.target.files)} />
+        </label>
+      </div>
+    </Card>
   );
 }
 
@@ -78,14 +203,14 @@ function BackupCard({ count }: { count: number }) {
   }
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="font-serif text-2xl font-normal">Download a backup</h2>
+      <h2 className="font-serif text-2xl font-normal">Download results as a file</h2>
       <p className="text-ink-2">
-        Saves all {count} {count === 1 ? "result" : "results"} as a file. Keep it somewhere safe. If your browser data is cleared, you can
-        restore from it. The file contains your health data, so treat it like a medical document.
+        Saves all {count} {count === 1 ? "result" : "results"}, the log and experiments as one JSON file, to keep or to move to another copy of the app.
+        It contains health data, so treat it like a medical document.
       </p>
       <div>
         <Button onClick={() => void download()} disabled={count === 0}>
-          Download backup
+          Download file
         </Button>
       </div>
     </Card>
@@ -125,9 +250,9 @@ function RestoreCard() {
 
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="font-serif text-2xl font-normal">Restore from a backup</h2>
+      <h2 className="font-serif text-2xl font-normal">Add results from a file</h2>
       <label className="flex flex-col gap-1.5">
-        <span className="text-ink-2">Choose a backup file you downloaded earlier.</span>
+        <span className="text-ink-2">Choose a JSON file downloaded from this app earlier.</span>
         <input
           ref={fileRef}
           type="file"

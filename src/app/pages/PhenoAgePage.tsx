@@ -1,6 +1,7 @@
 import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE } from "../../core/phenoage";
 import { summarizePhenoAge, type PhenoAgeDraw } from "../../core/phenoageDraws";
 import type { Profile } from "../../core/types";
+import { setProfile } from "../../db/db";
 import { BirthMonthField } from "../components/BirthMonthField";
 import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, formatYears, showMeasurement } from "../format";
@@ -30,7 +31,7 @@ export function PhenoAgePage() {
               You have a complete set of markers from {formatDate(latest.date)}. To calculate biological age, enter your month and year
               of birth.
             </p>
-            <BirthMonthField key={profile.birthMonth ?? "none"} profile={profile} />
+            <BirthMonthField key={profile.birthMonth ?? "none"} value={profile.birthMonth} onChange={(birthMonth) => void setProfile({ ...profile, birthMonth })} />
           </Card>
         ) : latest.status === "too-young" ? (
           <Notice title="Not available under 20">

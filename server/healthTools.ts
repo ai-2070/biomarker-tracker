@@ -8,7 +8,9 @@ import { selectLevers } from "../src/core/evidence";
 import { analyzeMarker, rcvBand, retestDate } from "../src/core/experiments";
 import { selectFoods } from "../src/core/foods";
 import { summarizePhenoAge } from "../src/core/phenoageDraws";
-import { safetyNotes } from "../src/core/protocols";
+import { ageAt } from "../src/core/phenoageDraws";
+import { assistantProfile } from "../src/core/profile";
+import { safetyLabels, safetyNotes } from "../src/core/protocols";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, resolveRange, sortByDate } from "../src/core/trends";
 import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
@@ -29,7 +31,8 @@ export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot 
   const r = parseBackup({ app: "biomarker-tracker", version: 2, measurements: o.measurements ?? [], protocols: o.protocols ?? [], experiments: o.experiments ?? [], profile: o.profile ?? {} });
   if (!r.ok) return { ok: false, error: r.error };
   const { measurements, protocols, experiments, profile } = r.backup;
-  return { ok: true, snapshot: { measurements, protocols, experiments, profile } };
+  // Name and private notes are dropped here too, even if a page sent them.
+  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile) } };
 }
 
 const r = (n: number | undefined) => (n === undefined ? undefined : roundForDisplay(n));
@@ -39,7 +42,7 @@ function rangeOut(range: { low?: number; high?: number; source: string } | undef
 }
 
 export function safetyOf(s: HealthSnapshot): SafetyId[] {
-  return safetyNotes(s.protocols.filter((p) => !p.end).map((p) => p.label)).map((n) => n.id);
+  return safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => n.id);
 }
 
 /** Every result the user has, latest per marker. */
@@ -61,7 +64,21 @@ export function resultsOverview(s: HealthSnapshot) {
       results: t.count,
     });
   }
-  return { markers: out, critical: out.filter((m) => isCritical(m.flag)).map((m) => m.name) };
+  return { person: personOf(s), markers: out, critical: out.filter((m) => isCritical(m.flag)).map((m) => m.name) };
+}
+
+/** About the person, for context: age (never the birth month), sex and the details they gave. No name. */
+export function personOf(s: HealthSnapshot) {
+  const p = s.profile;
+  return {
+    ...(p.birthMonth ? { age: Math.floor(ageAt(p.birthMonth, todayIso())) } : {}),
+    ...(p.sex ? { sex: p.sex === "f" ? "female" : "male" } : {}),
+    ...(p.heightCm ? { heightCm: p.heightCm } : {}),
+    ...(p.diet ? { diet: p.diet } : {}),
+    ...(p.smoking ? { smoking: p.smoking } : {}),
+    ...(p.conditions ? { conditions: p.conditions } : {}),
+    ...(p.allergies ? { allergies: p.allergies } : {}),
+  };
 }
 
 export function markerDetail(s: HealthSnapshot, def: BiomarkerDef) {
@@ -99,7 +116,7 @@ export function levers(s: HealthSnapshot, def: BiomarkerDef) {
   return {
     latestFlag: flag ?? "no results",
     showing: sel.focus ? `levers that help when ${def.name} is ${sel.focus}` : "everything known to affect it",
-    safetyNotes: safetyNotes(s.protocols.filter((p) => !p.end).map((p) => p.label)).map((n) => `${n.title}: ${n.text}`),
+    safetyNotes: safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => `${n.title}: ${n.text}`),
     hiddenBecauseOfLog: sel.hidden.map((c) => c.lever),
     levers: sel.claims.map((c) => {
       const f = c.foods ? selectFoods(foods, c.foods.nutrient, c.foods.foodIds, safety) : undefined;
@@ -204,7 +221,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
       inputSchema: z.object({}),
       execute: async () => ({
         entries: s.protocols.map((p) => ({ label: p.label, type: p.category, start: p.start, end: p.end ?? "ongoing" })),
-        safetyNotes: safetyNotes(s.protocols.filter((p) => !p.end).map((p) => p.label)).map((n) => `${n.title}: ${n.text}`),
+        safetyNotes: safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => `${n.title}: ${n.text}`),
       }),
     }),
     compare_before_after: tool({

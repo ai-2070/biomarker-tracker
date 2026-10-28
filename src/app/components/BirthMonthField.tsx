@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Field } from "@base-ui/react/field";
 import { isBirthMonth } from "../../core/phenoageDraws";
-import type { Profile } from "../../core/types";
-import { setProfile } from "../../db/db";
 import { SimpleSelect } from "./UnitSelect";
 import { errorStyles, helpStyles, inputStyles, labelStyles } from "./ui";
 
@@ -13,29 +11,25 @@ const MONTHS = Array.from({ length: 12 }, (_, i) => ({
 }));
 
 /**
- * Birth year and month only (no day), saved as soon as both are valid.
+ * Birth year and month only (no day). Calls onChange with "YYYY-MM" once both are valid.
  * Uses two fields because <input type="month"> is missing in some browsers.
  */
-export function BirthMonthField({ profile }: { profile: Profile }) {
-  const [year, setYear] = useState(profile.birthMonth?.slice(0, 4) ?? "");
-  const [month, setMonth] = useState<string | null>(profile.birthMonth?.slice(5, 7) ?? null);
+export function BirthMonthField({ value, onChange, help }: { value?: string; onChange: (birthMonth: string) => void; help?: string }) {
+  const [year, setYear] = useState(value?.slice(0, 4) ?? "");
+  const [month, setMonth] = useState<string | null>(value?.slice(5, 7) ?? null);
   const thisYear = new Date().getFullYear();
   const yearNum = Number(year);
   const yearError = year.length === 4 && (yearNum < 1900 || yearNum > thisYear) ? "Please check the year." : undefined;
 
   function save(y: string, m: string | null) {
-    const value = m ? `${y}-${m}` : "";
-    if (y.length === 4 && m && isBirthMonth(value) && Number(y) <= thisYear) {
-      void setProfile({ ...profile, birthMonth: value });
-    }
+    const v = m ? `${y}-${m}` : "";
+    if (y.length === 4 && m && isBirthMonth(v) && Number(y) <= thisYear) onChange(v);
   }
 
   return (
     <div className="flex flex-col gap-1.5">
       <span className={labelStyles}>Month and year of birth</span>
-      <span className={helpStyles}>
-        Needed to calculate biological age. Only the month and year are stored, on this device. The day is not needed.
-      </span>
+      <span className={helpStyles}>{help ?? "Needed for biological age. Only the month and year are kept. The day is not needed."}</span>
       <div className="grid grid-cols-[1fr_7rem] gap-3 sm:max-w-sm">
         <SimpleSelect
           label="Month"
@@ -57,7 +51,7 @@ export function BirthMonthField({ profile }: { profile: Profile }) {
               save(y, month);
             }}
             inputMode="numeric"
-            autoComplete="bday-year"
+            autoComplete="off"
             placeholder="e.g. 1985"
             className={inputStyles}
           />

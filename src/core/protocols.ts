@@ -150,3 +150,8 @@ const SAFETY: { note: SafetyNote; pattern: RegExp }[] = [
 export function safetyNotes(labels: readonly string[]): SafetyNote[] {
   return SAFETY.filter(({ pattern }) => labels.some((l) => pattern.test(l))).map(({ note }) => note);
 }
+
+/** What safetyNotes() should look at: ongoing log entries and the conditions written in the profile. */
+export function safetyLabels(protocols: readonly ProtocolEntry[], profile: { conditions?: string } = {}): string[] {
+  return [...protocols.filter((p) => !p.end).map((p) => p.label), ...(profile.conditions ? profile.conditions.split(/[,;\n]+/).map((c) => c.trim()).filter(Boolean) : [])];
+}

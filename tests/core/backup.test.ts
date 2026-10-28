@@ -54,7 +54,7 @@ describe("backup", () => {
   });
 
   it("drops unknown profile fields", () => {
-    const r = parseBackup({ ...backup, profile: { sex: "m", name: "Jane" } });
+    const r = parseBackup({ ...backup, profile: { sex: "m", passport: "X123" } });
     expect(r.ok && r.backup.profile).toEqual({ sex: "m" });
   });
 

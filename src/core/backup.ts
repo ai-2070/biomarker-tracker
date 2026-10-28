@@ -97,20 +97,37 @@ function isExperiment(v: unknown): v is Experiment {
   );
 }
 
-function isProfile(v: unknown): v is Profile {
+const shortText = (max: number) => (t: unknown) => isStr(t) && t.length <= max;
+
+export function isProfile(v: unknown): v is Profile {
   return (
     isObj(v) &&
+    optional(v.name, shortText(80)) &&
     optional(v.sex, (s) => s === "m" || s === "f") &&
-    optional(v.birthMonth, (b) => isStr(b) && isBirthMonth(b))
+    optional(v.birthMonth, (b) => isStr(b) && isBirthMonth(b)) &&
+    optional(v.heightCm, (h) => isNum(h) && h >= 40 && h <= 260) &&
+    optional(v.diet, (d) => d === "omnivore" || d === "vegetarian" || d === "vegan" || d === "pescatarian" || d === "other") &&
+    optional(v.smoking, (s) => s === "never" || s === "former" || s === "current") &&
+    optional(v.conditions, shortText(2000)) &&
+    optional(v.allergies, shortText(2000)) &&
+    optional(v.notes, shortText(10000))
   );
 }
 
-/** Keep only known profile fields. */
-function cleanProfile(p: Profile): Profile {
-  return {
-    ...(p.sex ? { sex: p.sex } : {}),
-    ...(p.birthMonth ? { birthMonth: p.birthMonth } : {}),
-  };
+/** Keep only known profile fields, without empty text. */
+export function cleanProfile(p: Profile): Profile {
+  const text = (t: string | undefined) => (t && t.trim() ? t.trim() : undefined);
+  const out: Profile = {};
+  if (text(p.name)) out.name = text(p.name);
+  if (p.sex) out.sex = p.sex;
+  if (p.birthMonth) out.birthMonth = p.birthMonth;
+  if (p.heightCm !== undefined) out.heightCm = p.heightCm;
+  if (p.diet) out.diet = p.diet;
+  if (p.smoking) out.smoking = p.smoking;
+  if (text(p.conditions)) out.conditions = text(p.conditions);
+  if (text(p.allergies)) out.allergies = text(p.allergies);
+  if (text(p.notes)) out.notes = text(p.notes);
+  return out;
 }
 
 /** Validate a parsed JSON value as a backup file. Never trusts the input. */

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Field } from "@base-ui/react/field";
 import { providerInfo } from "../../core/aiProviders";
-import { safetyNotes } from "../../core/protocols";
+import { assistantProfile } from "../../core/profile";
+import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "../../core/trends";
 import { db, getProfile } from "../../db/db";
 import { api, useServerStatus } from "../api";
@@ -52,7 +53,8 @@ const TOOL_TEXT: Record<string, string> = {
 /** What the assistant may read: everything in this browser. Birth month only becomes an age on the local server. */
 async function snapshot() {
   const [measurements, protocols, experiments, profile] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), getProfile()]);
-  return { measurements, protocols, experiments, profile };
+  // The name and private notes never leave this page.
+  return { measurements, protocols, experiments, profile: assistantProfile(profile) };
 }
 
 function StepList({ steps, failed }: { steps: Step[]; failed: { name: string; error: string }[] }) {
@@ -82,7 +84,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
   const status = useServerStatus();
   const all = useAllMeasurements();
   const profile = useProfile();
-  const ongoing = (useProtocols() ?? []).filter((p) => !p.end).map((p) => p.label);
+  const protocols = useProtocols() ?? [];
   const [turns, setTurns] = useState<Turn[]>(conversation);
   const [draft, setDraft] = useState(ask ?? "");
   const [busy, setBusy] = useState(false);
@@ -143,7 +145,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
       <CriticalBanner items={critical} />
       {title}
       <div className="mb-5 flex flex-col gap-3 empty:hidden">
-        <SafetyNotices notes={safetyNotes(ongoing)} />
+        <SafetyNotices notes={safetyNotes(safetyLabels(protocols, profile))} />
       </div>
 
       {!status.ready.ok ? (

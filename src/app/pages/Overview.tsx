@@ -7,7 +7,7 @@ import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement } 
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { DueExperiments } from "../components/DueExperiments";
-import { safetyNotes } from "../../core/protocols";
+import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { BIOMARKER_MAP, CATEGORY_ORDER, fullName } from "../knowledge";
 import { href } from "../router";
 
@@ -15,7 +15,7 @@ export function Overview() {
   const all = useAllMeasurements();
   const profile = useProfile();
   const units = useDisplayUnits();
-  const ongoingLabels = (useProtocols() ?? []).filter((p) => !p.end).map((p) => p.label);
+  const protocols = useProtocols() ?? [];
 
   if (all === undefined) return <p className="text-ink-2">Loading…</p>;
   if (all.length === 0) return <EmptyState />;
@@ -43,7 +43,7 @@ export function Overview() {
     <>
       <CriticalBanner items={critical} />
       <div className="mb-5 empty:hidden">
-        <SafetyNotices notes={safetyNotes(ongoingLabels)} />
+        <SafetyNotices notes={safetyNotes(safetyLabels(protocols, profile))} />
       </div>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>

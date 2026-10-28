@@ -1,6 +1,7 @@
 import { selectLevers } from "../../core/evidence";
 import { selectFoods } from "../../core/foods";
-import { safetyNotes } from "../../core/protocols";
+import { safetyLabels, safetyNotes } from "../../core/protocols";
+import { useProfile } from "../hooks";
 import type { Flag } from "../../core/trends";
 import { formatValue } from "../../core/units";
 import type { BiomarkerDef, Citation, EvidenceClaim, EvidenceGrade, ProtocolEntry, SafetyId } from "../../core/types";
@@ -36,7 +37,8 @@ const DIRECTION: Record<EvidenceClaim["direction"], string> = {
  * amounts. Explains, never prescribes. Hidden for critical values.
  */
 export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag: Flag | undefined; protocols: ProtocolEntry[] }) {
-  const notes = safetyNotes(protocols.filter((p) => !p.end).map((p) => p.label));
+  const profile = useProfile();
+  const notes = safetyNotes(safetyLabels(protocols, profile));
   const safety: SafetyId[] = notes.map((n) => n.id);
   const sel = selectLevers(def.id, flag, EVIDENCE, safety);
   if (sel.claims.length === 0 && sel.hidden.length === 0) return null;

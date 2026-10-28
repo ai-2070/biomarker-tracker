@@ -8,7 +8,7 @@ A free, open-source, local-first web app where anyone can track their bloodwork 
 
 ## Core principles (never violate these)
 
-1. **Local-first.** All user data lives in the browser (IndexedDB). No cloud backend, no database server, no user accounts. The only server is the optional one in `server/` that runs on the user's own computer (127.0.0.1) for the assistant.
+1. **Local-first.** All user data stays on the user's computer. With the local server (`server/`, 127.0.0.1 only) each person is a **profile folder** on disk (see "Profiles"); without it (a static copy of the app) there is one profile in the browser (IndexedDB). No cloud backend, no database server, no user accounts.
 2. **No telemetry.** No analytics, no tracking pixels, no error reporting services, no third-party scripts beyond what is listed in this file.
 3. **Allowed network calls only:**
    - Europe PMC REST API (research search, open-access full text)
@@ -179,6 +179,15 @@ One assistant, no teams or multi-agent setups. Model choice, Skills and MCP sett
 - **Skills** (`skills/<id>/SKILL.md`, custom ones in `data/skills/`): name + description front matter; the model sees the index and loads one with read_skill. Bundled skills must keep the doctor/no-dosing rule (a test checks).
 - **MCP** (`src/core/mcpPresets.ts`, `server/mcp.ts`): stdio servers via `npx -y package@pinned-version`, minimal environment, secrets kept with the server. Only medical/nutrition presets. On first start all presets are added (`ensureDefaultServers`, once; removed ones stay removed), switched on when `npx` exists and no key is required, and started in the background (`warmUp`). A question waits at most 45 s per server. The ~150 server tools are not sent to the model: it gets `research_tools` (list one server's tools) and `use_research_tool` (call one), plus a list of servers in the system prompt. Study IDs from `read_skill` and `research_tools` output never count.
 - `connect-src` in `vite.config.ts` lists only `'self'`, Europe PMC and NCBI; the page never talks to a model directly. Old browser-stored keys are deleted on start (`forgetBrowserAiKey`).
+
+---
+
+## Profiles (folders)
+
+- One folder per person in `data/profiles/<slug>-<4 hex>/`: `profile.json` (who: name, birth month, sex, height, diet, smoking, conditions, allergies, notes), `results.json`, `log.json`, `experiments.json`, `settings.json` (display settings), `files/` (scanned lab reports and documents, dated names, never overwritten), `files.json`, `README.txt`. Server: `server/profiles.ts`; backups are zips of the folder (`server/zip.ts`, no package), restored as a new profile with every file checked.
+- The browser (Dexie) is a working copy of the open profile. `src/app/profiles.ts` loads a profile into it and saves every change back to the folder 0.5 s later (`liveQuery` over all tables); failed saves retry and show a banner. Switching saves, loads the other profile and reloads the page. `loadedProfile` in Dexie says which folder the copy belongs to; data with no folder is kept as its own profile on start, never dropped.
+- First start, and every new profile, goes through the setup wizard (`SetupPage`: welcome, who, optional details, first results). The header menu switches profiles; `#/profiles` opens, backs up, shows the folder of, or deletes profiles. Imported lab PDFs are kept in `files/`.
+- Name and private notes are never sent to an AI model (`assistantProfile()` in the page and again in `parseSnapshot`). Conditions written in the profile count for `safetyNotes()` via `safetyLabels()`.
 
 ---
 

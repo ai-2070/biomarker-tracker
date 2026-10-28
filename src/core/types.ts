@@ -182,9 +182,23 @@ export interface EvidenceClaim {
   studies: Citation[];
 }
 
+export type Diet = "omnivore" | "vegetarian" | "vegan" | "pescatarian" | "other";
+export type Smoking = "never" | "former" | "current";
+
+/** The person a profile belongs to. */
 export interface Profile {
-  /** Used only to pick sex-specific reference ranges. */
+  /** Shown in the app only. Never sent to an AI model. */
+  name?: string;
+  /** Used to pick sex-specific reference ranges. */
   sex?: Sex;
-  /** "YYYY-MM". Used only for age in PhenoAge. Never sent anywhere; AI context gets age only. */
+  /** "YYYY-MM". Used for age (PhenoAge, the assistant). The assistant gets the age, never the month. */
   birthMonth?: string;
+  heightCm?: number;
+  diet?: Diet;
+  smoking?: Smoking;
+  /** Free text, e.g. "type 2 diabetes, hypothyroidism". Also checked by safetyNotes(). */
+  conditions?: string;
+  allergies?: string;
+  /** Private notes. Never sent to an AI model. */
+  notes?: string;
 }
