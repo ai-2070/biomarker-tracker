@@ -37,6 +37,8 @@ describe("profile", () => {
     expect(initials("Anna Kovacs")).toBe("AK");
     expect(initials("anna")).toBe("AN");
     expect(initials("")).toBe("?");
+    expect(initials("Sam (example)")).toBe("SA");
+    expect(initials("  Dr. O'Neil  ")).toBe("DO");
     expect(profileSummary(anna, "2026-10-28")).toBe("42 years, female");
     expect(profileSummary({}, "2026-10-28")).toBe("");
   });

@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from
 import { db, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
 import { api, type ServerStatus } from "./api";
 import { ProfileMenu } from "./components/ProfileMenu";
+import { useProfile } from "./hooks";
 import { Notice, cx } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -14,7 +15,7 @@ import { LogPage } from "./pages/LogPage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 import { SetupPage } from "./pages/SetupPage";
 import { ExperimentPage, ExperimentsPage, NewExperimentPage } from "./pages/ExperimentsPage";
-import { ProfilesContext, createProfile, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, useSaveStatus, type ProfilesState, type ProfileSummary } from "./profiles";
+import { ProfilesContext, createProfile, useProfiles, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, useSaveStatus, type ProfilesState, type ProfileSummary } from "./profiles";
 import { href, useRoute, type Route } from "./router";
 
 // The chart library is large; load it only when a marker page is opened.
@@ -189,6 +190,8 @@ function Logo() {
 
 function Header({ route }: { route: Route }) {
   const save = useSaveStatus();
+  const person = useProfile();
+  const { mode } = useProfiles();
   return (
     <header className="border-b border-line bg-surface">
       <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2 sm:px-6">
@@ -217,6 +220,19 @@ function Header({ route }: { route: Route }) {
           </NavLink>
         </nav>
       </div>
+      {person.example && (
+        <p className="animate-fade border-t border-warn/20 bg-warn-soft px-4 py-2 text-center text-sm text-ink">
+          <span className="font-medium">Example profile.</span> Every result here is made up, to show how the app works.
+          {mode === "folders" && (
+            <>
+              {" "}
+              <a href={href({ name: "setup" })} className="font-medium text-accent underline underline-offset-2">
+                Create your own profile
+              </a>
+            </>
+          )}
+        </p>
+      )}
       {save === "error" && (
         <p role="alert" className="bg-danger-soft px-4 py-2 text-center text-sm text-danger">
           Couldn't save to the profile folder. Is the app's server still running? Your changes are kept here and saved when it's back.

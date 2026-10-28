@@ -110,7 +110,8 @@ export function isProfile(v: unknown): v is Profile {
     optional(v.smoking, (s) => s === "never" || s === "former" || s === "current") &&
     optional(v.conditions, shortText(2000)) &&
     optional(v.allergies, shortText(2000)) &&
-    optional(v.notes, shortText(10000))
+    optional(v.notes, shortText(10000)) &&
+    optional(v.example, (e) => e === true)
   );
 }
 
@@ -127,6 +128,7 @@ export function cleanProfile(p: Profile): Profile {
   if (text(p.conditions)) out.conditions = text(p.conditions);
   if (text(p.allergies)) out.allergies = text(p.allergies);
   if (text(p.notes)) out.notes = text(p.notes);
+  if (p.example) out.example = true;
   return out;
 }
 

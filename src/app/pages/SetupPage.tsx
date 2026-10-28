@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { cleanProfile } from "../../core/backup";
 import type { Profile } from "../../core/types";
 import { setOnboarded, setProfile } from "../../db/db";
+import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { LoadProfile } from "../components/LoadProfile";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
 import { Button, Card, Notice, cx, helpStyles } from "../components/ui";
@@ -102,6 +103,17 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
                 </div>
               </div>
             )}
+            {(mode === "folders" || existingResults === 0) && (
+              <div className={cx("flex flex-col gap-3 rounded-xl border border-dashed border-line-strong bg-sunken p-4 sm:flex-row sm:items-center sm:justify-between", mode === "folders" && "sm:col-span-2")}>
+                <div>
+                  <p className="font-medium">Just looking?</p>
+                  <p className="text-sm text-ink-2">Try the app with an example profile: five years of made-up results, a log and an experiment. Nothing to fill in.</p>
+                </div>
+                <div className="shrink-0">
+                  <ExampleProfileButton mode={mode} />
+                </div>
+              </div>
+            )}
           </div>
         </StepCard>
       )}
@@ -114,6 +126,10 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
                 <span className="font-medium text-ink">Already have this profile somewhere?</span> Load it instead, with everything in it.
               </p>
               <LoadProfile />
+              <p className="border-t border-line pt-3 text-ink-2">
+                <span className="font-medium text-ink">Just want to look around?</span> Create a profile with made-up example data.
+              </p>
+              <ExampleProfileButton mode={mode} label="Add an example profile" />
             </div>
           )}
           <ProfileBasics value={person} onChange={setPerson} nameRequired />
