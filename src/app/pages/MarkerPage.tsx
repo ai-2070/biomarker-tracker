@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { computeTrend, flagMeasurement, isCritical, isOutOfRange, resolveRange, sortByDate } from "../../core/trends";
 import { formatValue, listUnits } from "../../core/units";
 import type { BiomarkerDef, Citation, Measurement, Profile } from "../../core/types";
@@ -8,7 +9,7 @@ import { TrendChart } from "../components/TrendChart";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { LeversPanel } from "../components/LeversPanel";
 import { UnitSelect } from "../components/UnitSelect";
-import { Card, FlagBadge, LinkButton, Notice } from "../components/ui";
+import { Button, Card, FlagBadge, LinkButton, Notice } from "../components/ui";
 import { displayUnitFor, formatDate, showChange, showMeasurement, showRange } from "../format";
 import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useProfile, useProtocols } from "../hooks";
 import { activeOn } from "../../core/protocols";
@@ -143,11 +144,16 @@ function MeasurementList({
   profile: Profile;
   protocols: ProtocolEntry[];
 }) {
-  const rows = sortByDate(measurements).reverse();
+  const all = sortByDate(measurements).reverse();
+  const [showAll, setShowAll] = useState(false);
+  // Newest first; long lists (daily values from a watch) start short.
+  const rows = showAll ? all : all.slice(0, RESULTS_SHOWN);
   return (
     <Card>
-      <h2 className="mb-3 font-serif text-2xl font-normal">All results</h2>
-      <ul className="flex flex-col divide-y divide-line">
+      <h2 className="mb-3 flex items-baseline gap-2 font-serif text-2xl font-normal">
+        All results <span className="font-sans text-base text-ink-2 tabular-nums">{all.length}</span>
+      </h2>
+      <ul id={`results-${def.id}`} className="flex flex-col divide-y divide-line">
         {rows.map((m) => {
           const flag = flagMeasurement(def, m, profile);
           const r = resolveRange(def, m, profile);
@@ -195,9 +201,20 @@ function MeasurementList({
           );
         })}
       </ul>
+      {all.length > RESULTS_SHOWN && (
+        <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-line pt-3">
+          <Button variant="secondary" aria-expanded={showAll} aria-controls={`results-${def.id}`} onClick={() => setShowAll((v) => !v)}>
+            {showAll ? "Show fewer" : `Show all ${all.length} results`}
+          </Button>
+          {!showAll && <span className="text-sm text-ink-2">Showing the newest {RESULTS_SHOWN}.</span>}
+        </div>
+      )}
     </Card>
   );
 }
+
+/** How many results the list shows before "Show all". */
+const RESULTS_SHOWN = 10;
 
 function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string; profile: Profile; range: ReturnType<typeof resolveRange> }) {
   const defaultRange = resolveRange(def, {}, profile);
