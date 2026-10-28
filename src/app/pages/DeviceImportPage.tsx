@@ -7,38 +7,52 @@ import {
   appleRecords,
   columnReadings,
   dailyAverages,
+  fileFamily,
   findDateColumn,
   guessColumn,
+  jsonTable,
   parseCsv,
   safeCut,
   tableOf,
   type DailySeries,
 } from "../../core/importers/deviceFiles";
+import { zipEntries } from "../../core/importers/zipRead";
 import type { Measurement } from "../../core/types";
-import { matchUnit, toCanonical } from "../../core/units";
+import { listUnits, matchUnit, toCanonical } from "../../core/units";
 import { addMeasurements } from "../../db/db";
 import { monthFirst } from "../components/LabReview";
+import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, CheckIcon, ChevronDownIcon, LinkButton, Notice, PageTitle, cx } from "../components/ui";
 import { formatDate } from "../format";
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, shortName } from "../knowledge";
 import { href } from "../router";
 
-/** One importable series: a column or an Apple Health type, one value per day. */
+/** One importable series: a column (joined across daily files of one kind) or an Apple Health type. */
 interface Row {
   key: string;
   file: string;
   include: boolean;
-  /** Re-averages the raw readings for another measurement, if the person changes it. */
-  remap?: (field: BodyField) => DailySeries;
+  /** Re-averages the raw readings for another measurement or unit, if the person changes them. */
+  remap?: (field: BodyField, unit?: string) => DailySeries;
   series: DailySeries;
 }
 
 interface Read {
   rows: Row[];
-  skipped: { file: string; what: string; reason: string }[];
-  ignored: { file: string; columns: string[] }[];
+  skipped: { file: string; what: string; reason: string; family?: string }[];
+  ignored: { file: string; columns: string[]; family?: string }[];
   problems: string[];
+  /** Files read that held nothing to import (sleep, steps, settings…). */
+  empty: string[];
+}
+
+/** A file to read: chosen directly, inside a chosen folder, or inside a zip. */
+interface Source {
+  path: string;
+  size: number;
+  text(): Promise<string>;
+  stream(): ReadableStream<Uint8Array>;
 }
 
 const canonicalOf = (field: BodyField, unit: string) => {
@@ -47,35 +61,66 @@ const canonicalOf = (field: BodyField, unit: string) => {
   return (v: number) => (u ? toCanonical(def, v, u) : NaN);
 };
 
-async function readCsv(file: File): Promise<Omit<Read, "problems">> {
-  const table = tableOf(parseCsv(await file.text()));
-  if (!table) return { rows: [], skipped: [], ignored: [{ file: file.name, columns: [] }] };
+const fromFile = (f: File): Source => ({ path: f.webkitRelativePath || f.name, size: f.size, text: () => f.text(), stream: () => f.stream() });
+
+/** Readable files, including those inside zip files. Apple's export_cda.xml (clinical documents) is left out. */
+async function expand(files: File[], problems: string[]): Promise<Source[]> {
+  const out: Source[] = [];
+  for (const f of files) {
+    if (/\.zip$/i.test(f.name)) {
+      try {
+        for (const e of await zipEntries(f)) out.push({ path: `${f.name}/${e.name}`, size: e.size, text: e.text, stream: e.stream });
+      } catch (e) {
+        problems.push(`${f.name}: ${e instanceof Error ? e.message : "couldn't be opened"}`);
+      }
+    } else out.push(fromFile(f));
+  }
+  return out.filter((s) => /\.(csv|txt|json)$/i.test(s.path) || /(^|\/)export\.xml$/i.test(s.path));
+}
+
+/** One column of one kind of file, joined across all files of that kind (e.g. a Fitbit file per day). */
+interface Candidate {
+  family: string;
+  header: string;
+  field: BodyField;
+  unit: string;
+  file: string;
+  files: number;
+  readings: { date: string; value: number }[];
+}
+
+/** Adds a table's columns to the candidates. False when nothing in it is a body measurement. */
+function tableCandidates(path: string, table: { headers: string[]; data: string[][] }, into: Map<string, Candidate>, skipped: Read["skipped"], ignored: Read["ignored"]): boolean {
+  const family = fileFamily(path);
+  const file = path.split("/").pop()!;
   const dateCol = findDateColumn(table.headers, table.data, monthFirst);
-  if (dateCol === -1) return { rows: [], skipped: [{ file: file.name, what: "the whole file", reason: "No column with dates was found." }], ignored: [] };
-  const rows: Row[] = [];
-  const skipped: Read["skipped"] = [];
-  const ignored: string[] = [];
+  if (dateCol === -1) return false;
+  let found = false;
+  const other: string[] = [];
   table.headers.forEach((h, i) => {
     if (i === dateCol) return;
-    const g = guessColumn(h, i);
-    if (!g) return void ignored.push(h);
-    if (!g.field) return void skipped.push({ file: file.name, what: h, reason: g.reason ?? "Not used." });
-    const readings = columnReadings(table.data, dateCol, g, monthFirst);
-    const make = (field: BodyField) => {
-      const unit = field === g.field ? g.unit : BIOMARKER_MAP.get(field)!.canonicalUnit;
-      return dailyAverages(field, unit, h, readings, canonicalOf(field, unit));
-    };
-    const series = make(g.field);
-    if (series.days.length > 0) rows.push({ key: `${file.name}|${i}`, file: file.name, include: true, remap: make, series });
+    const g = guessColumn(h, i, family);
+    if (!g) return void other.push(h);
+    found = true;
+    if (!g.field) {
+      if (!skipped.some((x) => x.what === h && x.family === family)) skipped.push({ file, what: h, reason: g.reason ?? "Not used.", family });
+      return;
+    }
+    const key = `${family}|${h}`;
+    const c = into.get(key) ?? { family, header: h, field: g.field, unit: g.unit, file, files: 0, readings: [] };
+    c.files++;
+    for (const r of columnReadings(table.data, dateCol, g, monthFirst)) c.readings.push(r);
+    into.set(key, c);
   });
-  return { rows, skipped, ignored: ignored.length ? [{ file: file.name, columns: ignored }] : [] };
+  if (other.length && !ignored.some((x) => x.family === family)) ignored.push({ file, columns: other, family });
+  return found;
 }
 
 /** Apple Health's export.xml, read in pieces so a file of a gigabyte or more works. */
-async function readAppleXml(file: File, progress: (f: number) => void): Promise<Omit<Read, "problems">> {
+async function readAppleXml(src: Source, progress: (f: number) => void): Promise<{ rows: Row[]; skipped: Read["skipped"] }> {
   const tally = new DailyTally();
   const skippedTypes = new Map<string, string>();
-  const reader = file.stream().getReader();
+  const reader = src.stream().getReader();
   const decoder = new TextDecoder();
   let carry = "";
   let read = 0;
@@ -83,7 +128,7 @@ async function readAppleXml(file: File, progress: (f: number) => void): Promise<
     const { done, value } = await reader.read();
     if (value) {
       read += value.byteLength;
-      progress(read / file.size);
+      progress(src.size ? read / src.size : 0);
     }
     const text = carry + (value ? decoder.decode(value, { stream: !done }) : decoder.decode());
     const cut = done ? text.length : safeCut(text);
@@ -91,31 +136,81 @@ async function readAppleXml(file: File, progress: (f: number) => void): Promise<
     carry = text.slice(cut);
     if (done) break;
   }
-  const rows: Row[] = tally.series().filter((s) => s.days.length > 0).map((series) => ({ key: `${file.name}|${series.from}`, file: file.name, include: true, series }));
-  return { rows, skipped: [...skippedTypes].map(([what, reason]) => ({ file: file.name, what, reason })), ignored: [] };
+  const file = src.path.split("/").pop()!;
+  return {
+    rows: tally
+      .series()
+      .filter((s) => s.days.length > 0)
+      .map((series) => ({ key: `${src.path}|${series.from}`, file, include: true, series })),
+    skipped: [...skippedTypes].map(([what, reason]) => ({ file, what, reason })),
+  };
 }
+
+/** Text files bigger than this are skipped (Apple's export.xml is streamed instead). */
+const MAX_TEXT = 300_000_000;
+
+const pickStyles =
+  "inline-flex min-h-11 cursor-pointer items-center rounded-lg bg-accent px-4 font-medium text-accent-ink transition-[filter] hover:brightness-110 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent";
+
+/** Where each app hides its export. */
+const SOURCES: [string, string][] = [
+  ["Apple Health", "Health app → your picture → Export All Health Data. Choose the zip (or export.xml). Apple's HRV is a different measure (SDNN) and isn't imported."],
+  ["Fitbit", "Google Takeout (takeout.google.com) → Fitbit. Choose the zip or the Fitbit folder: heart rate, resting heart rate, HRV, SpO2 and weight are read."],
+  ["Google Fit", "Google Takeout → Fit. Choose the zip or \"Daily activity metrics.csv\"."],
+  ["Samsung Health", "Settings → Download personal data. Choose the folder: heart rate, oxygen saturation, weight and blood pressure files are read."],
+  ["Garmin", "Garmin account → Data management → Export your data (arrives by email). Choose the zip or folder; daily summaries give resting heart rate and SpO2. Or export a Connect report as CSV."],
+  ["Oura", "membership.ouraring.com → Export data → CSV."],
+  ["Whoop", "Whoop app → Settings → Data export. Choose the zip or physiological_cycles.csv and workouts.csv."],
+  ["Withings", "Withings app → profile → Download my data. Choose the zip or weight.csv and bp.csv."],
+  ["Polar", "account.polar.com → Download your data. Choose the zip or folder; training sessions give exercise heart rate."],
+  ["Zepp / Amazfit", "Zepp app → profile → Settings → Export data. Choose the zip or folder (heart rate, body, sport)."],
+  ["Huawei Health", "Huawei ID → Privacy centre → Request your data → Health. Choose the zip or folder."],
+];
 
 export function DeviceImportPage() {
   const existing = useAllMeasurements();
   const [read, setRead] = useState<Read | null>(null);
-  const [busy, setBusy] = useState<{ file: string; fraction: number } | null>(null);
+  const [busy, setBusy] = useState<{ file: string; fraction: number; of?: string } | null>(null);
   const [saved, setSaved] = useState<{ readings: number; kinds: number; already: number } | null>(null);
 
   async function onFiles(files: File[]) {
+    if (files.length === 0) return;
     setSaved(null);
-    const out: Read = { rows: [], skipped: [], ignored: [], problems: [] };
-    for (const f of files) {
-      setBusy({ file: f.name, fraction: 0 });
+    const out: Read = { rows: [], skipped: [], ignored: [], problems: [], empty: [] };
+    setBusy({ file: "the files", fraction: 0 });
+    const sources = await expand(files, out.problems);
+    const candidates = new Map<string, Candidate>();
+    for (const [i, src] of sources.entries()) {
+      const name = src.path.split("/").pop()!;
+      setBusy({ file: name, fraction: i / Math.max(sources.length, 1), ...(sources.length > 1 ? { of: `${i + 1} of ${sources.length}` } : {}) });
       try {
-        const r = /\.xml$/i.test(f.name) ? await readAppleXml(f, (fraction) => setBusy({ file: f.name, fraction })) : await readCsv(f);
-        out.rows.push(...r.rows);
-        out.skipped.push(...r.skipped);
-        out.ignored.push(...r.ignored);
-        if (r.rows.length === 0 && r.skipped.length === 0) out.problems.push(`${f.name}: no heart rate, HRV, blood oxygen, weight or blood pressure columns were recognised.`);
+        if (/\.xml$/i.test(src.path)) {
+          const r = await readAppleXml(src, (fraction) => setBusy({ file: name, fraction }));
+          out.rows.push(...r.rows);
+          out.skipped.push(...r.skipped);
+          if (r.rows.length === 0) out.empty.push(name);
+          continue;
+        }
+        if (src.size > MAX_TEXT) {
+          out.problems.push(`${name}: too big to read here (over 300 MB).`);
+          continue;
+        }
+        const text = await src.text();
+        const table = /\.json$/i.test(src.path) ? jsonTable(JSON.parse(text)) : tableOf(parseCsv(text));
+        if (!table || !tableCandidates(src.path, table, candidates, out.skipped, out.ignored)) out.empty.push(name);
       } catch (e) {
-        out.problems.push(`${f.name}: ${e instanceof Error ? e.message : "couldn't be read"}.`);
+        out.problems.push(`${name}: ${e instanceof Error ? e.message : "couldn't be read"}.`);
       }
     }
+    for (const c of candidates.values()) {
+      const make = (field: BodyField, unit?: string) => {
+        const u = unit ?? (field === c.field ? c.unit : BIOMARKER_MAP.get(field)!.canonicalUnit);
+        return dailyAverages(field, u, c.header, c.readings, canonicalOf(field, u));
+      };
+      const series = make(c.field);
+      if (series.days.length > 0) out.rows.push({ key: `${c.family}|${c.header}`, file: c.files > 1 ? `${c.files} files like ${c.file}` : c.file, include: true, remap: make, series });
+    }
+    if (sources.length === 0 && out.problems.length === 0) out.problems.push("None of the chosen files can be read here. Choose CSV, JSON or zip files, Apple's export.xml, or a folder.");
     setBusy(null);
     setRead(out);
   }
@@ -180,21 +275,25 @@ export function DeviceImportPage() {
         <div className="flex flex-col gap-5">
           <Card className="flex flex-col gap-3">
             <h2 className="font-serif text-2xl font-normal">Choose export files</h2>
-            <p className="text-ink-2">You can choose several at once. Nothing leaves this computer.</p>
-            <label className="flex flex-col gap-1.5">
-              <span className="sr-only">Export files</span>
-              <input
-                type="file"
-                multiple
-                accept=".csv,.txt,.xml,text/csv,text/xml,application/xml"
-                disabled={!!busy}
-                onChange={(e) => void onFiles([...(e.target.files ?? [])])}
-                className="min-h-11 text-base file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-lg file:border-0 file:bg-accent file:px-4 file:text-base file:font-medium file:text-accent-ink"
-              />
-            </label>
+            <p className="text-ink-2">
+              Choose the export's zip file as it is, or the files in it, or the unzipped folder. Several at once is fine. Nothing leaves this computer.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <label className={cx(pickStyles, busy && "pointer-events-none opacity-50")}>
+                Choose files or a zip
+                <input type="file" multiple accept=".zip,.csv,.txt,.json,.xml,application/zip,text/csv,application/json,text/xml" disabled={!!busy} onChange={(e) => void onFiles([...(e.target.files ?? [])])} className="sr-only" />
+              </label>
+              <label className={cx(pickStyles, "bg-surface text-ink border border-line-strong hover:bg-sunken", busy && "pointer-events-none opacity-50")}>
+                Choose a folder
+                <input type="file" {...({ webkitdirectory: "", directory: "" } as Record<string, string>)} disabled={!!busy} onChange={(e) => void onFiles([...(e.target.files ?? [])])} className="sr-only" />
+              </label>
+            </div>
             {busy && (
               <div role="status" className="flex flex-col gap-2">
-                <p className="text-ink-2">Reading {busy.file}…</p>
+                <p className="text-ink-2">
+                  Reading {busy.file}
+                  {busy.of ? ` (file ${busy.of})` : ""}…
+                </p>
                 <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true">
                   <div className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out" style={{ transform: `scaleX(${Math.max(0.03, busy.fraction)})` }} />
                 </div>
@@ -204,23 +303,16 @@ export function DeviceImportPage() {
           <Card className="flex flex-col gap-2 text-ink-2">
             <h2 className="font-serif text-xl font-normal text-ink">Where to find the files</h2>
             <ul className="flex list-disc flex-col gap-1.5 pl-5 text-sm">
-              <li>
-                <span className="text-ink">Google Fit:</span> takeout.google.com → Fit → unzip, then choose "Daily activity metrics.csv".
-              </li>
-              <li>
-                <span className="text-ink">Samsung Health:</span> Settings → Download personal data → unzip, then choose the heart_rate, oxygen_saturation or weight CSV files.
-              </li>
-              <li>
-                <span className="text-ink">Oura:</span> membership.ouraring.com → Export data → CSV.
-              </li>
-              <li>
-                <span className="text-ink">Garmin:</span> Garmin Connect → Reports → export a report as CSV (resting heart rate, HRV status, weight).
-              </li>
-              <li>
-                <span className="text-ink">Apple Health:</span> Health app → your picture → Export All Health Data → unzip, then choose export.xml. Apple's HRV is a different measure (SDNN) and isn't imported.
-              </li>
+              {SOURCES.map(([brand, how]) => (
+                <li key={brand}>
+                  <span className="text-ink">{brand}:</span> {how}
+                </li>
+              ))}
             </ul>
-            <p className="text-sm">Other CSV files work too when their columns are named like "Heart rate", "Resting heart rate", "HRV", "SpO2" or "Weight (kg)", next to a date column.</p>
+            <p className="text-sm">
+              Other CSV and JSON files work too when their columns are named like "Heart rate", "Resting heart rate", "HRV", "SpO2" or "Weight (kg)", next to a date. Each app
+              writes its files a little differently and they change over time; if something isn't recognised, change it in the review, or tell us the column names.
+            </p>
           </Card>
         </div>
       )}
@@ -254,6 +346,14 @@ export function DeviceImportPage() {
                 ))}
               </ul>
             </Card>
+          )}
+          {read.empty.length > 0 && (
+            <details className="text-sm text-ink-2">
+              <summary className="min-h-11 cursor-pointer py-2">
+                {read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (sleep, steps, settings and the like)
+              </summary>
+              <p className="break-words">{[...new Set(read.empty)].slice(0, 60).join(", ")}{read.empty.length > 60 ? "…" : ""}</p>
+            </details>
           )}
           {read.ignored.some((i) => i.columns.length) && (
             <details className="text-sm text-ink-2">
@@ -289,6 +389,10 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
   const last = s.days.at(-1)!;
   const already = s.days.filter((d) => have.has(`${s.field}|${d.date}`)).length;
   const unitOk = !!matchUnit(def, s.unit);
+  // Only a real choice (kg or lb), not names for the same thing (bpm or /min).
+  const unitsDiffer = new Set(listUnits(def).map((u) => toCanonical(def, 1, u))).size > 1;
+  const median = [...s.days].sort((a, b) => a.value - b.value)[Math.floor(s.days.length / 2)]?.value ?? 0;
+  const looksLikePounds = s.field === "weight" && matchUnit(def, s.unit) === "kg" && median > 130;
   // Another ticked series above gives the same measurement on some of the same days.
   const dates = new Set(s.days.map((d) => d.date));
   const overlap = r.include
@@ -317,6 +421,12 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-ink-2">as</span>
           {r.remap ? <FieldSelect value={s.field} onChange={(f) => onChange((x) => ({ ...x, series: x.remap!(f) }))} /> : <span className="font-medium">{def.name}</span>}
+          {r.remap && unitsDiffer && (
+            <>
+              <span className="text-ink-2">in</span>
+              <UnitSelect compact labelClassName="sr-only" label="Unit in the file" units={listUnits(def)} value={matchUnit(def, s.unit) ?? s.unit} onChange={(u) => onChange((x) => ({ ...x, series: x.remap!(s.field, u) }))} />
+            </>
+          )}
         </div>
         <p className="text-sm text-ink-2">
           {s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest {last.value} {s.unit}
@@ -329,6 +439,7 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
             different things (for example heart rate taken only at night), untick one.
           </p>
         )}
+        {looksLikePounds && <p className="text-sm text-warn">These numbers look like pounds. If they are, choose lb as the unit.</p>}
         {!unitOk && <p className="text-sm text-warn">The unit "{s.unit}" doesn't fit {shortName(def)}, so this can't be imported as it.</p>}
       </div>
     </li>
