@@ -6,6 +6,7 @@ import { todayIso } from "../../core/dates";
 import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure, LatestFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
 import { BODY_GROUPS } from "../../core/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
+import { HeartAgeFigure } from "../components/dashboard/heartAge";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { PlusIcon } from "../components/icons";
 import { Button, Card, LinkButton, Notice } from "../components/ui";
@@ -104,6 +105,7 @@ export function BodyPage({ add }: { add?: boolean }) {
                       <LatestFigure ms={body} id="resting_hr" label="Resting heart rate" profile={profile} />
                       <LatestFigure ms={body} id="hrv_resting" label="Resting HRV" profile={profile} />
                       <LatestFigure ms={body} id="spo2" label="Blood oxygen" profile={profile} />
+                      <HeartAgeFigure ms={body} profile={profile} protocols={protocols} className="col-span-2" />
                     </>
                   )}
                   {g.id === "sleep" && (

@@ -5,7 +5,9 @@ import { setProfile } from "../../db/db";
 import { BirthMonthField } from "../components/BirthMonthField";
 import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, formatYears, showMeasurement } from "../format";
-import { useAllMeasurements, useProfile } from "../hooks";
+import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
+import { HeartAgeSection } from "../components/dashboard/heartAge";
+import { bodyOnly } from "../knowledge";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
 
@@ -14,6 +16,7 @@ const LEVINE_URL = "https://pubmed.ncbi.nlm.nih.gov/29676998/";
 export function PhenoAgePage() {
   const all = useAllMeasurements();
   const profile = useProfile();
+  const protocols = useProtocols() ?? [];
 
   if (all === undefined) return <p className="text-ink-2">Loading…</p>;
   const summary = summarizePhenoAge(all, profile.birthMonth);
@@ -21,8 +24,11 @@ export function PhenoAgePage() {
 
   return (
     <>
-      <PageTitle sub="An estimate based on 9 routine blood markers and your age.">Biological age (PhenoAge)</PageTitle>
+      <PageTitle sub="Two estimates: PhenoAge from 9 routine blood markers, and heart age from blood pressure, weight and smoking. Both are estimates, not verdicts.">
+        Biological age
+      </PageTitle>
       <div className="flex flex-col gap-5">
+        <h2 className="-mb-2 font-serif text-2xl font-normal">PhenoAge, from blood tests</h2>
         {!latest ? (
           <NeedsMarkers partial={summary.latestPartial} />
         ) : latest.status === "needs-birth-month" ? (
@@ -50,6 +56,7 @@ export function PhenoAgePage() {
           </>
         )}
         <Explanation profile={profile} />
+        <HeartAgeSection ms={bodyOnly(all)} profile={profile} protocols={protocols} />
       </div>
     </>
   );
