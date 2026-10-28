@@ -142,7 +142,8 @@ export interface Measurement {
   /** In the canonical unit. */
   labRange?: { low?: number; high?: number };
   fasted?: boolean;
-  source: "manual" | "pdf" | "csv";
+  /** "photo": read by text recognition from a photo or a scanned PDF. */
+  source: "manual" | "pdf" | "csv" | "photo";
   note?: string;
 }
 

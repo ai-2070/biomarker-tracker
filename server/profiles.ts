@@ -28,6 +28,7 @@ const FILE_TYPES: Record<string, string> = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
   ".txt": "text/plain; charset=utf-8",
   ".csv": "text/csv; charset=utf-8",
 };
@@ -239,7 +240,7 @@ export function addFile(id: string, originalName: string, data: Buffer, note?: s
   const dir = dirOf(id);
   const ext = path.extname(originalName).toLowerCase();
   const type = FILE_TYPES[ext];
-  if (!type) throw new ProfileError(400, "Only PDF, image (PNG, JPG), text and CSV files can be kept.");
+  if (!type) throw new ProfileError(400, "Only PDF, image (PNG, JPG, WebP), text and CSV files can be kept.");
   if (data.length === 0) throw new ProfileError(400, "The file is empty.");
   if (data.length > MAX_FILE) throw new ProfileError(413, "The file is too large (over 50 MB).");
   const filesDir = path.join(dir, "files");

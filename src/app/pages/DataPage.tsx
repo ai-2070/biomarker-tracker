@@ -186,7 +186,7 @@ function FilesCard({ profileId }: { profileId: string }) {
       <div>
         <label className={cx(buttonStyles.secondary, "cursor-pointer focus-within:outline-2 focus-within:outline-accent", busy && "pointer-events-none opacity-50")}>
           {busy ? "Saving…" : "Add a file"}
-          <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.txt,.csv" className="sr-only" disabled={busy} onChange={(e) => void add(e.target.files)} />
+          <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.csv" className="sr-only" disabled={busy} onChange={(e) => void add(e.target.files)} />
         </label>
       </div>
     </Card>

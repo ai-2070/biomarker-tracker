@@ -171,7 +171,26 @@ function parseResultLine(line: string, id: string, rest: string, def: BiomarkerD
   const range = parseRange(rangeText);
   if (range.low) row.labLow = range.low;
   if (range.high) row.labHigh = range.high;
+  const problem = decimalProblem(row);
+  if (problem) row.problems.push(problem);
   return row;
+}
+
+/** How far outside the lab's own range a value can be before a lost decimal point is the likelier story. */
+export const DECIMAL_SUSPICION = 8;
+
+/**
+ * A value 8 times above or below the lab's own range on the same line usually means a decimal point or
+ * comma was lost (common in photos and scans: "5,4" read as "54"), or the range was misread. Real results
+ * that far out are rare, and a wrong one saved silently could look critical. The person checks it.
+ */
+export function decimalProblem(row: Pick<ParsedRow, "value" | "labLow" | "labHigh">): string | undefined {
+  const v = parseLabNumber(row.value.replace(/^[<>≤≥]/, ""))?.value;
+  const lo = row.labLow ? parseLabNumber(row.labLow)?.value : undefined;
+  const hi = row.labHigh ? parseLabNumber(row.labHigh)?.value : undefined;
+  if (v === undefined || v <= 0) return undefined;
+  const far = (hi !== undefined && hi > 0 && v > hi * DECIMAL_SUSPICION) || (lo !== undefined && lo > 0 && v < lo / DECIMAL_SUSPICION);
+  return far ? "This value is far outside the lab's own range on the same line. A decimal point may have been missed, in the value or in the range. Check both against the report." : undefined;
 }
 
 // Dates

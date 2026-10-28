@@ -34,7 +34,7 @@ interface Row {
 
 type Step =
   | { name: "pick" }
-  | { name: "review"; fileName: string; file?: File; report: ParsedReport }
+  | { name: "review"; fileName: string; file?: File; ocr: boolean; report: ParsedReport }
   | { name: "done"; saved: Measurement[]; skipped: number; kept?: string; keepError?: string };
 
 // US-style dates (month first) only for US English.
@@ -57,15 +57,16 @@ export function ImportPage() {
 
   return (
     <>
-      <PageTitle sub="Read results from a lab report PDF. You check every value before anything is saved.">
-        Import a lab report
-      </PageTitle>
+      <PageTitle sub="Read results from a lab report PDF or a photo of one. You check every value before anything is saved.">Import a lab report</PageTitle>
       {step.name === "pick" && (
-        <PickFile onParsed={(fileName, text, file) => setStep({ name: "review", fileName, ...(file ? { file } : {}), report: parseLabText(text, BIOMARKERS, { monthFirst }) })} />
+        <PickFile
+          onParsed={(fileName, text, file, ocr) => setStep({ name: "review", fileName, ocr, ...(file ? { file } : {}), report: parseLabText(text, BIOMARKERS, { monthFirst }) })}
+        />
       )}
       {step.name === "review" && (
         <Review
           fileName={step.fileName}
+          ocr={step.ocr}
           report={step.report}
           onCancel={() => setStep({ name: "pick" })}
           onSaved={(list, skipped, date) => void saved(list, skipped, step.file, date)}
@@ -80,7 +81,7 @@ export function ImportPage() {
           )}
           {step.keepError && (
             <Notice tone="warn" className="mb-4">
-              The results were saved, but the PDF couldn't be kept in the profile folder: {step.keepError}
+              The results were saved, but the report couldn't be kept in the profile folder: {step.keepError}
             </Notice>
           )}
           <Done saved={step.saved} skipped={step.skipped} onAnother={() => setStep({ name: "pick" })} />
@@ -90,8 +91,11 @@ export function ImportPage() {
   );
 }
 
-function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file?: File) => void }) {
+const isPdf = (f: File) => f.type === "application/pdf" || /\.pdf$/i.test(f.name);
+
+function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined, ocr: boolean) => void }) {
   const [busy, setBusy] = useState(false);
+  const [progress, setProgress] = useState<{ fraction: number; stage: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pasted, setPasted] = useState("");
 
@@ -99,38 +103,59 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
     if (!file) return;
     setError(null);
     setBusy(true);
+    setProgress(null);
+    const report = (fraction: number, stage: string) => setProgress({ fraction, stage });
     try {
-      const { readPdfText } = await import("../pdf");
-      onParsed(file.name, await readPdfText(file), file);
+      if (isPdf(file)) {
+        const { readPdfText } = await import("../pdf");
+        const r = await readPdfText(file, report);
+        onParsed(file.name, r.text, file, r.ocr);
+      } else if (file.type.startsWith("image/") || /\.(jpe?g|png|webp|heic|heif)$/i.test(file.name)) {
+        const { readImageText } = await import("../ocr");
+        onParsed(file.name, await readImageText(file, report), file, true);
+      } else {
+        throw new Error("Choose a PDF or a photo (JPG, PNG or WebP).");
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "This file couldn't be read.");
     } finally {
       setBusy(false);
+      setProgress(null);
     }
   }
 
   return (
     <div className="flex flex-col gap-5">
       <Card className="flex flex-col gap-3">
-        <h2 className="font-serif text-2xl font-normal">Choose a PDF</h2>
+        <h2 className="font-serif text-2xl font-normal">Choose a PDF or a photo</h2>
         <p className="text-ink-2">
-          The PDF is read on this device and is not uploaded anywhere. Names, birth dates and ID numbers in the report are ignored; only the
-          values you confirm are saved.
+          Read on this device: nothing is uploaded anywhere, also not to an AI model. Names, birth dates and ID numbers in the report are ignored;
+          only the values you confirm are saved.
+        </p>
+        <p className="text-sm text-ink-2">
+          For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take
+          the photo right here.
         </p>
         <label className="flex flex-col gap-1.5">
-          <span className="sr-only">Lab report PDF</span>
+          <span className="sr-only">Lab report PDF or photo</span>
           <input
             type="file"
-            accept="application/pdf,.pdf"
+            accept="application/pdf,.pdf,image/*"
             disabled={busy}
             onChange={(e) => void onFile(e.target.files?.[0])}
             className="min-h-11 text-base file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-lg file:border-0 file:bg-accent file:px-4 file:text-base file:font-medium file:text-accent-ink"
           />
         </label>
         {busy && (
-          <p role="status" className="text-ink-2">
-            Reading the PDF…
-          </p>
+          <div role="status" className="flex animate-fade flex-col gap-2">
+            <p className="text-ink-2">{progress ? `${progress.stage}…` : "Reading…"}</p>
+            {progress && (
+              <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true">
+                <div className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out" style={{ transform: `scaleX(${Math.max(0.03, progress.fraction)})` }} />
+              </div>
+            )}
+            {progress && <p className="text-sm text-ink-2">The first time, the text recognition files are loaded (about 10 MB, from this app). Later it's faster.</p>}
+          </div>
         )}
         {error && (
           <Notice tone="danger" role="alert">
@@ -153,7 +178,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
           />
         </Field.Root>
         <div>
-          <Button variant="secondary" disabled={pasted.trim() === ""} onClick={() => onParsed("Pasted text", pasted)}>
+          <Button variant="secondary" disabled={pasted.trim() === ""} onClick={() => onParsed("Pasted text", pasted, undefined, false)}>
             Read pasted text
           </Button>
         </div>
@@ -168,11 +193,13 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
 
 function Review({
   fileName,
+  ocr,
   report,
   onCancel,
   onSaved,
 }: {
   fileName: string;
+  ocr: boolean;
   report: ParsedReport;
   onCancel: () => void;
   onSaved: (saved: Measurement[], skipped: number, date: string) => void;
@@ -208,7 +235,7 @@ function Review({
         { biomarkerId: r.biomarkerId ?? "", value: r.value, unit: r.unit, date, labLow: r.labLow, labHigh: r.labHigh, lab },
         BIOMARKER_MAP,
         today,
-        "pdf",
+        ocr ? "photo" : "pdf",
       ),
     }));
     const dateProblem = checked.find(({ v }) => !v.ok && v.errors.date);
@@ -259,6 +286,12 @@ function Review({
   return (
     <div className="flex flex-col gap-5">
       <Card className="flex flex-col gap-4">
+        {ocr && (
+          <Notice tone="warn" title="Read from a picture: check every value">
+            Text recognition can misread letters and numbers, for example 0 and O, 1 and 7, or a missing decimal point. Compare each value and unit with
+            the report before saving.
+          </Notice>
+        )}
         <p className="text-ink-2">
           Found <span className="font-medium text-ink">{rows.length}</span> results in {fileName}. Compare each one with your report, fix
           anything that's wrong, and untick rows you don't want.

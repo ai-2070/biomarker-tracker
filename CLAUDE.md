@@ -31,6 +31,7 @@ A free, open-source, local-first web app where anyone can track their bloodwork 
 ## Tech stack
 
 - **Vite + React + TypeScript** (strict mode)
+- **tesseract.js** for on-device text recognition of photos and scans (files bundled, see "Lab PDF import")
 - **Dexie** (IndexedDB wrapper) for storage
 - **Recharts** for charts
 - **pdf.js** (`pdfjs-dist`) for extracting text from lab PDFs
@@ -201,7 +202,9 @@ One assistant, no teams or multi-agent setups. Model choice, Skills and MCP sett
 - Current implementation: `src/core/importers/pdfText.ts` rebuilds lines from pdf.js text positions; `labText.ts` is the generic parser (name → value → unit → range, sample date with birth-date lines excluded). Lab-specific parsers can be added next to it when a layout needs one. Fixtures: `tests/fixtures/lab-text/*.txt`.
 - An alias must belong to exactly one marker (a test enforces this). Avoid aliases that are common words or that name a different test (e.g. "HbE", Hungarian "Vas").
 - Rows whose printed unit doesn't fit the marker (e.g. absolute lymphocytes in G/l matched to "Lymphocytes %") are shown but unticked, never saved by default.
-- Known gap: no OCR for scanned PDFs, and no Adobe CMaps bundled (rare CJK-font PDFs may extract garbled text).
+- **Photos and scanned PDFs** are read with on-device OCR (Tesseract via `tesseract.js`, `src/app/ocr.ts`): English, German and Hungarian, LSTM engine. The worker, engine and language files ship with the app at `ocr/` (`ocrAssets` in `vite.config.ts`), never from a CDN, and are loaded only when used. PDFs without a text layer are rendered page by page (max 6) and OCR'd. `normalizeOcrText` (`src/core/importers/ocrText.ts`) fixes typical mix-ups only next to digits (O/0, l/1, `x10"9/L` → `x10^9/L`, `G/I` → `G/l`). Results read this way have `source: "photo"`, and the review screen warns to check every value.
+- `decimalProblem` in `labText.ts`: a value more than 8× above or below the lab's own range on the same line (a lost decimal comma, e.g. potassium "5,4" read as 54) is unticked with a note, for PDFs too. It never blocks saving after the person checks it.
+- Known gap: no Adobe CMaps bundled (rare CJK-font PDFs may extract garbled text); OCR quality depends on the photo.
 
 ---
 
