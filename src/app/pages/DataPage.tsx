@@ -201,7 +201,7 @@ function BackupCard({ count }: { count: number }) {
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">Download results as a file</h2>
       <p className="text-ink-2">
-        Saves all {count} {count === 1 ? "result" : "results"}, the log and experiments as one JSON file, to keep or to move to another copy of the app.
+        Saves all {count} {count === 1 ? "result" : "results"}, your habits and what they watch as one JSON file, to keep or to move to another copy of the app.
         It contains health data, so treat it like a medical document.
       </p>
       <div>

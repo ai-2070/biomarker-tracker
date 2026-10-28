@@ -203,7 +203,7 @@ A neutral, slightly cool white palette with a single deep green and two state co
 
 ## Layout
 
-App shell: on large screens (≥1024px) a fixed 256px white sidebar with a hairline right border; content is offset by it. Below that, a sticky top bar (logo, Add, profile) and a fixed bottom tab bar (Dashboard, Blood, Log, Brain, More), both `surface` at 95% with a light backdrop blur and safe-area padding.
+App shell: on large screens (≥1024px) a fixed 256px white sidebar with a hairline right border; content is offset by it. Below that, a sticky top bar (logo, Add, profile) and a fixed bottom tab bar (Dashboard, Blood, Habits, Brain, More), both `surface` at 95% with a light backdrop blur and safe-area padding.
 
 Content column: centred, `max-w-4xl` for most pages, `max-w-7xl` for wide pages (Dashboard). Horizontal padding 16px → 24px (sm) → 40px (lg); bottom padding 112px on phones to clear the tab bar.
 

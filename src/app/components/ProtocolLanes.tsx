@@ -31,9 +31,9 @@ export function ProtocolLanes({
   return (
     <div className="mt-4 border-t border-line pt-3">
       <p className="mb-2 flex items-center justify-between gap-2 text-sm font-medium">
-        From your log
-        <a href={href({ name: "log" })} className="font-normal text-ink-2 underline underline-offset-2">
-          Edit log
+        From your habits
+        <a href={href({ name: "habits" })} className="font-normal text-ink-2 underline underline-offset-2">
+          Edit habits
         </a>
       </p>
       <ul className="flex flex-col gap-2">

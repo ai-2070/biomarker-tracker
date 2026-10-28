@@ -16,16 +16,21 @@ describe("router", () => {
     expect(parseHash("#/settings?tab=nope")).toEqual({ name: "data" });
     expect(parseHash("#/assistant?ask=Is%20my%20ferritin%20ok%3F")).toEqual({ name: "assistant", ask: "Is my ferritin ok?" });
   });
+  it("sends the old log and experiment addresses to Habits", () => {
+    expect(parseHash("#/log")).toEqual({ name: "habits" });
+    expect(parseHash("#/log?add=Iron")).toEqual({ name: "habits", add: "Iron" });
+    expect(parseHash("#/experiments")).toEqual({ name: "habits" });
+    expect(parseHash("#/experiments/new?marker=ldl&change=Oats")).toEqual({ name: "habits", add: "Oats", marker: "ldl" });
+    expect(parseHash("#/experiments/new")).toEqual({ name: "habits", add: "" });
+  });
   it("treats anything else as not found", () => {
     expect(parseHash("#main")).toEqual({ name: "not-found" });
     expect(parseHash("#/marker")).toEqual({ name: "not-found" });
     expect(parseHash("#/marker/a/b")).toEqual({ name: "not-found" });
   });
   it("round-trips href and parseHash", () => {
-    const routes: Route[] = [{ name: "overview" }, { name: "overview", show: "out" }, { name: "overview", show: "in" }, { name: "add" }, { name: "add", marker: "b12" }, { name: "marker", id: "vitamin_d" }, { name: "data" }, { name: "phenoage" }, { name: "import" }, { name: "log" }, { name: "log", add: "Oats for breakfast" },
-      { name: "experiments" },
-      { name: "experiment-new" },
-      { name: "experiment-new", marker: "ferritin", change: "Kiwis & oats" },
+    const routes: Route[] = [{ name: "overview" }, { name: "overview", show: "out" }, { name: "overview", show: "in" }, { name: "add" }, { name: "add", marker: "b12" }, { name: "marker", id: "vitamin_d" }, { name: "data" }, { name: "phenoage" }, { name: "import" }, { name: "habits" }, { name: "habits", add: "Oats for breakfast" }, { name: "habits", add: "" },
+      { name: "habits", add: "Kiwis & oats", marker: "ferritin" },
       { name: "experiment", id: "abc-123" },
       { name: "data", tab: "models" },
       { name: "dashboard" },

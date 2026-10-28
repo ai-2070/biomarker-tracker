@@ -29,7 +29,8 @@ export function validateProtocol(input: ProtocolInput, today: string): ProtocolV
   if (!(PROTOCOL_CATEGORIES as readonly string[]).includes(input.category)) errors.category = "Choose a type.";
 
   if (!isIsoDate(input.start)) errors.start = "Enter the date you started.";
-  else if (input.start > today) errors.start = "The start date can't be in the future.";
+  // Up to a year ahead: a planned change, so a "before" test can be done first.
+  else if (dayNumber(input.start) > dayNumber(today) + 365) errors.start = "Please choose a start date within the next year.";
 
   const end = input.end?.trim() || undefined;
   if (end !== undefined) {

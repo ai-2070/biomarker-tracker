@@ -4,7 +4,9 @@ import { todayIso } from "../../core/dates";
 import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { isCritical } from "../../core/trends";
-import type { Profile, ProtocolEntry } from "../../core/types";
+import type { Experiment, Measurement, Profile, ProtocolEntry } from "../../core/types";
+import type { ExperimentPhase } from "../../core/experiments";
+import { habitsOf, summarizeWatch } from "../../core/habits";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { Timeline } from "../components/dashboard/Timeline";
 import { Sparkline } from "../components/dashboard/Sparkline";
@@ -12,7 +14,7 @@ import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { ArrowRightIcon, PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { cx, FlagBadge, LinkButton } from "../components/ui";
-import { CATEGORY_LABEL, displayUnitFor, formatDate, formatYears, showChange, showMeasurement } from "../format";
+import { CATEGORY_LABEL, displayUnitFor, formatDate, formatPercent, formatYears, showChange, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, fullName, nameInSentence, shortName } from "../knowledge";
 import { useProfiles } from "../profiles";
@@ -106,8 +108,7 @@ export function DashboardPage() {
         </section>
 
         <aside className="flex flex-col gap-4">
-          <NowTaking active={d.activeLog} />
-          <ExperimentsPanel d={d} count={experiments?.filter((e) => !e.end).length ?? 0} />
+          <HabitsPanel protocols={protocols} experiments={experiments ?? []} all={all ?? []} today={today} />
           <AskPanel d={d} />
         </aside>
       </div>
@@ -314,43 +315,64 @@ function Panel({ title, link, children }: { title: string; link: { href: string;
   );
 }
 
-function NowTaking({ active }: { active: ProtocolEntry[] }) {
-  return (
-    <Panel title="Now taking" link={{ href: href({ name: "log" }), label: "Log" }}>
-      {active.length === 0 ? (
-        <p className="text-sm text-ink-2">Nothing logged right now. Supplements, diet changes, medicines and habits show up on the timeline.</p>
-      ) : (
-        <ul className="flex flex-col divide-y divide-line">
-          {active.map((p) => (
-            <li key={p.id} className="flex items-baseline justify-between gap-3 py-2 first:pt-0 last:pb-0">
-              <span className="min-w-0">
-                <span className="block text-sm font-medium">{p.label}</span>
-                <span className="text-xs text-ink-2">{CATEGORY_LABEL[p.category]}</span>
-              </span>
-              <span className="shrink-0 text-xs text-ink-2">since {formatDate(p.start)}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </Panel>
-  );
-}
+const SHORT_PHASE: Record<ExperimentPhase, string> = {
+  "needs-baseline": "Needs a 'before' test",
+  running: "Watching",
+  due: "Re-test due",
+  complete: "Results ready",
+  ended: "Ended",
+};
 
-function ExperimentsPanel({ d, count }: { d: Dashboard; count: number }) {
+/** Ongoing habits, and past ones whose watched markers have a result. Each says what changed, if it watches markers. */
+function HabitsPanel({ protocols, experiments, all, today }: { protocols: ProtocolEntry[]; experiments: Experiment[]; all: Measurement[]; today: string }) {
+  const habits = habitsOf(protocols, experiments);
+  const rows = habits
+    .map((h) => ({ h, s: h.watch ? summarizeWatch(h.watch, BIOMARKER_MAP, all, today) : undefined }))
+    .filter(({ h, s }) => (h.start <= today && !h.end) || s?.headline)
+    .slice(0, 6);
   return (
-    <Panel title="Experiments" link={{ href: href({ name: "experiments" }), label: "All" }}>
-      {count === 0 ? (
+    <Panel title="Habits" link={{ href: href({ name: "habits" }), label: "All" }}>
+      {rows.length === 0 ? (
         <p className="text-sm text-ink-2">
-          Test one change on yourself and see whether a marker moved more than normal test-to-test variation.{" "}
-          <a href={href({ name: "experiment-new" })} className="font-medium text-accent">
-            Start one
+          Nothing right now. Add supplements, food changes, medicines or routines, and pick markers to see what changed in you.{" "}
+          <a href={href({ name: "habits", add: "" })} className="font-medium text-accent">
+            Add a habit
           </a>
         </p>
       ) : (
-        <p className="text-sm">
-          {count} running.{" "}
-          {d.nextRetest && <span className="text-ink-2">{d.nextRetest.daysAway <= 0 ? `Re-test due for "${d.nextRetest.change}".` : `Next re-test ${formatDate(d.nextRetest.date)}.`}</span>}
-        </p>
+        <ul className="flex flex-col divide-y divide-line">
+          {rows.map(({ h, s }) => {
+            const r = s?.headline;
+            const def = r ? BIOMARKER_MAP.get(r.biomarkerId) : undefined;
+            const beyond = r?.verdict === "rise" || r?.verdict === "fall";
+            return (
+              <li key={h.id} className="py-2 first:pt-0 last:pb-0">
+                <a href={h.watch ? href({ name: "experiment", id: h.watch.id }) : href({ name: "habits" })} className="group block text-ink no-underline">
+                  <span className="flex items-baseline justify-between gap-3">
+                    <span className="min-w-0 truncate text-sm font-medium group-hover:underline">{h.label}</span>
+                    <span className="shrink-0 text-xs text-ink-2">{h.end ? "ended" : `since ${formatDate(h.start)}`}</span>
+                  </span>
+                  <span className="mt-0.5 block text-xs text-ink-2">
+                    {r && def && r.change !== undefined ? (
+                      <>
+                        <span className={cx("font-medium", beyond ? "text-ok" : "text-ink-2")}>
+                          {shortName(def)} {formatPercent(r.change)}
+                        </span>
+                        {beyond ? ", beyond normal variation" : ", within normal variation"}
+                      </>
+                    ) : s ? (
+                      <span className={s.phase === "due" || s.phase === "needs-baseline" ? "text-warn" : ""}>
+                        {SHORT_PHASE[s.phase]}: {s.results.map((x) => shortName(BIOMARKER_MAP.get(x.biomarkerId)!)).join(", ")}
+                      </span>
+                    ) : (
+                      CATEGORY_LABEL[h.category]
+                    )}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </Panel>
   );
