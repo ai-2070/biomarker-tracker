@@ -37,8 +37,8 @@ export function MarkerPage({ id }: { id: string }) {
         <CriticalBanner items={[{ def, measurement: trend.latest, low: latestFlag === "critical-low" }]} />
       )}
 
-      <a href={href({ name: "overview" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
-        <span aria-hidden="true">←</span> All results
+      <a href={href(def.category === "Body" ? { name: "body" } : { name: "overview" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
+        <span aria-hidden="true">←</span> {def.category === "Body" ? "Body" : "All results"}
       </a>
 
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
@@ -50,7 +50,7 @@ export function MarkerPage({ id }: { id: string }) {
           {listUnits(def).length > 1 && (
             <UnitSelect compact label="Show in" units={listUnits(def)} value={unit} onChange={(u) => void setDisplayUnit(def.id, u)} />
           )}
-          <LinkButton href={href({ name: "add", marker: def.id })}>Add result</LinkButton>
+          <LinkButton href={href(def.category === "Body" ? { name: "body", add: true } : { name: "add", marker: def.id })}>{def.category === "Body" ? "Add measurements" : "Add result"}</LinkButton>
         </div>
       </div>
 
@@ -122,7 +122,9 @@ function TrendSummary({ def, trend, unit }: { def: BiomarkerDef; trend: NonNulla
         </p>
       )}
       <p className="text-sm">
-        Small differences between tests are often normal day-to-day and lab-to-lab variation, not a real change.
+        {def.category === "Body"
+          ? "Small differences between measurements are often normal day-to-day variation, not a real change."
+          : "Small differences between tests are often normal day-to-day and lab-to-lab variation, not a real change."}
       </p>
     </div>
   );
@@ -224,7 +226,7 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
           {sexNote}
         </p>
         {def.rangeNote && <p className="mt-2">{def.rangeNote}</p>}
-        <p className="mt-2 text-sm">Ranges differ between labs, countries, ages and during pregnancy. Your lab's range is the better guide.</p>
+        {def.category !== "Body" && <p className="mt-2 text-sm">Ranges differ between labs, countries, ages and during pregnancy. Your lab's range is the better guide.</p>}
       </div>
 
       <div>

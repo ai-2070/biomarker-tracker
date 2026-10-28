@@ -1,6 +1,7 @@
 import { useState, type ComponentType, type ReactNode, type SVGProps } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import { useProfile } from "../hooks";
+import { BIOMARKER_MAP } from "../knowledge";
 import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
 import { Brain } from "../brain/Brain";
@@ -18,21 +19,22 @@ interface NavItem {
 }
 
 const DASHBOARD: NavItem = { label: "Dashboard", to: { name: "dashboard" }, icon: DashboardIcon, active: (r) => r.name === "dashboard" };
+const isBodyRoute = (r: Route) => r.name === "marker" && BIOMARKER_MAP.get(r.id)?.category === "Body";
 const BLOOD: NavItem = {
   label: "Blood tests",
-  to: { name: "overview" },
+  to: { name: "blood" },
   icon: DropIcon,
-  active: (r) => r.name === "overview" || r.name === "marker" || r.name === "add" || r.name === "import",
+  active: (r) => r.name === "blood" || r.name === "overview" || (r.name === "marker" && !isBodyRoute(r)) || r.name === "add" || r.name === "import",
 };
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
-const BODY: NavItem = { label: "Body", to: { name: "soon", section: "body" }, icon: BodyIcon, active: (r) => r.name === "soon" && r.section === "body", soon: true };
+const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || isBodyRoute(r) };
 const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
 const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: SettingsIcon, active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup" };
 
 const GROUPS: { label?: string; items: NavItem[] }[] = [
   { items: [DASHBOARD] },
-  { label: "Health", items: [BLOOD, AGE, HABITS, BODY] },
+  { label: "Health", items: [BLOOD, BODY, AGE, HABITS] },
   { label: "Connect", items: [DEVICES] },
 ];
 

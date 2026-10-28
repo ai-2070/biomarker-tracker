@@ -1,0 +1,40 @@
+{
+  "id": "bp_systolic",
+  "name": "Systolic blood pressure",
+  "category": "Body",
+  "aliases": ["Systolic blood pressure", "Systolic", "SBP", "Systolischer Blutdruck", "Szisztolés vérnyomás"],
+  "canonicalUnit": "mmHg",
+  "conversions": {
+    "mmHg": 1,
+    "kPa": 7.50062
+  },
+  "defaultRanges": [{ "low": 90, "high": 139 }],
+  "criticalRange": { "high": 180 },
+  "rangeNote": "European guidelines (2024): below 120 is non-elevated, 120–139 elevated, 140 or more on repeated readings is high blood pressure. US guidelines start at 130. Home readings run lower than clinic ones: 135/85 at home is about 140/90 in a clinic. Sit quietly for 5 minutes before measuring, and take two readings.",
+  "summary": "The top number of a blood pressure reading: the pressure in your arteries when the heart beats. It's one of the strongest risk factors for stroke and heart disease, and often has no symptoms.",
+  "high": {
+    "meaning": "High blood pressure strains the heart, arteries and kidneys over years. One high reading isn't a diagnosis; repeated readings are. 180 or more is a reason to contact a doctor promptly.",
+    "commonCauses": ["Measuring right after activity, caffeine or stress", "Salt-rich diet", "Ageing", "Some medicines (for example NSAID painkillers, decongestants)", "Kidney or hormonal conditions"]
+  },
+  "low": {
+    "meaning": "Low blood pressure is often harmless, but with dizziness or fainting it's worth discussing with a doctor.",
+    "commonCauses": ["Dehydration", "Standing up quickly", "Blood pressure medicines", "Illness"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39210715",
+      "doi": "10.1093/eurheartj/ehae178",
+      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29133356",
+      "doi": "10.1161/HYP.0000000000000065",
+      "title": "2017 ACC/AHA/AAPA/ABC/ACPM/AGS/APhA/ASH/ASPC/NMA/PCNA Guideline for the Prevention, Detection, Evaluation, and Management of High Blood Pressure in Adults",
+      "year": 2018,
+      "studyType": "guideline"
+    }
+  ]
+}

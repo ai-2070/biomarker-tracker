@@ -8,7 +8,7 @@ import { CriticalBanner } from "../components/CriticalBanner";
 import { Button, Card, FlagBadge, LinkButton, Notice, PageTitle, inputStyles } from "../components/ui";
 import { formatDate, showMeasurement } from "../format";
 import { useProfile } from "../hooks";
-import { BIOMARKERS, BIOMARKER_MAP, fullName } from "../knowledge";
+import { BIOMARKER_MAP, BLOOD_MARKERS, fullName } from "../knowledge";
 import { href } from "../router";
 import { Review, monthFirst, readReportFile } from "../components/LabReview";
 
@@ -37,7 +37,7 @@ export function ImportPage() {
       <PageTitle sub="Read results from a lab report PDF or a photo of one. You check every value before anything is saved.">Import a lab report</PageTitle>
       {step.name === "pick" && (
         <PickFile
-          onParsed={(fileName, text, file, ocr) => setStep({ name: "review", fileName, ocr, ...(file ? { file } : {}), report: parseLabText(text, BIOMARKERS, { monthFirst }) })}
+          onParsed={(fileName, text, file, ocr) => setStep({ name: "review", fileName, ocr, ...(file ? { file } : {}), report: parseLabText(text, BLOOD_MARKERS, { monthFirst }) })}
         />
       )}
       {step.name === "review" && (

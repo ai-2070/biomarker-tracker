@@ -1,0 +1,30 @@
+{
+  "id": "body_fat",
+  "name": "Body fat",
+  "category": "Body",
+  "aliases": ["Body fat", "Body fat percentage", "Körperfett", "Körperfettanteil", "Testzsír"],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "rangeNote": "Healthy ranges depend on age and sex. One widely used guide (matched to a healthy BMI): men 8–20 % at 20–39 years, 11–22 % at 40–59, 13–25 % at 60–79; women 21–33 %, 23–34 % and 24–36 %. Home scales estimate body fat from electrical resistance and can shift by several percent with hydration, so compare readings taken the same way and time of day.",
+  "summary": "The share of your weight that is fat. It says more than weight alone, but home measurements are rough estimates: follow the trend rather than a single number.",
+  "high": {
+    "meaning": "More body fat for your age and sex is linked to higher heart and metabolic risk, especially fat around the belly.",
+    "commonCauses": ["Less physical activity", "Ageing", "Hormonal changes", "Hydration on the day (home scales)"]
+  },
+  "low": {
+    "meaning": "Very low body fat can upset hormones and, in women, periods. It is uncommon outside athletes and illness.",
+    "commonCauses": ["Endurance sport", "Low food intake", "Illness"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "10966886",
+      "doi": "10.1093/ajcn/72.3.694",
+      "title": "Healthy percentage body fat ranges: an approach for developing guidelines based on body mass index",
+      "year": 2000,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -34,7 +34,16 @@ export const CATEGORY_ORDER: readonly BiomarkerCategory[] = [
   "Iron & vitamins",
   "Electrolytes",
   "Inflammation",
+  "Body",
 ];
+
+/** Body measurements (weight, waist, blood pressure…) are markers too, but not blood tests. */
+export const isBodyMarker = (def: BiomarkerDef): boolean => def.category === "Body";
+export const BLOOD_MARKERS: readonly BiomarkerDef[] = BIOMARKERS.filter((d) => !isBodyMarker(d));
+export const BODY_MARKERS: readonly BiomarkerDef[] = BIOMARKERS.filter(isBodyMarker);
+/** Only blood test results (or only body measurements) of a list. */
+export const bloodOnly = <T extends { biomarkerId: string }>(ms: readonly T[]): T[] => ms.filter((m) => BIOMARKER_MAP.get(m.biomarkerId)?.category !== "Body");
+export const bodyOnly = <T extends { biomarkerId: string }>(ms: readonly T[]): T[] => ms.filter((m) => BIOMARKER_MAP.get(m.biomarkerId)?.category === "Body");
 
 /** "Haemoglobin A1c (HbA1c)" — full name with the abbreviation explained once. */
 export function fullName(def: BiomarkerDef): string {

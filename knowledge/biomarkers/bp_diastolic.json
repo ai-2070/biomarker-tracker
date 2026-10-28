@@ -1,0 +1,40 @@
+{
+  "id": "bp_diastolic",
+  "name": "Diastolic blood pressure",
+  "category": "Body",
+  "aliases": ["Diastolic blood pressure", "Diastolic", "DBP", "Diastolischer Blutdruck", "Diasztolés vérnyomás"],
+  "canonicalUnit": "mmHg",
+  "conversions": {
+    "mmHg": 1,
+    "kPa": 7.50062
+  },
+  "defaultRanges": [{ "low": 60, "high": 89 }],
+  "criticalRange": { "high": 120 },
+  "rangeNote": "European guidelines (2024): below 70 is non-elevated, 70–89 elevated, 90 or more on repeated readings is high blood pressure. US guidelines start at 80. Home readings run lower than clinic ones.",
+  "summary": "The bottom number of a blood pressure reading: the pressure in your arteries between heartbeats.",
+  "high": {
+    "meaning": "A high bottom number, especially in younger adults, is part of high blood pressure. 120 or more is a reason to contact a doctor promptly.",
+    "commonCauses": ["Measuring right after activity, caffeine or stress", "Salt-rich diet", "Alcohol", "Some medicines", "Kidney or hormonal conditions"]
+  },
+  "low": {
+    "meaning": "A low bottom number is often harmless, but with dizziness or fainting it's worth discussing with a doctor.",
+    "commonCauses": ["Dehydration", "Blood pressure medicines", "Ageing (stiffer arteries)"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39210715",
+      "doi": "10.1093/eurheartj/ehae178",
+      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29133356",
+      "doi": "10.1161/HYP.0000000000000065",
+      "title": "2017 ACC/AHA/AAPA/ABC/ACPM/AGS/APhA/ASH/ASPC/NMA/PCNA Guideline for the Prevention, Detection, Evaluation, and Management of High Blood Pressure in Adults",
+      "year": 2018,
+      "studyType": "guideline"
+    }
+  ]
+}

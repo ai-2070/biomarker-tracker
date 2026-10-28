@@ -1,0 +1,49 @@
+{
+  "id": "waist",
+  "name": "Waist circumference",
+  "category": "Body",
+  "aliases": ["Waist circumference", "Waist", "Bauchumfang", "Taillenumfang", "Derékkörfogat", "Haskörfogat"],
+  "canonicalUnit": "cm",
+  "conversions": {
+    "cm": 1,
+    "in": 2.54
+  },
+  "defaultRanges": [
+    { "high": 94, "sex": "m" },
+    { "high": 80, "sex": "f" }
+  ],
+  "rangeNote": "Above 94 cm (men) or 80 cm (women) is linked to higher heart and metabolic risk in people of European descent; for South and East Asian people the limits are lower (90 and 80 cm). Measure standing, breathing out gently, halfway between the lowest rib and the top of the hip bone.",
+  "summary": "Waist size shows fat around the belly, which is more closely linked to heart and metabolic risk than weight alone. Your waist divided by your height (waist-to-height ratio) works for everyone: below 0.5 is the usual guide.",
+  "high": {
+    "meaning": "A larger waist is linked to higher blood pressure, blood sugar and blood fats, and to heart disease, even at the same weight.",
+    "commonCauses": ["Fat stored around the belly", "Less physical activity", "Ageing and menopause", "Some medicines"]
+  },
+  "low": {
+    "meaning": "There's no lower limit for waist size; a small waist on its own isn't a problem.",
+    "commonCauses": []
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "32020062",
+      "doi": "10.1038/s41574-019-0310-7",
+      "title": "Waist circumference as a vital sign in clinical practice: a Consensus Statement from the IAS and ICCR Working Group on Visceral Obesity",
+      "year": 2020,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "19805654",
+      "doi": "10.1161/CIRCULATIONAHA.109.192644",
+      "title": "Harmonizing the metabolic syndrome: a joint interim statement of the International Diabetes Federation Task Force on Epidemiology and Prevention",
+      "year": 2009,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "22106927",
+      "doi": "10.1111/j.1467-789X.2011.00952.x",
+      "title": "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors: systematic review and meta-analysis",
+      "year": 2012,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

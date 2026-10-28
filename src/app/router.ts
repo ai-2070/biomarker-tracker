@@ -5,13 +5,17 @@ import { useEffect, useState } from "react";
 export type SettingsTab = "data" | "models" | "skills" | "mcp" | "appearance" | "about";
 const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp", "appearance", "about"];
 
-export type SoonSection = "body" | "devices";
+export type SoonSection = "devices";
 
 /** Which blood test markers the list shows: all, only out of range, or only in range. */
 export type ResultsFilter = "out" | "in";
 
 export type Route =
   | { name: "dashboard" }
+  /** The blood tests dashboard. */
+  | { name: "blood" }
+  /** Body measurements; `add` opens the entry form. */
+  | { name: "body"; add?: boolean }
   | { name: "overview"; show?: ResultsFilter }
   | { name: "soon"; section: SoonSection }
   | { name: "add"; marker?: string }
@@ -36,7 +40,9 @@ export function parseHash(hash: string): Route {
     const show = params.get("show");
     return show === "out" || show === "in" ? { name: "overview", show } : { name: "overview" };
   }
-  if (parts[0] === "soon" && (parts[1] === "body" || parts[1] === "devices") && parts.length === 2) return { name: "soon", section: parts[1] };
+  if (parts[0] === "soon" && parts[1] === "devices" && parts.length === 2) return { name: "soon", section: "devices" };
+  if (parts[0] === "blood" && parts.length === 1) return { name: "blood" };
+  if ((parts[0] === "body" || (parts[0] === "soon" && parts[1] === "body")) && parts.length <= 2) return params.has("add") ? { name: "body", add: true } : { name: "body" };
   if (parts[0] === "add" && parts.length === 1) {
     const marker = params.get("marker");
     return marker ? { name: "add", marker } : { name: "add" };
@@ -80,6 +86,10 @@ export function href(route: Route): string {
       return route.show ? `#/results?show=${route.show}` : "#/results";
     case "soon":
       return `#/soon/${route.section}`;
+    case "blood":
+      return "#/blood";
+    case "body":
+      return route.add ? "#/body?add=1" : "#/body";
     case "add":
       return route.marker ? `#/add?marker=${encodeURIComponent(route.marker)}` : "#/add";
     case "marker":

@@ -24,8 +24,8 @@ export function CriticalBanner({ items }: { items: CriticalItem[] }) {
         Please contact a doctor soon
       </p>
       <p className="mt-2">
-        {items.length === 1 ? "This result is" : "These results are"} far outside the usual range. Contact your doctor or the
-        lab that did the test. If you feel unwell, call your local emergency number.
+        {items.length === 1 ? "This result is" : "These results are"} far outside the usual range. Contact your doctor (for a blood
+        test, or the lab that did it). If you feel unwell, call your local emergency number.
       </p>
       <ul className="mt-3 flex flex-col gap-1">
         {items.map(({ def, measurement, low }) => (

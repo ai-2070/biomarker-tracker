@@ -1,0 +1,31 @@
+{
+  "id": "weight",
+  "name": "Body weight",
+  "category": "Body",
+  "aliases": ["Body weight", "Weight", "Körpergewicht", "Testsúly"],
+  "canonicalUnit": "kg",
+  "conversions": {
+    "kg": 1,
+    "lb": 0.45359237
+  },
+  "rangeNote": "Weight on its own has no healthy range: it depends on your height and build. Body mass index (BMI) and waist size put it in context. Weigh at the same time of day for comparable numbers; day-to-day swings of 1–2 kg are normal.",
+  "summary": "Your body weight. Followed over time, it shows slow changes that a single reading can't. It doesn't tell muscle from fat or water.",
+  "high": {
+    "meaning": "A higher weight for your height is linked, on average, to higher risk of heart disease, type 2 diabetes and some cancers. Where the weight sits (waist) matters as well as how much.",
+    "commonCauses": ["Gradual gain over years", "Fluid retention", "Some medicines", "Hormonal changes"]
+  },
+  "low": {
+    "meaning": "A low weight for your height, or weight loss you didn't intend, can be a sign that something needs a doctor's attention.",
+    "commonCauses": ["Unintended weight loss (worth discussing with a doctor)", "Illness", "Low food intake"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "27423262",
+      "doi": "10.1016/S0140-6736(16)30175-1",
+      "title": "Body-mass index and all-cause mortality: individual-participant-data meta-analysis of 239 prospective studies in four continents",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

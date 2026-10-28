@@ -1,0 +1,32 @@
+{
+  "id": "resting_hr",
+  "name": "Resting heart rate",
+  "category": "Body",
+  "aliases": ["Resting heart rate", "Resting pulse", "Ruhepuls", "Nyugalmi pulzus"],
+  "canonicalUnit": "bpm",
+  "conversions": {
+    "bpm": 1,
+    "/min": 1
+  },
+  "defaultRanges": [{ "high": 100 }],
+  "rangeNote": "60–100 beats a minute is the usual textbook range. Fit people often sit below 60, which is normal for them. Measure after sitting still for a few minutes, or use the morning value from a watch.",
+  "summary": "How many times your heart beats in a minute at rest. Over months it moves with fitness, sleep, stress and illness.",
+  "high": {
+    "meaning": "A higher resting heart rate is linked, on average, to higher heart risk. It also rises temporarily with fever, poor sleep, stress, caffeine or dehydration. A fast or irregular pulse with symptoms needs a doctor.",
+    "commonCauses": ["Low fitness", "Fever or illness", "Poor sleep or stress", "Caffeine, alcohol or nicotine", "Overactive thyroid", "Anaemia"]
+  },
+  "low": {
+    "meaning": "A low resting heart rate is common in fit people. If it's new and comes with dizziness, tiredness or fainting, see a doctor.",
+    "commonCauses": ["Good fitness", "Some heart medicines (beta blockers)", "Underactive thyroid"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "26598376",
+      "doi": "10.1503/cmaj.150535",
+      "title": "Resting heart rate and all-cause and cardiovascular mortality in the general population: a meta-analysis",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    }
+  ]
+}
