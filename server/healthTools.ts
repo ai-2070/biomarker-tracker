@@ -14,7 +14,7 @@ import { safetyLabels, safetyNotes } from "../src/core/protocols";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, resolveRange, sortByDate } from "../src/core/trends";
 import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
-import { markerTerms, searchPapers, type SearchFilter } from "../src/research/papers";
+import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
 import { findMarker, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
@@ -246,6 +246,18 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
           source: res.source,
           total: res.total,
           studies: res.papers.map((p) => ({ id: p.id, title: p.title, year: p.year, type: p.kind, journal: p.journal, abstract: p.abstract?.slice(0, 1500) ?? null })),
+        };
+      },
+    }),
+    get_study: tool({
+      description:
+        "Look up one study by its ID (PMID:…, PMCID:… or DOI:…) on Europe PMC: title, journal, year, study type and abstract. Use it when the user asks about a specific paper.",
+      inputSchema: z.object({ id: z.string().max(220).describe("e.g. PMID:12345678") }),
+      execute: async ({ id }) => {
+        const p = await paperById(id, (u, i) => fetchFn(u, i), AbortSignal.timeout(20_000));
+        if (!p) return { error: "No study with that ID was found on Europe PMC." };
+        return {
+          studies: [{ id: p.id, title: p.title, year: p.year ?? null, type: p.kind, journal: p.journal ?? null, authors: p.authors ?? null, freeFullText: p.openAccess, abstract: p.abstract?.slice(0, 4000) ?? null }],
         };
       },
     }),

@@ -50,6 +50,7 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     "- Get every number from your tools (get_results, get_marker, get_biological_age, compare_before_after, get_levers). Never calculate a number yourself and present it as fact.",
     "- For research, use search_research or the connected research tools, and cite only studies that a tool returned in this conversation, with the ID in square brackets exactly as returned, e.g. [PMID:12345678]. Never invent studies, authors or IDs.",
     "- Say how strong the evidence is. If the evidence you found doesn't answer the question, say so.",
+    "- To read or summarize a specific study the user names, look it up with get_study using its ID, and cite it by that ID.",
     "- When a task matches a skill below, call read_skill first and follow it.",
     "- Never put the user's personal details into a search.",
     "",
