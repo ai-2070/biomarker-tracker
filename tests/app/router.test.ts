@@ -25,6 +25,7 @@ describe("router", () => {
       { name: "experiment-new", marker: "ferritin", change: "Kiwis & oats" },
       { name: "experiment", id: "abc-123" },
       { name: "data", tab: "models" },
+      { name: "data", tab: "about" },
       { name: "setup" },
       { name: "profiles" },
       { name: "assistant" },

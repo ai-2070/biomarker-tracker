@@ -71,7 +71,7 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
           }}
           inputMode="numeric"
           placeholder="e.g. 170"
-          className={`${inputStyles} w-32`}
+          className={`${inputStyles} max-w-40`}
         />
       </Field.Root>
       <SimpleSelect label="Diet" options={DIETS} value={value.diet ?? "unset"} onChange={(v) => onChange(withField(value, "diet", v === "unset" ? undefined : (v as Diet)))} className="sm:max-w-sm" />

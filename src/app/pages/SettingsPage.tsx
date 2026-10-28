@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { Tabs } from "@base-ui/react/tabs";
 import { useServerStatus } from "../api";
+import { AboutSettings } from "../components/settings/AboutSettings";
+import { AppearanceSettings } from "../components/settings/AppearanceSettings";
 import { McpSettings } from "../components/settings/McpSettings";
 import { ModelsSettings } from "../components/settings/ModelsSettings";
 import { SkillsSettings } from "../components/settings/SkillsSettings";
@@ -14,6 +16,8 @@ const TABS: { value: SettingsTab; label: ReactNode }[] = [
   { value: "models", label: "AI models" },
   { value: "skills", label: "Skills" },
   { value: "mcp", label: <>MCP<span className="hidden sm:inline">&nbsp;servers</span></> },
+  { value: "appearance", label: "Appearance" },
+  { value: "about", label: "About" },
 ];
 
 const SUBTITLE: Record<SettingsTab, string> = {
@@ -21,6 +25,8 @@ const SUBTITLE: Record<SettingsTab, string> = {
   models: "Choose the model the assistant uses.",
   skills: "Step-by-step instructions the assistant follows for research tasks.",
   mcp: "Extra research tools the assistant can use.",
+  appearance: "How the app looks on this device.",
+  about: "The project, its version and where the code lives.",
 };
 
 /** Without the local server, the AI tabs explain how to start it. */
@@ -44,7 +50,7 @@ export function SettingsPage({ tab = "data" }: { tab?: SettingsTab }) {
     <>
       <PageTitle sub={sub}>Settings</PageTitle>
       <Tabs.Root value={tab} onValueChange={(v) => (location.hash = href({ name: "data", tab: v as SettingsTab }))}>
-        <Tabs.List className="relative mb-6 flex gap-1 overflow-x-auto border-b border-line">
+        <Tabs.List className="relative mb-6 flex gap-1 overflow-x-auto border-b border-line [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-12px),transparent)] sm:[mask-image:none]">
           {TABS.map((t) => (
             <Tabs.Tab
               key={t.value}
@@ -73,6 +79,12 @@ export function SettingsPage({ tab = "data" }: { tab?: SettingsTab }) {
           <NeedsServer>
             <McpSettings />
           </NeedsServer>
+        </Tabs.Panel>
+        <Tabs.Panel value="appearance" className="animate-fade">
+          <AppearanceSettings />
+        </Tabs.Panel>
+        <Tabs.Panel value="about" className="animate-fade">
+          <AboutSettings />
         </Tabs.Panel>
       </Tabs.Root>
     </>
