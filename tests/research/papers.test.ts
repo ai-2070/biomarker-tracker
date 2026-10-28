@@ -12,7 +12,9 @@ import {
   parsePubmedSummary,
   pubmedTerm,
   sanitizeTopic,
+  paperById,
   searchPapers,
+  studyQuery,
   type FetchFn,
 } from "../../src/research/papers";
 
@@ -143,5 +145,27 @@ describe("searchPapers", () => {
     expect(r.source).toBe("pubmed");
     expect(r.papers.length).toBe(2);
     expect(urls.map((u) => new URL(u).host)).toEqual(["www.ebi.ac.uk", "eutils.ncbi.nlm.nih.gov", "eutils.ncbi.nlm.nih.gov"]);
+  });
+});
+
+describe("one study by its ID", () => {
+  it("builds the Europe PMC query for PMID, PMCID and DOI keys", () => {
+    expect(studyQuery("PMID:42765482")).toBe("EXT_ID:42765482 AND SRC:MED");
+    expect(studyQuery("pmcid:pmc123456")).toBe("PMCID:PMC123456");
+    expect(studyQuery("DOI:10.1093/ajcn/72.3.694")).toBe('DOI:"10.1093/ajcn/72.3.694"');
+    expect(studyQuery("ferritin OR 1=1")).toBeUndefined();
+    expect(studyQuery('DOI:10.1/x" OR "y')).toBeUndefined();
+  });
+  it("fetches it from Europe PMC with its abstract", async () => {
+    const urls: string[] = [];
+    const fetchFn: FetchFn = async (url) => {
+      urls.push(url);
+      return new Response(JSON.stringify(fixture("europepmc-ferritin-reviews.json")), { status: 200 });
+    };
+    const p = await paperById("PMID:36728680", fetchFn);
+    expect(p?.id).toMatch(/^PMID:/);
+    expect(new URL(urls[0]!).searchParams.get("query")).toBe("EXT_ID:36728680 AND SRC:MED");
+    expect(await paperById("not an id", fetchFn)).toBeUndefined();
+    expect(urls).toHaveLength(1);
   });
 });

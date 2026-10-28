@@ -21,6 +21,7 @@ import {
   openBrain,
   removeAttachment,
   send,
+  takePending,
   setDraft,
   stop,
   toggleBrain,
@@ -46,6 +47,7 @@ const TOOL_TEXT: Record<string, string> = {
   get_log: "Read your habits",
   compare_before_after: "Compared before and after in your experiments",
   search_research: "Searched Europe PMC",
+  get_study: "Read a study on Europe PMC",
   read_skill: "Followed a skill",
   research_tools: "Listed a research source's tools",
 };
@@ -157,6 +159,11 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
   const critical = useCritical();
   const ready = !!settings?.ready.ok;
   const model = settings ? modelLabel(settings.assistant) : "";
+
+  // A question from a "Summarize with Brain" button goes out once the model is known.
+  useEffect(() => {
+    if (brain.pending && settings !== undefined) takePending(!!settings?.ready.ok, model);
+  }, [brain.pending, settings, model]);
 
   // Keep the newest message in view, unless the person scrolled up to read.
   useLayoutEffect(() => {

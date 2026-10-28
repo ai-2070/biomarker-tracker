@@ -56,6 +56,8 @@ export interface BrainState {
   attachments: Attachment[];
   /** Bumped to move focus into the question box. */
   focusTick: number;
+  /** A question to send as soon as Brain knows a model is ready (from "Summarize with Brain" buttons). */
+  pending?: string;
 }
 
 type Reply =
@@ -87,6 +89,20 @@ export function openBrain(opts: { draft?: string } = {}): void {
   set((s) => ({ open: true, ...(opts.draft ? { draft: opts.draft } : {}), focusTick: s.focusTick + 1 }));
 }
 export const closeBrain = () => set({ open: false });
+
+/** Opens Brain and sends the question once a model is ready (otherwise it waits in the question box). */
+export function askBrain(question: string): void {
+  set((s) => ({ open: true, pending: question, focusTick: s.focusTick + 1 }));
+}
+
+/** Called by the window once it knows whether a model is ready. */
+export function takePending(ready: boolean, model: string): void {
+  const q = state.pending;
+  if (!q) return;
+  set({ pending: undefined });
+  if (ready && !state.busy) void send(model, q);
+  else set({ draft: q });
+}
 export const toggleBrain = () => (state.open ? closeBrain() : openBrain());
 export const setDraft = (draft: string) => set({ draft });
 export const removeAttachment = (id: string) => set((s) => ({ attachments: s.attachments.filter((a) => a.id !== id) }));

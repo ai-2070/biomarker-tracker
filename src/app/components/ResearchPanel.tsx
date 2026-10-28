@@ -4,7 +4,8 @@ import type { BiomarkerDef } from "../../core/types";
 import { useServerStatus } from "../api";
 import { markerTerms, searchPapers, type Paper, type SearchFilter, type SearchResult } from "../../research/papers";
 import { nameInSentence } from "../knowledge";
-import { openBrain } from "../brain/store";
+import { askBrain, openBrain } from "../brain/store";
+import { BrainIcon } from "./icons";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
 
@@ -26,6 +27,9 @@ export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: 
     status: "idle",
   });
   const terms = markerTerms(def.name, def.abbreviation);
+  // Brain needs the local server; and no AI commentary next to a critical result (safety rule).
+  const server = useServerStatus();
+  const canAsk = !!server && !critical;
 
   async function search(e: FormEvent) {
     e.preventDefault();
@@ -89,7 +93,7 @@ export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: 
           <ul className="flex flex-col gap-3">
             {papers.map((p) => (
               <li key={p.id} id={`paper-${p.id}`}>
-                <PaperItem paper={p} />
+                <PaperItem paper={p} canAsk={canAsk} />
               </li>
             ))}
           </ul>
@@ -106,7 +110,12 @@ export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: 
   );
 }
 
-function PaperItem({ paper: p }: { paper: Paper }) {
+/** What Brain is asked for one study. It looks the study up itself, so the citation can be checked. */
+export function summaryQuestion(p: Pick<Paper, "id" | "title">): string {
+  return `Summarize this study in plain language: "${p.title}" (${p.id}). What kind of study is it, who was studied and how many, what did it find, how strong is the evidence, and what are its limits? Then say briefly what it may and may not mean for someone like me.`;
+}
+
+function PaperItem({ paper: p, canAsk }: { paper: Paper; canAsk: boolean }) {
   return (
     <article className="rounded-lg border border-line p-3">
       <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-2">
@@ -127,7 +136,15 @@ function PaperItem({ paper: p }: { paper: Paper }) {
           <p className="text-sm whitespace-pre-line text-ink-2">{p.abstract}</p>
         </details>
       )}
-      <p className="mt-1 font-mono text-xs text-muted">{p.id}</p>
+      <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
+        <p className="font-mono text-xs text-muted">{p.id}</p>
+        {canAsk && (
+          <Button variant="secondary" className="min-h-10 px-3 text-sm" onClick={() => askBrain(summaryQuestion(p))}>
+            <BrainIcon className="size-4 text-accent" />
+            Summarize with Brain
+          </Button>
+        )}
+      </div>
     </article>
   );
 }

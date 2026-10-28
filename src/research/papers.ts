@@ -230,6 +230,29 @@ async function getJson(fetchFn: FetchFn, url: string, signal?: AbortSignal): Pro
   return res.json();
 }
 
+/**
+ * The Europe PMC query for one study by its citation key ("PMID:123", "PMCID:PMC123" or
+ * "DOI:10.x/y"), or undefined when the key isn't one of those.
+ */
+export function studyQuery(id: string): string | undefined {
+  const s = id.trim();
+  let m = /^PMID:\s*(\d{1,9})$/i.exec(s);
+  if (m) return `EXT_ID:${m[1]} AND SRC:MED`;
+  m = /^PMCID:\s*(PMC\d{1,9})$/i.exec(s);
+  if (m) return `PMCID:${m[1]!.toUpperCase()}`;
+  m = /^DOI:\s*(10\.\d{4,9}\/[^\s"]{1,200})$/i.exec(s);
+  if (m) return `DOI:"${m[1]}"`;
+  return undefined;
+}
+
+/** One study by its citation key, from Europe PMC (with its abstract), or undefined if not found. */
+export async function paperById(id: string, fetchFn: FetchFn, signal?: AbortSignal): Promise<Paper | undefined> {
+  const query = studyQuery(id);
+  if (!query) return undefined;
+  const { papers } = parseEuropePmc(await getJson(fetchFn, europePmcUrl(query, 1), signal));
+  return papers[0];
+}
+
 /** Search Europe PMC; if that fails, fall back to PubMed. */
 export async function searchPapers(
   terms: readonly string[],
