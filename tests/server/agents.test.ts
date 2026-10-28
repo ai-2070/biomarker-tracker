@@ -48,6 +48,15 @@ describe("agent programs: arguments", () => {
     );
   });
 
+  it("passes effort the way each program expects it", () => {
+    const at = (a: string[], flag: string) => a[a.indexOf(flag) + 1];
+    expect(at(claudeArgs({ systemFile: "/s", effort: "max" }), "--effort")).toBe("max");
+    expect(codexArgs({ dir: "/t", effort: "high" })).toContain("model_reasoning_effort=high");
+    expect(at(hermesArgs({ effort: "xhigh" }), "--reasoning")).toBe("xhigh");
+    expect(at(openclawArgs({ messageFile: "/m", sessionKey: "k", effort: "low" }), "--thinking")).toBe("low");
+    expect(claudeArgs({ systemFile: "/s" })).not.toContain("--effort");
+  });
+
   it("puts earlier turns before the new question", () => {
     expect(conversationText([{ role: "user", content: "Hi" }])).toBe("Hi");
     const t = conversationText([
@@ -110,6 +119,9 @@ describe("OpenRouter", () => {
     }) as typeof fetch;
     await zdrFetch(base)("https://openrouter.ai/api/v1/chat/completions", { method: "POST", body: JSON.stringify({ model: "m", provider: { zdr: false, order: ["a"] } }) });
     expect(sent.provider).toEqual({ order: ["a"], zdr: true, data_collection: "deny" });
+    await zdrFetch(base, { reasoning: { effort: "high" } })("https://openrouter.ai/api/v1/chat/completions", { method: "POST", body: JSON.stringify({ model: "m" }) });
+    expect(sent.reasoning).toEqual({ effort: "high" });
+    expect(sent.provider).toEqual({ zdr: true, data_collection: "deny" });
   });
 
   it("lists only models with a zero-retention endpoint that can use tools", async () => {

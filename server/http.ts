@@ -4,16 +4,17 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { PROVIDERS, providerInfo, type ProviderId, type Region } from "../src/core/aiProviders";
+import { PROVIDERS, providerInfo, type Effort, type ProviderId, type Region } from "../src/core/aiProviders";
 import { MCP_PRESETS } from "../src/core/mcpPresets";
-import { agentInstalled, hermesConnected, isAgent, setHermesConnection, testAgent } from "./agents";
+import { agentInstalled, hermesConnected, hermesProfiles, isAgent, openclawAgents, setHermesConnection, testAgent } from "./agents";
+import { openTerminal } from "./terminal";
 import { ask, type ChatMessage } from "./assistant";
 import { handleMcp, setBridgePort } from "./bridge";
 import { openRouterModels } from "./openrouter";
 import * as profiles from "./profiles";
 import { parseSnapshot } from "./healthTools";
 import * as mcp from "./mcp";
-import { assistantCheck, describeModelError, readyModel } from "./models";
+import { assistantCheck, currentChoice, describeModelError, readyModel } from "./models";
 import { addSkill, deleteSkill, getSkill, listSkills, setSkillEnabled } from "./skills";
 import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./store";
 import { generateText } from "ai";
@@ -46,7 +47,7 @@ const providerOf = (id: string): ProviderId => {
 
 route("GET", "/api/status", () => {
   const s = getSettings();
-  return { app: "biomarker-tracker", assistant: s.assistant ?? null, ready: assistantCheck() };
+  return { app: "biomarker-tracker", assistant: currentChoice(), chosen: !!s.assistant, ready: assistantCheck() };
 });
 
 route("GET", "/api/settings", async () => {
@@ -58,9 +59,34 @@ route("GET", "/api/settings", async () => {
     hasKey: Object.fromEntries(PROVIDERS.map((p) => [p.id, !!keys[p.id]])),
     installed: Object.fromEntries(PROVIDERS.filter((p) => p.kind === "agent").map((p) => [p.id, agentInstalled(p.id)])),
     hermesConnected: await hermesConnected(),
-    assistant: s.assistant ?? null,
+    assistant: currentChoice(),
+    /** False while the default (Claude Code, Opus) is in use because nothing was saved yet. */
+    chosen: !!s.assistant,
     ready: assistantCheck(),
   };
+});
+
+/** Models (or profiles) that are loaded rather than listed in the app: local servers, Hermes, OpenClaw. */
+route("GET", "/api/settings/models/(ollama|lmstudio|hermes|openclaw)", async ([id]) => {
+  if (id === "hermes") return { models: [], profiles: await hermesProfiles() };
+  if (id === "openclaw") return { models: [], profiles: await openclawAgents() };
+  const info = providerInfo(id!)!;
+  const base = (getSettings().providers[info.id]?.baseURL?.trim() || info.defaultBaseURL || "").replace(/\/+$/, "");
+  try {
+    if (!/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(`${base}/`)) return { models: [], error: `${info.label} must run on this computer.` };
+    const r = await fetch(`${base}/models`, { signal: AbortSignal.timeout(4000) });
+    const j = (await r.json()) as { data?: { id?: unknown }[] };
+    return { models: (j.data ?? []).filter((m) => typeof m.id === "string").map((m) => ({ id: String(m.id), label: String(m.id) })) };
+  } catch {
+    return { models: [], error: `${info.label} isn't running, or isn't at ${base}. Start it, then reload this page.` };
+  }
+});
+
+/** Opens a terminal with the program maker's official install (or sign-in) command. Fixed commands only. */
+route("POST", "/api/agents/(claude-code|codex|hermes|openclaw)/(install|signin)", ([id, action]) => {
+  const info = providerInfo(id!)!;
+  const cmd = action === "install" ? (process.platform === "win32" ? info.install!.windows : info.install!.unix) : info.install!.signIn;
+  return openTerminal(`${action === "install" ? "Install" : "Sign in to"} ${info.label}`, cmd);
 });
 
 route("GET", "/api/settings/models/openrouter", async () => {
@@ -101,16 +127,18 @@ route("PUT", "/api/settings/assistant", (_p, body) => {
   const provider = providerOf(str(body.provider, 20) ?? "");
   const model = (str(body.model, 120) ?? "").trim();
   if (!model && !providerInfo(provider)?.modelOptional) throw new HttpError(400, "Choose a model.");
-  updateSettings((s) => (s.assistant = { provider, model }));
+  const effort = typeof body.effort === "string" && providerInfo(provider)!.efforts.includes(body.effort as Effort) ? (body.effort as Effort) : undefined;
+  updateSettings((s) => (s.assistant = { provider, model, ...(effort ? { effort } : {}) }));
   return { ok: true, ready: assistantCheck() };
 });
 
 route("POST", "/api/settings/test", async () => {
   const s = getSettings();
-  if (s.assistant && isAgent(s.assistant.provider)) {
+  const choice = currentChoice();
+  if (isAgent(choice.provider)) {
     const check = assistantCheck();
     if (!check.ok) return { ok: false, error: check.reason };
-    return testAgent(s.assistant.provider, s.assistant.model, s.providers[s.assistant.provider]?.profile);
+    return testAgent(choice.provider, choice.model, s.providers[choice.provider]?.profile, choice.effort);
   }
   const r = readyModel();
   if (!r.ok) return { ok: false, error: r.reason };

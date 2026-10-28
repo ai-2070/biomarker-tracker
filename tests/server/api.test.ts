@@ -66,6 +66,24 @@ describe("security checks", () => {
 });
 
 describe("AI model settings", () => {
+  it("uses Claude Code with Opus until something else is saved", async () => {
+    const s = (await (await call("GET", "/api/settings")).json()) as { assistant: unknown; chosen: boolean };
+    expect(s.assistant).toEqual({ provider: "claude-code", model: "opus" });
+    expect(s.chosen).toBe(false);
+  });
+
+  it("saves an effort level only if the provider has it", async () => {
+    await call("PUT", "/api/settings/assistant", { provider: "claude-code", model: "sonnet", effort: "xhigh" });
+    expect(getSettings().assistant).toEqual({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
+    await call("PUT", "/api/settings/assistant", { provider: "codex", model: "", effort: "max" });
+    expect(getSettings().assistant).toEqual({ provider: "codex", model: "" });
+  });
+
+  it("opens install and sign-in only for known programs", async () => {
+    expect((await call("POST", "/api/agents/rm-rf/install")).status).toBe(404);
+    expect((await call("POST", "/api/agents/claude-code/uninstall")).status).toBe(404);
+  });
+
   it("stores the key server-side and only ever reports whether it is set", async () => {
     const r = await call("PUT", "/api/settings/provider/anthropic", { key: "sk-ant-secret-123", zdrConfirmed: true });
     expect(r.status).toBe(200);

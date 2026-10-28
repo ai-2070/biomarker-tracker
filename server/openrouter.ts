@@ -4,13 +4,14 @@
 /** Added to every request body: only endpoints that keep nothing and don't collect data. */
 export const ZDR_ROUTING = { zdr: true, data_collection: "deny" } as const;
 
-/** A fetch that adds ZDR_ROUTING to each JSON request body (any routing the SDK set is kept, ours wins). */
-export function zdrFetch(base: typeof fetch = fetch): typeof fetch {
+/** A fetch that adds ZDR_ROUTING to each JSON request body (any routing the SDK set is kept, ours wins), plus `extra` (e.g. effort). */
+export function zdrFetch(base: typeof fetch = fetch, extra: Record<string, unknown> = {}): typeof fetch {
   return (async (input: Parameters<typeof fetch>[0], init?: RequestInit) => {
     if (init && typeof init.body === "string") {
       try {
         const body = JSON.parse(init.body) as Record<string, unknown>;
         const provider = typeof body.provider === "object" && body.provider !== null ? body.provider : {};
+        Object.assign(body, extra);
         body.provider = { ...provider, ...ZDR_ROUTING };
         init = { ...init, body: JSON.stringify(body) };
       } catch {
