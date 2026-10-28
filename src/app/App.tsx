@@ -6,6 +6,7 @@ import { Notice } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
 import { BloodDashboardPage } from "./pages/DashboardPage";
 import { BodyPage } from "./pages/BodyPage";
+import { DeviceImportPage } from "./pages/DeviceImportPage";
 import { HomePage } from "./pages/HomePage";
 import { SoonPage } from "./pages/SoonPage";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -116,6 +117,8 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <BloodDashboardPage />;
     case "body":
       return <BodyPage key={route.add ? "add" : ""} add={route.add} />;
+    case "device-import":
+      return <DeviceImportPage />;
     case "soon":
       return <SoonPage key={route.section} section={route.section} />;
     case "overview":

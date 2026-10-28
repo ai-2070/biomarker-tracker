@@ -8,7 +8,7 @@ import { BODY_GROUPS } from "../../core/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { PlusIcon } from "../components/icons";
-import { Button, Card, Notice } from "../components/ui";
+import { Button, Card, LinkButton, Notice } from "../components/ui";
 import { formatDate, lowerFirst } from "../format";
 import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
@@ -58,12 +58,17 @@ export function BodyPage({ add }: { add?: boolean }) {
               : `Latest measurement ${formatDate(d.lastTest!)} · ${body.length} ${body.length === 1 ? "measurement" : "measurements"} since ${d.draws[0]!.date.slice(0, 4)}`}
           </p>
         </div>
-        {!adding && !empty && (
-          <Button onClick={() => (setAdding(true), setSaved(0))}>
-            <PlusIcon />
-            Add measurements
-          </Button>
-        )}
+        <div className="flex flex-wrap gap-2">
+          <LinkButton variant="secondary" href={href({ name: "device-import" })}>
+            Import from a device
+          </LinkButton>
+          {!adding && !empty && (
+            <Button onClick={() => (setAdding(true), setSaved(0))}>
+              <PlusIcon />
+              Add measurements
+            </Button>
+          )}
+        </div>
       </header>
 
       {saved > 0 && (
@@ -120,7 +125,11 @@ export function BodyPage({ add }: { add?: boolean }) {
                   <li>Day-to-day swings are normal. Measure the same way and at the same time of day, and follow the trend.</li>
                 </ul>
                 <p className="mt-3 text-sm text-ink-2">
-                  Coming later: sync from your phone (
+                  Watch, ring or phone app data can be imported from their export files (
+                  <a href={href({ name: "device-import" })} className="text-accent">
+                    Import from a device
+                  </a>
+                  ). Coming later: automatic sync from your phone (
                   <a href={href({ name: "soon", section: "devices" })} className="text-accent">
                     Devices
                   </a>

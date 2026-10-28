@@ -10,6 +10,7 @@ const SECTIONS: Record<SoonSection, { title: string; sub: string; points: string
       "An Android app that reads Health Connect on your phone (sleep, heart rate, steps, weight and more from the apps and watches that write there)",
       "Syncs with this computer over your home network; nothing goes through a server",
       "Shows up on the dashboard timeline next to your blood tests and log",
+      "Until then: Body → Import from a device reads the export files from Google Fit, Samsung Health, Oura, Garmin or Apple Health",
     ],
   },
 };

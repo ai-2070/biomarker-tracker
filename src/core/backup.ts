@@ -56,7 +56,7 @@ function isMeasurement(v: unknown): v is Measurement {
     isStr(v.originalUnit) &&
     isStr(v.date) &&
     isIsoDate(v.date) &&
-    (v.source === "manual" || v.source === "pdf" || v.source === "csv" || v.source === "photo") &&
+    (v.source === "manual" || v.source === "pdf" || v.source === "csv" || v.source === "photo" || v.source === "device") &&
     optional(v.qualifier, (q) => q === "<" || q === ">") &&
     optional(v.lab, isStr) &&
     optional(v.labRange, isRange) &&
