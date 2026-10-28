@@ -8,3 +8,6 @@ dist
 
 # Local server data: settings, API keys, your own skills
 data/
+
+# Design review captures (regenerated each review)
+.impeccable/review/

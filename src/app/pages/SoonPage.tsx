@@ -1,0 +1,48 @@
+import type { SoonSection } from "../router";
+import { BodyIcon, PhoneSyncIcon } from "../components/icons";
+import { PageTitle } from "../components/ui";
+
+const SECTIONS: Record<SoonSection, { title: string; sub: string; points: string[] }> = {
+  body: {
+    title: "Body",
+    sub: "Coming soon. Measurements that are not blood tests, next to your results on the same timeline.",
+    points: [
+      "Weight, waist and body fat",
+      "Blood pressure and resting heart rate",
+      "Typed in by hand, or synced from your phone (see Devices)",
+      "Charts with normal ranges, like your blood markers",
+    ],
+  },
+  devices: {
+    title: "Devices",
+    sub: "Coming soon. Your phone and wearables, synced to this computer without a cloud account.",
+    points: [
+      "An Android app that reads Health Connect on your phone (sleep, heart rate, steps, weight and more from the apps and watches that write there)",
+      "Syncs with this computer over your home network; nothing goes through a server",
+      "Shows up on the dashboard timeline next to your blood tests and log",
+    ],
+  },
+};
+
+/** An honest placeholder for a section that is planned but not built. */
+export function SoonPage({ section }: { section: SoonSection }) {
+  const s = SECTIONS[section];
+  const Icon = section === "body" ? BodyIcon : PhoneSyncIcon;
+  return (
+    <>
+      <PageTitle sub={s.sub}>{s.title}</PageTitle>
+      <section className="flex max-w-2xl flex-col gap-4 rounded-2xl border border-dashed border-line-strong bg-surface p-5 sm:p-6">
+        <span className="flex size-12 items-center justify-center rounded-full bg-accent-soft text-accent">
+          <Icon width={24} height={24} />
+        </span>
+        <h2 className="font-serif text-2xl font-normal">What it will do</h2>
+        <ul className="flex list-disc flex-col gap-2 pl-5 text-ink-2">
+          {s.points.map((p) => (
+            <li key={p}>{p}</li>
+          ))}
+        </ul>
+        <p className="text-sm text-ink-2">Not built yet. Nothing here is collected or sent anywhere.</p>
+      </section>
+    </>
+  );
+}

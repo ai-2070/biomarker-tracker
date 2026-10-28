@@ -47,7 +47,7 @@ export function Overview() {
       </div>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">Your results</h1>
+          <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">Blood tests</h1>
           <p className="mt-1 text-ink-2">
             {rows.length} {rows.length === 1 ? "marker" : "markers"}, {all.length} {all.length === 1 ? "result" : "results"}. Latest
             sample: {formatDate(lastDate)}.

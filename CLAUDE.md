@@ -185,6 +185,13 @@ One assistant, no teams or multi-agent setups. Model choice, Skills and MCP sett
 
 ---
 
+## App shell and Dashboard
+
+- **Shell** (`src/app/components/AppShell.tsx`): left sidebar on large screens (profile switcher, grouped nav: Dashboard; Health: Blood tests, Biological age, Body *Soon*; Habits: Supplements & log, Experiments; Connect: Devices *Soon*; Insights: Ask; then Add results and Settings). Below `lg`: top bar (logo, add, profile) and bottom tabs (Dashboard, Blood, Log, Ask, More sheet). Setup and profile choice use `PlainShell`.
+- **Dashboard** (`#/`, `src/app/pages/DashboardPage.tsx`): real numbers only, no composite scores. Figures: biological age (with its history), markers in range, markers to watch, next re-test or last test. The timeline (`dashboard/Timeline.tsx`) draws every blood test (amber/red when something was out of range), biological age against calendar age, and the log as bars; hovering or focusing a test shows what was off. Then marker tiles with range-band sparklines, Now taking, Experiments, Ask. Data comes from `buildDashboard()` in `src/core/dashboard.ts` (tested). The results list moved to `#/results`.
+- **Body and Devices** are "Soon" pages (`#/soon/body`, `#/soon/devices`) that describe the plan and collect nothing. Devices = an Android companion app reading Health Connect and syncing to this computer over the local network.
+- Product brief for design work: `PRODUCT.md`; dashboard direction contract: `.impeccable/surfaces/`.
+
 ## Profiles (folders)
 
 - One folder per person in `data/profiles/<slug>-<4 hex>/`: `profile.json` (who: name, birth month, sex, height, diet, smoking, conditions, allergies, notes), `results.json`, `log.json`, `experiments.json`, `settings.json` (display settings), `files/` (scanned lab reports and documents, dated names, never overwritten), `files.json`, `README.txt`. Server: `server/profiles.ts`; backups are zips of the folder (`server/zip.ts`, no package), restored as a new profile with every file checked.

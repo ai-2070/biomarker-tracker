@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 export type SettingsTab = "data" | "models" | "skills" | "mcp" | "appearance" | "about";
 const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp", "appearance", "about"];
 
+export type SoonSection = "body" | "devices";
+
 export type Route =
+  | { name: "dashboard" }
   | { name: "overview" }
+  | { name: "soon"; section: SoonSection }
   | { name: "add"; marker?: string }
   | { name: "marker"; id: string }
   | { name: "data"; tab?: SettingsTab }
@@ -25,7 +29,9 @@ export function parseHash(hash: string): Route {
   const [path = "", query = ""] = hash.replace(/^#/, "").split("?");
   const parts = path.split("/").filter(Boolean).map(decodeURIComponent);
   const params = new URLSearchParams(query);
-  if (parts.length === 0) return { name: "overview" };
+  if (parts.length === 0) return { name: "dashboard" };
+  if (parts[0] === "results" && parts.length === 1) return { name: "overview" };
+  if (parts[0] === "soon" && (parts[1] === "body" || parts[1] === "devices") && parts.length === 2) return { name: "soon", section: parts[1] };
   if (parts[0] === "add" && parts.length === 1) {
     const marker = params.get("marker");
     return marker ? { name: "add", marker } : { name: "add" };
@@ -64,8 +70,12 @@ export function href(route: Route): string {
       return "#/setup";
     case "profiles":
       return "#/profiles";
-    case "overview":
+    case "dashboard":
       return "#/";
+    case "overview":
+      return "#/results";
+    case "soon":
+      return `#/soon/${route.section}`;
     case "add":
       return route.marker ? `#/add?marker=${encodeURIComponent(route.marker)}` : "#/add";
     case "marker":
