@@ -73,7 +73,7 @@ export function DashboardPage() {
           <h2 id="timeline-title" className="font-serif text-2xl font-normal">
             Timeline
           </h2>
-          <p className="text-sm text-ink-2">Point at or tap a blood test to see what was off.</p>
+          <p className="text-sm text-ink-2">Drag to move through time. Point at or tap a blood test to see what was off.</p>
         </div>
         <Timeline d={d} protocols={protocols} birthMonth={profile.birthMonth} today={today} />
       </section>

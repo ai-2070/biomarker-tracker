@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Dashboard, DrawSummary } from "../../../core/dashboard";
 import { dayNumber } from "../../../core/dates";
 import { ageAt } from "../../../core/phenoageDraws";
+import { panWindow, presetWindow, timeTicks, zoomWindow, type TimeWindow } from "../../../core/timeWindow";
 import type { ProtocolEntry } from "../../../core/types";
 import { formatDate, formatYears } from "../../format";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
+import { MinusIcon, PlusIcon } from "../icons";
 import { cx } from "../ui";
 
 /** Left gutter for the age tick labels. */
@@ -20,6 +22,18 @@ const MAX_LANES = 6;
 /** Tests closer than this (px) are drawn as one mark and listed together. */
 const CLUSTER_PX = 16;
 const CHAR_PX = 6.4;
+
+const PRESETS: { label: string; days: number | "all" }[] = [
+  { label: "6M", days: 183 },
+  { label: "1Y", days: 365 },
+  { label: "2Y", days: 730 },
+  { label: "5Y", days: 1826 },
+  { label: "All", days: "all" },
+];
+
+const monthFmt = new Intl.DateTimeFormat(undefined, { month: "short" });
+const monthYearFmt = new Intl.DateTimeFormat(undefined, { month: "short", year: "numeric" });
+const fromDay = (day: number) => new Date(Math.round(day) * 86_400_000);
 
 /** Width of an element, kept up to date. */
 function useWidth() {
@@ -53,12 +67,18 @@ const names = (ids: readonly string[]) => [...new Set(ids)].map((id) => (BIOMARK
 
 /**
  * The person's health over the years: biological age against calendar age (the gap shaded), every
- * blood test sized by how much was out of range, and the log underneath. Hover, focus or tap a test.
+ * blood test sized by how much was out of range, and the log underneath. Drag, zoom or pick a range
+ * to look around; hover, focus or tap a test to see it.
  */
 export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; protocols: readonly ProtocolEntry[]; birthMonth?: string; today: string }) {
   const [ref, width] = useWidth();
+  const clipId = `tl-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const [hover, setHover] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
+  const [view, setView] = useState<TimeWindow | null>(null);
+  const [preset, setPreset] = useState<string>("All");
+  const drag = useRef<{ x: number; w: TimeWindow; moved: boolean } | null>(null);
+  const suppressClick = useRef(false);
   const active = hover ?? pinned;
   const span = d.span!;
   const packed = useMemo(() => lanes(protocols, today), [protocols, today]);
@@ -68,8 +88,43 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
   const d0 = dayNumber(span.from);
   const d1 = Math.max(dayNumber(span.to), d0 + 30);
   const lead = (d1 - d0) * 0.02;
+  const full = useMemo(() => ({ from: d0 - lead, to: d1 + lead }), [d0, d1, lead]);
+  const v = view ?? full;
   const right = Math.max(width, 1) - PAD_R;
-  const x = (date: string) => PAD_L + ((dayNumber(date) - d0 + lead) / (d1 - d0 + lead * 2)) * (right - PAD_L);
+  const plotW = Math.max(right - PAD_L, 1);
+  const xDay = (day: number) => PAD_L + ((day - v.from) / (v.to - v.from)) * plotW;
+  const x = (date: string) => xDay(dayNumber(date));
+  const inView = (date: string) => x(date) >= PAD_L - 1 && x(date) <= right + 1;
+  const zoomed = v.to - v.from < full.to - full.from - 1;
+
+  /** Changes the window and closes any open test details (their positions moved). */
+  const show = (w: TimeWindow | null, label: string | null = null) => {
+    setView(w);
+    setPreset(label ?? "");
+    setHover(null);
+    setPinned(null);
+  };
+
+  // Ctrl + wheel zooms around the pointer; a sideways wheel or trackpad swipe moves. A plain wheel scrolls the page.
+  const latest = useRef({ v, full, plotW });
+  latest.current = { v, full, plotW };
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      const { v: cur, full: all, plotW: pw } = latest.current;
+      const anchor = Math.min(Math.max((e.clientX - el.getBoundingClientRect().left - PAD_L) / pw, 0), 1);
+      if (e.ctrlKey) {
+        e.preventDefault();
+        show(zoomWindow(cur, e.deltaY > 0 ? 1.25 : 0.8, anchor, all));
+      } else if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        show(panWindow(cur, (e.deltaX * (cur.to - cur.from)) / pw, all));
+      }
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [ref]);
 
   const ageTop = 14;
   const testsTop = hasAge ? AGE_H : 0;
@@ -77,155 +132,256 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
   const axisTop = lanesTop + laneCount * LANE_H + (laneCount ? 6 : 0);
   const height = axisTop + AXIS_H;
 
-  // Age scale over both lines.
+  // Age scale over what is on screen (all of it when nothing is), so zooming in shows the detail.
   const ageAtDate = (date: string) => (birthMonth ? ageAt(birthMonth, date) : 0);
   const calStart = d.bioAge[0]?.date ?? span.from;
-  const values = [...d.bioAge.flatMap((p) => [p.age, p.phenoAge]), ...(hasAge ? [ageAtDate(today)] : [])];
+  const seen = d.bioAge.filter((p) => inView(p.date));
+  const basis = seen.length ? seen : d.bioAge;
+  const values = [...basis.flatMap((p) => [p.age, p.phenoAge]), ...(hasAge && inView(today) ? [ageAtDate(today)] : [])];
   const lo = values.length ? Math.floor(Math.min(...values) - 2) : 0;
   const hi = values.length ? Math.ceil(Math.max(...values) + 2) : 1;
-  const y = (v: number) => ageTop + ((hi - v) / Math.max(hi - lo, 1)) * (AGE_H - ageTop - 24);
+  const y = (val: number) => ageTop + ((hi - val) / Math.max(hi - lo, 1)) * (AGE_H - ageTop - 24);
   const last = d.bioAge.at(-1);
-  const yTicks = hasAge ? [lo + 2, Math.round((lo + hi) / 2), hi - 2].filter((v, i, a) => a.indexOf(v) === i) : [];
+  const yTicks = hasAge ? [lo + 2, Math.round((lo + hi) / 2), hi - 2].filter((t, i, a) => a.indexOf(t) === i) : [];
 
   // The gap between biological and calendar age, shaded.
   const gap = hasAge
     ? [...d.bioAge.map((p) => `${x(p.date)},${y(p.phenoAge)}`), ...[...d.bioAge].reverse().map((p) => `${x(p.date)},${y(ageAtDate(p.date))}`)].join(" ")
     : "";
 
-  // End labels, kept apart when the two values are close.
+  // End labels when today is on screen, kept apart when the two values are close.
+  const showEnds = hasAge && !!last && inView(today);
   let bioLabelY = last ? y(last.phenoAge) : 0;
   let ageLabelY = hasAge ? y(ageAtDate(today)) : 0;
-  if (hasAge && last && Math.abs(bioLabelY - ageLabelY) < 16) {
+  if (showEnds && Math.abs(bioLabelY - ageLabelY) < 16) {
     const mid = (bioLabelY + ageLabelY) / 2;
-    const up = last.phenoAge > ageAtDate(today);
+    const up = last!.phenoAge > ageAtDate(today);
     bioLabelY = mid + (up ? -8 : 8);
     ageLabelY = mid + (up ? 8 : -8);
   }
 
-  // Tests close together become one mark.
+  // Tests on screen; those close together become one mark.
   const clusters: { x: number; draws: DrawSummary[] }[] = [];
-  for (const t of d.draws) {
+  for (const t of d.draws.filter((t) => inView(t.date))) {
     const tx = x(t.date);
     const k = clusters.at(-1);
     if (k && tx - k.x < CLUSTER_PX) k.draws.push(t);
     else clusters.push({ x: tx, draws: [t] });
   }
 
-  // Where each log label goes: inside its bar, beside it, or shortened (then listed under the chart).
-  const placed = packed.map(({ p, row }, i) => {
+  // Log bars on screen; labels inside, beside, or shortened (then listed under the chart).
+  const visibleLanes = packed.filter(({ p }) => xDay(dayNumber(p.end ?? today)) >= PAD_L && x(p.start) <= right);
+  const placed = visibleLanes.map(({ p, row }) => {
     const x0 = x(p.start);
     const x1 = Math.max(x(p.end ?? today), x0 + 6);
-    const next = packed.slice(i + 1).find((o) => o.row === row);
-    const limit = next ? x(next.p.start) - 8 : width - 4;
-    const inside = Math.floor((x1 - x0 - 16) / CHAR_PX);
-    const outside = Math.floor((limit - x1 - 6) / CHAR_PX);
+    const c0 = Math.max(x0, PAD_L);
+    const c1 = Math.min(x1, right);
+    const next = visibleLanes.find((o) => o.row === row && o.p.start > p.start);
+    const limit = Math.min(next ? x(next.p.start) - 8 : width - 4, width - 4);
+    const inside = Math.floor((c1 - c0 - 16) / CHAR_PX);
+    const outside = Math.floor((limit - c1 - 6) / CHAR_PX);
     const fit = (n: number) => (n >= p.label.length ? p.label : n >= 6 ? `${p.label.slice(0, n - 1).trimEnd()}…` : "");
     const label =
       inside >= p.label.length
-        ? { text: p.label, at: x0 + 8, inside: true }
+        ? { text: p.label, at: c0 + 8, inside: true }
         : outside > inside
-          ? { text: fit(outside), at: x1 + 6, inside: false }
-          : { text: fit(inside), at: x0 + 8, inside: true };
+          ? { text: fit(outside), at: c1 + 6, inside: false }
+          : { text: fit(inside), at: c0 + 8, inside: true };
     return { p, row, x0, x1, label };
   });
   const shortened = width > 0 ? placed.filter((l) => l.label.text !== l.p.label).map((l) => l.p) : [];
 
-  const years: string[] = [];
-  for (let yr = Number(span.from.slice(0, 4)) + 1; yr <= Number(span.to.slice(0, 4)); yr++) years.push(`${yr}-01-01`);
+  const ticks = timeTicks(v);
+  const tickLabel = (t: { date: string; kind: "year" | "month" }) => {
+    const dt = new Date(`${t.date}T12:00:00`);
+    return t.kind === "year" ? String(dt.getFullYear()) : v.to - v.from > 400 ? monthYearFmt.format(dt) : monthFmt.format(dt);
+  };
 
   const c = active === null ? undefined : clusters[active];
   const cOut = c ? names(c.draws.flatMap((t) => t.outOfRange)) : [];
   const cCrit = c ? c.draws.some((t) => t.critical.length > 0) : false;
   const cAge = c ? d.bioAge.filter((p) => c.draws.some((t) => t.date === p.date)) : [];
+  const fullSpanDays = full.to - full.from;
+
+  function onKey(e: React.KeyboardEvent) {
+    const step = (v.to - v.from) * 0.15;
+    if (e.key === "ArrowLeft") show(panWindow(v, -step, full));
+    else if (e.key === "ArrowRight") show(panWindow(v, step, full));
+    else if (e.key === "+" || e.key === "=") show(zoomWindow(v, 0.7, 0.5, full));
+    else if (e.key === "-" || e.key === "_") show(zoomWindow(v, 1 / 0.7, 0.5, full));
+    else if (e.key === "0") show(null, "All");
+    else return;
+    e.preventDefault();
+  }
+
+  const segBtn = "flex h-11 min-w-11 items-center justify-center rounded-md px-2.5 text-sm transition-colors duration-150 sm:h-8 sm:min-w-9";
 
   return (
     <div className="flex flex-col gap-3">
-      <div ref={ref} className="relative w-full" style={{ height }} onMouseLeave={() => setHover(null)}>
+      {/* Looking around: what is shown, quick ranges, zoom */}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-sm text-ink-2 tabular-nums" aria-live="polite">
+          {monthYearFmt.format(fromDay(v.from))} – {monthYearFmt.format(fromDay(v.to))}
+        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <div role="group" aria-label="Time range" className="flex rounded-lg border border-line bg-sunken p-0.5">
+            {PRESETS.filter((p) => p.days === "all" || p.days < fullSpanDays).map((p) => (
+              <button
+                key={p.label}
+                type="button"
+                aria-pressed={preset === p.label}
+                onClick={() => show(p.days === "all" ? null : presetWindow(p.days, full), p.label)}
+                className={cx(segBtn, preset === p.label ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+          <div role="group" aria-label="Zoom" className="flex rounded-lg border border-line bg-sunken p-0.5">
+            <button type="button" aria-label="Zoom out" disabled={!zoomed} onClick={() => show(zoomWindow(v, 1 / 0.7, 0.5, full))} className={cx(segBtn, "text-ink-2 hover:text-ink disabled:opacity-40")}>
+              <MinusIcon width={16} height={16} />
+            </button>
+            <button type="button" aria-label="Zoom in" disabled={v.to - v.from <= 46} onClick={() => show(zoomWindow(v, 0.7, 0.5, full))} className={cx(segBtn, "text-ink-2 hover:text-ink disabled:opacity-40")}>
+              <PlusIcon width={16} height={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        ref={ref}
+        role="group"
+        tabIndex={0}
+        aria-label="Timeline. Arrow keys move through time, plus and minus zoom, 0 shows everything."
+        onKeyDown={onKey}
+        className={cx("relative w-full rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent", zoomed ? "cursor-grab active:cursor-grabbing" : "")}
+        style={{ height, touchAction: "pan-y" }}
+        onMouseLeave={() => setHover(null)}
+        onPointerDown={(e) => {
+          if (e.button !== 0) return;
+          drag.current = { x: e.clientX, w: v, moved: false };
+        }}
+        onPointerMove={(e) => {
+          const g = drag.current;
+          if (!g) return;
+          const dx = e.clientX - g.x;
+          if (!g.moved && Math.abs(dx) < 5) return;
+          if (!g.moved) {
+            g.moved = true;
+            e.currentTarget.setPointerCapture(e.pointerId);
+          }
+          show(panWindow(g.w, (-dx * (g.w.to - g.w.from)) / plotW, full));
+        }}
+        onPointerUp={() => {
+          if (drag.current?.moved) suppressClick.current = true;
+          drag.current = null;
+        }}
+        onPointerCancel={() => (drag.current = null)}
+        onClickCapture={(e) => {
+          // The end of a drag is not a click on a test.
+          if (suppressClick.current) {
+            suppressClick.current = false;
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        }}
+      >
         {width > 0 && (
           <svg width={width} height={height} className="block overflow-visible" aria-hidden="true">
-            {years.map((yr) => (
-              <g key={yr}>
-                <line x1={x(yr)} x2={x(yr)} y1={0} y2={axisTop} className="stroke-line" strokeWidth={1} />
-                <text x={x(yr) + 4} y={axisTop + 17} className="fill-ink-2 font-mono text-[11px]">
-                  {yr.slice(0, 4)}
+            <defs>
+              <clipPath id={clipId}>
+                <rect x={PAD_L - 10} y={0} width={plotW + 20} height={height} />
+              </clipPath>
+            </defs>
+            {ticks.map((t) => (
+              <g key={t.date}>
+                <line x1={xDay(t.day)} x2={xDay(t.day)} y1={0} y2={axisTop} className={t.kind === "year" ? "stroke-line-strong" : "stroke-line"} strokeWidth={1} />
+                <text x={xDay(t.day) + 4} y={axisTop + 17} className={cx("font-mono text-[11px]", t.kind === "year" ? "fill-ink" : "fill-ink-2")}>
+                  {tickLabel(t)}
                 </text>
               </g>
             ))}
-            {yTicks.map((v) => (
-              <text key={v} x={PAD_L - 6} y={y(v) + 3} textAnchor="end" className="fill-ink-2 font-mono text-[10px]">
-                {v}
+            {yTicks.map((t) => (
+              <text key={t} x={PAD_L - 6} y={y(t) + 3} textAnchor="end" className="fill-ink-2 font-mono text-[10px]">
+                {t}
               </text>
             ))}
 
             {c && <line x1={c.x} x2={c.x} y1={0} y2={axisTop} className="stroke-ink-2" strokeWidth={1} strokeDasharray="2 3" />}
 
-            {hasAge && (
-              <g>
-                <polygon points={gap} className="fill-chart-band/10" />
-                <line x1={x(calStart)} y1={y(ageAtDate(calStart))} x2={x(today)} y2={y(ageAtDate(today))} className="stroke-ink-2" strokeWidth={1.5} strokeDasharray="5 5" />
-                <polyline points={d.bioAge.map((p) => `${x(p.date)},${y(p.phenoAge)}`).join(" ")} fill="none" className="timeline-draw stroke-chart-line" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" pathLength={1} />
-                {d.bioAge.map((p) => (
-                  <circle
-                    key={p.date}
-                    cx={x(p.date)}
-                    cy={y(p.phenoAge)}
-                    r={c?.draws.some((t) => t.date === p.date) ? 6 : 4.5}
-                    strokeWidth={2}
-                    className={cx("transition-[r] duration-150", p.approximate ? "fill-surface stroke-chart-line" : "fill-chart-line stroke-surface")}
-                  />
-                ))}
-                {last && (
-                  <>
-                    <text x={right + 10} y={bioLabelY + 4} className="fill-chart-line font-mono text-[12px] font-medium">
-                      {last.phenoAge.toFixed(1)}
-                    </text>
-                    <text x={right + 10} y={ageLabelY + 4} className="fill-ink-2 font-mono text-[12px]">
-                      {ageAtDate(today).toFixed(1)}
-                    </text>
-                  </>
-                )}
-              </g>
+            <g clipPath={`url(#${clipId})`}>
+              {hasAge && (
+                <g>
+                  <polygon points={gap} className="fill-chart-band/10" />
+                  <line x1={x(calStart)} y1={y(ageAtDate(calStart))} x2={x(today)} y2={y(ageAtDate(today))} className="stroke-ink-2" strokeWidth={1.5} strokeDasharray="5 5" />
+                  <polyline points={d.bioAge.map((p) => `${x(p.date)},${y(p.phenoAge)}`).join(" ")} fill="none" className="timeline-draw stroke-chart-line" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" pathLength={1} />
+                  {d.bioAge.map((p) => (
+                    <circle
+                      key={p.date}
+                      cx={x(p.date)}
+                      cy={y(p.phenoAge)}
+                      r={c?.draws.some((t) => t.date === p.date) ? 6 : 4.5}
+                      strokeWidth={2}
+                      className={cx("transition-[r] duration-150", p.approximate ? "fill-surface stroke-chart-line" : "fill-chart-line stroke-surface")}
+                    />
+                  ))}
+                </g>
+              )}
+
+              {/* Blood tests: size shows how much was out of range */}
+              <line x1={PAD_L} x2={right} y1={testsTop + TEST_H / 2} y2={testsTop + TEST_H / 2} className="stroke-line" strokeWidth={1} />
+              {clusters.map((k, i) => {
+                const out = new Set(k.draws.flatMap((t) => t.outOfRange)).size;
+                const crit = k.draws.some((t) => t.critical.length > 0);
+                const r = (out === 0 ? 5 : 5 + Math.min(out, 6)) + (active === i ? 1.5 : 0);
+                return (
+                  <g key={k.draws[0]!.date}>
+                    <circle
+                      cx={k.x}
+                      cy={testsTop + TEST_H / 2}
+                      r={r}
+                      strokeWidth={2}
+                      className={cx("transition-[r] duration-150", crit ? "fill-danger stroke-surface" : out ? "fill-warn stroke-surface" : "fill-surface stroke-ink-2")}
+                    />
+                    {k.draws.length > 1 && (
+                      <text x={k.x} y={testsTop + 9} textAnchor="middle" className="fill-ink-2 font-mono text-[10px]">
+                        ×{k.draws.length}
+                      </text>
+                    )}
+                  </g>
+                );
+              })}
+
+              {/* Log: every bar keeps a readable name */}
+              {placed.map(({ p, row, x0, x1 }) => {
+                const top = lanesTop + row * LANE_H;
+                return (
+                  <g key={p.id}>
+                    <title>{`${p.label}: ${formatDate(p.start)} – ${p.end ? formatDate(p.end) : "ongoing"}`}</title>
+                    <rect x={x0} y={top + 3} width={x1 - x0} height={LANE_H - 7} rx={(LANE_H - 7) / 2} className={p.end ? "fill-sunken stroke-line-strong" : "fill-accent-soft stroke-accent/40"} strokeWidth={1} />
+                  </g>
+                );
+              })}
+            </g>
+            {/* Log labels sit outside the clip so a bar's name can extend beside it */}
+            {placed.map(({ p, row, label }) =>
+              label.text ? (
+                <text key={p.id} x={label.at} y={lanesTop + row * LANE_H + LANE_H / 2 + 4} className={cx("pointer-events-none text-[11.5px]", label.inside ? "fill-ink" : "fill-ink-2")}>
+                  {label.text}
+                </text>
+              ) : null,
             )}
 
-            {/* Blood tests: size shows how much was out of range */}
-            <line x1={PAD_L} x2={right} y1={testsTop + TEST_H / 2} y2={testsTop + TEST_H / 2} className="stroke-line" strokeWidth={1} />
-            {clusters.map((k, i) => {
-              const out = new Set(k.draws.flatMap((t) => t.outOfRange)).size;
-              const crit = k.draws.some((t) => t.critical.length > 0);
-              const r = (out === 0 ? 5 : 5 + Math.min(out, 6)) + (active === i ? 1.5 : 0);
-              return (
-                <g key={k.draws[0]!.date}>
-                  <circle
-                    cx={k.x}
-                    cy={testsTop + TEST_H / 2}
-                    r={r}
-                    strokeWidth={2}
-                    className={cx("transition-[r] duration-150", crit ? "fill-danger stroke-surface" : out ? "fill-warn stroke-surface" : "fill-surface stroke-ink-2")}
-                  />
-                  {k.draws.length > 1 && (
-                    <text x={k.x} y={testsTop + 9} textAnchor="middle" className="fill-ink-2 font-mono text-[10px]">
-                      ×{k.draws.length}
-                    </text>
-                  )}
-                </g>
-              );
-            })}
-
-            {/* Log: every bar keeps a readable name */}
-            {placed.map(({ p, row, x0, x1, label }) => {
-              const top = lanesTop + row * LANE_H;
-              return (
-                <g key={p.id}>
-                  <title>{`${p.label}: ${formatDate(p.start)} – ${p.end ? formatDate(p.end) : "ongoing"}`}</title>
-                  <rect x={x0} y={top + 3} width={x1 - x0} height={LANE_H - 7} rx={(LANE_H - 7) / 2} className={p.end ? "fill-sunken stroke-line-strong" : "fill-accent-soft stroke-accent/40"} strokeWidth={1} />
-                  {label.text && (
-                    <text x={label.at} y={top + LANE_H / 2 + 4} className={cx("text-[11.5px]", label.inside ? "fill-ink" : "fill-ink-2")}>
-                      {label.text}
-                    </text>
-                  )}
-                </g>
-              );
-            })}
+            {showEnds && last && (
+              <>
+                <text x={right + 10} y={bioLabelY + 4} className="fill-chart-line font-mono text-[12px] font-medium">
+                  {last.phenoAge.toFixed(1)}
+                </text>
+                <text x={right + 10} y={ageLabelY + 4} className="fill-ink-2 font-mono text-[12px]">
+                  {ageAtDate(today).toFixed(1)}
+                </text>
+              </>
+            )}
           </svg>
         )}
 
@@ -237,7 +393,7 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
               type="button"
               aria-label={`Blood test ${k.draws.map((t) => formatDate(t.date)).join(" and ")}: ${new Set(k.draws.flatMap((t) => t.outOfRange)).size} out of range`}
               aria-pressed={pinned === i}
-              onMouseEnter={() => setHover(i)}
+              onMouseEnter={() => !drag.current && setHover(i)}
               onFocus={() => setHover(i)}
               onBlur={() => setHover(null)}
               onClick={() => setPinned(pinned === i ? null : i)}
@@ -303,7 +459,7 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
       {shortened.length > 0 && (
         <ul className="flex flex-col gap-1 border-t border-line pt-3 text-xs text-ink-2">
           {shortened.map((p) => (
-            <li key={p.id} className="flex items-center gap-2">
+            <li key={p.id} className="flex flex-wrap items-center gap-x-2">
               <span className={cx("h-2.5 w-5 shrink-0 rounded-full border", p.end ? "border-line-strong bg-sunken" : "border-accent/40 bg-accent-soft")} />
               <span className="text-ink">{p.label}</span>
               <span>
