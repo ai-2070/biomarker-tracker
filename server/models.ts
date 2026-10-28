@@ -5,6 +5,8 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import type { LanguageModel } from "ai";
 import { canUse, providerInfo, type ModelChoice, type UseCheck } from "../src/core/aiProviders";
+import { agentInstalled } from "./agents";
+import { zdrFetch } from "./openrouter";
 import { getSecrets, getSettings } from "./store";
 
 export interface Ready {
@@ -17,7 +19,11 @@ export interface Ready {
 export function assistantCheck(): UseCheck {
   const s = getSettings();
   const choice = s.assistant;
-  return canUse(choice, choice ? s.providers[choice.provider] : undefined, !!(choice && getSecrets().keys[choice.provider]));
+  const check = canUse(choice, choice ? s.providers[choice.provider] : undefined, !!(choice && getSecrets().keys[choice.provider]));
+  if (!check.ok || !choice) return check;
+  const info = providerInfo(choice.provider)!;
+  if (info.kind === "agent" && !agentInstalled(choice.provider)) return { ok: false, reason: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
+  return check;
 }
 
 /** The model to use, or why it can't be used. Never builds a model the ZDR rule refuses. */
@@ -39,6 +45,16 @@ export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: 
       return { ok: true, ready: { model: createOpenAI({ apiKey: key }).chat(choice.model), providerOptions: { openai: { store: false } }, choice } };
     case "mistral":
       return { ok: true, ready: { model: createMistral({ apiKey: key })(choice.model), providerOptions: {}, choice } };
+    case "openrouter": {
+      // Zero data retention is requested on every call (see openrouter.ts).
+      const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch() });
+      return { ok: true, ready: { model: p.chatModel(choice.model), providerOptions: {}, choice } };
+    }
+    case "claude-code":
+    case "codex":
+    case "hermes":
+    case "openclaw":
+      return { ok: false, reason: `${info.label} runs as an agent program, not through an API.` };
     case "custom":
     case "ollama":
     case "lmstudio": {

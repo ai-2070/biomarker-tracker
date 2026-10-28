@@ -1,0 +1,340 @@
+// Agent programs the assistant can run instead of an API model: Claude Code, Codex, Hermes, OpenClaw.
+// Each question starts the program once, without its own file, shell or web tools where it allows that.
+// Claude Code, Codex and Hermes (once connected) reach the app's tools through the bridge (bridge.ts),
+// so their answers can be checked like any other. OpenClaw gets a summary of the data in the prompt.
+import { spawn, type ChildProcess } from "node:child_process";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import type { ToolSet } from "ai";
+import { providerInfo, type ProviderId } from "../src/core/aiProviders";
+import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken } from "./bridge";
+import { which } from "./which";
+
+export { which } from "./which";
+import type { ToolStep } from "./steps";
+
+export type AgentId = Extract<ProviderId, "claude-code" | "codex" | "hermes" | "openclaw">;
+export const isAgent = (id: string): id is AgentId => providerInfo(id)?.kind === "agent";
+
+const IS_WIN = process.platform === "win32";
+const TIMEOUT_MS = 10 * 60_000;
+
+export function agentInstalled(id: string): boolean {
+  const cmd = providerInfo(id)?.command;
+  return !!cmd && !!which(cmd);
+}
+
+function killTree(child: ChildProcess): void {
+  if (!child.pid) return;
+  if (IS_WIN) spawn("taskkill", ["/pid", String(child.pid), "/t", "/f"], { stdio: "ignore" });
+  else child.kill("SIGTERM");
+}
+
+interface Done {
+  code: number | null;
+  stdout: string;
+  stderr: string;
+}
+
+/** Runs a program to the end: input on stdin, stops on abort or after the time limit. */
+function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number }): Promise<Done> {
+  const exe = which(cmd);
+  if (!exe) return Promise.resolve({ code: -1, stdout: "", stderr: `The \`${cmd}\` command wasn't found.` });
+  // .cmd/.bat (npm installs on Windows) only run through cmd.exe. Our arguments contain no quotes or spaces
+  // except file paths, which Node quotes.
+  const viaCmd = IS_WIN && /\.(cmd|bat)$/i.test(exe);
+  const child = spawn(viaCmd ? "cmd.exe" : exe, viaCmd ? ["/d", "/c", exe, ...args] : args, {
+    cwd: opts.cwd,
+    env: { ...process.env, ...opts.env, PYTHONIOENCODING: "utf-8" },
+    stdio: ["pipe", "pipe", "pipe"],
+    windowsHide: true,
+  });
+  let stdout = "";
+  let stderr = "";
+  child.stdout.setEncoding("utf8").on("data", (d: string) => stdout.length < 5_000_000 && (stdout += d));
+  child.stderr.setEncoding("utf8").on("data", (d: string) => stderr.length < 200_000 && (stderr += d));
+  child.stdin.on("error", () => {});
+  child.stdin.end(opts.input ?? "");
+  const stop = () => killTree(child);
+  opts.signal?.addEventListener("abort", stop);
+  const timer = setTimeout(stop, opts.timeoutMs ?? TIMEOUT_MS);
+  return new Promise((resolve) => {
+    const finish = (code: number | null) => {
+      clearTimeout(timer);
+      opts.signal?.removeEventListener("abort", stop);
+      resolve({ code, stdout, stderr });
+    };
+    child.on("close", finish);
+    child.on("error", (e) => {
+      stderr += e.message;
+      finish(-1);
+    });
+  });
+}
+
+const jsonLines = (out: string): Record<string, unknown>[] =>
+  out
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.startsWith("{"))
+    .flatMap((l) => {
+      try {
+        return [JSON.parse(l) as Record<string, unknown>];
+      } catch {
+        return [];
+      }
+    });
+
+const lastLines = (s: string, n = 600) => s.trim().slice(-n);
+
+type Parsed = { ok: true; text: string; tools?: string[] } | { ok: false; error: string };
+
+// ---- The prompt -------------------------------------------------------------------------------
+
+export interface AgentMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+/** The conversation as one message (each question starts the agent fresh). */
+export function conversationText(messages: AgentMessage[]): string {
+  const last = messages[messages.length - 1]?.content ?? "";
+  if (messages.length <= 1) return last;
+  const earlier = messages
+    .slice(0, -1)
+    .map((m) => `${m.role === "user" ? "User" : "You (earlier answer)"}: ${m.content}`)
+    .join("\n\n");
+  return `Earlier in this conversation:\n\n${earlier}\n\n---\n\nThe user's new question:\n${last}`;
+}
+
+export const BRIDGE_NOTE = [
+  "",
+  `Your tools: the "${BRIDGE_NAME}" MCP server gives you the user's data and research tools (get_results, get_marker, search_research, read_skill and more; your program may show them with a prefix). Use only these tools. Don't use web search, files or a shell.`,
+].join("\n");
+
+export const NO_TOOLS_NOTE = [
+  "",
+  "You don't have the app's tools in this setup. The user's data is below, worked out by the app; use these numbers as they are.",
+  "You can't search research through the app here, so the app can't check citations: don't cite study IDs. If you mention research, say it is from general knowledge and should be checked.",
+].join("\n");
+
+// ---- Claude Code ------------------------------------------------------------------------------
+
+export function claudeArgs(o: { model?: string; systemFile: string; mcpFile?: string }): string[] {
+  const args = ["-p", "--output-format", "stream-json", "--verbose", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
+  if (o.mcpFile) args.push("--mcp-config", o.mcpFile, "--strict-mcp-config", "--allowedTools", "mcp__bt");
+  if (o.model) args.push("--model", o.model);
+  // No built-in tools (files, shell, web): only the app's tools.
+  args.push("--tools", "");
+  return args;
+}
+
+export function parseClaude(out: string, stderr: string): Parsed {
+  const result = jsonLines(out).findLast((l) => l.type === "result");
+  if (!result) return { ok: false, error: `Claude Code stopped without an answer. ${lastLines(stderr || out)}`.trim() };
+  const text = typeof result.result === "string" ? result.result : "";
+  if (result.is_error || result.subtype !== "success") return { ok: false, error: `Claude Code: ${text || String(result.subtype ?? "error")}`.slice(0, 600) };
+  return { ok: true, text };
+}
+
+// ---- Codex ------------------------------------------------------------------------------------
+
+/** Codex reads -c values as TOML and falls back to a plain string, so no quotes are needed. */
+export function codexArgs(o: { model?: string; dir: string; bridge?: boolean }): string[] {
+  const args = ["exec", "--json", "--skip-git-repo-check", "--sandbox", "read-only", "-C", o.dir];
+  if (o.bridge) args.push("-c", `mcp_servers.bt.url=${bridgeUrl()}`, "-c", "mcp_servers.bt.bearer_token_env_var=BT_BRIDGE_TOKEN", "-c", "mcp_servers.bt.tool_timeout_sec=300");
+  if (o.model) args.push("-m", o.model);
+  args.push("-");
+  return args;
+}
+
+export function parseCodex(out: string, stderr: string): Parsed {
+  let text = "";
+  let error = "";
+  for (const ev of jsonLines(out)) {
+    const item = ev.item as { type?: string; text?: string } | undefined;
+    if (ev.type === "item.completed" && item?.type === "agent_message" && item.text) text = item.text;
+    if (ev.type === "turn.failed") error = String((ev.error as { message?: string } | undefined)?.message ?? "Codex failed.");
+    if (ev.type === "error" && typeof ev.message === "string") error = ev.message;
+  }
+  if (text) return { ok: true, text };
+  return { ok: false, error: `Codex: ${error || lastLines(stderr || out) || "no answer."}`.slice(0, 600) };
+}
+
+// ---- Hermes -----------------------------------------------------------------------------------
+
+export function hermesArgs(o: { model?: string; profile?: string }): string[] {
+  const args: string[] = [];
+  if (o.profile) args.push("-p", o.profile);
+  args.push("chat", "--query-file", "-", "--format", "stream-json");
+  if (o.model) args.push("-m", o.model);
+  return args;
+}
+
+export function parseHermes(out: string, stderr: string): Parsed {
+  const lines = jsonLines(out);
+  const result = lines.findLast((l) => l.type === "result");
+  const text = typeof result?.text === "string" ? result.text : lines.filter((l) => l.type === "text" && typeof l.text === "string").map((l) => l.text as string).join("");
+  if (result?.exit_code && result.exit_code !== 0) return { ok: false, error: `Hermes: ${text || `failed (exit ${String(result.exit_code)})`}`.slice(0, 600) };
+  if (!text) return { ok: false, error: `Hermes stopped without an answer. ${lastLines(stderr || out)}`.trim() };
+  return { ok: true, text };
+}
+
+let hermesCache: { at: number; connected: boolean } | null = null;
+
+/** Whether Hermes has the app's tools in its MCP list. */
+export async function hermesConnected(fresh = false): Promise<boolean> {
+  if (!fresh && hermesCache && Date.now() - hermesCache.at < 30_000) return hermesCache.connected;
+  if (!agentInstalled("hermes")) return false;
+  const r = await runProgram("hermes", ["mcp", "list"], { cwd: os.homedir(), timeoutMs: 60_000 });
+  const connected = r.stdout.includes(BRIDGE_NAME);
+  hermesCache = { at: Date.now(), connected };
+  return connected;
+}
+
+/** Adds (or removes) the app's tools in Hermes' own MCP settings. Only when the user presses the button. */
+export async function setHermesConnection(on: boolean): Promise<{ ok: boolean; error?: string }> {
+  if (!agentInstalled("hermes")) return { ok: false, error: "Hermes isn't installed." };
+  await runProgram("hermes", ["mcp", "remove", BRIDGE_NAME], { cwd: os.homedir(), timeoutMs: 60_000 });
+  if (on) {
+    // Hermes asks two questions: "requires authentication?" (no: the token is in the address) and "enable all tools?" (yes).
+    const r = await runProgram("hermes", ["mcp", "add", BRIDGE_NAME, "--url", `${bridgeUrl()}?token=${stableToken()}`], { cwd: os.homedir(), input: "n\n\n", timeoutMs: 120_000 });
+    if (r.code !== 0) return { ok: false, error: lastLines(r.stderr || r.stdout, 400) || "Hermes couldn't add the server." };
+  }
+  const now = await hermesConnected(true);
+  return now === on ? { ok: true } : { ok: false, error: on ? "Hermes didn't list the server after adding it." : "Hermes still lists the server." };
+}
+
+// ---- OpenClaw ---------------------------------------------------------------------------------
+
+export function openclawArgs(o: { model?: string; profile?: string; messageFile: string; sessionKey: string; local?: boolean }): string[] {
+  const args = ["agent"];
+  if (o.profile) args.push("--agent", o.profile);
+  args.push("--session-key", o.sessionKey, "--message-file", o.messageFile, "--json", "--timeout", "0");
+  if (o.model) args.push("--model", o.model);
+  if (o.local) args.push("--local");
+  return args;
+}
+
+interface OpenClawMeta {
+  finalAssistantVisibleText?: string;
+  error?: { message?: string };
+  toolSummary?: { tools?: string[] };
+}
+interface OpenClawReply {
+  ok?: boolean;
+  error?: string | { message?: string };
+  payloads?: { text?: string | null }[];
+  meta?: OpenClawMeta;
+  result?: { payloads?: { text?: string | null }[]; meta?: OpenClawMeta };
+}
+
+export function parseOpenClaw(out: string, stderr: string): Parsed & { gatewayDown?: boolean } {
+  let reply: OpenClawReply | null = null;
+  const start = out.indexOf("{");
+  if (start !== -1) {
+    try {
+      reply = JSON.parse(out.slice(start)) as OpenClawReply;
+    } catch {
+      reply = null;
+    }
+  }
+  if (!reply) return { ok: false, error: `OpenClaw stopped without an answer. ${lastLines(stderr || out)}`.trim() };
+  const errText = typeof reply.error === "string" ? reply.error : (reply.error?.message ?? "");
+  if (reply.ok === false) {
+    return { ok: false, error: `OpenClaw: ${errText || "failed."}`.slice(0, 600), gatewayDown: /gateway not reachable|ECONNREFUSED|gateway.{0,40}(closed|not running|unavailable)/i.test(errText) };
+  }
+  const body = reply.result && (reply.result.payloads || reply.result.meta) ? reply.result : reply;
+  const meta = body.meta ?? {};
+  const text = (body.payloads ?? []).map((p) => p?.text ?? "").filter(Boolean).join("\n\n") || meta.finalAssistantVisibleText || "";
+  if (!text) return { ok: false, error: `OpenClaw: ${meta.error?.message || "no answer."}` };
+  return { ok: true, text, ...(meta.toolSummary?.tools?.length ? { tools: meta.toolSummary.tools } : {}) };
+}
+
+// ---- Running a question -----------------------------------------------------------------------
+
+export interface AgentRequest {
+  provider: AgentId;
+  model: string;
+  profile?: string;
+  /** The assistant's rules (systemPrompt in assistant.ts). */
+  system: string;
+  messages: AgentMessage[];
+  /** The app's tools, offered through the bridge. */
+  tools: ToolSet;
+  /** The user's data as text, for agents without the bridge. */
+  dataPack: () => string;
+  signal?: AbortSignal;
+}
+
+export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean } | { ok: false; error: string };
+
+export async function runAgent(req: AgentRequest): Promise<AgentReply> {
+  const { provider } = req;
+  const info = providerInfo(provider)!;
+  if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
+  const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
+  const system = req.system + (bridged ? BRIDGE_NOTE : `${NO_TOOLS_NOTE}\n\nThe user's data:\n${req.dataPack()}`);
+  const question = conversationText(req.messages);
+  const model = req.model.trim() || undefined;
+  const profile = req.profile?.trim() || undefined;
+  // An empty folder to work in, so the agent doesn't pick up project files or instructions.
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-agent-"));
+  const run = bridged ? openRun(req.tools, provider) : undefined;
+  try {
+    let parsed: Parsed;
+    if (provider === "claude-code") {
+      const systemFile = path.join(dir, "system.md");
+      fs.writeFileSync(systemFile, system);
+      let mcpFile: string | undefined;
+      if (run) {
+        mcpFile = path.join(dir, "mcp.json");
+        fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
+      }
+      const r = await runProgram("claude", claudeArgs({ model, systemFile, mcpFile }), { cwd: dir, input: question, signal: req.signal });
+      parsed = parseClaude(r.stdout, r.stderr);
+    } else if (provider === "codex") {
+      const r = await runProgram("codex", codexArgs({ model, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
+      parsed = parseCodex(r.stdout, r.stderr);
+    } else if (provider === "hermes") {
+      const r = await runProgram("hermes", hermesArgs({ model, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
+      parsed = parseHermes(r.stdout, r.stderr);
+    } else {
+      const messageFile = path.join(dir, "message.md");
+      fs.writeFileSync(messageFile, `<instructions>\n${system}\n</instructions>\n\n${question}`);
+      const sessionKey = `biomarker-tracker-${crypto.randomBytes(6).toString("hex")}`;
+      const once = async (local: boolean) => {
+        const r = await runProgram("openclaw", openclawArgs({ model, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal });
+        return parseOpenClaw(r.stdout, r.stderr);
+      };
+      let p = await once(false);
+      // Without OpenClaw's Gateway running, answer here instead.
+      if (!p.ok && p.gatewayDown && !req.signal?.aborted) p = await once(true);
+      parsed = p;
+    }
+    if (req.signal?.aborted) return { ok: false, error: "Stopped." };
+    if (!parsed.ok) return parsed;
+    const steps = run ? run.steps : (parsed.tools ?? []).map((t) => ({ tool: t, server: info.label, input: "" }));
+    return { ok: true, text: parsed.text, steps, studyIds: run ? [...run.ids] : [], usedTools: bridged };
+  } finally {
+    if (run) closeRun(run);
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+/** The settings page's Test button: one short question, no tools. */
+export async function testAgent(provider: AgentId, model: string, profile?: string): Promise<{ ok: boolean; reply?: string; error?: string }> {
+  const r = await runAgent({
+    provider,
+    model,
+    ...(profile ? { profile } : {}),
+    system: "Reply with the single word OK.",
+    messages: [{ role: "user", content: "Reply with the single word OK." }],
+    tools: {},
+    dataPack: () => "(none)",
+    signal: AbortSignal.timeout(180_000),
+  });
+  return r.ok ? { ok: true, reply: r.text.slice(0, 100) } : { ok: false, error: r.error };
+}

@@ -214,9 +214,9 @@ function AddCustom({ onAdded }: { onAdded: () => Promise<void> }) {
 
 /** MCP servers: extra research tools (literature, trials, medicines, nutrition) the assistant can call. */
 export function McpSettings() {
-  const [data, setData] = useState<{ presets: McpPreset[]; servers: ServerRow[] } | null>(null);
+  const [data, setData] = useState<{ presets: McpPreset[]; servers: ServerRow[]; npx: boolean } | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const load = () => api<{ presets: McpPreset[]; servers: ServerRow[] }>("GET", "/api/mcp").then(setData);
+  const load = () => api<{ presets: McpPreset[]; servers: ServerRow[]; npx: boolean }>("GET", "/api/mcp").then(setData);
   useEffect(() => {
     void load().catch((e: unknown) => setError(e instanceof Error ? e.message : "Couldn't load the servers."));
   }, []);
@@ -238,10 +238,16 @@ export function McpSettings() {
   return (
     <div className="flex flex-col gap-6">
       <Notice>
-        MCP servers give the assistant extra research tools: literature, clinical trials, medicine labels, medical terms, food data. They run on this
-        computer and need Node.js (the <span className="font-mono text-sm">npx</span> command). When the assistant uses one, only its search terms go to
-        that service, not your results.
+        MCP servers give the assistant extra research tools: literature, clinical trials, medicine labels, genes, medical terms, food data. The
+        ready-made ones are added and switched on from the start. They run on this computer; the first start downloads them, which can take a
+        minute. When the assistant uses one, only its search terms go to that service, not your results.
       </Notice>
+      {!data.npx && (
+        <Notice tone="warn" title="Node.js isn't installed">
+          The servers need Node.js (the <span className="font-mono text-sm">npx</span> command), so they are switched off. Install Node.js from nodejs.org,
+          restart the app, then switch them on here.
+        </Notice>
+      )}
       {error && <Notice tone="danger">{error}</Notice>}
 
       <section className="flex flex-col gap-3">

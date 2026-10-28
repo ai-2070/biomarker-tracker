@@ -77,11 +77,12 @@ describe("health tools", () => {
 
 describe("assistant", () => {
   it("puts critical values and caution in the instructions", () => {
-    const p = systemPrompt({ skills: "- a: A. Do A.", cautious: true, critical: ["Potassium"], mcpServers: ["pubmed"] });
+    const p = systemPrompt({ skills: "- a: A. Do A.", cautious: true, critical: ["Potassium"], mcpServers: [{ id: "pubmed", name: "PubMed and Europe PMC", about: "Search PubMed." }] });
     expect(p).toMatch(/CRITICAL: .*Potassium/);
     expect(p).toMatch(/Don't suggest increasing any nutrient/);
     expect(p).toMatch(/read_skill/);
-    expect(p).toMatch(/pubmed/);
+    expect(p).toMatch(/- pubmed: PubMed and Europe PMC/);
+    expect(p).toMatch(/research_tools/);
   });
 
   it("collects every study ID that a tool returned", () => {

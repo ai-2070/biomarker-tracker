@@ -42,11 +42,15 @@ export interface Settings {
   /** Skills that are switched off (all are on by default). */
   skillsOff: string[];
   mcp: McpServerConfig[];
+  /** The ready-made MCP servers were added once; removing one later keeps it removed. */
+  mcpSeeded?: boolean;
 }
 
 export interface Secrets {
   keys: Partial<Record<ProviderId, string>>;
   mcpEnv: Record<string, Record<string, string>>;
+  /** Lets an agent registered once (Hermes) reach the app's tools, only while it is answering. */
+  bridgeToken?: string;
 }
 
 const SETTINGS = () => dataPath("settings.json");
@@ -54,7 +58,7 @@ const SECRETS = () => dataPath("secrets.json");
 
 export function getSettings(): Settings {
   const s = readJSON<Partial<Settings>>(SETTINGS(), {});
-  return { providers: s.providers ?? {}, skillsOff: s.skillsOff ?? [], mcp: s.mcp ?? [], ...(s.assistant ? { assistant: s.assistant } : {}) };
+  return { providers: s.providers ?? {}, skillsOff: s.skillsOff ?? [], mcp: s.mcp ?? [], ...(s.assistant ? { assistant: s.assistant } : {}), ...(s.mcpSeeded ? { mcpSeeded: true } : {}) };
 }
 
 export function saveSettings(s: Settings): void {
@@ -70,7 +74,7 @@ export function updateSettings(fn: (s: Settings) => void): Settings {
 
 export function getSecrets(): Secrets {
   const s = readJSON<Partial<Secrets>>(SECRETS(), {});
-  return { keys: s.keys ?? {}, mcpEnv: s.mcpEnv ?? {} };
+  return { keys: s.keys ?? {}, mcpEnv: s.mcpEnv ?? {}, ...(typeof s.bridgeToken === "string" ? { bridgeToken: s.bridgeToken } : {}) };
 }
 
 export function updateSecrets(fn: (s: Secrets) => void): void {

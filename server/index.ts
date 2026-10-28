@@ -1,6 +1,6 @@
 // Biomarker Tracker's local server. Run: bun server/index.ts [--port 4820]
 // Listens on 127.0.0.1 only.
-import { stopAll } from "./mcp";
+import { ensureDefaultServers, stopAll, warmUp } from "./mcp";
 import { createServer } from "./http";
 import { DATA } from "./store";
 
@@ -13,7 +13,10 @@ server.on("error", (e: NodeJS.ErrnoException) => {
   else console.error(e);
   process.exit(1);
 });
+// The ready-made research servers are added on first start and started in the background.
+ensureDefaultServers();
 server.listen(port, "127.0.0.1", () => {
+  warmUp();
   console.log(`\n  Biomarker Tracker is running at http://localhost:${port}\n  Data folder: ${DATA()}\n  Press Ctrl+C to stop.\n`);
 });
 

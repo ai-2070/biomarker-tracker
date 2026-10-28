@@ -11,11 +11,31 @@ interface SettingsResponse {
   providers: ProviderInfo[];
   configs: Partial<Record<ProviderId, ProviderConfig>>;
   hasKey: Record<string, boolean>;
+  installed: Record<string, boolean>;
+  hermesConnected: boolean;
   assistant: { provider: ProviderId; model: string } | null;
   ready: { ok: boolean; reason?: string };
 }
 
-const REGION_TEXT: Record<ProviderInfo["region"], string> = { EU: "EU", US: "US", local: "This computer", choose: "You choose (EU or US)" };
+const REGION_TEXT: Record<ProviderInfo["region"], string> = {
+  EU: "EU",
+  US: "US",
+  local: "This computer",
+  choose: "You choose (EU or US)",
+  depends: "Wherever the agent's own model runs",
+};
+
+/** OpenRouter's models with zero-retention endpoints and tool use, loaded from OpenRouter. */
+function useOpenRouterModels(active: boolean) {
+  const [state, setState] = useState<{ models: { id: string; label: string }[]; error?: string } | null>(null);
+  useEffect(() => {
+    if (!active || state) return;
+    void api<{ models: { id: string; label: string }[]; error?: string }>("GET", "/api/settings/models/openrouter").then(setState, (e: unknown) =>
+      setState({ models: [], error: e instanceof Error ? e.message : "Couldn't load the list." }),
+    );
+  }, [active, state]);
+  return state;
+}
 
 /** Which model the assistant uses. Only EU/US zero-data-retention providers, or local models. */
 export function ModelsSettings() {
@@ -28,6 +48,8 @@ export function ModelsSettings() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ tone: "info" | "danger"; text: string } | null>(null);
   const [testing, setTesting] = useState(false);
+  const [connecting, setConnecting] = useState(false);
+  const orModels = useOpenRouterModels(provider === "openrouter");
 
   async function load(keepSelection = false) {
     try {
@@ -50,6 +72,9 @@ export function ModelsSettings() {
   if (loadError) return <Notice tone="danger">{loadError}</Notice>;
   if (!data) return <p className="text-ink-2">Loading…</p>;
   const info = data.providers.find((p) => p.id === provider)!;
+  const isAgent = info.kind === "agent";
+  const installed = !isAgent || data.installed[provider];
+  const suggestions = provider === "openrouter" ? (orModels?.models ?? []) : info.models;
   const hasKey = data.hasKey[provider] || key.trim() !== "";
   const check = canUse({ provider, model }, cfg, hasKey);
 
@@ -83,6 +108,18 @@ export function ModelsSettings() {
     setMessage({ tone: "info", text: "Key removed." });
   }
 
+  async function connectHermes(connect: boolean) {
+    setConnecting(true);
+    setMessage(null);
+    try {
+      const r = await api<{ ok: boolean; error?: string }>("POST", "/api/settings/hermes", { connect });
+      setMessage(r.ok ? { tone: "info", text: connect ? "Hermes now has the app's tools." : "Removed the app's tools from Hermes." } : { tone: "danger", text: r.error ?? "It didn't work." });
+      await load(true);
+    } finally {
+      setConnecting(false);
+    }
+  }
+
   async function test() {
     setTesting(true);
     setMessage(null);
@@ -98,10 +135,10 @@ export function ModelsSettings() {
 
   return (
     <div className="flex flex-col gap-5">
-      <Notice title="Only zero-data-retention providers in the EU or US, or models on this computer">
-        Your questions, results and log go to the model you choose here, so the app only allows providers that keep nothing, in the EU or US. Cloud
-        providers need zero data retention switched on for your account; you confirm that below. Local models (Ollama, LM Studio) never send
-        anything anywhere.
+      <Notice title="Where your questions and data go">
+        Your questions, results and log go to the model you choose here. Cloud providers must keep nothing and be in the EU or US: you confirm zero
+        data retention for your account, and OpenRouter is asked for it on every request. Local models (Ollama, LM Studio) never send anything
+        anywhere. Agent programs (Claude Code, Codex, Hermes, OpenClaw) use their own login, so what they keep depends on that login.
       </Notice>
 
       <Card className="flex flex-col gap-5">
@@ -112,20 +149,65 @@ export function ModelsSettings() {
           <dt className="font-medium">Where it runs</dt>
           <dd className="text-ink-2">{REGION_TEXT[info.region]}</dd>
           <dt className="font-medium">Data kept</dt>
-          <dd className="text-ink-2">{info.zdrNote}</dd>
+          <dd className={info.retention === "depends" ? "font-medium text-warn" : "text-ink-2"}>
+            {info.retention === "depends" ? "Depends on your login (not checked)" : info.zdrNote}
+          </dd>
         </dl>
+
+        {info.retention === "depends" && (
+          <Notice tone="warn" title="The app can't check what this keeps">
+            {info.zdrNote}
+          </Notice>
+        )}
+
+        {isAgent && (
+          <p className={cx("rounded-lg p-3 text-sm", installed ? "bg-sunken text-ink-2" : "bg-warn-soft text-warn")}>
+            {installed ? (
+              <>
+                Found the <span className="font-mono">{info.command}</span> command on this computer. It starts once per question, in an empty folder.{" "}
+                {provider === "claude-code"
+                  ? "Its own file, shell and web tools are switched off; it only gets the app's tools."
+                  : provider === "codex"
+                    ? "It runs read-only and gets the app's tools."
+                    : "It keeps its own tools and settings; it is asked to use only the app's tools for your data."}
+              </>
+            ) : (
+              <>
+                The <span className="font-mono">{info.command}</span> command wasn't found. Install it and sign in first, then reload this page.
+              </>
+            )}
+          </p>
+        )}
 
         <Field.Root className="flex flex-col gap-1.5">
           <Field.Label className={labelStyles}>Model</Field.Label>
-          <Field.Control value={model} onValueChange={setModel} list={`models-${provider}`} placeholder="Model name" autoComplete="off" className={`${inputStyles} sm:max-w-md`} />
+          <Field.Control
+            value={model}
+            onValueChange={setModel}
+            list={`models-${provider}`}
+            placeholder={info.modelOptional ? "Leave empty for its default model" : "Model name"}
+            autoComplete="off"
+            spellCheck={false}
+            className={`${inputStyles} sm:max-w-md`}
+          />
           <datalist id={`models-${provider}`}>
-            {info.models.map((m) => (
+            {suggestions.map((m) => (
               <option key={m.id} value={m.id}>
                 {m.label}
               </option>
             ))}
           </datalist>
-          {info.models.length > 0 && <Field.Description className={helpStyles}>Suggestions: {info.models.map((m) => m.label).join(" · ")}</Field.Description>}
+          {provider === "openrouter" ? (
+            <Field.Description className={helpStyles}>
+              {orModels === null
+                ? "Loading OpenRouter's models…"
+                : orModels.error
+                  ? orModels.error
+                  : `${orModels.models.length} models have zero-retention endpoints and can use tools. Start typing, e.g. anthropic/ or mistralai/.`}
+            </Field.Description>
+          ) : (
+            info.models.length > 0 && <Field.Description className={helpStyles}>Suggestions: {info.models.map((m) => m.label).join(" · ")}</Field.Description>
+          )}
         </Field.Root>
 
         {info.id === "custom" && (
@@ -138,6 +220,36 @@ export function ModelsSettings() {
               { value: "US", label: "US" },
             ]}
           />
+        )}
+
+        {info.profileLabel && (
+          <Field.Root className="flex flex-col gap-1.5">
+            <Field.Label className={labelStyles}>{info.profileLabel}</Field.Label>
+            <Field.Control
+              value={cfg.profile ?? ""}
+              onValueChange={(profile) => setCfg({ ...cfg, profile })}
+              placeholder="Leave empty for the default"
+              autoComplete="off"
+              spellCheck={false}
+              className={`${inputStyles} sm:max-w-sm`}
+            />
+          </Field.Root>
+        )}
+
+        {info.id === "hermes" && installed && (
+          <div className="flex flex-col gap-2 rounded-lg border border-line p-3">
+            <p className="font-medium">{data.hermesConnected ? "Hermes has the app's tools" : "Give Hermes the app's tools"}</p>
+            <p className="text-sm text-ink-2">
+              {data.hermesConnected
+                ? "Hermes can read your results and search research through the app while it answers, so its citations are checked."
+                : "Adds Biomarker Tracker to Hermes' MCP settings, so Hermes can read your results and search research while it answers. Without it, Hermes gets a summary of your data and its citations can't be checked."}
+            </p>
+            <div>
+              <Button variant="secondary" disabled={connecting} onClick={() => void connectHermes(!data.hermesConnected)}>
+                {connecting ? "Working…" : data.hermesConnected ? "Disconnect" : "Connect"}
+              </Button>
+            </div>
+          </div>
         )}
 
         {(info.id === "custom" || info.retention === "local") && (
@@ -206,7 +318,7 @@ export function ModelsSettings() {
           </Notice>
         )}
         <div className="flex flex-wrap gap-2">
-          <Button onClick={() => void save()} disabled={saving || !model.trim()}>
+          <Button onClick={() => void save()} disabled={saving || (!model.trim() && !info.modelOptional)}>
             Save
           </Button>
           <Button variant="secondary" onClick={() => void test()} disabled={testing || !data.ready.ok || !saved}>

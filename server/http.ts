@@ -6,7 +6,10 @@ import http from "node:http";
 import path from "node:path";
 import { PROVIDERS, providerInfo, type ProviderId, type Region } from "../src/core/aiProviders";
 import { MCP_PRESETS } from "../src/core/mcpPresets";
+import { agentInstalled, hermesConnected, isAgent, setHermesConnection, testAgent } from "./agents";
 import { ask, type ChatMessage } from "./assistant";
+import { handleMcp, setBridgePort } from "./bridge";
+import { openRouterModels } from "./openrouter";
 import { parseSnapshot } from "./healthTools";
 import * as mcp from "./mcp";
 import { assistantCheck, describeModelError, readyModel } from "./models";
@@ -43,16 +46,32 @@ route("GET", "/api/status", () => {
   return { app: "biomarker-tracker", assistant: s.assistant ?? null, ready: assistantCheck() };
 });
 
-route("GET", "/api/settings", () => {
+route("GET", "/api/settings", async () => {
   const s = getSettings();
   const keys = getSecrets().keys;
   return {
     providers: PROVIDERS,
     configs: s.providers,
     hasKey: Object.fromEntries(PROVIDERS.map((p) => [p.id, !!keys[p.id]])),
+    installed: Object.fromEntries(PROVIDERS.filter((p) => p.kind === "agent").map((p) => [p.id, agentInstalled(p.id)])),
+    hermesConnected: await hermesConnected(),
     assistant: s.assistant ?? null,
     ready: assistantCheck(),
   };
+});
+
+route("GET", "/api/settings/models/openrouter", async () => {
+  try {
+    return { models: await openRouterModels() };
+  } catch (e) {
+    return { models: [], error: `Couldn't load OpenRouter's model list: ${e instanceof Error ? e.message : String(e)}` };
+  }
+});
+
+// Adds or removes the app's tools in Hermes' own MCP settings (only when the user presses the button).
+route("POST", "/api/settings/hermes", async (_p, body) => {
+  if (typeof body.connect !== "boolean") throw new HttpError(400, "Say whether to connect or disconnect.");
+  return setHermesConnection(body.connect);
 });
 
 route("PUT", "/api/settings/provider/([a-z]+)", ([id], body) => {
@@ -62,6 +81,7 @@ route("PUT", "/api/settings/provider/([a-z]+)", ([id], body) => {
     if (typeof body.zdrConfirmed === "boolean") c.zdrConfirmed = body.zdrConfirmed;
     if (body.region === "EU" || body.region === "US") c.region = body.region as Region;
     if (typeof body.baseURL === "string") c.baseURL = body.baseURL.trim().slice(0, 300);
+    if (typeof body.profile === "string") c.profile = body.profile.trim().slice(0, 80);
     s.providers[p] = c;
   });
   if (body.key === null || typeof body.key === "string") {
@@ -77,12 +97,18 @@ route("PUT", "/api/settings/provider/([a-z]+)", ([id], body) => {
 route("PUT", "/api/settings/assistant", (_p, body) => {
   const provider = providerOf(str(body.provider, 20) ?? "");
   const model = (str(body.model, 120) ?? "").trim();
-  if (!model) throw new HttpError(400, "Choose a model.");
+  if (!model && !providerInfo(provider)?.modelOptional) throw new HttpError(400, "Choose a model.");
   updateSettings((s) => (s.assistant = { provider, model }));
   return { ok: true, ready: assistantCheck() };
 });
 
 route("POST", "/api/settings/test", async () => {
+  const s = getSettings();
+  if (s.assistant && isAgent(s.assistant.provider)) {
+    const check = assistantCheck();
+    if (!check.ok) return { ok: false, error: check.reason };
+    return testAgent(s.assistant.provider, s.assistant.model, s.providers[s.assistant.provider]?.profile);
+  }
   const r = readyModel();
   if (!r.ok) return { ok: false, error: r.reason };
   try {
@@ -114,7 +140,7 @@ route("DELETE", "/api/skills/([a-z0-9-]+)", ([id]) => {
 
 // MCP servers
 
-route("GET", "/api/mcp", () => ({ presets: MCP_PRESETS, servers: mcp.listServers() }));
+route("GET", "/api/mcp", () => ({ presets: MCP_PRESETS, servers: mcp.listServers(), npx: mcp.hasNpx() }));
 route("POST", "/api/mcp", (_p, body) => {
   if (typeof body.presetId === "string") return { server: mcp.addPreset(body.presetId) };
   const args = Array.isArray(body.args) ? body.args.filter((a): a is string => typeof a === "string").slice(0, 30) : [];
@@ -190,7 +216,9 @@ function serveStatic(urlPath: string, res: http.ServerResponse): void {
   fs.createReadStream(file).pipe(res);
 }
 
-function readBody(req: http.IncomingMessage): Promise<Json> {
+function readBody(req: http.IncomingMessage): Promise<Json>;
+function readBody(req: http.IncomingMessage, raw: true): Promise<unknown>;
+function readBody(req: http.IncomingMessage, raw = false): Promise<unknown> {
   return new Promise((resolve, reject) => {
     let size = 0;
     const chunks: Buffer[] = [];
@@ -205,7 +233,7 @@ function readBody(req: http.IncomingMessage): Promise<Json> {
       if (chunks.length === 0) return resolve({});
       try {
         const v = JSON.parse(Buffer.concat(chunks).toString("utf8")) as unknown;
-        resolve(typeof v === "object" && v !== null && !Array.isArray(v) ? (v as Json) : {});
+        resolve(raw ? v : typeof v === "object" && v !== null && !Array.isArray(v) ? (v as Json) : {});
       } catch {
         reject(new HttpError(400, "The request isn't valid JSON."));
       }
@@ -215,6 +243,7 @@ function readBody(req: http.IncomingMessage): Promise<Json> {
 }
 
 export function createServer(port: number): http.Server {
+  setBridgePort(port);
   return http.createServer(async (req, res) => {
     const send = (status: number, value: unknown) => res.writeHead(status, { "content-type": "application/json; charset=utf-8" }).end(JSON.stringify(value));
     res.setHeader("x-content-type-options", "nosniff");
@@ -222,6 +251,16 @@ export function createServer(port: number): http.Server {
     if (!allowedHost(req.headers.host, port)) return send(403, { error: "Wrong host." });
     const url = new URL(req.url ?? "/", `http://127.0.0.1:${port}`);
     const method = req.method ?? "GET";
+    // Agent programs reach the app's tools here, with a token that only works while they answer (bridge.ts).
+    if (url.pathname === "/mcp") {
+      try {
+        const body = method === "POST" ? await readBody(req, true) : undefined;
+        return await handleMcp(req, res, url, body);
+      } catch (e) {
+        if (!res.headersSent) send(e instanceof HttpError ? e.status : 400, { error: e instanceof Error ? e.message : "Bad request." });
+        return;
+      }
+    }
     if (!url.pathname.startsWith("/api/")) return method === "GET" ? serveStatic(url.pathname, res) : send(405, { error: "Not allowed." });
     if (!allowedWrite(method, req.headers)) return send(403, { error: "This request isn't allowed." });
     const r = routes.find((x) => x.method === method && x.re.test(url.pathname));
