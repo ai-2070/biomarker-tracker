@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, bmi, bmiBand, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField } from "../../../core/body";
+import { BODY_FIELDS, bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
+import { ageAt } from "../../../core/phenoageDraws";
+import { ChoiceGroup } from "../ChoiceGroup";
 import { todayIso } from "../../../core/dates";
 import type { DashboardMarker } from "../../../core/dashboard";
-import { flagMeasurement } from "../../../core/trends";
+import { flagMeasurement, sortByDate } from "../../../core/trends";
 import type { Measurement, Profile } from "../../../core/types";
 import { listUnits } from "../../../core/units";
 import { addMeasurements } from "../../../db/db";
@@ -37,7 +39,7 @@ function sinceEarlier(series: Measurement[], id: BodyField, unit: string): strin
 
 export function WeightFigure({ ms, className }: { ms: Measurement[]; className?: string }) {
   const unit = useUnit("weight");
-  const series = ms.filter((m) => m.biomarkerId === "weight");
+  const series = sortByDate(ms.filter((m) => m.biomarkerId === "weight"));
   const last = series.at(-1);
   const def = BIOMARKER_MAP.get("weight")!;
   return (
@@ -65,6 +67,59 @@ export function BmiFigure({ ms, profile, className }: { ms: Measurement[]; profi
       foot={b === undefined ? (profile.heightCm ? "Add your weight to see it." : "Add your height in Settings → Your data.") : `${BMI_TEXT[bmiBand(b)]}. A rough guide: it can't tell muscle from fat.`}
     >
       <p className={cx(big, b === undefined && "text-ink-2")}>{b === undefined ? "–" : b.toFixed(1)}</p>
+    </Figure>
+  );
+}
+
+/** Basal metabolic rate, from the latest weight, height, age and sex. Shown as an estimate, never as a target. */
+export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profile: Profile; className?: string }) {
+  const w = latestBody(ms).weight;
+  const age = w && profile.birthMonth ? ageAt(profile.birthMonth, w.date) : undefined;
+  const value = w ? bmrMifflin(w.value, profile.heightCm, age, profile.sex) : undefined;
+  const missing = [!w && "weight", !profile.heightCm && "height", !profile.birthMonth && "month of birth", !profile.sex && "sex"].filter(Boolean) as string[];
+  return (
+    <Figure
+      label="Basal metabolic rate"
+      href={href({ name: "marker", id: "weight" })}
+      className={className}
+      foot={
+        value === undefined
+          ? missing.length
+            ? `Needs your ${missing.join(", ")} (Settings → Your data).`
+            : "For adults only."
+          : "Energy your body uses at complete rest, estimated from weight, height, age and sex (Mifflin–St Jeor, about ±10 %). Not a target."
+      }
+    >
+      {value === undefined ? (
+        <p className="font-serif text-4xl text-ink-2">–</p>
+      ) : (
+        <p className="flex items-baseline gap-1.5">
+          <span className={big}>{Math.round(value).toLocaleString("en-GB")}</span>
+          <span className="text-ink-2">kcal a day</span>
+        </p>
+      )}
+    </Figure>
+  );
+}
+
+const GLUCOSE_WHEN = (m: Measurement) => (m.fasted === true ? "fasting" : m.fasted === false ? "after a meal" : "time not given");
+
+export function GlucoseFigure({ ms, profile, className }: { ms: Measurement[]; profile: Profile; className?: string }) {
+  const unit = useUnit("glucose_home");
+  const def = BIOMARKER_MAP.get("glucose_home")!;
+  const last = latestBody(ms).glucose_home;
+  const flag = last ? flagMeasurement(def, last, profile) : undefined;
+  return (
+    <Figure label="Blood glucose (home)" href={href({ name: "marker", id: "glucose_home" })} className={className} foot={last ? `${GLUCOSE_WHEN(last)}, ${formatDate(last.date)}` : "Not measured yet"}>
+      {last ? (
+        <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
+          <span className={cx(big, flag?.startsWith("critical") && "text-danger")}>{showMeasurement(def, last, unit)}</span>
+          <span className="text-ink-2">{unit}</span>
+          {flag && flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}
+        </p>
+      ) : (
+        <p className="font-serif text-4xl text-ink-2">–</p>
+      )}
     </Figure>
   );
 }
@@ -119,7 +174,7 @@ export function BloodPressureFigure({ ms, profile, className }: { ms: Measuremen
 }
 
 export function RestingHrFigure({ ms, className }: { ms: Measurement[]; className?: string }) {
-  const series = ms.filter((m) => m.biomarkerId === "resting_hr");
+  const series = sortByDate(ms.filter((m) => m.biomarkerId === "resting_hr"));
   const last = series.at(-1);
   return (
     <Figure label="Resting heart rate" href={href({ name: "marker", id: "resting_hr" })} className={className} foot={last ? (sinceEarlier(series, "resting_hr", "bpm") ?? formatDate(last.date)) : "Not measured yet"}>
@@ -176,6 +231,7 @@ const FIELD_LABEL: Record<BodyField, string> = {
   bp_systolic: "Top number (systolic)",
   bp_diastolic: "Bottom number (diastolic)",
   resting_hr: "Resting heart rate",
+  glucose_home: "Blood glucose",
 };
 
 /** One day's measurements. Every field is optional; empty ones are skipped. */
@@ -187,12 +243,17 @@ export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
   const [units, setUnits] = useState<Record<BodyField, string>>(
     () => Object.fromEntries(BODY_FIELDS.map((f) => [f, displayUnitFor(BIOMARKER_MAP.get(f)!, displayUnits[f])])) as Record<BodyField, string>,
   );
+  const [glucoseContext, setGlucoseContext] = useState<GlucoseContext | "">("");
   const [errors, setErrors] = useState<BodyEntryErrors>({});
   const [saving, setSaving] = useState(false);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
-    const r = validateBodyEntry({ date, values: Object.fromEntries(BODY_FIELDS.map((f) => [f, { value: values[f] ?? "", unit: units[f] }])) }, BIOMARKER_MAP, today);
+    const r = validateBodyEntry(
+      { date, values: Object.fromEntries(BODY_FIELDS.map((f) => [f, { value: values[f] ?? "", unit: units[f] }])), ...(glucoseContext ? { glucoseContext } : {}) },
+      BIOMARKER_MAP,
+      today,
+    );
     if (!r.ok) return setErrors(r.errors);
     setSaving(true);
     try {
@@ -263,6 +324,33 @@ export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
           {field("resting_hr", { suffix: "bpm" })}
         </div>
         <p className="text-sm text-ink-2">Sit quietly for 5 minutes first. Many monitors also show your pulse: that's your resting heart rate.</p>
+      </fieldset>
+      <fieldset className="flex flex-col gap-3">
+        <legend className={cx(formLabel, "mb-1")}>Blood glucose (home meter)</legend>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {field("glucose_home", { unitPick: true })}
+          <div className="sm:col-span-2">
+            <ChoiceGroup<GlucoseContext | "">
+              label="When"
+              value={glucoseContext}
+              onChange={(v) => {
+                setGlucoseContext(v);
+                setErrors((er) => ({ ...er, glucoseContext: undefined }));
+              }}
+              options={[
+                { value: "fasting", label: "Fasting" },
+                { value: "after-meal", label: "After a meal" },
+                { value: "other", label: "Other" },
+              ]}
+            />
+            {errors.glucoseContext && (
+              <p role="alert" className={cx(errorStyles, "mt-1")}>
+                {errors.glucoseContext}
+              </p>
+            )}
+          </div>
+        </div>
+        <p className="text-sm text-ink-2">Fasting means nothing to eat for 8 hours, usually first thing in the morning. "After a meal" is about 2 hours after you started eating.</p>
       </fieldset>
 
       {errors.form && (

@@ -16,14 +16,17 @@ export interface ResolvedRange {
  */
 export function resolveRange(
   def: BiomarkerDef,
-  m: Pick<Measurement, "labRange">,
+  m: Pick<Measurement, "labRange" | "fasted">,
   profile: Profile = {},
 ): ResolvedRange | undefined {
   const lab = m.labRange;
   if (lab && (lab.low !== undefined || lab.high !== undefined)) {
     return { low: lab.low, high: lab.high, source: "lab" };
   }
-  const ranges = def.defaultRanges ?? [];
+  const all = def.defaultRanges ?? [];
+  // Ranges for fasting or after-meal readings apply only to those; otherwise the plain ones.
+  const forState = typeof m.fasted === "boolean" ? all.filter((r) => r.fasted === m.fasted) : [];
+  const ranges = forState.length ? forState : all.filter((r) => r.fasted === undefined);
   if (ranges.length === 0) return undefined;
 
   const bySex = profile.sex ? ranges.find((r) => r.sex === profile.sex) : undefined;

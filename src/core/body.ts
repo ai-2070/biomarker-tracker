@@ -9,8 +9,8 @@ import type { BiomarkerDef, Measurement } from "./types";
  * dashboard. BMI and waist-to-height are computed here, never stored.
  */
 
-export type BodyField = "weight" | "waist" | "body_fat" | "bp_systolic" | "bp_diastolic" | "resting_hr";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr"];
+export type BodyField = "weight" | "waist" | "body_fat" | "bp_systolic" | "bp_diastolic" | "resting_hr" | "glucose_home";
+export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "glucose_home"];
 
 /** Values outside these (canonical unit) are almost certainly typos, e.g. 1765 for 176.5. */
 export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
@@ -20,6 +20,7 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   bp_systolic: { min: 60, max: 280 },
   bp_diastolic: { min: 30, max: 180 },
   resting_hr: { min: 25, max: 220 },
+  glucose_home: { min: 1, max: 35 },
 };
 
 /** Body mass index, kg/m². Only for adult heights between 100 and 250 cm. */
@@ -35,6 +36,17 @@ export function bmi(weightKg: number, heightCm: number | undefined): number | un
  */
 export function bmiBand(b: number): "under" | "healthy" | "over" | "obesity" {
   return b < 18.5 ? "under" : b < 25 ? "healthy" : b < 30 ? "over" : "obesity";
+}
+
+/**
+ * Basal metabolic rate (kcal a day): the energy the body uses at complete rest, estimated with the
+ * Mifflin–St Jeor equation (Mifflin 1990, PMID 2305711), the most accurate of the common equations in
+ * a systematic review (Frankenfield 2005, PMID 15883556; within 10 % for most adults). Only for adults
+ * with weight, height, age and sex known. An estimate, never a target.
+ */
+export function bmrMifflin(weightKg: number, heightCm: number | undefined, ageYears: number | undefined, sex: "m" | "f" | undefined): number | undefined {
+  if (!(weightKg > 0) || !heightCm || heightCm < 100 || heightCm > 250 || ageYears === undefined || ageYears < 18 || !sex) return undefined;
+  return 10 * weightKg + 6.25 * heightCm - 5 * ageYears + (sex === "m" ? 5 : -161);
 }
 
 /** Waist ÷ height. Below 0.5 is the usual guide for adults (Ashwell 2012, PMID 22106927). */
@@ -61,12 +73,16 @@ export function latestBloodPressure(ms: readonly Measurement[]): { systolic: Mea
   return undefined;
 }
 
+/** When a glucose reading was taken; it decides which range applies. */
+export type GlucoseContext = "fasting" | "after-meal" | "other";
+
 export interface BodyEntryInput {
   date: string;
   values: Partial<Record<BodyField, { value: string; unit: string }>>;
+  glucoseContext?: GlucoseContext;
 }
 
-export type BodyEntryErrors = Partial<Record<BodyField | "date" | "form", string>>;
+export type BodyEntryErrors = Partial<Record<BodyField | "date" | "form" | "glucoseContext", string>>;
 
 /** Checks one day's body measurements. Empty fields are skipped; at least one is needed. */
 export function validateBodyEntry(
@@ -93,6 +109,13 @@ export function validateBodyEntry(
     if (r.measurement.value < p.min || r.measurement.value > p.max) {
       errors[f] = "That looks unlikely. Check for a typo or the unit.";
       continue;
+    }
+    if (f === "glucose_home") {
+      if (!input.glucoseContext) {
+        errors.glucoseContext = "Choose when you measured: it decides which range applies.";
+        continue;
+      }
+      if (input.glucoseContext !== "other") r.measurement.fasted = input.glucoseContext === "fasting";
     }
     out.push(r.measurement);
   }

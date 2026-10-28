@@ -57,6 +57,11 @@ export interface RangeDef {
   high?: number;
   /** Omit for a range that applies to everyone. */
   sex?: Sex;
+  /**
+   * Only for readings taken fasting (true) or after a meal (false), e.g. home glucose.
+   * A range without it is used when the reading's state isn't given.
+   */
+  fasted?: boolean;
 }
 
 export type BiomarkerCategory =

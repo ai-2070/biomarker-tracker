@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, bmi, bmiBand, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
+import { BODY_FIELDS, bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -25,6 +25,19 @@ describe("BMI and waist-to-height", () => {
   it("divides waist by height", () => {
     expect(waistToHeight(84, 168)).toBe(0.5);
     expect(waistToHeight(84, undefined)).toBeUndefined();
+  });
+});
+
+describe("basal metabolic rate", () => {
+  it("uses the Mifflin–St Jeor equation", () => {
+    expect(bmrMifflin(80, 180, 30, "m")).toBe(1780);
+    expect(bmrMifflin(60, 165, 40, "f")).toBeCloseTo(1270.25, 2);
+  });
+  it("needs an adult with weight, height, age and sex", () => {
+    expect(bmrMifflin(60, undefined, 40, "f")).toBeUndefined();
+    expect(bmrMifflin(60, 165, undefined, "f")).toBeUndefined();
+    expect(bmrMifflin(60, 165, 40, undefined)).toBeUndefined();
+    expect(bmrMifflin(60, 165, 16, "f")).toBeUndefined();
   });
 });
 
@@ -62,6 +75,19 @@ describe("entering body measurements", () => {
     expect(!half.ok && half.errors.bp_diastolic).toMatch(/both numbers/);
     const swapped = validateBodyEntry({ date: today, values: { bp_systolic: { value: "80", unit: "mmHg" }, bp_diastolic: { value: "120", unit: "mmHg" } } }, BIOMARKER_MAP, today);
     expect(!swapped.ok && swapped.errors.bp_systolic).toMatch(/higher/);
+  });
+  it("records whether a glucose reading was fasting, and requires saying", () => {
+    const g = (glucoseContext?: "fasting" | "after-meal" | "other") =>
+      validateBodyEntry({ date: today, values: { glucose_home: { value: "99", unit: "mg/dL" } }, ...(glucoseContext ? { glucoseContext } : {}) }, BIOMARKER_MAP, today);
+    const fasting = g("fasting");
+    expect(fasting.ok && fasting.measurements[0]).toMatchObject({ biomarkerId: "glucose_home", fasted: true });
+    expect(fasting.ok && fasting.measurements[0]!.value).toBeCloseTo(5.49, 2);
+    const after = g("after-meal");
+    expect(after.ok && after.measurements[0]!.fasted).toBe(false);
+    const other = g("other");
+    expect(other.ok && other.measurements[0]!.fasted).toBeUndefined();
+    const none = g();
+    expect(!none.ok && none.errors.glucoseContext).toMatch(/when you measured/);
   });
   it("catches typos", () => {
     const r = validateBodyEntry({ date: today, values: { weight: { value: "700", unit: "kg" }, resting_hr: { value: "abc", unit: "bpm" } } }, BIOMARKER_MAP, today);
