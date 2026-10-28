@@ -4,6 +4,7 @@
 import { createContext, useContext, useSyncExternalStore } from "react";
 import { liveQuery } from "dexie";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
+import { profilesInFolder, zipStore } from "../core/zipStore";
 import { db, getProfile } from "../db/db";
 import { api } from "./api";
 
@@ -195,16 +196,45 @@ export async function createProfile(person: Profile, opts: { fromBrowser?: boole
   return profile;
 }
 
+async function restoreZip(zip: Blob): Promise<ProfileSummary> {
+  const res = await fetch("/api/profiles/restore", { method: "POST", headers: { "x-bt": "1", "content-type": "application/zip" }, body: zip });
+  const body = (await res.json().catch(() => ({}))) as { profile?: ProfileSummary; error?: string };
+  if (!res.ok || !body.profile) throw new Error(body.error ?? "The profile couldn't be loaded.");
+  return body.profile;
+}
+
+async function openLoaded(id: string, to: string): Promise<void> {
+  await loadIntoBrowser(id);
+  location.hash = to;
+  location.reload();
+}
+
 /** Restores a backup zip as a new profile and opens it. */
 export async function restoreProfile(file: File, to = "#/"): Promise<void> {
   await flushSaving();
   stopSaving();
-  const res = await fetch("/api/profiles/restore", { method: "POST", headers: { "x-bt": "1", "content-type": "application/zip" }, body: file });
-  const body = (await res.json().catch(() => ({}))) as { profile?: ProfileSummary; error?: string };
-  if (!res.ok || !body.profile) throw new Error(body.error ?? "The backup couldn't be restored.");
-  await loadIntoBrowser(body.profile.id);
-  location.hash = to;
-  location.reload();
+  const p = await restoreZip(file);
+  await openLoaded(p.id, to);
+}
+
+/**
+ * Loads profile folders chosen in the browser (one profile folder, or a folder with several, e.g. a copied
+ * "profiles" folder). Each becomes a new profile; the last one is opened.
+ */
+export async function loadProfileFolder(list: FileList, to = "#/"): Promise<void> {
+  const files = Array.from(list).map((f) => ({ path: (f.webkitRelativePath || f.name).replace(/\\/g, "/"), f }));
+  const found = profilesInFolder(files);
+  if (found.length === 0) throw new Error("No profile in that folder. Choose a folder that has a profile.json file in it (or a folder of such folders).");
+  const total = found.reduce((n, p) => n + p.files.reduce((m, x) => m + x.file.f.size, 0), 0);
+  if (total > 190 * 1024 * 1024) throw new Error("That folder is too large to load at once. Load the profiles one at a time.");
+  await flushSaving();
+  stopSaving();
+  let last: ProfileSummary | null = null;
+  for (const p of found) {
+    const entries = await Promise.all(p.files.map(async ({ name, file }) => ({ name, data: new Uint8Array(await file.f.arrayBuffer()) })));
+    last = await restoreZip(new Blob([zipStore(entries) as Uint8Array<ArrayBuffer>], { type: "application/zip" }));
+  }
+  await openLoaded(last!.id, to);
 }
 
 /** Keeps a scanned report or other document in the open profile's folder. */

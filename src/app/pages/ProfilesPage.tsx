@@ -5,7 +5,8 @@ import { api } from "../api";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { Button, Card, LinkButton, Notice, PageTitle, buttonStyles, cx } from "../components/ui";
 import { formatDate } from "../format";
-import { restoreProfile, switchProfile, useProfiles, type ProfileSummary } from "../profiles";
+import { LoadProfile } from "../components/LoadProfile";
+import { switchProfile, useProfiles, type ProfileSummary } from "../profiles";
 import { href } from "../router";
 
 export function Avatar({ name, size = "md" }: { name?: string; size?: "sm" | "md" }) {
@@ -140,10 +141,7 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
         ) : (
           <LinkButton href={href({ name: "setup" })}>New profile</LinkButton>
         )}
-        <label className={cx(buttonStyles.secondary, "cursor-pointer focus-within:outline-2 focus-within:outline-accent", busy && "pointer-events-none opacity-50")}>
-          Restore a backup (.zip)
-          <input type="file" accept=".zip,application/zip" className="sr-only" disabled={busy} onChange={(e) => e.target.files?.[0] && void act(() => restoreProfile(e.target.files![0]!))} />
-        </label>
+        <LoadProfile />
       </div>
     </>
   );
