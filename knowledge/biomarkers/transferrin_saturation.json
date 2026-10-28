@@ -1,0 +1,74 @@
+{
+  "id": "transferrin_saturation",
+  "name": "Transferrin saturation",
+  "abbreviation": "TSAT",
+  "category": "Iron & vitamins",
+  "aliases": [
+    "Transferrin saturation",
+    "TSAT",
+    "TfS",
+    "Iron saturation",
+    "Transferrinsättigung",
+    "Transzferrin szaturáció",
+    "Coefficient de saturation de la transferrine",
+    "Saturación de transferrina",
+    "Saturazione della transferrina"
+  ],
+  "loinc": [
+    "2502-3"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 20,
+      "high": 45
+    }
+  ],
+  "summary": "Transferrin saturation is the share of the blood's iron carrier (transferrin) that is loaded with iron.",
+  "high": {
+    "meaning": "A transferrin saturation above about 45 %, especially with a high ferritin, is the main screening sign for iron overload (haemochromatosis).",
+    "commonCauses": [
+      "Haemochromatosis",
+      "Recent iron supplement",
+      "Liver disease",
+      "Repeated blood transfusions"
+    ]
+  },
+  "low": {
+    "meaning": "A transferrin saturation below 20 % suggests there isn't enough iron available to make red blood cells.",
+    "commonCauses": [
+      "Iron deficiency",
+      "Inflammation"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "vitamin-c-with-meals-iron"
+    },
+    {
+      "evidenceId": "tea-coffee-with-meals-iron"
+    },
+    {
+      "evidenceId": "haem-iron-foods"
+    }
+  ],
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35662478",
+      "doi": "10.1016/j.jhep.2022.03.033",
+      "title": "EASL Clinical Practice Guidelines on haemochromatosis",
+      "year": 2022,
+      "studyType": "guideline"
+    }
+  ]
+}

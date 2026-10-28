@@ -1,0 +1,62 @@
+{
+  "id": "lymphocyte_pct",
+  "name": "Lymphocytes (%)",
+  "category": "Blood count",
+  "aliases": [
+    "Lymphocytes %",
+    "Lymphocytes (%)",
+    "Lymphocyte %",
+    "LYM%",
+    "LYMPH%",
+    "Lymphozyten %",
+    "Lymphozyten",
+    "Limfocita %",
+    "Limfociták"
+  ],
+  "loinc": [
+    "736-9"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 20,
+      "high": 40
+    }
+  ],
+  "summary": "Lymphocytes are white blood cells that fight infections. This value is the share of your white blood cells that are lymphocytes.",
+  "high": {
+    "meaning": "A higher share of lymphocytes is common during or after viral infections.",
+    "commonCauses": [
+      "Viral infections",
+      "Recovery after an infection",
+      "Some blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A lower share can happen with stress, steroid medicines or when other white cells are raised by a bacterial infection.",
+    "commonCauses": [
+      "Acute stress or illness",
+      "Steroid medicines",
+      "Bacterial infection raising other white cells"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "11087187",
+      "title": "Leukocytosis: basics of clinical assessment",
+      "year": 2000,
+      "studyType": "review"
+    }
+  ]
+}

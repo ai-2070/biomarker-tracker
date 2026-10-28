@@ -1,0 +1,66 @@
+{
+  "id": "ldl",
+  "name": "LDL cholesterol",
+  "abbreviation": "LDL-C",
+  "category": "Lipids",
+  "aliases": [
+    "LDL cholesterol",
+    "LDL-C",
+    "LDL",
+    "LDL-Cholesterin",
+    "LDL-koleszterin",
+    "LDL-cholestérol",
+    "Colesterol LDL",
+    "Colesterolo LDL"
+  ],
+  "loinc": [
+    "13457-7",
+    "2089-1"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.02586
+  },
+  "defaultRanges": [
+    {
+      "high": 3
+    }
+  ],
+  "rangeNote": "Targets depend on your overall heart risk. People at higher risk are often advised to aim much lower.",
+  "summary": "LDL carries cholesterol in the blood. Over time, high LDL levels contribute to plaque in artery walls.",
+  "high": {
+    "meaning": "A high LDL raises the long-term risk of heart attack and stroke, especially together with other risk factors.",
+    "commonCauses": [
+      "Genetics (e.g. familial hypercholesterolaemia)",
+      "Diet high in saturated fat",
+      "Underactive thyroid",
+      "Some medicines"
+    ]
+  },
+  "low": {
+    "meaning": "A low LDL is generally linked with lower heart risk.",
+    "commonCauses": [
+      "Cholesterol-lowering medicines",
+      "Genetics",
+      "Overactive thyroid"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "oat-beta-glucan-ldl"
+    },
+    {
+      "evidenceId": "replace-saturated-fat-ldl"
+    }
+  ],
+  "sources": [
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

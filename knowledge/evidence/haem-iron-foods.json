@@ -1,0 +1,58 @@
+{
+  "id": "haem-iron-foods",
+  "lever": "Iron-rich foods, especially meat and fish",
+  "intervention": "Eating iron-rich foods, especially meat and fish (haem iron)",
+  "kind": "food",
+  "outcome": "Iron absorbed from the diet",
+  "direction": "increase",
+  "grade": "moderate",
+  "summary": "Iron from meat and fish (haem iron) is absorbed much better than iron from plants, and meat also helps absorb plant iron eaten in the same meal. Lentils, beans, tofu and seeds still provide useful iron, especially with vitamin C.",
+  "whyThisGrade": [
+    "Consistent absorption studies, summarised in reviews",
+    "How much is absorbed depends on your iron stores and the rest of the meal"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "ferritin",
+      "helpsWhen": "low"
+    },
+    {
+      "biomarkerId": "iron",
+      "helpsWhen": "low"
+    },
+    {
+      "biomarkerId": "transferrin_saturation",
+      "helpsWhen": "low"
+    }
+  ],
+  "foods": {
+    "nutrient": "iron",
+    "foodIds": [
+      "18-494",
+      "14-842",
+      "18-474",
+      "13-571",
+      "16-424",
+      "13-660",
+      "13-661",
+      "12-940"
+    ]
+  },
+  "caution": "Iron is absorbed less well from plant foods than the numbers suggest. Spinach, for example, is left out because it also contains substances that block iron absorption.",
+  "studies": [
+    {
+      "pmid": "20200263",
+      "doi": "10.3945/ajcn.2010.28674f",
+      "title": "Iron bioavailability and dietary reference values",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11124756",
+      "doi": "10.1093/ajcn/73.1.93",
+      "title": "Effect of ascorbic acid intake on nonheme-iron absorption from a complete diet",
+      "year": 2001,
+      "studyType": "rct"
+    }
+  ]
+}

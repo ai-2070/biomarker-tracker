@@ -1,0 +1,60 @@
+{
+  "id": "tsh",
+  "name": "Thyroid-stimulating hormone",
+  "abbreviation": "TSH",
+  "category": "Thyroid",
+  "aliases": [
+    "TSH",
+    "Thyroid-stimulating hormone",
+    "Thyrotropin",
+    "Thyreotropin",
+    "TSH (S)",
+    "TSH basal",
+    "Thyréostimuline",
+    "Tirotropina"
+  ],
+  "loinc": [
+    "3016-3"
+  ],
+  "canonicalUnit": "mIU/L",
+  "conversions": {
+    "mIU/L": 1,
+    "µIU/mL": 1,
+    "mU/L": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 0.4,
+      "high": 4
+    }
+  ],
+  "summary": "TSH is a hormone from the pituitary gland that tells the thyroid how hard to work. It is usually the first test for thyroid function.",
+  "high": {
+    "meaning": "A high TSH usually means the thyroid is underactive and the pituitary is pushing it harder.",
+    "commonCauses": [
+      "Underactive thyroid (e.g. Hashimoto's)",
+      "Recovery after illness",
+      "Some medicines",
+      "Iodine deficiency"
+    ]
+  },
+  "low": {
+    "meaning": "A low TSH usually means the thyroid is overactive, or too much thyroid hormone medicine is being taken.",
+    "commonCauses": [
+      "Overactive thyroid",
+      "High dose of thyroid hormone medicine",
+      "Early pregnancy",
+      "Biotin supplements (can interfere with some tests)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "28336049",
+      "doi": "10.1016/s0140-6736(17)30703-1",
+      "title": "Hypothyroidism",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ]
+}

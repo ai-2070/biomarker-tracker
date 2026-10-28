@@ -1,0 +1,65 @@
+{
+  "id": "hba1c",
+  "name": "Haemoglobin A1c",
+  "abbreviation": "HbA1c",
+  "category": "Metabolic",
+  "aliases": [
+    "HbA1c",
+    "Hemoglobin A1c",
+    "Haemoglobin A1c",
+    "A1c",
+    "Glycated hemoglobin",
+    "Glycated haemoglobin",
+    "HbA1c (IFCC)",
+    "HbA1c (NGSP)",
+    "Glykiertes Hämoglobin",
+    "Glikált hemoglobin",
+    "Hémoglobine glyquée",
+    "Hemoglobina glicosilada",
+    "Emoglobina glicata"
+  ],
+  "loinc": [
+    "4548-4"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1,
+    "mmol/mol": {
+      "factor": 0.09148,
+      "offset": 2.152
+    }
+  },
+  "defaultRanges": [
+    {
+      "high": 5.6
+    }
+  ],
+  "rangeNote": "5.7–6.4 % (39–47 mmol/mol) is called prediabetes; 6.5 % (48 mmol/mol) or more on repeat testing is used to diagnose diabetes.",
+  "summary": "HbA1c shows how much sugar has stuck to your red blood cells. It reflects your average blood sugar over roughly the last 2–3 months.",
+  "high": {
+    "meaning": "A higher HbA1c means blood sugar has been higher on average over recent months.",
+    "commonCauses": [
+      "Prediabetes or diabetes",
+      "Iron deficiency (can falsely raise it)",
+      "Recent changes in red blood cell lifespan"
+    ]
+  },
+  "low": {
+    "meaning": "A low HbA1c is usually not a problem. It can be falsely low when red blood cells are replaced faster than usual.",
+    "commonCauses": [
+      "Recent blood loss or transfusion",
+      "Some forms of anaemia",
+      "Pregnancy"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39651986",
+      "doi": "10.2337/dc25-s002",
+      "title": "2. Diagnosis and Classification of Diabetes: Standards of Care in Diabetes-2025",
+      "year": 2025,
+      "studyType": "guideline"
+    }
+  ]
+}

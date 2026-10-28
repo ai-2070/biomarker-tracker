@@ -1,0 +1,63 @@
+{
+  "id": "b12",
+  "name": "Vitamin B12",
+  "category": "Iron & vitamins",
+  "aliases": [
+    "Vitamin B12",
+    "B12",
+    "Cobalamin",
+    "Cobalamine",
+    "B12-vitamin",
+    "Vitamina B12",
+    "Serum vitamin B12",
+    "Vitamin B12 (serum)"
+  ],
+  "loinc": [
+    "2132-9"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "pg/mL": 0.7378,
+    "ng/L": 0.7378
+  },
+  "defaultRanges": [
+    {
+      "low": 148,
+      "high": 664
+    }
+  ],
+  "rangeNote": "Values in the low-normal zone can still go with a real deficiency; doctors sometimes add other tests such as methylmalonic acid.",
+  "summary": "Vitamin B12 is needed to make red blood cells and to keep nerves healthy. It comes mainly from animal foods.",
+  "high": {
+    "meaning": "A high B12 usually comes from supplements or injections. Without supplements, a high level is sometimes worth discussing with a doctor.",
+    "commonCauses": [
+      "Supplements or injections",
+      "Liver conditions",
+      "Some blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low B12 can lead to anaemia, tiredness and nerve problems such as tingling.",
+    "commonCauses": [
+      "Vegan or vegetarian diet without supplements",
+      "Poor absorption (e.g. pernicious anaemia, stomach surgery)",
+      "Metformin or acid-reducing medicines",
+      "Older age"
+    ]
+  },
+  "affectedBy": [
+    {
+      "evidenceId": "b12-foods"
+    }
+  ],
+  "sources": [
+    {
+      "pmid": "23301732",
+      "doi": "10.1056/nejmcp1113996",
+      "title": "Clinical practice. Vitamin B12 deficiency",
+      "year": 2013,
+      "studyType": "review"
+    }
+  ]
+}

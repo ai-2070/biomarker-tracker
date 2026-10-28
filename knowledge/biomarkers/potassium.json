@@ -1,0 +1,61 @@
+{
+  "id": "potassium",
+  "name": "Potassium",
+  "abbreviation": "K",
+  "category": "Electrolytes",
+  "aliases": [
+    "Potassium",
+    "K",
+    "K+",
+    "Kalium",
+    "Kálium",
+    "Potasio",
+    "Potassio"
+  ],
+  "loinc": [
+    "2823-3"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mEq/L": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 3.5,
+      "high": 5.1
+    }
+  ],
+  "criticalRange": {
+    "low": 2.8,
+    "high": 6.2
+  },
+  "summary": "Potassium is a mineral that keeps nerves, muscles and the heart working normally. The body keeps it in a narrow range.",
+  "high": {
+    "meaning": "A high potassium can affect heart rhythm. A falsely high result is common when the blood sample is damaged during the draw.",
+    "commonCauses": [
+      "Damaged blood sample (haemolysis)",
+      "Reduced kidney function",
+      "Some blood pressure medicines",
+      "Potassium supplements"
+    ]
+  },
+  "low": {
+    "meaning": "A low potassium can cause muscle weakness, cramps and heart rhythm changes.",
+    "commonCauses": [
+      "Vomiting or diarrhoea",
+      "Water pills (diuretics)",
+      "Low intake"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "27756725",
+      "doi": "10.1152/advan.00121.2016",
+      "title": "Physiology and pathophysiology of potassium homeostasis",
+      "year": 2016,
+      "studyType": "review"
+    }
+  ]
+}

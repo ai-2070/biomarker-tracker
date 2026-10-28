@@ -1,0 +1,60 @@
+{
+  "id": "sodium",
+  "name": "Sodium",
+  "abbreviation": "Na",
+  "category": "Electrolytes",
+  "aliases": [
+    "Sodium",
+    "Na",
+    "Na+",
+    "Natrium",
+    "Nátrium",
+    "Sodio"
+  ],
+  "loinc": [
+    "2951-2"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mEq/L": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 135,
+      "high": 145
+    }
+  ],
+  "criticalRange": {
+    "low": 120,
+    "high": 160
+  },
+  "summary": "Sodium is the main salt in your blood. Its level mostly reflects the balance of water in your body.",
+  "high": {
+    "meaning": "A high sodium usually means the body is short of water.",
+    "commonCauses": [
+      "Dehydration",
+      "Not drinking enough, especially in older adults",
+      "Some medicines"
+    ]
+  },
+  "low": {
+    "meaning": "A low sodium usually means there is too much water relative to salt. Mild drops can cause tiredness; severe drops are dangerous.",
+    "commonCauses": [
+      "Water pills (diuretics) and some antidepressants",
+      "Drinking very large amounts of fluid",
+      "Heart, liver or kidney conditions",
+      "Hormone imbalances"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "24569125",
+      "doi": "10.1530/eje-13-1020",
+      "title": "Clinical practice guideline on diagnosis and treatment of hyponatraemia",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

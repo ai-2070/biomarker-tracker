@@ -1,0 +1,71 @@
+{
+  "id": "mcv",
+  "name": "Mean cell volume",
+  "abbreviation": "MCV",
+  "category": "Blood count",
+  "aliases": [
+    "MCV",
+    "Mean corpuscular volume",
+    "Mean cell volume",
+    "Volume globulaire moyen",
+    "VGM",
+    "Volumen corpuscular medio"
+  ],
+  "loinc": [
+    "787-2"
+  ],
+  "canonicalUnit": "fL",
+  "conversions": {
+    "fL": 1,
+    "µm³": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 80,
+      "high": 100
+    }
+  ],
+  "summary": "MCV is the average size of your red blood cells. It helps tell apart different causes of anaemia.",
+  "high": {
+    "meaning": "Larger than usual red cells can come from low vitamin B12 or folate, alcohol, liver disease or some medicines.",
+    "commonCauses": [
+      "Vitamin B12 or folate deficiency",
+      "Regular alcohol use",
+      "Liver disease",
+      "Underactive thyroid",
+      "Some medicines"
+    ]
+  },
+  "low": {
+    "meaning": "Smaller than usual red cells most often point to iron deficiency.",
+    "commonCauses": [
+      "Iron deficiency",
+      "Inherited conditions such as thalassaemia trait",
+      "Long-term inflammation"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23301732",
+      "doi": "10.1056/nejmcp1113996",
+      "title": "Clinical practice. Vitamin B12 deficiency",
+      "year": 2013,
+      "studyType": "review"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "less-alcohol-tg",
+  "lever": "Drinking less alcohol",
+  "intervention": "Reducing alcohol intake",
+  "kind": "habit",
+  "outcome": "Triglycerides",
+  "direction": "decrease",
+  "grade": "moderate",
+  "summary": "Alcohol raises triglycerides, especially in people whose levels are already high. European guidelines recommend cutting down.",
+  "whyThisGrade": [
+    "Recommended in European guidelines",
+    "The size of the effect varies a lot between people"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "triglycerides",
+      "helpsWhen": "high"
+    }
+  ],
+  "studies": [
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "b12-foods",
+  "lever": "Foods with vitamin B12 (animal or fortified foods)",
+  "intervention": "Eating foods that contain vitamin B12: animal foods, or foods fortified with B12",
+  "kind": "food",
+  "outcome": "Vitamin B12 levels, when low intake is the cause",
+  "direction": "increase",
+  "grade": "moderate",
+  "summary": "B12 is made by microbes and is found naturally only in animal foods. People who eat no animal foods need fortified foods or supplements. If low B12 comes from poor absorption (for example pernicious anaemia, stomach surgery, or medicines such as metformin), food alone won't fix it.",
+  "whyThisGrade": [
+    "Well-understood biology, described in clinical reviews and guidelines",
+    "Food doesn't help when absorption is the problem, which is common"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "b12",
+      "helpsWhen": "low"
+    }
+  ],
+  "foods": {
+    "nutrient": "vitaminB12",
+    "foodIds": [
+      "18-494",
+      "16-424",
+      "16-394",
+      "16-418",
+      "18-474",
+      "12-940",
+      "12-313"
+    ]
+  },
+  "studies": [
+    {
+      "pmid": "23301732",
+      "doi": "10.1056/nejmcp1113996",
+      "title": "Clinical practice. Vitamin B12 deficiency",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24942828",
+      "doi": "10.1111/bjh.12959",
+      "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

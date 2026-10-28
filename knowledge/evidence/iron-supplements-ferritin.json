@@ -1,0 +1,37 @@
+{
+  "id": "iron-supplements-ferritin",
+  "lever": "Iron supplements, when a doctor confirms iron deficiency",
+  "intervention": "Oral iron supplements in people with iron deficiency",
+  "kind": "supplement",
+  "outcome": "Ferritin and haemoglobin",
+  "direction": "increase",
+  "grade": "high",
+  "summary": "In people with iron deficiency, iron supplements reliably raise ferritin and haemoglobin. The right product, dose and length of treatment depend on the cause, so this is something to decide with a doctor.",
+  "whyThisGrade": [
+    "Many randomised trials",
+    "Shown in people who are iron deficient, not in people with normal iron"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "ferritin",
+      "helpsWhen": "low"
+    }
+  ],
+  "caution": "Low iron can have causes, such as blood loss, that need checking. Too much iron is harmful, and stomach side effects are common.",
+  "studies": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

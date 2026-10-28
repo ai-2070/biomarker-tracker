@@ -1,0 +1,100 @@
+{
+  "result": {
+    "35662478": {
+      "uid": "35662478",
+      "pubdate": "2022 Aug",
+      "source": "J Hepatol",
+      "title": "EASL Clinical Practice Guidelines on haemochromatosis.",
+      "pubtype": [
+        "Practice Guideline",
+        "Journal Article"
+      ],
+      "articleids": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "35662478"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1016/j.jhep.2022.03.033"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "S0168-8278(22)00211-2"
+        }
+      ],
+      "fulljournalname": "Journal of hepatology",
+      "authors": [
+        {
+          "name": "European Association for the Study of the Liver",
+          "authtype": "CollectiveName",
+          "clusterid": ""
+        }
+      ]
+    },
+    "36728680": {
+      "uid": "36728680",
+      "pubdate": "2023 Jul 10",
+      "source": "Nutr Rev",
+      "title": "The effects of oral ferrous bisglycinate supplementation on hemoglobin and ferritin concentrations in adults and children: a systematic review and meta-analysis of randomized controlled trials.",
+      "pubtype": [
+        "Journal Article",
+        "Meta-Analysis",
+        "Research Support, Non-U.S. Gov't",
+        "Systematic Review"
+      ],
+      "articleids": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "36728680"
+        },
+        {
+          "idtype": "pmc",
+          "idtypen": 8,
+          "value": "PMC10331582"
+        },
+        {
+          "idtype": "pmcid",
+          "idtypen": 5,
+          "value": "pmc-id: PMC10331582;"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1093/nutrit/nuac106"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "7024657"
+        }
+      ],
+      "fulljournalname": "Nutrition reviews",
+      "authors": [
+        {
+          "name": "Fischer JAJ",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Cherian AM",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Bone JN",
+          "authtype": "Author",
+          "clusterid": ""
+        }
+      ]
+    },
+    "uids": [
+      "36728680",
+      "35662478"
+    ]
+  }
+}

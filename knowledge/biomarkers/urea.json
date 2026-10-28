@@ -1,0 +1,70 @@
+{
+  "id": "urea",
+  "name": "Urea",
+  "category": "Kidney",
+  "aliases": [
+    "Urea",
+    "Serum urea",
+    "BUN",
+    "Blood urea nitrogen",
+    "Urea nitrogen",
+    "Harnstoff",
+    "Harnstoff-N",
+    "Karbamid",
+    "Urée",
+    "Urea sérica",
+    "Azotemia"
+  ],
+  "loinc": [
+    "3091-6",
+    "3094-0"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL (BUN)": 0.357,
+    "mg/dL (urea)": 0.1665
+  },
+  "defaultRanges": [
+    {
+      "low": 2.5,
+      "high": 7.8
+    }
+  ],
+  "rangeNote": "US labs usually report BUN (urea nitrogen) in mg/dL; many European labs report urea itself in mmol/L or mg/dL. Pick the matching unit.",
+  "summary": "Urea is a waste product made by the liver when the body breaks down protein. The kidneys remove it.",
+  "high": {
+    "meaning": "A high urea can mean the kidneys are filtering less, but it also rises with dehydration and high protein intake.",
+    "commonCauses": [
+      "Dehydration",
+      "High-protein diet",
+      "Reduced kidney function",
+      "Bleeding in the stomach or gut",
+      "Steroid medicines"
+    ]
+  },
+  "low": {
+    "meaning": "A low urea is usually not a concern and often reflects low protein intake.",
+    "commonCauses": [
+      "Low protein intake",
+      "Pregnancy",
+      "Liver disease (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "21250147",
+      "title": "BUN and Creatinine",
+      "year": 1990,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38490803",
+      "doi": "10.1016/j.kint.2023.10.018",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "year": 2024,
+      "studyType": "guideline"
+    }
+  ]
+}

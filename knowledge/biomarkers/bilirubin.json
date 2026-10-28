@@ -1,0 +1,53 @@
+{
+  "id": "bilirubin",
+  "name": "Bilirubin (total)",
+  "category": "Liver",
+  "aliases": [
+    "Bilirubin",
+    "Total bilirubin",
+    "Bilirubin, total",
+    "TBIL",
+    "Gesamtbilirubin",
+    "Bilirubin gesamt",
+    "Összbilirubin",
+    "Bilirubine totale",
+    "Bilirrubina total",
+    "Bilirubina totale"
+  ],
+  "loinc": [
+    "1975-2"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1,
+    "mg/dL": 17.1
+  },
+  "defaultRanges": [
+    {
+      "high": 21
+    }
+  ],
+  "summary": "Bilirubin is a yellow substance made when old red blood cells are broken down. The liver clears it into bile.",
+  "high": {
+    "meaning": "A mildly high bilirubin with otherwise normal liver tests is very often Gilbert's syndrome, a harmless inherited trait. Higher levels can point to liver or bile duct problems, or to faster breakdown of red cells.",
+    "commonCauses": [
+      "Gilbert's syndrome (harmless, rises with fasting or illness)",
+      "Liver or bile duct problems",
+      "Faster red cell breakdown (haemolysis)"
+    ]
+  },
+  "low": {
+    "meaning": "A low bilirubin is not a concern.",
+    "commonCauses": []
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "27995906",
+      "doi": "10.1038/ajg.2016.517",
+      "title": "ACG Clinical Guideline: Evaluation of Abnormal Liver Chemistries",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}

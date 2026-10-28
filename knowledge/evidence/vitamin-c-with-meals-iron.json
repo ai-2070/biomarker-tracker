@@ -1,0 +1,56 @@
+{
+  "id": "vitamin-c-with-meals-iron",
+  "lever": "Vitamin C-rich foods with iron-containing meals",
+  "intervention": "Eating vitamin C-rich fruit or vegetables in the same meal as plant sources of iron",
+  "kind": "food",
+  "outcome": "Iron stores (ferritin)",
+  "direction": "increase",
+  "grade": "low",
+  "summary": "Vitamin C in the same meal helps the body absorb iron from plant foods. In single-meal studies the effect is large, but across a normal mixed diet it is much smaller, and studies haven't shown a clear rise in ferritin from this alone.",
+  "whyThisGrade": [
+    "Strong effect in short studies of single meals",
+    "Much smaller effect across a whole diet",
+    "Little direct evidence that it raises ferritin over months"
+  ],
+  "markers": [
+    {
+      "biomarkerId": "ferritin",
+      "helpsWhen": "low"
+    },
+    {
+      "biomarkerId": "iron",
+      "helpsWhen": "low"
+    },
+    {
+      "biomarkerId": "transferrin_saturation",
+      "helpsWhen": "low"
+    }
+  ],
+  "foods": {
+    "nutrient": "vitaminC",
+    "foodIds": [
+      "13-524",
+      "14-371",
+      "14-324",
+      "14-327",
+      "13-503",
+      "13-630"
+    ]
+  },
+  "studies": [
+    {
+      "pmid": "2911999",
+      "doi": "10.1093/ajcn/49.1.140",
+      "title": "Iron absorption in man: ascorbic acid and dose-dependent inhibition by phytate",
+      "year": 1989,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "11124756",
+      "doi": "10.1093/ajcn/73.1.93",
+      "title": "Effect of ascorbic acid intake on nonheme-iron absorption from a complete diet",
+      "year": 2001,
+      "studyType": "rct"
+    }
+  ]
+}

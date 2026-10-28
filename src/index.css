@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Light values here, dark values in the media query below.
+ * Chart colors were checked with a colour-blindness and contrast validator.
+ */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-page: #f6f6f3;
+  --color-surface: #fcfcfb;
+  --color-sunken: #efeee9;
+  --color-ink: #0b0b0b;
+  --color-ink-2: #52514e;
+  --color-muted: #6f6d68;
+  --color-line: #e1e0d9;
+  --color-line-strong: #c3c2b7;
+
+  --color-accent: #00796d;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: #e2f3f0;
+
+  --color-chart-line: #00897b;
+  --color-chart-band: #00897b;
+  --color-chart-out: #d03b3b;
+
+  --color-ok: #006300;
+  --color-ok-soft: #e6f4e6;
+  --color-warn: #9a3a10;
+  --color-warn-soft: #fdeee6;
+  --color-danger: #b42323;
+  --color-danger-soft: #fdeaea;
+  --color-danger-strong: #b42323;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #0d0d0d;
+    --color-surface: #1a1a19;
+    --color-sunken: #242422;
+    --color-ink: #f0efec;
+    --color-ink-2: #c3c2b7;
+    --color-muted: #a3a199;
+    --color-line: #2c2c2a;
+    --color-line-strong: #45443f;
+
+    --color-accent: #2bb5a5;
+    --color-accent-ink: #0b0b0b;
+    --color-accent-soft: #10302c;
+
+    --color-chart-line: #14a394;
+    --color-chart-band: #14a394;
+    --color-chart-out: #e05252;
+
+    --color-ok: #4cc94c;
+    --color-ok-soft: #132a13;
+    --color-warn: #f2a07c;
+    --color-warn-soft: #33200f;
+    --color-danger: #f28b8b;
+    --color-danger-soft: #3a1515;
+    --color-danger-strong: #c43b3b;
+  }
+}
+
+html {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* Needed by Base UI backdrops on iOS 26+ Safari. */
+  position: relative;
+  margin: 0;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+/* Separate stacking context so Base UI popups always sit on top. */
+#root {
+  isolation: isolate;
+  min-height: 100dvh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

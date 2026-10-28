@@ -1,0 +1,74 @@
+{
+  "id": "glucose",
+  "name": "Glucose",
+  "category": "Metabolic",
+  "aliases": [
+    "Glucose",
+    "Fasting glucose",
+    "Blood glucose",
+    "Blood sugar",
+    "GLU",
+    "Glukose",
+    "Nüchternglukose",
+    "Glükóz",
+    "Vércukor",
+    "Glycémie",
+    "Glucosa",
+    "Glicemia"
+  ],
+  "loinc": [
+    "2345-7",
+    "1558-6"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.0555
+  },
+  "defaultRanges": [
+    {
+      "low": 3.9,
+      "high": 5.5
+    }
+  ],
+  "criticalRange": {
+    "low": 2.5,
+    "high": 22.2
+  },
+  "rangeNote": "This range is for a fasting sample (no food for at least 8 hours).",
+  "summary": "Glucose is the main sugar in your blood and the body's main fuel. Its level is tightly controlled by insulin and other hormones.",
+  "high": {
+    "meaning": "A high fasting glucose can be a sign of prediabetes or diabetes. A single high value after eating is expected.",
+    "commonCauses": [
+      "Not fasting before the test",
+      "Prediabetes or diabetes",
+      "Stress or acute illness",
+      "Some medicines, such as steroids"
+    ]
+  },
+  "low": {
+    "meaning": "Low glucose (hypoglycaemia) can cause shakiness, sweating and confusion. It is uncommon in people who do not take glucose-lowering medicines.",
+    "commonCauses": [
+      "Glucose-lowering medicines",
+      "Long fasting",
+      "Delayed sample processing (glucose drops in the tube)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39651986",
+      "doi": "10.2337/dc25-s002",
+      "title": "2. Diagnosis and Classification of Diabetes: Standards of Care in Diabetes-2025",
+      "year": 2025,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

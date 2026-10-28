@@ -1,0 +1,255 @@
+# CLAUDE.md
+
+Working name: **Biomarker Tracker** (rename later).
+
+A free, open-source, local-first web app where anyone can track their bloodwork over years, understand it in plain language, see their biological age, and explore what research says about each marker. No install, no account, no server. Users' health data never leaves their device unless they explicitly send it to an AI model of their choice.
+
+---
+
+## Core principles (never violate these)
+
+1. **Local-first.** All user data lives in the browser (IndexedDB). There is no backend, no database server, no user accounts.
+2. **No telemetry.** No analytics, no tracking pixels, no error reporting services, no third-party scripts beyond what is listed in this file.
+3. **Allowed network calls only:**
+   - Europe PMC REST API (research search, open-access full text)
+   - NCBI E-utilities / PubMed (research search, backup)
+   - ClinicalTrials.gov API v2 (ongoing trials)
+   - The AI provider the user configured themselves (Anthropic, OpenAI, or local Ollama)
+   - Nothing else. Any new endpoint must be added to this list in a PR with justification.
+4. **Code does the math, the model does the explaining.** Unit conversion, trends, reference-range checks, and scores (PhenoAge) are computed in tested TypeScript. The LLM never computes numbers that are shown as facts.
+5. **Every claim needs a source.** Knowledge base entries must include citations. AI answers may only cite papers that were retrieved and passed in context; the app verifies every cited ID against the retrieved set and strips or flags anything else.
+6. **Explain, don't prescribe.** The app shows what markers mean, what is known to affect them, and the evidence strength. It never diagnoses, never tells a user to start/stop a medication, and never gives a personal dose. Anything clearly out of range shows "discuss with your doctor."
+7. **Works without AI.** Tracking, charts, PhenoAge, and the knowledge base must be fully usable with no model configured. AI is an optional layer.
+8. **Honest about what is unknown.** Biology is mostly unmapped (nutritional dark matter, unidentified metabolites, unnamed signaling molecules). The app shows what is measured and what the evidence says, labels the gaps, and never presents a prediction as a simulation of the body.
+9. **Usable by non-technical people.** Plain language, large touch targets, no jargon without an explanation, works on a phone.
+
+---
+
+## Tech stack
+
+- **Vite + React + TypeScript** (strict mode)
+- **Dexie** (IndexedDB wrapper) for storage
+- **Recharts** for charts
+- **pdf.js** (`pdfjs-dist`) for extracting text from lab PDFs
+- **Vitest** for tests
+- **Deployment:** static build to GitHub Pages. No server code anywhere in the repo.
+
+Keep dependencies minimal. Prefer writing 30 lines over adding a package.
+
+---
+
+## Repo structure
+
+```
+/src
+  /app            # React UI: pages, components
+  /core           # Pure TypeScript, no React, fully unit-tested
+    units.ts      # unit conversion per biomarker
+    trends.ts     # change over time, rate of change, out-of-range flags
+    phenoage.ts   # biological age calculation
+    importers/    # lab PDF parsers, CSV import, manual entry validation
+  /db             # Dexie schema and queries
+  /research       # Europe PMC / PubMed / ClinicalTrials clients
+  /ai             # provider adapters + context builder + citation verifier
+/knowledge
+  /biomarkers     # one JSON file per biomarker (see schema below)
+  /evidence       # graded claims, e.g. "omega-3 -> triglycerides"
+/tests
+```
+
+Everything in `/core` must be pure functions with tests. UI never does math directly.
+
+---
+
+## Data model
+
+```ts
+// Shipped with the app, in /knowledge/biomarkers/*.json
+interface BiomarkerDef {
+  id: string;                 // "ferritin", "hba1c", "crp_hs"
+  name: string;
+  abbreviation?: string;      // "HbA1c"; shown with the full name once
+  category: string;           // "Blood count", "Lipids", ... (see src/core/types.ts)
+  aliases: string[];          // names labs use: "Ferritin", "Ferritin (S)", "Ferritin szérum"
+  loinc?: string[];
+  canonicalUnit: string;      // all values stored in this unit
+  conversions: Record<string, number | { factor: number; offset: number }>; // unit -> canonical; offset form needed for HbA1c mmol/mol
+  defaultRanges?: { low?: number; high?: number; sex?: "m" | "f" }[]; // canonical unit; lab range wins
+  criticalRange?: { low?: number; high?: number }; // beyond this: urgent "contact a doctor" banner
+  rangeNote?: string;         // e.g. "fasting sample"
+  summary: string;            // plain language, 1–3 sentences
+  high: { meaning: string; commonCauses: string[] };
+  low:  { meaning: string; commonCauses: string[] };
+  affectedBy: EvidenceRef[];  // links to /knowledge/evidence entries
+  sources: Citation[];        // required, at least one
+}
+
+// Stored in IndexedDB
+interface Measurement {
+  id: string;
+  biomarkerId: string;
+  value: number;              // in canonical unit
+  originalValue: number;
+  originalUnit: string;
+  qualifier?: "<" | ">";      // lab printed "<0.1" (e.g. below detection limit)
+  date: string;               // ISO date of sample
+  lab?: string;
+  labRange?: { low?: number; high?: number };
+  fasted?: boolean;
+  source: "manual" | "pdf" | "csv";
+  note?: string;
+}
+
+interface ProtocolEntry {      // supplements, diet changes, meds the user logs
+  id: string;
+  label: string;              // "Creatine 5 g"
+  category: "supplement" | "diet" | "medication" | "lifestyle";
+  start: string;
+  end?: string;
+}
+
+interface EvidenceClaim {      // /knowledge/evidence/*.json
+  id: string;
+  intervention: string;       // "omega-3 (EPA+DHA)"
+  outcome: string;            // "triglycerides"
+  direction: "increase" | "decrease" | "no effect" | "mixed";
+  grade: "high" | "moderate" | "low" | "very low";
+  whyThisGrade: string[];     // "mostly small trials", "industry funded", ...
+  studies: Citation[];
+}
+
+interface Citation {
+  pmid?: string;
+  doi?: string;
+  title: string;
+  year: number;
+  studyType: "meta-analysis" | "rct" | "observational" | "animal" | "in vitro" | "review" | "guideline";
+  n?: number;
+}
+```
+
+---
+
+## PhenoAge (Levine et al., 2018)
+
+Inputs (convert to these exact units first):
+albumin (g/L), creatinine (µmol/L), glucose (mmol/L), CRP (mg/dL, natural log), lymphocyte (%), MCV (fL), RDW (%), alkaline phosphatase (U/L), WBC (10³/µL), chronological age (years).
+
+```
+xb = -19.907
+     - 0.0336  * albumin
+     + 0.0095  * creatinine
+     + 0.1953  * glucose
+     + 0.0954  * ln(CRP)
+     - 0.0120  * lymphocyte_pct
+     + 0.0268  * MCV
+     + 0.3306  * RDW
+     + 0.00188 * ALP
+     + 0.0554  * WBC
+     + 0.0804  * age
+
+gamma = 0.0076927
+M = 1 - exp( -exp(xb) * (exp(120 * gamma) - 1) / gamma )
+PhenoAge = 141.50225 + ln( -0.00553 * ln(1 - M) ) / 0.090165
+```
+
+- **Verified 2026-10-28** (see header of `src/core/phenoage.ts`): weights match the paper's Table 1 (PMC5940111) and BioAge R (`phenoage_calc`, `orig = TRUE`). Tests use pyaging's R-computed reference values (log hazard −12/−9/−6 → 9.375/42.647/75.920 years) and a transcription of BioAge as an oracle. Do **not** use biolearn as a reference: its RDW weight is 0.3356 (typo).
+- Implementation uses the algebraically equal stable form `141.50225 + (xb + ln(0.00553·(e^{120γ}−1)/γ)) / 0.090165`, which stays finite when M rounds to 1.
+- Age comes from birth **month and year** only (`Profile.birthMonth`, "YYYY-MM", mid-month assumed). Not shown under age 20 (model trained on adults).
+- Only compute when all 9 markers come from the **same blood draw**.
+- Guard CRP ≤ 0 (lab "<0.1" values): use the detection limit and mark the result as approximate.
+- Show it as an estimate with a short explanation, never as a verdict.
+
+---
+
+## AI layer
+
+- Providers: Anthropic, OpenAI, Ollama (OpenAI-compatible endpoint). User pastes their own key; it is stored only in IndexedDB.
+- Anthropic from the browser needs the `anthropic-dangerous-direct-browser-access: true` header. Show the user a clear note that their key is stored locally.
+- **Context builder** sends: relevant measurements and computed trends (from `/core`), matching knowledge base entries, retrieved study abstracts with IDs, and the system rules below.
+- **Before sending to a cloud provider:** show the user exactly what will be sent. Strip names, birth dates (send age only), lab addresses, and patient IDs.
+- **System rules for the model:** cite only provided studies by ID; state evidence strength; say "not enough evidence" when true; no diagnosis; no personal dosing; suggest a doctor for out-of-range or fast-changing values.
+- **Citation verifier:** after the response, check every cited ID exists in the retrieved set. Remove or visibly flag unknown citations.
+- **Implementation (v0.6):** `src/research/papers.ts` (Europe PMC, PubMed fallback; topic text is reduced to plain words before it goes into a query), `src/ai/providers.ts` (plain `fetch`, no SDKs; Anthropic uses API version `2026-10-21`, `output_config.effort: "medium"`, and `fallbacks: "default"` on Opus/Sonnet; never send `temperature`), `src/ai/context.ts` (the only place that decides what is sent), `src/ai/citations.ts` (unknown IDs are struck through, author-year references are flagged as uncheckable).
+- The send preview shows the exact request text; nothing is sent until the user presses Send. Results and log are separate opt-ins (results on, log off by default). AI is disabled for a marker whose latest value is critical. The API key is in the `settings` table and is never written to backup files.
+- `connect-src` in `vite.config.ts` must match the allowed list above. Ollama is limited to `localhost:11434` / `127.0.0.1:11434` (`OLLAMA_ALLOWED`). ClinicalTrials.gov is allowed but not used yet.
+
+---
+
+## Lab PDF import
+
+- Extract text with pdf.js, then match lines against biomarker `aliases`, parse value + unit + range.
+- Always show a **review screen** before saving: the user confirms or fixes each parsed value. Never save silently.
+- Parsers per lab/country live in `/src/core/importers/`, each with sample-text fixtures in tests. Never commit real patient PDFs; use synthetic or fully anonymized fixtures.
+- Multiple languages matter (EU users). Aliases should include local names (German, Hungarian, etc.).
+- Current implementation: `src/core/importers/pdfText.ts` rebuilds lines from pdf.js text positions; `labText.ts` is the generic parser (name → value → unit → range, sample date with birth-date lines excluded). Lab-specific parsers can be added next to it when a layout needs one. Fixtures: `tests/fixtures/lab-text/*.txt`.
+- An alias must belong to exactly one marker (a test enforces this). Avoid aliases that are common words or that name a different test (e.g. "HbE", Hungarian "Vas").
+- Rows whose printed unit doesn't fit the marker (e.g. absolute lymphocytes in G/l matched to "Lymphocytes %") are shown but unticked, never saved by default.
+- Known gap: no OCR for scanned PDFs, and no Adobe CMaps bundled (rare CJK-font PDFs may extract garbled text).
+
+---
+
+## Safety rules
+
+- No calorie-restriction targets, weight-loss plans, or "eat less than X" outputs.
+- When a user logs or asks about a condition that changes advice (kidney disease, anticoagulants, pregnancy, diabetes medication), show a prominent "talk to your doctor" note and avoid nutrient-increase suggestions for affected nutrients (e.g. potassium in kidney disease, vitamin K with warfarin). Detection lives in `safetyNotes()` in `src/core/protocols.ts` (keyword lists incl. brand names); later features that suggest nutrients (v0.7) must check it.
+- Critical values (e.g. potassium, sodium, glucose far out of range) show an urgent "contact a doctor" banner, no AI commentary first.
+- Footer and onboarding: "Not medical advice. Not a medical device."
+
+---
+
+## Milestones
+
+1. **v0.1** Manual entry, measurement list, per-marker trend chart, out-of-range flags, export/import of all data as JSON (backup).
+2. **v0.2** PhenoAge with tests and an explanation page.
+3. **v0.3** Knowledge base for the ~30 most common markers (CBC, lipids, glucose/HbA1c, liver, kidney, thyroid, iron panel, vitamin D, B12, CRP).
+4. **v0.4** Lab PDF import with review screen; first parsers.
+5. **v0.5** Protocol log (supplements/diet/meds) overlaid on charts.
+6. **v0.6** Research panel (Europe PMC/PubMed) per marker + optional AI Q&A with citation verification.
+7. **v0.7** Nutrient-gap foods: map out-of-range markers to evidence-graded dietary levers and show food portions with exact nutrient amounts from food composition data (see "Nutrition" below).
+8. **v0.8** N-of-1 experiments: baseline → change → re-measure, with noise-aware before/after comparison.
+
+---
+
+## Nutrition (planned, v0.7)
+
+### The core limitation: nutritional dark matter
+Food contains 26,000+ known biochemicals, but standard food databases track only ~150 nutrients (Barabási et al., Nature Food, 2019). Human blood metabolomics likewise detects thousands of signals that match no known molecule. We cannot model a food bottom-up from its molecules, and the app must never pretend it can.
+
+### Design rules that follow from this
+- **Whole food and isolated nutrient are different interventions.** "Eat strawberries" and "take vitamin C" get separate evidence claims and separate grades. Never infer a whole-food effect from a single-nutrient study, or the reverse. (Canonical warning case: beta-carotene-rich diets were associated with lower lung cancer risk, but beta-carotene supplements increased it in smokers — ATBC and CARET trials.)
+- **Prefer whole-food evidence** (food-level RCTs, long-term cohorts) when it exists. Single-nutrient math is a fallback, not the default.
+- **Label coverage honestly.** Anywhere nutrient totals are shown, include a short note: "Nutrient numbers cover ~150 measured compounds. Foods contain thousands more that aren't tracked."
+- **Personal measurement beats prediction.** The app's answer to dark matter is empirical: log the food/diet change, measure markers before and after (bloodwork, CGM, wearables), and show what actually changed in this person. The body responds to every compound, named or not.
+
+### Implementation (v0.7)
+- **Food data:** `knowledge/foods/cofid-foods.json`, a curated extract of McCance & Widdowson's CoFID 2021 (UK, Open Government Licence). USDA was the first choice but `*.usda.gov` was unreachable when this was built; CoFID is an EU-region national table, which this file allows. Values are copied, never estimated: "Tr" → 0, "N"/missing → left out. Portions are labelled examples. To add foods, extend the generator's code list and re-extract from the CoFID spreadsheet; don't type values by hand.
+- **Evidence claims:** `knowledge/evidence/*.json` (`EvidenceClaim` in `src/core/types.ts`). Each has a `lever`, `kind` (food / diet / supplement / habit; supplements may not list foods), the measured `outcome`, `grade` + `whyThisGrade` checked against the cited abstracts, and `markers` with `helpsWhen`. Biomarker `affectedBy` must mirror them (a test enforces it).
+- **Safety:** `SAFETY_LIMITS` in `src/core/foods.ts` hides foods per portion (vitamin K ≥ 60 µg with blood thinners, potassium ≥ 300 mg with kidney disease, retinol ≥ 300 µg in pregnancy); `hideWhen` hides whole claims. Levers are not shown next to a critical value.
+- Grades and wording are a first draft by the developer, not reviewed by a clinician yet.
+
+### What the feature does
+- Use a food composition database (e.g. USDA FoodData Central bulk download, or EU national tables) shipped as a static dataset. Portion math ("75 g strawberries ≈ X mg vitamin C") is computed, not generated, and is labeled as measured-nutrient-only.
+- Recommendations are **levers with evidence grades**, not prescriptive meal plans: "Low ferritin → heme iron sources, vitamin C with meals, tea/coffee away from meals (grade: moderate)."
+- Example meals are framed as examples that hit a nutrient amount, never as "the optimal meal for you."
+- Every nutrition suggestion links to a "test it on yourself" flow: baseline measurement → change → follow-up measurement (see N-of-1 below).
+- Respect the safety rules above.
+
+### N-of-1 experiments (v0.8)
+- User defines: change (e.g. "add 2 kiwis daily"), outcome markers, baseline period, intervention period.
+- App reminds when to re-measure and shows before/after with the measurement noise for that marker (e.g. typical lab and biological variation), so users can tell a real change from noise.
+- Results are framed as "what happened in you," never generalized as evidence for others.
+- **Implementation:** `src/core/experiments.ts`. "Before" = results in the 120 days up to the start; "after" = results from start + re-test interval (to 30 days after an ended experiment). Several results per side are combined with a geometric mean. Noise band = log-normal reference change value: Z 1.96 · √(1/n1 + 1/n2) · σ, σ from CVI and CVA (Fraser 2011, PMID 21958344; Fokkema 2006, PMID 16873298). CVA is assumed to be 0.5 × CVI.
+- **CVI data:** `biologicalVariation` in each biomarker file, from the EFLM Biological Variation Database API (`https://biologicalvariation.eu/api/meta_calculations`, retrieved 2026-10-28; median with CI and number of studies). No EFLM value for RDW-CV, lymphocyte %, neutrophil %, eGFR or transferrin saturation; those experiments say "can't be judged" rather than guess.
+- Creating an experiment also creates a log entry; ending it ends that entry. Experiments are in backups (backup format version 2; version 1 files still restore).
+
+---
+
+## Conventions
+
+- TypeScript strict, no `any` in `/core`.
+- Every function in `/core` has tests. Every knowledge entry has sources.
+- Package manager is **Bun** (`bun install`, `bun add`). Don't use npm, and don't commit a `package-lock.json`.
+- Small PRs. Run `bun run test` and `bun run build` before committing. (`bun run test`, not `bun test`: the latter is Bun's own runner, not Vitest.)
+- UI copy: plain language, short sentences, explain every abbreviation once.
+- Accessibility: keyboard navigable, readable contrast, works at 360px width.
