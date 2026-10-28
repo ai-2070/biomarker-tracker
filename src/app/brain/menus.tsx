@@ -17,8 +17,15 @@ export interface BrainSettings {
 }
 
 /** The server's model settings: `undefined` while loading, `null` when the page runs without the local server. */
+// Kept between openings, so Brain shows the model straight away (and is refreshed in the background).
+let lastSettings: BrainSettings | null | undefined;
+
 export function useBrainSettings(active: boolean): { settings: BrainSettings | null | undefined; reload: () => void } {
-  const [settings, setSettings] = useState<BrainSettings | null | undefined>(undefined);
+  const [settings, setSettingsState] = useState<BrainSettings | null | undefined>(lastSettings);
+  const setSettings = (s: BrainSettings | null) => {
+    lastSettings = s;
+    setSettingsState(s);
+  };
   const [tick, setTick] = useState(0);
   useEffect(() => {
     if (!active) return;

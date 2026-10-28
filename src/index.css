@@ -45,7 +45,16 @@
   --animate-enter-back: enter-back 360ms var(--ease-soft) both;
   --animate-fade: fade 220ms ease-out both;
   --animate-dot: dot 1.2s ease-in-out infinite;
-  --animate-brain-in: brain-in 300ms var(--ease-soft) both;
+  /* Brain: on large screens the pill grows into the window and the window folds back into the pill
+     (a clip-path, so text never stretches). Elsewhere the window slides up and down. */
+  /* backwards, not both: a clip left on after opening would hide the window's shadow. */
+  --animate-brain-grow: brain-grow 340ms var(--ease-soft) backwards;
+  --animate-brain-shrink: brain-shrink 220ms cubic-bezier(0.4, 0, 0.9, 0.4) both;
+  --animate-brain-sheet-in: brain-sheet-in 300ms var(--ease-soft) both;
+  --animate-brain-sheet-out: brain-sheet-out 200ms cubic-bezier(0.4, 0, 0.9, 0.4) both;
+  --animate-brain-content: brain-content 260ms var(--ease-soft) both;
+  --animate-brain-content-out: brain-content-out 110ms ease-in both;
+  --animate-brain-pop: brain-pop 240ms var(--ease-soft) both;
 
   @keyframes enter {
     from {
@@ -70,10 +79,57 @@
       opacity: 0;
     }
   }
-  @keyframes brain-in {
+  @keyframes brain-grow {
+    from {
+      /* The shape of the "Ask Brain" pill, at the bottom middle of the window. */
+      clip-path: inset(calc(100% - 46px) calc(50% - 86px) 0 calc(50% - 86px) round 23px);
+      opacity: 0.4;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 16px);
+      opacity: 1;
+    }
+  }
+  @keyframes brain-shrink {
+    from {
+      clip-path: inset(0 0 0 0 round 16px);
+    }
+    70% {
+      opacity: 1;
+    }
+    to {
+      clip-path: inset(calc(100% - 46px) calc(50% - 86px) 0 calc(50% - 86px) round 23px);
+      opacity: 0;
+    }
+  }
+  @keyframes brain-sheet-in {
     from {
       opacity: 0;
-      transform: translateY(14px) scale(0.98);
+      transform: translateY(28px);
+    }
+  }
+  @keyframes brain-sheet-out {
+    to {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+  }
+  @keyframes brain-content {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+  /* Closing: the content goes first, so the window folds away as a clean shape. */
+  @keyframes brain-content-out {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes brain-pop {
+    from {
+      opacity: 0;
+      scale: 0.9;
     }
   }
   @keyframes dot {

@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
 import { providerInfo } from "../../core/aiProviders";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "../../core/trends";
 import type { Measurement } from "../../core/types";
@@ -86,10 +86,16 @@ export function Brain() {
     wasOpen.current = brain.open;
   }, [brain.open]);
 
+  // The window stays on screen while it folds away, then the pill comes back.
+  const [shown, setShown] = useState(brain.open);
+  if (brain.open && !shown) setShown(true);
+  const closing = shown && !brain.open;
+  const onClosed = useCallback(() => setShown(false), []);
+
   return (
     <>
-      {!brain.open && <Launcher onOpen={() => (returnFocus.current = document.activeElement as HTMLElement | null)} />}
-      {brain.open && <Panel panelRef={panelRef} />}
+      {!shown && <Launcher onOpen={() => (returnFocus.current = document.activeElement as HTMLElement | null)} />}
+      {shown && <Panel panelRef={panelRef} closing={closing} onClosed={onClosed} />}
     </>
   );
 }
@@ -111,7 +117,7 @@ function Launcher({ onOpen }: { onOpen: () => void }) {
         if (e.dataTransfer.types.includes("Files")) openBrain();
       }}
       title={`Ask Brain (Space, or ${isMac ? "⌘K" : "Ctrl+K"})`}
-      className="fixed bottom-5 left-[calc(50%+8rem)] z-40 hidden -translate-x-1/2 animate-fade items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
+      className="fixed bottom-5 left-[calc(50%+8rem)] z-40 hidden -translate-x-1/2 animate-brain-pop items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
     >
       <BrainIcon className="text-accent" />
       <span>Ask Brain…</span>
@@ -134,7 +140,14 @@ function useCritical(): CriticalItem[] {
   return items;
 }
 
-function Panel({ panelRef }: { panelRef: React.RefObject<HTMLDivElement | null> }) {
+function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTMLDivElement | null>; closing: boolean; onClosed: () => void }) {
+  // Unmount once the closing animation ends (with a fallback in case no animation runs).
+  useEffect(() => {
+    if (!closing) return;
+    const t = window.setTimeout(onClosed, 400);
+    return () => window.clearTimeout(t);
+  }, [closing, onClosed]);
+
   const brain = useBrain();
   const titleId = useId();
   const { settings, reload } = useBrainSettings(true);
@@ -164,6 +177,10 @@ function Panel({ panelRef }: { panelRef: React.RefObject<HTMLDivElement | null> 
       role="dialog"
       aria-modal="false"
       aria-labelledby={titleId}
+      inert={closing}
+      onAnimationEnd={(e) => {
+        if (closing && e.target === e.currentTarget) onClosed();
+      }}
       onKeyDown={(e) => {
         // Escape inside a menu or list (they sit outside this box) closes only that.
         if (e.key === "Escape" && !e.defaultPrevented && e.currentTarget.contains(e.target as Node)) {
@@ -181,12 +198,13 @@ function Panel({ panelRef }: { panelRef: React.RefObject<HTMLDivElement | null> 
         void addFiles([...e.dataTransfer.files]);
       }}
       className={cx(
-        "fixed z-50 flex animate-brain-in flex-col overflow-hidden border-line bg-surface text-ink shadow-2xl shadow-black/15",
+        "fixed z-50 flex flex-col overflow-hidden border-line bg-surface text-ink shadow-2xl shadow-black/15",
+        closing ? "animate-brain-sheet-out lg:animate-brain-shrink" : "animate-brain-sheet-in lg:animate-brain-grow",
         "inset-0 sm:inset-x-3 sm:top-14 sm:bottom-3 sm:rounded-2xl sm:border",
         "lg:inset-auto lg:bottom-5 lg:left-[calc(50%+8rem)] lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-19rem))] lg:origin-bottom lg:-translate-x-1/2",
       )}
     >
-      <header className="flex items-center gap-2 border-b border-line py-2 pr-2 pl-4">
+      <header className={cx("flex items-center gap-2 border-b border-line py-2 pr-2 pl-4", closing ? "animate-brain-content-out" : "animate-brain-content lg:[animation-delay:90ms]")}>
         <span className="flex size-8 items-center justify-center rounded-full bg-accent-soft text-accent">
           <BrainIcon className="size-[18px]" />
         </span>
@@ -220,7 +238,7 @@ function Panel({ panelRef }: { panelRef: React.RefObject<HTMLDivElement | null> 
           const el = e.currentTarget;
           stickToEnd.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
         }}
-        className="flex-1 overflow-y-auto overscroll-contain px-4 py-4"
+        className={cx("flex-1 overflow-y-auto overscroll-contain px-4 py-4", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]")}
       >
         <CriticalBanner items={critical} />
         {settings === null ? (
@@ -234,7 +252,7 @@ function Panel({ panelRef }: { panelRef: React.RefObject<HTMLDivElement | null> 
         )}
       </div>
 
-      <Composer settings={settings} ready={ready} model={model} onSettingsChange={reload} />
+      <Composer settings={settings} ready={ready} model={model} onSettingsChange={reload} closing={closing} />
 
       {dragging && (
         <div className="pointer-events-none absolute inset-1.5 flex animate-fade items-center justify-center rounded-xl border-2 border-dashed border-accent bg-surface/90 text-center backdrop-blur-sm">
@@ -512,7 +530,7 @@ function AttachmentChip({ a }: { a: Attachment }) {
   );
 }
 
-function Composer({ settings, ready, model, onSettingsChange }: { settings: BrainSettings | null | undefined; ready: boolean; model: string; onSettingsChange: () => void }) {
+function Composer({ settings, ready, model, onSettingsChange, closing }: { settings: BrainSettings | null | undefined; ready: boolean; model: string; onSettingsChange: () => void; closing: boolean }) {
   const brain = useBrain();
   const textRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -539,7 +557,7 @@ function Composer({ settings, ready, model, onSettingsChange }: { settings: Brai
   }
 
   return (
-    <div className="border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+    <div className={cx("border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]")}>
       {brain.attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1.5">
           {brain.attachments.map((a) => (
