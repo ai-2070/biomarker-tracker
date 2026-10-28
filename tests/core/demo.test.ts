@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { parseBackup } from "../../src/core/backup";
 import { addDays } from "../../src/core/dates";
-import { DEMO_UNITS, demoProfile } from "../../src/core/demo";
+import { DEMO_UNITS, demoProfile, demoBodyMeasurements } from "../../src/core/demo";
 import { analyzeMarker } from "../../src/core/experiments";
 import { summarizePhenoAge } from "../../src/core/phenoageDraws";
 import { isActiveOn } from "../../src/core/protocols";
@@ -60,6 +60,13 @@ describe("example profile (made-up data)", () => {
     expect(waist.at(-1)!.value).toBeLessThan(80);
     expect(body.filter((m) => m.biomarkerId === "bp_systolic").every((m) => m.value < 140)).toBe(true);
     expect(body.filter((m) => m.biomarkerId === "bp_diastolic").every((m) => m.value < 90)).toBe(true);
+  });
+
+  it("can give just the body measurements, for older example profiles", () => {
+    const body = demoBodyMeasurements(today);
+    expect(body.length).toBeGreaterThan(100);
+    expect(new Set(body.map((m) => m.biomarkerId))).toEqual(new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr"]));
+    expect(demoBodyMeasurements(today)).toEqual(body);
   });
 
   it("has a finished diet experiment where LDL fell by more than test-to-test noise", () => {

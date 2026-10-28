@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { buildDashboard } from "../../core/dashboard";
+import { demoBodyMeasurements } from "../../core/demo";
+import { addMeasurements } from "../../db/db";
 import { todayIso } from "../../core/dates";
 import { BloodPressureFigure, BmiFigure, BodyEntryForm, RestingHrFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
@@ -65,6 +67,7 @@ export function BodyPage({ add }: { add?: boolean }) {
           They're on your charts below.
         </Notice>
       )}
+      {empty && profile.example && <ExampleBodyData />}
       {(adding || empty) && form}
 
       {!empty && (
@@ -101,5 +104,37 @@ export function BodyPage({ add }: { add?: boolean }) {
         </>
       )}
     </div>
+  );
+}
+
+/** Example profiles made before body measurements existed can get the example's body data. Never offered on a real profile. */
+function ExampleBodyData() {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  async function add() {
+    setBusy(true);
+    setError(null);
+    try {
+      await addMeasurements(demoBodyMeasurements(todayIso()).map(({ id: _id, ...m }) => m));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Couldn't add the example data.");
+      setBusy(false);
+    }
+  }
+  return (
+    <section className="flex flex-col gap-3 rounded-xl border border-warn/25 bg-warn-soft p-4 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-ink">
+        <span className="font-medium">This example profile has no body measurements yet.</span>{" "}
+        <span className="text-ink-2">Add two years of made-up weight, waist, blood pressure and heart rate to see how this page works.</span>
+      </p>
+      <Button variant="secondary" className="shrink-0" disabled={busy} onClick={() => void add()}>
+        {busy ? "Adding…" : "Add example body data"}
+      </Button>
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
+    </section>
   );
 }
