@@ -12,7 +12,7 @@ const TABS: { value: SettingsTab; label: ReactNode }[] = [
   { value: "data", label: "Your data" },
   { value: "models", label: "AI models" },
   { value: "skills", label: "Skills" },
-  { value: "mcp", label: <>MCP<span className="hidden sm:inline"> servers</span></> },
+  { value: "mcp", label: <>MCP<span className="hidden sm:inline">&nbsp;servers</span></> },
 ];
 
 const SUBTITLE: Record<SettingsTab, string> = {
