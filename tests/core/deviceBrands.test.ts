@@ -1,6 +1,8 @@
 import { deflateRawSync } from "node:zlib";
 import { describe, expect, it } from "vitest";
-import { columnReadings, dailyAverages, fileFamily, findDateColumn, guessColumn, jsonTable, parseCsv, tableOf, toIsoDate } from "../../src/core/importers/deviceFiles";
+import { DailyTally, appleRecords, dailyAverages, fileFamily, jsonTable, parseCsv, readTable, sleepUnit, tableOf, toIsoDate } from "../../src/core/importers/deviceFiles";
+import { BIOMARKER_MAP } from "../../src/app/knowledge";
+import { matchUnit, toCanonical } from "../../src/core/units";
 import { zipEntries } from "../../src/core/importers/zipRead";
 import { crc32, zipStore } from "../../src/core/zipStore";
 import type { BodyField } from "../../src/core/body";
@@ -10,16 +12,14 @@ import type { BodyField } from "../../src/core/body";
 
 /** What a file gives: field → [date, daily value][] (same steps as the import page). */
 function read(path: string, table: { headers: string[]; data: string[][] }): Partial<Record<BodyField, [string, number][]>> {
-  const family = fileFamily(path);
-  const dateCol = findDateColumn(table.headers, table.data);
   const out: Partial<Record<BodyField, [string, number][]>> = {};
-  table.headers.forEach((h, i) => {
-    if (i === dateCol) return;
-    const g = guessColumn(h, i, family);
-    if (!g?.field) return;
-    const s = dailyAverages(g.field, g.unit, h, columnReadings(table.data, dateCol, g), (v) => v);
-    if (s.days.length) out[g.field] = s.days.map((d) => [d.date, d.value]);
-  });
+  for (const c of readTable(path, table).columns) {
+    if (!c.field) continue;
+    const def = BIOMARKER_MAP.get(c.field)!;
+    const u = matchUnit(def, c.unit);
+    const s = dailyAverages(c.field, c.unit, c.header, c.readings, (v) => (u ? toCanonical(def, v, u) : NaN));
+    if (s.days.length) out[c.field] = s.days.map((d) => [d.date, d.value]);
+  }
   return out;
 }
 const csv = (path: string, text: string) => read(path, tableOf(parseCsv(text))!);
@@ -187,5 +187,85 @@ describe("zip files", () => {
   });
   it("says when a file isn't a zip", async () => {
     await expect(zipEntries(new Blob(["hello"]))).rejects.toThrow(/zip/);
+  });
+});
+
+describe("sleep", () => {
+  it("reads Fitbit sleep logs: total, deep and REM in minutes, naps added", () => {
+    expect(
+      json("Takeout/Fitbit/Global Export Data/sleep-2026-03-01.json", [
+        {
+          logId: 1,
+          dateOfSleep: "2026-03-02",
+          startTime: "2026-03-01T23:05:00.000",
+          endTime: "2026-03-02T06:50:00.000",
+          duration: 27900000,
+          minutesToFallAsleep: 0,
+          minutesAsleep: 412,
+          minutesAwake: 53,
+          timeInBed: 465,
+          efficiency: 92,
+          mainSleep: true,
+          levels: { summary: { deep: { count: 4, minutes: 71, thirtyDayAvgMinutes: 65 }, light: { count: 30, minutes: 230 }, rem: { count: 6, minutes: 111 }, wake: { count: 28, minutes: 53 } }, data: [{ dateTime: "x", level: "wake", seconds: 30 }] },
+        },
+        { logId: 2, dateOfSleep: "2026-03-02", startTime: "2026-03-02T14:00:00.000", endTime: "2026-03-02T14:30:00.000", duration: 1800000, minutesAsleep: 28, mainSleep: false, levels: { summary: { asleep: { count: 1, minutes: 28 } } } },
+      ]),
+    ).toEqual({ sleep_duration: [["2026-03-02", 440]], sleep_deep: [["2026-03-02", 71]], sleep_rem: [["2026-03-02", 111]] });
+  });
+  it("reads Whoop and Oura, dated by the morning, and skips sleep scores", () => {
+    expect(
+      csv(
+        "my_whoop_data/sleeps.csv",
+        "Cycle start time,Sleep onset,Wake onset,Sleep performance %,Respiratory rate (rpm),Asleep duration (min),In bed duration (min),Light sleep duration (min),Deep (SWS) duration (min),REM duration (min),Awake duration (min),Sleep need (min),Sleep efficiency %\n2026-03-01 22:50:00,2026-03-01 23:10:00,2026-03-02 06:45:00,88,14.8,420,455,210,95,115,35,470,92\n",
+      ),
+    ).toEqual({ sleep_duration: [["2026-03-02", 420]], sleep_deep: [["2026-03-02", 95]], sleep_rem: [["2026-03-02", 115]] });
+    expect(csv("oura_sleep.csv", "date,Sleep Score,Total Sleep Duration,Deep Sleep Duration,REM Sleep Duration,Light Sleep Duration,Sleep Efficiency\n2026-03-02,81,26100,5400,6300,14400,90\n")).toEqual({
+      sleep_duration: [["2026-03-02", 26100]],
+      sleep_deep: [["2026-03-02", 5400]],
+      sleep_rem: [["2026-03-02", 6300]],
+    });
+  });
+  it("adds up a total from stages when there is none (Garmin, Zepp)", () => {
+    expect(
+      json("DI_CONNECT/DI-Connect-Wellness/2026-03-01_2026-06-01_123_sleepData.json", [
+        { calendarDate: "2026-03-02", deepSleepSeconds: 4800, lightSleepSeconds: 15600, remSleepSeconds: 6000, awakeSleepSeconds: 1200, sleepStartTimestampGMT: "2026-03-01T22:00:00.0" },
+      ]),
+    ).toEqual({ sleep_deep: [["2026-03-02", 4800]], sleep_rem: [["2026-03-02", 6000]], sleep_duration: [["2026-03-02", 26400]] });
+    expect(csv("SLEEP/SLEEP_1700000000000.csv", "date,deepSleepTime,shallowSleepTime,wakeTime,start,stop,REMTime,naps\n2026-03-02,80,250,20,2026-03-01 23:00:00+0000,2026-03-02 06:40:00+0000,100,\n")).toEqual({
+      sleep_deep: [["2026-03-02", 80]],
+      sleep_rem: [["2026-03-02", 100]],
+      sleep_duration: [["2026-03-02", 430]],
+    });
+  });
+  it("tells hours, minutes and seconds apart from the numbers", () => {
+    expect(sleepUnit([7.2, 6.8, 7.9])).toBe("h");
+    expect(sleepUnit([420, 390])).toBe("min");
+    expect(sleepUnit([25200, 26100])).toBe("s");
+  });
+  it("reads Apple sleep stages per night and keeps each device apart", () => {
+    const xml = `
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch" startDate="2026-03-01 23:00:00 +0100" endDate="2026-03-02 01:00:00 +0100" value="HKCategoryValueSleepAnalysisAsleepCore"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch" startDate="2026-03-02 01:00:00 +0100" endDate="2026-03-02 02:30:00 +0100" value="HKCategoryValueSleepAnalysisAsleepDeep"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch" startDate="2026-03-02 02:30:00 +0100" endDate="2026-03-02 02:45:00 +0100" value="HKCategoryValueSleepAnalysisAwake"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch" startDate="2026-03-02 02:45:00 +0100" endDate="2026-03-02 06:45:00 +0100" value="HKCategoryValueSleepAnalysisAsleepREM"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="iPhone" startDate="2026-03-01 23:00:00 +0100" endDate="2026-03-02 07:00:00 +0100" value="HKCategoryValueSleepAnalysisInBed"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="iPhone" startDate="2026-03-01 23:30:00 +0100" endDate="2026-03-02 06:30:00 +0100" value="HKCategoryValueSleepAnalysisAsleepUnspecified"/>`;
+    const tally = new DailyTally();
+    for (const r of appleRecords(xml, new Map())) tally.add(r.key, r.field, r.unit, r.date, r.value, (v) => v);
+    const got = Object.fromEntries(tally.series().map((s) => [s.from, s.days.map((d) => [d.date, d.value])]));
+    expect(got).toEqual({
+      "Sleep (Watch)": [["2026-03-02", 7.5]],
+      "Deep sleep (Watch)": [["2026-03-02", 1.5]],
+      "REM sleep (Watch)": [["2026-03-02", 4]],
+      "Sleep (iPhone)": [["2026-03-02", 7]],
+    });
+  });
+  it("drops nights that can't be real, but not short pieces of a night", () => {
+    const tally = new DailyTally();
+    for (const v of [0.1, 0.2, 7]) tally.add("Sleep", "sleep_duration", "h", "2026-03-02", v, (x) => x);
+    tally.add("Sleep", "sleep_duration", "h", "2026-03-03", 0.1, (x) => x);
+    const [s] = tally.series();
+    expect(s!.days).toEqual([{ date: "2026-03-02", value: 7.3, readings: 3 }]);
+    expect(s!.dropped).toBe(1);
   });
 });

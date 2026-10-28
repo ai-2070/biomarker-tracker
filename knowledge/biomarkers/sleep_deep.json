@@ -1,0 +1,39 @@
+{
+  "id": "sleep_deep",
+  "name": "Deep sleep",
+  "category": "Body",
+  "aliases": ["Deep sleep", "Deep sleep duration", "Slow-wave sleep", "SWS", "Tiefschlaf", "Mélyalvás"],
+  "canonicalUnit": "h",
+  "conversions": {
+    "h": 1,
+    "min": 0.016666666666666666,
+    "s": 0.0002777777777777778
+  },
+  "rangeNote": "There's no target to reach. Deep sleep makes up roughly 15–25 % of sleep in young adults and less with age. Watches and rings estimate sleep stages from movement and heart rate and often misjudge them, so compare nights with each other on the same device rather than with other people.",
+  "summary": "Time in deep (slow-wave) sleep, the most restful stage, mostly early in the night. As measured by a wearable, it's an estimate.",
+  "high": {
+    "meaning": "More deep sleep than usual often follows sleep loss or a physically hard day.",
+    "commonCauses": ["Catching up after short nights", "Hard exercise"]
+  },
+  "low": {
+    "meaning": "Less deep sleep than usual can follow alcohol, a late meal, stress or illness; it also falls gradually with age.",
+    "commonCauses": ["Alcohol", "Short or broken sleep", "Stress", "Ageing", "Device estimate"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "15586779",
+      "doi": "10.1093/sleep/27.7.1255",
+      "title": "Meta-analysis of quantitative sleep parameters from childhood to old age in healthy individuals: developing normative sleep values across the human lifespan",
+      "year": 2004,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33378539",
+      "doi": "10.1093/sleep/zsaa291",
+      "title": "Performance of seven consumer sleep-tracking devices compared with polysomnography",
+      "year": 2021,
+      "studyType": "observational"
+    }
+  ]
+}

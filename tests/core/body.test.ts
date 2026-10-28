@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -103,5 +103,14 @@ describe("entering body measurements", () => {
     const r = validateBodyEntry({ date: today, values: { weight: { value: "700", unit: "kg" }, resting_hr: { value: "abc", unit: "bpm" } } }, BIOMARKER_MAP, today);
     expect(!r.ok && r.errors.weight).toMatch(/unlikely/);
     expect(!r.ok && r.errors.resting_hr).toMatch(/number/);
+  });
+});
+
+describe("recent average", () => {
+  it("averages the last week when there are enough nights", () => {
+    const nights = [m("sleep_duration", "2026-10-10", 9), m("sleep_duration", "2026-10-23", 6), m("sleep_duration", "2026-10-25", 7), m("sleep_duration", "2026-10-29", 8)];
+    expect(recentAverage(nights)).toEqual({ value: 7, count: 3 });
+    expect(recentAverage(nights.slice(-2))).toBeUndefined();
+    expect(recentAverage([])).toBeUndefined();
   });
 });

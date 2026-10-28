@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
+import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmiBand, bmrMifflin, recentAverage, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
 import { ageAt } from "../../../core/phenoageDraws";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { todayIso } from "../../../core/dates";
@@ -9,7 +9,7 @@ import { flagMeasurement, sortByDate } from "../../../core/trends";
 import type { Measurement, Profile } from "../../../core/types";
 import { listUnits } from "../../../core/units";
 import { addMeasurements } from "../../../db/db";
-import { displayUnitFor, formatDate, showChange, showMeasurement } from "../../format";
+import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement } from "../../format";
 import { useDisplayUnits } from "../../hooks";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
@@ -173,7 +173,7 @@ export function BloodPressureFigure({ ms, profile, className }: { ms: Measuremen
   );
 }
 
-const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2"]);
+const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "sleep_duration", "sleep_deep", "sleep_rem"]);
 const UNIT_WORDS: Record<string, string> = { bpm: "beats a minute" };
 
 /** The latest reading of one body measurement, with its change over about 3 months. */
@@ -183,17 +183,35 @@ export function LatestFigure({ ms, id, label, profile, className }: { ms: Measur
   const series = sortByDate(ms.filter((m) => m.biomarkerId === id));
   const last = series.at(-1);
   const flag = last ? flagMeasurement(def, last, profile) : undefined;
+  // Sleep varies night to night: a week's average says more than one night.
+  const week = SLEEP_FIELDS.has(id) ? recentAverage(series) : undefined;
   return (
     <Figure
       label={label}
       href={href({ name: "marker", id })}
       className={className}
-      foot={last ? (sinceEarlier(series, id, unit) ?? formatDate(last.date)) : DEVICE_FIELDS.has(id) ? "From a watch or ring, or type it in" : "Not measured yet"}
+      foot={
+        !last
+          ? DEVICE_FIELDS.has(id)
+            ? "From a watch or ring, or type it in"
+            : "Not measured yet"
+          : week && id === "sleep_duration"
+            ? `Average over the last week: ${formatHours(week.value)} (${week.count} nights). The usual advice is at least 7 hours.`
+            : week
+              ? `Average over the last week: ${formatHours(week.value)}`
+              : (sinceEarlier(series, id, unit) ?? formatDate(last.date))
+      }
     >
       {last ? (
         <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
-          <span className={cx(big, flag?.startsWith("critical") && "text-danger")}>{showMeasurement(def, last, unit)}</span>
-          <span className="text-ink-2">{UNIT_WORDS[unit] ?? unit}</span>
+          {unit === "h" ? (
+            <span className={big}>{formatHours(last.value)}</span>
+          ) : (
+            <>
+              <span className={cx(big, flag?.startsWith("critical") && "text-danger")}>{showMeasurement(def, last, unit)}</span>
+              <span className="text-ink-2">{UNIT_WORDS[unit] ?? unit}</span>
+            </>
+          )}
           {flag && flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}
         </p>
       ) : (
@@ -210,7 +228,7 @@ export function inBodyOrder(markers: DashboardMarker[]): DashboardMarker[] {
 }
 
 /** The main dashboard shows these; the rest are on the Body page. */
-const SUMMARY_IDS = new Set(["weight", "waist", "bp_systolic", "resting_hr", "hrv_resting", "spo2", "glucose_home"]);
+const SUMMARY_IDS = new Set(["weight", "waist", "bp_systolic", "resting_hr", "hrv_resting", "spo2", "sleep_duration", "glucose_home"]);
 const SUMMARY_LABEL: Record<string, string> = {
   weight: "Weight",
   waist: "Waist",
@@ -218,6 +236,7 @@ const SUMMARY_LABEL: Record<string, string> = {
   resting_hr: "Resting heart rate",
   hrv_resting: "Resting HRV",
   spo2: "Blood oxygen",
+  sleep_duration: "Sleep",
   glucose_home: "Blood glucose",
 };
 
@@ -262,6 +281,9 @@ const FIELD_LABEL: Record<BodyField, string> = {
   hrv_resting: "Resting HRV (overnight)",
   spo2: "Blood oxygen (SpO₂)",
   glucose_home: "Blood glucose",
+  sleep_duration: "Sleep last night",
+  sleep_deep: "Deep sleep",
+  sleep_rem: "REM sleep",
 };
 
 /** One day's measurements. Every field is optional; empty ones are skipped. */
@@ -356,13 +378,19 @@ export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
         <p className="text-sm text-ink-2">Sit quietly for 5 minutes first. Many monitors also show your pulse: that's your resting heart rate.</p>
       </fieldset>
       <details className="group rounded-xl border border-line p-3 open:pb-4">
-        <summary className="min-h-10 cursor-pointer content-center font-medium">Heart rate, HRV and blood oxygen (usually from a watch or ring)</summary>
+        <summary className="min-h-10 cursor-pointer content-center font-medium">Heart rate, HRV, blood oxygen and sleep (usually from a watch or ring)</summary>
         <div className="mt-3 grid gap-4 sm:grid-cols-3">
           {field("heart_rate", { suffix: "bpm" })}
           {field("exercise_hr", { suffix: "bpm" })}
           {field("spo2", { suffix: "%" })}
           {field("hrv", { suffix: "ms" })}
           {field("hrv_resting", { suffix: "ms" })}
+        </div>
+        <p className="mt-4 mb-1 font-medium">Sleep</p>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {field("sleep_duration", { unitPick: true })}
+          {field("sleep_deep", { unitPick: true })}
+          {field("sleep_rem", { unitPick: true })}
         </div>
         <p className="mt-3 text-sm text-ink-2">HRV here is RMSSD, as most rings and Android watches show it. Apple Watch shows SDNN, a different measure.</p>
       </details>
