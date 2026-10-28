@@ -1,17 +1,19 @@
 import { summarizePhenoAge } from "../../core/phenoageDraws";
-import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "../../core/trends";
+import { ToggleGroup } from "@base-ui/react/toggle-group";
+import { Toggle } from "@base-ui/react/toggle";
+import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, isOutOfRange, type Flag } from "../../core/trends";
 import type { BiomarkerDef, Measurement, Profile } from "../../core/types";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
-import { Card, FlagBadge, LinkButton, PageTitle } from "../components/ui";
+import { Card, FlagBadge, LinkButton, PageTitle, cx } from "../components/ui";
 import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { DueExperiments } from "../components/DueExperiments";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { BIOMARKER_MAP, CATEGORY_ORDER, fullName } from "../knowledge";
-import { href } from "../router";
+import { href, type ResultsFilter } from "../router";
 
-export function Overview() {
+export function Overview({ show }: { show?: ResultsFilter }) {
   const all = useAllMeasurements();
   const profile = useProfile();
   const units = useDisplayUnits();
@@ -20,18 +22,23 @@ export function Overview() {
   if (all === undefined) return <p className="text-ink-2">Loading…</p>;
   if (all.length === 0) return <EmptyState />;
 
-  const rows: { def: BiomarkerDef; ms: Measurement[] }[] = [];
+  const rows: { def: BiomarkerDef; ms: Measurement[]; flag: Flag }[] = [];
   for (const [id, ms] of groupByBiomarker(all)) {
     const def = BIOMARKER_MAP.get(id);
-    if (def) rows.push({ def, ms });
+    if (def) rows.push({ def, ms, flag: flagMeasurement(def, computeTrend(ms)!.latest, profile) });
   }
 
   const critical: CriticalItem[] = [];
-  const byCategory = new Map<string, typeof rows>();
   for (const row of rows) {
-    const trend = computeTrend(row.ms)!;
-    const flag = flagMeasurement(row.def, trend.latest, profile);
-    if (isCritical(flag)) critical.push({ def: row.def, measurement: trend.latest, low: flag === "critical-low" });
+    if (isCritical(row.flag)) critical.push({ def: row.def, measurement: computeTrend(row.ms)!.latest, low: row.flag === "critical-low" });
+  }
+
+  // Filter on the latest result of each marker. Markers without a range count only under "All".
+  const outCount = rows.filter((r) => isOutOfRange(r.flag)).length;
+  const inCount = rows.filter((r) => r.flag === "normal").length;
+  const shown = rows.filter((r) => (show === "out" ? isOutOfRange(r.flag) : show === "in" ? r.flag === "normal" : true));
+  const byCategory = new Map<string, typeof rows>();
+  for (const row of shown) {
     const list = byCategory.get(row.def.category) ?? [];
     list.push(row);
     byCategory.set(row.def.category, list);
@@ -59,7 +66,17 @@ export function Overview() {
       <DueExperiments all={all} />
       <BioAgeTeaser all={all} profile={profile} />
 
-      <div className="flex flex-col gap-6">
+      <ResultsFilterBar show={show} counts={{ all: rows.length, out: outCount, in: inCount }} />
+
+      {shown.length === 0 && (
+        <p className="animate-fade rounded-xl border border-dashed border-line-strong bg-surface p-5 text-ink-2">
+          {show === "out"
+            ? "Everything is in range. The latest result of every marker is inside its reference range."
+            : "No marker is in range right now. Pick All to see every marker."}
+        </p>
+      )}
+
+      <div key={show ?? "all"} className="flex flex-col gap-6">
         {CATEGORY_ORDER.filter((c) => byCategory.has(c)).map((category) => (
           <section key={category} aria-labelledby={`cat-${category}`}>
             <h2 id={`cat-${category}`} className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
@@ -69,9 +86,9 @@ export function Overview() {
               {byCategory
                 .get(category)!
                 .sort((a, b) => a.def.name.localeCompare(b.def.name))
-                .map(({ def, ms }) => (
+                .map(({ def, ms, flag }) => (
                   <li key={def.id}>
-                    <MarkerRow def={def} ms={ms} unit={displayUnitFor(def, units[def.id])} profile={profile} />
+                    <MarkerRow def={def} ms={ms} flag={flag} unit={displayUnitFor(def, units[def.id])} />
                   </li>
                 ))}
             </ul>
@@ -83,9 +100,55 @@ export function Overview() {
 
 }
 
-function MarkerRow({ def, ms, unit, profile }: { def: BiomarkerDef; ms: Measurement[]; unit: string; profile: Profile }) {
+const FILTERS: { value: "all" | ResultsFilter; label: string; count: "all" | "out" | "in" }[] = [
+  { value: "all", label: "All", count: "all" },
+  { value: "out", label: "Out of range", count: "out" },
+  { value: "in", label: "In range", count: "in" },
+];
+
+/** All / Out of range / In range. The choice lives in the page address, so it can be linked to. */
+function ResultsFilterBar({ show, counts }: { show?: ResultsFilter; counts: { all: number; out: number; in: number } }) {
+  const value = show ?? "all";
+  return (
+    <div className="mb-5">
+      <ToggleGroup
+        aria-label="Show markers"
+        value={[value]}
+        onValueChange={(v) => {
+          const next = v[0] as "all" | ResultsFilter | undefined;
+          if (!next || next === value) return; // pressing the chosen one again keeps it
+          // Replace, so changing the filter doesn't fill the back button's history.
+          location.replace(href(next === "all" ? { name: "overview" } : { name: "overview", show: next }));
+        }}
+        className="flex w-full gap-1 rounded-xl border border-line bg-sunken p-1 sm:inline-flex sm:w-auto"
+      >
+        {FILTERS.map((f) => (
+          <Toggle
+            key={f.value}
+            value={f.value}
+            className={cx(
+              "flex min-h-10 min-w-0 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-1.5 text-sm sm:flex-none sm:gap-2 sm:px-3 font-medium whitespace-nowrap text-ink-2 transition-[background-color,color,box-shadow] duration-200 ease-[var(--ease-soft)]",
+              "hover:text-ink data-pressed:bg-surface data-pressed:text-ink data-pressed:shadow-sm",
+            )}
+          >
+            {f.label}
+            <span
+              className={cx(
+                "min-w-5 rounded-full px-1 py-0.5 text-center sm:min-w-6 sm:px-1.5 font-mono text-xs tabular-nums",
+                f.count === "out" && counts.out > 0 ? "bg-warn-soft text-warn" : "bg-line/60 text-ink-2",
+              )}
+            >
+              {counts[f.count]}
+            </span>
+          </Toggle>
+        ))}
+      </ToggleGroup>
+    </div>
+  );
+}
+
+function MarkerRow({ def, ms, flag, unit }: { def: BiomarkerDef; ms: Measurement[]; flag: Flag; unit: string }) {
   const trend = computeTrend(ms)!;
-  const flag = flagMeasurement(def, trend.latest, profile);
   const change = trend.change !== undefined ? showChange(def, trend.change, unit) : undefined;
   return (
     <a

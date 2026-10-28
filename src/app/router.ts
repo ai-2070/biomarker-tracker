@@ -7,9 +7,12 @@ const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp", "appear
 
 export type SoonSection = "body" | "devices";
 
+/** Which blood test markers the list shows: all, only out of range, or only in range. */
+export type ResultsFilter = "out" | "in";
+
 export type Route =
   | { name: "dashboard" }
-  | { name: "overview" }
+  | { name: "overview"; show?: ResultsFilter }
   | { name: "soon"; section: SoonSection }
   | { name: "add"; marker?: string }
   | { name: "marker"; id: string }
@@ -30,7 +33,10 @@ export function parseHash(hash: string): Route {
   const parts = path.split("/").filter(Boolean).map(decodeURIComponent);
   const params = new URLSearchParams(query);
   if (parts.length === 0) return { name: "dashboard" };
-  if (parts[0] === "results" && parts.length === 1) return { name: "overview" };
+  if (parts[0] === "results" && parts.length === 1) {
+    const show = params.get("show");
+    return show === "out" || show === "in" ? { name: "overview", show } : { name: "overview" };
+  }
   if (parts[0] === "soon" && (parts[1] === "body" || parts[1] === "devices") && parts.length === 2) return { name: "soon", section: parts[1] };
   if (parts[0] === "add" && parts.length === 1) {
     const marker = params.get("marker");
@@ -73,7 +79,7 @@ export function href(route: Route): string {
     case "dashboard":
       return "#/";
     case "overview":
-      return "#/results";
+      return route.show ? `#/results?show=${route.show}` : "#/results";
     case "soon":
       return `#/soon/${route.section}`;
     case "add":

@@ -113,7 +113,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
     case "soon":
       return <SoonPage key={route.section} section={route.section} />;
     case "overview":
-      return <Overview />;
+      return <Overview show={route.show} />;
     case "add":
       // Key resets the form when arriving from a different marker page.
       return <AddResult key={route.marker ?? ""} initialMarker={route.marker} />;

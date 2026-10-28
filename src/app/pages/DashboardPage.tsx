@@ -209,7 +209,7 @@ function ToWatchFigure({ d }: { d: Dashboard }) {
   return (
     <Figure
       label="To watch"
-      href={href({ name: "overview" })}
+      href={href({ name: "overview", ...(n > 0 ? { show: "out" as const } : {}) })}
       foot={n === 0 ? "Everything in range" : d.toWatch.slice(0, 3).map((m) => `${shortName(m.def)} ${m.flag.includes("low") ? "low" : "high"}`).join(" · ")}
     >
       <p className="flex items-baseline gap-1.5">
