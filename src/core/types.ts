@@ -152,7 +152,8 @@ export interface Measurement {
   labRange?: { low?: number; high?: number };
   fasted?: boolean;
   /** "photo": read by text recognition from a photo or a scanned PDF. */
-  source: "manual" | "pdf" | "csv" | "photo";
+  /** "device": read from a watch or phone app's export file. */
+  source: "manual" | "pdf" | "csv" | "photo" | "device";
   note?: string;
 }
 

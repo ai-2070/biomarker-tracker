@@ -42,6 +42,7 @@ describe("router", () => {
       { name: "blood" },
       { name: "body" },
       { name: "body", add: true },
+      { name: "device-import" },
       { name: "data", tab: "about" },
       { name: "setup" },
       { name: "profiles" },

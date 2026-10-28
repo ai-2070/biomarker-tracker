@@ -16,6 +16,8 @@ export type Route =
   | { name: "blood" }
   /** Body measurements; `add` opens the entry form. */
   | { name: "body"; add?: boolean }
+  /** Reading export files from watches, rings and phone apps. */
+  | { name: "device-import" }
   | { name: "overview"; show?: ResultsFilter }
   | { name: "soon"; section: SoonSection }
   | { name: "add"; marker?: string }
@@ -42,7 +44,8 @@ export function parseHash(hash: string): Route {
   }
   if (parts[0] === "soon" && parts[1] === "devices" && parts.length === 2) return { name: "soon", section: "devices" };
   if (parts[0] === "blood" && parts.length === 1) return { name: "blood" };
-  if ((parts[0] === "body" || (parts[0] === "soon" && parts[1] === "body")) && parts.length <= 2) return params.has("add") ? { name: "body", add: true } : { name: "body" };
+  if (parts[0] === "body" && parts[1] === "import" && parts.length === 2) return { name: "device-import" };
+  if ((parts[0] === "body" && parts.length === 1) || (parts[0] === "soon" && parts[1] === "body" && parts.length === 2)) return params.has("add") ? { name: "body", add: true } : { name: "body" };
   if (parts[0] === "add" && parts.length === 1) {
     const marker = params.get("marker");
     return marker ? { name: "add", marker } : { name: "add" };
@@ -90,6 +93,8 @@ export function href(route: Route): string {
       return "#/blood";
     case "body":
       return route.add ? "#/body?add=1" : "#/body";
+    case "device-import":
+      return "#/body/import";
     case "add":
       return route.marker ? `#/add?marker=${encodeURIComponent(route.marker)}` : "#/add";
     case "marker":
