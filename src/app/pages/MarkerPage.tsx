@@ -43,8 +43,8 @@ export function MarkerPage({ id }: { id: string }) {
 
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold tracking-wide text-ink-2 uppercase">{def.category}</p>
-          <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">{fullName(def)}</h1>
+          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{def.category}</p>
+          <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{fullName(def)}</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {listUnits(def).length > 1 && (
@@ -67,7 +67,7 @@ export function MarkerPage({ id }: { id: string }) {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <p className="text-sm text-ink-2">Latest result, {formatDate(trend.latest.date)}</p>
-                  <p className="text-4xl font-semibold tracking-tight tabular-nums">
+                  <p className="font-serif text-5xl font-normal tabular-nums">
                     {showMeasurement(def, trend.latest, unit)} <span className="text-lg font-normal text-ink-2">{unit}</span>
                   </p>
                 </div>
@@ -151,7 +151,7 @@ function MeasurementList({
   const rows = sortByDate(measurements).reverse();
   return (
     <Card>
-      <h2 className="mb-3 text-lg font-semibold">All results</h2>
+      <h2 className="mb-3 font-serif text-2xl font-normal">All results</h2>
       <ul className="flex flex-col divide-y divide-line">
         {rows.map((m) => {
           const flag = flagMeasurement(def, m, profile);
@@ -212,7 +212,7 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
       : "";
   return (
     <Card className="flex flex-col gap-4">
-      <h2 className="text-lg font-semibold">What is {def.abbreviation ?? def.name}?</h2>
+      <h2 className="font-serif text-2xl font-normal">What is {def.abbreviation ?? def.name}?</h2>
       <p>{def.summary}</p>
 
       <div className="grid gap-4 sm:grid-cols-2">

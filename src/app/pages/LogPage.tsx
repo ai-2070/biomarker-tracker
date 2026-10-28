@@ -52,7 +52,7 @@ export function LogPage({ prefill }: { prefill?: string }) {
 
         {adding ? (
           <Card>
-            <h2 className="mb-4 text-lg font-semibold">New entry</h2>
+            <h2 className="mb-4 font-serif text-2xl font-normal">New entry</h2>
             <ProtocolForm
               today={today}
               prefillLabel={prefill}
@@ -88,7 +88,7 @@ export function LogPage({ prefill }: { prefill?: string }) {
           .filter((g) => g.list.length > 0)
           .map((g) => (
             <section key={g.title} aria-labelledby={`log-${g.title}`}>
-              <h2 id={`log-${g.title}`} className="mb-2 text-sm font-semibold tracking-wide text-ink-2 uppercase">
+              <h2 id={`log-${g.title}`} className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
                 {g.title}
               </h2>
               <ul className="flex flex-col gap-2">

@@ -40,7 +40,7 @@ export function AiSettings({ config }: { config: AiConfig | undefined }) {
   return (
     <Card className="flex flex-col gap-4">
       <div>
-        <h2 className="text-lg font-semibold">AI assistant (optional)</h2>
+        <h2 className="font-serif text-2xl font-normal">AI assistant (optional)</h2>
         <p className="mt-1 text-ink-2">
           Ask questions about research papers in plain language. Everything else in this app works without it. You use your own
           account; the app never has a server in between.

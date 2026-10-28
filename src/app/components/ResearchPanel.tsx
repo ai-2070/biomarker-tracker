@@ -65,7 +65,7 @@ export function ResearchPanel({
   return (
     <Card className="flex flex-col gap-4">
       <div>
-        <h2 className="text-lg font-semibold">Research</h2>
+        <h2 className="font-serif text-2xl font-normal">Research</h2>
         <p className="mt-1 text-ink-2">
           Search published studies about {def.name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your
           results are not.

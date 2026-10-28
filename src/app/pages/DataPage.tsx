@@ -22,7 +22,7 @@ export function DataPage() {
       <PageTitle sub="Everything is stored only in this browser on this device. Nothing is uploaded.">Your data</PageTitle>
       <div className="flex flex-col gap-5">
         <Card className="flex flex-col gap-5">
-          <h2 className="text-lg font-semibold">About you</h2>
+          <h2 className="font-serif text-2xl font-normal">About you</h2>
           <ChoiceGroup<SexChoice>
             label="Sex for reference ranges"
             help="Some markers, like ferritin and haemoglobin, have different typical ranges for women and men. This is only used to pick the range."
@@ -49,7 +49,7 @@ export function DataPage() {
         <StorageCard />
 
         <Card className="flex flex-col gap-3">
-          <h2 className="text-lg font-semibold">Delete all data</h2>
+          <h2 className="font-serif text-2xl font-normal">Delete all data</h2>
           <p className="text-ink-2">Removes every result and setting from this browser. Download a backup first if you want to keep them.</p>
           <div>
             <ConfirmDialog
@@ -80,7 +80,7 @@ function BackupCard({ count }: { count: number }) {
   }
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">Download a backup</h2>
+      <h2 className="font-serif text-2xl font-normal">Download a backup</h2>
       <p className="text-ink-2">
         Saves all {count} {count === 1 ? "result" : "results"} as a file. Keep it somewhere safe. If your browser data is cleared, you can
         restore from it. The file contains your health data, so treat it like a medical document.
@@ -127,7 +127,7 @@ function RestoreCard() {
 
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">Restore from a backup</h2>
+      <h2 className="font-serif text-2xl font-normal">Restore from a backup</h2>
       <label className="flex flex-col gap-1.5">
         <span className="text-ink-2">Choose a backup file you downloaded earlier.</span>
         <input
@@ -183,7 +183,7 @@ function StorageCard() {
   if (!supported) return null;
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">Keep data safe in this browser</h2>
+      <h2 className="font-serif text-2xl font-normal">Keep data safe in this browser</h2>
       {persisted ? (
         <p className="text-ink-2">
           <span aria-hidden="true">✓ </span>Your browser has agreed not to clear this data automatically. Clearing your browsing data by hand

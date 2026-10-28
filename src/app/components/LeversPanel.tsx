@@ -48,7 +48,7 @@ export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag:
   return (
     <Card className="flex flex-col gap-4">
       <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
+        <h2 className="font-serif text-2xl font-normal">{title}</h2>
         <p className="mt-1 text-ink-2">
           {sel.focus
             ? "Because your latest result is " + sel.focus + ", here is what research says can help, strongest evidence first. "

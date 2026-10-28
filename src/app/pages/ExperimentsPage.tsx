@@ -280,8 +280,8 @@ export function ExperimentPage({ id }: { id: string }) {
       </a>
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold tracking-wide text-ink-2 uppercase">Self-experiment · {CATEGORY_LABEL[e.category]}</p>
-          <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">{e.change}</h1>
+          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Self-experiment · {CATEGORY_LABEL[e.category]}</p>
+          <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{e.change}</h1>
           <p className="mt-1 text-ink-2">
             Started {formatDate(e.start)} · re-test from {formatDate(due)}
             {e.end && ` · ended ${formatDate(e.end)}`}
@@ -304,7 +304,7 @@ export function ExperimentPage({ id }: { id: string }) {
         ))}
 
         <Card className="flex flex-col gap-2 text-ink-2">
-          <h2 className="text-lg font-semibold text-ink">How to read this</h2>
+          <h2 className="font-serif text-2xl font-normal text-ink">How to read this</h2>
           <p>
             Results vary from test to test even when nothing changes. The shaded band shows how big a change can be from that variation
             alone, 19 times out of 20. A result outside the band is probably a real change <em>in you</em>.
@@ -369,7 +369,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
   return (
     <Card className="flex flex-col gap-3">
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <h2 className="text-lg font-semibold">
+        <h2 className="font-serif text-2xl font-normal">
           <a href={href({ name: "marker", id: def.id })} className="text-ink underline-offset-2 hover:underline">
             {fullName(def)}
           </a>
@@ -390,7 +390,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
         {r.change !== undefined && (
           <div>
             <dt className="text-sm text-ink-2">Change</dt>
-            <dd className="text-2xl font-semibold tabular-nums">{formatPercent(r.change)}</dd>
+            <dd className="font-serif text-3xl font-normal tabular-nums">{formatPercent(r.change)}</dd>
           </div>
         )}
       </dl>
@@ -432,7 +432,7 @@ function Stat({ label, value, def, unit, count }: { label: string; value?: numbe
         {label}
         {count > 1 ? ` (average of ${count})` : ""}
       </dt>
-      <dd className="text-2xl font-semibold tabular-nums">
+      <dd className="font-serif text-3xl font-normal tabular-nums">
         {value === undefined ? "–" : showValue(def, value, unit)} <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : unit}</span>
       </dd>
     </div>

@@ -47,7 +47,7 @@ export function Overview() {
       </div>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Your results</h1>
+          <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">Your results</h1>
           <p className="mt-1 text-ink-2">
             {rows.length} {rows.length === 1 ? "marker" : "markers"}, {all.length} {all.length === 1 ? "result" : "results"}. Latest
             sample: {formatDate(lastDate)}.
@@ -62,7 +62,7 @@ export function Overview() {
       <div className="flex flex-col gap-6">
         {CATEGORY_ORDER.filter((c) => byCategory.has(c)).map((category) => (
           <section key={category} aria-labelledby={`cat-${category}`}>
-            <h2 id={`cat-${category}`} className="mb-2 text-sm font-semibold tracking-wide text-ink-2 uppercase">
+            <h2 id={`cat-${category}`} className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
               {category}
             </h2>
             <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
