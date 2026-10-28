@@ -2,9 +2,10 @@ import { useState, type ReactNode } from "react";
 import { cleanProfile } from "../../core/backup";
 import type { Profile } from "../../core/types";
 import { setOnboarded, setProfile } from "../../db/db";
+import { LoadProfile } from "../components/LoadProfile";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
 import { Button, Card, Notice, cx, helpStyles } from "../components/ui";
-import { createProfile, restoreProfile } from "../profiles";
+import { createProfile } from "../profiles";
 import { href } from "../router";
 
 type Step = "welcome" | "person" | "details" | "start";
@@ -44,18 +45,6 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
     }
   }
 
-  async function restore(file: File | undefined) {
-    if (!file) return;
-    setBusy(true);
-    setError(null);
-    try {
-      await restoreProfile(file);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "The backup couldn't be restored.");
-      setBusy(false);
-    }
-  }
-
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-6">
       <Progress steps={steps} index={index} />
@@ -86,12 +75,41 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
               now.
             </Notice>
           )}
-          <Nav onNext={() => go(1)} nextLabel="Start" />
+          <div className={cx("grid gap-3 border-t border-line pt-5", mode === "folders" && "sm:grid-cols-2")}>
+            <div className="flex flex-col gap-3 rounded-xl border border-line-strong p-4">
+              <div>
+                <p className="font-medium">New profile</p>
+                <p className="text-sm text-ink-2">A few questions about the person, then add results.</p>
+              </div>
+              <div className="mt-auto">
+                <Button onClick={() => go(1)}>Create a profile</Button>
+              </div>
+            </div>
+            {mode === "folders" && (
+              <div className="flex flex-col gap-3 rounded-xl border border-line-strong p-4">
+                <div>
+                  <p className="font-medium">I already have a profile</p>
+                  <p className="text-sm text-ink-2">Load a backup (.zip) or a profile folder, for example from another computer. Nothing to fill in.</p>
+                </div>
+                <div className="mt-auto">
+                  <LoadProfile />
+                </div>
+              </div>
+            )}
+          </div>
         </StepCard>
       )}
 
       {step === "person" && (
         <StepCard title={first ? "Who is this profile for?" : "New profile"} sub="You can change all of this later in Settings.">
+          {!first && mode === "folders" && (
+            <div className="flex flex-col gap-3 rounded-xl border border-line bg-sunken p-4">
+              <p className="text-ink-2">
+                <span className="font-medium text-ink">Already have this profile somewhere?</span> Load it instead, with everything in it.
+              </p>
+              <LoadProfile />
+            </div>
+          )}
           <ProfileBasics value={person} onChange={setPerson} nameRequired />
           <Nav onBack={index > 0 ? () => go(-1) : undefined} onNext={() => go(1)} nextDisabled={!nameOk} hint={nameOk ? undefined : "Add a name to continue."} />
         </StepCard>
@@ -112,13 +130,6 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
           <div className="grid gap-3 sm:grid-cols-2">
             <Choice title="Import a lab report" text="Read the results from a PDF. You check every value before it is saved, and the PDF is kept in the profile." disabled={busy} onClick={() => void finish(href({ name: "import" }))} />
             <Choice title="Type in a result" text="Copy one value at a time from a paper or emailed report." disabled={busy} onClick={() => void finish(href({ name: "add" }))} />
-            {mode === "folders" && (
-              <label className={cx(choiceStyles, busy && "pointer-events-none opacity-50")}>
-                <span className="font-medium">Restore a profile backup</span>
-                <span className="text-sm text-ink-2">A .zip file made with "Back up" on the Profiles page. It becomes its own profile.</span>
-                <input type="file" accept=".zip,application/zip" className="sr-only" disabled={busy} onChange={(e) => void restore(e.target.files?.[0])} />
-              </label>
-            )}
             <Choice
               title={existingResults > 0 && first ? "Go to my results" : "Not now"}
               text={existingResults > 0 && first ? "Open the profile with the results already in this browser." : "Open the empty profile."}
