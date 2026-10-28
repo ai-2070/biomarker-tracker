@@ -5,14 +5,12 @@ import { todayIso } from "../../core/dates";
 import type { Profile } from "../../core/types";
 import { deleteEverything, exportAll, getProfile, importBackup, setProfile, type ImportMode } from "../../db/db";
 import { api } from "../api";
-import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
 import { Button, Card, LinkButton, Notice, buttonStyles, cx, errorStyles } from "../components/ui";
 import { useAllMeasurements } from "../hooks";
 import { fileUrl, uploadFile, useProfiles, type StoredFile } from "../profiles";
 import { href } from "../router";
-import { getThemeChoice, setThemeChoice, type ThemeChoice } from "../theme";
 
 /** "Your data" tab of the settings page. */
 export function DataSettings() {
@@ -47,8 +45,6 @@ export function DataSettings() {
         </Card>
       )}
 
-      <AppearanceCard />
-
       <BackupCard count={all?.length ?? 0} />
       <RestoreCard />
       {!folders && <StorageCard />}
@@ -76,7 +72,6 @@ export function DataSettings() {
 /** The person's details, saved as they are typed (to the profile folder too). */
 function PersonCard({ initial, nameRequired }: { initial: Profile; nameRequired: boolean }) {
   const [draft, setDraft] = useState<Profile>(initial);
-  const [more, setMore] = useState(false);
   const nameMissing = nameRequired && !draft.name?.trim();
 
   function change(p: Profile) {
@@ -86,24 +81,22 @@ function PersonCard({ initial, nameRequired }: { initial: Profile; nameRequired:
   }
 
   return (
-    <Card className="flex flex-col gap-5">
-      <h2 className="font-serif text-2xl font-normal">{draft.name?.trim() ? `About ${draft.name.trim()}` : "About you"}</h2>
-      <ProfileBasics value={draft} onChange={change} nameRequired={nameRequired} />
-      {nameMissing && <p className={errorStyles}>A profile needs a name. Until you add one, the old name is kept.</p>}
-      <div className="border-t border-line pt-4">
-        <button type="button" aria-expanded={more} onClick={() => setMore(!more)} className="min-h-11 font-medium text-accent underline-offset-2 hover:underline">
-          {more ? "Hide more details" : "More details: height, diet, smoking, conditions, allergies, notes"}
-        </button>
-        {/* Grid rows 0fr -> 1fr animates to the content's own height. */}
-        <div className={cx("grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-soft)]", more ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")} inert={!more}>
-          <div className="overflow-hidden">
-            <div className="pt-4">
-              <ProfileDetails value={draft} onChange={change} showNotes />
-            </div>
-          </div>
+    <>
+      <Card className="flex flex-col gap-5">
+        <h2 className="font-serif text-2xl font-normal">{draft.name?.trim() ? `About ${draft.name.trim()}` : "About you"}</h2>
+        <ProfileBasics value={draft} onChange={change} nameRequired={nameRequired} />
+        {nameMissing && <p className={errorStyles}>A profile needs a name. Until you add one, the old name is kept.</p>}
+      </Card>
+      <Card className="flex flex-col gap-5">
+        <div>
+          <h2 className="font-serif text-2xl font-normal">A bit more (optional)</h2>
+          <p className="mt-1 text-ink-2">
+            These help the assistant give answers that fit, and let the app warn before suggesting something that may not be safe. Skip anything you like.
+          </p>
         </div>
-      </div>
-    </Card>
+        <ProfileDetails value={draft} onChange={change} showNotes />
+      </Card>
+    </>
   );
 }
 
@@ -337,28 +330,6 @@ function StorageCard() {
           {asked && !persisted && <p className="text-sm text-ink-2">Not granted yet. Regular backups are the safest option.</p>}
         </>
       )}
-    </Card>
-  );
-}
-
-function AppearanceCard() {
-  const [theme, setTheme] = useState<ThemeChoice>(getThemeChoice);
-  return (
-    <Card className="flex flex-col gap-4">
-      <h2 className="font-serif text-2xl font-normal">Appearance</h2>
-      <ChoiceGroup<ThemeChoice>
-        label="Colours"
-        value={theme}
-        onChange={(v) => {
-          setTheme(v);
-          setThemeChoice(v);
-        }}
-        options={[
-          { value: "light", label: "Light" },
-          { value: "dark", label: "Dark" },
-          { value: "system", label: "Match my device" },
-        ]}
-      />
     </Card>
   );
 }

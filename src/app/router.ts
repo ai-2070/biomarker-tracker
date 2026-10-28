@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 // Hash routing: works without server rewrites.
 
-export type SettingsTab = "data" | "models" | "skills" | "mcp";
-const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp"];
+export type SettingsTab = "data" | "models" | "skills" | "mcp" | "appearance" | "about";
+const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp", "appearance", "about"];
 
 export type Route =
   | { name: "overview" }

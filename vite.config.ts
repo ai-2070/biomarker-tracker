@@ -1,4 +1,6 @@
 import fs from "node:fs";
+
+const pkg = JSON.parse(fs.readFileSync("package.json", "utf8")) as { version: string };
 import { defineConfig, type Plugin } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -80,6 +82,8 @@ export default defineConfig({
   // Relative base so the static build works from any GitHub Pages path.
   base: "./",
   plugins: [react(), tailwindcss(), contentSecurityPolicy(), ocrAssets()],
+  // Shown on Settings → About.
+  define: { __APP_VERSION__: JSON.stringify(pkg.version) },
   // In dev, the page talks to the local server (bun run server) through Vite.
   server: { proxy: { "/api": { target: "http://127.0.0.1:4820", changeOrigin: true } } },
   test: {
