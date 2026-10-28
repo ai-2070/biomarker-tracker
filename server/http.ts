@@ -103,7 +103,7 @@ route("POST", "/api/settings/hermes", async (_p, body) => {
   return setHermesConnection(body.connect);
 });
 
-route("PUT", "/api/settings/provider/([a-z]+)", ([id], body) => {
+route("PUT", "/api/settings/provider/([a-z][a-z-]*)", ([id], body) => {
   const p = providerOf(id!);
   updateSettings((s) => {
     const c = { ...(s.providers[p] ?? {}) };
