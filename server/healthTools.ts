@@ -179,6 +179,7 @@ export function experimentResults(s: HealthSnapshot) {
           after: r(a.afterValue),
           changePercent: a.change === undefined ? null : r(a.change * 100),
           normalVariationBand: a.band ? `${r(a.band.down * 100)}% to +${r(a.band.up * 100)}%` : null,
+          normalVariationFrom: a.bandFrom === "personal" ? "the person's own readings before and after" : a.bandFrom === "published" ? "published biological variation (EFLM)" : null,
         },
       ];
     }),
