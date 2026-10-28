@@ -52,7 +52,10 @@ export default defineConfig({
   base: "./",
   plugins: [react(), tailwindcss(), contentSecurityPolicy()],
   test: {
-    include: ["tests/**/*.test.ts"],
-    environment: "node",
+    projects: [
+      { test: { name: "core", include: ["tests/core/**/*.test.ts", "tests/knowledge/**/*.test.ts", "tests/research/**/*.test.ts", "tests/ai/**/*.test.ts", "tests/db/**/*.test.ts", "tests/app/**/*.test.ts"], environment: "node" } },
+      // the local server, against a throwaway data folder (never data/)
+      { test: { name: "server", include: ["tests/server/**/*.test.ts"], environment: "node", setupFiles: ["tests/server/setup.ts"], isolate: true, testTimeout: 30_000 } },
+    ],
   },
 });
