@@ -264,7 +264,7 @@ export function AddResult({ initialMarker }: { initialMarker?: string }) {
         <aside aria-live="polite" className="flex flex-col gap-2">
           {saved.length > 0 && (
             <>
-              <h2 className="text-sm font-semibold tracking-wide text-ink-2 uppercase">Saved just now</h2>
+              <h2 className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Saved just now</h2>
               <ul className="flex flex-col gap-2">
                 {saved.map(({ measurement: m, flag }) => {
                   const d = BIOMARKER_MAP.get(m.biomarkerId)!;

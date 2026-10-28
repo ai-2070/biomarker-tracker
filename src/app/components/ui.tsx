@@ -34,7 +34,7 @@ export function Card({ className, ...props }: ComponentProps<"section">) {
 export function PageTitle({ children, sub }: { children: ReactNode; sub?: ReactNode }) {
   return (
     <div className="mb-5">
-      <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">{children}</h1>
+      <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{children}</h1>
       {sub && <p className="mt-1 text-ink-2">{sub}</p>}
     </div>
   );

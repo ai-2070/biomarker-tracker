@@ -85,7 +85,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string) => 
   return (
     <div className="flex flex-col gap-5">
       <Card className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold">Choose a PDF</h2>
+        <h2 className="font-serif text-2xl font-normal">Choose a PDF</h2>
         <p className="text-ink-2">
           The PDF is read on this device and is not uploaded anywhere. Names, birth dates and ID numbers in the report are ignored; only the
           values you confirm are saved.
@@ -113,7 +113,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string) => 
       </Card>
 
       <Card className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold">Or paste the text</h2>
+        <h2 className="font-serif text-2xl font-normal">Or paste the text</h2>
         <p className="text-ink-2">If your lab shows results on a website, copy the table and paste it here.</p>
         <Field.Root className="flex flex-col gap-1.5">
           <Field.Label className="sr-only">Report text</Field.Label>

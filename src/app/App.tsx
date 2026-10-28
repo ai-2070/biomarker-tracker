@@ -76,7 +76,7 @@ function Header({ route }: { route: Route }) {
   return (
     <header className="border-b border-line bg-surface">
       <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2 sm:px-6">
-        <a href={href({ name: "overview" })} className="flex min-h-11 items-center gap-2 font-semibold text-ink no-underline">
+        <a href={href({ name: "overview" })} className="flex min-h-11 items-center gap-2 font-serif text-xl text-ink no-underline">
           <img src="./favicon.svg" alt="" width={28} height={28} />
           Biomarker Tracker
         </a>

@@ -64,7 +64,7 @@ function Result({ draw }: { draw: PhenoAgeDraw }) {
     <Card className="flex flex-col gap-4">
       <div>
         <p className="text-sm text-ink-2">Estimate from your blood test on {formatDate(draw.date)}</p>
-        <p className="text-5xl font-semibold tracking-tight tabular-nums">
+        <p className="font-serif text-6xl font-normal tabular-nums">
           {formatYears(draw.phenoAge!)} <span className="text-xl font-normal text-ink-2">years</span>
         </p>
         <p className="mt-1 text-ink-2">
@@ -123,7 +123,7 @@ function History({ draws }: { draws: PhenoAgeDraw[] }) {
   const rows = draws.filter((d) => d.status === "ok").reverse();
   return (
     <Card>
-      <h2 className="mb-3 text-lg font-semibold">Over time</h2>
+      <h2 className="mb-3 font-serif text-2xl font-normal">Over time</h2>
       <table className="w-full text-left tabular-nums">
         <thead className="text-sm text-ink-2">
           <tr>
@@ -155,7 +155,7 @@ function NeedsMarkers({ partial, newer }: { partial?: { date: string; missing: s
   const missing = new Set(partial?.missing ?? PHENOAGE_MARKERS);
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">{newer ? `Your newest test (${formatDate(partial!.date)}) is incomplete` : "What's needed"}</h2>
+      <h2 className="font-serif text-2xl font-normal">{newer ? `Your newest test (${formatDate(partial!.date)}) is incomplete` : "What's needed"}</h2>
       <p className="text-ink-2">
         All 9 markers must come from the <span className="font-medium text-ink">same blood test</span>, because values from different days
         can't be combined. Most are part of a standard blood count and metabolic panel. CRP is sometimes ordered separately.
@@ -190,7 +190,7 @@ function NeedsMarkers({ partial, newer }: { partial?: { date: string; missing: s
 function Explanation({ profile }: { profile: Profile }) {
   return (
     <Card className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">What is PhenoAge?</h2>
+      <h2 className="font-serif text-2xl font-normal">What is PhenoAge?</h2>
       <p>
         PhenoAge is a formula published by Morgan Levine and colleagues in 2018. They used a large US national health survey (NHANES) to
         find which routine blood markers, together with age, best predicted how many people died over the following years. The formula
