@@ -7,6 +7,7 @@ import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure
 import { BODY_GROUPS } from "../../core/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
 import { HeartAgeFigure } from "../components/dashboard/heartAge";
+import { FitnessAgeFigure } from "../components/dashboard/fitnessAge";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { PlusIcon } from "../components/icons";
 import { Button, Card, LinkButton, Notice } from "../components/ui";
@@ -16,7 +17,7 @@ import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
 
 /** Shown as a figure on this page, so not repeated as a tile. */
-const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem"]);
+const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
 export function BodyPage({ add }: { add?: boolean }) {
@@ -106,6 +107,8 @@ export function BodyPage({ add }: { add?: boolean }) {
                       <LatestFigure ms={body} id="hrv_resting" label="Resting HRV" profile={profile} />
                       <LatestFigure ms={body} id="spo2" label="Blood oxygen" profile={profile} />
                       <HeartAgeFigure ms={body} profile={profile} protocols={protocols} className="col-span-2" />
+                      <LatestFigure ms={body} id="vo2max" label="VO₂max" profile={profile} />
+                      <FitnessAgeFigure ms={body} profile={profile} />
                     </>
                   )}
                   {g.id === "sleep" && (

@@ -269,3 +269,15 @@ describe("sleep", () => {
     expect(s!.dropped).toBe(1);
   });
 });
+
+describe("VO2max", () => {
+  it("reads Garmin, Fitbit and plain columns, but not ranks or fitness ages", () => {
+    expect(json("DI_CONNECT/DI-Connect-Metrics/MetricsMaxMetData_2026.json", [{ calendarDate: "2026-03-01", vO2MaxValue: 41.0, vo2MaxPreciseValue: 41.3, fitnessAge: 38 }])).toEqual({ vo2max: [["2026-03-01", 41]] });
+    expect(csv("Cardio Fitness Score/demographic_vo2_max - 2026-03.csv", "date,demographic_vo2_max,demographic_vo2_max_error\n2026-03-01,42.5,1.2\n")).toEqual({ vo2max: [["2026-03-01", 42.5]] });
+    expect(csv("oura.csv", "date,VO2 Max\n2026-03-01,39\n")).toEqual({ vo2max: [["2026-03-01", 39]] });
+  });
+  it("reads Apple's VO2Max records", () => {
+    const r = appleRecords('<Record type="HKQuantityTypeIdentifierVO2Max" unit="mL/min·kg" startDate="2026-03-01 18:30:00 +0100" value="40.2"/>', new Map());
+    expect(r.map((x) => [x.field, x.unit, x.date, x.value])).toEqual([["vo2max", "mL/kg/min", "2026-03-01", 40.2]]);
+  });
+});

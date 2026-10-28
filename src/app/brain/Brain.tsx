@@ -44,6 +44,7 @@ const TOOL_TEXT: Record<string, string> = {
   get_marker: "Read a marker's history and knowledge entry",
   get_levers: "Checked evidence-graded diet and habit levers",
   get_biological_age: "Checked your biological age estimate",
+  get_body_summary: "Read the app's body calculations (BMI, heart age, averages)",
   get_log: "Read your habits",
   compare_before_after: "Compared before and after in your experiments",
   search_research: "Searched Europe PMC",

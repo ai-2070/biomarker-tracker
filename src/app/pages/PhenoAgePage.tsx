@@ -7,6 +7,7 @@ import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, formatYears, showMeasurement } from "../format";
 import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
 import { HeartAgeSection } from "../components/dashboard/heartAge";
+import { FitnessAgeSection } from "../components/dashboard/fitnessAge";
 import { bodyOnly } from "../knowledge";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
@@ -24,7 +25,7 @@ export function PhenoAgePage() {
 
   return (
     <>
-      <PageTitle sub="Two estimates: PhenoAge from 9 routine blood markers, and heart age from blood pressure, weight and smoking. Both are estimates, not verdicts.">
+      <PageTitle sub="Three estimates: PhenoAge from 9 routine blood markers, heart age from blood pressure, weight and smoking, and fitness age from VO₂max. All are estimates, not verdicts.">
         Biological age
       </PageTitle>
       <div className="flex flex-col gap-5">
@@ -57,6 +58,7 @@ export function PhenoAgePage() {
         )}
         <Explanation profile={profile} />
         <HeartAgeSection ms={bodyOnly(all)} profile={profile} protocols={protocols} />
+        <FitnessAgeSection ms={bodyOnly(all)} profile={profile} />
       </div>
     </>
   );

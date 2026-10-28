@@ -1,0 +1,39 @@
+{
+  "id": "vo2max",
+  "name": "VO₂max",
+  "category": "Body",
+  "aliases": ["VO2max", "VO2 max", "VO₂max", "Maximal oxygen uptake", "Cardio fitness", "Cardio fitness score", "Maximale Sauerstoffaufnahme", "Maximális oxigénfelvétel"],
+  "canonicalUnit": "mL/kg/min",
+  "conversions": {
+    "mL/kg/min": 1
+  },
+  "rangeNote": "Depends strongly on age and sex. Healthy Norwegian adults measured on a treadmill averaged (men / women): 54.4 / 43.0 at 20–29, 49.1 / 40.0 at 30–39, 47.2 / 38.4 at 40–49, 42.6 / 34.4 at 50–59, 39.2 / 31.1 at 60–69 and 35.3 / 28.3 at 70 and over. Watches estimate VO₂max from heart rate and pace; a lab test measures it.",
+  "summary": "The most oxygen your body can use during hard exercise, per kilogram of body weight: a measure of aerobic fitness. Higher fitness goes with fewer heart and metabolic risk factors.",
+  "high": {
+    "meaning": "A high VO₂max for your age means good aerobic fitness.",
+    "commonCauses": ["Regular endurance exercise", "Youth", "Genetics", "Lower body weight (it's per kilogram)"]
+  },
+  "low": {
+    "meaning": "A low VO₂max for your age means lower aerobic fitness. In the Norwegian study, people below the median were five to eight times more likely to have a cluster of cardiovascular risk factors than the fittest quarter.",
+    "commonCauses": ["Little endurance exercise", "Ageing", "Higher body weight", "Heart or lung conditions", "Watch estimate (can be off)"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "23691196",
+      "doi": "10.1371/journal.pone.0064319",
+      "title": "Aerobic capacity reference data in 3816 healthy men and women 20-90 years",
+      "year": 2013,
+      "studyType": "observational",
+      "n": 3816
+    },
+    {
+      "pmid": "21228724",
+      "doi": "10.1249/MSS.0b013e31820ca81c",
+      "title": "Peak oxygen uptake and cardiovascular risk factors in 4631 healthy women and men",
+      "year": 2011,
+      "studyType": "observational",
+      "n": 4631
+    }
+  ]
+}

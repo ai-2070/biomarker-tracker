@@ -24,8 +24,9 @@ export type BodyField =
   | "glucose_home"
   | "sleep_duration"
   | "sleep_deep"
-  | "sleep_rem";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem"];
+  | "sleep_rem"
+  | "vo2max";
+export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"];
 
 /** Sleep is counted per night (dated by the morning you woke up): readings on one day add up, naps included. */
 export const SLEEP_FIELDS: ReadonlySet<BodyField> = new Set(["sleep_duration", "sleep_deep", "sleep_rem"]);
@@ -33,7 +34,7 @@ export const SLEEP_FIELDS: ReadonlySet<BodyField> = new Set(["sleep_duration", "
 /** Body measurements in groups, for the Body dashboard and the entry form. */
 export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "sugar"; title: string; fields: readonly BodyField[] }[] = [
   { id: "size", title: "Size and composition", fields: ["weight", "waist", "body_fat"] },
-  { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2"] },
+  { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "vo2max"] },
   { id: "sleep", title: "Sleep", fields: ["sleep_duration", "sleep_deep", "sleep_rem"] },
   { id: "sugar", title: "Blood sugar", fields: ["glucose_home"] },
 ];
@@ -56,6 +57,7 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   sleep_duration: { min: 0.25, max: 18 },
   sleep_deep: { min: 0.05, max: 8 },
   sleep_rem: { min: 0.05, max: 8 },
+  vo2max: { min: 8, max: 95 },
 };
 
 /** Body mass index, kg/m². Only for adult heights between 100 and 250 cm. */

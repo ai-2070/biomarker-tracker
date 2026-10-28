@@ -15,6 +15,7 @@ import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, resolveRan
 import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
+import { bodySummary } from "../src/core/bodySummary";
 import { findMarker, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
@@ -211,6 +212,12 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         const def = findMarker(marker);
         return def ? levers(s, def) : notFound(marker);
       },
+    }),
+    get_body_summary: tool({
+      description:
+        "The app's own calculations from body measurements: BMI, waist-to-height, basal metabolic rate (an estimate, never a target), heart age with 10-year cardiovascular risk (Framingham), and recent averages of blood pressure, resting heart rate, resting HRV, blood oxygen and sleep. Use these numbers; don't calculate them yourself.",
+      inputSchema: z.object({}),
+      execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso()),
     }),
     get_biological_age: tool({
       description: "PhenoAge for each blood test that had all 9 markers, computed by the app.",
