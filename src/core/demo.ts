@@ -60,6 +60,16 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
+const BODY_IDS = new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr"]);
+
+/**
+ * Only the example's body measurements, for example profiles made before body measurements existed.
+ * The app adds these to example profiles only, never to a real person's.
+ */
+export function demoBodyMeasurements(today: string): Measurement[] {
+  return demoProfile(today).measurements.filter((m) => BODY_IDS.has(m.biomarkerId));
+}
+
 export function demoProfile(today: string): DemoData {
   const rand = seeded(20240512);
   /** A value with a little natural wobble (± pct), rounded like a lab prints it. */
