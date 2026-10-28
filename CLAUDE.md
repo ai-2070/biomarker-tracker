@@ -2,19 +2,20 @@
 
 Working name: **Biomarker Tracker** (rename later).
 
-A free, open-source, local-first web app where anyone can track their bloodwork over years, understand it in plain language, see their biological age, and explore what research says about each marker. No install, no account, no server. Users' health data never leaves their device unless they explicitly send it to an AI model of their choice.
+A free, open-source, local-first web app where anyone can track their bloodwork over years, understand it in plain language, see their biological age, and explore what research says about each marker. No account, no cloud backend. Users' health data stays on their device unless they ask the assistant, which sends it to the AI model they chose (EU/US zero-data-retention providers or a local model).
 
 ---
 
 ## Core principles (never violate these)
 
-1. **Local-first.** All user data lives in the browser (IndexedDB). There is no backend, no database server, no user accounts.
+1. **Local-first.** All user data lives in the browser (IndexedDB). No cloud backend, no database server, no user accounts. The only server is the optional one in `server/` that runs on the user's own computer (127.0.0.1) for the assistant.
 2. **No telemetry.** No analytics, no tracking pixels, no error reporting services, no third-party scripts beyond what is listed in this file.
 3. **Allowed network calls only:**
    - Europe PMC REST API (research search, open-access full text)
    - NCBI E-utilities / PubMed (research search, backup)
    - ClinicalTrials.gov API v2 (ongoing trials)
-   - The AI provider the user configured themselves (Anthropic, OpenAI, or local Ollama)
+   - The AI provider the user configured themselves: only EU/US providers with zero data retention (Anthropic, OpenAI, Mistral, or an OpenAI-compatible endpoint whose region the user states) or a local model (Ollama, LM Studio). Called by the local server, never by the page.
+   - MCP servers the user switched on in Settings (medical/nutrition only, see `src/core/mcpPresets.ts`); each preset lists what it sends.
    - Nothing else. Any new endpoint must be added to this list in a PR with justification.
 4. **Code does the math, the model does the explaining.** Unit conversion, trends, reference-range checks, and scores (PhenoAge) are computed in tested TypeScript. The LLM never computes numbers that are shown as facts.
 5. **Every claim needs a source.** Knowledge base entries must include citations. AI answers may only cite papers that were retrieved and passed in context; the app verifies every cited ID against the retrieved set and strips or flags anything else.
@@ -162,17 +163,18 @@ PhenoAge = 141.50225 + ln( -0.00553 * ln(1 - M) ) / 0.090165
 
 ---
 
-## AI layer
+## AI layer (local server, v0.9)
 
-- Providers: Anthropic, OpenAI, Ollama (OpenAI-compatible endpoint). User pastes their own key; it is stored only in IndexedDB.
-- Anthropic from the browser needs the `anthropic-dangerous-direct-browser-access: true` header. Show the user a clear note that their key is stored locally.
-- **Context builder** sends: relevant measurements and computed trends (from `/core`), matching knowledge base entries, retrieved study abstracts with IDs, and the system rules below.
-- **Before sending to a cloud provider:** show the user exactly what will be sent. Strip names, birth dates (send age only), lab addresses, and patient IDs.
-- **System rules for the model:** cite only provided studies by ID; state evidence strength; say "not enough evidence" when true; no diagnosis; no personal dosing; suggest a doctor for out-of-range or fast-changing values.
-- **Citation verifier:** after the response, check every cited ID exists in the retrieved set. Remove or visibly flag unknown citations.
-- **Implementation (v0.6):** `src/research/papers.ts` (Europe PMC, PubMed fallback; topic text is reduced to plain words before it goes into a query), `src/ai/providers.ts` (plain `fetch`, no SDKs; Anthropic uses API version `2026-10-21`, `output_config.effort: "medium"`, and `fallbacks: "default"` on Opus/Sonnet; never send `temperature`), `src/ai/context.ts` (the only place that decides what is sent), `src/ai/citations.ts` (unknown IDs are struck through, author-year references are flagged as uncheckable).
-- The send preview shows the exact request text; nothing is sent until the user presses Send. Results and log are separate opt-ins (results on, log off by default). AI is disabled for a marker whose latest value is critical. The API key is in the `settings` table and is never written to backup files.
-- `connect-src` in `vite.config.ts` must match the allowed list above. Ollama is limited to `localhost:11434` / `127.0.0.1:11434` (`OLLAMA_ALLOWED`). ClinicalTrials.gov is allowed but not used yet.
+One assistant, no teams or multi-agent setups. Model choice, Skills and MCP settings work like Blacksite's, limited to medical and nutrition use.
+
+- **Local server** (`server/`, `bun run server` / `bun run start`): node:http on `127.0.0.1:4820`. Checks the Host header; changes need the `x-bt: 1` header and are refused from other sites. Settings in `data/settings.json`, keys in `data/secrets.json` (mode 600, never returned to the page, never in backups). `data/` is gitignored. In dev, Vite proxies `/api` to it.
+- **Models** (`src/core/aiProviders.ts`, `server/models.ts`): Vercel AI SDK. `canUse()` allows only local models on localhost, or cloud providers with a key, an EU/US region and zero data retention confirmed by the user. OpenAI uses Chat Completions with `store: false`. Errors are described in plain words, with keys redacted.
+- **Assistant** (`server/assistant.ts`, `server/healthTools.ts`): the page sends a snapshot of measurements, log, experiments and profile with each question; the server turns birth month into age and never passes birth month to the model. Tools: get_results, get_marker, get_levers, get_biological_age, get_log, compare_before_after, search_research (Europe PMC), read_skill, plus tools from enabled MCP servers (`server__tool`). All numbers come from `/core`. Max 10 steps.
+- **System rules:** cite only studies returned by tools, by ID; state evidence strength; say "not enough evidence" when true; no diagnosis; no personal dosing; suggest a doctor for out-of-range or fast-changing values. Critical values: tell the user to contact a doctor first and don't interpret them. Safety notes from the log make the model avoid nutrient-increase suggestions.
+- **Citation verifier:** study IDs are collected from tool results (`studyIdsIn`); `CitedAnswer` checks every cited ID with `src/ai/citations.ts`. Unknown IDs are struck through, author-year references flagged.
+- **Skills** (`skills/<id>/SKILL.md`, custom ones in `data/skills/`): name + description front matter; the model sees the index and loads one with read_skill. Bundled skills must keep the doctor/no-dosing rule (a test checks).
+- **MCP** (`src/core/mcpPresets.ts`, `server/mcp.ts`): stdio servers via `npx -y package@pinned-version`, minimal environment, secrets kept with the server. Only medical/nutrition presets.
+- `connect-src` in `vite.config.ts` lists only `'self'`, Europe PMC and NCBI; the page never talks to a model directly. Old browser-stored keys are deleted on start (`forgetBrowserAiKey`).
 
 ---
 

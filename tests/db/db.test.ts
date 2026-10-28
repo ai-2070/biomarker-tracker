@@ -10,6 +10,7 @@ import {
   saveProtocol,
   deleteEverything,
   exportAll,
+  forgetBrowserAiKey,
   getProfile,
   importBackup,
   measurementsFor,
@@ -32,6 +33,14 @@ afterEach(async () => {
 const sample = { biomarkerId: "ferritin", value: 40, originalValue: 40, originalUnit: "µg/L", date: "2024-01-01", source: "manual" as const };
 
 describe("db", () => {
+  it("removes an API key saved in the browser by older versions, and nothing else", async () => {
+    await db.settings.put({ key: "ai", value: { provider: "anthropic", apiKey: "sk-old" } });
+    await setProfile({ sex: "f" }, db);
+    await forgetBrowserAiKey(db);
+    expect(await db.settings.get("ai")).toBeUndefined();
+    expect((await getProfile(db)).sex).toBe("f");
+  });
+
   it("stores and queries measurements per biomarker, sorted by date", async () => {
     await addMeasurement({ ...sample, date: "2024-06-01" }, db);
     await addMeasurement({ ...sample, date: "2023-06-01" }, db);

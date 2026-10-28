@@ -1,8 +1,10 @@
-import { lazy, Suspense, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
+import { forgetBrowserAiKey } from "../db/db";
 import { Onboarding } from "./components/Onboarding";
 import { cx } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
-import { DataPage } from "./pages/DataPage";
+import { SettingsPage } from "./pages/SettingsPage";
+import { AssistantPage } from "./pages/AssistantPage";
 import { NotFound } from "./pages/NotFound";
 import { Overview } from "./pages/Overview";
 import { PhenoAgePage } from "./pages/PhenoAgePage";
@@ -16,6 +18,10 @@ const MarkerPage = lazy(() => import("./pages/MarkerPage").then((m) => ({ defaul
 
 export function App() {
   const route = useRoute();
+  // API keys used to be kept in the browser; they now live only with the local server.
+  useEffect(() => {
+    void forgetBrowserAiKey();
+  }, []);
   return (
     <div className="flex min-h-dvh flex-col">
       {/* A button, not href="#main": the hash is used for routing. */}
@@ -35,7 +41,7 @@ export function App() {
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-4xl flex-col gap-1 px-4 py-5 text-sm text-ink-2 sm:px-6">
           <p className="font-medium text-ink">Not medical advice. Not a medical device.</p>
-          <p>Your data stays in this browser. Free and open source.</p>
+          <p>Your data stays in this browser. It's only sent to an AI model when you ask the assistant. Free and open source.</p>
         </div>
       </footer>
       <Onboarding />
@@ -54,7 +60,9 @@ function Page({ route }: { route: Route }) {
       // Keyed so switching markers never shows the previous marker's results while loading.
       return <MarkerPage key={route.id} id={route.id} />;
     case "data":
-      return <DataPage />;
+      return <SettingsPage tab={route.tab} />;
+    case "assistant":
+      return <AssistantPage key={route.ask ?? ""} ask={route.ask} />;
     case "phenoage":
       return <PhenoAgePage />;
     case "import":
@@ -80,7 +88,7 @@ function Header({ route }: { route: Route }) {
           <img src="./favicon.svg" alt="" width={28} height={28} />
           Biomarker Tracker
         </a>
-        <nav aria-label="Main" className="-mx-2 flex">
+        <nav aria-label="Main" className="-mx-1.5 flex max-w-full overflow-x-auto sm:-mx-2">
           <NavLink to={{ name: "overview" }} active={route.name === "overview" || route.name === "marker"}>
             Results
           </NavLink>
@@ -93,8 +101,11 @@ function Header({ route }: { route: Route }) {
           <NavLink to={{ name: "phenoage" }} active={route.name === "phenoage"}>
             Bio age
           </NavLink>
+          <NavLink to={{ name: "assistant" }} active={route.name === "assistant"}>
+            Ask
+          </NavLink>
           <NavLink to={{ name: "data" }} active={route.name === "data"}>
-            Data
+            Settings
           </NavLink>
         </nav>
       </div>
@@ -108,7 +119,7 @@ function NavLink({ to, active, children }: { to: Route; active: boolean; childre
       href={href(to)}
       aria-current={active ? "page" : undefined}
       className={cx(
-        "flex min-h-11 items-center rounded-lg px-2 no-underline transition-colors sm:px-3",
+        "flex min-h-11 shrink-0 items-center rounded-lg px-1.5 whitespace-nowrap no-underline transition-colors sm:px-3",
         active ? "font-semibold text-accent" : "text-ink-2 hover:bg-sunken hover:text-ink",
       )}
     >

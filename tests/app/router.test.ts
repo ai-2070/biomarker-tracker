@@ -9,6 +9,9 @@ describe("router", () => {
     expect(parseHash("#/add?marker=ferritin")).toEqual({ name: "add", marker: "ferritin" });
     expect(parseHash("#/marker/crp_hs")).toEqual({ name: "marker", id: "crp_hs" });
     expect(parseHash("#/data")).toEqual({ name: "data" });
+    expect(parseHash("#/settings?tab=mcp")).toEqual({ name: "data", tab: "mcp" });
+    expect(parseHash("#/settings?tab=nope")).toEqual({ name: "data" });
+    expect(parseHash("#/assistant?ask=Is%20my%20ferritin%20ok%3F")).toEqual({ name: "assistant", ask: "Is my ferritin ok?" });
   });
   it("treats anything else as not found", () => {
     expect(parseHash("#main")).toEqual({ name: "not-found" });
@@ -21,6 +24,9 @@ describe("router", () => {
       { name: "experiment-new" },
       { name: "experiment-new", marker: "ferritin", change: "Kiwis & oats" },
       { name: "experiment", id: "abc-123" },
+      { name: "data", tab: "models" },
+      { name: "assistant" },
+      { name: "assistant", ask: "What affects LDL?" },
     ];
     for (const r of routes) expect(parseHash(href(r))).toEqual(r);
   });

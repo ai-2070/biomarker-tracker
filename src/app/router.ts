@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 
-// Hash routing: works on GitHub Pages without server rewrites.
+// Hash routing: works without server rewrites.
+
+export type SettingsTab = "data" | "models" | "skills" | "mcp";
+const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp"];
 
 export type Route =
   | { name: "overview" }
   | { name: "add"; marker?: string }
   | { name: "marker"; id: string }
-  | { name: "data" }
+  | { name: "data"; tab?: SettingsTab }
+  | { name: "assistant"; ask?: string }
   | { name: "phenoage" }
   | { name: "import" }
   | { name: "log"; add?: string }
@@ -25,7 +29,14 @@ export function parseHash(hash: string): Route {
     return marker ? { name: "add", marker } : { name: "add" };
   }
   if (parts[0] === "marker" && parts[1] && parts.length === 2) return { name: "marker", id: parts[1] };
-  if (parts[0] === "data" && parts.length === 1) return { name: "data" };
+  if ((parts[0] === "data" || parts[0] === "settings") && parts.length === 1) {
+    const tab = params.get("tab");
+    return tab && (TABS as readonly string[]).includes(tab) ? { name: "data", tab: tab as SettingsTab } : { name: "data" };
+  }
+  if (parts[0] === "assistant" && parts.length === 1) {
+    const ask = params.get("ask");
+    return ask ? { name: "assistant", ask } : { name: "assistant" };
+  }
   if (parts[0] === "biological-age" && parts.length === 1) return { name: "phenoage" };
   if (parts[0] === "import" && parts.length === 1) return { name: "import" };
   if (parts[0] === "experiments" && parts.length === 1) return { name: "experiments" };
@@ -52,7 +63,9 @@ export function href(route: Route): string {
     case "marker":
       return `#/marker/${encodeURIComponent(route.id)}`;
     case "data":
-      return "#/data";
+      return route.tab ? `#/settings?tab=${route.tab}` : "#/settings";
+    case "assistant":
+      return route.ask ? `#/assistant?ask=${encodeURIComponent(route.ask)}` : "#/assistant";
     case "phenoage":
       return "#/biological-age";
     case "import":
