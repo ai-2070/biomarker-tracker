@@ -65,7 +65,7 @@ export function Overview() {
             <h2 id={`cat-${category}`} className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
               {category}
             </h2>
-            <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <ul className="stagger grid grid-cols-1 gap-2 sm:grid-cols-2">
               {byCategory
                 .get(category)!
                 .sort((a, b) => a.def.name.localeCompare(b.def.name))
@@ -90,7 +90,7 @@ function MarkerRow({ def, ms, unit, profile }: { def: BiomarkerDef; ms: Measurem
   return (
     <a
       href={href({ name: "marker", id: def.id })}
-      className="flex min-h-20 items-center justify-between gap-3 rounded-xl border border-line bg-surface p-4 no-underline transition-colors hover:border-line-strong hover:bg-sunken"
+      className="flex min-h-20 items-center justify-between gap-3 rounded-xl border border-line bg-surface p-4 no-underline transition-[border-color,background-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
     >
       <div className="min-w-0">
         <div className="truncate font-medium text-ink">{fullName(def)}</div>

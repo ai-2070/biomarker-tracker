@@ -30,9 +30,9 @@ export function OnOff({ checked, onChange, label }: { checked: boolean; onChange
       checked={checked}
       onCheckedChange={onChange}
       aria-label={label}
-      className="flex h-7 w-12 shrink-0 items-center rounded-full border border-line-strong bg-sunken p-0.5 transition-colors data-checked:border-accent data-checked:bg-accent"
+      className="flex h-7 w-12 shrink-0 items-center rounded-full border border-line-strong bg-sunken p-0.5 transition-colors duration-200 data-checked:border-accent data-checked:bg-accent"
     >
-      <Switch.Thumb className="size-5 rounded-full bg-surface shadow-sm transition-transform data-checked:translate-x-5" />
+      <Switch.Thumb className="size-5 rounded-full bg-surface shadow-sm transition-transform duration-200 ease-[var(--ease-soft)] data-checked:translate-x-5" />
     </Switch.Root>
   );
 }
@@ -80,7 +80,7 @@ export function SkillsSettings() {
         Skills are step-by-step instructions in plain words. The assistant sees their names and loads one when a question needs it. The built-in ones
         cover medical and nutrition research; you can switch them off or add your own.
       </Notice>
-      <ul className="flex flex-col gap-2">
+      <ul className="stagger flex flex-col gap-2">
         {skills.map((s) => (
           <li key={s.id} className="rounded-xl border border-line bg-surface p-4">
             <div className="flex items-start justify-between gap-3">
@@ -111,7 +111,7 @@ export function SkillsSettings() {
                 />
               )}
             </div>
-            {open[s.id] !== undefined && <pre className="mt-2 max-h-80 overflow-auto rounded-lg bg-sunken p-3 font-mono text-xs whitespace-pre-wrap text-ink-2">{open[s.id]}</pre>}
+            {open[s.id] !== undefined && <pre className="animate-enter mt-2 max-h-80 overflow-auto rounded-lg bg-sunken p-3 font-mono text-xs whitespace-pre-wrap text-ink-2">{open[s.id]}</pre>}
           </li>
         ))}
       </ul>

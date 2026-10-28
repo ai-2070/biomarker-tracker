@@ -18,11 +18,16 @@ type Step = "welcome" | "person" | "details" | "start";
 export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: "folders" | "browser"; first: boolean; existingResults: number; folderRoot?: string }) {
   const steps: Step[] = first ? ["welcome", "person", "details", "start"] : ["person", "details", "start"];
   const [step, setStep] = useState<Step>(steps[0]!);
+  const [dir, setDir] = useState<1 | -1>(1);
   const [person, setPerson] = useState<Profile>({});
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const index = steps.indexOf(step);
-  const go = (d: number) => setStep(steps[index + d]!);
+  const go = (d: 1 | -1) => {
+    setDir(d);
+    setStep(steps[index + d]!);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const nameOk = !!person.name?.trim();
 
   /** Creates the profile, then opens the app at `to`. */
@@ -49,6 +54,7 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
     <div className="mx-auto flex max-w-2xl flex-col gap-6">
       <Progress steps={steps} index={index} />
 
+      <div key={step} className={index === 0 && dir === 1 ? "animate-enter" : dir === 1 ? "animate-enter-next" : "animate-enter-back"}>
       {step === "welcome" && (
         <StepCard title="Welcome to Biomarker Tracker">
           <ul className="flex flex-col gap-4">
@@ -127,7 +133,7 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
 
       {step === "start" && (
         <StepCard title={`Add ${person.name?.trim() ? `${person.name.trim()}'s` : "your"} first results`} sub="Pick one to start. You can do the others any time.">
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="stagger grid gap-3 sm:grid-cols-2">
             <Choice title="Import a lab report" text="Read the results from a PDF. You check every value before it is saved, and the PDF is kept in the profile." disabled={busy} onClick={() => void finish(href({ name: "import" }))} />
             <Choice title="Type in a result" text="Copy one value at a time from a paper or emailed report." disabled={busy} onClick={() => void finish(href({ name: "add" }))} />
             <Choice
@@ -146,12 +152,13 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
           <Nav onBack={() => go(-1)} />
         </StepCard>
       )}
+      </div>
     </div>
   );
 }
 
 const choiceStyles =
-  "flex min-h-24 cursor-pointer flex-col gap-1 rounded-xl border border-line-strong bg-surface p-4 text-left transition-colors hover:border-accent hover:bg-accent-soft focus-within:outline-2 focus-within:outline-accent";
+  "flex min-h-24 cursor-pointer flex-col gap-1 rounded-xl border border-line-strong bg-surface p-4 text-left transition-[border-color,background-color,translate,box-shadow] duration-200 ease-out hover:-translate-y-px hover:border-accent hover:bg-accent-soft hover:shadow-sm active:translate-y-0 focus-within:outline-2 focus-within:outline-accent";
 
 function Choice({ title, text, onClick, disabled }: { title: string; text: string; onClick: () => void; disabled?: boolean }) {
   return (
@@ -194,7 +201,9 @@ function Progress({ steps, index }: { steps: Step[]; index: number }) {
       </p>
       <div className="flex gap-1.5" aria-hidden="true">
         {steps.map((s, i) => (
-          <span key={s} className={cx("h-1.5 flex-1 rounded-full", i <= index ? "bg-accent" : "bg-line")} />
+          <span key={s} className="h-1.5 flex-1 overflow-hidden rounded-full bg-line">
+            <span className={cx("block h-full origin-left rounded-full bg-accent transition-transform duration-500 ease-[var(--ease-soft)]", i <= index ? "scale-x-100" : "scale-x-0")} />
+          </span>
         ))}
       </div>
     </div>

@@ -35,6 +35,65 @@
   --color-danger: #b4391e;
   --color-danger-soft: #fbece8;
   --color-danger-strong: #b4391e;
+
+  /* Motion: short and calm. Everything below is switched off for "reduce motion" (end of file). */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-enter: enter 320ms var(--ease-soft) both;
+  --animate-enter-next: enter-next 360ms var(--ease-soft) both;
+  --animate-enter-back: enter-back 360ms var(--ease-soft) both;
+  --animate-fade: fade 220ms ease-out both;
+  --animate-dot: dot 1.2s ease-in-out infinite;
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+  @keyframes enter-next {
+    from {
+      opacity: 0;
+      transform: translateX(28px);
+    }
+  }
+  @keyframes enter-back {
+    from {
+      opacity: 0;
+      transform: translateX(-28px);
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes dot {
+    0%,
+    80%,
+    100% {
+      opacity: 0.25;
+      transform: scale(0.8);
+    }
+    40% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* Children appear one after another (lists of cards). */
+@utility stagger {
+  & > * {
+    animation: enter 360ms var(--ease-soft) both;
+  }
+  & > :nth-child(2) { animation-delay: 35ms; }
+  & > :nth-child(3) { animation-delay: 70ms; }
+  & > :nth-child(4) { animation-delay: 105ms; }
+  & > :nth-child(5) { animation-delay: 140ms; }
+  & > :nth-child(6) { animation-delay: 175ms; }
+  & > :nth-child(7) { animation-delay: 210ms; }
+  & > :nth-child(8) { animation-delay: 245ms; }
+  & > :nth-child(n + 9) { animation-delay: 280ms; }
 }
 
 :root[data-theme="dark"] {
@@ -97,5 +156,8 @@ body {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }

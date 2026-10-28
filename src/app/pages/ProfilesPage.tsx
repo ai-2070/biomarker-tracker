@@ -85,7 +85,7 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
           {error}
         </Notice>
       )}
-      <ul className="flex flex-col gap-3">
+      <ul className="stagger flex flex-col gap-3">
         {profiles.map((p) => {
           const active = p.id === activeId;
           const summary = profileSummary(p.person, todayIso());

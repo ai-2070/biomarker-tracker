@@ -268,3 +268,4 @@ Food contains 26,000+ known biochemicals, but standard food databases track only
 - Small PRs. Run `bun run test` and `bun run build` before committing. (`bun run test`, not `bun test`: the latter is Bun's own runner, not Vitest.)
 - UI copy: plain language, short sentences, explain every abbreviation once.
 - Accessibility: keyboard navigable, readable contrast, works at 360px width.
+- Motion: short and calm (150–360 ms, `--ease-soft`), defined in `src/index.css` (`animate-enter`, `animate-enter-next/back`, `animate-fade`, `stagger`). Everything stops for `prefers-reduced-motion` (durations, delays, repeats); the chart checks it too.

@@ -8,7 +8,7 @@ export function cx(...parts: (string | false | null | undefined)[]): string {
 
 // Buttons: 44px minimum height for touch.
 const buttonBase =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-base font-medium whitespace-nowrap select-none transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-base font-medium whitespace-nowrap select-none transition-[background-color,border-color,color,filter,scale] duration-150 ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100";
 
 export const buttonStyles = {
   primary: cx(buttonBase, "bg-accent text-accent-ink hover:brightness-110 active:brightness-95"),
@@ -92,7 +92,7 @@ export function Notice({ tone = "info", title, children, className, role }: {
   role?: "alert" | "status";
 }) {
   return (
-    <div role={role} className={cx("rounded-xl border p-4", toneStyle[tone], className)}>
+    <div role={role} className={cx("rounded-xl border p-4", role && "animate-fade", toneStyle[tone], className)}>
       {title && <p className="font-semibold">{title}</p>}
       {children && <div className={cx("text-ink-2", title ? "mt-1" : undefined)}>{children}</div>}
     </div>

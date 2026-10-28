@@ -23,6 +23,9 @@ const shortDate = new Intl.DateTimeFormat(undefined, { month: "short", year: "2-
  * One marker over time. The shaded band is the reference range; points outside
  * it are larger and red. The measurement list below the chart is the text view.
  */
+/** The chart draws itself in, unless the device asks for less motion. */
+const reducedMotion = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export function TrendChart({
   def,
   measurements,
@@ -127,7 +130,9 @@ export function TrendChart({
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              isAnimationActive={false}
+              isAnimationActive={!reducedMotion()}
+              animationDuration={700}
+              animationEasing="ease-out"
               dot={(props: { cx?: number; cy?: number; payload?: Point; index?: number }) => {
                 const { cx, cy, payload, index } = props;
                 if (cx === undefined || cy === undefined || !payload) return <g key={index} />;
