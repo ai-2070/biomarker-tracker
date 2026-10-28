@@ -44,7 +44,7 @@ export function ImportPage() {
   const [step, setStep] = useState<Step>({ name: "pick" });
   const { mode, active } = useProfiles();
 
-  /** After saving, the PDF itself goes into the profile folder, next to the results read from it. */
+  /** After saving, the PDF or photo itself goes into the profile folder, next to the results read from it. */
   async function saved(saved: Measurement[], skipped: number, file: File | undefined, date: string | undefined) {
     if (!file || mode !== "folders" || !active) return setStep({ name: "done", saved, skipped });
     try {
@@ -185,7 +185,8 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
       </Card>
 
       <p className="text-sm text-ink-2">
-        Works with PDFs that contain text, from most labs. Scanned paper reports (photos) can't be read yet.
+        Works with PDFs from most labs, scanned PDFs and photos of paper reports. Photos and scans are read with text recognition, so check those
+        values with extra care.
       </p>
     </div>
   );
