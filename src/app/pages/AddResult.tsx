@@ -115,8 +115,8 @@ export function AddResult({ initialMarker }: { initialMarker?: string }) {
         className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-line bg-accent-soft p-4 text-ink no-underline hover:border-line-strong"
       >
         <span>
-          <span className="block font-medium">Have the report as a PDF?</span>
-          <span className="text-sm text-ink-2">Import all results at once and check them before saving.</span>
+          <span className="block font-medium">Have the report as a PDF or a photo?</span>
+          <span className="text-sm text-ink-2">Import all results at once and check them before saving. Photos are read on this device.</span>
         </span>
         <span aria-hidden="true" className="text-xl text-accent">→</span>
       </a>

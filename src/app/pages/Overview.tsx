@@ -159,7 +159,7 @@ function EmptyState() {
         <div className="flex flex-wrap gap-2">
           <LinkButton href={href({ name: "add" })}>Add your first result</LinkButton>
           <LinkButton variant="secondary" href={href({ name: "import" })}>
-            Import a lab PDF
+            Import a PDF or photo
           </LinkButton>
           <LinkButton variant="secondary" href={href({ name: "data" })}>
             Restore a backup

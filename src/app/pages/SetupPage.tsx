@@ -150,7 +150,7 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
       {step === "start" && (
         <StepCard title={`Add ${person.name?.trim() ? `${person.name.trim()}'s` : "your"} first results`} sub="Pick one to start. You can do the others any time.">
           <div className="stagger grid gap-3 sm:grid-cols-2">
-            <Choice title="Import a lab report" text="Read the results from a PDF. You check every value before it is saved, and the PDF is kept in the profile." disabled={busy} onClick={() => void finish(href({ name: "import" }))} />
+            <Choice title="Import a lab report" text="Read the results from a PDF or a photo. You check every value before it is saved, and the report is kept in the profile." disabled={busy} onClick={() => void finish(href({ name: "import" }))} />
             <Choice title="Type in a result" text="Copy one value at a time from a paper or emailed report." disabled={busy} onClick={() => void finish(href({ name: "add" }))} />
             <Choice
               title={existingResults > 0 && first ? "Go to my results" : "Not now"}
