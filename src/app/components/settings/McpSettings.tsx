@@ -255,7 +255,7 @@ export function McpSettings() {
         {data.servers.length === 0 ? (
           <p className="text-ink-2">None yet. Add one from the list below.</p>
         ) : (
-          <ul className="flex flex-col gap-3">
+          <ul className="stagger flex flex-col gap-3">
             {data.servers.map((s) => (
               <ServerCard key={s.id} server={s} preset={data.presets.find((p) => p.id === s.presetId)} reload={load} />
             ))}
@@ -266,7 +266,7 @@ export function McpSettings() {
       {available.length > 0 && (
         <section className="flex flex-col gap-3">
           <h2 className="font-serif text-2xl font-normal">Ready to add</h2>
-          <ul className="grid gap-3 md:grid-cols-2">
+          <ul className="stagger grid gap-3 md:grid-cols-2">
             {available.map((p) => (
               <li key={p.id} className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4">
                 <p className={smallLabel}>{p.category}</p>

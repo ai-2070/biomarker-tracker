@@ -92,7 +92,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
 
   useEffect(() => {
     conversation = turns;
-    endRef.current?.scrollIntoView({ block: "nearest" });
+    endRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }, [turns]);
 
   const critical: CriticalItem[] = [];
@@ -194,7 +194,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
           <li
             key={i}
             className={cx(
-              "rounded-xl p-4",
+              "animate-enter rounded-xl p-4",
               t.role === "user" ? "ml-auto max-w-[85%] bg-accent-soft" : t.role === "error" ? "border border-danger/40 bg-danger-soft" : "border border-line bg-surface",
             )}
           >
@@ -211,7 +211,12 @@ export function AssistantPage({ ask }: { ask?: string }) {
           </li>
         ))}
         {busy && (
-          <li role="status" className="rounded-xl border border-line bg-surface p-4 text-ink-2">
+          <li role="status" className="flex animate-enter items-center gap-3 rounded-xl border border-line bg-surface p-4 text-ink-2">
+            <span aria-hidden="true" className="flex gap-1">
+              <span className="size-2 animate-dot rounded-full bg-accent" />
+              <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:160ms]" />
+              <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:320ms]" />
+            </span>
             Working on it. Looking things up can take a few minutes…
           </li>
         )}

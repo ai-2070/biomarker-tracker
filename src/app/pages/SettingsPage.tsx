@@ -49,26 +49,27 @@ export function SettingsPage({ tab = "data" }: { tab?: SettingsTab }) {
             <Tabs.Tab
               key={t.value}
               value={t.value}
-              className="-mb-px flex min-h-11 shrink-0 items-center border-b-2 border-transparent px-2 text-[15px] whitespace-nowrap text-ink-2 sm:px-3 sm:text-base transition-colors hover:text-ink data-active:border-accent data-active:font-semibold data-active:text-accent"
+              className="flex min-h-11 shrink-0 items-center px-2 text-[15px] whitespace-nowrap text-ink-2 transition-colors duration-200 hover:text-ink data-active:font-semibold data-active:text-accent sm:px-3 sm:text-base"
             >
               {t.label}
             </Tabs.Tab>
           ))}
+          <Tabs.Indicator className="absolute bottom-0 left-0 h-0.5 w-[var(--active-tab-width)] translate-x-[var(--active-tab-left)] rounded-full bg-accent transition-[translate,width] duration-300 ease-[var(--ease-soft)]" />
         </Tabs.List>
-        <Tabs.Panel value="data">
+        <Tabs.Panel value="data" className="animate-fade">
           <DataSettings />
         </Tabs.Panel>
-        <Tabs.Panel value="models">
+        <Tabs.Panel value="models" className="animate-fade">
           <NeedsServer>
             <ModelsSettings />
           </NeedsServer>
         </Tabs.Panel>
-        <Tabs.Panel value="skills">
+        <Tabs.Panel value="skills" className="animate-fade">
           <NeedsServer>
             <SkillsSettings />
           </NeedsServer>
         </Tabs.Panel>
-        <Tabs.Panel value="mcp">
+        <Tabs.Panel value="mcp" className="animate-fade">
           <NeedsServer>
             <McpSettings />
           </NeedsServer>

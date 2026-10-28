@@ -67,7 +67,7 @@ export function App() {
     setB({ ...b, profiles });
   }, [b]);
 
-  if (b.state === "loading") return <Shell>{<p className="text-ink-2">Opening…</p>}</Shell>;
+  if (b.state === "loading") return <Shell>{<p className="animate-fade text-ink-2">Opening…</p>}</Shell>;
   if (b.state === "error")
     return (
       <Shell>
@@ -94,7 +94,10 @@ export function App() {
     <ProfilesContext.Provider value={ctx}>
       <Shell header={<Header route={route} />} mode={b.mode}>
         <Suspense fallback={<p className="text-ink-2">Loading…</p>}>
-          <Page route={route} root={b.root} mode={b.mode} />
+          {/* Keyed by page, so each page fades in when you go to it. */}
+          <div key={pageKey(route)} className="animate-enter">
+            <Page route={route} root={b.root} mode={b.mode} />
+          </div>
         </Suspense>
       </Shell>
     </ProfilesContext.Provider>
@@ -170,6 +173,11 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
   }
 }
 
+/** Same page (e.g. another settings tab) keeps its key, so only real page changes animate. */
+function pageKey(route: Route): string {
+  return route.name === "marker" || route.name === "experiment" ? `${route.name}/${route.id}` : route.name;
+}
+
 function Logo() {
   return (
     <a href={href({ name: "overview" })} className="flex min-h-11 items-center gap-2 font-serif text-xl text-ink no-underline">
@@ -224,7 +232,7 @@ function NavLink({ to, active, children }: { to: Route; active: boolean; childre
       href={href(to)}
       aria-current={active ? "page" : undefined}
       className={cx(
-        "flex min-h-11 shrink-0 items-center rounded-lg px-1.5 whitespace-nowrap no-underline transition-colors sm:px-3",
+        "flex min-h-11 shrink-0 items-center rounded-lg px-1.5 whitespace-nowrap no-underline transition-colors duration-200 sm:px-3",
         active ? "font-semibold text-accent" : "text-ink-2 hover:bg-sunken hover:text-ink",
       )}
     >

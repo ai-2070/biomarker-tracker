@@ -94,11 +94,14 @@ function PersonCard({ initial, nameRequired }: { initial: Profile; nameRequired:
         <button type="button" aria-expanded={more} onClick={() => setMore(!more)} className="min-h-11 font-medium text-accent underline-offset-2 hover:underline">
           {more ? "Hide more details" : "More details: height, diet, smoking, conditions, allergies, notes"}
         </button>
-        {more && (
-          <div className="mt-4">
-            <ProfileDetails value={draft} onChange={change} showNotes />
+        {/* Grid rows 0fr -> 1fr animates to the content's own height. */}
+        <div className={cx("grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-soft)]", more ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")} inert={!more}>
+          <div className="overflow-hidden">
+            <div className="pt-4">
+              <ProfileDetails value={draft} onChange={change} showNotes />
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </Card>
   );

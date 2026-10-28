@@ -5,7 +5,7 @@ import { switchProfile, useProfiles, useSaveStatus } from "../profiles";
 import { href } from "../router";
 import { CheckIcon, ChevronDownIcon, cx } from "./ui";
 
-const itemStyles = "flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-ink outline-none select-none data-highlighted:bg-sunken";
+const itemStyles = "flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-ink outline-none select-none transition-colors duration-100 data-highlighted:bg-sunken";
 
 /** The open profile, and a menu to switch, add or manage profiles. */
 export function ProfileMenu() {
@@ -19,16 +19,16 @@ export function ProfileMenu() {
     <Menu.Root modal={false} onOpenChange={(open) => open && void refresh()}>
       <Menu.Trigger
         aria-label={`Profile: ${name}. Switch profile`}
-        className="flex min-h-11 items-center gap-2 rounded-full border border-line py-1 pr-2.5 pl-1 text-ink hover:bg-sunken data-popup-open:bg-sunken"
+        className="group flex min-h-11 items-center gap-2 rounded-full border border-line py-1 pr-2.5 pl-1 text-ink transition-colors duration-150 hover:bg-sunken data-popup-open:bg-sunken"
       >
         <Avatar name={name} size="sm" />
         <span className="hidden max-w-32 truncate text-sm font-medium sm:inline">{name}</span>
         {save === "error" && <span className="size-2 rounded-full bg-danger" title="Not saved to the folder yet" />}
-        <ChevronDownIcon className="text-ink-2" />
+        <ChevronDownIcon className="text-ink-2 transition-transform duration-200 group-data-popup-open:rotate-180" />
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner sideOffset={6} align="end" className="z-50 outline-none">
-          <Menu.Popup className="flex w-72 max-w-[calc(100vw-2rem)] flex-col gap-0.5 rounded-xl border border-line bg-surface p-1.5 text-ink shadow-lg outline-none">
+          <Menu.Popup className="flex w-72 max-w-[calc(100vw-2rem)] origin-[var(--transform-origin)] flex-col gap-0.5 rounded-xl border border-line bg-surface p-1.5 text-ink shadow-lg outline-none transition-[scale,opacity] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
             <Menu.Group>
               <Menu.GroupLabel className="px-3 pt-1.5 pb-1 font-mono text-[11px] font-medium tracking-[0.14em] text-ink-2 uppercase">Profiles</Menu.GroupLabel>
               {profiles.map((p) => {
