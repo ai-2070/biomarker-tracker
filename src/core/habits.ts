@@ -89,6 +89,17 @@ export function habitsOf(protocols: readonly ProtocolEntry[], experiments: reado
   return sortProtocols(habits);
 }
 
+/**
+ * Each marker's band is set so a change outside it happens by chance 1 time in 20. Watching many
+ * markers at once, some will cross it by chance alone; this says so (from 5 markers on).
+ */
+export function chanceNote(markerCount: number): string | undefined {
+  if (markerCount < 5) return undefined;
+  const expected = Math.round(markerCount / 20);
+  const some = expected <= 1 ? "one of them" : `about ${expected} of them`;
+  return `With ${markerCount} markers, ${some} may show a change beyond normal variation by chance alone. A change you expected in a marker you picked for a reason says more.`;
+}
+
 /** Re-test interval to suggest: 8 weeks, or 12 when HbA1c is watched (it reflects about 3 months). */
 export function defaultRetestDays(markerIds: readonly string[]): number {
   return markerIds.includes("hba1c") ? 84 : 56;
