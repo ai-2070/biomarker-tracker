@@ -5,3 +5,6 @@ dist
 # Never commit real lab reports
 *.pdf
 !tests/fixtures/**/*.pdf
+
+# Local server data: settings, API keys, your own skills
+data/
