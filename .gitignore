@@ -1,7 +1,14 @@
-node_modules
-dist
-*.local
-.DS_Store
-# Never commit real lab reports
-*.pdf
-!tests/fixtures/**/*.pdf
+node_modules/
+# Everything personal lives here: keys, account tokens, chats, agents.
+data/
+*.log
+# Design tool cache
+.impeccable/
+
+# Built browser bundle (bun run build)
+public/dist/
+coverage/
+public/.dist-tmp/
+
+# Desktop release files gathered by scripts/desktop-release.ts
+release/

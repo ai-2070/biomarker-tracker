@@ -1,0 +1,137 @@
+// Bundles the icons the dashboard uses into web/icons.ts (run again after adding names below).
+//   bun scripts/build-icons.ts
+// UI icons: Lucide (ISC license). Brand logos: Simple Icons (CC0). Brand names stay their owners' trademarks.
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const LUCIDE = path.join(root, 'node_modules', 'lucide-static', 'icons');
+const SI = path.join(root, 'node_modules', 'simple-icons');
+
+const UI = [
+  'orbit', 'bot', 'users', 'library-big', 'settings', 'plus', 'play', 'square', 'trash-2', 'pencil', 'message-square', 'message-circle', 'terminal',
+  'x', 'chevron-down', 'sparkles', 'send', 'git-branch', 'workflow', 'zap', 'layers', 'plug', 'cpu', 'image', 'video', 'mail', 'search', 'box',
+  'check', 'triangle-alert', 'zoom-in', 'zoom-out', 'house', 'move', 'hand', 'bell', 'network', 'brain', 'wrench', 'globe', 'folder', 'user-plus',
+  'arrow-up', 'arrow-down', 'ellipsis', 'external-link', 'maximize-2', 'radio', 'rotate-ccw', 'circle-check', 'circle-x', 'clock', 'shield-check',
+  'key-round', 'server', 'monitor', 'film', 'palette', 'pen-line', 'list-checks', 'circle-pause', 'grip-vertical', 'mouse-pointer-click', 'store',
+  'file-text', 'folder-open', 'rotate-cw', 'chevron-right', 'rocket',
+  'puzzle', 'copy', 'bookmark-plus', 'download', 'repeat', 'at-sign', 'paperclip', 'file', 'folder-up', 'upload', 'archive', 'history', 'archive-restore', 'star', 'gauge', 'target', 'slash',
+];
+const BRANDS: Record<string, string> = {
+  gmail: 'gmail', notion: 'notion', 'google drive': 'googledrive', drive: 'googledrive', 'google calendar': 'googlecalendar', calendar: 'googlecalendar',
+  x: 'x', telegram: 'telegram', discord: 'discord', blender: 'blender', claude: 'claude', anthropic: 'anthropic', premiere: 'adobepremierepro',
+  photoshop: 'adobephotoshop', aftereffects: 'adobeaftereffects', ffmpeg: 'ffmpeg', chrome: 'googlechrome', github: 'github', figma: 'figma',
+  slack: 'slack', linear: 'linear', atlassian: 'atlassian', intercom: 'intercom', ollama: 'ollama', 'claude docs': 'googledocs', docs: 'googledocs',
+  openai: 'openai', codex: 'openai', codecov: 'codecov', openrouter: 'openrouter',
+  canva: 'canva', stripe: 'stripe', youtube: 'youtube', reddit: 'reddit', instagram: 'instagram', tiktok: 'tiktok', spotify: 'spotify', obsidian: 'obsidian',
+  maya: 'autodeskmaya', houdini: 'houdini', nvidia: 'nvidia', 'davinci resolve': 'davinciresolve', resolve: 'davinciresolve', freecad: 'freecad',
+  openscad: 'openscad', kicad: 'kicad', obs: 'obsstudio', sketchup: 'sketchup', autocad: 'autocad', autodesk: 'autodesk', rhino: 'rhinoceros',
+  'bambu lab': 'bambulab', bambu: 'bambulab', octoprint: 'octoprint', creality: 'creality', kdenlive: 'kdenlive', krita: 'krita',
+  vscode: 'vscodium', zed: 'zedindustries', gimp: 'gimp', python: 'python', git: 'git', docker: 'docker', node: 'nodedotjs',
+};
+
+interface SimpleIcon {
+  title: string;
+  slug?: string;
+  hex?: string;
+}
+interface Brand {
+  d: string;
+  hex: string;
+  title: string;
+}
+
+const ui: Record<string, string> = {};
+for (const name of UI) {
+  const file = path.join(LUCIDE, `${name}.svg`);
+  if (!fs.existsSync(file)) {
+    console.warn('missing lucide icon', name);
+    continue;
+  }
+  const svg = fs.readFileSync(file, 'utf8');
+  ui[name] = svg.slice(svg.indexOf('>', svg.indexOf('<svg')) + 1, svg.lastIndexOf('</svg>')).replace(/\s+/g, ' ').trim();
+}
+
+// (simple-icons 16 keeps its data in data/, older versions in _data/)
+const dataFile = [path.join(SI, 'data', 'simple-icons.json'), path.join(SI, '_data', 'simple-icons.json')].find((f) => fs.existsSync(f))!;
+const data: SimpleIcon[] | { icons: SimpleIcon[] } = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
+const list = Array.isArray(data) ? data : data.icons;
+const slugOf = (t: SimpleIcon): string => t.slug || t.title.toLowerCase().replace(/\+/g, 'plus').replace(/\./g, 'dot').replace(/&/g, 'and').replace(/[^a-z0-9]/g, '');
+// Logos Simple Icons has since removed (16 dropped OpenAI, Canva, Slack and the Adobe apps), kept here
+// so a rebuild never loses them. Add one by copying its entry from web/icons.ts before it's gone.
+const FALLBACKS: Record<string, Brand> = JSON.parse(fs.readFileSync(path.join(root, 'scripts', 'brand-fallbacks.json'), 'utf8'));
+const brands: Record<string, Brand> = {};
+for (const [key, slug] of Object.entries(BRANDS)) {
+  const file = path.join(SI, 'icons', `${slug}.svg`);
+  if (!fs.existsSync(file)) {
+    if (Object.hasOwn(FALLBACKS, slug)) brands[key] = FALLBACKS[slug];
+    else console.warn('missing brand', slug);
+    continue;
+  }
+  const svg = fs.readFileSync(file, 'utf8');
+  const d = /<path d="([^"]+)"/.exec(svg)?.[1];
+  const meta = list.find((t) => slugOf(t) === slug);
+  if (d) brands[key] = { d, hex: `#${meta?.hex || 'e6e8e0'}`, title: meta?.title || key };
+}
+
+const out = `// Generated by scripts/build-icons.ts. UI icons: Lucide (ISC). Brand logos: Simple Icons (CC0).
+interface Brand {
+  d: string;
+  hex: string;
+  title: string;
+}
+const UI: Record<string, string> = ${JSON.stringify(ui)};
+const BRANDS: Record<string, Brand | undefined> = ${JSON.stringify(brands)};
+const NS = 'http://www.w3.org/2000/svg';
+// own keys only, so names like "constructor" don't hit Object.prototype
+const brand = (key: string): Brand | undefined => (Object.hasOwn(BRANDS, key) ? BRANDS[key] : undefined);
+
+// A line icon, e.g. icon('play'). Inherits the text color.
+export function icon(name: string, size: number | string = 16, cls = ''): SVGSVGElement {
+  const s = document.createElementNS(NS, 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('width', String(size));
+  s.setAttribute('height', String(size));
+  s.setAttribute('fill', 'none');
+  s.setAttribute('stroke', 'currentColor');
+  s.setAttribute('stroke-width', '2');
+  s.setAttribute('stroke-linecap', 'round');
+  s.setAttribute('stroke-linejoin', 'round');
+  s.setAttribute('class', \`ico-svg \${cls}\`.trim());
+  s.setAttribute('aria-hidden', 'true');
+  s.innerHTML = (Object.hasOwn(UI, name) && UI[name]) || UI['box'];
+  return s;
+}
+
+// A brand logo by name ("gmail", "Google Drive", "blender"…), or null when we don't have it.
+export function logo(name: string | null | undefined, size: number | string = 16, color: string | null = null): SVGSVGElement | null {
+  const key = String(name || '').toLowerCase().replace(/^claude\\.ai\\s+/, '').trim();
+  const b = brand(key) || brand(key.replace(/[^a-z ]/g, '')) || brand(key.split(' ')[0]);
+  if (!b) return null;
+  const s = document.createElementNS(NS, 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('width', String(size));
+  s.setAttribute('height', String(size));
+  s.setAttribute('aria-label', b.title);
+  s.setAttribute('class', 'logo-svg');
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', b.d);
+  p.setAttribute('fill', color || (b.hex === '#000000' ? '#e6e8e0' : b.hex));
+  s.append(p);
+  return s;
+}
+
+// Raw logo path for drawing on a canvas (the agent monitors): { d, hex } or null.
+export function brandPath(name: string | null | undefined): { d: string; hex: string } | null {
+  const b = brand(String(name || '').toLowerCase());
+  return b ? { d: b.d, hex: b.hex === '#000000' ? '#e6e8e0' : b.hex } : null;
+}
+
+export const brandColor = (name: string | null | undefined): string | null => {
+  const b = brand(String(name || '').toLowerCase());
+  return b ? (b.hex === '#000000' ? '#e6e8e0' : b.hex) : null;
+};
+`;
+fs.writeFileSync(path.join(root, 'web', 'icons.ts'), out);
+console.log(`web/icons.ts: ${Object.keys(ui).length} icons, ${Object.keys(brands).length} brand logos`);

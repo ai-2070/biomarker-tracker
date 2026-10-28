@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- Shown by the desktop app while the dashboard's server starts, and when it can't.
+     The app puts {"title", "error", "log"} as JSON in the #hash (src-tauri/src/main.rs, show_error),
+     or {"title", "text"} for a message while it works (installing an update: show_message). -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blacksite</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c0b;
+        --ink: #e6e8e0;
+        --dim: #969a91;
+        --line: #222a21;
+        --panel: #0d100d;
+        --accent: #c4ff3d;
+        --red: #ff6b6b;
+        --sans: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+        --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font: 15px/1.55 var(--sans);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      main { max-width: 520px; text-align: center; }
+      .mark { width: 56px; height: 56px; margin: 0 auto 20px; display: block; }
+      h1 { font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+      p { margin: 0; color: var(--dim); }
+      .bar { width: 160px; height: 3px; margin: 22px auto 0; background: var(--line); border-radius: 3px; overflow: hidden; }
+      .bar i { display: block; width: 40%; height: 100%; background: var(--accent); border-radius: 3px; animation: slide 1.1s ease-in-out infinite alternate; }
+      @keyframes slide { from { transform: translateX(-10%); } to { transform: translateX(160%); } }
+      .error h1 { color: var(--red); }
+      .error .bar { display: none; }
+      #details { display: none; margin-top: 18px; text-align: left; }
+      .error #details { display: block; }
+      code { display: block; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; font: 12.5px/1.45 var(--mono); color: var(--ink); word-break: break-all; user-select: text; -webkit-user-select: text; }
+      a.btn { display: inline-block; margin-top: 18px; padding: 8px 16px; border-radius: 6px; background: var(--accent); color: var(--bg); font-weight: 600; text-decoration: none; }
+      @media (prefers-reduced-motion: reduce) { .bar i { animation: none; width: 100%; } }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#121311" /><path d="M16 48 L48 16 L48 48 Z" fill="#c4ff3d" /></svg>
+      <h1 id="title">Starting Blacksite…</h1>
+      <p id="text">This takes a few seconds.</p>
+      <div class="bar"><i></i></div>
+      <div id="details">
+        <p>The server's log is here:</p>
+        <code id="log"></code>
+        <div style="text-align: center"><a class="btn" href="index.html?restart">Try again</a></div>
+      </div>
+    </main>
+    <script>
+      function show() {
+        let info = null;
+        try {
+          info = location.hash.length > 1 ? JSON.parse(decodeURIComponent(location.hash.slice(1))) : null;
+        } catch {
+          info = null;
+        }
+        if (info && !info.error && info.title) {
+          document.getElementById('main').className = '';
+          document.getElementById('title').textContent = info.title;
+          document.getElementById('text').textContent = info.text || '';
+          return;
+        }
+        if (!info || !info.error) return;
+        document.getElementById('main').className = 'error';
+        document.getElementById('title').textContent = info.title || 'Blacksite could not start';
+        document.getElementById('text').textContent = info.error;
+        document.getElementById('log').textContent = info.log || '(unknown)';
+      }
+      show();
+      addEventListener('hashchange', show);
+    </script>
+  </body>
+</html>

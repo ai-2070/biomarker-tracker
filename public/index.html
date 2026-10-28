@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blacksite</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/vendor/xterm.css" />
+    <link rel="stylesheet" href="/dist/app.css" />
+  </head>
+  <body>
+    <div id="app" class="grid min-h-screen grid-cols-[var(--spacing-nav)_1fr] max-md:grid-cols-[1fr] md:in-[.station-mode]:grid-cols-[58px_1fr]">
+      <aside id="nav" class="sticky top-0 flex h-screen flex-col border-r border-line bg-panel pt-4.5 pb-3.5 max-md:fixed max-md:left-0 max-md:z-40 max-md:w-nav max-md:[transform:translateX(-100%)] max-md:[transition:transform_0.2s] max-md:in-[.nav-open]:transform-none max-md:in-[.nav-open]:shadow-[20px_0_60px_rgba(0,0,0,0.6)] max-md:in-[.station-mode.nav-wide]:bottom-0 max-md:in-[.station-mode.nav-wide]:z-80 max-md:in-[.station-mode.nav-wide]:transform-none max-md:in-[.station-mode.nav-wide]:shadow-[24px_0_70px_rgba(0,0,0,0.6)] max-md:in-[.station-mode.nav-wide]:animate-[nav-wide-in_0.24s_cubic-bezier(.2,.8,.2,1)] md:in-[.station-mode]:fixed md:in-[.station-mode]:top-0 md:in-[.station-mode]:bottom-0 md:in-[.station-mode]:left-0 md:in-[.station-mode]:z-80 md:in-[.station-mode]:w-nav md:in-[.station-mode]:overflow-hidden md:in-[.station-mode]:animate-none md:in-[.station-mode]:border-r-transparent md:in-[.station-mode]:[clip-path:inset(0_calc(100%-58px)_0_0)] md:in-[.station-mode]:[transition:clip-path_0.45s_cubic-bezier(.22,.9,.25,1),box-shadow_0.45s_ease] md:in-[.station-mode]:after:pointer-events-none md:in-[.station-mode]:after:absolute md:in-[.station-mode]:after:top-0 md:in-[.station-mode]:after:bottom-0 md:in-[.station-mode]:after:left-[57px] md:in-[.station-mode]:after:w-px md:in-[.station-mode]:after:bg-line md:in-[.station-mode]:after:[transition:opacity_0.3s_ease] md:in-[.station-mode.nav-wide]:border-r-line md:in-[.station-mode.nav-wide]:shadow-[24px_0_70px_rgba(0,0,0,0.55)] md:in-[.station-mode.nav-wide]:[clip-path:inset(0_-120px_0_0)] md:in-[.station-mode.nav-wide]:after:opacity-0">
+        <a class="flex items-center gap-2.5 px-5 pb-5.5 text-ink max-md:in-[.station-mode]:justify-center max-md:in-[.station-mode]:px-0 max-md:in-[.station-mode.nav-wide]:justify-start max-md:in-[.station-mode.nav-wide]:px-5 md:in-[.station-mode]:justify-start md:in-[.station-mode]:pr-0 md:in-[.station-mode]:pl-4.5" href="#/station">
+          <span class="text-[22px] leading-none text-accent">◢</span>
+          <span class="font-mono text-[15px] leading-none font-bold tracking-[0.22em] max-md:in-[.station-mode]:[display:none] max-md:in-[.station-mode.nav-wide]:inline md:in-[.station-mode]:block md:in-[.station-mode]:whitespace-nowrap md:in-[.station-mode]:opacity-0 md:in-[.station-mode]:[transition:opacity_0.2s_ease] md:in-[.station-mode.nav-wide]:opacity-100 md:in-[.station-mode.nav-wide]:[transition:opacity_0.3s_ease_0.15s]">BLACK<b class="font-bold text-accent">SITE</b></span>
+        </a>
+        <nav id="nav-links" class="flex flex-col gap-px"></nav>
+        <div class="mt-auto border-t border-line px-5 pt-3.5 text-[11px] leading-[1.7] in-[.station-mode]:[display:none] in-[.station-mode.nav-wide]:block md:in-[.station-mode]:pointer-events-none md:in-[.station-mode]:block md:in-[.station-mode]:w-nav md:in-[.station-mode]:whitespace-nowrap md:in-[.station-mode]:opacity-0 md:in-[.station-mode]:[transition:opacity_0.2s_ease] md:in-[.station-mode.nav-wide]:pointer-events-auto md:in-[.station-mode.nav-wide]:opacity-100 md:in-[.station-mode.nav-wide]:[transition:opacity_0.3s_ease_0.15s]">
+          <div id="nav-status" class="flex flex-col gap-0.5 font-mono text-dim"></div>
+          <div id="nav-about" class="mt-2 -mx-1.5 flex items-center justify-between gap-2 border-t border-line px-1.5 pt-2 pb-0.5 empty:hidden"></div>
+        </div>
+      </aside>
+      <main id="main" class="flex min-w-0 flex-col md:in-[.station-mode]:col-2">
+        <header id="topbar" class="sticky top-0 z-20 flex items-center gap-3.5 border-b border-line bg-bg/92 px-7 py-3.5 backdrop-blur-[6px] max-md:px-4 max-md:py-3 in-[.station-mode]:[display:none]">
+          <button id="nav-toggle" class="icon-btn md:hidden" aria-label="Menu">☰</button>
+          <h1 id="page-title" class="m-0 font-sans text-[18px] leading-[1.2] font-bold tracking-[-0.01em]"></h1>
+          <div class="top-actions ml-auto flex items-center gap-2.5">
+            <span id="running-pill" class="pill hidden"></span>
+            <button id="needs-btn" class="btn ghost small">Needs you <span id="needs-count" class="badge">0</span></button>
+          </div>
+        </header>
+        <section id="view" class="min-w-0 px-7 pt-6.5 pb-15 *:animate-rise-in max-md:px-4 max-md:pt-4.5 max-md:pb-12.5"></section>
+      </main>
+    </div>
+    <aside id="drawer" class="hidden fixed top-0 right-0 bottom-0 z-50 flex w-[min(520px,100vw)] flex-col border-l border-line-2 bg-glass shadow-pop backdrop-blur-[16px] backdrop-saturate-[140%] not-[.hidden]:animate-in-right" aria-label="Needs you">
+      <div class="flex items-center border-b border-line px-4.5 py-4">
+        <h2 class="m-0 flex-1 text-[16px]">Needs you</h2>
+        <button class="icon-btn" id="drawer-close" aria-label="Close">✕</button>
+      </div>
+      <div id="drawer-body" class="flex flex-col gap-3 overflow-y-auto px-4.5 py-4"></div>
+    </aside>
+    <div id="modal-root"></div>
+    <div id="toasts" class="fixed right-4.5 bottom-4.5 z-70 max-w-[min(420px,calc(100vw-36px))]"></div>
+    <script type="module" src="/dist/app.js"></script>
+  </body>
+</html>

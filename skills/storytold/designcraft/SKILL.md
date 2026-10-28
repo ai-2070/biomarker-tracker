@@ -1,0 +1,280 @@
+---
+name: designcraft
+description: "Page layout and publishing with DesignCraft (InDesign-style): brochures, newsletters, magazines, flyers, booklets, reports, certificates and data-merged cards. Multi-page documents with parent pages, page numbers, text frames, columns, paragraph / character styles, images, tables, text wrap; export print PDF, PNG, IDML, EPUB, HTML."
+version: 0.4.0
+author: storytold
+license: MIT
+platforms: [windows, linux, macos]
+metadata:
+  hermes:
+    tags: [Creative, Design, Layout, Publishing, Typography, Brochure, Newsletter, Magazine, PDF, MCP]
+    related_skills: [storytold, storytold-install, vectorcraft, photocraft, pdfcraft, wordcraft, deckcraft, figcraft]
+---
+
+# DesignCraft
+
+DesignCraft is a free, open-source clean-room take on Adobe InDesign (storytold Crafting Apps). An agent
+drives it through an MCP server (`designcraft-cli mcp`) or CLI one-shots. It has a Knuth–Plass paragraph
+composer, hyphenation, real styles and parent pages. Its exported PDFs embed subset fonts and keep text as text.
+This skill was tested against DesignCraft 0.9.0.
+
+## When to Use
+
+Use it for **typeset, multi-page or print-ready documents**:
+
+- newsletters, brochures, tri-folds, flyers, posters with body text, magazines, booklets, reports, menus, programmes
+- anything that needs parent pages (running heads, folios, page numbers), columns, styles or text flowing across pages
+- data merge: certificates, badges, name cards and labels from a CSV or `.xlsx` file
+- converting to or from IDML, and exporting EPUB or HTML from a layout
+
+Pick a different Crafting App when:
+
+| The job is… | Use |
+|---|---|
+| A logo, icon or illustration (vector art to place into the layout) | `vectorcraft` |
+| Retouching or compositing the photos you place | `photocraft` |
+| Editing, merging, redacting or filling an *existing* PDF | `pdfcraft` |
+| A plain word-processed document (letter, memo, manuscript) | `wordcraft` |
+| Slides | `deckcraft` |
+
+## Setup
+
+1. If tools named `mcp_designcraft_*` are available, use them. This is the preferred way.
+2. Otherwise check for the CLI with `designcraft-cli --version`. If it's missing, load the `storytold-install`
+   skill and run its `setup designcraft`. Then ask the user to start a new session or run `/reload-mcp`.
+3. Until the MCP tools appear, use the CLI (`script`/`run`, see **CLI** below).
+
+The MCP server is **headless** by default: an in-process engine with a CPU renderer. It starts with an empty
+Letter document. The window-only tools (`screenshot`, `click`, `drag`, `menu_list`, `ui_inspect`, `ui_set`,
+`dialog_*`) return an error in this mode. For the user to watch live, start `designcraft --control 7979` and
+run the server as `designcraft-cli mcp --connect 7979` (tested). The app starts with no document, so
+`new_document` there returns `index: 0`. A request whose reply is lost is not resent: `inspect_document` before retrying.
+
+File access: bare `designcraft-cli mcp` reads and writes any path the user can (tested). To confine it, run
+`designcraft-cli mcp --automation-read-root DIR --automation-write-root DIR`. Then every read (open, place, data sources)
+and write (save, export, `render_page`/`export_png` with a `path`) outside those folders fails, and a root you leave out
+grants none of that access. Relative paths are rejected under roots, so always pass absolute paths. The roots don't
+combine with `--connect` (the app is not confined).
+
+## Mental Model
+
+- **Units are points** (72 pt = 1 in). **y points down.** Coordinates are in **spread space**. On a
+  single-page spread the page's top-left is (0, 0). On a facing spread the right page starts at x = page width
+  (612 for Letter). `inspect_document` lists each spread's pages with their bounds.
+- **Page indices** are 0-based in `render_page`, `export_png`, `layout.pages.*` and the CLI's `--page`.
+  `file.exportPdf {pages}`, `layout.section` and `layout.pageSize` take 1-based numbers.
+- **Every action is a command** (519 of them). Run one with `execute {command, params}` or a list with `batch`.
+  Find commands with `list_commands {filter}`, or grep `references/commands.md`.
+- **Frames hold content.** A text frame shows a **story**. A story can thread through several frames, and
+  `inspect_document → stories` shows `frames` and `overset`. A graphic frame holds a placed image.
+- **Parent pages** (masters) are spreads of their own, addressed as `spread: {"kind": "parent", "index": 0}`
+  (the index into `parents` of `inspect_document`). A document spread is `spread: N` (0-based) or `{kind: "doc", index}`.
+  Every new page uses `A-Parent` unless you change it with `layout.pages.applyParent {pages, parent: "A"|null}`.
+- **Selection matters.** Commands without `ids` act on the selection. `frame.create` with text leaves a text
+  caret in the new frame. Text commands (`type.char`, `style.*.apply`, `text.insert`) act on the caret or the selected text.
+
+## Tools (Hermes names them `mcp_designcraft_<tool>`)
+
+| Tool | Use it for |
+|---|---|
+| `new_document` | `preset` (`Letter`, `A4`, `A5`, `Tabloid`…) or `width`/`height`, `pages`, `startPage`, `facingPages`, `margins` (number or `{top,bottom,inside,outside}`), `columns`, `gutter` (page columns; autoflow uses them), `bleed`/`slug` (number or `[top,bottom,inside,outside]`), `intent` (`print|web|mobile`), `units`, `primaryTextFrame`, `title` (becomes the PDF Title). `sample: true` opens the demo magazine |
+| `execute {command, params}` | Any command. Returns its result, e.g. `frame.create` → `{id, story}` |
+| `batch {commands}` | Several commands in one call, stopping at the first error (`failedIndex`; earlier steps stay applied). `"$N.path"` reuses step N's result, e.g. `"$0.story"`, `"$7.0.start"`; `"$last.path"` is the previous step; `"${N.path}"` interpolates into a longer string; `"$$"` is a literal `$`. `script` (one `command.id {json}` per line) can replace `commands` |
+| `inspect_document` | Pages, spreads, items (ids, bounds, fill, story, columns, columnRule), stories (frames, length, lines, overset), layers, styles, swatches, selection |
+| `get_story` / `set_story_text` | Read a story's text (`overset: null` means it fits) / replace it (`\n` or `\r` = new paragraph, keeps the first paragraph's format). By `story` or text `frame` id; `get_story` defaults to the selection |
+| `place_image` | PNG/JPEG/WebP/GIF/TIFF from `path` or `base64` into `frame`, the selected empty frame, or a new frame at `x, y, width` (height follows the aspect ratio) |
+| `render_page {page, scale?, bleed?, path?}` | Render a page to PNG so you can **look** at it (scale 1 = 72 ppi; `bleed: true` includes the bleed) |
+| `export_png {page, path, scale?}` | Write one page as PNG/JPEG (default scale 2) |
+| `save_document` / `open_document` | Native `.designcraft` files (`execute file.open` also reads `.idml`) |
+| `list_commands {filter}` | Look up command ids and params |
+| `select_tool`, `pointer`, `key`, `type_text`, `ime` | Drive tools like a mouse and keyboard would (rarely needed). `pointer` events take `clicks` (3 = triple-click); `ime` sends input-method composition (`preedit`, `commit`) |
+
+Resources: `designcraft://document` (same as `inspect_document`) and `designcraft://commands`.
+
+## Text and Styles
+
+- **Create a text frame:** `frame.create {rect: [x0,y0,x1,y1], content: "text", text: "…"}`. Pass `caret: false`
+  when you don't want the caret left inside it. `content` defaults to `graphic`. Use `unassigned` for a plain coloured
+  shape, then `object.fill {swatch}` and `object.stroke {swatch: "[None]"}`. Unassigned shapes get a 1 pt black stroke.
+- **Columns** belong to the frame: `object.textFrameOptions {ids?, columns, gutter, inset?, verticalJustification?}`.
+  Add a vertical rule between columns with `columnRule: true, columnRuleWeight, columnRuleColor` (a swatch name) (tested).
+- **Threading frames:** `text.thread {from, rect, spread?}` makes a new text frame at `rect` (on doc spread `spread`,
+  0-based) and threads it after `from`. `{from, to}` threads an existing empty frame. It returns `{story, from, to, overset}`,
+  so chain `"$N.to"` for the next frame (tested across two pages). `text.unthread {frame}` and
+  `text.removeFromThread {frame}` undo it.
+- **Flowing long text:** `file.place {path, autoflow: true}`, or `text.thread {from, rect, autoflow: true}`. Both add
+  pages until the story fits, with one threaded frame per **page column** (set `columns`/`gutter` in `new_document`) (tested).
+- **Styles:** `style.paragraph.create {name, basedOn?, nextStyle?, para: {…}, chars: {…}}`,
+  `style.character.create {name, chars}`, then `style.paragraph.apply {name}` / `style.character.apply {name}` on the
+  caret or selected text. `style.paragraph.edit {name: "[Basic Paragraph]", …}` sets the document's default body text.
+  - `chars` keys: `fontFamily`, `fontStyle` ("Bold", "Italic"), `size`, `leading: {kind:"points", value}` or
+    `{kind:"auto"}`, `tracking`, `fill` (a swatch name), `capitalization`, `underline`, `baselineShift`.
+  - `para` keys: `align` (`left|center|right|leftJustified|…`), `spaceBefore`, `spaceAfter`, `firstLineIndent`,
+    `leftIndent`, `keepWithNext`, `dropCapLines`, `hyphenate`, and paragraph rules
+    `ruleAbove`/`ruleBelow: {on, weight, color, tint?, offset?, leftIndent?, rightIndent?}` (a line under a heading; tested).
+  - Unknown keys fail with `unknown attribute`, so you can't silently misspell one. `type.selectionAttrs` lists every key with its current value (plus the selected text's start as `selectedText`).
+- **Selecting text:** `edit.selectAll` (while a caret is in a story) selects the whole story. Use `text.select {story, anchor, focus}` for a range,
+  or `text.selectAt {frame, point, unit: word|line|paragraph|story}` for what a multi-click would select.
+  Offsets are **UTF-8 byte** offsets, as `find.find {find, grep?}` returns them: `[{story, start, end, text}]`.
+- **Fonts:** Source Serif 4 (the default) and Source Sans 3 are bundled, and installed system fonts work too. Check with
+  `font.list`: every face reports `missing` and `source`.
+- **Special characters in text:** page number ``, next/previous page number ``/``, section
+  marker ``, column break ``, frame break ``, page break ``, forced line break ` `.
+
+## Colour, Images, Objects
+
+- **Swatches:** `swatch.create {name, color: "#rrggbb" | {c,m,y,k} (0–100) | [r,g,b]}`. Use CMYK for print. `preflight.run`
+  warns `RGB swatch in a print document`. Use `object.fill {swatch, tint?: 0..1}` on frames, and the `fill` char attr on text.
+  Both must name an existing swatch (`[Black]`, `[Paper]`, `[None]` or one you created), never a `#hex` value.
+- **Images:** `place_image`, then `object.fit {mode: fillProportionally|fitProportionally|centerContent|fitFrameToContent}`.
+  Placing into an ellipse frame crops the image to a circle (tested).
+- **Text wrap:** `object.textWrap {mode: boundingBox|contour|jumpObject|jumpToNextColumn, offset}` on the image.
+  Text frames under it reflow around it.
+- **Arrange and align:** `object.align {edge, to: margins|page}`, `object.distribute`, `object.group`, `object.arrange`,
+  `transform.move|rotate|scale`, `edit.stepAndRepeat`. `edit.duplicate`, `edit.stepAndRepeat` and `transform.move {copy: true}`
+  return the copies' `ids`. Effects: `object.dropShadow`, `object.opacity`, `object.cornerOptions`.
+- **Tables:** type tab-separated lines, `edit.selectAll`, `table.convertFromText {columnSeparator: "tab"}`; then
+  `table.select {story, rows:[0,0], what:"row"}` + `table.setCell {fill, tint}`. `table.get {story}` reads it back.
+
+## Procedure
+
+1. **Plan** the page size, margins, grid (columns), 2–4 swatches, and a style sheet (Headline, Subhead, Body, Caption, Folio).
+2. **Set up:** `new_document {…, facingPages: false}` for flyers and single sheets. Keep `facingPages: true` for
+   bound booklets, but then remember that the right-hand pages are offset by the page width.
+3. **Styles and swatches first**, including `[Basic Paragraph]`, so autoflow measures the final text size.
+4. **Parent page:** add folios and running heads on `spread: {kind:"parent", index:0}`.
+5. **Build each page back to front:** background shapes, images, then text frames. Place or flow the copy, then apply styles.
+6. **Look.** `render_page` every page and actually check it: overset, empty trailing pages, collisions, rag, widows.
+7. **Check:** `inspect_document` (no `overset: true`), `font.list` (nothing `missing`), `preflight.run`.
+8. **Save** `save_document {path: "/abs/x.designcraft"}` and **export** `file.exportPdf {path}`. Read its `warnings`.
+
+### Recipe: two-page newsletter (tested)
+
+```text
+new_document {preset:"Letter", pages:1, facingPages:false, margins:54, columns:2, gutter:18, title:"The Plot"}
+batch {commands:[
+  {command:"swatch.create", params:{name:"Brand", color:"#1b4d89"}},
+  {command:"style.paragraph.edit", params:{name:"[Basic Paragraph]", para:{spaceAfter:6, align:"leftJustified"},
+      chars:{fontFamily:"Source Serif 4", size:10, leading:{kind:"points", value:14}}}},
+  {command:"style.paragraph.create", params:{name:"Subhead", nextStyle:"[Basic Paragraph]",
+      para:{spaceBefore:10, spaceAfter:4, align:"left", keepWithNext:2},
+      chars:{fontFamily:"Source Sans 3", fontStyle:"Bold", size:13, fill:"Brand"}}},
+  {command:"style.paragraph.create", params:{name:"Headline", chars:{fontFamily:"Source Sans 3", fontStyle:"Bold", size:40, fill:"Brand"}}},
+  {command:"style.paragraph.create", params:{name:"Folio", para:{align:"center"}, chars:{size:8, leading:{kind:"points", value:10}}}},
+  {command:"style.character.create", params:{name:"Emphasis", chars:{fontStyle:"Italic", fill:"Brand"}}},
+  {command:"frame.create", params:{spread:{kind:"parent", index:0}, rect:[54,746,558,762], content:"text",
+      text:"Page   ·  The Plot Newsletter"}},
+  {command:"style.paragraph.apply", params:{name:"Folio"}},
+  {command:"frame.create", params:{spread:{kind:"parent", index:0}, rect:[54,740,558,741], content:"unassigned"}},
+  {command:"object.fill", params:{swatch:"Brand"}},  {command:"object.stroke", params:{swatch:"[None]"}},
+  {command:"frame.create", params:{rect:[54,54,558,110], content:"text", text:"The Plot"}},
+  {command:"style.paragraph.apply", params:{name:"Headline"}},
+  {command:"frame.create", params:{rect:[54,474,558,730], content:"text", caret:false}},
+  {command:"object.textFrameOptions", params:{columns:2, gutter:18}},
+  {command:"file.place", params:{path:"/abs/article.txt", autoflow:true}},          → {pagesAdded:1, overset:false}
+  {command:"find.find", params:{find:"^(Spring planting|Volunteer roster)$", grep:true}} ]}
+place_image {path:"/abs/photo.jpg", x:54, y:120, width:504}
+# per heading match: text.select {story, anchor:start, focus:start} + style.paragraph.apply {name:"Subhead"}
+# autoflow made one frame per page column on the added page
+render_page {page:N} for every page → if one is empty: execute layout.pages.delete {pages:[N]}  # 0-based
+execute file.exportPdf {path:"/abs/news.pdf"}   ·   save_document {path:"/abs/news.designcraft"}
+```
+
+### Recipe: data-merged certificates (tested)
+
+```text
+new_document {width:432, height:288, facingPages:false, margins:24}
+batch {commands:[
+  {command:"data.source.select", params:{path:"/abs/people.csv"}},              → {fields, records}
+  {command:"frame.create", params:{rect:[24,100,408,200], content:"text", text:"Thank you, \n"}},
+  {command:"edit.selectAll"}, {command:"type.char", params:{attrs:{size:24}}}, {command:"type.alignCenter"},
+  {command:"data.placeholder.add", params:{field:"role", story:"$1.story", at:12}},   # insert back to front
+  {command:"data.placeholder.add", params:{field:"name", story:"$1.story", at:11}},
+  {command:"data.merge"} ]}                → {records, pages, oversetStories}; the merged doc becomes active
+execute file.exportPdf {path:"/abs/certificates.pdf"}
+```
+
+Also tested: a landscape tri-fold flyer (792×612, `bleed: 9`, a CMYK full-bleed side panel, 2-column text, an image
+placed into a `shape: "ellipse"` graphic frame and cropped to a circle with contour text wrap, a table converted from
+tab-separated text with a tinted header row, `render_page {bleed: true}` and `file.exportPdf {bleed: true, marks: true}`).
+Also tested: `standard: "x4"` PDF export, and IDML / EPUB / HTML export with the IDML opened back.
+
+## Formats
+
+- **Read:** `.designcraft`, `.idml` (and InDesign `.indd`/`.indt`, converted to IDML on open; untested). The native `.designcraft` file is a zip (`mimetype`, `meta.json`, `document.json`,
+  `assets/` with each placed image once). `file.place` takes images, SVG, PDF pages (`pdfPage`, kept at their exact size),
+  `.txt`, `.docx`, `.rtf`, `.md` (as plain text), and `.xlsx` (as a table).
+- **Write:** `file.exportPdf {path, pages?: "1-3", bleed?, marks?, standard?: none|x4|a2b, tagged?, spreads?}` (vector,
+  subset-embedded fonts), `export_png`, `file.exportIdml`, `file.exportEpub` / `file.exportFixedEpub`, `file.exportHtml`,
+  `file.exportText`, `file.exportPptx`, `file.printBooklet` (imposed PDF), `file.package {dir}` (document + links + fonts).
+  Without `path`, the exports return base64.
+
+## CLI (no MCP needed)
+
+```bash
+designcraft-cli script steps.dcs --in in.designcraft --save out.designcraft --export out.pdf --export out.png
+#   steps.dcs: one `command.id {json}` per line, `#` comments, "$N.path" refs. Prints {completed, results}
+designcraft-cli run --cmd 'file.new={"preset":"A5","facingPages":false}' \
+    --cmd 'frame.create={"rect":[36,36,384,200],"content":"text","text":"Hi"}' --export out.pdf
+designcraft-cli run --in doc.designcraft --page 1 --scale 0.5 --export p2.png      # --page is 0-based
+designcraft-cli run --sample --all-pages outdir/        # every page to PNG (with bleed)
+designcraft-cli run --in doc.designcraft --pdf-options '{"bleed":true,"marks":true}' --export print.pdf
+designcraft-cli commands frame      ·      designcraft-cli describe file.exportPdf      ·      designcraft-cli links
+designcraft-cli app --port 7979 document.list     # one command against a running `designcraft --control 7979`
+```
+
+`--export` picks the format from the extension. A PNG export is page 0 at 2× unless you pass `--page`/`--scale`.
+`--page`, `--scale` and `--pdf-options` apply to the exports that **follow** them; after the last export they are an error
+(`--page has no --export or --all-pages after it; options apply to the exports that follow them, so put it before its --export`).
+`--pdf-options` must be a JSON object (`--pdf-options: expected a JSON object`). All of the above was run on 0.9.0.
+
+## Pitfalls
+
+- **`new_document` defaults to `facingPages: true`.** Then a 3-page document is spreads [1], [2,3], and page 3's frames
+  need x + page width (612). Pass `facingPages: false` unless you want a bound spread layout.
+- **`new_document` adds a document.** The headless session already has `Untitled-1` open. `document.list` and `file.activate {index}` switch between documents.
+- **`file.place` for text uses the caret first.** If a text caret is active, the text goes there and `frame` is
+  ignored. Create the target frame with `caret: false` (it stays selected), or `selection.set {ids}` first.
+- **Autoflow can overshoot.** On 0.9.0, on 1-column pages both `file.place` and `text.thread` with `autoflow: true` still
+  added one empty last page. With 2 page columns the newsletter came out exact. Render the pages and `layout.pages.delete`
+  any empty one. Autoflowed frames follow the page columns, not the first frame's columns.
+- **Fills must name a swatch.** `object.fill {swatch: "#ff0000"}` fails with ``invalid parameters for `object.fill`: swatch:
+  no swatch named `#ff0000`; create one with `swatch.create` and use its returned name``. A text `fill` fails with
+  ``invalid parameters for `type.char`: fill: no swatch named `Nope`; …``. Create the swatch first.
+- **Markdown is not parsed.** `.md` places as plain text (`##`, `*` stay literal), and blank lines become empty
+  paragraphs. Place plain text with one paragraph per line and style the headings yourself.
+- **`type.char` with only a caret changes nothing visible.** It sets the format for the next typed text. Select the text
+  first (`edit.selectAll` or `text.select`). `style.paragraph.apply` does work with only a caret (it styles the caret's paragraph).
+- **`data.placeholder.add` doesn't move the caret.** Several fields inserted at the caret come out in reverse order.
+  Give an explicit `at` (byte offset) and insert from the end of the story back to the start.
+- **IDML round trip:** in a test, a paragraph rule drawn in a custom swatch came back black after `file.exportIdml` +
+  `file.open`. Render the reopened document and check colours.
+- **Byte offsets:** `text.select` and `find.find` count UTF-8 bytes, so `·`, `é` and `—` count as 2–3.
+- **Paths:** use absolute paths everywhere. Bare `mcp` resolves a relative path against the server's working directory
+  (not yours); with roots it fails: ``automation path rejected: outside the read root <DIR>: r.jpg``. A write with only a
+  read root fails with `automation filesystem access is not granted: write authority is absent: <path>`.
+- **`text.thread` needs two of `from`, `to` and `rect`,** also with `autoflow: true`. `{from, autoflow: true}` alone fails with
+  ``invalid parameters for `text.thread`: give two of from, to and rect``. Give a `rect` for the first extra frame.
+- **Bad `spread` values now fail** instead of falling back to page 1: ``invalid parameters for `frame.create`: no such spread``
+  or ``… `spread.kind` must be `doc` or `parent` ``. Valid indices are in `inspect_document` (`spreads`, `parents`).
+- **Commands need a target.** Item commands with nothing selected fail with ``command `object.fill` is not available right
+  now: nothing selected``. A text caret is not an item selection: pass `ids` or `selection.set {ids}`.
+- Error texts are actionable, e.g. `unknown command \`nope.command\``, `invalid parameters for \`frame.create\`: missing rect`,
+  `no paragraph style \`Missing\``, `unknown attribute \`colour\``, `render_page: no page 5 (the document has 1 pages, indices are 0-based)`,
+  `invalid parameters for \`data.placeholder.add\`: select a data source`.
+
+## Verification
+
+- `render_page` every page and look at it before you report the work as done.
+- `inspect_document`: every story should show `overset: false`, with no stray empty frames or pages.
+- `font.list`: no `missing: true`. `preflight.run`: `errors: 0` (it also flags low-ppi images and RGB in print).
+- The `file.exportPdf` reply should have the right `pages`, `bytes > 0` and empty `warnings`. To see the PDF itself,
+  `pdfcraft-cli render out.pdf --page 1 --dpi 72 --out p.png` (1-based) and look at it; `pdfcraft-cli info out.pdf` shows
+  the page count, size and title, and `pdfcraft-cli text out.pdf` the text (tested).
+
+## References
+
+- `references/commands.md`: all 519 commands of 0.9.0 with params, grouped by area (file, layout, frame, object, style,
+  type, text, table, data, find, toc, book, …). Grep it rather than reading it whole, e.g.
+  `grep -n 'textFrameOptions' ${HERMES_SKILL_DIR}/references/commands.md`.
+- Upstream docs: https://github.com/storytold/designcraft/tree/main/docs (`mcp.md`, `agents.md`, `control-protocol.md`).

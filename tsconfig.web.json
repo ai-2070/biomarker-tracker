@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": [],
+    "jsx": "react-jsx"
+  },
+  "include": ["web/**/*.ts", "web/**/*.tsx", "shared/**/*.ts", "tests/web/**/*.ts", "tests/web/**/*.tsx"]
+}

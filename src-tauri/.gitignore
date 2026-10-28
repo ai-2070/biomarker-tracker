@@ -1,0 +1,6 @@
+# Rust build output
+/target/
+# Made by scripts/build-desktop.ts for each build
+/app/
+/binaries/
+/gen/

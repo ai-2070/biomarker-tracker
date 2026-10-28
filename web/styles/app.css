@@ -1,0 +1,95 @@
+/* Blacksite: field green on cast black, mono labels. Built by scripts/build-web.ts into public/dist/app.css.
+   Layers, lowest first: Tailwind's theme and reset with our element styles (base.css), the chats' OpenUI
+   stylesheet (added by the build), the shared pieces (components.css), then utilities, which win over
+   everything. */
+@layer theme, base, openui, components, utilities;
+
+@import 'tailwindcss' source(none);
+@source '..';
+@source '../../public/index.html';
+
+@import './base.css' layer(base);
+@import './components.css' layer(components);
+
+
+/* static: every token is written out, since look.ts and inline styles use them too */
+@theme static {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-bg: #0b0c0b;
+  --color-floor: #121311;
+  --color-panel: #0d100d;
+  --color-panel-2: #111611;
+  --color-line: #222a21;
+  --color-line-2: #3a4537;
+  --color-ink: #e6e8e0;
+  --color-dim: #969a91;
+  --color-faint: #6b7066;
+  /* the accent: look.ts swaps these four for the colour picked in Settings > Look */
+  --color-accent: #c4ff3d;
+  --color-accent-hover: #d4ff6e;
+  --color-accent-dim: #7a9a2c;
+  --color-on-accent: #0b0c0b;
+  --color-amber: #f0b04a;
+  /* "on" status: stays green whatever accent colour is picked */
+  --color-ok: #c4ff3d;
+  --color-ice: #a9d3e2;
+  --color-red: #ff6b6b;
+  /* see-through panels over the map */
+  --color-glass: rgb(14 17 14 / 0.78);
+  --color-glass-strong: rgb(14 17 14 / 0.92);
+
+  --font-sans: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  /* what agents, the Brain and you write in a chat (font-chat); names, labels and code keep sans and mono */
+  --font-chat: 'Merriweather', Georgia, 'Times New Roman', serif;
+
+  /* rounded-ctl: buttons, inputs, chips. rounded-box: panels, cards, dialogs */
+  --radius-ctl: 7px;
+  --radius-box: 10px;
+  --shadow-pop: 0 18px 50px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.35);
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --spacing-nav: 216px;
+
+  /* the app's own breakpoints: md: is 821px and up (sidebar beside the page), max-md: is 820px and less */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 701px;
+  --breakpoint-md: 821px;
+  --breakpoint-lg: 1101px;
+
+  --animate-*: initial;
+  --animate-pulse: pulse 1.2s ease-in-out infinite;
+  --animate-blink: pulse 1s steps(2) infinite;
+  --animate-fade: fade 0.18s ease-out;
+  --animate-fade-fast: fade 0.14s ease-out;
+  --animate-pop: pop 0.26s var(--ease-soft);
+  --animate-in-up: in-up 0.25s var(--ease-soft);
+  --animate-in-right: in-right 0.32s var(--ease-soft);
+  --animate-rise-in: rise-in 0.28s var(--ease-soft);
+  --animate-cw-pop: cw-pop 0.26s var(--ease-soft);
+}
+
+/* keyframes, for animate-* above or animate-[name_0.2s_ease-out] */
+@keyframes pulse { 50% { opacity: 0.3; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes in-up { from { opacity: 0; transform: translateY(18px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes in-right { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes slide { from { transform: translateY(8px); opacity: 0; } }
+@keyframes cw-pop { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes flash-find { 0%, 35% { box-shadow: 0 0 0 2px var(--color-accent), 0 0 30px color-mix(in srgb, var(--color-accent) 40%, transparent); } 100% { box-shadow: 0 0 0 0 transparent; } }
+@keyframes nav-wide-in { from { width: 58px; opacity: 0.85; } to { width: var(--spacing-nav); opacity: 1; } }
+@keyframes st-flash {
+  0% { box-shadow: 0 0 0 0 var(--c), 0 0 18px var(--c); background: color-mix(in srgb, var(--c) 35%, #0d100d); }
+  100% { box-shadow: 0 0 12px color-mix(in srgb, var(--c) 25%, transparent); }
+}
+@keyframes st-engine-pulse { 50% { text-shadow: 0 0 16px var(--c); transform: scale(1.08); } }
+@keyframes st-usage-in { from { opacity: 0; transform: translateY(14px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes st-face-pulse { 50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-accent) 10%, transparent); } }
+
+/* JS hides things with the hidden class (classList.toggle('hidden')): it must win over any display utility */
+@utility hidden {
+  display: none !important;
+}

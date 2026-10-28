@@ -1,0 +1,3 @@
+# Rebuilt by scripts/build-desktop.ts: changes here shouldn't restart `tauri dev`
+app/
+binaries/
