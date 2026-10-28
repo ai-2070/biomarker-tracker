@@ -72,6 +72,14 @@ describe("AI model settings", () => {
     expect(s.chosen).toBe(false);
   });
 
+  it("saves settings for every provider, including names with a dash", async () => {
+    for (const p of ["claude-code", "codex", "hermes", "openclaw", "anthropic", "openrouter", "lmstudio"]) {
+      expect((await call("PUT", `/api/settings/provider/${p}`, {})).status, p).toBe(200);
+    }
+    expect((await call("PUT", "/api/settings/provider/hermes", { profile: "research" })).status).toBe(200);
+    expect(getSettings().providers.hermes?.profile).toBe("research");
+  });
+
   it("saves an effort level only if the provider has it", async () => {
     await call("PUT", "/api/settings/assistant", { provider: "claude-code", model: "sonnet", effort: "xhigh" });
     expect(getSettings().assistant).toEqual({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
