@@ -7,7 +7,7 @@ import { AddResult } from "./pages/AddResult";
 import { DashboardPage } from "./pages/DashboardPage";
 import { SoonPage } from "./pages/SoonPage";
 import { SettingsPage } from "./pages/SettingsPage";
-import { AssistantPage } from "./pages/AssistantPage";
+import { openBrain } from "./brain/store";
 import { NotFound } from "./pages/NotFound";
 import { Overview } from "./pages/Overview";
 import { PhenoAgePage } from "./pages/PhenoAgePage";
@@ -17,7 +17,7 @@ import { ProfilesPage } from "./pages/ProfilesPage";
 import { SetupPage } from "./pages/SetupPage";
 import { ExperimentPage, ExperimentsPage, NewExperimentPage } from "./pages/ExperimentsPage";
 import { ProfilesContext, createProfile, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, type ProfilesState, type ProfileSummary } from "./profiles";
-import { useRoute, type Route } from "./router";
+import { href, useRoute, type Route } from "./router";
 
 // The chart library is large; load it only when a marker page is opened.
 const MarkerPage = lazy(() => import("./pages/MarkerPage").then((m) => ({ default: m.MarkerPage })));
@@ -123,7 +123,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
     case "data":
       return <SettingsPage tab={route.tab} />;
     case "assistant":
-      return <AssistantPage key={route.ask ?? ""} ask={route.ask} />;
+      return <OpenBrain ask={route.ask} />;
     case "phenoage":
       return <PhenoAgePage />;
     case "import":
@@ -146,6 +146,15 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
 }
 
 /** Same page (e.g. another settings tab) keeps its key, so only real page changes animate. */
+/** Old "Ask" links (#/assistant?ask=…): open Brain over the dashboard. */
+function OpenBrain({ ask }: { ask?: string }) {
+  useEffect(() => {
+    openBrain(ask ? { draft: ask } : {});
+    location.replace(href({ name: "dashboard" }));
+  }, [ask]);
+  return null;
+}
+
 function pageKey(route: Route): string {
   if (route.name === "soon") return `soon/${route.section}`;
   return route.name === "marker" || route.name === "experiment" ? `${route.name}/${route.id}` : route.name;

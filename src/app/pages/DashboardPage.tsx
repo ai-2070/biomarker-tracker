@@ -16,6 +16,7 @@ import { CATEGORY_LABEL, displayUnitFor, formatDate, formatYears, showChange, sh
 import { useAllMeasurements, useDisplayUnits, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, fullName, nameInSentence, shortName } from "../knowledge";
 import { useProfiles } from "../profiles";
+import { openBrain } from "../brain/store";
 import { href } from "../router";
 
 const cardStyles = "rounded-xl border border-line bg-surface p-4 sm:p-5";
@@ -359,14 +360,15 @@ function AskPanel({ d }: { d: Dashboard }) {
   const q = d.toWatch[0] ? `What can affect my ${nameInSentence(d.toWatch[0].def)}, and what does research say?` : "How have my results changed over the years?";
   return (
     <section className={cx(cardStyles, "bg-accent-soft/60")}>
-      <h2 className="font-serif text-xl font-normal">Ask about your results</h2>
-      <p className="mt-1 text-sm text-ink-2">The assistant reads your results and log, searches research, and cites what it finds.</p>
-      <a
-        href={href({ name: "assistant", ask: q })}
-        className="mt-3 flex min-h-11 items-center rounded-lg border border-line-strong bg-surface px-3 py-2.5 text-sm text-ink no-underline transition-colors duration-150 hover:bg-sunken"
+      <h2 className="font-serif text-xl font-normal">Ask Brain</h2>
+      <p className="mt-1 text-sm text-ink-2">Brain reads your results and log, searches research, and cites what it finds. Press Space on any page.</p>
+      <button
+        type="button"
+        onClick={() => openBrain({ draft: q })}
+        className="mt-3 flex min-h-11 w-full items-center rounded-lg border border-line-strong bg-surface px-3 py-2.5 text-left text-sm text-ink transition-colors duration-150 hover:bg-sunken"
       >
         “{q}”
-      </a>
+      </button>
     </section>
   );
 }
