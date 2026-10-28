@@ -2,8 +2,16 @@ import { describe, expect, it } from "vitest";
 import { canUse, PROVIDERS, providerInfo } from "../../src/core/aiProviders";
 
 describe("provider registry", () => {
-  it("lists only EU, US or local providers", () => {
-    for (const p of PROVIDERS) expect(["EU", "US", "local", "choose"]).toContain(p.region);
+  it("lists only EU, US or local API providers; agents are labelled as depending on their own setup", () => {
+    for (const p of PROVIDERS) {
+      if (p.kind === "api") expect(["EU", "US", "local", "choose"]).toContain(p.region);
+      else {
+        expect(p.region).toBe("depends");
+        expect(p.retention).toBe("depends");
+        expect(p.command).toBeTruthy();
+        expect(p.zdrNote).toMatch(/can't check/);
+      }
+    }
   });
   it("marks local providers as keeping nothing and cloud providers as needing an agreement", () => {
     expect(providerInfo("ollama")!.retention).toBe("local");
@@ -50,5 +58,25 @@ describe("canUse (zero-data-retention rule)", () => {
 
   it("rejects unknown providers", () => {
     expect(canUse({ provider: "nope" as never, model: "x" }, {}, true).ok).toBe(false);
+  });
+});
+
+describe("canUse: OpenRouter and agents", () => {
+  it("allows OpenRouter with a key alone, because zero retention is requested on every call", () => {
+    const or = { provider: "openrouter" as const, model: "anthropic/claude-sonnet-5.5" };
+    expect(canUse(or, {}, false)).toEqual({ ok: false, reason: expect.stringMatching(/API key/) });
+    expect(canUse(or, {}, true)).toEqual({ ok: true });
+  });
+
+  it("allows agents without a key or model, but keeps names safe for a command line", () => {
+    expect(canUse({ provider: "claude-code", model: "" }, {}, false)).toEqual({ ok: true });
+    expect(canUse({ provider: "hermes", model: "" }, { profile: "research" }, false)).toEqual({ ok: true });
+    expect(canUse({ provider: "hermes", model: "" }, { profile: "x; rm -rf /" }, false).ok).toBe(false);
+    expect(canUse({ provider: "codex", model: "gpt-6 --yolo" }, {}, false).ok).toBe(false);
+    expect(canUse({ provider: "openclaw", model: "anthropic/claude-opus-5.5" }, {}, false)).toEqual({ ok: true });
+  });
+
+  it("still needs a model for API providers", () => {
+    expect(canUse({ provider: "openrouter", model: "" }, {}, true).ok).toBe(false);
   });
 });

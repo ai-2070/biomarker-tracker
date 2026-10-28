@@ -1,31 +1,48 @@
 // The assistant: one model with the health tools, skills and MCP tools.
 import { generateText, isStepCount, type ModelMessage, type ToolSet } from "ai";
-import { normalizeId } from "../src/ai/citations";
 import { skillIndex } from "../src/core/skills";
-import { healthTools, resultsOverview, safetyOf, type HealthSnapshot } from "./healthTools";
+import { providerInfo } from "../src/core/aiProviders";
+import { isAgent, runAgent } from "./agents";
+import { setIdleTools } from "./bridge";
+import { biologicalAge, experimentResults, healthTools, resultsOverview, safetyOf, type HealthSnapshot } from "./healthTools";
 import { assistantTools } from "./mcp";
-import { describeModelError, readyModel, type Ready } from "./models";
+import { assistantCheck, describeModelError, readyModel, type Ready } from "./models";
+import { getSettings } from "./store";
 import { enabledSkills } from "./skills";
+import { studyIdsFromTool, toolStep, type ToolStep } from "./steps";
 
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
 }
 
-export interface ToolStep {
-  tool: string;
-  /** For MCP tools: the server id. */
-  server?: string;
-  input: string;
-}
+export type { ToolStep } from "./steps";
+export { studyIdsIn } from "./steps";
 
 export type AssistantReply =
-  | { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[] }
+  | { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; /** e.g. answered without the app's tools */ note?: string }
   | { ok: false; error: string };
 
 export const MAX_STEPS = 10;
 
-export function systemPrompt(opts: { skills: string; cautious: boolean; critical: string[]; mcpServers: string[] }): string {
+// What an agent sees when it checks the app's tools between questions.
+setIdleTools(() => healthTools({ measurements: [], protocols: [], experiments: [], profile: {} }));
+
+/** The user's data as text, for agents that can't call the app's tools. Same numbers the tools give. */
+export function dataPack(snapshot: HealthSnapshot): string {
+  return JSON.stringify(
+    {
+      results: resultsOverview(snapshot),
+      biologicalAge: biologicalAge(snapshot),
+      log: snapshot.protocols.map((p) => ({ entry: p.label, kind: p.category, start: p.start, end: p.end ?? "ongoing" })),
+      experiments: experimentResults(snapshot),
+    },
+    null,
+    1,
+  );
+}
+
+export function systemPrompt(opts: { skills: string; cautious: boolean; critical: string[]; mcpServers: { id: string; name: string; about: string }[] }): string {
   const lines = [
     "You are the research assistant in Biomarker Tracker, an app where people track their blood tests. You explain results and research in plain language to someone without medical training.",
     "",
@@ -51,20 +68,11 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     lines.push("- The user's log has a blood thinner, diabetes medicine, pregnancy or kidney disease. Don't suggest increasing any nutrient, food or supplement; say changes should be discussed with their doctor.");
   }
   if (opts.skills) lines.push("", "Skills (load one with read_skill):", opts.skills);
-  if (opts.mcpServers.length) lines.push("", `Connected research tools: ${opts.mcpServers.join(", ")}. Their tool names start with the server id.`);
+  if (opts.mcpServers.length) {
+    lines.push("", "Research servers (call research_tools with the id to see their tools, then use_research_tool):");
+    for (const s of opts.mcpServers) lines.push(`- ${s.id}: ${s.name}${s.about ? `. ${s.about}` : ""}`);
+  }
   return lines.join("\n");
-}
-
-const ID_IN_TEXT = /\b(PMID|PMCID)\s*:?\s*"?(PMC\d+|\d{4,9})\b/gi;
-const PMID_FIELD = /"(pmid|pmcid|PMID|PMCID)"\s*:\s*"?(PMC\d+|\d{4,9})"?/g;
-
-/** Every study ID that appeared in a tool result: the only ones the answer may cite. */
-export function studyIdsIn(value: unknown): string[] {
-  const text = typeof value === "string" ? value : JSON.stringify(value ?? "");
-  const ids = new Set<string>();
-  for (const m of text.matchAll(ID_IN_TEXT)) ids.add(normalizeId(m[1]!, m[2]!));
-  for (const m of text.matchAll(PMID_FIELD)) ids.add(normalizeId(m[1]!, m[2]!));
-  return [...ids];
 }
 
 export async function ask(
@@ -72,9 +80,15 @@ export async function ask(
   snapshot: HealthSnapshot,
   opts: { signal?: AbortSignal; fetchFn?: typeof fetch; /** Tests pass a mock model. */ ready?: Ready } = {},
 ): Promise<AssistantReply> {
-  const r = opts.ready ? ({ ok: true, ready: opts.ready } as const) : readyModel();
-  if (!r.ok) return { ok: false, error: r.reason };
-  const { model, providerOptions } = r.ready;
+  const settings = getSettings();
+  const choice = settings.assistant;
+  const agent = !opts.ready && choice && isAgent(choice.provider) ? choice : undefined;
+  const r = opts.ready ? ({ ok: true, ready: opts.ready } as const) : agent ? undefined : readyModel();
+  if (r && !r.ok) return { ok: false, error: r.reason };
+  if (agent) {
+    const check = assistantCheck();
+    if (!check.ok) return { ok: false, error: check.reason };
+  }
 
   const mcp = await assistantTools();
   const tools: ToolSet = { ...mcp.tools, ...healthTools(snapshot, opts.fetchFn) };
@@ -83,8 +97,26 @@ export async function ask(
     skills: skillIndex(enabledSkills()),
     cautious: safetyOf(snapshot).length > 0,
     critical: overview.critical,
-    mcpServers: [...new Set(Object.keys(mcp.tools).map((n) => n.split("__")[0]!))],
+    mcpServers: mcp.servers,
   });
+
+  if (agent && isAgent(agent.provider)) {
+    const profile = settings.providers[agent.provider]?.profile;
+    const a = await runAgent({
+      provider: agent.provider,
+      model: agent.model,
+      ...(profile ? { profile } : {}),
+      system,
+      messages,
+      tools,
+      dataPack: () => dataPack(snapshot),
+      ...(opts.signal ? { signal: opts.signal } : {}),
+    });
+    if (!a.ok) return a;
+    const note = a.usedTools ? undefined : `${providerInfo(agent.provider)!.label} answered from a summary of your data, without the app's research tools, so its citations can't be checked.`;
+    return { ok: true, text: a.text, steps: a.steps, studyIds: a.studyIds, truncated: false, failedServers: mcp.failed, ...(note ? { note } : {}) };
+  }
+  const { model, providerOptions } = r!.ready;
 
   try {
     const res = await generateText({
@@ -101,10 +133,9 @@ export async function ask(
     const ids = new Set<string>();
     for (const step of res.steps) {
       for (const c of step.toolCalls) {
-        const [server, tool] = c.toolName.includes("__") ? c.toolName.split("__", 2) : [undefined, c.toolName];
-        steps.push({ tool: tool!, ...(server ? { server } : {}), input: JSON.stringify(c.input ?? {}).slice(0, 200) });
+        steps.push(toolStep(c.toolName, c.input));
       }
-      for (const tr of step.toolResults) for (const id of studyIdsIn(tr.output)) ids.add(id);
+      for (const tr of step.toolResults) for (const id of studyIdsFromTool(tr.toolName, tr.output)) ids.add(id);
     }
     return { ok: true, text: res.text, steps, studyIds: [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed };
   } catch (e) {

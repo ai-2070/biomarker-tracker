@@ -2,10 +2,18 @@
 // Started on first use; their tools are handed to the assistant.
 import { createMCPClient } from "@ai-sdk/mcp";
 import { StdioClientTransport, getDefaultEnvironment } from "@modelcontextprotocol/sdk/client/stdio.js";
-import type { ToolSet } from "ai";
+import { asSchema, tool, type ToolSet } from "ai";
+import { z } from "zod";
 import crypto from "node:crypto";
-import { mcpPreset, presetArgs, toolName } from "../src/core/mcpPresets";
+import { MCP_PRESETS, mcpPreset, presetArgs, type McpPreset } from "../src/core/mcpPresets";
 import { getSecrets, getSettings, updateSecrets, updateSettings, type McpServerConfig } from "./store";
+import { which } from "./which";
+
+/** How long a question waits for a server that is still starting (it keeps starting in the background). */
+const START_WAIT_MS = 45_000;
+
+/** The ready-made servers run with npx, which comes with Node.js. */
+export const hasNpx = (): boolean => !!which("npx");
 
 type McpClient = Awaited<ReturnType<typeof createMCPClient>>;
 
@@ -15,6 +23,8 @@ interface Live {
 }
 
 const live = new Map<string, Promise<Live>>();
+/** Each server's connection, kept so a server that is still starting can be stopped. */
+const transports = new Map<string, StdioClientTransport>();
 const lastError = new Map<string, string>();
 
 const IS_WIN = process.platform === "win32";
@@ -39,7 +49,9 @@ async function connect(cfg: McpServerConfig): Promise<Live> {
   const { command, args } = resolveCommand(cfg.command, cfg.args);
   const env = serverEnv(cfg, getSecrets().mcpEnv[cfg.id] ?? {});
   // stderr ignored: an unread pipe fills up and freezes the server.
-  const client = await createMCPClient({ transport: new StdioClientTransport({ command, args, env, stderr: "ignore" }) });
+  const transport = new StdioClientTransport({ command, args, env, stderr: "ignore" });
+  transports.set(cfg.id, transport);
+  const client = await createMCPClient({ transport });
   const tools = await client.tools();
   return { client, tools };
 }
@@ -47,45 +59,132 @@ async function connect(cfg: McpServerConfig): Promise<Live> {
 function liveFor(cfg: McpServerConfig): Promise<Live> {
   let p = live.get(cfg.id);
   if (!p) {
-    p = connect(cfg).then(
+    const started: Promise<Live> = connect(cfg).then(
       (l) => {
         lastError.delete(cfg.id);
         return l;
       },
       (e: unknown) => {
-        live.delete(cfg.id); // try again fresh next time
+        if (live.get(cfg.id) === started) live.delete(cfg.id); // try again fresh next time
         lastError.set(cfg.id, e instanceof Error ? e.message : String(e));
         throw e;
       },
     );
-    live.set(cfg.id, p);
+    live.set(cfg.id, started);
+    p = started;
   }
   return p;
 }
 
 export async function stop(id: string): Promise<void> {
-  const p = live.get(id);
   live.delete(id);
-  if (p) await p.then((l) => l.client.close()).catch(() => undefined);
+  const t = transports.get(id);
+  transports.delete(id);
+  // Closing the connection ends the server's process, also while it is still starting.
+  if (t) await t.close().catch(() => undefined);
 }
 
 export async function stopAll(): Promise<void> {
   await Promise.all([...live.keys()].map(stop));
 }
 
-/** Tools of every switched-on server, named server__tool. Servers that fail are skipped and reported. */
-export async function assistantTools(): Promise<{ tools: ToolSet; failed: { name: string; error: string }[] }> {
-  const tools: ToolSet = {};
+/**
+ * Tools of every switched-on server, named server__tool. Servers start in parallel; one that fails, or is
+ * still starting after waitMs (e.g. the first download), is skipped for this question and reported.
+ */
+export async function assistantTools(waitMs = START_WAIT_MS): Promise<{ tools: ToolSet; failed: { name: string; error: string }[]; servers: ServerInfo[] }> {
+  const byServer = new Map<string, ToolSet>();
+  const servers: ServerInfo[] = [];
   const failed: { name: string; error: string }[] = [];
-  for (const cfg of getSettings().mcp.filter((s) => s.enabled)) {
-    try {
-      const l = await liveFor(cfg);
-      for (const [name, t] of Object.entries(l.tools)) tools[toolName(cfg.id, name)] = t;
-    } catch (e) {
-      failed.push({ name: cfg.name, error: e instanceof Error ? e.message : String(e) });
+  const enabled = getSettings().mcp.filter((s) => s.enabled);
+  await Promise.all(
+    enabled.map(async (cfg) => {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const slow = new Promise<never>((_, reject) => {
+        timer = setTimeout(() => reject(new Error("still starting (the first start downloads it); it will be ready for a later question")), waitMs);
+      });
+      try {
+        const l = await Promise.race([liveFor(cfg), slow]);
+        byServer.set(cfg.id, l.tools);
+        const preset = cfg.presetId ? mcpPreset(cfg.presetId) : undefined;
+        servers.push({ id: cfg.id, name: cfg.name, about: preset?.description ?? "", tools: Object.keys(l.tools).length });
+      } catch (e) {
+        failed.push({ name: cfg.name, error: e instanceof Error ? e.message : String(e) });
+      } finally {
+        clearTimeout(timer);
+      }
+    }),
+  );
+  servers.sort((a, b) => a.id.localeCompare(b.id));
+  return { tools: byServer.size ? researchTools(byServer) : {}, failed, servers };
+}
+
+export interface ServerInfo {
+  id: string;
+  name: string;
+  about: string;
+  tools: number;
+}
+
+/**
+ * The servers' tools behind two tools: one lists a server's tools, one calls one of them. Together the
+ * ready-made servers have well over 100 tools; sending them all with every question would cost a lot,
+ * confuse smaller models and break providers that cap the number of tools (OpenAI: 128).
+ */
+export function researchTools(byServer: Map<string, ToolSet>): ToolSet {
+  const serverIds = [...byServer.keys()];
+  return {
+    research_tools: tool({
+      description: `List the tools of one connected research server (${serverIds.join(", ")}), with what each needs. Call this before use_research_tool.`,
+      inputSchema: z.object({ server: z.string().describe("Server id") }),
+      execute: async ({ server }) => {
+        const set = byServer.get(server);
+        if (!set) return { error: `No server called "${server}". Connected: ${serverIds.join(", ")}.` };
+        const tools = [];
+        for (const [name, t] of Object.entries(set)) {
+          tools.push({ name, description: typeof t.description === "string" ? t.description.slice(0, 400) : "", input: await asSchema(t.inputSchema).jsonSchema });
+        }
+        return { server, tools };
+      },
+    }),
+    use_research_tool: tool({
+      description: "Call one tool of a connected research server, with the input its research_tools entry describes.",
+      inputSchema: z.object({
+        server: z.string().describe("Server id"),
+        tool: z.string().describe("Tool name from research_tools"),
+        input: z.record(z.string(), z.unknown()).describe("The tool's input").default({}),
+      }),
+      execute: async ({ server, tool: name, input }, options) => {
+        const t = byServer.get(server)?.[name];
+        if (!t?.execute) return { error: `No tool "${name}" on "${server}". Call research_tools first.` };
+        return (await t.execute(input, options)) as unknown;
+      },
+    }),
+  };
+}
+
+/** Starts the switched-on servers in the background, so the first question doesn't wait for downloads. */
+export function warmUp(): void {
+  for (const cfg of getSettings().mcp.filter((s) => s.enabled)) void liveFor(cfg).catch(() => undefined);
+}
+
+function presetConfig(p: McpPreset, enabled: boolean): McpServerConfig {
+  return { id: p.id, name: p.name, presetId: p.id, command: "npx", args: presetArgs(p), env: {}, enabled };
+}
+
+/**
+ * First start: add every ready-made server. Those that need no key are switched on when npx is available.
+ * Runs once; a server the user removes stays removed.
+ */
+export function ensureDefaultServers(npx = hasNpx()): void {
+  if (getSettings().mcpSeeded) return;
+  updateSettings((s) => {
+    for (const p of MCP_PRESETS) {
+      if (s.mcp.some((x) => x.presetId === p.id)) continue;
+      s.mcp.push(presetConfig(p, npx && !p.env.some((v) => v.required)));
     }
-  }
-  return { tools, failed };
+    s.mcpSeeded = true;
+  });
 }
 
 export interface ServerListing {
@@ -125,7 +224,7 @@ export function addPreset(presetId: string): McpServerConfig {
   const p = mcpPreset(presetId);
   if (!p) throw new Error("Unknown ready-made server.");
   if (getSettings().mcp.some((s) => s.presetId === presetId)) throw new Error(`${p.name} is already added.`);
-  const cfg: McpServerConfig = { id: p.id, name: p.name, presetId: p.id, command: "npx", args: presetArgs(p), env: {}, enabled: true };
+  const cfg = presetConfig(p, true);
   updateSettings((s) => s.mcp.push(cfg));
   return cfg;
 }

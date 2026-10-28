@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Field } from "@base-ui/react/field";
+import { providerInfo } from "../../core/aiProviders";
 import { safetyNotes } from "../../core/protocols";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "../../core/trends";
 import { db, getProfile } from "../../db/db";
@@ -20,11 +21,11 @@ interface Step {
 
 type Turn =
   | { role: "user"; content: string }
-  | { role: "assistant"; content: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[] }
+  | { role: "assistant"; content: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { role: "error"; content: string };
 
 type Reply =
-  | { ok: true; text: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[] }
+  | { ok: true; text: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { ok: false; error: string };
 
 // Kept outside the component so the conversation survives moving between pages (not reloads).
@@ -114,7 +115,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
     try {
       const messages = next.filter((t) => t.role !== "error").map((t) => ({ role: t.role, content: t.content }));
       const r = await api<Reply>("POST", "/api/assistant", { messages, snapshot: await snapshot() });
-      setTurns([...next, r.ok ? { role: "assistant", content: r.text, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers } : { role: "error", content: r.error }]);
+      setTurns([...next, r.ok ? { role: "assistant", content: r.text, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) } : { role: "error", content: r.error }]);
     } catch (e) {
       setTurns([...next, { role: "error", content: e instanceof Error ? e.message : "Something went wrong." }]);
     } finally {
@@ -155,7 +156,11 @@ export function AssistantPage({ ask }: { ask?: string }) {
       ) : (
         <p className="mb-5 rounded-lg bg-sunken p-3 text-sm text-ink-2">
           When you send a question, your results, log and experiments (with your age, not your birth month) go to{" "}
-          <span className="font-medium text-ink">{status.assistant?.model}</span> from your settings. Research searches go to Europe PMC and any MCP servers you
+          <span className="font-medium text-ink">
+            {[providerInfo(status.assistant?.provider ?? "")?.label, status.assistant?.model].filter(Boolean).join(" · ")}
+          </span>{" "}
+          from your settings
+          {providerInfo(status.assistant?.provider ?? "")?.retention === "depends" ? ", which keeps data according to your own login." : "."} Research searches go to Europe PMC and any MCP servers you
           switched on; those get search terms only.{" "}
           <a href={href({ name: "data", tab: "models" })} className="underline underline-offset-2">
             Change
@@ -194,6 +199,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
             <p className="sr-only">{t.role === "user" ? "You:" : "Assistant:"}</p>
             {t.role === "assistant" ? (
               <>
+                {t.note && <p className="mb-3 rounded-lg bg-warn-soft p-2 text-sm text-warn">{t.note}</p>}
                 <CitedAnswer text={t.content} allowed={allowed} truncated={t.truncated} />
                 <StepList steps={t.steps} failed={t.failedServers} />
               </>
@@ -204,7 +210,7 @@ export function AssistantPage({ ask }: { ask?: string }) {
         ))}
         {busy && (
           <li role="status" className="rounded-xl border border-line bg-surface p-4 text-ink-2">
-            Working on it. Looking things up can take a minute…
+            Working on it. Looking things up can take a few minutes…
           </li>
         )}
       </ol>
