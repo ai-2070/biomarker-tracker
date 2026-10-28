@@ -173,7 +173,7 @@ export function BloodPressureFigure({ ms, profile, className }: { ms: Measuremen
   );
 }
 
-const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "sleep_duration", "sleep_deep", "sleep_rem"]);
+const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
 const UNIT_WORDS: Record<string, string> = { bpm: "beats a minute" };
 
 /** The latest reading of one body measurement, with its change over about 3 months. */
@@ -284,6 +284,7 @@ const FIELD_LABEL: Record<BodyField, string> = {
   sleep_duration: "Sleep last night",
   sleep_deep: "Deep sleep",
   sleep_rem: "REM sleep",
+  vo2max: "VO₂max",
 };
 
 /** One day's measurements. Every field is optional; empty ones are skipped. */
@@ -385,6 +386,7 @@ export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
           {field("spo2", { suffix: "%" })}
           {field("hrv", { suffix: "ms" })}
           {field("hrv_resting", { suffix: "ms" })}
+          {field("vo2max", { suffix: "mL/kg/min" })}
         </div>
         <p className="mt-4 mb-1 font-medium">Sleep</p>
         <div className="grid gap-4 sm:grid-cols-3">

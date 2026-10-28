@@ -52,6 +52,7 @@ export const DEMO_UNITS: Record<string, string> = {
   sleep_duration: "h",
   sleep_deep: "h",
   sleep_rem: "h",
+  vo2max: "mL/kg/min",
 };
 
 /** Small, repeatable random numbers (mulberry32). */
@@ -69,7 +70,7 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem"];
+export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
 
 /**
@@ -189,6 +190,8 @@ export function demoProfile(today: string): DemoData {
     body("sleep_duration", wobble(6.9 + t * 0.4, 0.05, 0.1));
     body("sleep_deep", wobble(1.1, 0.12, 0.1));
     body("sleep_rem", wobble(1.5, 0.1, 0.1));
+    // VO2max from the watch: a little higher as the walking habit continues.
+    body("vo2max", wobble(34 + t * 2.5, 0.02, 0.1));
   }
 
   const protocols: ProtocolEntry[] = [

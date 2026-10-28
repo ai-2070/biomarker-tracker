@@ -185,6 +185,11 @@ export function guessColumn(header: string, index: number, family = ""): ColumnG
   if (/\bsdnn\b/.test(h)) return skip("HRV as SDNN (Apple's measure), not RMSSD: the two can't be mixed.");
   const sleep = sleepColumn(h, f, base);
   if (sleep !== "not sleep") return sleep;
+  // VO₂max ("VO2 Max", Garmin's "vO2MaxValue", Fitbit's "demographic_vo2_max"); not ranks, ages or levels.
+  if (/vo2/.test(h.replace(/₂/g, "2").replace(/[\s_.]/g, ""))) {
+    if (/percent|rank|age|category|level|status|range|precise|classification|error|confidence/.test(h)) return undefined;
+    return { ...base, field: "vo2max", unit: "mL/kg/min" };
+  }
   if (/\b(seven|weekly|week|monthly|month|baseline|last \d+ days?)\b/.test(h) && health.test(h)) return skip("An average over several days, not one day's value.");
   if (/\b(max|maximum|min|minimum|peak|lowest|highest|zone|zones|count|calories|kcal|steps|distance|duration|seconds|minutes|confidence|error|lower bound|upper bound)\b/.test(h) && (health.test(h) || health.test(f)))
     return skip("Not a daily average (a minimum, maximum, zone or count).");
@@ -403,10 +408,11 @@ export const APPLE_TYPES: Record<string, { field: BodyField; scale?: number } | 
   HKQuantityTypeIdentifierBloodPressureSystolic: { field: "bp_systolic" },
   HKQuantityTypeIdentifierBloodPressureDiastolic: { field: "bp_diastolic" },
   HKQuantityTypeIdentifierBloodGlucose: { field: "glucose_home" },
+  HKQuantityTypeIdentifierVO2Max: { field: "vo2max" },
   HKQuantityTypeIdentifierHeartRateVariabilitySDNN: { skip: "Apple measures HRV as SDNN, not RMSSD like this app; the two can't be mixed." },
 };
 
-const APPLE_UNITS: Record<string, string> = { "count/min": "bpm", "%": "%", kg: "kg", lb: "lb", cm: "cm", in: "in", mmHg: "mmHg", "mg/dL": "mg/dL", "mmol<180.1558800000541>/L": "mmol/L", "mmol/L": "mmol/L" };
+const APPLE_UNITS: Record<string, string> = { "count/min": "bpm", "%": "%", kg: "kg", lb: "lb", cm: "cm", in: "in", mmHg: "mmHg", "mg/dL": "mg/dL", "mmol<180.1558800000541>/L": "mmol/L", "mmol/L": "mmol/L", "mL/min·kg": "mL/kg/min", "ml/(kg*min)": "mL/kg/min" };
 
 const attr = (tag: string, name: string) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
 

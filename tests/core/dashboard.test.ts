@@ -13,7 +13,7 @@ const body = buildDashboard({ ...demo, measurements: demo.measurements.filter((m
 
 describe("body dashboard", () => {
   it("has every body measurement, measured monthly", () => {
-    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "exercise_hr", "glucose_home", "heart_rate", "hrv", "hrv_resting", "resting_hr", "sleep_deep", "sleep_duration", "sleep_rem", "spo2", "waist", "weight"]);
+    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "exercise_hr", "glucose_home", "heart_rate", "hrv", "hrv_resting", "resting_hr", "sleep_deep", "sleep_duration", "sleep_rem", "spo2", "vo2max", "waist", "weight"]);
     expect(body.draws).toHaveLength(24);
     expect(body.critical).toHaveLength(0);
     expect(body.bioAge).toHaveLength(0);

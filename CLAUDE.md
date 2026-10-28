@@ -171,6 +171,11 @@ PhenoAge = 141.50225 + ln( -0.00553 * ln(1 - M) ) / 0.090165
 - `src/core/heartAge.ts` (tested): Framingham general CVD risk, office-based model with BMI (D'Agostino 2008, PMID 18212285); coefficients from the Framingham Heart Study's site and its `gencardio_bmi.xls` (checked 2026-10-29). Heart age = the age at which normal risk factors (systolic 125 untreated, BMI 22.5, non-smoker, no diabetes, the calculator's reference values) give the same 10-year risk; closed form. Tests use the calculator's own example (woman, 30, normal factors → risk 0.010801167676829593, heart age 30).
 - Inputs: sex, age from birth month, systolic = average of readings in the 30 days up to the latest, BMI from latest weight and height, smoking from the profile; blood pressure treatment and diabetes from the profile's conditions or active medicines in Habits (shown with where they came from). Only ages 30–74. Shown on the Biological age page (with the predicted 10-year risk, inputs and limits; a risk of 20 % or more suggests discussing it with a doctor) and as a figure on the Body page.
 
+## Fitness age (VO₂max, body data)
+
+- `vo2max` is a body measurement (mL/kg/min; imported from Apple, Garmin, Fitbit, Oura and other exports, or typed in). `src/core/fitnessAge.ts` (tested): mean VO₂max of healthy adults by sex and age group from the HUNT 3 Fitness Study (Loe et al., PLoS One 2013, PMID 23691196, Table 2, open access; values copied, not estimated). Fitness age = the age at which they averaged the same VO₂max, group means at mid-group ages (25…75) joined linearly; above the youngest or below the oldest group it says "25 or younger" / "75 or older" instead of extrapolating. The Nes 2011/2014 non-exercise formulas were not used: not open access and corrected in 2020.
+- Brain's `get_body_summary` tool (`src/core/bodySummary.ts`, tested) gives the app's own BMI, waist-to-height, basal metabolic rate, heart age with 10-year risk, fitness age, and recent averages, so the model reports them instead of calculating.
+
 ## AI layer (local server, v0.9)
 
 One assistant, no teams or multi-agent setups. Model choice, Skills and MCP settings work like Blacksite's, limited to medical and nutrition use.
