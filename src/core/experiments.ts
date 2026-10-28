@@ -39,6 +39,39 @@ export function rcvBand(cviPercent: number, nBefore = 1, nAfter = 1, cvaPercent 
   return { up: Math.expm1(k), down: Math.expm1(-k) };
 }
 
+/** Two-sided 95% t values by degrees of freedom; between rows the smaller df is used (wider, so cautious). */
+const T_95: readonly [number, number][] = [
+  [4, 2.776], [5, 2.571], [6, 2.447], [7, 2.365], [8, 2.306], [9, 2.262], [10, 2.228], [12, 2.179],
+  [15, 2.131], [20, 2.086], [25, 2.06], [30, 2.042], [40, 2.021], [60, 2.0], [120, 1.98],
+];
+export function t95(df: number): number {
+  let t = Infinity;
+  for (const [d, v] of T_95) if (df >= d) t = v;
+  return t;
+}
+
+/** Fewest results on each side to estimate normal variation from the person's own readings. */
+export const MIN_PERSONAL = 3;
+
+/**
+ * Normal variation from the person's own results, for markers without published data (body
+ * measurements, some blood ratios): the spread of the log values before and after, pooled, and a
+ * t value for the small samples. Needs MIN_PERSONAL results on each side and some spread.
+ */
+export function personalBand(before: readonly number[], after: readonly number[]): ChangeBand | undefined {
+  if (before.length < MIN_PERSONAL || after.length < MIN_PERSONAL || [...before, ...after].some((v) => !(v > 0))) return undefined;
+  const ss = (xs: readonly number[]) => {
+    const ls = xs.map(Math.log);
+    const mean = ls.reduce((a, b) => a + b, 0) / ls.length;
+    return ls.reduce((a, l) => a + (l - mean) ** 2, 0);
+  };
+  const df = before.length + after.length - 2;
+  const sd = Math.sqrt((ss(before) + ss(after)) / df);
+  if (sd < 1e-9) return undefined; // identical readings: no spread to judge against
+  const k = t95(df) * sd * Math.sqrt(1 / before.length + 1 / after.length);
+  return { up: Math.expm1(k), down: Math.expm1(-k) };
+}
+
 /** Geometric mean: the right average for values compared on the log scale. */
 export function geometricMean(values: readonly number[]): number {
   if (values.length === 1) return values[0]!;
@@ -61,6 +94,8 @@ export interface MarkerResult {
   /** after/before − 1. */
   change?: number;
   band?: ChangeBand;
+  /** Where the band comes from: published biological variation, or the person's own readings. */
+  bandFrom?: "published" | "personal";
   verdict: MarkerVerdict;
 }
 
@@ -96,8 +131,10 @@ export function analyzeMarker(e: Experiment, def: BiomarkerDef, ms: readonly Mea
   // "<0.3"-style results can't give a real change.
   if ([...before, ...after].some((m) => m.qualifier)) return { ...r, verdict: "below-limit" };
   const bv = def.biologicalVariation;
-  if (!bv) return { ...r, verdict: "no-variation-data" };
-  r.band = rcvBand(bv.cvi, before.length, after.length);
+  const band = bv ? rcvBand(bv.cvi, before.length, after.length) : personalBand(before.map((m) => m.value), after.map((m) => m.value));
+  if (!band) return { ...r, verdict: "no-variation-data" };
+  r.band = band;
+  r.bandFrom = bv ? "published" : "personal";
   r.verdict = r.change > r.band.up ? "rise" : r.change < r.band.down ? "fall" : "within-noise";
   return r;
 }

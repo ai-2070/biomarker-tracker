@@ -9,6 +9,8 @@ import {
   rcvBand,
   retestDate,
   validateExperiment,
+  personalBand,
+  t95,
 } from "../../src/core/experiments";
 import type { Experiment } from "../../src/core/types";
 import { def, measurement } from "../helpers";
@@ -119,6 +121,31 @@ describe("analyzeMarker", () => {
       measurement({ biomarkerId: "rdw", date: "2024-05-10", value: 15 }),
     ];
     expect(analyzeMarker(exp({ markerIds: ["rdw"] }), rdw, ms).verdict).toBe("no-variation-data");
+  });
+
+  it("estimates normal variation from the person's own readings when there is no published data", () => {
+    const w = def("weight");
+    expect(w.biologicalVariation).toBeUndefined();
+    const at = (date: string, value: number) => measurement({ biomarkerId: "weight", date, value });
+    const before = [at("2024-01-10", 72.1), at("2024-02-01", 71.6), at("2024-02-20", 72.4)];
+    const fell = analyzeMarker(exp({ markerIds: ["weight"] }), w, [...before, at("2024-05-01", 69.0), at("2024-06-01", 68.6), at("2024-07-01", 69.3)]);
+    expect(fell.bandFrom).toBe("personal");
+    expect(fell.verdict).toBe("fall");
+    const same = analyzeMarker(exp({ markerIds: ["weight"] }), w, [...before, at("2024-05-01", 71.8), at("2024-06-01", 72.6), at("2024-07-01", 71.5)]);
+    expect(same.verdict).toBe("within-noise");
+    // Two results on a side aren't enough to know the spread.
+    const few = analyzeMarker(exp({ markerIds: ["weight"] }), w, [...before, at("2024-05-01", 60)]);
+    expect(few.verdict).toBe("no-variation-data");
+  });
+
+  it("widens the personal band for small samples (t values)", () => {
+    expect(t95(4)).toBe(2.776);
+    expect(t95(11)).toBe(2.228);
+    expect(t95(500)).toBe(1.98);
+    expect(personalBand([5, 5, 5], [6, 6, 6])).toBeUndefined();
+    const b = personalBand([10, 11, 9], [10, 11, 9])!;
+    expect(b.up).toBeGreaterThan(0);
+    expect(b.down).toBeLessThan(0);
   });
 
   it("won't judge results reported as below a limit", () => {

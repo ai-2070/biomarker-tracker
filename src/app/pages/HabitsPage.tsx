@@ -181,7 +181,7 @@ const SHORT_VERDICT: Record<MarkerResult["verdict"], string> = {
   "within-noise": "Within normal variation",
   "no-baseline": "No 'before' result",
   waiting: "Waiting for the re-test",
-  "no-variation-data": "Can't be judged",
+  "no-variation-data": "Needs more results",
   "below-limit": "Can't be judged",
 };
 

@@ -17,6 +17,8 @@ const PAD_R = 56;
 const AGE_H = 156;
 const TEST_H = 44;
 const LANE_H = 24;
+/** Row of body measurement days (main dashboard only). */
+const BODY_H = 22;
 const AXIS_H = 26;
 const MAX_LANES = 6;
 /** Tests closer than this (px) are drawn as one mark and listed together. */
@@ -70,7 +72,20 @@ const names = (ids: readonly string[]) => [...new Set(ids)].map((id) => (BIOMARK
  * blood test sized by how much was out of range, and the log underneath. Drag, zoom or pick a range
  * to look around; hover, focus or tap a test to see it.
  */
-export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; protocols: readonly ProtocolEntry[]; birthMonth?: string; today: string }) {
+export function Timeline({
+  d,
+  protocols,
+  birthMonth,
+  today,
+  body = [],
+}: {
+  d: Dashboard;
+  protocols: readonly ProtocolEntry[];
+  birthMonth?: string;
+  today: string;
+  /** Days with body measurements, as squares on their own row. No second scale: only when, and whether something was off. */
+  body?: readonly DrawSummary[];
+}) {
   const [ref, width] = useWidth();
   const clipId = `tl-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const [hover, setHover] = useState<number | null>(null);
@@ -128,7 +143,8 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
 
   const ageTop = 14;
   const testsTop = hasAge ? AGE_H : 0;
-  const lanesTop = testsTop + TEST_H;
+  const bodyTop = testsTop + TEST_H;
+  const lanesTop = bodyTop + (body.length ? BODY_H : 0);
   const axisTop = lanesTop + laneCount * LANE_H + (laneCount ? 6 : 0);
   const height = axisTop + AXIS_H;
 
@@ -352,6 +368,27 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
                 );
               })}
 
+              {/* Body measurement days: amber or red when something was out of range */}
+              {body.length > 0 && <line x1={PAD_L} x2={right} y1={bodyTop + BODY_H / 2} y2={bodyTop + BODY_H / 2} className="stroke-line" strokeWidth={1} strokeDasharray="1 3" />}
+              {body
+                .filter((t) => inView(t.date))
+                .map((t) => {
+                  const out = names(t.outOfRange);
+                  return (
+                    <rect
+                      key={t.date}
+                      x={x(t.date) - 3.5}
+                      y={bodyTop + BODY_H / 2 - 3.5}
+                      width={7}
+                      height={7}
+                      rx={1.5}
+                      className={t.critical.length ? "fill-danger" : out.length ? "fill-warn" : "fill-line-strong"}
+                    >
+                      <title>{`Body measured ${formatDate(t.date)}${out.length ? `: ${out.join(", ")} out of range` : ""}`}</title>
+                    </rect>
+                  );
+                })}
+
               {/* Log: every bar keeps a readable name */}
               {placed.map(({ p, row, x0, x1 }) => {
                 const top = lanesTop + row * LANE_H;
@@ -448,6 +485,12 @@ export function Timeline({ d, protocols, birthMonth, today }: { d: Dashboard; pr
           <span className="size-3 rounded-full bg-warn" />
           Out of range (bigger: more markers)
         </li>
+        {body.length > 0 && (
+          <li className="flex items-center gap-2">
+            <span className="size-2 rounded-[2px] bg-line-strong" />
+            Body measured (amber: something out of range)
+          </li>
+        )}
         {laneCount > 0 && (
           <li className="flex items-center gap-2">
             <span className="h-2.5 w-5 rounded-full border border-accent/40 bg-accent-soft" />
