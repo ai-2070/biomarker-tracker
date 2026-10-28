@@ -1,21 +1,12 @@
-import { useRef, useState, type FormEvent } from "react";
-import { Checkbox } from "@base-ui/react/checkbox";
+import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { checkCitations, type CitationCheck } from "../../ai/citations";
-import { buildAiContext, trendLines, type ContextResult } from "../../ai/context";
-import { askModel, isCloud, type AiConfig } from "../../ai/providers";
-import { todayIso } from "../../core/dates";
-import { ageAt, isBirthMonth } from "../../core/phenoageDraws";
-import { activeOn, safetyNotes } from "../../core/protocols";
-import { computeTrend, flagMeasurement, resolveRange, sortByDate } from "../../core/trends";
-import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "../../core/types";
+import type { BiomarkerDef } from "../../core/types";
+import { useServerStatus } from "../api";
 import { markerTerms, searchPapers, type Paper, type SearchFilter, type SearchResult } from "../../research/papers";
-import { CATEGORY_LABEL, showChange, showMeasurement, showRange } from "../format";
-import { useAiConfig } from "../hooks";
 import { nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { ChoiceGroup } from "./ChoiceGroup";
-import { Button, Card, CheckIcon, Notice, cx, helpStyles, inputStyles, labelStyles } from "./ui";
+import { Button, Card, LinkButton, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
 
 const KIND_LABEL: Record<Paper["kind"], string> = {
   guideline: "Guideline",
@@ -27,22 +18,8 @@ const KIND_LABEL: Record<Paper["kind"], string> = {
   other: "Study",
 };
 
-/** Research search for one marker, with optional AI questions about the results. */
-export function ResearchPanel({
-  def,
-  measurements,
-  profile,
-  protocols,
-  unit,
-  critical,
-}: {
-  def: BiomarkerDef;
-  measurements: Measurement[];
-  profile: Profile;
-  protocols: ProtocolEntry[];
-  unit: string;
-  critical: boolean;
-}) {
+/** Research search for one marker, with a hand-off to the assistant. */
+export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: boolean }) {
   const [filter, setFilter] = useState<SearchFilter>("reviews");
   const [topic, setTopic] = useState("");
   const [state, setState] = useState<{ status: "idle" | "loading" | "error"; error?: string; result?: SearchResult; query?: string }>({
@@ -121,7 +98,7 @@ export function ResearchPanel({
             many studies together.
           </p>
           {papers.length > 0 && (
-            <AskAi def={def} measurements={measurements} profile={profile} protocols={protocols} unit={unit} papers={papers} critical={critical} />
+            <AskAssistantLink def={def} critical={critical} />
           )}
         </div>
       )}
@@ -155,57 +132,10 @@ function PaperItem({ paper: p }: { paper: Paper }) {
   );
 }
 
-function SmallCheckbox({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label: string }) {
-  return (
-    <label className="flex min-h-11 cursor-pointer items-center gap-3">
-      <Checkbox.Root
-        checked={checked}
-        onCheckedChange={onChange}
-        className="flex size-6 shrink-0 items-center justify-center rounded-md border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
-      >
-        <Checkbox.Indicator className="flex data-unchecked:hidden">
-          <CheckIcon />
-        </Checkbox.Indicator>
-      </Checkbox.Root>
-      {label}
-    </label>
-  );
-}
-
-function providerName(c: AiConfig): string {
-  return c.provider === "anthropic" ? `Anthropic (${c.model})` : c.provider === "openai" ? `OpenAI (${c.model})` : `Ollama on this computer (${c.model})`;
-}
-
-function AskAi({
-  def,
-  measurements,
-  profile,
-  protocols,
-  unit,
-  papers,
-  critical,
-}: {
-  def: BiomarkerDef;
-  measurements: Measurement[];
-  profile: Profile;
-  protocols: ProtocolEntry[];
-  unit: string;
-  papers: Paper[];
-  critical: boolean;
-}) {
-  const config = useAiConfig();
-  const [question, setQuestion] = useState("");
-  const [includeResults, setIncludeResults] = useState(true);
-  const [includeLog, setIncludeLog] = useState(false);
-  const [preview, setPreview] = useState<ReturnType<typeof buildAiContext> | null>(null);
-  const [answer, setAnswer] = useState<{ check: CitationCheck; truncated: boolean } | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
-  const abort = useRef<AbortController | null>(null);
-
-  if (config === undefined) return null;
-
-  // Safety rule: no AI commentary when the latest value is critical.
+/** Hand questions about these studies to the assistant (it can search and cite on its own). */
+function AskAssistantLink({ def, critical }: { def: BiomarkerDef; critical: boolean }) {
+  const server = useServerStatus();
+  // Safety rule: no AI commentary first when the latest value is critical.
   if (critical) {
     return (
       <Notice tone="danger" title="AI answers are off for this marker">
@@ -213,208 +143,19 @@ function AskAi({
       </Notice>
     );
   }
-  if (config === null) {
-    return (
-      <Notice title="Ask questions about these studies">
-        Set up an AI assistant on the{" "}
-        <a href={href({ name: "data" })} className="underline underline-offset-2">
-          Data page
-        </a>{" "}
-        to get a plain-language summary that cites these studies. This is optional.
-      </Notice>
-    );
-  }
-
-  const ongoing = protocols.filter((p) => !p.end);
-  const cautious = safetyNotes(ongoing.map((p) => p.label)).length > 0;
-
-  function makePreview() {
-    if (!question.trim()) {
-      setError("Type a question first.");
-      return;
-    }
-    setError(null);
-    setAnswer(null);
-    const sorted = sortByDate(measurements);
-    const results: ContextResult[] = sorted.map((m) => ({
-      date: m.date,
-      value: showMeasurement(def, m, unit),
-      flag: flagMeasurement(def, m, profile),
-      range: showRange(def, resolveRange(def, m, profile), unit),
-    }));
-    const trend = computeTrend(measurements);
-    const today = todayIso();
-    const age = profile.birthMonth && isBirthMonth(profile.birthMonth) ? ageAt(profile.birthMonth, today) : undefined;
-    const relevant = protocols.filter((p) => sorted.some((m) => activeOn([p], m.date).length > 0) || !p.end);
-    setPreview(
-      buildAiContext({
-        def,
-        unit,
-        question,
-        papers,
-        results: includeResults ? results : undefined,
-        trendLines: includeResults
-          ? trendLines(
-              trend,
-              trend?.change !== undefined ? `${showChange(def, trend.change, unit)} ${unit}` : undefined,
-              trend?.ratePerYear !== undefined ? `${showChange(def, trend.ratePerYear, unit)} ${unit}` : undefined,
-            )
-          : undefined,
-        range: includeResults ? resolveRange(def, trend?.latest ?? {}, profile) : undefined,
-        age: includeResults ? age : undefined,
-        sex: includeResults ? profile.sex : undefined,
-        logLines: includeLog
-          ? relevant.map((p) => `${p.label} (${CATEGORY_LABEL[p.category].toLowerCase()}), ${p.start} to ${p.end ?? "now"}`)
-          : undefined,
-        cautious,
-      }),
-    );
-  }
-
-  async function send() {
-    if (!preview || !config) return;
-    setBusy(true);
-    setError(null);
-    abort.current = new AbortController();
-    try {
-      const r = await askModel(config, preview.system, preview.user, (u, i) => fetch(u, i), abort.current.signal);
-      if (r.ok) {
-        setAnswer({ check: checkCitations(r.text, preview.allowedIds), truncated: r.truncated });
-        setPreview(null);
-      } else setError(r.error);
-    } finally {
-      setBusy(false);
-    }
-  }
-
+  if (server === undefined) return null;
   return (
-    <section aria-labelledby="ask-ai" className="flex flex-col gap-3 rounded-xl border border-line-strong p-4">
-      <h3 id="ask-ai" className="font-semibold">
-        Ask about these studies
-      </h3>
-      <Field.Root className="flex flex-col gap-1.5">
-        <Field.Label className="sr-only">Your question</Field.Label>
-        <Field.Control
-          render={<textarea rows={3} />}
-          value={question}
-          onValueChange={(v) => {
-            setQuestion(v);
-            setPreview(null);
-          }}
-          placeholder={`e.g. What do these studies say about what affects ${nameInSentence(def)}?`}
-          className={`${inputStyles} py-2`}
-        />
-      </Field.Root>
-      <div className="flex flex-col">
-        <SmallCheckbox
-          checked={includeResults}
-          onChange={(v) => {
-            setIncludeResults(v);
-            setPreview(null);
-          }}
-          label={`Include my ${def.name} results, age and sex`}
-        />
-        <SmallCheckbox
-          checked={includeLog}
-          onChange={(v) => {
-            setIncludeLog(v);
-            setPreview(null);
-          }}
-          label="Include my log (supplements, diet, medicines)"
-        />
-      </div>
-      {error && (
-        <p role="alert" className="text-sm font-medium text-danger">
-          {error}
-        </p>
-      )}
-
-      {!preview ? (
-        <div>
-          <Button variant="secondary" onClick={makePreview}>
-            Review what will be sent
-          </Button>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-3">
-          <Notice tone={isCloud(config.provider) ? "warn" : "info"} title={`This exact text will be sent to ${providerName(config)}`}>
-            {isCloud(config.provider)
-              ? "It leaves your device and is handled under that company's privacy terms. No name, birth date, lab name, notes or IDs are included."
-              : "It stays on this computer."}
-          </Notice>
-          <pre className="max-h-80 overflow-auto rounded-lg bg-sunken p-3 font-mono text-xs whitespace-pre-wrap text-ink-2">
-            {`--- Instructions for the AI ---\n${preview.system}\n\n--- Message ---\n${preview.user}`}
-          </pre>
-          <div className="flex flex-wrap gap-2">
-            <Button onClick={() => void send()} disabled={busy}>
-              {busy ? "Waiting for the answer…" : "Send"}
-            </Button>
-            <Button
-              variant="quiet"
-              onClick={() => {
-                abort.current?.abort();
-                setPreview(null);
-              }}
-            >
-              Cancel
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {answer && <AiAnswer check={answer.check} truncated={answer.truncated} papers={papers} />}
-    </section>
-  );
-}
-
-function AiAnswer({ check, truncated, papers }: { check: CitationCheck; truncated: boolean; papers: Paper[] }) {
-  const byId = new Map(papers.map((p) => [p.id, p]));
-  return (
-    <div className="flex flex-col gap-3 rounded-lg border border-line bg-surface p-3">
-      <p className="text-sm font-medium text-ink-2">AI summary. It can be wrong; check the studies it cites.</p>
-      <div className="whitespace-pre-line">
-        {check.segments.map((s, i) =>
-          s.type === "text" ? (
-            <span key={i}>{s.text}</span>
-          ) : s.valid ? (
-            <a
-              key={i}
-              href={byId.get(s.id)?.url ?? `#paper-${s.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={byId.get(s.id)?.title}
-              className="mx-0.5 inline-flex items-center rounded bg-accent-soft px-1.5 font-mono text-xs text-accent no-underline"
-            >
-              {s.id}
-            </a>
-          ) : (
-            <span key={i} className="mx-0.5 inline-flex items-center rounded bg-danger-soft px-1.5 font-mono text-xs text-danger line-through" title="Not one of the retrieved studies">
-              {s.id}
-            </span>
-          ),
+    <Notice title="Questions about these studies?">
+      <p>The assistant can read studies, weigh the evidence and explain it, citing only studies it actually retrieved.</p>
+      <div className="mt-3">
+        {server ? (
+          <LinkButton variant="secondary" href={href({ name: "assistant", ask: `What does research say about what affects my ${nameInSentence(def)}?` })}>
+            Ask the assistant
+          </LinkButton>
+        ) : (
+          <span className="text-sm">Start the app with <code className="font-mono">bun run start</code> to use the assistant.</span>
         )}
       </div>
-      <ul className="flex flex-col gap-1 text-sm">
-        <li className={cx(check.verified.length ? "text-ok" : "text-ink-2")}>
-          {check.verified.length} {check.verified.length === 1 ? "citation" : "citations"} checked against the retrieved studies.
-        </li>
-        {check.unverified.length > 0 && (
-          <li className="font-medium text-danger">
-            {check.unverified.length} {check.unverified.length === 1 ? "citation is" : "citations are"} not among the retrieved studies (struck
-            through). Don't rely on {check.unverified.length === 1 ? "it" : "them"}.
-          </li>
-        )}
-        {check.looseReferences.length > 0 && (
-          <li className="font-medium text-warn">
-            The answer mentions {check.looseReferences.join(", ")} without an ID, so it can't be checked.
-          </li>
-        )}
-        {check.verified.length === 0 && check.unverified.length === 0 && (
-          <li className="text-warn">The answer cites no studies, so nothing in it is backed by the search results.</li>
-        )}
-        {truncated && <li className="text-warn">The answer was cut off because it was too long.</li>}
-      </ul>
-      <p className="text-sm text-ink-2">Not medical advice. Talk to your doctor before making changes.</p>
-    </div>
+    </Notice>
   );
 }

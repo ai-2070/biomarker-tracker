@@ -13,12 +13,7 @@ const CONNECT_SRC = [
   // Research search (only search words are sent)
   "https://www.ebi.ac.uk",
   "https://eutils.ncbi.nlm.nih.gov",
-  // AI providers the user configures with their own key (only after they confirm what is sent)
-  "https://api.anthropic.com",
-  "https://api.openai.com",
-  // Local Ollama (must match OLLAMA_ALLOWED in src/ai/providers.ts)
-  "http://localhost:11434",
-  "http://127.0.0.1:11434",
+  // AI models are called by the local server (server/), never from the page.
 ];
 
 const CSP = [
@@ -51,6 +46,8 @@ export default defineConfig({
   // Relative base so the static build works from any GitHub Pages path.
   base: "./",
   plugins: [react(), tailwindcss(), contentSecurityPolicy()],
+  // In dev, the page talks to the local server (bun run server) through Vite.
+  server: { proxy: { "/api": { target: "http://127.0.0.1:4820", changeOrigin: true } } },
   test: {
     projects: [
       { test: { name: "core", include: ["tests/core/**/*.test.ts", "tests/knowledge/**/*.test.ts", "tests/research/**/*.test.ts", "tests/ai/**/*.test.ts", "tests/db/**/*.test.ts", "tests/app/**/*.test.ts"], environment: "node" } },

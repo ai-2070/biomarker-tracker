@@ -1,7 +1,6 @@
 import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
-import type { AiConfig } from "../ai/providers";
 
 interface Setting {
   key: string;
@@ -115,16 +114,12 @@ export async function setProfile(profile: Profile, database = db): Promise<void>
   await database.settings.put({ key: PROFILE_KEY, value: profile });
 }
 
-const AI_KEY = "ai";
-
-/** The user's AI settings, including their API key. Stored only in this browser. */
-export async function getAiConfig(database = db): Promise<AiConfig | undefined> {
-  return (await database.settings.get(AI_KEY))?.value as AiConfig | undefined;
-}
-
-export async function setAiConfig(config: AiConfig | undefined, database = db): Promise<void> {
-  if (config) await database.settings.put({ key: AI_KEY, value: config });
-  else await database.settings.delete(AI_KEY);
+/**
+ * Before v0.9 an API key could be saved in the browser. Keys now live only in the
+ * local server's secrets file, so remove any old copy from the browser.
+ */
+export async function forgetBrowserAiKey(database = db): Promise<void> {
+  await database.settings.delete("ai");
 }
 
 export async function isOnboarded(database = db): Promise<boolean> {

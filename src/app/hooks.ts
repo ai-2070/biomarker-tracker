@@ -1,6 +1,5 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import { db, getAiConfig, getProfile, measurementsFor } from "../db/db";
-import type { AiConfig } from "../ai/providers";
+import { db, getProfile, measurementsFor } from "../db/db";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 
 /** All measurements, live. `undefined` while loading. */
@@ -15,11 +14,6 @@ export function useMeasurementsFor(biomarkerId: string): Measurement[] | undefin
 /** All log entries, live. `undefined` while loading. */
 export function useProtocols(): ProtocolEntry[] | undefined {
   return useLiveQuery(() => db.protocols.toArray(), []);
-}
-
-/** AI settings: `undefined` while loading, `null` when not set up. */
-export function useAiConfig(): AiConfig | null | undefined {
-  return useLiveQuery(async () => (await getAiConfig()) ?? null, []);
 }
 
 /** All experiments, live. `undefined` while loading. */

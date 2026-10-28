@@ -6,20 +6,18 @@ import { deleteEverything, exportAll, importBackup, setProfile, type ImportMode 
 import { BirthMonthField } from "../components/BirthMonthField";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Button, Card, Notice, PageTitle } from "../components/ui";
-import { useAiConfig, useAllMeasurements, useProfile } from "../hooks";
-import { AiSettings } from "../components/AiSettings";
+import { Button, Card, Notice } from "../components/ui";
+import { useAllMeasurements, useProfile } from "../hooks";
 
 type SexChoice = Sex | "unset";
 
-export function DataPage() {
+/** "Your data" tab of the settings page. */
+export function DataSettings() {
   const profile = useProfile();
   const all = useAllMeasurements();
-  const ai = useAiConfig();
 
   return (
     <>
-      <PageTitle sub="Everything is stored only in this browser on this device. Nothing is uploaded.">Your data</PageTitle>
       <div className="flex flex-col gap-5">
         <Card className="flex flex-col gap-5">
           <h2 className="font-serif text-2xl font-normal">About you</h2>
@@ -40,9 +38,6 @@ export function DataPage() {
           {/* Keyed so the fields pick up the saved value once it has loaded. */}
           <BirthMonthField key={profile.birthMonth ?? "none"} profile={profile} />
         </Card>
-
-        {/* Rendered once settings have loaded, so its form starts from the saved values. */}
-        {ai !== undefined && <AiSettings config={ai ?? undefined} />}
 
         <BackupCard count={all?.length ?? 0} />
         <RestoreCard />

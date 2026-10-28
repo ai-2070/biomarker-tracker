@@ -92,14 +92,7 @@ export function MarkerPage({ id }: { id: string }) {
         {/* No suggestions next to a critical value: the urgent banner comes first. */}
         {!(latestFlag && isCritical(latestFlag)) && <LeversPanel def={def} flag={latestFlag} protocols={protocols} />}
 
-        <ResearchPanel
-          def={def}
-          measurements={measurements ?? []}
-          profile={profile}
-          protocols={protocols}
-          unit={unit}
-          critical={!!latestFlag && isCritical(latestFlag)}
-        />
+        <ResearchPanel def={def} critical={!!latestFlag && isCritical(latestFlag)} />
       </div>
     </>
   );
