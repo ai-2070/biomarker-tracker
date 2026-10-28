@@ -93,7 +93,8 @@ function isExperiment(v: unknown): v is Experiment {
     isIsoDate(v.start) &&
     isNum(v.retestAfterDays) &&
     optional(v.end, (e) => isStr(e) && isIsoDate(e)) &&
-    optional(v.protocolId, isStr)
+    optional(v.protocolId, isStr) &&
+    optional(v.chosenOn, (d) => isStr(d) && isIsoDate(d))
   );
 }
 

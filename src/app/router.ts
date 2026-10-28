@@ -20,9 +20,8 @@ export type Route =
   | { name: "assistant"; ask?: string }
   | { name: "phenoage" }
   | { name: "import" }
-  | { name: "log"; add?: string }
-  | { name: "experiments" }
-  | { name: "experiment-new"; marker?: string; change?: string }
+  /** Supplements, food, medicines and routines. `add` opens the form (with this name); `marker` is pre-ticked to watch. */
+  | { name: "habits"; add?: string; marker?: string }
   | { name: "experiment"; id: string }
   | { name: "setup" }
   | { name: "profiles" }
@@ -55,18 +54,17 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "setup" && parts.length === 1) return { name: "setup" };
   if (parts[0] === "profiles" && parts.length === 1) return { name: "profiles" };
   if (parts[0] === "import" && parts.length === 1) return { name: "import" };
-  if (parts[0] === "experiments" && parts.length === 1) return { name: "experiments" };
-  if (parts[0] === "experiments" && parts[1] === "new" && parts.length === 2) {
-    const r: Route = { name: "experiment-new" };
+  if ((parts[0] === "habits" || parts[0] === "experiments" || parts[0] === "log") && parts.length === 1) {
+    // Old addresses: the log (?add=) and the experiments list both became Habits.
+    const add = params.get("add");
     const marker = params.get("marker");
-    const change = params.get("change");
-    return { ...r, ...(marker ? { marker } : {}), ...(change ? { change } : {}) };
+    return { name: "habits", ...(add !== null ? { add } : {}), ...(marker ? { marker } : {}) };
+  }
+  if (parts[0] === "experiments" && parts[1] === "new" && parts.length === 2) {
+    const marker = params.get("marker");
+    return { name: "habits", add: params.get("change") ?? "", ...(marker ? { marker } : {}) };
   }
   if (parts[0] === "experiment" && parts[1] && parts.length === 2) return { name: "experiment", id: parts[1] };
-  if (parts[0] === "log" && parts.length === 1) {
-    const add = params.get("add");
-    return add ? { name: "log", add } : { name: "log" };
-  }
   return { name: "not-found" };
 }
 
@@ -94,19 +92,15 @@ export function href(route: Route): string {
       return "#/biological-age";
     case "import":
       return "#/import";
-    case "experiments":
-      return "#/experiments";
-    case "experiment-new": {
+    case "habits": {
       const q = new URLSearchParams();
+      if (route.add !== undefined) q.set("add", route.add);
       if (route.marker) q.set("marker", route.marker);
-      if (route.change) q.set("change", route.change);
       const qs = q.toString();
-      return qs ? `#/experiments/new?${qs}` : "#/experiments/new";
+      return qs ? `#/habits?${qs}` : "#/habits";
     }
     case "experiment":
       return `#/experiment/${encodeURIComponent(route.id)}`;
-    case "log":
-      return route.add ? `#/log?add=${encodeURIComponent(route.add)}` : "#/log";
     case "not-found":
       return "#/";
   }

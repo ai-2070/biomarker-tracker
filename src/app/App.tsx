@@ -12,10 +12,10 @@ import { NotFound } from "./pages/NotFound";
 import { Overview } from "./pages/Overview";
 import { PhenoAgePage } from "./pages/PhenoAgePage";
 import { ImportPage } from "./pages/ImportPage";
-import { LogPage } from "./pages/LogPage";
+import { HabitsPage } from "./pages/HabitsPage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 import { SetupPage } from "./pages/SetupPage";
-import { ExperimentPage, ExperimentsPage, NewExperimentPage } from "./pages/ExperimentsPage";
+import { ExperimentPage } from "./pages/ExperimentsPage";
 import { ProfilesContext, createProfile, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, type ProfilesState, type ProfileSummary } from "./profiles";
 import { href, useRoute, type Route } from "./router";
 
@@ -128,12 +128,9 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <PhenoAgePage />;
     case "import":
       return <ImportPage />;
-    case "log":
-      return <LogPage key={route.add ?? ""} prefill={route.add} />;
-    case "experiments":
-      return <ExperimentsPage />;
-    case "experiment-new":
-      return <NewExperimentPage key={`${route.marker}|${route.change}`} marker={route.marker} change={route.change} />;
+    case "habits":
+      // Keyed so a new "add" link opens a fresh form.
+      return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}`} add={route.add} marker={route.marker} />;
     case "experiment":
       return <ExperimentPage key={route.id} id={route.id} />;
     case "setup":

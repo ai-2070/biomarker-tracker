@@ -35,8 +35,9 @@ describe("validateProtocol", () => {
   });
 
   it("rejects future dates, end before start and long labels", () => {
-    const future = validateProtocol({ label: "x", category: "diet", start: "2025-06-02" }, today);
-    expect(!future.ok && future.errors.start).toMatch(/future/);
+    expect(validateProtocol({ label: "x", category: "diet", start: "2025-06-02" }, today).ok).toBe(true);
+    const future = validateProtocol({ label: "x", category: "diet", start: "2026-06-02" }, today);
+    expect(!future.ok && future.errors.start).toMatch(/next year/);
     const backwards = validateProtocol({ label: "x", category: "diet", start: "2025-03-01", end: "2025-02-01" }, today);
     expect(!backwards.ok && backwards.errors.end).toMatch(/before/);
     const futureEnd = validateProtocol({ label: "x", category: "diet", start: "2025-03-01", end: "2025-07-01" }, today);

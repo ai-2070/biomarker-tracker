@@ -97,7 +97,7 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
         />
         <Field.Description className={helpStyles}>
           Separate with commas. The app uses this to warn before suggesting changes that may not be safe (for example with kidney disease or pregnancy).
-          Medicines and supplements go in the Log.
+          Medicines and supplements go in Habits.
         </Field.Description>
       </Field.Root>
       <Field.Root className="flex flex-col gap-1.5">

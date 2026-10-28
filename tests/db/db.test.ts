@@ -5,6 +5,9 @@ import {
   addMeasurement,
   addProtocol,
   createExperiment,
+  deleteHabit,
+  saveHabit,
+  watchHabit,
   endExperiment,
   deleteProtocol,
   saveProtocol,
@@ -101,6 +104,20 @@ describe("db", () => {
     await endExperiment(id, "2024-05-01", db);
     expect((await db.experiments.get(id))!.end).toBe("2024-05-01");
     expect((await db.protocols.get(e.protocolId!))!.end).toBe("2024-05-01");
+  });
+
+  it("watches markers for a habit and keeps the watch in step with it", async () => {
+    const pid = await addProtocol({ label: "Vitamin D3 1000 IU", category: "supplement", start: "2024-01-10" }, db);
+    const p = (await db.protocols.get(pid))!;
+    await watchHabit(p, ["vitamin_d"], 56, "2026-10-28", db);
+    const second = await watchHabit(p, ["vitamin_d", "ferritin"], 84, "2026-10-28", db);
+    expect(await db.experiments.count()).toBe(1);
+    expect((await db.experiments.get(second))!).toMatchObject({ protocolId: pid, change: "Vitamin D3 1000 IU", markerIds: ["vitamin_d", "ferritin"], chosenOn: "2026-10-28" });
+    await saveHabit({ ...p, label: "Vitamin D3 2000 IU", end: "2024-06-01" }, db);
+    expect((await db.experiments.get(second))!).toMatchObject({ change: "Vitamin D3 2000 IU", end: "2024-06-01" });
+    await deleteHabit({ entry: (await db.protocols.get(pid))! }, db);
+    expect(await db.protocols.count()).toBe(0);
+    expect(await db.experiments.count()).toBe(0);
   });
 
   it("includes experiments in backups and restores them", async () => {

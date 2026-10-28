@@ -43,7 +43,7 @@ const TOOL_TEXT: Record<string, string> = {
   get_marker: "Read a marker's history and knowledge entry",
   get_levers: "Checked evidence-graded diet and habit levers",
   get_biological_age: "Checked your biological age estimate",
-  get_log: "Read your log",
+  get_log: "Read your habits",
   compare_before_after: "Compared before and after in your experiments",
   search_research: "Searched Europe PMC",
   read_skill: "Followed a skill",
@@ -304,7 +304,7 @@ function Welcome({ settings }: { settings: BrainSettings | undefined }) {
       <div>
         <p className="font-serif text-3xl">Ask Brain</p>
         <p className="mt-1 text-ink-2">
-          About your results, your log and the research. Drop a lab report here, or use the paperclip, to add it to your blood tests.
+          About your results, your habits and the research. Drop a lab report here, or use the paperclip, to add it to your blood tests.
         </p>
       </div>
       <ul className="stagger flex flex-col gap-2">

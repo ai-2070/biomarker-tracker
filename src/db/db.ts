@@ -1,5 +1,6 @@
 import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
+import { syncWatch, watchFor } from "../core/habits";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 
 interface Setting {
@@ -94,6 +95,38 @@ export async function endExperiment(id: string, date: string, database = db): Pr
 /** Delete an experiment. Its log entry and results are kept. */
 export async function deleteExperiment(id: string, database = db): Promise<void> {
   await database.experiments.delete(id);
+}
+
+// Habits: a log entry and, optionally, the markers it watches (an experiment linked to it)
+
+/** Start watching markers for a habit. Replaces an earlier watch of the same entry. */
+export async function watchHabit(p: ProtocolEntry, markerIds: string[], retestAfterDays: number, today: string, database = db): Promise<string> {
+  const id = newId();
+  await database.transaction("rw", database.experiments, async () => {
+    await database.experiments.filter((e) => e.protocolId === p.id).delete();
+    await database.experiments.add({ ...watchFor(p, markerIds, retestAfterDays, today), id });
+  });
+  return id;
+}
+
+/** Save an edited habit; its watch keeps the same name and dates. */
+export async function saveHabit(p: ProtocolEntry, database = db): Promise<void> {
+  await database.transaction("rw", database.experiments, database.protocols, async () => {
+    await database.protocols.put(p);
+    const watches = await database.experiments.filter((e) => e.protocolId === p.id).toArray();
+    for (const e of watches) await database.experiments.put(syncWatch(e, p));
+  });
+}
+
+/** Delete a habit and what it watched. Test results are kept. */
+export async function deleteHabit(h: { entry?: ProtocolEntry; watch?: Experiment }, database = db): Promise<void> {
+  await database.transaction("rw", database.experiments, database.protocols, async () => {
+    if (h.entry) {
+      await database.protocols.delete(h.entry.id);
+      await database.experiments.filter((e) => e.protocolId === h.entry!.id).delete();
+    }
+    if (h.watch) await database.experiments.delete(h.watch.id);
+  });
 }
 
 export async function deleteProtocol(id: string, database = db): Promise<void> {

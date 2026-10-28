@@ -72,7 +72,7 @@ export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag:
 
       {sel.hidden.length > 0 && (
         <p className="text-sm text-ink-2">
-          {sel.hidden.length} {sel.hidden.length === 1 ? "option is" : "options are"} not shown because of what's in your log. Ask your doctor
+          {sel.hidden.length} {sel.hidden.length === 1 ? "option is" : "options are"} not shown because of what's in your habits. Ask your doctor
           about {sel.hidden.length === 1 ? "it" : "them"}.
         </p>
       )}
@@ -137,7 +137,7 @@ function Lever({ claim: c, def, safety }: { claim: EvidenceClaim; def: Biomarker
       </details>
 
       <a
-        href={href({ name: "experiment-new", marker: def.id, change: c.lever })}
+        href={href({ name: "habits", add: c.lever, marker: def.id })}
         className="inline-flex min-h-11 items-center gap-1 self-start text-sm font-medium text-accent underline-offset-2 hover:underline"
       >
         Trying this? Test it on yourself
@@ -184,7 +184,7 @@ function FoodList({ claim: c, safety }: { claim: EvidenceClaim; safety: SafetyId
       </table>
       {sel.hidden.length > 0 && (
         <p className="mt-2 text-sm text-ink-2">
-          Not shown because of your log: {sel.hidden.map((h) => `${lowerFirst(h.food.name)} (${h.reason})`).join("; ")}.
+          Not shown because of your habits: {sel.hidden.map((h) => `${lowerFirst(h.food.name)} (${h.reason})`).join("; ")}.
         </p>
       )}
       {foods.note && <p className="mt-2 text-sm text-ink-2">{foods.note}</p>}

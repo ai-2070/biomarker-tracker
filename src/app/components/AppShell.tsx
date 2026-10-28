@@ -5,7 +5,7 @@ import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
 import { Brain } from "../brain/Brain";
 import { openBrain, useBrain } from "../brain/store";
-import { AgeIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, FlaskIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
+import { AgeIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
 import { ProfileMenu } from "./ProfileMenu";
 import { buttonStyles, cx } from "./ui";
 
@@ -26,15 +26,13 @@ const BLOOD: NavItem = {
 };
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
 const BODY: NavItem = { label: "Body", to: { name: "soon", section: "body" }, icon: BodyIcon, active: (r) => r.name === "soon" && r.section === "body", soon: true };
-const LOG: NavItem = { label: "Supplements & log", to: { name: "log" }, icon: PillIcon, active: (r) => r.name === "log" };
-const EXPERIMENTS: NavItem = { label: "Experiments", to: { name: "experiments" }, icon: FlaskIcon, active: (r) => r.name.startsWith("experiment") };
+const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
 const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: SettingsIcon, active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup" };
 
 const GROUPS: { label?: string; items: NavItem[] }[] = [
   { items: [DASHBOARD] },
-  { label: "Health", items: [BLOOD, AGE, BODY] },
-  { label: "Habits", items: [LOG, EXPERIMENTS] },
+  { label: "Health", items: [BLOOD, AGE, HABITS, BODY] },
   { label: "Connect", items: [DEVICES] },
 ];
 
@@ -105,7 +103,7 @@ function Sidebar({ route }: { route: Route }) {
   );
 }
 
-const TABS: NavItem[] = [DASHBOARD, { ...BLOOD, label: "Blood" }, { ...LOG, label: "Log" }];
+const TABS: NavItem[] = [DASHBOARD, { ...BLOOD, label: "Blood" }, HABITS];
 
 function BottomTabs({ route }: { route: Route }) {
   const [open, setOpen] = useState(false);

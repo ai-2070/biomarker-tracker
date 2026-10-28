@@ -125,6 +125,8 @@ export interface Experiment {
   end?: string;
   /** The log entry created for this change, so it shows on charts. */
   protocolId?: string;
+  /** When the markers were picked (ISO). Picked after the "after" results existed = a hint, not a test. */
+  chosenOn?: string;
 }
 
 export interface Measurement {
