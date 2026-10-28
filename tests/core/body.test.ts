@@ -89,6 +89,16 @@ describe("entering body measurements", () => {
     const none = g();
     expect(!none.ok && none.errors.glucoseContext).toMatch(/when you measured/);
   });
+  it("takes watch values: heart rate, HRV and blood oxygen", () => {
+    const r = validateBodyEntry(
+      { date: today, values: { heart_rate: { value: "72", unit: "bpm" }, hrv_resting: { value: "48", unit: "ms" }, spo2: { value: "97", unit: "%" }, exercise_hr: { value: "131", unit: "bpm" } } },
+      BIOMARKER_MAP,
+      today,
+    );
+    expect(r.ok && r.measurements.map((x) => [x.biomarkerId, x.value])).toEqual([["heart_rate", 72], ["exercise_hr", 131], ["hrv_resting", 48], ["spo2", 97]]);
+    const bad = validateBodyEntry({ date: today, values: { spo2: { value: "103", unit: "%" } } }, BIOMARKER_MAP, today);
+    expect(!bad.ok && bad.errors.spo2).toMatch(/unlikely/);
+  });
   it("catches typos", () => {
     const r = validateBodyEntry({ date: today, values: { weight: { value: "700", unit: "kg" }, resting_hr: { value: "abc", unit: "bpm" } } }, BIOMARKER_MAP, today);
     expect(!r.ok && r.errors.weight).toMatch(/unlikely/);

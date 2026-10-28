@@ -208,11 +208,24 @@ export function MarkerRow({ m }: { m: DashboardMarker }) {
 }
 
 /** Marker tiles with sparklines (one line each on phones), flagged ones first. */
-export function MarkerGrid({ markers, title, more, limit = 9 }: { markers: DashboardMarker[]; title: string; more?: { href: string; label: string }; limit?: number }) {
+export function MarkerGrid({
+  markers,
+  title,
+  more,
+  limit = 9,
+  hideTitle = false,
+}: {
+  markers: DashboardMarker[];
+  title: string;
+  more?: { href: string; label: string };
+  limit?: number;
+  /** The section around it already has a heading. */
+  hideTitle?: boolean;
+}) {
   const shown = markers.slice(0, limit);
   return (
     <section aria-label={title}>
-      <div className="mb-3 flex items-baseline justify-between gap-3">
+      <div className={cx("mb-3 flex items-baseline justify-between gap-3", hideTitle && "sr-only")}>
         <h2 className="font-serif text-2xl font-normal">{title}</h2>
         {more && (
           <a href={more.href} className="flex items-center gap-1 text-sm font-medium text-accent no-underline hover:underline">

@@ -1,0 +1,38 @@
+{
+  "id": "exercise_hr",
+  "name": "Exercise heart rate",
+  "category": "Body",
+  "aliases": ["Exercise heart rate", "Workout heart rate", "Average workout heart rate", "Trainingspuls", "Edzés pulzus"],
+  "canonicalUnit": "bpm",
+  "conversions": {
+    "bpm": 1,
+    "/min": 1
+  },
+  "rangeNote": "Your maximum heart rate is roughly 208 − 0.7 × your age (it varies by about 10 beats between people). Moderate exercise is about 64–76 % of that, vigorous about 77–95 %. The same workout at a lower heart rate over months usually means better fitness.",
+  "summary": "The average heart rate during a workout, from a watch or chest strap. Compared over months for the same kind of workout, it shows how your fitness is changing.",
+  "high": {
+    "meaning": "A higher heart rate for the same effort than usual can come from heat, dehydration, poor sleep, illness or a harder session. Chest pain, fainting or a racing irregular pulse during exercise need a doctor straight away.",
+    "commonCauses": ["A harder or longer session", "Heat or dehydration", "Poor sleep or illness", "Caffeine"]
+  },
+  "low": {
+    "meaning": "A lower heart rate for the same workout over time usually reflects better fitness. Some heart medicines also limit it.",
+    "commonCauses": ["Better fitness", "An easier session", "Beta blockers"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "11153730",
+      "doi": "10.1016/S0735-1097(00)01054-8",
+      "title": "Age-predicted maximal heart rate revisited",
+      "year": 2001,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "21694556",
+      "doi": "10.1249/MSS.0b013e318213fefb",
+      "title": "American College of Sports Medicine position stand. Quantity and quality of exercise for developing and maintaining cardiorespiratory, musculoskeletal, and neuromotor fitness in apparently healthy adults: guidance for prescribing exercise",
+      "year": 2011,
+      "studyType": "guideline"
+    }
+  ]
+}

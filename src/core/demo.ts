@@ -44,6 +44,11 @@ export const DEMO_UNITS: Record<string, string> = {
   bp_diastolic: "mmHg",
   resting_hr: "bpm",
   glucose_home: "mmol/L",
+  heart_rate: "bpm",
+  exercise_hr: "bpm",
+  hrv: "ms",
+  hrv_resting: "ms",
+  spo2: "%",
 };
 
 /** Small, repeatable random numbers (mulberry32). */
@@ -61,7 +66,7 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "glucose_home"];
+export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home"];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
 
 /**
@@ -170,6 +175,13 @@ export function demoProfile(today: string): DemoData {
     // Home glucose: a fasting reading each month, an after-meal one every other month, all in range.
     body("glucose_home", wobble(5.0, 0.05, 0.1), { fasted: true });
     if (k % 2 === 1) body("glucose_home", wobble(6.6, 0.06, 0.1), { fasted: false });
+    // From a watch (monthly values here; a synced watch would give one a day): heart rate eases and
+    // HRV rises a little as fitness improves; blood oxygen stays normal.
+    body("heart_rate", Math.round(wobble(76 - t * 4, 0.03, 1)));
+    body("exercise_hr", Math.round(wobble(133 - t * 6, 0.025, 1)));
+    body("hrv", Math.round(wobble(34 + t * 5, 0.08, 1)));
+    body("hrv_resting", Math.round(wobble(41 + t * 7, 0.07, 1)));
+    body("spo2", Math.round(wobble(97, 0.008, 1)));
   }
 
   const protocols: ProtocolEntry[] = [

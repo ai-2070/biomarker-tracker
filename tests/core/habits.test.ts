@@ -15,7 +15,7 @@ describe("habit marker suggestions", () => {
     expect(suggestMarkers("Vitamin D3 1000 IU daily")).toEqual(["vitamin_d"]);
     expect(suggestMarkers("Iron bisglycinate 25 mg", (id) => id === "hemoglobin")[0]).toBe("hemoglobin");
     expect(suggestMarkers("Oats and beans every day (more fibre)")).toEqual(["ldl", "total_cholesterol"]);
-    expect(suggestMarkers("Walking 30 minutes a day")).toEqual(["resting_hr", "bp_systolic", "bp_diastolic"]);
+    expect(suggestMarkers("Walking 30 minutes a day")).toEqual(["resting_hr", "hrv_resting", "bp_systolic", "bp_diastolic"]);
     expect(suggestMarkers("Reading before bed")).toEqual([]);
     expect(suggestMarkers("Steak on Sundays")).toEqual([]);
     expect(suggestMarkers("No coffee with meals")).toEqual(["ferritin"]);
