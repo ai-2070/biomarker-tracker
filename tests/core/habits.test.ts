@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { HABIT_HINTS, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, syncWatch, watchFor } from "../../src/core/habits";
+import { HABIT_HINTS, chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, syncWatch, watchFor } from "../../src/core/habits";
 import type { Measurement } from "../../src/core/types";
 import type { Experiment, ProtocolEntry } from "../../src/core/types";
 
@@ -65,5 +65,14 @@ describe("what changed", () => {
   it("suggests 12 weeks for HbA1c", () => {
     expect(defaultRetestDays(["ldl"])).toBe(56);
     expect(defaultRetestDays(["ldl", "hba1c"])).toBe(84);
+  });
+});
+
+describe("watching many markers", () => {
+  it("says that some may move by chance", () => {
+    expect(chanceNote(4)).toBeUndefined();
+    expect(chanceNote(5)).toMatch(/^With 5 markers, one of them may/);
+    expect(chanceNote(21)).toMatch(/one of them/);
+    expect(chanceNote(40)).toMatch(/about 2 of them/);
   });
 });

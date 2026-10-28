@@ -3,7 +3,7 @@ import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "../../core/dates";
 import { BASELINE_WINDOW_DAYS, beforeResults, retestDate, type MarkerResult } from "../../core/experiments";
-import { defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, type Habit } from "../../core/habits";
+import { chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, type Habit } from "../../core/habits";
 import { durationDays, safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory, type ProtocolField } from "../../core/protocols";
 import { groupByBiomarker } from "../../core/trends";
 import type { Experiment, Measurement, ProtocolEntry } from "../../core/types";
@@ -201,6 +201,7 @@ function WhatChanged({ watch, all, today, onChange }: { watch: Experiment; all: 
       {s.phase === "running" && <p className="text-sm text-ink-2">Re-test from {formatDate(retestDate(watch))}. Keep the habit going until then.</p>}
       {s.phase === "due" && <p className="text-sm text-warn">Time for the "after" test. Add the results and they'll show here.</p>}
       {pickedAfterResults(watch) && <p className="text-sm text-ink-2">Markers picked after the results were in: treat this as a hint, not a test.</p>}
+      {chanceNote(s.results.length) && <p className="text-sm text-ink-2">{chanceNote(s.results.length)}</p>}
       {onChange && (
         <div className="flex flex-wrap gap-1">
           <Button variant="quiet" className="min-h-9 px-2 text-sm" onClick={onChange}>
@@ -322,6 +323,8 @@ function MarkerPicker({
   const pool = BIOMARKERS.filter((d) => showAll || tested.has(d.id) || markerIds.includes(d.id) || suggested.includes(d.id));
   const ordered = [...pool.filter((d) => suggested.includes(d.id)), ...CATEGORY_ORDER.flatMap((c) => pool.filter((d) => d.category === c && !suggested.includes(d.id)))];
   const draft: Experiment = { id: "draft", change: label, category: "diet", markerIds, start, retestAfterDays: 56 };
+  const allShown = ordered.length > 0 && ordered.every((d) => markerIds.includes(d.id));
+  const chance = chanceNote(markerIds.length);
   return (
     <fieldset className="flex flex-col gap-1">
       <legend className={labelStyles}>Markers to watch</legend>
@@ -329,6 +332,19 @@ function MarkerPicker({
         {suggested.length > 0 ? "Suggested ones first, from what's known to affect them. " : ""}A "before" result needs to be from the{" "}
         {Math.round(BASELINE_WINDOW_DAYS / 30)} months before the start.
       </p>
+      <div className="mt-1 flex flex-wrap items-center gap-x-3">
+        <button
+          type="button"
+          onClick={() => onChange(allShown ? markerIds.filter((id) => !ordered.some((d) => d.id === id)) : [...new Set([...markerIds, ...ordered.map((d) => d.id)])])}
+          className="min-h-11 text-sm font-medium text-accent underline-offset-2 hover:underline"
+        >
+          {allShown ? "Clear all" : `Select all (${ordered.length})`}
+        </button>
+        <span className="text-sm text-ink-2" aria-live="polite">
+          {markerIds.length} {markerIds.length === 1 ? "marker" : "markers"} chosen
+        </span>
+      </div>
+      {chance && <p className="rounded-lg bg-warn-soft px-3 py-2 text-sm text-ink">{chance}</p>}
       <ul className="mt-1 flex max-h-80 flex-col overflow-y-auto">
         {ordered.map((d) => (
           <li key={d.id} className="flex items-start gap-2">
