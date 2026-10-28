@@ -8,7 +8,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import type { ToolSet } from "ai";
-import { providerInfo, type ProviderId } from "../src/core/aiProviders";
+import { providerInfo, type Effort, type ProviderId } from "../src/core/aiProviders";
 import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken } from "./bridge";
 import { which } from "./which";
 
@@ -122,10 +122,11 @@ export const NO_TOOLS_NOTE = [
 
 // ---- Claude Code ------------------------------------------------------------------------------
 
-export function claudeArgs(o: { model?: string; systemFile: string; mcpFile?: string }): string[] {
+export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: string; mcpFile?: string }): string[] {
   const args = ["-p", "--output-format", "stream-json", "--verbose", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
   if (o.mcpFile) args.push("--mcp-config", o.mcpFile, "--strict-mcp-config", "--allowedTools", "mcp__bt");
   if (o.model) args.push("--model", o.model);
+  if (o.effort) args.push("--effort", o.effort);
   // No built-in tools (files, shell, web): only the app's tools.
   args.push("--tools", "");
   return args;
@@ -142,10 +143,11 @@ export function parseClaude(out: string, stderr: string): Parsed {
 // ---- Codex ------------------------------------------------------------------------------------
 
 /** Codex reads -c values as TOML and falls back to a plain string, so no quotes are needed. */
-export function codexArgs(o: { model?: string; dir: string; bridge?: boolean }): string[] {
+export function codexArgs(o: { model?: string; effort?: Effort; dir: string; bridge?: boolean }): string[] {
   const args = ["exec", "--json", "--skip-git-repo-check", "--sandbox", "read-only", "-C", o.dir];
   if (o.bridge) args.push("-c", `mcp_servers.bt.url=${bridgeUrl()}`, "-c", "mcp_servers.bt.bearer_token_env_var=BT_BRIDGE_TOKEN", "-c", "mcp_servers.bt.tool_timeout_sec=300");
   if (o.model) args.push("-m", o.model);
+  if (o.effort) args.push("-c", `model_reasoning_effort=${o.effort}`);
   args.push("-");
   return args;
 }
@@ -165,11 +167,12 @@ export function parseCodex(out: string, stderr: string): Parsed {
 
 // ---- Hermes -----------------------------------------------------------------------------------
 
-export function hermesArgs(o: { model?: string; profile?: string }): string[] {
+export function hermesArgs(o: { model?: string; effort?: Effort; profile?: string }): string[] {
   const args: string[] = [];
   if (o.profile) args.push("-p", o.profile);
   args.push("chat", "--query-file", "-", "--format", "stream-json");
   if (o.model) args.push("-m", o.model);
+  if (o.effort) args.push("--reasoning", o.effort);
   return args;
 }
 
@@ -209,11 +212,12 @@ export async function setHermesConnection(on: boolean): Promise<{ ok: boolean; e
 
 // ---- OpenClaw ---------------------------------------------------------------------------------
 
-export function openclawArgs(o: { model?: string; profile?: string; messageFile: string; sessionKey: string; local?: boolean }): string[] {
+export function openclawArgs(o: { model?: string; effort?: Effort; profile?: string; messageFile: string; sessionKey: string; local?: boolean }): string[] {
   const args = ["agent"];
   if (o.profile) args.push("--agent", o.profile);
   args.push("--session-key", o.sessionKey, "--message-file", o.messageFile, "--json", "--timeout", "0");
   if (o.model) args.push("--model", o.model);
+  if (o.effort) args.push("--thinking", o.effort);
   if (o.local) args.push("--local");
   return args;
 }
@@ -258,6 +262,7 @@ export function parseOpenClaw(out: string, stderr: string): Parsed & { gatewayDo
 export interface AgentRequest {
   provider: AgentId;
   model: string;
+  effort?: Effort;
   profile?: string;
   /** The assistant's rules (systemPrompt in assistant.ts). */
   system: string;
@@ -279,6 +284,7 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const system = req.system + (bridged ? BRIDGE_NOTE : `${NO_TOOLS_NOTE}\n\nThe user's data:\n${req.dataPack()}`);
   const question = conversationText(req.messages);
   const model = req.model.trim() || undefined;
+  const effort = req.effort;
   const profile = req.profile?.trim() || undefined;
   // An empty folder to work in, so the agent doesn't pick up project files or instructions.
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-agent-"));
@@ -293,20 +299,20 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         mcpFile = path.join(dir, "mcp.json");
         fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
       }
-      const r = await runProgram("claude", claudeArgs({ model, systemFile, mcpFile }), { cwd: dir, input: question, signal: req.signal });
+      const r = await runProgram("claude", claudeArgs({ model, effort, systemFile, mcpFile }), { cwd: dir, input: question, signal: req.signal });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
-      const r = await runProgram("codex", codexArgs({ model, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
       parsed = parseCodex(r.stdout, r.stderr);
     } else if (provider === "hermes") {
-      const r = await runProgram("hermes", hermesArgs({ model, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
+      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
       parsed = parseHermes(r.stdout, r.stderr);
     } else {
       const messageFile = path.join(dir, "message.md");
       fs.writeFileSync(messageFile, `<instructions>\n${system}\n</instructions>\n\n${question}`);
       const sessionKey = `biomarker-tracker-${crypto.randomBytes(6).toString("hex")}`;
       const once = async (local: boolean) => {
-        const r = await runProgram("openclaw", openclawArgs({ model, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal });
+        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal });
         return parseOpenClaw(r.stdout, r.stderr);
       };
       let p = await once(false);
@@ -325,10 +331,11 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
 }
 
 /** The settings page's Test button: one short question, no tools. */
-export async function testAgent(provider: AgentId, model: string, profile?: string): Promise<{ ok: boolean; reply?: string; error?: string }> {
+export async function testAgent(provider: AgentId, model: string, profile?: string, effort?: Effort): Promise<{ ok: boolean; reply?: string; error?: string }> {
   const r = await runAgent({
     provider,
     model,
+    ...(effort ? { effort } : {}),
     ...(profile ? { profile } : {}),
     system: "Reply with the single word OK.",
     messages: [{ role: "user", content: "Reply with the single word OK." }],
@@ -337,4 +344,28 @@ export async function testAgent(provider: AgentId, model: string, profile?: stri
     signal: AbortSignal.timeout(180_000),
   });
   return r.ok ? { ok: true, reply: r.text.slice(0, 100) } : { ok: false, error: r.error };
+}
+
+/** Hermes profiles with their model (`hermes profile list`), for the settings page. */
+export async function hermesProfiles(): Promise<{ id: string; label: string }[]> {
+  if (!agentInstalled("hermes")) return [];
+  const r = await runProgram("hermes", ["profile", "list"], { cwd: os.homedir(), timeoutMs: 60_000 });
+  const out: { id: string; label: string }[] = [];
+  for (const line of r.stdout.split(/\r?\n/)) {
+    const m = /^\s*([◆*])?\s*([A-Za-z0-9][\w.-]*)\s+(\S+)\s+(running|stopped|\S+)/.exec(line);
+    if (m && m[2] !== "Profile") out.push({ id: m[2]!, label: `${m[2]} (${m[3]})${m[1] ? " · default" : ""}` });
+  }
+  return out;
+}
+
+/** OpenClaw agents (`openclaw agents list --json`), for the settings page. */
+export async function openclawAgents(): Promise<{ id: string; label: string }[]> {
+  if (!agentInstalled("openclaw")) return [];
+  const r = await runProgram("openclaw", ["agents", "list", "--json"], { cwd: os.homedir(), timeoutMs: 60_000 });
+  try {
+    const rows = JSON.parse(r.stdout.slice(r.stdout.indexOf("["))) as { id?: unknown; model?: unknown; isDefault?: unknown }[];
+    return rows.filter((x) => typeof x.id === "string").map((x) => ({ id: String(x.id), label: `${String(x.id)}${typeof x.model === "string" && x.model ? ` (${x.model})` : ""}${x.isDefault === true ? " · default" : ""}` }));
+  } catch {
+    return [];
+  }
 }

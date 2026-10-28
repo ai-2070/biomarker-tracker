@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { canUse, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "../../../core/aiProviders";
+import { EFFORT_LABEL, GROUP_LABEL, canUse, type Effort, type ModelChoice, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "../../../core/aiProviders";
 import { api } from "../../api";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { SimpleSelect } from "../UnitSelect";
@@ -13,8 +13,17 @@ interface SettingsResponse {
   hasKey: Record<string, boolean>;
   installed: Record<string, boolean>;
   hermesConnected: boolean;
-  assistant: { provider: ProviderId; model: string } | null;
+  assistant: ModelChoice;
+  /** False while the default (Claude Code, Opus) is in use because nothing was saved. */
+  chosen: boolean;
   ready: { ok: boolean; reason?: string };
+}
+
+type Listed = { id: string; label: string };
+interface LoadedList {
+  models: Listed[];
+  profiles?: Listed[];
+  error?: string;
 }
 
 const REGION_TEXT: Record<ProviderInfo["region"], string> = {
@@ -22,44 +31,50 @@ const REGION_TEXT: Record<ProviderInfo["region"], string> = {
   US: "US",
   local: "This computer",
   choose: "You choose (EU or US)",
-  depends: "Wherever the agent's own model runs",
+  depends: "Wherever the program's own model runs",
 };
 
-/** OpenRouter's models with zero-retention endpoints and tool use, loaded from OpenRouter. */
-function useOpenRouterModels(active: boolean) {
-  const [state, setState] = useState<{ models: { id: string; label: string }[]; error?: string } | null>(null);
+const OTHER = "__other";
+const DEFAULT = "__default";
+const isWindows = typeof navigator !== "undefined" && /Win/i.test(navigator.userAgent);
+
+/** Models or profiles the server loads (OpenRouter, Ollama, LM Studio, Hermes, OpenClaw). */
+function useLoadedList(info: ProviderInfo, installed: boolean) {
+  const [lists, setLists] = useState<Partial<Record<ProviderId, LoadedList>>>({});
+  const wanted = info.modelList === "loaded" || (info.profileLabel && installed);
   useEffect(() => {
-    if (!active || state) return;
-    void api<{ models: { id: string; label: string }[]; error?: string }>("GET", "/api/settings/models/openrouter").then(setState, (e: unknown) =>
-      setState({ models: [], error: e instanceof Error ? e.message : "Couldn't load the list." }),
+    if (!wanted || lists[info.id]) return;
+    void api<LoadedList>("GET", `/api/settings/models/${info.id}`).then(
+      (l) => setLists((x) => ({ ...x, [info.id]: l })),
+      (e: unknown) => setLists((x) => ({ ...x, [info.id]: { models: [], error: e instanceof Error ? e.message : "Couldn't load the list." } })),
     );
-  }, [active, state]);
-  return state;
+  }, [info.id, wanted, lists]);
+  return wanted ? (lists[info.id] ?? null) : { models: [] };
 }
 
-/** Which model the assistant uses. Only EU/US zero-data-retention providers, or local models. */
+/** Which model the assistant uses: agent programs first, then API-key providers, then local models. */
 export function ModelsSettings() {
   const [data, setData] = useState<SettingsResponse | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [provider, setProvider] = useState<ProviderId>("anthropic");
+  const [provider, setProvider] = useState<ProviderId>("claude-code");
   const [model, setModel] = useState("");
+  const [effort, setEffort] = useState<Effort | undefined>(undefined);
   const [key, setKey] = useState("");
   const [cfg, setCfg] = useState<ProviderConfig>({});
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ tone: "info" | "danger"; text: string } | null>(null);
   const [testing, setTesting] = useState(false);
   const [connecting, setConnecting] = useState(false);
-  const orModels = useOpenRouterModels(provider === "openrouter");
 
   async function load(keepSelection = false) {
     try {
       const d = await api<SettingsResponse>("GET", "/api/settings");
       setData(d);
       if (!keepSelection) {
-        const p = d.assistant?.provider ?? "anthropic";
-        setProvider(p);
-        setModel(d.assistant?.model ?? d.providers.find((x) => x.id === p)?.models[0]?.id ?? "");
-        setCfg(d.configs[p] ?? {});
+        setProvider(d.assistant.provider);
+        setModel(d.assistant.model);
+        setEffort(d.assistant.effort);
+        setCfg(d.configs[d.assistant.provider] ?? {});
       }
     } catch (e) {
       setLoadError(e instanceof Error ? e.message : "Couldn't load the settings.");
@@ -69,19 +84,23 @@ export function ModelsSettings() {
     void load();
   }, []);
 
+  const info = data?.providers.find((p) => p.id === provider);
+  const installed = !info || info.kind !== "agent" || !!data?.installed[provider];
+  const loaded = useLoadedList(info ?? ({ id: "custom", models: [], efforts: [] } as unknown as ProviderInfo), installed);
+
   if (loadError) return <Notice tone="danger">{loadError}</Notice>;
-  if (!data) return <p className="text-ink-2">Loading…</p>;
-  const info = data.providers.find((p) => p.id === provider)!;
+  if (!data || !info) return <p className="text-ink-2">Loading…</p>;
   const isAgent = info.kind === "agent";
-  const installed = !isAgent || data.installed[provider];
-  const suggestions = provider === "openrouter" ? (orModels?.models ?? []) : info.models;
   const hasKey = data.hasKey[provider] || key.trim() !== "";
-  const check = canUse({ provider, model }, cfg, hasKey);
+  const check = canUse({ provider, model, ...(effort ? { effort } : {}) }, cfg, hasKey);
 
   function pickProvider(id: ProviderId) {
+    const next = data!.providers.find((x) => x.id === id)!;
+    const current = data!.assistant.provider === id ? data!.assistant : undefined;
     setProvider(id);
     setCfg(data!.configs[id] ?? {});
-    setModel(data!.assistant?.provider === id ? data!.assistant.model : data!.providers.find((x) => x.id === id)?.models[0]?.id ?? "");
+    setModel(current?.model ?? (next.modelOptional ? "" : (next.models[0]?.id ?? "")));
+    setEffort(current?.effort);
     setKey("");
     setMessage(null);
   }
@@ -91,7 +110,7 @@ export function ModelsSettings() {
     setMessage(null);
     try {
       await api("PUT", `/api/settings/provider/${provider}`, { ...cfg, ...(key.trim() ? { key: key.trim() } : {}) });
-      await api("PUT", "/api/settings/assistant", { provider, model });
+      await api("PUT", "/api/settings/assistant", { provider, model, ...(effort ? { effort } : {}) });
       setKey("");
       await load(true);
       setMessage({ tone: "info", text: "Saved." });
@@ -131,19 +150,30 @@ export function ModelsSettings() {
     }
   }
 
-  const saved = data.assistant?.provider === provider && data.assistant.model === model;
+  const saved = data.assistant.provider === provider && data.assistant.model === model && data.assistant.effort === effort;
 
   return (
     <div className="flex flex-col gap-5">
       <Notice title="Where your questions and data go">
-        Your questions, results and log go to the model you choose here. Cloud providers must keep nothing and be in the EU or US: you confirm zero
-        data retention for your account, and OpenRouter is asked for it on every request. Local models (Ollama, LM Studio) never send anything
-        anywhere. Agent programs (Claude Code, Codex, Hermes, OpenClaw) use their own login, so what they keep depends on that login.
+        Your questions, results and log go to the model you choose here. Programs on this computer (Claude Code, Codex, Hermes, OpenClaw) use your own
+        login, so what they keep depends on that login. Cloud providers with an API key must keep nothing and be in the EU or US. Local models (Ollama,
+        LM Studio) never send anything anywhere.
       </Notice>
 
       <Card className="flex flex-col gap-5">
         <h2 className="font-serif text-2xl font-normal">The assistant's model</h2>
-        <SimpleSelect label="Provider" options={data.providers.map((p) => ({ value: p.id, label: p.label }))} value={provider} onChange={(v) => pickProvider(v as ProviderId)} />
+        <SimpleSelect
+          label="Provider"
+          options={data.providers.map((p) => ({
+            value: p.id,
+            label: p.kind === "agent" && !data.installed[p.id] ? `${p.label} (not installed)` : p.label,
+            group: GROUP_LABEL[p.group],
+          }))}
+          value={provider}
+          onChange={(v) => pickProvider(v as ProviderId)}
+        />
+
+        {isAgent && <AgentSetup info={info} installed={installed} onCheck={() => load(true)} />}
 
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-lg bg-sunken p-3 text-sm">
           <dt className="font-medium">Where it runs</dt>
@@ -160,80 +190,20 @@ export function ModelsSettings() {
           </Notice>
         )}
 
-        {isAgent && (
-          <p className={cx("rounded-lg p-3 text-sm", installed ? "bg-sunken text-ink-2" : "bg-warn-soft text-warn")}>
-            {installed ? (
-              <>
-                Found the <span className="font-mono">{info.command}</span> command on this computer. It starts once per question, in an empty folder.{" "}
-                {provider === "claude-code"
-                  ? "Its own file, shell and web tools are switched off; it only gets the app's tools."
-                  : provider === "codex"
-                    ? "It runs read-only and gets the app's tools."
-                    : "It keeps its own tools and settings; it is asked to use only the app's tools for your data."}
-              </>
-            ) : (
-              <>
-                The <span className="font-mono">{info.command}</span> command wasn't found. Install it and sign in first, then reload this page.
-              </>
-            )}
-          </p>
-        )}
-
-        <Field.Root className="flex flex-col gap-1.5">
-          <Field.Label className={labelStyles}>Model</Field.Label>
-          <Field.Control
-            value={model}
-            onValueChange={setModel}
-            list={`models-${provider}`}
-            placeholder={info.modelOptional ? "Leave empty for its default model" : "Model name"}
-            autoComplete="off"
-            spellCheck={false}
-            className={`${inputStyles} sm:max-w-md`}
-          />
-          <datalist id={`models-${provider}`}>
-            {suggestions.map((m) => (
-              <option key={m.id} value={m.id}>
-                {m.label}
-              </option>
-            ))}
-          </datalist>
-          {provider === "openrouter" ? (
-            <Field.Description className={helpStyles}>
-              {orModels === null
-                ? "Loading OpenRouter's models…"
-                : orModels.error
-                  ? orModels.error
-                  : `${orModels.models.length} models have zero-retention endpoints and can use tools. Start typing, e.g. anthropic/ or mistralai/.`}
-            </Field.Description>
-          ) : (
-            info.models.length > 0 && <Field.Description className={helpStyles}>Suggestions: {info.models.map((m) => m.label).join(" · ")}</Field.Description>
-          )}
-        </Field.Root>
-
-        {info.id === "custom" && (
-          <ChoiceGroup<Region>
-            label="Where does this endpoint process requests?"
-            value={cfg.region ?? ("" as Region)}
-            onChange={(region) => setCfg({ ...cfg, region })}
-            options={[
-              { value: "EU", label: "EU" },
-              { value: "US", label: "US" },
-            ]}
-          />
-        )}
+        <ModelPicker info={info} value={model} onChange={setModel} loaded={loaded} />
 
         {info.profileLabel && (
-          <Field.Root className="flex flex-col gap-1.5">
-            <Field.Label className={labelStyles}>{info.profileLabel}</Field.Label>
-            <Field.Control
-              value={cfg.profile ?? ""}
-              onValueChange={(profile) => setCfg({ ...cfg, profile })}
-              placeholder="Leave empty for the default"
-              autoComplete="off"
-              spellCheck={false}
-              className={`${inputStyles} sm:max-w-sm`}
-            />
-          </Field.Root>
+          <ProfilePicker label={info.profileLabel} value={cfg.profile ?? ""} onChange={(profile) => setCfg({ ...cfg, profile })} loaded={loaded} installed={installed} />
+        )}
+
+        {info.efforts.length > 0 && (
+          <ChoiceGroup<Effort | "default">
+            label="Effort"
+            help="How hard the model thinks before answering. More effort: slower, more thorough answers, and more cost or usage."
+            value={effort ?? "default"}
+            onChange={(v) => setEffort(v === "default" ? undefined : v)}
+            options={[{ value: "default" as const, label: "Default" }, ...info.efforts.map((e) => ({ value: e, label: EFFORT_LABEL[e] }))]}
+          />
         )}
 
         {info.id === "hermes" && installed && (
@@ -250,6 +220,18 @@ export function ModelsSettings() {
               </Button>
             </div>
           </div>
+        )}
+
+        {info.id === "custom" && (
+          <ChoiceGroup<Region>
+            label="Where does this endpoint process requests?"
+            value={cfg.region ?? ("" as Region)}
+            onChange={(region) => setCfg({ ...cfg, region })}
+            options={[
+              { value: "EU", label: "EU" },
+              { value: "US", label: "US" },
+            ]}
+          />
         )}
 
         {(info.id === "custom" || info.retention === "local") && (
@@ -309,8 +291,16 @@ export function ModelsSettings() {
           </label>
         )}
 
-        <p role="status" className={cx("rounded-lg p-3 text-sm", check.ok ? "bg-ok-soft text-ok" : "bg-warn-soft text-warn")}>
-          {check.ok ? (saved ? "Ready: the assistant uses this model." : "Ready to save.") : check.reason}
+        <p role="status" className={cx("rounded-lg p-3 text-sm", check.ok && installed ? "bg-ok-soft text-ok" : "bg-warn-soft text-warn")}>
+          {!installed
+            ? `Install ${info.label} first (above).`
+            : check.ok
+              ? saved
+                ? data.chosen
+                  ? "Ready: the assistant uses this model."
+                  : "Ready: the assistant uses this model (the default)."
+                : "Ready to save."
+              : check.reason}
         </p>
         {message && (
           <Notice tone={message.tone} role="status">
@@ -325,8 +315,223 @@ export function ModelsSettings() {
             {testing ? "Testing…" : "Test"}
           </Button>
         </div>
-        {!data.ready.ok && data.assistant && <p className={errorStyles}>The saved model can't be used yet: {data.ready.reason}</p>}
+        {!data.ready.ok && saved && installed && <p className={errorStyles}>This model can't be used yet: {data.ready.reason}</p>}
       </Card>
+    </div>
+  );
+}
+
+/** A list to choose from where one exists, with "Other model…" for anything else. */
+function ModelPicker({ info, value, onChange, loaded }: { info: ProviderInfo; value: string; onChange: (m: string) => void; loaded: LoadedList | null }) {
+  const list = info.id === "openrouter" || info.profileLabel ? [] : info.modelList === "loaded" ? (loaded?.models ?? []) : info.models;
+  const inList = value === "" ? info.modelOptional : list.some((m) => m.id === value);
+  const [other, setOther] = useState(!inList);
+  // A new provider starts on its list again.
+  useEffect(() => setOther(!inList), [info.id]);
+
+  // OpenRouter: hundreds of models, so type with suggestions.
+  if (info.id === "openrouter") {
+    return (
+      <Field.Root className="flex flex-col gap-1.5">
+        <Field.Label className={labelStyles}>Model</Field.Label>
+        <Field.Control value={value} onValueChange={onChange} list="models-openrouter" placeholder="e.g. anthropic/claude-opus-5.5" autoComplete="off" spellCheck={false} className={`${inputStyles} sm:max-w-md`} />
+        <datalist id="models-openrouter">
+          {(loaded?.models ?? []).map((m) => (
+            <option key={m.id} value={m.id}>
+              {m.label}
+            </option>
+          ))}
+        </datalist>
+        <Field.Description className={helpStyles}>
+          {loaded === null
+            ? "Loading OpenRouter's models…"
+            : loaded.error
+              ? loaded.error
+              : `${loaded.models.length} models have zero-retention endpoints and can use tools. Start typing, e.g. anthropic/ or mistralai/.`}
+        </Field.Description>
+      </Field.Root>
+    );
+  }
+
+  const options = [
+    ...(info.modelOptional ? [{ value: DEFAULT, label: info.profileLabel ? `The ${info.profileLabel.toLowerCase()}'s model` : "The program's default" }] : []),
+    ...list.map((m) => ({ value: m.id, label: m.label === m.id ? m.id : `${m.label}` })),
+    { value: OTHER, label: "Other model…" },
+  ];
+  const selectValue = other ? OTHER : value === "" ? DEFAULT : value;
+
+  return (
+    <div className="flex flex-col gap-3">
+      {options.length > 1 && (
+        <SimpleSelect
+          label="Model"
+          options={options}
+          value={selectValue}
+          onChange={(v) => {
+            if (v === OTHER) {
+              setOther(true);
+              return;
+            }
+            setOther(false);
+            onChange(v === DEFAULT ? "" : v);
+          }}
+          className="sm:max-w-md"
+        />
+      )}
+      {(other || options.length === 1) && (
+        <Field.Root className="flex flex-col gap-1.5">
+          <Field.Label className={options.length > 1 ? "text-sm text-ink-2" : labelStyles}>{options.length > 1 ? "Model name" : "Model"}</Field.Label>
+          <Field.Control
+            value={value}
+            onValueChange={onChange}
+            placeholder={info.modelOptional ? "Leave empty for the default" : "Model name"}
+            autoComplete="off"
+            spellCheck={false}
+            className={`${inputStyles} sm:max-w-md`}
+          />
+        </Field.Root>
+      )}
+      {info.modelList === "loaded" && !info.profileLabel && loaded?.error && <p className="text-sm text-warn">{loaded.error}</p>}
+      {info.id === "claude-code" && <p className={helpStyles}>"opus", "sonnet" and "haiku" always mean the newest of each.</p>}
+    </div>
+  );
+}
+
+/** Hermes profile or OpenClaw agent: from the program's own list when it can be read. */
+function ProfilePicker({ label, value, onChange, loaded, installed }: { label: string; value: string; onChange: (v: string) => void; loaded: LoadedList | null; installed: boolean }) {
+  const profiles = loaded?.profiles ?? [];
+  if (installed && profiles.length > 0) {
+    const options = [{ value: DEFAULT, label: "Default" }, ...profiles.map((p) => ({ value: p.id, label: p.label }))];
+    return <SimpleSelect label={label} options={options} value={value || DEFAULT} onChange={(v) => onChange(v === DEFAULT ? "" : v)} className="sm:max-w-md" />;
+  }
+  return (
+    <Field.Root className="flex flex-col gap-1.5">
+      <Field.Label className={labelStyles}>{label}</Field.Label>
+      <Field.Control value={value} onValueChange={onChange} placeholder="Leave empty for the default" autoComplete="off" spellCheck={false} className={`${inputStyles} sm:max-w-sm`} />
+      {installed && loaded === null && <Field.Description className={helpStyles}>Loading the list…</Field.Description>}
+    </Field.Root>
+  );
+}
+
+/** Install and sign-in steps for an agent program, with the maker's official commands. */
+function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installed: boolean; onCheck: () => Promise<void> }) {
+  const [busy, setBusy] = useState<string | null>(null);
+  const [note, setNote] = useState<{ tone: "info" | "danger"; text: string } | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
+  const ins = info.install!;
+  const installCmd = isWindows ? ins.windows : ins.unix;
+
+  async function open(action: "install" | "signin") {
+    setBusy(action);
+    setNote(null);
+    try {
+      const r = await api<{ ok: boolean; error?: string }>("POST", `/api/agents/${info.id}/${action}`);
+      setNote(
+        r.ok
+          ? { tone: "info", text: action === "install" ? "A terminal window opened with the installer. When it has finished, sign in (step 2), then press Check again." : "A terminal window opened. Sign in there, then close it." }
+          : { tone: "danger", text: r.error ?? "The terminal couldn't be opened. Run the command yourself." },
+      );
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function copy(text: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(text);
+      setTimeout(() => setCopied(null), 1500);
+    } catch {
+      /* clipboard blocked: the command is visible to copy by hand */
+    }
+  }
+
+  const Command = ({ text }: { text: string }) => (
+    <div className="flex items-center gap-2 rounded-lg bg-sunken p-2 pl-3">
+      <code className="min-w-0 flex-1 font-mono text-xs break-all">{text}</code>
+      <Button variant="quiet" className="min-h-9 shrink-0 px-2 text-sm" onClick={() => void copy(text)}>
+        {copied === text ? "Copied" : "Copy"}
+      </Button>
+    </div>
+  );
+
+  if (installed) {
+    return (
+      <div className="flex flex-col gap-2 rounded-lg border border-line p-3 text-sm">
+        <p className="flex items-center gap-2 font-medium text-ok">
+          <CheckIcon /> {info.label} is installed
+        </p>
+        <p className="text-ink-2">
+          It starts once per question, in an empty folder.{" "}
+          {info.id === "claude-code"
+            ? "Its own file, shell and web tools are switched off; it only gets the app's tools."
+            : info.id === "codex"
+              ? "It runs read-only and gets the app's tools."
+              : "It keeps its own tools and settings; it is asked to use only the app's tools for your data."}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="secondary" className="text-sm" disabled={!!busy} onClick={() => void open("signin")}>
+            {busy === "signin" ? "Opening…" : "Sign in or switch account"}
+          </Button>
+        </div>
+        {note && <p className={note.tone === "danger" ? "text-danger" : "text-ink-2"}>{note.text}</p>}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-4 rounded-xl border border-warn/40 bg-warn-soft/40 p-4">
+      <div>
+        <p className="font-medium">Install {info.label}</p>
+        <p className="text-sm text-ink-2">
+          {info.label} isn't on this computer yet. Two steps, once. The buttons open a terminal window that runs {info.label}'s official commands, so you
+          can see what happens and answer its questions.
+        </p>
+      </div>
+      <ol className="flex flex-col gap-4">
+        <li className="flex flex-col gap-2">
+          <p className="text-sm">
+            <span className="font-medium">1. Install.</span> <span className="text-ink-2">{isWindows ? "In PowerShell:" : "In a terminal:"}</span>
+          </p>
+          <Command text={installCmd} />
+          <div>
+            <Button disabled={!!busy} onClick={() => void open("install")}>
+              {busy === "install" ? "Opening…" : `Install ${info.label}`}
+            </Button>
+          </div>
+        </li>
+        <li className="flex flex-col gap-2">
+          <p className="text-sm">
+            <span className="font-medium">2. Sign in.</span> <span className="text-ink-2">{ins.signInNote}</span>
+          </p>
+          <Command text={ins.signIn} />
+          <div>
+            <Button variant="secondary" disabled={!!busy} onClick={() => void open("signin")}>
+              {busy === "signin" ? "Opening…" : "Open sign-in"}
+            </Button>
+          </div>
+        </li>
+        <li className="flex flex-wrap items-center gap-3">
+          <Button
+            variant="secondary"
+            disabled={!!busy}
+            onClick={() => {
+              setBusy("check");
+              void onCheck().finally(() => setBusy(null));
+            }}
+          >
+            {busy === "check" ? "Checking…" : "3. Check again"}
+          </Button>
+          <a href={ins.docs} target="_blank" rel="noopener noreferrer" className="text-sm text-accent underline underline-offset-2">
+            {info.label} install guide
+          </a>
+        </li>
+      </ol>
+      {note && (
+        <p role="status" className={cx("text-sm", note.tone === "danger" ? "text-danger" : "text-ink-2")}>
+          {note.text}
+        </p>
+      )}
     </div>
   );
 }

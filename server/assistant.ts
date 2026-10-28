@@ -6,7 +6,7 @@ import { isAgent, runAgent } from "./agents";
 import { setIdleTools } from "./bridge";
 import { biologicalAge, experimentResults, healthTools, resultsOverview, safetyOf, type HealthSnapshot } from "./healthTools";
 import { assistantTools } from "./mcp";
-import { assistantCheck, describeModelError, readyModel, type Ready } from "./models";
+import { assistantCheck, currentChoice, describeModelError, readyModel, type Ready } from "./models";
 import { getSettings } from "./store";
 import { enabledSkills } from "./skills";
 import { studyIdsFromTool, toolStep, type ToolStep } from "./steps";
@@ -81,7 +81,7 @@ export async function ask(
   opts: { signal?: AbortSignal; fetchFn?: typeof fetch; /** Tests pass a mock model. */ ready?: Ready } = {},
 ): Promise<AssistantReply> {
   const settings = getSettings();
-  const choice = settings.assistant;
+  const choice = currentChoice();
   const agent = !opts.ready && choice && isAgent(choice.provider) ? choice : undefined;
   const r = opts.ready ? ({ ok: true, ready: opts.ready } as const) : agent ? undefined : readyModel();
   if (r && !r.ok) return { ok: false, error: r.reason };
@@ -105,6 +105,7 @@ export async function ask(
     const a = await runAgent({
       provider: agent.provider,
       model: agent.model,
+      ...(agent.effort ? { effort: agent.effort } : {}),
       ...(profile ? { profile } : {}),
       system,
       messages,

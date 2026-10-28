@@ -4,7 +4,7 @@ import { createMistral } from "@ai-sdk/mistral";
 import { createOpenAI } from "@ai-sdk/openai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import type { LanguageModel } from "ai";
-import { canUse, providerInfo, type ModelChoice, type UseCheck } from "../src/core/aiProviders";
+import { DEFAULT_CHOICE, canUse, providerInfo, type ModelChoice, type UseCheck } from "../src/core/aiProviders";
 import { agentInstalled } from "./agents";
 import { zdrFetch } from "./openrouter";
 import { getSecrets, getSettings } from "./store";
@@ -16,9 +16,14 @@ export interface Ready {
   choice: ModelChoice;
 }
 
+/** The model the assistant uses: the saved choice, or Claude Code with Opus until one is saved. */
+export function currentChoice(): ModelChoice {
+  return getSettings().assistant ?? DEFAULT_CHOICE;
+}
+
 export function assistantCheck(): UseCheck {
   const s = getSettings();
-  const choice = s.assistant;
+  const choice = currentChoice();
   const check = canUse(choice, choice ? s.providers[choice.provider] : undefined, !!(choice && getSecrets().keys[choice.provider]));
   if (!check.ok || !choice) return check;
   const info = providerInfo(choice.provider)!;
@@ -31,7 +36,8 @@ export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: 
   const check = assistantCheck();
   if (!check.ok) return check;
   const s = getSettings();
-  const choice = s.assistant!;
+  const choice = currentChoice();
+  const effort = choice.effort;
   const cfg = s.providers[choice.provider] ?? {};
   const key = getSecrets().keys[choice.provider] ?? "";
   const info = providerInfo(choice.provider)!;
@@ -39,15 +45,15 @@ export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: 
 
   switch (choice.provider) {
     case "anthropic":
-      return { ok: true, ready: { model: createAnthropic({ apiKey: key })(choice.model), providerOptions: {}, choice } };
+      return { ok: true, ready: { model: createAnthropic({ apiKey: key })(choice.model), providerOptions: effort ? { anthropic: { effort } } : {}, choice } };
     case "openai":
       // Chat Completions, and store: false, so OpenAI keeps no copy of the response.
-      return { ok: true, ready: { model: createOpenAI({ apiKey: key }).chat(choice.model), providerOptions: { openai: { store: false } }, choice } };
+      return { ok: true, ready: { model: createOpenAI({ apiKey: key }).chat(choice.model), providerOptions: { openai: { store: false, ...(effort ? { reasoningEffort: effort } : {}) } }, choice } };
     case "mistral":
-      return { ok: true, ready: { model: createMistral({ apiKey: key })(choice.model), providerOptions: {}, choice } };
+      return { ok: true, ready: { model: createMistral({ apiKey: key })(choice.model), providerOptions: effort ? { mistral: { reasoningEffort: effort } } : {}, choice } };
     case "openrouter": {
       // Zero data retention is requested on every call (see openrouter.ts).
-      const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch() });
+      const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch(fetch, effort ? { reasoning: { effort } } : {}) });
       return { ok: true, ready: { model: p.chatModel(choice.model), providerOptions: {}, choice } };
     }
     case "claude-code":

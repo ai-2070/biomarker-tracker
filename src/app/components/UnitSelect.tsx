@@ -4,7 +4,29 @@ import { CheckIcon, ChevronDownIcon, cx, labelStyles } from "./ui";
 export interface Option {
   value: string;
   label: string;
+  /** Options with a group are listed under that heading (consecutive options share one). */
+  group?: string;
 }
+
+/** Consecutive options that share a group, in order. */
+function groupOptions(options: Option[]): { group?: string; options: Option[] }[] {
+  const out: { group?: string; options: Option[] }[] = [];
+  for (const o of options) {
+    const last = out[out.length - 1];
+    if (last && last.group === o.group) last.options.push(o);
+    else out.push({ ...(o.group ? { group: o.group } : {}), options: [o] });
+  }
+  return out;
+}
+
+const item = (o: Option) => (
+  <Select.Item key={o.value} value={o.value} className="grid min-h-11 cursor-default grid-cols-[1.25rem_1fr] items-center gap-2 px-3 outline-none select-none data-highlighted:bg-accent-soft">
+    <Select.ItemIndicator className="col-start-1 text-accent">
+      <CheckIcon />
+    </Select.ItemIndicator>
+    <Select.ItemText className="col-start-2">{o.label}</Select.ItemText>
+  </Select.Item>
+);
 
 /** Base UI Select with large touch targets. */
 export function SimpleSelect({
@@ -50,18 +72,16 @@ export function SimpleSelect({
         <Select.Positioner className="z-50 outline-none select-none" sideOffset={4} alignItemWithTrigger={false}>
           <Select.Popup className="min-w-[var(--anchor-width)] origin-[var(--transform-origin)] rounded-lg border border-line bg-surface py-1 text-ink shadow-lg transition-[scale,opacity] duration-100 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
             <Select.List className="max-h-[min(22rem,var(--available-height))] overflow-y-auto">
-              {options.map((o) => (
-                <Select.Item
-                  key={o.value}
-                  value={o.value}
-                  className="grid min-h-11 cursor-default grid-cols-[1.25rem_1fr] items-center gap-2 px-3 outline-none select-none data-highlighted:bg-accent-soft"
-                >
-                  <Select.ItemIndicator className="col-start-1 text-accent">
-                    <CheckIcon />
-                  </Select.ItemIndicator>
-                  <Select.ItemText className="col-start-2">{o.label}</Select.ItemText>
-                </Select.Item>
-              ))}
+              {groupOptions(options).map((g, gi) =>
+                g.group ? (
+                  <Select.Group key={g.group} className={gi > 0 ? "mt-1 border-t border-line pt-1" : undefined}>
+                    <Select.GroupLabel className="px-3 pt-2 pb-1 font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{g.group}</Select.GroupLabel>
+                    {g.options.map(item)}
+                  </Select.Group>
+                ) : (
+                  g.options.map(item)
+                ),
+              )}
             </Select.List>
           </Select.Popup>
         </Select.Positioner>

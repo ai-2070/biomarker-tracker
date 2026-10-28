@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { canUse, PROVIDERS, providerInfo } from "../../src/core/aiProviders";
+import { DEFAULT_CHOICE, EFFORT_LABEL, canUse, PROVIDERS, providerInfo } from "../../src/core/aiProviders";
 
 describe("provider registry", () => {
   it("lists only EU, US or local API providers; agents are labelled as depending on their own setup", () => {
@@ -78,5 +78,42 @@ describe("canUse: OpenRouter and agents", () => {
 
   it("still needs a model for API providers", () => {
     expect(canUse({ provider: "openrouter", model: "" }, {}, true).ok).toBe(false);
+  });
+});
+
+describe("provider order, models, effort and install", () => {
+  it("lists programs on this computer first, then API-key providers, then local models", () => {
+    const groups = PROVIDERS.map((p) => p.group);
+    const firstApi = groups.indexOf("api");
+    const firstLocal = groups.indexOf("local");
+    expect(groups.slice(0, firstApi).every((g) => g === "agent")).toBe(true);
+    expect(groups.slice(firstApi, firstLocal).every((g) => g === "api")).toBe(true);
+    expect(groups.slice(firstLocal).every((g) => g === "local")).toBe(true);
+    expect(PROVIDERS[0]!.id).toBe("claude-code");
+  });
+
+  it("defaults to Claude Code with Opus", () => {
+    expect(DEFAULT_CHOICE).toEqual({ provider: "claude-code", model: "opus" });
+    expect(providerInfo("claude-code")!.models.map((m) => m.id)).toContain("opus");
+  });
+
+  it("installs every program from its maker's own site, over https", () => {
+    const sites: Record<string, string> = { "claude-code": "claude.ai", codex: "chatgpt.com", hermes: "hermes-agent.nousresearch.com", openclaw: "openclaw.ai" };
+    for (const p of PROVIDERS.filter((x) => x.kind === "agent")) {
+      for (const cmd of [p.install!.windows, p.install!.unix]) {
+        const urls = cmd.match(/https?:\/\/[^\s)]+/g) ?? [];
+        expect(urls.length, p.id).toBeGreaterThan(0);
+        for (const u of urls) expect(new URL(u).hostname, p.id).toBe(sites[p.id]);
+        expect(cmd).toMatch(/^[\w ()|.:/@-]+$/);
+      }
+      expect(p.install!.signIn.startsWith(p.command!)).toBe(true);
+    }
+  });
+
+  it("accepts only the effort levels a provider has", () => {
+    expect(canUse({ provider: "claude-code", model: "opus", effort: "max" }, {}, false)).toEqual({ ok: true });
+    expect(canUse({ provider: "codex", model: "", effort: "max" }, {}, false).ok).toBe(false);
+    expect(canUse({ provider: "ollama", model: "llama3.1", effort: "low" }, {}, false).ok).toBe(false);
+    for (const p of PROVIDERS) for (const e of p.efforts) expect(Object.keys(EFFORT_LABEL)).toContain(e);
   });
 });
