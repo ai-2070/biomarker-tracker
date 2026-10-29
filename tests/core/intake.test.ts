@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { EXAMPLE_DAY, energyVsResting, intakeToPlanItems, parseLabelAmount, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "../../src/core/intake";
+import { EXAMPLE_DAY, energyVsResting, intakeToPlanItems, parseLabelAmount, protocolToIntake, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "../../src/core/intake";
 import type { FoodDb, Meal } from "../../src/core/meals";
 import { itemErrors } from "../../src/core/plans";
 import type { NutrientDef } from "../../src/core/nutrients";
@@ -213,5 +213,62 @@ describe("daily intake", () => {
     expect(parseLabelAmount("25 µg", "mg")).toBeUndefined();
     expect(parseLabelAmount("1 capsule", "mg")).toBeUndefined();
     expect(parseLabelAmount(undefined, "mg")).toBeUndefined();
+  });
+
+  describe("loading a protocol", () => {
+    let n = 0;
+    const id = () => `i${++n}`;
+    const item = (label: string, category: "supplement" | "diet" | "medication" | "lifestyle", amount?: string, extra = {}) => ({ id: label, label, category, when: "morning" as const, ...(amount ? { amount } : {}), ...extra });
+
+    it("brings in meals, table foods and supplements written in their unit", () => {
+      const r = protocolToIntake(
+        { id: "p", items: [item("Porridge", "diet", "2 portions", { mealId: "m1" }), item("Kiwi fruit, flesh and seeds", "diet", "75 g"), item("Vitamin D3", "supplement", "25 µg"), item("Magnesium", "supplement", "1,000 mg")] },
+        [breakfast],
+        { ...db, foods: db.foods.map((f) => (f[0] === kiwi ? ([f[0], "Kiwi fruit, flesh and seeds", ...f.slice(2)] as typeof f) : f)) },
+        nutrients,
+        id,
+      );
+      expect(r.items.map((i) => i.kind)).toEqual(["meal", "food", "supplement", "supplement"]);
+      expect(r.items[0]).toMatchObject({ mealId: "m1", portions: 2 });
+      expect(r.items[1]).toMatchObject({ foodId: kiwi, grams: 75 });
+      expect(r.items[2]).toMatchObject({ nutrient: "vitaminD", amount: 25, name: "Vitamin D3" });
+      expect(r.items[3]).toMatchObject({ nutrient: "magnesium", amount: 1000 });
+      expect(r.needsAmount).toEqual([]);
+    });
+
+    it("asks for an amount instead of converting or guessing one", () => {
+      const r = protocolToIntake({ id: "p", items: [item("Vitamin D3", "supplement", "2000 IU"), item("Zinc", "supplement"), item("Fish oil", "supplement", "2 capsules")] }, [], db, nutrients, id);
+      expect(r.items).toEqual([]);
+      expect(r.needsAmount).toEqual([
+        { planId: "p", itemId: "Vitamin D3", label: "Vitamin D3", key: "vitaminD", unit: "µg", written: "2000 IU" },
+        { planId: "p", itemId: "Zinc", label: "Zinc", key: "zinc", unit: "mg" },
+        { planId: "p", itemId: "Fish oil", label: "Fish oil", key: "epaDha", unit: "mg", written: "2 capsules" },
+      ]);
+    });
+
+    it("leaves out what isn't food or a counted nutrient, with the reason", () => {
+      const r = protocolToIntake(
+        { id: "p", items: [item("Creatine", "supplement", "5 g"), item("Multivitamin", "supplement"), item("Metformin", "medication"), item("Sauna", "lifestyle"), item("Gone meal", "diet", undefined, { mealId: "x" }), item("Less sugar", "diet")] },
+        [breakfast],
+        db,
+        nutrients,
+        id,
+      );
+      expect(r.items).toEqual([]);
+      expect(r.skipped.map((s) => s.label)).toEqual(["Creatine", "Multivitamin", "Metformin", "Sauna", "Gone meal", "Less sugar"]);
+      expect(r.skipped[0]!.reason).toMatch(/not one of the vitamins, minerals or omega-3/);
+      expect(r.skipped[1]!.reason).toMatch(/add each one from its label/);
+    });
+
+    it("reads back what the analyzer writes into a protocol", () => {
+      const list: IntakeItem[] = [
+        { id: "a", kind: "meal", mealId: "m1", portions: 1.5 },
+        { id: "c", kind: "food", foodId: kiwi, grams: 75 },
+        { id: "d", kind: "supplement", nutrient: "vitaminD", amount: 25, name: "Vitamin D3" },
+      ];
+      const plan = { id: "p", items: intakeToPlanItems(list, [breakfast], db, id) };
+      const back = protocolToIntake(plan, [breakfast], db, nutrients, id).items.map(({ id: _id, ...rest }) => rest);
+      expect(back).toEqual(list.map(({ id: _id, ...rest }) => rest));
+    });
   });
 });
