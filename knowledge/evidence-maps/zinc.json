@@ -1,0 +1,3131 @@
+{
+ "topic": "zinc",
+ "nutrientId": "zinc",
+ "name": "zinc",
+ "scope": "in papers about supplements, fortified food, intake or diet",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with zinc (zinc) in its title or abstract, in papers about supplements, fortified food, intake or diet; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving zinc, with zinc in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded zinc trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 25187,
+  "retrieved": 2315,
+  "animal": 243,
+  "retracted": 6,
+  "reviews": 596,
+  "trials": 1448,
+  "guidelines": 19
+ },
+ "guidelines": [
+  {
+   "pmid": "34432398",
+   "title": "WHO antenatal care recommendations for a positive pregnancy experience: Nutritional interventions update: zinc supplements during pregnancy",
+   "year": 2021,
+   "citedBy": 1,
+   "why": "One of the newest guidelines with zinc in the title"
+  },
+  {
+   "pmid": "30016173",
+   "doi": "10.1089/bfm.2018.29095.snt",
+   "title": "ABM Clinical Protocol #29: Iron, Zinc, and Vitamin D Supplementation During Breastfeeding",
+   "year": 2018,
+   "journal": "Breastfeeding medicine : the official journal of the Academy of Breastfeeding Medicine",
+   "citedBy": 9,
+   "why": "One of the newest guidelines with zinc in the title"
+  },
+  {
+   "pmid": "23850028",
+   "doi": "10.1016/j.ramb.2013.06.004",
+   "title": "Zinc supplementation in the treatment of anorexia nervosa",
+   "year": 2013,
+   "journal": "Revista da Associacao Medica Brasileira (1992)",
+   "citedBy": 2,
+   "why": "One of the newest guidelines with zinc in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "colds-catching",
+   "label": "Catching colds",
+   "finding": "Catching colds",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 7,
+    "trials": 24,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "23775705",
+     "doi": "10.1002/14651858.cd001364.pub4",
+     "title": "Zinc for the common cold",
+     "year": 2013,
+     "firstAuthor": "Singh M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 79,
+     "n": 1387,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    },
+    {
+     "pmid": "21328251",
+     "doi": "10.1002/14651858.cd001364.pub3",
+     "title": "Zinc for the common cold",
+     "year": 2011,
+     "firstAuthor": "Singh M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 38,
+     "n": 966,
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+    },
+    {
+     "pmid": "38719213",
+     "doi": "10.1002/14651858.cd014914.pub2",
+     "title": "Zinc for prevention and treatment of the common cold",
+     "year": 2024,
+     "firstAuthor": "Nault D",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 7,
+     "n": 8526,
+     "why": "One of the newest systematic reviews of trials on this outcome (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.04838709677419355,
+    "trials": 31,
+    "inclusions": 34,
+    "reviews": [
+     {
+      "pmid": "23775705",
+      "trials": 2
+     },
+     {
+      "pmid": "21328251",
+      "trials": 1
+     },
+     {
+      "pmid": "38719213",
+      "trials": 31
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19341987",
+      "title": "Use of zinc supplements to reduce upper respiratory infections in United States Air Force Academy cadets",
+      "year": 2009,
+      "inReviews": [
+       "23775705",
+       "21328251",
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "22414819",
+      "title": "Zinc combined with vitamin A reduces upper respiratory tract infection morbidity in a randomised trial in preschool children in Indonesia",
+      "year": 2012,
+      "n": 826,
+      "inReviews": [
+       "23775705",
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "32612816",
+      "title": "Effects of therapeutic zinc supplementation for diarrhea and two preventive zinc supplementation regimens on the incidence and duration of diarrhea and acute respiratory tract infections in rural Laotian children: A randomized controlled trial",
+      "year": 2020,
+      "n": 3407,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "26362661",
+      "title": "Effect of zinc added to a daily small-quantity lipid-based nutrient supplement on diarrhoea, malaria, fever and respiratory infections in young children in rural Burkina Faso: a cluster-randomised trial",
+      "year": 2015,
+      "n": 2435,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "26203094",
+      "title": "Daily Zinc but Not Multivitamin Supplementation Reduces Diarrhea and Upper Respiratory Infections in Tanzanian Infants: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+      "year": 2015,
+      "n": 2400,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16837718",
+      "title": "Zinc and iron supplementation and malaria, diarrhea, and respiratory infections in children in the Peruvian Amazon",
+      "year": 2006,
+      "n": 855,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "11498488",
+      "title": "Simultaneous zinc and vitamin A supplementation in Bangladeshi children: randomised double blind controlled trial",
+      "year": 2001,
+      "n": 800,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16522919",
+      "title": "A double-blind, randomized, clinical trial of the effect of vitamin A and zinc supplementation on diarrheal disease and respiratory tract infections in children in Mexico City, Mexico",
+      "year": 2006,
+      "n": 736,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "18326612",
+      "title": "Dose-response trial of prophylactic zinc supplements, with or without copper, in young Ecuadorian children at risk of zinc deficiency",
+      "year": 2008,
+      "n": 631,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17344513",
+      "title": "Zinc during and in convalescence from diarrhea has no demonstrable effect on subsequent morbidity and anthropometric status among infants <6 mo of age",
+      "year": 2007,
+      "n": 538,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "27255474",
+      "title": "Effects of zinc supplementation in the prevention of respiratory tract infections and diarrheal disease in Colombian children: A 12-month randomised controlled trial",
+      "year": 2016,
+      "n": 355,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "14725412",
+      "title": "A randomized controlled study of the impact of dietary zinc supplementation in the management of children with protein-energy malnutrition in Lesotho. II: Special investigations",
+      "year": 2003,
+      "n": 300,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "25362008",
+      "title": "Zinc supplementation for prevention of acute respiratory infections in infants: a randomized controlled trial",
+      "year": 2014,
+      "n": 272,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "11297959",
+      "title": "Zinc supplementation during pregnancy and effects on growth and morbidity in low birthweight infants: a randomised placebo controlled trial",
+      "year": 2001,
+      "n": 221,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17593956",
+      "title": "Zinc or multiple micronutrient supplementation to reduce diarrhea and respiratory disease in South African children: a randomized controlled trial",
+      "year": 2007,
+      "n": 187,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "8599314",
+      "title": "Zinc supplementation increases growth and circulating insulin-like growth factor I (IGF-I) in growth-retarded Vietnamese children",
+      "year": 1996,
+      "n": 146,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "23664200",
+      "title": "Zinc and other micronutrients supplementation through the use of sprinkles: impact on the occurrence of diarrhea and respiratory infections in institutionalized children",
+      "year": 2013,
+      "n": 143,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16310552",
+      "title": "Safety and efficacy of zinc supplementation for children with HIV-1 infection in South Africa: a randomised double-blind placebo-controlled trial",
+      "year": 2005,
+      "n": 96,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "14985222",
+      "title": "Randomized controlled trial of the effect of daily supplementation with zinc or multiple micronutrients on the morbidity, growth, and micronutrient status of young Peruvian children",
+      "year": 2004,
+      "n": 83,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17615905",
+      "title": "Impact of zinc supplementation on subsequent morbidity and growth in Bangladeshi children with persistent diarrhoea",
+      "year": 2007,
+      "n": 78,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9701155",
+      "title": "Effect of zinc supplementation on the morbidity, immune function, and growth of low-birth-weight, full-term infants in northeast Brazil",
+      "year": 1998,
+      "n": 71,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "20882421",
+      "title": "Zinc supplementation in severe acute lower respiratory tract infection in children: a triple-blind randomized placebo controlled trial",
+      "year": 2011,
+      "n": 53,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9164774",
+      "title": "Impact of zinc supplementation on morbidity from diarrhea and respiratory infections among rural Guatemalan children",
+      "year": 1997,
+      "n": 45,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "18214943",
+      "title": "Effect of zinc supplementation on respiratory tract infections in children with cystic fibrosis",
+      "year": 2008,
+      "n": 26,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "29877169",
+      "title": "Effectiveness of zinc-fortified water on zinc intake, status and morbidity in Kenyan pre-school children: a randomised controlled trial",
+      "year": 2018,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17284755",
+      "title": "Comparison of the effects of zinc delivered in a fortified food or a liquid supplement on the growth, morbidity, and plasma zinc concentrations of young Peruvian children",
+      "year": 2007,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "10452407",
+      "title": "Impact of zinc supplementation on subsequent growth and morbidity in Bangladeshi children with acute diarrhoea",
+      "year": 1999,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9481530",
+      "title": "Zinc supplementation: effects on the growth and morbidity of undernourished Jamaican children",
+      "year": 1998,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "20631326",
+      "title": "Two weeks of zinc administration to Nepalese children with pneumonia does not reduce the incidence of pneumonia or diarrhea during the next six months",
+      "year": 2010,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "8617190",
+      "title": "Effects of short-term zinc supplementation on cellular immunity, respiratory symptoms, and growth of malnourished Equadorian children",
+      "year": 1996,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17344507",
+      "title": "Zinc supplementation decreases incidence of infections in the elderly: effect of zinc on generation of cytokines and oxidative stress",
+      "year": 2007,
+      "inReviews": [
+       "38719213"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26203094",
+     "title": "Daily Zinc but Not Multivitamin Supplementation Reduces Diarrhea and Upper Respiratory Infections in Tanzanian Infants: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+     "year": 2015,
+     "n": 2400
+    },
+    {
+     "pmid": "26362661",
+     "title": "Effect of zinc added to a daily small-quantity lipid-based nutrient supplement on diarrhoea, malaria, fever and respiratory infections in young children in rural Burkina Faso: a cluster-randomised trial",
+     "year": 2015,
+     "n": 2435
+    },
+    {
+     "pmid": "32612816",
+     "title": "Effects of therapeutic zinc supplementation for diarrhea and two preventive zinc supplementation regimens on the incidence and duration of diarrhea and acute respiratory tract infections in rural Laotian children: A randomized controlled trial",
+     "year": 2020,
+     "n": 3407
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "38719213"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "23775705",
+      "doi": "10.1002/14651858.cd001364.pub4",
+      "title": "Zinc for the common cold",
+      "year": 2013,
+      "firstAuthor": "Singh M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 79,
+      "n": 1387,
+      "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+     },
+     {
+      "pmid": "21328251",
+      "doi": "10.1002/14651858.cd001364.pub3",
+      "title": "Zinc for the common cold",
+      "year": 2011,
+      "firstAuthor": "Singh M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 38,
+      "n": 966,
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Children and adults",
+     "intervention": "Zinc taken regularly to prevent colds",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How many people catch colds (or respiratory infections)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 4,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42143317",
+      "title": "Comparative efficacy of nutritional supplements for the prevention of respiratory tract infections in children: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools RCTs of zinc vs placebo for preventing respiratory infections, but only in children under 18, not children and adults."
+     },
+     {
+      "pmid": "33472840",
+      "title": "Effect of micronutrient supplements on influenza and other respiratory tract infections among adults: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools RCTs of zinc on how often respiratory infections occur, but only in adults, not children."
+     },
+     {
+      "pmid": "32342851",
+      "title": "Zinc Supplementation Reduces Common Cold Duration among Healthy Adults: A Systematic Review of Randomized Controlled Trials with Micronutrients Supplementation",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Looks at RCTs of zinc given alone and cold incidence, but only in healthy adults, not children."
+     },
+     {
+      "pmid": "20156999",
+      "title": "Zinc supplementation for the prevention of acute lower respiratory infection in children in developing countries: meta-analysis and meta-regression of randomized trials",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Pools RCTs of routine zinc for preventing respiratory infection, but only in young children in developing countries and only lower respiratory infection."
+     }
+    ]
+   }
+  },
+  {
+   "id": "colds-duration",
+   "label": "How long colds last",
+   "finding": "How long colds last, when zinc is started at the first symptoms",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 7,
+    "trials": 24,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "23775705",
+     "doi": "10.1002/14651858.cd001364.pub4",
+     "title": "Zinc for the common cold",
+     "year": 2013,
+     "firstAuthor": "Singh M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 79,
+     "n": 1387,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    },
+    {
+     "pmid": "21328251",
+     "doi": "10.1002/14651858.cd001364.pub3",
+     "title": "Zinc for the common cold",
+     "year": 2011,
+     "firstAuthor": "Singh M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 38,
+     "n": 966,
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+    },
+    {
+     "pmid": "38719213",
+     "doi": "10.1002/14651858.cd014914.pub2",
+     "title": "Zinc for prevention and treatment of the common cold",
+     "year": 2024,
+     "firstAuthor": "Nault D",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 7,
+     "n": 8526,
+     "why": "One of the newest systematic reviews of trials on this outcome (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.04838709677419355,
+    "trials": 31,
+    "inclusions": 34,
+    "reviews": [
+     {
+      "pmid": "23775705",
+      "trials": 2
+     },
+     {
+      "pmid": "21328251",
+      "trials": 1
+     },
+     {
+      "pmid": "38719213",
+      "trials": 31
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19341987",
+      "title": "Use of zinc supplements to reduce upper respiratory infections in United States Air Force Academy cadets",
+      "year": 2009,
+      "inReviews": [
+       "23775705",
+       "21328251",
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "22414819",
+      "title": "Zinc combined with vitamin A reduces upper respiratory tract infection morbidity in a randomised trial in preschool children in Indonesia",
+      "year": 2012,
+      "n": 826,
+      "inReviews": [
+       "23775705",
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "32612816",
+      "title": "Effects of therapeutic zinc supplementation for diarrhea and two preventive zinc supplementation regimens on the incidence and duration of diarrhea and acute respiratory tract infections in rural Laotian children: A randomized controlled trial",
+      "year": 2020,
+      "n": 3407,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "26362661",
+      "title": "Effect of zinc added to a daily small-quantity lipid-based nutrient supplement on diarrhoea, malaria, fever and respiratory infections in young children in rural Burkina Faso: a cluster-randomised trial",
+      "year": 2015,
+      "n": 2435,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "26203094",
+      "title": "Daily Zinc but Not Multivitamin Supplementation Reduces Diarrhea and Upper Respiratory Infections in Tanzanian Infants: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+      "year": 2015,
+      "n": 2400,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16837718",
+      "title": "Zinc and iron supplementation and malaria, diarrhea, and respiratory infections in children in the Peruvian Amazon",
+      "year": 2006,
+      "n": 855,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "11498488",
+      "title": "Simultaneous zinc and vitamin A supplementation in Bangladeshi children: randomised double blind controlled trial",
+      "year": 2001,
+      "n": 800,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16522919",
+      "title": "A double-blind, randomized, clinical trial of the effect of vitamin A and zinc supplementation on diarrheal disease and respiratory tract infections in children in Mexico City, Mexico",
+      "year": 2006,
+      "n": 736,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "18326612",
+      "title": "Dose-response trial of prophylactic zinc supplements, with or without copper, in young Ecuadorian children at risk of zinc deficiency",
+      "year": 2008,
+      "n": 631,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17344513",
+      "title": "Zinc during and in convalescence from diarrhea has no demonstrable effect on subsequent morbidity and anthropometric status among infants <6 mo of age",
+      "year": 2007,
+      "n": 538,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "27255474",
+      "title": "Effects of zinc supplementation in the prevention of respiratory tract infections and diarrheal disease in Colombian children: A 12-month randomised controlled trial",
+      "year": 2016,
+      "n": 355,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "14725412",
+      "title": "A randomized controlled study of the impact of dietary zinc supplementation in the management of children with protein-energy malnutrition in Lesotho. II: Special investigations",
+      "year": 2003,
+      "n": 300,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "25362008",
+      "title": "Zinc supplementation for prevention of acute respiratory infections in infants: a randomized controlled trial",
+      "year": 2014,
+      "n": 272,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "11297959",
+      "title": "Zinc supplementation during pregnancy and effects on growth and morbidity in low birthweight infants: a randomised placebo controlled trial",
+      "year": 2001,
+      "n": 221,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17593956",
+      "title": "Zinc or multiple micronutrient supplementation to reduce diarrhea and respiratory disease in South African children: a randomized controlled trial",
+      "year": 2007,
+      "n": 187,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "8599314",
+      "title": "Zinc supplementation increases growth and circulating insulin-like growth factor I (IGF-I) in growth-retarded Vietnamese children",
+      "year": 1996,
+      "n": 146,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "23664200",
+      "title": "Zinc and other micronutrients supplementation through the use of sprinkles: impact on the occurrence of diarrhea and respiratory infections in institutionalized children",
+      "year": 2013,
+      "n": 143,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16310552",
+      "title": "Safety and efficacy of zinc supplementation for children with HIV-1 infection in South Africa: a randomised double-blind placebo-controlled trial",
+      "year": 2005,
+      "n": 96,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "14985222",
+      "title": "Randomized controlled trial of the effect of daily supplementation with zinc or multiple micronutrients on the morbidity, growth, and micronutrient status of young Peruvian children",
+      "year": 2004,
+      "n": 83,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17615905",
+      "title": "Impact of zinc supplementation on subsequent morbidity and growth in Bangladeshi children with persistent diarrhoea",
+      "year": 2007,
+      "n": 78,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9701155",
+      "title": "Effect of zinc supplementation on the morbidity, immune function, and growth of low-birth-weight, full-term infants in northeast Brazil",
+      "year": 1998,
+      "n": 71,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "20882421",
+      "title": "Zinc supplementation in severe acute lower respiratory tract infection in children: a triple-blind randomized placebo controlled trial",
+      "year": 2011,
+      "n": 53,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9164774",
+      "title": "Impact of zinc supplementation on morbidity from diarrhea and respiratory infections among rural Guatemalan children",
+      "year": 1997,
+      "n": 45,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "18214943",
+      "title": "Effect of zinc supplementation on respiratory tract infections in children with cystic fibrosis",
+      "year": 2008,
+      "n": 26,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "29877169",
+      "title": "Effectiveness of zinc-fortified water on zinc intake, status and morbidity in Kenyan pre-school children: a randomised controlled trial",
+      "year": 2018,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17284755",
+      "title": "Comparison of the effects of zinc delivered in a fortified food or a liquid supplement on the growth, morbidity, and plasma zinc concentrations of young Peruvian children",
+      "year": 2007,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "10452407",
+      "title": "Impact of zinc supplementation on subsequent growth and morbidity in Bangladeshi children with acute diarrhoea",
+      "year": 1999,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9481530",
+      "title": "Zinc supplementation: effects on the growth and morbidity of undernourished Jamaican children",
+      "year": 1998,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "20631326",
+      "title": "Two weeks of zinc administration to Nepalese children with pneumonia does not reduce the incidence of pneumonia or diarrhea during the next six months",
+      "year": 2010,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "8617190",
+      "title": "Effects of short-term zinc supplementation on cellular immunity, respiratory symptoms, and growth of malnourished Equadorian children",
+      "year": 1996,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17344507",
+      "title": "Zinc supplementation decreases incidence of infections in the elderly: effect of zinc on generation of cytokines and oxidative stress",
+      "year": 2007,
+      "inReviews": [
+       "38719213"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26203094",
+     "title": "Daily Zinc but Not Multivitamin Supplementation Reduces Diarrhea and Upper Respiratory Infections in Tanzanian Infants: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+     "year": 2015,
+     "n": 2400
+    },
+    {
+     "pmid": "26362661",
+     "title": "Effect of zinc added to a daily small-quantity lipid-based nutrient supplement on diarrhoea, malaria, fever and respiratory infections in young children in rural Burkina Faso: a cluster-randomised trial",
+     "year": 2015,
+     "n": 2435
+    },
+    {
+     "pmid": "32612816",
+     "title": "Effects of therapeutic zinc supplementation for diarrhea and two preventive zinc supplementation regimens on the incidence and duration of diarrhea and acute respiratory tract infections in rural Laotian children: A randomized controlled trial",
+     "year": 2020,
+     "n": 3407
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "38719213"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "23775705",
+      "doi": "10.1002/14651858.cd001364.pub4",
+      "title": "Zinc for the common cold",
+      "year": 2013,
+      "firstAuthor": "Singh M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 79,
+      "n": 1387,
+      "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+     },
+     {
+      "pmid": "21328251",
+      "doi": "10.1002/14651858.cd001364.pub3",
+      "title": "Zinc for the common cold",
+      "year": 2011,
+      "firstAuthor": "Singh M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 38,
+      "n": 966,
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Mostly healthy adults with a new cold",
+     "intervention": "Zinc (mostly lozenges) started at the first symptoms",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How long colds last"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 1,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42143317",
+      "title": "Comparative efficacy of nutritional supplements for the prevention of respiratory tract infections in children: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at preventing respiratory infections in children and measures how often they happen, not how long colds last in adults."
+     },
+     {
+      "pmid": "33472840",
+      "title": "Effect of micronutrient supplements on influenza and other respiratory tract infections among adults: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools zinc trials in adults for symptom duration, but covers acute respiratory infections broadly and doesn't say zinc started at symptom onset."
+     },
+     {
+      "pmid": "20156999",
+      "title": "Zinc supplementation for the prevention of acute lower respiratory infection in children in developing countries: meta-analysis and meta-regression of randomized trials",
+      "year": 2010,
+      "fits": "no",
+      "reason": "Looks at zinc to prevent lower respiratory infections in children in developing countries and measures how often they happen, not cold duration."
+     }
+    ]
+   }
+  },
+  {
+   "id": "colds-side-effects",
+   "label": "Side effects for colds",
+   "finding": "Side effects of zinc for colds",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 7,
+    "trials": 24,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "21328251",
+     "doi": "10.1002/14651858.cd001364.pub3",
+     "title": "Zinc for the common cold",
+     "year": 2011,
+     "firstAuthor": "Singh M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 38,
+     "n": 966,
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+    },
+    {
+     "pmid": "38719213",
+     "doi": "10.1002/14651858.cd014914.pub2",
+     "title": "Zinc for prevention and treatment of the common cold",
+     "year": 2024,
+     "firstAuthor": "Nault D",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 7,
+     "n": 8526,
+     "why": "One of the newest systematic reviews of trials on this outcome (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.03225806451612903,
+    "trials": 31,
+    "inclusions": 32,
+    "reviews": [
+     {
+      "pmid": "21328251",
+      "trials": 1
+     },
+     {
+      "pmid": "38719213",
+      "trials": 31
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19341987",
+      "title": "Use of zinc supplements to reduce upper respiratory infections in United States Air Force Academy cadets",
+      "year": 2009,
+      "inReviews": [
+       "21328251",
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "32612816",
+      "title": "Effects of therapeutic zinc supplementation for diarrhea and two preventive zinc supplementation regimens on the incidence and duration of diarrhea and acute respiratory tract infections in rural Laotian children: A randomized controlled trial",
+      "year": 2020,
+      "n": 3407,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "26362661",
+      "title": "Effect of zinc added to a daily small-quantity lipid-based nutrient supplement on diarrhoea, malaria, fever and respiratory infections in young children in rural Burkina Faso: a cluster-randomised trial",
+      "year": 2015,
+      "n": 2435,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "26203094",
+      "title": "Daily Zinc but Not Multivitamin Supplementation Reduces Diarrhea and Upper Respiratory Infections in Tanzanian Infants: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+      "year": 2015,
+      "n": 2400,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16837718",
+      "title": "Zinc and iron supplementation and malaria, diarrhea, and respiratory infections in children in the Peruvian Amazon",
+      "year": 2006,
+      "n": 855,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "22414819",
+      "title": "Zinc combined with vitamin A reduces upper respiratory tract infection morbidity in a randomised trial in preschool children in Indonesia",
+      "year": 2012,
+      "n": 826,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "11498488",
+      "title": "Simultaneous zinc and vitamin A supplementation in Bangladeshi children: randomised double blind controlled trial",
+      "year": 2001,
+      "n": 800,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16522919",
+      "title": "A double-blind, randomized, clinical trial of the effect of vitamin A and zinc supplementation on diarrheal disease and respiratory tract infections in children in Mexico City, Mexico",
+      "year": 2006,
+      "n": 736,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "18326612",
+      "title": "Dose-response trial of prophylactic zinc supplements, with or without copper, in young Ecuadorian children at risk of zinc deficiency",
+      "year": 2008,
+      "n": 631,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17344513",
+      "title": "Zinc during and in convalescence from diarrhea has no demonstrable effect on subsequent morbidity and anthropometric status among infants <6 mo of age",
+      "year": 2007,
+      "n": 538,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "27255474",
+      "title": "Effects of zinc supplementation in the prevention of respiratory tract infections and diarrheal disease in Colombian children: A 12-month randomised controlled trial",
+      "year": 2016,
+      "n": 355,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "14725412",
+      "title": "A randomized controlled study of the impact of dietary zinc supplementation in the management of children with protein-energy malnutrition in Lesotho. II: Special investigations",
+      "year": 2003,
+      "n": 300,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "25362008",
+      "title": "Zinc supplementation for prevention of acute respiratory infections in infants: a randomized controlled trial",
+      "year": 2014,
+      "n": 272,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "11297959",
+      "title": "Zinc supplementation during pregnancy and effects on growth and morbidity in low birthweight infants: a randomised placebo controlled trial",
+      "year": 2001,
+      "n": 221,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17593956",
+      "title": "Zinc or multiple micronutrient supplementation to reduce diarrhea and respiratory disease in South African children: a randomized controlled trial",
+      "year": 2007,
+      "n": 187,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "8599314",
+      "title": "Zinc supplementation increases growth and circulating insulin-like growth factor I (IGF-I) in growth-retarded Vietnamese children",
+      "year": 1996,
+      "n": 146,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "23664200",
+      "title": "Zinc and other micronutrients supplementation through the use of sprinkles: impact on the occurrence of diarrhea and respiratory infections in institutionalized children",
+      "year": 2013,
+      "n": 143,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "16310552",
+      "title": "Safety and efficacy of zinc supplementation for children with HIV-1 infection in South Africa: a randomised double-blind placebo-controlled trial",
+      "year": 2005,
+      "n": 96,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "14985222",
+      "title": "Randomized controlled trial of the effect of daily supplementation with zinc or multiple micronutrients on the morbidity, growth, and micronutrient status of young Peruvian children",
+      "year": 2004,
+      "n": 83,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17615905",
+      "title": "Impact of zinc supplementation on subsequent morbidity and growth in Bangladeshi children with persistent diarrhoea",
+      "year": 2007,
+      "n": 78,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9701155",
+      "title": "Effect of zinc supplementation on the morbidity, immune function, and growth of low-birth-weight, full-term infants in northeast Brazil",
+      "year": 1998,
+      "n": 71,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "20882421",
+      "title": "Zinc supplementation in severe acute lower respiratory tract infection in children: a triple-blind randomized placebo controlled trial",
+      "year": 2011,
+      "n": 53,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9164774",
+      "title": "Impact of zinc supplementation on morbidity from diarrhea and respiratory infections among rural Guatemalan children",
+      "year": 1997,
+      "n": 45,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "18214943",
+      "title": "Effect of zinc supplementation on respiratory tract infections in children with cystic fibrosis",
+      "year": 2008,
+      "n": 26,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "29877169",
+      "title": "Effectiveness of zinc-fortified water on zinc intake, status and morbidity in Kenyan pre-school children: a randomised controlled trial",
+      "year": 2018,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17284755",
+      "title": "Comparison of the effects of zinc delivered in a fortified food or a liquid supplement on the growth, morbidity, and plasma zinc concentrations of young Peruvian children",
+      "year": 2007,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "10452407",
+      "title": "Impact of zinc supplementation on subsequent growth and morbidity in Bangladeshi children with acute diarrhoea",
+      "year": 1999,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "9481530",
+      "title": "Zinc supplementation: effects on the growth and morbidity of undernourished Jamaican children",
+      "year": 1998,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "20631326",
+      "title": "Two weeks of zinc administration to Nepalese children with pneumonia does not reduce the incidence of pneumonia or diarrhea during the next six months",
+      "year": 2010,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "8617190",
+      "title": "Effects of short-term zinc supplementation on cellular immunity, respiratory symptoms, and growth of malnourished Equadorian children",
+      "year": 1996,
+      "inReviews": [
+       "38719213"
+      ]
+     },
+     {
+      "pmid": "17344507",
+      "title": "Zinc supplementation decreases incidence of infections in the elderly: effect of zinc on generation of cytokines and oxidative stress",
+      "year": 2007,
+      "inReviews": [
+       "38719213"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26203094",
+     "title": "Daily Zinc but Not Multivitamin Supplementation Reduces Diarrhea and Upper Respiratory Infections in Tanzanian Infants: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+     "year": 2015,
+     "n": 2400
+    },
+    {
+     "pmid": "26362661",
+     "title": "Effect of zinc added to a daily small-quantity lipid-based nutrient supplement on diarrhoea, malaria, fever and respiratory infections in young children in rural Burkina Faso: a cluster-randomised trial",
+     "year": 2015,
+     "n": 2435
+    },
+    {
+     "pmid": "32612816",
+     "title": "Effects of therapeutic zinc supplementation for diarrhea and two preventive zinc supplementation regimens on the incidence and duration of diarrhea and acute respiratory tract infections in rural Laotian children: A randomized controlled trial",
+     "year": 2020,
+     "n": 3407
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "38719213"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "21328251",
+      "doi": "10.1002/14651858.cd001364.pub3",
+      "title": "Zinc for the common cold",
+      "year": 2011,
+      "firstAuthor": "Singh M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 38,
+      "n": 966,
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People taking zinc for colds",
+     "intervention": "Zinc (lozenges, syrup or tablets)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Side effects (bad taste, nausea)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42143317",
+      "title": "Comparative efficacy of nutritional supplements for the prevention of respiratory tract infections in children: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at supplements to prevent respiratory infections in children and measures how often infections occur, not zinc side effects in people with colds."
+     },
+     {
+      "pmid": "33472840",
+      "title": "Effect of micronutrient supplements on influenza and other respiratory tract infections among adults: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at micronutrients for respiratory infections in adults and measures how often infections occur and how long symptoms last, not side effects."
+     },
+     {
+      "pmid": "32342851",
+      "title": "Zinc Supplementation Reduces Common Cold Duration among Healthy Adults: A Systematic Review of Randomized Controlled Trials with Micronutrients Supplementation",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Zinc for colds in healthy adults, but the outcomes are cold incidence, duration and severity, not side effects."
+     },
+     {
+      "pmid": "23775705",
+      "title": "Zinc for the common cold",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Placebo-controlled RCTs of zinc for the common cold, but the abstract shown is cut off and only reports incidence, duration and severity, not side effects."
+     },
+     {
+      "pmid": "20156999",
+      "title": "Zinc supplementation for the prevention of acute lower respiratory infection in children in developing countries: meta-analysis and meta-regression of randomized trials",
+      "year": 2010,
+      "fits": "no",
+      "reason": "Zinc to prevent lower respiratory infection in children in developing countries; the outcome is how often infections occur, not side effects of treating colds."
+     }
+    ]
+   }
+  },
+  {
+   "id": "amd",
+   "label": "Macular degeneration",
+   "finding": "Worsening of age-related macular degeneration (AMD), an eye disease of older age",
+   "counts": {
+    "reviews": 18,
+    "trialReviews": 12,
+    "trials": 30,
+    "largeTrials": 9
+   },
+   "chosenReviews": [
+    {
+     "pmid": "28756618",
+     "doi": "10.1002/14651858.cd000254.pub4",
+     "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+     "year": 2017,
+     "firstAuthor": "Evans JR",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 80,
+     "n": 3791,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    },
+    {
+     "pmid": "23152201",
+     "doi": "10.1002/14651858.cd000254.pub3",
+     "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+     "year": 2012,
+     "firstAuthor": "Evans JR",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 63,
+     "n": 6150,
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+    },
+    {
+     "pmid": "18425071",
+     "doi": "10.1038/eye.2008.100",
+     "title": "Antioxidant supplements to prevent or slow down the progression of AMD: a systematic review and meta-analysis",
+     "year": 2008,
+     "firstAuthor": "Evans J.",
+     "journal": "Eye (London, England)",
+     "citedBy": 72,
+     "n": 23099,
+     "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "31358387",
+     "doi": "10.1016/j.ophtha.2019.06.004",
+     "title": "No CFH or ARMS2 Interaction with Omega-3 Fatty Acids, Low versus High Zinc, or β-Carotene versus Lutein and Zeaxanthin on Progression of Age-Related Macular Degeneration in the Age-Related Eye Disease Study 2: Age-Related Eye Disease Study 2 Report No. 18",
+     "year": 2019,
+     "firstAuthor": "van Asten F",
+     "journal": "Ophthalmology",
+     "citedBy": 21,
+     "n": 4203,
+     "why": "A large trial (about 4,203 people) from 2019, as new as the newest review or newer"
+    },
+    {
+     "pmid": "35653117",
+     "doi": "10.1001/jamaophthalmol.2022.1640",
+     "title": "Long-term Outcomes of Adding Lutein/Zeaxanthin and ω-3 Fatty Acids to the AREDS Supplements on Age-Related Macular Degeneration Progression: AREDS2 Report 28",
+     "year": 2022,
+     "firstAuthor": "Chew EY",
+     "journal": "JAMA ophthalmology",
+     "citedBy": 125,
+     "n": 3882,
+     "why": "A large trial (about 3,882 people) from 2022, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.29411764705882354,
+    "trials": 17,
+    "inclusions": 27,
+    "reviews": [
+     {
+      "pmid": "28756618",
+      "trials": 17
+     },
+     {
+      "pmid": "23152201",
+      "trials": 7
+     },
+     {
+      "pmid": "18425071",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "11594942",
+      "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
+      "year": 2001,
+      "n": 3640,
+      "inReviews": [
+       "28756618",
+       "23152201",
+       "18425071"
+      ]
+     },
+     {
+      "pmid": "17222649",
+      "title": "High dose zinc increases hospital admissions due to genitourinary complications",
+      "year": 2007,
+      "n": 3640,
+      "inReviews": [
+       "28756618",
+       "23152201",
+       "18425071"
+      ]
+     },
+     {
+      "pmid": "15136320",
+      "title": "Associations of mortality with ocular disorders and an intervention of high-dose antioxidants and zinc in the Age-Related Eye Disease Study: AREDS Report No. 13",
+      "year": 2004,
+      "n": 4753,
+      "inReviews": [
+       "28756618",
+       "23152201"
+      ]
+     },
+     {
+      "pmid": "18600492",
+      "title": "A randomized, prospective, placebo-controlled clinical trial of a novel zinc-monocysteine compound in age-related macular degeneration",
+      "year": 2008,
+      "n": 40,
+      "inReviews": [
+       "28756618",
+       "23152201"
+      ]
+     },
+     {
+      "pmid": "8825016",
+      "title": "Multicenter ophthalmic and nutritional age-related macular degeneration study--part 1: design, subjects and procedures. Age-related Macular Degeneration Study Group",
+      "year": 1996,
+      "n": 39,
+      "inReviews": [
+       "28756618",
+       "23152201"
+      ]
+     },
+     {
+      "pmid": "8825017",
+      "title": "Multicenter ophthalmic and nutritional age-related macular degeneration study--part 2: antioxidant intervention and conclusions",
+      "year": 1996,
+      "n": 39,
+      "inReviews": [
+       "28756618",
+       "18425071"
+      ]
+     },
+     {
+      "pmid": "17157802",
+      "title": "Effects of long-term zinc supplementation on plasma thiol metabolites and redox status in patients with age-related macular degeneration",
+      "year": 2007,
+      "inReviews": [
+       "28756618",
+       "23152201"
+      ]
+     },
+     {
+      "pmid": "14594455",
+      "title": "A randomised controlled trial investigating the effect of nutritional supplementation on visual function in normal, and age-related macular disease affected eyes: design and methodology [ISRCTN78467674]",
+      "year": 2003,
+      "inReviews": [
+       "28756618",
+       "23152201"
+      ]
+     },
+     {
+      "pmid": "23582353",
+      "title": "Long-term effects of vitamins C and E, β-carotene, and zinc on age-related macular degeneration: AREDS report no. 35",
+      "year": 2013,
+      "n": 4757,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "23644932",
+      "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
+      "year": 2013,
+      "n": 4203,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "22840421",
+      "title": "The Age-Related Eye Disease Study 2 (AREDS2): study design and baseline characteristics (AREDS2 report number 1)",
+      "year": 2012,
+      "n": 4203,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "24310343",
+      "title": "Secondary analyses of the effects of lutein/zeaxanthin on age-related macular degeneration progression: AREDS2 report No. 3",
+      "year": 2014,
+      "n": 4203,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "24974817",
+      "title": "No clinically significant association between CFH and ARMS2 genotypes and response to nutritional supplements: AREDS report number 38",
+      "year": 2014,
+      "n": 1237,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "23218821",
+      "title": "Secondary outcomes in a clinical trial of carotenoids with coantioxidants versus placebo in early age-related macular degeneration",
+      "year": 2013,
+      "n": 433,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "24621122",
+      "title": "Central Retinal Enrichment Supplementation Trials (CREST): design and methodology of the CREST randomized controlled trials",
+      "year": 2014,
+      "n": 75,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "25525163",
+      "title": "Antioxidative capacity of a dietary supplement on retinal hemodynamic function in a human lipopolysaccharide (LPS) model",
+      "year": 2014,
+      "n": 43,
+      "inReviews": [
+       "28756618"
+      ]
+     },
+     {
+      "pmid": "24576874",
+      "title": "Retinal hemodynamic effects of antioxidant supplementation in an endotoxin-induced model of oxidative stress in humans",
+      "year": 2014,
+      "n": 40,
+      "inReviews": [
+       "28756618"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "11594942",
+     "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
+     "year": 2001,
+     "n": 3640
+    },
+    {
+     "pmid": "11925463",
+     "title": "The effect of five-year zinc supplementation on serum zinc, serum cholesterol and hematocrit in persons randomly assigned to treatment group in the age-related eye disease study: AREDS Report No. 7",
+     "year": 2002,
+     "n": 4757
+    },
+    {
+     "pmid": "15136320",
+     "title": "Associations of mortality with ocular disorders and an intervention of high-dose antioxidants and zinc in the Age-Related Eye Disease Study: AREDS Report No. 13",
+     "year": 2004,
+     "n": 4753
+    },
+    {
+     "pmid": "22840421",
+     "title": "The Age-Related Eye Disease Study 2 (AREDS2): study design and baseline characteristics (AREDS2 report number 1)",
+     "year": 2012,
+     "n": 4203
+    },
+    {
+     "pmid": "23644932",
+     "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
+     "year": 2013,
+     "n": 4203
+    },
+    {
+     "pmid": "23582353",
+     "title": "Long-term effects of vitamins C and E, β-carotene, and zinc on age-related macular degeneration: AREDS report no. 35",
+     "year": 2013,
+     "n": 4757
+    },
+    {
+     "pmid": "24310343",
+     "title": "Secondary analyses of the effects of lutein/zeaxanthin on age-related macular degeneration progression: AREDS2 report No. 3",
+     "year": 2014,
+     "n": 4203
+    },
+    {
+     "pmid": "31358387",
+     "title": "No CFH or ARMS2 Interaction with Omega-3 Fatty Acids, Low versus High Zinc, or β-Carotene versus Lutein and Zeaxanthin on Progression of Age-Related Macular Degeneration in the Age-Related Eye Disease Study 2: Age-Related Eye Disease Study 2 Report No. 18",
+     "year": 2019,
+     "n": 4203
+    },
+    {
+     "pmid": "35653117",
+     "title": "Long-term Outcomes of Adding Lutein/Zeaxanthin and ω-3 Fatty Acids to the AREDS Supplements on Age-Related Macular Degeneration Progression: AREDS2 Report 28",
+     "year": 2022,
+     "n": 3882
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "11594942",
+     "37702300"
+    ],
+    "citedNotEligible": [
+     "11594942"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "28756618",
+      "doi": "10.1002/14651858.cd000254.pub4",
+      "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+      "year": 2017,
+      "firstAuthor": "Evans JR",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 80,
+      "n": 3791,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "23152201",
+      "doi": "10.1002/14651858.cd000254.pub3",
+      "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+      "year": 2012,
+      "firstAuthor": "Evans JR",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 63,
+      "n": 6150,
+      "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     },
+     {
+      "pmid": "18425071",
+      "doi": "10.1038/eye.2008.100",
+      "title": "Antioxidant supplements to prevent or slow down the progression of AMD: a systematic review and meta-analysis",
+      "year": 2008,
+      "firstAuthor": "Evans J.",
+      "journal": "Eye (London, England)",
+      "citedBy": 72,
+      "n": 23099,
+      "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+     },
+     {
+      "pmid": "31358387",
+      "doi": "10.1016/j.ophtha.2019.06.004",
+      "title": "No CFH or ARMS2 Interaction with Omega-3 Fatty Acids, Low versus High Zinc, or β-Carotene versus Lutein and Zeaxanthin on Progression of Age-Related Macular Degeneration in the Age-Related Eye Disease Study 2: Age-Related Eye Disease Study 2 Report No. 18",
+      "year": 2019,
+      "firstAuthor": "van Asten F",
+      "journal": "Ophthalmology",
+      "citedBy": 21,
+      "n": 4203,
+      "why": "A large trial (about 4,203 people) from 2019, as new as the newest review or newer"
+     },
+     {
+      "pmid": "35653117",
+      "doi": "10.1001/jamaophthalmol.2022.1640",
+      "title": "Long-term Outcomes of Adding Lutein/Zeaxanthin and ω-3 Fatty Acids to the AREDS Supplements on Age-Related Macular Degeneration Progression: AREDS2 Report 28",
+      "year": 2022,
+      "firstAuthor": "Chew EY",
+      "journal": "JAMA ophthalmology",
+      "citedBy": 125,
+      "n": 3882,
+      "why": "A large trial (about 3,882 people) from 2022, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People who already have age-related macular degeneration (AMD), or older adults",
+     "intervention": "Zinc, alone or with antioxidant vitamins (such as the AREDS formula)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "AMD getting worse, or new AMD"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 8,
+     "partly": 2,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "28756617",
+      "title": "Antioxidant vitamin and mineral supplements for preventing age-related macular degeneration",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Prevention RCTs in the general population tested vitamins C and E, beta-carotene and multivitamins; zinc is only possibly present inside a multivitamin."
+     },
+     {
+      "pmid": "22268800",
+      "title": "Lifestyle modification, nutritional and vitamins supplements for age-related macular degeneration",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Broad lifestyle and nutrition review of meta-analyses and observational studies; it covers the AREDS zinc formula but does not systematically pool RCTs."
+     },
+     {
+      "pmid": "22696317",
+      "title": "Antioxidant vitamin and mineral supplements for preventing age-related macular degeneration",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Prevention RCTs tested only vitamin E and beta-carotene; no trials of zinc or zinc with antioxidants were included."
+     },
+     {
+      "pmid": "18253971",
+      "title": "Antioxidant vitamin and mineral supplements for preventing age-related macular degeneration",
+      "year": 2008,
+      "fits": "no",
+      "reason": "Included trials tested only alpha-tocopherol and beta-carotene for preventing AMD; zinc was not studied."
+     }
+    ]
+   }
+  },
+  {
+   "id": "urinary",
+   "label": "Urinary problems",
+   "finding": "Hospital stays for urinary problems",
+   "counts": {
+    "reviews": 16,
+    "trialReviews": 6,
+    "trials": 27,
+    "largeTrials": 3
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1978,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "11588893",
+     "title": "Dietary supplement use in the Prostate Cancer Prevention Trial: implications for prevention trials",
+     "year": 2001,
+     "n": 15387
+    },
+    {
+     "pmid": "15800922",
+     "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
+     "year": 2005,
+     "n": 5141
+    },
+    {
+     "pmid": "17222649",
+     "title": "High dose zinc increases hospital admissions due to genitourinary complications",
+     "year": 2007,
+     "n": 3640
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "17222649",
+     "37702300"
+    ],
+    "citedNotEligible": [
+     "17222649",
+     "37702300"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Older adults",
+     "intervention": "High-dose zinc supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Urinary or genitourinary problems, or hospital stays for them"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 0,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41482855",
+      "title": "The Efficacy and Safety of Nutritional Supplements for Cancer Supportive Care: An Umbrella Review and Hierarchical Evidence Synthesis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Supplements, including zinc, for cancer supportive care such as oral mucositis; not older adults and no urinary or genitourinary outcome."
+     },
+     {
+      "pmid": "38507438",
+      "title": "The association between zinc and prostate cancer development: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Observational studies of zinc levels or intake and prostate cancer risk; no randomised zinc supplement versus placebo trials and no urinary outcome."
+     },
+     {
+      "pmid": "36449274",
+      "title": "Evaluation of the Safety and Effectiveness of Nutritional Supplements for Treating Hair Loss: A Systematic Review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Supplements, including zinc, to treat hair loss; the population and outcome differ and there is no urinary outcome."
+     },
+     {
+      "pmid": "37878272",
+      "title": "Safety and Effectiveness of Oral Nutraceuticals for Treating Acne: A Systematic Review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Nutraceuticals, including zinc, to treat acne; the population and outcome differ and there is no urinary outcome."
+     },
+     {
+      "pmid": "35684094",
+      "title": "Efficacy and Safety of Nutrient Supplements for Glycaemic Control and Insulin Resistance in Type 2 Diabetes: An Umbrella Review and Hierarchical Evidence Synthesis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Supplements, including zinc, for blood sugar control in type 2 diabetes; outcomes are glycaemic, not urinary."
+     },
+     {
+      "pmid": "16880453",
+      "title": "The efficacy and safety of multivitamin and mineral supplement use to prevent cancer and chronic disease in adults: a systematic review for a National Institutes of Health state-of-the-science conference",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Multivitamin/mineral combinations that include zinc, in general adults; outcomes are cancer and chronic disease, not urinary problems."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-sugar",
+   "label": "Blood sugar",
+   "finding": "Blood sugar (fasting glucose, HbA1c)",
+   "counts": {
+    "reviews": 44,
+    "trialReviews": 15,
+    "trials": 84,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42594341",
+     "doi": "10.1002/edm2.70264",
+     "title": "Effects of Zinc Supplementation on Glycemic Control, Insulin Resistance, Inflammation and Oxidative Stress in Diabetes: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2026,
+     "firstAuthor": "Loaiza-Giraldo JP",
+     "journal": "Endocrinology, diabetes & metabolism",
+     "citedBy": 1,
+     "n": 1023,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "37870684",
+     "doi": "10.1007/s12011-023-03895-7",
+     "title": "Zinc Supplementation in Individuals with Prediabetes and type 2 Diabetes: a GRADE-Assessed Systematic Review and Dose-Response Meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Nazari M",
+     "journal": "Biological trace element research",
+     "citedBy": 10,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "37183697",
+     "doi": "10.1080/10408398.2023.2209802",
+     "title": "Effect of zinc supplementation in the management of type 2 diabetes: A grading of recommendations assessment, development, and evaluation-assessed, dose-response meta-analysis of randomized controlled trials",
+     "year": 2024,
+     "firstAuthor": "Ghaedi K",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 6,
+     "n": 1442,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "35304727",
+     "doi": "10.1007/s12272-022-01374-6",
+     "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
+     "year": 2022,
+     "firstAuthor": "Kim Y",
+     "journal": "Archives of pharmacal research",
+     "citedBy": 11,
+     "why": "The most comprehensive review of trials on this outcome (119 trials, 2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.1724137931034483,
+    "trials": 29,
+    "inclusions": 44,
+    "reviews": [
+     {
+      "pmid": "42594341",
+      "trials": 19
+     },
+     {
+      "pmid": "37870684",
+      "trials": 11
+     },
+     {
+      "pmid": "37183697",
+      "trials": 11
+     },
+     {
+      "pmid": "35304727",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "21840002",
+      "title": "Oral zinc supplementation does not improve oxidative stress or vascular function in patients with type 2 diabetes with normal zinc levels",
+      "year": 2011,
+      "n": 20,
+      "inReviews": [
+       "42594341",
+       "37870684",
+       "37183697",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "31345359",
+      "title": "Effects of zinc supplementation on serum adiponectin concentration and glycemic control in patients with type 2 diabetes",
+      "year": 2019,
+      "n": 60,
+      "inReviews": [
+       "42594341",
+       "37870684",
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "28395131",
+      "title": "The effects of zinc supplementation on wound healing and metabolic status in patients with diabetic foot ulcer: A randomized, double-blind, placebo-controlled trial",
+      "year": 2017,
+      "n": 60,
+      "inReviews": [
+       "42594341",
+       "37870684",
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "29374382",
+      "title": "Zinc Supplementation Does Not Affect Glucagon Response to Intravenous Glucose and Insulin Infusion in Patients with Well-Controlled Type 2 Diabetes",
+      "year": 2018,
+      "n": 28,
+      "inReviews": [
+       "42594341",
+       "37183697",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "31129183",
+      "title": "Effects of zinc supplementation on superoxide dismutase activity and gene expression, and metabolic parameters in overweight type 2 diabetes patients: A randomized, double-blind, controlled trial",
+      "year": 2019,
+      "inReviews": [
+       "42594341",
+       "37870684",
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "27242121",
+      "title": "Zinc supplementation for improving glucose handling in pre-diabetes: A double blind randomized placebo controlled pilot study",
+      "year": 2016,
+      "n": 224,
+      "inReviews": [
+       "42594341",
+       "37870684"
+      ]
+     },
+     {
+      "pmid": "16532095",
+      "title": "Serum zinc levels in diabetic patients and effect of zinc supplementation on glycemic control of type 2 diabetics",
+      "year": 2006,
+      "n": 133,
+      "inReviews": [
+       "37870684",
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "33893671",
+      "title": "The effect of curcumin and zinc co-supplementation on glycemic parameters in overweight or obese prediabetic subjects: A phase 2 randomized, placebo-controlled trial with a multi-arm, parallel-group design",
+      "year": 2021,
+      "n": 84,
+      "inReviews": [
+       "42594341",
+       "37870684"
+      ]
+     },
+     {
+      "pmid": "16632297",
+      "title": "Effect of zinc replacement on lipids and lipoproteins in type 2-diabetic patients",
+      "year": 2006,
+      "inReviews": [
+       "37870684",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "17222649",
+      "title": "High dose zinc increases hospital admissions due to genitourinary complications",
+      "year": 2007,
+      "n": 3640,
+      "inReviews": [
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "29072815",
+      "title": "Zinc supplementation in prediabetes: A randomized double-blind placebo-controlled clinical trial",
+      "year": 2018,
+      "n": 200,
+      "inReviews": [
+       "37870684"
+      ]
+     },
+     {
+      "pmid": "35345925",
+      "title": "Effect of zinc supplementation on blood glucose level in different age groups of diabetes type 2",
+      "year": 2023,
+      "n": 144,
+      "inReviews": [
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "35451678",
+      "title": "The effect of zinc supplementation on glucose homeostasis: a randomised double-blind placebo-controlled trial",
+      "year": 2022,
+      "n": 98,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "37137539",
+      "title": "Zinc supplementation ameliorates type 2 diabetes markers through the enhancement of total antioxidant capacity in overweight patients",
+      "year": 2023,
+      "n": 70,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "32466773",
+      "title": "The effects of combined magnesium and zinc supplementation on metabolic status in patients with type 2 diabetes mellitus and coronary heart disease",
+      "year": 2020,
+      "n": 60,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "30922259",
+      "title": "The effects of magnesium-zinc-calcium-vitamin D co-supplementation on biomarkers of inflammation, oxidative stress and pregnancy outcomes in gestational diabetes",
+      "year": 2019,
+      "n": 60,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "26233572",
+      "title": "Zinc supplementation and the effects on metabolic status in gestational diabetes: A randomized, double-blind, placebo-controlled trial",
+      "year": 2015,
+      "n": 58,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "26465829",
+      "title": "Zinc Supplementation and the Effects on Pregnancy Outcomes in Gestational Diabetes: a Randomized, Double-blind, Placebo-controlled Trial",
+      "year": 2016,
+      "n": 50,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "25156968",
+      "title": "Zinc transporter gene expression and glycemic control in post-menopausal women with Type 2 diabetes mellitus",
+      "year": 2014,
+      "n": 48,
+      "inReviews": [
+       "37870684"
+      ]
+     },
+     {
+      "pmid": "33655432",
+      "title": "The Effects of Zinc Sulfate Supplementation on Serum Copeptin, C-Reactive Protein and Metabolic Markers in Zinc-Deficient Diabetic Patients on Hemodialysis: A Randomized, Double-Blind, Placebo-Controlled Trial",
+      "year": 2022,
+      "n": 25,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "32534376",
+      "title": "Fatty acid desaturation in red blood cell membranes of patients with type 2 diabetes is improved by zinc supplementation",
+      "year": 2020,
+      "n": 24,
+      "inReviews": [
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "24402636",
+      "title": "Effect of zinc supplementation on inflammatory markers and adipokines in young obese women",
+      "year": 2014,
+      "n": 20,
+      "inReviews": [
+       "37870684"
+      ]
+     },
+     {
+      "pmid": "25183688",
+      "title": "Effect of probiotic L. plantarum IS-10506 and zinc supplementation on humoral immune response and zinc status of Indonesian pre-school children",
+      "year": 2014,
+      "n": 12,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "12897047",
+      "title": "Antioxidant effects of zinc supplementation in Tunisians with type 2 diabetes mellitus",
+      "year": 2003,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "20151940",
+      "title": "Effects of combination of zinc and vitamin A supplementation on serum fasting blood sugar, insulin, apoprotein B and apoprotein A-I in patients with type I diabetes",
+      "year": 2010,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "32007694",
+      "title": "Zinc supplementation improves glucose homeostasis in patients with β-thalassemia major complicated with diabetes mellitus: A randomized controlled trial",
+      "year": 2020,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "11444416",
+      "title": "Potential antioxidant effects of zinc and chromium supplementation in people with type 2 diabetes mellitus",
+      "year": 2001,
+      "inReviews": [
+       "42594341"
+      ]
+     },
+     {
+      "pmid": "12835492",
+      "title": "Zinc supplementation has no effect on lipoprotein metabolism, hemostasis, and putative indices of copper status in healthy men",
+      "year": 2003,
+      "inReviews": [
+       "37183697"
+      ]
+     },
+     {
+      "pmid": "24403477",
+      "title": "Zinc supplementation improves anticancer activity of monocytes in type-2 diabetic patients with metabolic syndrome",
+      "year": 2014,
+      "inReviews": [
+       "37183697"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 7
+    },
+    {
+     "year": 2021,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 5
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "19491388",
+     "title": "Effects of long-term antioxidant supplementation and association of serum antioxidant concentrations with risk of metabolic syndrome in adults",
+     "year": 2009,
+     "n": 5220
+    },
+    {
+     "pmid": "19549749",
+     "title": "Antenatal micronutrient supplementation reduces metabolic syndrome in 6- to 8-year-old children in rural Nepal",
+     "year": 2009,
+     "n": 3524
+    },
+    {
+     "pmid": "21865563",
+     "title": "Low maternal vitamin B-12 status is associated with offspring insulin resistance regardless of antenatal micronutrient supplementation in rural Nepal",
+     "year": 2011,
+     "n": 1132
+    },
+    {
+     "pmid": "26473975",
+     "title": "Intake of Vitamin and Mineral Supplements and Longitudinal Association with HbA1c Levels in the General Non-Diabetic Population--Results from the MONICA/KORA S3/F3 Study",
+     "year": 2015,
+     "n": 4447
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "31161192"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "42594341",
+      "doi": "10.1002/edm2.70264",
+      "title": "Effects of Zinc Supplementation on Glycemic Control, Insulin Resistance, Inflammation and Oxidative Stress in Diabetes: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "firstAuthor": "Loaiza-Giraldo JP",
+      "journal": "Endocrinology, diabetes & metabolism",
+      "citedBy": 1,
+      "n": 1023,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "37870684",
+      "doi": "10.1007/s12011-023-03895-7",
+      "title": "Zinc Supplementation in Individuals with Prediabetes and type 2 Diabetes: a GRADE-Assessed Systematic Review and Dose-Response Meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Nazari M",
+      "journal": "Biological trace element research",
+      "citedBy": 10,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "37183697",
+      "doi": "10.1080/10408398.2023.2209802",
+      "title": "Effect of zinc supplementation in the management of type 2 diabetes: A grading of recommendations assessment, development, and evaluation-assessed, dose-response meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "firstAuthor": "Ghaedi K",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 6,
+      "n": 1442,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "35304727",
+      "doi": "10.1007/s12272-022-01374-6",
+      "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
+      "year": 2022,
+      "firstAuthor": "Kim Y",
+      "journal": "Archives of pharmacal research",
+      "citedBy": 11,
+      "why": "The most comprehensive review of trials on this outcome (119 trials, 2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or without diabetes",
+     "intervention": "Zinc supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Fasting blood sugar, HbA1c or insulin resistance"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 9,
+     "partly": 2,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40738717",
+      "title": "Micronutrient status of patients with diabetic foot: A systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at micronutrient status and ulcer healing in diabetic foot, not zinc's effect on glucose, HbA1c or insulin resistance."
+     },
+     {
+      "pmid": "38224402",
+      "title": "Effect of Zinc Supplementation on Lipid Profile and Body Composition in Patients with Type 2 Diabetes Mellitus: A GRADE-Assessed Systematic Review and Dose-Response Meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipids and body composition, not glycaemic measures."
+     },
+     {
+      "pmid": "37604307",
+      "title": "The Effect of Zinc Supplementation on Lipid Profiles in Patients with Type 2 Diabetes Mellitus: A Systematic Review and Dose-Response Meta-Analysis of Randomized Clinical Trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipid profiles."
+     },
+     {
+      "pmid": "35684094",
+      "title": "Efficacy and Safety of Nutrient Supplements for Glycaemic Control and Insulin Resistance in Type 2 Diabetes: An Umbrella Review and Hierarchical Evidence Synthesis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Umbrella review of earlier meta-analyses in type 2 diabetes, including zinc, rather than its own pooling of RCTs."
+     },
+     {
+      "pmid": "32451277",
+      "title": "Effects of zinc supplementation on lipid profile in patients with type 2 diabetes mellitus: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipid profiles."
+     },
+     {
+      "pmid": "17253560",
+      "title": "Zinc supplementation for the prevention of type 2 diabetes mellitus",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Right question (zinc versus placebo in adults with insulin resistance), but only one trial was included, so nothing was pooled."
+     }
+    ]
+   }
+  }
+ ]
+}

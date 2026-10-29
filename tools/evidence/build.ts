@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { chooseFrom, compareWithPage, coveredArea, largeTrialsSince, perYear, splitByScreening, type Chosen } from "../../src/core/evidenceMap";
 import { CACHE, ROOT, loadTopic } from "./load";
 
-const { topic, raw, nutrient, records, eligible: eligibleFor, screening } = loadTopic(process.argv[2]);
+const { topic, raw, nutrient, records, eligible: eligibleFor, screening, topicTitle } = loadTopic(process.argv[2]);
 const trialIds = new Set(records.filter((r) => r.design === "rct" && r.pmid).map((r) => r.pmid!));
 
 /** A review's reference list (PMIDs), from Europe PMC, cached. */
@@ -31,7 +31,8 @@ async function references(pmid: string): Promise<string[]> {
 
 const people = records.filter((r) => r.population !== "animal");
 const counts = {
-  all: raw.counts.all ?? 0,
+  // Unknown when the search had to be filtered after downloading (see localFilter).
+  ...(topic.localFilter ? {} : { all: raw.counts.all ?? 0 }),
   retrieved: records.length,
   animal: records.length - people.length,
   retracted: people.filter((r) => r.retracted).length,
@@ -51,7 +52,7 @@ for (const o of topic.outcomes) {
   const chosen = chooseFrom(split ? split.yes : eligible).map((c) => (split ? { ...c, why: `${c.why}; screened as answering the question` } : c));
   const newestYear = Math.max(0, ...chosen.slice(0, 3).map((c) => c.year ?? 0));
   const newer = newestYear ? largeTrialsSince(records, o.id, newestYear) : [];
-  // Which vitamin D trials each chosen review lists in its references.
+  // Which of the downloaded trials each chosen review lists in its references.
   const included: { review: string; trials: string[] }[] = [];
   for (const c of chosen) {
     if (!c.pmid) continue;
@@ -110,28 +111,30 @@ for (const o of topic.outcomes) {
 }
 
 const guidelines = people
-  .filter((r) => r.design === "guideline" && !r.retracted && /vitamin D|cholecalciferol|calcifediol/i.test(r.title))
+  .filter((r) => r.design === "guideline" && !r.retracted && topicTitle.test(r.title))
   .sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
   .slice(0, 6)
-  .map((r): Chosen => ({ ...(r.pmid ? { pmid: r.pmid } : {}), ...(r.doi ? { doi: r.doi } : {}), title: r.title.replace(/\.$/, ""), ...(r.year ? { year: r.year } : {}), ...(r.journal ? { journal: r.journal } : {}), citedBy: r.citedBy, why: "One of the newest guidelines with vitamin D in the title" }));
+  .map((r): Chosen => ({ ...(r.pmid ? { pmid: r.pmid } : {}), ...(r.doi ? { doi: r.doi } : {}), title: r.title.replace(/\.$/, ""), ...(r.year ? { year: r.year } : {}), ...(r.journal ? { journal: r.journal } : {}), citedBy: r.citedBy, why: `One of the newest guidelines with ${topic.name} in the title` }));
 
 const map = {
   topic: topic.id,
   nutrientId: topic.nutrientId,
+  name: topic.name,
+  ...(topic.scope ? { scope: topic.scope } : {}),
   builtAt: new Date().toISOString().slice(0, 10),
   fetchedAt: raw.fetchedAt,
   source: "Europe PMC (PubMed records)",
   queries: raw.queries,
   rules: [
-    "Searched every PubMed record in Europe PMC with a vitamin D term in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+    `Searched every PubMed record in Europe PMC with ${topic.name} (${topic.terms.join(", ")}) in its title or abstract${topic.scope ? `, ${topic.scope}` : ""}; downloaded all reviews, randomised trials and guidelines.`,
     "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
     "An outcome counts when its words are in the title.",
-    "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin D, with vitamin D in the title (not reviews of blood levels in observational studies), and not about another group of people (sepsis, COVID-19, surgery, dialysis, pregnancy, type 1 diabetes and similar; the list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+    `Reviews: meta-analyses or systematic reviews of randomised trials of giving ${topic.name}, with ${topic.name} in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.`,
     "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
     ...(screening
       ? [`Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by ${screening.by}. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.`]
       : []),
-    "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin D trials, measured as the corrected covered area (Pieper 2014, PMID 24581293).",
+    `Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded ${topic.name} trials, measured as the corrected covered area (Pieper 2014, PMID 24581293).`,
   ],
   counts,
   guidelines,

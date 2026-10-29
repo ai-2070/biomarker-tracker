@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chooseFrom, chooseReviews, classify, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, coveredArea, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "../../src/core/evidenceMap";
+import { chooseFrom, chooseReviews, classify, eligibleReviews, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, coveredArea, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "../../src/core/evidenceMap";
 
 const OUT = [{ id: "fractures", title: /\bfractur\w*/i }];
 const rec = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: [], mesh: ["Humans"], citedBy: 0, ...o });
@@ -38,7 +38,7 @@ describe("evidence maps", () => {
     const meta = (year: number, citedBy: number, pmid: string): EvidenceRecord =>
       rec({ pmid, year, citedBy, title: "Vitamin D supplementation and fractures: a meta-analysis of randomized trials", pubTypes: ["Meta-Analysis"] });
     const records = [meta(2014, 900, "old"), meta(2021, 50, "a"), meta(2023, 20, "b"), meta(2024, 5, "c"), meta(2019, 10, "d"),
-      rec({ pmid: "obs", year: 2025, title: "Serum vitamin D and fractures: meta-analysis of cohort studies", pubTypes: ["Meta-Analysis"] }),
+      rec({ pmid: "obs", year: 2025, title: "Serum vitamin D and fractures: meta-analysis of cohort studies", abstract: "We pooled 12 prospective cohort studies of serum 25-hydroxyvitamin D.", pubTypes: ["Meta-Analysis"] }),
       rec({ pmid: "ret", year: 2025, title: "Vitamin D supplementation and fractures: meta-analysis of randomized trials", pubTypes: ["Meta-Analysis", "Retracted Publication"] })].map((r) => classify(r, OUT));
     // The oldest one pooled the most trials: it's added as the most comprehensive, not for its citations.
     records[0]!.abstract = "We pooled 41 randomized controlled trials.";
@@ -148,9 +148,21 @@ describe("evidence maps", () => {
         left: [{ pmid: "b", title: "B", fits: "no" as const, reason: "Other people." }],
       },
     };
-    const map = { topic: "t", nutrientId: "t", builtAt: "2026-10-29", fetchedAt: "", source: "", queries: {}, rules: ["r"], counts: { all: 1, retrieved: 1, animal: 0, retracted: 0, reviews: 2, trials: 0, guidelines: 0 }, guidelines: [], outcomes: [outcome] };
+    const map = { topic: "t", nutrientId: "t", name: "t", builtAt: "2026-10-29", fetchedAt: "", source: "", queries: {}, rules: ["r"], counts: { all: 1, retrieved: 1, animal: 0, retracted: 0, reviews: 2, trials: 0, guidelines: 0 }, guidelines: [], outcomes: [outcome] };
     expect(validateEvidenceMap(map)).toEqual([]);
     expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, chosenReviews: [{ pmid: "b", title: "B", citedBy: 0, why: "Newest" }] }] })).toContain("diabetes: a chosen review was screened out");
     expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, screening: { ...outcome.screening, left: [{ ...outcome.screening.left[0]!, reason: "" }] } }] })).toContain("diabetes: a review left out has no reason");
+  });
+});
+
+describe("eligible reviews: several supplements, missing abstracts", () => {
+  const rec2 = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: ["Meta-Analysis"], mesh: ["Humans"], citedBy: 0, ...o });
+  const outcomes = [{ id: "migraine", title: /migraine/i }];
+  it("counts a review of several supplements when the nutrient is in its abstract, and keeps reviews without an abstract", () => {
+    const several = classify(rec2({ pmid: "1", title: "Nutritional supplements for migraine prevention", abstract: "Randomized trials of magnesium, riboflavin and CoQ10 supplementation." }), outcomes);
+    const other = classify(rec2({ pmid: "2", title: "Acupuncture for migraine", abstract: "Randomized trials of acupuncture treatment; magnesium was not studied... magnesium" }), outcomes);
+    const noAbstract = classify(rec2({ pmid: "3", title: "Magnesium for migraine: a meta-analysis" }), outcomes);
+    const ids = eligibleReviews([several, other, noAbstract], "migraine", /magnesium/i).map((r) => r.pmid);
+    expect(ids).toEqual(["1", "3"]);
   });
 });

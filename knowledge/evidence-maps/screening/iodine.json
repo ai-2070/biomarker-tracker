@@ -1,0 +1,310 @@
+{
+ "topic": "iodine",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "schoolchildren": {
+   "question": {
+    "population": "Schoolchildren with mild to moderate iodine deficiency",
+    "intervention": "Iodine supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Thinking skills (cognition, IQ)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42720098",
+     "fits": "yes",
+     "reason": "Meta-analysed RCTs of iodine supplements vs placebo in children and adolescents (including ages 6-17), with cognitive function as a critical outcome."
+    },
+    {
+     "pmid": "30489630",
+     "fits": "partly",
+     "reason": "Iodine supplements for children in iodine-deficient areas with cognitive outcomes, but it mixed in non-randomised trials and pooled nothing (narrative only)."
+    },
+    {
+     "pmid": "35565659",
+     "fits": "no",
+     "reason": "Looks at breast milk iodine as a marker of iodine status in lactating women and infants, not supplements or cognition in schoolchildren."
+    },
+    {
+     "pmid": "23609774",
+     "fits": "partly",
+     "reason": "Iodine and mental development, but in children aged 5 and under; the RCTs supplemented mothers and most other studies were observational."
+    },
+    {
+     "pmid": "30920622",
+     "fits": "no",
+     "reason": "An observational cohort analysis of mothers' iodine status in pregnancy and child IQ, with no supplementation trials."
+    },
+    {
+     "pmid": "27395329",
+     "fits": "partly",
+     "reason": "RCTs in school-aged children with cognitive outcomes, but it covers many micronutrients, not just iodine, and gives no pooled iodine-only analysis."
+    },
+    {
+     "pmid": "26420192",
+     "fits": "no",
+     "reason": "Iodine-fortified foods in children with urinary iodine as the only outcome; both the intervention and the outcome differ."
+    },
+    {
+     "pmid": "15106221",
+     "fits": "partly",
+     "reason": "Iodine supplements for children in iodine-deficient areas with cognitive outcomes, but it mixed in non-randomised trials and pooled nothing (narrative only)."
+    }
+   ]
+  },
+  "young-children": {
+   "question": {
+    "population": "Children aged 5 and under in iodine-deficient areas (through their mothers in pregnancy, or as infants)",
+    "intervention": "Iodine supplements, iodised salt or iodised oil",
+    "comparison": "No iodine, or less iodine",
+    "outcome": "Mental development"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42720098",
+     "fits": "partly",
+     "reason": "Pooled RCTs of iodine vs placebo with cognitive outcomes, but the population is mostly children aged 6 to 17; only one trial was in infants."
+    },
+    {
+     "pmid": "35535480",
+     "fits": "no",
+     "reason": "The outcome is hearing, not mental development, and most included studies are observational."
+    },
+    {
+     "pmid": "30489630",
+     "fits": "partly",
+     "reason": "Iodine for children in iodine-deficient areas with cognitive outcomes, but it is withdrawn, mixes non-randomised trials, covers all ages and did no pooling."
+    },
+    {
+     "pmid": "30802939",
+     "fits": "partly",
+     "reason": "Pooled RCTs of iodine vs placebo with Bayley cognitive scores, but the population is preterm infants rather than children in iodine-deficient areas."
+    },
+    {
+     "pmid": "35565659",
+     "fits": "no",
+     "reason": "This review tests breast milk iodine as a status biomarker and does not look at iodine interventions or mental development."
+    },
+    {
+     "pmid": "23609774",
+     "fits": "yes",
+     "reason": "Pooled effect size from RCTs of maternal iodine supplementation on mental development in children aged 5 and under."
+    },
+    {
+     "pmid": "30920622",
+     "fits": "no",
+     "reason": "An observational cohort meta-analysis of maternal iodine status and child IQ, with no iodine intervention."
+    },
+    {
+     "pmid": "27395329",
+     "fits": "partly",
+     "reason": "RCTs of micronutrients including iodine on cognition, but the population is school-aged children aged 4 to 18, and it did no pooling."
+    },
+    {
+     "pmid": "26420192",
+     "fits": "partly",
+     "reason": "Pooled RCTs of iodine-fortified foods in children, but the outcome is only urinary iodine, not mental development."
+    },
+    {
+     "pmid": "28746059",
+     "fits": "partly",
+     "reason": "A broad overview of many micronutrients, including iodine, in pregnancy and childhood, with no specific pooled iodine analysis."
+    },
+    {
+     "pmid": "24025628",
+     "fits": "yes",
+     "reason": "RCTs of iodine supplementation in pregnancy in iodine-deficient regions that report childhood intelligence and development."
+    },
+    {
+     "pmid": "15106221",
+     "fits": "partly",
+     "reason": "Iodine for children in iodine-deficient areas with cognitive outcomes, but it mixes non-randomised trials, covers all ages and did no pooling."
+    },
+    {
+     "pmid": "16625632",
+     "fits": "partly",
+     "reason": "An iodine RCT in preterm infants, a different group, and the included trial did not measure neurodevelopment."
+    }
+   ]
+  },
+  "maternal-thyroid": {
+   "question": {
+    "population": "Pregnant women in areas with mild to moderate iodine deficiency",
+    "intervention": "Iodine supplements during pregnancy",
+    "comparison": "Placebo or no treatment",
+    "outcome": "The mother's thyroid function (TSH, thyroid hormones, thyroglobulin, goitre)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37417826",
+     "fits": "no",
+     "reason": "Narrative update on the right topic, but it summarises individual studies and does not systematically review or pool randomised trials."
+    },
+    {
+     "pmid": "28282437",
+     "fits": "no",
+     "reason": "Looks at excess iodine intake and thyroid disease in general populations, mostly observational, not supplements in pregnancy."
+    },
+    {
+     "pmid": "29767700",
+     "fits": "no",
+     "reason": "Iodine in pregnant women and children, but outcomes are prenatal and postnatal growth, not the mother's thyroid function."
+    },
+    {
+     "pmid": "32320029",
+     "fits": "yes",
+     "reason": "Reviews RCTs of iodine supplements vs control in mildly-to-moderately deficient pregnant women, reporting maternal TSH, FT4, thyroglobulin and thyroid volume."
+    },
+    {
+     "pmid": "28260263",
+     "fits": "yes",
+     "reason": "Cochrane review pooling RCTs of iodine supplements vs placebo/none around pregnancy in mild-moderate deficiency settings, with maternal thyroid outcomes."
+    },
+    {
+     "pmid": "30920622",
+     "fits": "no",
+     "reason": "Observational cohort meta-analysis of maternal iodine status and child IQ, with no supplement trials and no maternal thyroid outcome."
+    },
+    {
+     "pmid": "29596650",
+     "fits": "no",
+     "reason": "Looks at other micronutrients (selenium, zinc, iron, vitamin A) and their effect on iodine status and thyroid hormones, not iodine supplements in pregnancy."
+    },
+    {
+     "pmid": "24025628",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of iodine in pregnancy including mild-moderate deficiency trials, with maternal thyroid function as a secondary outcome."
+    },
+    {
+     "pmid": "26091836",
+     "fits": "no",
+     "reason": "Multiple micronutrient powders for home fortification in pregnancy, with maternal and newborn health outcomes, not iodine supplements and maternal thyroid function."
+    },
+    {
+     "pmid": "17636600",
+     "fits": "no",
+     "reason": "Withdrawn review of trials in areas with endemic cretinism (severe deficiency), reporting infant death and cretinism, not maternal thyroid."
+    },
+    {
+     "pmid": "10796152",
+     "fits": "no",
+     "reason": "Trials in severely deficient areas with endemic cretinism, reporting infant deaths, cretinism and development, not maternal thyroid function."
+    }
+   ]
+  },
+  "child-development-pregnancy": {
+   "question": {
+    "population": "Pregnant women with mild to moderate iodine deficiency",
+    "intervention": "Iodine supplements during pregnancy",
+    "comparison": "Placebo or no treatment",
+    "outcome": "The child's development (thinking, language, motor skills, IQ)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42720098",
+     "fits": "partly",
+     "reason": "Iodine vs placebo with cognitive outcomes, but supplements were given directly to children and adolescents, not pregnant women."
+    },
+    {
+     "pmid": "37417826",
+     "fits": "partly",
+     "reason": "Covers maternal iodine in mild-to-moderate deficiency and child neurodevelopment, but is a narrative update that does not pool trials itself."
+    },
+    {
+     "pmid": "35535480",
+     "fits": "partly",
+     "reason": "Includes an RCT in mildly iodine-deficient pregnant women, but the outcome is child hearing, not thinking, language, motor skills or IQ."
+    },
+    {
+     "pmid": "29767700",
+     "fits": "partly",
+     "reason": "Iodine vs placebo or no intervention in pregnant women and children, but outcomes are prenatal and postnatal growth, not neurodevelopment."
+    },
+    {
+     "pmid": "30489630",
+     "fits": "partly",
+     "reason": "Withdrawn review of iodine supplements given directly to children, not pregnant women; cognitive outcomes were summarised narratively, not pooled."
+    },
+    {
+     "pmid": "32320029",
+     "fits": "yes",
+     "reason": "Pooled RCTs of iodine in mildly-to-moderately deficient pregnant women and reported child cognitive, language and motor scores."
+    },
+    {
+     "pmid": "30802939",
+     "fits": "partly",
+     "reason": "Iodine vs placebo with Bayley neurodevelopment outcomes, but supplements were given to preterm infants, not pregnant women."
+    },
+    {
+     "pmid": "35565659",
+     "fits": "no",
+     "reason": "Assesses breast milk iodine as a biomarker of iodine status, not supplementation effects on child development."
+    },
+    {
+     "pmid": "23609774",
+     "fits": "partly",
+     "reason": "Pools RCTs of maternal iodine supplementation on child mental development, but is not limited to mild-to-moderate deficiency."
+    },
+    {
+     "pmid": "28260263",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of iodine vs control in pregnancy, including mild-to-moderate deficiency settings, with children's outcomes as an objective."
+    },
+    {
+     "pmid": "30920622",
+     "fits": "no",
+     "reason": "Meta-analysis of observational cohorts on maternal iodine status and child IQ, with no supplementation trials."
+    },
+    {
+     "pmid": "27395329",
+     "fits": "no",
+     "reason": "Micronutrient interventions in school-aged children, not iodine supplementation of pregnant women."
+    },
+    {
+     "pmid": "26420192",
+     "fits": "no",
+     "reason": "Iodine-fortified foods in children, with urinary iodine as the only outcome."
+    },
+    {
+     "pmid": "28746059",
+     "fits": "no",
+     "reason": "Broad narrative overview of many micronutrients and nutrition interventions, with no specific pooled analysis for this question."
+    },
+    {
+     "pmid": "24025628",
+     "fits": "partly",
+     "reason": "RCTs of iodine in pregnancy on child development, but development data come only from severely deficient regions, not mild-to-moderate ones."
+    },
+    {
+     "pmid": "15106221",
+     "fits": "partly",
+     "reason": "Iodine supplements given directly to children, not pregnant women; cognitive outcomes were summarised narratively, not pooled."
+    },
+    {
+     "pmid": "26091836",
+     "fits": "no",
+     "reason": "Multiple micronutrient powders in pregnancy with maternal and newborn health outcomes, not iodine alone for child development."
+    },
+    {
+     "pmid": "17636600",
+     "fits": "partly",
+     "reason": "Withdrawn review of maternal iodine with psychomotor outcomes, but in populations with endemic cretinism (severe deficiency)."
+    },
+    {
+     "pmid": "16625632",
+     "fits": "partly",
+     "reason": "Iodine supplements for preterm infants, not pregnant women; the single included trial did not assess neurodevelopment."
+    },
+    {
+     "pmid": "10796152",
+     "fits": "partly",
+     "reason": "Maternal iodine with psychomotor development outcomes, but in populations with endemic cretinism (severe deficiency)."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,1367 @@
+{
+ "topic": "vitamin_k",
+ "nutrientId": "vitamin_k",
+ "name": "vitamin K",
+ "scope": "in papers about supplements, fortified food, intake or diet",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with vitamin K (vitamin K, phylloquinone, phytonadione, menaquinone, menatetrenone, vitamin K2, vitamin K1) in its title or abstract, in papers about supplements, fortified food, intake or diet; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin K, with vitamin K in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin K trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 3217,
+  "retrieved": 316,
+  "animal": 4,
+  "retracted": 1,
+  "reviews": 88,
+  "trials": 203,
+  "guidelines": 20
+ },
+ "guidelines": [
+  {
+   "pmid": "29562325",
+   "doi": "10.1093/eurheartj/ehy136",
+   "title": "The 2018 European Heart Rhythm Association Practical Guide on the use of non-vitamin K antagonist oral anticoagulants in patients with atrial fibrillation",
+   "year": 2018,
+   "journal": "European heart journal",
+   "citedBy": 1259,
+   "why": "One of the newest guidelines with vitamin K in the title"
+  },
+  {
+   "pmid": "29562331",
+   "doi": "10.1093/europace/euy054",
+   "title": "The 2018 European Heart Rhythm Association Practical Guide on the use of non-vitamin K antagonist oral anticoagulants in patients with atrial fibrillation: executive summary",
+   "year": 2018,
+   "journal": "Europace : European pacing, arrhythmias, and cardiac electrophysiology : journal of the working groups on cardiac pacing, arrhythmias, and cardiac cellular electrophysiology of the European Society of Cardiology",
+   "citedBy": 153,
+   "why": "One of the newest guidelines with vitamin K in the title"
+  },
+  {
+   "pmid": "27050049",
+   "doi": "10.1097/mpg.0000000000001232",
+   "title": "Prevention of Vitamin K Deficiency Bleeding in Newborn Infants: A Position Paper by the ESPGHAN Committee on Nutrition",
+   "year": 2016,
+   "journal": "Journal of pediatric gastroenterology and nutrition",
+   "citedBy": 55,
+   "why": "One of the newest guidelines with vitamin K in the title"
+  },
+  {
+   "pmid": "26324838",
+   "doi": "10.1093/europace/euv309",
+   "title": "Updated European Heart Rhythm Association Practical Guide on the use of non-vitamin K antagonist anticoagulants in patients with non-valvular atrial fibrillation",
+   "year": 2015,
+   "journal": "Europace : European pacing, arrhythmias, and cardiac electrophysiology : journal of the working groups on cardiac pacing, arrhythmias, and cardiac cellular electrophysiology of the European Society of Cardiology",
+   "citedBy": 663,
+   "why": "One of the newest guidelines with vitamin K in the title"
+  },
+  {
+   "pmid": "19507305",
+   "doi": "10.1111/j.1528-1167.2009.02130.x",
+   "title": "Management issues for women with epilepsy--focus on pregnancy (an evidence-based review): III. Vitamin K, folic acid, blood levels, and breast-feeding: Report of the Quality Standards Subcommittee and Therapeutics and Technology Assessment Subcommittee of the American Academy of Neurology and the American Epilepsy Society",
+   "year": 2009,
+   "journal": "Epilepsia",
+   "citedBy": 85,
+   "why": "One of the newest guidelines with vitamin K in the title"
+  },
+  {
+   "pmid": "19398680",
+   "doi": "10.1212/wnl.0b013e3181a6b325",
+   "title": "Practice parameter update: management issues for women with epilepsy--focus on pregnancy (an evidence-based review): vitamin K, folic acid, blood levels, and breastfeeding: report of the Quality Standards Subcommittee and Therapeutics and Technology Assessment Subcommittee of the American Academy of Neurology and American Epilepsy Society",
+   "year": 2009,
+   "journal": "Neurology",
+   "citedBy": 162,
+   "why": "One of the newest guidelines with vitamin K in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "status",
+   "label": "Status markers",
+   "finding": "Blood markers of vitamin K status (inactive osteocalcin and matrix Gla protein)",
+   "counts": {
+    "reviews": 8,
+    "trialReviews": 0,
+    "trials": 42,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "30514729",
+     "18922041"
+    ],
+    "citedNotEligible": [
+     "30514729",
+     "18922041"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "fractures",
+   "label": "Fractures",
+   "finding": "Bone fractures",
+   "counts": {
+    "reviews": 5,
+    "trialReviews": 3,
+    "trials": 4,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "31076817",
+     "doi": "10.1007/s00198-019-04949-0",
+     "title": "Effect of vitamin K on bone mineral density and fractures in adults: an updated systematic review and meta-analysis of randomised controlled trials",
+     "year": 2019,
+     "firstAuthor": "Mott A",
+     "journal": "Osteoporosis international : a journal established as result of cooperation between the European Foundation for Osteoporosis and the National Osteoporosis Foundation of the USA",
+     "citedBy": 56,
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "19082528",
+     "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
+     "year": 2009,
+     "n": 2986
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "31076817"
+    ],
+    "citedNotChosen": [
+     "16801507",
+     "19082528"
+    ],
+    "citedNotEligible": [
+     "19082528"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Women after menopause or people with osteoporosis",
+     "intervention": "Vitamin K1 or K2 (including menatetrenone, MK-4) supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Fractures"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "19410972",
+      "title": "High-dose vitamin K supplementation reduces fracture incidence in postmenopausal women: a review of the literature",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Matches population, vitamin K1/K2 and clinical fractures, but it is a narrative review of 7 RCTs with no pooled analysis."
+     },
+     {
+      "pmid": "16801507",
+      "title": "Vitamin K and the prevention of fractures: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Pools RCTs of vitamin K versus control for fractures, but the population is any adults, not specifically postmenopausal or osteoporotic."
+     }
+    ]
+   }
+  },
+  {
+   "id": "bone-density",
+   "label": "Bone density",
+   "finding": "Bone mineral density",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 6,
+    "trials": 29,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36033779",
+     "doi": "10.3389/fpubh.2022.979649",
+     "title": "Efficacy of vitamin K2 in the prevention and treatment of postmenopausal osteoporosis: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Ma ML",
+     "journal": "Frontiers in public health",
+     "citedBy": 48,
+     "n": 6425,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "35711002",
+     "doi": "10.1007/s00774-022-01342-6",
+     "title": "Efficacy and safety of vitamin K2 for postmenopausal women with osteoporosis at a long-term follow-up: meta-analysis and systematic review",
+     "year": 2022,
+     "firstAuthor": "Zhou M",
+     "journal": "Journal of bone and mineral metabolism",
+     "citedBy": 23,
+     "n": 6853,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "31076817",
+     "doi": "10.1007/s00198-019-04949-0",
+     "title": "Effect of vitamin K on bone mineral density and fractures in adults: an updated systematic review and meta-analysis of randomised controlled trials",
+     "year": 2019,
+     "firstAuthor": "Mott A",
+     "journal": "Osteoporosis international : a journal established as result of cooperation between the European Foundation for Osteoporosis and the National Osteoporosis Foundation of the USA",
+     "citedBy": 56,
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.32608695652173914,
+    "trials": 23,
+    "inclusions": 38,
+    "reviews": [
+     {
+      "pmid": "36033779",
+      "trials": 10
+     },
+     {
+      "pmid": "35711002",
+      "trials": 8
+     },
+     {
+      "pmid": "31076817",
+      "trials": 20
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19082528",
+      "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
+      "year": 2009,
+      "n": 2986,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "17287908",
+      "title": "Vitamin K2 supplementation improves hip bone geometry and bone strength indices in postmenopausal women",
+      "year": 2007,
+      "n": 325,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "23525894",
+      "title": "Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women",
+      "year": 2013,
+      "n": 244,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "11886767",
+      "title": "Effect of continuous combined therapy with vitamin K(2) and vitamin D(3) on bone mineral density and coagulofibrinolysis function in postmenopausal women",
+      "year": 2002,
+      "n": 172,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "18470667",
+      "title": "Response of serum carboxylated and undercarboxylated osteocalcin to alendronate monotherapy and combined therapy with vitamin K2 in postmenopausal women",
+      "year": 2008,
+      "n": 44,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "23702931",
+      "title": "Low-dose vitamin K2 (MK-4) supplementation for 12 months improves bone metabolism and prevents forearm bone loss in postmenopausal Japanese women",
+      "year": 2014,
+      "n": 24,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "19937427",
+      "title": "Vitamin K2 supplementation does not influence bone loss in early menopausal women: a randomised double-blind placebo-controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "36033779",
+       "35711002",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "27625301",
+      "title": "Vitamin K2 (menaquinone-7) prevents age-related deterioration of trabecular bone microarchitecture at the tibia in postmenopausal women",
+      "year": 2016,
+      "n": 148,
+      "inReviews": [
+       "36033779",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "18252784",
+      "title": "Effect of vitamin K supplementation on bone loss in elderly men and women",
+      "year": 2008,
+      "n": 452,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "18922041",
+      "title": "Vitamin K supplementation in postmenopausal women with osteopenia (ECKO trial): a randomized controlled trial",
+      "year": 2008,
+      "n": 440,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "32060566",
+      "title": "Effect of Low-Dose Vitamin K2 Supplementation on Bone Mineral Density in Middle-Aged and Elderly Chinese: A Randomized Controlled Study",
+      "year": 2020,
+      "n": 311,
+      "inReviews": [
+       "36033779"
+      ]
+     },
+     {
+      "pmid": "17243866",
+      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
+      "year": 2007,
+      "n": 244,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "14506950",
+      "title": "Vitamin K1 supplementation retards bone loss in postmenopausal women between 50 and 60 years of age",
+      "year": 2003,
+      "n": 181,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "33030563",
+      "title": "The effect of vitamin MK-7 on bone mineral density and microarchitecture in postmenopausal women with osteopenia, a 3-year randomized, placebo-controlled clinical trial",
+      "year": 2021,
+      "n": 142,
+      "inReviews": [
+       "36033779"
+      ]
+     },
+     {
+      "pmid": "21455716",
+      "title": "Possible site-specific effect of an intervention combining nutrition and lifestyle counselling with consumption of fortified dairy products on bone mass: the Postmenopausal Health Study II",
+      "year": 2011,
+      "n": 115,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "26892582",
+      "title": "Effect of Vitamin K on Vascular Health and Physical Function in Older People with Vascular Disease--A Randomised Controlled Trial",
+      "year": 2016,
+      "n": 80,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "21860562",
+      "title": "Vitamin K supplement along with vitamin D and calcium reduced serum concentration of undercarboxylated osteocalcin while increasing bone mineral density in Korean postmenopausal women over sixty-years-old",
+      "year": 2011,
+      "n": 45,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "19083462",
+      "title": "Vitamin K supplementation does not significantly impact bone mineral density and biochemical markers of bone in pre- and perimenopausal women",
+      "year": 2008,
+      "n": 14,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "23140417",
+      "title": "Comparison of menaquinone-4 and menaquinone-7 bioavailability in healthy women",
+      "year": 2012,
+      "inReviews": [
+       "35711002"
+      ]
+     },
+     {
+      "pmid": "20190467",
+      "title": "Response of serum carboxylated and undercarboxylated osteocalcin to risedronate monotherapy and combined therapy with vitamin K(2) in corticosteroid-treated patients: a pilot study",
+      "year": 2010,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "25181575",
+      "title": "Effect of phylloquinone (vitamin K1) supplementation for 12 months on the indices of vitamin K status and bone health in adult patients with Crohn's disease",
+      "year": 2014,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "14623654",
+      "title": "Factors affecting bone loss in female endurance athletes: a two-year follow-up study",
+      "year": 2003,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "20177349",
+      "title": "Dietary vitamin K2 supplement improves bone status after lung and heart transplantation",
+      "year": 2010,
+      "inReviews": [
+       "31076817"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "19082528",
+     "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
+     "year": 2009,
+     "n": 2986
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "31076817"
+    ],
+    "citedNotChosen": [
+     "18922041",
+     "23525894"
+    ],
+    "citedNotEligible": [
+     "18922041",
+     "23525894"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "36033779",
+      "doi": "10.3389/fpubh.2022.979649",
+      "title": "Efficacy of vitamin K2 in the prevention and treatment of postmenopausal osteoporosis: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "firstAuthor": "Ma ML",
+      "journal": "Frontiers in public health",
+      "citedBy": 48,
+      "n": 6425,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     },
+     {
+      "pmid": "35711002",
+      "doi": "10.1007/s00774-022-01342-6",
+      "title": "Efficacy and safety of vitamin K2 for postmenopausal women with osteoporosis at a long-term follow-up: meta-analysis and systematic review",
+      "year": 2022,
+      "firstAuthor": "Zhou M",
+      "journal": "Journal of bone and mineral metabolism",
+      "citedBy": 23,
+      "n": 6853,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Women after menopause or people with low bone density",
+     "intervention": "Vitamin K1 or K2 supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Bone mineral density"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 3,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41268154",
+      "title": "The effect of vitamin K2 supplementation on bone turnover biochemical markers in postmenopausal osteoporosis patients: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Vitamin K2 in postmenopausal osteoporosis matches, but the review only measured blood bone turnover markers, not bone mineral density."
+     },
+     {
+      "pmid": "34649591",
+      "title": "The combined effect of vitamin K and calcium on bone mineral density in humans: a meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Vitamin K was always given together with calcium, and the population was humans in general, not only postmenopausal women."
+     },
+     {
+      "pmid": "21674202",
+      "title": "Effect of vitamin K on bone mineral density: a meta-analysis of randomized controlled trials",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Pooled RCTs of vitamin K on bone mineral density, but in adults generally with no stated postmenopausal or low bone density subgroup."
+     }
+    ]
+   }
+  },
+  {
+   "id": "calcification",
+   "label": "Artery calcification",
+   "finding": "Calcification and stiffness of arteries and heart valves",
+   "counts": {
+    "reviews": 9,
+    "trialReviews": 5,
+    "trials": 23,
+    "largeTrials": 2
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37252246",
+     "doi": "10.3389/fnut.2023.1115069",
+     "title": "Vitamin K supplementation and vascular calcification: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2023,
+     "firstAuthor": "Li T",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 13,
+     "n": 1533,
+     "why": "One of the newest systematic reviews of trials on this outcome (2023); screened as answering the question"
+    },
+    {
+     "pmid": "36704782",
+     "doi": "10.3389/fnut.2022.1001826",
+     "title": "Effects of vitamin K supplementation on vascular calcification in chronic kidney disease: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Geng C",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 9,
+     "n": 733,
+     "why": "One of the newest systematic reviews of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "32977548",
+     "doi": "10.3390/nu12102909",
+     "title": "Vitamin K Supplementation for the Prevention of Cardiovascular Disease: Where Is the Evidence? A Systematic Review of Controlled Trials",
+     "year": 2020,
+     "firstAuthor": "Vlasschaert C",
+     "journal": "Nutrients",
+     "citedBy": 38,
+     "why": "One of the newest systematic reviews of trials on this outcome (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.34615384615384615,
+    "trials": 13,
+    "inclusions": 22,
+    "reviews": [
+     {
+      "pmid": "37252246",
+      "trials": 10
+     },
+     {
+      "pmid": "36704782",
+      "trials": 5
+     },
+     {
+      "pmid": "32977548",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "31529295",
+      "title": "The effect of vitamin K2 supplementation on vascular calcification in haemodialysis patients: a 1-year follow-up randomized trial",
+      "year": 2019,
+      "n": 102,
+      "inReviews": [
+       "37252246",
+       "36704782",
+       "32977548"
+      ]
+     },
+     {
+      "pmid": "19386744",
+      "title": "Vitamin K supplementation and progression of coronary artery calcium in older men and women",
+      "year": 2009,
+      "n": 388,
+      "inReviews": [
+       "37252246",
+       "32977548"
+      ]
+     },
+     {
+      "pmid": "25694037",
+      "title": "Menaquinone-7 supplementation improves arterial stiffness in healthy postmenopausal women. A double-blind randomised clinical trial",
+      "year": 2015,
+      "n": 244,
+      "inReviews": [
+       "37252246",
+       "32977548"
+      ]
+     },
+     {
+      "pmid": "14961167",
+      "title": "Beneficial effects of vitamins D and K on the elastic properties of the vessel wall in postmenopausal women: a follow-up study",
+      "year": 2004,
+      "n": 181,
+      "inReviews": [
+       "37252246",
+       "32977548"
+      ]
+     },
+     {
+      "pmid": "32817311",
+      "title": "Vitamin K Supplementation to Improve Vascular Stiffness in CKD: The K4Kidneys Randomized Controlled Trial",
+      "year": 2020,
+      "n": 159,
+      "inReviews": [
+       "37252246",
+       "36704782"
+      ]
+     },
+     {
+      "pmid": "26892582",
+      "title": "Effect of Vitamin K on Vascular Health and Physical Function in Older People with Vascular Disease--A Randomised Controlled Trial",
+      "year": 2016,
+      "n": 80,
+      "inReviews": [
+       "37252246",
+       "32977548"
+      ]
+     },
+     {
+      "pmid": "33742520",
+      "title": "The ViKTORIES trial: A randomized, double-blind, placebo-controlled trial of vitamin K supplementation to improve vascular health in kidney transplant recipients",
+      "year": 2021,
+      "n": 45,
+      "inReviews": [
+       "37252246",
+       "36704782"
+      ]
+     },
+     {
+      "pmid": "31387121",
+      "title": "The effect of menaquinone-7 supplementation on vascular calcification in patients with diabetes: a randomized, double-blind, placebo-controlled trial",
+      "year": 2019,
+      "n": 35,
+      "inReviews": [
+       "37252246",
+       "32977548"
+      ]
+     },
+     {
+      "pmid": "35203045",
+      "title": "Vitamin K2 as a potential therapeutic candidate for the prevention of muscle cramps in hemodialysis patients: A prospective multicenter, randomized, controlled, crossover pilot trial",
+      "year": 2022,
+      "n": 523,
+      "inReviews": [
+       "36704782"
+      ]
+     },
+     {
+      "pmid": "34637494",
+      "title": "The effect of vitamin K1 on arterial calcification activity in subjects with diabetes mellitus: a post hoc analysis of a double-blind, randomized, placebo-controlled trial",
+      "year": 2022,
+      "n": 149,
+      "inReviews": [
+       "37252246"
+      ]
+     },
+     {
+      "pmid": "33068157",
+      "title": "Six months vitamin K treatment does not affect systemic arterial calcification or bone mineral density in diabetes mellitus 2",
+      "year": 2021,
+      "n": 68,
+      "inReviews": [
+       "37252246"
+      ]
+     },
+     {
+      "pmid": "34845313",
+      "title": "The impact of vitamin K2 and native vitamin D supplementation on vascular calcification in pediatric patients on regular hemodialysis. A randomized controlled trial",
+      "year": 2022,
+      "inReviews": [
+       "36704782"
+      ]
+     },
+     {
+      "pmid": "28533322",
+      "title": "Slower Progress of Aortic Valve Calcification With Vitamin K Supplementation: Results From a Prospective Interventional Proof-of-Concept Study",
+      "year": 2017,
+      "inReviews": [
+       "32977548"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "23034962",
+     "title": "Dietary phylloquinone intake and risk of type 2 diabetes in elderly subjects at high risk of cardiovascular disease",
+     "year": 2012,
+     "n": 1925
+    },
+    {
+     "pmid": "33352771",
+     "title": "Mediterranean Diet Decreases the Initiation of Use of Vitamin K Epoxide Reductase Inhibitors and Their Associated Cardiovascular Risk: A Randomized Controlled Trial",
+     "year": 2020,
+     "n": 6772
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "37252246"
+    ],
+    "citedNotChosen": [
+     "30514729",
+     "35465686",
+     "32817311"
+    ],
+    "citedNotEligible": [
+     "30514729",
+     "35465686",
+     "32817311"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "36704782",
+      "doi": "10.3389/fnut.2022.1001826",
+      "title": "Effects of vitamin K supplementation on vascular calcification in chronic kidney disease: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "firstAuthor": "Geng C",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 9,
+      "n": 733,
+      "why": "One of the newest systematic reviews of trials on this outcome (2022); screened as answering the question"
+     },
+     {
+      "pmid": "32977548",
+      "doi": "10.3390/nu12102909",
+      "title": "Vitamin K Supplementation for the Prevention of Cardiovascular Disease: Where Is the Evidence? A Systematic Review of Controlled Trials",
+      "year": 2020,
+      "firstAuthor": "Vlasschaert C",
+      "journal": "Nutrients",
+      "citedBy": 38,
+      "why": "One of the newest systematic reviews of trials on this outcome (2020); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or at risk of vascular calcification (including people with kidney disease)",
+     "intervention": "Vitamin K1 or K2 supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Calcification or stiffness of arteries and heart valves"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "38282652",
+      "title": "The effect of vitamin K supplementation on cardiovascular risk factors: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Pools vitamin K RCTs but the outcomes are metabolic and inflammatory risk factors (HOMA-IR, CRP, lipids), not calcification or stiffness."
+     },
+     {
+      "pmid": "26389791",
+      "title": "Vitamin K for the primary prevention of cardiovascular disease",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Vitamin K alone vs placebo or none in adults, but outcomes are CVD events and risk factors; the one trial reported only MGP, blood pressure and lipids."
+     }
+    ]
+   }
+  },
+  {
+   "id": "warfarin",
+   "label": "Warfarin stability",
+   "finding": "Stability of warfarin treatment in people whose INR swings a lot",
+   "counts": {
+    "reviews": 16,
+    "trialReviews": 4,
+    "trials": 21,
+    "largeTrials": 2
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "15976964",
+     "title": "The Bad Oeynhausen concept of INR self-management",
+     "year": 2005,
+     "n": 1155
+    },
+    {
+     "pmid": "23664436",
+     "title": "Assessing the impact of dabigatran and warfarin on health-related quality of life: results from an RE-LY sub-study",
+     "year": 2013,
+     "n": 1435
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "17110451"
+    ],
+    "citedNotEligible": [
+     "17110451"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People on warfarin (or another vitamin K antagonist) with unstable INR",
+     "intervention": "Low-dose vitamin K supplements every day",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How stable the INR is (time in the target range)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 3,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "25416564",
+      "title": "Renal function and non-vitamin K oral anticoagulants in comparison with warfarin on safety and efficacy outcomes in atrial fibrillation patients: a systemic review and meta-regression analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Compares newer anticoagulants with warfarin by kidney function; it does not study vitamin K supplements."
+     },
+     {
+      "pmid": "24832594",
+      "title": "Vitamin K for improved anticoagulation control in patients receiving warfarin",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "RCTs of low-dose vitamin K vs placebo in warfarin users, not limited to unstable INR; only one trial reported TTR, so no pooled TTR estimate."
+     },
+     {
+      "pmid": "24170485",
+      "title": "The use of vitamin K supplementation to achieve INR stability: a systematic review and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Population, oral vitamin K and TTR outcome match, but the pooled TTR estimate combines randomised trials with non-randomised studies."
+     },
+     {
+      "pmid": "23744743",
+      "title": "Anticoagulation control with daily low-dose vitamin k to reduce clinically adverse outcomes and international normalized ratio variability: a systematic review and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pooled RCTs of daily low-dose vitamin K vs placebo on TTR in VKA users, but most patients had stable INR and data on unstable INR were insufficient."
+     }
+    ]
+   }
+  }
+ ]
+}

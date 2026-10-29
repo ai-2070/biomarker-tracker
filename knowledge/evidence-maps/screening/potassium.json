@@ -1,0 +1,301 @@
+{
+ "topic": "potassium",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "kidney-stones": {
+   "question": {
+    "population": "Adults who have had calcium-containing kidney stones",
+    "intervention": "Potassium citrate (or other citrate)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New kidney stones or stone growth"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42423994",
+     "fits": "no",
+     "reason": "Population is postmenopausal women with bone loss and outcomes are bone turnover markers, not kidney stone recurrence."
+    },
+    {
+     "pmid": "27915395",
+     "fits": "partly",
+     "reason": "Pooled RCTs of potassium citrate for stone recurrence, but only in patients having lithotripsy, and calcium stones are not specified."
+    },
+    {
+     "pmid": "19321253",
+     "fits": "partly",
+     "reason": "RCTs in adults with past kidney stones, outcome recurrence, but the abstract doesn't say potassium citrate was among the supplements tested."
+    }
+   ]
+  },
+  "bone": {
+   "question": {
+    "population": "Adults (not people on dialysis)",
+    "intervention": "Potassium bicarbonate or potassium citrate (alkaline potassium salts)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Calcium in urine, markers of bone breakdown, or bone density"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42423994",
+     "fits": "partly",
+     "reason": "Potassium citrate vs placebo RCTs pooled for urinary calcium and bone turnover markers, but only in postmenopausal women, a narrower group than all adults."
+    },
+    {
+     "pmid": "28711425",
+     "fits": "no",
+     "reason": "Looks at minerals and muscle mass, strength and performance in older adults, not alkaline potassium salts and urine calcium or bone outcomes."
+    },
+    {
+     "pmid": "16856060",
+     "fits": "no",
+     "reason": "Combined mineral supplements for treating high blood pressure, with blood pressure as the outcome rather than urine calcium or bone outcomes."
+    }
+   ]
+  },
+  "bp-high": {
+   "question": {
+    "population": "Adults with high blood pressure",
+    "intervention": "Potassium supplements (or potassium-enriched salt substitutes)",
+    "comparison": "Placebo, no supplement, or ordinary salt",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41578335",
+     "fits": "partly",
+     "reason": "Potassium-enriched salt substitutes vs regular salt with blood pressure outcomes, but trials cover adults in general and no separate analysis in people with high blood pressure is reported."
+    },
+    {
+     "pmid": "39939826",
+     "fits": "no",
+     "reason": "The intervention is self-monitoring devices for sodium and potassium, not potassium supplements or salt substitutes."
+    },
+    {
+     "pmid": "39519450",
+     "fits": "partly",
+     "reason": "Placebo-controlled potassium supplement trials with blood pressure outcomes, but in people with normal blood pressure, not high blood pressure."
+    },
+    {
+     "pmid": "33674705",
+     "fits": "no",
+     "reason": "The intervention is sodium reduction; baseline potassium intake is only studied as a modifier of that effect."
+    },
+    {
+     "pmid": "32500831",
+     "fits": "yes",
+     "reason": "Pools randomised trials of potassium supplements vs control on blood pressure, mostly in adults with high blood pressure, with results reported for that group."
+    },
+    {
+     "pmid": "30661034",
+     "fits": "yes",
+     "reason": "Pools randomised trials of low-sodium salt substitutes vs regular salt on blood pressure, most of them in adults with high blood pressure, with results by population."
+    },
+    {
+     "pmid": "28024910",
+     "fits": "yes",
+     "reason": "Pools randomised trials of potassium supplements on blood pressure in people with high blood pressure."
+    },
+    {
+     "pmid": "26039623",
+     "fits": "yes",
+     "reason": "Pools randomised trials of potassium supplements on blood pressure, with a separate analysis for people with high blood pressure."
+    },
+    {
+     "pmid": "28419159",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled randomised trials of potassium supplements on blood pressure in adults with primary hypertension."
+    },
+    {
+     "pmid": "25398734",
+     "fits": "no",
+     "reason": "Looks at how the sodium-to-potassium ratio relates to blood pressure across trials and observational studies, without pooling potassium supplement trials."
+    },
+    {
+     "pmid": "26852373",
+     "fits": "no",
+     "reason": "A narrative overview of many nutraceuticals for blood pressure, not a pooled analysis of potassium supplement trials."
+    },
+    {
+     "pmid": "16856053",
+     "fits": "yes",
+     "reason": "Pools randomised trials of potassium supplements vs placebo, no treatment or usual care on blood pressure in adults with high blood pressure."
+    },
+    {
+     "pmid": "16856060",
+     "fits": "partly",
+     "reason": "Adults with high blood pressure and blood pressure outcomes, but potassium is only given combined with magnesium or calcium."
+    },
+    {
+     "pmid": "9168293",
+     "fits": "partly",
+     "reason": "Pools randomised trials of potassium supplements on blood pressure, but in people in general, with no separate analysis for high blood pressure reported."
+    }
+   ]
+  },
+  "bp-dose": {
+   "question": {
+    "population": "Adults, mostly with high blood pressure",
+    "intervention": "Potassium supplements at different amounts (a dose-response analysis)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41578335",
+     "fits": "partly",
+     "reason": "Potassium is given only as a salt substitute that also cuts sodium, compared with regular salt rather than placebo; the outcome includes blood pressure."
+    },
+    {
+     "pmid": "39939826",
+     "fits": "no",
+     "reason": "Tests self-monitoring devices for sodium and potassium, not potassium supplements at different doses."
+    },
+    {
+     "pmid": "39519450",
+     "fits": "partly",
+     "reason": "Placebo-controlled potassium trials with dose subgroups and blood pressure outcomes, but the population is normotensive rather than mostly hypertensive."
+    },
+    {
+     "pmid": "33674705",
+     "fits": "no",
+     "reason": "Looks at sodium reduction and treats baseline potassium intake as a modifier, not potassium supplementation."
+    },
+    {
+     "pmid": "32500831",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of potassium supplement RCTs against control, mostly in adults with hypertension, with blood pressure outcomes."
+    },
+    {
+     "pmid": "30661034",
+     "fits": "partly",
+     "reason": "Potassium is given only within low-sodium salt substitutes, compared with regular salt; no dose-response for potassium supplements."
+    },
+    {
+     "pmid": "28024910",
+     "fits": "yes",
+     "reason": "RCTs of potassium supplements in hypertensive adults, with meta-regression of the dose-response between potassium intake and blood pressure."
+    },
+    {
+     "pmid": "26039623",
+     "fits": "yes",
+     "reason": "RCTs of potassium supplements with blood pressure outcomes; meta-regression links potassium dose to the effect, and a hypertensive subgroup is reported."
+    },
+    {
+     "pmid": "28419159",
+     "fits": "partly",
+     "reason": "Placebo-controlled potassium RCTs in essential hypertension with blood pressure outcomes, but no dose-response analysis is reported."
+    },
+    {
+     "pmid": "25398734",
+     "fits": "no",
+     "reason": "Narrative synthesis of the sodium-to-potassium ratio from RCTs and observational studies, with no pooling of potassium supplement doses."
+    },
+    {
+     "pmid": "26852373",
+     "fits": "no",
+     "reason": "Narrative review of many nutraceuticals for blood pressure, with no pooled analysis of potassium dose."
+    },
+    {
+     "pmid": "16856053",
+     "fits": "yes",
+     "reason": "Pools RCTs of potassium supplements against placebo or no treatment in hypertensive adults for blood pressure and explores potassium dose as a source of heterogeneity."
+    },
+    {
+     "pmid": "16856060",
+     "fits": "partly",
+     "reason": "Potassium is given only in combination with magnesium or calcium, in hypertensive adults; no dose-response analysis is reported."
+    },
+    {
+     "pmid": "9168293",
+     "fits": "partly",
+     "reason": "Pools RCTs of potassium supplements against control for blood pressure, but the population is mixed and no dose-response result is reported."
+    }
+   ]
+  },
+  "bp-normal": {
+   "question": {
+    "population": "Adults with normal blood pressure (or results reported separately for them)",
+    "intervention": "Potassium supplements (or potassium-enriched salt substitutes)",
+    "comparison": "Placebo, no supplement, or ordinary salt",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41578335",
+     "fits": "partly",
+     "reason": "Pooled RCTs of potassium-enriched salt substitutes vs regular salt for BP in adults, but no separate results for people with normal blood pressure."
+    },
+    {
+     "pmid": "39939826",
+     "fits": "no",
+     "reason": "Tests self-monitoring devices for sodium/potassium, not potassium supplements or salt substitutes."
+    },
+    {
+     "pmid": "39519450",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of potassium supplements on systolic BP in the general normotensive population."
+    },
+    {
+     "pmid": "33674705",
+     "fits": "no",
+     "reason": "Tests sodium reduction, with baseline potassium only as an effect modifier, not potassium supplementation."
+    },
+    {
+     "pmid": "32500831",
+     "fits": "partly",
+     "reason": "Pooled RCTs of potassium supplements on BP, but mostly in hypertensive adults and the abstract gives no clear normotensive results."
+    },
+    {
+     "pmid": "30661034",
+     "fits": "yes",
+     "reason": "Pooled RCTs of low-sodium salt substitutes vs regular salt on BP, with normotensive populations analysed separately."
+    },
+    {
+     "pmid": "28024910",
+     "fits": "partly",
+     "reason": "Pooled RCTs of potassium supplements on BP, but only in hypertensive people."
+    },
+    {
+     "pmid": "26039623",
+     "fits": "yes",
+     "reason": "Pooled RCTs of potassium supplements on BP in non-medicated normotensive and hypertensive people, with results split by BP status."
+    },
+    {
+     "pmid": "28419159",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled RCTs of potassium supplements on BP, but only in people with essential hypertension."
+    },
+    {
+     "pmid": "25398734",
+     "fits": "no",
+     "reason": "Looks at the sodium-to-potassium ratio across trials and observational studies, not a pooled analysis of potassium supplements."
+    },
+    {
+     "pmid": "26852373",
+     "fits": "no",
+     "reason": "Broad narrative review of many nutraceuticals for BP, with no pooled potassium analysis in normotensive adults."
+    },
+    {
+     "pmid": "16856053",
+     "fits": "partly",
+     "reason": "Pooled RCTs of potassium supplements vs placebo on BP, but only in adults with raised blood pressure."
+    },
+    {
+     "pmid": "16856060",
+     "fits": "no",
+     "reason": "Potassium is given only together with other minerals, and only to people with hypertension, so two parts differ."
+    },
+    {
+     "pmid": "9168293",
+     "fits": "partly",
+     "reason": "Pooled RCTs of potassium supplements on BP, but the abstract gives no separate results for normotensive adults."
+    }
+   ]
+  }
+ }
+}

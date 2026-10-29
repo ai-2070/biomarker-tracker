@@ -1,0 +1,3500 @@
+{
+ "topic": "vitamin_c",
+ "nutrientId": "vitamin_c",
+ "name": "vitamin C",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:\"ascorbate\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:\"ascorbate\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:\"ascorbate\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:\"ascorbate\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:\"ascorbate\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with vitamin C (vitamin C, ascorbic acid, ascorbate) in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin C, with vitamin C in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin C trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 84966,
+  "retrieved": 3002,
+  "animal": 88,
+  "retracted": 9,
+  "reviews": 729,
+  "trials": 2164,
+  "guidelines": 9
+ },
+ "guidelines": [
+  {
+   "pmid": "37500083",
+   "doi": "10.1111/aas.14311",
+   "title": "Intravenous vitamin C therapy in adult patients with sepsis: A rapid practice guideline",
+   "year": 2023,
+   "journal": "Acta anaesthesiologica Scandinavica",
+   "citedBy": 13,
+   "why": "One of the newest guidelines with vitamin C in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "colds-catching",
+   "label": "Catching colds",
+   "finding": "Catching colds",
+   "counts": {
+    "reviews": 20,
+    "trialReviews": 10,
+    "trials": 30,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "34967304",
+     "doi": "10.2174/2772432817666211230100723",
+     "title": "Effect of Vitamin C Supplements on Respiratory Tract Infections: A Systematic Review and Meta-Analysis",
+     "year": 2022,
+     "firstAuthor": "Keya TA",
+     "journal": "Current reviews in clinical and experimental pharmacology",
+     "citedBy": 11,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "23440782",
+     "doi": "10.1002/14651858.cd000980.pub4",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2013,
+     "firstAuthor": "Hemilä H",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 296,
+     "n": 11306,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    },
+    {
+     "pmid": "17636648",
+     "doi": "10.1002/14651858.cd000980.pub3",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2007,
+     "firstAuthor": "Douglas RM",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 64,
+     "n": 11350,
+     "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "32139409",
+     "doi": "10.1136/bmjmilitary-2019-001384",
+     "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+     "year": 2022,
+     "firstAuthor": "Kim TK",
+     "journal": "BMJ military health",
+     "citedBy": 18,
+     "n": 1444,
+     "why": "A large trial (about 1,444 people) from 2022, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.5208333333333334,
+    "trials": 24,
+    "inclusions": 49,
+    "reviews": [
+     {
+      "pmid": "34967304",
+      "trials": 9
+     },
+     {
+      "pmid": "23440782",
+      "trials": 23
+     },
+     {
+      "pmid": "17636648",
+      "trials": 17
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "1091343",
+      "title": "Winter illness and vitamin C: the effect of relatively low doses",
+      "year": 1975,
+      "n": 622,
+      "inReviews": [
+       "34967304",
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "319446",
+      "title": "A randomized controlled trial of the therapeutic effect of vitamin C in the common cold",
+      "year": 1977,
+      "inReviews": [
+       "34967304",
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "12201356",
+      "title": "Preventing the common cold with a vitamin C supplement: a double-blind, placebo-controlled survey",
+      "year": 2002,
+      "inReviews": [
+       "34967304",
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "368370",
+      "title": "Vitamin C prophylaxis in marine recruits",
+      "year": 1979,
+      "inReviews": [
+       "34967304",
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "163386",
+      "title": "Ascorbic acid for the common cold. A prophylactic and therapeutic trial",
+      "year": 1975,
+      "inReviews": [
+       "34967304",
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "338079",
+      "title": "A trial of ascorbic acid in the treatment of the common cold",
+      "year": 1977,
+      "n": 1524,
+      "inReviews": [
+       "34967304",
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "12665160",
+      "title": "Evaluation of the efficacy of a combined formulation (Grippostad-C) in the therapy of symptoms of common cold: a randomized, double-blind, multicenter trial",
+      "year": 2003,
+      "n": 1167,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "787788",
+      "title": "Vitamin C and acute illness in Navajo schoolchildren",
+      "year": 1976,
+      "n": 868,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "788820",
+      "title": "A randomized controlled trial of vitamin C in the prevention and amelioration of the common cold",
+      "year": 1976,
+      "n": 688,
+      "inReviews": [
+       "34967304",
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "16118650",
+      "title": "Effect of vitamin C on common cold: randomized controlled trial",
+      "year": 2006,
+      "n": 439,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "11700812",
+      "title": "Mega-dose vitamin C in treatment of the common cold: a randomised controlled trial",
+      "year": 2001,
+      "n": 400,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "9197524",
+      "title": "A randomized controlled trial for chemoprevention of gastric cancer in high-risk Japanese population; study design, feasibility and protocol modification",
+      "year": 1997,
+      "n": 397,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "7814237",
+      "title": "The clinical effects of vitamin C supplementation in elderly hospitalised patients with acute respiratory infections",
+      "year": 1994,
+      "n": 57,
+      "inReviews": [
+       "34967304",
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "19218294",
+      "title": "Modification of the effect of vitamin E supplementation on the mortality of male smokers by age and dietary vitamin C",
+      "year": 2009,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4355208",
+      "title": "Evaluation of the efficacy of ascorbic acid in prophylaxis of induced rhinovirus 44 infection in man",
+      "year": 1973,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4121848",
+      "title": "Common cold and vitamin C",
+      "year": 1973,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "8185726",
+      "title": "Vitamin C supplementation reduces the incidence of postrace symptoms of upper-respiratory-tract infection in ultramarathon runners",
+      "year": 1993,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4375412",
+      "title": "The role of vitamin C in the treatment of acute infections of the upper respiratory pathways",
+      "year": 1974,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "318715",
+      "title": "Therapeutic effect of vitamin C. A co-twin control study",
+      "year": 1977,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "162650",
+      "title": "Vitamin C and the common cold",
+      "year": 1975,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "25010554",
+      "title": "Vitamin C supplementation slightly improves physical activity levels and reduces cold incidence in men with marginal vitamin C status: a randomized controlled trial",
+      "year": 2014,
+      "n": 15,
+      "inReviews": [
+       "34967304"
+      ]
+     },
+     {
+      "pmid": "8320052",
+      "title": "Does multivitamin supplementation prevent infections in healthy elderly subjects? A controlled trial",
+      "year": 1993,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "4558644",
+      "title": "[Vitamin C and the common cold]",
+      "year": 1972,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "20689965",
+      "title": "The effect of vitamin C on upper respiratory infections in adolescent swimmers: a randomized trial",
+      "year": 2011,
+      "inReviews": [
+       "23440782"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1972,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1973,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1977,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "338079",
+     "title": "A trial of ascorbic acid in the treatment of the common cold",
+     "year": 1977,
+     "n": 1524
+    },
+    {
+     "pmid": "12665160",
+     "title": "Evaluation of the efficacy of a combined formulation (Grippostad-C) in the therapy of symptoms of common cold: a randomized, double-blind, multicenter trial",
+     "year": 2003,
+     "n": 1167
+    },
+    {
+     "pmid": "32139409",
+     "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+     "year": 2022,
+     "n": 1444
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "23440782"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "34967304",
+      "doi": "10.2174/2772432817666211230100723",
+      "title": "Effect of Vitamin C Supplements on Respiratory Tract Infections: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "firstAuthor": "Keya TA",
+      "journal": "Current reviews in clinical and experimental pharmacology",
+      "citedBy": 11,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     },
+     {
+      "pmid": "17636648",
+      "doi": "10.1002/14651858.cd000980.pub3",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2007,
+      "firstAuthor": "Douglas RM",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 64,
+      "n": 11350,
+      "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+     },
+     {
+      "pmid": "32139409",
+      "doi": "10.1136/bmjmilitary-2019-001384",
+      "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+      "year": 2022,
+      "firstAuthor": "Kim TK",
+      "journal": "BMJ military health",
+      "citedBy": 18,
+      "n": 1444,
+      "why": "A large trial (about 1,444 people) from 2022, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Children and adults in the general community",
+     "intervention": "Vitamin C every day",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How many people catch colds (or respiratory infections)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 5,
+     "partly": 3,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "33472840",
+      "title": "Effect of micronutrient supplements on influenza and other respiratory tract infections among adults: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pooled vitamin C trials separately for ARI occurrence, but included adults only, not children."
+     },
+     {
+      "pmid": "33102597",
+      "title": "Vitamin C as a Supplementary Therapy in Relieving Symptoms of the Common Cold: A Meta-Analysis of 10 Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Vitamin C was added to antiviral treatment for existing colds and compared with antivirals alone; outcome was symptom relief."
+     },
+     {
+      "pmid": "32342851",
+      "title": "Zinc Supplementation Reduces Common Cold Duration among Healthy Adults: A Systematic Review of Randomized Controlled Trials with Micronutrients Supplementation",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Analysed zinc, vitamin D and vitamins A and E; no vitamin C trials were included."
+     },
+     {
+      "pmid": "15605943",
+      "title": "Vitamin C supplementation and respiratory infections: a systematic review",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Vitamin C and respiratory infection incidence match, but only military personnel, crowded students and marathon runners."
+     },
+     {
+      "pmid": "10796569",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "Daily vitamin C and cold incidence match, but it included non-randomised trials and reported no pooled incidence estimate."
+     }
+    ]
+   }
+  },
+  {
+   "id": "colds-stress",
+   "label": "Colds under physical stress",
+   "finding": "Catching colds during heavy physical stress",
+   "counts": {
+    "reviews": 29,
+    "trialReviews": 14,
+    "trials": 118,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "23440782",
+     "doi": "10.1002/14651858.cd000980.pub4",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2013,
+     "firstAuthor": "Hemilä H",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 296,
+     "n": 11306,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    },
+    {
+     "pmid": "17636648",
+     "doi": "10.1002/14651858.cd000980.pub3",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2007,
+     "firstAuthor": "Douglas RM",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 64,
+     "n": 11350,
+     "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+    },
+    {
+     "pmid": "15495002",
+     "doi": "10.1002/14651858.cd000980.pub2",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2004,
+     "firstAuthor": "Douglas RM",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 45,
+     "n": 11077,
+     "why": "One of the newest meta-analyses of trials on this outcome (2004); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "32139409",
+     "doi": "10.1136/bmjmilitary-2019-001384",
+     "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+     "year": 2022,
+     "firstAuthor": "Kim TK",
+     "journal": "BMJ military health",
+     "citedBy": 18,
+     "n": 1444,
+     "why": "A large trial (about 1,444 people) from 2022, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.717391304347826,
+    "trials": 23,
+    "inclusions": 56,
+    "reviews": [
+     {
+      "pmid": "23440782",
+      "trials": 23
+     },
+     {
+      "pmid": "17636648",
+      "trials": 17
+     },
+     {
+      "pmid": "15495002",
+      "trials": 16
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12665160",
+      "title": "Evaluation of the efficacy of a combined formulation (Grippostad-C) in the therapy of symptoms of common cold: a randomized, double-blind, multicenter trial",
+      "year": 2003,
+      "n": 1167,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "787788",
+      "title": "Vitamin C and acute illness in Navajo schoolchildren",
+      "year": 1976,
+      "n": 868,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "1091343",
+      "title": "Winter illness and vitamin C: the effect of relatively low doses",
+      "year": 1975,
+      "n": 622,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "11700812",
+      "title": "Mega-dose vitamin C in treatment of the common cold: a randomised controlled trial",
+      "year": 2001,
+      "n": 400,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "4355208",
+      "title": "Evaluation of the efficacy of ascorbic acid in prophylaxis of induced rhinovirus 44 infection in man",
+      "year": 1973,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "8185726",
+      "title": "Vitamin C supplementation reduces the incidence of postrace symptoms of upper-respiratory-tract infection in ultramarathon runners",
+      "year": 1993,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "163386",
+      "title": "Ascorbic acid for the common cold. A prophylactic and therapeutic trial",
+      "year": 1975,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "4375412",
+      "title": "The role of vitamin C in the treatment of acute infections of the upper respiratory pathways",
+      "year": 1974,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "319446",
+      "title": "A randomized controlled trial of the therapeutic effect of vitamin C in the common cold",
+      "year": 1977,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "318715",
+      "title": "Therapeutic effect of vitamin C. A co-twin control study",
+      "year": 1977,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "162650",
+      "title": "Vitamin C and the common cold",
+      "year": 1975,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "368370",
+      "title": "Vitamin C prophylaxis in marine recruits",
+      "year": 1979,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "12201356",
+      "title": "Preventing the common cold with a vitamin C supplement: a double-blind, placebo-controlled survey",
+      "year": 2002,
+      "inReviews": [
+       "23440782",
+       "17636648",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "338079",
+      "title": "A trial of ascorbic acid in the treatment of the common cold",
+      "year": 1977,
+      "n": 1524,
+      "inReviews": [
+       "23440782",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "788820",
+      "title": "A randomized controlled trial of vitamin C in the prevention and amelioration of the common cold",
+      "year": 1976,
+      "n": 688,
+      "inReviews": [
+       "23440782",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "16118650",
+      "title": "Effect of vitamin C on common cold: randomized controlled trial",
+      "year": 2006,
+      "n": 439,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "9197524",
+      "title": "A randomized controlled trial for chemoprevention of gastric cancer in high-risk Japanese population; study design, feasibility and protocol modification",
+      "year": 1997,
+      "n": 397,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "19218294",
+      "title": "Modification of the effect of vitamin E supplementation on the mortality of male smokers by age and dietary vitamin C",
+      "year": 2009,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4121848",
+      "title": "Common cold and vitamin C",
+      "year": 1973,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4558644",
+      "title": "[Vitamin C and the common cold]",
+      "year": 1972,
+      "inReviews": [
+       "23440782",
+       "15495002"
+      ]
+     },
+     {
+      "pmid": "7814237",
+      "title": "The clinical effects of vitamin C supplementation in elderly hospitalised patients with acute respiratory infections",
+      "year": 1994,
+      "n": 57,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "8320052",
+      "title": "Does multivitamin supplementation prevent infections in healthy elderly subjects? A controlled trial",
+      "year": 1993,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "20689965",
+      "title": "The effect of vitamin C on upper respiratory infections in adolescent swimmers: a randomized trial",
+      "year": 2011,
+      "inReviews": [
+       "23440782"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1972,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1973,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1977,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "338079",
+     "title": "A trial of ascorbic acid in the treatment of the common cold",
+     "year": 1977,
+     "n": 1524
+    },
+    {
+     "pmid": "12665160",
+     "title": "Evaluation of the efficacy of a combined formulation (Grippostad-C) in the therapy of symptoms of common cold: a randomized, double-blind, multicenter trial",
+     "year": 2003,
+     "n": 1167
+    },
+    {
+     "pmid": "32139409",
+     "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+     "year": 2022,
+     "n": 1444
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "23440782"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "17636648",
+      "doi": "10.1002/14651858.cd000980.pub3",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2007,
+      "firstAuthor": "Douglas RM",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 64,
+      "n": 11350,
+      "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+     },
+     {
+      "pmid": "15495002",
+      "doi": "10.1002/14651858.cd000980.pub2",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2004,
+      "firstAuthor": "Douglas RM",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 45,
+      "n": 11077,
+      "why": "One of the newest meta-analyses of trials on this outcome (2004); screened as answering the question"
+     },
+     {
+      "pmid": "32139409",
+      "doi": "10.1136/bmjmilitary-2019-001384",
+      "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+      "year": 2022,
+      "firstAuthor": "Kim TK",
+      "journal": "BMJ military health",
+      "citedBy": 18,
+      "n": 1444,
+      "why": "A large trial (about 1,444 people) from 2022, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People under heavy physical stress (marathon runners, skiers, soldiers)",
+     "intervention": "Vitamin C every day",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How many people catch colds (results for this group apart)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 5,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41687812",
+      "title": "Effect of vitamin C supplementation on post-exercise recovery: A systematic review and meta-analysis of randomized double-blind placebo trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Vitamin C vs placebo in exercisers, but outcomes are post-exercise inflammation and oxidative stress markers, not cold incidence."
+     },
+     {
+      "pmid": "40166056",
+      "title": "Efficacy of antioxidant intervention and exercise intervention for lipid peroxidation in dialysis patients: a meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Dialysis patients and lipid peroxidation markers; a different population and outcome."
+     },
+     {
+      "pmid": "34967304",
+      "title": "Effect of Vitamin C Supplements on Respiratory Tract Infections: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools regular vitamin C vs placebo on respiratory illness incidence, but in general populations with no heavy-physical-stress subgroup reported."
+     },
+     {
+      "pmid": "33472840",
+      "title": "Effect of micronutrient supplements on influenza and other respiratory tract infections among adults: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools vitamin C on respiratory infection occurrence, but in general adults with no separate analysis for heavy physical stress."
+     },
+     {
+      "pmid": "32162041",
+      "title": "Effects of vitamin C on oxidative stress, inflammation, muscle soreness, and strength following acute exercise: meta-analyses of randomized clinical trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Single-bout exercise in healthy volunteers with oxidative stress, inflammation and muscle outcomes; no cold incidence."
+     },
+     {
+      "pmid": "31851538",
+      "title": "The effects of vitamin C and E on exercise-induced physiological adaptations: a systematic review and Meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Vitamin C and/or E during exercise training with performance and adaptation outcomes; no cold incidence."
+     },
+     {
+      "pmid": "33102597",
+      "title": "Vitamin C as a Supplementary Therapy in Relieving Symptoms of the Common Cold: A Meta-Analysis of 10 Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Vitamin C plus antiviral to treat existing colds vs antiviral alone; not prevention in physically stressed people."
+     },
+     {
+      "pmid": "32342851",
+      "title": "Zinc Supplementation Reduces Common Cold Duration among Healthy Adults: A Systematic Review of Randomized Controlled Trials with Micronutrients Supplementation",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Reviews zinc, vitamin D and vitamins A and E for colds; no vitamin C trials were analysed."
+     },
+     {
+      "pmid": "15971944",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Title suggests vitamin C to prevent colds, but there is no abstract to confirm a heavy-physical-stress subgroup or pooled trials."
+     },
+     {
+      "pmid": "15605943",
+      "title": "Vitamin C supplementation and respiratory infections: a systematic review",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Covers soldiers and marathon runners on cold incidence, but mixes in students, includes non-randomised trials and reports no pooled analysis."
+     },
+     {
+      "pmid": "10796569",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "Vitamin C to prevent colds, but includes non-randomised trials and reports no separate analysis for physically stressed people."
+     }
+    ]
+   }
+  },
+  {
+   "id": "colds-duration",
+   "label": "How long colds last",
+   "finding": "How long and how bad colds are",
+   "counts": {
+    "reviews": 20,
+    "trialReviews": 10,
+    "trials": 30,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "23440782",
+     "doi": "10.1002/14651858.cd000980.pub4",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2013,
+     "firstAuthor": "Hemilä H",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 296,
+     "n": 11306,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    },
+    {
+     "pmid": "17636648",
+     "doi": "10.1002/14651858.cd000980.pub3",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2007,
+     "firstAuthor": "Douglas RM",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 64,
+     "n": 11350,
+     "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+    },
+    {
+     "pmid": "15971944",
+     "doi": "10.1371/journal.pmed.0020168",
+     "title": "Vitamin C for preventing and treating the common cold",
+     "year": 2005,
+     "firstAuthor": "Douglas RM",
+     "journal": "PLoS medicine",
+     "citedBy": 18,
+     "why": "One of the newest meta-analyses of trials on this outcome (2005); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "32139409",
+     "doi": "10.1136/bmjmilitary-2019-001384",
+     "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+     "year": 2022,
+     "firstAuthor": "Kim TK",
+     "journal": "BMJ military health",
+     "citedBy": 18,
+     "n": 1444,
+     "why": "A large trial (about 1,444 people) from 2022, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.7391304347826086,
+    "trials": 23,
+    "inclusions": 40,
+    "reviews": [
+     {
+      "pmid": "23440782",
+      "trials": 23
+     },
+     {
+      "pmid": "17636648",
+      "trials": 17
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "15971944"
+    ],
+    "shared": [
+     {
+      "pmid": "12665160",
+      "title": "Evaluation of the efficacy of a combined formulation (Grippostad-C) in the therapy of symptoms of common cold: a randomized, double-blind, multicenter trial",
+      "year": 2003,
+      "n": 1167,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "787788",
+      "title": "Vitamin C and acute illness in Navajo schoolchildren",
+      "year": 1976,
+      "n": 868,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "1091343",
+      "title": "Winter illness and vitamin C: the effect of relatively low doses",
+      "year": 1975,
+      "n": 622,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "16118650",
+      "title": "Effect of vitamin C on common cold: randomized controlled trial",
+      "year": 2006,
+      "n": 439,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "11700812",
+      "title": "Mega-dose vitamin C in treatment of the common cold: a randomised controlled trial",
+      "year": 2001,
+      "n": 400,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "9197524",
+      "title": "A randomized controlled trial for chemoprevention of gastric cancer in high-risk Japanese population; study design, feasibility and protocol modification",
+      "year": 1997,
+      "n": 397,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "19218294",
+      "title": "Modification of the effect of vitamin E supplementation on the mortality of male smokers by age and dietary vitamin C",
+      "year": 2009,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4355208",
+      "title": "Evaluation of the efficacy of ascorbic acid in prophylaxis of induced rhinovirus 44 infection in man",
+      "year": 1973,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4121848",
+      "title": "Common cold and vitamin C",
+      "year": 1973,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "8185726",
+      "title": "Vitamin C supplementation reduces the incidence of postrace symptoms of upper-respiratory-tract infection in ultramarathon runners",
+      "year": 1993,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "163386",
+      "title": "Ascorbic acid for the common cold. A prophylactic and therapeutic trial",
+      "year": 1975,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "4375412",
+      "title": "The role of vitamin C in the treatment of acute infections of the upper respiratory pathways",
+      "year": 1974,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "319446",
+      "title": "A randomized controlled trial of the therapeutic effect of vitamin C in the common cold",
+      "year": 1977,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "318715",
+      "title": "Therapeutic effect of vitamin C. A co-twin control study",
+      "year": 1977,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "162650",
+      "title": "Vitamin C and the common cold",
+      "year": 1975,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "368370",
+      "title": "Vitamin C prophylaxis in marine recruits",
+      "year": 1979,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "12201356",
+      "title": "Preventing the common cold with a vitamin C supplement: a double-blind, placebo-controlled survey",
+      "year": 2002,
+      "inReviews": [
+       "23440782",
+       "17636648"
+      ]
+     },
+     {
+      "pmid": "338079",
+      "title": "A trial of ascorbic acid in the treatment of the common cold",
+      "year": 1977,
+      "n": 1524,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "788820",
+      "title": "A randomized controlled trial of vitamin C in the prevention and amelioration of the common cold",
+      "year": 1976,
+      "n": 688,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "7814237",
+      "title": "The clinical effects of vitamin C supplementation in elderly hospitalised patients with acute respiratory infections",
+      "year": 1994,
+      "n": 57,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "8320052",
+      "title": "Does multivitamin supplementation prevent infections in healthy elderly subjects? A controlled trial",
+      "year": 1993,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "4558644",
+      "title": "[Vitamin C and the common cold]",
+      "year": 1972,
+      "inReviews": [
+       "23440782"
+      ]
+     },
+     {
+      "pmid": "20689965",
+      "title": "The effect of vitamin C on upper respiratory infections in adolescent swimmers: a randomized trial",
+      "year": 2011,
+      "inReviews": [
+       "23440782"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1972,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1973,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1977,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "338079",
+     "title": "A trial of ascorbic acid in the treatment of the common cold",
+     "year": 1977,
+     "n": 1524
+    },
+    {
+     "pmid": "12665160",
+     "title": "Evaluation of the efficacy of a combined formulation (Grippostad-C) in the therapy of symptoms of common cold: a randomized, double-blind, multicenter trial",
+     "year": 2003,
+     "n": 1167
+    },
+    {
+     "pmid": "32139409",
+     "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+     "year": 2022,
+     "n": 1444
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "23440782"
+    ],
+    "citedNotChosen": [
+     "38082300"
+    ],
+    "citedNotEligible": [
+     "38082300"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "17636648",
+      "doi": "10.1002/14651858.cd000980.pub3",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2007,
+      "firstAuthor": "Douglas RM",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 64,
+      "n": 11350,
+      "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+     },
+     {
+      "pmid": "15971944",
+      "doi": "10.1371/journal.pmed.0020168",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2005,
+      "firstAuthor": "Douglas RM",
+      "journal": "PLoS medicine",
+      "citedBy": 18,
+      "why": "One of the newest meta-analyses of trials on this outcome (2005); screened as answering the question"
+     },
+     {
+      "pmid": "32139409",
+      "doi": "10.1136/bmjmilitary-2019-001384",
+      "title": "Vitamin C supplementation reduces the odds of developing a common cold in Republic of Korea Army recruits: randomised controlled trial",
+      "year": 2022,
+      "firstAuthor": "Kim TK",
+      "journal": "BMJ military health",
+      "citedBy": 18,
+      "n": 1444,
+      "why": "A large trial (about 1,444 people) from 2022, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Children and adults",
+     "intervention": "Vitamin C every day, or started when a cold begins",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How long colds last and how bad they are"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 4,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "34967304",
+      "title": "Effect of Vitamin C Supplements on Respiratory Tract Infections: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Vitamin C vs placebo with pooled duration and severity matches, but the outcome is respiratory tract infections in general rather than colds specifically."
+     },
+     {
+      "pmid": "33472840",
+      "title": "Effect of micronutrient supplements on influenza and other respiratory tract infections among adults: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools vitamin C trials on how long infections last, but only in adults and for acute respiratory infections in general rather than colds."
+     },
+     {
+      "pmid": "33102597",
+      "title": "Vitamin C as a Supplementary Therapy in Relieving Symptoms of the Common Cold: A Meta-Analysis of 10 Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Treats colds with vitamin C added to antiviral drugs, compared with antivirals alone rather than placebo, in trials from China."
+     },
+     {
+      "pmid": "32342851",
+      "title": "Zinc Supplementation Reduces Common Cold Duration among Healthy Adults: A Systematic Review of Randomized Controlled Trials with Micronutrients Supplementation",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Pooled data cover zinc, vitamin D and vitamins A and E; vitamin C was left out of the analysis."
+     },
+     {
+      "pmid": "15605943",
+      "title": "Vitamin C supplementation and respiratory infections: a systematic review",
+      "year": 2004,
+      "fits": "no",
+      "reason": "Covers only soldiers, students and marathon runners, and reports how often colds and pneumonia occur, not how long or bad they are."
+     },
+     {
+      "pmid": "10796569",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "Daily and cold-onset vitamin C for cold duration matches, but randomised and non-randomised trials were pooled together."
+     }
+    ]
+   }
+  },
+  {
+   "id": "chronic-disease",
+   "label": "Heart disease, cancer and death",
+   "finding": "Heart disease, cancer and death",
+   "counts": {
+    "reviews": 125,
+    "trialReviews": 28,
+    "trials": 225,
+    "largeTrials": 41
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33509399",
+     "doi": "10.1016/j.jacc.2020.09.619",
+     "title": "Supplemental Vitamins and Minerals for Cardiovascular Disease Prevention and Treatment: JACC Focus Seminar",
+     "year": 2021,
+     "firstAuthor": "Jenkins DJA",
+     "journal": "Journal of the American College of Cardiology",
+     "citedBy": 71,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    },
+    {
+     "pmid": "22419320",
+     "doi": "10.1002/14651858.cd007176.pub2",
+     "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+     "year": 2012,
+     "firstAuthor": "Bjelakovic G",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 309,
+     "n": 296707,
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+    },
+    {
+     "pmid": "20661819",
+     "doi": "10.1080/01635581.2010.494335",
+     "title": "Efficacy of antioxidant vitamins and selenium supplement in prostate cancer prevention: a meta-analysis of randomized controlled trials",
+     "year": 2010,
+     "firstAuthor": "Jiang L",
+     "journal": "Nutrition and cancer",
+     "citedBy": 57,
+     "n": 165056,
+     "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "42163134",
+     "doi": "10.1186/s12876-026-04948-6",
+     "title": "A randomized controlled superiority trial of 1 L (Plenvu) versus 2 L (Moviprep) polyethelene glycol plus ascorbate in a FIT-based colorectal cancer screening setting (PLEMO)",
+     "year": 2026,
+     "firstAuthor": "Roepstorff S",
+     "journal": "BMC gastroenterology",
+     "citedBy": 0,
+     "n": 1275,
+     "why": "A large trial (about 1,275 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.007407407407407408,
+    "trials": 270,
+    "inclusions": 272,
+    "reviews": [
+     {
+      "pmid": "22419320",
+      "trials": 270
+     },
+     {
+      "pmid": "20661819",
+      "trials": 2
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "33509399"
+    ],
+    "shared": [
+     {
+      "pmid": "15800922",
+      "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
+      "year": 2005,
+      "n": 5141,
+      "inReviews": [
+       "22419320",
+       "20661819"
+      ]
+     },
+     {
+      "pmid": "19066368",
+      "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial",
+      "year": 2009,
+      "n": 1307,
+      "inReviews": [
+       "22419320",
+       "20661819"
+      ]
+     },
+     {
+      "pmid": "7495242",
+      "title": "The Linxian trials: mortality rates by vitamin-mineral intervention group",
+      "year": 1995,
+      "n": 30000,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19318634",
+      "title": "Total and cancer mortality after supplementation with vitamins and minerals: follow-up of the Linxian General Population Nutrition Intervention Trial",
+      "year": 2009,
+      "n": 29584,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "8049638",
+      "title": "Effects of vitamin/mineral supplementation on the prevalence of histological dysplasia and early cancer of the esophagus and stomach: results from the General Population Trial in Linxian, China",
+      "year": 1994,
+      "n": 29584,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "8360931",
+      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+      "year": 1993,
+      "n": 29584,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "8137333",
+      "title": "Prevention of esophageal cancer: the nutrition intervention trials in Linxian, China. Linxian Nutrition Intervention Trials Study Group",
+      "year": 1994,
+      "n": 29584,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12114037",
+      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
+      "year": 2002,
+      "n": 20536,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "11831837",
+      "title": "The MRC/BHF Heart Protection Study: preliminary results",
+      "year": 2002,
+      "n": 20500,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "10385137",
+      "title": "The effect of alpha-tocopherol and beta-carotene supplementation on colorectal adenomas in middle-aged male smokers",
+      "year": 1999,
+      "n": 15538,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "10329064",
+      "title": "MRC/BHF Heart Protection Study of cholesterol-lowering therapy and of antioxidant vitamin supplementation in a wide range of patients at increased risk of coronary heart disease death: early safety and efficacy experience",
+      "year": 1999,
+      "n": 15454,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "15557412",
+      "title": "The SU.VI.MAX Study: a randomized, placebo-controlled trial of the health effects of antioxidant vitamins and minerals",
+      "year": 2004,
+      "n": 13017,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "16115341",
+      "title": "Antioxidant status and risk of cancer in the SU.VI.MAX study: is the effect of supplementation dependent on baseline levels?",
+      "year": 2005,
+      "n": 12741,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "20605091",
+      "title": "Incidence of skin cancers during 5-year follow-up after stopping antioxidant vitamins and mineral supplementation",
+      "year": 2010,
+      "n": 12741,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "16032784",
+      "title": "Alterations of the lipid profile after 7.5 years of low-dose antioxidant supplementation in the SU.VI.MAX Study",
+      "year": 2005,
+      "n": 12741,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "20104528",
+      "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
+      "year": 2010,
+      "n": 12741,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "9503043",
+      "title": "Background and rationale behind the SU.VI.MAX Study, a prevention trial using nutritional doses of a combination of antioxidant vitamins and minerals to reduce cardiovascular diseases and cancers. SUpplementation en VItamines et Minéraux AntioXydants Study",
+      "year": 1998,
+      "n": 12735,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "10541446",
+      "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
+      "year": 1999,
+      "n": 12735,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "11718454",
+      "title": "Effect of two years' supplementation with natural antioxidants on vitamin and trace element status biomarkers: preliminary data of the SU.VI.MAX study",
+      "year": 2001,
+      "n": 12735,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "9683310",
+      "title": "A primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers in a general population: the SU.VI.MAX study--design, methods, and participant characteristics. SUpplementation en VItamines et Minéraux AntioXydants",
+      "year": 1998,
+      "n": 12735,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19116389",
+      "title": "Vitamins C and E and beta carotene supplementation and cancer risk: a randomized controlled trial",
+      "year": 2009,
+      "n": 8171,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "8520707",
+      "title": "A secondary prevention trial of antioxidant vitamins and cardiovascular disease in women. Rationale, design, and methods. The WACS Research Group",
+      "year": 1995,
+      "n": 8000,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "17709449",
+      "title": "Antioxidant supplementation increases the risk of skin cancers in women but not in men",
+      "year": 2007,
+      "n": 7876,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19491386",
+      "title": "Effects of vitamins C and E and beta-carotene on the risk of type 2 diabetes in women at high risk of cardiovascular disease: a randomized controlled trial",
+      "year": 2009,
+      "n": 6574,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19491388",
+      "title": "Effects of long-term antioxidant supplementation and association of serum antioxidant concentrations with risk of metabolic syndrome in adults",
+      "year": 2009,
+      "n": 5220,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "11594943",
+      "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E and beta carotene for age-related cataract and vision loss: AREDS report no. 9",
+      "year": 2001,
+      "n": 4757,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "11594942",
+      "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
+      "year": 2001,
+      "n": 3640,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "17023720",
+      "title": "A randomized factorial study of the effects of long-term garlic and micronutrient supplementation and of 2-wk antibiotic treatment for Helicobacter pylori infection on serum cholesterol and lipoproteins",
+      "year": 2006,
+      "n": 3411,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "9683311",
+      "title": "Factorial trial of three interventions to reduce the progression of precancerous gastric lesions in Shandong, China: design issues and initial data",
+      "year": 1998,
+      "n": 3411,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19056661",
+      "title": "Long-term garlic or micronutrient supplementation, but not anti-Helicobacter pylori therapy, increases serum folate or glutathione without affecting serum vitamin B-12 or homocysteine in a rural Chinese population",
+      "year": 2009,
+      "n": 3411,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "16849680",
+      "title": "Randomized double-blind factorial trial of three treatments to reduce the prevalence of precancerous gastric lesions",
+      "year": 2006,
+      "n": 3365,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "16895889",
+      "title": "Antioxidant supplementation does not affect fasting plasma glucose in the Supplementation with Antioxidant Vitamins and Minerals (SU.VI.MAX) study in France: association with dietary intake and plasma concentrations",
+      "year": 2006,
+      "n": 3146,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "14639794",
+      "title": "Relationship between soup consumption, folate, beta-carotene, and vitamin C status in a French adult population",
+      "year": 2003,
+      "n": 2874,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19451353",
+      "title": "Vitamin E, vitamin C, beta carotene, and cognitive function among women with or at risk of cardiovascular disease: The Women's Antioxidant and Cardiovascular Study",
+      "year": 2009,
+      "n": 2824,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "8923024",
+      "title": "Chemoprevention trial on precancerous lesions of the stomach in Venezuela: summary of study design and baseline data",
+      "year": 1996,
+      "n": 2200,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "15534261",
+      "title": "Impact of antioxidants, zinc, and copper on cognition in the elderly: a randomized, controlled trial",
+      "year": 2004,
+      "n": 2166,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "17227997",
+      "title": "Chemoprevention of precancerous gastric lesions with antioxidant vitamin supplementation: a randomized trial in a high-risk population",
+      "year": 2007,
+      "n": 1980,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "17698683",
+      "title": "A randomized factorial trial of vitamins C and E and beta carotene in the secondary prevention of cardiovascular events in women: results from the Women's Antioxidant Cardiovascular Study",
+      "year": 2007,
+      "n": 1450,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "15047680",
+      "title": "Plasma C-reactive protein concentrations in active and passive smokers: influence of antioxidant supplementation",
+      "year": 2004,
+      "n": 1393,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "15217803",
+      "title": "Effects of long-term daily low-dose supplementation with antioxidant vitamins and minerals on structure and function of large arteries",
+      "year": 2004,
+      "n": 1162,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "19636163",
+      "title": "Effects of multivitamin/mineral supplementation on plasma levels of nutrients. Report No. 4 of the Italian-American clinical trial of nutritional supplements and age-related cataract",
+      "year": 2009,
+      "n": 1020,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "8008027",
+      "title": "A clinical trial of antioxidant vitamins to prevent colorectal adenoma. Polyp Prevention Study Group",
+      "year": 1994,
+      "n": 864,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "16059992",
+      "title": "Antioxidant effects of combined vitamins C and E in acute myocardial infarction. The randomized, double-blind, placebo controlled, multicenter pilot Myocardial Infarction and VITamins (MIVIT) trial",
+      "year": 2005,
+      "n": 800,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "18997197",
+      "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
+      "year": 2008,
+      "n": 754,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "10218756",
+      "title": "Impact of trace elements and vitamin supplementation on immunity and infections in institutionalized elderly patients: a randomized controlled trial. MIN. VIT. AOX. geriatric network",
+      "year": 1999,
+      "n": 725,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12169075",
+      "title": "Effect of daily vitamin E and multivitamin-mineral supplementation on acute respiratory tract infections in elderly persons: a randomized controlled trial",
+      "year": 2002,
+      "n": 652,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12824908",
+      "title": "The effect of 5-year vitamin C supplementation on serum pepsinogen level and Helicobacter pylori infection",
+      "year": 2003,
+      "n": 635,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "1091343",
+      "title": "Winter illness and vitamin C: the effect of relatively low doses",
+      "year": 1975,
+      "n": 622,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12036083",
+      "title": "Ascorbic acid supplement during luteal phase in IVF",
+      "year": 2002,
+      "n": 620,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12600905",
+      "title": "Six-year effect of combined vitamin C and E supplementation on atherosclerotic progression: the Antioxidant Supplementation in Atherosclerosis Prevention (ASAP) Study",
+      "year": 2003,
+      "n": 520,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "11811547",
+      "title": "Supplementation with vitamin E but not with vitamin C lowers lipid peroxidation in vivo in mildly hypercholesterolemic men",
+      "year": 2001,
+      "n": 520,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "11123502",
+      "title": "Antioxidant Supplementation in Atherosclerosis Prevention (ASAP) study: a randomized trial of the effect of vitamins E and C on 3-year progression of carotid atherosclerosis",
+      "year": 2000,
+      "n": 520,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "10407503",
+      "title": "Antioxidants, but not B-group vitamins increase the resistance of low-density lipoprotein to oxidation: a randomized, factorial design, placebo-controlled trial",
+      "year": 1999,
+      "n": 509,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "14748940",
+      "title": "Long-term vitamin C supplementation has no markedly favourable effect on serum lipids in middle-aged Japanese subjects",
+      "year": 2004,
+      "n": 439,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12468560",
+      "title": "Lack of long-term effect of vitamin C supplementation on blood pressure",
+      "year": 2002,
+      "n": 439,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12805247",
+      "title": "Effect of five-year supplementation of vitamin C on serum vitamin C concentration and consumption of vegetables and fruits in middle-aged Japanese: a randomized controlled trial",
+      "year": 2003,
+      "n": 439,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "12435256",
+      "title": "Effects of hormone replacement therapy and antioxidant vitamin supplements on coronary atherosclerosis in postmenopausal women: a randomized controlled trial",
+      "year": 2002,
+      "n": 423,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "9627910",
+      "title": "Effects of supplementation with a combination of antioxidant vitamins and trace elements, at nutritional doses, on biochemical indicators and markers of the antioxidant system in adult subjects",
+      "year": 1998,
+      "n": 401,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "9197524",
+      "title": "A randomized controlled trial for chemoprevention of gastric cancer in high-risk Japanese population; study design, feasibility and protocol modification",
+      "year": 1997,
+      "n": 397,
+      "inReviews": [
+       "22419320"
+      ]
+     },
+     {
+      "pmid": "10025472",
+      "title": "Double-blind intervention trial on modulation of ozone effects on pulmonary function by antioxidant supplements",
+      "year": 1999,
+      "n": 380,
+      "inReviews": [
+       "22419320"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1979,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 1996,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 1999,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 14
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 12
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 16
+    },
+    {
+     "year": 2006,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2008,
+     "reviews": 5,
+     "trials": 6
+    },
+    {
+     "year": 2009,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2013,
+     "reviews": 8,
+     "trials": 5
+    },
+    {
+     "year": 2014,
+     "reviews": 7,
+     "trials": 8
+    },
+    {
+     "year": 2015,
+     "reviews": 8,
+     "trials": 8
+    },
+    {
+     "year": 2016,
+     "reviews": 8,
+     "trials": 6
+    },
+    {
+     "year": 2017,
+     "reviews": 5,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 5
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 7
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 13,
+     "trials": 5
+    },
+    {
+     "year": 2022,
+     "reviews": 15,
+     "trials": 5
+    },
+    {
+     "year": 2023,
+     "reviews": 8,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 8,
+     "trials": 5
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 7
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "8360931",
+     "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+     "year": 1993,
+     "n": 29584
+    },
+    {
+     "pmid": "8137333",
+     "title": "Prevention of esophageal cancer: the nutrition intervention trials in Linxian, China. Linxian Nutrition Intervention Trials Study Group",
+     "year": 1994,
+     "n": 29584
+    },
+    {
+     "pmid": "8049638",
+     "title": "Effects of vitamin/mineral supplementation on the prevalence of histological dysplasia and early cancer of the esophagus and stomach: results from the General Population Trial in Linxian, China",
+     "year": 1994,
+     "n": 29584
+    },
+    {
+     "pmid": "7503047",
+     "title": "Dietary vitamin C and beta-carotene and risk of death in middle-aged men. The Western Electric Study",
+     "year": 1995,
+     "n": 1556
+    },
+    {
+     "pmid": "7495242",
+     "title": "The Linxian trials: mortality rates by vitamin-mineral intervention group",
+     "year": 1995,
+     "n": 30000
+    },
+    {
+     "pmid": "8520707",
+     "title": "A secondary prevention trial of antioxidant vitamins and cardiovascular disease in women. Rationale, design, and methods. The WACS Research Group",
+     "year": 1995,
+     "n": 8000
+    },
+    {
+     "pmid": "8941095",
+     "title": "Intake of dietary fiber and risk of coronary heart disease in a cohort of Finnish men. The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
+     "year": 1996,
+     "n": 21930
+    },
+    {
+     "pmid": "9398046",
+     "title": "Gastric cancer, gastritis and plasma vitamin C: results from an international correlation and cross-sectional study. The Eurogast Study Group",
+     "year": 1997,
+     "n": 1400
+    },
+    {
+     "pmid": "9116317",
+     "title": "Tumor characteristics and survival of breast cancer patients in relation to premorbid diet and body size",
+     "year": 1997,
+     "n": 89835
+    },
+    {
+     "pmid": "9430262",
+     "title": "Do nutritional supplements lower the risk of stroke or hypertension?",
+     "year": 1998,
+     "n": 29584
+    },
+    {
+     "pmid": "9503043",
+     "title": "Background and rationale behind the SU.VI.MAX Study, a prevention trial using nutritional doses of a combination of antioxidant vitamins and minerals to reduce cardiovascular diseases and cancers. SUpplementation en VItamines et Minéraux AntioXydants Study",
+     "year": 1998,
+     "n": 12735
+    },
+    {
+     "pmid": "9683310",
+     "title": "A primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers in a general population: the SU.VI.MAX study--design, methods, and participant characteristics. SUpplementation en VItamines et Minéraux AntioXydants",
+     "year": 1998,
+     "n": 12735
+    },
+    {
+     "pmid": "10541446",
+     "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
+     "year": 1999,
+     "n": 12735
+    },
+    {
+     "pmid": "10329064",
+     "title": "MRC/BHF Heart Protection Study of cholesterol-lowering therapy and of antioxidant vitamin supplementation in a wide range of patients at increased risk of coronary heart disease death: early safety and efficacy experience",
+     "year": 1999,
+     "n": 15454
+    },
+    {
+     "pmid": "11588893",
+     "title": "Dietary supplement use in the Prostate Cancer Prevention Trial: implications for prevention trials",
+     "year": 2001,
+     "n": 15387
+    },
+    {
+     "pmid": "12114037",
+     "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
+     "year": 2002,
+     "n": 20536
+    },
+    {
+     "pmid": "11831837",
+     "title": "The MRC/BHF Heart Protection Study: preliminary results",
+     "year": 2002,
+     "n": 20500
+    },
+    {
+     "pmid": "14594788",
+     "title": "Antioxidant vitamins and mortality in older persons: findings from the nutrition add-on study to the Medical Research Council Trial of Assessment and Management of Older People in the Community",
+     "year": 2003,
+     "n": 1214
+    },
+    {
+     "pmid": "12771114",
+     "title": "Effect of estrogen plus progestin on stroke in postmenopausal women: the Women's Health Initiative: a randomized trial",
+     "year": 2003,
+     "n": 16608
+    },
+    {
+     "pmid": "14668283",
+     "title": "Effects of maternal micronutrient supplementation on fetal loss and infant mortality: a cluster-randomized trial in Nepal",
+     "year": 2003,
+     "n": 4926
+    },
+    {
+     "pmid": "16115341",
+     "title": "Antioxidant status and risk of cancer in the SU.VI.MAX study: is the effect of supplementation dependent on baseline levels?",
+     "year": 2005,
+     "n": 12741
+    },
+    {
+     "pmid": "15800922",
+     "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
+     "year": 2005,
+     "n": 5141
+    },
+    {
+     "pmid": "16896051",
+     "title": "Lung cancer chemoprevention: a randomized, double-blind trial in Linxian, China",
+     "year": 2006,
+     "n": 29584
+    },
+    {
+     "pmid": "17698683",
+     "title": "A randomized factorial trial of vitamins C and E and beta carotene in the secondary prevention of cardiovascular events in women: results from the Women's Antioxidant Cardiovascular Study",
+     "year": 2007,
+     "n": 1450
+    },
+    {
+     "pmid": "17709449",
+     "title": "Antioxidant supplementation increases the risk of skin cancers in women but not in men",
+     "year": 2007,
+     "n": 7876
+    },
+    {
+     "pmid": "17686823",
+     "title": "Chemoprevention of primary liver cancer: a randomized, double-blind trial in Linxian, China",
+     "year": 2007,
+     "n": 29450
+    },
+    {
+     "pmid": "17519926",
+     "title": "Fruit, vegetable, vitamin A intakes, and prostate cancer risk",
+     "year": 2008,
+     "n": 1985
+    },
+    {
+     "pmid": "19491386",
+     "title": "Effects of vitamins C and E and beta-carotene on the risk of type 2 diabetes in women at high risk of cardiovascular disease: a randomized controlled trial",
+     "year": 2009,
+     "n": 6574
+    },
+    {
+     "pmid": "19116389",
+     "title": "Vitamins C and E and beta carotene supplementation and cancer risk: a randomized controlled trial",
+     "year": 2009,
+     "n": 8171
+    },
+    {
+     "pmid": "19451353",
+     "title": "Vitamin E, vitamin C, beta carotene, and cognitive function among women with or at risk of cardiovascular disease: The Women's Antioxidant and Cardiovascular Study",
+     "year": 2009,
+     "n": 2824
+    },
+    {
+     "pmid": "19066368",
+     "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial",
+     "year": 2009,
+     "n": 1307
+    },
+    {
+     "pmid": "19318634",
+     "title": "Total and cancer mortality after supplementation with vitamins and minerals: follow-up of the Linxian General Population Nutrition Intervention Trial",
+     "year": 2009,
+     "n": 29584
+    },
+    {
+     "pmid": "20605091",
+     "title": "Incidence of skin cancers during 5-year follow-up after stopping antioxidant vitamins and mineral supplementation",
+     "year": 2010,
+     "n": 12741
+    },
+    {
+     "pmid": "20104528",
+     "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
+     "year": 2010,
+     "n": 12741
+    },
+    {
+     "pmid": "20842109",
+     "title": "Atorvastatin and antioxidants for the treatment of nonalcoholic fatty liver disease: the St Francis Heart Study randomized clinical trial",
+     "year": 2011,
+     "n": 1005
+    },
+    {
+     "pmid": "22271764",
+     "title": "Fifteen-year effects of Helicobacter pylori, garlic, and vitamin treatments on gastric cancer incidence and mortality",
+     "year": 2012,
+     "n": 3365
+    },
+    {
+     "pmid": "23073950",
+     "title": "Effect of high-dose vs standard-dose multivitamin supplementation at the initiation of HAART on HIV disease progression and mortality in Tanzania: a randomized controlled trial",
+     "year": 2012,
+     "n": 3418
+    },
+    {
+     "pmid": "23532240",
+     "title": "Effect of disodium EDTA chelation regimen on cardiovascular events in patients with previous myocardial infarction: the TACT randomized trial",
+     "year": 2013,
+     "n": 1708
+    },
+    {
+     "pmid": "28921575",
+     "title": "Ingested nitrate and nitrite, disinfection by-products, and pancreatic cancer risk in postmenopausal women",
+     "year": 2018,
+     "n": 34242
+    },
+    {
+     "pmid": "31511230",
+     "title": "Effects of Helicobacter pylori treatment and vitamin and garlic supplementation on gastric cancer incidence and mortality: follow-up of a randomized intervention trial",
+     "year": 2019,
+     "n": 3365
+    },
+    {
+     "pmid": "42163134",
+     "title": "A randomized controlled superiority trial of 1 L (Plenvu) versus 2 L (Moviprep) polyethelene glycol plus ascorbate in a FIT-based colorectal cancer screening setting (PLEMO)",
+     "year": 2026,
+     "n": 1275
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "22419320"
+    ],
+    "citedNotChosen": [
+     "18997197",
+     "19066368"
+    ],
+    "citedNotEligible": [
+     "18997197",
+     "19066368"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "33509399",
+      "doi": "10.1016/j.jacc.2020.09.619",
+      "title": "Supplemental Vitamins and Minerals for Cardiovascular Disease Prevention and Treatment: JACC Focus Seminar",
+      "year": 2021,
+      "firstAuthor": "Jenkins DJA",
+      "journal": "Journal of the American College of Cardiology",
+      "citedBy": 71,
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     },
+     {
+      "pmid": "20661819",
+      "doi": "10.1080/01635581.2010.494335",
+      "title": "Efficacy of antioxidant vitamins and selenium supplement in prostate cancer prevention: a meta-analysis of randomized controlled trials",
+      "year": 2010,
+      "firstAuthor": "Jiang L",
+      "journal": "Nutrition and cancer",
+      "citedBy": 57,
+      "n": 165056,
+      "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+     },
+     {
+      "pmid": "42163134",
+      "doi": "10.1186/s12876-026-04948-6",
+      "title": "A randomized controlled superiority trial of 1 L (Plenvu) versus 2 L (Moviprep) polyethelene glycol plus ascorbate in a FIT-based colorectal cancer screening setting (PLEMO)",
+      "year": 2026,
+      "firstAuthor": "Roepstorff S",
+      "journal": "BMC gastroenterology",
+      "citedBy": 0,
+      "n": 1275,
+      "why": "A large trial (about 1,275 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+     "intervention": "Vitamin C supplements (alone, or with results for vitamin C apart)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Heart disease, cancer or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 12,
+     "no": 9,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41521729",
+      "title": "Effects of Vitamin C and/or E Supplementation on Glycemic Control and Cardiovascular Risk Factors in Type 2 Diabetes: A Systematic Review and Subgroup Meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Two parts differ: the people all have type 2 diabetes, and the outcomes are blood sugar, lipids and blood pressure rather than heart disease, cancer or death."
+     },
+     {
+      "pmid": "40914496",
+      "title": "Effects of antioxidants on oxidative stress in adult patients with coronary artery disease: A systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "The people have coronary artery disease, the antioxidants are mostly not vitamin C, and the outcomes are oxidative stress markers."
+     },
+     {
+      "pmid": "38291560",
+      "title": "From A to E: Uniting vitamins against stroke risk-A systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Vitamin C is compared with placebo, but the outcome is stroke rather than heart disease, and randomised trials are pooled together with cohort studies."
+     },
+     {
+      "pmid": "35727272",
+      "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Randomised trials in healthy adults covering heart disease, cancer and death, but the abstract gives no separate result for vitamin C."
+     },
+     {
+      "pmid": "34325683",
+      "title": "Circulating vitamin C concentration and risk of cancers: a Mendelian randomization study",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Mainly a Mendelian randomisation study; its meta-analysis of vitamin C and cancer pools cohort studies with randomised trials."
+     },
+     {
+      "pmid": "33472962",
+      "title": "Effects of Vitamin C Supplementation on Glycemic Control and Cardiovascular Risk Factors in People With Type 2 Diabetes: A GRADE-Assessed Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Two parts differ: the people have type 2 diabetes, and the outcomes are blood markers and blood pressure rather than heart disease, cancer or death."
+     },
+     {
+      "pmid": "34635464",
+      "title": "Post-Diagnosis use of Antioxidant Vitamin Supplements and Breast Cancer Prognosis: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "The people are breast cancer patients, the studies are observational, and it looks at survival after diagnosis rather than prevention."
+     },
+     {
+      "pmid": "32148118",
+      "title": "Dietary Supplement Use after Cancer Diagnosis in Relation to Total Mortality, Cancer Mortality and Recurrence: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "The people are cancer survivors, and the vitamin C results come only from observational studies."
+     },
+     {
+      "pmid": "32718091",
+      "title": "Vitamin C for Cardiac Protection during Percutaneous Coronary Intervention: A Systematic Review of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Vitamin C is given into a vein around a heart procedure (PCI), and the outcomes are mostly markers of heart injury."
+     },
+     {
+      "pmid": "30683434",
+      "title": "Limited evidence for a beneficial effect of vitamin C supplementation on biomarkers of cardiovascular diseases: an umbrella review of systematic reviews and meta-analyses",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Vitamin C supplements are studied, but the outcomes are only heart disease risk markers such as blood pressure and lipids, not actual disease."
+     },
+     {
+      "pmid": "31035414",
+      "title": "The Effect of Vitamin C (Ascorbic Acid) in the Treatment of Patients with Cancer: A Systematic Review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "This is about treating people who already have cancer with vitamin C, and few of the included studies are randomised."
+     },
+     {
+      "pmid": "27529239",
+      "title": "Vitamin C and Heart Health: A Review Based on Findings from Epidemiologic Studies",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Looks at vitamin C and heart disease, but mixes trial and cohort evidence and does not appear to pool the randomised trials."
+     },
+     {
+      "pmid": "24532094",
+      "title": "Reduced oxidative stress in STEMI patients treated by primary percutaneous coronary intervention and with antioxidant therapy: a systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Patients with heart attack undergoing PCI, treated with mixed antioxidant drugs, with oxidative stress and damage outcomes; a different question."
+     },
+     {
+      "pmid": "23437244",
+      "title": "Effect of antioxidant vitamin supplementation on cardiovascular outcomes: a meta-analysis of randomized controlled trials",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Placebo-controlled trials on cardiovascular events and death include vitamin C, but the abstract shows only pooled antioxidant vitamin results."
+     },
+     {
+      "pmid": "24620628",
+      "title": "Do antioxidants prevent colorectal cancer? A meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Colorectal cancer and death outcomes vs placebo, but vitamin C is reported only combined with vitamin E, and some trials enrolled adenoma patients."
+     },
+     {
+      "pmid": "23994417",
+      "title": "Does ascorbic acid protect against contrast-induced acute kidney injury in patients undergoing coronary angiography: a systematic review with meta-analysis of randomized, controlled trials",
+      "year": 2013,
+      "fits": "no",
+      "reason": "The outcome is kidney injury from contrast dye in patients having coronary angiography."
+     },
+     {
+      "pmid": "18677777",
+      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Placebo-controlled prevention trials on cancer and death that include vitamin C, but the abstract shows only pooled antioxidant results, not vitamin C apart."
+     },
+     {
+      "pmid": "19145725",
+      "title": "Systematic review: primary and secondary prevention of gastrointestinal cancers with antioxidant supplements",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Placebo-controlled trials on gastrointestinal cancer and death include vitamin C, but the abstract shows only pooled antioxidant results."
+     },
+     {
+      "pmid": "16880453",
+      "title": "The efficacy and safety of multivitamin and mineral supplement use to prevent cancer and chronic disease in adults: a systematic review for a National Institutes of Health state-of-the-science conference",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Adults and outcomes of cancer, heart disease and death match, but vitamin C is given only in multivitamin or mineral combinations."
+     },
+     {
+      "pmid": "15495084",
+      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Placebo-controlled trials on gastrointestinal cancer and death include vitamin C, but the abstract gives no separate vitamin C result."
+     },
+     {
+      "pmid": "11982737",
+      "title": "Antioxidant vitamins in the prevention of cardiovascular disease: a systematic review",
+      "year": 2002,
+      "fits": "partly",
+      "reason": "Covers antioxidant vitamins, including vitamin C, for heart disease prevention, but it is a mixed narrative review with no pooled vitamin C trial result."
+     }
+    ]
+   }
+  },
+  {
+   "id": "with-iron",
+   "label": "With iron tablets",
+   "finding": "Iron levels when vitamin C tablets are added to iron tablets",
+   "counts": {
+    "reviews": 18,
+    "trialReviews": 2,
+    "trials": 147,
+    "largeTrials": 3
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1966,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1969,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1974,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1979,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2001,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "18469253",
+     "title": "Relationship between iron status and dietary fruit and vegetables based on their vitamin C and fiber content",
+     "year": 2008,
+     "n": 4358
+    },
+    {
+     "pmid": "19535425",
+     "title": "Treatment response to iron and folic acid alone is the same as with multivitamins and/or anthelminthics in severely anemic 6- to 24-month-old children",
+     "year": 2009,
+     "n": 9518
+    },
+    {
+     "pmid": "33571267",
+     "title": "Impact of iron fortification on anaemia and iron deficiency among pre-school children living in Rural Ghana",
+     "year": 2021,
+     "n": 1958
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "33136134"
+    ],
+    "citedNotEligible": [
+     "33136134"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with iron-deficiency anaemia taking iron tablets",
+     "intervention": "Vitamin C tablets added to iron tablets",
+     "comparison": "Iron tablets alone",
+     "outcome": "Haemoglobin and iron stores (ferritin)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42349680",
+      "title": "Does consuming ascorbate-rich fruits and fruit juices with meals improve iron bioavailability? A systematic review and meta-analysis of interventions",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Tests vitamin C-rich fruits or juices eaten with meals in females and children, not vitamin C tablets added to iron tablets in anaemic adults."
+     },
+     {
+      "pmid": "19783342",
+      "title": "Ascorbic acid for anemia management in hemodialysis patients: a systematic review and meta-analysis",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Pools RCTs of vitamin C on haemoglobin and ferritin, but in hemodialysis patients on standard anaemia care, not adults taking iron tablets alone."
+     }
+    ]
+   }
+  },
+  {
+   "id": "kidney-stones",
+   "label": "Kidney stones",
+   "finding": "Kidney stones",
+   "counts": {
+    "reviews": 4,
+    "trialReviews": 1,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "26463139"
+    ],
+    "citedNotEligible": [
+     "26463139"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Vitamin C supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Kidney stones, or oxalate in urine"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "30178451",
+      "title": "Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Adults, vitamin C supplements and kidney stones match, but the pooled studies look observational (dose-based odds ratios; RCTs called for), not randomised trials."
+     }
+    ]
+   }
+  }
+ ]
+}

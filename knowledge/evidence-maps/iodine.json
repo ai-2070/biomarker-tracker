@@ -1,0 +1,2412 @@
+{
+ "topic": "iodine",
+ "nutrientId": "iodine",
+ "name": "iodine",
+ "scope": "in papers about supplements, iodised salt, intake, diet or deficiency",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with iodine (iodine, iodide, iodised salt, iodized salt, iodate) in its title or abstract, in papers about supplements, iodised salt, intake, diet or deficiency; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving iodine, with iodine in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded iodine trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 14253,
+  "retrieved": 590,
+  "animal": 40,
+  "retracted": 0,
+  "reviews": 211,
+  "trials": 312,
+  "guidelines": 27
+ },
+ "guidelines": [
+  {
+   "pmid": "42711231",
+   "doi": "10.1016/j.arcped.2026.105600",
+   "title": "Recommendations for prevention of iodine deficiency during pregnancy and breastfeeding in France",
+   "year": 2026,
+   "journal": "Archives de pediatrie : organe officiel de la Societe francaise de pediatrie",
+   "citedBy": 0,
+   "why": "One of the newest guidelines with iodine in the title"
+  },
+  {
+   "pmid": "42217751",
+   "doi": "10.1016/j.ando.2026.102580",
+   "title": "Recommendations for prevention of iodine deficiency during pregnancy and breastfeeding in France",
+   "year": 2026,
+   "journal": "Annales d'endocrinologie",
+   "citedBy": 0,
+   "why": "One of the newest guidelines with iodine in the title"
+  },
+  {
+   "pmid": "40598903",
+   "doi": "10.3803/enm.2025.2464",
+   "title": "2025 Korean Thyroid Association Management Guidelines for Radioactive Iodine Therapy in Patients with Hyperthyroidism",
+   "year": 2025,
+   "journal": "Endocrinology and metabolism (Seoul, Korea)",
+   "citedBy": 2,
+   "why": "One of the newest guidelines with iodine in the title"
+  },
+  {
+   "pmid": "24035326",
+   "doi": "10.1016/j.endonu.2013.05.004",
+   "title": "Iodine supplementation during pregnancy and lactation. Position statement of the working group on disorders related to iodine deficiency and thyroid dysfunction of the Spanish Society of Endocrinology and Nutrition",
+   "year": 2014,
+   "journal": "Endocrinologia y nutricion : organo de la Sociedad Espanola de Endocrinologia y Nutricion",
+   "citedBy": 13,
+   "why": "One of the newest guidelines with iodine in the title"
+  },
+  {
+   "pmid": "25473709",
+   "title": "Guideline: Fortification of Food-Grade Salt with Iodine for the Prevention and Control of Iodine Deficiency Disorders",
+   "year": 2014,
+   "citedBy": 1,
+   "why": "One of the newest guidelines with iodine in the title"
+  },
+  {
+   "pmid": "18053287",
+   "doi": "10.1017/s1368980007361004",
+   "title": "Prevention and control of iodine deficiency in pregnant and lactating women and in children less than 2-years-old: conclusions and recommendations of the Technical Consultation",
+   "year": 2007,
+   "journal": "Public health nutrition",
+   "citedBy": 360,
+   "why": "One of the newest guidelines with iodine in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "child-development-pregnancy",
+   "label": "Child development (pregnancy)",
+   "finding": "Child development after iodine supplements in pregnancy",
+   "counts": {
+    "reviews": 84,
+    "trialReviews": 20,
+    "trials": 103,
+    "largeTrials": 16
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32320029",
+     "doi": "10.1093/ajcn/nqaa071",
+     "title": "Systematic review and meta-analysis of the effects of iodine supplementation on thyroid function and child neurodevelopment in mildly-to-moderately iodine-deficient pregnant women",
+     "year": 2020,
+     "firstAuthor": "Dineva M",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 72,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "28260263",
+     "doi": "10.1002/14651858.cd011761.pub2",
+     "title": "Iodine supplementation for women during the preconception, pregnancy and postpartum period",
+     "year": 2017,
+     "firstAuthor": "Harding KB",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 106,
+     "n": 2700,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "35983514",
+     "doi": "10.3389/fendo.2022.924990",
+     "title": "The relationship between different iodine sources and nutrition in pregnant women and adults",
+     "year": 2022,
+     "firstAuthor": "Sun R",
+     "journal": "Frontiers in endocrinology",
+     "citedBy": 10,
+     "n": 2145,
+     "why": "A large trial (about 2,145 people) from 2022, as new as the newest review or newer"
+    },
+    {
+     "pmid": "38051700",
+     "doi": "10.1371/journal.pmed.1004260",
+     "title": "Maternal B-vitamin and vitamin D status before, during, and after pregnancy and the influence of supplementation preconception and during pregnancy: Prespecified secondary analysis of the NiPPeR double-blind randomized controlled trial",
+     "year": 2023,
+     "firstAuthor": "Godfrey KM",
+     "journal": "PLoS medicine",
+     "citedBy": 24,
+     "n": 1729,
+     "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+    },
+    {
+     "pmid": "36754158",
+     "doi": "10.1016/j.fertnstert.2023.01.047",
+     "title": "Time-to-conception and clinical pregnancy rate with a myo-inositol, probiotics, and micronutrient supplement: secondary outcomes of the NiPPeR randomized trial",
+     "year": 2023,
+     "firstAuthor": "Chan SY",
+     "journal": "Fertility and sterility",
+     "citedBy": 8,
+     "n": 1729,
+     "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+    },
+    {
+     "pmid": "31912649",
+     "doi": "10.1111/mcn.12943",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "firstAuthor": "Mohammed H",
+     "journal": "Maternal & child nutrition",
+     "citedBy": 10,
+     "n": 1220,
+     "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.4,
+    "trials": 20,
+    "inclusions": 28,
+    "reviews": [
+     {
+      "pmid": "32320029",
+      "trials": 10
+     },
+     {
+      "pmid": "28260263",
+      "trials": 18
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "23375074",
+      "title": "Infant neurocognitive development is independent of the use of iodised salt or iodine supplements given during pregnancy",
+      "year": 2013,
+      "n": 131,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "26247661",
+      "title": "Neurotoxicant exposure during pregnancy is a confounder for assessment of iodine supplementation on neurodevelopment outcome",
+      "year": 2015,
+      "n": 86,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "10999807",
+      "title": "Postpartum thyroid dysfunction in pregnant thyroid peroxidase antibody-positive women living in an area with mild to moderate iodine deficiency: is iodine supplementation safe?",
+      "year": 2000,
+      "n": 66,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "26654905",
+      "title": "The effect of iodine supplementation in pregnancy on early childhood neurodevelopment and clinical outcomes: results of an aborted randomised placebo-controlled trial",
+      "year": 2015,
+      "n": 59,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "12088916",
+      "title": "Comparison of two different doses of iodide in the prevention of gestational goiter in marginal iodine deficiency: a longitudinal study",
+      "year": 2002,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "8408456",
+      "title": "Amelioration of some pregnancy-associated variations in thyroid function by iodine supplementation",
+      "year": 1993,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "10626570",
+      "title": "Effect of iodine supply on neonatal thyroid volume and TSH",
+      "year": 1999,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "8640295",
+      "title": "Earliest prevention of endemic goiter by iodine supplementation during pregnancy",
+      "year": 1996,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "21385426",
+      "title": "Nutritional status of iodine in pregnant women in Catalonia (Spain): study on hygiene-dietetic habits and iodine in urine",
+      "year": 2011,
+      "n": 898,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "29030199",
+      "title": "Effect of iodine supplementation in pregnant women on child neurodevelopment: a randomised, double-blind, placebo-controlled trial",
+      "year": 2017,
+      "n": 832,
+      "inReviews": [
+       "32320029"
+      ]
+     },
+     {
+      "pmid": "14611705",
+      "title": "Postpartum maternal hyperthyrotropinemia in an area in which iodine supplementation is required",
+      "year": 2003,
+      "n": 404,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "19726593",
+      "title": "Iodine supplementation improves cognition in mildly iodine-deficient children",
+      "year": 2009,
+      "n": 184,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "11916762",
+      "title": "Treatment of iron deficiency in goitrous children improves the efficacy of iodized salt in Côte d'Ivoire",
+      "year": 2002,
+      "n": 166,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "27809707",
+      "title": "Can an Educational Intervention Improve Iodine Nutrition Status in Pregnant Women? A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 100,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "31689890",
+      "title": "The Effects of Iodine Supplementation in Pregnancy on Iodine Status, Thyroglobulin Levels and Thyroid Function Parameters: Results from a Randomized Controlled Clinical Trial in a Mild-to-Moderate Iodine Deficiency Area",
+      "year": 2019,
+      "n": 90,
+      "inReviews": [
+       "32320029"
+      ]
+     },
+     {
+      "pmid": "9533929",
+      "title": "Efficacy and safety of iodine in the postpartum period in an area of mild iodine deficiency",
+      "year": 1998,
+      "n": 70,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "20702609",
+      "title": "Breast-milk iodine concentration declines over the first 6 mo postpartum in iodine-deficient women",
+      "year": 2010,
+      "n": 56,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "1994844",
+      "title": "Effects of maternal iodine supplementation during pregnancy",
+      "year": 1991,
+      "n": 15,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "7829623",
+      "title": "A randomized trial for the treatment of mild iodine deficiency during pregnancy: maternal and neonatal effects",
+      "year": 1995,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "24622750",
+      "title": "Direct iodine supplementation of infants versus supplementation of their breastfeeding mothers: a double-blind, randomised, placebo-controlled trial",
+      "year": 2014,
+      "inReviews": [
+       "28260263"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 8,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2019,
+     "reviews": 5,
+     "trials": 5
+    },
+    {
+     "year": 2020,
+     "reviews": 7,
+     "trials": 7
+    },
+    {
+     "year": 2021,
+     "reviews": 7,
+     "trials": 8
+    },
+    {
+     "year": 2022,
+     "reviews": 6,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 7,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 8,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 7,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 7,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "18399768",
+     "title": "Treating iodine deficiency: long-term effects of iodine repletion on growth and pubertal development in school-age children",
+     "year": 2008,
+     "n": 293000
+    },
+    {
+     "pmid": "18003667",
+     "title": "Iodine nutritional status among school children in selected areas of Howrah District in West Bengal, India",
+     "year": 2008,
+     "n": 1627
+    },
+    {
+     "pmid": "22728345",
+     "title": "Iodine intake and prevalence of thyroid autoimmunity and autoimmune thyroiditis in children and adolescents aged between 1 and 16 years",
+     "year": 2012,
+     "n": 1387
+    },
+    {
+     "pmid": "20977661",
+     "title": "Iodine status in pregnancy and household salt iodine content in rural Bangladesh",
+     "year": 2012,
+     "n": 1376
+    },
+    {
+     "pmid": "23714325",
+     "title": "Impact of micronutrient fortification of yoghurt on micronutrient status markers and growth - a randomized double blind controlled trial among school children in Bangladesh",
+     "year": 2013,
+     "n": 1010
+    },
+    {
+     "pmid": "25031330",
+     "title": "Maternal urinary iodine concentration up to 1.0 mg/L is positively associated with birth weight, length, and head circumference of male offspring",
+     "year": 2014,
+     "n": 1617
+    },
+    {
+     "pmid": "27145299",
+     "title": "Evaluation of the effects of iodized salt on the mental development of preschool-aged children: a cluster randomized trial in northern Ethiopia",
+     "year": 2017,
+     "n": 1602
+    },
+    {
+     "pmid": "28615379",
+     "title": "Daily Consumption of Lipid-Based Nutrient Supplements Containing 250 μg Iodine Does Not Increase Urinary Iodine Concentrations in Pregnant and Postpartum Women in Bangladesh",
+     "year": 2017,
+     "n": 4011
+    },
+    {
+     "pmid": "29569536",
+     "title": "Introduction of iodised salt benefits infants' mental development in a community-based cluster-randomised effectiveness trial in Ethiopia",
+     "year": 2018,
+     "n": 1835
+    },
+    {
+     "pmid": "29643159",
+     "title": "Role of iodine-containing multivitamins during pregnancy for children's brain function: protocol of an ongoing randomised controlled trial: the SWIDDICH study",
+     "year": 2018,
+     "n": 1275
+    },
+    {
+     "pmid": "29210520",
+     "title": "Supplementation during pregnancy with small-quantity lipid-based nutrient supplements or multiple micronutrients, compared with iron and folic acid, increases women's urinary iodine concentration in semiurban Ghana: A randomized controlled trial",
+     "year": 2018,
+     "n": 1320
+    },
+    {
+     "pmid": "31006806",
+     "title": "Antenatal Multiple Micronutrient Supplementation Compared to Iron-Folic Acid Affects Micronutrient Status but Does Not Eliminate Deficiencies in a Randomized Controlled Trial Among Pregnant Women of Rural Bangladesh",
+     "year": 2019,
+     "n": 44500
+    },
+    {
+     "pmid": "31912649",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "n": 1220
+    },
+    {
+     "pmid": "35983514",
+     "title": "The relationship between different iodine sources and nutrition in pregnant women and adults",
+     "year": 2022,
+     "n": 2145
+    },
+    {
+     "pmid": "38051700",
+     "title": "Maternal B-vitamin and vitamin D status before, during, and after pregnancy and the influence of supplementation preconception and during pregnancy: Prespecified secondary analysis of the NiPPeR double-blind randomized controlled trial",
+     "year": 2023,
+     "n": 1729
+    },
+    {
+     "pmid": "36754158",
+     "title": "Time-to-conception and clinical pregnancy rate with a myo-inositol, probiotics, and micronutrient supplement: secondary outcomes of the NiPPeR randomized trial",
+     "year": 2023,
+     "n": 1729
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "32320029"
+    ],
+    "citedNotChosen": [
+     "29030199",
+     "33112293"
+    ],
+    "citedNotEligible": [
+     "29030199",
+     "33112293"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "28260263",
+      "doi": "10.1002/14651858.cd011761.pub2",
+      "title": "Iodine supplementation for women during the preconception, pregnancy and postpartum period",
+      "year": 2017,
+      "firstAuthor": "Harding KB",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 106,
+      "n": 2700,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "35983514",
+      "doi": "10.3389/fendo.2022.924990",
+      "title": "The relationship between different iodine sources and nutrition in pregnant women and adults",
+      "year": 2022,
+      "firstAuthor": "Sun R",
+      "journal": "Frontiers in endocrinology",
+      "citedBy": 10,
+      "n": 2145,
+      "why": "A large trial (about 2,145 people) from 2022, as new as the newest review or newer"
+     },
+     {
+      "pmid": "38051700",
+      "doi": "10.1371/journal.pmed.1004260",
+      "title": "Maternal B-vitamin and vitamin D status before, during, and after pregnancy and the influence of supplementation preconception and during pregnancy: Prespecified secondary analysis of the NiPPeR double-blind randomized controlled trial",
+      "year": 2023,
+      "firstAuthor": "Godfrey KM",
+      "journal": "PLoS medicine",
+      "citedBy": 24,
+      "n": 1729,
+      "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+     },
+     {
+      "pmid": "36754158",
+      "doi": "10.1016/j.fertnstert.2023.01.047",
+      "title": "Time-to-conception and clinical pregnancy rate with a myo-inositol, probiotics, and micronutrient supplement: secondary outcomes of the NiPPeR randomized trial",
+      "year": 2023,
+      "firstAuthor": "Chan SY",
+      "journal": "Fertility and sterility",
+      "citedBy": 8,
+      "n": 1729,
+      "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+     },
+     {
+      "pmid": "31912649",
+      "doi": "10.1111/mcn.12943",
+      "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+      "year": 2020,
+      "firstAuthor": "Mohammed H",
+      "journal": "Maternal & child nutrition",
+      "citedBy": 10,
+      "n": 1220,
+      "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Pregnant women with mild to moderate iodine deficiency",
+     "intervention": "Iodine supplements during pregnancy",
+     "comparison": "Placebo or no treatment",
+     "outcome": "The child's development (thinking, language, motor skills, IQ)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 12,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42720098",
+      "title": "Iodine supplementation for preventing iodine deficiency disorders in children and adolescents",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Iodine vs placebo with cognitive outcomes, but supplements were given directly to children and adolescents, not pregnant women."
+     },
+     {
+      "pmid": "37417826",
+      "title": "An update: maternal iodine supplementation, thyroid function tests, and child neurodevelopmental outcomes",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Covers maternal iodine in mild-to-moderate deficiency and child neurodevelopment, but is a narrative update that does not pool trials itself."
+     },
+     {
+      "pmid": "35535480",
+      "title": "Iodine status during child development and hearing ability: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Includes an RCT in mildly iodine-deficient pregnant women, but the outcome is child hearing, not thinking, language, motor skills or IQ."
+     },
+     {
+      "pmid": "35565659",
+      "title": "Breast Milk Iodine Concentration (BMIC) as a Biomarker of Iodine Status in Lactating Women and Children <2 Years of Age: A Systematic Review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Assesses breast milk iodine as a biomarker of iodine status, not supplementation effects on child development."
+     },
+     {
+      "pmid": "30802939",
+      "title": "Iodine supplementation for the prevention of mortality and adverse neurodevelopmental outcomes in preterm infants",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Iodine vs placebo with Bayley neurodevelopment outcomes, but supplements were given to preterm infants, not pregnant women."
+     },
+     {
+      "pmid": "30920622",
+      "title": "Association of Maternal Iodine Status With Child IQ: A Meta-Analysis of Individual Participant Data",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Meta-analysis of observational cohorts on maternal iodine status and child IQ, with no supplementation trials."
+     },
+     {
+      "pmid": "29767700",
+      "title": "Effects of Iodized Salt and Iodine Supplements on Prenatal and Postnatal Growth: A Systematic Review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Iodine vs placebo or no intervention in pregnant women and children, but outcomes are prenatal and postnatal growth, not neurodevelopment."
+     },
+     {
+      "pmid": "30489630",
+      "title": "WITHDRAWN: Iodine supplementation for preventing iodine deficiency disorders in children",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Withdrawn review of iodine supplements given directly to children, not pregnant women; cognitive outcomes were summarised narratively, not pooled."
+     },
+     {
+      "pmid": "27395329",
+      "title": "Feeding the brain - The effects of micronutrient interventions on cognitive performance among school-aged children: A systematic review of randomized controlled trials",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Micronutrient interventions in school-aged children, not iodine supplementation of pregnant women."
+     },
+     {
+      "pmid": "28746059",
+      "title": "Nutrition (Micronutrients) in Child Growth and Development: A Systematic Review on Current Evidence, Recommendations and Opportunities for Further Research",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Broad narrative overview of many micronutrients and nutrition interventions, with no specific pooled analysis for this question."
+     },
+     {
+      "pmid": "26420192",
+      "title": "A meta-analysis combining parallel and cross-over randomized controlled trials to assess impact of iodine fortified foods on urinary iodine concentration among children",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Iodine-fortified foods in children, with urinary iodine as the only outcome."
+     },
+     {
+      "pmid": "26091836",
+      "title": "Multiple micronutrient powders for home (point-of-use) fortification of foods in pregnant women",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Multiple micronutrient powders in pregnancy with maternal and newborn health outcomes, not iodine alone for child development."
+     },
+     {
+      "pmid": "23609774",
+      "title": "Iodine and mental development of children 5 years old and under: a systematic review and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools RCTs of maternal iodine supplementation on child mental development, but is not limited to mild-to-moderate deficiency."
+     },
+     {
+      "pmid": "24025628",
+      "title": "Effect of iodine supplementation in pregnancy on child development and other clinical outcomes: a systematic review of randomized controlled trials",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "RCTs of iodine in pregnancy on child development, but development data come only from severely deficient regions, not mild-to-moderate ones."
+     },
+     {
+      "pmid": "17636600",
+      "title": "WITHDRAWN: Maternal iodine supplements in areas of deficiency",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Withdrawn review of maternal iodine with psychomotor outcomes, but in populations with endemic cretinism (severe deficiency)."
+     },
+     {
+      "pmid": "16625632",
+      "title": "Iodine supplementation for the prevention of mortality and adverse neurodevelopmental outcomes in preterm infants",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Iodine supplements for preterm infants, not pregnant women; the single included trial did not assess neurodevelopment."
+     },
+     {
+      "pmid": "15106221",
+      "title": "Iodine supplementation for preventing iodine deficiency disorders in children",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Iodine supplements given directly to children, not pregnant women; cognitive outcomes were summarised narratively, not pooled."
+     },
+     {
+      "pmid": "10796152",
+      "title": "Maternal iodine supplements in areas of deficiency",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "Maternal iodine with psychomotor development outcomes, but in populations with endemic cretinism (severe deficiency)."
+     }
+    ]
+   }
+  },
+  {
+   "id": "maternal-thyroid",
+   "label": "Mother's thyroid",
+   "finding": "Mother's thyroid during and after pregnancy",
+   "counts": {
+    "reviews": 92,
+    "trialReviews": 11,
+    "trials": 101,
+    "largeTrials": 11
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32320029",
+     "doi": "10.1093/ajcn/nqaa071",
+     "title": "Systematic review and meta-analysis of the effects of iodine supplementation on thyroid function and child neurodevelopment in mildly-to-moderately iodine-deficient pregnant women",
+     "year": 2020,
+     "firstAuthor": "Dineva M",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 72,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "28260263",
+     "doi": "10.1002/14651858.cd011761.pub2",
+     "title": "Iodine supplementation for women during the preconception, pregnancy and postpartum period",
+     "year": 2017,
+     "firstAuthor": "Harding KB",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 106,
+     "n": 2700,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    },
+    {
+     "pmid": "24025628",
+     "doi": "10.3945/ajcn.113.065854",
+     "title": "Effect of iodine supplementation in pregnancy on child development and other clinical outcomes: a systematic review of randomized controlled trials",
+     "year": 2013,
+     "firstAuthor": "Zhou SJ",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 79,
+     "why": "One of the newest systematic reviews of trials on this outcome (2013); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "35983514",
+     "doi": "10.3389/fendo.2022.924990",
+     "title": "The relationship between different iodine sources and nutrition in pregnant women and adults",
+     "year": 2022,
+     "firstAuthor": "Sun R",
+     "journal": "Frontiers in endocrinology",
+     "citedBy": 10,
+     "n": 2145,
+     "why": "A large trial (about 2,145 people) from 2022, as new as the newest review or newer"
+    },
+    {
+     "pmid": "38051700",
+     "doi": "10.1371/journal.pmed.1004260",
+     "title": "Maternal B-vitamin and vitamin D status before, during, and after pregnancy and the influence of supplementation preconception and during pregnancy: Prespecified secondary analysis of the NiPPeR double-blind randomized controlled trial",
+     "year": 2023,
+     "firstAuthor": "Godfrey KM",
+     "journal": "PLoS medicine",
+     "citedBy": 24,
+     "n": 1729,
+     "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+    },
+    {
+     "pmid": "36754158",
+     "doi": "10.1016/j.fertnstert.2023.01.047",
+     "title": "Time-to-conception and clinical pregnancy rate with a myo-inositol, probiotics, and micronutrient supplement: secondary outcomes of the NiPPeR randomized trial",
+     "year": 2023,
+     "firstAuthor": "Chan SY",
+     "journal": "Fertility and sterility",
+     "citedBy": 8,
+     "n": 1729,
+     "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+    },
+    {
+     "pmid": "31912649",
+     "doi": "10.1111/mcn.12943",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "firstAuthor": "Mohammed H",
+     "journal": "Maternal & child nutrition",
+     "citedBy": 10,
+     "n": 1220,
+     "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.325,
+    "trials": 20,
+    "inclusions": 33,
+    "reviews": [
+     {
+      "pmid": "32320029",
+      "trials": 10
+     },
+     {
+      "pmid": "28260263",
+      "trials": 18
+     },
+     {
+      "pmid": "24025628",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "10999807",
+      "title": "Postpartum thyroid dysfunction in pregnant thyroid peroxidase antibody-positive women living in an area with mild to moderate iodine deficiency: is iodine supplementation safe?",
+      "year": 2000,
+      "n": 66,
+      "inReviews": [
+       "32320029",
+       "28260263",
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "8408456",
+      "title": "Amelioration of some pregnancy-associated variations in thyroid function by iodine supplementation",
+      "year": 1993,
+      "inReviews": [
+       "32320029",
+       "28260263",
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "8640295",
+      "title": "Earliest prevention of endemic goiter by iodine supplementation during pregnancy",
+      "year": 1996,
+      "inReviews": [
+       "32320029",
+       "28260263",
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "23375074",
+      "title": "Infant neurocognitive development is independent of the use of iodised salt or iodine supplements given during pregnancy",
+      "year": 2013,
+      "n": 131,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "26247661",
+      "title": "Neurotoxicant exposure during pregnancy is a confounder for assessment of iodine supplementation on neurodevelopment outcome",
+      "year": 2015,
+      "n": 86,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "26654905",
+      "title": "The effect of iodine supplementation in pregnancy on early childhood neurodevelopment and clinical outcomes: results of an aborted randomised placebo-controlled trial",
+      "year": 2015,
+      "n": 59,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "1994844",
+      "title": "Effects of maternal iodine supplementation during pregnancy",
+      "year": 1991,
+      "n": 15,
+      "inReviews": [
+       "28260263",
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "12088916",
+      "title": "Comparison of two different doses of iodide in the prevention of gestational goiter in marginal iodine deficiency: a longitudinal study",
+      "year": 2002,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "10626570",
+      "title": "Effect of iodine supply on neonatal thyroid volume and TSH",
+      "year": 1999,
+      "inReviews": [
+       "32320029",
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "7829623",
+      "title": "A randomized trial for the treatment of mild iodine deficiency during pregnancy: maternal and neonatal effects",
+      "year": 1995,
+      "inReviews": [
+       "28260263",
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "21385426",
+      "title": "Nutritional status of iodine in pregnant women in Catalonia (Spain): study on hygiene-dietetic habits and iodine in urine",
+      "year": 2011,
+      "n": 898,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "29030199",
+      "title": "Effect of iodine supplementation in pregnant women on child neurodevelopment: a randomised, double-blind, placebo-controlled trial",
+      "year": 2017,
+      "n": 832,
+      "inReviews": [
+       "32320029"
+      ]
+     },
+     {
+      "pmid": "14611705",
+      "title": "Postpartum maternal hyperthyrotropinemia in an area in which iodine supplementation is required",
+      "year": 2003,
+      "n": 404,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "19726593",
+      "title": "Iodine supplementation improves cognition in mildly iodine-deficient children",
+      "year": 2009,
+      "n": 184,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "11916762",
+      "title": "Treatment of iron deficiency in goitrous children improves the efficacy of iodized salt in Côte d'Ivoire",
+      "year": 2002,
+      "n": 166,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "27809707",
+      "title": "Can an Educational Intervention Improve Iodine Nutrition Status in Pregnant Women? A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 100,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "31689890",
+      "title": "The Effects of Iodine Supplementation in Pregnancy on Iodine Status, Thyroglobulin Levels and Thyroid Function Parameters: Results from a Randomized Controlled Clinical Trial in a Mild-to-Moderate Iodine Deficiency Area",
+      "year": 2019,
+      "n": 90,
+      "inReviews": [
+       "32320029"
+      ]
+     },
+     {
+      "pmid": "9533929",
+      "title": "Efficacy and safety of iodine in the postpartum period in an area of mild iodine deficiency",
+      "year": 1998,
+      "n": 70,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "20702609",
+      "title": "Breast-milk iodine concentration declines over the first 6 mo postpartum in iodine-deficient women",
+      "year": 2010,
+      "n": 56,
+      "inReviews": [
+       "28260263"
+      ]
+     },
+     {
+      "pmid": "24622750",
+      "title": "Direct iodine supplementation of infants versus supplementation of their breastfeeding mothers: a double-blind, randomised, placebo-controlled trial",
+      "year": 2014,
+      "inReviews": [
+       "28260263"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2013,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 6,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 6,
+     "trials": 5
+    },
+    {
+     "year": 2020,
+     "reviews": 7,
+     "trials": 7
+    },
+    {
+     "year": 2021,
+     "reviews": 9,
+     "trials": 8
+    },
+    {
+     "year": 2022,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 10,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 8,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 6,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "22728345",
+     "title": "Iodine intake and prevalence of thyroid autoimmunity and autoimmune thyroiditis in children and adolescents aged between 1 and 16 years",
+     "year": 2012,
+     "n": 1387
+    },
+    {
+     "pmid": "20977661",
+     "title": "Iodine status in pregnancy and household salt iodine content in rural Bangladesh",
+     "year": 2012,
+     "n": 1376
+    },
+    {
+     "pmid": "25031330",
+     "title": "Maternal urinary iodine concentration up to 1.0 mg/L is positively associated with birth weight, length, and head circumference of male offspring",
+     "year": 2014,
+     "n": 1617
+    },
+    {
+     "pmid": "28615379",
+     "title": "Daily Consumption of Lipid-Based Nutrient Supplements Containing 250 μg Iodine Does Not Increase Urinary Iodine Concentrations in Pregnant and Postpartum Women in Bangladesh",
+     "year": 2017,
+     "n": 4011
+    },
+    {
+     "pmid": "29643159",
+     "title": "Role of iodine-containing multivitamins during pregnancy for children's brain function: protocol of an ongoing randomised controlled trial: the SWIDDICH study",
+     "year": 2018,
+     "n": 1275
+    },
+    {
+     "pmid": "29210520",
+     "title": "Supplementation during pregnancy with small-quantity lipid-based nutrient supplements or multiple micronutrients, compared with iron and folic acid, increases women's urinary iodine concentration in semiurban Ghana: A randomized controlled trial",
+     "year": 2018,
+     "n": 1320
+    },
+    {
+     "pmid": "31006806",
+     "title": "Antenatal Multiple Micronutrient Supplementation Compared to Iron-Folic Acid Affects Micronutrient Status but Does Not Eliminate Deficiencies in a Randomized Controlled Trial Among Pregnant Women of Rural Bangladesh",
+     "year": 2019,
+     "n": 44500
+    },
+    {
+     "pmid": "31912649",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "n": 1220
+    },
+    {
+     "pmid": "35983514",
+     "title": "The relationship between different iodine sources and nutrition in pregnant women and adults",
+     "year": 2022,
+     "n": 2145
+    },
+    {
+     "pmid": "38051700",
+     "title": "Maternal B-vitamin and vitamin D status before, during, and after pregnancy and the influence of supplementation preconception and during pregnancy: Prespecified secondary analysis of the NiPPeR double-blind randomized controlled trial",
+     "year": 2023,
+     "n": 1729
+    },
+    {
+     "pmid": "36754158",
+     "title": "Time-to-conception and clinical pregnancy rate with a myo-inositol, probiotics, and micronutrient supplement: secondary outcomes of the NiPPeR randomized trial",
+     "year": 2023,
+     "n": 1729
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "28260263",
+     "32320029"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "24025628",
+      "doi": "10.3945/ajcn.113.065854",
+      "title": "Effect of iodine supplementation in pregnancy on child development and other clinical outcomes: a systematic review of randomized controlled trials",
+      "year": 2013,
+      "firstAuthor": "Zhou SJ",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 79,
+      "why": "One of the newest systematic reviews of trials on this outcome (2013); screened as answering the question"
+     },
+     {
+      "pmid": "35983514",
+      "doi": "10.3389/fendo.2022.924990",
+      "title": "The relationship between different iodine sources and nutrition in pregnant women and adults",
+      "year": 2022,
+      "firstAuthor": "Sun R",
+      "journal": "Frontiers in endocrinology",
+      "citedBy": 10,
+      "n": 2145,
+      "why": "A large trial (about 2,145 people) from 2022, as new as the newest review or newer"
+     },
+     {
+      "pmid": "38051700",
+      "doi": "10.1371/journal.pmed.1004260",
+      "title": "Maternal B-vitamin and vitamin D status before, during, and after pregnancy and the influence of supplementation preconception and during pregnancy: Prespecified secondary analysis of the NiPPeR double-blind randomized controlled trial",
+      "year": 2023,
+      "firstAuthor": "Godfrey KM",
+      "journal": "PLoS medicine",
+      "citedBy": 24,
+      "n": 1729,
+      "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+     },
+     {
+      "pmid": "36754158",
+      "doi": "10.1016/j.fertnstert.2023.01.047",
+      "title": "Time-to-conception and clinical pregnancy rate with a myo-inositol, probiotics, and micronutrient supplement: secondary outcomes of the NiPPeR randomized trial",
+      "year": 2023,
+      "firstAuthor": "Chan SY",
+      "journal": "Fertility and sterility",
+      "citedBy": 8,
+      "n": 1729,
+      "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
+     },
+     {
+      "pmid": "31912649",
+      "doi": "10.1111/mcn.12943",
+      "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+      "year": 2020,
+      "firstAuthor": "Mohammed H",
+      "journal": "Maternal & child nutrition",
+      "citedBy": 10,
+      "n": 1220,
+      "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Pregnant women in areas with mild to moderate iodine deficiency",
+     "intervention": "Iodine supplements during pregnancy",
+     "comparison": "Placebo or no treatment",
+     "outcome": "The mother's thyroid function (TSH, thyroid hormones, thyroglobulin, goitre)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 0,
+     "no": 8,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37417826",
+      "title": "An update: maternal iodine supplementation, thyroid function tests, and child neurodevelopmental outcomes",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Narrative update on the right topic, but it summarises individual studies and does not systematically review or pool randomised trials."
+     },
+     {
+      "pmid": "30920622",
+      "title": "Association of Maternal Iodine Status With Child IQ: A Meta-Analysis of Individual Participant Data",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Observational cohort meta-analysis of maternal iodine status and child IQ, with no supplement trials and no maternal thyroid outcome."
+     },
+     {
+      "pmid": "29767700",
+      "title": "Effects of Iodized Salt and Iodine Supplements on Prenatal and Postnatal Growth: A Systematic Review",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Iodine in pregnant women and children, but outcomes are prenatal and postnatal growth, not the mother's thyroid function."
+     },
+     {
+      "pmid": "29596650",
+      "title": "Micronutrients, iodine status and concentrations of thyroid hormones: a systematic review",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at other micronutrients (selenium, zinc, iron, vitamin A) and their effect on iodine status and thyroid hormones, not iodine supplements in pregnancy."
+     },
+     {
+      "pmid": "28282437",
+      "title": "Effect of excess iodine intake on thyroid diseases in different populations: A systematic review and meta-analyses including observational studies",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Looks at excess iodine intake and thyroid disease in general populations, mostly observational, not supplements in pregnancy."
+     },
+     {
+      "pmid": "26091836",
+      "title": "Multiple micronutrient powders for home (point-of-use) fortification of foods in pregnant women",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Multiple micronutrient powders for home fortification in pregnancy, with maternal and newborn health outcomes, not iodine supplements and maternal thyroid function."
+     },
+     {
+      "pmid": "17636600",
+      "title": "WITHDRAWN: Maternal iodine supplements in areas of deficiency",
+      "year": 2007,
+      "fits": "no",
+      "reason": "Withdrawn review of trials in areas with endemic cretinism (severe deficiency), reporting infant death and cretinism, not maternal thyroid."
+     },
+     {
+      "pmid": "10796152",
+      "title": "Maternal iodine supplements in areas of deficiency",
+      "year": 2000,
+      "fits": "no",
+      "reason": "Trials in severely deficient areas with endemic cretinism, reporting infant deaths, cretinism and development, not maternal thyroid function."
+     }
+    ]
+   }
+  },
+  {
+   "id": "schoolchildren",
+   "label": "Schoolchildren's thinking",
+   "finding": "Thinking skills in schoolchildren",
+   "counts": {
+    "reviews": 34,
+    "trialReviews": 8,
+    "trials": 61,
+    "largeTrials": 8
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42720098",
+     "doi": "10.1002/14651858.cd014475.pub2",
+     "title": "Iodine supplementation for preventing iodine deficiency disorders in children and adolescents",
+     "year": 2026,
+     "firstAuthor": "Velasco I",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 2,
+     "n": 2528,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "18399768",
+     "title": "Treating iodine deficiency: long-term effects of iodine repletion on growth and pubertal development in school-age children",
+     "year": 2008,
+     "n": 293000
+    },
+    {
+     "pmid": "18003667",
+     "title": "Iodine nutritional status among school children in selected areas of Howrah District in West Bengal, India",
+     "year": 2008,
+     "n": 1627
+    },
+    {
+     "pmid": "22728345",
+     "title": "Iodine intake and prevalence of thyroid autoimmunity and autoimmune thyroiditis in children and adolescents aged between 1 and 16 years",
+     "year": 2012,
+     "n": 1387
+    },
+    {
+     "pmid": "23714325",
+     "title": "Impact of micronutrient fortification of yoghurt on micronutrient status markers and growth - a randomized double blind controlled trial among school children in Bangladesh",
+     "year": 2013,
+     "n": 1010
+    },
+    {
+     "pmid": "27145299",
+     "title": "Evaluation of the effects of iodized salt on the mental development of preschool-aged children: a cluster randomized trial in northern Ethiopia",
+     "year": 2017,
+     "n": 1602
+    },
+    {
+     "pmid": "29569536",
+     "title": "Introduction of iodised salt benefits infants' mental development in a community-based cluster-randomised effectiveness trial in Ethiopia",
+     "year": 2018,
+     "n": 1835
+    },
+    {
+     "pmid": "29643159",
+     "title": "Role of iodine-containing multivitamins during pregnancy for children's brain function: protocol of an ongoing randomised controlled trial: the SWIDDICH study",
+     "year": 2018,
+     "n": 1275
+    },
+    {
+     "pmid": "31912649",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "n": 1220
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "19726593",
+     "16400058"
+    ],
+    "citedNotEligible": [
+     "19726593",
+     "16400058"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42720098",
+      "doi": "10.1002/14651858.cd014475.pub2",
+      "title": "Iodine supplementation for preventing iodine deficiency disorders in children and adolescents",
+      "year": 2026,
+      "firstAuthor": "Velasco I",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 2,
+      "n": 2528,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Schoolchildren with mild to moderate iodine deficiency",
+     "intervention": "Iodine supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Thinking skills (cognition, IQ)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 4,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "35565659",
+      "title": "Breast Milk Iodine Concentration (BMIC) as a Biomarker of Iodine Status in Lactating Women and Children <2 Years of Age: A Systematic Review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Looks at breast milk iodine as a marker of iodine status in lactating women and infants, not supplements or cognition in schoolchildren."
+     },
+     {
+      "pmid": "30920622",
+      "title": "Association of Maternal Iodine Status With Child IQ: A Meta-Analysis of Individual Participant Data",
+      "year": 2019,
+      "fits": "no",
+      "reason": "An observational cohort analysis of mothers' iodine status in pregnancy and child IQ, with no supplementation trials."
+     },
+     {
+      "pmid": "30489630",
+      "title": "WITHDRAWN: Iodine supplementation for preventing iodine deficiency disorders in children",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Iodine supplements for children in iodine-deficient areas with cognitive outcomes, but it mixed in non-randomised trials and pooled nothing (narrative only)."
+     },
+     {
+      "pmid": "27395329",
+      "title": "Feeding the brain - The effects of micronutrient interventions on cognitive performance among school-aged children: A systematic review of randomized controlled trials",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "RCTs in school-aged children with cognitive outcomes, but it covers many micronutrients, not just iodine, and gives no pooled iodine-only analysis."
+     },
+     {
+      "pmid": "26420192",
+      "title": "A meta-analysis combining parallel and cross-over randomized controlled trials to assess impact of iodine fortified foods on urinary iodine concentration among children",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Iodine-fortified foods in children with urinary iodine as the only outcome; both the intervention and the outcome differ."
+     },
+     {
+      "pmid": "23609774",
+      "title": "Iodine and mental development of children 5 years old and under: a systematic review and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Iodine and mental development, but in children aged 5 and under; the RCTs supplemented mothers and most other studies were observational."
+     },
+     {
+      "pmid": "15106221",
+      "title": "Iodine supplementation for preventing iodine deficiency disorders in children",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Iodine supplements for children in iodine-deficient areas with cognitive outcomes, but it mixed in non-randomised trials and pooled nothing (narrative only)."
+     }
+    ]
+   }
+  },
+  {
+   "id": "young-children",
+   "label": "Young children's development",
+   "finding": "Mental development of young children in iodine-deficient areas",
+   "counts": {
+    "reviews": 50,
+    "trialReviews": 13,
+    "trials": 67,
+    "largeTrials": 8
+   },
+   "chosenReviews": [
+    {
+     "pmid": "23609774",
+     "doi": "10.3390/nu5041384",
+     "title": "Iodine and mental development of children 5 years old and under: a systematic review and meta-analysis",
+     "year": 2013,
+     "firstAuthor": "Bougma K",
+     "journal": "Nutrients",
+     "citedBy": 128,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    },
+    {
+     "pmid": "24025628",
+     "doi": "10.3945/ajcn.113.065854",
+     "title": "Effect of iodine supplementation in pregnancy on child development and other clinical outcomes: a systematic review of randomized controlled trials",
+     "year": 2013,
+     "firstAuthor": "Zhou SJ",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 79,
+     "why": "One of the newest systematic reviews of trials on this outcome (2013); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "29569536",
+     "doi": "10.1017/s0007114517003658",
+     "title": "Introduction of iodised salt benefits infants' mental development in a community-based cluster-randomised effectiveness trial in Ethiopia",
+     "year": 2018,
+     "firstAuthor": "Bougma K",
+     "journal": "The British journal of nutrition",
+     "citedBy": 10,
+     "n": 1835,
+     "why": "A large trial (about 1,835 people) from 2018, as new as the newest review or newer"
+    },
+    {
+     "pmid": "27145299",
+     "doi": "10.1111/mcn.12322",
+     "title": "Evaluation of the effects of iodized salt on the mental development of preschool-aged children: a cluster randomized trial in northern Ethiopia",
+     "year": 2017,
+     "firstAuthor": "Aboud FE",
+     "journal": "Maternal & child nutrition",
+     "citedBy": 18,
+     "n": 1602,
+     "why": "A large trial (about 1,602 people) from 2017, as new as the newest review or newer"
+    },
+    {
+     "pmid": "29643159",
+     "doi": "10.1136/bmjopen-2017-019945",
+     "title": "Role of iodine-containing multivitamins during pregnancy for children's brain function: protocol of an ongoing randomised controlled trial: the SWIDDICH study",
+     "year": 2018,
+     "firstAuthor": "Manousou S",
+     "journal": "BMJ open",
+     "citedBy": 12,
+     "n": 1275,
+     "why": "A large trial (about 1,275 people) from 2018, as new as the newest review or newer"
+    },
+    {
+     "pmid": "31912649",
+     "doi": "10.1111/mcn.12943",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "firstAuthor": "Mohammed H",
+     "journal": "Maternal & child nutrition",
+     "citedBy": 10,
+     "n": 1220,
+     "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
+    },
+    {
+     "pmid": "23714325",
+     "doi": "10.1186/1471-2458-13-514",
+     "title": "Impact of micronutrient fortification of yoghurt on micronutrient status markers and growth - a randomized double blind controlled trial among school children in Bangladesh",
+     "year": 2013,
+     "firstAuthor": "Sazawal S",
+     "journal": "BMC public health",
+     "citedBy": 23,
+     "n": 1010,
+     "why": "A large trial (about 1,010 people) from 2013, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.1111111111111111,
+    "trials": 9,
+    "inclusions": 10,
+    "reviews": [
+     {
+      "pmid": "23609774",
+      "trials": 5
+     },
+     {
+      "pmid": "24025628",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "1994844",
+      "title": "Effects of maternal iodine supplementation during pregnancy",
+      "year": 1991,
+      "n": 15,
+      "inReviews": [
+       "23609774",
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "16400058",
+      "title": "Iodine supplementation improves cognition in iodine-deficient schoolchildren in Albania: a randomized, controlled, double-blind study",
+      "year": 2006,
+      "n": 310,
+      "inReviews": [
+       "23609774"
+      ]
+     },
+     {
+      "pmid": "11208941",
+      "title": "Cognitive and motor functions of iodine-deficient but euthyroid children in Bangladesh do not benefit from iodized poppy seed oil (Lipiodol)",
+      "year": 2001,
+      "n": 305,
+      "inReviews": [
+       "23609774"
+      ]
+     },
+     {
+      "pmid": "11063446",
+      "title": "Improved iodine status is associated with improved mental performance of schoolchildren in Benin",
+      "year": 2000,
+      "n": 196,
+      "inReviews": [
+       "23609774"
+      ]
+     },
+     {
+      "pmid": "19726593",
+      "title": "Iodine supplementation improves cognition in mildly iodine-deficient children",
+      "year": 2009,
+      "n": 184,
+      "inReviews": [
+       "23609774"
+      ]
+     },
+     {
+      "pmid": "10999807",
+      "title": "Postpartum thyroid dysfunction in pregnant thyroid peroxidase antibody-positive women living in an area with mild to moderate iodine deficiency: is iodine supplementation safe?",
+      "year": 2000,
+      "n": 66,
+      "inReviews": [
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "7829623",
+      "title": "A randomized trial for the treatment of mild iodine deficiency during pregnancy: maternal and neonatal effects",
+      "year": 1995,
+      "inReviews": [
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "8640295",
+      "title": "Earliest prevention of endemic goiter by iodine supplementation during pregnancy",
+      "year": 1996,
+      "inReviews": [
+       "24025628"
+      ]
+     },
+     {
+      "pmid": "8408456",
+      "title": "Amelioration of some pregnancy-associated variations in thyroid function by iodine supplementation",
+      "year": 1993,
+      "inReviews": [
+       "24025628"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2021,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "18399768",
+     "title": "Treating iodine deficiency: long-term effects of iodine repletion on growth and pubertal development in school-age children",
+     "year": 2008,
+     "n": 293000
+    },
+    {
+     "pmid": "18003667",
+     "title": "Iodine nutritional status among school children in selected areas of Howrah District in West Bengal, India",
+     "year": 2008,
+     "n": 1627
+    },
+    {
+     "pmid": "22728345",
+     "title": "Iodine intake and prevalence of thyroid autoimmunity and autoimmune thyroiditis in children and adolescents aged between 1 and 16 years",
+     "year": 2012,
+     "n": 1387
+    },
+    {
+     "pmid": "23714325",
+     "title": "Impact of micronutrient fortification of yoghurt on micronutrient status markers and growth - a randomized double blind controlled trial among school children in Bangladesh",
+     "year": 2013,
+     "n": 1010
+    },
+    {
+     "pmid": "27145299",
+     "title": "Evaluation of the effects of iodized salt on the mental development of preschool-aged children: a cluster randomized trial in northern Ethiopia",
+     "year": 2017,
+     "n": 1602
+    },
+    {
+     "pmid": "29569536",
+     "title": "Introduction of iodised salt benefits infants' mental development in a community-based cluster-randomised effectiveness trial in Ethiopia",
+     "year": 2018,
+     "n": 1835
+    },
+    {
+     "pmid": "29643159",
+     "title": "Role of iodine-containing multivitamins during pregnancy for children's brain function: protocol of an ongoing randomised controlled trial: the SWIDDICH study",
+     "year": 2018,
+     "n": 1275
+    },
+    {
+     "pmid": "31912649",
+     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+     "year": 2020,
+     "n": 1220
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "23609774"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "24025628",
+      "doi": "10.3945/ajcn.113.065854",
+      "title": "Effect of iodine supplementation in pregnancy on child development and other clinical outcomes: a systematic review of randomized controlled trials",
+      "year": 2013,
+      "firstAuthor": "Zhou SJ",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 79,
+      "why": "One of the newest systematic reviews of trials on this outcome (2013); screened as answering the question"
+     },
+     {
+      "pmid": "29569536",
+      "doi": "10.1017/s0007114517003658",
+      "title": "Introduction of iodised salt benefits infants' mental development in a community-based cluster-randomised effectiveness trial in Ethiopia",
+      "year": 2018,
+      "firstAuthor": "Bougma K",
+      "journal": "The British journal of nutrition",
+      "citedBy": 10,
+      "n": 1835,
+      "why": "A large trial (about 1,835 people) from 2018, as new as the newest review or newer"
+     },
+     {
+      "pmid": "27145299",
+      "doi": "10.1111/mcn.12322",
+      "title": "Evaluation of the effects of iodized salt on the mental development of preschool-aged children: a cluster randomized trial in northern Ethiopia",
+      "year": 2017,
+      "firstAuthor": "Aboud FE",
+      "journal": "Maternal & child nutrition",
+      "citedBy": 18,
+      "n": 1602,
+      "why": "A large trial (about 1,602 people) from 2017, as new as the newest review or newer"
+     },
+     {
+      "pmid": "29643159",
+      "doi": "10.1136/bmjopen-2017-019945",
+      "title": "Role of iodine-containing multivitamins during pregnancy for children's brain function: protocol of an ongoing randomised controlled trial: the SWIDDICH study",
+      "year": 2018,
+      "firstAuthor": "Manousou S",
+      "journal": "BMJ open",
+      "citedBy": 12,
+      "n": 1275,
+      "why": "A large trial (about 1,275 people) from 2018, as new as the newest review or newer"
+     },
+     {
+      "pmid": "31912649",
+      "doi": "10.1111/mcn.12943",
+      "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
+      "year": 2020,
+      "firstAuthor": "Mohammed H",
+      "journal": "Maternal & child nutrition",
+      "citedBy": 10,
+      "n": 1220,
+      "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
+     },
+     {
+      "pmid": "23714325",
+      "doi": "10.1186/1471-2458-13-514",
+      "title": "Impact of micronutrient fortification of yoghurt on micronutrient status markers and growth - a randomized double blind controlled trial among school children in Bangladesh",
+      "year": 2013,
+      "firstAuthor": "Sazawal S",
+      "journal": "BMC public health",
+      "citedBy": 23,
+      "n": 1010,
+      "why": "A large trial (about 1,010 people) from 2013, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Children aged 5 and under in iodine-deficient areas (through their mothers in pregnancy, or as infants)",
+     "intervention": "Iodine supplements, iodised salt or iodised oil",
+     "comparison": "No iodine, or less iodine",
+     "outcome": "Mental development"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 8,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42720098",
+      "title": "Iodine supplementation for preventing iodine deficiency disorders in children and adolescents",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pooled RCTs of iodine vs placebo with cognitive outcomes, but the population is mostly children aged 6 to 17; only one trial was in infants."
+     },
+     {
+      "pmid": "35535480",
+      "title": "Iodine status during child development and hearing ability: a systematic review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "The outcome is hearing, not mental development, and most included studies are observational."
+     },
+     {
+      "pmid": "35565659",
+      "title": "Breast Milk Iodine Concentration (BMIC) as a Biomarker of Iodine Status in Lactating Women and Children <2 Years of Age: A Systematic Review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "This review tests breast milk iodine as a status biomarker and does not look at iodine interventions or mental development."
+     },
+     {
+      "pmid": "30802939",
+      "title": "Iodine supplementation for the prevention of mortality and adverse neurodevelopmental outcomes in preterm infants",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Pooled RCTs of iodine vs placebo with Bayley cognitive scores, but the population is preterm infants rather than children in iodine-deficient areas."
+     },
+     {
+      "pmid": "30920622",
+      "title": "Association of Maternal Iodine Status With Child IQ: A Meta-Analysis of Individual Participant Data",
+      "year": 2019,
+      "fits": "no",
+      "reason": "An observational cohort meta-analysis of maternal iodine status and child IQ, with no iodine intervention."
+     },
+     {
+      "pmid": "30489630",
+      "title": "WITHDRAWN: Iodine supplementation for preventing iodine deficiency disorders in children",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Iodine for children in iodine-deficient areas with cognitive outcomes, but it is withdrawn, mixes non-randomised trials, covers all ages and did no pooling."
+     },
+     {
+      "pmid": "27395329",
+      "title": "Feeding the brain - The effects of micronutrient interventions on cognitive performance among school-aged children: A systematic review of randomized controlled trials",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "RCTs of micronutrients including iodine on cognition, but the population is school-aged children aged 4 to 18, and it did no pooling."
+     },
+     {
+      "pmid": "28746059",
+      "title": "Nutrition (Micronutrients) in Child Growth and Development: A Systematic Review on Current Evidence, Recommendations and Opportunities for Further Research",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "A broad overview of many micronutrients, including iodine, in pregnancy and childhood, with no specific pooled iodine analysis."
+     },
+     {
+      "pmid": "26420192",
+      "title": "A meta-analysis combining parallel and cross-over randomized controlled trials to assess impact of iodine fortified foods on urinary iodine concentration among children",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pooled RCTs of iodine-fortified foods in children, but the outcome is only urinary iodine, not mental development."
+     },
+     {
+      "pmid": "16625632",
+      "title": "Iodine supplementation for the prevention of mortality and adverse neurodevelopmental outcomes in preterm infants",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "An iodine RCT in preterm infants, a different group, and the included trial did not measure neurodevelopment."
+     },
+     {
+      "pmid": "15106221",
+      "title": "Iodine supplementation for preventing iodine deficiency disorders in children",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Iodine for children in iodine-deficient areas with cognitive outcomes, but it mixes non-randomised trials, covers all ages and did no pooling."
+     }
+    ]
+   }
+  }
+ ]
+}

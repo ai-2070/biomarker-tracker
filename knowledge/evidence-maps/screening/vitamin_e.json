@@ -1,0 +1,362 @@
+{
+ "topic": "vitamin_e",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "prostate": {
+   "question": {
+    "population": "Men (healthy, or at average risk)",
+    "intervention": "Vitamin E supplements (alone, or with results for vitamin E apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Prostate cancer"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "20661819",
+     "fits": "yes",
+     "reason": "Pooled RCTs with a separate vitamin E versus placebo analysis of prostate cancer incidence and mortality for prevention."
+    }
+   ]
+  },
+  "stroke": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Vitamin E supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Stroke, with ischaemic and haemorrhagic stroke apart"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37698992",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin E alone versus control and reported ischaemic and haemorrhagic stroke separately."
+    },
+    {
+     "pmid": "38291560",
+     "fits": "partly",
+     "reason": "Compares many vitamins, including vitamin E, against placebo but mixes in cohort studies and reports only total stroke, not subtypes."
+    },
+    {
+     "pmid": "33109618",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin E versus placebo or no vitamin E, with separate analyses of ischaemic and haemorrhagic stroke."
+    },
+    {
+     "pmid": "21264448",
+     "fits": "yes",
+     "reason": "Pooled 13 RCTs of vitamin E supplements and reported ischaemic and haemorrhagic stroke separately."
+    },
+    {
+     "pmid": "21051774",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of vitamin E with separate estimates for ischaemic and haemorrhagic stroke."
+    },
+    {
+     "pmid": "15711645",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin E for heart disease and stroke, but the abstract gives no separate ischaemic or haemorrhagic stroke results."
+    }
+   ]
+  },
+  "amd": {
+   "question": {
+    "population": "People who already have age-related macular degeneration (AMD), or older adults",
+    "intervention": "Antioxidant vitamin and mineral supplements that include vitamin E (such as the AREDS formula), or vitamin E alone",
+    "comparison": "Placebo or no treatment",
+    "outcome": "AMD getting worse, or new AMD"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "35695158",
+     "fits": "partly",
+     "reason": "Covers vitamin E and antioxidant supplements for AMD onset and progression, but it is an overview mixing reviews, RCTs and non-randomised studies, not a pooled RCT analysis."
+    },
+    {
+     "pmid": "28756617",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin E versus placebo in the general older population, with development of any AMD and late AMD as outcomes."
+    },
+    {
+     "pmid": "37702300",
+     "fits": "yes",
+     "reason": "Pooled RCTs of antioxidant multivitamins (mainly AREDS, which includes vitamin E) versus placebo or no treatment in people with AMD, with progression to late AMD as outcome."
+    },
+    {
+     "pmid": "22696317",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin E and beta-carotene versus control for developing AMD, including an analysis of alpha-tocopherol alone."
+    },
+    {
+     "pmid": "18253971",
+     "fits": "yes",
+     "reason": "Pooled RCTs of alpha-tocopherol and beta-carotene versus control for onset of AMD, with separate alpha-tocopherol analyses."
+    },
+    {
+     "pmid": "28756618",
+     "fits": "yes",
+     "reason": "Pooled RCTs of antioxidant multivitamins (mainly AREDS) versus placebo or no treatment in people with AMD, with progression to late AMD as outcome."
+    },
+    {
+     "pmid": "18425071",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin E or beta-carotene for preventing AMD, and of AREDS-type antioxidants plus zinc versus control for progression in people with AMD."
+    },
+    {
+     "pmid": "16625532",
+     "fits": "yes",
+     "reason": "Included RCTs of antioxidant supplements, including AREDS with vitamin E, versus control in people with AMD, with progression to advanced AMD as outcome."
+    },
+    {
+     "pmid": "10796707",
+     "fits": "partly",
+     "reason": "Matching question (alpha-tocopherol versus placebo for preventing AMD), but only one trial in male smokers was included and no pooling was done."
+    },
+    {
+     "pmid": "23152201",
+     "fits": "yes",
+     "reason": "Included RCTs of antioxidant supplements, including AREDS with vitamin E, versus placebo or no treatment in people with AMD, with progression to advanced AMD as outcome."
+    },
+    {
+     "pmid": "17923720",
+     "fits": "partly",
+     "reason": "Mostly about dietary antioxidant intake in cohort studies, and the three supplement RCTs for preventing early AMD are only described, not clearly pooled."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults, healthy or with chronic diseases",
+    "intervention": "Vitamin E supplements (alone or with other nutrients, with results for vitamin E apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "25398301",
+     "fits": "partly",
+     "reason": "Pools RCTs of vitamin E vs control on all-cause mortality, but only in healthy adults, not people with chronic diseases."
+    },
+    {
+     "pmid": "21235492",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin E vs control in adults, for prevention or treatment of disease, with all-cause mortality as the outcome."
+    },
+    {
+     "pmid": "24040282",
+     "fits": "yes",
+     "reason": "Pools RCTs of antioxidants vs placebo in adults and gives a separate all-cause mortality result for vitamin E."
+    },
+    {
+     "pmid": "22419320",
+     "fits": "yes",
+     "reason": "Pools RCTs of antioxidants including vitamin E vs placebo or no treatment in healthy and diseased adults; analyses are by antioxidant type."
+    },
+    {
+     "pmid": "18425980",
+     "fits": "yes",
+     "reason": "Pools RCTs of antioxidants vs placebo or no treatment in healthy and diseased adults and reports a separate mortality result for vitamin E."
+    },
+    {
+     "pmid": "18173999",
+     "fits": "partly",
+     "reason": "Pools RCTs of antioxidants including vitamin E vs placebo, but the outcomes are cancer incidence and cancer death, not death from any cause."
+    },
+    {
+     "pmid": "15986938",
+     "fits": "partly",
+     "reason": "The title is about vitamin E and death, but there is no abstract, so it can't be confirmed that randomised trials were pooled."
+    },
+    {
+     "pmid": "17327526",
+     "fits": "yes",
+     "reason": "Pools RCTs of antioxidants vs placebo or no treatment in adults and gives a separate all-cause mortality result for vitamin E."
+    },
+    {
+     "pmid": "15537682",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin E, alone or combined, vs control on all-cause mortality in adults, including people with chronic diseases."
+    }
+   ]
+  },
+  "nash": {
+   "question": {
+    "population": "Adults with non-alcoholic fatty liver disease or NASH",
+    "intervention": "Vitamin E",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Liver inflammation and scarring on biopsy, or liver enzymes"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42092748",
+     "fits": "no",
+     "reason": "Adults with MASLD on vitamin E, but outcomes are blood lipids and BMI, not liver histology or liver enzymes."
+    },
+    {
+     "pmid": "39412049",
+     "fits": "partly",
+     "reason": "Vitamin E vs placebo/no intervention in NAFLD with biochemical outcomes, but trials mix children and adults and some add vitamin C."
+    },
+    {
+     "pmid": "37503812",
+     "fits": "yes",
+     "reason": "Pools meta-analyses of RCTs of vitamin E in NAFLD reporting ALT, AST, steatosis and fibrosis."
+    },
+    {
+     "pmid": "37686767",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin E vs placebo or no intervention in NAFLD, with ALT and AST as outcomes."
+    },
+    {
+     "pmid": "36689199",
+     "fits": "partly",
+     "reason": "Network meta-analysis where vitamin E is one of several drugs; the abstract reports no direct vitamin E vs placebo estimate."
+    },
+    {
+     "pmid": "36172650",
+     "fits": "partly",
+     "reason": "Vitamin E is given only together with vitamin C, compared with no treatment, in NAFLD."
+    },
+    {
+     "pmid": "32810309",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin E vs placebo in adults with NAFLD, reporting liver enzymes and histology."
+    },
+    {
+     "pmid": "31434683",
+     "fits": "partly",
+     "reason": "Vitamin E vs placebo in NAFLD with liver enzymes, but pooled analysis mixes adults and children; adult results are only narrative."
+    },
+    {
+     "pmid": "26059365",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin E vs control in NAFLD/NASH, with an adult NASH subgroup for enzymes, inflammation and fibrosis."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Middle-aged and older adults, healthy or with vascular disease or diabetes",
+    "intervention": "Vitamin E supplements (alone, or with results for vitamin E apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, strokes or deaths from heart and blood vessel disease"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41771702",
+     "fits": "partly",
+     "reason": "Asks about vitamin E and heart disease outcomes, but it is a thematic review of 58 papers with no pooled analysis of randomised trials reported."
+    },
+    {
+     "pmid": "37698992",
+     "fits": "yes",
+     "reason": "Pools 16 randomised trials of vitamin E vs controls on stroke, with a separate analysis of vitamin E given alone."
+    },
+    {
+     "pmid": "38291560",
+     "fits": "partly",
+     "reason": "Compares vitamins including vitamin E vs placebo for stroke, but pools cohort studies together with randomised trials."
+    },
+    {
+     "pmid": "33109618",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin E vs placebo or no vitamin E on stroke, including a vitamin E alone subgroup."
+    },
+    {
+     "pmid": "33487252",
+     "fits": "no",
+     "reason": "Vitamin E is only given with magnesium in people with metabolic disorders, and the outcomes are blood markers, not heart attacks or strokes."
+    },
+    {
+     "pmid": "32379630",
+     "fits": "yes",
+     "reason": "Network meta-analysis of randomised trials that includes vitamin E vs control for cardiovascular events and cardiovascular deaths."
+    },
+    {
+     "pmid": "35727272",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin E in healthy adults for cardiovascular disease events and death."
+    },
+    {
+     "pmid": "25779938",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin E alone vs controls on heart attack, including fatal heart attack."
+    },
+    {
+     "pmid": "36480969",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials that reports a separate vitamin E result for cardiovascular disease events."
+    },
+    {
+     "pmid": "21264448",
+     "fits": "yes",
+     "reason": "Pools 13 randomised trials of vitamin E for stroke prevention in healthy and high-risk people."
+    },
+    {
+     "pmid": "16189282",
+     "fits": "partly",
+     "reason": "Reviews vitamin E trials for cardiovascular prevention, but it is a narrative review with no pooled analysis."
+    },
+    {
+     "pmid": "21051774",
+     "fits": "yes",
+     "reason": "Pools randomised placebo-controlled trials of vitamin E on total, ischaemic and haemorrhagic stroke."
+    },
+    {
+     "pmid": "12814711",
+     "fits": "yes",
+     "reason": "Pools seven randomised trials of vitamin E vs control for cardiovascular death and stroke."
+    },
+    {
+     "pmid": "22939808",
+     "fits": "partly",
+     "reason": "Vitamin E trials in diabetes with cardiovascular outcomes, but the analysis is split by haptoglobin genotype, a narrower group."
+    },
+    {
+     "pmid": "23335472",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamins and antioxidants, with a vitamin E subgroup reported for heart attack."
+    },
+    {
+     "pmid": "15711645",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin E for cardiovascular deaths and heart attacks."
+    },
+    {
+     "pmid": "15061748",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled randomised trials, with separate vitamin E alone results for cardiovascular deaths and heart attacks."
+    },
+    {
+     "pmid": "23437244",
+     "fits": "partly",
+     "reason": "Pools antioxidant vitamins (E, beta-carotene, C) together vs placebo; the abstract gives no separate vitamin E result."
+    },
+    {
+     "pmid": "15277288",
+     "fits": "yes",
+     "reason": "Pooled overview of seven randomised trials of vitamin E for heart attack, stroke and cardiovascular death."
+    },
+    {
+     "pmid": "24217421",
+     "fits": "yes",
+     "reason": "Reviews randomised trials in healthy older adults and reports a separate vitamin E finding for preventing cardiovascular disease."
+    },
+    {
+     "pmid": "22651380",
+     "fits": "partly",
+     "reason": "Vitamin E is added to aspirin versus aspirin alone, with one trial reporting a cardiovascular composite; the review studies supplement-drug interactions, not pooled prevention."
+    },
+    {
+     "pmid": "11982737",
+     "fits": "partly",
+     "reason": "Reviews antioxidant vitamin trials for heart attack and stroke, but the abstract gives no separate vitamin E results and no clear pooling."
+    }
+   ]
+  }
+ }
+}

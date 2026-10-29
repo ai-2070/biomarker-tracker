@@ -1,0 +1,1956 @@
+{
+ "topic": "vitamin_b12",
+ "nutrientId": "vitamin_b12",
+ "name": "vitamin B12",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with vitamin B12 (vitamin B12, cobalamin, cyanocobalamin, methylcobalamin, hydroxocobalamin) in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin B12, with vitamin B12 in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin B12 trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 26833,
+  "retrieved": 1169,
+  "animal": 37,
+  "retracted": 3,
+  "reviews": 396,
+  "trials": 709,
+  "guidelines": 21
+ },
+ "guidelines": [
+  {
+   "pmid": "38713783",
+   "title": "Vitamin B12 deficiency in over 16s: diagnosis and management",
+   "year": 2024,
+   "citedBy": 2,
+   "why": "One of the newest guidelines with vitamin B12 in the title"
+  },
+  {
+   "pmid": "24942828",
+   "doi": "10.1111/bjh.12959",
+   "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+   "year": 2014,
+   "journal": "British journal of haematology",
+   "citedBy": 303,
+   "why": "One of the newest guidelines with vitamin B12 in the title"
+  },
+  {
+   "pmid": "15298450",
+   "doi": "10.1111/j.1753-4887.2004.tb00078.x",
+   "title": "Recommended levels of folic acid and vitamin B12 fortification: conclusions",
+   "year": 2004,
+   "journal": "Nutrition reviews",
+   "citedBy": 4,
+   "why": "One of the newest guidelines with vitamin B12 in the title"
+  },
+  {
+   "pmid": "14656016",
+   "doi": "10.1515/cclm.2003.214",
+   "title": "DACH-LIGA homocystein (german, austrian and swiss homocysteine society): consensus paper on the rational clinical use of homocysteine, folic acid and B-vitamins in cardiovascular and thrombotic diseases: guidelines and recommendations",
+   "year": 2003,
+   "journal": "Clinical chemistry and laboratory medicine",
+   "citedBy": 158,
+   "why": "One of the newest guidelines with vitamin B12 in the title"
+  },
+  {
+   "pmid": "7955919",
+   "title": "Guidelines on the investigation and diagnosis of cobalamin and folate deficiencies. A publication of the British Committee for Standards in Haematology. BCSH General Haematology Test Force",
+   "year": 1994,
+   "journal": "Clinical and laboratory haematology",
+   "citedBy": 16,
+   "why": "One of the newest guidelines with vitamin B12 in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "oral-vs-injection",
+   "label": "Tablets vs injections",
+   "finding": "Blood B12 levels: high-dose tablets compared with injections",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 10,
+    "trials": 52,
+    "largeTrials": 2
+   },
+   "chosenReviews": [
+    {
+     "pmid": "29543316",
+     "doi": "10.1002/14651858.cd004655.pub3",
+     "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
+     "year": 2018,
+     "firstAuthor": "Wang H",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 72,
+     "n": 153,
+     "why": "One of the newest systematic reviews of trials on this outcome (2018); screened as answering the question"
+    },
+    {
+     "pmid": "16585128",
+     "doi": "10.1093/fampra/cml008",
+     "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency: a systematic review of randomized controlled trials",
+     "year": 2006,
+     "firstAuthor": "Butler CC",
+     "journal": "Family practice",
+     "citedBy": 96,
+     "n": 108,
+     "why": "One of the newest systematic reviews of trials on this outcome (2006); screened as answering the question"
+    },
+    {
+     "pmid": "16034940",
+     "doi": "10.1002/14651858.cd004655.pub2",
+     "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
+     "year": 2005,
+     "firstAuthor": "Vidal-Alaball J",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 101,
+     "n": 108,
+     "why": "One of the newest systematic reviews of trials on this outcome (2005); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "29379943",
+     "doi": "10.1001/jamaneurol.2017.4609",
+     "title": "Efficacy of Oral Mixed Tocotrienols in Diabetic Peripheral Neuropathy: A Randomized Clinical Trial",
+     "year": 2018,
+     "firstAuthor": "Vitamin E in Neuroprotection Study (VENUS) Investigators",
+     "journal": "JAMA neurology",
+     "citedBy": 65,
+     "n": 14289,
+     "why": "A large trial (about 14,289 people) from 2018, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.14285714285714285,
+    "trials": 14,
+    "inclusions": 16,
+    "reviews": [
+     {
+      "pmid": "29543316",
+      "trials": 5
+     },
+     {
+      "pmid": "16034940",
+      "trials": 11
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "16585128"
+    ],
+    "shared": [
+     {
+      "pmid": "9694707",
+      "title": "Effective treatment of cobalamin deficiency with oral cobalamin",
+      "year": 1998,
+      "n": 18,
+      "inReviews": [
+       "29543316",
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "14749150",
+      "title": "Oral versus intramuscular cobalamin treatment in megaloblastic anemia: a single-center, prospective, randomized, open-label study",
+      "year": 2003,
+      "n": 17,
+      "inReviews": [
+       "29543316",
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "22650964",
+      "title": "Oral versus intramuscular administration of vitamin B12 for the treatment of patients with vitamin B12 deficiency: a pragmatic, randomised, multicentre, non-inferiority clinical trial undertaken in the primary healthcare setting (Project OB12)",
+      "year": 2012,
+      "n": 3556,
+      "inReviews": [
+       "29543316"
+      ]
+     },
+     {
+      "pmid": "7603218",
+      "title": "Effects of vitamin B12, folate, and vitamin B6 supplements in elderly people with normal serum vitamin concentrations",
+      "year": 1995,
+      "n": 175,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "11558625",
+      "title": "Vitamin B12 in low back pain: a randomised, double-blind, placebo-controlled study",
+      "year": 2000,
+      "n": 60,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "4911774",
+      "title": "Clinical trial of the effect of vitamin B12 in elderly subjects with low serum B12 levels",
+      "year": 1970,
+      "n": 39,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "28421567",
+      "title": "Early biomarker response and patient preferences to oral and intramuscular vitamin B12 substitution in primary care: a randomised parallel-group trial",
+      "year": 2017,
+      "n": 37,
+      "inReviews": [
+       "29543316"
+      ]
+     },
+     {
+      "pmid": "21600388",
+      "title": "Comparing the efficacy and tolerability of a new daily oral vitamin B12 formulation and intermittent intramuscular vitamin B12 in normalizing low cobalamin levels: a randomized, open-label, parallel-group study",
+      "year": 2011,
+      "n": 26,
+      "inReviews": [
+       "29543316"
+      ]
+     },
+     {
+      "pmid": "11498066",
+      "title": "Oral cobalamin therapy for the treatment of patients with food-cobalamin malabsorption",
+      "year": 2001,
+      "n": 10,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "12028259",
+      "title": "A randomized, double-blind, placebo-controlled study of oral vitamin B12 supplementation in older patients with subnormal or borderline serum vitamin B12 concentrations",
+      "year": 2002,
+      "n": 10,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "4583554",
+      "title": "A pilot study of vitamin B12 in the treatment of tiredness",
+      "year": 1973,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "3072307",
+      "title": "Vitamin status of inpatients with chronic cephalgia and dysfunction pain syndrome and effects of a vitamin supplementation",
+      "year": 1988,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "698165",
+      "title": "The effect of vitamin B12 on physical performance capacity",
+      "year": 1978,
+      "inReviews": [
+       "16034940"
+      ]
+     },
+     {
+      "pmid": "9777425",
+      "title": "Randomized trial of the effect of supplementation on the cognitive function of older people with subnormal cobalamin levels",
+      "year": 1998,
+      "inReviews": [
+       "16034940"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "22650964",
+     "title": "Oral versus intramuscular administration of vitamin B12 for the treatment of patients with vitamin B12 deficiency: a pragmatic, randomised, multicentre, non-inferiority clinical trial undertaken in the primary healthcare setting (Project OB12)",
+     "year": 2012,
+     "n": 3556
+    },
+    {
+     "pmid": "29379943",
+     "title": "Efficacy of Oral Mixed Tocotrienols in Diabetic Peripheral Neuropathy: A Randomized Clinical Trial",
+     "year": 2018,
+     "n": 14289
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "29543316"
+    ],
+    "citedNotChosen": [
+     "9694707"
+    ],
+    "citedNotEligible": [
+     "9694707"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "16585128",
+      "doi": "10.1093/fampra/cml008",
+      "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency: a systematic review of randomized controlled trials",
+      "year": 2006,
+      "firstAuthor": "Butler CC",
+      "journal": "Family practice",
+      "citedBy": 96,
+      "n": 108,
+      "why": "One of the newest systematic reviews of trials on this outcome (2006); screened as answering the question"
+     },
+     {
+      "pmid": "16034940",
+      "doi": "10.1002/14651858.cd004655.pub2",
+      "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
+      "year": 2005,
+      "firstAuthor": "Vidal-Alaball J",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 101,
+      "n": 108,
+      "why": "One of the newest systematic reviews of trials on this outcome (2005); screened as answering the question"
+     },
+     {
+      "pmid": "29379943",
+      "doi": "10.1001/jamaneurol.2017.4609",
+      "title": "Efficacy of Oral Mixed Tocotrienols in Diabetic Peripheral Neuropathy: A Randomized Clinical Trial",
+      "year": 2018,
+      "firstAuthor": "Vitamin E in Neuroprotection Study (VENUS) Investigators",
+      "journal": "JAMA neurology",
+      "citedBy": 65,
+      "n": 14289,
+      "why": "A large trial (about 14,289 people) from 2018, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with B12 deficiency",
+     "intervention": "High-dose B12 by mouth",
+     "comparison": "B12 injections",
+     "outcome": "Blood B12 levels, other deficiency markers or symptoms"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 6,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40410378",
+      "title": "Acupoint injection increases the efficacy of vitamin B12 for diabetic neuropathy: a meta-analysis and trial sequential analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Compares B12 acupoint injection with other B12 routes for diabetic neuropathy, not oral B12 versus injections for B12 deficiency."
+     },
+     {
+      "pmid": "41487531",
+      "title": "Efficacy of sublingual and oral vitamin B12 versus intramuscular administration: insights from a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares oral/sublingual B12 with IM injections, but pools RCTs with observational studies and reports only blood markers (cobalamin, homocysteine)."
+     },
+     {
+      "pmid": "39964959",
+      "title": "Comparison of Efficacy and Safety of Parenteral vs Oral Route of Vitamin B12 Supplementation for the Treatment of Vitamin B12 Deficiency Anemia in Children: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares oral with parenteral B12 for deficiency anaemia in RCTs, but the population is children, not adults."
+     },
+     {
+      "pmid": "20088746",
+      "title": "Efficacy of oral cobalamin (vitamin B12) therapy",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Reviews oral B12 for deficiency in elderly patients, mentioning injections but not pooling an oral-versus-injection comparison."
+     },
+     {
+      "pmid": "19683698",
+      "title": "[Update of oral vitamin B12]",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Reviews oral B12 for deficiency in elderly patients only, with no pooled oral-versus-injection comparison."
+     },
+     {
+      "pmid": "19032377",
+      "title": "Oral cobalamin (vitamin B(12)) treatment. An update",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Reviews oral B12 for deficiency in adults and elderly, but has no explicit pooled comparison with injections."
+     },
+     {
+      "pmid": "18947260",
+      "title": "Update on oral cyanocobalamin (vitamin B12) treatment in elderly patients",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Reviews oral B12 for deficiency in elderly patients only, with no pooled oral-versus-injection comparison."
+     }
+    ]
+   }
+  },
+  {
+   "id": "older-doses",
+   "label": "Doses in older people",
+   "finding": "Correcting mild deficiency in older people: low compared with high doses",
+   "counts": {
+    "reviews": 28,
+    "trialReviews": 7,
+    "trials": 110,
+    "largeTrials": 6
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1970,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "25712255",
+     "title": "Effect of Vitamin B12 and Folic Acid Supplementation on Bone Mineral Density and Quantitative Ultrasound Parameters in Older People with an Elevated Plasma Homocysteine Level: B-PROOF, a Randomized Controlled Trial",
+     "year": 2015,
+     "n": 1165
+    },
+    {
+     "pmid": "25573400",
+     "title": "Effect of long-term supplementation with folic acid and B vitamins on risk of depression in older women",
+     "year": 2015,
+     "n": 5442
+    },
+    {
+     "pmid": "26774115",
+     "title": "Effect of vitamin B12 and folic acid supplementation on biomarkers of endothelial function and inflammation among elderly individuals with hyperhomocysteinemia",
+     "year": 2016,
+     "n": 2919
+    },
+    {
+     "pmid": "27886078",
+     "title": "Effects of Two-Year Vitamin B12 and Folic Acid Supplementation on Depressive Symptoms and Quality of Life in Older Adults with Elevated Homocysteine Concentrations: Additional Results from the B-PROOF Study, an RCT",
+     "year": 2016,
+     "n": 2919
+    },
+    {
+     "pmid": "26914484",
+     "title": "Vitamin B12 screening in metformin-treated diabetics in primary care: were elderly patients less likely to be tested?",
+     "year": 2017,
+     "n": 5131
+    },
+    {
+     "pmid": "41241003",
+     "title": "Association between hemoglobin levels and mild cognitive impairment in generally healthy European community-dwelling older adults: a 3-year prospective analysis of the DO-HEALTH trial",
+     "year": 2026,
+     "n": 2157
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "15911731"
+    ],
+    "citedNotEligible": [
+     "15911731"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Older people with mild B12 deficiency",
+     "intervention": "B12 by mouth at different daily amounts",
+     "comparison": "A lower amount",
+     "outcome": "Correction of deficiency markers (methylmalonic acid, B12 levels)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 1,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "38432716",
+      "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at folic acid, B6 and B12 given together to prevent stroke in general populations, not B12 doses for deficiency markers in older people."
+     },
+     {
+      "pmid": "38300291",
+      "title": "Effects of vitamins and polyunsaturated fatty acids on cognitive function in older adults with mild cognitive impairment: a meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at vitamins and fatty acids for cognition in mild cognitive impairment, not oral B12 dose comparisons for deficiency markers."
+     },
+     {
+      "pmid": "35056365",
+      "title": "Effects of Physical Activity and Micronutrients on Cognitive Performance in Children Aged 6 to 11 Years: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at physical activity and micronutrients for cognitive performance in children, a different population and question."
+     },
+     {
+      "pmid": "29520083",
+      "title": "The effect of vitamin B12 and folic acid supplementation on routine haematological parameters in older people: an individual participant data meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Older people match, but it compares B12 with placebo rather than with a lower dose, and the outcome is haemoglobin rather than MMA or B12 levels."
+     },
+     {
+      "pmid": "20573208",
+      "title": "Subnormal vitamin B12 concentrations and anaemia in older people: a systematic review",
+      "year": 2010,
+      "fits": "no",
+      "reason": "Looks at whether low B12 is linked to anaemia in older people, with placebo-controlled trials on haemoglobin and no dose comparison."
+     },
+     {
+      "pmid": "18947260",
+      "title": "Update on oral cyanocobalamin (vitamin B12) treatment in elderly patients",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Covers oral B12 to treat deficiency in elderly patients, but it has no pooled comparison of daily doses and gives no dosing strategy."
+     },
+     {
+      "pmid": "18843658",
+      "title": "Folic acid with or without vitamin B12 for the prevention and treatment of healthy elderly and demented people",
+      "year": 2008,
+      "fits": "no",
+      "reason": "Compares folic acid with or without B12 against placebo for cognition in elderly or demented people, not B12 doses for deficiency markers."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cognition-mood",
+   "label": "Memory, mood and tiredness",
+   "finding": "Memory and thinking, low mood and tiredness",
+   "counts": {
+    "reviews": 46,
+    "trialReviews": 16,
+    "trials": 58,
+    "largeTrials": 6
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33809274",
+     "doi": "10.3390/nu13030923",
+     "title": "Effects of Vitamin B12 Supplementation on Cognitive Function, Depressive Symptoms, and Fatigue: A Systematic Review, Meta-Analysis, and Meta-Regression",
+     "year": 2021,
+     "firstAuthor": "Markun S",
+     "journal": "Nutrients",
+     "citedBy": 69,
+     "n": 6276,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "41241003",
+     "doi": "10.1016/j.ajcnut.2025.11.005",
+     "title": "Association between hemoglobin levels and mild cognitive impairment in generally healthy European community-dwelling older adults: a 3-year prospective analysis of the DO-HEALTH trial",
+     "year": 2026,
+     "firstAuthor": "Wieczorek M",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 1,
+     "n": 2157,
+     "why": "A large trial (about 2,157 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "timeline": [
+    {
+     "year": 1973,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 4,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "25391305",
+     "title": "Results of 2-year vitamin B treatment on cognitive performance: secondary data from an RCT",
+     "year": 2014,
+     "n": 2919
+    },
+    {
+     "pmid": "24481688",
+     "title": "Three-month B vitamin supplementation in pre-school children affects folate status and homocysteine, but not cognitive performance",
+     "year": 2014,
+     "n": 1002
+    },
+    {
+     "pmid": "25573400",
+     "title": "Effect of long-term supplementation with folic acid and B vitamins on risk of depression in older women",
+     "year": 2015,
+     "n": 5442
+    },
+    {
+     "pmid": "27886078",
+     "title": "Effects of Two-Year Vitamin B12 and Folic Acid Supplementation on Depressive Symptoms and Quality of Life in Older Adults with Elevated Homocysteine Concentrations: Additional Results from the B-PROOF Study, an RCT",
+     "year": 2016,
+     "n": 2919
+    },
+    {
+     "pmid": "32019814",
+     "title": "Vitamin B12, Folate, and Cognition in 6- to 9-Year-Olds: A Randomized Controlled Trial",
+     "year": 2020,
+     "n": 1000
+    },
+    {
+     "pmid": "41241003",
+     "title": "Association between hemoglobin levels and mild cognitive impairment in generally healthy European community-dwelling older adults: a 3-year prospective analysis of the DO-HEALTH trial",
+     "year": 2026,
+     "n": 2157
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "33809274"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41241003",
+      "doi": "10.1016/j.ajcnut.2025.11.005",
+      "title": "Association between hemoglobin levels and mild cognitive impairment in generally healthy European community-dwelling older adults: a 3-year prospective analysis of the DO-HEALTH trial",
+      "year": 2026,
+      "firstAuthor": "Wieczorek M",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 1,
+      "n": 2157,
+      "why": "A large trial (about 2,157 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults without a clear B12 deficiency",
+     "intervention": "Vitamin B12 (alone or with other B vitamins)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Memory and thinking, low mood, or tiredness"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 11,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41764841",
+      "title": "Nutritional supplements and cognition in healthy aging and mild cognitive impairment patients: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Healthy older adults and MCI on cognition, but the abstract reports B12 results only for blood markers, and its cognitive benefits come from other supplements."
+     },
+     {
+      "pmid": "42227307",
+      "title": "Vitamin B12 supplementation for growth, development, and cognition in children",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares B12 with placebo and measures cognition, but the population is children under 12, not adults."
+     },
+     {
+      "pmid": "41280388",
+      "title": "The biological relationship among depression, vitamins B9, B12, and D, and genetic variants: a systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Narrative review of vitamins, genetic variants and depression that mixes study designs; no pooled B12-versus-placebo trials."
+     },
+     {
+      "pmid": "38700503",
+      "title": "Role of vitamin B12 and folic acid in treatment of Alzheimer's disease: a meta-analysis of randomized control trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools placebo-controlled trials of B12 plus folic acid on cognition, but only in people with Alzheimer's disease (treatment, not prevention)."
+     },
+     {
+      "pmid": "38300291",
+      "title": "Effects of vitamins and polyunsaturated fatty acids on cognitive function in older adults with mild cognitive impairment: a meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools vitamin trials including B12 on cognition, but only in people with mild cognitive impairment."
+     },
+     {
+      "pmid": "35156551",
+      "title": "Efficacy of B-vitamins and vitamin D therapy in improving depressive and anxiety disorders: a systematic review of randomized controlled trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "RCTs of B vitamins including B12 on depression and anxiety, but mainly as treatment for diagnosed disorders, with no pooled analysis."
+     },
+     {
+      "pmid": "35056365",
+      "title": "Effects of Physical Activity and Micronutrients on Cognitive Performance in Children Aged 6 to 11 Years: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Looks at B12 and school/cognitive performance, but in children aged 6 to 11, not adults."
+     },
+     {
+      "pmid": "28988944",
+      "title": "Efficacy of adding nutritional supplements in unipolar depression: A systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Add-on supplements to antidepressants in major depression; B12 had only one trial and was not pooled."
+     },
+     {
+      "pmid": "25644193",
+      "title": "Systematic review and meta-analysis of randomized placebo-controlled trials of folate and vitamin B12 for depression",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Placebo-controlled folate and/or B12 trials on depression, but mostly in patients with major depression on antidepressants."
+     },
+     {
+      "pmid": "23765945",
+      "title": "Effect of B vitamins and lowering homocysteine on cognitive impairment in patients with previous stroke or transient ischemic attack: a prespecified secondary analysis of a randomized, placebo-controlled trial and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "B vitamins including B12 versus placebo on cognition, but only in patients with previous stroke or TIA."
+     },
+     {
+      "pmid": "24158923",
+      "title": "Dietary supplements for preventing postnatal depression",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Supplements to prevent postnatal depression in pregnant or new mothers; the included trials did not test B12."
+     },
+     {
+      "pmid": "19570123",
+      "title": "Homocysteine, vitamin B12, folate and cognitive functions: a systematic and critical review of the literature",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Narrative review of homocysteine, B12 and folate links with cognition; no pooled trial analysis."
+     },
+     {
+      "pmid": "17210874",
+      "title": "Vitamin B6, B12, and folic acid supplementation and cognitive function: a systematic review of randomized trials",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Covers placebo-controlled B12 trials on cognition in adults, but summarises them without pooling."
+     },
+     {
+      "pmid": "12918012",
+      "title": "Vitamin B12 for cognition",
+      "year": 2003,
+      "fits": "partly",
+      "reason": "B12 versus placebo on cognition, but the only included trials were in people with dementia and low B12 levels."
+     },
+     {
+      "pmid": "14584018",
+      "title": "Folic acid with or without vitamin B12 for cognition and dementia",
+      "year": 2003,
+      "fits": "partly",
+      "reason": "The main intervention is folic acid; B12 is only given together with it, in healthy and demented older people."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart, stroke and death",
+   "finding": "Heart attacks, strokes and death (B12 given together with folic acid, often with B6)",
+   "counts": {
+    "reviews": 26,
+    "trialReviews": 8,
+    "trials": 59,
+    "largeTrials": 20
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38432716",
+     "doi": "10.1016/j.ajcnut.2023.12.021",
+     "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+     "year": 2024,
+     "firstAuthor": "Zhang N",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 12,
+     "n": 76664,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "27453118",
+     "doi": "10.3760/cma.j.issn.0254-6450.2016.07.024",
+     "title": "[Meta-analysis on effect of combined supplementation of folic acid, vitamin B12 and B6 on risk of cardio-cerebrovascular diseases in randomized control trials]",
+     "year": 2016,
+     "firstAuthor": "Lan X",
+     "journal": "Zhonghua liu xing bing xue za zhi = Zhonghua liuxingbingxue zazhi",
+     "citedBy": 3,
+     "n": 26395,
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+    },
+    {
+     "pmid": "26355679",
+     "doi": "10.1371/journal.pone.0137533",
+     "title": "Efficacy of Supplementation with B Vitamins for Stroke Prevention: A Network Meta-Analysis of Randomized Controlled Trials",
+     "year": 2015,
+     "firstAuthor": "Dong H",
+     "journal": "PloS one",
+     "citedBy": 23,
+     "n": 86393,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.5555555555555556,
+    "trials": 9,
+    "inclusions": 14,
+    "reviews": [
+     {
+      "pmid": "38432716",
+      "trials": 7
+     },
+     {
+      "pmid": "26355679",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "27453118"
+    ],
+    "shared": [
+     {
+      "pmid": "20688574",
+      "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+      "year": 2010,
+      "n": 8164,
+      "inReviews": [
+       "38432716",
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "18460663",
+      "title": "Effect of folic acid and B vitamins on risk of cardiovascular events and total mortality among women at high risk for cardiovascular disease: a randomized trial",
+      "year": 2008,
+      "n": 5442,
+      "inReviews": [
+       "38432716",
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "16531614",
+      "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+      "year": 2006,
+      "n": 3749,
+      "inReviews": [
+       "38432716",
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "21482964",
+      "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+      "year": 2011,
+      "n": 2056,
+      "inReviews": [
+       "38432716",
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "17848650",
+      "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+      "year": 2007,
+      "n": 2056,
+      "inReviews": [
+       "38432716",
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "20571015",
+      "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+      "year": 2010,
+      "n": 6033,
+      "inReviews": [
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "16531613",
+      "title": "Homocysteine lowering with folic acid and B vitamins in vascular disease",
+      "year": 2006,
+      "n": 5522,
+      "inReviews": [
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "19228852",
+      "title": "Homocysteine-lowering therapy and stroke risk, severity, and disability: additional findings from the HOPE 2 trial",
+      "year": 2009,
+      "n": 5522,
+      "inReviews": [
+       "26355679"
+      ]
+     },
+     {
+      "pmid": "14762035",
+      "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+      "year": 2004,
+      "n": 3680,
+      "inReviews": [
+       "38432716"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 5
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "14762035",
+     "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+     "year": 2004,
+     "n": 3680
+    },
+    {
+     "pmid": "15023883",
+     "title": "Blood pressure and risk of secondary cardiovascular events in women: the Women's Antioxidant Cardiovascular Study (WACS)",
+     "year": 2004,
+     "n": 5218
+    },
+    {
+     "pmid": "15608435",
+     "title": "Sustained homocysteine-lowering effect over time of folic acid-based multivitamin therapy in stroke patients despite increasing folate status in the population",
+     "year": 2005,
+     "n": 2002
+    },
+    {
+     "pmid": "16531614",
+     "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+     "year": 2006,
+     "n": 3749
+    },
+    {
+     "pmid": "16450017",
+     "title": "Rationale, design and baseline characteristics of a large, simple, randomized trial of combined folic acid and vitamins B6 and B12 in high-risk patients: the Heart Outcomes Prevention Evaluation (HOPE)-2 trial",
+     "year": 2006,
+     "n": 5522
+    },
+    {
+     "pmid": "17848650",
+     "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+     "year": 2007,
+     "n": 2056
+    },
+    {
+     "pmid": "18460663",
+     "title": "Effect of folic acid and B vitamins on risk of cardiovascular events and total mortality among women at high risk for cardiovascular disease: a randomized trial",
+     "year": 2008,
+     "n": 5442
+    },
+    {
+     "pmid": "19237716",
+     "title": "Folic acid, pyridoxine, and cyanocobalamin combination treatment and age-related macular degeneration in women: the Women's Antioxidant and Folic Acid Cardiovascular Study",
+     "year": 2009,
+     "n": 5205
+    },
+    {
+     "pmid": "19228852",
+     "title": "Homocysteine-lowering therapy and stroke risk, severity, and disability: additional findings from the HOPE 2 trial",
+     "year": 2009,
+     "n": 5522
+    },
+    {
+     "pmid": "20688574",
+     "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+     "year": 2010,
+     "n": 8164
+    },
+    {
+     "pmid": "20571015",
+     "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+     "year": 2010,
+     "n": 6033
+    },
+    {
+     "pmid": "21482964",
+     "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+     "year": 2011,
+     "n": 2056
+    },
+    {
+     "pmid": "24004645",
+     "title": "The effect of homocysteine-lowering with B-vitamins on osteoporotic fractures in patients with cerebrovascular disease: substudy of VITATOPS, a randomised placebo-controlled trial",
+     "year": 2013,
+     "n": 8164
+    },
+    {
+     "pmid": "25871304",
+     "title": "Incident cancer in a cohort of 3,247 cancer diagnosis free ischemic stroke patients",
+     "year": 2015,
+     "n": 100000
+    },
+    {
+     "pmid": "23490255",
+     "title": "The China Stroke Secondary Prevention Trial (CSSPT) protocol: a double-blinded, randomized, controlled trial of combined folic acid and B vitamins for secondary prevention of stroke",
+     "year": 2015,
+     "n": 8000
+    },
+    {
+     "pmid": "28225483",
+     "title": "Homocysteine and all-cause mortality in hypertensive adults without pre-existing cardiovascular conditions: Effect modification by MTHFR C677T polymorphism",
+     "year": 2017,
+     "n": 20424
+    },
+    {
+     "pmid": "31932513",
+     "title": "Interaction of serum vitamin B12 and folate with MTHFR genotypes on risk of ischemic stroke",
+     "year": 2020,
+     "n": 20702
+    },
+    {
+     "pmid": "31855498",
+     "title": "Dietary Supplement Use During Chemotherapy and Survival Outcomes of Patients With Breast Cancer Enrolled in a Cooperative Group Clinical Trial (SWOG S0221)",
+     "year": 2020,
+     "n": 1134
+    },
+    {
+     "pmid": "32800386",
+     "title": "Long-term effects of folic acid and vitamin-B12 supplementation on fracture risk and cardiovascular disease: Extended follow-up of the B-PROOF trial",
+     "year": 2021,
+     "n": 2919
+    },
+    {
+     "pmid": "36301961",
+     "title": "Homocysteine thiolactone contributes to the prognostic value of fibrin clot structure/function in coronary artery disease",
+     "year": 2022,
+     "n": 1952
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28816346"
+    ],
+    "citedNotEligible": [
+     "28816346"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "38432716",
+      "doi": "10.1016/j.ajcnut.2023.12.021",
+      "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+      "year": 2024,
+      "firstAuthor": "Zhang N",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 12,
+      "n": 76664,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "27453118",
+      "doi": "10.3760/cma.j.issn.0254-6450.2016.07.024",
+      "title": "[Meta-analysis on effect of combined supplementation of folic acid, vitamin B12 and B6 on risk of cardio-cerebrovascular diseases in randomized control trials]",
+      "year": 2016,
+      "firstAuthor": "Lan X",
+      "journal": "Zhonghua liu xing bing xue za zhi = Zhonghua liuxingbingxue zazhi",
+      "citedBy": 3,
+      "n": 26395,
+      "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+     },
+     {
+      "pmid": "26355679",
+      "doi": "10.1371/journal.pone.0137533",
+      "title": "Efficacy of Supplementation with B Vitamins for Stroke Prevention: A Network Meta-Analysis of Randomized Controlled Trials",
+      "year": 2015,
+      "firstAuthor": "Dong H",
+      "journal": "PloS one",
+      "citedBy": 23,
+      "n": 86393,
+      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or without heart and blood vessel disease",
+     "intervention": "Vitamin B12 with folic acid (often with B6) to lower homocysteine",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Heart attacks, strokes or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 3,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37464830",
+      "title": "B Vitamins as Adjunctive Treatment for Chronic Heart Failure",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "B vitamins given as treatment in chronic heart failure; outcomes are lab values and heart measures, not heart attacks, strokes or death."
+     },
+     {
+      "pmid": "25323814",
+      "title": "The effect of folate fortification on folic acid-based homocysteine-lowering intervention and stroke risk: a meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pooled randomised trials of folic acid-based homocysteine lowering for stroke; the intervention is not specifically B12 with folic acid."
+     },
+     {
+      "pmid": "23765945",
+      "title": "Effect of B vitamins and lowering homocysteine on cognitive impairment in patients with previous stroke or transient ischemic attack: a prespecified secondary analysis of a randomized, placebo-controlled trial and meta-analysis",
+      "year": 2013,
+      "fits": "no",
+      "reason": "The outcome is cognitive impairment after stroke, not heart attacks, strokes or death."
+     },
+     {
+      "pmid": "18803866",
+      "title": "The effect of long-term homocysteine-lowering on carotid intima-media thickness and flow-mediated vasodilation in stroke patients: a randomized controlled trial and meta-analysis",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "B12 with folic acid and B6 in stroke patients, but the outcomes are only artery-wall thickness and function, not clinical events."
+     }
+    ]
+   }
+  },
+  {
+   "id": "neuropathy",
+   "label": "Diabetic nerve damage",
+   "finding": "Nerve damage from diabetes (diabetic neuropathy)",
+   "counts": {
+    "reviews": 27,
+    "trialReviews": 10,
+    "trials": 42,
+    "largeTrials": 3
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26900641",
+     "title": "Long-term Metformin Use and Vitamin B12 Deficiency in the Diabetes Prevention Program Outcomes Study",
+     "year": 2016,
+     "n": 1082
+    },
+    {
+     "pmid": "26914484",
+     "title": "Vitamin B12 screening in metformin-treated diabetics in primary care: were elderly patients less likely to be tested?",
+     "year": 2017,
+     "n": 5131
+    },
+    {
+     "pmid": "29379943",
+     "title": "Efficacy of Oral Mixed Tocotrienols in Diabetic Peripheral Neuropathy: A Randomized Clinical Trial",
+     "year": 2018,
+     "n": 14289
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "33513879"
+    ],
+    "citedNotEligible": [
+     "33513879"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People with diabetes and nerve damage (diabetic neuropathy), including people on metformin",
+     "intervention": "Vitamin B12 (including methylcobalamin)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Nerve damage symptoms, pain, or nerve function"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 3,
+     "no": 7,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40410378",
+      "title": "Acupoint injection increases the efficacy of vitamin B12 for diabetic neuropathy: a meta-analysis and trial sequential analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Compares acupoint injection of vitamin B12 with other routes of B12, so there is no placebo or no-treatment comparison."
+     },
+     {
+      "pmid": "40612436",
+      "title": "Dapagliflozin combined with methylcobalamin in the treatment of type 2 diabetes mellitus with peripheral neuropathy: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Population and nerve outcomes match, but methylcobalamin is given only with dapagliflozin and the comparator is not clearly placebo or no treatment."
+     },
+     {
+      "pmid": "37654090",
+      "title": "The role of diet and non-pharmacologic supplements in the treatment of chronic neuropathic pain: A systematic review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Covers B12 trials for diabetic neuropathy pain within broader neuropathic pain, but no pooled B12-vs-placebo analysis is reported."
+     },
+     {
+      "pmid": "35440313",
+      "title": "Metformin-Induced Vitamin B12 Deficiency among Type 2 Diabetes Mellitus' Patients: A Systematic Review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Studies whether metformin causes B12 deficiency, not B12 supplementation for neuropathy."
+     },
+     {
+      "pmid": "36007447",
+      "title": "Are herbal medicines alone or in combination for diabetic peripheral neuropathy more effective than methylcobalamin alone? A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Methylcobalamin is the active comparator against herbal medicines, so B12 is not tested against placebo or no treatment."
+     },
+     {
+      "pmid": "30383660",
+      "title": "Prostaglandin E1 plus methylcobalamin combination therapy versus prostaglandin E1 monotherapy for patients with diabetic peripheral neuropathy: A meta-analysis of randomized controlled trials",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Methylcobalamin plus PGE1 vs PGE1 alone isolates the B12 add-on for neuropathy, but B12 is only given with another drug."
+     },
+     {
+      "pmid": "29979431",
+      "title": "Fasudil combined with methylcobalamin or lipoic acid can improve the nerve conduction velocity in patients with diabetic peripheral neuropathy: A meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Fasudil plus methylcobalamin vs methylcobalamin alone tests fasudil, not B12, since both arms receive B12."
+     },
+     {
+      "pmid": "25800109",
+      "title": "Effects of prostaglandin E1 plus methylcobalamin alone and in combination with lipoic acid on nerve conduction velocity in patients with diabetic peripheral neuropathy: A meta-analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Both arms receive methylcobalamin and PGE1; the review tests added lipoic acid, not B12."
+     },
+     {
+      "pmid": "24959880",
+      "title": "Vitamin B12 status in metformin treated patients: systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Examines metformin's effect on B12 blood levels, not B12 treatment for neuropathy."
+     },
+     {
+      "pmid": "24522613",
+      "title": "Meta-analysis of methylcobalamin alone and in combination with prostaglandin E1 in the treatment of diabetic peripheral neuropathy",
+      "year": 2014,
+      "fits": "no",
+      "reason": "PGE1 plus methylcobalamin vs methylcobalamin alone tests PGE1, since both arms receive B12."
+     }
+    ]
+   }
+  }
+ ]
+}

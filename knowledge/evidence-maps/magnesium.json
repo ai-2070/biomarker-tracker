@@ -1,0 +1,2380 @@
+{
+ "topic": "magnesium",
+ "nutrientId": "magnesium",
+ "name": "magnesium",
+ "scope": "in papers about supplements, fortified food, intake or diet",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"magnesium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"magnesium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"magnesium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"magnesium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"magnesium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with magnesium (magnesium) in its title or abstract, in papers about supplements, fortified food, intake or diet; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving magnesium, with magnesium in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded magnesium trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 13811,
+  "retrieved": 1258,
+  "animal": 66,
+  "retracted": 4,
+  "reviews": 365,
+  "trials": 800,
+  "guidelines": 22
+ },
+ "guidelines": [
+  {
+   "pmid": "10333852",
+   "title": "Lifestyle modifications to prevent and control hypertension. 6. Recommendations on potassium, magnesium and calcium. Canadian Hypertension Society, Canadian Coalition for High Blood Pressure Prevention and Control, Laboratory Centre for Disease Control at Health Canada, Heart and Stroke Foundation of Canada",
+   "year": 1999,
+   "journal": "CMAJ : Canadian Medical Association journal = journal de l'Association medicale canadienne",
+   "citedBy": 22,
+   "why": "One of the newest guidelines with magnesium in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "reviews": 29,
+    "trialReviews": 12,
+    "trials": 87,
+    "largeTrials": 5
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41000008",
+     "doi": "10.1161/hypertensionaha.125.25129",
+     "title": "Magnesium Supplementation and Blood Pressure: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2025,
+     "firstAuthor": "Argeros Z",
+     "journal": "Hypertension (Dallas, Tex. : 1979)",
+     "citedBy": 9,
+     "n": 2709,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "39519450",
+     "doi": "10.3390/nu16213617",
+     "title": "Magnesium and Potassium Supplementation for Systolic Blood Pressure Reduction in the General Normotensive Population: A Systematic Review and Subgroup Meta-Analysis for Optimal Dosage and Treatment Length",
+     "year": 2024,
+     "firstAuthor": "Behers BJ",
+     "journal": "Nutrients",
+     "citedBy": 8,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "27402922",
+     "doi": "10.1161/hypertensionaha.116.07664",
+     "title": "Effects of Magnesium Supplementation on Blood Pressure: A Meta-Analysis of Randomized Double-Blind Placebo-Controlled Trials",
+     "year": 2016,
+     "firstAuthor": "Zhang X",
+     "journal": "Hypertension (Dallas, Tex. : 1979)",
+     "citedBy": 161,
+     "n": 2028,
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.21794871794871795,
+    "trials": 39,
+    "inclusions": 56,
+    "reviews": [
+     {
+      "pmid": "41000008",
+      "trials": 34
+     },
+     {
+      "pmid": "39519450",
+      "trials": 18
+     },
+     {
+      "pmid": "27402922",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "9449404",
+      "title": "Effect on blood pressure of potassium, calcium, and magnesium in women with low habitual intake",
+      "year": 1998,
+      "inReviews": [
+       "41000008",
+       "39519450",
+       "27402922"
+      ]
+     },
+     {
+      "pmid": "35253448",
+      "title": "Effects of Magnesium Citrate, Magnesium Oxide, and Magnesium Sulfate Supplementation on Arterial Stiffness: A Randomized, Double-Blind, Placebo-Controlled Intervention Trial",
+      "year": 2022,
+      "n": 164,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "19359148",
+      "title": "Effects of oral magnesium supplementation on insulin sensitivity and blood pressure in normo-magnesemic nondiabetic overweight Korean adults",
+      "year": 2009,
+      "n": 155,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "19020533",
+      "title": "The effect of lowering blood pressure by magnesium supplementation in diabetic hypertensive adults with low serum magnesium levels: a randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2009,
+      "n": 82,
+      "inReviews": [
+       "41000008",
+       "27402922"
+      ]
+     },
+     {
+      "pmid": "12663588",
+      "title": "Oral magnesium supplementation improves insulin sensitivity and metabolic control in type 2 diabetic subjects: a randomized double-blind controlled trial",
+      "year": 2003,
+      "n": 63,
+      "inReviews": [
+       "41000008",
+       "27402922"
+      ]
+     },
+     {
+      "pmid": "24814039",
+      "title": "Oral magnesium supplementation decreases C-reactive protein levels in subjects with prediabetes and hypomagnesemia: a clinical randomized double-blind placebo-controlled trial",
+      "year": 2014,
+      "n": 62,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "29996476",
+      "title": "A Pilot Randomized Trial of Oral Magnesium Supplementation on Supraventricular Arrhythmias",
+      "year": 2018,
+      "n": 59,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "21241290",
+      "title": "Magnesium improves the beta-cell function to compensate variation of insulin sensitivity: double-blind, randomized clinical trial",
+      "year": 2011,
+      "n": 52,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "24830937",
+      "title": "Oral magnesium supplementation improves the metabolic profile of metabolically obese, normal-weight individuals: a randomized double-blind placebo-controlled trial",
+      "year": 2014,
+      "n": 47,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "27053384",
+      "title": "Long-term magnesium supplementation improves arterial stiffness in overweight and obese adults: results of a randomized, double-blind, placebo-controlled intervention trial",
+      "year": 2016,
+      "n": 30,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "21205110",
+      "title": "Oral magnesium supplementation reduces insulin resistance in non-diabetic subjects - a double-blind, placebo-controlled, randomized trial",
+      "year": 2011,
+      "n": 27,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "24984823",
+      "title": "Effects of magnesium supplements on blood pressure, endothelial function and metabolic parameters in healthy young men with a family history of metabolic syndrome",
+      "year": 2014,
+      "n": 14,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "15223977",
+      "title": "Oral magnesium supplementation improves insulin sensitivity in non-diabetic subjects with insulin resistance. A double-blind placebo-controlled randomized trial",
+      "year": 2004,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "9389897",
+      "title": "The effects of high oral magnesium supplementation on blood pressure, serum lipids and related variables in apparently healthy Japanese subjects",
+      "year": 1997,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "10594466",
+      "title": "Effect of chronic magnesium supplementation on magnesium distribution in healthy volunteers evaluated by 31P-NMRS and ion selective electrodes",
+      "year": 1999,
+      "inReviews": [
+       "41000008",
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "7913949",
+      "title": "Nutritional dose of magnesium in hypertensive patients on beta blockers lowers systolic blood pressure: a double-blind, cross-over study",
+      "year": 1994,
+      "inReviews": [
+       "41000008",
+       "27402922"
+      ]
+     },
+     {
+      "pmid": "1586398",
+      "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+      "year": 1992,
+      "n": 2182,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "7795837",
+      "title": "Lack of blood pressure effect with calcium and magnesium supplementation in adults with high-normal blood pressure. Results from Phase I of the Trials of Hypertension Prevention (TOHP). Trials of Hypertension Prevention (TOHP) Collaborative Research Group",
+      "year": 1995,
+      "n": 698,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "29793665",
+      "title": "Oral Magnesium Supplementation and Metabolic Syndrome: A Randomized Double-Blind Placebo-Controlled Clinical Trial",
+      "year": 2018,
+      "n": 198,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "11252079",
+      "title": "The effects of magnesium supplementation on exercise performance",
+      "year": 2001,
+      "n": 121,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "8017327",
+      "title": "Reduction of blood pressure with oral magnesium supplementation in women with mild to moderate hypertension",
+      "year": 1994,
+      "n": 91,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "36307427",
+      "title": "Effect of oral magnesium supplement on cardiometabolic markers in people with prediabetes: a double blind randomized controlled clinical trial",
+      "year": 2022,
+      "n": 86,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "1930849",
+      "title": "Blood pressure response during long-term treatment with magnesium is dependent on magnesium status. A double-blind, placebo-controlled study in essential hypertension and in subjects with high-normal blood pressure",
+      "year": 1991,
+      "n": 71,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "15571635",
+      "title": "Mineral water intake reduces blood pressure among subjects with low urinary magnesium and calcium levels",
+      "year": 2004,
+      "n": 70,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "28297698",
+      "title": "Magnesium Replacement Improves the Metabolic Profile in Obese and Pre-Diabetic Patients with Mild-to-Moderate Chronic Kidney Disease: A 3-Month, Randomised, Double-Blind, Placebo-Controlled Study",
+      "year": 2017,
+      "n": 61,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "37010174",
+      "title": "EFFECT OF MAGNESIUM L-LACTATE SUPPLEMENT ON BLOOD PRESSURE AND CORRECTED QT INTERVAL IN A SAMPLE OF IRAQI WOMEN WITH METABOLIC SYNDROME",
+      "year": 2023,
+      "n": 58,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "9632126",
+      "title": "Oral magnesium supplementation in insulin-requiring Type 2 diabetic patients",
+      "year": 1998,
+      "n": 34,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "11807965",
+      "title": "Promising hypotensive effect of hawthorn extract: a randomized double-blind pilot study of mild, essential hypertension",
+      "year": 2002,
+      "n": 19,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "6407598",
+      "title": "Effect of magnesium on blood pressure",
+      "year": 1983,
+      "n": 18,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "29256407",
+      "title": "Effect of oral magnesium supplementation on the transcription of TRPM6, TRPM7, and SLC41A1 in individuals newly diagnosed of pre-hypertension. A randomized, double-blind, placebo-controlled trial",
+      "year": 2017,
+      "n": 18,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "34859788",
+      "title": "Magnesium citrate supplementation decreased blood pressure and HbA1c in normomagnesemic subjects with metabolic syndrome: a 12-week, placebo-controlled, double-blinded pilot trial",
+      "year": 2021,
+      "n": 13,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "2181860",
+      "title": "Metabolic and hemodynamic effects of magnesium supplementation in patients with essential hypertension",
+      "year": 1990,
+      "n": 13,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "25945079",
+      "title": "The effect of acute vs chronic magnesium supplementation on exercise and recovery on resistance exercise, blood pressure and total peripheral resistance on normotensive adults",
+      "year": 2015,
+      "n": 13,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "1477853",
+      "title": "Long-term magnesium supplementation in essential hypertension",
+      "year": 1992,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "3926135",
+      "title": "Lack of effect of oral magnesium on high blood pressure: a double blind study",
+      "year": 1985,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "3092972",
+      "title": "Effect of magnesium supplementation on blood pressure and electrolyte concentrations in hypertensive patients receiving long term diuretic treatment",
+      "year": 1986,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "27759579",
+      "title": "Oral magnesium supplementation improves endothelial function and attenuates subclinical atherosclerosis in thiazide-treated hypertensive women",
+      "year": 2017,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "7786691",
+      "title": "Nutritional magnesium supplementation does not change blood pressure nor serum or muscle potassium and magnesium in untreated hypertension. A double-blind crossover study",
+      "year": 1994,
+      "inReviews": [
+       "41000008"
+      ]
+     },
+     {
+      "pmid": "10334649",
+      "title": "The effect of magnesium supplementation on biochemical markers of bone metabolism or blood pressure in healthy young adult females",
+      "year": 1999,
+      "inReviews": [
+       "39519450"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "1669525",
+     "title": "Trials of hypertension prevention. Phase I design",
+     "year": 1991,
+     "n": 2182
+    },
+    {
+     "pmid": "1342280",
+     "title": "Baseline characteristics of participants in phase I of the Trials of Hypertension Prevention",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1586398",
+     "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "9022561",
+     "title": "Efficacy of nonpharmacologic interventions in adults with high-normal blood pressure: results from phase 1 of the Trials of Hypertension Prevention. Trials of Hypertension Prevention Collaborative Research Group",
+     "year": 1997,
+     "n": 2182
+    },
+    {
+     "pmid": "23093587",
+     "title": "A nutrient-wide association study on blood pressure",
+     "year": 2012,
+     "n": 4680
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "27402922"
+    ],
+    "citedNotChosen": [
+     "16856052"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41000008",
+      "doi": "10.1161/hypertensionaha.125.25129",
+      "title": "Magnesium Supplementation and Blood Pressure: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "firstAuthor": "Argeros Z",
+      "journal": "Hypertension (Dallas, Tex. : 1979)",
+      "citedBy": 9,
+      "n": 2709,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "39519450",
+      "doi": "10.3390/nu16213617",
+      "title": "Magnesium and Potassium Supplementation for Systolic Blood Pressure Reduction in the General Normotensive Population: A Systematic Review and Subgroup Meta-Analysis for Optimal Dosage and Treatment Length",
+      "year": 2024,
+      "firstAuthor": "Behers BJ",
+      "journal": "Nutrients",
+      "citedBy": 8,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or without high blood pressure",
+     "intervention": "Oral magnesium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 5,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40641714",
+      "title": "Effect of Magnesium Supplements on Improving Glucose Control, Blood Pressure and Lipid Profile in Patients With Type 2 Diabetes Mellitus: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pooled RCTs of magnesium and blood pressure, but only in people with type 2 diabetes, which is a narrower group."
+     },
+     {
+      "pmid": "36741996",
+      "title": "Effects of magnesium supplementation on improving hyperglycemia, hypercholesterolemia, and hypertension in type 2 diabetes: A pooled analysis of 24 randomized controlled trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pooled RCTs of magnesium and blood pressure, but only in people with type 2 diabetes, which is a narrower group."
+     },
+     {
+      "pmid": "32385715",
+      "title": "The Effects of Magnesium Supplementation on Blood Pressure and Obesity Measure Among Type 2 Diabetes Patient: a Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pooled placebo-controlled RCTs of magnesium and blood pressure, but only in people with type 2 diabetes."
+     },
+     {
+      "pmid": "28724644",
+      "title": "The effect of magnesium supplementation on blood pressure in individuals with insulin resistance, prediabetes, or noncommunicable chronic diseases: a meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pooled RCTs of magnesium and blood pressure, but only in people with insulin resistance, prediabetes or chronic diseases."
+     },
+     {
+      "pmid": "26852373",
+      "title": "Nutraceuticals with a clinically detectable blood pressure-lowering effect: a review of available randomized clinical trials and their meta-analyses",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Narrative review of many nutraceuticals for blood pressure, with no pooled analysis of magnesium trials."
+     },
+     {
+      "pmid": "16856060",
+      "title": "Combined calcium, magnesium and potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Magnesium was only given together with potassium or calcium, never on its own, in adults with high blood pressure."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cramps",
+   "label": "Night-time leg cramps",
+   "finding": "Night-time leg cramps",
+   "counts": {
+    "reviews": 8,
+    "trialReviews": 3,
+    "trials": 7,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32956536",
+     "doi": "10.1002/14651858.cd009402.pub3",
+     "title": "Magnesium for skeletal muscle cramps",
+     "year": 2020,
+     "firstAuthor": "Garrison SR",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 35,
+     "n": 735,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "22972143",
+     "doi": "10.1002/14651858.cd009402.pub2",
+     "title": "Magnesium for skeletal muscle cramps",
+     "year": 2012,
+     "firstAuthor": "Garrison SR",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 32,
+     "n": 406,
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.6666666666666666,
+    "trials": 6,
+    "inclusions": 10,
+    "reviews": [
+     {
+      "pmid": "32956536",
+      "trials": 6
+     },
+     {
+      "pmid": "22972143",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "16173138",
+      "title": "Magnesium supplementation and muscle function in patients with alcoholic liver disease: a randomized, placebo-controlled trial",
+      "year": 2005,
+      "n": 59,
+      "inReviews": [
+       "32956536",
+       "22972143"
+      ]
+     },
+     {
+      "pmid": "9813870",
+      "title": "Lack of effect of oral Mg-supplementation on Mg in serum, blood cells, and calf muscle",
+      "year": 1998,
+      "n": 10,
+      "inReviews": [
+       "32956536",
+       "22972143"
+      ]
+     },
+     {
+      "pmid": "21289017",
+      "title": "The effect of magnesium infusion on rest cramps: randomized controlled trial",
+      "year": 2011,
+      "inReviews": [
+       "32956536",
+       "22972143"
+      ]
+     },
+     {
+      "pmid": "7631676",
+      "title": "The effect of oral magnesium substitution on pregnancy-induced leg cramps",
+      "year": 1995,
+      "inReviews": [
+       "32956536",
+       "22972143"
+      ]
+     },
+     {
+      "pmid": "28241153",
+      "title": "Effect of Magnesium Oxide Supplementation on Nocturnal Leg Cramps: A Randomized Clinical Trial",
+      "year": 2017,
+      "n": 166,
+      "inReviews": [
+       "32956536"
+      ]
+     },
+     {
+      "pmid": "22909270",
+      "title": "Oral magnesium for relief in pregnancy-induced leg cramps: a randomised controlled trial",
+      "year": 2015,
+      "n": 86,
+      "inReviews": [
+       "32956536"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "32956536"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "22972143",
+      "doi": "10.1002/14651858.cd009402.pub2",
+      "title": "Magnesium for skeletal muscle cramps",
+      "year": 2012,
+      "firstAuthor": "Garrison SR",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 32,
+      "n": 406,
+      "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with leg cramps that have no known cause, mostly older adults",
+     "intervention": "Magnesium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How often cramps happen and how bad they are"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "34247796",
+      "title": "Effect of oral magnesium supplementation for relieving leg cramps during pregnancy: A meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pooled RCTs of oral magnesium versus control for cramp frequency, but only in pregnant women, not adults with idiopathic cramps."
+     }
+    ]
+   }
+  },
+  {
+   "id": "sleep",
+   "label": "Sleep",
+   "finding": "Sleep in older adults with insomnia",
+   "counts": {
+    "reviews": 4,
+    "trialReviews": 4,
+    "trials": 11,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33865376",
+     "doi": "10.1186/s12906-021-03297-z",
+     "title": "Oral magnesium supplementation for insomnia in older adults: a Systematic Review & Meta-Analysis",
+     "year": 2021,
+     "firstAuthor": "Mah J",
+     "journal": "BMC complementary medicine and therapies",
+     "citedBy": 36,
+     "n": 151,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "33865376"
+    ],
+    "citedNotChosen": [
+     "23853635"
+    ],
+    "citedNotEligible": [
+     "23853635"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Older adults with trouble sleeping (insomnia), or adults in general",
+     "intervention": "Oral magnesium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Sleep (time to fall asleep, sleep time, sleep quality)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 3,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42661485",
+      "title": "Magnesium Supplementation for Sleep in Adults: A Systematic Review of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "RCTs of oral magnesium alone for sleep in adults match the question, but the results were synthesised narratively, not pooled."
+     },
+     {
+      "pmid": "35184264",
+      "title": "The Role of Magnesium in Sleep Health: a Systematic Review of Available Literature",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Adults and magnesium vs placebo or low intake for sleep match, but observational studies are mixed with RCTs and nothing was pooled."
+     },
+     {
+      "pmid": "33441476",
+      "title": "Efficacy of dietary supplements on improving sleep quality: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Meta-analysis of supplement RCTs on sleep quality, but magnesium trials were only discussed and not pooled because data were inadequate."
+     }
+    ]
+   }
+  },
+  {
+   "id": "migraine",
+   "label": "Migraine prevention",
+   "finding": "Migraine attacks (prevention)",
+   "counts": {
+    "reviews": 4,
+    "trialReviews": 3,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39404918",
+     "doi": "10.1007/s10072-024-07794-0",
+     "title": "Effects of selected dietary supplements on migraine prophylaxis: A systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2025,
+     "firstAuthor": "Talandashti MK",
+     "journal": "Neurological sciences : official journal of the Italian Neurological Society and of the Italian Society of Clinical Neurophysiology",
+     "citedBy": 13,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "26752497",
+     "doi": "10.36076/ppj/2016.19.e97",
+     "title": "Effects of Intravenous and Oral Magnesium on Reducing Migraine: A Meta-analysis of Randomized Controlled Trials",
+     "year": 2016,
+     "firstAuthor": "Chiu HY",
+     "journal": "Pain physician",
+     "citedBy": 54,
+     "n": 948,
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+    },
+    {
+     "pmid": "42707444",
+     "doi": "10.3389/fnut.2026.1911863",
+     "title": "Nutritional supplements for migraine prevention: evaluating evidence sufficiency and effect modifiers through network meta-analysis, trial sequential analysis, and meta-regression",
+     "year": 2026,
+     "firstAuthor": "Peng J",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 0,
+     "n": 791,
+     "why": "One of the newest systematic reviews of trials on this outcome (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.5,
+    "trials": 2,
+    "inclusions": 3,
+    "reviews": [
+     {
+      "pmid": "39404918",
+      "trials": 2
+     },
+     {
+      "pmid": "42707444",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "26752497"
+    ],
+    "shared": [
+     {
+      "pmid": "18705538",
+      "title": "The effects of magnesium prophylaxis in migraine without aura",
+      "year": 2008,
+      "n": 30,
+      "inReviews": [
+       "39404918",
+       "42707444"
+      ]
+     },
+     {
+      "pmid": "22895810",
+      "title": "The effects of magnesium, L-carnitine, and concurrent magnesium-L-carnitine supplementation in migraine prophylaxis",
+      "year": 2012,
+      "n": 133,
+      "inReviews": [
+       "39404918"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "26752497"
+    ],
+    "citedNotChosen": [
+     "22529203"
+    ],
+    "citedNotEligible": [
+     "22529203"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39404918",
+      "doi": "10.1007/s10072-024-07794-0",
+      "title": "Effects of selected dietary supplements on migraine prophylaxis: A systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "firstAuthor": "Talandashti MK",
+      "journal": "Neurological sciences : official journal of the Italian Neurological Society and of the Italian Society of Clinical Neurophysiology",
+      "citedBy": 13,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "42707444",
+      "doi": "10.3389/fnut.2026.1911863",
+      "title": "Nutritional supplements for migraine prevention: evaluating evidence sufficiency and effect modifiers through network meta-analysis, trial sequential analysis, and meta-regression",
+      "year": 2026,
+      "firstAuthor": "Peng J",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 0,
+      "n": 791,
+      "why": "One of the newest systematic reviews of trials on this outcome (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults (or children) with migraine",
+     "intervention": "Oral magnesium taken every day to prevent attacks",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How often migraine attacks happen and how bad they are"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "blood-sugar",
+   "label": "Blood sugar",
+   "finding": "Blood sugar",
+   "counts": {
+    "reviews": 46,
+    "trialReviews": 18,
+    "trials": 91,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40641714",
+     "doi": "10.18295/2075-0528.2848",
+     "title": "Effect of Magnesium Supplements on Improving Glucose Control, Blood Pressure and Lipid Profile in Patients With Type 2 Diabetes Mellitus: A systematic review and meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Maqrashi NA",
+     "journal": "Sultan Qaboos University medical journal",
+     "citedBy": 3,
+     "n": 1345,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "35963372",
+     "doi": "10.1016/j.diabres.2022.110037",
+     "title": "Comparison of nutritional supplements for glycemic control in type 2 diabetes: A systematic review and network meta-analysis of randomized trials",
+     "year": 2022,
+     "firstAuthor": "Kazemi A",
+     "journal": "Diabetes research and clinical practice",
+     "citedBy": 29,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "35045911",
+     "doi": "10.1017/s0007114521005201",
+     "title": "The effects of oral magnesium supplementation on glycaemic control in patients with type 2 diabetes: a systematic review and dose-response meta-analysis of controlled clinical trials",
+     "year": 2022,
+     "firstAuthor": "Asbaghi O",
+     "journal": "The British journal of nutrition",
+     "citedBy": 18,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "31758631",
+     "doi": "10.1002/dmrr.3243",
+     "title": "Association of magnesium consumption with type 2 diabetes and glucose metabolism: A systematic review and pooled study with trial sequential analysis",
+     "year": 2020,
+     "firstAuthor": "Zhao B",
+     "journal": "Diabetes/metabolism research and reviews",
+     "citedBy": 24,
+     "n": 1168,
+     "why": "The most comprehensive review of trials on this outcome (26 trials, 2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3269230769230769,
+    "trials": 26,
+    "inclusions": 43,
+    "reviews": [
+     {
+      "pmid": "40641714",
+      "trials": 14
+     },
+     {
+      "pmid": "35045911",
+      "trials": 10
+     },
+     {
+      "pmid": "31758631",
+      "trials": 19
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "35963372"
+    ],
+    "shared": [
+     {
+      "pmid": "9589224",
+      "title": "The effect of magnesium supplementation in increasing doses on the control of type 2 diabetes",
+      "year": 1998,
+      "n": 128,
+      "inReviews": [
+       "40641714",
+       "35045911",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "25204013",
+      "title": "No effect of magnesium supplementation on metabolic control and insulin sensitivity in type 2 diabetic patients with normomagnesemia",
+      "year": 2014,
+      "n": 98,
+      "inReviews": [
+       "40641714",
+       "35045911",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "19020533",
+      "title": "The effect of lowering blood pressure by magnesium supplementation in diabetic hypertensive adults with low serum magnesium levels: a randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2009,
+      "n": 82,
+      "inReviews": [
+       "40641714",
+       "35045911",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "28540570",
+      "title": "Magnesium Supplementation and the Effects on Wound Healing and Metabolic Status in Patients with Diabetic Foot Ulcer: a Randomized, Double-Blind, Placebo-Controlled Trial",
+      "year": 2018,
+      "n": 70,
+      "inReviews": [
+       "40641714",
+       "35045911",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "12663588",
+      "title": "Oral magnesium supplementation improves insulin sensitivity and metabolic control in type 2 diabetic subjects: a randomized double-blind controlled trial",
+      "year": 2003,
+      "n": 63,
+      "inReviews": [
+       "40641714",
+       "35045911",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "9632126",
+      "title": "Oral magnesium supplementation in insulin-requiring Type 2 diabetic patients",
+      "year": 1998,
+      "n": 34,
+      "inReviews": [
+       "40641714",
+       "35045911",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "31012803",
+      "title": "The Effects of Choline and Magnesium Co-Supplementation on Metabolic Parameters, Inflammation, and Endothelial Dysfunction in Patients With Type 2 Diabetes Mellitus: A Randomized, Double-Blind, Placebo-Controlled Trial",
+      "year": 2019,
+      "n": 96,
+      "inReviews": [
+       "40641714",
+       "35045911"
+      ]
+     },
+     {
+      "pmid": "30835085",
+      "title": "Oral Magnesium Supplementation Improved Lipid Profile but Increased Insulin Resistance in Patients with Diabetic Nephropathy: a Double-Blind Randomized Controlled Clinical Trial",
+      "year": 2020,
+      "n": 80,
+      "inReviews": [
+       "40641714",
+       "35045911"
+      ]
+     },
+     {
+      "pmid": "8081529",
+      "title": "Effect of oral magnesium supplementation on selected cardiovascular risk factors in non-insulin-dependent diabetics",
+      "year": 1994,
+      "inReviews": [
+       "40641714",
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "30739626",
+      "title": "Effects of magnesium supplementation on carotid intima-media thickness and metabolic profiles in diabetic haemodialysis patients: a randomised, double-blind, placebo-controlled trial",
+      "year": 2019,
+      "inReviews": [
+       "40641714",
+       "35045911"
+      ]
+     },
+     {
+      "pmid": "30587761",
+      "title": "The Effects of Oral Magnesium Supplementation on Glycemic Response among Type 2 Diabetes Patients",
+      "year": 2018,
+      "inReviews": [
+       "40641714",
+       "35045911"
+      ]
+     },
+     {
+      "pmid": "19359148",
+      "title": "Effects of oral magnesium supplementation on insulin sensitivity and blood pressure in normo-magnesemic nondiabetic overweight Korean adults",
+      "year": 2009,
+      "n": 155,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "25937055",
+      "title": "Oral magnesium supplementation improves glycaemic status in subjects with prediabetes and hypomagnesaemia: A double-blind placebo-controlled randomized trial",
+      "year": 2015,
+      "n": 116,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "24814039",
+      "title": "Oral magnesium supplementation decreases C-reactive protein levels in subjects with prediabetes and hypomagnesemia: a clinical randomized double-blind placebo-controlled trial",
+      "year": 2014,
+      "n": 62,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "28297698",
+      "title": "Magnesium Replacement Improves the Metabolic Profile in Obese and Pre-Diabetic Patients with Mild-to-Moderate Chronic Kidney Disease: A 3-Month, Randomised, Double-Blind, Placebo-Controlled Study",
+      "year": 2017,
+      "n": 61,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "21241290",
+      "title": "Magnesium improves the beta-cell function to compensate variation of insulin sensitivity: double-blind, randomized clinical trial",
+      "year": 2011,
+      "n": 52,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "24830937",
+      "title": "Oral magnesium supplementation improves the metabolic profile of metabolically obese, normal-weight individuals: a randomized double-blind placebo-controlled trial",
+      "year": 2014,
+      "n": 47,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "21205110",
+      "title": "Oral magnesium supplementation reduces insulin resistance in non-diabetic subjects - a double-blind, placebo-controlled, randomized trial",
+      "year": 2011,
+      "n": 27,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "28848225",
+      "title": "Effect of Magnesium Supplements on Insulin Secretion After Kidney Transplantation: A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 26,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "37922013",
+      "title": "Oral magnesium supplementation does not affect insulin sensitivity in people with insulin-treated type 2 diabetes and a low serum magnesium: a randomised controlled trial",
+      "year": 2024,
+      "n": 14,
+      "inReviews": [
+       "40641714"
+      ]
+     },
+     {
+      "pmid": "24984823",
+      "title": "Effects of magnesium supplements on blood pressure, endothelial function and metabolic parameters in healthy young men with a family history of metabolic syndrome",
+      "year": 2014,
+      "n": 14,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "8200955",
+      "title": "Changes in glucose turnover parameters and improvement of glucose oxidation after 4-week magnesium administration in elderly noninsulin-dependent (type II) diabetic patients",
+      "year": 1994,
+      "inReviews": [
+       "40641714"
+      ]
+     },
+     {
+      "pmid": "8546437",
+      "title": "Magnesium and ascorbic acid supplementation in diabetes mellitus",
+      "year": 1995,
+      "inReviews": [
+       "40641714"
+      ]
+     },
+     {
+      "pmid": "1595589",
+      "title": "Daily magnesium supplements improve glucose handling in elderly subjects",
+      "year": 1992,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "15223977",
+      "title": "Oral magnesium supplementation improves insulin sensitivity in non-diabetic subjects with insulin resistance. A double-blind placebo-controlled randomized trial",
+      "year": 2004,
+      "inReviews": [
+       "31758631"
+      ]
+     },
+     {
+      "pmid": "21159786",
+      "title": "Magnesium supplementation, metabolic and inflammatory markers, and global genomic and proteomic profiling: a randomized, double-blind, controlled, crossover trial in overweight individuals",
+      "year": 2011,
+      "inReviews": [
+       "31758631"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2020,
+     "reviews": 5,
+     "trials": 9
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 7,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26473975",
+     "title": "Intake of Vitamin and Mineral Supplements and Longitudinal Association with HbA1c Levels in the General Non-Diabetic Population--Results from the MONICA/KORA S3/F3 Study",
+     "year": 2015,
+     "n": 4447
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "27530471"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "40641714",
+      "doi": "10.18295/2075-0528.2848",
+      "title": "Effect of Magnesium Supplements on Improving Glucose Control, Blood Pressure and Lipid Profile in Patients With Type 2 Diabetes Mellitus: A systematic review and meta-analysis",
+      "year": 2025,
+      "firstAuthor": "Maqrashi NA",
+      "journal": "Sultan Qaboos University medical journal",
+      "citedBy": 3,
+      "n": 1345,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "35963372",
+      "doi": "10.1016/j.diabres.2022.110037",
+      "title": "Comparison of nutritional supplements for glycemic control in type 2 diabetes: A systematic review and network meta-analysis of randomized trials",
+      "year": 2022,
+      "firstAuthor": "Kazemi A",
+      "journal": "Diabetes research and clinical practice",
+      "citedBy": 29,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     },
+     {
+      "pmid": "35045911",
+      "doi": "10.1017/s0007114521005201",
+      "title": "The effects of oral magnesium supplementation on glycaemic control in patients with type 2 diabetes: a systematic review and dose-response meta-analysis of controlled clinical trials",
+      "year": 2022,
+      "firstAuthor": "Asbaghi O",
+      "journal": "The British journal of nutrition",
+      "citedBy": 18,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     },
+     {
+      "pmid": "31758631",
+      "doi": "10.1002/dmrr.3243",
+      "title": "Association of magnesium consumption with type 2 diabetes and glucose metabolism: A systematic review and pooled study with trial sequential analysis",
+      "year": 2020,
+      "firstAuthor": "Zhao B",
+      "journal": "Diabetes/metabolism research and reviews",
+      "citedBy": 24,
+      "n": 1168,
+      "why": "The most comprehensive review of trials on this outcome (26 trials, 2020); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People with type 2 diabetes or at high risk of it",
+     "intervention": "Oral magnesium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Fasting blood sugar, HbA1c or insulin resistance"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 9,
+     "partly": 5,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41580698",
+      "title": "Effectiveness of mineral supplements (magnesium, chromium, zinc, selenium, chromium picolinate) in reducing insulin resistance in polycystic ovary syndrome: a meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Women with PCOS only, and magnesium is pooled with other minerals rather than analysed alone against placebo."
+     },
+     {
+      "pmid": "40738717",
+      "title": "Micronutrient status of patients with diabetic foot: A systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at micronutrient status and ulcer healing in diabetic foot, not magnesium's effect on blood sugar or insulin resistance."
+     },
+     {
+      "pmid": "35684094",
+      "title": "Efficacy and Safety of Nutrient Supplements for Glycaemic Control and Insulin Resistance in Type 2 Diabetes: An Umbrella Review and Hierarchical Evidence Synthesis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Umbrella review that combines earlier meta-analyses in type 2 diabetes instead of pooling the trials directly."
+     },
+     {
+      "pmid": "32468224",
+      "title": "The Effects of Magnesium Supplementation on Lipid Profile Among Type 2 Diabetes Patients: a Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Outcome is blood lipids only, not blood sugar, HbA1c or insulin resistance."
+     },
+     {
+      "pmid": "32385715",
+      "title": "The Effects of Magnesium Supplementation on Blood Pressure and Obesity Measure Among Type 2 Diabetes Patient: a Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Outcomes are blood pressure and body weight measures, not blood sugar or insulin resistance."
+     },
+     {
+      "pmid": "28150351",
+      "title": "Effect of magnesium supplementation on type 2 diabetes associated cardiovascular risk factors: a systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pools diabetic and non-diabetic people together, and no matching diabetes-only glucose analysis is clearly reported."
+     },
+     {
+      "pmid": "28526383",
+      "title": "Effect of magnesium supplementation on insulin resistance in humans: A systematic review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Reviews magnesium trials on insulin resistance across mixed clinical conditions without pooling the results."
+     },
+     {
+      "pmid": "28724644",
+      "title": "The effect of magnesium supplementation on blood pressure in individuals with insulin resistance, prediabetes, or noncommunicable chronic diseases: a meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Outcome is blood pressure, not blood sugar, HbA1c or insulin resistance."
+     },
+     {
+      "pmid": "27329332",
+      "title": "A systematic review and meta-analysis of randomized controlled trials on the effects of magnesium supplementation on insulin sensitivity and glucose control",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Oral magnesium RCTs with glucose, HbA1c and HOMA-IR outcomes, but diabetic and general non-diabetic people are pooled together."
+     }
+    ]
+   }
+  },
+  {
+   "id": "pregnancy",
+   "label": "Pregnancy outcomes",
+   "finding": "Pregnancy outcomes (pre-eclampsia, baby's growth, stillbirth)",
+   "counts": {
+    "reviews": 35,
+    "trialReviews": 9,
+    "trials": 42,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "34775542",
+     "doi": "10.1007/s12011-021-02976-9",
+     "title": "Oral Magnesium Supplementation for the Prevention of Preeclampsia: a Meta-analysis or Randomized Controlled Trials",
+     "year": 2022,
+     "firstAuthor": "Yuan J",
+     "journal": "Biological trace element research",
+     "citedBy": 15,
+     "n": 2653,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "24696187",
+     "doi": "10.1002/14651858.cd000937.pub2",
+     "title": "Magnesium supplementation in pregnancy",
+     "year": 2014,
+     "firstAuthor": "Makrides M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 78,
+     "n": 9090,
+     "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+    },
+    {
+     "pmid": "11687087",
+     "doi": "10.1002/14651858.cd000937",
+     "title": "Magnesium supplementation in pregnancy",
+     "year": 2001,
+     "firstAuthor": "Makrides M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 28,
+     "n": 2689,
+     "why": "One of the newest systematic reviews of trials on this outcome (2001); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3,
+    "trials": 10,
+    "inclusions": 16,
+    "reviews": [
+     {
+      "pmid": "34775542",
+      "trials": 5
+     },
+     {
+      "pmid": "24696187",
+      "trials": 7
+     },
+     {
+      "pmid": "11687087",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "2665492",
+      "title": "Magnesium supplementation during pregnancy: a double-blind randomized controlled clinical trial",
+      "year": 1989,
+      "inReviews": [
+       "34775542",
+       "24696187",
+       "11687087"
+      ]
+     },
+     {
+      "pmid": "1492408",
+      "title": "Effects of a combination of evening primrose oil (gamma linolenic acid) and fish oil (eicosapentaenoic + docahexaenoic acid) versus magnesium, and versus placebo in preventing pre-eclampsia",
+      "year": 1992,
+      "inReviews": [
+       "34775542",
+       "24696187",
+       "11687087"
+      ]
+     },
+     {
+      "pmid": "17578470",
+      "title": "Magnesium supplementation and perinatal hypoxia: outcome of a parallel group randomised trial in pregnancy",
+      "year": 2007,
+      "n": 4494,
+      "inReviews": [
+       "24696187",
+       "11687087"
+      ]
+     },
+     {
+      "pmid": "2210311",
+      "title": "[Magnesium, calcium, hemoglobin, hematocrit, estriol and human placental lactogen with magnesium substitution in pregnancy]",
+      "year": 1990,
+      "n": 568,
+      "inReviews": [
+       "24696187",
+       "11687087"
+      ]
+     },
+     {
+      "pmid": "32272914",
+      "title": "Magnesium supplementation and preeclampsia in low-income pregnant women - a randomized double-blind clinical trial",
+      "year": 2020,
+      "n": 416,
+      "inReviews": [
+       "34775542"
+      ]
+     },
+     {
+      "pmid": "30835085",
+      "title": "Oral Magnesium Supplementation Improved Lipid Profile but Increased Insulin Resistance in Patients with Diabetic Nephropathy: a Double-Blind Randomized Controlled Clinical Trial",
+      "year": 2020,
+      "n": 80,
+      "inReviews": [
+       "34775542"
+      ]
+     },
+     {
+      "pmid": "2282207",
+      "title": "Magnesium supplement in pregnancy-induced hypertension. A clinicopathological study",
+      "year": 1990,
+      "n": 18,
+      "inReviews": [
+       "24696187"
+      ]
+     },
+     {
+      "pmid": "1823392",
+      "title": "Magnesium supplement in pregnancy-induced hypertension: effects on maternal and neonatal magnesium and calcium homeostasis",
+      "year": 1991,
+      "n": 13,
+      "inReviews": [
+       "24696187"
+      ]
+     },
+     {
+      "pmid": "30002931",
+      "title": "Magnesium Supplementation and Blood Pressure in Pregnancy: A Double-Blind Randomized Multicenter Study",
+      "year": 2018,
+      "inReviews": [
+       "34775542"
+      ]
+     },
+     {
+      "pmid": "7631676",
+      "title": "The effect of oral magnesium substitution on pregnancy-induced leg cramps",
+      "year": 1995,
+      "inReviews": [
+       "24696187"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 1998,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "15987865",
+     "title": "Supplement use is associated with health status and health-related behaviors in the 1946 British birth cohort",
+     "year": 2005,
+     "n": 1776
+    },
+    {
+     "pmid": "17578470",
+     "title": "Magnesium supplementation and perinatal hypoxia: outcome of a parallel group randomised trial in pregnancy",
+     "year": 2007,
+     "n": 4494
+    },
+    {
+     "pmid": "25005784",
+     "title": "The BRAzil MAGnesium (BRAMAG) trial: a randomized clinical trial of oral magnesium supplementation in pregnancy for the prevention of preterm birth and perinatal and maternal morbidity",
+     "year": 2014,
+     "n": 2000
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "24696187"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "34775542",
+      "doi": "10.1007/s12011-021-02976-9",
+      "title": "Oral Magnesium Supplementation for the Prevention of Preeclampsia: a Meta-analysis or Randomized Controlled Trials",
+      "year": 2022,
+      "firstAuthor": "Yuan J",
+      "journal": "Biological trace element research",
+      "citedBy": 15,
+      "n": 2653,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     },
+     {
+      "pmid": "11687087",
+      "doi": "10.1002/14651858.cd000937",
+      "title": "Magnesium supplementation in pregnancy",
+      "year": 2001,
+      "firstAuthor": "Makrides M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 28,
+      "n": 2689,
+      "why": "One of the newest systematic reviews of trials on this outcome (2001); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Pregnant women",
+     "intervention": "Oral magnesium supplements during pregnancy",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Pre-eclampsia, the baby's growth or birth weight, preterm birth or stillbirth"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 2,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "38128389",
+      "title": "The efficacy of magnesium supplementation for gestational diabetes: A meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pooled RCTs of magnesium versus control in pregnancy, but in women with gestational diabetes as treatment, and the target outcomes are not clearly reported."
+     },
+     {
+      "pmid": "36352102",
+      "title": "Micronutrient supplementation interventions in preconception and pregnant women at increased risk of developing pre-eclampsia: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pre-eclampsia outcome, but only high-risk women, and just one magnesium trial among several micronutrients."
+     },
+     {
+      "pmid": "34907820",
+      "title": "Magnesium supplementation for glycemic status in women with gestational diabetes: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Women with gestational diabetes, and only glucose and lipid blood markers were pooled, with no pre-eclampsia, growth, preterm or stillbirth outcomes."
+     },
+     {
+      "pmid": "34247796",
+      "title": "Effect of oral magnesium supplementation for relieving leg cramps during pregnancy: A meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Oral magnesium versus control in pregnant women, but the outcome is leg cramps, not pre-eclampsia, growth, preterm birth or stillbirth."
+     },
+     {
+      "pmid": "34209454",
+      "title": "The Effect of Dietary Supplements on Oxidative Stress in Pregnant Women with Gestational Diabetes Mellitus: A Network Meta-Analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Women with gestational diabetes, magnesium only combined with zinc and calcium, and outcomes are oxidative stress markers."
+     }
+    ]
+   }
+  }
+ ]
+}

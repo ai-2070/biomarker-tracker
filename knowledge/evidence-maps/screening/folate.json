@@ -1,0 +1,663 @@
+{
+ "topic": "folate",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "methotrexate": {
+   "question": {
+    "population": "Adults with rheumatoid arthritis (or similar conditions) taking low-dose methotrexate",
+    "intervention": "Folic acid or folinic acid",
+    "comparison": "Placebo or no folate",
+    "outcome": "Side effects (liver, stomach and gut, mouth sores) and stopping methotrexate"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "29975207",
+     "fits": "yes",
+     "reason": "Pooled RCTs in RA patients on methotrexate given folate, reporting liver enzymes, gut side effects, mouth sores and stopping methotrexate."
+    },
+    {
+     "pmid": "25721372",
+     "fits": "no",
+     "reason": "Reviews methotrexate dosing for psoriasis and only describes folic acid use; it does not pool folate versus no-folate side effect outcomes."
+    },
+    {
+     "pmid": "24737913",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of folic or folinic acid in RA on low-dose methotrexate for gut, liver, mouth side effects and stopping methotrexate."
+    },
+    {
+     "pmid": "23728635",
+     "fits": "yes",
+     "reason": "Cochrane review pooling placebo-controlled RCTs of folic or folinic acid in RA on low-dose methotrexate for mouth, gut and liver side effects."
+    },
+    {
+     "pmid": "9458200",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of folic or folinic acid in RA on low-dose methotrexate, pooling mouth and gut side effects."
+    },
+    {
+     "pmid": "10796393",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of folic or folinic acid in RA on low-dose methotrexate, reporting mouth and gut side effects."
+    }
+   ]
+  },
+  "diabetic-kidney": {
+   "question": {
+    "population": "People with diabetes and kidney disease",
+    "intervention": "Folic acid with vitamin B12 and B6 (B vitamins)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Kidney function, heart events or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41393929",
+     "fits": "partly",
+     "reason": "Pools RCTs of folic acid with B12/B6 against controls for complications, but in type 2 diabetes generally, not specifically people with kidney disease."
+    },
+    {
+     "pmid": "38649347",
+     "fits": "no",
+     "reason": "Folic acid alone in type 2 diabetes, with only inflammation and homocysteine blood markers; kidney disease and clinical outcomes are not covered."
+    },
+    {
+     "pmid": "34371867",
+     "fits": "no",
+     "reason": "Folic acid alone in adults, with glycemic control markers as the outcomes; not about kidney disease, heart events or death."
+    },
+    {
+     "pmid": "39828265",
+     "fits": "no",
+     "reason": "Umbrella review of water-soluble vitamins for glycemic control in type 2 diabetes; no kidney population and no kidney, heart or death outcomes."
+    },
+    {
+     "pmid": "40738717",
+     "fits": "no",
+     "reason": "Describes micronutrient status in diabetic foot ulcers; not a pooled analysis of B-vitamin trials for kidney, heart or death outcomes."
+    },
+    {
+     "pmid": "29501221",
+     "fits": "no",
+     "reason": "Folate versus placebo for glucose metabolism and diabetes risk; not about people with diabetes and kidney disease or clinical outcomes."
+    },
+    {
+     "pmid": "29342488",
+     "fits": "no",
+     "reason": "Folate in metabolic diseases, with diabetes blood markers as the outcomes; no kidney population and no clinical outcomes."
+    },
+    {
+     "pmid": "30615110",
+     "fits": "no",
+     "reason": "Folate with or without other B vitamins for insulin resistance and type 2 diabetes risk; not about kidney disease or heart or death outcomes."
+    },
+    {
+     "pmid": "23313356",
+     "fits": "partly",
+     "reason": "Pools RCTs of folic acid for cardiovascular disease in kidney disease, but people are not limited to those with diabetes (diabetes only looked at by baseline share)."
+    },
+    {
+     "pmid": "21088292",
+     "fits": "partly",
+     "reason": "Pools RCTs of folic acid for cardiovascular disease in advanced kidney disease, but people are not limited to those with diabetes."
+    },
+    {
+     "pmid": "34083034",
+     "fits": "no",
+     "reason": "Lifestyle and diet interventions in various chronic diseases, with micronucleus frequency as the outcome; a different question."
+    }
+   ]
+  },
+  "stroke": {
+   "question": {
+    "population": "Adults (with or without high blood pressure or heart disease)",
+    "intervention": "Folic acid, alone or with vitamin B12 and B6",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Stroke"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38824900",
+     "fits": "yes",
+     "reason": "Pooled 21 randomised trials of folic acid, alone or combined, against control with stroke as the outcome in adults."
+    },
+    {
+     "pmid": "38432716",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of folic acid with B12 and B6 against control, with stroke as the outcome."
+    },
+    {
+     "pmid": "39155933",
+     "fits": "yes",
+     "reason": "Pooled 12 randomised trials of folic acid supplementation for first stroke separately from the observational studies."
+    },
+    {
+     "pmid": "38291560",
+     "fits": "partly",
+     "reason": "Network analysis compares folate and other vitamins with placebo for stroke, but it mixes cohort studies with randomised trials."
+    },
+    {
+     "pmid": "28404799",
+     "fits": "yes",
+     "reason": "Pooled 22 randomised trials of folic acid supplementation with stroke risk as the outcome."
+    },
+    {
+     "pmid": "29078842",
+     "fits": "partly",
+     "reason": "Pooled randomised trials of folic acid for stroke, but only in patients with cardiovascular disease, a narrower group."
+    },
+    {
+     "pmid": "25323814",
+     "fits": "yes",
+     "reason": "Pooled 14 randomised trials of folic acid supplementation with stroke risk as the outcome, split by fortification status."
+    },
+    {
+     "pmid": "27453118",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of folic acid with B12 and B6 against control, with a separate analysis of stroke."
+    },
+    {
+     "pmid": "26355679",
+     "fits": "yes",
+     "reason": "Network meta-analysis of randomised trials compares folic acid and its B-vitamin combinations with placebo for stroke."
+    },
+    {
+     "pmid": "22607506",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of folic acid supplementation with stroke risk as the outcome."
+    },
+    {
+     "pmid": "20413740",
+     "fits": "yes",
+     "reason": "Pooled 13 randomised trials of folic acid, alone or with B6 and B12, with stroke as the outcome."
+    },
+    {
+     "pmid": "24282609",
+     "fits": "yes",
+     "reason": "Pooled 18 randomised trials of B-vitamin supplementation, including folic acid, with stroke as the outcome."
+    },
+    {
+     "pmid": "17544768",
+     "fits": "yes",
+     "reason": "Pooled 8 randomised trials of folic acid supplementation with stroke as an endpoint."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "no",
+     "reason": "Single trial in stroke survivors whose outcome is cognitive impairment, not stroke."
+    },
+    {
+     "pmid": "21803414",
+     "fits": "yes",
+     "reason": "Includes a separate meta-analysis of 13 randomised trials of homocysteine-lowering B-vitamin treatment with stroke as the outcome."
+    },
+    {
+     "pmid": "18803866",
+     "fits": "no",
+     "reason": "Outcomes are artery wall thickness and blood-vessel function (vascular markers), not stroke."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults with or without heart and blood vessel disease (not a group defined by another illness)",
+    "intervention": "Folic acid, alone or with vitamin B12 and B6, to lower homocysteine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, other cardiovascular events, or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42231372",
+     "fits": "partly",
+     "reason": "Folic acid alone vs placebo in RCTs, but only in adults with high homocysteine, and outcomes are blood markers with no adjudicated cardiovascular events."
+    },
+    {
+     "pmid": "38824900",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid, alone or combined, vs control in adults, with stroke (a cardiovascular event) as the outcome."
+    },
+    {
+     "pmid": "41194300",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid vs control for stroke, overall CVD, CHD and mortality in adults."
+    },
+    {
+     "pmid": "41830012",
+     "fits": "yes",
+     "reason": "Pooled RCTs of B-vitamin combinations for MI, stroke, MACE and mortality in primary and secondary prevention groups."
+    },
+    {
+     "pmid": "38432716",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid with B12 and B6 vs control, with stroke as the cardiovascular outcome."
+    },
+    {
+     "pmid": "39155933",
+     "fits": "yes",
+     "reason": "Separately pooled RCTs of folic acid supplementation vs control for first stroke in adults."
+    },
+    {
+     "pmid": "38291560",
+     "fits": "partly",
+     "reason": "Folate and B-complex vs placebo for stroke, but the network meta-analysis mixes RCTs with cohort studies."
+    },
+    {
+     "pmid": "37464830",
+     "fits": "no",
+     "reason": "B vitamins as treatment for chronic heart failure, with lab and haemodynamic measures as outcomes rather than events."
+    },
+    {
+     "pmid": "31517834",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid vs control in people with CVD, with stroke, CHD and mortality as outcomes."
+    },
+    {
+     "pmid": "28404799",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid supplementation vs control, with stroke as the outcome."
+    },
+    {
+     "pmid": "29078842",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid vs control in patients with CVD, with stroke as the outcome."
+    },
+    {
+     "pmid": "33509399",
+     "fits": "yes",
+     "reason": "Meta-analysis of supplement RCTs that includes folic acid and B vitamins vs control for stroke and CVD outcomes."
+    },
+    {
+     "pmid": "36480969",
+     "fits": "yes",
+     "reason": "Meta-analysis of micronutrient RCTs with a separate folic acid vs control analysis for stroke and CVD events."
+    },
+    {
+     "pmid": "31284304",
+     "fits": "yes",
+     "reason": "Umbrella review that pooled RCTs of folic acid vs control for stroke and other CVD outcomes in adults."
+    },
+    {
+     "pmid": "25323814",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid-based homocysteine lowering vs control, with stroke as the outcome."
+    },
+    {
+     "pmid": "25687545",
+     "fits": "no",
+     "reason": "Maternal folic acid and congenital heart defects in offspring, mostly in observational studies."
+    },
+    {
+     "pmid": "27528407",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid vs control for stroke, coronary heart disease and overall CVD."
+    },
+    {
+     "pmid": "29025632",
+     "fits": "no",
+     "reason": "Pregnant women given multiple micronutrients vs iron-folic acid, with birth outcomes and infant mortality."
+    },
+    {
+     "pmid": "26355679",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs comparing folic acid, alone or with B6/B12, to placebo for stroke."
+    },
+    {
+     "pmid": "22607506",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid supplementation vs control, with stroke as the outcome."
+    },
+    {
+     "pmid": "21980387",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of folic acid in a broad population, reporting cardiovascular events, MI, stroke and all-cause death."
+    },
+    {
+     "pmid": "20413740",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid, alone or with B6/B12, to lower homocysteine, with stroke as the outcome, a cardiovascular event."
+    },
+    {
+     "pmid": "17164458",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid vs placebo or usual care in people with vascular disease, reporting cardiovascular events and death."
+    },
+    {
+     "pmid": "28816346",
+     "fits": "yes",
+     "reason": "Pooled RCTs of B6/B9/B12 homocysteine lowering vs placebo in people with or without CVD, reporting MI, stroke and death."
+    },
+    {
+     "pmid": "34083034",
+     "fits": "no",
+     "reason": "Looks at lifestyle and diet interventions in people with various illnesses, and the outcome is micronuclei frequency, not cardiovascular events."
+    },
+    {
+     "pmid": "22884409",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid supplementation reporting CVD, coronary heart disease, stroke and all-cause mortality."
+    },
+    {
+     "pmid": "24282609",
+     "fits": "yes",
+     "reason": "Pooled RCTs of B-vitamin (folic acid) supplementation to lower homocysteine, with stroke as the outcome."
+    },
+    {
+     "pmid": "20348114",
+     "fits": "no",
+     "reason": "Looks at folic acid in pregnancy to prevent neural tube defects and neonatal death, not cardiovascular outcomes in adults."
+    },
+    {
+     "pmid": "17544768",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid supplementation with stroke as the outcome."
+    },
+    {
+     "pmid": "20691310",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid vs control on cardiovascular events and stroke."
+    },
+    {
+     "pmid": "15116076",
+     "fits": "no",
+     "reason": "Narrative review of B-vitamins and omega-3 fatty acids with no pooled trial analysis of cardiovascular events."
+    },
+    {
+     "pmid": "20937919",
+     "fits": "yes",
+     "reason": "Individual-patient meta-analysis of placebo-controlled folic acid trials reporting vascular events and mortality."
+    },
+    {
+     "pmid": "20120796",
+     "fits": "no",
+     "reason": "Compares multiple micronutrients with iron-folic acid in pregnancy for stillbirth and neonatal death."
+    },
+    {
+     "pmid": "19821378",
+     "fits": "yes",
+     "reason": "Pooled RCTs of homocysteine-lowering B vitamins in people with or without CVD, reporting MI, stroke and death."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "no",
+     "reason": "Outcome is cognitive impairment after stroke, not cardiovascular events or death."
+    },
+    {
+     "pmid": "21803414",
+     "fits": "yes",
+     "reason": "Includes a separate meta-analysis of 13 RCTs of homocysteine-lowering treatment with stroke as the outcome."
+    },
+    {
+     "pmid": "24217421",
+     "fits": "partly",
+     "reason": "Covers many vitamins and minerals for primary prevention; folic acid is one of several, and pooled folic acid results for CVD are unclear."
+    },
+    {
+     "pmid": "9919473",
+     "fits": "no",
+     "reason": "Describes the design of future trials and does not pool trial results."
+    },
+    {
+     "pmid": "18803866",
+     "fits": "partly",
+     "reason": "Pooled B-vitamin trials, but outcomes are vascular markers (CIMT, FMD) rather than cardiovascular events."
+    }
+   ]
+  },
+  "cancer": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Folic acid supplements, alone or with other B vitamins",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New cancers"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41314820",
+     "fits": "partly",
+     "reason": "Umbrella review of meta-analyses mixing observational studies and RCTs; the supplement estimate for colorectal cancer in the general population looks observational."
+    },
+    {
+     "pmid": "29132834",
+     "fits": "yes",
+     "reason": "Pools RCTs of folic acid supplements and reports colorectal cancer risk, which is a new-cancer outcome."
+    },
+    {
+     "pmid": "19863600",
+     "fits": "partly",
+     "reason": "Randomised folate vs none, but the participants had prior adenomas and the main outcome is adenoma recurrence rather than cancer alone."
+    },
+    {
+     "pmid": "26131763",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of folic acid supplements and colorectal cancer risk in the total population."
+    },
+    {
+     "pmid": "23338728",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of folic acid supplements reporting total and site-specific cancer incidence."
+    },
+    {
+     "pmid": "23352552",
+     "fits": "yes",
+     "reason": "Individual-participant meta-analysis of 13 folic acid vs placebo RCTs in adults, with cancer incidence as the main outcome."
+    },
+    {
+     "pmid": "34083034",
+     "fits": "partly",
+     "reason": "Folate is among the interventions for elderly or diseased groups, but the outcome is only a genomic marker (micronuclei), not new cancers."
+    },
+    {
+     "pmid": "14726972",
+     "fits": "no",
+     "reason": "Ulcerative colitis patients in non-randomised studies, with folate assessed alongside sulfasalazine; the authors say RCTs are still needed."
+    },
+    {
+     "pmid": "20937919",
+     "fits": "yes",
+     "reason": "Pools 8 placebo-controlled RCTs of folic acid in adults at increased cardiovascular risk and reports overall cancer incidence."
+    },
+    {
+     "pmid": "24217421",
+     "fits": "partly",
+     "reason": "Primary-prevention adults and cancer outcomes, but folic acid is one of many supplements and no pooled folic acid estimate is reported."
+    },
+    {
+     "pmid": "16880453",
+     "fits": "partly",
+     "reason": "Adults and cancer prevention, but the supplements are multivitamin/mineral combinations, not folic acid or B vitamins specifically."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Older adults, with or without mild memory problems",
+    "intervention": "Folic acid, alone or with vitamin B12 and B6",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Memory, thinking or dementia"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41764841",
+     "fits": "partly",
+     "reason": "Older adults with or without MCI, but folic acid is reported for cognition only with DHA; B vitamins alone are reported only for blood markers."
+    },
+    {
+     "pmid": "39064642",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of folate-based B vitamins on cognitive function in adults aged 60 or over."
+    },
+    {
+     "pmid": "38465839",
+     "fits": "partly",
+     "reason": "Folic acid RCTs on cognition, but only in people already diagnosed with cognitive impairment, including AD and VCI, so it is about treatment."
+    },
+    {
+     "pmid": "38964091",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of folic acid on cognitive function in older adults with mild cognitive impairment."
+    },
+    {
+     "pmid": "38700503",
+     "fits": "partly",
+     "reason": "B12 plus folic acid versus placebo on cognition, but only in people with Alzheimer's disease, so it is about treatment."
+    },
+    {
+     "pmid": "36518821",
+     "fits": "yes",
+     "reason": "Meta-analysis of folic acid versus placebo on memory, with a subgroup of participants aged 70 or over."
+    },
+    {
+     "pmid": "34058062",
+     "fits": "partly",
+     "reason": "B vitamins in MCI, but the only outcome is homocysteine, a blood marker, and it includes non-randomised studies."
+    },
+    {
+     "pmid": "33463361",
+     "fits": "partly",
+     "reason": "Folic acid RCTs on cognition in older adults, but the trials were summarised without being pooled."
+    },
+    {
+     "pmid": "34432056",
+     "fits": "yes",
+     "reason": "Pooled B vitamin RCTs versus placebo on MMSE decline, with a subgroup of people without dementia."
+    },
+    {
+     "pmid": "22566307",
+     "fits": "partly",
+     "reason": "Folate and cognition in older adults, but mostly observational studies and no pooled trial analysis."
+    },
+    {
+     "pmid": "22232016",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled B6, B12 and folic acid RCTs on cognition in people with and without cognitive impairment."
+    },
+    {
+     "pmid": "20569758",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of folic acid, with or without other B vitamins, on cognitive decline."
+    },
+    {
+     "pmid": "14584018",
+     "fits": "yes",
+     "reason": "Cochrane review of folic acid with or without B12 versus placebo on cognition in healthy older people and people with dementia."
+    },
+    {
+     "pmid": "20847412",
+     "fits": "partly",
+     "reason": "Covers B vitamins and fatty acids together and mixes cohort studies with RCTs; trial results were not pooled."
+    },
+    {
+     "pmid": "17210874",
+     "fits": "partly",
+     "reason": "RCTs of B6, B12 and folic acid on cognition in people with normal or impaired cognition, but summarised without pooling."
+    },
+    {
+     "pmid": "25274113",
+     "fits": "yes",
+     "reason": "Meta-analysis of B vitamin RCTs, with a separate analysis of memory and cognition in people with MCI."
+    },
+    {
+     "pmid": "15250847",
+     "fits": "no",
+     "reason": "Observational studies linking blood vitamin levels to cognition; no supplementation trials."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "partly",
+     "reason": "B vitamins versus placebo on cognitive impairment, but the population is patients with previous stroke or TIA."
+    },
+    {
+     "pmid": "19570123",
+     "fits": "no",
+     "reason": "Narrative review of how homocysteine, folate and B12 levels relate to cognition; no pooled trials."
+    }
+   ]
+  },
+  "neural-tube": {
+   "question": {
+    "population": "Women before conception and in early pregnancy",
+    "intervention": "Folic acid supplements (alone or with other vitamins)",
+    "comparison": "Placebo, no supplement, or other vitamins without folic acid",
+    "outcome": "Neural tube defects in the baby"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41612855",
+     "fits": "yes",
+     "reason": "Umbrella review reporting a pooled estimate for maternal folic acid and NTD at birth and NTD recurrence, alongside other folate outcomes."
+    },
+    {
+     "pmid": "39074459",
+     "fits": "yes",
+     "reason": "Umbrella review of folic acid and/or multivitamins for NTD prevention, with a separate pooled subgroup of reviews of randomised trials."
+    },
+    {
+     "pmid": "37526714",
+     "fits": "partly",
+     "reason": "PICO matches folic acid for NTD prevention, but the NTD evidence in this update came only from observational studies, not pooled trials."
+    },
+    {
+     "pmid": "26662928",
+     "fits": "yes",
+     "reason": "Cochrane review of randomised trials of periconceptional folate alone or with other micronutrients versus placebo or none, for NTDs."
+    },
+    {
+     "pmid": "25687545",
+     "fits": "no",
+     "reason": "Outcome is congenital heart defects, not neural tube defects, and the studies are mainly observational."
+    },
+    {
+     "pmid": "20927767",
+     "fits": "yes",
+     "reason": "Cochrane review pooling randomised trials of periconceptional folic acid versus placebo, none or vitamins without folate, for NTDs."
+    },
+    {
+     "pmid": "28097361",
+     "fits": "partly",
+     "reason": "Matches folic acid for NTD prevention, but includes only one trial plus observational studies and did not pool the data."
+    },
+    {
+     "pmid": "17990333",
+     "fits": "partly",
+     "reason": "Pools randomised trials of folic acid for NTDs, but only in women with a previous NTD-affected pregnancy (recurrence)."
+    },
+    {
+     "pmid": "20348114",
+     "fits": "partly",
+     "reason": "The trial meta-analysis covers only NTD recurrence, and the primary prevention estimate combines one trial with cohort studies."
+    },
+    {
+     "pmid": "21491380",
+     "fits": "yes",
+     "reason": "Withdrawn Cochrane review pooling randomised trials of periconceptional folate versus placebo for NTD incidence."
+    },
+    {
+     "pmid": "17022907",
+     "fits": "partly",
+     "reason": "Folic acid-fortified multivitamins and NTDs, but cohort studies and RCTs are pooled together rather than trials alone."
+    },
+    {
+     "pmid": "11686974",
+     "fits": "yes",
+     "reason": "Cochrane review pooling randomised trials of periconceptional folate versus placebo, showing reduced NTDs."
+    },
+    {
+     "pmid": "10796229",
+     "fits": "yes",
+     "reason": "Cochrane review pooling randomised trials of periconceptional folate versus placebo for preventing NTDs."
+    },
+    {
+     "pmid": "8605127",
+     "fits": "no",
+     "reason": "Compares blood folate and B12 levels between NTD and unaffected pregnancies; it does not evaluate the effect of supplementation."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,637 @@
+{
+ "topic": "calcium",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "adenomas": {
+   "question": {
+    "population": "Adults who had bowel polyps (colorectal adenomas) removed, or adults in general",
+    "intervention": "Calcium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Colorectal adenomas (bowel polyps), new or coming back"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "24623471",
+     "fits": "no",
+     "reason": "Pools observational studies of calcium intake, not randomised trials, and the outcome is colorectal cancer rather than adenomas."
+    },
+    {
+     "pmid": "27182169",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of calcium supplements; outcome is colorectal adenoma recurrence."
+    },
+    {
+     "pmid": "28796047",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium supplements in patients with a history of adenomas; outcome is adenoma recurrence."
+    },
+    {
+     "pmid": "25156950",
+     "fits": "no",
+     "reason": "Pools prospective observational studies of calcium intake, not randomised trials of supplements against placebo."
+    },
+    {
+     "pmid": "14974021",
+     "fits": "yes",
+     "reason": "Pools double-blind placebo-controlled RCTs of calcium in people with previous adenomas; outcome is adenoma recurrence."
+    },
+    {
+     "pmid": "15667497",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium versus placebo in people with removed adenomas; outcome is adenoma recurrence."
+    },
+    {
+     "pmid": "18254022",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of calcium in people with previous adenomas; outcome is adenoma recurrence."
+    },
+    {
+     "pmid": "20685491",
+     "fits": "yes",
+     "reason": "Includes a meta-analysis of calcium versus placebo RCTs in people with a history of adenomas; outcome is adenoma recurrence."
+    },
+    {
+     "pmid": "16034903",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of calcium in people with previous adenomas; outcome is adenoma recurrence."
+    }
+   ]
+  },
+  "kidney-stones": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Calcium supplements, alone or with vitamin D",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Kidney stones"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "26969574",
+     "fits": "no",
+     "reason": "Looks at how often stones come back in people who already form calcium stones, across many treatments; calcium supplements against placebo are not tested."
+    },
+    {
+     "pmid": "18845701",
+     "fits": "partly",
+     "reason": "Calcium supplements and new kidney stones match, but it covers only postmenopausal women and is a narrative review of trials and observational data."
+    },
+    {
+     "pmid": "19321253",
+     "fits": "no",
+     "reason": "Covers diet, fluids and unnamed supplements to prevent repeat stones in stone formers; calcium appears only as part of mixed diets, not as a supplement."
+    },
+    {
+     "pmid": "23137489",
+     "fits": "partly",
+     "reason": "Calcium supplements and kidney stone outcomes match, but only in people with osteoporosis, sometimes with other drugs, and it includes cohort studies."
+    }
+   ]
+  },
+  "pre-eclampsia": {
+   "question": {
+    "population": "Pregnant women",
+    "intervention": "Calcium supplements during pregnancy",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Pre-eclampsia or high blood pressure in pregnancy"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41330480",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium versus placebo in pregnant women, with pre-eclampsia as the critical outcome."
+    },
+    {
+     "pmid": "40965861",
+     "fits": "partly",
+     "reason": "Calcium vs placebo for pre-eclampsia, but supplements started before pregnancy in non-pregnant women who had pre-eclampsia before."
+    },
+    {
+     "pmid": "39608269",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium versus control in pregnant women, reporting pre-eclampsia and pregnancy-induced hypertension."
+    },
+    {
+     "pmid": "39560075",
+     "fits": "no",
+     "reason": "Calcium in pregnancy, but this review explicitly excludes hypertension outcomes and looks at preterm birth and birthweight."
+    },
+    {
+     "pmid": "42397815",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs that includes calcium versus placebo in pregnancy for preventing pre-eclampsia."
+    },
+    {
+     "pmid": "35596262",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of calcium supplementation for pre-eclampsia prevention in women before or during pregnancy."
+    },
+    {
+     "pmid": "35014026",
+     "fits": "no",
+     "reason": "Calcium for primary hypertension in normotensive people in general, not in pregnancy."
+    },
+    {
+     "pmid": "37653760",
+     "fits": "partly",
+     "reason": "Calcium given with aspirin and compared with aspirin alone, in high-risk pregnant women, for pre-eclampsia."
+    },
+    {
+     "pmid": "34693985",
+     "fits": "no",
+     "reason": "Calcium for primary hypertension in normotensive people in general, not in pregnancy."
+    },
+    {
+     "pmid": "38013011",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium versus placebo in pregnant women for pre-eclampsia and gestational hypertension."
+    },
+    {
+     "pmid": "36352102",
+     "fits": "partly",
+     "reason": "Has a calcium subgroup for pre-eclampsia, but only in high-risk women, and some started before conception."
+    },
+    {
+     "pmid": "32067744",
+     "fits": "no",
+     "reason": "Calcium plus vitamin D for blood pressure in general populations, not pregnancy."
+    },
+    {
+     "pmid": "31523806",
+     "fits": "partly",
+     "reason": "Calcium vs placebo for pre-eclampsia, but started before or early in pregnancy, in women with previous pre-eclampsia."
+    },
+    {
+     "pmid": "30935246",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium supplements in pregnant women for pre-eclampsia and gestational hypertension."
+    },
+    {
+     "pmid": "30277579",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium versus placebo in pregnancy, reporting high blood pressure and pre-eclampsia."
+    },
+    {
+     "pmid": "28949421",
+     "fits": "partly",
+     "reason": "Its only included trial gave calcium together with antioxidants and other supplements, starting in early pregnancy."
+    },
+    {
+     "pmid": "28230063",
+     "fits": "no",
+     "reason": "Calcium plus vitamin D for blood pressure in adults in general, not pregnancy."
+    },
+    {
+     "pmid": "29057843",
+     "fits": "yes",
+     "reason": "Direct meta-analysis of RCTs of calcium versus placebo in pregnancy for pre-eclampsia."
+    },
+    {
+     "pmid": "26126003",
+     "fits": "no",
+     "reason": "Calcium for primary hypertension in normotensive people in general, not in pregnancy."
+    },
+    {
+     "pmid": "26125571",
+     "fits": "yes",
+     "reason": "Pooled multicentre RCTs of calcium in pregnancy for hypertension and pre-eclampsia."
+    },
+    {
+     "pmid": "25922862",
+     "fits": "no",
+     "reason": "Pregnant women given calcium vs placebo/no treatment, but the review explicitly excludes hypertension outcomes and looks at preterm birth and birthweight."
+    },
+    {
+     "pmid": "22889274",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of calcium vs placebo in pregnancy for preventing pre-eclampsia."
+    },
+    {
+     "pmid": "21975761",
+     "fits": "no",
+     "reason": "Pregnant women given calcium vs placebo/no treatment, but outcomes other than hypertension (preterm birth, birthweight) are the focus."
+    },
+    {
+     "pmid": "24960615",
+     "fits": "yes",
+     "reason": "RCTs of calcium vs placebo or no calcium in pregnancy, with pooled pre-eclampsia and high blood pressure outcomes."
+    },
+    {
+     "pmid": "17386111",
+     "fits": "no",
+     "reason": "Outcome is blood pressure in the offspring, not maternal pre-eclampsia, and it includes observational studies."
+    },
+    {
+     "pmid": "16673011",
+     "fits": "no",
+     "reason": "Calcium and blood pressure in non-pregnant people only."
+    },
+    {
+     "pmid": "16855957",
+     "fits": "yes",
+     "reason": "RCTs of at least 1 g/day calcium vs placebo in pregnancy, with pooled high blood pressure and pre-eclampsia outcomes."
+    },
+    {
+     "pmid": "24621141",
+     "fits": "yes",
+     "reason": "Low-dose calcium in pregnancy for pre-eclampsia; a separate pooled subgroup of calcium alone matches, though co-supplement and quasi-randomised trials are also included."
+    },
+    {
+     "pmid": "16625609",
+     "fits": "no",
+     "reason": "Treats primary hypertension in non-pregnant adults; pregnant women were excluded."
+    },
+    {
+     "pmid": "21501435",
+     "fits": "partly",
+     "reason": "RCTs of calcium in pregnancy for gestational hypertension and pre-eclampsia, but limited to women in developing countries."
+    },
+    {
+     "pmid": "17565614",
+     "fits": "yes",
+     "reason": "RCTs of at least 1 g/day calcium vs placebo in pregnancy, with pooled high blood pressure and pre-eclampsia outcomes."
+    },
+    {
+     "pmid": "12768949",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of at least 1 g/day calcium vs placebo in pregnancy, with pooled pre-eclampsia risk."
+    },
+    {
+     "pmid": "16856060",
+     "fits": "no",
+     "reason": "Combined mineral supplements for primary hypertension in non-pregnant adults."
+    },
+    {
+     "pmid": "11869587",
+     "fits": "yes",
+     "reason": "RCTs of at least 1 g/day calcium vs placebo in pregnancy, with pooled high blood pressure and pre-eclampsia outcomes."
+    },
+    {
+     "pmid": "10796232",
+     "fits": "yes",
+     "reason": "RCTs of at least 1 g/day calcium vs placebo in pregnancy, with pooled high blood pressure and pre-eclampsia outcomes."
+    },
+    {
+     "pmid": "10908483",
+     "fits": "yes",
+     "reason": "RCTs of at least 1 g/day calcium vs placebo in pregnancy, with pooled high blood pressure and pre-eclampsia outcomes."
+    },
+    {
+     "pmid": "8610952",
+     "fits": "no",
+     "reason": "Calcium and blood pressure in general normotensive and hypertensive persons, not pregnant women."
+    },
+    {
+     "pmid": "2145869",
+     "fits": "no",
+     "reason": "Epidemiologic review of calcium and blood pressure that excludes trials in pregnant women."
+    },
+    {
+     "pmid": "8596234",
+     "fits": "no",
+     "reason": "Calcium vs placebo and blood pressure in general populations, not pregnancy or pre-eclampsia."
+    },
+    {
+     "pmid": "10075392",
+     "fits": "no",
+     "reason": "Calcium and blood pressure in hypertensive or normotensive people generally, not pregnancy outcomes."
+    },
+    {
+     "pmid": "8601931",
+     "fits": "yes",
+     "reason": "Pooled 14 randomised trials of calcium supplements versus control in pregnant women, reporting blood pressure and pre-eclampsia."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Calcium supplements, alone or with vitamin D",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, strokes or other cardiovascular events"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37743221",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium alone or with vitamin D and reported heart attack, stroke and cardiovascular death outcomes."
+    },
+    {
+     "pmid": "33530332",
+     "fits": "yes",
+     "reason": "Pooled double-blind placebo-controlled RCTs of calcium supplements for CVD and coronary heart disease outcomes."
+    },
+    {
+     "pmid": "31625814",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium supplements, with or without vitamin D, for coronary heart disease and heart attack, alongside cohort studies."
+    },
+    {
+     "pmid": "27776363",
+     "fits": "yes",
+     "reason": "RCTs of calcium or calcium plus vitamin D against placebo in generally healthy adults, looking at CVD events."
+    },
+    {
+     "pmid": "31284304",
+     "fits": "yes",
+     "reason": "Umbrella review that includes a meta-analysis of calcium plus vitamin D RCTs for stroke and cardiovascular outcomes in adults."
+    },
+    {
+     "pmid": "33509399",
+     "fits": "yes",
+     "reason": "Meta-analysis of supplement RCTs, including calcium, for cardiovascular outcomes."
+    },
+    {
+     "pmid": "33491043",
+     "fits": "yes",
+     "reason": "Pooled studies of vitamin D or calcium, alone or combined, for heart attack and other cardiovascular events in community-dwelling adults."
+    },
+    {
+     "pmid": "35727272",
+     "fits": "yes",
+     "reason": "RCTs of mineral supplements in healthy adults for CVD prevention; calcium falls under the minerals reviewed, though the abstract doesn't name it."
+    },
+    {
+     "pmid": "25491763",
+     "fits": "no",
+     "reason": "Narrative review that summarises earlier meta-analyses; it doesn't do its own pooling of randomised trials."
+    },
+    {
+     "pmid": "25042841",
+     "fits": "partly",
+     "reason": "Pooled RCTs of calcium with or without vitamin D against placebo or no treatment for coronary heart disease, but only in elderly women."
+    },
+    {
+     "pmid": "21409434",
+     "fits": "no",
+     "reason": "Narrative review that discusses an earlier meta-analysis; it doesn't do its own pooling of randomised trials."
+    },
+    {
+     "pmid": "20671013",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of calcium supplements in adults over 40, looking at heart attack and stroke."
+    },
+    {
+     "pmid": "20194238",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium, alone or with vitamin D, against placebo for cardiovascular events in adults."
+    },
+    {
+     "pmid": "21505219",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled trials of calcium with or without vitamin D for heart attack and stroke."
+    },
+    {
+     "pmid": "22651380",
+     "fits": "no",
+     "reason": "Looks at supplements given alongside cardiovascular drugs, not calcium compared with placebo for cardiovascular events."
+    },
+    {
+     "pmid": "24217421",
+     "fits": "yes",
+     "reason": "Reviewed trials of supplements, including calcium, for primary prevention of CVD in community-dwelling adults."
+    }
+   ]
+  },
+  "fractures": {
+   "question": {
+    "population": "Adults over 50, mostly women after menopause (not a group defined by one illness)",
+    "intervention": "Calcium supplements, alone or with vitamin D",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Fractures"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42161415",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium alone and calcium plus vitamin D vs placebo or no treatment for fractures in adults, a broader group that includes older people."
+    },
+    {
+     "pmid": "41063100",
+     "fits": "partly",
+     "reason": "Calcium plus vitamin D RCTs pooled for fractures, but only in postmenopausal women with osteoporosis, a group defined by one illness."
+    },
+    {
+     "pmid": "37602580",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium, vitamin D or both vs placebo or no treatment for fractures in adults over 60."
+    },
+    {
+     "pmid": "35842938",
+     "fits": "yes",
+     "reason": "Pools RCTs of daily vitamin D3 plus calcium for hip fracture prevention in adults over 65."
+    },
+    {
+     "pmid": "38494682",
+     "fits": "partly",
+     "reason": "Pools RCTs of calcium plus vitamin D vs control for fractures, but in older people with osteoporosis, including treatment."
+    },
+    {
+     "pmid": "37544189",
+     "fits": "partly",
+     "reason": "Postmenopausal women and fracture outcome match, but focus is mainly vitamin D and bone markers, and trials were not pooled."
+    },
+    {
+     "pmid": "26420387",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium supplements with or without vitamin D for fractures in people over 50."
+    },
+    {
+     "pmid": "29279934",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium, vitamin D or both vs placebo or no treatment for fractures in community-dwelling adults over 50."
+    },
+    {
+     "pmid": "31860103",
+     "fits": "yes",
+     "reason": "Includes a pooled analysis of RCTs of vitamin D plus calcium vs control for any and hip fracture."
+    },
+    {
+     "pmid": "31619412",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs of calcium, vitamin D or both vs placebo or no treatment for fractures in older adults."
+    },
+    {
+     "pmid": "29677308",
+     "fits": "yes",
+     "reason": "Reviews RCTs of calcium alone or with vitamin D vs placebo for fractures in community-dwelling adults 50 and older."
+    },
+    {
+     "pmid": "26510847",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium plus vitamin D for total and hip fractures in middle-aged to older adults."
+    },
+    {
+     "pmid": "18065599",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium supplements vs placebo for hip and nonvertebral fractures, mainly in postmenopausal women."
+    },
+    {
+     "pmid": "9286747",
+     "fits": "partly",
+     "reason": "Calcium supplements for fractures in postmenopausal women, but only observational data were pooled; the 4 RCTs were not."
+    },
+    {
+     "pmid": "15035690",
+     "fits": "no",
+     "reason": "Meta-analysis of observational studies of dietary calcium, not randomised trials of calcium supplements."
+    },
+    {
+     "pmid": "25551377",
+     "fits": "no",
+     "reason": "Methods study comparing overlapping meta-analyses of vitamin D, not a pooled analysis answering the question."
+    },
+    {
+     "pmid": "21060990",
+     "fits": "no",
+     "reason": "Meta-regression of whether bone density change predicts fracture reduction, not the effect of calcium vs placebo on fractures."
+    },
+    {
+     "pmid": "22184690",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D plus calcium for fractures in older adults, mostly postmenopausal women."
+    },
+    {
+     "pmid": "17720017",
+     "fits": "yes",
+     "reason": "Pools RCTs of calcium alone or with vitamin D for fractures in people aged 50 and older."
+    },
+    {
+     "pmid": "17264183",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D plus calcium vs placebo or no treatment for hip fracture in postmenopausal women and older men."
+    }
+   ]
+  },
+  "bone-density": {
+   "question": {
+    "population": "Adults over 50 (not a group defined by one illness)",
+    "intervention": "Calcium supplements or more calcium in the diet",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Bone mineral density"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41470812",
+     "fits": "no",
+     "reason": "Both arms got calcium/vitamin D; the review tests adding exercise, not calcium versus placebo."
+    },
+    {
+     "pmid": "41063100",
+     "fits": "partly",
+     "reason": "BMD outcome matches, but calcium is always given with vitamin D, and only to postmenopausal women who already have osteoporosis."
+    },
+    {
+     "pmid": "38472336",
+     "fits": "no",
+     "reason": "Compares herbal medicine plus supplements with supplements alone in osteoporosis patients, so it tests the herbs, not calcium."
+    },
+    {
+     "pmid": "34780069",
+     "fits": "partly",
+     "reason": "Calcium versus control on BMD, but the population is pregnant women, not adults over 50."
+    },
+    {
+     "pmid": "36705288",
+     "fits": "partly",
+     "reason": "Calcium versus placebo on BMD, but the population is premenopausal women aged roughly 18–42."
+    },
+    {
+     "pmid": "32401318",
+     "fits": "partly",
+     "reason": "Calcium versus placebo or no treatment on BMD, but the population is lactating women, not adults over 50."
+    },
+    {
+     "pmid": "35433788",
+     "fits": "no",
+     "reason": "Population is people on tenofovir drugs, calcium comes with vitamin D, and cohort studies are included."
+    },
+    {
+     "pmid": "31919756",
+     "fits": "no",
+     "reason": "Children and adolescents, and calcium is combined with a physical activity intervention."
+    },
+    {
+     "pmid": "34649591",
+     "fits": "partly",
+     "reason": "BMD outcome matches, but calcium is only given together with vitamin K and the age group is not specified."
+    },
+    {
+     "pmid": "26420598",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium from diet or supplements in people over 50, measuring BMD."
+    },
+    {
+     "pmid": "28337524",
+     "fits": "yes",
+     "reason": "Pooled trials of calcium versus placebo or no treatment in postmenopausal women aged 50–83, measuring spine BMD."
+    },
+    {
+     "pmid": "31638313",
+     "fits": "no",
+     "reason": "Tests probiotics, prebiotics or synbiotics, not calcium."
+    },
+    {
+     "pmid": "25675442",
+     "fits": "partly",
+     "reason": "Calcium with or without vitamin D versus control on BMD, but in healthy males of all ages rather than adults over 50."
+    },
+    {
+     "pmid": "14974070",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium versus placebo or usual diet in postmenopausal women, measuring BMD."
+    },
+    {
+     "pmid": "17636765",
+     "fits": "yes",
+     "reason": "Withdrawn version of the review above: same calcium-versus-placebo trials in postmenopausal women, measuring BMD."
+    },
+    {
+     "pmid": "16625624",
+     "fits": "partly",
+     "reason": "Calcium versus placebo on BMD, but the population is healthy children."
+    },
+    {
+     "pmid": "24119980",
+     "fits": "no",
+     "reason": "Tests vitamin D supplements without calcium."
+    },
+    {
+     "pmid": "14584022",
+     "fits": "yes",
+     "reason": "Pooled RCTs of calcium versus placebo or usual diet in postmenopausal women, measuring BMD."
+    },
+    {
+     "pmid": "21060990",
+     "fits": "no",
+     "reason": "Meta-regression asks whether BMD changes predict fracture risk, not whether calcium changes BMD."
+    },
+    {
+     "pmid": "16980314",
+     "fits": "partly",
+     "reason": "Calcium versus placebo on BMD, but the population is healthy children."
+    },
+    {
+     "pmid": "19407667",
+     "fits": "no",
+     "reason": "Compares ossein-hydroxyapatite with calcium carbonate, so the comparator is another active calcium product rather than placebo or no treatment."
+    },
+    {
+     "pmid": "17720017",
+     "fits": "yes",
+     "reason": "Pools randomised trials of calcium, with or without vitamin D, in adults aged 50 or older, with percentage change in bone mineral density as an outcome."
+    },
+    {
+     "pmid": "7472660",
+     "fits": "no",
+     "reason": "Covers adults aged 18 to 50, mostly in cross-sectional studies, so the population falls outside the over-50 group and few trials are included."
+    }
+   ]
+  }
+ }
+}
