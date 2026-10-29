@@ -4,6 +4,7 @@ import { api, type ServerStatus } from "./api";
 import { AppShell, PlainShell } from "./components/AppShell";
 import { Notice } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
+import { IntakePage } from "./pages/IntakePage";
 import { BloodDashboardPage } from "./pages/DashboardPage";
 import { BodyPage } from "./pages/BodyPage";
 import { DeviceImportPage } from "./pages/DeviceImportPage";
@@ -159,6 +160,8 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <PlanPage key={route.id} id={route.id} />;
     case "meals":
       return <MealsPage key={route.section ?? ""} section={route.section} />;
+    case "intake":
+      return <IntakePage key={route.date ?? ""} date={route.date} />;
     case "meal":
       return <MealPage key={route.id} id={route.id} />;
     case "example-meal":
