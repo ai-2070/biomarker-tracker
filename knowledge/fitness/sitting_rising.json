@@ -1,0 +1,145 @@
+{
+  "id": "sitting_rising",
+  "name": "Sitting-rising test",
+  "unit": "points",
+  "higherIsBetter": true,
+  "summary": "Sit down on the floor and stand up again using as little support as you can. It scores, from 0 to 10, the strength, flexibility, balance and coordination needed for an everyday movement.",
+  "howTo": [
+    "Use a flat, non-slippery floor with about 2 x 2 metres of clear space. Be barefoot.",
+    "Start standing. Without worrying about speed, sit down on the floor and then stand up again, using the least support you think you need.",
+    "Sitting down and standing up are scored separately, each out of 5 points. Total = 0 to 10.",
+    "Subtract 1 point each time you use a hand, a forearm, a knee, the side of a leg (the sides of the feet don't count), or a hand on a knee.",
+    "Subtract 0.5 points each time you partly lose your balance or the movement is unsteady.",
+    "You may try a few times after a demonstration or advice; keep the best sitting score and the best rising score.",
+    "A second person scoring from the side, or a video, makes the score more reliable than judging yourself."
+  ],
+  "safety": [
+    "Have someone nearby, and clear the area of furniture and sharp edges.",
+    "Don't do it if you can't safely get down to and up from the floor, have had a recent hip, knee or back operation or injury, or have been told you have a high risk of falling. Ask your doctor or physiotherapist first.",
+    "Stop if you feel pain, dizziness or chest pain.",
+    "If you have osteoporosis, joint replacements or a balance problem, check with your doctor before trying it without support."
+  ],
+  "norms": [
+    {
+      "label": "Brazil (Brito 2014, 51–80)",
+      "source": {
+        "pmid": "23242910",
+        "doi": "10.1177/2047487312471759",
+        "title": "Ability to sit and rise from the floor as a predictor of all-cause mortality",
+        "year": 2014,
+        "studyType": "observational",
+        "n": 2002
+      },
+      "verifiedFrom": "Abstract, Europe PMC record PMID 23242910 (read 2026-10-29).",
+      "population": "2002 adults aged 51–80 (68% men) tested at a clinic in Rio de Janeiro, Brazil; median follow-up 6.3 years, 159 deaths.",
+      "kind": "bands",
+      "labels": [
+        "0 to 3",
+        "3.5 to 5.5",
+        "6 to 7.5",
+        "8 to 10"
+      ],
+      "rows": [
+        {
+          "sex": "any",
+          "ageFrom": 51,
+          "ageTo": 80,
+          "bands": [
+            {
+              "label": "0 to 3",
+              "min": 0,
+              "max": 3
+            },
+            {
+              "label": "3.5 to 5.5",
+              "min": 3.5,
+              "max": 5.5
+            },
+            {
+              "label": "6 to 7.5",
+              "min": 6,
+              "max": 7.5
+            },
+            {
+              "label": "8 to 10",
+              "min": 8,
+              "max": 10
+            }
+          ]
+        }
+      ],
+      "note": "The study's four score groups, not age norms. Compared with 8 to 10, death rates were higher in the lower groups: hazard ratios 1.84 (6 to 7.5), 3.44 (3.5 to 5.5) and 5.44 (0 to 3), adjusted for age, sex and BMI. Each extra point went with 21% better survival. Age- and sex-specific scores exist (Araújo 2020) but were only available as an image, so they are not used."
+    }
+  ],
+  "cutoffs": [],
+  "evidence": [
+    {
+      "claim": "Among adults aged 51-80 tested at a clinic in Brazil, those with lower sitting-rising scores were more likely to die over about 6 years. Each extra point was linked to about 21% better survival.",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational (retrospective cohort): shows a link, not that improving the score lengthens life.",
+        "One clinic's patients (68% men), not a random sample of the population.",
+        "Adjusted only for age, sex and body mass index; other health problems could explain part of the link.",
+        "159 deaths; the lowest-score group (0-3) had about 5 times the risk of the highest (8-10) (HR 5.44, 95% CI 3.1-9.5)."
+      ],
+      "studies": [
+        {
+          "pmid": "23242910",
+          "doi": "10.1177/2047487312471759",
+          "title": "Ability to sit and rise from the floor as a predictor of all-cause mortality",
+          "year": 2014,
+          "studyType": "observational",
+          "n": 2002
+        }
+      ]
+    },
+    {
+      "claim": "In a larger group from the same research team (4282 adults aged 46-75, followed for a median of 12 years), people with the lowest scores (0-4) had about 4 times the risk of a natural death and 6 times the risk of a heart or blood vessel death compared with people who scored 10.",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational cohort; a link, not cause and effect.",
+        "Same research group and study design as the 2014 study (participants probably overlap), so not an independent confirmation.",
+        "68% men; clinic patients rather than a population sample.",
+        "Adjusted for age, sex, BMI and clinical variables; the interval for heart and blood vessel deaths is very wide (HR 6.05, 95% CI 2.29-20.94)."
+      ],
+      "studies": [
+        {
+          "pmid": "40569873",
+          "doi": "10.1093/eurjpc/zwaf325",
+          "title": "Sitting-rising test scores predict natural and cardiovascular causes of deaths in middle-aged and older men and women",
+          "year": 2026,
+          "studyType": "observational",
+          "n": 4282
+        }
+      ]
+    },
+    {
+      "claim": "In US adults (Project Baseline Health Study), lower sitting-rising scores went together with being female, less education, fatty liver disease and high blood pressure, among other factors; people 65 and over averaged 5.4 points against 7.7 for younger adults.",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Cross-sectional: measured at one time, so it can't show what comes first.",
+        "Exploratory statistical screening of many variables; the authors say the findings need validating.",
+        "Funded by a company (Verily Life Sciences)."
+      ],
+      "studies": [
+        {
+          "pmid": "39081837",
+          "doi": "10.3389/fspor.2024.1393332",
+          "title": "Factors associated with lower quarter performance-based balance and strength tests: a cross-sectional analysis from the project baseline health study",
+          "year": 2024,
+          "studyType": "observational",
+          "n": 2502
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "It mixes several abilities (strength, flexibility, balance, body size) into one number, so it can't tell you which one is limiting.",
+    "Scoring is a judgement (what counts as unsteady); self-scoring is less reliable than a trained tester.",
+    "Practice improves the score; a higher score after practice does not necessarily mean better health.",
+    "The mortality studies come from one clinic in Brazil and one research group; they show a link, not that training the movement makes people live longer.",
+    "The age and sex reference values in this file were read from a secondary image, not from the original paper.",
+    "Pain, joint replacements or injuries can lower the score for reasons unrelated to general fitness.",
+    "A low score is not a diagnosis."
+  ]
+}

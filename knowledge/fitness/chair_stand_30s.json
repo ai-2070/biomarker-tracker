@@ -1,0 +1,331 @@
+{
+  "id": "chair_stand_30s",
+  "name": "30-second chair stand",
+  "unit": "reps",
+  "higherIsBetter": true,
+  "summary": "How many times you can stand up fully from a chair and sit back down in 30 seconds, without using your arms. It reflects leg strength and endurance. More is better.",
+  "howTo": [
+    "Use a firm chair without arms, seat about 43 cm high (the height used in the Polish norms; the Colombian study used 43–46 cm), with its back against a wall. Write down the height and use the same chair next time.",
+    "Sit in the middle of the seat, feet flat on the floor about shoulder-width apart, arms crossed over your chest.",
+    "On 'Go', stand up fully (hips and knees straight), then sit all the way down. Repeat as many times as you can in 30 seconds. Arms stay crossed.",
+    "Count each full stand. If you are more than halfway up when the 30 seconds end, count it as one (the Senior Fitness Test convention, as described by Lein 2022).",
+    "Do it once, or once after a short practice; write down which, and do it the same way next time."
+  ],
+  "safety": [
+    "Do it with someone nearby, the chair against a wall, and nothing around you to trip over.",
+    "Skip it, or ask a physiotherapist first, if you have recently had hip or knee surgery, sharp joint pain, dizziness on standing, or have been told to avoid exertion.",
+    "Stop at once if you feel dizzy, short of breath, chest pain or joint pain.",
+    "Wear flat, non-slip shoes or go barefoot on a non-slip floor."
+  ],
+  "norms": [
+    {
+      "label": "Poland (60+)",
+      "source": {
+        "pmid": "33023485",
+        "doi": "10.1186/s12877-020-01787-2",
+        "title": "Functional fitness normative values for elderly polish population",
+        "year": 2020,
+        "studyType": "observational",
+        "n": 5367
+      },
+      "verifiedFrom": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7539522/fullTextXML (Tables 6 and 7; means in Table 1)",
+      "population": "5,367 adults aged 60–93 (4,164 women, 1,203 men) living independently in six regions of Poland; recruited through senior centres, public institutions and media adverts (volunteers, although the authors call the sample representative). Ethics approval 2015.",
+      "kind": "percentiles",
+      "rows": [
+        {
+          "sex": "f",
+          "ageFrom": 60,
+          "ageTo": 64,
+          "p10": 10,
+          "p25": 13,
+          "p50": 15,
+          "p75": 18,
+          "p90": 21,
+          "n": 1165
+        },
+        {
+          "sex": "f",
+          "ageFrom": 65,
+          "ageTo": 69,
+          "p10": 10,
+          "p25": 12,
+          "p50": 15,
+          "p75": 18,
+          "p90": 20,
+          "n": 1189
+        },
+        {
+          "sex": "f",
+          "ageFrom": 70,
+          "ageTo": 74,
+          "p10": 10,
+          "p25": 12,
+          "p50": 14,
+          "p75": 17,
+          "p90": 20,
+          "n": 746
+        },
+        {
+          "sex": "f",
+          "ageFrom": 75,
+          "ageTo": 79,
+          "p10": 9,
+          "p25": 11,
+          "p50": 13,
+          "p75": 16,
+          "p90": 19,
+          "n": 488
+        },
+        {
+          "sex": "f",
+          "ageFrom": 80,
+          "ageTo": 84,
+          "p10": 8,
+          "p25": 11,
+          "p50": 13,
+          "p75": 15,
+          "p90": 17,
+          "n": 379
+        },
+        {
+          "sex": "f",
+          "ageFrom": 85,
+          "p10": 7,
+          "p25": 10,
+          "p50": 12,
+          "p75": 14,
+          "p90": 16,
+          "n": 127
+        },
+        {
+          "sex": "m",
+          "ageFrom": 60,
+          "ageTo": 64,
+          "p10": 10,
+          "p25": 13,
+          "p50": 16,
+          "p75": 19,
+          "p90": 23,
+          "n": 291
+        },
+        {
+          "sex": "m",
+          "ageFrom": 65,
+          "ageTo": 69,
+          "p10": 10,
+          "p25": 13,
+          "p50": 16,
+          "p75": 19,
+          "p90": 23,
+          "n": 320
+        },
+        {
+          "sex": "m",
+          "ageFrom": 70,
+          "ageTo": 74,
+          "p10": 10,
+          "p25": 12,
+          "p50": 15,
+          "p75": 19,
+          "p90": 23,
+          "n": 260
+        },
+        {
+          "sex": "m",
+          "ageFrom": 75,
+          "ageTo": 79,
+          "p10": 10,
+          "p25": 12,
+          "p50": 14,
+          "p75": 17,
+          "p90": 22,
+          "n": 176
+        },
+        {
+          "sex": "m",
+          "ageFrom": 80,
+          "ageTo": 84,
+          "p10": 9,
+          "p25": 11,
+          "p50": 13,
+          "p75": 16,
+          "p90": 20,
+          "n": 82
+        },
+        {
+          "sex": "m",
+          "ageFrom": 85,
+          "p10": 7,
+          "p25": 9.5,
+          "p50": 11,
+          "p75": 13,
+          "p90": 18,
+          "n": 36
+        }
+      ],
+      "note": "Oldest participant 93. Mean ± SD per band are also in Table 1 (e.g. women 60–64: 15.7 ± 4.3; men 60–64: 16.1 ± 5.4). Men are under-represented (22%), and the men's 85+ band has only 36 people."
+    },
+    {
+      "label": "Colombia (18–80)",
+      "source": {
+        "pmid": "42183074",
+        "doi": "10.25100/cm.v56i4.6874",
+        "title": "Reference values for sit-to-stand tests in Colombian adults: a multicenter cross-sectional study",
+        "year": 2025,
+        "studyType": "observational",
+        "n": 393
+      },
+      "verifiedFrom": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13193711/fullTextXML (Table 2, '30 sec' rows)",
+      "population": "393 self-reported healthy adults 18–80 (208 women, 185 men) recruited through social media, e-mail and word of mouth in four Colombian cities, 2023–2024; BMI over 35 excluded; some had controlled hypertension or diabetes.",
+      "kind": "percentiles",
+      "rows": [
+        {
+          "sex": "f",
+          "ageFrom": 18,
+          "ageTo": 29,
+          "p25": 17,
+          "p50": 20,
+          "p75": 23,
+          "n": 57
+        },
+        {
+          "sex": "f",
+          "ageFrom": 30,
+          "ageTo": 39,
+          "p25": 14,
+          "p50": 19,
+          "p75": 22,
+          "n": 29
+        },
+        {
+          "sex": "f",
+          "ageFrom": 40,
+          "ageTo": 49,
+          "p25": 13,
+          "p50": 17,
+          "p75": 22,
+          "n": 37
+        },
+        {
+          "sex": "f",
+          "ageFrom": 50,
+          "ageTo": 59,
+          "p25": 12,
+          "p50": 14,
+          "p75": 19,
+          "n": 27
+        },
+        {
+          "sex": "f",
+          "ageFrom": 60,
+          "ageTo": 69,
+          "p25": 12,
+          "p50": 13,
+          "p75": 16,
+          "n": 31
+        },
+        {
+          "sex": "f",
+          "ageFrom": 70,
+          "ageTo": 80,
+          "p25": 9,
+          "p50": 11,
+          "p75": 13,
+          "n": 27
+        },
+        {
+          "sex": "m",
+          "ageFrom": 18,
+          "ageTo": 29,
+          "p25": 17,
+          "p50": 23,
+          "p75": 26,
+          "n": 52
+        },
+        {
+          "sex": "m",
+          "ageFrom": 30,
+          "ageTo": 39,
+          "p25": 15,
+          "p50": 20,
+          "p75": 25,
+          "n": 31
+        },
+        {
+          "sex": "m",
+          "ageFrom": 40,
+          "ageTo": 49,
+          "p25": 16,
+          "p50": 20,
+          "p75": 24,
+          "n": 25
+        },
+        {
+          "sex": "m",
+          "ageFrom": 50,
+          "ageTo": 59,
+          "p25": 13,
+          "p50": 18,
+          "p75": 24,
+          "n": 24
+        },
+        {
+          "sex": "m",
+          "ageFrom": 60,
+          "ageTo": 69,
+          "p25": 14,
+          "p50": 15,
+          "p75": 18,
+          "n": 28
+        },
+        {
+          "sex": "m",
+          "ageFrom": 70,
+          "ageTo": 80,
+          "p25": 10,
+          "p50": 11,
+          "p75": 12,
+          "n": 25
+        }
+      ],
+      "note": "The only open-access source found with 30-s norms by sex across 18–80. Groups are small (24–57), so the 2.5th and 97.5th percentiles rest on one or two people. Colombian 60–69 medians (13 women, 15 men) are a little below the Polish 60–64/65–69 medians (15, 16). Keys p2_5 / p97_5 = 2.5th / 97.5th percentile. Small groups (about 25 to 60 people each), so only the middle percentiles are shown; the paper's group counts don't add up to its totals."
+    }
+  ],
+  "cutoffs": [],
+  "evidence": [
+    {
+      "claim": "Slower chair rising is linked to higher death rates in older adults, but the studies timed five rises; for the 30-second count the link is only indirect.",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The pooled evidence (5 cohorts, 28,036 people, hazard ratio 1.96 slowest vs fastest quarter) used a timed five-rise test, not a 30-second count",
+        "The two tests are closely related (r = −0.79 between them in young adults, Lein 2022) but not interchangeable",
+        "Observational, high heterogeneity (I² 81.9%), mostly people over 70",
+        "No study linking the 30-second count itself to mortality was verified for this file"
+      ],
+      "studies": [
+        {
+          "pmid": "20829298",
+          "doi": "10.1136/bmj.c4467",
+          "title": "Objectively measured physical capability levels and mortality: systematic review and meta-analysis",
+          "year": 2010,
+          "studyType": "meta-analysis",
+          "n": 28036
+        },
+        {
+          "pmid": "35949374",
+          "doi": "10.26603/001c.36432",
+          "title": "Normative Reference Values and Validity for the 30-Second Chair-Stand Test in Healthy Young Adults",
+          "year": 2022,
+          "studyType": "observational",
+          "n": 81
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "The count depends on chair height, whether you practised, how many tries you had, whether half-stands count, and tiredness from earlier tests. Young-adult results ranged from a median of about 20 (Colombia, single trial) to a mean of 33 (US students, best of two after practice).",
+    "Open norms for ages 20–59 come from one small study (393 people in Colombia). Treat percentiles under 60 as rough.",
+    "It mixes leg strength, endurance, balance, joint pain and effort. It can't tell you which one limits you.",
+    "A low count doesn't diagnose anything, and no study found here shows that raising your count changes your health risk."
+  ]
+}

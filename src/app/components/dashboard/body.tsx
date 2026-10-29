@@ -90,7 +90,7 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
         className={cx(
           cardStyles,
           className,
-          "group flex min-h-40 cursor-pointer flex-col gap-2 text-left text-ink transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+          "group flex min-h-40 cursor-pointer flex-col justify-center gap-2 text-left text-ink transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         )}
       >
         <span className={figureLabel}>Resting metabolic rate</span>
@@ -109,7 +109,7 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
               : "For adults only."
             : "Energy your body uses at rest, estimated from weight, height, age and sex. Not a target."}
         </span>
-        {terms !== undefined && <span className="mt-auto text-sm font-medium text-accent">How it's worked out</span>}
+        {terms !== undefined && <span className="text-sm font-medium text-accent">How it's worked out</span>}
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
@@ -355,7 +355,7 @@ const SUMMARY_LABEL: Record<string, string> = {
   weight: "Weight",
   waist: "Waist",
   bp_systolic: "Blood pressure",
-  resting_hr: "Resting heart rate",
+  resting_hr: "Resting pulse",
   hrv_resting: "Resting HRV",
   spo2: "Blood oxygen",
   sleep_duration: "Sleep",
@@ -363,6 +363,27 @@ const SUMMARY_LABEL: Record<string, string> = {
 };
 
 /** One line per key body measurement with a small trend line: for the main dashboard. Blood pressure is one row. */
+/** One row of a dashboard summary list: name (and flag) | chart | value | unit, the same columns in every row. */
+export const summaryRow =
+  "grid min-h-12 grid-cols-[minmax(0,1fr)_4rem_4rem_3.25rem] items-center gap-2 py-1.5 text-ink no-underline hover:bg-sunken";
+
+/** The latest value for a summary row, with an arrow when it's out of range (the name keeps its room). */
+export function SummaryValue({ text, flag }: { text: string; flag: string }) {
+  const out = flag !== "normal" && flag !== "unknown";
+  const low = flag.endsWith("low");
+  return (
+    <span className={cx("text-right text-sm whitespace-nowrap tabular-nums", out && (flag.startsWith("critical") ? "font-medium text-danger" : "font-medium text-warn"))}>
+      {out && (
+        <span aria-hidden="true" className="mr-0.5">
+          {low ? "↓" : "↑"}
+        </span>
+      )}
+      {text}
+      {out && <span className="sr-only"> ({low ? "low" : "high"})</span>}
+    </span>
+  );
+}
+
 export function BodySummaryList({ markers }: { markers: DashboardMarker[] }) {
   const units = useDisplayUnits();
   const dia = markers.find((m) => m.def.id === "bp_diastolic");
@@ -375,13 +396,11 @@ export function BodySummaryList({ markers }: { markers: DashboardMarker[] }) {
         const tone = flag.startsWith("critical") ? "danger" : flag === "normal" || flag === "unknown" ? "ok" : "warn";
         return (
           <li key={m.def.id}>
-            <a href={href({ name: "marker", id: m.def.id })} className="grid min-h-12 grid-cols-[minmax(0,1fr)_5rem_auto] items-center gap-3 py-1.5 text-ink no-underline hover:bg-sunken">
+            <a href={href({ name: "marker", id: m.def.id })} className={summaryRow}>
               <span className="truncate text-sm font-medium">{SUMMARY_LABEL[m.def.id] ?? shortName(m.def)}</span>
               <Sparkline series={m.series.slice(-12)} {...(m.range ? { range: m.range } : {})} tone={tone} />
-              <span className="flex items-center justify-end gap-2 text-sm whitespace-nowrap tabular-nums">
-                {bp && dia ? `${Math.round(m.latest.value)}/${Math.round(dia.latest.value)}` : showMeasurement(m.def, m.latest, unit)} <span className="text-ink-2">{unit}</span>
-                {flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}
-              </span>
+              <SummaryValue text={bp && dia ? `${Math.round(m.latest.value)}/${Math.round(dia.latest.value)}` : showMeasurement(m.def, m.latest, unit)} flag={flag} />
+              <span className="truncate text-sm text-ink-2">{unit}</span>
             </a>
           </li>
         );
@@ -396,7 +415,7 @@ const FIELD_LABEL: Record<BodyField, string> = {
   body_fat: "Body fat",
   bp_systolic: "Top number (systolic)",
   bp_diastolic: "Bottom number (diastolic)",
-  resting_hr: "Resting heart rate",
+  resting_hr: "Resting pulse",
   heart_rate: "Heart rate, day average",
   exercise_hr: "Heart rate during exercise",
   hrv: "HRV",

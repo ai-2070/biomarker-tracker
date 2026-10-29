@@ -1,0 +1,69 @@
+{
+  "id": "chair_stand_30s",
+  "name": "30-second chair stand",
+  "category": "Body",
+  "aliases": [
+    "30-second chair stand",
+    "30 second chair stand",
+    "30s chair stand",
+    "30-s chair stand test"
+  ],
+  "canonicalUnit": "reps",
+  "conversions": {
+    "reps": 1
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "How many times you can stand up fully from a chair and sit back down in 30 seconds, without using your arms. It reflects leg strength and endurance. More is better.",
+  "high": {
+    "meaning": "More stands in 30 seconds for your age means stronger legs.",
+    "commonCauses": [
+      "Regular exercise",
+      "Strength training",
+      "Practice with the test"
+    ]
+  },
+  "low": {
+    "meaning": "Fewer stands in 30 seconds for your age means weaker legs, which matters for getting up, climbing stairs and avoiding falls.",
+    "commonCauses": [
+      "Little exercise",
+      "Joint pain",
+      "Poor balance",
+      "A lower chair"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "33023485",
+      "doi": "10.1186/s12877-020-01787-2",
+      "title": "Functional fitness normative values for elderly polish population",
+      "year": 2020,
+      "studyType": "observational",
+      "n": 5367
+    },
+    {
+      "pmid": "42183074",
+      "doi": "10.25100/cm.v56i4.6874",
+      "title": "Reference values for sit-to-stand tests in Colombian adults: a multicenter cross-sectional study",
+      "year": 2025,
+      "studyType": "observational",
+      "n": 393
+    },
+    {
+      "pmid": "20829298",
+      "doi": "10.1136/bmj.c4467",
+      "title": "Objectively measured physical capability levels and mortality: systematic review and meta-analysis",
+      "year": 2010,
+      "studyType": "meta-analysis",
+      "n": 28036
+    },
+    {
+      "pmid": "35949374",
+      "doi": "10.26603/001c.36432",
+      "title": "Normative Reference Values and Validity for the 30-Second Chair-Stand Test in Healthy Young Adults",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 81
+    }
+  ]
+}

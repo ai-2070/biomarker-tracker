@@ -5,15 +5,16 @@ import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { isCritical } from "../../core/trends";
 import type { Profile } from "../../core/types";
 import { CriticalBanner } from "../components/CriticalBanner";
-import { BloodPressureFigure, BodySummaryList, WeightFigure } from "../components/dashboard/body";
+import { BloodPressureFigure, BodySummaryList, SummaryValue, WeightFigure, summaryRow } from "../components/dashboard/body";
+import { Sparkline } from "../components/dashboard/Sparkline";
 import { Timeline } from "../components/dashboard/Timeline";
 import { AskPanel, BioAgeFigure, HabitsPanel, ToWatchFigure, cardStyles, labelStyles } from "../components/dashboard/widgets";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { ArrowRightIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { cx, FlagBadge } from "../components/ui";
-import { formatDate } from "../format";
-import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
+import { cx } from "../components/ui";
+import { displayUnitFor, formatDate, showMeasurement } from "../format";
+import { useAllMeasurements, useDisplayUnits, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bloodOnly, bodyOnly, shortName } from "../knowledge";
 import { useProfiles } from "../profiles";
 import { href } from "../router";
@@ -138,20 +139,8 @@ function BloodSummary({ d }: { d: Dashboard }) {
           ))}
         </div>
       </div>
-      {d.toWatch.length > 0 ? (
-        <ul className="flex flex-col divide-y divide-line border-t border-line">
-          {d.toWatch.slice(0, 4).map((m) => (
-            <li key={m.def.id}>
-              <a href={href({ name: "marker", id: m.def.id })} className="flex min-h-11 items-center justify-between gap-3 text-sm text-ink no-underline hover:bg-sunken">
-                <span className="truncate font-medium">{shortName(m.def)}</span>
-                <FlagBadge flag={m.flag} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="border-t border-line pt-3 text-sm text-ink-2">Every marker's latest result is in range.</p>
-      )}
+      {d.toWatch.length === 0 && <p className="text-sm text-ink-2">Every marker's latest result is in range.</p>}
+      <BloodSummaryList d={d} />
       <p className="mt-auto text-sm text-ink-2">
         Latest test {formatDate(d.lastTest!)} ·{" "}
         <a href={href({ name: "overview" })} className="text-accent">
@@ -159,6 +148,34 @@ function BloodSummary({ d }: { d: Dashboard }) {
         </a>
       </p>
     </SummaryCard>
+  );
+}
+
+/** Markers to watch first, then the most recently tested ones, as many rows as the Body card. */
+function BloodSummaryList({ d }: { d: Dashboard }) {
+  const units = useDisplayUnits();
+  const watch = new Set(d.toWatch.map((m) => m.def.id));
+  const rows = [
+    ...d.toWatch,
+    ...d.markers.filter((m) => !watch.has(m.def.id)).sort((a, b) => b.latest.date.localeCompare(a.latest.date) || a.def.name.localeCompare(b.def.name)),
+  ].slice(0, 7);
+  return (
+    <ul className="flex flex-col divide-y divide-line border-t border-line">
+      {rows.map((m) => {
+        const unit = displayUnitFor(m.def, units[m.def.id]);
+        const tone = isCritical(m.flag) ? "danger" : m.flag === "normal" || m.flag === "unknown" ? "ok" : "warn";
+        return (
+          <li key={m.def.id}>
+            <a href={href({ name: "marker", id: m.def.id })} className={summaryRow}>
+              <span className="truncate text-sm font-medium">{shortName(m.def)}</span>
+              <Sparkline series={m.series.slice(-12)} {...(m.range ? { range: m.range } : {})} tone={tone} />
+              <SummaryValue text={showMeasurement(m.def, m.latest, unit)} flag={m.flag} />
+              <span className="truncate text-sm text-ink-2">{unit}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

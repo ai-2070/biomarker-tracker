@@ -1,0 +1,72 @@
+{
+  "id": "grip_strength",
+  "name": "Grip strength",
+  "category": "Body",
+  "aliases": [
+    "Grip strength",
+    "Handgrip strength",
+    "Hand grip strength",
+    "Griffkraft",
+    "Szorítóerő"
+  ],
+  "canonicalUnit": "kg",
+  "conversions": {
+    "kg": 1,
+    "lb": 0.45359237
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "How hard you can squeeze a hand dynamometer, in kilograms. It is a quick measure of muscle strength that tracks strength in other parts of the body moderately well.",
+  "high": {
+    "meaning": "A stronger grip for your age and sex means more muscle strength, which goes with better health on average.",
+    "commonCauses": [
+      "Regular strength training",
+      "Larger body size",
+      "Manual work"
+    ]
+  },
+  "low": {
+    "meaning": "A weaker grip for your age and sex is linked, on average, with higher risk of disability and death in population studies. In older people it can be a first sign of muscle loss (sarcopenia), which a doctor can check.",
+    "commonCauses": [
+      "Little strength training",
+      "Ageing",
+      "Hand pain or arthritis",
+      "Recent illness",
+      "A different device or way of measuring"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "25474696",
+      "doi": "10.1371/journal.pone.0113637",
+      "title": "Grip strength across the life course: normative data from twelve British studies",
+      "year": 2014,
+      "studyType": "observational",
+      "n": 49964
+    },
+    {
+      "pmid": "25982160",
+      "doi": "10.1016/s0140-6736(14)62000-6",
+      "title": "Prognostic value of grip strength: findings from the Prospective Urban Rural Epidemiology (PURE) study",
+      "year": 2015,
+      "studyType": "observational",
+      "n": 139691
+    },
+    {
+      "pmid": "28549705",
+      "doi": "10.1016/j.jamda.2017.03.011",
+      "title": "Association of Grip Strength With Risk of All-Cause Mortality, Cardiovascular Diseases, and Cancer in Community-Dwelling Populations: A Meta-analysis of Prospective Cohort Studies",
+      "year": 2017,
+      "studyType": "meta-analysis",
+      "n": 3002203
+    },
+    {
+      "pmid": "29739772",
+      "doi": "10.1136/bmj.k1651",
+      "title": "Associations of grip strength with cardiovascular, respiratory, and cancer outcomes and all cause mortality: prospective cohort study of half a million UK Biobank participants",
+      "year": 2018,
+      "studyType": "observational",
+      "n": 502293
+    }
+  ]
+}

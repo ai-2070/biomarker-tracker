@@ -1,0 +1,54 @@
+{
+  "id": "pushups",
+  "name": "Push-ups",
+  "category": "Body",
+  "aliases": [
+    "Push-ups",
+    "Push ups",
+    "Pushups",
+    "Liegestütze",
+    "Fekvőtámasz"
+  ],
+  "canonicalUnit": "reps",
+  "conversions": {
+    "reps": 1
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "How many push-ups you can do in a row without resting, with good form. It measures the endurance of the chest, shoulder and upper-arm muscles, and depends on body weight, technique and motivation.",
+  "high": {
+    "meaning": "More push-ups for your age and sex means more upper-body muscular endurance.",
+    "commonCauses": [
+      "Regular strength training",
+      "Practice with the test",
+      "Lower body weight"
+    ]
+  },
+  "low": {
+    "meaning": "Fewer push-ups for your age and sex means less upper-body muscular endurance. It says nothing on its own about heart health.",
+    "commonCauses": [
+      "Little strength training",
+      "Shoulder, elbow or wrist problems",
+      "Higher body weight",
+      "Stopping early (motivation, unfamiliar test)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "30768197",
+      "doi": "10.1001/jamanetworkopen.2018.8341",
+      "title": "Association Between Push-up Exercise Capacity and Future Cardiovascular Events Among Active Adult Men",
+      "year": 2019,
+      "studyType": "observational",
+      "n": 1104
+    },
+    {
+      "pmid": "11984288",
+      "doi": "10.1097/00005768-200205000-00002",
+      "title": "Musculoskeletal fitness and risk of mortality",
+      "year": 2002,
+      "studyType": "observational",
+      "n": 8116
+    }
+  ]
+}
