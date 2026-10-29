@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { dayNumber } from "../../src/core/dates";
-import { MIN_SPAN_DAYS, clampWindow, panWindow, presetWindow, timeTicks, zoomWindow } from "../../src/core/timeWindow";
+import { MIN_SPAN_DAYS, centerWindow, clampWindow, panWindow, presetWindow, timeTicks, zoomWindow } from "../../src/core/timeWindow";
 
 const full = { from: dayNumber("2022-01-01"), to: dayNumber("2026-10-28") };
 
@@ -31,6 +31,12 @@ describe("time window", () => {
   it("marks Mondays when the window is under 7 weeks", () => {
     const weeks = timeTicks({ from: dayNumber("2026-10-01"), to: dayNumber("2026-10-31") });
     expect(weeks.map((t) => [t.date, t.kind])).toEqual([["2026-10-05", "day"], ["2026-10-12", "day"], ["2026-10-19", "day"], ["2026-10-26", "day"]]);
+  });
+
+  it("centres the window on a day, inside the full range", () => {
+    const w = { from: full.from + 100, to: full.from + 300 };
+    expect(centerWindow(w, full.from + 1000, full)).toEqual({ from: full.from + 900, to: full.from + 1100 });
+    expect(centerWindow(w, full.to, full)).toEqual({ from: full.to - 200, to: full.to });
   });
 
   it("moves and stops at the ends", () => {

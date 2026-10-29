@@ -70,9 +70,20 @@ export function groupingsFor(readings: readonly Reading[]): Grouping[] {
   return out;
 }
 
-/** Count, average, lowest and highest of the readings between two dates (inclusive). */
-export function statsBetween(readings: readonly Reading[], from: string, to: string): { count: number; average: number; low: Reading; high: Reading } | undefined {
-  const inside = readings.filter((r) => r.date >= from && r.date <= to);
+export interface PeriodStats {
+  count: number;
+  average: number;
+  low: Reading;
+  high: Reading;
+  /** The first and last reading in the period, and the change between them (last − first). */
+  first: Reading;
+  last: Reading;
+  change: number;
+}
+
+/** Count, average, lowest, highest, first and last of the readings between two dates (inclusive). */
+export function statsBetween(readings: readonly Reading[], from: string, to: string): PeriodStats | undefined {
+  const inside = readings.filter((r) => r.date >= from && r.date <= to).sort((a, b) => a.date.localeCompare(b.date));
   if (inside.length === 0) return undefined;
   let low = inside[0]!;
   let high = inside[0]!;
@@ -80,7 +91,9 @@ export function statsBetween(readings: readonly Reading[], from: string, to: str
     if (r.value < low.value) low = r;
     if (r.value > high.value) high = r;
   }
-  return { count: inside.length, average: inside.reduce((s, r) => s + r.value, 0) / inside.length, low, high };
+  const first = inside[0]!;
+  const last = inside.at(-1)!;
+  return { count: inside.length, average: inside.reduce((s, r) => s + r.value, 0) / inside.length, low, high, first, last, change: last.value - first.value };
 }
 
 /**

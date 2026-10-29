@@ -24,8 +24,16 @@ describe("chart series", () => {
     expect(groupingsFor([r("2024-01-10", 1), r("2024-03-10", 2)])).toEqual(["each"]);
     expect(groupingsFor([r("2024-01-10", 1), r("2024-01-25", 2)])).toEqual(["each", "month"]);
   });
-  it("gives count, average, lowest and highest in a period", () => {
-    expect(statsBetween(nights, "2026-10-20", "2026-10-31")).toEqual({ count: 3, average: 20 / 3, low: r("2026-10-26", 5), high: r("2026-10-21", 8) });
+  it("gives count, average, lowest, highest, first, last and the change in a period", () => {
+    expect(statsBetween(nights, "2026-10-20", "2026-10-31")).toEqual({
+      count: 3,
+      average: 20 / 3,
+      low: r("2026-10-26", 5),
+      high: r("2026-10-21", 8),
+      first: r("2026-10-21", 8),
+      last: r("2026-10-26", 5),
+      change: -3,
+    });
     expect(statsBetween(nights, "2027-01-01", "2027-02-01")).toBeUndefined();
   });
   it("draws the points in a window and one on each side", () => {

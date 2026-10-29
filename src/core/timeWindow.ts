@@ -35,6 +35,12 @@ export function panWindow(w: TimeWindow, days: number, full: TimeWindow, minSpan
   return clampWindow({ from: w.from + days, to: w.to + days }, full, minSpan);
 }
 
+/** The same-sized window centred on a day (the overview strip under a chart: tap to jump). */
+export function centerWindow(w: TimeWindow, day: number, full: TimeWindow, minSpan = MIN_SPAN_DAYS): TimeWindow {
+  const half = (w.to - w.from) / 2;
+  return clampWindow({ from: day - half, to: day + half }, full, minSpan);
+}
+
 /** The last `days` days of the full range, or the whole range. */
 export function presetWindow(days: number | "all", full: TimeWindow, minSpan = MIN_SPAN_DAYS): TimeWindow {
   return days === "all" ? full : clampWindow({ from: full.to - days, to: full.to }, full, minSpan);
