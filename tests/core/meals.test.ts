@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { SAFETY_LIMITS } from "../../src/core/foods";
-import { FOOD_NAMES, adultReference, closestFoods, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
+import { FOOD_NAMES, FOOD_NAME_NOTES, adultReference, foodNameNote, closestFoods, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
 import type { NutrientDef } from "../../src/core/nutrients";
 import type { FoodTable } from "../../src/core/types";
 
@@ -131,6 +131,18 @@ describe("finding foods by other names", () => {
     expect(searchFoods(db, "zucchini")[0]!.name).toMatch(/^Courgette/);
     expect(searchFoods(db, "chickpeas")[0]!.name).toMatch(/chick peas/);
     expect(searchFoods(db, "oatmeal").some((f) => /^Porridge/.test(f.name))).toBe(true);
+  });
+
+  it("warns when another name leads to a food that isn't quite the same", () => {
+    expect(foodNameNote("Dark chocolate", "Chocolate, plain")).toMatch(/sweet kind/);
+    expect(foodNameNote("plain chocolate", "Chocolate, plain")).toBeUndefined();
+    // The note quotes the table's own sugar value, so it must match the table.
+    for (const x of FOOD_NAME_NOTES) {
+      const f = foodById(db, searchFoods(db, x.food)[0]!.id)!;
+      expect(f.name).toBe(x.food);
+      const sugar = /([\d.]+) g sugar/.exec(x.note);
+      if (sugar) expect(f.per100g.sugars).toBe(Number(sugar[1]));
+    }
   });
 
   it("every other name leads somewhere in the table", () => {

@@ -19,7 +19,7 @@ import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
 import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "../src/core/plans";
-import { closestFoods, dailyReference, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
+import { closestFoods, dailyReference, foodNameNote, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
 import { findLifestyle, findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 import { phenoAgePace } from "../src/core/agePace";
@@ -382,7 +382,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         const withValues = (list: { id: string; name: string }[]) =>
           list.map((f) => {
             const row = db.foods.find((x) => x[0] === f.id)!;
-            return { id: f.id, name: f.name, per100g: { kcal: row[2][e], proteinG: row[2][p] } };
+            const note = foodNameNote(query, f.name);
+            return { id: f.id, name: f.name, per100g: { kcal: row[2][e], proteinG: row[2][p] }, ...(note ? { note } : {}) };
           });
         const found = searchFoods(db, query, 10);
         if (found.length) return { foods: withValues(found) };
