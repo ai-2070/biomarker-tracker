@@ -1,0 +1,377 @@
+{
+  "id": "vitamin_e",
+  "name": "Vitamin E",
+  "kind": "vitamin",
+  "otherNames": [
+    "alpha-tocopherol (α-tocopherol)",
+    "RRR-alpha-tocopherol (natural form, labelled d-alpha-tocopherol)",
+    "all-rac-alpha-tocopherol (synthetic form, labelled dl-alpha-tocopherol)",
+    "alpha-tocopheryl acetate",
+    "alpha-tocopheryl succinate",
+    "mixed tocopherols",
+    "tocotrienols"
+  ],
+  "summary": "Vitamin E is a fat-soluble vitamin that protects the fats in cell membranes from damage. Real shortage is rare and mostly affects people who can't absorb fat. Large trials of vitamin E supplements didn't prevent heart disease or cancer, and some found harm.",
+  "roles": [
+    "Antioxidant that protects fats in cell membranes and in blood fats (lipoproteins) from damage",
+    "Healthy nerves and muscles",
+    "Immune function"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "The test is blood (plasma or serum) alpha-tocopherol. It rises and falls with blood fats (cholesterol and triglycerides), which carry it, so it is best read alongside them or as a ratio to them. A clearly low value (below about 12 µmol/L) points to shortage, but a normal value doesn't prove the tissues have enough. It is rarely tested except in conditions with poor fat absorption. This app has no vitamin E marker yet."
+  },
+  "low": {
+    "signs": [
+      "Nerve damage: numbness, poor balance and coordination (ataxia), loss of the sense of where the limbs are",
+      "Muscle weakness",
+      "Damage to the retina at the back of the eye",
+      "Breakdown of red blood cells (haemolysis), mainly in premature babies"
+    ],
+    "atRisk": [
+      "People who absorb fat poorly: cystic fibrosis, long-standing liver or bile duct disease, Crohn's disease, short bowel, after some weight-loss operations",
+      "People with a rare inherited condition that stops the liver passing vitamin E into the blood (ataxia with vitamin E deficiency, AVED)",
+      "Premature babies with very low birth weight"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Easy bruising and bleeding, such as nosebleeds or bleeding gums",
+      "More bleeding strokes (haemorrhagic stroke) in trials of supplements",
+      "More prostate cancer in one large trial of a synthetic supplement",
+      "More heart failure in one trial in people with heart disease or diabetes"
+    ],
+    "note": "Too much vitamin E from food isn't a known problem; EFSA (the European Food Safety Authority) found that only regular users of high-dose supplements are likely to go over the upper limit. Vitamin E at high amounts thins the blood by working against vitamin K, so the risk is higher with blood thinners or a shortage of vitamin K."
+  },
+  "foodSources": {
+    "examples": [
+      "Vegetable oils such as wheat germ, sunflower, safflower and rapeseed oil",
+      "Nuts and seeds: almonds, hazelnuts, sunflower seeds",
+      "Spreads made from these oils",
+      "Avocado",
+      "Spinach and other green leafy vegetables",
+      "Eggs and wholegrain cereals (smaller amounts)"
+    ],
+    "note": "Food tables often give vitamin E as alpha-tocopherol equivalents, which also count other tocopherols, so they can show more than the alpha-tocopherol that EFSA's values refer to."
+  },
+  "forms": [
+    {
+      "name": "RRR-alpha-tocopherol (natural source, 'd-alpha')",
+      "note": "The form found in food. The liver keeps it in the blood more readily than the synthetic form, so labels may count it as more potent per milligram. 1 IU (international unit) is 0.67 mg."
+    },
+    {
+      "name": "all-rac-alpha-tocopherol (synthetic, 'dl-alpha')",
+      "note": "A mix of eight mirror-image forms, of which the body keeps mainly half in the blood. 1 IU is 0.45 mg. The SELECT trial used this form as the acetate."
+    },
+    {
+      "name": "Esters: alpha-tocopheryl acetate or succinate",
+      "note": "More stable on the shelf; the gut releases the vitamin from the ester. Can be natural or synthetic, so check the 'd' or 'dl' on the label."
+    },
+    {
+      "name": "Mixed tocopherols and tocotrienols",
+      "note": "Contain gamma-tocopherol and other related compounds. EFSA's reference values and upper limit refer to alpha-tocopherol only, the form the body keeps; the other forms are less studied."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Men", "amount": 13, "unit": "mg", "type": "AI" },
+      { "group": "Women", "amount": 11, "unit": "mg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 11, "unit": "mg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 11, "unit": "mg", "type": "AI" }
+    ],
+    "upperLimit": {
+      "amount": 300,
+      "unit": "mg",
+      "note": "Tolerable upper intake level (UL) for alpha-tocopherol a day from all food and supplements, for adults including pregnant and breastfeeding women. EFSA reviewed it in 2024 and kept 300 mg, with impaired blood clotting and bleeding as the key risk. It covers all forms of alpha-tocopherol, natural and synthetic. It doesn't apply to people taking blood thinners or antiplatelet medicines such as aspirin, people treated to prevent another heart attack or stroke, or people who absorb vitamin K poorly. The intake values are adequate intakes (AI): EFSA couldn't work out an average need, so it used typical intakes of healthy people in the EU. They are guides for groups, not personal targets."
+    },
+    "sources": [
+      {
+        "pmid": "42109809",
+        "doi": "10.2903/j.efsa.2015.4149",
+        "title": "Scientific Opinion on Dietary Reference Values for vitamin E as α-tocopherol",
+        "year": 2015,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "39099617",
+        "doi": "10.2903/j.efsa.2024.8953",
+        "title": "Scientific opinion on the tolerable upper intake level for vitamin E",
+        "year": 2024,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Prostate cancer",
+      "population": "Healthy men aged 50 or 55 and over in the US, Canada and Puerto Rico (SELECT)",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "One very large, well-run randomised trial",
+        "The increase only became statistically clear with longer follow-up",
+        "An earlier trial in smokers at a lower dose (ATBC) found fewer prostate cancers, so the results aren't consistent"
+      ],
+      "summary": "In SELECT, 35,533 men were given 400 IU a day of synthetic vitamin E, selenium, both, or placebo. With extended follow-up, the vitamin E group had 17% more prostate cancer than placebo, about 1.6 extra cases for every 1,000 men each year. Men given vitamin E with selenium had no clear increase. In ATBC (50 mg a day in male smokers) fewer prostate cancers were diagnosed, a result SELECT was partly designed to test and didn't confirm.",
+      "studies": [
+        {
+          "pmid": "21990298",
+          "doi": "10.1001/jama.2011.1437",
+          "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+          "year": 2011,
+          "studyType": "rct",
+          "n": 34887
+        },
+        {
+          "pmid": "19066370",
+          "doi": "10.1001/jama.2008.864",
+          "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 35533
+        },
+        {
+          "pmid": "8127329",
+          "doi": "10.1056/nejm199404143301501",
+          "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
+          "year": 1994,
+          "studyType": "rct",
+          "n": 29133
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks, strokes and deaths from heart and blood vessel disease",
+      "population": "Middle-aged and older adults: healthy men and women, and people with vascular disease or diabetes",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Several large, long, placebo-controlled trials agree",
+        "Pooled in an independent review for the US Preventive Services Task Force (USPSTF)"
+      ],
+      "summary": "In the Physicians' Health Study II (14,641 men, 8 years), vitamin E didn't change major heart and stroke events. In the Women's Health Study (39,876 women, 10 years) there was no overall benefit; there were fewer cardiovascular deaths, a secondary result. In HOPE-TOO (people with vascular disease or diabetes, 7 years) there was no benefit and more heart failure. The USPSTF review found no effect on cardiovascular events, and the USPSTF advises against vitamin E supplements for preventing heart disease or cancer.",
+      "studies": [
+        {
+          "pmid": "18997197",
+          "doi": "10.1001/jama.2008.600",
+          "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
+          "year": 2008,
+          "studyType": "rct",
+          "n": 14641
+        },
+        {
+          "pmid": "15998891",
+          "doi": "10.1001/jama.294.1.56",
+          "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
+          "year": 2005,
+          "studyType": "rct",
+          "n": 39876
+        },
+        {
+          "pmid": "15769967",
+          "doi": "10.1001/jama.293.11.1338",
+          "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
+          "year": 2005,
+          "studyType": "rct",
+          "n": 9541
+        },
+        {
+          "pmid": "35727271",
+          "doi": "10.1001/jama.2022.8970",
+          "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
+          "year": 2022,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "35727272",
+          "doi": "10.1001/jama.2021.15650",
+          "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 739803
+        }
+      ]
+    },
+    {
+      "outcome": "Stroke, by type",
+      "population": "Adults in nine randomised trials of vitamin E, followed for at least a year",
+      "effect": "mixed",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of randomised trials with little difference between them",
+        "Few bleeding strokes, and the increase only just reached statistical significance",
+        "Stroke type wasn't the main outcome in most trials"
+      ],
+      "summary": "Vitamin E didn't change the total number of strokes. But bleeding strokes (haemorrhagic) were 22% more common, about one extra for every 1,250 people taking it, while strokes from a blocked artery (ischaemic) were 10% less common, about one fewer for every 476. Bleeding strokes are usually more severe. Two large trials, PHS II and ATBC, each also saw more bleeding strokes with vitamin E.",
+      "studies": [
+        {
+          "pmid": "21051774",
+          "doi": "10.1136/bmj.c5702",
+          "title": "Effects of vitamin E on stroke subtypes: meta-analysis of randomised controlled trials",
+          "year": 2010,
+          "studyType": "meta-analysis",
+          "n": 118765
+        },
+        {
+          "pmid": "18997197",
+          "doi": "10.1001/jama.2008.600",
+          "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
+          "year": 2008,
+          "studyType": "rct",
+          "n": 14641
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause",
+      "population": "Adults, healthy or with chronic diseases, in randomised trials of vitamin E alone or with other nutrients",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small effect whose size depends on which trials are included",
+        "High-dose trials were often small and done in people with chronic diseases",
+        "The independent USPSTF review found no clear difference"
+      ],
+      "summary": "No analysis found that vitamin E helped people live longer. A Cochrane review found about 3% more deaths with vitamin E in trials at low risk of bias, at the edge of statistical significance. An earlier meta-analysis found more deaths in trials using 400 IU a day or more (about 39 extra deaths per 10,000 people) and none with lower doses. The USPSTF review, limited to healthy adults, found no clear difference. A small harm at high doses is possible but not certain.",
+      "studies": [
+        {
+          "pmid": "22419320",
+          "doi": "10.1002/14651858.cd007176.pub2",
+          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 296707
+        },
+        {
+          "pmid": "15537682",
+          "doi": "10.7326/0003-4819-142-1-200501040-00110",
+          "title": "Meta-analysis: high-dosage vitamin E supplementation may increase all-cause mortality",
+          "year": 2005,
+          "studyType": "meta-analysis",
+          "n": 135967
+        },
+        {
+          "pmid": "35727272",
+          "doi": "10.1001/jama.2021.15650",
+          "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 739803
+        }
+      ]
+    },
+    {
+      "outcome": "Worsening of age-related macular degeneration (AMD, an eye disease that damages central vision)",
+      "population": "People aged about 55–80 who already have intermediate AMD",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Cochrane rates the evidence moderate certainty",
+        "Most of it comes from one large trial (AREDS)",
+        "It tests a combination (vitamins C and E, beta-carotene and zinc), so vitamin E's own share is unknown"
+      ],
+      "summary": "In AREDS (3,640 people, about 6 years), a combination containing vitamin E slowed progression to late AMD, mainly in people with intermediate AMD; for people with early AMD the absolute benefit was very small. A single trial of vitamin E alone was too small to show anything (very low certainty). Because beta-carotene in the formula raised lung cancer in former smokers, AREDS2 replaced it with lutein and zeaxanthin. This is a treatment for a diagnosed eye condition, chosen with an eye doctor, not a general prevention.",
+      "studies": [
+        {
+          "pmid": "37702300",
+          "doi": "10.1002/14651858.cd000254.pub5",
+          "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 11952
+        },
+        {
+          "pmid": "11594942",
+          "doi": "10.1001/archopht.119.10.1417",
+          "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
+          "year": 2001,
+          "studyType": "rct",
+          "n": 3640
+        },
+        {
+          "pmid": "23644932",
+          "doi": "10.1001/jama.2013.4997",
+          "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 4203
+        }
+      ]
+    },
+    {
+      "outcome": "Liver inflammation in fatty liver disease (NASH, non-alcoholic steatohepatitis)",
+      "population": "Adults without diabetes whose NASH was confirmed by liver biopsy",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised trial of 247 people",
+        "The outcome was a change in liver biopsy scores over 96 weeks, not liver failure or survival",
+        "Only people without diabetes were studied"
+      ],
+      "summary": "In the PIVENS trial, 800 IU a day of vitamin E for 96 weeks improved liver biopsy findings more often than placebo (43% compared with 19%), and liver enzymes fell. It isn't known whether this prevents cirrhosis or lengthens life, and the long-term risks found in other vitamin E trials still apply. This is a treatment for a diagnosed liver disease under a doctor's care.",
+      "studies": [
+        {
+          "pmid": "20427778",
+          "doi": "10.1056/nejmoa0907929",
+          "title": "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 247
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Blood thinners and antiplatelet medicines (warfarin, apixaban, rivaroxaban, clopidogrel, aspirin and others)",
+      "note": "Vitamin E at high amounts makes blood clot less well and can add to the bleeding risk of these medicines. EFSA's upper limit doesn't apply to people taking them. Discuss any vitamin E supplement with your doctor or pharmacist.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Low vitamin K or poor vitamin K absorption",
+      "note": "High amounts of vitamin E work against vitamin K, which the blood needs to clot. EFSA's upper limit doesn't apply to people who absorb vitamin K poorly."
+    },
+    {
+      "with": "A past heart attack or stroke",
+      "note": "EFSA's upper limit doesn't apply to people treated to prevent another heart attack or stroke, and one trial in people with vascular disease found more heart failure with vitamin E. Ask your doctor first."
+    },
+    {
+      "with": "Surgery and dental procedures",
+      "note": "Because of the effect on clotting, tell the surgeon or dentist about vitamin E supplements before an operation."
+    },
+    {
+      "with": "Orlistat and conditions with poor fat absorption",
+      "note": "Vitamin E is fat-soluble. Orlistat (a weight-loss medicine) and conditions that reduce fat absorption lower how much is absorbed. A doctor can check whether this matters."
+    }
+  ],
+  "cautions": [
+    "Trial harms (bleeding strokes, prostate cancer) were seen with supplements, typically 400 IU a day or more, not with vitamin E from food.",
+    "Labels use IU or mg, and natural ('d-alpha') and synthetic ('dl-alpha') forms count differently.",
+    "Vitamin E is often added to multivitamins and 'antioxidant' products, so amounts can add up.",
+    "Unusual bruising or bleeding needs a doctor."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "25469382",
+      "doi": "10.3945/an.114.006254",
+      "title": "Vitamin E inadequacy in humans: causes and consequences",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35727271",
+      "doi": "10.1001/jama.2022.8970",
+      "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
+      "year": 2022,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "39099617",
+      "doi": "10.2903/j.efsa.2024.8953",
+      "title": "Scientific opinion on the tolerable upper intake level for vitamin E",
+      "year": 2024,
+      "studyType": "guideline"
+    }
+  ]
+}

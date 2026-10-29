@@ -1,3 +1,4 @@
+import { validateNutrientDef, type NutrientDef } from "../core/nutrients";
 import { validateEvidenceClaim } from "../core/evidence";
 import { validateBiomarkerDef } from "../core/knowledge";
 import type { BiomarkerCategory, BiomarkerDef, EvidenceClaim, FoodTable } from "../core/types";
@@ -82,3 +83,22 @@ function loadEvidence(): EvidenceClaim[] {
 
 export const EVIDENCE: readonly EvidenceClaim[] = loadEvidence();
 export const FOODS: FoodTable = foodTable as FoodTable;
+
+// Vitamins and minerals (Supplementation): research-based, bundled like the markers.
+const nutrientModules = import.meta.glob<unknown>("../../knowledge/nutrients/*.json", { eager: true, import: "default" });
+
+function loadNutrients(): NutrientDef[] {
+  const out: NutrientDef[] = [];
+  for (const [path, json] of Object.entries(nutrientModules)) {
+    const errors = validateNutrientDef(json);
+    if (errors.length > 0) {
+      console.error(`Invalid knowledge file ${path}:`, errors);
+      continue;
+    }
+    out.push(json as NutrientDef);
+  }
+  return out.sort((a, b) => a.name.localeCompare(b.name, "en", { numeric: true }));
+}
+
+export const NUTRIENTS: readonly NutrientDef[] = loadNutrients();
+export const NUTRIENT_MAP: ReadonlyMap<string, NutrientDef> = new Map(NUTRIENTS.map((n) => [n.id, n]));

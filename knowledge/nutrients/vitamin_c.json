@@ -1,0 +1,355 @@
+{
+  "id": "vitamin_c",
+  "name": "Vitamin C",
+  "kind": "vitamin",
+  "otherNames": [
+    "ascorbic acid (L-ascorbic acid)",
+    "ascorbate",
+    "sodium ascorbate",
+    "calcium ascorbate",
+    "ascorbyl palmitate",
+    "E300 (as a food additive)"
+  ],
+  "summary": "Vitamin C is a water-soluble vitamin found mainly in fruit and vegetables. The body can't make it or store much of it, so it needs a steady supply. Shortage over weeks to months causes scurvy, which is rare today but still happens with very limited diets.",
+  "roles": [
+    "Making collagen, the protein that holds skin, gums, blood vessels, bones and wounds together",
+    "Helping the body absorb iron from plant foods",
+    "An antioxidant that protects cells from damage",
+    "Making carnitine (needed to burn fat for energy) and some brain chemicals",
+    "Normal working of the immune system"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no vitamin C marker, and it isn't part of routine blood tests. A doctor who suspects scurvy can order plasma vitamin C (ascorbate). EFSA describes below 10 µmol/L as the level where scurvy appears, 10–50 µmol/L as too low with a risk of shortage, and about 50 µmol/L as adequate. The level mostly reflects what was eaten in recent days, falls with infection and inflammation, and the sample has to be handled quickly (vitamin C breaks down in the tube), so a single result has limits."
+  },
+  "low": {
+    "signs": [
+      "Tiredness, weakness, low mood and irritability (often the first signs)",
+      "Swollen, bleeding gums and loose teeth",
+      "Bruising easily; small red-purple spots around hair follicles; corkscrew-shaped hairs",
+      "Wounds that heal slowly",
+      "Painful joints and legs, from bleeding into joints and muscles",
+      "Anaemia"
+    ],
+    "atRisk": [
+      "People who eat very little fruit and vegetables, including very selective eaters",
+      "Smokers, and people who often breathe others' smoke",
+      "Long-term heavy alcohol use",
+      "Older people who live alone or eat poorly",
+      "People on dialysis, and some people with gut diseases that reduce absorption",
+      "People with eating disorders or on very restricted diets"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Diarrhoea, nausea and stomach cramps at high doses (EFSA noted these at 3–4 g a day)",
+      "A higher risk of kidney stones in men who use high-dose supplements, in observational studies",
+      "In people with haemochromatosis, extra iron absorption"
+    ],
+    "note": "Vitamin C from food is not harmful. The body absorbs less as the dose rises, and passes the excess in urine, so very high doses mostly add stomach upset rather than more vitamin C in the body. Part of vitamin C is broken down to oxalate, a main part of most kidney stones, so high doses are a concern for people prone to stones or with kidney disease. Very high doses given by drip (in hospital) can cause red blood cells to break down in people with G6PD deficiency (an inherited enzyme deficiency), and can disturb some lab and finger-prick glucose tests."
+  },
+  "foodSources": {
+    "examples": [
+      "Red and yellow peppers",
+      "Blackcurrants, kiwi fruit, strawberries, oranges and other citrus fruit",
+      "Broccoli, Brussels sprouts, kale and cabbage",
+      "Tomatoes and potatoes (potatoes add a lot because people eat them often)",
+      "Fresh herbs such as parsley"
+    ],
+    "cofidNutrient": "vitaminC",
+    "note": "Vitamin C breaks down with heat, light, air and long storage, and leaches into cooking water. Raw, steamed or quickly cooked fruit and vegetables keep more of it."
+  },
+  "forms": [
+    {
+      "name": "Ascorbic acid",
+      "note": "The usual form, identical to the vitamin C in food. In human studies synthetic and food vitamin C were absorbed equally well. It is acidic, which some people notice in the stomach."
+    },
+    {
+      "name": "Mineral ascorbates (sodium ascorbate, calcium ascorbate)",
+      "note": "Vitamin C bound to a mineral, so less acidic. They add sodium or calcium, which matters for people who limit these."
+    },
+    {
+      "name": "Fizzy (effervescent) tablets",
+      "note": "Often contain a lot of sodium, which matters for people with high blood pressure, heart failure or kidney disease."
+    },
+    {
+      "name": "Slow-release, liposomal, and vitamin C with bioflavonoids",
+      "note": "Sold as better absorbed, but there is little independent evidence that they make a difference in healthy people. Above about 1 g a day, absorption levels off whatever the form."
+    },
+    {
+      "name": "Ascorbyl palmitate",
+      "note": "A fat-soluble form used mainly as an additive (to stop fats going off) and in skin creams. There is little data on it as a supplement."
+    },
+    {
+      "name": "Intravenous vitamin C (a drip)",
+      "note": "Reaches blood levels far above what tablets can. Used in hospital research (for example in sepsis and cancer); it is not a supplement and has its own risks."
+    }
+  ],
+  "reference": {
+    "intake": [
+      {
+        "group": "Men",
+        "amount": 110,
+        "unit": "mg",
+        "type": "PRI"
+      },
+      {
+        "group": "Women",
+        "amount": 95,
+        "unit": "mg",
+        "type": "PRI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 105,
+        "unit": "mg",
+        "type": "PRI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 155,
+        "unit": "mg",
+        "type": "PRI"
+      }
+    ],
+    "noUpperLimit": "EFSA found too little data to set a tolerable upper intake level for vitamin C (2004). It noted that up to about 1 g a day from supplements, on top of food, was not linked with stomach or gut problems, while 3–4 g a day can cause them. Absorption levels off at high intakes, so above 1 g a day very little more is taken up and the risk of gut upset rises. There has been no full assessment of the safety of long-term high-dose supplements. The reference intakes are set to keep plasma vitamin C at about 50 µmol/L, with extra for pregnancy (+10 mg) and breastfeeding (+60 mg, to cover vitamin C in breast milk).",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2013.3418",
+        "title": "Scientific Opinion on Dietary Reference Values for vitamin C",
+        "year": 2013,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/j.efsa.2004.59",
+        "title": "Opinion of the Scientific Panel on Dietetic Products, Nutrition and Allergies (NDA) a request from the Commission related to the Tolerable Upper Intake Level of Vitamin C (L-Ascorbic acid, its calcium, potassium and sodium salts and L-ascorbyl-6-palmitate)",
+        "year": 2004,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Catching colds",
+      "population": "Children and adults in the general community, taking vitamin C every day",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Many randomised, mostly double-blind, placebo-controlled trials (about 10,700 people in the community trials)",
+        "Consistent results with a narrow range of uncertainty"
+      ],
+      "summary": "Taking vitamin C every day (trials used at least 200 mg a day) did not make colds less likely in ordinary people: the risk was about the same as with placebo (3 % lower at most).",
+      "studies": [
+        {
+          "pmid": "23440782",
+          "doi": "10.1002/14651858.cd000980.pub4",
+          "title": "Vitamin C for preventing and treating the common cold",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 11306
+        }
+      ]
+    },
+    {
+      "outcome": "Catching colds during heavy physical stress",
+      "population": "Marathon runners, skiers and soldiers on exercises in the subarctic",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only 5 trials with about 600 people",
+        "Large and consistent effect, but in very specific situations",
+        "Mostly older trials"
+      ],
+      "summary": "In people under short periods of extreme physical stress, regular vitamin C halved the risk of catching a cold. This doesn't carry over to everyday life or to ordinary exercise, and the trials are few and small.",
+      "studies": [
+        {
+          "pmid": "23440782",
+          "doi": "10.1002/14651858.cd000980.pub4",
+          "title": "Vitamin C for preventing and treating the common cold",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 11306
+        }
+      ]
+    },
+    {
+      "outcome": "How long and how bad colds are",
+      "population": "Children and adults; regular daily vitamin C compared with vitamin C started only when a cold begins",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Many placebo-controlled trials (about 9,700 colds) found a consistent but small effect with regular use",
+        "Only 7 trials tested vitamin C started at the first symptoms, and they found no consistent effect"
+      ],
+      "summary": "In people already taking vitamin C every day, colds were a little shorter (by 8 % in adults, about half a day in a week-long cold, and 14 % in children) and a little milder; a 2023 analysis found the effect was mainly on more severe symptoms. Starting vitamin C once a cold had begun did not consistently shorten it. This is a modest effect on a mild illness.",
+      "studies": [
+        {
+          "pmid": "23440782",
+          "doi": "10.1002/14651858.cd000980.pub4",
+          "title": "Vitamin C for preventing and treating the common cold",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 11306
+        },
+        {
+          "pmid": "38082300",
+          "doi": "10.1186/s12889-023-17229-8",
+          "title": "Vitamin C reduces the severity of common colds: a meta-analysis",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart disease, cancer and death",
+      "population": "Mostly well-nourished middle-aged and older adults, with or without existing disease",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "One large, long trial (14,641 US male doctors, 8 years) of vitamin C alone",
+        "A Cochrane review of 29 trials of vitamin C found no effect on death",
+        "Mostly people who weren't low in vitamin C, and many trials combined it with other antioxidants"
+      ],
+      "summary": "In the Physicians' Health Study II, 500 mg of vitamin C a day for about 8 years did not change heart attacks, strokes, deaths from heart disease, prostate cancer or cancer overall. Across 29 trials, vitamin C did not change the risk of death. Observational studies linking fruit-and-vegetable-rich diets with better health can't be explained by vitamin C supplements, which are a different intervention.",
+      "studies": [
+        {
+          "pmid": "18997197",
+          "doi": "10.1001/jama.2008.600",
+          "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
+          "year": 2008,
+          "studyType": "rct",
+          "n": 14641
+        },
+        {
+          "pmid": "19066368",
+          "doi": "10.1001/jama.2008.862",
+          "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 14641
+        },
+        {
+          "pmid": "22419320",
+          "doi": "10.1002/14651858.cd007176.pub2",
+          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 296707
+        }
+      ]
+    },
+    {
+      "outcome": "Iron levels when vitamin C tablets are added to iron tablets",
+      "population": "Adults with iron-deficiency anaemia taking iron tablets",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "A single open-label trial (440 adults in China, almost all women)",
+        "Not repeated in other populations"
+      ],
+      "summary": "In people with iron-deficiency anaemia, iron tablets with vitamin C raised haemoglobin and ferritin about as much as iron tablets alone, with the same rate of side effects. Vitamin C does help the body absorb iron from plant foods eaten in the same meal (see the linked evidence), but adding vitamin C tablets to iron treatment hasn't been shown to make a real difference.",
+      "studies": [
+        {
+          "pmid": "33136134",
+          "doi": "10.1001/jamanetworkopen.2020.23644",
+          "title": "The Efficacy and Safety of Vitamin C for Iron Supplementation in Adult Patients With Iron Deficiency Anemia: A Randomized Clinical Trial",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 440
+        }
+      ]
+    },
+    {
+      "outcome": "Kidney stones",
+      "population": "US nurses and health professionals followed for about 11 years (156,735 women and 40,536 men)",
+      "effect": "harms",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Observational studies only: supplement users may differ in other ways",
+        "Seen in men but not in women",
+        "Intake was estimated from questionnaires; stone type wasn't known for all"
+      ],
+      "summary": "Men with high vitamin C intake, including from supplements, had a higher risk of kidney stones; women did not. This fits with vitamin C being partly broken down to oxalate, but no trial has tested it. It is mainly a consideration for people who have had kidney stones or have kidney disease, to discuss with their doctor.",
+      "studies": [
+        {
+          "pmid": "26463139",
+          "doi": "10.1053/j.ajkd.2015.09.005",
+          "title": "Total, Dietary, and Supplemental Vitamin C Intake and Risk of Incident Kidney Stones",
+          "year": 2016,
+          "studyType": "observational",
+          "n": 197271
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Iron (food and supplements)",
+      "note": "Vitamin C increases the absorption of non-haem iron eaten in the same meal. In one trial, adding vitamin C tablets to iron tablets didn't improve results."
+    },
+    {
+      "with": "Haemochromatosis and other iron overload",
+      "note": "Because vitamin C increases iron absorption, vitamin C supplements are usually something to discuss with the doctor treating the condition."
+    },
+    {
+      "with": "Kidney disease or kidney stones",
+      "note": "High doses raise oxalate in urine, which can add to stones and, with poor kidney function, build up in the body. Vitamin C supplements are worth discussing with a kidney doctor.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Blood glucose meters and lab tests",
+      "note": "Very high doses, mostly given by drip in hospital, can make some finger-prick glucose meters read falsely high or low, and can disturb some lab tests. Ordinary amounts from food or supplements are not known to matter.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "G6PD deficiency",
+      "note": "Very high doses given by drip can cause red blood cells to break down (haemolysis) in people with this inherited condition."
+    },
+    {
+      "with": "Cancer treatment (chemotherapy or radiotherapy)",
+      "note": "Whether high-dose antioxidants change how well these treatments work is uncertain; supplements are worth mentioning to the cancer team."
+    },
+    {
+      "with": "Smoking",
+      "note": "Smokers have lower blood vitamin C and use it up faster. EFSA did not set a separate value for smokers."
+    }
+  ],
+  "cautions": [
+    "Vitamin C supplements do not prevent colds in everyday life; the small effect is on how long colds last, and only with regular use.",
+    "High doses mostly pass out in urine and can upset the stomach.",
+    "People with kidney stones, kidney disease or haemochromatosis are best guided by their doctor about vitamin C supplements."
+  ],
+  "evidenceClaims": [
+    "vitamin-c-with-meals-iron"
+  ],
+  "sources": [
+    {
+      "pmid": "24169506",
+      "doi": "10.3390/nu5114284",
+      "title": "Synthetic or food-derived vitamin C--are they equally bioavailable?",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29099763",
+      "doi": "10.3390/nu9111211",
+      "title": "Vitamin C and Immune Function",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23440782",
+      "doi": "10.1002/14651858.cd000980.pub4",
+      "title": "Vitamin C for preventing and treating the common cold",
+      "year": 2013,
+      "studyType": "meta-analysis",
+      "n": 11306
+    }
+  ]
+}

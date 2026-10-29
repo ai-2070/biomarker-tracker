@@ -1,0 +1,348 @@
+{
+  "id": "vitamin_a",
+  "name": "Vitamin A",
+  "kind": "vitamin",
+  "otherNames": [
+    "retinol",
+    "retinyl palmitate",
+    "retinyl acetate",
+    "preformed vitamin A",
+    "beta-carotene (provitamin A)",
+    "provitamin A carotenoids"
+  ],
+  "summary": "Vitamin A is needed for seeing in dim light, healthy skin and linings, the immune system and a baby's development. It comes in two kinds: preformed vitamin A (retinol) from animal foods and supplements, and beta-carotene and similar pigments from plants, which the body turns into vitamin A as it needs. Too much preformed vitamin A is harmful, especially in pregnancy.",
+  "roles": [
+    "Vision in dim light (part of the light-sensing pigment in the eye)",
+    "Growth and renewal of skin and of the linings of the eyes, gut and airways",
+    "Immune defence against infections",
+    "Development of the embryo and growth in children"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "The usual test is blood (serum) retinol, but the liver keeps it steady over a wide range of stores. It only falls when liver stores are nearly empty, so a normal result doesn't show whether stores are low-ish or high. Infection and inflammation lower it for a while (its carrier, retinol-binding protein, drops), which can look like deficiency. Liver stores are the best measure but are only estimated in research, with isotope tests. Doctors also look at signs such as night blindness. It isn't usually tested without a reason, and this app has no vitamin A marker yet."
+  },
+  "low": {
+    "signs": [
+      "Poor vision in dim light (night blindness)",
+      "Dry eyes, and in severe cases damage to the front of the eye (xerophthalmia), including foamy spots on the white of the eye (Bitot's spots)",
+      "More frequent or more severe infections, especially diarrhoea and measles in children",
+      "Dry, rough skin"
+    ],
+    "atRisk": [
+      "Young children and pregnant women in low- and middle-income countries where diets are poor in vitamin A",
+      "People who absorb fat poorly (cystic fibrosis, coeliac disease, pancreas problems, chronic liver disease, after some weight-loss operations)",
+      "People eating very restricted diets with few animal foods and few orange or dark green vegetables"
+    ]
+  },
+  "high": {
+    "signs": [
+      "After a very large amount at once: headache, nausea, vomiting, dizziness, blurred vision",
+      "With high intakes over months: liver damage",
+      "With high intakes over years: possible bone weakening and more fractures (the evidence is mixed)",
+      "Dry, peeling skin, hair loss, bone and joint pain",
+      "Birth defects when intake of preformed vitamin A is high early in pregnancy",
+      "Large amounts of beta-carotene can turn the skin yellow-orange; this is harmless and fades"
+    ],
+    "note": "The harm comes from preformed vitamin A (retinol and retinyl esters) from liver, fish liver oils, fortified foods and supplements, which builds up in the liver. EFSA (the European Food Safety Authority) chose birth defects as the key risk when it set its upper limit, and also reviewed liver damage and bone health. Beta-carotene from plants doesn't cause vitamin A poisoning, because the body converts only what it needs, but beta-carotene supplements carry their own risk: more lung cancer in smokers (see the findings)."
+  },
+  "foodSources": {
+    "examples": [
+      "Liver and liver products such as pâté and liver sausage (very high in preformed vitamin A)",
+      "Cod liver oil and other fish liver oils",
+      "Eggs, butter, cheese and whole milk",
+      "Oily fish",
+      "Fortified spreads and some fortified foods",
+      "Beta-carotene: carrots, sweet potato, pumpkin and butternut squash",
+      "Beta-carotene: spinach, kale and other dark green leafy vegetables",
+      "Beta-carotene: red peppers, mango, apricots and cantaloupe melon"
+    ],
+    "cofidNutrient": "retinol",
+    "note": "The measured amounts in this app (CoFID 'retinol') count preformed vitamin A from animal foods only. Beta-carotene and other carotenoids from plants aren't counted there, even though the body turns some of them into vitamin A. EFSA expresses vitamin A as retinol equivalents (RE): 1 µg RE is 1 µg of retinol or 6 µg of beta-carotene."
+  },
+  "forms": [
+    {
+      "name": "Retinyl palmitate or retinyl acetate (preformed vitamin A)",
+      "note": "The usual form in supplements and fortified foods. The body uses it directly and stores the excess in the liver, which is why high amounts can build up and cause harm. Labels may give amounts in IU (international units): 1 IU of retinol is 0.3 µg."
+    },
+    {
+      "name": "Beta-carotene (provitamin A)",
+      "note": "A plant pigment the body converts to vitamin A when it needs it, so it doesn't cause vitamin A poisoning. As a supplement it raised lung cancer in smokers and asbestos workers in large trials; EFSA advises smokers to avoid beta-carotene supplements."
+    },
+    {
+      "name": "Fish liver oils (such as cod liver oil)",
+      "note": "Contain preformed vitamin A together with vitamin D. The amount varies by product; it adds to vitamin A from other sources."
+    },
+    {
+      "name": "Multivitamins",
+      "note": "Often contain vitamin A as retinyl esters, beta-carotene or both. The label should say how much of each."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Men", "amount": 750, "unit": "µg", "type": "PRI" },
+      { "group": "Women", "amount": 650, "unit": "µg", "type": "PRI" },
+      { "group": "Pregnancy", "amount": 700, "unit": "µg", "type": "PRI" },
+      { "group": "Breastfeeding", "amount": 1300, "unit": "µg", "type": "PRI" }
+    ],
+    "upperLimit": {
+      "amount": 3000,
+      "unit": "µg",
+      "note": "Tolerable upper intake level (UL) for preformed vitamin A only (retinol and retinyl esters), in µg retinol equivalents a day from food and supplements together. EFSA re-assessed it in 2024 and kept 3000 µg, with birth defects as the key risk. It applies to men and women, including women who could become pregnant, are pregnant or breastfeeding, and women after menopause. It doesn't cover beta-carotene: EFSA couldn't set a limit for beta-carotene supplements because of the lung cancer risk, saw no sign of harm from beta-carotene in ordinary food, advises smokers to avoid beta-carotene supplements, and says the general population should use them only to meet vitamin A needs. EFSA adds that Europeans are unlikely to go over the limit if they eat liver and liver products once a month or less, and advises women who are pregnant or planning a pregnancy not to eat liver products. Intake values (PRI, population reference intake) are in µg retinol equivalents a day; they are guides for groups, not personal targets."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2015.4028",
+        "title": "Scientific Opinion on Dietary Reference Values for vitamin A",
+        "year": 2015,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "38846679",
+        "doi": "10.2903/j.efsa.2024.8814",
+        "title": "Scientific opinion on the tolerable upper intake level for preformed vitamin A and β-carotene",
+        "year": 2024,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Lung cancer (beta-carotene supplements)",
+      "population": "Smokers, former smokers and asbestos workers: Finnish male smokers aged 50–69 (ATBC) and US smokers, former smokers and asbestos-exposed workers (CARET)",
+      "effect": "harms",
+      "grade": "high",
+      "whyThisGrade": [
+        "Two large, long, placebo-controlled trials found harm in the same direction",
+        "A meta-analysis of trials confirmed more lung cancer at 20–30 mg of beta-carotene a day in smokers and asbestos workers",
+        "Applies to beta-carotene supplements, not to carotenoids eaten in food"
+      ],
+      "summary": "In the ATBC trial (29,133 male smokers, 5–8 years), men given 20 mg of beta-carotene a day got lung cancer 18% more often than men who weren't, and 8% more died. CARET (18,314 people) gave 30 mg of beta-carotene with retinyl palmitate and was stopped early: 28% more lung cancer and 17% more deaths from any cause. In the AREDS2 eye trial, more lung cancers occurred in people given beta-carotene, mostly former smokers, so it was replaced in the eye formula. Studies of diets rich in carotenoid foods pointed the other way (see the food findings): the classic case of why a food result can't be carried over to a pill.",
+      "studies": [
+        {
+          "pmid": "8127329",
+          "doi": "10.1056/nejm199404143301501",
+          "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
+          "year": 1994,
+          "studyType": "rct",
+          "n": 29133
+        },
+        {
+          "pmid": "8602180",
+          "doi": "10.1056/nejm199605023341802",
+          "title": "Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease",
+          "year": 1996,
+          "studyType": "rct",
+          "n": 18314
+        },
+        {
+          "pmid": "19876916",
+          "doi": "10.1002/ijc.25008",
+          "title": "Beta-carotene supplementation and cancer risk: a systematic review and metaanalysis of randomized controlled trials",
+          "year": 2010,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "23644932",
+          "doi": "10.1001/jama.2013.4997",
+          "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 4203
+        }
+      ]
+    },
+    {
+      "outcome": "Cancer overall and other cancer types (beta-carotene supplements)",
+      "population": "Adults in nine randomised trials of beta-carotene supplements, healthy or at high risk",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Nine randomised trials, several large and long",
+        "The overall estimate is precise and close to no effect",
+        "An independent review for the US Preventive Services Task Force (USPSTF) reached the same conclusion"
+      ],
+      "summary": "Beta-carotene supplements didn't lower cancer overall or cancers of the pancreas, bowel, prostate, breast or skin. Stomach cancer, like lung cancer, was more common in smokers and asbestos workers who took them. The USPSTF advises against beta-carotene supplements for preventing heart disease or cancer, judging with moderate certainty that the harms outweigh the benefits.",
+      "studies": [
+        {
+          "pmid": "19876916",
+          "doi": "10.1002/ijc.25008",
+          "title": "Beta-carotene supplementation and cancer risk: a systematic review and metaanalysis of randomized controlled trials",
+          "year": 2010,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35727271",
+          "doi": "10.1001/jama.2022.8970",
+          "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
+          "year": 2022,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "35727272",
+          "doi": "10.1001/jama.2021.15650",
+          "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 739803
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause",
+      "population": "Adults, healthy or with various diseases, in 78 randomised trials of antioxidant supplements",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Many randomised trials, most at low risk of bias",
+        "Doses, combinations and populations differ a lot between trials",
+        "The effects are small and depend on which trials are included"
+      ],
+      "summary": "In a Cochrane review, trials at low risk of bias showed about 5% more deaths in people given beta-carotene. Preformed vitamin A showed no clear effect overall, but higher doses were linked with more deaths. The review for the USPSTF found beta-carotene linked with about 10% more deaths from heart and blood vessel disease. None of these trials found that the supplements helped people live longer.",
+      "studies": [
+        {
+          "pmid": "22419320",
+          "doi": "10.1002/14651858.cd007176.pub2",
+          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 296707
+        },
+        {
+          "pmid": "35727272",
+          "doi": "10.1001/jama.2021.15650",
+          "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 739803
+        }
+      ]
+    },
+    {
+      "outcome": "Death and illness in young children",
+      "population": "Children aged 6 months to 5 years, mostly in low- and middle-income countries where vitamin A deficiency is common",
+      "effect": "helps",
+      "grade": "high",
+      "whyThisGrade": [
+        "Cochrane review: 19 trials with over 1.2 million children for deaths, rated high certainty by the reviewers",
+        "Only applies where deficiency is common; it says nothing about adults with ordinary European diets"
+      ],
+      "summary": "Vitamin A supplements given to young children in community programmes lowered deaths from any cause by about 12% and deaths from diarrhoea by about 12%. They also reduced night blindness, Bitot's spots and vitamin A deficiency. Vomiting in the first two days was more common. This is a public health programme for places where deficiency is widespread, not evidence for well-nourished adults.",
+      "studies": [
+        {
+          "pmid": "35294044",
+          "doi": "10.1002/14651858.cd008524.pub4",
+          "title": "Vitamin A supplementation for preventing morbidity and mortality in children from six months to five years of age",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1223856
+        }
+      ]
+    },
+    {
+      "outcome": "Birth defects (preformed vitamin A in early pregnancy)",
+      "population": "22,748 pregnant women in the US (a cohort study, not a trial)",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational, so it shows an association; a trial would be unethical",
+        "Fits animal studies and the known birth defects caused by vitamin A-like medicines (retinoids)",
+        "EFSA chose birth defects as the key risk for its upper limit"
+      ],
+      "summary": "Babies of women who took more than 10,000 IU (3,000 µg) of preformed vitamin A a day from supplements had birth defects in tissues that grow from the cranial neural crest (parts of the head, face and heart) about 4.8 times as often as babies of women who took 5,000 IU or less. The extra risk was concentrated in women with high intakes before the seventh week of pregnancy, often before they know they are pregnant. Beta-carotene wasn't part of this finding.",
+      "studies": [
+        {
+          "pmid": "7477116",
+          "doi": "10.1056/nejm199511233332101",
+          "title": "Teratogenicity of high vitamin A intake",
+          "year": 1995,
+          "studyType": "observational",
+          "n": 22748
+        },
+        {
+          "pmid": "38846679",
+          "doi": "10.2903/j.efsa.2024.8814",
+          "title": "Scientific opinion on the tolerable upper intake level for preformed vitamin A and β-carotene",
+          "year": 2024,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  ],
+  "foodFindings": [
+    {
+      "outcome": "Lung cancer (diets rich in carotenoids)",
+      "population": "Adults in 25 prospective cohort studies (observational, not trials)",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Observational: shows an association, not cause and effect",
+        "Eating many carotenoids also marks eating more fruit and vegetables and smoking less, which is hard to adjust away",
+        "The trials that tested beta-carotene pills found no benefit, and harm in smokers"
+      ],
+      "summary": "People who ate the most carotenoids, or had the highest blood levels, tended to get somewhat less lung cancer, even after allowing for smoking. The differences were generally small and many weren't statistically clear. The same review found that beta-carotene supplements didn't lower lung cancer. A carotenoid-rich diet and a beta-carotene pill are different things, and the pill result is the one tested in trials.",
+      "studies": [
+        {
+          "pmid": "18689373",
+          "doi": "10.1093/ajcn/88.2.372",
+          "title": "Carotenoids and the risk of developing lung cancer: a systematic review",
+          "year": 2008,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Pregnancy, or planning a pregnancy",
+      "note": "High intakes of preformed vitamin A early in pregnancy are linked with birth defects. EFSA advises women who are pregnant or planning a pregnancy not to eat liver or liver products, and this app hides foods with 300 µg of retinol or more per portion in pregnancy. Beta-carotene from vegetables isn't counted in the limit. Talk to a doctor or midwife about any supplement in pregnancy.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Retinoid medicines (isotretinoin, acitretin, alitretinoin)",
+      "note": "These medicines are related to vitamin A, so vitamin A supplements add to their side effects. They also cause birth defects. Ask the prescriber or a pharmacist before using any vitamin A supplement with them."
+    },
+    {
+      "with": "Smoking now or in the past, and asbestos exposure",
+      "note": "Beta-carotene supplements raised lung cancer in smokers and asbestos workers, and in former smokers in one eye trial. EFSA advises smokers to avoid beta-carotene supplements. Carotenoids from food weren't linked with this."
+    },
+    {
+      "with": "Liver disease or heavy alcohol use",
+      "note": "The liver stores vitamin A, and a damaged liver is more easily harmed by high amounts. Discuss any vitamin A supplement with your doctor."
+    },
+    {
+      "with": "Orlistat and conditions with poor fat absorption",
+      "note": "Vitamin A is fat-soluble. Orlistat (a weight-loss medicine) and conditions that reduce fat absorption lower how much is absorbed. A doctor can check whether this matters."
+    }
+  ],
+  "cautions": [
+    "Preformed vitamin A adds up across supplements, fish liver oils, fortified foods and liver.",
+    "Vitamin A and beta-carotene are different: a 'plant form' supplement isn't automatically safe for smokers.",
+    "Labels may use IU (international units); 1 IU of retinol is 0.3 µg.",
+    "Sudden headache, blurred vision or vomiting after high-dose vitamin A, or yellowing of the eyes, needs a doctor.",
+    "Before using a supplement in pregnancy, or with a liver condition, discuss it with your doctor."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "27511929",
+      "doi": "10.3945/jn.115.229708",
+      "title": "Biomarkers of Nutrition for Development (BOND)-Vitamin A Review",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35727271",
+      "doi": "10.1001/jama.2022.8970",
+      "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
+      "year": 2022,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "38846679",
+      "doi": "10.2903/j.efsa.2024.8814",
+      "title": "Scientific opinion on the tolerable upper intake level for preformed vitamin A and β-carotene",
+      "year": 2024,
+      "studyType": "guideline"
+    }
+  ]
+}

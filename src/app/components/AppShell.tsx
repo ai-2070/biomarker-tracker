@@ -6,7 +6,7 @@ import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
 import { Brain } from "../brain/Brain";
 import { openBrain, useBrain } from "../brain/store";
-import { AgeIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
+import { AgeIcon, BookIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
 import { ProfileMenu } from "./ProfileMenu";
 import { buttonStyles, cx } from "./ui";
 
@@ -29,12 +29,15 @@ const BLOOD: NavItem = {
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
 const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
+const SUPPLEMENTS: NavItem = { label: "Supplementation", to: { name: "supplements" }, icon: BookIcon, active: (r) => r.name === "supplements" || r.name === "nutrient" };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
 const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: SettingsIcon, active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup" };
 
 const GROUPS: { label?: string; items: NavItem[] }[] = [
   { items: [DASHBOARD] },
   { label: "Health", items: [BLOOD, BODY, AGE, HABITS] },
+  // Research-based knowledge, not your own data: kept apart from Health.
+  { label: "Knowledge", items: [SUPPLEMENTS] },
   { label: "Connect", items: [DEVICES] },
 ];
 

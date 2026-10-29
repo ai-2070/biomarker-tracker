@@ -1,0 +1,437 @@
+{
+  "id": "calcium",
+  "name": "Calcium",
+  "kind": "mineral",
+  "otherNames": [
+    "calcium carbonate",
+    "calcium citrate",
+    "calcium lactate",
+    "calcium gluconate",
+    "calcium phosphate",
+    "hydroxyapatite"
+  ],
+  "summary": "Calcium is the main mineral in bones and teeth, and the body also needs it for muscles, nerves and blood clotting. The body keeps the blood level steady by taking calcium from bone when intake is low. Trials of calcium supplements found small effects on bone density, weak and inconsistent effects on fractures, and some possible harms.",
+  "roles": [
+    "Builds and maintains bones and teeth (about 99% of the body's calcium is there)",
+    "Muscle contraction, including the heart",
+    "Nerve signalling",
+    "Blood clotting",
+    "Release of hormones and other messengers from cells"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "There is no simple test of calcium intake, and this app has no calcium marker. Blood calcium is kept in a narrow range by hormones (parathyroid hormone and vitamin D), which draw calcium from bone when intake is low, so a normal blood calcium does not show that intake is enough. A doctor may check blood calcium (often adjusted for albumin), parathyroid hormone, vitamin D, or bone density with a DXA scan (a low-dose X-ray). These show problems with calcium balance or bone health, not how much calcium someone eats."
+  },
+  "low": {
+    "signs": [
+      "Low intake usually causes no symptoms at first, because calcium is taken from bone",
+      "Over years: lower bone density and a higher chance of osteoporosis",
+      "Low blood calcium (hypocalcaemia), usually from hormone, vitamin D or kidney problems rather than diet: tingling around the mouth or in the fingers, muscle cramps and spasms"
+    ],
+    "atRisk": [
+      "People who eat no dairy and no calcium-fortified alternatives (for example some vegans, or people with lactose intolerance or milk allergy)",
+      "People with low vitamin D, which reduces calcium absorption",
+      "Women after menopause, who lose bone faster",
+      "Older adults, who absorb calcium less well",
+      "People with coeliac disease, inflammatory bowel disease or after weight-loss surgery",
+      "People on long-term steroid tablets",
+      "Populations with low calcium diets, which are common in many low- and middle-income countries"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Constipation, bloating and wind (common with supplements)",
+      "Kidney stones",
+      "Too much calcium in the blood (hypercalcaemia): nausea, thirst, passing a lot of urine, tiredness, confusion",
+      "Milk-alkali syndrome: high calcium, kidney problems and alkaline blood from large amounts of calcium carbonate, often as antacids"
+    ],
+    "note": "High blood calcium from food alone is rare. It happens mainly with supplements or calcium-containing antacids, especially together with high amounts of vitamin D, or because of a medical condition (overactive parathyroid glands, some cancers). In the Women's Health Initiative trial, calcium with vitamin D raised the risk of kidney stones."
+  },
+  "foodSources": {
+    "examples": [
+      "Milk, yoghurt and cheese",
+      "Calcium-fortified plant drinks and yoghurts",
+      "Tofu set with calcium (calcium sulphate or calcium chloride)",
+      "Canned fish eaten with the soft bones, such as sardines, pilchards and salmon",
+      "Green vegetables such as kale, pak choi, spring greens and broccoli",
+      "Sesame seeds and tahini, almonds",
+      "Bread and other foods made with calcium-fortified flour (white flour in the UK is fortified)",
+      "Hard tap water and some mineral waters"
+    ],
+    "note": "How much calcium the body absorbs differs between foods. Oxalate (in spinach and rhubarb) and phytate (in bran and some seeds) bind calcium, so spinach supplies far less usable calcium than its content suggests."
+  },
+  "forms": [
+    {
+      "name": "Calcium carbonate",
+      "note": "The most common and cheapest form, with about 40% calcium by weight. It needs stomach acid, so it is absorbed best with food. It is also the active ingredient of many antacids, which count towards total intake."
+    },
+    {
+      "name": "Calcium citrate",
+      "note": "About 21% calcium, so tablets are larger or more numerous. It is absorbed with or without food and is often preferred for people with low stomach acid or on acid-reducing medicines."
+    },
+    {
+      "name": "Calcium lactate and gluconate",
+      "note": "Contain much less calcium per gram, so they are less practical as supplements."
+    },
+    {
+      "name": "Hydroxyapatite, algae, coral or bone-derived calcium",
+      "note": "Marketed as natural forms. Research on how well they work is limited."
+    },
+    {
+      "name": "Calcium with vitamin D",
+      "note": "Most fracture trials used combined products. The label's 'elemental calcium' is the amount of calcium itself, not the weight of the whole compound. The body absorbs a larger share of smaller amounts, so a large amount at once is absorbed less efficiently."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults 18 to 24 years (men and women)", "amount": 1000, "unit": "mg", "type": "PRI" },
+      { "group": "Adults 25 years and over (men and women)", "amount": 950, "unit": "mg", "type": "PRI" },
+      { "group": "Pregnancy or breastfeeding, 18 to 24 years", "amount": 1000, "unit": "mg", "type": "PRI" },
+      { "group": "Pregnancy or breastfeeding, 25 years and over", "amount": 950, "unit": "mg", "type": "PRI" }
+    ],
+    "upperLimit": {
+      "amount": 2500,
+      "unit": "mg",
+      "note": "From food and supplements together, for adults including during pregnancy and breastfeeding. Set by the EU's Scientific Committee on Food in 2003 and confirmed by EFSA (the European Food Safety Authority) in 2012, because long trials found total intakes of 2500 mg a day were tolerated without harm. EFSA keeps the same intake value in pregnancy and breastfeeding because the body adapts its handling of calcium during these times."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2015.4101",
+        "title": "Scientific Opinion on Dietary Reference Values for calcium",
+        "year": 2015,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "42016128",
+        "doi": "10.2903/j.efsa.2012.2814",
+        "title": "Scientific Opinion on the Tolerable Upper Intake Level of calcium",
+        "year": 2012,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Bone fractures",
+      "population": "Adults over 50, mostly women after menopause; some trials in care-home residents",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many randomised trials, but results differ between them",
+        "Trials at the lowest risk of bias found no effect at any site",
+        "Signs of publication bias favouring calcium",
+        "The clearest benefit came from frail people in care homes with low calcium and vitamin D"
+      ],
+      "summary": "Pooled trials of calcium supplements (with or without vitamin D) found about 11% fewer fractures overall, but the best-quality trials found none, and a review of trials in older adults living at home found no lower fracture risk with calcium, vitamin D or both. Combined with vitamin D, the Cochrane review found a small drop in hip fractures, mainly in care-home residents. The large Women's Health Initiative trial (1000 mg calcium with 400 IU vitamin D a day) did not significantly reduce hip fractures.",
+      "studies": [
+        {
+          "pmid": "26420387",
+          "doi": "10.1136/bmj.h4580",
+          "title": "Calcium intake and risk of fracture: systematic review",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "29279934",
+          "doi": "10.1001/jama.2017.19344",
+          "title": "Association Between Calcium or Vitamin D Supplementation and Fracture Incidence in Community-Dwelling Older Adults: A Systematic Review and Meta-analysis",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 51145
+        },
+        {
+          "pmid": "24729336",
+          "doi": "10.1002/14651858.cd000227.pub4",
+          "title": "Vitamin D and vitamin D analogues for preventing fractures in post-menopausal women and older men",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 91791
+        },
+        {
+          "pmid": "16481635",
+          "doi": "10.1056/nejmoa055218",
+          "title": "Calcium plus vitamin D supplementation and the risk of fractures",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 36282
+        }
+      ]
+    },
+    {
+      "outcome": "Bone mineral density",
+      "population": "Adults over 50",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Over 50 randomised trials with consistent results",
+        "Bone density is a stand-in measure, not fractures themselves",
+        "The increase is small and does not grow over time"
+      ],
+      "summary": "Calcium supplements raised bone density by about 1 to 2% at most sites. The gain appeared in the first year and did not grow after that, and the reviewers judged it unlikely to reduce fractures in a meaningful way. A higher number on a scan is not the same as fewer broken bones.",
+      "studies": [
+        {
+          "pmid": "26420598",
+          "doi": "10.1136/bmj.h4183",
+          "title": "Calcium intake and bone mineral density: systematic review and meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 12257
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks and strokes",
+      "population": "Older adults, mostly women after menopause",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analyses of the same kind of trials reached different conclusions",
+        "Heart events were not the main outcome of most trials and were often self-reported",
+        "A later analysis using only verified heart events found no increase"
+      ],
+      "summary": "Meta-analyses by Bolland and colleagues found about 20 to 30% more heart attacks with calcium supplements, with or without vitamin D. A later meta-analysis that counted only heart events confirmed from medical records found no increase in heart disease or deaths. Whether calcium supplements raise heart risk is still debated. EFSA concluded in 2012 that no link with cardiovascular disease had been established.",
+      "studies": [
+        {
+          "pmid": "20671013",
+          "doi": "10.1136/bmj.c3691",
+          "title": "Effect of calcium supplements on risk of myocardial infarction and cardiovascular events: meta-analysis",
+          "year": 2010,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "21505219",
+          "doi": "10.1136/bmj.d2040",
+          "title": "Calcium supplements with or without vitamin D and risk of cardiovascular events: reanalysis of the Women's Health Initiative limited access dataset and meta-analysis",
+          "year": 2011,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "25042841",
+          "doi": "10.1002/jbmr.2311",
+          "title": "The effects of calcium supplementation on verified coronary heart disease hospitalization and death in postmenopausal women: a collaborative meta-analysis of randomized controlled trials",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 63563
+        }
+      ]
+    },
+    {
+      "outcome": "Kidney stones",
+      "population": "Women after menopause; older adults in fracture trials",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Mainly one large randomised trial, where calcium was given with vitamin D",
+        "Supported by more kidney problems in the Cochrane review of vitamin D with or without calcium",
+        "EFSA judged in 2012 that a link at intakes up to the upper limit had not been established"
+      ],
+      "summary": "In the Women's Health Initiative trial, women taking 1000 mg calcium with 400 IU vitamin D a day had about 17% more kidney stones over 7 years. The Cochrane review of vitamin D with or without calcium found about 16% more kidney disease. Calcium from food did not show this pattern (see the food findings).",
+      "studies": [
+        {
+          "pmid": "16481635",
+          "doi": "10.1056/nejmoa055218",
+          "title": "Calcium plus vitamin D supplementation and the risk of fractures",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 36282
+        },
+        {
+          "pmid": "24729336",
+          "doi": "10.1002/14651858.cd000227.pub4",
+          "title": "Vitamin D and vitamin D analogues for preventing fractures in post-menopausal women and older men",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 91791
+        }
+      ]
+    },
+    {
+      "outcome": "Pre-eclampsia and high blood pressure in pregnancy",
+      "population": "Pregnant women, especially those with low calcium diets",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "27 randomised trials with over 18,000 women",
+        "Rated low-quality evidence for pre-eclampsia by the Cochrane authors",
+        "Results differ a lot between trials, and small trials showed bigger effects (possible publication bias)",
+        "In the largest trial the reduction was only 8% and could have been chance"
+      ],
+      "summary": "Calcium supplements in pregnancy (trials used at least 1 g a day) were linked to less high blood pressure and pre-eclampsia, a serious pregnancy complication. The effect was clear in women with low calcium diets but not in women whose diets already had enough. HELLP syndrome, a rare complication, was slightly more common with calcium. This is a decision for the pregnancy care team, not a general rule.",
+      "studies": [
+        {
+          "pmid": "30277579",
+          "doi": "10.1002/14651858.cd001059.pub5",
+          "title": "Calcium supplementation during pregnancy for preventing hypertensive disorders and related problems",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 18064
+        }
+      ]
+    },
+    {
+      "outcome": "Bowel polyps (colorectal adenomas) coming back",
+      "population": "Adults who recently had adenomas removed",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "One large, well-run, double-blind randomised trial",
+        "Follow-up of only 3 to 5 years",
+        "Adenomas are a step towards bowel cancer, not cancer itself"
+      ],
+      "summary": "Calcium (1200 mg a day), vitamin D (1000 IU a day) or both did not lower the number of people whose adenomas came back over 3 to 5 years.",
+      "studies": [
+        {
+          "pmid": "26465985",
+          "doi": "10.1056/nejmoa1500409",
+          "title": "A Trial of Calcium and Vitamin D for the Prevention of Colorectal Adenomas",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 2259
+        }
+      ]
+    }
+  ],
+  "foodFindings": [
+    {
+      "outcome": "Bone fractures (calcium, milk and dairy from food)",
+      "population": "Adults over 50 in 44 cohort studies; only 2 small trials",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Mostly observational studies, which can't prove cause",
+        "Results were consistent: most studies found no link",
+        "Almost no randomised trials of food calcium with fractures as the outcome"
+      ],
+      "summary": "In most cohort studies, people who ate more calcium, milk or dairy did not have fewer fractures. There is no trial evidence that eating more calcium-rich food prevents fractures.",
+      "studies": [
+        {
+          "pmid": "26420387",
+          "doi": "10.1136/bmj.h4580",
+          "title": "Calcium intake and risk of fracture: systematic review",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Bone mineral density (more calcium from food)",
+      "population": "Adults over 50 in 15 trials",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Randomised trials, but fewer and smaller than for supplements (about 1500 people)",
+        "Bone density is a stand-in measure, not fractures",
+        "The increase was small"
+      ],
+      "summary": "Adding calcium-rich foods raised bone density by about 1 to 2%, similar to supplements. As with supplements, a gain this small is unlikely to change fracture risk much.",
+      "studies": [
+        {
+          "pmid": "26420598",
+          "doi": "10.1136/bmj.h4183",
+          "title": "Calcium intake and bone mineral density: systematic review and meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Kidney stones (calcium from food compared with supplements)",
+      "population": "91,731 US nurses followed for 12 years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One large observational study, which can't prove cause",
+        "Other parts of dairy foods, or other habits, may explain part of the link",
+        "The opposite pattern for supplements fits the randomised Women's Health Initiative result"
+      ],
+      "summary": "Women with the most calcium from food had about 35% fewer kidney stones than those with the least, while women using calcium supplements had about 20% more. One explanation is that calcium eaten with meals binds oxalate in the gut. This is a good example of why food and supplements are treated as different things.",
+      "studies": [
+        {
+          "pmid": "9092314",
+          "doi": "10.7326/0003-4819-126-7-199704010-00001",
+          "title": "Comparison of dietary calcium with supplemental calcium and other nutrients as factors affecting the risk for kidney stones in women",
+          "year": 1997,
+          "studyType": "observational",
+          "n": 91731
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "Calcium and phosphate balance changes in kidney disease and is usually managed by the kidney team; some phosphate binders contain calcium and count towards intake. Talk to your doctor before using calcium supplements.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Pregnancy",
+      "note": "EFSA's intake value is the same in pregnancy. Calcium to lower the risk of pre-eclampsia is a decision for the midwife or doctor, and the evidence is strongest for low calcium diets.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Levothyroxine (thyroid hormone)",
+      "note": "In a small study, calcium carbonate taken together with levothyroxine lowered thyroid hormone levels and raised TSH (thyroid-stimulating hormone). Pharmacists usually advise keeping them hours apart."
+    },
+    {
+      "with": "Some antibiotics (tetracyclines such as doxycycline, quinolones such as ciprofloxacin)",
+      "note": "Calcium binds these antibiotics in the gut and makes them work less well if taken at the same time."
+    },
+    {
+      "with": "Bisphosphonates for osteoporosis (such as alendronate)",
+      "note": "Calcium blocks their absorption when taken together; the leaflet explains the timing."
+    },
+    {
+      "with": "Iron supplements",
+      "note": "Calcium taken at the same time can reduce iron absorption."
+    },
+    {
+      "with": "Thiazide diuretics (water tablets such as bendroflumethiazide)",
+      "note": "They reduce calcium lost in urine, so high calcium intake can raise blood calcium."
+    },
+    {
+      "with": "Vitamin D",
+      "note": "Vitamin D is needed to absorb calcium. High amounts of both together raise the chance of high blood calcium and kidney stones."
+    },
+    {
+      "with": "Antacids containing calcium carbonate",
+      "note": "They count towards total calcium intake; large amounts over time can cause milk-alkali syndrome."
+    }
+  ],
+  "cautions": [
+    "Check the elemental calcium on the label: that is the amount that counts, not the weight of the compound.",
+    "Count calcium from food, fortified foods, antacids and supplements together against the upper limit.",
+    "Many medicines need to be kept apart from calcium in time; a pharmacist can check yours.",
+    "A history of kidney stones, kidney disease or high blood calcium is a reason to talk to a doctor before using calcium supplements."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "21118827",
+      "doi": "10.1210/jc.2010-2704",
+      "title": "The 2011 report on dietary reference intakes for calcium and vitamin D from the Institute of Medicine: what clinicians need to know",
+      "year": 2011,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "17507729",
+      "doi": "10.1177/0115426507022003286",
+      "title": "Calcium supplementation in clinical practice: a review of forms, doses, and indications",
+      "year": 2007,
+      "studyType": "review"
+    },
+    {
+      "pmid": "10838651",
+      "doi": "10.1001/jama.283.21.2822",
+      "title": "Effect of calcium carbonate on the absorption of levothyroxine",
+      "year": 2000,
+      "studyType": "observational",
+      "n": 20
+    }
+  ]
+}

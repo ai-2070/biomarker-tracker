@@ -1,0 +1,296 @@
+{
+  "id": "selenium",
+  "name": "Selenium",
+  "kind": "mineral",
+  "otherNames": [
+    "Se",
+    "L-selenomethionine",
+    "selenium yeast",
+    "sodium selenite",
+    "sodium selenate",
+    "selenoproteins"
+  ],
+  "summary": "Selenium is a trace mineral the body builds into a few dozen proteins (selenoproteins), including antioxidant enzymes and the enzymes that activate thyroid hormone. How much is in food depends on the soil it grew in. The gap between enough and too much is narrow, and trials of supplements in people who weren't short didn't prevent cancer or heart disease.",
+  "roles": [
+    "Part of antioxidant enzymes (glutathione peroxidases) that protect cells from damage",
+    "Activating and recycling thyroid hormone",
+    "Sperm production and reproduction",
+    "Immune function"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "The usual test is plasma or serum selenium. It reflects recent intake and depends on the form eaten (selenomethionine raises it more, because it is stored in body proteins). Selenoprotein P and the enzyme glutathione peroxidase show whether the body has enough to make its selenium proteins, but they stop rising once intake is adequate, so they can't show excess. EFSA based its adequate intake on the point where selenoprotein P levels off. Hair and toenail selenium reflect longer-term intake but are mostly used in research. Selenium isn't usually tested without a reason, and this app has no selenium marker yet."
+  },
+  "low": {
+    "signs": [
+      "Clear deficiency is rare in Europe",
+      "Heart muscle disease in children and young women in very low-selenium areas of China (Keshan disease)",
+      "A joint and bone disease in some low-selenium regions (Kashin-Beck disease)",
+      "Muscle pain and weakness in people on long-term drip feeding without added selenium",
+      "Possibly weaker immune defences and thyroid problems when intake is low"
+    ],
+    "atRisk": [
+      "People in regions with low-selenium soil (parts of Europe and China) who eat mostly local food",
+      "People on long-term drip (parenteral) feeding",
+      "People on kidney dialysis",
+      "People with severe gut conditions that limit absorption, such as Crohn's disease or short bowel",
+      "Strict vegans in low-selenium areas, since meat, fish and eggs are main sources there"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Hair loss",
+      "Brittle, ridged or lost nails",
+      "Garlic smell on the breath",
+      "Skin rash or inflammation (dermatitis)",
+      "Tiredness, irritability, nausea and diarrhoea",
+      "Nerve damage in severe poisoning"
+    ],
+    "note": "Too much selenium causes selenosis. Hair loss is one of the first signs, and EFSA based its upper limit on it: in the SELECT trial, men given 200 µg of selenium a day on top of their usual diet (about 330 µg in total) had more hair loss and skin inflammation. EFSA found that adults are unlikely to go over the limit except regular users of high-dose supplements or regular eaters of Brazil nuts."
+  },
+  "foodSources": {
+    "examples": [
+      "Brazil nuts (very high and very variable)",
+      "Fish and seafood: tuna, sardines, prawns, mussels",
+      "Offal such as kidney and liver",
+      "Meat and poultry",
+      "Eggs",
+      "Bread and cereals, mushrooms and pulses (amounts depend on the soil)"
+    ],
+    "note": "Selenium in plant foods depends on the soil they grew in, so the same food can hold very different amounts in different countries. Soils in much of Europe are lower in selenium than in North America."
+  },
+  "forms": [
+    {
+      "name": "L-selenomethionine (organic)",
+      "note": "The main form in food. The body can build it into proteins in place of the amino acid methionine, so it raises blood levels more and is stored. SELECT used it."
+    },
+    {
+      "name": "Selenium yeast",
+      "note": "Yeast grown in a selenium-rich medium; most of its selenium is selenomethionine, with other compounds that vary by product."
+    },
+    {
+      "name": "Sodium selenite and sodium selenate (inorganic)",
+      "note": "Used directly to make selenoproteins and not stored in body proteins, so they raise blood selenium less than selenomethionine at the same amount. Used in some thyroid trials and in drip feeding."
+    },
+    {
+      "name": "Multivitamins and combination products",
+      "note": "Many contain selenium, so amounts add up with single supplements and Brazil nuts."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults", "amount": 70, "unit": "µg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 70, "unit": "µg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 85, "unit": "µg", "type": "AI" }
+    ],
+    "upperLimit": {
+      "amount": 255,
+      "unit": "µg",
+      "note": "Tolerable upper intake level (UL) a day from all food and supplements, for adult men and women including pregnancy and breastfeeding. EFSA set it in 2023, based on hair loss: harm was seen at 330 µg a day in the SELECT trial, and EFSA divided this by a safety factor of 1.3. The intake values are adequate intakes (AI): EFSA couldn't work out an average need, so it used the intake at which selenoprotein P levels off. They are guides for groups, not personal targets."
+    },
+    "sources": [
+      {
+        "pmid": "42087966",
+        "doi": "10.2903/j.efsa.2014.3846",
+        "title": "Scientific Opinion on Dietary Reference Values for selenium",
+        "year": 2014,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "36698500",
+        "doi": "10.2903/j.efsa.2023.7704",
+        "title": "Scientific opinion on the tolerable upper intake level for selenium",
+        "year": 2023,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Cancer (overall and by type)",
+      "population": "Adults in 10 randomised trials, mostly men (88%), many in the US",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Cochrane review; trials at low risk of bias rated high certainty",
+        "Large trials, including SELECT with over 35,000 men",
+        "Women were few, so the result is less certain for them"
+      ],
+      "summary": "Selenium supplements didn't lower cancer overall, cancer deaths, or cancers of the prostate, bowel, lung or bladder. Trials at low risk of bias suggested more melanoma, and in SELECT men with the highest selenium levels at the start had more high-grade prostate cancer when given more. An earlier idea that people with low blood selenium would benefit wasn't confirmed. Observational studies linked higher selenium with less cancer, but these were judged very low certainty because of confounding; the trials are the better test.",
+      "studies": [
+        {
+          "pmid": "29376219",
+          "doi": "10.1002/14651858.cd005195.pub4",
+          "title": "Selenium for preventing cancer",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 27232
+        },
+        {
+          "pmid": "19066370",
+          "doi": "10.1001/jama.2008.864",
+          "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 35533
+        }
+      ]
+    },
+    {
+      "outcome": "Type 2 diabetes",
+      "population": "Adults without diabetes in cancer prevention trials (NPC in the eastern US; SELECT in the US, Canada and Puerto Rico)",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Diabetes was a secondary outcome, not what the trials were designed to test",
+        "The largest trial's increase wasn't statistically clear",
+        "The results across trials point the same way"
+      ],
+      "summary": "In the NPC trial (1,202 people, about 7.7 years), type 2 diabetes developed more often with 200 µg a day of selenium than with placebo (12.6 compared with 8.4 cases per 1,000 people a year), most clearly in people whose selenium was already highest. SELECT saw a smaller increase that wasn't statistically clear, and a Cochrane pooling found about 6% more, also not statistically clear. Selenium supplements don't appear to prevent diabetes and may raise the risk in people who already get enough.",
+      "studies": [
+        {
+          "pmid": "17620655",
+          "doi": "10.7326/0003-4819-147-4-200708210-00175",
+          "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
+          "year": 2007,
+          "studyType": "rct",
+          "n": 1202
+        },
+        {
+          "pmid": "19066370",
+          "doi": "10.1001/jama.2008.864",
+          "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 35533
+        },
+        {
+          "pmid": "23440843",
+          "doi": "10.1002/14651858.cd009671.pub2",
+          "title": "Selenium supplementation for the primary prevention of cardiovascular disease",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 19715
+        }
+      ]
+    },
+    {
+      "outcome": "Heart and blood vessel disease, and death from any cause",
+      "population": "Adults from the general population and people at higher risk of heart disease",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Trials at low risk of bias, but only two large ones (SELECT and NPC) reported heart events",
+        "Mostly men in the US, where selenium intake is higher than in much of Europe"
+      ],
+      "summary": "A Cochrane review of 12 trials found no effect of selenium supplements on deaths, deaths from heart disease or heart events. A larger Cochrane review of antioxidant trials also found no effect on deaths from any cause with selenium. SELECT recorded more hair loss and skin inflammation with selenium.",
+      "studies": [
+        {
+          "pmid": "23440843",
+          "doi": "10.1002/14651858.cd009671.pub2",
+          "title": "Selenium supplementation for the primary prevention of cardiovascular disease",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 19715
+        },
+        {
+          "pmid": "22419320",
+          "doi": "10.1002/14651858.cd007176.pub2",
+          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 296707
+        }
+      ]
+    },
+    {
+      "outcome": "Mild thyroid eye disease (Graves' orbitopathy)",
+      "population": "Adults with mild Graves' orbitopathy treated at European thyroid centres",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised, double-blind trial of 159 people",
+        "Six months of treatment, six months of follow-up",
+        "Not known whether it helps people who already get plenty of selenium"
+      ],
+      "summary": "In this trial, 100 µg of selenium twice a day for six months improved quality of life and eye findings, and slowed the disease, compared with placebo. It is a single trial in people with a diagnosed condition under specialist care, not evidence for thyroid health in general.",
+      "studies": [
+        {
+          "pmid": "21591944",
+          "doi": "10.1056/nejmoa1012985",
+          "title": "Selenium and the course of mild Graves' orbitopathy",
+          "year": 2011,
+          "studyType": "rct",
+          "n": 159
+        }
+      ]
+    },
+    {
+      "outcome": "Hashimoto's thyroiditis (autoimmune underactive thyroid)",
+      "population": "Adults with Hashimoto's thyroiditis, most on thyroid hormone treatment",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Four small trials (463 people) at unclear to high risk of bias",
+        "Too different to combine",
+        "Antibody levels are a lab result, not how people feel or how much medicine they need"
+      ],
+      "summary": "Selenium lowered thyroid antibody levels in two trials, and one small trial at high risk of bias reported better well-being. No trial measured quality of life properly or whether people needed less thyroid hormone. The Cochrane reviewers concluded the evidence is too incomplete to support or rule out a benefit.",
+      "studies": [
+        {
+          "pmid": "23744563",
+          "doi": "10.1002/14651858.cd010223.pub2",
+          "title": "Selenium supplementation for Hashimoto's thyroiditis",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 463
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Type 2 diabetes, or a higher risk of it",
+      "note": "Trials raised a possible higher risk of type 2 diabetes with selenium supplements in people who already got enough. Discuss any selenium supplement with your doctor.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Brazil nuts, multivitamins and other selenium sources",
+      "note": "Amounts add up. Brazil nuts can contain a lot of selenium, and EFSA names regular Brazil nut eaters and high-dose supplement users as the adults most likely to go over the upper limit."
+    },
+    {
+      "with": "Thyroid conditions",
+      "note": "Selenium is needed to activate thyroid hormone, and specialists sometimes use it for mild Graves' eye disease. For other thyroid conditions the evidence is unclear. Ask the doctor treating your thyroid."
+    }
+  ],
+  "cautions": [
+    "The gap between the adequate intake (70 µg) and the upper limit (255 µg) is narrow compared with most nutrients.",
+    "Brazil nuts vary a lot in selenium depending on where they grew.",
+    "Hair loss, brittle nails or a garlic smell on the breath can be signs of too much selenium; these need a doctor.",
+    "Trials showing no benefit were mostly in men who already got enough selenium; less is known about people with low intake."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "22381456",
+      "doi": "10.1016/s0140-6736(11)61452-9",
+      "title": "Selenium and human health",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25835046",
+      "doi": "10.3390/nu7042209",
+      "title": "Biomarkers of selenium status",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "36698500",
+      "doi": "10.2903/j.efsa.2023.7704",
+      "title": "Scientific opinion on the tolerable upper intake level for selenium",
+      "year": 2023,
+      "studyType": "guideline"
+    }
+  ]
+}

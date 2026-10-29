@@ -27,6 +27,13 @@ describe("router", () => {
     expect(parseHash("#/soon/body")).toEqual({ name: "body" });
     expect(parseHash("#/body?add=1")).toEqual({ name: "body", add: true });
   });
+  it("opens Supplementation and a nutrient", () => {
+    expect(parseHash("#/supplements")).toEqual({ name: "supplements" });
+    expect(parseHash("#/supplements?kind=mineral")).toEqual({ name: "supplements", kind: "mineral" });
+    expect(parseHash("#/supplements?kind=nope")).toEqual({ name: "supplements" });
+    expect(parseHash("#/supplements/vitamin_d")).toEqual({ name: "nutrient", id: "vitamin_d" });
+    expect(href({ name: "nutrient", id: "iron" })).toBe("#/supplements/iron");
+  });
   it("treats anything else as not found", () => {
     expect(parseHash("#main")).toEqual({ name: "not-found" });
     expect(parseHash("#/marker")).toEqual({ name: "not-found" });

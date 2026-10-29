@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { personalRange } from "../../core/personalRange";
+import { markerTerms } from "../../research/papers";
 import { computeTrend, flagLatest, flagMeasurement, isCritical, isOutOfRange, recentAverage, resolveRange, sortByDate } from "../../core/trends";
 import { formatValue, listUnits } from "../../core/units";
 import type { BiomarkerDef, Citation, Measurement, Profile } from "../../core/types";
@@ -16,7 +17,7 @@ import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useProfile, usePro
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
 import type { ProtocolEntry } from "../../core/types";
-import { BIOMARKER_MAP, fullName } from "../knowledge";
+import { BIOMARKER_MAP, fullName, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
 
@@ -125,7 +126,12 @@ export function MarkerPage({ id }: { id: string }) {
         {/* No suggestions next to a critical value: the urgent banner comes first. */}
         {!(latestFlag && isCritical(latestFlag)) && <LeversPanel def={def} flag={latestFlag} protocols={protocols} />}
 
-        <ResearchPanel def={def} critical={!!latestFlag && isCritical(latestFlag)} />
+        <ResearchPanel
+          name={def.name}
+          terms={markerTerms(def.name, def.abbreviation)}
+          question={`What does research say about what affects my ${nameInSentence(def)}?`}
+          critical={!!latestFlag && isCritical(latestFlag)}
+        />
       </div>
     </>
   );

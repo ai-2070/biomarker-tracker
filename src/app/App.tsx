@@ -24,6 +24,8 @@ import { href, useRoute, type Route } from "./router";
 
 // The chart library is large; load it only when a marker page is opened.
 const MarkerPage = lazy(() => import("./pages/MarkerPage").then((m) => ({ default: m.MarkerPage })));
+const SupplementsPage = lazy(() => import("./pages/SupplementsPage").then((m) => ({ default: m.SupplementsPage })));
+const NutrientPage = lazy(() => import("./pages/NutrientPage").then((m) => ({ default: m.NutrientPage })));
 
 type Boot =
   | { state: "loading" }
@@ -142,6 +144,10 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}`} add={route.add} marker={route.marker} />;
     case "experiment":
       return <ExperimentPage key={route.id} id={route.id} />;
+    case "supplements":
+      return <SupplementsPage kind={route.kind} />;
+    case "nutrient":
+      return <NutrientPage key={route.id} id={route.id} />;
     case "setup":
       return <SetupPage mode={mode} first={false} existingResults={0} folderRoot={root} />;
     case "profiles":
@@ -163,5 +169,5 @@ function OpenBrain({ ask }: { ask?: string }) {
 
 function pageKey(route: Route): string {
   if (route.name === "soon") return `soon/${route.section}`;
-  return route.name === "marker" || route.name === "experiment" ? `${route.name}/${route.id}` : route.name;
+  return route.name === "marker" || route.name === "experiment" || route.name === "nutrient" ? `${route.name}/${route.id}` : route.name;
 }

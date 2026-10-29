@@ -1,0 +1,407 @@
+{
+  "id": "iron",
+  "name": "Iron",
+  "kind": "mineral",
+  "otherNames": [
+    "Fe",
+    "haem iron (from meat and fish)",
+    "non-haem iron (from plants and supplements)",
+    "ferrous sulfate (ferrous sulphate)",
+    "ferrous fumarate",
+    "ferrous gluconate",
+    "ferrous bisglycinate (iron bisglycinate)",
+    "ferric maltol",
+    "polysaccharide-iron complex"
+  ],
+  "summary": "Iron is a mineral the body needs to make haemoglobin, the protein in red blood cells that carries oxygen. The body has no active way to get rid of extra iron, so it controls how much it absorbs: too little leads to anaemia, and too much builds up and can damage organs.",
+  "roles": [
+    "Carrying oxygen in the blood (haemoglobin) and in muscles (myoglobin)",
+    "Making energy inside cells",
+    "Part of many enzymes",
+    "Normal brain development in babies and children"
+  ],
+  "status": {
+    "biomarkerIds": [
+      "ferritin",
+      "transferrin_saturation",
+      "iron",
+      "hemoglobin",
+      "mcv",
+      "mch",
+      "crp_hs"
+    ],
+    "note": "Ferritin is the usual test for iron stores: a low ferritin means stores are low. But ferritin also rises with inflammation, infection, liver disease and excess body fat, so a normal or high ferritin can hide low iron when CRP (C-reactive protein, a marker of inflammation) is raised. Transferrin saturation (how much of the iron-carrying protein in blood is loaded with iron) helps here: low in iron deficiency, high in iron overload. Serum iron on its own changes a lot through the day and after meals, so it says little by itself. Haemoglobin, MCV (mean cell volume, the size of red cells) and MCH (mean cell haemoglobin) fall only late, once deficiency has become anaemia."
+  },
+  "low": {
+    "signs": [
+      "Tiredness, weakness and less stamina",
+      "Shortness of breath on effort, a fast heartbeat",
+      "Pale skin",
+      "Headaches, poor concentration",
+      "Brittle nails, hair loss, a sore tongue or cracks at the corners of the mouth",
+      "Restless legs",
+      "Craving ice or non-food items (pica)",
+      "Often no symptoms at all when stores are low but anaemia hasn't developed yet"
+    ],
+    "atRisk": [
+      "Women with periods, especially heavy periods",
+      "Pregnancy",
+      "Babies, young children and teenagers, who grow fast",
+      "People who lose blood from the gut (e.g. ulcers, bowel polyps or cancer), often without noticing",
+      "Regular blood donors",
+      "People with coeliac disease, inflammatory bowel disease or after weight-loss (bariatric) surgery",
+      "Vegetarians and vegans, because iron from plants is absorbed less well",
+      "Endurance athletes",
+      "People with heart failure or chronic kidney disease",
+      "Long-term use of acid-reducing medicines or regular use of anti-inflammatory painkillers (NSAIDs) or aspirin"
+    ]
+  },
+  "high": {
+    "signs": [
+      "From supplements: constipation, diarrhoea, nausea, stomach pain and black stools",
+      "Long-term overload: tiredness, joint pain, loss of sex drive, darker skin",
+      "Long-term overload: liver damage (scarring, cirrhosis), diabetes and heart problems",
+      "Overdose (mostly young children swallowing tablets): vomiting, diarrhoea and stomach pain, then shock and liver failure"
+    ],
+    "note": "With a normal gut, food alone almost never causes iron overload, because the body absorbs less when stores are full. Overload usually comes from inherited haemochromatosis (the body absorbs too much iron), repeated blood transfusions (e.g. thalassaemia), or iron supplements taken without a deficiency over a long time. Haemochromatosis shows up as a high transferrin saturation and a high ferritin, and is treated by a doctor by removing blood. A high ferritin on its own far more often reflects inflammation, fatty liver or alcohol than too much iron. An overdose of iron tablets is a medical emergency, especially in young children."
+  },
+  "foodSources": {
+    "examples": [
+      "Red meat and liver (liver is high in vitamin A, so it isn't advised in pregnancy)",
+      "Dark poultry meat, fish and shellfish such as mussels and cockles",
+      "Beans, lentils, chickpeas and tofu",
+      "Fortified breakfast cereals and wholemeal bread",
+      "Pumpkin seeds, sesame seeds, nuts and dried apricots",
+      "Dark green leafy vegetables such as kale"
+    ],
+    "cofidNutrient": "iron",
+    "note": "Iron from meat and fish (haem iron) is absorbed much better than iron from plants and supplements (non-haem iron). Vitamin C in the same meal helps the body absorb plant iron. Tea, coffee and cocoa with a meal, and calcium, reduce it. Phytate in whole grains and pulses also lowers absorption."
+  },
+  "forms": [
+    {
+      "name": "Ferrous salts (ferrous sulfate, fumarate, gluconate)",
+      "note": "The standard, cheapest forms, used in most trials. They contain different amounts of iron per tablet, so labels that give the weight of the salt and labels that give the amount of elemental (actual) iron aren't comparable. Stomach and gut side effects are common."
+    },
+    {
+      "name": "Ferrous bisglycinate (an iron-amino acid chelate)",
+      "note": "Iron bound to the amino acid glycine. In trials in pregnant women it raised haemoglobin a little more and caused fewer gut side effects than iron salts, but there are few trials in other adults (see the findings below)."
+    },
+    {
+      "name": "Ferric forms (ferric maltol, polysaccharide-iron complex, others)",
+      "note": "Most ferric (Fe3+) iron is absorbed less well than ferrous (Fe2+) iron. Ferric maltol is a prescription medicine designed to be absorbed better; other ferric products have less research behind them."
+    },
+    {
+      "name": "Slow-release and coated tablets",
+      "note": "These release iron further down the gut, past the first part of the small intestine where most iron is absorbed. They may cause fewer side effects partly because less iron is taken up."
+    },
+    {
+      "name": "Liquid iron",
+      "note": "Easier to swallow and to give in small amounts; it can stain teeth."
+    },
+    {
+      "name": "Intravenous iron (a drip)",
+      "note": "A medicine given in a clinic, not a supplement. Used when tablets don't work, can't be absorbed (e.g. some bowel diseases) or aren't tolerated, or when iron is needed quickly."
+    },
+    {
+      "name": "Daily or every other day, once or split",
+      "note": "Each iron dose raises hepcidin, a hormone that blocks iron absorption for about a day. In absorption studies, single doses on alternate days were absorbed better per dose than daily or split doses. Whether this gives better haemoglobin over months is still unclear (see the findings below)."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Men", "amount": 11, "unit": "mg", "type": "PRI" },
+      { "group": "Women before menopause", "amount": 16, "unit": "mg", "type": "PRI" },
+      { "group": "Women after menopause", "amount": 11, "unit": "mg", "type": "PRI" },
+      { "group": "Pregnancy", "amount": 16, "unit": "mg", "type": "PRI" },
+      { "group": "Breastfeeding", "amount": 16, "unit": "mg", "type": "PRI" }
+    ],
+    "noUpperLimit": "EFSA could not set a tolerable upper intake level for iron (2024): it is clear that iron overload damages organs, but the studies don't show at what intake the risk starts. Instead it set a \"safe level of intake\" of 40 mg a day from all sources for adults, including in pregnancy and breastfeeding. It is based on supplement trials where 20–25 mg a day on top of about 15 mg from food did not cause black stools (a sign of unabsorbed iron in the gut, not harmful in itself). This is more cautious, and more limited, than an upper limit: it says what is safe, not where harm begins. Doctors treating iron deficiency often use higher amounts for a limited time. The pregnancy value equals the value for women before menopause because absorption rises sharply in pregnancy.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2015.4254",
+        "title": "Scientific Opinion on Dietary Reference Values for iron",
+        "year": 2015,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "38868106",
+        "doi": "10.2903/j.efsa.2024.8819",
+        "title": "Scientific opinion on the tolerable upper intake level for iron",
+        "year": 2024,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Anaemia, haemoglobin and iron stores",
+      "population": "Women with periods (teenagers and adults), many with low iron or anaemia, mostly in lower-income countries",
+      "effect": "helps",
+      "grade": "high",
+      "whyThisGrade": [
+        "67 randomised trials with about 8,500 women",
+        "Consistent rise in haemoglobin (rated high certainty by the Cochrane review)",
+        "Fewer women anaemic or iron deficient at the end (rated moderate certainty)",
+        "Only 10 trials were at low risk of bias; many reported their methods poorly"
+      ],
+      "summary": "Daily iron supplements raised haemoglobin and iron stores and made anaemia and iron deficiency less common. Exercise performance improved and tiredness seemed to fall. The benefit is clearest in women who were low to begin with: raising iron in someone whose levels are already normal is not shown to help. Low iron also has causes, such as blood loss, that need checking by a doctor.",
+      "studies": [
+        {
+          "pmid": "27087396",
+          "doi": "10.1002/14651858.cd009747.pub2",
+          "title": "Daily iron supplementation for improving anaemia, iron status and health in menstruating women",
+          "year": 2016,
+          "studyType": "meta-analysis",
+          "n": 8506
+        }
+      ]
+    },
+    {
+      "outcome": "Anaemia and iron deficiency in pregnancy, and outcomes for the baby",
+      "population": "Pregnant women, in high- and low-income countries",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "57 trials with about 49,000 women",
+        "Results differed a lot between trials",
+        "Most other outcomes (for mother and baby) were uncertain or showed little difference"
+      ],
+      "summary": "Daily iron in pregnancy may lower the chance of anaemia and of iron deficiency at the end of pregnancy, and probably lowers iron-deficiency anaemia. For most other outcomes, such as the mother's death or the baby's health, there was little or no difference, or the evidence was too uncertain to tell. Iron in pregnancy is part of antenatal care, and is decided with a midwife or doctor.",
+      "studies": [
+        {
+          "pmid": "39145520",
+          "doi": "10.1002/14651858.cd004736.pub6",
+          "title": "Daily oral iron supplementation during pregnancy",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 48971
+        }
+      ]
+    },
+    {
+      "outcome": "Tiredness (fatigue) in people with low iron but no anaemia",
+      "population": "Adults, mostly women, with low ferritin but normal haemoglobin",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Few trials measured tiredness (4 trials, about 700 people in the pooled result)",
+        "Tiredness is self-reported and easily influenced by expectations",
+        "Objective measures, such as maximal oxygen uptake, did not improve"
+      ],
+      "summary": "In trials of non-anaemic people with low ferritin, iron lowered self-reported tiredness by a small to moderate amount compared with placebo. In one French trial of 198 women with ferritin below 50 µg/L, tiredness scores fell by 48 % with iron and by 29 % with placebo; quality of life, mood and anxiety did not differ. Measured fitness did not change. Tiredness has many causes, so low iron is only one possibility to discuss with a doctor.",
+      "studies": [
+        {
+          "pmid": "29626044",
+          "doi": "10.1136/bmjopen-2017-019240",
+          "title": "Efficacy of iron supplementation on fatigue and physical capacity in non-anaemic iron-deficient adults: a systematic review of randomised controlled trials",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 1170
+        },
+        {
+          "pmid": "22777991",
+          "doi": "10.1503/cmaj.110950",
+          "title": "Effect of iron supplementation on fatigue in nonanemic menstruating women with low ferritin: a randomized controlled trial",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 198
+        },
+        {
+          "pmid": "12763985",
+          "doi": "10.1136/bmj.326.7399.1124",
+          "title": "Iron supplementation for unexplained fatigue in non-anaemic women: double blind randomised placebo controlled trial",
+          "year": 2003,
+          "studyType": "rct",
+          "n": 144
+        }
+      ]
+    },
+    {
+      "outcome": "Stomach and gut side effects",
+      "population": "Adults taking ferrous sulfate in trials, compared with placebo or with iron by drip",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Many randomised trials (43 trials, about 6,800 adults) in one meta-analysis, confirmed in the Cochrane review of women",
+        "Side effects were reported in different ways from trial to trial"
+      ],
+      "summary": "Iron tablets clearly increase gut side effects: constipation, diarrhoea, nausea and stomach pain. Compared with placebo, the odds of gut side effects were about twice as high; the meta-analysis found no clear link with the amount of iron. Black stools are expected with iron and are harmless. Side effects are a common reason people give up on iron, which is one reason doctors try different products or schedules.",
+      "studies": [
+        {
+          "pmid": "25700159",
+          "doi": "10.1371/journal.pone.0117383",
+          "title": "Ferrous sulfate supplementation causes significant gastrointestinal side-effects in adults: a systematic review and meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 6831
+        },
+        {
+          "pmid": "27087396",
+          "doi": "10.1002/14651858.cd009747.pub2",
+          "title": "Daily iron supplementation for improving anaemia, iron status and health in menstruating women",
+          "year": 2016,
+          "studyType": "meta-analysis",
+          "n": 8506
+        }
+      ]
+    },
+    {
+      "outcome": "Iron every other day compared with every day",
+      "population": "Young women with low iron stores, and adults with iron-deficiency anaemia",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Absorption studies are small (40 and 20 women) but carefully measured with labelled iron",
+        "Trials of haemoglobin over months are small and their results differ",
+        "A 2025 meta-analysis (11 trials, about 1,000 people) rated most outcomes very low certainty"
+      ],
+      "summary": "Each iron dose raises hepcidin, a hormone that blocks absorption of the next dose. In iron-depleted women, the same doses given on alternate days were absorbed better per dose than on consecutive days, and splitting a dose in two did not help. In a 6-month trial in 150 women, the same total amount of iron given on alternate days gave the same ferritin, less iron deficiency at the end and fewer gut side effects. But in trials of people with anaemia, haemoglobin rose about as much, or slightly more, with daily iron. So alternate days may be gentler on the gut and absorb better per dose, but it isn't shown to correct anaemia faster.",
+      "studies": [
+        {
+          "pmid": "29032957",
+          "doi": "10.1016/s2352-3026(17)30182-5",
+          "title": "Iron absorption from oral iron supplements given on consecutive versus alternate days and as single morning doses versus twice-daily split dosing in iron-depleted women: two open-label, randomised controlled trials",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "38021373",
+          "doi": "10.1016/j.eclinm.2023.102286",
+          "title": "Alternate day versus consecutive day oral iron supplementation in iron-depleted women: a randomized double-blind placebo-controlled study",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 150
+        },
+        {
+          "pmid": "36725875",
+          "doi": "10.1038/s41598-023-29034-9",
+          "title": "Alternate day versus daily oral iron for treatment of iron deficiency anemia: a randomized controlled trial",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 200
+        },
+        {
+          "pmid": "40841680",
+          "doi": "10.1186/s40360-025-00984-2",
+          "title": "Efficacy of daily versus alternate day oral iron supplementation for management of anaemia among general population: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 1014
+        }
+      ]
+    },
+    {
+      "outcome": "Ferrous bisglycinate compared with other iron forms",
+      "population": "Mostly pregnant women and children; few trials in other adults",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "17 small trials, with different doses and comparison products",
+        "Pooled results only for pregnant women (9 trials) and children (4 trials)",
+        "Only 4 trials in men and non-pregnant women, too few to pool"
+      ],
+      "summary": "In pregnant women, ferrous bisglycinate raised haemoglobin a little more and caused fewer gut side effects than other iron supplements over 4–20 weeks. For other adults there are too few trials to say whether it works better. Trials often compared different amounts of iron, which makes a fair comparison harder.",
+      "studies": [
+        {
+          "pmid": "36728680",
+          "doi": "10.1093/nutrit/nuac106",
+          "title": "The effects of oral ferrous bisglycinate supplementation on hemoglobin and ferritin concentrations in adults and children: a systematic review and meta-analysis of randomized controlled trials",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Levothyroxine (thyroid hormone)",
+      "note": "Iron binds levothyroxine in the gut, so less of the medicine is absorbed. The two are usually taken several hours apart; a pharmacist or doctor can advise on timing."
+    },
+    {
+      "with": "Some antibiotics (tetracyclines such as doxycycline, and quinolones such as ciprofloxacin)",
+      "note": "Iron binds these antibiotics, so both are absorbed less. Timing matters; ask a pharmacist."
+    },
+    {
+      "with": "Levodopa and some other medicines (e.g. methyldopa, bisphosphonates for bones)",
+      "note": "Iron can reduce how much of these medicines is absorbed."
+    },
+    {
+      "with": "Acid-reducing medicines (proton pump inhibitors such as omeprazole, H2 blockers, antacids)",
+      "note": "Stomach acid helps absorb non-haem iron, so long-term use of these medicines can lower iron absorption and iron stores."
+    },
+    {
+      "with": "Calcium (supplements and dairy)",
+      "note": "Calcium reduces iron absorption from the same meal or tablet. Over a whole diet the effect on iron stores appears small."
+    },
+    {
+      "with": "Zinc",
+      "note": "High doses of iron and zinc taken together without food compete for absorption."
+    },
+    {
+      "with": "Tea, coffee and cocoa",
+      "note": "Polyphenols in these drinks strongly reduce iron absorption from the same meal."
+    },
+    {
+      "with": "Haemochromatosis, thalassaemia and other iron-loading conditions",
+      "note": "Iron supplements (and vitamin C supplements, which increase iron absorption) can add to iron overload. People with these conditions are guided by their doctor."
+    },
+    {
+      "with": "Inflammatory bowel disease",
+      "note": "Iron tablets can worsen gut symptoms and are absorbed less during inflammation; doctors often use iron by drip instead."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "Iron needs rise in the second half of pregnancy, and anaemia is checked in antenatal care. EFSA's safe level of 40 mg a day also applies in pregnancy. Iron in pregnancy is decided with a midwife or doctor.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "An overdose of iron tablets can kill a young child. Keep them out of sight and reach; a swallowed overdose needs emergency care.",
+    "Low iron has a cause, and in men and in women after menopause it can be blood loss from the gut that needs checking. A doctor finds the cause before treating it.",
+    "Iron supplements without a confirmed deficiency can be harmful, especially with haemochromatosis. The gene change behind it is common in people of northern European descent, and many people with the condition don't know they have it.",
+    "A high ferritin is usually a sign of inflammation, liver strain or alcohol, not a need for less iron in the diet; it is worth discussing with a doctor."
+  ],
+  "evidenceClaims": [
+    "iron-supplements-ferritin",
+    "haem-iron-foods",
+    "vitamin-c-with-meals-iron",
+    "tea-coffee-with-meals-iron"
+  ],
+  "sources": [
+    {
+      "pmid": "33285139",
+      "doi": "10.1016/s0140-6736(20)32594-0",
+      "title": "Iron deficiency",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25946282",
+      "doi": "10.1056/nejmra1401038",
+      "title": "Iron-deficiency anemia",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "20200263",
+      "doi": "10.3945/ajcn.2010.28674f",
+      "title": "Iron bioavailability and dietary reference values",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35662478",
+      "doi": "10.1016/j.jhep.2022.03.033",
+      "title": "EASL Clinical Practice Guidelines on haemochromatosis",
+      "year": 2022,
+      "studyType": "guideline"
+    }
+  ]
+}

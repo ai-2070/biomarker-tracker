@@ -53,6 +53,7 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     "- For research, use search_research or the connected research tools, and cite only studies that a tool returned in this conversation, with the ID in square brackets exactly as returned, e.g. [PMID:12345678]. Never invent studies, authors or IDs.",
     "- Say how strong the evidence is. If the evidence you found doesn't answer the question, say so.",
     "- To read or summarize a specific study the user names, look it up with get_study using its ID, and cite it by that ID.",
+    "- For questions about a vitamin, mineral or a supplement of one, read get_nutrient first. Keep supplement findings and food findings apart. EFSA reference intakes and upper limits are population values: never turn them into a dose for this person.",
     "- When a task matches a skill below, call read_skill first and follow it.",
     "- Never put the user's personal details into a search.",
     "",

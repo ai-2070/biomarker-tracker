@@ -17,7 +17,7 @@ import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
 import { bodySummary } from "../src/core/bodySummary";
-import { findMarker, knowledge } from "./knowledge";
+import { findMarker, findNutrient, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
 export interface HealthSnapshot {
@@ -247,6 +247,25 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         "The app's own calculations from body measurements: BMI, waist-to-height, basal metabolic rate (an estimate, never a target), heart age with 10-year cardiovascular risk (Framingham), and recent averages of blood pressure, resting heart rate, resting HRV, blood oxygen and sleep. Use these numbers; don't calculate them yourself.",
       inputSchema: z.object({}),
       execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso(), knowledge().defs),
+    }),
+    get_nutrient: tool({
+      description:
+        "The app's research-based entry for a vitamin or mineral: what it does, how status is measured, who runs low, food sources, supplement forms, graded findings from supplement trials (and separately from foods) with study IDs, EFSA reference intakes and upper limit (population values, never a personal dose), interactions and cautions. Use it for any question about a vitamin, mineral or supplement of one.",
+      inputSchema: z.object({ nutrient: z.string().describe("Name or id, e.g. vitamin D, iron, magnesium") }),
+      execute: async ({ nutrient }) => {
+        const n = findNutrient(nutrient);
+        if (!n) return { error: `No entry for "${nutrient}". Entries: ${knowledge().nutrients.map((x) => x.name).join(", ")}.` };
+        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType });
+        const finding = (f: (typeof n.findings)[number]) => ({ outcome: f.outcome, studiedIn: f.population, effect: f.effect, grade: f.grade, whyThisGrade: f.whyThisGrade, summary: f.summary, studies: f.studies.map(cite) });
+        return {
+          ...n,
+          reference: { ...n.reference, note: "EFSA population values for healthy adults. Not a target or a dose for this person.", sources: n.reference.sources.map(cite) },
+          findings: n.findings.map(finding),
+          ...(n.foodFindings ? { foodFindings: n.foodFindings.map(finding) } : {}),
+          sources: n.sources.map(cite),
+          safetyNotesFromLog: safetyOf(s).filter((id) => n.interactions.some((x) => x.safetyId === id)),
+        };
+      },
     }),
     get_biological_age: tool({
       description: "PhenoAge for each blood test that had all 9 markers, computed by the app.",

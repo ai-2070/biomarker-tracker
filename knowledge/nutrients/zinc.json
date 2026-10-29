@@ -1,0 +1,345 @@
+{
+  "id": "zinc",
+  "name": "Zinc",
+  "kind": "mineral",
+  "otherNames": [
+    "Zn",
+    "zinc gluconate",
+    "zinc acetate",
+    "zinc citrate",
+    "zinc sulfate (zinc sulphate)",
+    "zinc oxide",
+    "zinc picolinate",
+    "zinc bisglycinate"
+  ],
+  "summary": "Zinc is a trace mineral that hundreds of enzymes and many other proteins need, for growth, wound healing, taste and smell, and the immune system. The body has no real zinc store, so it needs a regular supply. Too much zinc over time blocks copper and can cause anaemia and nerve damage.",
+  "roles": [
+    "Part of hundreds of enzymes, including ones that make DNA and protein",
+    "Normal growth and development in children, and in pregnancy",
+    "Wound healing and healthy skin",
+    "The immune system",
+    "Taste and smell",
+    "Making sperm and normal fertility"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no zinc marker. Labs measure zinc in plasma or serum (the liquid part of blood), but it is a poor guide for one person: it changes after meals and through the day, falls with infection and inflammation and when albumin (the protein that carries it) is low, and is affected by some medicines and hormones. It drops clearly in severe shortage, but mild shortage can go unnoticed. Experts judge zinc status mainly from the diet (zinc and phytate intake), plasma zinc in groups of people, and growth in children. Hair, urine and nail zinc are not reliable."
+  },
+  "low": {
+    "signs": [
+      "Loss of appetite, and changes in taste and smell",
+      "Wounds that heal slowly",
+      "Skin rashes, especially around the mouth, hands and feet",
+      "Hair loss",
+      "Diarrhoea",
+      "More frequent infections",
+      "Slow growth and delayed puberty in children"
+    ],
+    "atRisk": [
+      "Vegetarians and vegans, because phytate in grains and pulses lowers zinc absorption",
+      "Pregnancy and breastfeeding",
+      "People with gut diseases (e.g. Crohn's disease, coeliac disease), long-lasting diarrhoea, or after weight-loss (bariatric) surgery",
+      "Long-term heavy alcohol use",
+      "Chronic kidney disease, and sickle cell disease",
+      "Older adults who eat little",
+      "Children in low-income countries"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Nausea, vomiting, stomach cramps and diarrhoea from large doses",
+      "A bad or metallic taste (common with lozenges)",
+      "Over months: low copper, which can cause anaemia, low white blood cells (neutropenia) and nerve damage (numbness, unsteady walking)",
+      "Loss of smell from zinc nasal sprays and gels"
+    ],
+    "note": "Zinc from food does not cause problems. Harm comes from supplements, and sometimes from unexpected sources such as some denture fixative creams used in large amounts. The main long-term risk is that high zinc stops the gut from absorbing copper. Copper deficiency from zinc develops slowly and can be mistaken for a bone marrow disease; the nerve damage may not fully recover. In a large eye-disease trial, a high zinc dose was linked with more hospital stays for urinary problems."
+  },
+  "foodSources": {
+    "examples": [
+      "Oysters and other shellfish such as crab",
+      "Beef, lamb, pork and dark poultry meat",
+      "Cheese, milk and eggs",
+      "Beans, lentils and chickpeas",
+      "Pumpkin seeds, cashews and other nuts and seeds",
+      "Whole grains and fortified breakfast cereals"
+    ],
+    "note": "Zinc from meat and fish is absorbed well. Phytate, found in whole grains, beans, lentils, nuts and seeds, binds zinc and lowers how much is absorbed. Soaking, sprouting, fermenting (as in sourdough bread) and leavening lower phytate."
+  },
+  "forms": [
+    {
+      "name": "Zinc gluconate, citrate and acetate",
+      "note": "Dissolve well in water and are absorbed well. In one absorption study, zinc citrate and zinc gluconate were absorbed equally (about 60 %) when taken without food. Gluconate and acetate are the forms used in most cold lozenges."
+    },
+    {
+      "name": "Zinc sulfate",
+      "note": "Cheap, well absorbed, and used in many trials and medicines; it can upset the stomach, especially without food."
+    },
+    {
+      "name": "Zinc oxide",
+      "note": "Doesn't dissolve in water. It was absorbed less well than citrate or gluconate when taken without food, and hardly at all by some people. It was the form used in the AREDS eye-disease trial."
+    },
+    {
+      "name": "Zinc picolinate, bisglycinate and other chelates",
+      "note": "Zinc bound to an organic molecule. Sold as better absorbed; there are few independent human studies comparing them."
+    },
+    {
+      "name": "Zinc lozenges",
+      "note": "Dissolved slowly in the mouth, in trials for colds. Results differ a lot between trials, which may partly depend on how much free zinc a lozenge releases; some ingredients (such as citric acid) bind zinc. Bad taste and nausea are common."
+    },
+    {
+      "name": "Zinc nasal sprays and gels",
+      "note": "Have been linked to lasting loss of smell. The US Food and Drug Administration (FDA) warned against some of these products in 2009."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Men, diet with 300 mg phytate a day (low)", "amount": 9.4, "unit": "mg", "type": "PRI" },
+      { "group": "Men, 600 mg phytate a day", "amount": 11.7, "unit": "mg", "type": "PRI" },
+      { "group": "Men, 900 mg phytate a day", "amount": 14, "unit": "mg", "type": "PRI" },
+      { "group": "Men, 1,200 mg phytate a day (high: lots of whole grains and pulses)", "amount": 16.3, "unit": "mg", "type": "PRI" },
+      { "group": "Women, diet with 300 mg phytate a day (low)", "amount": 7.5, "unit": "mg", "type": "PRI" },
+      { "group": "Women, 600 mg phytate a day", "amount": 9.3, "unit": "mg", "type": "PRI" },
+      { "group": "Women, 900 mg phytate a day", "amount": 11, "unit": "mg", "type": "PRI" },
+      { "group": "Women, 1,200 mg phytate a day (high: lots of whole grains and pulses)", "amount": 12.7, "unit": "mg", "type": "PRI" },
+      { "group": "Pregnancy (women's value + 1.6 mg; shown at 600 mg phytate)", "amount": 10.9, "unit": "mg", "type": "PRI" },
+      { "group": "Breastfeeding (women's value + 2.9 mg; shown at 600 mg phytate)", "amount": 12.2, "unit": "mg", "type": "PRI" }
+    ],
+    "upperLimit": {
+      "amount": 25,
+      "unit": "mg",
+      "note": "From all sources, for adults including pregnancy and breastfeeding. Set by the EU Scientific Committee on Food in 2002 and published by EFSA in 2006, to protect copper status: small, closely controlled studies (90 days to 14 weeks) found no harm to copper at about 50 mg a day, and this was halved for uncertainty. No newer EFSA assessment was found (checked October 2026). Because phytate lowers absorption, EFSA's reference intakes rise with the phytate in the diet; the four levels cover the usual range in Europe."
+    },
+    "sources": [
+      {
+        "pmid": "42087959",
+        "doi": "10.2903/j.efsa.2014.3844",
+        "title": "Scientific Opinion on Dietary Reference Values for zinc",
+        "year": 2014,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "38999082",
+        "doi": "10.3390/molecules29133130",
+        "title": "Zinc Toxicity: Understanding the Limits",
+        "year": 2024,
+        "studyType": "review"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Catching colds",
+      "population": "Children and adults taking zinc regularly to prevent colds",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "9 trials with about 1,450 people for this outcome",
+        "Most trials had unclear or high risk of bias in at least one area",
+        "Very different products, doses and lengths"
+      ],
+      "summary": "Regular zinc may make little or no difference to the chance of catching a cold (about 7 % lower risk at most, which could be chance). When colds did happen, they probably lasted about as long as without zinc.",
+      "studies": [
+        {
+          "pmid": "38719213",
+          "doi": "10.1002/14651858.cd014914.pub2",
+          "title": "Zinc for prevention and treatment of the common cold",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 8526
+        }
+      ]
+    },
+    {
+      "outcome": "How long colds last, when zinc is started at the first symptoms",
+      "population": "Mostly healthy adults with a new cold, in trials mostly of zinc lozenges",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "8 trials with about 970 people for this outcome",
+        "Results differed hugely between trials (I² 97 %, a measure of how much trials disagree)",
+        "Most trials at unclear or high risk of bias; products, doses and timing varied widely"
+      ],
+      "summary": "On average, colds were about 2 days shorter with zinc in treatment trials, but some trials found a large effect and others none, and how bad the symptoms were did not clearly change. It is unclear which products, if any, work. Lozenge trials used amounts of zinc well above the upper limit for short periods; this is research, not a guide to use.",
+      "studies": [
+        {
+          "pmid": "38719213",
+          "doi": "10.1002/14651858.cd014914.pub2",
+          "title": "Zinc for prevention and treatment of the common cold",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 8526
+        }
+      ]
+    },
+    {
+      "outcome": "Side effects of zinc for colds",
+      "population": "People in cold treatment trials",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "16 trials with about 2,100 people reported side effects",
+        "Consistent increase, but side effects were reported in different ways"
+      ],
+      "summary": "Zinc used to treat colds probably increases mild side effects, mainly bad taste and nausea, by about a third compared with placebo. No treatment trial reported on serious side effects.",
+      "studies": [
+        {
+          "pmid": "38719213",
+          "doi": "10.1002/14651858.cd014914.pub2",
+          "title": "Zinc for prevention and treatment of the common cold",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 8526
+        }
+      ]
+    },
+    {
+      "outcome": "Worsening of age-related macular degeneration (AMD), an eye disease of older age",
+      "population": "People aged 55–80 who already had AMD, most at intermediate stage, in the US AREDS trial and smaller trials",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Mostly one large, well-run randomised trial (AREDS, 3,640 people, about 6 years)",
+        "Benefit seen mainly in people at higher risk of getting worse",
+        "Not tested for preventing AMD in people who don't have it"
+      ],
+      "summary": "In people who already had AMD, zinc (alone, or with vitamins C and E and beta-carotene) slowed progression to late AMD. With the combination, about 78 fewer people in 1,000 with intermediate AMD got worse, but only about 4 fewer in 1,000 with early AMD. The trial used 80 mg of zinc a day as zinc oxide, with copper added to prevent copper deficiency, far above the upper limit; this is a treatment studied under eye doctors' care, not a general supplement. The beta-carotene in the original formula raised lung cancer risk, mostly in former smokers, and was later replaced with lutein and zeaxanthin.",
+      "studies": [
+        {
+          "pmid": "11594942",
+          "doi": "10.1001/archopht.119.10.1417",
+          "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
+          "year": 2001,
+          "studyType": "rct",
+          "n": 3640
+        },
+        {
+          "pmid": "37702300",
+          "doi": "10.1002/14651858.cd000254.pub5",
+          "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 11952
+        }
+      ]
+    },
+    {
+      "outcome": "Hospital stays for urinary problems",
+      "population": "Older adults with AMD in the AREDS trial, given 80 mg zinc a day or no zinc",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "A later analysis of one trial, not its planned main question",
+        "Many comparisons, so some differences may be chance",
+        "The follow-up trial (AREDS2) found no difference between 80 mg and 25 mg of zinc"
+      ],
+      "summary": "People given high-dose zinc were admitted to hospital for urinary problems (such as an enlarged prostate, urinary infections and stones) more often than those given no zinc: 11.1 % compared with 7.6 %. There was no increase in prostate or other cancers. This is a signal at high doses, not proof.",
+      "studies": [
+        {
+          "pmid": "17222649",
+          "doi": "10.1016/j.juro.2006.09.047",
+          "title": "High dose zinc increases hospital admissions due to genitourinary complications",
+          "year": 2007,
+          "studyType": "rct",
+          "n": 3640
+        },
+        {
+          "pmid": "37702300",
+          "doi": "10.1002/14651858.cd000254.pub5",
+          "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 11952
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar (fasting glucose, HbA1c)",
+      "population": "Adults with or without diabetes, in 14 countries",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "32 small trials with 1,700 people in total",
+        "Effects differed a lot between groups and zinc forms",
+        "Blood numbers only: no trial showed fewer diabetes complications"
+      ],
+      "summary": "In this meta-analysis, zinc lowered fasting glucose and HbA1c (glycated haemoglobin, the 2–3-month average of blood sugar), mostly in people with diabetes. Lower blood numbers are not the same as fewer complications, and the trials were small and varied. Anyone with diabetes considering zinc would discuss it with their doctor alongside their treatment.",
+      "studies": [
+        {
+          "pmid": "31161192",
+          "doi": "10.1093/ajcn/nqz041",
+          "title": "Zinc supplementation improves glycemic control for diabetes prevention and management: a systematic review and meta-analysis of randomized controlled trials",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 1700
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Copper",
+      "note": "High zinc intake makes the gut hold on to copper so less is absorbed. Over months this can cause copper deficiency, with anaemia, low white blood cells and nerve damage. This is why the upper limit is set to protect copper, and why the AREDS eye formula adds copper."
+    },
+    {
+      "with": "Iron",
+      "note": "High doses of iron and zinc taken together without food compete for absorption."
+    },
+    {
+      "with": "Some antibiotics (tetracyclines such as doxycycline, and quinolones such as ciprofloxacin)",
+      "note": "Zinc binds these antibiotics in the gut, so both are absorbed less. Timing matters; ask a pharmacist."
+    },
+    {
+      "with": "Penicillamine",
+      "note": "Zinc reduces absorption of this medicine (used for Wilson's disease and rheumatoid arthritis)."
+    },
+    {
+      "with": "Thiazide water pills (e.g. hydrochlorothiazide)",
+      "note": "They increase the zinc lost in urine."
+    },
+    {
+      "with": "Wilson's disease",
+      "note": "High-dose zinc is used as a medical treatment for this copper-overload disease, under a specialist."
+    },
+    {
+      "with": "Pregnancy and breastfeeding",
+      "note": "Zinc needs rise (EFSA adds 1.6 mg a day in pregnancy and 2.9 mg in breastfeeding). The upper limit of 25 mg a day also applies.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "Long-term use of high-dose zinc can cause copper deficiency, which damages blood and nerves and can be hard to recognise.",
+    "Zinc nasal sprays and gels have been linked to lasting loss of smell.",
+    "A blood zinc result is hard to interpret on its own; it falls with infection, inflammation and low albumin."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "26962190",
+      "doi": "10.3945/jn.115.220079",
+      "title": "Biomarkers of Nutrition for Development (BOND)-Zinc Review",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38999082",
+      "doi": "10.3390/molecules29133130",
+      "title": "Zinc Toxicity: Understanding the Limits",
+      "year": 2024,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24259556",
+      "doi": "10.3945/jn.113.181487",
+      "title": "Zinc absorption by young adults from supplemental zinc citrate is comparable with that from zinc gluconate and higher than from zinc oxide",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 15
+    }
+  ]
+}

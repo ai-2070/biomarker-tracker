@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { validateEvidenceClaim } from "../src/core/evidence";
 import { validateBiomarkerDef } from "../src/core/knowledge";
+import { validateNutrientDef, type NutrientDef } from "../src/core/nutrients";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
 import { ROOT } from "./store";
 
@@ -13,7 +14,7 @@ function readAll(dir: string): unknown[] {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as unknown);
 }
 
-let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable } | undefined;
+let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[] } | undefined;
 
 export function knowledge() {
   if (!cache) {
@@ -22,9 +23,18 @@ export function knowledge() {
     for (const j of readAll(path.join(k, "biomarkers"))) if (validateBiomarkerDef(j).length === 0) defs.set((j as BiomarkerDef).id, j as BiomarkerDef);
     const evidence = readAll(path.join(k, "evidence")).filter((j) => validateEvidenceClaim(j).length === 0) as EvidenceClaim[];
     const foods = JSON.parse(fs.readFileSync(path.join(k, "foods", "cofid-foods.json"), "utf8")) as FoodTable;
-    cache = { defs, evidence, foods };
+    const dir = path.join(k, "nutrients");
+    const nutrients = (fs.existsSync(dir) ? readAll(dir) : []).filter((j) => validateNutrientDef(j).length === 0) as NutrientDef[];
+    cache = { defs, evidence, foods, nutrients };
   }
   return cache;
+}
+
+/** Find a vitamin or mineral by id, name or other name (case-insensitive; "vitamin d", "cobalamin"). */
+export function findNutrient(query: string): NutrientDef | undefined {
+  const q = query.trim().toLowerCase().replace(/[\s-]+/g, "_");
+  const words = query.trim().toLowerCase();
+  return knowledge().nutrients.find((n) => n.id === q || n.name.toLowerCase() === words || n.otherNames.some((o) => o.toLowerCase().startsWith(words)));
 }
 
 /** Find a marker by id, name, abbreviation or any alias (case-insensitive). */

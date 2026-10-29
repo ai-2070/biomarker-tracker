@@ -51,6 +51,7 @@ const TOOL_TEXT: Record<string, string> = {
   compare_before_after: "Compared before and after in your experiments",
   search_research: "Searched Europe PMC",
   get_study: "Read a study on Europe PMC",
+  get_nutrient: "Read the vitamins and minerals knowledge base",
   read_skill: "Followed a skill",
   research_tools: "Listed a research source's tools",
 };
