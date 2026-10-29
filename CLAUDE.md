@@ -213,6 +213,14 @@ One assistant, no teams or multi-agent setups. Model choice, Skills and MCP sett
 - **Devices** is a "Soon" page (`#/soon/devices`) for automatic sync from the phone; until then, device data comes in through the import. Devices = an Android companion app reading Health Connect and syncing to this computer over the local network.
 - Product brief for design work: `PRODUCT.md`; dashboard direction contract: `.impeccable/surfaces/`.
 
+## Protocols
+
+- **Protocols** (`#/protocols`, `#/protocols/<id>`; `pages/PlansPage.tsx`, `pages/PlanPage.tsx`; sidebar Health, after Habits): named sets of things a person follows (a supplement stack, a diet, exercise, sleep, medicines), written by them or loaded from a shared file. In code they are **plans** (`src/core/plans.ts`, tested), because "protocols" already names the Habits log; on disk `protocols.json` in the profile folder (Dexie table `plans`, schema v3; synced, backed up, restored and validated with `validatePlan` like the rest).
+- Item: name, the person's own amount (free text, never set by the app), type (supplement / diet / medication / lifestyle), time of day (`PLAN_TIMES`), note. The page shows the day as a schedule, links supplements to Supplementation (`nutrientFor`, by name or other name, a form number allowed: "Vitamin D3"), warns about items that interact with each other (`pairWarnings`, from the nutrients' interactions) and with the person's medicines or conditions (`interactionsFor` with `safetyNotes` of habits, profile and the items).
+- **Start** turns each item into a habit (`habitsForPlan`: name plus amount) from a chosen date (`startPlan`); **stop** ends them today, or removes ones that hadn't begun (`stopPlan`). Watches are added on those habits in Habits.
+- **Share**: `planToFile` (items only: no ids, dates, habits or results) and `planFromFile` (new ids, validated). No built-in named protocols (they would mean suggesting doses).
+- Brain: `get_protocols` (with linked nutrients and interactions between items; amounts are the person's own, never changed or suggested); OpenClaw's data summary lists them.
+
 ## Supplementation (vitamins and minerals)
 
 - A research-based knowledge base, not the person's data: its own sidebar group **Knowledge** (not Health), `#/supplements` (`?kind=vitamin|mineral`) and `#/supplements/<id>` (`pages/SupplementsPage.tsx`, `pages/NutrientPage.tsx`). On phones it is in the More sheet.

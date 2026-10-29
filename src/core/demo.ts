@@ -5,6 +5,7 @@
  * diet experiment. Same input date, same data (a seeded random generator adds small wobbles).
  */
 import { addDays } from "./dates";
+import type { Plan } from "./plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
 export interface DemoData {
@@ -12,6 +13,7 @@ export interface DemoData {
   measurements: Measurement[];
   protocols: ProtocolEntry[];
   experiments: Experiment[];
+  plans: Plan[];
 }
 
 /** Canonical units of the markers used here (a test checks them against the knowledge base). */
@@ -222,5 +224,20 @@ export function demoProfile(today: string): DemoData {
   ];
 
   measurements.sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
-  return { person, measurements, protocols, experiments };
+  // A protocol the example person wrote down: their current routine, already running as habits above.
+  const plans: Plan[] = [
+    {
+      id: "example-plan-routine",
+      name: "My daily routine",
+      description: "What I do on a normal day. Written down to keep track, not a recommendation.",
+      items: [
+        { id: "example-item-d3", label: "Vitamin D3", amount: "1000 IU", category: "supplement", when: "morning", note: "With breakfast" },
+        { id: "example-item-oats", label: "Oats with berries", category: "diet", when: "morning" },
+        { id: "example-item-walk", label: "Walk", amount: "30 min", category: "lifestyle", when: "evening" },
+        { id: "example-item-screens", label: "No screens in bed", category: "lifestyle", when: "bedtime" },
+      ],
+      createdAt: `${d3Start}T08:00:00.000Z`,
+    },
+  ];
+  return { person, measurements, protocols, experiments, plans };
 }

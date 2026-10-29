@@ -222,9 +222,9 @@ export async function addFiles(files: File[]): Promise<void> {
 
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
-  const [measurements, protocols, experiments, profile] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), getProfile()]);
+  const [measurements, protocols, experiments, plans, profile] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), getProfile()]);
   // The name and private notes never leave this page.
-  return { measurements, protocols, experiments, profile: assistantProfile(profile), name: profile.name };
+  return { measurements, protocols, experiments, plans, profile: assistantProfile(profile), name: profile.name };
 }
 
 /** Sends the draft (or `text`) with any attached documents. `model` labels the answer. */

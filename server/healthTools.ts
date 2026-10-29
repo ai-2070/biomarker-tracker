@@ -18,6 +18,7 @@ import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, Saf
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
+import { nutrientFor, pairWarnings, validatePlan, type Plan } from "../src/core/plans";
 import { findMarker, findNutrient, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
@@ -26,6 +27,8 @@ export interface HealthSnapshot {
   protocols: ProtocolEntry[];
   experiments: Experiment[];
   profile: Profile;
+  /** Protocols the person wrote (Protocols page). */
+  plans?: Plan[];
 }
 
 /** Validate what the page sent, with the same checks as a backup file. */
@@ -34,8 +37,10 @@ export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot 
   const r = parseBackup({ app: "biomarker-tracker", version: 2, measurements: o.measurements ?? [], protocols: o.protocols ?? [], experiments: o.experiments ?? [], profile: o.profile ?? {} });
   if (!r.ok) return { ok: false, error: r.error };
   const { measurements, protocols, experiments, profile } = r.backup;
+  const plans = Array.isArray(o.plans) ? o.plans : [];
+  if (plans.length > 200 || plans.some((p) => validatePlan(p).length > 0)) return { ok: false, error: "The protocols are damaged." };
   // Name and private notes are dropped here too, even if a page sent them.
-  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile) } };
+  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[] } };
 }
 
 const r = (n: number | undefined) => (n === undefined ? undefined : roundForDisplay(n));
@@ -248,6 +253,31 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         "The app's own calculations from body measurements: BMI, waist-to-height, basal metabolic rate (an estimate, never a target), heart age with 10-year cardiovascular risk (Framingham), and recent averages of blood pressure, resting heart rate, resting HRV, blood oxygen and sleep. Use these numbers; don't calculate them yourself.",
       inputSchema: z.object({}),
       execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso(), knowledge().defs),
+    }),
+    get_protocols: tool({
+      description:
+        "The person's protocols (Protocols page): named sets of supplements, foods, exercise, sleep habits or medicines they follow or plan to, each item with their own amount and time of day, and whether the protocol is running (started as habits). Supplements are linked to the vitamins and minerals knowledge base, with interactions between items. Amounts are the person's own entries: never change them or suggest new ones.",
+      inputSchema: z.object({}),
+      execute: async () => {
+        const { nutrients } = knowledge();
+        return {
+          protocols: (s.plans ?? []).map((p) => ({
+            name: p.name,
+            ...(p.description ? { description: p.description } : {}),
+            ...(p.source ? { source: p.source } : {}),
+            running: p.active ? `since ${p.active.since}` : "not started",
+            items: p.items.map((i) => ({
+              item: i.label,
+              ...(i.amount ? { amountTheyWrote: i.amount } : {}),
+              type: i.category,
+              when: i.when,
+              ...(i.note ? { note: i.note } : {}),
+              ...(nutrientFor(i, nutrients) ? { nutrient: nutrientFor(i, nutrients)!.name } : {}),
+            })),
+            interactionsBetweenItems: pairWarnings(p, nutrients),
+          })),
+        };
+      },
     }),
     get_nutrient: tool({
       description:

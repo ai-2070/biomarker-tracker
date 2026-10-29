@@ -61,6 +61,14 @@ export const StarIcon = (p: P) => (
   </Icon>
 );
 
+/** A clipboard with a list: protocols. */
+export const ClipboardIcon = (p: P) => (
+  <Icon {...p}>
+    <rect x="5" y="4.5" width="14" height="16.5" rx="2" />
+    <path d="M9 4.5V3.8c0-.7.5-1.3 1.2-1.3h3.6c.7 0 1.2.6 1.2 1.3v.7M9 10h6M9 13.5h6M9 17h4" />
+  </Icon>
+);
+
 /** An open book: the research knowledge base (Supplementation). */
 export const BookIcon = (p: P) => (
   <Icon {...p}>

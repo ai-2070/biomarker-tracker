@@ -35,7 +35,7 @@ describe("profiles: one folder per person", () => {
   it("creates a readable folder with everything in it", () => {
     const p = profiles.createProfile({ person: { name: "Anna Kovács", sex: "f", birthMonth: "1984-04" }, measurements: [m("1", "2024-05-12", 46)] });
     expect(p.id).toMatch(/^anna-kovacs-[0-9a-f]{4}$/);
-    for (const f of ["profile.json", "results.json", "log.json", "experiments.json", "settings.json", "files.json", "README.txt"]) expect(fs.existsSync(path.join(p.folder, f))).toBe(true);
+    for (const f of ["profile.json", "results.json", "log.json", "experiments.json", "protocols.json", "settings.json", "files.json", "README.txt"]) expect(fs.existsSync(path.join(p.folder, f))).toBe(true);
     expect(p.results).toBe(1);
     expect(p.lastResult).toBe("2024-05-12");
     expect(profiles.getProfileData(p.id).person).toEqual({ name: "Anna Kovács", sex: "f", birthMonth: "1984-04" });
@@ -68,6 +68,15 @@ describe("profiles: one folder per person", () => {
     expect(() => profiles.readFile(p.id, "../profile.json")).toThrow(/No file/);
     profiles.deleteFile(p.id, a.name);
     expect(profiles.listFiles(p.id).map((f) => f.name)).toEqual([b.name]);
+  });
+
+  it("keeps protocols in protocols.json, through saving and backups, and refuses damaged ones", () => {
+    const plan = { id: "pl", name: "Stack", createdAt: "2026-10-01T00:00:00.000Z", items: [{ id: "i", label: "Vitamin D3", amount: "1000 IU", category: "supplement", when: "morning" }] };
+    const p = profiles.createProfile({ person: { name: "Eva" }, plans: [plan] });
+    expect(JSON.parse(fs.readFileSync(path.join(p.folder, "protocols.json"), "utf8"))).toEqual([plan]);
+    const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
+    expect(profiles.getProfileData(restored.id).plans).toEqual([plan]);
+    expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, plans: [{ ...plan, name: "" }] })).toThrow(/protocol is damaged/);
   });
 
   it("backs up to a zip and restores it as a new profile, with files", () => {

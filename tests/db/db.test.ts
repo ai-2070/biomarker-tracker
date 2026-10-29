@@ -19,6 +19,9 @@ import {
   measurementsFor,
   setProfile,
   TrackerDB,
+  savePlan,
+  startPlan,
+  stopPlan,
 } from "../../src/db/db";
 
 let db: TrackerDB;
@@ -104,6 +107,32 @@ describe("db", () => {
     await endExperiment(id, "2024-05-01", db);
     expect((await db.experiments.get(id))!.end).toBe("2024-05-01");
     expect((await db.protocols.get(e.protocolId!))!.end).toBe("2024-05-01");
+  });
+
+  it("starts a protocol as habits and stops it again", async () => {
+    const plan = {
+      id: "p1",
+      name: "Stack",
+      createdAt: "2026-10-01T00:00:00.000Z",
+      items: [
+        { id: "a", label: "Vitamin D3", amount: "1000 IU", category: "supplement" as const, when: "morning" as const },
+        { id: "b", label: "Walk", category: "lifestyle" as const, when: "evening" as const },
+      ],
+    };
+    await savePlan(plan, db);
+    await startPlan(plan, "2026-10-10", db);
+    const started = (await db.plans.get("p1"))!;
+    expect(started.active?.since).toBe("2026-10-10");
+    expect((await db.protocols.toArray()).map((h) => h.label).sort()).toEqual(["Vitamin D3 1000 IU", "Walk"]);
+    await watchHabit((await db.protocols.get(started.active!.habitIds[0]!))!, ["vitamin_d"], 56, "2026-10-10", db);
+    await stopPlan(started, "2026-10-29", db);
+    expect((await db.protocols.toArray()).every((h) => h.end === "2026-10-29")).toBe(true);
+    expect((await db.experiments.toArray())[0]!.end).toBe("2026-10-29");
+    expect((await db.plans.get("p1"))!.active).toBeUndefined();
+    // A protocol planned for later and stopped before it began leaves no habits behind.
+    await startPlan(plan, "2026-12-01", db);
+    await stopPlan((await db.plans.get("p1"))!, "2026-10-29", db);
+    expect(await db.protocols.count()).toBe(2);
   });
 
   it("watches markers for a habit and keeps the watch in step with it", async () => {

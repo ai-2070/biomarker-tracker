@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
 import { syncWatch, watchFor } from "../core/habits";
+import { habitsForPlan, type Plan } from "../core/plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 
 interface Setting {
@@ -13,6 +14,8 @@ export class TrackerDB extends Dexie {
   protocols!: EntityTable<ProtocolEntry, "id">;
   settings!: EntityTable<Setting, "key">;
   experiments!: EntityTable<Experiment, "id">;
+  /** Protocols the person wrote (Protocols page); "protocols" above is the Habits log. */
+  plans!: EntityTable<Plan, "id">;
 
   constructor(name = "biomarker-tracker") {
     super(name);
@@ -23,6 +26,8 @@ export class TrackerDB extends Dexie {
     });
     // v2 (app v0.8): self-experiments.
     this.version(2).stores({ experiments: "id, start" });
+    // v3: protocols (sets of supplements, foods, exercise… the person follows).
+    this.version(3).stores({ plans: "id" });
   }
 }
 
@@ -30,6 +35,48 @@ export const db = new TrackerDB();
 
 export function newId(): string {
   return crypto.randomUUID();
+}
+
+// Protocols
+
+export async function savePlan(p: Plan, database = db): Promise<void> {
+  await database.plans.put(p);
+}
+
+export async function deletePlan(id: string, database = db): Promise<void> {
+  await database.plans.delete(id);
+}
+
+/** Starts a protocol: each item becomes a habit from `start`, remembered so stopping can end them. */
+export async function startPlan(p: Plan, start: string, database = db): Promise<void> {
+  await database.transaction("rw", database.plans, database.protocols, async () => {
+    const habitIds: string[] = [];
+    for (const h of habitsForPlan(p, start)) {
+      const id = newId();
+      await database.protocols.add({ ...h, id });
+      habitIds.push(id);
+    }
+    await database.plans.put({ ...p, active: { since: start, habitIds } });
+  });
+}
+
+/** Stops a protocol: its habits end today (planned ones that hadn't started are removed). */
+export async function stopPlan(p: Plan, today: string, database = db): Promise<void> {
+  await database.transaction("rw", database.plans, database.protocols, database.experiments, async () => {
+    for (const id of p.active?.habitIds ?? []) {
+      const h = await database.protocols.get(id);
+      if (!h || h.end) continue;
+      if (h.start > today) {
+        await database.protocols.delete(id);
+        await database.experiments.filter((e) => e.protocolId === id).delete();
+      } else {
+        await database.protocols.put({ ...h, end: today });
+        for (const e of await database.experiments.filter((x) => x.protocolId === id).toArray()) await database.experiments.put(syncWatch(e, { ...h, end: today }));
+      }
+    }
+    const { active: _a, ...rest } = p;
+    await database.plans.put(rest);
+  });
 }
 
 // Measurements
@@ -204,10 +251,11 @@ export async function importBackup(backup: Backup, mode: ImportMode, database = 
 }
 
 export async function deleteEverything(database = db): Promise<void> {
-  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.settings], async () => {
+  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.settings], async () => {
     await database.measurements.clear();
     await database.protocols.clear();
     await database.experiments.clear();
+    await database.plans.clear();
     await database.settings.clear();
   });
 }

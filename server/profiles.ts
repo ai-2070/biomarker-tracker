@@ -5,6 +5,7 @@
 //     results.json      every result
 //     log.json          supplements, diet changes, medicines, habits
 //     experiments.json  self-experiments
+//     protocols.json    protocols the person follows (Protocols page)
 //     settings.json     this profile's display settings (e.g. units)
 //     files/            scanned lab reports and other documents
 //     files.json        list of those files
@@ -14,6 +15,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { cleanProfile, isProfile, parseBackup } from "../src/core/backup";
+import { validatePlan, type Plan } from "../src/core/plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../src/core/types";
 import { dataPath, getSettings, readJSON, updateSettings, writeJSON } from "./store";
 import { readZip, writeZip, type ZipEntry } from "./zip";
@@ -64,6 +66,8 @@ export interface ProfileData {
   measurements: Measurement[];
   protocols: ProtocolEntry[];
   experiments: Experiment[];
+  /** The Protocols page (protocols.json). */
+  plans: Plan[];
   settings: Record<string, unknown>;
 }
 
@@ -84,6 +88,7 @@ profile.json      who this is (name, birth month, sex, and other details)
 results.json      every blood test result
 log.json          supplements, diet changes, medicines and habits
 experiments.json  self-experiments
+protocols.json    protocols (sets of supplements, foods, exercise you follow)
 settings.json     display settings for this profile
 files/            scanned lab reports and other documents
 files.json        list of those files
@@ -120,12 +125,21 @@ function newId(name: string): string {
 
 const readMeta = (dir: string) => readJSON<ProfileFile | null>(path.join(dir, "profile.json"), null);
 
-function validateData(input: { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown }): Omit<ProfileData, "settings"> {
+type DataInput = { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; plans?: unknown; settings?: unknown };
+
+function validPlans(v: unknown): Plan[] {
+  if (v === undefined) return [];
+  if (!Array.isArray(v) || v.length > 200) throw new ProfileError(400, "The protocols are damaged.");
+  for (const p of v) if (validatePlan(p).length) throw new ProfileError(400, `A protocol is damaged: ${validatePlan(p)[0]}.`);
+  return v as Plan[];
+}
+
+function validateData(input: DataInput): Omit<ProfileData, "settings"> {
   const person = input.person ?? {};
   if (!isProfile(person)) throw new ProfileError(400, "The person's details are damaged.");
   const r = parseBackup({ app: "biomarker-tracker", version: 2, measurements: input.measurements ?? [], protocols: input.protocols ?? [], experiments: input.experiments ?? [], profile: {} });
   if (!r.ok) throw new ProfileError(400, r.error);
-  return { person: cleanProfile(person), measurements: r.backup.measurements, protocols: r.backup.protocols, experiments: r.backup.experiments };
+  return { person: cleanProfile(person), measurements: r.backup.measurements, protocols: r.backup.protocols, experiments: r.backup.experiments, plans: validPlans(input.plans) };
 }
 
 function validSettings(v: unknown): Record<string, unknown> {
@@ -140,6 +154,7 @@ function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "setti
   writeJSON(path.join(dir, "results.json"), data.measurements);
   writeJSON(path.join(dir, "log.json"), data.protocols);
   writeJSON(path.join(dir, "experiments.json"), data.experiments);
+  writeJSON(path.join(dir, "protocols.json"), data.plans);
   if (data.settings) writeJSON(path.join(dir, "settings.json"), data.settings);
   writeJSON(path.join(dir, "profile.json"), { ...meta, person: data.person, updatedAt: new Date().toISOString() });
 }
@@ -168,7 +183,7 @@ export function listProfiles(): ProfileSummary[] {
   return out.sort((a, b) => (a.person.name ?? a.id).localeCompare(b.person.name ?? b.id));
 }
 
-export function createProfile(input: { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; settings?: unknown }): ProfileSummary {
+export function createProfile(input: DataInput): ProfileSummary {
   const data = validateData(input);
   if (!data.person.name) throw new ProfileError(400, "Give the profile a name.");
   const id = newId(data.person.name);
@@ -189,11 +204,12 @@ export function getProfileData(id: string): ProfileData {
     measurements: readJSON(path.join(dir, "results.json"), []),
     protocols: readJSON(path.join(dir, "log.json"), []),
     experiments: readJSON(path.join(dir, "experiments.json"), []),
+    plans: readJSON(path.join(dir, "protocols.json"), []),
     settings: readJSON(path.join(dir, "settings.json"), {}),
   };
 }
 
-export function saveProfileData(id: string, input: { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; settings?: unknown }): void {
+export function saveProfileData(id: string, input: DataInput): void {
   const dir = dirOf(id);
   const data = validateData(input);
   if (!data.person.name) throw new ProfileError(400, "A profile needs a name.");
@@ -314,6 +330,7 @@ export function restoreZip(zip: Buffer): ProfileSummary {
     measurements: json("results.json", []),
     protocols: json("log.json", []),
     experiments: json("experiments.json", []),
+    plans: json("protocols.json", []),
     settings: json("settings.json", {}),
   });
   const index = json("files.json", []);
