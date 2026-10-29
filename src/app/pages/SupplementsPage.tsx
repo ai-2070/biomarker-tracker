@@ -1,10 +1,12 @@
 import { Toggle } from "@base-ui/react/toggle";
 import { ToggleGroup } from "@base-ui/react/toggle-group";
-import { findingCounts, interactionsFor, type NutrientDef, type NutrientKind } from "../../core/nutrients";
+import { useState } from "react";
+import { findingCounts, interactionsFor, searchNutrients, type NutrientDef, type NutrientKind, type NutrientMatch } from "../../core/nutrients";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { Measurement, Profile, SafetyId } from "../../core/types";
-import { Card, FlagBadge, PageTitle, cx } from "../components/ui";
+import { SearchIcon } from "../components/icons";
+import { Button, Card, FlagBadge, PageTitle, cx, inputStyles } from "../components/ui";
 import { displayUnitFor, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENTS, nameInSentence } from "../knowledge";
@@ -27,7 +29,10 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
   const protocols = useProtocols() ?? [];
   const safety: SafetyId[] = safetyNotes(safetyLabels(protocols, profile)).map((n) => n.id);
   const byMarker = groupByBiomarker(all ?? []);
-  const shown = NUTRIENTS.filter((n) => !kind || n.kind === kind);
+  const [query, setQuery] = useState("");
+  const inKind = NUTRIENTS.filter((n) => !kind || n.kind === kind);
+  const shown = searchNutrients(inKind, query);
+  const searching = query.trim() !== "";
 
   return (
     <>
@@ -35,6 +40,47 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
         Supplementation
       </PageTitle>
 
+
+      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div role="search" className="relative w-full sm:max-w-md">
+        <SearchIcon width={18} height={18} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-ink-2" />
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), setQuery(""))}
+          placeholder="Search: a vitamin, a food, a symptom, a medicine"
+          aria-label="Search vitamins and minerals"
+          autoComplete="off"
+          className={cx(inputStyles, "w-full pl-10")}
+        />
+      </div>
+      <ToggleGroup
+        aria-label="Show"
+        value={[kind ?? "all"]}
+        onValueChange={(v) => {
+          const next = v[0] as "all" | NutrientKind | undefined;
+          if (!next || next === (kind ?? "all")) return;
+          location.replace(href(next === "all" ? { name: "supplements" } : { name: "supplements", kind: next }));
+        }}
+        className="flex w-full gap-1 rounded-xl border border-line bg-sunken p-1 sm:inline-flex sm:w-auto"
+      >
+        {FILTERS.map((f) => (
+          <Toggle
+            key={f.value}
+            value={f.value}
+            className={cx(
+              "flex min-h-10 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-lg px-3 text-sm font-medium whitespace-nowrap text-ink-2 transition-[background-color,color,box-shadow] duration-200 ease-[var(--ease-soft)] sm:flex-none",
+              "hover:text-ink data-pressed:bg-surface data-pressed:text-ink data-pressed:shadow-sm",
+            )}
+          >
+            {f.label}
+          </Toggle>
+        ))}
+      </ToggleGroup>
+      </div>
+
+      {!searching && (
       <Card className="mb-5 flex flex-col gap-3">
         <h2 className="font-serif text-2xl font-normal">Before you look at supplements</h2>
         <ol className="flex list-decimal flex-col gap-2 pl-5 text-ink-2">
@@ -52,40 +98,31 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
           </li>
         </ol>
       </Card>
+      )}
 
-      <ToggleGroup
-        aria-label="Show"
-        value={[kind ?? "all"]}
-        onValueChange={(v) => {
-          const next = v[0] as "all" | NutrientKind | undefined;
-          if (!next || next === (kind ?? "all")) return;
-          location.replace(href(next === "all" ? { name: "supplements" } : { name: "supplements", kind: next }));
-        }}
-        className="mb-5 flex w-full gap-1 rounded-xl border border-line bg-sunken p-1 sm:inline-flex sm:w-auto"
-      >
-        {FILTERS.map((f) => (
-          <Toggle
-            key={f.value}
-            value={f.value}
-            className={cx(
-              "flex min-h-10 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-lg px-3 text-sm font-medium whitespace-nowrap text-ink-2 transition-[background-color,color,box-shadow] duration-200 ease-[var(--ease-soft)] sm:flex-none",
-              "hover:text-ink data-pressed:bg-surface data-pressed:text-ink data-pressed:shadow-sm",
-            )}
-          >
-            {f.label}
-          </Toggle>
-        ))}
-      </ToggleGroup>
+      <p aria-live="polite" className={cx("mb-3 text-sm text-ink-2", !searching && "sr-only")}>
+        {searching ? `${shown.length} of ${inKind.length} ${shown.length === 1 ? "matches" : "match"} “${query.trim()}”` : ""}
+      </p>
 
       {NUTRIENTS.length === 0 ? (
         <Card>
           <p className="text-ink-2">The vitamins and minerals knowledge base is being written.</p>
         </Card>
+      ) : shown.length === 0 ? (
+        <Card className="flex flex-col items-start gap-3">
+          <p className="text-ink-2">
+            Nothing here matches “{query.trim()}”. Try a vitamin or mineral, a food (salmon, spinach), a sign (tiredness), or a medicine
+            (warfarin).{kind && " Or look in all of them, not only " + (kind === "vitamin" ? "vitamins." : "minerals.")}
+          </p>
+          <Button variant="secondary" onClick={() => setQuery("")}>
+            Clear the search
+          </Button>
+        </Card>
       ) : (
-        <ul className="stagger grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {shown.map((n) => (
+        <ul className={cx("grid gap-3 sm:grid-cols-2 xl:grid-cols-3", !searching && "stagger")}>
+          {shown.map(({ n, match }) => (
             <li key={n.id}>
-              <NutrientCard n={n} byMarker={byMarker} safety={safety} profile={profile} />
+              <NutrientCard n={n} match={match} byMarker={byMarker} safety={safety} profile={profile} />
             </li>
           ))}
         </ul>
@@ -99,7 +136,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
   );
 }
 
-function NutrientCard({ n, byMarker, safety, profile }: { n: NutrientDef; byMarker: Map<string, Measurement[]>; safety: SafetyId[]; profile: Profile }) {
+function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef; match?: NutrientMatch; byMarker: Map<string, Measurement[]>; safety: SafetyId[]; profile: Profile }) {
   const units = useDisplayUnits();
   const counts = findingCounts(n);
   const warn = interactionsFor(n, safety);
@@ -123,7 +160,15 @@ function NutrientCard({ n, byMarker, safety, profile }: { n: NutrientDef; byMark
         </div>
         {warn.length > 0 && <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-sm font-medium text-warn">Check interactions</span>}
       </div>
-      <p className="line-clamp-3 text-ink-2">{n.summary}</p>
+      {/* When a search found it by something other than its name, say what. */}
+      {match && match.label !== "About" ? (
+        <div className="rounded-lg bg-accent-soft px-3 py-2 text-sm">
+          <p className="line-clamp-2">
+            <span className="text-ink-2">{match.label}:</span> {match.text}
+          </p>
+        </div>
+      ) : null}
+      <p className={cx("text-ink-2", match && match.label !== "About" ? "line-clamp-2" : "line-clamp-3")}>{n.summary}</p>
       <div className="mt-auto flex flex-col gap-2 border-t border-line pt-3 text-sm">
         {def && latest && flag ? (
           <p className="flex flex-wrap items-center gap-2">

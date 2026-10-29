@@ -125,7 +125,7 @@ export function MarkerPage({ id }: { id: string }) {
           </>
         )}
 
-        {/* Explanation, levers and research one tap away; levers open by themselves when the result is out of range. */}
+        {/* The explanation and research search start open; levers open by themselves when the result is out of range. */}
         <div className="mt-2 grid items-start gap-x-10 gap-y-0 lg:grid-cols-[minmax(0,1fr)_24rem]">
         {measurements && measurements.length > 0 && (
           <FoldGroup className="max-lg:border-b-0 lg:col-start-2 lg:row-start-1">
@@ -140,7 +140,7 @@ export function MarkerPage({ id }: { id: string }) {
           </FoldGroup>
         )}
         <FoldGroup className="lg:col-start-1 lg:row-start-1">
-          <Fold title={`What is ${def.abbreviation ?? def.name}?`} summary={firstSentence(def.summary)}>
+          <Fold defaultOpen title={`What is ${def.abbreviation ?? def.name}?`} summary={firstSentence(def.summary)}>
             <About def={def} unit={unit} profile={profile} range={range} />
           </Fold>
           {/* No suggestions next to a critical value: the urgent banner comes first. */}
@@ -153,7 +153,7 @@ export function MarkerPage({ id }: { id: string }) {
               <LeversPanel def={def} flag={latestFlag} protocols={protocols} />
             </Fold>
           )}
-          <Fold title="Search research" summary={`Published studies about ${nameInSentence(def)}`}>
+          <Fold defaultOpen title="Search research" summary={`Published studies about ${nameInSentence(def)}`}>
             <ResearchPanel
               bare
               name={def.name}

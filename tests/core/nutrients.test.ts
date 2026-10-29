@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findingCounts, interactionsFor, sortFindings, strongestBenefit, validateNutrientDef, type NutrientDef, type NutrientFinding } from "../../src/core/nutrients";
+import { findingCounts, interactionsFor, searchNutrients, sortFindings, strongestBenefit, validateNutrientDef, type NutrientDef, type NutrientFinding } from "../../src/core/nutrients";
 
 const study = { pmid: "1", title: "A trial", year: 2020, studyType: "rct" as const };
 const finding = (outcome: string, effect: NutrientFinding["effect"], grade: NutrientFinding["grade"]): NutrientFinding => ({
@@ -52,5 +52,25 @@ describe("vitamins and minerals", () => {
   it("picks the interactions that apply to this person", () => {
     expect(interactionsFor(n, ["anticoagulant"]).map((x) => x.with)).toEqual(["Warfarin"]);
     expect(interactionsFor(n, ["kidney"])).toEqual([]);
+  });
+
+  it("searches names, other names and what is inside each entry, and says where it matched", () => {
+    const b12: NutrientDef = { ...n, id: "b12", name: "Vitamin B12", otherNames: ["Cobalamin"], foodSources: { examples: ["Meat", "Eggs"] }, interactions: [] };
+    const d: NutrientDef = { ...n, id: "d", name: "Vitamin D", otherNames: ["Cholecalciferol (vitamin D3)"], foodSources: { examples: ["Oily fish"] } };
+    const all = [n, b12, d];
+    expect(searchNutrients(all, "").map((x) => x.n.id)).toEqual(["test_nutrient", "b12", "d"]);
+    expect(searchNutrients(all, "  ")).toHaveLength(3);
+    // Name first, no reason shown; "B12", "b 12" and "vit b12" all find it.
+    for (const q of ["B12", "b 12", "vit b12", "VITAMIN b-12"]) expect(searchNutrients(all, q)).toEqual([{ n: b12 }]);
+    expect(searchNutrients(all, "d3")).toEqual([{ n: d, match: { label: "Also called", text: "Cholecalciferol (vitamin D3)" } }]);
+    expect(searchNutrients(all, "cobalamin")[0]).toEqual({ n: b12, match: { label: "Also called", text: "Cobalamin" } });
+    // Words start words: "fish" finds "Oily fish" and "Fish"; "ish" finds nothing.
+    expect(searchNutrients(all, "fish").map((x) => x.n.id)).toEqual(["test_nutrient", "d"]);
+    expect(searchNutrients(all, "ish")).toEqual([]);
+    expect(searchNutrients(all, "warfarin").map((x) => [x.n.id, x.match?.label])).toEqual([["test_nutrient", "Interaction"], ["d", "Interaction"]]);
+    // Every word must match somewhere; a part with all of them wins.
+    expect(searchNutrients(all, "oily fish").map((x) => x.match)).toEqual([{ label: "Food", text: "Oily fish" }]);
+    expect(searchNutrients(all, "vitamin warfarin").map((x) => x.n.id)).toEqual(["d"]);
+    expect(searchNutrients(all, "café")).toEqual([]);
   });
 });

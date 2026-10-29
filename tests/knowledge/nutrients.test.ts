@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { PRESCRIBING, nutrientText, validateNutrientDef, type NutrientDef } from "../../src/core/nutrients";
+import { PRESCRIBING, nutrientText, searchNutrients, validateNutrientDef, type NutrientDef } from "../../src/core/nutrients";
 import type { FoodTable } from "../../src/core/types";
 import { loadDefs } from "../helpers";
 
@@ -44,6 +44,14 @@ describe("knowledge base: vitamins and minerals", () => {
 
   it("gives every finding a bottom line, shown first on the page", () => {
     for (const n of nutrients) for (const f of [...n.findings, ...(n.foodFindings ?? [])]) expect(f.bottomLine, `${n.id}: ${f.outcome}`).toBeTruthy();
+  });
+
+  it("finds the obvious entries when searched", () => {
+    const ids = (q: string) => searchNutrients(nutrients, q).map((x) => x.n.id);
+    expect(ids("vitamin d")[0]).toBe("vitamin_d");
+    expect(ids("b12")[0]).toBe("vitamin_b12");
+    expect(ids("warfarin")).toContain("vitamin_k");
+    expect(ids("salmon").length).toBeGreaterThan(0);
   });
 
   it("has unique ids", () => {
