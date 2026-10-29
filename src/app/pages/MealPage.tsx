@@ -7,6 +7,7 @@ import { formatValue } from "../../core/units";
 import { deleteMeal, newId, saveMeal, savePlan } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { DarkMatterNote } from "../components/DarkMatter";
+import { Fold, FoldGroup } from "../components/disclosure";
 import { GradeBadge } from "../components/evidence";
 import { Button, Card, cx, inputStyles, labelStyles } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
@@ -49,7 +50,6 @@ export function MealPage({ id, example = false }: { id: string; example?: boolea
       </a>
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{example ? "Example meal" : "Meal"}</p>
           {example ? (
             <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{meal.name}</h1>
           ) : (
@@ -186,6 +186,15 @@ function Totals({ items, db }: { items: MealItem[]; db: FoodDb | undefined }) {
     const n = NUTRIENT_MAP.get(NUTRIENT_OF_KEY[k] ?? "");
     return n ? { n, ref: adultReference(n, { sex: profile.sex, age }) } : undefined;
   };
+  // The three biggest shares of a day's reference, for the fold's summary line.
+  const top = micro
+    .flatMap((k) => {
+      const link = refFor(k);
+      const share = link ? shareOfReference(t[k]!, unit(k), link.ref) : undefined;
+      return share !== undefined ? [{ label: db.nutrients[k]?.label ?? k, share }] : [];
+    })
+    .sort((a, b) => b.share - a.share)
+    .slice(0, 3);
   return (
     <Card className="flex flex-col gap-4">
       <div>
@@ -211,14 +220,20 @@ function Totals({ items, db }: { items: MealItem[]; db: FoodDb | undefined }) {
       </dl>
       <p className="text-xs text-ink-2">What the meal contains, not a target. Salt is worked out from sodium (sodium × 2.5).</p>
 
+      <FoldGroup>
+        <Fold
+          title="Vitamins and minerals"
+          summary={
+            top.length
+              ? `Most of a day's reference: ${top.map((x) => `${x.label.replace(/ \(.*\)$/, "").toLowerCase()} ${x.share}%`).join(", ")}`
+              : "Shares of the EU reference intake for a day"
+          }
+        >
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm tabular-nums">
-          <caption className="mb-2 text-left">
-            <span className="font-medium">Vitamins and minerals</span>{" "}
-            <span className="text-ink-2">
-              · share of the EU reference intake for a whole day
-              {profile.sex ? ` (${profile.sex === "m" ? "men" : "women"}${age !== undefined ? `, ${Math.floor(age)}` : ""})` : " (set your sex in Settings for values that depend on it)"}
-            </span>
+          <caption className="mb-2 text-left text-ink-2">
+            Share of the EU reference intake for a whole day
+            {profile.sex ? ` (${profile.sex === "m" ? "men" : "women"}${age !== undefined ? `, ${Math.floor(age)}` : ""})` : " (set your sex in Settings for values that depend on it)"}
           </caption>
           <tbody className="divide-y divide-line">
             {micro.map((k) => {
@@ -255,10 +270,12 @@ function Totals({ items, db }: { items: MealItem[]; db: FoodDb | undefined }) {
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-ink-2">
+      <p className="mt-3 text-xs text-ink-2">
         EU (EFSA) reference intakes describe what covers the needs of most healthy adults over a day, from all food. A meal isn't meant to reach
         them, and more isn't better. Food folate is compared with the folate reference as it is.
       </p>
+        </Fold>
+      </FoldGroup>
       <DarkMatterNote />
     </Card>
   );

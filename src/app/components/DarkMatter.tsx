@@ -1,7 +1,6 @@
 import { coverage, type FoodDb } from "../../core/meals";
 import type { Citation } from "../../core/types";
 import { StudyLink } from "./evidence";
-import { Card } from "./ui";
 
 /**
  * Nutritional dark matter: what no food table can tell you. Shown in full on the Meals page and as a
@@ -25,19 +24,14 @@ function Ref({ id, n }: { id: keyof typeof SOURCES; n: number }) {
   );
 }
 
-/** The full explainer, for the Meals page. */
+/** The full explainer, for the Meals page (inside a fold, which carries the heading). */
 export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
   const c = db ? coverage(db) : undefined;
   const total = db?.foods.length ?? 0;
   const pct = (k: string) => (c && total ? Math.round(((c[k] ?? 0) / total) * 100) : undefined);
   return (
-    <Card className="flex flex-col gap-4">
-      <div>
-        <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Before you read the numbers</p>
-        <h2 className="font-serif text-2xl font-normal">What food tables can't tell you</h2>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
+    <div className="flex flex-col gap-4">
+      <div className="grid gap-x-8 gap-y-5 md:grid-cols-2">
         <section>
           <h3 className="font-medium">Food tables measure a short list</h3>
           <p className="mt-1 text-ink-2">
@@ -90,7 +84,7 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
           </li>
         </ol>
       </details>
-    </Card>
+    </div>
   );
 }
 

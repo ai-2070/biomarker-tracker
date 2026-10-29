@@ -4,19 +4,14 @@ import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { useProfile } from "../hooks";
 import type { Flag } from "../../core/trends";
 import { formatValue } from "../../core/units";
-import type { BiomarkerDef, Citation, EvidenceClaim, EvidenceGrade, ProtocolEntry, SafetyId } from "../../core/types";
+import type { BiomarkerDef, Citation, EvidenceClaim, Profile, ProtocolEntry, SafetyId } from "../../core/types";
 import { EVIDENCE, FOODS, nameInSentence } from "../knowledge";
 import { lowerFirst } from "../format";
 import { href } from "../router";
 import { SafetyNotices } from "./SafetyNotices";
-import { Card, cx } from "./ui";
-
-const GRADE: Record<EvidenceGrade, { dots: string; label: string }> = {
-  high: { dots: "●●●", label: "High" },
-  moderate: { dots: "●●○", label: "Moderate" },
-  low: { dots: "●○○", label: "Low" },
-  "very low": { dots: "○○○", label: "Very low" },
-};
+import { Chip, Row, Rows } from "./disclosure";
+import { GradeBadge } from "./evidence";
+import { cx } from "./ui";
 
 const KIND: Record<EvidenceClaim["kind"], string> = {
   food: "Food",
@@ -36,6 +31,21 @@ const DIRECTION: Record<EvidenceClaim["direction"], string> = {
  * "What is known to affect it": evidence-graded levers with measured food
  * amounts. Explains, never prescribes. Hidden for critical values.
  */
+/** What the levers section is called for this marker and result, and whether there is anything to show. */
+export function leversHeading(def: BiomarkerDef, flag: Flag | undefined, protocols: ProtocolEntry[], profile: Profile): { title: string; count: number; focus?: "low" | "high" } {
+  const safety: SafetyId[] = safetyNotes(safetyLabels(protocols, profile)).map((n) => n.id);
+  const sel = selectLevers(def.id, flag, EVIDENCE, safety);
+  return {
+    title: sel.focus ? `What is known to ${sel.focus === "low" ? "raise" : "lower"} ${nameInSentence(def)}` : `What is known to affect ${nameInSentence(def)}`,
+    count: sel.claims.length + sel.hidden.length,
+    ...(sel.focus ? { focus: sel.focus } : {}),
+  };
+}
+
+/**
+ * "What is known to affect it": evidence-graded levers, one row each (open for what was tested, the
+ * effect, food amounts, sources and "test it on yourself"). Shown inside a fold on the marker page.
+ */
 export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag: Flag | undefined; protocols: ProtocolEntry[] }) {
   const profile = useProfile();
   const notes = safetyNotes(safetyLabels(protocols, profile));
@@ -43,65 +53,43 @@ export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag:
   const sel = selectLevers(def.id, flag, EVIDENCE, safety);
   if (sel.claims.length === 0 && sel.hidden.length === 0) return null;
 
-  const title = sel.focus
-    ? `What is known to ${sel.focus === "low" ? "raise" : "lower"} ${nameInSentence(def)}`
-    : `What is known to affect ${nameInSentence(def)}`;
-
   return (
-    <Card className="flex flex-col gap-4">
-      <div>
-        <h2 className="font-serif text-2xl font-normal">{title}</h2>
-        <p className="mt-1 text-ink-2">
-          {sel.focus
-            ? "Because your latest result is " + sel.focus + ", here is what research says can help, strongest evidence first. "
-            : "General information, strongest evidence first. "}
-          These are options to discuss with your doctor, not instructions. The right step depends on why the value is{" "}
-          {sel.focus ?? "where it is"}.
-        </p>
-      </div>
-
+    <div className="flex flex-col gap-3">
+      <p className="text-ink-2">
+        {sel.focus ? `Because your latest result is ${sel.focus}: what research says can help, strongest evidence first.` : "Strongest evidence first."} Options to
+        discuss with your doctor, not instructions.
+      </p>
       <SafetyNotices notes={notes} />
-
-      <ul className="flex flex-col gap-3">
+      <Rows>
         {sel.claims.map((c) => (
-          <li key={c.id}>
+          <Row
+            key={c.id}
+            title={c.lever}
+            aside={
+              <>
+                <Chip>{KIND[c.kind]}</Chip>
+                <GradeBadge grade={c.grade} short />
+              </>
+            }
+          >
             <Lever claim={c} def={def} safety={safety} />
-          </li>
+          </Row>
         ))}
-      </ul>
-
+      </Rows>
       {sel.hidden.length > 0 && (
         <p className="text-sm text-ink-2">
-          {sel.hidden.length} {sel.hidden.length === 1 ? "option is" : "options are"} not shown because of what's in your habits. Ask your doctor
-          about {sel.hidden.length === 1 ? "it" : "them"}.
+          {sel.hidden.length} {sel.hidden.length === 1 ? "option is" : "options are"} not shown because of what's in your habits. Ask your doctor about{" "}
+          {sel.hidden.length === 1 ? "it" : "them"}.
         </p>
       )}
-
-      <p className="text-sm text-ink-2">
-        Grades describe how strong the research is: <span aria-hidden="true">●●●</span> high, <span aria-hidden="true">●●○</span> moderate,{" "}
-        <span aria-hidden="true">●○○</span> low. A whole food and a supplement of one of its nutrients are graded separately, because they
-        don't always have the same effect.
-      </p>
-    </Card>
+      <p className="text-sm text-ink-2">A whole food and a supplement of one of its nutrients are graded separately: they don't always have the same effect.</p>
+    </div>
   );
 }
 
 function Lever({ claim: c, def, safety }: { claim: EvidenceClaim; def: BiomarkerDef; safety: SafetyId[] }) {
-  const grade = GRADE[c.grade];
   return (
-    <article className="flex flex-col gap-2 rounded-lg border border-line p-3">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <h3 className="font-medium">{c.lever}</h3>
-        <span className="flex shrink-0 items-center gap-2 text-sm">
-          <span className="rounded-full bg-sunken px-2 py-0.5 text-ink-2">{KIND[c.kind]}</span>
-          <span className="rounded-full bg-sunken px-2 py-0.5 font-medium whitespace-nowrap">
-            <span aria-hidden="true" className="mr-1 tracking-tight text-accent">
-              {grade.dots}
-            </span>
-            {grade.label} evidence
-          </span>
-        </span>
-      </div>
+    <>
       <dl className="grid grid-cols-[auto_1fr] gap-x-2 text-sm text-ink-2">
         <dt className="font-medium text-ink">Tested:</dt>
         <dd>{c.intervention}</dd>
@@ -117,17 +105,15 @@ function Lever({ claim: c, def, safety }: { claim: EvidenceClaim; def: Biomarker
           <span className="text-ink-2">{c.caution}</span>
         </p>
       )}
-
       {c.foods && <FoodList claim={c} safety={safety} />}
-
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Why this grade, and sources</summary>
-        <ul className="list-disc pl-5 text-sm text-ink-2">
+      <details className="text-sm text-ink-2">
+        <summary className="min-h-10 cursor-pointer py-2">Why this grade, and sources</summary>
+        <ul className="list-disc pl-5">
           {c.whyThisGrade.map((w) => (
             <li key={w}>{w}</li>
           ))}
         </ul>
-        <ul className="mt-2 flex flex-col gap-1 text-sm text-ink-2">
+        <ul className="mt-2 flex flex-col gap-1">
           {c.studies.map((s) => (
             <li key={s.pmid ?? s.doi}>
               <StudyLink s={s} />
@@ -135,18 +121,14 @@ function Lever({ claim: c, def, safety }: { claim: EvidenceClaim; def: Biomarker
           ))}
         </ul>
       </details>
-
       <a
         href={href({ name: "habits", add: c.lever, marker: def.id })}
         className="inline-flex min-h-11 items-center gap-1 self-start text-sm font-medium text-accent underline-offset-2 hover:underline"
       >
-        Trying this? Test it on yourself
+        Trying this? Compare your {nameInSentence(def)} before and after
         <span aria-hidden="true">→</span>
       </a>
-      <span className="-mt-2 text-sm text-ink-2">
-        Compare your {nameInSentence(def)} before and after, against its normal test-to-test variation.
-      </span>
-    </article>
+    </>
   );
 }
 
