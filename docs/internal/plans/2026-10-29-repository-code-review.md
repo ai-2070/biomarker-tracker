@@ -737,3 +737,106 @@ This pass checks candidates against the first 62 findings and appends only disti
 | Cumulative | 14 | 66 | 2 | 82 |
 
 New priority items are the unselected provider-endpoint disclosure (**R3-017**) and same-day critical-result precedence (**R3-013**). The remaining additions are independently actionable validation, state-transition, provenance and display defects; their bounded fix directions do not imply remediation has been implemented.
+
+## Round 4 — reference-table, model/tool and editing contracts
+
+This pass adds ten distinct findings after checking the previous 82 entries and their root causes. Earlier round totals and receipts are retained unchanged. No application fixes were made.
+
+### R4-001 — P2: Intake nutrient rows hide partial measurement coverage while presenting an exact shortfall
+
+- **Location:** `src/app/pages/IntakePage.tsx:532–566`; preserved coverage metadata at `src/core/intake.ts:297–299`.
+- **Trigger:** Analyze foods where a nutrient is measured in only some ingredients, such as 10 g cooked spinach `13-573` plus 100 g flaked/ground almonds `14-870` for vitamin K1.
+- **Defect/impact:** Core correctly retains `measuredIn`/`of`, but the vitamin/mineral row drops both and presents its partial known amount, percentage and “Below” status without the missing-data context. Its generic footer says coverage is shown on the nutrient's page, but that knowledge page has no access to this intake list's coverage. A known lower bound is therefore displayed like a complete total/shortfall, contrary to the measured-only data contract.
+- **Verification — executed in helpers and the production browser UI:** Actual totals were `57.5 µg`, `measuredIn:1`, `of:2`, share 82. The displayed vitamin-K row was `82 %`, `58 µg of 70`, `Below`; the page did not show “measured in 1 of 2.” The unmeasured almond contribution was not estimated, and no claim is made about its actual value.
+- **Fix direction:** Display per-nutrient measurement coverage next to these figures and qualify partial totals/statuses as known amounts, rather than implying a fully measured shortfall.
+
+### R4-002 — P2: Starting a protocol bypasses the one-year planning limit enforced for the habits it creates
+
+- **Location:** `src/app/pages/PlanPage.tsx:401–406`; unchecked mutation at `src/db/db.ts:59–67`.
+- **Trigger:** Enter a protocol start date more than a year ahead, such as `2028-10-29` when today is `2026-10-29`.
+- **Defect/impact:** The date input has no planning bound and calls `startPlan()` directly. That function creates Habits without applying their existing date validator. A supported UI path can therefore create ongoing/planned habits outside the documented one-year planning window that ordinary habit entry rejects.
+- **Verification — executed with fake IndexedDB:** `validateProtocol()` rejected the date with `Please choose a start date within the next year.` Actual `startPlan()` nevertheless persisted a Walk habit starting `2028-10-29`. The activation control's missing guard was source-confirmed; its future-date browser interaction was not executed.
+- **Fix direction:** Apply the same date/planning policy before activating a protocol and creating its habits, using the shared validation contract.
+
+### R4-003 — P2: A shared balance-test ceiling is turned into a strict above-percentile claim
+
+- **Location:** `src/core/fitnessTests.ts:209–217`; shipped tied values at `knowledge/fitness/one_leg_stand.json:139–154`.
+- **Trigger:** Record a 30-second or longer one-leg stand and compare with the British table.
+- **Defect/impact:** The result is capped at 30, but equality advances through both `p50:30` and `p75:30`, yielding “Above the 75th percentile.” The table explicitly says 74% of participants aged 53 reached that same cap and that it only separates the bottom. The capped test cannot support this strict ranking; the assertion reaches marker/youngest-group comparisons and Brain.
+- **Verification — executed against shipped data:** `placeResult()` at age 53 and value 30 returned the British place `{kind:"percentile",above:75,median:30}`; actual `describePlace()` said `Above the 75th percentile`.
+- **Fix direction:** Preserve tied/capped percentile uncertainty instead of treating equality at the measurement ceiling as strict above-percentile evidence.
+
+### R4-004 — P2: The last open norm group incorrectly turns intermediate results into an older/worse bound
+
+- **Location:** `src/core/fitnessTests.ts:154–162`; description at `src/app/components/dashboard/fitness.tsx:35–40`.
+- **Trigger:** A woman records a 20-second one-leg stand. The Iranian table has mean 25 seconds at 60–69 and 6.9 seconds at 70+.
+- **Defect/impact:** When the next age row is open-ended, `ageMatch()` returns the “oldest … or worse” result before distinguishing an intermediate result from one actually worse than that row's mean. The 20-second result is described as typical of women 70 and over, or below, despite being substantially better than that group's mean.
+- **Verification — executed:** `ageMatch()` on the shipped Iranian table returned `{kind:"oldest",age:70}` for the 20-second input. The consuming description was source-confirmed.
+- **Fix direction:** Retain the uncertainty of the final interval or omit the unsupported age comparison; reserve the older/worse bound for values that actually establish it. No extrapolation past the open group is required.
+
+### R4-005 — P2: Balance instructions offer an eyes-closed result that the app evaluates as eyes-open
+
+- **Location:** `knowledge/fitness/one_leg_stand.json:13–14`; unsupported variant disclosure at `:267`; entry at `src/app/components/dashboard/body.tsx:678`.
+- **Trigger:** Follow the how-to's optional eyes-closed test after successfully standing eyes-open for at least ten seconds, then enter a five-second eyes-closed time in the one available recording field.
+- **Defect/impact:** The measurement has no eye-state/variant field, while all selected norms and the failed-ten-second cutoff are for the supported eyes-open protocol. The app treats the entered harder-version time as failed eyes-open balance and can show a mortality-association notice even though that eyes-open threshold was completed.
+- **Verification — executed core consequence, source-confirmed recording ambiguity:** `fitnessSummary()` for the undifferentiated five-second record at age 60 returned eyes-open norm comparisons and `Could not complete a 10-second one-leg stand (ages 51–75): linked to higher death rates in one Brazilian cohort`. No physical test was performed; the optional instruction, single input and missing variant were inspected.
+- **Fix direction:** Make the recordable how-to explicitly eyes-open and separate/remove the unrecordable alternative, or persist and correctly dispatch a test variant.
+
+### R4-006 — P2: A food deletion can silently revert another meal edit while the input still shows it
+
+- **Location:** `src/app/pages/MealPage.tsx:110–120`; whole-record persistence at `src/db/db.ts:92–94`.
+- **Trigger:** Change one food's grams, then remove a different food before the blur-triggered save has reached the component's live snapshot.
+- **Defect/impact:** Both handlers create complete meal replacements from the same captured props. The blur write contains the changed grams; the deletion write contains the old grams and the deletion. The later `put()` wins, silently losing the accepted grams edit. This requires neither duplicate foods nor the key-reuse defect in R1-037.
+- **Verification — executed end to end in the production browser with synthetic data:** Used two distinct foods at 100 g. Held an owned IndexedDB write transaction for two seconds to expose ordinary pending-persistence latency, changed spinach to 125 g, and clicked Remove on almonds. After completion, actual storage contained only spinach at `grams:100`, while its visible input still said `125`.
+- **Fix direction:** Apply edits transactionally to the latest stored meal or through one shared current draft; do not independently replace whole records from stale props.
+
+### R4-007 — P2: Codex terminal failures are hidden if any earlier answer text exists
+
+- **Location:** `server/agents.ts:155–165`; caller at `:304–306,323–326`.
+- **Trigger:** A Codex run emits an interim `agent_message` and later a terminal `turn.failed` event.
+- **Defect/impact:** The parser records the failure but returns success whenever accumulated text is nonempty. The caller also discards the process exit status. Brain receives an ordinary successful answer instead of a failed/partial turn and loses the actual terminal error.
+- **Verification — executed without a real agent:** Fed `item.completed` with `I will check your results`, followed by `turn.failed` with `Quota exhausted`, into actual `parseCodex()`. It returned `{"ok":true,"text":"I will check your results"}`.
+- **Fix direction:** Give terminal failure precedence over prior text and distinguish completed output from partial/interrupted answers.
+
+### R4-008 — P2: Brain cannot distinguish saved protocol weekdays and meal timing
+
+- **Location:** `server/healthTools.ts:327–334`; fallback projection at `server/assistant.ts:42`.
+- **Trigger:** Ask about an unstarted protocol whose item is evening, Monday/Wednesday/Friday, with a meal.
+- **Defect/impact:** Both `get_protocols` and the fallback data summary drop `days` and `withFood`. They supply the same model context as an every-day evening item without a meal. An unstarted protocol has no corresponding Habits from which the missing schedule could be recovered.
+- **Verification — executed with synthetic snapshots:** Compared one item with `days:["mon","wed","fri"]`, `withFood:true` against an otherwise identical item omitting those fields. Actual `healthTools(...).get_protocols.execute()` outputs were identical, and actual `dataPack()` strings were identical.
+- **Fix direction:** Include normalized weekday and with-food instructions in every model-facing protocol projection.
+
+### R4-009 — P3: The app advertises Mistral effort controls that its installed SDK discards
+
+- **Location:** `src/core/aiProviders.ts:219–224`; forwarding at `server/models.ts:52–53`; SDK capability branch at `node_modules/@ai-sdk/mistral/src/mistral-chat-language-model.ts:56–73,150–207`.
+- **Trigger:** Select the offered `mistral-large-latest` model and change effort between Low and High.
+- **Defect/impact:** Effort is advertised at provider level, but the installed SDK marks that model as not supporting reasoning effort and omits the saved setting from requests. The control has no effect for the selectable default model.
+- **Verification — executed with a mocked fetch transport, no external provider:** Generated requests through the installed Mistral SDK using the same provider options for Low and High. Neither request contained `reasoning_effort`.
+- **Fix direction:** Make exposed effort levels model-aware and hide/reject unsupported no-op settings.
+
+### R4-010 — P3: Local model discovery rejects an IPv6 endpoint that eligibility accepts
+
+- **Location:** `server/http.ts:74–76`; accepted loopback policy at `src/core/aiProviders.ts:311,329–337`.
+- **Trigger:** Configure Ollama at `http://[::1]:11434/v1`.
+- **Defect/impact:** Provider eligibility accepts IPv6 loopback and Settings accepts the address, but discovery's separate regex allows only localhost/127.0.0.1. It returns an empty list and “must run on this computer” before trying the supported local address.
+- **Verification — executed against actual HTTP routing with temporary settings:** `canUse()` returned `{"ok":true}`. GET `/api/settings/models/ollama` returned HTTP 200 with `{"models":[],"error":"Ollama must run on this computer."}`. No real Ollama service or IPv6 network connection was needed because the rejection occurs first.
+- **Fix direction:** Reuse the URL-based loopback eligibility policy for discovery instead of a narrower duplicate check.
+
+### Round 4 verification and exclusions
+
+- `bun run test`: **57 files / 776 tests passed**, exit 0; the existing AI SDK image-part deprecation warning remained.
+- `bun run build`: **passed**, including both TypeScript projects and production bundling, exit 0; the existing large-chunk warning remained.
+- Browser checks used an isolated static preview origin and synthetic browser-only IndexedDB records, without contacting a folder-backed user profile or model. They exercised the actual intake row and the meal-edit/delete race. The persistence delay was a temporary test transaction, not an application-code change.
+- Other probes exercised actual fitness comparisons/summary generation, protocol activation/date validation, Codex event parsing, both protocol-context projections, Mistral request construction with mocked fetch, and the local-model discovery HTTP route with temporary storage.
+- Existing findings were not counted again for merely reaching another consumer. Broad vitamin-K food filtering for recognized blood thinners was not added as a new defect: it is explicitly documented as a conservative policy. No new medical recommendation or external literature revalidation is claimed.
+- The optional eyes-closed recording mismatch is distinct from percentile/bound arithmetic and from previously reported fitness-age clamping. The stale meal-write race is distinct from duplicate-food row-key reuse. No application source, permanent tests, configuration or knowledge data was edited.
+
+### Cumulative triage after Round 4
+
+| Scope | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Rounds 1–3 | 14 | 66 | 2 | 82 |
+| Round 4 additions | 0 | 8 | 2 | 10 |
+| Cumulative | 14 | 74 | 4 | 92 |
+
+Round 4 adds no new P1 finding. Its material defects concern incomplete-data disclosure, schedule/variant fidelity, unsupported quantitative comparisons, lost edits and failure-state reporting; each entry states exactly which parts were executed versus source-confirmed.
