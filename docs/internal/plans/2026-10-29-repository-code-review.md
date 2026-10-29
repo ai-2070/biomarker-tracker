@@ -1009,3 +1009,71 @@ This pass adds five distinct findings after excluding the previous 101 entries a
 | Cumulative | 15 | 85 | 6 | 106 |
 
 Round 6 adds no new P1 finding. The new defects concern restore identity loss, partial linked writes, invalid attachment names and connection-settings feedback/discovery.
+
+## Round 7 — entry validation, sample provenance and reference populations
+
+This pass adds five distinct findings, excluding the previous 106 entries and their root-cause variants. Reviewed nutrition calculations and reference selection, physiological input/chronology contracts, manual and report entry, and browser import/export compatibility. The clinical-calculation slice established no additional distinct defect beyond previously recorded issues; passing synthetic checks are not counted as findings.
+
+### R7-001 — P2: The blood-result picker exposes body markers and bypasses their dedicated validation
+
+- **Location:** `src/app/components/BiomarkerPicker.tsx:30–36`; `src/app/pages/AddResult.tsx:63–85,173–184`.
+- **Trigger:** Stay on Add data → Blood test result, choose Body fat from its marker picker, and enter 80%.
+- **Defect/impact:** The picker offers every biomarker, including Body measurements. Selecting one does not switch to the Body form; submission still calls generic `validateManualEntry()` rather than `validateBodyEntry()`. This alternate normal UI path bypasses the body-specific plausibility and paired-reading/context requirements.
+- **Verification — executed in the production browser UI and core:** Selected Body fat while the Blood test result tab remained active, entered 80, and clicked Save result once. IndexedDB contained a manual `body_fat` measurement with value 80, and “Saved just now” showed 80%. Actual `validateBodyEntry()` rejected the identical date/unit/value with `That looks unlikely. Check for a typo or the unit.` The missing blood-pressure pairing/context guards follow from the inspected generic submission path; those additional cases were not separately saved.
+- **Fix direction:** Restrict this picker to blood markers in the blood-result flow, or route a body-marker selection through the same dedicated body-entry validation/form instead of a second weaker path.
+
+### R7-002 — P2: A specimen receipt date can override an explicit collection date without a warning
+
+- **Location:** `src/core/importers/labText.ts:199–200,247–259`; review initialization at `src/app/components/LabReview.tsx:78`.
+- **Trigger:** A report lists `Specimen received: 2026-10-12` before `Collected: 2026-10-10`, followed by ordinary result rows.
+- **Defect/impact:** The broad sample-label regex treats “specimen received” as collection evidence, and the first match returns immediately. The explicit collection date later in the report is never considered. The proposed date is marked as confidently labelled rather than carrying the fallback/date-ambiguity warning, so an unchanged review saves results against receipt day instead of blood-draw day.
+- **Verification — executed parser through save validation:** Parsed the two headers and `Ferritin 45 µg/L 15 - 150`. Actual `parseLabText()` returned date `2026-10-12`, no `dateNote`, and a result with no problems. Passing the row and proposed date through actual `validateManualEntry(..., "pdf")` succeeded and produced a measurement dated `2026-10-12`. The full PDF/review interaction was not executed; the review's use of the proposed date was inspected.
+- **Fix direction:** Prefer explicit collection/draw labels over received/reported dates. Treat weaker specimen labels as a warned fallback rather than returning before a stronger collection label can be found.
+- **Distinctness:** Earlier date findings concern device locale interpretation or chart time-zone formatting, not choosing the wrong event's date from an unambiguous report.
+
+### R7-003 — P2: Browser-only users cannot back up their habits until they have a measurement
+
+- **Location:** `src/app/pages/DataPage.tsx:48,202–208`; supported export contents at `src/db/db.ts:233–240`.
+- **Trigger:** A browser-only profile has one or more Habits but no blood/body measurements, including the supported workflow of planning a habit before its baseline test.
+- **Defect/impact:** The only JSON download button is disabled solely when measurement count is zero. Its own description promises to include habits and their watches, and the export function supports them, but their presence cannot enable the button. Without the local server, there is no folder ZIP alternative, so meaningful saved data cannot be backed up/moved through this UI.
+- **Verification — executed in the production browser and export helper:** Seeded the isolated browser profile with `Walk after dinner` and zero measurements, opened Settings → Your data, and observed Download file disabled while the card explicitly said it saves “all 0 results, your habits and what they watch.” In a separate fake-IndexedDB probe, actual `exportAll()` successfully produced `measurements:0, habits:1`.
+- **Fix direction:** Base availability on all data the export actually contains, or permit exporting the valid zero-measurement backup. Do not require a fabricated result to unlock habit backup.
+- **Distinctness:** This does not expand the legacy JSON format to meals/plans or repeat migration/replacement bugs. It concerns a UI guard blocking data already supported by that format.
+
+### R7-004 — P2: Child profiles receive adult-only intake comparisons and an adult calcium upper limit
+
+- **Location:** `src/core/meals.ts:135–139,249–257`; age-based consumption at `src/app/pages/IntakePage.tsx:422–425,563–566`.
+- **Trigger:** Use a valid profile born `2016-10`, then analyze calcium intake.
+- **Defect/impact:** `adultReference()` sends every known age below 25 into the shipped “Adults 18 to 24 years” group, without a lower-age guard. The analyzer presents the resulting share/status “for your sex and age”; `dailyReference()` also returns the adult-only calcium upper limit. Unsupported adult population comparisons are thus applied to children instead of retaining totals without an applicable comparison.
+- **Verification — executed shipped-data core helpers and the actual browser UI:** `isProfile()` accepted the synthetic child; `ageAt(..., "2026-10-29")` was `10.036960985626283`. A structurally valid synthetic calcium entry yielded reference `1000 mg`, group `Adults 18 to 24 years (men and women)`, share 100, status `met`, and upper limit `2500 mg` whose note explicitly says adults. The browser analyzer showed `Calcium · 100 % · 1,000 mg of 1,000 · Reached` for that profile. This is a test input, not an intake recommendation.
+- **Fix direction:** Check whether the person's known age belongs to the reference population before applying adult-only intake/upper-limit comparisons or derived gap guidance. Keep measured totals available; do not invent pediatric reference values.
+- **Distinctness:** This is an unsupported reference population, not the previously reported missing measurement-coverage display or supplement-form/unit conversion defects.
+
+### R7-005 — P2: The nutrient sidebar incorrectly says restricted upper limits cover food and supplements together
+
+- **Location:** `src/app/pages/NutrientPage.tsx:304–311`; supplied scope metadata at `src/core/meals.ts:256–257`.
+- **Trigger:** Open the magnesium or folate page on a large screen and use its sticky “EU values for a day” summary.
+- **Defect/impact:** The sidebar drops `ref.upperLimit.note` and unconditionally says “From food and supplements together” beneath both the reference intake and upper limit. Shipped magnesium's 250 mg limit explicitly excludes naturally occurring food magnesium; folate likewise has a source-restricted limit. The sidebar's statement contradicts the data and makes magnesium's 300 mg adequate intake for women appear to exceed a 250 mg limit on the same combined intake.
+- **Verification — executed helper and production browser display:** Actual `dailyReference()` for an adult woman returned magnesium intake 300 mg and upper limit 250 mg, with the note excluding magnesium naturally in food/drinks. The browser sidebar and readable screenshot showed `Adequate intake, women 300 mg`, `Upper limit 250 mg`, followed by `From food and supplements together.` The correctly scoped explanation farther down the page does not make this standalone summary accurate.
+- **Fix direction:** Preserve the supplied source restriction beside each upper-limit figure instead of applying one unconditional combined-source sentence to unlike measures.
+- **Distinctness:** The intake calculator's supplement-only upper-limit arithmetic was checked and behaved as intended. This finding is the sidebar's incorrect scope statement, not a new arithmetic or safety-filter claim.
+
+### Round 7 verification and exclusions
+
+- `bun run test`: **57 files / 778 tests passed**, exit 0; the AI SDK image-part deprecation warning remained.
+- `bun run build`: **passed**, including both TypeScript projects and production bundling, exit 0; the large-chunk warning remained.
+- Browser checks used an isolated static-preview origin and synthetic IndexedDB records. Exercised the blood-tab body-marker save, zero-measurement backup availability, child intake classification and restricted-source nutrient sidebar. Review records were cleared, the tab closed and the preview stopped.
+- Executed actual body/manual validation, report-date parsing, habit export, profile/age validation, intake totals/reference selection and daily-reference helpers with shipped data. Fake databases were removed. No external model/research service, real profile or installed agent was used.
+- The independent clinical slice's synthetic checks confirmed direct-equation PhenoAge consistency, separation of newer incomplete draws, historical selection of available weight/medication status, and Framingham heart-age/risk equivalence; no new finding was established there. These checks do not revalidate all scientific models or source citations.
+- Supplement arithmetic probes confirmed folic-acid ×1.7, EPA+DHA mg-to-g conversion, retinol contribution and supplement-only upper-limit comparisons. Previously reported critical/qualifier/age-bound/calendar-day/root-cause variants were not counted again. Generic unsupported report layouts were not promoted without a stronger supported-format contract.
+- No application source, permanent tests, dependencies, configuration or knowledge data was changed.
+
+### Cumulative triage after Round 7
+
+| Scope | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Rounds 1–6 | 15 | 85 | 6 | 106 |
+| Round 7 additions | 0 | 5 | 0 | 5 |
+| Cumulative | 15 | 90 | 6 | 111 |
+
+Round 7 adds no new P1 finding. Its additions concern validation bypass, sample-date provenance, backup availability and incorrect reference population/scope.
