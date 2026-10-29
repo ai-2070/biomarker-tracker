@@ -1,58 +1,170 @@
+<div align="center">
+
+<img src="public/favicon.svg" width="64" height="64" alt="Biomarker Tracker logo">
+
 # Biomarker Tracker
 
-A free, open-source, local-first web app for tracking your bloodwork over the years. No account, no cloud. Your data stays in your browser, and an optional assistant runs through a small server on your own computer.
+**A private, local-first bloodwork and biomarker tracker.**
+Track your lab results and body measurements for years, see your biological age, understand every marker in plain language, and read what the research says. Your health data stays on your computer.
 
-**Not medical advice. Not a medical device.**
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
+![Bun](https://img.shields.io/badge/Bun-runtime-f9f1e1?logo=bun&logoColor=black)
+![Local-first](https://img.shields.io/badge/data-stays%20on%20your%20computer-0f766e)
+![No telemetry](https://img.shields.io/badge/telemetry-none-0f766e)
+![Tests](https://img.shields.io/badge/tests-690%2B-0f766e)
 
-## Status
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/dashboard-dark.png">
+  <img src="docs/screenshots/dashboard.png" alt="Biomarker Tracker dashboard: biological age 38.3 years against a calendar age of 47.6, one marker to watch, blood pressure, weight, and a timeline of blood tests, body measurements and habits" width="100%">
+</picture>
 
-- v0.12: sidebar layout and a Dashboard home: biological age, markers in range and to watch, a multi-year timeline of blood tests, biological age and supplements, marker charts, what you're taking now, experiments. Body and Devices (Android Health Connect sync) are marked as coming soon.
-- Settings has tabs for Your data (person, "A bit more", files, backups), AI models, Skills, MCP servers, Appearance and About (version, source code).
-- v0.11: import a lab report from a photo or a scanned PDF. Text recognition runs on this device (English, German, Hungarian); nothing is uploaded. The review screen asks to check every value, and values far outside the lab's own range (a lost decimal point) are unticked with a note. Example profile with made-up data for trying the app.
-- v0.10: profiles. Each person is a folder on this computer with their details (name, birth month, sex, height, diet, smoking, conditions, allergies, notes), results, log, experiments and scanned lab reports. A setup wizard on first start and for each new profile; switch profiles from the header; back up a profile as a .zip, restore it, show its folder, delete it. Imported lab PDFs are kept in the profile.
-- Body: weight, waist, body fat, blood pressure and resting heart rate with their own dashboard (BMI and waist-to-height computed); the main dashboard combines blood tests and body, and blood tests have their own dashboard.
-- Habits: supplements, food, medicines and routines in one list; any habit can watch markers and show what changed, compared with normal test-to-test variation.
-- v0.9: assistant (Brain: a chat window on every page, Space to open; drop a lab report into it to add results) through a local server. Settings has tabs for your data, AI models, Skills (8 built-in medical and nutrition research skills, plus your own) and MCP servers (PubMed, ClinicalTrials.gov, openFDA, BioMCP, medical terminologies, food data; all added and switched on from the start). Models: EU/US zero-data-retention providers (Anthropic, OpenAI, Mistral, your own endpoint), OpenRouter with zero-retention routing, local Ollama / LM Studio, or agent programs with your own login (Claude Code, Codex, Hermes, OpenClaw; labelled because the app can't check what they keep). The assistant reads your results with tested tools, searches the research, and every citation is checked.
-- v0.1: manual entry, per-marker trend charts with reference ranges, out-of-range and critical-value flags, JSON backup and restore. 21 markers in the knowledge base.
-- v0.8: self-experiments: pick one change and the markers to watch, re-test after 4–12 weeks, and see whether the before/after difference is bigger than that marker's normal test-to-test variation (log-normal reference change value, using within-person variation from the EFLM Biological Variation Database). Re-test reminders appear on the results page.
-- v0.7: "What is known to raise/lower it" on marker pages: 13 evidence-graded levers (foods, diet, supplements, habits) for ferritin, iron, B12, folate, vitamin D, LDL, triglycerides and HDL, with measured nutrient amounts per portion from the UK CoFID 2021 food composition table. Foods and options are hidden when the log shows blood thinners, kidney disease or pregnancy. "Add it to your log" puts the change on your chart.
-- v0.6: research panel on each marker page (Europe PMC with PubMed fallback; only search words are sent) (the in-browser AI questions from v0.6 were replaced by the assistant in v0.9).
-- v0.5: log of supplements, diet changes, medicines and habits with start/end dates, shown as bars aligned under each marker chart and as "At the time: …" next to each result. Logging blood thinners, diabetes medicines, pregnancy or kidney disease shows a prominent "talk to your doctor" note.
-- v0.4: lab report import from PDF (read in the browser with pdf.js, nothing uploaded) or pasted text, with a review screen where every value is confirmed before saving. Synthetic German, Hungarian, US and UK report fixtures in `tests/fixtures/lab-text`. Scanned (image-only) PDFs aren't supported yet.
-- v0.3: knowledge base of 37 markers (full blood count, lipids, glucose/HbA1c, liver, kidney, thyroid, iron panel, vitamin D, B12, folate, CRP, electrolytes), with names in English, German, Hungarian, French, Spanish and Italian. Every source verified against Europe PMC.
-- v0.2: biological age (PhenoAge, Levine et al. 2018) from same-day blood draws, with history and an explanation page. Formula verified against the paper and the BioAge R package.
+<sub>Screenshots use the built-in example profile. Every result in them is made up.</sub>
 
-## Develop
+</div>
 
-Uses [Bun](https://bun.sh) as the package manager and script runner.
+> **Not medical advice. Not a medical device.** The app explains what your results mean and what the evidence says. It never diagnoses, and it never tells you to start or stop a medicine or how much to take.
+
+## Why
+
+Lab portals show one test at a time, and every lab prints the same marker differently. Health apps want an account and upload everything. Biomarker Tracker puts years of your own results side by side, explains them in plain language with sources, and keeps all of it in a folder on your computer.
+
+- **No account, no cloud.** Each person is a folder on your computer. Back it up as a .zip and move it anywhere.
+- **No telemetry.** No analytics, no tracking, no error reporting. The page can only talk to itself and two research databases (Europe PMC and PubMed).
+- **Works without AI.** Tracking, charts, biological age and the knowledge base work with no model set up. The assistant is optional.
+- **Code does the maths.** Unit conversions, trends, ranges and scores come from tested TypeScript, never from a language model.
+- **Every claim has a source,** checked against Europe PMC, EFSA or the original paper.
+
+## Features
+
+### Blood tests over the years
+
+Add results by hand, from a lab report PDF, or from a photo of one. Text recognition runs on your device (English, German and Hungarian), and you check every value on a review screen before anything is saved. Markers are recognised in English, German, Hungarian, French, Spanish and Italian, and converted to one unit, so results from different labs line up on one chart.
+
+<img src="docs/screenshots/marker.png" alt="Ferritin chart from 2022 to 2026 with the reference range shaded, two low results marked, and range, zoom and habit controls" width="100%">
+
+- 37 blood markers: full blood count, lipids, glucose and HbA1c, liver, kidney, thyroid, iron, vitamin D, B12, folate, CRP and electrolytes. Each has a plain-language explanation, what is known to raise or lower it, and cited sources.
+- Charts you can explore: zoom, drag across a period to see its average and change, and overlay the habits you were following at the time.
+- Out-of-range flags against your lab's own range. Values far outside it (a lost decimal point) are flagged, and critical values show "contact a doctor" first.
+- A research panel on every marker page that searches Europe PMC and PubMed.
+
+<img src="docs/screenshots/blood-tests.png" alt="Blood tests dashboard: biological age, markers in range, markers to watch, a timeline of every blood test, and tiles for each marker" width="100%">
+
+### Biological age, heart age and fitness age
+
+<img src="docs/screenshots/biological-age.png" alt="Biological age page: PhenoAge, heart age and fitness age over time, drawn against calendar age" width="100%">
+
+- **PhenoAge** (Levine et al., 2018) from nine blood markers taken on the same day, verified against the paper and the BioAge R package.
+- **Heart age** from the Framingham general cardiovascular risk model (D'Agostino 2008), with the 10-year risk it is based on.
+- **Fitness age** from VO₂max, using healthy-adult averages from the HUNT 3 Fitness Study.
+- **Seven age-related fitness tests** (grip strength, push-ups, chair rises, one-leg stand, walking speed, sitting-rising) placed on published norm tables for your age and sex.
+- The three ages are never averaged into one number, because they estimate different things.
+
+### Body measurements and device import
+
+<img src="docs/screenshots/body.png" alt="Body dashboard: weight, waist, waist-to-height ratio, BMI, blood pressure, resting heart rate, heart rate variability, sleep and blood oxygen" width="100%">
+
+Weight, waist, body fat, blood pressure, resting heart rate, heart rate variability (HRV), blood oxygen, sleep, home blood glucose and VO₂max. Import exports from Apple Health, Fitbit, Google Fit, Samsung Health, Garmin, Oura, Whoop, Withings, Polar, Zepp and Huawei Health, or any CSV or JSON file. Files are read on your computer and never uploaded. No made-up "readiness" or "sleep scores": only what was measured.
+
+### Habits and self-experiments
+
+Log supplements, diet changes, medicines and routines, then watch chosen markers. "What changed" compares before and after against that marker's normal test-to-test variation, using data from the EFLM Biological Variation Database. That way, a real change can be told apart from noise. Results are framed as what happened in you, never as evidence for others.
+
+### Protocols, meals and the intake analyzer
+
+<img src="docs/screenshots/protocol.png" alt="A supplement protocol shown as a daily schedule from morning to bedtime, with warnings about items that interact" width="100%">
+
+- **Protocols:** a supplement stack, diet or routine as a daily schedule, with interaction warnings between items and with your medicines or conditions. Start one as habits in one click.
+- **Meals:** build meals from 2,887 foods in the UK CoFID 2021 food table and see what was measured in them, with a note on how much food chemistry those numbers leave out ("nutritional dark matter").
+- **Intake analyzer:** compare a day's meals, foods and supplements with EU (EFSA) reference values. No calorie targets and no weight-loss plans.
+
+<img src="docs/screenshots/intake.png" alt="Intake analyzer: a day of meals and foods compared with EFSA reference intakes for energy, macronutrients, vitamins and minerals" width="100%">
+
+### Supplementation knowledge base
+
+<img src="docs/screenshots/supplement.png" alt="Vitamin D page: what it does, how status is measured, food sources, supplement forms, and findings from trials with evidence grades" width="100%">
+
+15 vitamins and minerals, each with findings from supplement trials (graded by evidence strength), food findings kept apart from supplement findings, EFSA reference intakes and upper limits, interactions, and cited sources.
+
+**Evidence maps** show how the studies behind each finding were found. Every PubMed record is searched instead of picking papers by hand. Written rules choose the reviews and trials, and a model checks each review against the finding's question, with every decision kept and its reason shown. The map also shows how much the reviews share their trials, and which newer studies aren't on the page yet.
+
+<img src="docs/screenshots/evidence-map.png" alt="Evidence map for vitamin D and respiratory infections: counts from 100,400 records to the reviews that answer the question, a timeline of reviews and trials per year, and the chosen reviews" width="100%">
+
+### Brain, the optional assistant
+
+A chat window on every page that reads your results through the app's own tested tools, searches the research, and cites only studies it actually retrieved. Every citation is checked, and unknown ones are struck through. Drop a lab report into the chat to add results. It never diagnoses, never suggests medicines or amounts, and puts critical values first with "contact a doctor".
+
+You choose the model:
+
+- **Cloud providers with zero data retention:** Anthropic, OpenAI, Mistral, or your own endpoint, in the EU or US. OpenRouter is also supported, with zero-retention routing forced on every request.
+- **Local models** through Ollama or LM Studio.
+- **Agent programs you've signed into:** Claude Code, Codex, Hermes or OpenClaw. These are labelled "depends on your login", because the app can't check what they keep.
+
+Your name and private notes are never sent. Optional Skills and medical MCP servers (PubMed, ClinicalTrials.gov, openFDA, medical terminologies, food data) add research tools.
+
+### Works on your phone
+
+<img src="docs/screenshots/phones.png" alt="Three phone screens: the dashboard, a vitamin D chart, and the body page" width="100%">
+
+## Quick start
+
+Requires [Bun](https://bun.sh). The optional research servers (MCP) also need Node.js.
 
 ```bash
+git clone https://github.com/ai-2070/biomarker-tracker.git
+cd biomarker-tracker
 bun install
-bun run dev        # http://localhost:5173
-bun run server     # the assistant's local server on 127.0.0.1:4820 (run next to dev)
-bun run start      # build, then serve the app and the assistant at http://localhost:4820
-bun run test       # unit tests with Vitest (core, knowledge base, db)
-bun run build      # typecheck + static build in dist/
+bun run start      # builds the app and serves it at http://localhost:4820
 ```
 
-Use `bun run test`, not `bun test`: the latter starts Bun's own test runner instead of Vitest.
+The first start asks who you are, or lets you load a backup. To look around first, choose **Just looking?** for the example profile with two years of made-up data.
 
-Stack: Vite, React, TypeScript (strict), Tailwind CSS v4, Base UI (`@base-ui/react`), Dexie (IndexedDB), Recharts, Vitest.
+Your data is kept in `data/` next to the app: one folder per person, plus your settings. API keys stay in `data/secrets.json`, are never sent to the page, and are never put in backups.
 
-## Layout
+### Develop
 
-- `src/core` – pure, tested logic: units, trends and flags, entry validation, backup format, knowledge validation
-- `src/db` – Dexie schema and queries
-- `server` – the local server: settings, models, skills, MCP, assistant
-- `skills` – built-in skills (SKILL.md)
-- `src/app` – React UI
-- `knowledge/biomarkers` – one JSON file per marker, each with verified sources
-- `tests` – Vitest suites
+```bash
+bun run dev        # the app with hot reload at http://localhost:5173
+bun run server     # the local server on 127.0.0.1:4820 (run next to dev)
+bun run test       # Vitest: core logic, knowledge base, database
+bun run build      # typecheck and static build in dist/
+```
 
-See `CLAUDE.md` for the principles every change must follow.
+Use `bun run test`, not `bun test`: the second one starts Bun's own test runner instead of Vitest.
+
+## How it's built
+
+**Stack:** Vite, React 19, TypeScript (strict), Tailwind CSS v4, Base UI, Dexie (IndexedDB), Recharts, pdf.js, tesseract.js, Vitest. The local server is plain `node:http`, run by Bun, listening on 127.0.0.1 only.
+
+```
+src/core        pure TypeScript with tests: units, trends, ranges, PhenoAge, heart and fitness age,
+                experiments, importers (lab PDFs, photos, device exports), meals, intake, evidence maps
+src/app         React UI
+src/db          Dexie schema
+server          local server: profiles, models, skills, MCP, the assistant and its tools
+knowledge       biomarkers, evidence claims, nutrients, fitness tests, foods, evidence maps
+skills          built-in assistant skills
+tools           developer tools that build the knowledge files (food table, evidence maps)
+tests           Vitest suites with synthetic fixtures (no real patient data)
+```
+
+The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and design notes are in [`PRODUCT.md`](PRODUCT.md) and [`DESIGN.md`](DESIGN.md).
 
 ## Privacy
 
-The production build ships a Content Security Policy whose `connect-src` allows only the app itself, Europe PMC and PubMed. The page never calls an AI model; the local server does, and only after you ask a question. It only allows EU/US providers with zero data retention (which you confirm for your account) or local models. API keys stay in `data/secrets.json` on your computer and are never sent to the page or put in backups. MCP servers you switch on get search terms, not your results.
+- The production build ships a Content Security Policy whose `connect-src` allows only the app itself, Europe PMC and PubMed.
+- The page never calls an AI model. The local server does, only when you ask a question, and only to the provider you set up.
+- Lab reports, photos and device exports are read on your computer. Photos are sent to a model only if you tick "Send the photo itself", and location data is removed first.
+- MCP servers you switch on receive search terms, not your results.
 
-The MCP servers need Node.js (`npx`); the first start downloads them. Agent programs must be installed and signed in on this computer. Hermes gets the app's tools after you press Connect in Settings → AI models, which adds one entry to Hermes' own MCP settings (Disconnect removes it).
+## Status and roadmap
+
+In active development, private for now. Next on the roadmap:
+
+- Automatic sync from phones (an Android companion app reading Health Connect over your local network).
+- Evidence maps for every supplement in the knowledge base.
+- A clinician's review of the evidence grades and wording.
+
+## Disclaimer
+
+Biomarker Tracker is for information and personal record-keeping. It is not medical advice, not a medical device, and not a substitute for a doctor. Reference ranges, evidence grades and estimates such as biological age are general, may not apply to you, and have not yet been reviewed by a clinician. Talk to your doctor about any result that worries you, and before changing medicines or supplements.
