@@ -25,7 +25,8 @@ const BLOOD: NavItem = {
   label: "Blood tests",
   to: { name: "blood" },
   icon: DropIcon,
-  active: (r) => r.name === "blood" || r.name === "overview" || (r.name === "marker" && !isBodyRoute(r)) || r.name === "add" || r.name === "import",
+  // Add data covers blood, body and devices, so it doesn't belong to Blood tests (lab report import does).
+  active: (r) => r.name === "blood" || r.name === "overview" || (r.name === "marker" && !isBodyRoute(r)) || r.name === "import",
 };
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
@@ -123,7 +124,7 @@ function Sidebar({ route }: { route: Route }) {
       <div className="flex flex-col gap-1 border-t border-line p-3">
         <a href={href({ name: "add" })} className={cx(buttonStyles.primary, "mb-1 w-full no-underline")}>
           <PlusIcon />
-          Add results
+          Add data
         </a>
         <SidebarLink item={SETTINGS} route={route} />
         <GitHubLink />
@@ -217,7 +218,7 @@ function TopBar() {
     <header className="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-line bg-surface/95 px-4 py-1.5 backdrop-blur-sm lg:hidden">
       <Logo className="text-lg" />
       <div className="flex items-center gap-1.5">
-        <a href={href({ name: "add" })} aria-label="Add results" className="flex size-11 items-center justify-center rounded-full text-accent hover:bg-accent-soft">
+        <a href={href({ name: "add" })} aria-label="Add data" className="flex size-11 items-center justify-center rounded-full text-accent hover:bg-accent-soft">
           <PlusIcon />
         </a>
         <ProfileMenu />
