@@ -1,42 +1,28 @@
-import { isIsoDate } from "./dates";
 import { SAFETY_LIMITS } from "./foods";
 import { MAX_GRAMS, NUTRIENT_OF_KEY, adultReference, mealSafetyBlock, mealTotals, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "./meals";
 import { interactionsFor, type NutrientDef } from "./nutrients";
 import type { SafetyId, Sex } from "./types";
 
 /**
- * Daily intake: the meals and foods a person ate on a day, added up from the food table, and compared
- * with EU (EFSA) reference values for a whole day and with their resting energy use. A description of
- * what was eaten, never a target: no calorie goal, no deficit and no "eat less" (CLAUDE.md safety
- * rules). Reference intakes are averages over time for groups of healthy people, so one day below one
- * says little; several logged days average out the day-to-day swings.
+ * Daily intake analyzer: a day's worth of meals and foods the person puts in (one list, not a diary),
+ * added up from the food table and compared with EU (EFSA) reference values for a whole day and with
+ * their resting energy use. A description, never a target: no calorie goal, no deficit and no "eat
+ * less" (CLAUDE.md safety rules). Reference intakes are averages over time for groups of healthy
+ * people, so one day below one says little.
  */
 
 export type IntakeItem =
   | { id: string; kind: "meal"; mealId: string; portions: number }
   | { id: string; kind: "food"; foodId: string; grams: number };
 
-export interface IntakeDay {
-  id: string;
-  /** The day eaten, YYYY-MM-DD. */
-  date: string;
-  items: IntakeItem[];
-  note?: string;
-}
+export const MAX_INTAKE_ITEMS = 60;
 
-export const MAX_DAY_ITEMS = 60;
-
-/** Problems with a logged day; empty means valid. */
-export function validateIntakeDay(v: unknown): string[] {
-  if (typeof v !== "object" || v === null || Array.isArray(v)) return ["the day is not an object"];
-  const d = v as Record<string, unknown>;
+/** Problems with the list; empty means valid. */
+export function validateIntakeItems(v: unknown): string[] {
+  if (!Array.isArray(v)) return ["the list is not a list"];
   const errs: string[] = [];
-  if (typeof d.id !== "string" || !d.id) errs.push("id is missing");
-  if (typeof d.date !== "string" || !isIsoDate(d.date)) errs.push("the date is not a date");
-  if (d.note !== undefined && (typeof d.note !== "string" || d.note.length > 500)) errs.push("the note must be under 500 characters");
-  if (!Array.isArray(d.items)) return [...errs, "items must be a list"];
-  if (d.items.length > MAX_DAY_ITEMS) errs.push(`a day can have at most ${MAX_DAY_ITEMS} items`);
-  for (const it of d.items as unknown[]) {
+  if (v.length > MAX_INTAKE_ITEMS) errs.push(`at most ${MAX_INTAKE_ITEMS} items`);
+  for (const it of v as unknown[]) {
     const i = (typeof it === "object" && it !== null ? it : {}) as Record<string, unknown>;
     if (typeof i.id !== "string" || !i.id) errs.push("an item has no id");
     if (i.kind === "meal") {
@@ -50,11 +36,11 @@ export function validateIntakeDay(v: unknown): string[] {
   return [...new Set(errs)];
 }
 
-/** A day's meals and foods as foods and grams; meals that were deleted since are counted, not guessed. */
-export function expandDay(day: IntakeDay, meals: readonly Meal[]): { items: MealItem[]; missingMeals: number } {
+/** The list's meals and foods as foods and grams; meals deleted since are counted, not guessed. */
+export function expandItems(list: readonly IntakeItem[], meals: readonly Meal[]): { items: MealItem[]; missingMeals: number } {
   const items: MealItem[] = [];
   let missingMeals = 0;
-  for (const it of day.items) {
+  for (const it of list) {
     if (it.kind === "food") items.push({ foodId: it.foodId, grams: it.grams });
     else {
       const meal = meals.find((m) => m.id === it.mealId);
@@ -65,20 +51,33 @@ export function expandDay(day: IntakeDay, meals: readonly Meal[]): { items: Meal
   return { items, missingMeals };
 }
 
-/** Totals for one day, or the average day across several (each nutrient summed, then divided by the days). */
-export function intakeTotals(days: readonly IntakeDay[], meals: readonly Meal[], db: FoodDb): { totals: Record<string, Total>; days: number; missingMeals: number } {
-  const all: MealItem[] = [];
-  let missingMeals = 0;
-  for (const d of days) {
-    const e = expandDay(d, meals);
-    all.push(...e.items);
-    missingMeals += e.missingMeals;
-  }
-  const sum = mealTotals(all, db);
-  const n = Math.max(1, days.length);
-  const totals = Object.fromEntries(Object.entries(sum).map(([k, t]) => [k, { ...t, amount: t.amount / n }])) as Record<string, Total>;
-  return { totals, days: days.length, missingMeals };
+/** The list added up (unmeasured values never count as zero: each total says in how many foods it was measured). */
+export function intakeTotals(list: readonly IntakeItem[], meals: readonly Meal[], db: FoodDb): { totals: Record<string, Total>; missingMeals: number } {
+  const e = expandItems(list, meals);
+  return { totals: mealTotals(e.items, db), missingMeals: e.missingMeals };
 }
+
+/**
+ * An ordinary example day to try the analyzer with, by CoFID code and grams (about 2,000 kcal): oats
+ * with milk and banana, egg sandwich and tomatoes, pasta with chicken and broccoli, fruit, yoghurt and
+ * almonds.
+ */
+export const EXAMPLE_DAY: readonly [foodId: string, grams: number][] = [
+  ["11-788", 50], // porridge oats (dry)
+  ["12-313", 250], // semi-skimmed milk
+  ["14-318", 120], // banana
+  ["11-981", 80], // wholemeal bread
+  ["12-940", 100], // boiled eggs
+  ["13-517", 80], // tomatoes
+  ["11-1129", 220], // pasta, boiled
+  ["18-323", 130], // chicken breast, grilled
+  ["13-503", 80], // broccoli, boiled
+  ["17-038", 15], // olive oil
+  ["14-319", 150], // apple
+  ["12-555", 150], // Greek yoghurt
+  ["14-896", 30], // almonds
+  ["17-685", 10], // butter
+];
 
 // ---- Energy compared with resting energy use -----------------------------------------------------
 

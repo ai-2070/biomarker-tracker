@@ -4,7 +4,6 @@
 import { createContext, useContext, useSyncExternalStore } from "react";
 import { liveQuery } from "dexie";
 import type { Plan } from "../core/plans";
-import type { IntakeDay } from "../core/intake";
 import type { Meal } from "../core/meals";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 import { createBackup } from "../core/backup";
@@ -43,8 +42,6 @@ interface ProfileData {
   plans: Plan[];
   /** Meals (meals.json). */
   meals: Meal[];
-  /** Days logged in Daily intake (intake.json). */
-  intake?: IntakeDay[];
   settings: Record<string, unknown>;
 }
 
@@ -73,24 +70,23 @@ export async function loadedProfileId(): Promise<string | null> {
 
 /** Everything in this browser, as saved to a profile folder. */
 export async function browserData(): Promise<ProfileData> {
-  const [measurements, protocols, experiments, plans, meals, intake, person, settings] = await Promise.all([
+  const [measurements, protocols, experiments, plans, meals, person, settings] = await Promise.all([
     db.measurements.toArray(),
     db.protocols.toArray(),
     db.experiments.toArray(),
     db.plans.toArray(),
     db.meals.toArray(),
-    db.intake.toArray(),
     getProfile(),
     db.settings.toArray(),
   ]);
-  return { person, measurements, protocols, experiments, plans, meals, intake, settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])) };
+  return { person, measurements, protocols, experiments, plans, meals, settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])) };
 }
 
 /** Replaces this browser's copy with a profile from its folder. */
 export async function loadIntoBrowser(id: string): Promise<void> {
   const d = await api<ProfileData>("GET", `/api/profiles/${id}/data`);
-  await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.intake, db.settings], async () => {
-    await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear(), db.intake.clear()]);
+  await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
+    await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear()]);
     const keep = (await db.settings.toArray()).filter((s) => s.key === "ai");
     await db.settings.clear();
     await db.measurements.bulkPut(d.measurements);
@@ -98,7 +94,6 @@ export async function loadIntoBrowser(id: string): Promise<void> {
     await db.experiments.bulkPut(d.experiments);
     await db.plans.bulkPut(d.plans ?? []);
     await db.meals.bulkPut(d.meals ?? []);
-    await db.intake.bulkPut(d.intake ?? []);
     await db.settings.bulkPut([
       ...keep,
       ...Object.entries(d.settings).map(([key, value]) => ({ key, value })),
@@ -243,8 +238,6 @@ export async function createExampleProfile(mode: "folders" | "browser", to = "#/
   await importBackup(createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()), "replace");
   await db.plans.clear();
   await db.plans.bulkPut(d.plans);
-  await db.intake.clear();
-  await db.intake.bulkPut(d.intake);
   await setOnboarded();
   location.hash = to;
   location.reload();

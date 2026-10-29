@@ -32,7 +32,7 @@ const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: 
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
 const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
 const PLANS: NavItem = { label: "Protocols", to: { name: "plans" }, icon: ClipboardIcon, active: (r) => r.name === "plans" || r.name === "plan" };
-const INTAKE: NavItem = { label: "Daily intake", to: { name: "intake" }, icon: IntakeIcon, active: (r) => r.name === "intake" };
+const INTAKE: NavItem = { label: "Intake analyzer", to: { name: "intake" }, icon: IntakeIcon, active: (r) => r.name === "intake" };
 const MEALS: NavItem = { label: "Meals", to: { name: "meals" }, icon: BowlIcon, active: (r) => r.name === "meals" || r.name === "meal" || r.name === "example-meal" };
 const SUPPLEMENTS: NavItem = { label: "Supplementation", to: { name: "supplements" }, icon: BookIcon, active: (r) => r.name === "supplements" || r.name === "nutrient" };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };

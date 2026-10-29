@@ -1,4 +1,4 @@
-import type { IntakeDay } from "../core/intake";
+import { validateIntakeItems, type IntakeItem } from "../core/intake";
 import type { Meal } from "../core/meals";
 import type { Plan } from "../core/plans";
 import { useSyncExternalStore } from "react";
@@ -72,7 +72,17 @@ export function useMediaQuery(query: string): boolean {
   );
 }
 
-/** Days logged in Daily intake, newest first. */
-export function useIntakeDays(): IntakeDay[] | undefined {
-  return useLiveQuery(async () => (await db.intake.toArray()).sort((a, b) => b.date.localeCompare(a.date)), []);
+const INTAKE_KEY = "intakeList";
+
+/** The Daily intake analyzer's list: one per profile, kept in its settings (not a diary). */
+export function useIntakeList(): IntakeItem[] | undefined {
+  return useLiveQuery(async () => {
+    const v = (await db.settings.get(INTAKE_KEY))?.value;
+    return v !== undefined && validateIntakeItems(v).length === 0 ? (v as IntakeItem[]) : [];
+  }, []);
+}
+
+export async function setIntakeList(items: IntakeItem[]): Promise<void> {
+  if (items.length === 0) await db.settings.delete(INTAKE_KEY);
+  else await db.settings.put({ key: INTAKE_KEY, value: items });
 }

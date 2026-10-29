@@ -34,7 +34,7 @@ export type Route =
   | { name: "plans" }
   | { name: "plan"; id: string }
   | { name: "meals"; section?: string }
-  | { name: "intake"; date?: string }
+  | { name: "intake" }
   | { name: "meal"; id: string }
   | { name: "example-meal"; id: string }
   | { name: "setup" }
@@ -93,10 +93,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "supplements" && parts[1] && parts.length === 2) return { name: "nutrient", id: parts[1] };
   if (parts[0] === "protocols" && parts.length === 1) return { name: "plans" };
   if (parts[0] === "protocols" && parts[1] && parts.length === 2) return { name: "plan", id: parts[1] };
-  if (parts[0] === "intake" && parts.length === 1) {
-    const date = params.get("date");
-    return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? { name: "intake", date } : { name: "intake" };
-  }
+  if (parts[0] === "intake" && parts.length === 1) return { name: "intake" };
   if (parts[0] === "meals" && parts.length === 1) {
     const section = params.get("section");
     return section && /^[a-z-]{1,40}$/.test(section) ? { name: "meals", section } : { name: "meals" };
@@ -156,7 +153,7 @@ export function href(route: Route): string {
     case "meals":
       return route.section ? `#/meals?section=${route.section}` : "#/meals";
     case "intake":
-      return route.date ? `#/intake?date=${route.date}` : "#/intake";
+      return "#/intake";
     case "meal":
       return `#/meals/${encodeURIComponent(route.id)}`;
     case "example-meal":

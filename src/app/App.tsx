@@ -161,7 +161,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
     case "meals":
       return <MealsPage key={route.section ?? ""} section={route.section} />;
     case "intake":
-      return <IntakePage key={route.date ?? ""} date={route.date} />;
+      return <IntakePage />;
     case "meal":
       return <MealPage key={route.id} id={route.id} />;
     case "example-meal":
