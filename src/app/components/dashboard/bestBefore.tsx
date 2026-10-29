@@ -31,7 +31,6 @@ const JHA_2013: Citation = {
 const label = "font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase";
 const exact = new Intl.DateTimeFormat(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short" });
 const day = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "long", year: "numeric" });
-const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const pct = (v: number) => `${(v * 100).toFixed(v < 0.1 ? 1 : 0)} %`;
 const yrs = (v: number) => v.toFixed(1);
 
@@ -109,7 +108,6 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
       <div className="flex flex-col gap-2">
         <p className={label}>Expiration date</p>
         <p className="font-serif text-3xl leading-tight tabular-nums sm:text-5xl">{exact.format(new Date(head.medianAt))}</p>
-        <p className="text-sm text-ink-2">Time zone: {zone}</p>
         <p className="max-w-3xl">
           {mine && shift ? (
             <>
