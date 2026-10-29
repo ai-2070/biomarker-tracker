@@ -20,6 +20,7 @@ import { todayIso } from "../../core/dates";
 import type { ProtocolEntry } from "../../core/types";
 import { BIOMARKER_MAP, fullName, nameInSentence } from "../knowledge";
 import { href } from "../router";
+import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
 import { NotFound } from "./NotFound";
 
 export function MarkerPage({ id }: { id: string }) {
@@ -121,7 +122,7 @@ export function MarkerPage({ id }: { id: string }) {
               </div>
               <TrendChart key={def.id} def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
             </Card>
-
+            {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} />}
           </>
         )}
 
