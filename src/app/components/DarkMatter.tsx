@@ -31,7 +31,7 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
   const total = db?.foods.length ?? 0;
   const pct = (k: string) => (c && total ? Math.round(((c[k] ?? 0) / total) * 100) : undefined);
   return (
-    <Card className="flex flex-col gap-4">
+    <Card id="dark-matter" tabIndex={-1} className="flex scroll-mt-6 flex-col gap-4 outline-none">
       <div>
         <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Before you read the numbers</p>
         <h2 className="font-serif text-2xl font-normal">What food tables can't tell you</h2>

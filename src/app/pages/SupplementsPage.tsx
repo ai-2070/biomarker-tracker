@@ -83,14 +83,23 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
       {!searching && (
       <Card className="mb-5 flex flex-col gap-3">
         <h2 className="font-serif text-2xl font-normal">Before you look at supplements</h2>
-        <ol className="flex list-decimal flex-col gap-2 pl-5 text-ink-2">
+        <ol className="flex max-w-3xl list-decimal flex-col gap-2 pl-5 text-ink-2">
           <li>
             <span className="text-ink">Supplements help most when you're low.</span> In people who aren't, many large trials found no benefit, and
             a few found harm. A blood test shows your status for some of them.
           </li>
           <li>
-            <span className="text-ink">Food and a supplement are different things.</span> A food brings thousands of other compounds; the findings
-            for one don't carry over to the other, so they're graded separately here.
+            <span className="text-ink">Food and a supplement are different things.</span> Food tables track about 150 nutrients, but foods are
+            estimated to hold more than 26,000 distinct chemicals, most of them never studied: researchers call this nutritional dark matter (
+            <a href="https://doi.org/10.1038/s43016-019-0005-1" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+              Barabási 2019
+            </a>
+            ). A supplement gives one nutrient on its own, without everything that comes with it in food, so findings for one don't carry over to
+            the other. Diets rich in beta-carotene went with less lung cancer, yet beta-carotene pills raised lung cancer in smokers. That's why
+            they're graded separately here.{" "}
+            <a href={href({ name: "meals", section: "dark-matter" })} className="font-medium text-accent">
+              More on what food tables can't tell you
+            </a>
           </li>
           <li>
             <span className="text-ink">Talk to a doctor or pharmacist first</span> if you take medicines, are pregnant, or have kidney or liver

@@ -39,7 +39,9 @@ const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: Setti
 
 const GROUPS: { label?: string; items: NavItem[] }[] = [
   { items: [DASHBOARD] },
-  { label: "Health", items: [BLOOD, BODY, AGE, HABITS, PLANS, MEALS] },
+  { label: "Health", items: [BLOOD, BODY, AGE] },
+  // Things you build and follow: habits to log and watch, protocols, meals.
+  { label: "Tools", items: [HABITS, PLANS, MEALS] },
   // Research-based knowledge, not your own data: kept apart from Health.
   { label: "Knowledge", items: [SUPPLEMENTS] },
   { label: "Connect", items: [DEVICES] },
