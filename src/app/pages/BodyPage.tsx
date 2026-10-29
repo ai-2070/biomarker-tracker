@@ -18,7 +18,7 @@ import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
 
 /** Shown as a figure on this page, so not repeated as a tile. */
-const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
+const FIGURED = new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
 export function BodyPage() {
@@ -96,7 +96,8 @@ export function BodyPage() {
                       <WaistFigure ms={body} profile={profile} />
                       <WaistToHeightFigure ms={body} profile={profile} />
                       <BmiFigure ms={body} profile={profile} />
-                      <BmrFigure ms={body} profile={profile} />
+                      <LatestFigure ms={body} id="body_fat" label="Body fat" profile={profile} className="col-span-2" />
+                      <BmrFigure ms={body} profile={profile} className="col-span-2" />
                     </>
                   )}
                   {g.id === "heart" && (

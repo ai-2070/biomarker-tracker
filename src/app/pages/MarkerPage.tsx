@@ -23,7 +23,7 @@ import { href } from "../router";
 import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
 import { NotFound } from "./NotFound";
 
-export function MarkerPage({ id }: { id: string }) {
+export function MarkerPage({ id, section }: { id: string; section?: string }) {
   const def = BIOMARKER_MAP.get(id);
   const measurements = useMeasurementsFor(id);
   const profile = useProfile();
@@ -122,7 +122,7 @@ export function MarkerPage({ id }: { id: string }) {
               </div>
               <TrendChart key={def.id} def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
             </Card>
-            {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} />}
+            {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} scrollTo={section === "waist-to-height"} />}
           </>
         )}
 
