@@ -9,6 +9,7 @@ import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
 import { GradeBadge, StudyLink } from "../components/evidence";
 import { AddToProtocol } from "../components/AddToProtocol";
+import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { Glance, anchorId, jump } from "../components/glance";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -189,6 +190,13 @@ export function NutrientPage({ id }: { id: string }) {
           </Card>
         )}
 
+        {hasEvidenceMap(n.id) && (
+          <Card id="evidence-map" className="flex scroll-mt-6 flex-col gap-4">
+            <H2>How the evidence was found</H2>
+            <EvidenceMap nutrientId={n.id} citedTitles={Object.fromEntries([...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => f.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))} />
+          </Card>
+        )}
+
         <span id="research" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <ResearchPanel
           name={n.name}
@@ -233,6 +241,7 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
     n.forms.length > 0 && ["forms", "Supplement forms"],
     ["reference", "Reference intakes"],
     hasInteractions && ["interactions", "Interactions and cautions"],
+    hasEvidenceMap(n.id) && ["evidence-map", "How the evidence was found"],
     ["research", "Search research"],
   ].filter((x): x is [string, string] => Boolean(x));
   return (

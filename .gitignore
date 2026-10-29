@@ -11,3 +11,6 @@ data/
 
 # Design review captures (regenerated each review)
 .impeccable/review/
+
+# Evidence map downloads (raw Europe PMC records; the distilled maps live in knowledge/evidence-maps)
+tools/evidence/cache/
