@@ -1,7 +1,7 @@
 import { summarizePhenoAge } from "../../core/phenoageDraws";
 import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { Toggle } from "@base-ui/react/toggle";
-import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, isOutOfRange, type Flag } from "../../core/trends";
+import { computeTrend, flagLatest, groupByBiomarker, isCritical, isOutOfRange, type Flag } from "../../core/trends";
 import type { BiomarkerDef, Measurement, Profile } from "../../core/types";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { Card, FlagBadge, LinkButton, PageTitle, cx } from "../components/ui";
@@ -27,7 +27,7 @@ export function Overview({ show }: { show?: ResultsFilter }) {
   const rows: { def: BiomarkerDef; ms: Measurement[]; flag: Flag }[] = [];
   for (const [id, ms] of groupByBiomarker(all)) {
     const def = BIOMARKER_MAP.get(id);
-    if (def) rows.push({ def, ms, flag: flagMeasurement(def, computeTrend(ms)!.latest, profile) });
+    if (def) rows.push({ def, ms, flag: flagLatest(def, ms, profile) });
   }
 
   const critical: CriticalItem[] = [];

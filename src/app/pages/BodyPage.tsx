@@ -113,7 +113,7 @@ export function BodyPage({ add }: { add?: boolean }) {
                   )}
                   {g.id === "sleep" && (
                     <>
-                      <LatestFigure ms={body} id="sleep_duration" label="Sleep, latest night" profile={profile} className="col-span-2" />
+                      <LatestFigure ms={body} id="sleep_duration" label="Sleep" profile={profile} className="col-span-2" />
                       <LatestFigure ms={body} id="sleep_deep" label="Deep sleep" profile={profile} />
                       <LatestFigure ms={body} id="sleep_rem" label="REM sleep" profile={profile} />
                     </>

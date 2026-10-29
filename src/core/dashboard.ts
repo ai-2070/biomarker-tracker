@@ -6,7 +6,7 @@ import { daysBetween } from "./dates";
 import { retestDate } from "./experiments";
 import { summarizePhenoAge } from "./phenoageDraws";
 import { isActiveOn } from "./protocols";
-import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, isOutOfRange, resolveRange, sortByDate, type Flag, type ResolvedRange } from "./trends";
+import { computeTrend, flagLatest, flagMeasurement, groupByBiomarker, isCritical, isOutOfRange, resolveRange, sortByDate, type Flag, type ResolvedRange } from "./trends";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
 export interface DashboardMarker {
@@ -88,7 +88,7 @@ export function buildDashboard(input: {
       def,
       series: sortByDate(ms),
       latest: t.latest,
-      flag: flagMeasurement(def, t.latest, profile),
+      flag: flagLatest(def, ms, profile),
       ...(resolveRange(def, t.latest, profile) ? { range: resolveRange(def, t.latest, profile)! } : {}),
       ...(t.change !== undefined ? { change: t.change } : {}),
       ...(t.percentChange !== undefined ? { percentChange: t.percentChange } : {}),

@@ -9,7 +9,12 @@
     "min": 0.016666666666666666,
     "s": 0.0002777777777777778
   },
-  "rangeNote": "Adults are advised to sleep at least 7 hours a night regularly; 7–9 hours suits most. One short night isn't a problem, so single nights aren't flagged: look at the average over a week or more. More than 9 can be right for young adults, after sleep loss or during illness. Counted per night and dated by the morning you woke up; naps on the same day are added.",
+  "defaultRanges": [
+    { "low": 7, "high": 9, "ageFrom": 18, "ageTo": 65 },
+    { "low": 7, "high": 8, "ageFrom": 65 }
+  ],
+  "rangeNote": "Adults are advised to sleep at least 7 hours a night regularly: 7–9 hours suits most adults, 7–8 from 65. The range is checked against your average over the last week, never one night: one short night isn't a problem. More than 9 can be right for young adults, after sleep loss or during illness. Wearables measure sleep less exactly than a sleep lab. Counted per night and dated by the morning you woke up; naps on the same day are added.",
+  "judgeAverageOfDays": 7,
   "summary": "Time actually asleep in a night, from a watch, ring, phone app or your own note. Not time in bed: lying awake doesn't count.",
   "high": {
     "meaning": "Long sleep is usually fine. Regularly needing much more than 9 hours, or still feeling tired after it, is worth mentioning to a doctor.",

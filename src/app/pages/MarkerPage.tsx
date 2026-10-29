@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { computeTrend, flagMeasurement, isCritical, isOutOfRange, resolveRange, sortByDate } from "../../core/trends";
+import { personalRange } from "../../core/personalRange";
+import { computeTrend, flagLatest, flagMeasurement, isCritical, isOutOfRange, recentAverage, resolveRange, sortByDate } from "../../core/trends";
 import { formatValue, listUnits } from "../../core/units";
 import type { BiomarkerDef, Citation, Measurement, Profile } from "../../core/types";
 import { deleteMeasurement } from "../../db/db";
@@ -10,7 +11,7 @@ import { ResearchPanel } from "../components/ResearchPanel";
 import { LeversPanel } from "../components/LeversPanel";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, LinkButton, Notice } from "../components/ui";
-import { displayUnitFor, formatDate, showChange, showMeasurement, showRange } from "../format";
+import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement, showRange, showValue } from "../format";
 import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useProfile, useProtocols } from "../hooks";
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
@@ -29,8 +30,16 @@ export function MarkerPage({ id }: { id: string }) {
   if (!def) return <NotFound />;
   const unit = displayUnitFor(def, units[def.id]);
   const trend = measurements ? computeTrend(measurements) : undefined;
-  const latestFlag = trend ? flagMeasurement(def, trend.latest, profile) : undefined;
-  const range = trend ? resolveRange(def, trend.latest, profile) : resolveRange(def, {}, profile);
+  const latestFlag = trend && measurements ? flagLatest(def, measurements, profile) : undefined;
+  const usual = def.personalRange && measurements ? personalRange(measurements) : undefined;
+  const range = usual
+    ? { low: usual.low, high: usual.high, source: "personal" as const, from: usual.baseline.from }
+    : trend
+      ? resolveRange(def, trend.latest, profile)
+      : resolveRange(def, {}, profile);
+  // Sleep: the range is checked against the last week's average, not one night.
+  const week = def.judgeAverageOfDays && measurements ? recentAverage(measurements, def.judgeAverageOfDays) : undefined;
+  const fmt = (v: number) => (unit === "h" ? formatHours(v) : `${showValue(def, v, unit)} ${unit}`);
 
   return (
     <>
@@ -72,13 +81,36 @@ export function MarkerPage({ id }: { id: string }) {
                     {showMeasurement(def, trend.latest, unit)} <span className="text-lg font-normal text-ink-2">{unit}</span>
                   </p>
                 </div>
-                <FlagBadge flag={latestFlag} className="text-base" />
+                {usual?.recent && latestFlag === "unknown" ? (
+                  <span className="rounded-full bg-sunken px-3 py-1 text-ink-2">
+                    {usual.recent.position === "within" ? "Within your usual range" : usual.recent.position === "below" ? "Lower than usual" : "Higher than usual"}
+                  </span>
+                ) : (
+                  <FlagBadge flag={latestFlag} className="text-base" />
+                )}
               </div>
+              {def.judgeAverageOfDays && (
+                <p className="text-ink-2">
+                  {week
+                    ? `Average of the last ${def.judgeAverageOfDays} days: ${fmt(week.value)} (${week.count} readings). The range is checked against this, not one night.`
+                    : `The range is checked against the average of the last ${def.judgeAverageOfDays} days, which needs at least 3 readings.`}
+                </p>
+              )}
+              {usual && (
+                <p className="text-ink-2">
+                  Your usual range: {showValue(def, usual.low, unit)}–{showValue(def, usual.high, unit)} {unit}, from your own {usual.baseline.count} readings between{" "}
+                  {formatDate(usual.baseline.from)} and {formatDate(usual.baseline.to)}.
+                  {usual.recent &&
+                    ` Last week's average, ${fmt(usual.recent.value)}, is ${usual.recent.position === "within" ? "within it" : usual.recent.position === "below" ? "lower than usual" : "higher than usual"}.`}{" "}
+                  It describes you, not what's healthy.
+                </p>
+              )}
               <TrendSummary def={def} trend={trend} unit={unit} />
               {isOutOfRange(latestFlag) && !isCritical(latestFlag) && (
                 <Notice tone="warn" title="Outside the reference range">
-                  One result outside the range is common and often harmless. It is still worth discussing with your doctor, especially
-                  if it is new, keeps changing, or you have symptoms.
+                  {def.judgeAverageOfDays
+                    ? "Your average over the last week is outside the range. A week like this now and then is common. If it keeps happening, or you feel unwell, it's worth discussing with your doctor."
+                    : "One result outside the range is common and often harmless. It is still worth discussing with your doctor, especially if it is new, keeps changing, or you have symptoms."}
                 </Notice>
               )}
               <TrendChart def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
@@ -222,6 +254,10 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
     def.defaultRanges?.some((r) => r.sex) && !profile.sex
       ? " This marker has different ranges for women and men. Set your sex on the Data page to use the matching one."
       : "";
+  const ageNote =
+    def.defaultRanges?.some((r) => r.ageFrom !== undefined || r.ageTo !== undefined) && !profile.birthMonth
+      ? " The range changes with age. Add your month of birth on the Data page to use the matching one."
+      : "";
   return (
     <Card className="flex flex-col gap-4">
       <h2 className="font-serif text-2xl font-normal">What is {def.abbreviation ?? def.name}?</h2>
@@ -237,10 +273,15 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
           <span className="font-medium text-ink">Reference range: </span>
           {range?.source === "lab"
             ? `your latest result uses your lab's range, ${showRange(def, range, unit)}.`
-            : defaultRange
-              ? `a typical adult range of ${showRange(def, defaultRange, unit)} is used when your lab's range isn't entered.`
-              : "no typical range is available for this marker."}
+            : def.personalRange
+              ? "there is no useful range for everyone. Once you have 2 weeks of readings, your own usual range is shown: the middle two-thirds of your readings over the previous 60 days."
+              : defaultRange
+                ? def.category === "Body"
+                  ? `the usual adult range used here is ${showRange(def, defaultRange, unit)}.`
+                  : `a typical adult range of ${showRange(def, defaultRange, unit)} is used when your lab's range isn't entered.`
+                : "no typical range is available for this marker."}
           {sexNote}
+          {ageNote}
         </p>
         {def.rangeNote && <p className="mt-2">{def.rangeNote}</p>}
         {def.category !== "Body" && <p className="mt-2 text-sm">Ranges differ between labs, countries, ages and during pregnancy. Your lab's range is the better guide.</p>}

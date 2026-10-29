@@ -62,6 +62,10 @@ export interface RangeDef {
    * A range without it is used when the reading's state isn't given.
    */
   fasted?: boolean;
+  /** Only from this age (years, inclusive), e.g. body fat or sleep, whose ranges change with age. */
+  ageFrom?: number;
+  /** Only below this age (years, exclusive). */
+  ageTo?: number;
 }
 
 export type BiomarkerCategory =
@@ -93,6 +97,13 @@ export interface BiomarkerDef {
   criticalRange?: { low?: number; high?: number };
   /** Extra context for the range, e.g. "fasting". */
   rangeNote?: string;
+  /**
+   * Judge the range on the average of this many days, never on one reading (sleep: one short night
+   * isn't a problem). Single readings are then only flagged when critical.
+   */
+  judgeAverageOfDays?: number;
+  /** No population range: the person's own usual range is shown instead (HRV). See `personalRange.ts`. */
+  personalRange?: boolean;
   summary: string;
   high: { meaning: string; commonCauses: string[] };
   low: { meaning: string; commonCauses: string[] };

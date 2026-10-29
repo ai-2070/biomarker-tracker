@@ -7,7 +7,15 @@
   "conversions": {
     "%": 1
   },
-  "rangeNote": "Healthy ranges depend on age and sex. One widely used guide (matched to a healthy BMI): men 8–20 % at 20–39 years, 11–22 % at 40–59, 13–25 % at 60–79; women 21–33 %, 23–34 % and 24–36 %. Home scales estimate body fat from electrical resistance and can shift by several percent with hydration, so compare readings taken the same way and time of day.",
+  "defaultRanges": [
+    { "low": 8, "high": 20, "sex": "m", "ageFrom": 20, "ageTo": 40 },
+    { "low": 11, "high": 22, "sex": "m", "ageFrom": 40, "ageTo": 60 },
+    { "low": 13, "high": 25, "sex": "m", "ageFrom": 60, "ageTo": 80 },
+    { "low": 21, "high": 33, "sex": "f", "ageFrom": 20, "ageTo": 40 },
+    { "low": 23, "high": 34, "sex": "f", "ageFrom": 40, "ageTo": 60 },
+    { "low": 24, "high": 36, "sex": "f", "ageFrom": 60, "ageTo": 80 }
+  ],
+  "rangeNote": "The range depends on age and sex and is matched to a healthy BMI (Gallagher 2000): men 8–20 % at 20–39 years, 11–22 % at 40–59, 13–25 % at 60–79; women 21–33 %, 23–34 % and 24–36 %. No range is shown under 20 or from 80. It was worked out with lab methods (DXA and similar); home scales estimate body fat from electrical resistance and can shift by several percent with hydration, so treat the range as a rough guide and compare readings taken the same way and time of day.",
   "summary": "The share of your weight that is fat. It says more than weight alone, but home measurements are rough estimates: follow the trend rather than a single number.",
   "high": {
     "meaning": "More body fat for your age and sex is linked to higher heart and metabolic risk, especially fat around the belly.",

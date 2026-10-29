@@ -11,7 +11,8 @@ import { summarizePhenoAge } from "../src/core/phenoageDraws";
 import { ageAt } from "../src/core/phenoageDraws";
 import { assistantProfile } from "../src/core/profile";
 import { safetyLabels, safetyNotes } from "../src/core/protocols";
-import { computeTrend, flagMeasurement, groupByBiomarker, isCritical, resolveRange, sortByDate } from "../src/core/trends";
+import { personalRange } from "../src/core/personalRange";
+import { computeTrend, flagLatest, flagMeasurement, groupByBiomarker, isCritical, recentAverage, resolveRange, sortByDate } from "../src/core/trends";
 import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
@@ -54,7 +55,7 @@ export function resultsOverview(s: HealthSnapshot) {
     const def = defs.get(id);
     if (!def) continue;
     const t = computeTrend(ms)!;
-    const flag = flagMeasurement(def, t.latest, s.profile);
+    const flag = flagLatest(def, ms, s.profile);
     out.push({
       marker: def.id,
       name: def.name,
@@ -82,6 +83,32 @@ export function personOf(s: HealthSnapshot) {
   };
 }
 
+/** Where the marker stands now: sleep is judged on the week's average; HRV against the person's own usual range. */
+function nowOf(s: HealthSnapshot, def: BiomarkerDef, ms: Measurement[]) {
+  if (!ms.length) return null;
+  const week = def.judgeAverageOfDays ? recentAverage(ms, def.judgeAverageOfDays) : undefined;
+  const usual = def.personalRange ? personalRange(ms) : undefined;
+  return {
+    flag: flagLatest(def, ms, s.profile),
+    ...(def.judgeAverageOfDays
+      ? { judgedOn: `the average of the last ${def.judgeAverageOfDays} days, never one reading`, average: week ? r(week.value) : "not enough readings (needs 3)" }
+      : {}),
+    ...(def.personalRange
+      ? {
+          usualRange: usual
+            ? {
+                low: r(usual.low),
+                high: r(usual.high),
+                from: `${usual.baseline.count} readings, ${usual.baseline.from} to ${usual.baseline.to}`,
+                ...(usual.recent ? { lastWeekAverage: r(usual.recent.value), lastWeekIs: `${usual.recent.position} the usual range` } : {}),
+                note: "This person's own usual range, not a medical range: nothing is out of range because of it.",
+              }
+            : "Not enough readings yet (needs 2 weeks).",
+        }
+      : {}),
+  };
+}
+
 export function markerDetail(s: HealthSnapshot, def: BiomarkerDef) {
   const ms = sortByDate(s.measurements.filter((m) => m.biomarkerId === def.id));
   const t = computeTrend(ms);
@@ -102,6 +129,7 @@ export function markerDetail(s: HealthSnapshot, def: BiomarkerDef) {
       range: rangeOut(resolveRange(def, m, s.profile)),
       fasted: m.fasted ?? null,
     })),
+    now: nowOf(s, def, ms),
     trend: t && t.count > 1 ? { changeSincePrevious: r(t.change), percentChange: r(t.percentChange), ratePerYear: r(t.ratePerYear), since: t.previous?.date } : null,
     normalVariation: bv && band ? { withinPersonCV: `${bv.cvi}%`, oneTestToNextBand: `${r(band.down * 100)}% to +${r(band.up * 100)}%`, source: bv.source } : "not known for this marker",
     sources: def.sources.map((c) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType })),
@@ -110,8 +138,9 @@ export function markerDetail(s: HealthSnapshot, def: BiomarkerDef) {
 
 export function levers(s: HealthSnapshot, def: BiomarkerDef) {
   const { evidence, foods } = knowledge();
-  const latest = computeTrend(s.measurements.filter((m) => m.biomarkerId === def.id))?.latest;
-  const flag = latest ? flagMeasurement(def, latest, s.profile) : undefined;
+  const mine = s.measurements.filter((m) => m.biomarkerId === def.id);
+  const latest = computeTrend(mine)?.latest;
+  const flag = latest ? flagLatest(def, mine, s.profile) : undefined;
   const safety = safetyOf(s);
   const sel = selectLevers(def.id, flag, evidence, safety);
   return {
@@ -217,7 +246,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
       description:
         "The app's own calculations from body measurements: BMI, waist-to-height, basal metabolic rate (an estimate, never a target), heart age with 10-year cardiovascular risk (Framingham), and recent averages of blood pressure, resting heart rate, resting HRV, blood oxygen and sleep. Use these numbers; don't calculate them yourself.",
       inputSchema: z.object({}),
-      execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso()),
+      execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso(), knowledge().defs),
     }),
     get_biological_age: tool({
       description: "PhenoAge for each blood test that had all 9 markers, computed by the app.",

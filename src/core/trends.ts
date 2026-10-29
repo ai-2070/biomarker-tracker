@@ -1,11 +1,18 @@
-import { dayNumber } from "./dates";
+import { dayNumber, isIsoDate, todayIso } from "./dates";
+import { ageAt, isBirthMonth } from "./phenoageDraws";
 import type { BiomarkerDef, Measurement, Profile } from "./types";
 
 export interface ResolvedRange {
   low?: number;
   high?: number;
-  /** Where the range came from: the lab's own report, or our typical adult range. */
-  source: "lab" | "default";
+  /** Where the range came from: the lab's own report, our typical adult range, or the person's own usual range (HRV). */
+  source: "lab" | "default" | "personal";
+}
+
+/** Age in years on a date, from the profile's birth month; undefined when unknown. */
+function ageOn(profile: Profile, date: string | undefined): number | undefined {
+  if (!profile.birthMonth || !isBirthMonth(profile.birthMonth)) return undefined;
+  return ageAt(profile.birthMonth, date && isIsoDate(date) ? date : todayIso());
 }
 
 /**
@@ -13,10 +20,12 @@ export interface ResolvedRange {
  * The lab's own range wins. Otherwise use the sex-specific default when the
  * profile has a sex, else the range that applies to everyone. If only
  * sex-specific ranges exist and sex is unknown, use the widest span of them.
+ * Ranges with ages (body fat, sleep) apply at the person's age on the day measured;
+ * outside every age band there is no range, and with age unknown the widest span is used.
  */
 export function resolveRange(
   def: BiomarkerDef,
-  m: Pick<Measurement, "labRange" | "fasted">,
+  m: Pick<Measurement, "labRange" | "fasted"> & { date?: string },
   profile: Profile = {},
 ): ResolvedRange | undefined {
   const lab = m.labRange;
@@ -26,16 +35,18 @@ export function resolveRange(
   const all = def.defaultRanges ?? [];
   // Ranges for fasting or after-meal readings apply only to those; otherwise the plain ones.
   const forState = typeof m.fasted === "boolean" ? all.filter((r) => r.fasted === m.fasted) : [];
-  const ranges = forState.length ? forState : all.filter((r) => r.fasted === undefined);
+  const forAnyState = forState.length ? forState : all.filter((r) => r.fasted === undefined);
+  const age = forAnyState.some((r) => r.ageFrom !== undefined || r.ageTo !== undefined) ? ageOn(profile, m.date) : undefined;
+  const ranges = age === undefined ? forAnyState : forAnyState.filter((r) => (r.ageFrom ?? 0) <= age && age < (r.ageTo ?? Infinity));
   if (ranges.length === 0) return undefined;
 
-  const bySex = profile.sex ? ranges.find((r) => r.sex === profile.sex) : undefined;
-  const general = ranges.find((r) => r.sex === undefined);
-  const pick = bySex ?? general;
-  if (pick) return { low: pick.low, high: pick.high, source: "default" };
+  const bySex = profile.sex ? ranges.filter((r) => r.sex === profile.sex) : [];
+  const general = ranges.filter((r) => r.sex === undefined);
+  const pick = bySex.length ? bySex : general.length ? general : ranges;
+  if (pick.length === 1) return { low: pick[0]!.low, high: pick[0]!.high, source: "default" };
 
-  const lows = ranges.map((r) => r.low).filter((v): v is number => v !== undefined);
-  const highs = ranges.map((r) => r.high).filter((v): v is number => v !== undefined);
+  const lows = pick.map((r) => r.low).filter((v): v is number => v !== undefined);
+  const highs = pick.map((r) => r.high).filter((v): v is number => v !== undefined);
   return {
     low: lows.length ? Math.min(...lows) : undefined,
     high: highs.length ? Math.max(...highs) : undefined,
@@ -58,8 +69,40 @@ export function flagValue(
   return "normal";
 }
 
+/**
+ * The flag of one reading. For markers judged on an average (sleep), one reading is only
+ * flagged when it's critical: use `flagLatest` for the marker as a whole.
+ */
 export function flagMeasurement(def: BiomarkerDef, m: Measurement, profile: Profile = {}): Flag {
+  if (def.judgeAverageOfDays) return flagValue(m.value, undefined, def.criticalRange);
   return flagValue(m.value, resolveRange(def, m, profile), def.criticalRange);
+}
+
+/**
+ * Average of the readings in the `days` days up to the latest one (e.g. the last week of sleep), when
+ * there are at least `min` of them; otherwise undefined.
+ */
+export function recentAverage(series: readonly Measurement[], days = 7, min = 3): { value: number; count: number; from: string; to: string } | undefined {
+  const sorted = sortByDate(series);
+  const last = sorted.at(-1);
+  if (!last) return undefined;
+  const from = new Date(Date.parse(last.date) - (days - 1) * 86_400_000).toISOString().slice(0, 10);
+  const recent = sorted.filter((m) => m.date >= from);
+  if (recent.length < min) return undefined;
+  return { value: recent.reduce((s, m) => s + m.value, 0) / recent.length, count: recent.length, from, to: last.date };
+}
+
+/**
+ * The flag of a marker as it stands now: its latest reading, or for markers judged on an average
+ * (sleep) the average of the last days, when there are enough readings for one.
+ */
+export function flagLatest(def: BiomarkerDef, series: readonly Measurement[], profile: Profile = {}): Flag {
+  const last = sortByDate(series).at(-1);
+  if (!last) return "unknown";
+  const single = flagMeasurement(def, last, profile);
+  if (!def.judgeAverageOfDays || isCritical(single)) return single;
+  const avg = recentAverage(series, def.judgeAverageOfDays);
+  return avg ? flagValue(avg.value, resolveRange(def, last, profile)) : "unknown";
 }
 
 export function isCritical(flag: Flag): boolean {

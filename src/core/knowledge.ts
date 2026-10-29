@@ -77,10 +77,15 @@ export function validateBiomarkerDef(v: unknown): string[] {
         else if (isNum(r.low) && isNum(r.high) && r.low >= r.high) errs.push("range low must be below high");
         else if (isObj(r) && r.sex !== undefined && r.sex !== "m" && r.sex !== "f") errs.push("range sex must be m or f");
         else if (isObj(r) && r.fasted !== undefined && typeof r.fasted !== "boolean") errs.push("range fasted must be true or false");
+        else if (isObj(r) && ((r.ageFrom !== undefined && !isNum(r.ageFrom)) || (r.ageTo !== undefined && !isNum(r.ageTo)))) errs.push("range ages must be numbers");
+        else if (isObj(r) && isNum(r.ageFrom) && isNum(r.ageTo) && r.ageFrom >= r.ageTo) errs.push("range ageFrom must be below ageTo");
       }
     }
   }
   if (v.criticalRange !== undefined && !isObj(v.criticalRange)) errs.push("criticalRange must be an object");
+  if (v.judgeAverageOfDays !== undefined && !(isNum(v.judgeAverageOfDays) && v.judgeAverageOfDays >= 2)) errs.push("judgeAverageOfDays must be a number of days (2 or more)");
+  if (v.personalRange !== undefined && typeof v.personalRange !== "boolean") errs.push("personalRange must be true or false");
+  if (v.personalRange === true && v.defaultRanges !== undefined) errs.push("a marker with a personal range has no population range");
 
   // Biological variation (optional)
   if (v.biologicalVariation !== undefined) {
