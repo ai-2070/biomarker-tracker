@@ -9,6 +9,7 @@ import { addMeasurement } from "../../db/db";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { CriticalBanner } from "../components/CriticalBanner";
+import { BodyIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { formatDate, showMeasurement } from "../format";
@@ -22,6 +23,12 @@ interface Saved {
   measurement: Measurement;
   flag: Flag;
 }
+
+const WAYS = [
+  { title: "Import a lab report", text: "A PDF or a photo of your report: all results at once. Photos are read on this device.", to: { name: "import" } as const, icon: FileIcon },
+  { title: "Body measurements", text: "Weight, waist, blood pressure, heart rate, sleep, blood glucose and more, typed in by day.", to: { name: "body", add: true } as const, icon: BodyIcon },
+  { title: "From a device or app", text: "Export files from Apple Health, Garmin, Fitbit, Oura, Samsung, Withings and others.", to: { name: "device-import" } as const, icon: PhoneSyncIcon },
+];
 
 export function AddResult({ initialMarker }: { initialMarker?: string }) {
   const profile = useProfile();
@@ -107,19 +114,32 @@ export function AddResult({ initialMarker }: { initialMarker?: string }) {
   return (
     <>
       <CriticalBanner items={critical} />
-      <PageTitle sub="Copy one value from your lab report. You can add several results from the same report one after another.">
-        Add a result
+      <PageTitle sub="Blood test results, body measurements, or files from a watch or health app. You check everything before it's saved.">
+        Add data
       </PageTitle>
-      <a
-        href={href({ name: "import" })}
-        className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-line bg-accent-soft p-4 text-ink no-underline hover:border-line-strong"
-      >
-        <span>
-          <span className="block font-medium">Have the report as a PDF or a photo?</span>
-          <span className="text-sm text-ink-2">Import all results at once and check them before saving. Photos are read on this device.</span>
-        </span>
-        <span aria-hidden="true" className="text-xl text-accent">→</span>
-      </a>
+
+      {/* The other ways in; typing one blood test result is the form below. */}
+      <ul className="mb-6 grid gap-3 sm:grid-cols-3">
+        {WAYS.map((w) => (
+          <li key={w.title}>
+            <a
+              href={href(w.to)}
+              className="flex h-full items-start gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+            >
+              <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                <w.icon />
+              </span>
+              <span>
+                <span className="block font-medium">{w.title}</span>
+                <span className="text-sm text-ink-2">{w.text}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 className="mb-1 font-serif text-2xl font-normal">Type in a blood test result</h2>
+      <p className="mb-4 text-ink-2">Copy one value from your lab report. You can add several results from the same report one after another.</p>
 
       {/* minmax(0, 1fr) lets long marker names truncate instead of widening the page. */}
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
