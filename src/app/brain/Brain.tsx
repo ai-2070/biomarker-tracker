@@ -7,7 +7,13 @@ import { CitedAnswer } from "../components/CitedAnswer";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { BrainIcon, CloseIcon, FileIcon, NewChatIcon, PaperclipIcon, SendIcon, StopIcon } from "../components/icons";
 import { Review } from "../components/LabReview";
-import { Button, CheckIcon, FlagBadge, cx } from "../components/ui";
+import { Button, CheckIcon, FlagBadge, cx, inputStyles } from "../components/ui";
+import { SafetyNotices } from "../components/SafetyNotices";
+import { todayIso } from "../../core/dates";
+import type { HabitProposal } from "../../core/habitProposal";
+import { defaultRetestDays } from "../../core/habits";
+import { safetyNotes, validateProtocol } from "../../core/protocols";
+import { addProtocol, watchHabit } from "../../db/db";
 import { formatDate, showMeasurement } from "../format";
 import { useAllMeasurements, useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
@@ -28,6 +34,7 @@ import {
   stop,
   toggleBrain,
   updateTurn,
+  setHabitState,
   useBrain,
   type Attachment,
   type Step,
@@ -48,7 +55,8 @@ const TOOL_TEXT: Record<string, string> = {
   get_biological_age: "Checked your biological age estimate",
   get_body_summary: "Read the app's body calculations (BMI, heart age, averages)",
   get_log: "Read your habits",
-  compare_before_after: "Compared before and after in your experiments",
+  compare_before_after: "Checked what changed in your habits",
+  propose_habit: "Suggested a habit for you to confirm",
   search_research: "Searched Europe PMC",
   get_study: "Read a study on Europe PMC",
   get_nutrient: "Read the vitamins and minerals knowledge base",
@@ -411,6 +419,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
       return <p className="text-center text-sm text-ink-2">Stopped. Ask again when you're ready.</p>;
     case "review":
       return <ReviewTurn turn={t} model={model} />;
+    case "habit":
+      return <HabitTurn turn={t} />;
   }
 }
 
@@ -729,5 +739,108 @@ function MobileTools({ settings }: { settings: BrainSettings | null | undefined 
     <span className="-my-2 -ml-2 inline-flex">
       <ToolsMenu active />
     </span>
+  );
+}
+
+const CATEGORY_WORD: Record<HabitProposal["category"], string> = { supplement: "Supplement", diet: "Diet change", lifestyle: "Lifestyle" };
+
+/**
+ * A habit Brain suggested. The person can change the name, start date and watched markers, then add
+ * it to Habits or leave it. Nothing is saved before that (and medicines or amounts never get here).
+ */
+function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) {
+  const p = turn.proposal;
+  const today = todayIso();
+  const [label, setLabel] = useState(p.label);
+  const [start, setStart] = useState(p.start);
+  const [markers, setMarkers] = useState<string[]>(p.markerIds);
+  const [error, setError] = useState<string>();
+  const [saving, setSaving] = useState(false);
+  const notes = safetyNotes([label]);
+  const labelId = useId();
+
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Habit not added.</p>;
+  if (turn.state === "saved") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-ok-soft p-3 text-sm">
+        <span className="flex items-center gap-2">
+          <CheckIcon className="size-4 text-ok" /> Added to Habits: <span className="font-medium">{label}</span>
+        </span>
+        <a href={href({ name: "habits" })} className="font-medium text-ink underline underline-offset-2">
+          Open Habits
+        </a>
+      </div>
+    );
+  }
+
+  async function add() {
+    const r = validateProtocol({ label, category: p.category, start }, today);
+    if (!r.ok) return setError(Object.values(r.errors)[0]);
+    setSaving(true);
+    try {
+      const id = await addProtocol(r.entry);
+      if (markers.length) await watchHabit({ ...r.entry, id }, markers, defaultRetestDays(markers), today);
+      setHabitState(turn.id, "saved");
+    } catch {
+      setError("The habit couldn't be saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+      <div>
+        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">Suggested habit · {CATEGORY_WORD[p.category]}</p>
+        <p className="mt-1 text-sm text-ink-2">{p.reason}</p>
+      </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor={labelId} className="text-sm font-medium">
+          Name
+        </label>
+        <input id={labelId} value={label} maxLength={80} onChange={(e) => setLabel(e.target.value)} className={inputStyles} />
+        <span className="text-xs text-ink-2">Add the amount yourself if it applies, as agreed with your doctor or pharmacist.</span>
+      </div>
+      <label className="flex flex-col gap-1 text-sm">
+        <span className="font-medium">Start</span>
+        <input type="date" value={start} onChange={(e) => setStart(e.target.value)} className={cx(inputStyles, "sm:w-48")} />
+      </label>
+      {p.markerIds.length > 0 && (
+        <fieldset className="flex flex-col gap-1">
+          <legend className="mb-1 text-sm font-medium">Watch these markers (compares results before and after)</legend>
+          {p.markerIds.map((id) => {
+            const def = BIOMARKER_MAP.get(id);
+            return (
+              <label key={id} className="flex min-h-9 cursor-pointer items-center gap-2 text-sm">
+                <Checkbox.Root
+                  checked={markers.includes(id)}
+                  onCheckedChange={(on) => setMarkers((m) => (on ? [...m, id] : m.filter((x) => x !== id)))}
+                  className="flex size-4 shrink-0 items-center justify-center rounded border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
+                >
+                  <Checkbox.Indicator className="flex data-unchecked:hidden">
+                    <CheckIcon className="size-3" />
+                  </Checkbox.Indicator>
+                </Checkbox.Root>
+                {def ? fullName(def) : id}
+              </label>
+            );
+          })}
+        </fieldset>
+      )}
+      <SafetyNotices notes={notes} />
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => void add()} disabled={saving || !label.trim()}>
+          {saving ? "Adding…" : "Add to Habits"}
+        </Button>
+        <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
+          Not now
+        </Button>
+      </div>
+    </div>
   );
 }

@@ -17,6 +17,7 @@ import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
 import { bodySummary } from "../src/core/bodySummary";
+import { parseHabitProposal } from "../src/core/habitProposal";
 import { findMarker, findNutrient, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
@@ -273,17 +274,43 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
       execute: async () => biologicalAge(s),
     }),
     get_log: tool({
-      description: "The user's log of supplements, diet changes, medicines and habits, with dates, and any safety notes they trigger.",
+      description:
+        "The person's Habits (the app's Habits page): supplements, diet changes, medicines and lifestyle habits with start and end dates, which markers each one watches, and the safety notes they trigger. Call them habits when you talk to the person.",
       inputSchema: z.object({}),
       execute: async () => ({
-        entries: s.protocols.map((p) => ({ label: p.label, type: p.category, start: p.start, end: p.end ?? "ongoing" })),
+        habits: s.protocols.map((p) => {
+          const watch = s.experiments.find((e) => e.protocolId === p.id);
+          return { label: p.label, type: p.category, start: p.start, end: p.end ?? "ongoing", ...(watch ? { watches: watch.markerIds } : {}) };
+        }),
         safetyNotes: safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => `${n.title}: ${n.text}`),
       }),
     }),
     compare_before_after: tool({
-      description: "Results of the user's self-experiments: before, after, the change, and whether it is bigger than normal test-to-test variation.",
+      description:
+        "What changed for habits that watch markers (the \"What changed\" part of Habits): before, after, the change, and whether it is bigger than normal test-to-test variation.",
       inputSchema: z.object({}),
       execute: async () => ({ experiments: experimentResults(s), today: todayIso() }),
+    }),
+    propose_habit: tool({
+      description:
+        "Suggest adding a habit to the person's Habits. It shows a card in the chat that the person checks, edits and confirms; nothing is saved until they do. Use it only when the person asks to log, track or try something, or agrees when you ask. Never for medicines, never with an amount or dose in the name, and not while a result is critical. Optionally watch up to 5 markers it could change.",
+      inputSchema: z.object({
+        label: z.string().describe("Short name without amounts, e.g. 'Oats for breakfast', 'Walk after dinner', 'Vitamin D supplement'"),
+        category: z.enum(["supplement", "diet", "lifestyle"]),
+        start: z.string().optional().describe("YYYY-MM-DD; default today. Up to a year ahead for a planned change."),
+        watchMarkers: z.array(z.string()).max(5).optional().describe("Marker names or ids to watch, e.g. ['ldl']"),
+        reason: z.string().describe("One or two plain sentences the person reads on the card"),
+      }),
+      execute: async (input) => {
+        if (resultsOverview(s).critical.length > 0) return { error: "Not while a result is critical: the person should contact a doctor first." };
+        const r = parseHabitProposal(input, knowledge().defs, todayIso());
+        if (!r.ok) return { error: r.error };
+        return {
+          shownToPerson: r.proposal,
+          ...(r.unknownMarkers.length ? { markersNotFound: r.unknownMarkers } : {}),
+          note: "A card is shown in the chat. Nothing is saved until the person confirms it; tell them they can edit it first.",
+        };
+      },
     }),
     search_research: tool({
       description:
