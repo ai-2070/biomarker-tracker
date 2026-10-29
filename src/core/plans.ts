@@ -13,8 +13,19 @@ import type { ProtocolEntry } from "./types";
  */
 
 export type PlanCategory = ProtocolEntry["category"];
-export type PlanTime = "morning" | "midday" | "evening" | "bedtime" | "with meals" | "any time";
-export const PLAN_TIMES: readonly PlanTime[] = ["morning", "with meals", "midday", "evening", "bedtime", "any time"];
+/**
+ * Time of day. "with meals" is only read from older protocols: taking something with a meal is now the
+ * item's `withFood` checkbox, next to its time (e.g. morning, with a meal), and `normalizeItem` turns an
+ * old "with meals" item into "any time" with the checkbox ticked.
+ */
+export type PlanTime = "morning" | "midday" | "evening" | "bedtime" | "any time" | "with meals";
+/** The times people choose from, in the day's order. */
+export const PLAN_TIMES: readonly Exclude<PlanTime, "with meals">[] = ["morning", "midday", "evening", "bedtime", "any time"];
+const READ_TIMES: readonly PlanTime[] = [...PLAN_TIMES, "with meals"];
+
+export type Weekday = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+export const WEEKDAYS: readonly Weekday[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const DAY_SHORT: Record<Weekday, string> = { mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri", sat: "Sat", sun: "Sun" };
 const CATEGORIES: readonly PlanCategory[] = ["supplement", "diet", "medication", "lifestyle"];
 
 export interface PlanItem {
@@ -25,6 +36,10 @@ export interface PlanItem {
   amount?: string;
   category: PlanCategory;
   when: PlanTime;
+  /** Taken with a meal (whatever the time of day). */
+  withFood?: boolean;
+  /** Only on these days of the week; missing means every day. */
+  days?: Weekday[];
   note?: string;
   /** One of the person's saved meals, when the item is that meal. Local only: dropped when shared. */
   mealId?: string;
@@ -55,7 +70,10 @@ export function itemErrors(v: unknown): string[] {
   else if (v.label.length > MAX_LABEL) errs.push(`item names must be under ${MAX_LABEL} characters`);
   if (!optStr(v.amount, 40)) errs.push("amounts must be under 40 characters");
   if (!CATEGORIES.includes(v.category as PlanCategory)) errs.push("item type is invalid");
-  if (!PLAN_TIMES.includes(v.when as PlanTime)) errs.push("item time is invalid");
+  if (!READ_TIMES.includes(v.when as PlanTime)) errs.push("item time is invalid");
+  if (v.withFood !== undefined && typeof v.withFood !== "boolean") errs.push("'with a meal' must be yes or no");
+  if (v.days !== undefined && !(Array.isArray(v.days) && v.days.length >= 1 && v.days.length <= 7 && new Set(v.days).size === v.days.length && v.days.every((d) => WEEKDAYS.includes(d as Weekday))))
+    errs.push("the days of the week are invalid");
   if (!optStr(v.note, 300)) errs.push("notes must be under 300 characters");
   if (!optStr(v.mealId, 64)) errs.push("the meal link is damaged");
   return errs;
@@ -116,7 +134,8 @@ export function planFromFile(text: string, newId: () => string, now: string): { 
     ? json.items.map((i) => {
         if (!isObj(i)) return i;
         const { mealId: _meal, ...rest } = i;
-        return { ...rest, id: newId() };
+        const item = { ...rest, id: newId() };
+        return itemErrors(item).length ? item : normalizeItem(item as unknown as PlanItem);
       })
     : json.items;
   const plan = {
@@ -133,9 +152,33 @@ export function planFromFile(text: string, newId: () => string, now: string): { 
 
 // ---- Reading a protocol ------------------------------------------------------------------------
 
+/**
+ * An item in today's form: an old "with meals" time becomes "any time" with `withFood`, days in the
+ * week's order, and all seven days the same as none (every day).
+ */
+export function normalizeItem(i: PlanItem): PlanItem {
+  const { days, ...rest } = i;
+  const sorted = days ? WEEKDAYS.filter((d) => days.includes(d)) : undefined;
+  return {
+    ...rest,
+    ...(i.when === "with meals" ? { when: "any time" as const, withFood: true } : {}),
+    ...(sorted && sorted.length > 0 && sorted.length < 7 ? { days: sorted } : {}),
+  };
+}
+
+/** Days of the week in words: "Mon, Wed, Fri", "Weekdays", "Weekends"; nothing for every day. */
+export function daysLabel(days: readonly Weekday[] | undefined): string | undefined {
+  if (!days || days.length === 0 || days.length === 7) return undefined;
+  const set = new Set(days);
+  if (set.size === 5 && ["mon", "tue", "wed", "thu", "fri"].every((d) => set.has(d as Weekday))) return "Weekdays";
+  if (set.size === 2 && set.has("sat") && set.has("sun")) return "Weekends";
+  return WEEKDAYS.filter((d) => set.has(d)).map((d) => DAY_SHORT[d]).join(", ");
+}
+
 /** Items grouped by time of day, in the day's order; empty times are left out. */
 export function itemsByTime(p: Plan): { when: PlanTime; items: PlanItem[] }[] {
-  return PLAN_TIMES.map((when) => ({ when, items: p.items.filter((i) => i.when === when) })).filter((g) => g.items.length > 0);
+  const items = p.items.map(normalizeItem);
+  return PLAN_TIMES.map((when) => ({ when, items: items.filter((i) => i.when === when) })).filter((g) => g.items.length > 0);
 }
 
 /** Lower case, letters and digits only, single spaces. */
@@ -181,7 +224,9 @@ export function pairWarnings(p: Plan, nutrients: readonly NutrientDef[]): PairWa
 /** The habit each item becomes when the protocol starts: its name with the person's amount, and its type. */
 export function habitsForPlan(p: Plan, start: string): Omit<ProtocolEntry, "id">[] {
   return p.items.map((i) => {
-    const label = [i.label.trim(), i.amount?.trim()].filter(Boolean).join(" ");
+    const n = normalizeItem(i);
+    const days = daysLabel(n.days);
+    const label = [i.label.trim(), i.amount?.trim(), days && `(${days})`].filter(Boolean).join(" ");
     return { label: label.length > MAX_LABEL ? `${label.slice(0, MAX_LABEL - 1).trimEnd()}…` : label, category: i.category, start };
   });
 }
@@ -197,15 +242,18 @@ export function planFromProposal(input: unknown, newId: () => string, now: strin
   if (!Array.isArray(input.items) || input.items.length === 0) return { ok: false, error: "List the items from the person's text." };
   const items = input.items.map((i) => {
     if (!isObj(i)) return i;
-    const { label, amount, category, when, note } = i;
-    return {
+    const { label, amount, category, when, note, withFood, days } = i;
+    const item = {
       id: newId(),
       label: typeof label === "string" ? label.trim() : label,
       ...(typeof amount === "string" && amount.trim() ? { amount: amount.trim() } : {}),
       category,
       when,
+      ...(withFood === true ? { withFood: true } : {}),
+      ...(Array.isArray(days) && days.length ? { days } : {}),
       ...(typeof note === "string" && note.trim() ? { note: note.trim() } : {}),
     };
+    return itemErrors(item).length ? item : normalizeItem(item as PlanItem);
   });
   const plan = {
     id: newId(),

@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { NutrientDef } from "../../src/core/nutrients";
-import { habitsForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan } from "../../src/core/plans";
+import { habitsForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan, daysLabel, normalizeItem, itemErrors } from "../../src/core/plans";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "nutrients");
 const nutrients = readdirSync(DIR).map((f) => JSON.parse(readFileSync(join(DIR, f), "utf8")) as NutrientDef);
@@ -34,9 +34,11 @@ describe("protocols", () => {
   it("groups items by time of day, in the day's order", () => {
     expect(itemsByTime(plan).map((g) => [g.when, g.items.map((i) => i.id)])).toEqual([
       ["morning", ["a", "e"]],
-      ["with meals", ["b", "c"]],
       ["evening", ["d"]],
+      // Old "with meals" items: any time, taken with a meal.
+      ["any time", ["b", "c"]],
     ]);
+    expect(itemsByTime(plan).at(-1)!.items.every((i) => i.withFood)).toBe(true);
   });
 
   it("links supplements to the vitamins and minerals knowledge base by name or form", () => {
@@ -102,4 +104,20 @@ describe("protocols", () => {
       { label: "Iron bisglycinate", category: "supplement", start: "2026-11-01" },
     ]);
   });
+
+  it("keeps 'with a meal' and days of the week apart from the time of day, and reads old 'with meals' items", () => {
+    const old = { id: "x", label: "Iron", category: "supplement" as const, when: "with meals" as const };
+    expect(normalizeItem(old)).toEqual({ id: "x", label: "Iron", category: "supplement", when: "any time", withFood: true });
+    expect(normalizeItem({ ...old, when: "morning", withFood: true, days: ["fri", "mon", "wed"] })).toMatchObject({ when: "morning", withFood: true, days: ["mon", "wed", "fri"] });
+    expect(normalizeItem({ ...old, when: "morning", days: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] })).not.toHaveProperty("days");
+    expect(daysLabel(["mon", "wed", "fri"])).toBe("Mon, Wed, Fri");
+    expect(daysLabel(["mon", "tue", "wed", "thu", "fri"])).toBe("Weekdays");
+    expect(daysLabel(["sun", "sat"])).toBe("Weekends");
+    expect(daysLabel(undefined)).toBeUndefined();
+    expect(itemErrors({ ...old, when: "morning", days: ["mon", "mon"] })).toContain("the days of the week are invalid");
+    expect(itemErrors({ ...old, when: "morning", days: ["someday"] })).toContain("the days of the week are invalid");
+    expect(itemErrors({ ...old, when: "morning", withFood: "yes" })).not.toEqual([]);
+    expect(itemErrors({ ...old, when: "morning", withFood: true, days: ["sat"] })).toEqual([]);
+  });
 });
+

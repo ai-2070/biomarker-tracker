@@ -8,6 +8,7 @@ import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
 import { GradeBadge, StudyLink } from "../components/evidence";
+import { AddToProtocol } from "../components/AddToProtocol";
 import { Glance, anchorId, jump } from "../components/glance";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -53,10 +54,13 @@ export function NutrientPage({ id }: { id: string }) {
       <a href={href({ name: "supplements" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
         <span aria-hidden="true">←</span> Supplementation
       </a>
-      <div className="mb-5">
-        <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind}</p>
-        <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
-        {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind}</p>
+          <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
+          {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
+        </div>
+        <AddToProtocol label={n.name} />
       </div>
 
       {/* Wide screens: the cards at a readable width, key facts and jump links in a side column. Phones: cards only. */}

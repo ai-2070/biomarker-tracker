@@ -18,7 +18,7 @@ import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, Saf
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
-import { PLAN_TIMES, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime } from "../src/core/plans";
+import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "../src/core/plans";
 import { dailyReference, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
 import { findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
@@ -286,7 +286,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     propose_protocol: tool({
       description:
-        "Set up a protocol from text the person gave you (a pasted routine, a list of what they take or do). It shows a card in the chat that they check and create; nothing is saved until they do. Copy their items, times and amounts exactly as written: never add items, amounts or advice of your own, and leave amount empty when they gave none. Conditions such as 'only if deficient' go in the item's note. Use 'any time' when no time fits, with the timing in the note (e.g. 'Before a workout').",
+        "Set up a protocol from text the person gave you (a pasted routine, a list of what they take or do). It shows a card in the chat that they check and create; nothing is saved until they do. Copy their items, times and amounts exactly as written: never add items, amounts or advice of your own, and leave amount empty when they gave none. Conditions such as 'only if deficient' go in the item's note. Use 'any time' when no time fits, with the timing in the note (e.g. 'Before a workout'). 'With food' or 'with a meal' is withFood (together with the time of day, e.g. midday + withFood); named days of the week go in days.",
       inputSchema: z.object({
         name: z.string().describe("The person's name for it, or a short one from their text"),
         description: z.string().optional(),
@@ -298,6 +298,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
               amount: z.string().optional().describe("Only if they wrote one, e.g. '2000 IU'"),
               category: z.enum(["supplement", "diet", "medication", "lifestyle"]),
               when: z.enum(PLAN_TIMES as unknown as [PlanTime, ...PlanTime[]]),
+              withFood: z.boolean().optional().describe("True when they said to take it with a meal or food"),
+              days: z.array(z.enum(WEEKDAYS as unknown as [Weekday, ...Weekday[]])).optional().describe("Only when they named days of the week, e.g. ['mon','wed','fri']"),
               note: z.string().optional(),
             }),
           )

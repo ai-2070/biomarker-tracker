@@ -6,7 +6,10 @@ import {
   energyVsResting,
   foodIdeas,
   EXAMPLE_DAY,
+  SUPPLEMENT_NUTRIENTS,
   gapAdvice,
+  intakeToPlanItems,
+  parseLabelAmount,
   intakeTotals,
   upperLimitRoom,
   macroRows,
@@ -19,20 +22,21 @@ import {
   type NutrientRow,
   type PortionFood,
 } from "../../core/intake";
-import { foodById, mealTotals, saltFromSodium, searchFoods, type FoodDb, type Meal, type Total } from "../../core/meals";
+import { NUTRIENT_OF_KEY, foodById, mealTotals, saltFromSodium, searchFoods, type FoodDb, type Meal, type Total } from "../../core/meals";
+import { MAX_ITEMS, nutrientFor } from "../../core/plans";
 import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker, sortByDate } from "../../core/trends";
 import type { Measurement, Profile, SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
-import { newId } from "../../db/db";
+import { newId, savePlan } from "../../db/db";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { StudyLink } from "../components/evidence";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, FlagBadge, Notice, PageTitle, cx, inputStyles, labelStyles } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement } from "../format";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
-import { setIntakeList, useAllMeasurements, useDisplayUnits, useIntakeList, useMeals, useProfile, useProtocols } from "../hooks";
+import { setIntakeList, useAllMeasurements, useDisplayUnits, useIntakeList, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, FOODS, NUTRIENTS } from "../knowledge";
 import { href } from "../router";
 
@@ -106,14 +110,14 @@ export function IntakePage() {
 
 /** The list of meals and foods, with ways to add more. */
 function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: FoodDb; meals: Meal[]; save: (items: IntakeItem[]) => void }) {
-  const [mode, setMode] = useState<"meal" | "food">(meals.length ? "meal" : "food");
+  const [mode, setMode] = useState<"meal" | "food" | "supplement">(meals.length ? "meal" : "food");
   const [mealId, setMealId] = useState("");
   const [portions, setPortions] = useState("1");
   const [query, setQuery] = useState("");
   const [grams, setGrams] = useState("100");
   const results = db && query.trim().length >= 2 ? searchFoods(db, query, 10) : [];
   const kcalOf = (it: IntakeItem): number | undefined => {
-    if (!db) return undefined;
+    if (!db || it.kind === "supplement") return undefined;
     if (it.kind === "food") return mealTotals([{ foodId: it.foodId, grams: it.grams }], db).energyKcal?.amount;
     const m = meals.find((x) => x.id === it.mealId);
     return m ? (mealTotals(m.items, db).energyKcal?.amount ?? 0) * it.portions : undefined;
@@ -121,7 +125,7 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
   return (
     <Card className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="font-serif text-2xl font-normal">A day of food</h2>
+        <h2 className="font-serif text-2xl font-normal">A day of food and supplements</h2>
         {items.length > 0 && (
           <Button variant="quiet" className="min-h-10 text-sm" onClick={() => save([])}>
             Clear
@@ -133,14 +137,26 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
       ) : (
         <ul className="flex flex-col divide-y divide-line">
           {items.map((it) => {
-            const name = it.kind === "meal" ? (meals.find((m) => m.id === it.mealId)?.name ?? "A deleted meal") : db ? (foodById(db, it.foodId)?.name ?? it.foodId) : "…";
+            const supp = it.kind === "supplement" ? SUPPLEMENT_NUTRIENTS.find((n) => n.key === it.nutrient) : undefined;
+            const name =
+              it.kind === "meal"
+                ? (meals.find((m) => m.id === it.mealId)?.name ?? "A deleted meal")
+                : it.kind === "supplement"
+                  ? it.name || supp?.label || it.nutrient
+                  : db
+                    ? (foodById(db, it.foodId)?.name ?? it.foodId)
+                    : "…";
             const kcal = kcalOf(it);
             return (
               <li key={it.id} className="flex items-center justify-between gap-2 py-2">
                 <span className="min-w-0">
                   <span className="block truncate">{name}</span>
                   <span className="text-sm text-ink-2 tabular-nums">
-                    {it.kind === "meal" ? `${formatValue(it.portions)} ${it.portions === 1 ? "portion" : "portions"}` : `${formatValue(it.grams)} g`}
+                    {it.kind === "meal"
+                      ? `${formatValue(it.portions)} ${it.portions === 1 ? "portion" : "portions"}`
+                      : it.kind === "supplement"
+                        ? `Supplement · ${it.name ? `${supp?.label ?? ""} ` : ""}${formatValue(it.amount)} ${supp?.unit ?? ""}`
+                        : `${formatValue(it.grams)} g`}
                     {kcal !== undefined ? ` · ${Math.round(kcal)} kcal` : ""}
                   </span>
                 </span>
@@ -154,11 +170,12 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
       )}
 
       <div className="flex flex-col gap-3 border-t border-line pt-3">
-        <div role="tablist" aria-label="Add" className="flex gap-1 self-start rounded-xl border border-line bg-sunken p-1">
+        <div role="tablist" aria-label="Add" className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
           {(
             [
-              ["meal", "One of your meals"],
-              ["food", "A food"],
+              ["meal", "Meals"],
+              ["food", "Foods"],
+              ["supplement", "Supplements"],
             ] as const
           ).map(([v, label]) => (
             <button
@@ -206,6 +223,8 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
               <Button type="submit">Add</Button>
             </form>
           )
+        ) : mode === "supplement" ? (
+          <SupplementForm add={(it) => save([...items, it])} />
         ) : (
           <div className="flex flex-col gap-2">
             <div className="flex items-end gap-2">
@@ -249,18 +268,161 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
           </div>
         )}
       </div>
+      {items.length > 0 && db && <ToProtocol items={items} meals={meals} db={db} />}
     </Card>
+  );
+}
+
+/** A supplement with the person's own amount from its label; the app never suggests one. Supplements in their protocols are quick picks. */
+function SupplementForm({ add }: { add: (it: IntakeItem) => void }) {
+  const plans = usePlans() ?? [];
+  const [key, setKey] = useState(SUPPLEMENT_NUTRIENTS[1]!.key);
+  const [amount, setAmount] = useState("");
+  const [name, setName] = useState("");
+  const unit = SUPPLEMENT_NUTRIENTS.find((n) => n.key === key)!.unit;
+  const keyOf = Object.fromEntries(Object.entries(NUTRIENT_OF_KEY).map(([k, id]) => [id, k]));
+  // Supplements in the person's protocols that the app knows the nutrient of.
+  const picks = [
+    ...new Map(
+      plans
+        .flatMap((p) => p.items)
+        .filter((i) => i.category === "supplement")
+        .flatMap((i) => {
+          const n = nutrientFor(i, NUTRIENTS);
+          const k = n ? keyOf[n.id] : undefined;
+          return k && SUPPLEMENT_NUTRIENTS.some((x) => x.key === k) ? [[i.label.toLowerCase(), { label: i.label, amount: i.amount, key: k }] as const] : [];
+        }),
+    ).values(),
+  ].slice(0, 8);
+  return (
+    <form
+      className="flex flex-col gap-2"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const a = Number(amount.replace(",", "."));
+        if (!(a > 0 && a <= 100_000)) return;
+        add({ id: newId(), kind: "supplement", nutrient: key, amount: a, ...(name.trim() ? { name: name.trim().slice(0, 80) } : {}) });
+        setAmount("");
+        setName("");
+      }}
+    >
+      {picks.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-sm text-ink-2">From your protocols:</span>
+          {picks.map((p) => (
+            <button
+              key={p.label}
+              type="button"
+              onClick={() => {
+                setKey(p.key);
+                setName(p.label);
+                const u = SUPPLEMENT_NUTRIENTS.find((n) => n.key === p.key)!.unit;
+                const a = parseLabelAmount(p.amount, u);
+                setAmount(a !== undefined ? String(a) : "");
+              }}
+              className="min-h-9 rounded-full border border-line px-3 text-sm hover:bg-sunken"
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <label className="flex flex-col gap-1.5">
+        <span className={labelStyles}>Nutrient</span>
+        <select value={key} onChange={(e) => setKey(e.target.value)} className={inputStyles}>
+          {SUPPLEMENT_NUTRIENTS.map((n) => (
+            <option key={n.key} value={n.key}>
+              {n.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <div className="flex items-end gap-2">
+        <label className="flex w-32 flex-col gap-1.5">
+          <span className={labelStyles}>Amount ({unit})</span>
+          <input type="text" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="from the label" className={inputStyles} />
+        </label>
+        <label className="flex min-w-0 flex-1 flex-col gap-1.5">
+          <span className={labelStyles}>Name (optional)</span>
+          <input value={name} onChange={(e) => setName(e.target.value)} maxLength={80} placeholder="e.g. Vitamin D3" autoComplete="off" className={inputStyles} />
+        </label>
+      </div>
+      <div>
+        <Button type="submit">Add</Button>
+      </div>
+      <p className="text-sm text-ink-2">
+        Your own amount, as on the label (EU labels use mg or µg). {key === "folate" ? "Folic acid counts 1.7 times food folate (EFSA). " : ""}
+        The app never suggests what or how much to take.
+      </p>
+    </form>
+  );
+}
+
+/** The list as a new protocol, or added to one of the person's protocols. */
+function ToProtocol({ items, meals, db }: { items: IntakeItem[]; meals: Meal[]; db: FoodDb }) {
+  const plans = usePlans() ?? [];
+  const [planId, setPlanId] = useState("");
+  const [done, setDone] = useState<{ id: string; name: string; skipped: number }>();
+  const target = plans.find((p) => p.id === (planId || plans[0]?.id));
+  const make = () => intakeToPlanItems(items, meals, db, newId);
+  return (
+    <div className="flex flex-col gap-2 border-t border-line pt-3">
+      <p className={labelStyles}>Protocols</p>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          variant="secondary"
+          onClick={() => {
+            const created = { id: newId(), name: "From the intake analyzer", items: make().slice(0, MAX_ITEMS), createdAt: new Date().toISOString() };
+            void savePlan(created).then(() => setDone({ id: created.id, name: created.name, skipped: 0 }));
+          }}
+        >
+          Create a protocol from this
+        </Button>
+      </div>
+      {plans.length > 0 && (
+        <div className="flex flex-wrap items-end gap-2">
+          <label className="flex min-w-0 flex-1 flex-col gap-1.5">
+            <span className="text-sm text-ink-2">Or add it to</span>
+            <select value={target?.id ?? ""} onChange={(e) => setPlanId(e.target.value)} className={inputStyles}>
+              {plans.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Button
+            variant="secondary"
+            disabled={!target}
+            onClick={() => {
+              if (!target) return;
+              const room = Math.max(0, MAX_ITEMS - target.items.length);
+              const add = make();
+              void savePlan({ ...target, items: [...target.items, ...add.slice(0, room)] }).then(() => setDone({ id: target.id, name: target.name, skipped: Math.max(0, add.length - room) }));
+            }}
+          >
+            Add to protocol
+          </Button>
+        </div>
+      )}
+      {done && (
+        <p role="status" className="text-sm">
+          Saved to <a href={href({ name: "plan", id: done.id })}>{done.name}</a>.
+          {done.skipped > 0 && ` ${done.skipped} left out: a protocol holds at most ${MAX_ITEMS} items.`}
+        </p>
+      )}
+    </div>
   );
 }
 
 /** Totals, energy against resting use, macros, vitamins and minerals, and what would close the gaps. */
 function Analysis({ items, db, profile, all, safety }: { items: IntakeItem[]; db: FoodDb; profile: Profile; all: Measurement[]; safety: SafetyId[] }) {
   const meals = useMeals() ?? [];
-  const { totals, missingMeals } = intakeTotals(items, meals, db);
+  const { totals, supplements, missingMeals } = intakeTotals(items, meals, db);
   const age = profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined;
   const weight = sortByDate(all.filter((m) => m.biomarkerId === "weight")).at(-1);
   const macros = macroRows(totals, weight?.value);
-  const vitamins = nutrientRows(totals, db, NUTRIENTS, { ...(profile.sex ? { sex: profile.sex } : {}), ...(age !== undefined ? { age } : {}) });
+  const vitamins = nutrientRows(totals, db, NUTRIENTS, { ...(profile.sex ? { sex: profile.sex } : {}), ...(age !== undefined ? { age } : {}) }, supplements);
   const kcal = totals.energyKcal;
   const resting = weight ? bmrMifflin(weight.value, profile.heightCm, age, profile.sex) : undefined;
   return (
@@ -401,7 +563,7 @@ function NutrientCard({ rows }: { rows: NutrientRow[] }) {
         Share of the EU reference intake for a whole day, for your sex and age. Unmeasured values never count as zero: a nutrient measured in
         only some foods is shown as such on its page.{" "}
         {rows.some((r) => r.status === "above-upper-limit") &&
-          "Above the upper limit means more than the highest daily intake considered safe over a long time; from food alone this usually comes from liver (vitamin A) or a lot of one food. Worth discussing with a doctor if it's usual."}
+          "Above the upper limit means more than the highest daily intake considered safe over a long time. Magnesium's and folic acid's limits count supplements only; the others count food and supplements together. Worth discussing with a doctor or pharmacist if it's usual."}
       </p>
     </Card>
   );
