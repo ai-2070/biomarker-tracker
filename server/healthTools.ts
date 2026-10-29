@@ -19,7 +19,8 @@ import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
 import { PLAN_TIMES, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime } from "../src/core/plans";
-import { findMarker, findNutrient, knowledge } from "./knowledge";
+import { mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
+import { findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
 export interface HealthSnapshot {
@@ -29,6 +30,8 @@ export interface HealthSnapshot {
   profile: Profile;
   /** Protocols the person wrote (Protocols page). */
   plans?: Plan[];
+  /** Meals the person built (foods and grams). */
+  meals?: Meal[];
 }
 
 /** Validate what the page sent, with the same checks as a backup file. */
@@ -39,8 +42,10 @@ export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot 
   const { measurements, protocols, experiments, profile } = r.backup;
   const plans = Array.isArray(o.plans) ? o.plans : [];
   if (plans.length > 200 || plans.some((p) => validatePlan(p).length > 0)) return { ok: false, error: "The protocols are damaged." };
+  const meals = Array.isArray(o.meals) ? o.meals : [];
+  if (meals.length > 1000 || meals.some((m) => validateMeal(m).length > 0)) return { ok: false, error: "The meals are damaged." };
   // Name and private notes are dropped here too, even if a page sent them.
-  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[] } };
+  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[], meals: meals as Meal[] } };
 }
 
 const r = (n: number | undefined) => (n === undefined ? undefined : roundForDisplay(n));
@@ -308,6 +313,64 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
           shownToPerson: { name: r.plan.name, items: r.plan.items.length },
           interactionsBetweenItems: pairWarnings(r.plan, nutrients),
           note: "A card is shown in the chat. Nothing is saved until the person creates it; they can edit it afterwards on the Protocols page.",
+        };
+      },
+    }),
+    find_foods: tool({
+      description:
+        "Search the UK food table (CoFID 2021, 2,887 foods) by name. Returns food ids for propose_meal, with energy and protein per 100 g. Use plain words (e.g. porridge oats, salmon grilled, onions raw); try simpler words if nothing matches. Prefer the cooked form when a recipe weighs cooked food.",
+      inputSchema: z.object({ query: z.string().min(2).max(80) }),
+      execute: async ({ query }) => {
+        const db = foods();
+        const e = db.keys.indexOf("energyKcal");
+        const p = db.keys.indexOf("protein");
+        return {
+          foods: searchFoods(db, query, 10).map((f) => {
+            const row = db.foods.find((x) => x[0] === f.id)!;
+            return { id: f.id, name: f.name, per100g: { kcal: row[2][e], proteinG: row[2][p] } };
+          }),
+        };
+      },
+    }),
+    propose_meal: tool({
+      description:
+        "Write down a meal from a recipe or description the person gave you, as foods from find_foods with grams. It shows a card in the chat with the app's own totals; they check it and save it. Use the person's amounts; when they gave none, use a typical portion and say so in your answer. Never present a meal as best, complete or a diet plan, and set no targets.",
+      inputSchema: z.object({
+        name: z.string().min(1).max(80),
+        items: z.array(z.object({ foodId: z.string(), grams: z.number().positive().max(2000) })).min(1).max(40),
+        note: z.string().max(1000).optional(),
+      }),
+      execute: async (input) => {
+        const db = foods();
+        const errs = validateMeal({ ...input, id: "x", createdAt: "x" }, db);
+        if (errs.length) return { error: `${errs[0]}. Look the food up with find_foods.` };
+        const t = mealTotals(input.items, db);
+        const shown = Object.fromEntries(["energyKcal", "protein", "fat", "carbohydrate", "fibre"].map((k) => [k, Math.round(t[k]!.amount * 10) / 10]));
+        return {
+          shownToPerson: { name: input.name, foods: input.items.length },
+          appTotals: shown,
+          note: "A card is shown in the chat with the full totals. Nothing is saved until the person saves it. Report these totals rather than calculating your own.",
+        };
+      },
+    }),
+    get_meals: tool({
+      description:
+        "The meals the person built (foods and grams), with the app's own totals of energy, macros, vitamins and minerals, and how many foods each total covers. Report these numbers; don't calculate your own.",
+      inputSchema: z.object({}),
+      execute: async () => {
+        const db = foods();
+        return {
+          meals: (s.meals ?? []).map((m) => {
+            const t = mealTotals(m.items, db);
+            return {
+              name: m.name,
+              foods: m.items.map((i) => `${db.foods.find((f) => f[0] === i.foodId)?.[1] ?? i.foodId}: ${i.grams} g`),
+              totals: Object.fromEntries(
+                db.keys.map((k) => [k, `${Math.round(t[k]!.amount * 100) / 100} ${db.nutrients[k]!.unit}${t[k]!.measuredIn < t[k]!.of ? ` (measured in ${t[k]!.measuredIn} of ${t[k]!.of} foods)` : ""}`]),
+              ),
+            };
+          }),
+          note: "Only the nutrients the food table measured (about 30). Food has many more compounds that are not tracked (nutritional dark matter).",
         };
       },
     }),

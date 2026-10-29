@@ -33,6 +33,9 @@ export type Route =
   | { name: "nutrient"; id: string }
   | { name: "plans" }
   | { name: "plan"; id: string }
+  | { name: "meals" }
+  | { name: "meal"; id: string }
+  | { name: "example-meal"; id: string }
   | { name: "setup" }
   | { name: "profiles" }
   | { name: "not-found" };
@@ -85,6 +88,9 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "supplements" && parts[1] && parts.length === 2) return { name: "nutrient", id: parts[1] };
   if (parts[0] === "protocols" && parts.length === 1) return { name: "plans" };
   if (parts[0] === "protocols" && parts[1] && parts.length === 2) return { name: "plan", id: parts[1] };
+  if (parts[0] === "meals" && parts.length === 1) return { name: "meals" };
+  if (parts[0] === "meals" && parts[1] === "example" && parts[2] && parts.length === 3) return { name: "example-meal", id: parts[2] };
+  if (parts[0] === "meals" && parts[1] && parts.length === 2) return { name: "meal", id: parts[1] };
   return { name: "not-found" };
 }
 
@@ -135,6 +141,12 @@ export function href(route: Route): string {
       return "#/protocols";
     case "plan":
       return `#/protocols/${encodeURIComponent(route.id)}`;
+    case "meals":
+      return "#/meals";
+    case "meal":
+      return `#/meals/${encodeURIComponent(route.id)}`;
+    case "example-meal":
+      return `#/meals/example/${encodeURIComponent(route.id)}`;
     case "not-found":
       return "#/";
   }

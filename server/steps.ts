@@ -16,7 +16,7 @@ export function toolStep(name: string, input: unknown): ToolStep {
   }
   const [server, tool] = name.includes("__") ? name.split("__", 2) : [undefined, name];
   // Habit and protocol suggestions are kept whole: the page builds the confirm card from them.
-  const max = !server && tool === "propose_habit" ? 2000 : !server && tool === "propose_protocol" ? 30_000 : 200;
+  const max = !server && tool === "propose_habit" ? 2000 : !server && (tool === "propose_protocol" || tool === "propose_meal") ? 30_000 : 200;
   return { tool: tool!, ...(server ? { server } : {}), input: JSON.stringify(input ?? {}).slice(0, max) };
 }
 

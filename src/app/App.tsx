@@ -28,6 +28,8 @@ const SupplementsPage = lazy(() => import("./pages/SupplementsPage").then((m) =>
 const NutrientPage = lazy(() => import("./pages/NutrientPage").then((m) => ({ default: m.NutrientPage })));
 const PlansPage = lazy(() => import("./pages/PlansPage").then((m) => ({ default: m.PlansPage })));
 const PlanPage = lazy(() => import("./pages/PlanPage").then((m) => ({ default: m.PlanPage })));
+const MealsPage = lazy(() => import("./pages/MealsPage").then((m) => ({ default: m.MealsPage })));
+const MealPage = lazy(() => import("./pages/MealPage").then((m) => ({ default: m.MealPage })));
 
 type Boot =
   | { state: "loading" }
@@ -154,6 +156,12 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <PlansPage />;
     case "plan":
       return <PlanPage key={route.id} id={route.id} />;
+    case "meals":
+      return <MealsPage />;
+    case "meal":
+      return <MealPage key={route.id} id={route.id} />;
+    case "example-meal":
+      return <MealPage key={`example-${route.id}`} id={route.id} example />;
     case "setup":
       return <SetupPage mode={mode} first={false} existingResults={0} folderRoot={root} />;
     case "profiles":
@@ -175,5 +183,5 @@ function OpenBrain({ ask }: { ask?: string }) {
 
 function pageKey(route: Route): string {
   if (route.name === "soon") return `soon/${route.section}`;
-  return route.name === "marker" || route.name === "experiment" || route.name === "nutrient" || route.name === "plan" ? `${route.name}/${route.id}` : route.name;
+  return route.name === "marker" || route.name === "experiment" || route.name === "nutrient" || route.name === "plan" || route.name === "meal" || route.name === "example-meal" ? `${route.name}/${route.id}` : route.name;
 }

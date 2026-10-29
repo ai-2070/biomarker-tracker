@@ -61,6 +61,14 @@ export const StarIcon = (p: P) => (
   </Icon>
 );
 
+/** A bowl: meals. */
+export const BowlIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M3.5 11.5h17a8.5 8.5 0 0 1-17 0Z" />
+    <path d="M9 21h6M8.5 8c0-1.5 1-2 1-3.5M12 8c0-1.5 1-2 1-3.5M15.5 8c0-1.5 1-2 1-3.5" />
+  </Icon>
+);
+
 /** A clipboard with a list: protocols. */
 export const ClipboardIcon = (p: P) => (
   <Icon {...p}>

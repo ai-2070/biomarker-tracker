@@ -1,3 +1,4 @@
+import type { Meal } from "../core/meals";
 import type { Plan } from "../core/plans";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, getProfile, measurementsFor } from "../db/db";
@@ -49,4 +50,9 @@ export async function setDisplayUnit(biomarkerId: string, unit: string): Promise
 /** The person's protocols (Protocols page), newest first. */
 export function usePlans(): Plan[] | undefined {
   return useLiveQuery(async () => (await db.plans.toArray()).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), []);
+}
+
+/** The person's meals, newest first. */
+export function useMeals(): Meal[] | undefined {
+  return useLiveQuery(async () => (await db.meals.toArray()).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), []);
 }

@@ -13,7 +13,10 @@ import { todayIso } from "../../core/dates";
 import type { HabitProposal } from "../../core/habitProposal";
 import { defaultRetestDays } from "../../core/habits";
 import { safetyNotes, validateProtocol } from "../../core/protocols";
-import { addProtocol, savePlan, watchHabit } from "../../db/db";
+import { addProtocol, saveMeal, savePlan, watchHabit } from "../../db/db";
+import { foodById, mealTotals } from "../../core/meals";
+import { formatValue } from "../../core/units";
+import { useFoodDb } from "../foodDb";
 import { itemsByTime, pairWarnings } from "../../core/plans";
 import { formatDate, showMeasurement } from "../format";
 import { useAllMeasurements, useProfile } from "../hooks";
@@ -63,6 +66,9 @@ const TOOL_TEXT: Record<string, string> = {
   get_nutrient: "Read the vitamins and minerals knowledge base",
   get_protocols: "Read your protocols",
   propose_protocol: "Wrote down a protocol for you to create",
+  find_foods: "Searched the food table",
+  propose_meal: "Wrote down a meal for you to save",
+  get_meals: "Read your meals",
   read_skill: "Followed a skill",
   research_tools: "Listed a research source's tools",
 };
@@ -426,6 +432,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
       return <HabitTurn turn={t} />;
     case "protocol":
       return <ProtocolTurn turn={t} />;
+    case "meal":
+      return <MealTurn turn={t} />;
   }
 }
 
@@ -935,6 +943,69 @@ function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
       <div className="flex flex-wrap gap-2">
         <Button onClick={() => void create()} disabled={saving}>
           {saving ? "Creating…" : "Create protocol"}
+        </Button>
+        <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
+          Not now
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * A meal Brain wrote down from a recipe. The app's own totals are shown (never the model's); the person
+ * saves it and can change it on the Meals page.
+ */
+function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
+  const db = useFoodDb();
+  const [saving, setSaving] = useState(false);
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Meal not saved.</p>;
+  if (turn.state === "saved") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-ok-soft p-3 text-sm">
+        <span className="flex items-center gap-2">
+          <CheckIcon className="size-4 text-ok" /> Meal saved: <span className="font-medium">{turn.meal.name}</span>
+        </span>
+        <a href={href({ name: "meal", id: turn.meal.id })} className="font-medium text-ink underline underline-offset-2">
+          Open it
+        </a>
+      </div>
+    );
+  }
+  const t = db ? mealTotals(turn.meal.items, db) : undefined;
+  const v = (k: string) => (t?.[k] && t[k]!.measuredIn > 0 ? formatValue(Math.round(t[k]!.amount * 10) / 10) : "–");
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+      <div>
+        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">Meal from your recipe · {turn.meal.items.length} foods</p>
+        <p className="mt-0.5 font-medium">{turn.meal.name}</p>
+      </div>
+      <ul className="flex flex-col gap-0.5 rounded-lg bg-sunken p-2 text-sm">
+        {turn.meal.items.map((it, i) => (
+          <li key={`${it.foodId}-${i}`} className="flex justify-between gap-2">
+            <span>{db ? (foodById(db, it.foodId)?.name ?? it.foodId) : it.foodId}</span>
+            <span className="shrink-0 text-ink-2 tabular-nums">{it.grams} g</span>
+          </li>
+        ))}
+      </ul>
+      {t && (
+        <p className="text-sm tabular-nums">
+          {v("energyKcal")} kcal · {v("protein")} g protein · {v("fat")} g fat · {v("carbohydrate")} g carbohydrate · {v("fibre")} g fibre
+          <span className="block text-xs text-ink-2">Worked out by the app from the food table. Vitamins and minerals are on the meal's page.</span>
+        </p>
+      )}
+      <p className="text-xs text-ink-2">Check that the foods and weights match your recipe; you can change them after saving.</p>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          disabled={saving}
+          onClick={() => {
+            setSaving(true);
+            void saveMeal(turn.meal)
+              .then(() => setHabitState(turn.id, "saved"))
+              .finally(() => setSaving(false));
+          }}
+        >
+          {saving ? "Saving…" : "Save meal"}
         </Button>
         <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
           Not now

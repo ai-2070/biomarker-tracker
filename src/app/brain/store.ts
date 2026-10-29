@@ -12,6 +12,7 @@ import { parseHealthScreenshot } from "../../core/importers/screenshot";
 import { todayIso } from "../../core/dates";
 import { parseHabitProposal, type HabitProposal } from "../../core/habitProposal";
 import { planFromProposal, type Plan } from "../../core/plans";
+import { validateMeal, type Meal } from "../../core/meals";
 import { flagLatest, groupByBiomarker, isCritical } from "../../core/trends";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
@@ -31,6 +32,8 @@ export type Turn =
   | { id: string; role: "habit"; proposal: HabitProposal; state: "open" | "saved" | "dismissed" }
   /** A protocol Brain wrote down from the person's text: a card they check and create. */
   | { id: string; role: "protocol"; plan: Plan; state: "open" | "saved" | "dismissed" }
+  /** A meal Brain wrote down from a recipe: a card with the app's totals that the person saves. */
+  | { id: string; role: "meal"; meal: Meal; state: "open" | "saved" | "dismissed" }
   | {
       id: string;
       role: "review";
@@ -125,7 +128,7 @@ export const setSendPhoto = (id: string, on: boolean) => set((s) => ({ attachmen
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
 export const setHabitState = (id: string, state: "saved" | "dismissed") =>
-  set((s) => ({ turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol") ? { ...t, state } : t)) }));
+  set((s) => ({ turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol" || t.role === "meal") ? { ...t, state } : t)) }));
 
 /**
  * Habit cards from Brain's propose_habit calls, checked again here (the same rules as the server) and
@@ -144,6 +147,16 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
         // Real ids: the protocol is saved in the profile, unlike chat turns.
         const r = planFromProposal(JSON.parse(st.input), () => crypto.randomUUID(), new Date().toISOString());
         return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, state: "open" }] : [];
+      } catch {
+        return [];
+      }
+    }
+    if (!st.server && st.tool === "propose_meal") {
+      try {
+        const m = JSON.parse(st.input) as { name?: unknown; items?: unknown; note?: unknown };
+        const note = typeof m.note === "string" && m.note.trim() ? { note: m.note.trim() } : {};
+        const meal = { id: crypto.randomUUID(), name: String(m.name ?? "").trim(), items: m.items as Meal["items"], ...note, createdAt: new Date().toISOString() };
+        return validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal, state: "open" }] : [];
       } catch {
         return [];
       }
@@ -234,9 +247,9 @@ export async function addFiles(files: File[]): Promise<void> {
 
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
-  const [measurements, protocols, experiments, plans, profile] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), getProfile()]);
+  const [measurements, protocols, experiments, plans, meals, profile] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile()]);
   // The name and private notes never leave this page.
-  return { measurements, protocols, experiments, plans, profile: assistantProfile(profile), name: profile.name };
+  return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name };
 }
 
 /** Sends the draft (or `text`) with any attached documents. `model` labels the answer. */
