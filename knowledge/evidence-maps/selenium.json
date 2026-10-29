@@ -1,0 +1,3301 @@
+{
+ "topic": "selenium",
+ "nutrientId": "selenium",
+ "name": "selenium",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with selenium (selenium, selenomethionine, selenite, selenate) in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving selenium, with selenium in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded selenium trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 46287,
+  "retrieved": 1601,
+  "animal": 229,
+  "retracted": 1,
+  "reviews": 529,
+  "trials": 830,
+  "guidelines": 9
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "cancer",
+   "label": "Cancer",
+   "finding": "Cancer (overall and by type)",
+   "counts": {
+    "reviews": 88,
+    "trialReviews": 16,
+    "trials": 119,
+    "largeTrials": 44
+   },
+   "chosenReviews": [
+    {
+     "pmid": "29376219",
+     "doi": "10.1002/14651858.cd005195.pub4",
+     "title": "Selenium for preventing cancer",
+     "year": 2018,
+     "firstAuthor": "Vinceti M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 199,
+     "n": 2360000,
+     "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+    },
+    {
+     "pmid": "29936712",
+     "doi": "10.22034/apjcp.2018.19.6.1431",
+     "title": "The association between Selenium and Prostate Cancer: a Systematic Review and Meta-Analysis",
+     "year": 2018,
+     "firstAuthor": "Sayehmiri K",
+     "journal": "Asian Pacific journal of cancer prevention : APJCP",
+     "citedBy": 32,
+     "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+    },
+    {
+     "pmid": "24683040",
+     "doi": "10.1002/14651858.cd005195.pub3",
+     "title": "Selenium for preventing cancer",
+     "year": 2014,
+     "firstAuthor": "Vinceti M",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 74,
+     "n": 1100000,
+     "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+    },
+    {
+     "pmid": "18677777",
+     "doi": "10.1002/14651858.cd004183.pub3",
+     "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+     "year": 2008,
+     "firstAuthor": "Bjelakovic G",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 75,
+     "n": 211818,
+     "why": "The most comprehensive review of trials on this outcome (20 trials, 2008); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "36625863",
+     "doi": "10.1089/pop.2022.0143",
+     "title": "Racial and Ethnic Disparity in Preference-Weighted Quality of Life: Findings from the Selenium and Vitamin E Cancer Prevention Trial",
+     "year": 2025,
+     "firstAuthor": "Rock MC",
+     "journal": "Population health management",
+     "citedBy": 0,
+     "n": 9691,
+     "why": "A large trial (about 9,691 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "31511230",
+     "doi": "10.1136/bmj.l5016",
+     "title": "Effects of Helicobacter pylori treatment and vitamin and garlic supplementation on gastric cancer incidence and mortality: follow-up of a randomized intervention trial",
+     "year": 2019,
+     "firstAuthor": "Li WQ",
+     "journal": "BMJ (Clinical research ed.)",
+     "citedBy": 213,
+     "n": 3365,
+     "why": "A large trial (about 3,365 people) from 2019, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.27450980392156865,
+    "trials": 68,
+    "inclusions": 124,
+    "reviews": [
+     {
+      "pmid": "29376219",
+      "trials": 44
+     },
+     {
+      "pmid": "29936712",
+      "trials": 9
+     },
+     {
+      "pmid": "24683040",
+      "trials": 35
+     },
+     {
+      "pmid": "18677777",
+      "trials": 36
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12101110",
+      "title": "Baseline characteristics and the effect of selenium supplementation on cancer incidence in a randomized clinical trial: a summary report of the Nutritional Prevention of Cancer Trial",
+      "year": 2002,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9634050",
+      "title": "Decreased incidence of prostate cancer with selenium supplementation: results of a double-blind cancer prevention trial",
+      "year": 1998,
+      "n": 974,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "19066370",
+      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2009,
+      "n": 35533,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "11552710",
+      "title": "Molecular epidemiologic studies within the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2001,
+      "n": 32400,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9568790",
+      "title": "The association between baseline vitamin E, selenium, and prostate cancer in the alpha-tocopherol, beta-carotene cancer prevention study",
+      "year": 1998,
+      "n": 29133,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "15557412",
+      "title": "The SU.VI.MAX Study: a randomized, placebo-controlled trial of the health effects of antioxidant vitamins and minerals",
+      "year": 2004,
+      "n": 13017,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "15361287",
+      "title": "An intervention study to prevent gastric cancer by micro-selenium and large dose of allitridum",
+      "year": 2004,
+      "n": 2507,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "8971064",
+      "title": "Effects of selenium supplementation for cancer prevention in patients with carcinoma of the skin. A randomized controlled trial. Nutritional Prevention of Cancer Study Group",
+      "year": 1996,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "12699469",
+      "title": "Selenium supplementation, baseline plasma selenium status and incidence of prostate cancer: an analysis of the complete treatment period of the Nutritional Prevention of Cancer Trial",
+      "year": 2003,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "9342915",
+      "title": "Reduction of cancer mortality and incidence by selenium supplementation",
+      "year": 1997,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9315315",
+      "title": "Reduction of cancer risk with an oral supplement of selenium",
+      "year": 1997,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "17620655",
+      "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
+      "year": 2007,
+      "n": 1202,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "11860943",
+      "title": "[The prevention of primary liver cancer by selenium in high risk populations]",
+      "year": 2000,
+      "n": 1112,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "22887343",
+      "title": "Phase 3 clinical trial investigating the effect of selenium supplementation in men at high-risk for prostate cancer",
+      "year": 2013,
+      "n": 699,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "21896650",
+      "title": "Phase III trial of selenium to prevent prostate cancer in men with high-grade prostatic intraepithelial neoplasia: SWOG S9917",
+      "year": 2011,
+      "n": 619,
+      "inReviews": [
+       "29376219",
+       "29936712",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "16143126",
+      "title": "Randomized, placebo-controlled, esophageal squamous cell cancer chemoprevention trial of selenomethionine and celecoxib",
+      "year": 2005,
+      "n": 123,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9152515",
+      "title": "Protective role of selenium against hepatitis B virus and primary liver cancer in Qidong",
+      "year": 1997,
+      "n": 113,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "11295622",
+      "title": "A randomized, controlled chemoprevention trial of selenium in familial prostate cancer: Rationale, recruitment, and design issues",
+      "year": 2001,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "1726411",
+      "title": "A preliminary report on the intervention trials of primary liver cancer in high-risk populations with nutritional supplementation of selenium in China",
+      "year": 1991,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "1298601",
+      "title": "[Preliminary observations on effect of selenium yeast on high risk populations with primary liver cancer]",
+      "year": 1992,
+      "inReviews": [
+       "29376219",
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "24961880",
+      "title": "Plasma tocopherols and risk of prostate cancer in the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2014,
+      "n": 35533,
+      "inReviews": [
+       "29376219",
+       "29936712"
+      ]
+     },
+     {
+      "pmid": "21990298",
+      "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2011,
+      "n": 35533,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "22498220",
+      "title": "Evaluation of vitamin E and selenium supplementation for the prevention of bladder cancer in SWOG coordinated SELECT",
+      "year": 2012,
+      "n": 34887,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "8360931",
+      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+      "year": 1993,
+      "n": 29584,
+      "inReviews": [
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "17686823",
+      "title": "Chemoprevention of primary liver cancer: a randomized, double-blind trial in Linxian, China",
+      "year": 2007,
+      "n": 29450,
+      "inReviews": [
+       "24683040",
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "24002495",
+      "title": "Randomized, double-blind, placebo-controlled, phase III chemoprevention trial of selenium supplementation in patients with resected stage I non-small-cell lung cancer: ECOG 5597",
+      "year": 2013,
+      "n": 1561,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "14519754",
+      "title": "Selenium supplementation and secondary prevention of nonmelanoma skin cancer in a randomized trial",
+      "year": 2003,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "18444146",
+      "title": "The nutritional prevention of cancer: 400 mcg per day selenium treatment",
+      "year": 2008,
+      "n": 1312,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "21936966",
+      "title": "Differential responses to selenomethionine supplementation by sex and genotype in healthy adults",
+      "year": 2012,
+      "n": 261,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "6134981",
+      "title": "Prediagnostic serum selenium and risk of cancer",
+      "year": 1983,
+      "n": 210,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "17337398",
+      "title": "Effect of selenium intake on the prevention of cutaneous epithelial lesions in organ transplant recipients",
+      "year": 2007,
+      "n": 93,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "15229119",
+      "title": "Development of a comprehensive dietary antioxidant index and application to lung cancer risk in a cohort of male smokers",
+      "year": 2004,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "12433737",
+      "title": "No Association between toenail selenium levels and bladder cancer risk",
+      "year": 2002,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "18377659",
+      "title": "Organic selenium supplementation increased selenium concentrations in ewe and newborn lamb blood and in slaughter lamb meat compared to inorganic selenium supplementation",
+      "year": 2008,
+      "inReviews": [
+       "29376219",
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "27777235",
+      "title": "Colorectal Adenomas in Participants of the SELECT Randomized Trial of Selenium and Vitamin E for Prostate Cancer Prevention",
+      "year": 2017,
+      "n": 35533,
+      "inReviews": [
+       "29376219"
+      ]
+     },
+     {
+      "pmid": "7495242",
+      "title": "The Linxian trials: mortality rates by vitamin-mineral intervention group",
+      "year": 1995,
+      "n": 30000,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "8049638",
+      "title": "Effects of vitamin/mineral supplementation on the prevalence of histological dysplasia and early cancer of the esophagus and stomach: results from the General Population Trial in Linxian, China",
+      "year": 1994,
+      "n": 29584,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "8261860",
+      "title": "[Preliminary report on the results of nutrition prevention trials of cancer and other common diseases among residents in Linxian, China]",
+      "year": 1993,
+      "n": 29584,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "8137333",
+      "title": "Prevention of esophageal cancer: the nutrition intervention trials in Linxian, China. Linxian Nutrition Intervention Trials Study Group",
+      "year": 1994,
+      "n": 29584,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "16032784",
+      "title": "Alterations of the lipid profile after 7.5 years of low-dose antioxidant supplementation in the SU.VI.MAX Study",
+      "year": 2005,
+      "n": 12741,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9503043",
+      "title": "Background and rationale behind the SU.VI.MAX Study, a prevention trial using nutritional doses of a combination of antioxidant vitamins and minerals to reduce cardiovascular diseases and cancers. SUpplementation en VItamines et Minéraux AntioXydants Study",
+      "year": 1998,
+      "n": 12735,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "11718454",
+      "title": "Effect of two years' supplementation with natural antioxidants on vitamin and trace element status biomarkers: preliminary data of the SU.VI.MAX study",
+      "year": 2001,
+      "n": 12735,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "10541446",
+      "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
+      "year": 1999,
+      "n": 12735,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9683310",
+      "title": "A primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers in a general population: the SU.VI.MAX study--design, methods, and participant characteristics. SUpplementation en VItamines et Minéraux AntioXydants",
+      "year": 1998,
+      "n": 12735,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "20693267",
+      "title": "Diet, supplement use, and prostate cancer risk: results from the prostate cancer prevention trial",
+      "year": 2010,
+      "n": 9559,
+      "inReviews": [
+       "29936712"
+      ]
+     },
+     {
+      "pmid": "28319243",
+      "title": "Association of Antioxidant Supplement Use and Dementia in the Prevention of Alzheimer's Disease by Vitamin E and Selenium Trial (PREADViSE)",
+      "year": 2017,
+      "n": 7540,
+      "inReviews": [
+       "29376219"
+      ]
+     },
+     {
+      "pmid": "23590571",
+      "title": "Baseline comorbidities in a skin cancer prevention trial in Bangladesh",
+      "year": 2013,
+      "n": 7000,
+      "inReviews": [
+       "29376219"
+      ]
+     },
+     {
+      "pmid": "15800922",
+      "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
+      "year": 2005,
+      "n": 5141,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "17023720",
+      "title": "A randomized factorial study of the effects of long-term garlic and micronutrient supplementation and of 2-wk antibiotic treatment for Helicobacter pylori infection on serum cholesterol and lipoproteins",
+      "year": 2006,
+      "n": 3411,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "9683311",
+      "title": "Factorial trial of three interventions to reduce the progression of precancerous gastric lesions in Shandong, China: design issues and initial data",
+      "year": 1998,
+      "n": 3411,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "16849680",
+      "title": "Randomized double-blind factorial trial of three treatments to reduce the prevalence of precancerous gastric lesions",
+      "year": 2006,
+      "n": 3365,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "27530657",
+      "title": "Selenium Supplementation for Prevention of Colorectal Adenomas and Risk of Associated Type 2 Diabetes",
+      "year": 2016,
+      "n": 1621,
+      "inReviews": [
+       "29376219"
+      ]
+     },
+     {
+      "pmid": "15217803",
+      "title": "Effects of long-term daily low-dose supplementation with antioxidant vitamins and minerals on structure and function of large arteries",
+      "year": 2004,
+      "n": 1162,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "12611611",
+      "title": "Association of selenium with thyroid volume and echostructure in 35- to 60-year-old French adults",
+      "year": 2003,
+      "n": 1108,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "14501380",
+      "title": "Selenium and prevention of prostate cancer in high-risk men: the Negative Biopsy Study",
+      "year": 2003,
+      "n": 700,
+      "inReviews": [
+       "24683040"
+      ]
+     },
+     {
+      "pmid": "16896036",
+      "title": "Design and progress of a trial of selenium to prevent prostate cancer among men with high-grade prostatic intraepithelial neoplasia",
+      "year": 2006,
+      "n": 537,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "10691066",
+      "title": "Design of Physicians' Health Study II--a randomized trial of beta-carotene, vitamins E and C, and multivitamins, in prevention of cancer, cardiovascular disease, and eye disease, and review of results of completed trials",
+      "year": 2000,
+      "n": 333,
+      "inReviews": [
+       "18677777"
+      ]
+     },
+     {
+      "pmid": "27814472",
+      "title": "Phase III randomised chemoprevention study with selenium on the recurrence of non-invasive urothelial carcinoma. The SELEnium and BLAdder cancer Trial",
+      "year": 2016,
+      "n": 141,
+      "inReviews": [
+       "29376219"
+      ]
+     },
+     {
+      "pmid": "20647337",
+      "title": "Oral selenium supplementation has no effect on prostate-specific antigen velocity in men undergoing active surveillance for localized prostate cancer",
+      "year": 2010,
+      "n": 140,
+      "inReviews": [
+       "29376219"
+      ]
+     },
+     {
+      "pmid": "25015649",
+      "title": "Multicenter, phase III trial comparing selenium supplementation with observation in gynecologic radiation oncology: follow-up analysis of the survival data 6 years after cessation of randomization",
+      "year": 2014,
+      "n": 81,
+      "inReviews": [
+       "29376219"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2004,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2006,
+     "reviews": 4,
+     "trials": 7
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2010,
+     "reviews": 4,
+     "trials": 6
+    },
+    {
+     "year": 2011,
+     "reviews": 6,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 5,
+     "trials": 5
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 4,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 6,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 7,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "8360931",
+     "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+     "year": 1993,
+     "n": 29584
+    },
+    {
+     "pmid": "8261860",
+     "title": "[Preliminary report on the results of nutrition prevention trials of cancer and other common diseases among residents in Linxian, China]",
+     "year": 1993,
+     "n": 29584
+    },
+    {
+     "pmid": "8137333",
+     "title": "Prevention of esophageal cancer: the nutrition intervention trials in Linxian, China. Linxian Nutrition Intervention Trials Study Group",
+     "year": 1994,
+     "n": 29584
+    },
+    {
+     "pmid": "8049638",
+     "title": "Effects of vitamin/mineral supplementation on the prevalence of histological dysplasia and early cancer of the esophagus and stomach: results from the General Population Trial in Linxian, China",
+     "year": 1994,
+     "n": 29584
+    },
+    {
+     "pmid": "7495248",
+     "title": "Possible immunologic involvement of antioxidants in cancer prevention",
+     "year": 1995,
+     "n": 3000
+    },
+    {
+     "pmid": "8971064",
+     "title": "Effects of selenium supplementation for cancer prevention in patients with carcinoma of the skin. A randomized controlled trial. Nutritional Prevention of Cancer Study Group",
+     "year": 1996,
+     "n": 1312
+    },
+    {
+     "pmid": "9342915",
+     "title": "Reduction of cancer mortality and incidence by selenium supplementation",
+     "year": 1997,
+     "n": 1312
+    },
+    {
+     "pmid": "9365551",
+     "title": "Chemoprevention of prostate cancer: the Prostate Cancer Prevention Trial",
+     "year": 1997,
+     "n": 18000
+    },
+    {
+     "pmid": "9315315",
+     "title": "Reduction of cancer risk with an oral supplement of selenium",
+     "year": 1997,
+     "n": 1312
+    },
+    {
+     "pmid": "9568790",
+     "title": "The association between baseline vitamin E, selenium, and prostate cancer in the alpha-tocopherol, beta-carotene cancer prevention study",
+     "year": 1998,
+     "n": 29133
+    },
+    {
+     "pmid": "9503043",
+     "title": "Background and rationale behind the SU.VI.MAX Study, a prevention trial using nutritional doses of a combination of antioxidant vitamins and minerals to reduce cardiovascular diseases and cancers. SUpplementation en VItamines et Minéraux AntioXydants Study",
+     "year": 1998,
+     "n": 12735
+    },
+    {
+     "pmid": "9683310",
+     "title": "A primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers in a general population: the SU.VI.MAX study--design, methods, and participant characteristics. SUpplementation en VItamines et Minéraux AntioXydants",
+     "year": 1998,
+     "n": 12735
+    },
+    {
+     "pmid": "10541446",
+     "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
+     "year": 1999,
+     "n": 12735
+    },
+    {
+     "pmid": "11860943",
+     "title": "[The prevention of primary liver cancer by selenium in high risk populations]",
+     "year": 2000,
+     "n": 1112
+    },
+    {
+     "pmid": "11552710",
+     "title": "Molecular epidemiologic studies within the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+     "year": 2001,
+     "n": 32400
+    },
+    {
+     "pmid": "12101110",
+     "title": "Baseline characteristics and the effect of selenium supplementation on cancer incidence in a randomized clinical trial: a summary report of the Nutritional Prevention of Cancer Trial",
+     "year": 2002,
+     "n": 1312
+    },
+    {
+     "pmid": "12699469",
+     "title": "Selenium supplementation, baseline plasma selenium status and incidence of prostate cancer: an analysis of the complete treatment period of the Nutritional Prevention of Cancer Trial",
+     "year": 2003,
+     "n": 1312
+    },
+    {
+     "pmid": "14519754",
+     "title": "Selenium supplementation and secondary prevention of nonmelanoma skin cancer in a randomized trial",
+     "year": 2003,
+     "n": 1312
+    },
+    {
+     "pmid": "15361287",
+     "title": "An intervention study to prevent gastric cancer by micro-selenium and large dose of allitridum",
+     "year": 2004,
+     "n": 2507
+    },
+    {
+     "pmid": "15800922",
+     "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
+     "year": 2005,
+     "n": 5141
+    },
+    {
+     "pmid": "16896051",
+     "title": "Lung cancer chemoprevention: a randomized, double-blind trial in Linxian, China",
+     "year": 2006,
+     "n": 29584
+    },
+    {
+     "pmid": "17709449",
+     "title": "Antioxidant supplementation increases the risk of skin cancers in women but not in men",
+     "year": 2007,
+     "n": 7876
+    },
+    {
+     "pmid": "17686823",
+     "title": "Chemoprevention of primary liver cancer: a randomized, double-blind trial in Linxian, China",
+     "year": 2007,
+     "n": 29450
+    },
+    {
+     "pmid": "18444146",
+     "title": "The nutritional prevention of cancer: 400 mcg per day selenium treatment",
+     "year": 2008,
+     "n": 1312
+    },
+    {
+     "pmid": "19066370",
+     "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+     "year": 2009,
+     "n": 35533
+    },
+    {
+     "pmid": "19318634",
+     "title": "Total and cancer mortality after supplementation with vitamins and minerals: follow-up of the Linxian General Population Nutrition Intervention Trial",
+     "year": 2009,
+     "n": 29584
+    },
+    {
+     "pmid": "20605091",
+     "title": "Incidence of skin cancers during 5-year follow-up after stopping antioxidant vitamins and mineral supplementation",
+     "year": 2010,
+     "n": 12741
+    },
+    {
+     "pmid": "20104528",
+     "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
+     "year": 2010,
+     "n": 12741
+    },
+    {
+     "pmid": "20693267",
+     "title": "Diet, supplement use, and prostate cancer risk: results from the prostate cancer prevention trial",
+     "year": 2010,
+     "n": 9559
+    },
+    {
+     "pmid": "21990298",
+     "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+     "year": 2011,
+     "n": 35533
+    },
+    {
+     "pmid": "22498220",
+     "title": "Evaluation of vitamin E and selenium supplementation for the prevention of bladder cancer in SWOG coordinated SELECT",
+     "year": 2012,
+     "n": 34887
+    },
+    {
+     "pmid": "22271764",
+     "title": "Fifteen-year effects of Helicobacter pylori, garlic, and vitamin treatments on gastric cancer incidence and mortality",
+     "year": 2012,
+     "n": 3365
+    },
+    {
+     "pmid": "23590571",
+     "title": "Baseline comorbidities in a skin cancer prevention trial in Bangladesh",
+     "year": 2013,
+     "n": 7000
+    },
+    {
+     "pmid": "24002495",
+     "title": "Randomized, double-blind, placebo-controlled, phase III chemoprevention trial of selenium supplementation in patients with resected stage I non-small-cell lung cancer: ECOG 5597",
+     "year": 2013,
+     "n": 1561
+    },
+    {
+     "pmid": "24961880",
+     "title": "Plasma tocopherols and risk of prostate cancer in the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+     "year": 2014,
+     "n": 35533
+    },
+    {
+     "pmid": "24732629",
+     "title": "Plasma vitamin D and prostate cancer risk: results from the Selenium and Vitamin E Cancer Prevention Trial",
+     "year": 2014,
+     "n": 3203
+    },
+    {
+     "pmid": "24747090",
+     "title": "Is there a role for body mass index in the assessment of prostate cancer risk on biopsy?",
+     "year": 2014,
+     "n": 3258
+    },
+    {
+     "pmid": "25232809",
+     "title": "Age-related cataract in men in the selenium and vitamin e cancer prevention trial eye endpoints study: a randomized clinical trial",
+     "year": 2015,
+     "n": 35533
+    },
+    {
+     "pmid": "27197287",
+     "title": "Selenium- or Vitamin E-Related Gene Variants, Interaction with Supplementation, and Risk of High-Grade Prostate Cancer in SELECT",
+     "year": 2016,
+     "n": 1434
+    },
+    {
+     "pmid": "27519183",
+     "title": "Opportunities and challenges in incorporating ancillary studies into a cancer prevention randomized clinical trial",
+     "year": 2016,
+     "n": 35533
+    },
+    {
+     "pmid": "27777235",
+     "title": "Colorectal Adenomas in Participants of the SELECT Randomized Trial of Selenium and Vitamin E for Prostate Cancer Prevention",
+     "year": 2017,
+     "n": 35533
+    },
+    {
+     "pmid": "28899491",
+     "title": "Association between selenium and lycopene supplementation and incidence of prostate cancer: Results from the post-hoc analysis of the procomb trial",
+     "year": 2017,
+     "n": 14209
+    },
+    {
+     "pmid": "31511230",
+     "title": "Effects of Helicobacter pylori treatment and vitamin and garlic supplementation on gastric cancer incidence and mortality: follow-up of a randomized intervention trial",
+     "year": 2019,
+     "n": 3365
+    },
+    {
+     "pmid": "36625863",
+     "title": "Racial and Ethnic Disparity in Preference-Weighted Quality of Life: Findings from the Selenium and Vitamin E Cancer Prevention Trial",
+     "year": 2025,
+     "n": 9691
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "29376219"
+    ],
+    "citedNotChosen": [
+     "19066370"
+    ],
+    "citedNotEligible": [
+     "19066370"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "29936712",
+      "doi": "10.22034/apjcp.2018.19.6.1431",
+      "title": "The association between Selenium and Prostate Cancer: a Systematic Review and Meta-Analysis",
+      "year": 2018,
+      "firstAuthor": "Sayehmiri K",
+      "journal": "Asian Pacific journal of cancer prevention : APJCP",
+      "citedBy": 32,
+      "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+     },
+     {
+      "pmid": "24683040",
+      "doi": "10.1002/14651858.cd005195.pub3",
+      "title": "Selenium for preventing cancer",
+      "year": 2014,
+      "firstAuthor": "Vinceti M",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 74,
+      "n": 1100000,
+      "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+     },
+     {
+      "pmid": "18677777",
+      "doi": "10.1002/14651858.cd004183.pub3",
+      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+      "year": 2008,
+      "firstAuthor": "Bjelakovic G",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 75,
+      "n": 211818,
+      "why": "The most comprehensive review of trials on this outcome (20 trials, 2008); screened as answering the question"
+     },
+     {
+      "pmid": "36625863",
+      "doi": "10.1089/pop.2022.0143",
+      "title": "Racial and Ethnic Disparity in Preference-Weighted Quality of Life: Findings from the Selenium and Vitamin E Cancer Prevention Trial",
+      "year": 2025,
+      "firstAuthor": "Rock MC",
+      "journal": "Population health management",
+      "citedBy": 0,
+      "n": 9691,
+      "why": "A large trial (about 9,691 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "31511230",
+      "doi": "10.1136/bmj.l5016",
+      "title": "Effects of Helicobacter pylori treatment and vitamin and garlic supplementation on gastric cancer incidence and mortality: follow-up of a randomized intervention trial",
+      "year": 2019,
+      "firstAuthor": "Li WQ",
+      "journal": "BMJ (Clinical research ed.)",
+      "citedBy": 213,
+      "n": 3365,
+      "why": "A large trial (about 3,365 people) from 2019, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+     "intervention": "Selenium supplements (alone, or with results for selenium apart)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "New cancers (overall or by type)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 9,
+     "partly": 6,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "24217421",
+      "title": "Vitamin and mineral supplements in the primary prevention of cardiovascular disease and cancer: An updated systematic evidence review for the U.S. Preventive Services Task Force",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Selenium is among single-nutrient trials in adults, but the evidence is described as heterogeneous with no clear selenium-specific pooled result."
+     },
+     {
+      "pmid": "21563143",
+      "title": "Selenium for preventing cancer",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Selenium vs placebo RCTs in adults for cancer, but the RCTs were summarised narratively rather than pooled."
+     },
+     {
+      "pmid": "22073154",
+      "title": "Selenium and lung cancer: a systematic review and meta analysis",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Selenium and lung cancer with RCTs, but the abstract shows no pooled RCT estimate and mixes in observational and treatment evidence."
+     },
+     {
+      "pmid": "19145725",
+      "title": "Systematic review: primary and secondary prevention of gastrointestinal cancers with antioxidant supplements",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Antioxidant vs placebo RCTs for GI cancers include selenium, but the abstract reports only pooled antioxidant effects."
+     },
+     {
+      "pmid": "16880453",
+      "title": "The efficacy and safety of multivitamin and mineral supplement use to prevent cancer and chronic disease in adults: a systematic review for a National Institutes of Health state-of-the-science conference",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Selenium was given only in combination with other vitamins and minerals, with no separate selenium result."
+     },
+     {
+      "pmid": "16184479",
+      "title": "Intake of selenium in the prevention of prostate cancer: a systematic review and meta-analysis",
+      "year": 2005,
+      "fits": "no",
+      "reason": "Only cohort and case-control studies of selenium intake; no randomised trials of supplements."
+     },
+     {
+      "pmid": "15495084",
+      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Antioxidant vs placebo RCTs for GI cancers include selenium, but the abstract shows no separate selenium result."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Type 2 diabetes",
+   "finding": "Type 2 diabetes",
+   "counts": {
+    "reviews": 32,
+    "trialReviews": 12,
+    "trials": 42,
+    "largeTrials": 5
+   },
+   "chosenReviews": [
+    {
+     "pmid": "29974401",
+     "doi": "10.1007/s10654-018-0422-8",
+     "title": "Selenium exposure and the risk of type 2 diabetes: a systematic review and meta-analysis",
+     "year": 2018,
+     "firstAuthor": "Vinceti M",
+     "journal": "European journal of epidemiology",
+     "citedBy": 186,
+     "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+    },
+    {
+     "pmid": "24858736",
+     "doi": "10.1007/s12020-014-0298-7",
+     "title": "Selenium supplementation and the risk of type 2 diabetes mellitus: a meta-analysis of randomized controlled trials",
+     "year": 2014,
+     "firstAuthor": "Mao S",
+     "journal": "Endocrine",
+     "citedBy": 24,
+     "n": 20294,
+     "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "29924331",
+     "doi": "10.1093/jn/nxy099",
+     "title": "Higher Plasma Selenium Concentrations Are Associated with Increased Odds of Prevalent Type 2 Diabetes",
+     "year": 2018,
+     "firstAuthor": "Kohler LN",
+     "journal": "The Journal of nutrition",
+     "citedBy": 44,
+     "n": 1727,
+     "why": "A large trial (about 1,727 people) from 2018, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.2727272727272727,
+    "trials": 11,
+    "inclusions": 14,
+    "reviews": [
+     {
+      "pmid": "29974401",
+      "trials": 8
+     },
+     {
+      "pmid": "24858736",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "21990298",
+      "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2011,
+      "n": 35533,
+      "inReviews": [
+       "29974401",
+       "24858736"
+      ]
+     },
+     {
+      "pmid": "24002495",
+      "title": "Randomized, double-blind, placebo-controlled, phase III chemoprevention trial of selenium supplementation in patients with resected stage I non-small-cell lung cancer: ECOG 5597",
+      "year": 2013,
+      "n": 1561,
+      "inReviews": [
+       "29974401",
+       "24858736"
+      ]
+     },
+     {
+      "pmid": "17620655",
+      "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
+      "year": 2007,
+      "n": 1202,
+      "inReviews": [
+       "29974401",
+       "24858736"
+      ]
+     },
+     {
+      "pmid": "19066370",
+      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2009,
+      "n": 35533,
+      "inReviews": [
+       "29974401"
+      ]
+     },
+     {
+      "pmid": "27530657",
+      "title": "Selenium Supplementation for Prevention of Colorectal Adenomas and Risk of Associated Type 2 Diabetes",
+      "year": 2016,
+      "n": 1621,
+      "inReviews": [
+       "29974401"
+      ]
+     },
+     {
+      "pmid": "8971064",
+      "title": "Effects of selenium supplementation for cancer prevention in patients with carcinoma of the skin. A randomized controlled trial. Nutritional Prevention of Cancer Study Group",
+      "year": 1996,
+      "n": 1312,
+      "inReviews": [
+       "29974401"
+      ]
+     },
+     {
+      "pmid": "23489776",
+      "title": "Selenium supplementation has no effect on serum glucose levels in men at high risk of prostate cancer",
+      "year": 2013,
+      "n": 699,
+      "inReviews": [
+       "29974401"
+      ]
+     },
+     {
+      "pmid": "22887343",
+      "title": "Phase 3 clinical trial investigating the effect of selenium supplementation in men at high-risk for prostate cancer",
+      "year": 2013,
+      "n": 699,
+      "inReviews": [
+       "29974401"
+      ]
+     },
+     {
+      "pmid": "23028897",
+      "title": "A randomized trial of selenium supplementation and risk of type-2 diabetes, as assessed by plasma adiponectin",
+      "year": 2012,
+      "n": 473,
+      "inReviews": [
+       "24858736"
+      ]
+     },
+     {
+      "pmid": "20670733",
+      "title": "No effect of selenium supplementation on serum glucose levels in men with prostate cancer",
+      "year": 2010,
+      "n": 47,
+      "inReviews": [
+       "24858736"
+      ]
+     },
+     {
+      "pmid": "15817859",
+      "title": "Effectiveness of selenium supplements in a low-selenium area of China",
+      "year": 2005,
+      "inReviews": [
+       "24858736"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "16895889",
+     "title": "Antioxidant supplementation does not affect fasting plasma glucose in the Supplementation with Antioxidant Vitamins and Minerals (SU.VI.MAX) study in France: association with dietary intake and plasma concentrations",
+     "year": 2006,
+     "n": 3146
+    },
+    {
+     "pmid": "17620655",
+     "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
+     "year": 2007,
+     "n": 1202
+    },
+    {
+     "pmid": "26473975",
+     "title": "Intake of Vitamin and Mineral Supplements and Longitudinal Association with HbA1c Levels in the General Non-Diabetic Population--Results from the MONICA/KORA S3/F3 Study",
+     "year": 2015,
+     "n": 4447
+    },
+    {
+     "pmid": "27530657",
+     "title": "Selenium Supplementation for Prevention of Colorectal Adenomas and Risk of Associated Type 2 Diabetes",
+     "year": 2016,
+     "n": 1621
+    },
+    {
+     "pmid": "29924331",
+     "title": "Higher Plasma Selenium Concentrations Are Associated with Increased Odds of Prevalent Type 2 Diabetes",
+     "year": 2018,
+     "n": 1727
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "17620655",
+     "19066370",
+     "23440843"
+    ],
+    "citedNotEligible": [
+     "17620655",
+     "19066370",
+     "23440843"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "29974401",
+      "doi": "10.1007/s10654-018-0422-8",
+      "title": "Selenium exposure and the risk of type 2 diabetes: a systematic review and meta-analysis",
+      "year": 2018,
+      "firstAuthor": "Vinceti M",
+      "journal": "European journal of epidemiology",
+      "citedBy": 186,
+      "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+     },
+     {
+      "pmid": "24858736",
+      "doi": "10.1007/s12020-014-0298-7",
+      "title": "Selenium supplementation and the risk of type 2 diabetes mellitus: a meta-analysis of randomized controlled trials",
+      "year": 2014,
+      "firstAuthor": "Mao S",
+      "journal": "Endocrine",
+      "citedBy": 24,
+      "n": 20294,
+      "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+     },
+     {
+      "pmid": "29924331",
+      "doi": "10.1093/jn/nxy099",
+      "title": "Higher Plasma Selenium Concentrations Are Associated with Increased Odds of Prevalent Type 2 Diabetes",
+      "year": 2018,
+      "firstAuthor": "Kohler LN",
+      "journal": "The Journal of nutrition",
+      "citedBy": 44,
+      "n": 1727,
+      "why": "A large trial (about 1,727 people) from 2018, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults without diabetes at the start",
+     "intervention": "Selenium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "New type 2 diabetes, or blood sugar"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 7,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37574154",
+      "title": "Selenium supplementation effect on glycemic control: A GRADE-assessed systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pooled RCTs of selenium vs placebo on fasting blood sugar, but the population is not limited to adults without diabetes."
+     },
+     {
+      "pmid": "36781602",
+      "title": "Effects of Probiotic and Selenium Co-supplementation on Lipid Profile and Glycemia Indices: A Systematic Review and Meta-analysis of Randomized Clinical Trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Selenium was always given together with probiotics, so its effect on blood sugar cannot be separated."
+     },
+     {
+      "pmid": "36839303",
+      "title": "Dietary Supplements Potentially Target Plasma Glutathione Levels to Improve Cardiometabolic Health in Patients with Diabetes Mellitus: A Systematic Review of Randomized Clinical Trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Covers diabetic patients with glutathione and cardiometabolic outcomes, includes many supplements, and pools no data."
+     },
+     {
+      "pmid": "36432623",
+      "title": "Potential Benefits of Selenium Supplementation in Reducing Insulin Resistance in Patients with Cardiometabolic Diseases: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pooled selenium RCTs on glucose markers, but only in patients with cardiometabolic diseases, so this is treatment rather than prevention."
+     },
+     {
+      "pmid": "35304727",
+      "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Selenium is one of the add-on supplements studied, but the population is people who already have type 2 diabetes."
+     },
+     {
+      "pmid": "35963372",
+      "title": "Comparison of nutritional supplements for glycemic control in type 2 diabetes: A systematic review and network meta-analysis of randomized trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Network meta-analysis includes selenium for glycemic markers, but only in adults who already have type 2 diabetes."
+     },
+     {
+      "pmid": "33895112",
+      "title": "A systematic review and dose-response meta-analysis of exposure to environmental selenium and the risk of type 2 diabetes in nonexperimental studies",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Pools only observational studies of selenium exposure, not randomised trials of supplements."
+     },
+     {
+      "pmid": "31148299",
+      "title": "Effectiveness and safety of selenium supplementation for type 2 diabetes mellitus in adults: a systematic review of randomised controlled trials",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Selenium RCTs on glucose outcomes, but in adults who already have type 2 diabetes (treatment, not prevention)."
+     },
+     {
+      "pmid": "28992632",
+      "title": "The Effects of Selenium Supplementation on Glucose Metabolism and Lipid Profiles Among Patients with Metabolic Diseases: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pooled selenium RCTs on fasting glucose and insulin, but only in patients with metabolic diseases."
+     },
+     {
+      "pmid": "28570649",
+      "title": "Antioxidant agents for delaying diabetic kidney disease progression: A systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Antioxidants for diabetic kidney disease, with kidney outcomes rather than diabetes incidence or blood sugar."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart disease and death",
+   "finding": "Heart and blood vessel disease, and death from any cause",
+   "counts": {
+    "reviews": 34,
+    "trialReviews": 14,
+    "trials": 67,
+    "largeTrials": 14
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33053149",
+     "doi": "10.1093/ajcn/nqaa245",
+     "title": "Selenium, antioxidants, cardiovascular disease, and all-cause mortality: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Jenkins DJA",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 104,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "28965605",
+     "doi": "10.1016/j.jtemb.2017.04.009",
+     "title": "The effect of selenium supplementation on coronary heart disease: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2017,
+     "firstAuthor": "Ju W",
+     "journal": "Journal of trace elements in medicine and biology : organ of the Society for Minerals and Trace Elements (GMS)",
+     "citedBy": 76,
+     "n": 43998,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    },
+    {
+     "pmid": "25990689",
+     "doi": "10.1038/ejcn.2015.78",
+     "title": "Selenium status and cardiovascular diseases: meta-analysis of prospective observational studies and randomized controlled trials",
+     "year": 2016,
+     "firstAuthor": "Zhang X",
+     "journal": "European journal of clinical nutrition",
+     "citedBy": 106,
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+    },
+    {
+     "pmid": "17327526",
+     "doi": "10.1001/jama.297.8.842",
+     "title": "Mortality in randomized trials of antioxidant supplements for primary and secondary prevention: systematic review and meta-analysis",
+     "year": 2007,
+     "firstAuthor": "Bjelakovic G",
+     "journal": "JAMA",
+     "citedBy": 1340,
+     "n": 232606,
+     "why": "The most comprehensive review of trials on this outcome (68 trials, 2007); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "36630120",
+     "doi": "10.1001/jamasurg.2022.6855",
+     "title": "Effect of High-Dose Selenium on Postoperative Organ Dysfunction and Mortality in Cardiac Surgery Patients: The SUSTAIN CSX Randomized Clinical Trial",
+     "year": 2023,
+     "firstAuthor": "Stoppe C",
+     "journal": "JAMA surgery",
+     "citedBy": 32,
+     "n": 1416,
+     "why": "A large trial (about 1,416 people) from 2023, as new as the newest review or newer"
+    },
+    {
+     "pmid": "42622119",
+     "doi": "10.1161/jaha.126.049243",
+     "title": "Sex Differences in Postoperative Recovery and Mortality After High-Risk Cardiac Surgery: A Propensity Score-Matched Post Hoc Analysis of the SUSTAIN-CSX Trial",
+     "year": 2026,
+     "firstAuthor": "Zayat R",
+     "journal": "Journal of the American Heart Association",
+     "citedBy": 0,
+     "n": 1394,
+     "why": "A large trial (about 1,394 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.12403100775193798,
+    "trials": 43,
+    "inclusions": 59,
+    "reviews": [
+     {
+      "pmid": "33053149",
+      "trials": 20
+     },
+     {
+      "pmid": "28965605",
+      "trials": 17
+     },
+     {
+      "pmid": "25990689",
+      "trials": 12
+     },
+     {
+      "pmid": "17327526",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19066370",
+      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2009,
+      "n": 35533,
+      "inReviews": [
+       "33053149",
+       "28965605",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "8360931",
+      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+      "year": 1993,
+      "n": 29584,
+      "inReviews": [
+       "33053149",
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "15557412",
+      "title": "The SU.VI.MAX Study: a randomized, placebo-controlled trial of the health effects of antioxidant vitamins and minerals",
+      "year": 2004,
+      "n": 13017,
+      "inReviews": [
+       "25990689",
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "15217803",
+      "title": "Effects of long-term daily low-dose supplementation with antioxidant vitamins and minerals on structure and function of large arteries",
+      "year": 2004,
+      "n": 1162,
+      "inReviews": [
+       "28965605",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "10218756",
+      "title": "Impact of trace elements and vitamin supplementation on immunity and infections in institutionalized elderly patients: a randomized controlled trial. MIN. VIT. AOX. geriatric network",
+      "year": 1999,
+      "n": 725,
+      "inReviews": [
+       "33053149",
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "21896650",
+      "title": "Phase III trial of selenium to prevent prostate cancer in men with high-grade prostatic intraepithelial neoplasia: SWOG S9917",
+      "year": 2011,
+      "n": 619,
+      "inReviews": [
+       "33053149",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "16495471",
+      "title": "Effects of selenium supplementation on cardiovascular disease incidence and mortality: secondary analyses in a randomized clinical trial",
+      "year": 2006,
+      "n": 504,
+      "inReviews": [
+       "33053149",
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "21576533",
+      "title": "Effect of supplementation with high-selenium yeast on plasma lipids: a randomized trial",
+      "year": 2011,
+      "n": 501,
+      "inReviews": [
+       "33053149",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "19033020",
+      "title": "Selenium supplementation improves antioxidant capacity in vitro and in vivo in patients with coronary artery disease The SElenium Therapy in Coronary Artery disease Patients (SETCAP) Study",
+      "year": 2008,
+      "n": 465,
+      "inReviews": [
+       "28965605",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "22952184",
+      "title": "Influence of the glutathione peroxidase 1 Pro200Leu polymorphism on the response of glutathione peroxidase activity to selenium supplementation: a randomized controlled trial",
+      "year": 2012,
+      "n": 129,
+      "inReviews": [
+       "28965605",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "16143126",
+      "title": "Randomized, placebo-controlled, esophageal squamous cell cancer chemoprevention trial of selenomethionine and celecoxib",
+      "year": 2005,
+      "n": 123,
+      "inReviews": [
+       "33053149",
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "9267584",
+      "title": "Effect of micronutrient supplementation on infection in institutionalized elderly subjects: a controlled trial",
+      "year": 1997,
+      "n": 81,
+      "inReviews": [
+       "33053149",
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "2685953",
+      "title": "Effect of selenium supplementation after acute myocardial infarction",
+      "year": 1989,
+      "n": 81,
+      "inReviews": [
+       "33053149",
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "7752825",
+      "title": "Coenzyme Q10 and antioxidants in acute myocardial infarction",
+      "year": 1994,
+      "n": 32,
+      "inReviews": [
+       "28965605",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "1702663",
+      "title": "Intervention trial with selenium for the prevention of lung cancer among tin miners in Yunnan, China. A pilot study",
+      "year": 1990,
+      "inReviews": [
+       "28965605",
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "21990298",
+      "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2011,
+      "n": 35533,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "20104528",
+      "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
+      "year": 2010,
+      "n": 12741,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "9683311",
+      "title": "Factorial trial of three interventions to reduce the progression of precancerous gastric lesions in Shandong, China: design issues and initial data",
+      "year": 1998,
+      "n": 3411,
+      "inReviews": [
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "22271764",
+      "title": "Fifteen-year effects of Helicobacter pylori, garlic, and vitamin treatments on gastric cancer incidence and mortality",
+      "year": 2012,
+      "n": 3365,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "27530657",
+      "title": "Selenium Supplementation for Prevention of Colorectal Adenomas and Risk of Associated Type 2 Diabetes",
+      "year": 2016,
+      "n": 1621,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "24002495",
+      "title": "Randomized, double-blind, placebo-controlled, phase III chemoprevention trial of selenium supplementation in patients with resected stage I non-small-cell lung cancer: ECOG 5597",
+      "year": 2013,
+      "n": 1561,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "12101110",
+      "title": "Baseline characteristics and the effect of selenium supplementation on cancer incidence in a randomized clinical trial: a summary report of the Nutritional Prevention of Cancer Trial",
+      "year": 2002,
+      "n": 1312,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "8971064",
+      "title": "Effects of selenium supplementation for cancer prevention in patients with carcinoma of the skin. A randomized controlled trial. Nutritional Prevention of Cancer Study Group",
+      "year": 1996,
+      "n": 1312,
+      "inReviews": [
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "22887343",
+      "title": "Phase 3 clinical trial investigating the effect of selenium supplementation in men at high-risk for prostate cancer",
+      "year": 2013,
+      "n": 699,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "16181615",
+      "title": "Impact of selenium on mood and quality of life: a randomized, controlled trial",
+      "year": 2006,
+      "n": 501,
+      "inReviews": [
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "29454039",
+      "title": "Effect of long-term selenium supplementation on mortality: Results from a multiple-dose, randomised controlled trial",
+      "year": 2018,
+      "n": 491,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "22626835",
+      "title": "Cardiovascular mortality and N-terminal-proBNP reduced after combined selenium and coenzyme Q10 supplementation: a 5-year prospective randomized double-blind placebo-controlled trial among elderly Swedish citizens",
+      "year": 2013,
+      "n": 443,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "26375288",
+      "title": "Levels of sP-selectin and hs-CRP Decrease with Dietary Intervention with Selenium and Coenzyme Q10 Combined: A Secondary Analysis of a Randomized Clinical Trial",
+      "year": 2015,
+      "n": 437,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "23065023",
+      "title": "Antioxidant supplement and long-term reduction of recurrent adenomas of the large bowel. A double-blind randomized trial",
+      "year": 2013,
+      "n": 411,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "11498460",
+      "title": "Antioxidant supplements block the response of HDL to simvastatin-niacin therapy in patients with coronary artery disease and low HDL",
+      "year": 2001,
+      "n": 153,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "27814472",
+      "title": "Phase III randomised chemoprevention study with selenium on the recurrence of non-invasive urothelial carcinoma. The SELEnium and BLAdder cancer Trial",
+      "year": 2016,
+      "n": 141,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "20647337",
+      "title": "Oral selenium supplementation has no effect on prostate-specific antigen velocity in men undergoing active surveillance for localized prostate cancer",
+      "year": 2010,
+      "n": 140,
+      "inReviews": [
+       "33053149"
+      ]
+     },
+     {
+      "pmid": "25785441",
+      "title": "The hypolipidemic and pleiotropic effects of rosuvastatin are not enhanced by its association with zinc and selenium supplementation in coronary artery disease patients: a double blind randomized controlled study",
+      "year": 2015,
+      "n": 76,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "25510442",
+      "title": "Metabolic response to selenium supplementation in women with polycystic ovary syndrome: a randomized, double-blind, placebo-controlled trial",
+      "year": 2015,
+      "n": 70,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "26743526",
+      "title": "Selenium Supplementation Affects Insulin Resistance and Serum hs-CRP in Patients with Type 2 Diabetes and Coronary Heart Disease",
+      "year": 2016,
+      "n": 60,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "8256468",
+      "title": "[Alcohol-induced toxic hepatitis--a \"free radical\" associated disease. Lowering fatality by adjuvant antioxidant therapy]",
+      "year": 1993,
+      "n": 56,
+      "inReviews": [
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "16026136",
+      "title": "One-year application of probiotic strain Enterococcus faecium M-74 decreases serum cholesterol levels",
+      "year": 2005,
+      "n": 43,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "26022214",
+      "title": "Improvement of antioxidant status after Brazil nut intake in hypertensive and dyslipidemic subjects",
+      "year": 2015,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "15817859",
+      "title": "Effectiveness of selenium supplements in a low-selenium area of China",
+      "year": 2005,
+      "inReviews": [
+       "28965605"
+      ]
+     },
+     {
+      "pmid": "19036851",
+      "title": "Selenium supplementation does not improve vascular responsiveness in healthy North American men",
+      "year": 2009,
+      "inReviews": [
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "17888202",
+      "title": "A short-term intervention trial with selenate, selenium-enriched yeast and selenium-enriched milk: effects on oxidative defence regulation",
+      "year": 2008,
+      "inReviews": [
+       "25990689"
+      ]
+     },
+     {
+      "pmid": "12492743",
+      "title": "Oral antioxidant supplementation for fatigue associated with primary biliary cirrhosis: results of a multicentre, randomized, placebo-controlled, cross-over trial",
+      "year": 2003,
+      "inReviews": [
+       "17327526"
+      ]
+     },
+     {
+      "pmid": "16081469",
+      "title": "The effect of micronutrient supplementation on quality-of-life and left ventricular function in elderly patients with chronic heart failure",
+      "year": 2005,
+      "inReviews": [
+       "17327526"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 6
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "8360931",
+     "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+     "year": 1993,
+     "n": 29584
+    },
+    {
+     "pmid": "7495242",
+     "title": "The Linxian trials: mortality rates by vitamin-mineral intervention group",
+     "year": 1995,
+     "n": 30000
+    },
+    {
+     "pmid": "9342915",
+     "title": "Reduction of cancer mortality and incidence by selenium supplementation",
+     "year": 1997,
+     "n": 1312
+    },
+    {
+     "pmid": "9430262",
+     "title": "Do nutritional supplements lower the risk of stroke or hypertension?",
+     "year": 1998,
+     "n": 29584
+    },
+    {
+     "pmid": "9503043",
+     "title": "Background and rationale behind the SU.VI.MAX Study, a prevention trial using nutritional doses of a combination of antioxidant vitamins and minerals to reduce cardiovascular diseases and cancers. SUpplementation en VItamines et Minéraux AntioXydants Study",
+     "year": 1998,
+     "n": 12735
+    },
+    {
+     "pmid": "9683310",
+     "title": "A primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers in a general population: the SU.VI.MAX study--design, methods, and participant characteristics. SUpplementation en VItamines et Minéraux AntioXydants",
+     "year": 1998,
+     "n": 12735
+    },
+    {
+     "pmid": "10541446",
+     "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
+     "year": 1999,
+     "n": 12735
+    },
+    {
+     "pmid": "19318634",
+     "title": "Total and cancer mortality after supplementation with vitamins and minerals: follow-up of the Linxian General Population Nutrition Intervention Trial",
+     "year": 2009,
+     "n": 29584
+    },
+    {
+     "pmid": "20104528",
+     "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
+     "year": 2010,
+     "n": 12741
+    },
+    {
+     "pmid": "22271764",
+     "title": "Fifteen-year effects of Helicobacter pylori, garlic, and vitamin treatments on gastric cancer incidence and mortality",
+     "year": 2012,
+     "n": 3365
+    },
+    {
+     "pmid": "27428731",
+     "title": "Effect of Sodium Selenite Administration and Procalcitonin-Guided Therapy on Mortality in Patients With Severe Sepsis or Septic Shock: A Randomized Clinical Trial",
+     "year": 2016,
+     "n": 8174
+    },
+    {
+     "pmid": "31511230",
+     "title": "Effects of Helicobacter pylori treatment and vitamin and garlic supplementation on gastric cancer incidence and mortality: follow-up of a randomized intervention trial",
+     "year": 2019,
+     "n": 3365
+    },
+    {
+     "pmid": "36630120",
+     "title": "Effect of High-Dose Selenium on Postoperative Organ Dysfunction and Mortality in Cardiac Surgery Patients: The SUSTAIN CSX Randomized Clinical Trial",
+     "year": 2023,
+     "n": 1416
+    },
+    {
+     "pmid": "42622119",
+     "title": "Sex Differences in Postoperative Recovery and Mortality After High-Risk Cardiac Surgery: A Propensity Score-Matched Post Hoc Analysis of the SUSTAIN-CSX Trial",
+     "year": 2026,
+     "n": 1394
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23440843",
+     "22419320"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "33053149",
+      "doi": "10.1093/ajcn/nqaa245",
+      "title": "Selenium, antioxidants, cardiovascular disease, and all-cause mortality: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "firstAuthor": "Jenkins DJA",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 104,
+      "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+     },
+     {
+      "pmid": "28965605",
+      "doi": "10.1016/j.jtemb.2017.04.009",
+      "title": "The effect of selenium supplementation on coronary heart disease: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "firstAuthor": "Ju W",
+      "journal": "Journal of trace elements in medicine and biology : organ of the Society for Minerals and Trace Elements (GMS)",
+      "citedBy": 76,
+      "n": 43998,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "25990689",
+      "doi": "10.1038/ejcn.2015.78",
+      "title": "Selenium status and cardiovascular diseases: meta-analysis of prospective observational studies and randomized controlled trials",
+      "year": 2016,
+      "firstAuthor": "Zhang X",
+      "journal": "European journal of clinical nutrition",
+      "citedBy": 106,
+      "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+     },
+     {
+      "pmid": "17327526",
+      "doi": "10.1001/jama.297.8.842",
+      "title": "Mortality in randomized trials of antioxidant supplements for primary and secondary prevention: systematic review and meta-analysis",
+      "year": 2007,
+      "firstAuthor": "Bjelakovic G",
+      "journal": "JAMA",
+      "citedBy": 1340,
+      "n": 232606,
+      "why": "The most comprehensive review of trials on this outcome (68 trials, 2007); screened as answering the question"
+     },
+     {
+      "pmid": "36630120",
+      "doi": "10.1001/jamasurg.2022.6855",
+      "title": "Effect of High-Dose Selenium on Postoperative Organ Dysfunction and Mortality in Cardiac Surgery Patients: The SUSTAIN CSX Randomized Clinical Trial",
+      "year": 2023,
+      "firstAuthor": "Stoppe C",
+      "journal": "JAMA surgery",
+      "citedBy": 32,
+      "n": 1416,
+      "why": "A large trial (about 1,416 people) from 2023, as new as the newest review or newer"
+     },
+     {
+      "pmid": "42622119",
+      "doi": "10.1161/jaha.126.049243",
+      "title": "Sex Differences in Postoperative Recovery and Mortality After High-Risk Cardiac Surgery: A Propensity Score-Matched Post Hoc Analysis of the SUSTAIN-CSX Trial",
+      "year": 2026,
+      "firstAuthor": "Zayat R",
+      "journal": "Journal of the American Heart Association",
+      "citedBy": 0,
+      "n": 1394,
+      "why": "A large trial (about 1,394 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults from the general population or at higher risk of heart disease",
+     "intervention": "Selenium supplements (alone, or with results for selenium apart)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Heart and blood vessel disease, or death from any cause"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 4,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41738711",
+      "title": "The effects of selenium supplementation on cardiovascular risk factors in patients with metabolic diseases ‒ A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Selenium vs placebo in RCTs, but only in people with metabolic diseases and outcomes are blood risk markers, not heart disease or death."
+     },
+     {
+      "pmid": "42741176",
+      "title": "Selenium nutritional status and cardiovascular diseases: mechanisms of cardioprotection and 21 years of global research trends in precision prevention (2005-2026)",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Bibliometric study with a narrative summary; it does not pool randomised trials of selenium against placebo."
+     },
+     {
+      "pmid": "29083329",
+      "title": "Selenium Homeostasis and Clustering of Cardiovascular Risk Factors: A Systematic Review",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Review of experimental and lab studies on selenium and metabolic risk factors, with no pooled trials on heart disease or death."
+     },
+     {
+      "pmid": "24217421",
+      "title": "Vitamin and mineral supplements in the primary prevention of cardiovascular disease and cancer: An updated systematic evidence review for the U.S. Preventive Services Task Force",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Primary prevention of heart disease in general adults, but selenium is grouped with other single nutrients and no separate pooled result is shown."
+     },
+     {
+      "pmid": "22419320",
+      "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Pools antioxidant RCTs for death from any cause, but the abstract shows no selenium-only result and antioxidants were often given together."
+     },
+     {
+      "pmid": "18173999",
+      "title": "Efficacy of antioxidant supplementation in reducing primary cancer incidence and mortality: systematic review and meta-analysis",
+      "year": 2008,
+      "fits": "no",
+      "reason": "Outcomes are cancer cases and cancer deaths, not heart disease or death from any cause."
+     },
+     {
+      "pmid": "17023702",
+      "title": "Selenium and coronary heart disease: a meta-analysis",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Pools RCTs on coronary heart disease, but of supplements containing selenium, which may be combined with other nutrients."
+     }
+    ]
+   }
+  },
+  {
+   "id": "graves-eyes",
+   "label": "Thyroid eye disease",
+   "finding": "Mild thyroid eye disease (Graves' orbitopathy)",
+   "counts": {
+    "reviews": 3,
+    "trialReviews": 1,
+    "trials": 15,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39138905",
+     "doi": "10.1111/cen.15128",
+     "title": "The efficacy and safety of selenium supplementation versus placebo in the treatment of Graves' orbitopathy: A systematic review and meta-analysis of randomised controlled trials",
+     "year": 2024,
+     "firstAuthor": "Sharabati I",
+     "journal": "Clinical endocrinology",
+     "citedBy": 8,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "21591944"
+    ],
+    "citedNotEligible": [
+     "21591944"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39138905",
+      "doi": "10.1111/cen.15128",
+      "title": "The efficacy and safety of selenium supplementation versus placebo in the treatment of Graves' orbitopathy: A systematic review and meta-analysis of randomised controlled trials",
+      "year": 2024,
+      "firstAuthor": "Sharabati I",
+      "journal": "Clinical endocrinology",
+      "citedBy": 8,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with Graves' orbitopathy (thyroid eye disease)",
+     "intervention": "Selenium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Eye disease activity, how the disease develops, and quality of life"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "hashimoto",
+   "label": "Hashimoto's thyroiditis",
+   "finding": "Hashimoto's thyroiditis (autoimmune underactive thyroid)",
+   "counts": {
+    "reviews": 17,
+    "trialReviews": 9,
+    "trials": 21,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40898469",
+     "doi": "10.1097/md.0000000000044043",
+     "title": "Clinical efficacy of selenium supplementation in patients with Hashimoto thyroiditis: A systematic review and meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Zhang H",
+     "journal": "Medicine",
+     "citedBy": 2,
+     "n": 1610,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "38243784",
+     "doi": "10.1089/thy.2023.0556",
+     "title": "Selenium Supplementation in Patients with Hashimoto Thyroiditis: A Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+     "year": 2024,
+     "firstAuthor": "Huwiler VV",
+     "journal": "Thyroid : official journal of the American Thyroid Association",
+     "citedBy": 62,
+     "n": 2358,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "37513612",
+     "doi": "10.3390/nu15143194",
+     "title": "The Effects of Selenium Supplementation in the Treatment of Autoimmune Thyroiditis: An Overview of Systematic Reviews",
+     "year": 2023,
+     "firstAuthor": "Wang YS",
+     "journal": "Nutrients",
+     "citedBy": 18,
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4166666666666667,
+    "trials": 24,
+    "inclusions": 44,
+    "reviews": [
+     {
+      "pmid": "40898469",
+      "trials": 13
+     },
+     {
+      "pmid": "38243784",
+      "trials": 21
+     },
+     {
+      "pmid": "37513612",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "28042649",
+      "title": "Selenium supplementation could restore euthyroidism in subclinical hypothyroid patients with autoimmune thyroiditis",
+      "year": 2016,
+      "n": 196,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "22918596",
+      "title": "Haemostatic effects of levothyroxine and selenomethionine in euthyroid patients with Hashimoto's thyroiditis",
+      "year": 2012,
+      "n": 155,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "16837619",
+      "title": "Selenium treatment in autoimmune thyroiditis: 9-month follow-up with variable doses",
+      "year": 2006,
+      "n": 88,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "11932302",
+      "title": "Selenium supplementation in patients with autoimmune thyroiditis decreases thyroid peroxidase antibodies concentrations",
+      "year": 2002,
+      "n": 70,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "25894865",
+      "title": "A randomized-controlled, double-blind study of the impact of selenium supplementation on thyroid autoimmunity and inflammation with focus on the GPx1 genotypes",
+      "year": 2015,
+      "n": 55,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "30182359",
+      "title": "Effects of selenium and vitamin C on the serum level of antithyroid peroxidase antibody in patients with autoimmune thyroiditis",
+      "year": 2019,
+      "n": 38,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "12656658",
+      "title": "Effects of a six month treatment with selenomethionine in patients with autoimmune thyroiditis",
+      "year": 2003,
+      "n": 34,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "23844613",
+      "title": "Selenite supplementation in euthyroid subjects with thyroid peroxidase antibodies",
+      "year": 2014,
+      "n": 31,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "18302514",
+      "title": "No immunological benefit of selenium in consecutive patients with autoimmune thyroiditis",
+      "year": 2008,
+      "n": 18,
+      "inReviews": [
+       "40898469",
+       "38243784",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "21508145",
+      "title": "The effect of levothyroxine and selenomethionine on lymphocyte and monocyte cytokine release in women with Hashimoto's thyroiditis",
+      "year": 2011,
+      "n": 170,
+      "inReviews": [
+       "40898469",
+       "37513612"
+      ]
+     },
+     {
+      "pmid": "33650299",
+      "title": "Effect of selenium on thyroid autoimmunity and regulatory T cells in patients with Hashimoto's thyroiditis: A prospective randomized-controlled trial",
+      "year": 2021,
+      "n": 47,
+      "inReviews": [
+       "40898469",
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "17284630",
+      "title": "The influence of selenium supplementation on postpartum thyroid status in pregnant women with thyroid peroxidase autoantibodies",
+      "year": 2007,
+      "n": 2143,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "17620655",
+      "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
+      "year": 2007,
+      "n": 1202,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "24716668",
+      "title": "The chronic autoimmune thyroiditis quality of life selenium trial (CATALYST): study protocol for a randomized controlled trial",
+      "year": 2014,
+      "n": 236,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "25524327",
+      "title": "Effect of low-dose selenium on thyroid autoimmunity and thyroid function in UK pregnant women with mild-to-moderate iodine deficiency",
+      "year": 2016,
+      "n": 230,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "23158484",
+      "title": "[Effects of selenium supplementation on antibodies of autoimmune thyroiditis]",
+      "year": 2012,
+      "n": 89,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "22356267",
+      "title": "Selenomethionine treatment in patients with autoimmune thyroiditis: a prospective, quasi-randomised trial",
+      "year": 2012,
+      "n": 86,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "14757967",
+      "title": "Selenium in the treatment of autoimmune thyroiditis",
+      "year": 2003,
+      "n": 70,
+      "inReviews": [
+       "40898469"
+      ]
+     },
+     {
+      "pmid": "20526530",
+      "title": "Selenium supplementation does not decrease thyroid peroxidase antibody concentration in children and adolescents with autoimmune thyroiditis",
+      "year": 2010,
+      "n": 49,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "27572248",
+      "title": "Influence of short-term selenium supplementation on the natural course of Hashimoto's thyroiditis: clinical results of a blinded placebo-controlled randomized prospective trial",
+      "year": 2017,
+      "n": 38,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "16614127",
+      "title": "Effects of chemical form of selenium on plasma biomarkers in a high-dose human supplementation trial",
+      "year": 2006,
+      "inReviews": [
+       "40898469"
+      ]
+     },
+     {
+      "pmid": "25758370",
+      "title": "Effects of Zinc and Selenium Supplementation on Thyroid Function in Overweight and Obese Hypothyroid Female Patients: A Randomized Double-Blind Controlled Trial",
+      "year": 2015,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "30306604",
+      "title": "l-selenomethionine supplementation in children and adolescents with autoimmune thyroiditis: A randomized double-blind placebo-controlled clinical trial",
+      "year": 2019,
+      "inReviews": [
+       "38243784"
+      ]
+     },
+     {
+      "pmid": "31129812",
+      "title": "Selenium supplementation in the management of thyroid autoimmunity during pregnancy: results of the \"SERENA study\", a randomized, double-blind, placebo-controlled trial",
+      "year": 2019,
+      "inReviews": [
+       "38243784"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "17284630",
+     "title": "The influence of selenium supplementation on postpartum thyroid status in pregnant women with thyroid peroxidase autoantibodies",
+     "year": 2007,
+     "n": 2143
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23744563"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "40898469",
+      "doi": "10.1097/md.0000000000044043",
+      "title": "Clinical efficacy of selenium supplementation in patients with Hashimoto thyroiditis: A systematic review and meta-analysis",
+      "year": 2025,
+      "firstAuthor": "Zhang H",
+      "journal": "Medicine",
+      "citedBy": 2,
+      "n": 1610,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "38243784",
+      "doi": "10.1089/thy.2023.0556",
+      "title": "Selenium Supplementation in Patients with Hashimoto Thyroiditis: A Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+      "year": 2024,
+      "firstAuthor": "Huwiler VV",
+      "journal": "Thyroid : official journal of the American Thyroid Association",
+      "citedBy": 62,
+      "n": 2358,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "37513612",
+      "doi": "10.3390/nu15143194",
+      "title": "The Effects of Selenium Supplementation in the Treatment of Autoimmune Thyroiditis: An Overview of Systematic Reviews",
+      "year": 2023,
+      "firstAuthor": "Wang YS",
+      "journal": "Nutrients",
+      "citedBy": 18,
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with Hashimoto's thyroiditis",
+     "intervention": "Selenium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Thyroid hormones and dose of thyroid medicine, well-being, or thyroid antibodies"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 5,
+     "partly": 4,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37335715",
+      "title": "Clinical efficacy of selenium supplementation in patients with Hashimoto thyroiditis: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Selenium in Hashimoto's thyroiditis with antibody outcomes, but it pooled 'controlled trials' that are not clearly all randomised."
+     },
+     {
+      "pmid": "33894732",
+      "title": "The correlation between selenium levels and autoimmune thyroid disease: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pooled RCTs of selenium vs placebo, but in autoimmune thyroid disease generally, not only Hashimoto's thyroiditis."
+     },
+     {
+      "pmid": "27683225",
+      "title": "Insufficient documentation for clinical efficacy of selenium supplementation in chronic autoimmune thyroiditis, based on a systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Adults with autoimmune thyroiditis, selenium vs placebo, TSH and quality of life, but it pooled controlled trials, not only RCTs."
+     },
+     {
+      "pmid": "27702392",
+      "title": "Selenium Supplementation Significantly Reduces Thyroid Autoantibody Levels in Patients with Chronic Autoimmune Thyroiditis: A Systematic Review and Meta-Analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Adults with autoimmune thyroiditis given selenium vs placebo/LT4 with antibody outcomes, but it pooled controlled trials, not only RCTs."
+     }
+    ]
+   }
+  }
+ ]
+}

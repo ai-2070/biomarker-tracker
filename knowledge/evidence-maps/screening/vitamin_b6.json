@@ -1,0 +1,197 @@
+{
+ "topic": "vitamin_b6",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "nausea": {
+   "question": {
+    "population": "Pregnant women with nausea and vomiting",
+    "intervention": "Vitamin B6 (pyridoxine), alone or with doxylamine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Nausea and vomiting"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "31937153",
+     "fits": "no",
+     "reason": "The intervention is ginger; vitamin B6 is only a comparator and is never compared with placebo or no treatment."
+    }
+   ]
+  },
+  "neuropathy": {
+   "question": {
+    "population": "People taking vitamin B6 supplements for months or years",
+    "intervention": "Vitamin B6 supplements, especially at high amounts",
+    "comparison": "No B6, or lower amounts",
+    "outcome": "Nerve damage (peripheral neuropathy) or other harms"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "36791631",
+     "fits": "no",
+     "reason": "Asks whether B6 treats behavioural side effects of levetiracetam in epilepsy, not whether long-term or high-dose B6 causes nerve damage or other harms."
+    },
+    {
+     "pmid": "31917143",
+     "fits": "no",
+     "reason": "Asks whether B6 relieves levetiracetam side effects, mostly from retrospective studies, not whether long-term or high-dose B6 causes neuropathy or other harms."
+    }
+   ]
+  },
+  "pms": {
+   "question": {
+    "population": "Women with premenstrual syndrome",
+    "intervention": "Vitamin B6 (alone or with magnesium)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Premenstrual symptoms"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "10778376",
+     "fits": "yes",
+     "reason": "Title says it reviews studies of vitamin B6 for premenstrual syndrome symptoms; there is no abstract to confirm the comparison or that trials were pooled."
+    },
+    {
+     "pmid": "19923637",
+     "fits": "yes",
+     "reason": "Reviews RCTs of vitamin B6 against placebo or standard treatment for PMS/PMDD symptom severity; covers B6 among other supplements but did not meta-analyse."
+    }
+   ]
+  },
+  "pregnancy": {
+   "question": {
+    "population": "Pregnant women",
+    "intervention": "Vitamin B6 supplements during pregnancy or labour",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Pre-eclampsia, birth weight, Apgar scores or other pregnancy outcomes"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "26039815",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin B6 versus placebo or no supplement in pregnancy or labour, reporting pre-eclampsia, birthweight and Apgar scores."
+    },
+    {
+     "pmid": "22742602",
+     "fits": "yes",
+     "reason": "Has a separate meta-analysis of vitamin B6 supplements in pregnancy versus control trials for birthweight, though it only says the trials were controlled."
+    },
+    {
+     "pmid": "16625530",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin B6 versus placebo or no supplement in pregnancy or labour, reporting pre-eclampsia, birthweight and Apgar scores."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults with or without heart disease",
+    "intervention": "Vitamin B6, alone or with folic acid and B12",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, strokes or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38432716",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid with B12 and B6 versus control in adults, with stroke as the outcome."
+    },
+    {
+     "pmid": "37464830",
+     "fits": "no",
+     "reason": "Treats chronic heart failure and looks at blood pressure, LVEF and lab markers, not heart attacks, strokes or death."
+    },
+    {
+     "pmid": "31284304",
+     "fits": "yes",
+     "reason": "Umbrella review of RCTs that includes vitamin B6 in adults and reports mortality, heart attack and stroke outcomes."
+    },
+    {
+     "pmid": "26355679",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs comparing B6 alone and in combinations against placebo, with stroke as the outcome."
+    },
+    {
+     "pmid": "27453118",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid plus B12 and B6 versus control, with heart attack, stroke and cardiovascular events as outcomes."
+    },
+    {
+     "pmid": "19821378",
+     "fits": "yes",
+     "reason": "Pooled RCTs of B-vitamin homocysteine lowering in people with or without heart disease; outcomes were heart attack, stroke and death."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "no",
+     "reason": "Outcome is cognitive impairment, not heart attacks, strokes or death."
+    },
+    {
+     "pmid": "9919473",
+     "fits": "no",
+     "reason": "Describes how to design trials; it is not a pooled review of trial results."
+    },
+    {
+     "pmid": "18803866",
+     "fits": "partly",
+     "reason": "B-vitamin trials (B6 with folic acid and B12) were pooled, but the outcomes are artery thickness and blood vessel function, not clinical events."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Older adults, with or without mild memory problems",
+    "intervention": "Vitamin B6, alone or with B12 and folic acid",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Memory, thinking or mood"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40966571",
+     "fits": "yes",
+     "reason": "Pooled RCTs of B6, B9 or B12 vs placebo in adults aged 60+ on global cognition, with subgroups for intact cognition and MCI."
+    },
+    {
+     "pmid": "41764841",
+     "fits": "partly",
+     "reason": "Healthy older and MCI adults, but for B6/B12/folic acid it reports only blood markers such as homocysteine, not cognitive outcomes."
+    },
+    {
+     "pmid": "38300291",
+     "fits": "partly",
+     "reason": "Pooled RCTs that include B6 and cognitive outcomes, but only in people with MCI, a narrower group than all older adults."
+    },
+    {
+     "pmid": "14584010",
+     "fits": "yes",
+     "reason": "Cochrane review of placebo-controlled RCTs of vitamin B6 for cognition in healthy older people or those with cognitive decline."
+    },
+    {
+     "pmid": "22232016",
+     "fits": "yes",
+     "reason": "Pooled 19 placebo-controlled RCTs of B6, B12 and folic acid, alone or combined, on cognition in people with and without impairment."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "partly",
+     "reason": "B6, B12 and folic acid vs placebo on cognition, but only in patients with previous stroke or TIA, a narrower group."
+    },
+    {
+     "pmid": "17210874",
+     "fits": "partly",
+     "reason": "RCTs of B6, B12 and folate on cognition, but the trials were summarised without pooling and the group was not limited to older adults."
+    },
+    {
+     "pmid": "24158923",
+     "fits": "no",
+     "reason": "Different question: supplements to prevent postnatal depression in pregnant or postpartum women."
+    }
+   ]
+  }
+ }
+}

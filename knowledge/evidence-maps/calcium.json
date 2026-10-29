@@ -1,0 +1,4511 @@
+{
+ "topic": "calcium",
+ "nutrientId": "calcium",
+ "name": "calcium",
+ "scope": "in papers about supplements, fortified food, intake or diet",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"calcium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"calcium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"calcium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"calcium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"calcium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with calcium (calcium) in its title or abstract, in papers about supplements, fortified food, intake or diet; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving calcium, with calcium in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded calcium trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 54125,
+  "retrieved": 4850,
+  "animal": 405,
+  "retracted": 9,
+  "reviews": 1009,
+  "trials": 3315,
+  "guidelines": 108
+ },
+ "guidelines": [
+  {
+   "pmid": "42529981",
+   "doi": "10.1097/ju.0000000000005227",
+   "title": "Medical Management of Kidney Stones: AUA Guideline (2026) Part I: Evaluation of Patients With Kidney Stones and Dietary Management of Patients With Calcium Stones",
+   "year": 2026,
+   "journal": "The Journal of urology",
+   "citedBy": 1,
+   "why": "One of the newest guidelines with calcium in the title"
+  },
+  {
+   "pmid": "35305879",
+   "doi": "10.1016/j.arcped.2022.02.008",
+   "title": "Vitamin D and calcium intakes in general pediatric populations: A French expert consensus paper",
+   "year": 2022,
+   "journal": "Archives de pediatrie : organe officiel de la Societe francaise de pediatrie",
+   "citedBy": 53,
+   "why": "One of the newest guidelines with calcium in the title"
+  },
+  {
+   "pmid": "32343507",
+   "title": "WHO recommendation on Calcium supplementation before pregnancy for the prevention of pre-eclampsia and its complications",
+   "year": 2020,
+   "citedBy": 2,
+   "why": "One of the newest guidelines with calcium in the title"
+  },
+  {
+   "pmid": "31667620",
+   "doi": "10.1007/s00467-019-04370-z",
+   "title": "The dietary management of calcium and phosphate in children with CKD stages 2-5 and on dialysis-clinical practice recommendation from the Pediatric Renal Nutrition Taskforce",
+   "year": 2020,
+   "journal": "Pediatric nephrology (Berlin, Germany)",
+   "citedBy": 77,
+   "why": "One of the newest guidelines with calcium in the title"
+  },
+  {
+   "pmid": "30629391",
+   "title": "WHO recommendation: Calcium supplementation during pregnancy for the prevention of pre-eclampsia and its complications",
+   "year": 2018,
+   "citedBy": 3,
+   "why": "One of the newest guidelines with calcium in the title"
+  },
+  {
+   "pmid": "29677309",
+   "doi": "10.1001/jama.2018.3185",
+   "title": "Vitamin D, Calcium, or Combined Supplementation for the Primary Prevention of Fractures in Community-Dwelling Adults: US Preventive Services Task Force Recommendation Statement",
+   "year": 2018,
+   "journal": "JAMA",
+   "citedBy": 112,
+   "why": "One of the newest guidelines with calcium in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "fractures",
+   "label": "Fractures",
+   "finding": "Bone fractures",
+   "counts": {
+    "reviews": 65,
+    "trialReviews": 20,
+    "trials": 120,
+    "largeTrials": 40
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42161415",
+     "doi": "10.1136/bmj-2025-088050",
+     "title": "Calcium, vitamin D, or combined supplementation to prevent fractures and falls: systematic review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Massé O",
+     "journal": "BMJ (Clinical research ed.)",
+     "citedBy": 5,
+     "n": 153902,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "35842938",
+     "doi": "10.1111/opn.12492",
+     "title": "What is the impact of daily oral supplementation of vitamin D3 (cholecalciferol) plus calcium on the incidence of hip fracture in older people? A systematic review and meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Manoj P",
+     "journal": "International journal of older people nursing",
+     "citedBy": 21,
+     "n": 12620,
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+    },
+    {
+     "pmid": "37602580",
+     "doi": "10.4103/ijmr.ijmr_1946_21",
+     "title": "Role of calcium &/or vitamin D supplementation in preventing osteoporotic fracture in the elderly: A systematic review & meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Khatri K",
+     "journal": "The Indian journal of medical research",
+     "citedBy": 7,
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "42704968",
+     "doi": "10.1016/j.bone.2026.118081",
+     "title": "The effect of vitamin D3 supplementation on fracture incidence in an aging population - The Finnish vitamin D trial",
+     "year": 2026,
+     "firstAuthor": "Rikkonen T",
+     "journal": "Bone",
+     "citedBy": 0,
+     "n": 2495,
+     "why": "A large trial (about 2,495 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.2755102040816326,
+    "trials": 49,
+    "inclusions": 76,
+    "reviews": [
+     {
+      "pmid": "42161415",
+      "trials": 36
+     },
+     {
+      "pmid": "35842938",
+      "trials": 17
+     },
+     {
+      "pmid": "37602580",
+      "trials": 23
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "16481635",
+      "title": "Calcium plus vitamin D supplementation and the risk of fractures",
+      "year": 2006,
+      "n": 36282,
+      "inReviews": [
+       "42161415",
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "15885294",
+      "title": "Oral vitamin D3 and calcium for secondary prevention of low-trauma fractures in elderly people (Randomised Evaluation of Calcium Or vitamin D, RECORD): a randomised placebo-controlled trial",
+      "year": 2005,
+      "n": 5292,
+      "inReviews": [
+       "42161415",
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "20200964",
+      "title": "Effect of vitamin D(3) and calcium on fracture risk in 65- to 71-year-old women: a population-based 3-year randomized, controlled trial--the OSTPRE-FPS",
+      "year": 2010,
+      "n": 3432,
+      "inReviews": [
+       "42161415",
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "15860827",
+      "title": "Randomised controlled trial of calcium and supplementation with cholecalciferol (vitamin D3) for prevention of fractures in primary care",
+      "year": 2005,
+      "n": 3314,
+      "inReviews": [
+       "42161415",
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "9278463",
+      "title": "Effect of calcium and vitamin D supplementation on bone density in men and women 65 years of age or older",
+      "year": 1997,
+      "n": 213,
+      "inReviews": [
+       "42161415",
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "14695863",
+      "title": "A randomised, controlled comparison of different calcium and vitamin D supplementation regimens in elderly women after hip fracture: The Nottingham Neck of Femur (NONOF) Study",
+      "year": 2004,
+      "n": 150,
+      "inReviews": [
+       "42161415",
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "8554248",
+      "title": "Vitamin D supplementation and fracture incidence in elderly persons. A randomized, placebo-controlled clinical trial",
+      "year": 1996,
+      "n": 2578,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "16636212",
+      "title": "Effects of calcium supplementation on clinical fracture and bone structure: results of a 5-year, double-blind, placebo-controlled trial in elderly women",
+      "year": 2006,
+      "n": 1460,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "9887161",
+      "title": "Calcium supplements for the prevention of colorectal adenomas. Calcium Polyp Prevention Study Group",
+      "year": 1999,
+      "n": 930,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "21956713",
+      "title": "Effects of three-monthly oral 150,000 IU cholecalciferol supplementation on falls, mobility, and muscle strength in older postmenopausal women: a randomized controlled trial",
+      "year": 2012,
+      "n": 686,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "28695804",
+      "title": "Effects of Enhanced Exercise and Combined Vitamin D and Calcium Supplementation on Muscle Strength and Fracture Risk in Postmenopausal Chinese Women",
+      "year": 2017,
+      "n": 614,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "11991447",
+      "title": "Combined calcium and vitamin D3 supplementation in elderly women: confirmation of reversal of secondary hyperparathyroidism and hip fracture risk: the Decalyos II study",
+      "year": 2002,
+      "n": 583,
+      "inReviews": [
+       "42161415",
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "10999778",
+      "title": "Effect of calcium or 25OH vitamin D3 dietary supplementation on bone loss at the hip in men and women over the age of 60",
+      "year": 2000,
+      "n": 316,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "27986983",
+      "title": "Optimum dose of vitamin D for disease prevention in older people: BEST-D trial of vitamin D in primary care",
+      "year": 2017,
+      "n": 305,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "18629569",
+      "title": "Effects of a long-term vitamin D and calcium supplementation on falls and parameters of muscle function in community-dwelling older individuals",
+      "year": 2009,
+      "n": 242,
+      "inReviews": [
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "9495509",
+      "title": "Long-term effects of calcium supplementation on serum parathyroid hormone level, bone turnover, and bone loss in elderly women",
+      "year": 1998,
+      "n": 236,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "24064695",
+      "title": "Calcium and vitamin d supplementation in postmenopausal women",
+      "year": 2013,
+      "n": 159,
+      "inReviews": [
+       "35842938",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "8421475",
+      "title": "Effect of calcium supplementation on bone loss in postmenopausal women",
+      "year": 1993,
+      "n": 122,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "8970899",
+      "title": "Correcting calcium nutritional deficiency prevents spine fractures in elderly women",
+      "year": 1996,
+      "n": 103,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "11329114",
+      "title": "The effect of calcium citrate on bone density in the early and mid-postmenopausal period: a randomized placebo-controlled study",
+      "year": 1999,
+      "n": 63,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "21715514",
+      "title": "Effects of vitamin D and calcium supplementation on pancreatic β cell function, insulin sensitivity, and glycemia in adults at high risk of diabetes: the Calcium and Vitamin D for Diabetes Mellitus (CaDDM) randomized controlled trial",
+      "year": 2011,
+      "inReviews": [
+       "42161415",
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "21525191",
+      "title": "Urinary tract stone occurrence in the Women's Health Initiative (WHI) randomized clinical trial of calcium and vitamin D supplements",
+      "year": 2011,
+      "n": 36282,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "23208074",
+      "title": "Health risks and benefits from calcium and vitamin D supplementation: Women's Health Initiative clinical trial and cohort study",
+      "year": 2013,
+      "n": 36282,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "24114665",
+      "title": "Use of calcium supplements, vitamin D supplements and specific osteoporosis drugs among French women aged 75-85 years: patterns of use and associated factors",
+      "year": 2013,
+      "n": 4221,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "20204604",
+      "title": "Effect of calcium and vitamin D supplementation on bone mineral density in women aged 65-71 years: a 3-year randomized population-based trial (OSTPRE-FPS)",
+      "year": 2010,
+      "n": 3432,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "24849736",
+      "title": "Multivitamin and mineral supplementation is associated with the reduction of fracture risk and hospitalization rate in Chinese adult males: a randomized controlled study",
+      "year": 2015,
+      "n": 3318,
+      "inReviews": [
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "20060665",
+      "title": "Does daily vitamin D 800 IU and calcium 1000 mg supplementation decrease the risk of falling in ambulatory women aged 65-71 years? A 3-year randomized population-based trial (OSTPRE-FPS)",
+      "year": 2010,
+      "n": 1573,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "1299491",
+      "title": "Does calcium supplementation prevent bone stress injuries? A clinical trial",
+      "year": 1992,
+      "n": 1398,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "22151975",
+      "title": "Prevention of falls and fractures in old people by administration of calcium and vitamin D, randomized clinical trial",
+      "year": 2011,
+      "n": 704,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "21369788",
+      "title": "Does increased sunlight exposure work as a strategy to improve vitamin D status in the elderly: a cluster randomised controlled trial",
+      "year": 2012,
+      "n": 602,
+      "inReviews": [
+       "37602580"
+      ]
+     },
+     {
+      "pmid": "11918228",
+      "title": "Can vitamin D supplementation reduce the risk of fracture in the elderly? A randomized controlled trial",
+      "year": 2002,
+      "n": 575,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "28921338",
+      "title": "The effect of high-dose vitamin D3 supplementation on bone mineral density in subjects with prediabetes",
+      "year": 2018,
+      "n": 511,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "23332626",
+      "title": "[Effect of calcium and vitamin D in the reduction of falls in the elderly: a randomized trial versus placebo]",
+      "year": 2014,
+      "n": 508,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "16087821",
+      "title": "The prevention of hip fracture with risedronate and ergocalciferol plus calcium supplementation in elderly women with Alzheimer disease: a randomized controlled trial",
+      "year": 2005,
+      "n": 500,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "18541589",
+      "title": "Effect of calcium supplementation on fracture risk: a double-blind randomized controlled trial",
+      "year": 2008,
+      "n": 466,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "19001206",
+      "title": "Randomized controlled trial of calcium supplementation in healthy, nonosteoporotic, older men",
+      "year": 2008,
+      "n": 323,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "23585346",
+      "title": "Hip bone loss is attenuated with 1000 IU but not 400 IU daily vitamin D3: a 1-year double-blind RCT in postmenopausal women",
+      "year": 2013,
+      "n": 305,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "16505262",
+      "title": "Effect of cholecalciferol plus calcium on falling in ambulatory older men and women: a 3-year randomized controlled trial",
+      "year": 2006,
+      "n": 246,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "17243866",
+      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
+      "year": 2007,
+      "n": 244,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "15501704",
+      "title": "Effect of supplementation of calcium and vitamin D on bone mineral density and bone mineral content in peri- and post-menopause women; a double-blind, randomized, controlled trial",
+      "year": 2004,
+      "n": 120,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "23982800",
+      "title": "A parallel group double-blind RCT of vitamin D3 assessing physical function: is the biochemical response to treatment affected by overweight and obesity?",
+      "year": 2014,
+      "n": 102,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "20033244",
+      "title": "Patient preference and acceptability of calcium plus vitamin D3 supplementation: a randomised, open, cross-over trial",
+      "year": 2010,
+      "n": 102,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "12814763",
+      "title": "Effects on bone mineral density of calcium and vitamin D supplementation in elderly women with vitamin D deficiency",
+      "year": 2003,
+      "n": 97,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "7709944",
+      "title": "Long-term effects of calcium supplementation on bone loss and fractures in postmenopausal women: a randomized controlled trial",
+      "year": 1995,
+      "n": 78,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "39275206",
+      "title": "Effects of High Dose Bolus Cholecalciferol on Free Vitamin D Metabolites, Bone Turnover Markers and Physical Function",
+      "year": 2024,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "14691684",
+      "title": "Reappraisal of Katsuragi calcium study, a prospective, double-blind, placebo-controlled study of the effect of active absorbable algal calcium (AAACa) on vertebral deformity and fracture",
+      "year": 2004,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "23493381",
+      "title": "Effects of cholecalciferol on functional, biochemical, vascular, and quality of life outcomes in hemodialysis patients",
+      "year": 2013,
+      "inReviews": [
+       "42161415"
+      ]
+     },
+     {
+      "pmid": "11268708",
+      "title": "A randomised, single-blind, crossover comparison of the acceptability of the calcium and vitamin D3 supplements Calcichew D3 Forte and Ad Cal D3 in elderly patients",
+      "year": 2001,
+      "inReviews": [
+       "35842938"
+      ]
+     },
+     {
+      "pmid": "25200552",
+      "title": "An initial loading-dose vitamin D versus placebo after hip fracture surgery: baseline characteristics of a randomized controlled trial (REVITAHIP)",
+      "year": 2014,
+      "inReviews": [
+       "37602580"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1999,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 11
+    },
+    {
+     "year": 2005,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 5,
+     "trials": 6
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2014,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2018,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "8554248",
+     "title": "Vitamin D supplementation and fracture incidence in elderly persons. A randomized, placebo-controlled clinical trial",
+     "year": 1996,
+     "n": 2578
+    },
+    {
+     "pmid": "10491209",
+     "title": "Vitamin D receptor gene polymorphisms and the risk of fractures in older women. For the Study of Osteoporotic Fractures Research Group",
+     "year": 1999,
+     "n": 9704
+    },
+    {
+     "pmid": "10517716",
+     "title": "Reduction of vertebral fracture risk in postmenopausal women with osteoporosis treated with raloxifene: results from a 3-year randomized clinical trial. Multiple Outcomes of Raloxifene Evaluation (MORE) Investigators",
+     "year": 1999,
+     "n": 7705
+    },
+    {
+     "pmid": "11943033",
+     "title": "Alendronate reduces the risk of multiple symptomatic fractures: results from the fracture intervention trial",
+     "year": 2002,
+     "n": 2027
+    },
+    {
+     "pmid": "14519707",
+     "title": "Effects of estrogen plus progestin on risk of fracture and bone mineral density: the Women's Health Initiative randomized trial",
+     "year": 2003,
+     "n": 16608
+    },
+    {
+     "pmid": "15040824",
+     "title": "Vitamin D and calcium supplementation prevents osteoporotic fractures in elderly community dwelling residents: a pragmatic population-based 3-year intervention study",
+     "year": 2004,
+     "n": 9605
+    },
+    {
+     "pmid": "14962813",
+     "title": "Reduction in PINP, a marker of bone metabolism, with raloxifene treatment and its relationship with vertebral fracture risk",
+     "year": 2004,
+     "n": 7705
+    },
+    {
+     "pmid": "14749454",
+     "title": "The effects of strontium ranelate on the risk of vertebral fracture in women with postmenopausal osteoporosis",
+     "year": 2004,
+     "n": 1649
+    },
+    {
+     "pmid": "15231012",
+     "title": "Randomized trial of effect of alendronate continuation versus discontinuation in women with low BMD: results from the Fracture Intervention Trial long-term extension",
+     "year": 2004,
+     "n": 1099
+    },
+    {
+     "pmid": "15860827",
+     "title": "Randomised controlled trial of calcium and supplementation with cholecalciferol (vitamin D3) for prevention of fractures in primary care",
+     "year": 2005,
+     "n": 3314
+    },
+    {
+     "pmid": "15885294",
+     "title": "Oral vitamin D3 and calcium for secondary prevention of low-trauma fractures in elderly people (Randomised Evaluation of Calcium Or vitamin D, RECORD): a randomised placebo-controlled trial",
+     "year": 2005,
+     "n": 5292
+    },
+    {
+     "pmid": "15197544",
+     "title": "Prediction of incident osteoporotic fractures in elderly women using the free estradiol index",
+     "year": 2005,
+     "n": 1499
+    },
+    {
+     "pmid": "15812582",
+     "title": "Screening elderly women for risk of future fractures--participation rates and impact on incidence of falls and fractures",
+     "year": 2005,
+     "n": 5306
+    },
+    {
+     "pmid": "16636212",
+     "title": "Effects of calcium supplementation on clinical fracture and bone structure: results of a 5-year, double-blind, placebo-controlled trial in elderly women",
+     "year": 2006,
+     "n": 1460
+    },
+    {
+     "pmid": "16481635",
+     "title": "Calcium plus vitamin D supplementation and the risk of fractures",
+     "year": 2006,
+     "n": 36282
+    },
+    {
+     "pmid": "17878149",
+     "title": "Zoledronic acid and clinical fractures and mortality after hip fracture",
+     "year": 2007,
+     "n": 1065
+    },
+    {
+     "pmid": "17042717",
+     "title": "Clodronate reduces the incidence of fractures in community-dwelling elderly women unselected for osteoporosis: results of a double-blind, placebo-controlled randomized study",
+     "year": 2007,
+     "n": 5596
+    },
+    {
+     "pmid": "18433305",
+     "title": "Calcium and vitamin d supplementation decreases incidence of stress fractures in female navy recruits",
+     "year": 2008,
+     "n": 14416
+    },
+    {
+     "pmid": "19082528",
+     "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
+     "year": 2009,
+     "n": 2986
+    },
+    {
+     "pmid": "20200964",
+     "title": "Effect of vitamin D(3) and calcium on fracture risk in 65- to 71-year-old women: a population-based 3-year randomized, controlled trial--the OSTPRE-FPS",
+     "year": 2010,
+     "n": 3432
+    },
+    {
+     "pmid": "20026265",
+     "title": "Five years treatment with strontium ranelate reduces vertebral and nonvertebral fractures and increases the number and quality of remaining life-years in women over 80 years of age",
+     "year": 2010,
+     "n": 1489
+    },
+    {
+     "pmid": "19580467",
+     "title": "Potential mediators of the mortality reduction with zoledronic acid after hip fracture",
+     "year": 2010,
+     "n": 2111
+    },
+    {
+     "pmid": "22091563",
+     "title": "Once-yearly zoledronic acid in older men compared with women with recent hip fracture",
+     "year": 2011,
+     "n": 1619
+    },
+    {
+     "pmid": "20721930",
+     "title": "Evaluation of the FRAX and Garvan fracture risk calculators in older women",
+     "year": 2011,
+     "n": 1422
+    },
+    {
+     "pmid": "21331567",
+     "title": "Clinical risk factors for recurrent fracture after hip fracture: a prospective study",
+     "year": 2011,
+     "n": 2127
+    },
+    {
+     "pmid": "21784190",
+     "title": "A new active vitamin D3 analog, eldecalcitol, prevents the risk of osteoporotic fractures--a randomized, active comparator, double-blind study",
+     "year": 2011,
+     "n": 1054
+    },
+    {
+     "pmid": "21411557",
+     "title": "Treatment with denosumab reduces the incidence of new vertebral and hip fractures in postmenopausal women at high risk",
+     "year": 2011,
+     "n": 7808
+    },
+    {
+     "pmid": "23113482",
+     "title": "Fracture risk and zoledronic acid therapy in men with osteoporosis",
+     "year": 2012,
+     "n": 1199
+    },
+    {
+     "pmid": "23652464",
+     "title": "Hip fracture prevention with a multifactorial educational program in elderly community-dwelling Finnish women",
+     "year": 2013,
+     "n": 2547
+    },
+    {
+     "pmid": "24519745",
+     "title": "The impact of educational interventions on modifiable risk factors for osteoporosis after a fragility fracture",
+     "year": 2014,
+     "n": 1175
+    },
+    {
+     "pmid": "24646104",
+     "title": "Clinical Trials Express: fracture risk reduction with denosumab in Japanese postmenopausal women and men with osteoporosis: denosumab fracture intervention randomized placebo controlled trial (DIRECT)",
+     "year": 2014,
+     "n": 1262
+    },
+    {
+     "pmid": "25432773",
+     "title": "Odanacatib for the treatment of postmenopausal osteoporosis: development history and design and participant characteristics of LOFT, the Long-Term Odanacatib Fracture Trial",
+     "year": 2015,
+     "n": 16713
+    },
+    {
+     "pmid": "26255474",
+     "title": "[Effects of different treatments on patients with osteoporotic fracture after percutaneous kyphoplasty]",
+     "year": 2015,
+     "n": 12138
+    },
+    {
+     "pmid": "24849736",
+     "title": "Multivitamin and mineral supplementation is associated with the reduction of fracture risk and hospitalization rate in Chinese adult males: a randomized controlled study",
+     "year": 2015,
+     "n": 3318
+    },
+    {
+     "pmid": "28148500",
+     "title": "The influence of genetic susceptibility and calcium plus vitamin D supplementation on fracture risk",
+     "year": 2017,
+     "n": 5823
+    },
+    {
+     "pmid": "27801706",
+     "title": "Age of menopause and fracture risk in postmenopausal women randomized to calcium + vitamin D, hormone therapy, or the combination: results from the Women's Health Initiative Clinical Trials",
+     "year": 2017,
+     "n": 21711
+    },
+    {
+     "pmid": "30575489",
+     "title": "Fracture Prevention with Zoledronate in Older Women with Osteopenia",
+     "year": 2018,
+     "n": 2000
+    },
+    {
+     "pmid": "30887607",
+     "title": "Anti-fracture efficacy of zoledronate in subgroups of osteopenic postmenopausal women: secondary analysis of a randomized controlled trial",
+     "year": 2019,
+     "n": 2000
+    },
+    {
+     "pmid": "34670754",
+     "title": "Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care: cluster randomised controlled trial",
+     "year": 2021,
+     "n": 7195
+    },
+    {
+     "pmid": "42704968",
+     "title": "The effect of vitamin D3 supplementation on fracture incidence in an aging population - The Finnish vitamin D trial",
+     "year": 2026,
+     "n": 2495
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "26420387",
+     "29279934",
+     "24729336",
+     "16481635"
+    ],
+    "citedNotEligible": [
+     "24729336",
+     "16481635"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42161415",
+      "doi": "10.1136/bmj-2025-088050",
+      "title": "Calcium, vitamin D, or combined supplementation to prevent fractures and falls: systematic review and meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Massé O",
+      "journal": "BMJ (Clinical research ed.)",
+      "citedBy": 5,
+      "n": 153902,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "35842938",
+      "doi": "10.1111/opn.12492",
+      "title": "What is the impact of daily oral supplementation of vitamin D3 (cholecalciferol) plus calcium on the incidence of hip fracture in older people? A systematic review and meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Manoj P",
+      "journal": "International journal of older people nursing",
+      "citedBy": 21,
+      "n": 12620,
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     },
+     {
+      "pmid": "37602580",
+      "doi": "10.4103/ijmr.ijmr_1946_21",
+      "title": "Role of calcium &/or vitamin D supplementation in preventing osteoporotic fracture in the elderly: A systematic review & meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Khatri K",
+      "journal": "The Indian journal of medical research",
+      "citedBy": 7,
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     },
+     {
+      "pmid": "42704968",
+      "doi": "10.1016/j.bone.2026.118081",
+      "title": "The effect of vitamin D3 supplementation on fracture incidence in an aging population - The Finnish vitamin D trial",
+      "year": 2026,
+      "firstAuthor": "Rikkonen T",
+      "journal": "Bone",
+      "citedBy": 0,
+      "n": 2495,
+      "why": "A large trial (about 2,495 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults over 50, mostly women after menopause (not a group defined by one illness)",
+     "intervention": "Calcium supplements, alone or with vitamin D",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Fractures"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 13,
+     "partly": 4,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41063100",
+      "title": "The effects of combined calcium and vitamin D supplementation on bone mineral density and fracture risk in postmenopausal women with osteoporosis: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Calcium plus vitamin D RCTs pooled for fractures, but only in postmenopausal women with osteoporosis, a group defined by one illness."
+     },
+     {
+      "pmid": "38494682",
+      "title": "Nutritional therapy of older osteoporotic people with supplemental calcium and vitamin D: side effects, fracture rates, and survival - an internationalised meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools RCTs of calcium plus vitamin D vs control for fractures, but in older people with osteoporosis, including treatment."
+     },
+     {
+      "pmid": "37544189",
+      "title": "Supplementation of vitamin D isolated or calcium-associated with bone remodeling and fracture risk in postmenopausal women without osteoporosis: A systematic review of randomized clinical trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Postmenopausal women and fracture outcome match, but focus is mainly vitamin D and bone markers, and trials were not pooled."
+     },
+     {
+      "pmid": "25551377",
+      "title": "A case study of discordant overlapping meta-analyses: vitamin d supplements and fracture",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Methods study comparing overlapping meta-analyses of vitamin D, not a pooled analysis answering the question."
+     },
+     {
+      "pmid": "21060990",
+      "title": "Relationship between bone mineral density changes and risk of fractures among patients receiving calcium with or without vitamin D supplementation: a meta-regression",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Meta-regression of whether bone density change predicts fracture reduction, not the effect of calcium vs placebo on fractures."
+     },
+     {
+      "pmid": "15035690",
+      "title": "Does dietary calcium have a protective effect on bone fractures in women? A meta-analysis of observational studies",
+      "year": 2004,
+      "fits": "no",
+      "reason": "Meta-analysis of observational studies of dietary calcium, not randomised trials of calcium supplements."
+     },
+     {
+      "pmid": "9286747",
+      "title": "Calcium for prevention of osteoporotic fractures in postmenopausal women",
+      "year": 1997,
+      "fits": "partly",
+      "reason": "Calcium supplements for fractures in postmenopausal women, but only observational data were pooled; the 4 RCTs were not."
+     }
+    ]
+   }
+  },
+  {
+   "id": "bone-density",
+   "label": "Bone density",
+   "finding": "Bone mineral density",
+   "counts": {
+    "reviews": 78,
+    "trialReviews": 23,
+    "trials": 448,
+    "largeTrials": 9
+   },
+   "chosenReviews": [
+    {
+     "pmid": "28337524",
+     "doi": "10.1007/s00198-017-3993-4",
+     "title": "Quantitative analysis of efficacy and associated factors of calcium intake on bone mineral density in postmenopausal women",
+     "year": 2017,
+     "firstAuthor": "Wu J",
+     "journal": "Osteoporosis international : a journal established as result of cooperation between the European Foundation for Osteoporosis and the National Osteoporosis Foundation of the USA",
+     "citedBy": 23,
+     "n": 2537,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    },
+    {
+     "pmid": "26420598",
+     "doi": "10.1136/bmj.h4183",
+     "title": "Calcium intake and bone mineral density: systematic review and meta-analysis",
+     "year": 2015,
+     "firstAuthor": "Tai V",
+     "journal": "BMJ (Clinical research ed.)",
+     "citedBy": 242,
+     "n": 12257,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    },
+    {
+     "pmid": "17720017",
+     "doi": "10.1016/s0140-6736(07)61342-7",
+     "title": "Use of calcium or calcium in combination with vitamin D supplementation to prevent fractures and bone loss in people aged 50 years and older: a meta-analysis",
+     "year": 2007,
+     "firstAuthor": "Tang BM",
+     "journal": "Lancet (London, England)",
+     "citedBy": 785,
+     "n": 63897,
+     "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "33635767",
+     "doi": "10.7812/tpp/20.095",
+     "title": "The Contribution of Patient, Primary Care Physician, and Primary Care Clinic Factors to Good Bone Health Care",
+     "year": 2021,
+     "firstAuthor": "Roblin DW",
+     "journal": "The Permanente journal",
+     "citedBy": 2,
+     "n": 1996,
+     "why": "A large trial (about 1,996 people) from 2021, as new as the newest review or newer"
+    },
+    {
+     "pmid": "38613445",
+     "doi": "10.1093/jbmr/zjae054",
+     "title": "Effects of vitamin D3, omega-3s, and a simple strength training exercise program on bone health: the DO-HEALTH randomized controlled trial",
+     "year": 2024,
+     "firstAuthor": "Kistler-Fischbacher M",
+     "journal": "Journal of bone and mineral research : the official journal of the American Society for Bone and Mineral Research",
+     "citedBy": 13,
+     "n": 1493,
+     "why": "A large trial (about 1,493 people) from 2024, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.3125,
+    "trials": 56,
+    "inclusions": 91,
+    "reviews": [
+     {
+      "pmid": "28337524",
+      "trials": 16
+     },
+     {
+      "pmid": "26420598",
+      "trials": 52
+     },
+     {
+      "pmid": "17720017",
+      "trials": 23
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "2203964",
+      "title": "A controlled trial of the effect of calcium supplementation on bone density in postmenopausal women",
+      "year": 1990,
+      "n": 301,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "1874931",
+      "title": "Calcium supplementation reduces vertebral bone loss in perimenopausal women: a controlled trial in 248 women between 46 and 55 years of age",
+      "year": 1991,
+      "n": 295,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "9797910",
+      "title": "Calcium and vitamin D supplementation increases spinal BMD in healthy, postmenopausal women",
+      "year": 1998,
+      "n": 240,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "8421475",
+      "title": "Effect of calcium supplementation on bone loss in postmenopausal women",
+      "year": 1993,
+      "n": 122,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "12814763",
+      "title": "Effects on bone mineral density of calcium and vitamin D supplementation in elderly women with vitamin D deficiency",
+      "year": 2003,
+      "n": 97,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "8027856",
+      "title": "Spinal bone loss in postmenopausal women supplemented with calcium and trace minerals",
+      "year": 1994,
+      "n": 59,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "1611221",
+      "title": "The effects of calcium supplementation and exercise on bone density in elderly Chinese women",
+      "year": 1992,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "9814452",
+      "title": "Calcium supplementation prevents seasonal bone loss and changes in biochemical markers of bone turnover in elderly New England women: a randomized placebo-controlled trial",
+      "year": 1998,
+      "inReviews": [
+       "28337524",
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "16481635",
+      "title": "Calcium plus vitamin D supplementation and the risk of fractures",
+      "year": 2006,
+      "n": 36282,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "16636212",
+      "title": "Effects of calcium supplementation on clinical fracture and bone structure: results of a 5-year, double-blind, placebo-controlled trial in elderly women",
+      "year": 2006,
+      "n": 1460,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "11991447",
+      "title": "Combined calcium and vitamin D3 supplementation in elderly women: confirmation of reversal of secondary hyperparathyroidism and hip fracture risk: the Decalyos II study",
+      "year": 2002,
+      "n": 583,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "22653713",
+      "title": "Effect of low-dose calcium supplements on bone loss in perimenopausal and postmenopausal Asian women: a randomized controlled trial",
+      "year": 2012,
+      "n": 450,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "9495509",
+      "title": "Long-term effects of calcium supplementation on serum parathyroid hormone level, bone turnover, and bone loss in elderly women",
+      "year": 1998,
+      "n": 236,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "9278463",
+      "title": "Effect of calcium and vitamin D supplementation on bone density in men and women 65 years of age or older",
+      "year": 1997,
+      "n": 213,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "11547841",
+      "title": "Milk supplementation of the diet of postmenopausal Chinese women on a low calcium intake retards bone loss",
+      "year": 2001,
+      "n": 200,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "7484282",
+      "title": "The effects of calcium supplementation (milk powder or tablets) and exercise on bone density in postmenopausal women",
+      "year": 1995,
+      "n": 168,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "14695863",
+      "title": "A randomised, controlled comparison of different calcium and vitamin D supplementation regimens in elderly women after hip fracture: The Nottingham Neck of Femur (NONOF) Study",
+      "year": 2004,
+      "n": 150,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "22282300",
+      "title": "Bone mineral density in postmenopausal Chinese women treated with calcium fortification in soymilk and cow's milk",
+      "year": 2012,
+      "n": 141,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "8970899",
+      "title": "Correcting calcium nutritional deficiency prevents spine fractures in elderly women",
+      "year": 1996,
+      "n": 103,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "17823446",
+      "title": "Changes in biochemical indexes of bone metabolism and bone mineral density after a 12-mo dietary intervention program: the Postmenopausal Health Study",
+      "year": 2007,
+      "n": 101,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "11329114",
+      "title": "The effect of calcium citrate on bone density in the early and mid-postmenopausal period: a randomized placebo-controlled study",
+      "year": 1999,
+      "n": 63,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "15231008",
+      "title": "Supplementation with oral vitamin D3 and calcium during winter prevents seasonal bone loss: a randomized controlled open-label prospective trial",
+      "year": 2004,
+      "n": 55,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "12915959",
+      "title": "The effect of milk supplementation on bone mineral density in postmenopausal Chinese women in Malaysia",
+      "year": 2003,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "8661952",
+      "title": "Heated oyster shell-seaweed calcium (AAA Ca) on osteoporosis",
+      "year": 1996,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "23681085",
+      "title": "The efficacy of calcium supplementation alone in elderly Thai women over a 2-year period: a randomized controlled trial",
+      "year": 2013,
+      "inReviews": [
+       "28337524",
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "2152844",
+      "title": "The rate of bone mineral loss in normal men and the effects of calcium and cholecalciferol supplementation",
+      "year": 1990,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "7812072",
+      "title": "Effects of calcium supplements on femoral bone mineral density and vertebral fracture rate in vitamin-D-replete elderly patients",
+      "year": 1994,
+      "inReviews": [
+       "26420598",
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "15040824",
+      "title": "Vitamin D and calcium supplementation prevents osteoporotic fractures in elderly community dwelling residents: a pragmatic population-based 3-year intervention study",
+      "year": 2004,
+      "n": 9605,
+      "inReviews": [
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "17042717",
+      "title": "Clodronate reduces the incidence of fractures in community-dwelling elderly women unselected for osteoporosis: results of a double-blind, placebo-controlled randomized study",
+      "year": 2007,
+      "n": 5596,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "15885294",
+      "title": "Oral vitamin D3 and calcium for secondary prevention of low-trauma fractures in elderly people (Randomised Evaluation of Calcium Or vitamin D, RECORD): a randomised placebo-controlled trial",
+      "year": 2005,
+      "n": 5292,
+      "inReviews": [
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "15860827",
+      "title": "Randomised controlled trial of calcium and supplementation with cholecalciferol (vitamin D3) for prevention of fractures in primary care",
+      "year": 2005,
+      "n": 3314,
+      "inReviews": [
+       "17720017"
+      ]
+     },
+     {
+      "pmid": "20060665",
+      "title": "Does daily vitamin D 800 IU and calcium 1000 mg supplementation decrease the risk of falling in ambulatory women aged 65-71 years? A 3-year randomized population-based trial (OSTPRE-FPS)",
+      "year": 2010,
+      "n": 1573,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "18198394",
+      "title": "Vascular events in healthy older women receiving calcium supplementation: randomised controlled trial",
+      "year": 2008,
+      "n": 1471,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "17594775",
+      "title": "Treatment with alendronate plus calcium, alendronate alone, or calcium alone for postmenopausal low bone mineral density",
+      "year": 2007,
+      "n": 701,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "19001206",
+      "title": "Randomized controlled trial of calcium supplementation in healthy, nonosteoporotic, older men",
+      "year": 2008,
+      "n": 323,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "10999778",
+      "title": "Effect of calcium or 25OH vitamin D3 dietary supplementation on bone loss at the hip in men and women over the age of 60",
+      "year": 2000,
+      "n": 316,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "17243866",
+      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
+      "year": 2007,
+      "n": 244,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "18958384",
+      "title": "Effects of a multi-component exercise program and calcium-vitamin-D3-fortified milk on bone mineral density in older men: a randomised controlled trial",
+      "year": 2009,
+      "n": 180,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "20148911",
+      "title": "Discrepant influence of vitamin D status on parathyroid hormone and bone mass after two years of calcium supplementation",
+      "year": 2010,
+      "n": 175,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "2801589",
+      "title": "Calcium supplementation and bone loss in middle-aged women",
+      "year": 1989,
+      "n": 169,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "16491287",
+      "title": "Calcium- and vitamin D3-fortified milk reduces bone loss at clinically relevant skeletal sites in older men: a 2-year randomized controlled trial",
+      "year": 2006,
+      "n": 167,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "15259281",
+      "title": "Comparison of the effects of two different types of calcium supplementation on markers of bone metabolism in a postmenopausal osteopenic population with low calcium intake: a double-blind placebo-controlled trial",
+      "year": 2004,
+      "n": 153,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "18089701",
+      "title": "Effects of calcium and vitamin D supplementation on hip bone mineral density and calcium-related analytes in elderly ambulatory Australian women: a five-year randomized controlled trial",
+      "year": 2008,
+      "n": 120,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "11587253",
+      "title": "An open, crossover trial of calcium-fortified milk in prevention of early postmenopausal bone loss",
+      "year": 2001,
+      "n": 115,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "25274192",
+      "title": "Acute and 3-month effects of microcrystalline hydroxyapatite, calcium citrate and calcium carbonate on serum calcium and markers of bone turnover: a randomised controlled trial in postmenopausal women",
+      "year": 2014,
+      "n": 100,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "15746990",
+      "title": "Overweight postmenopausal women lose bone with moderate weight reduction and 1 g/day calcium intake",
+      "year": 2005,
+      "n": 66,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "1922205",
+      "title": "Prevention of postmenopausal osteoporosis. A comparative study of exercise, calcium supplementation, and hormone-replacement therapy",
+      "year": 1991,
+      "n": 52,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "2021138",
+      "title": "A 1-y walking program and increased dietary calcium in postmenopausal women: effects on bone",
+      "year": 1991,
+      "n": 36,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "2268740",
+      "title": "Increase of bone mineral density by calcium supplement with oyster shell electrolysate",
+      "year": 1990,
+      "n": 24,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "9626637",
+      "title": "Calcium supplementation suppresses bone turnover during weight reduction in postmenopausal women",
+      "year": 1998,
+      "n": 16,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "201203",
+      "title": "Effect of estrogens and calcium carbonate on bone loss in postmenopausal women",
+      "year": 1977,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "3838218",
+      "title": "The effect of milk supplements on calcium metabolism, bone metabolism and calcium balance",
+      "year": 1985,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "8256988",
+      "title": "Calcium supplementation with and without hormone replacement therapy to prevent postmenopausal bone loss",
+      "year": 1994,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "9875874",
+      "title": "Effect of alendronate on risk of fracture in women with low bone density but without vertebral fractures: results from the Fracture Intervention Trial",
+      "year": 1998,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "15386160",
+      "title": "The effect of calcium and vitamin D3 supplementation on the healing of the proximal humerus fracture: a randomized placebo-controlled study",
+      "year": 2004,
+      "inReviews": [
+       "26420598"
+      ]
+     },
+     {
+      "pmid": "14691684",
+      "title": "Reappraisal of Katsuragi calcium study, a prospective, double-blind, placebo-controlled study of the effect of active absorbable algal calcium (AAACa) on vertebral deformity and fracture",
+      "year": 2004,
+      "inReviews": [
+       "17720017"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1977,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1980,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1990,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 19
+    },
+    {
+     "year": 1995,
+     "reviews": 1,
+     "trials": 17
+    },
+    {
+     "year": 1996,
+     "reviews": 1,
+     "trials": 14
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 18
+    },
+    {
+     "year": 1998,
+     "reviews": 2,
+     "trials": 9
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 10
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 19
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 28
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 18
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 12
+    },
+    {
+     "year": 2006,
+     "reviews": 3,
+     "trials": 20
+    },
+    {
+     "year": 2007,
+     "reviews": 4,
+     "trials": 17
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 17
+    },
+    {
+     "year": 2009,
+     "reviews": 4,
+     "trials": 14
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 18
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 11
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 20
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 15
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 11
+    },
+    {
+     "year": 2015,
+     "reviews": 4,
+     "trials": 15
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 10
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 11
+    },
+    {
+     "year": 2019,
+     "reviews": 4,
+     "trials": 13
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 10
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 8
+    },
+    {
+     "year": 2022,
+     "reviews": 8,
+     "trials": 8
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2025,
+     "reviews": 7,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 6
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "9166392",
+     "title": "Vitamin D and HRT: no benefit additional to that of HRT alone in prevention of bone loss in early postmenopausal women. A 2.5-year randomized placebo-controlled study",
+     "year": 1997,
+     "n": 13100
+    },
+    {
+     "pmid": "14519707",
+     "title": "Effects of estrogen plus progestin on risk of fracture and bone mineral density: the Women's Health Initiative randomized trial",
+     "year": 2003,
+     "n": 16608
+    },
+    {
+     "pmid": "15231012",
+     "title": "Randomized trial of effect of alendronate continuation versus discontinuation in women with low BMD: results from the Fracture Intervention Trial long-term extension",
+     "year": 2004,
+     "n": 1099
+    },
+    {
+     "pmid": "15899959",
+     "title": "Vitamin D insufficiency does not affect bone mineral density response to raloxifene",
+     "year": 2005,
+     "n": 7522
+    },
+    {
+     "pmid": "17921409",
+     "title": "Tea drinking is associated with benefits on bone density in older women",
+     "year": 2007,
+     "n": 1500
+    },
+    {
+     "pmid": "18175753",
+     "title": "Chocolate consumption and bone density in older women",
+     "year": 2008,
+     "n": 1460
+    },
+    {
+     "pmid": "20204604",
+     "title": "Effect of calcium and vitamin D supplementation on bone mineral density in women aged 65-71 years: a 3-year randomized population-based trial (OSTPRE-FPS)",
+     "year": 2010,
+     "n": 3432
+    },
+    {
+     "pmid": "33635767",
+     "title": "The Contribution of Patient, Primary Care Physician, and Primary Care Clinic Factors to Good Bone Health Care",
+     "year": 2021,
+     "n": 1996
+    },
+    {
+     "pmid": "38613445",
+     "title": "Effects of vitamin D3, omega-3s, and a simple strength training exercise program on bone health: the DO-HEALTH randomized controlled trial",
+     "year": 2024,
+     "n": 1493
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "26420598"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "28337524",
+      "doi": "10.1007/s00198-017-3993-4",
+      "title": "Quantitative analysis of efficacy and associated factors of calcium intake on bone mineral density in postmenopausal women",
+      "year": 2017,
+      "firstAuthor": "Wu J",
+      "journal": "Osteoporosis international : a journal established as result of cooperation between the European Foundation for Osteoporosis and the National Osteoporosis Foundation of the USA",
+      "citedBy": 23,
+      "n": 2537,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "17720017",
+      "doi": "10.1016/s0140-6736(07)61342-7",
+      "title": "Use of calcium or calcium in combination with vitamin D supplementation to prevent fractures and bone loss in people aged 50 years and older: a meta-analysis",
+      "year": 2007,
+      "firstAuthor": "Tang BM",
+      "journal": "Lancet (London, England)",
+      "citedBy": 785,
+      "n": 63897,
+      "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+     },
+     {
+      "pmid": "33635767",
+      "doi": "10.7812/tpp/20.095",
+      "title": "The Contribution of Patient, Primary Care Physician, and Primary Care Clinic Factors to Good Bone Health Care",
+      "year": 2021,
+      "firstAuthor": "Roblin DW",
+      "journal": "The Permanente journal",
+      "citedBy": 2,
+      "n": 1996,
+      "why": "A large trial (about 1,996 people) from 2021, as new as the newest review or newer"
+     },
+     {
+      "pmid": "38613445",
+      "doi": "10.1093/jbmr/zjae054",
+      "title": "Effects of vitamin D3, omega-3s, and a simple strength training exercise program on bone health: the DO-HEALTH randomized controlled trial",
+      "year": 2024,
+      "firstAuthor": "Kistler-Fischbacher M",
+      "journal": "Journal of bone and mineral research : the official journal of the American Society for Bone and Mineral Research",
+      "citedBy": 13,
+      "n": 1493,
+      "why": "A large trial (about 1,493 people) from 2024, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults over 50 (not a group defined by one illness)",
+     "intervention": "Calcium supplements or more calcium in the diet",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Bone mineral density"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 8,
+     "no": 9,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41063100",
+      "title": "The effects of combined calcium and vitamin D supplementation on bone mineral density and fracture risk in postmenopausal women with osteoporosis: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "BMD outcome matches, but calcium is always given with vitamin D, and only to postmenopausal women who already have osteoporosis."
+     },
+     {
+      "pmid": "41470812",
+      "title": "Effects of Combined Exercise and Calcium/Vitamin D Supplementation on Bone Mineral Density in Postmenopausal Women: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Both arms got calcium/vitamin D; the review tests adding exercise, not calcium versus placebo."
+     },
+     {
+      "pmid": "38472336",
+      "title": "Determination of the Combined Effects of Asian Herbal Medicine with Calcium and/or Vitamin D Supplements on Bone Mineral Density in Primary Osteoporosis: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares herbal medicine plus supplements with supplements alone in osteoporosis patients, so it tests the herbs, not calcium."
+     },
+     {
+      "pmid": "36705288",
+      "title": "Calcium and vitamin D for increasing bone mineral density in premenopausal women",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Calcium versus placebo on BMD, but the population is premenopausal women aged roughly 18–42."
+     },
+     {
+      "pmid": "34780069",
+      "title": "Calcium supplementation during pregnancy and maternal and offspring bone health: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Calcium versus control on BMD, but the population is pregnant women, not adults over 50."
+     },
+     {
+      "pmid": "35433788",
+      "title": "Vitamin D and Calcium Supplementation Reverses Tenofovir-Caused Bone Mineral Density Loss in People Taking ART or PrEP: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Population is people on tenofovir drugs, calcium comes with vitamin D, and cohort studies are included."
+     },
+     {
+      "pmid": "34649591",
+      "title": "The combined effect of vitamin K and calcium on bone mineral density in humans: a meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "BMD outcome matches, but calcium is only given together with vitamin K and the age group is not specified."
+     },
+     {
+      "pmid": "32401318",
+      "title": "Calcium supplementation for improving bone density in lactating women: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Calcium versus placebo or no treatment on BMD, but the population is lactating women, not adults over 50."
+     },
+     {
+      "pmid": "31919756",
+      "title": "Combined effects of physical activity and calcium on bone health in children and adolescents: a systematic review of randomized controlled trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Children and adolescents, and calcium is combined with a physical activity intervention."
+     },
+     {
+      "pmid": "31638313",
+      "title": "Effects of Probiotics, Prebiotics, and Synbiotics on Calcium Homeostasis and Bone Health With Aging: A Systematic Review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Tests probiotics, prebiotics or synbiotics, not calcium."
+     },
+     {
+      "pmid": "25675442",
+      "title": "The Effect of Calcium or Calcium and Vitamin D Supplementation on Bone Mineral Density in Healthy Males: A Systematic Review and Meta-Analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Calcium with or without vitamin D versus control on BMD, but in healthy males of all ages rather than adults over 50."
+     },
+     {
+      "pmid": "24119980",
+      "title": "Effects of vitamin D supplements on bone mineral density: a systematic review and meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Tests vitamin D supplements without calcium."
+     },
+     {
+      "pmid": "21060990",
+      "title": "Relationship between bone mineral density changes and risk of fractures among patients receiving calcium with or without vitamin D supplementation: a meta-regression",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Meta-regression asks whether BMD changes predict fracture risk, not whether calcium changes BMD."
+     },
+     {
+      "pmid": "19407667",
+      "title": "Efficacy of ossein-hydroxyapatite complex compared with calcium carbonate to prevent bone loss: a meta-analysis",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Compares ossein-hydroxyapatite with calcium carbonate, so the comparator is another active calcium product rather than placebo or no treatment."
+     },
+     {
+      "pmid": "16625624",
+      "title": "Calcium supplementation for improving bone mineral density in children",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Calcium versus placebo on BMD, but the population is healthy children."
+     },
+     {
+      "pmid": "16980314",
+      "title": "Effects of calcium supplementation on bone density in healthy children: meta-analysis of randomised controlled trials",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Calcium versus placebo on BMD, but the population is healthy children."
+     },
+     {
+      "pmid": "7472660",
+      "title": "A meta-analysis of the effect of calcium intake on bone mass in young and middle aged females and males",
+      "year": 1995,
+      "fits": "no",
+      "reason": "Covers adults aged 18 to 50, mostly in cross-sectional studies, so the population falls outside the over-50 group and few trials are included."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart attacks and strokes",
+   "finding": "Heart attacks and strokes",
+   "counts": {
+    "reviews": 51,
+    "trialReviews": 16,
+    "trials": 83,
+    "largeTrials": 7
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37743221",
+     "doi": "10.1016/j.hlc.2023.07.008",
+     "title": "Association Between Calcium Supplementation and the Risk of Cardiovascular Disease and Stroke: A Systematic Review and Meta-Analysis",
+     "year": 2023,
+     "firstAuthor": "Sim MG",
+     "journal": "Heart, lung & circulation",
+     "citedBy": 2,
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+    },
+    {
+     "pmid": "33509399",
+     "doi": "10.1016/j.jacc.2020.09.619",
+     "title": "Supplemental Vitamins and Minerals for Cardiovascular Disease Prevention and Treatment: JACC Focus Seminar",
+     "year": 2021,
+     "firstAuthor": "Jenkins DJA",
+     "journal": "Journal of the American College of Cardiology",
+     "citedBy": 71,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    },
+    {
+     "pmid": "33530332",
+     "doi": "10.3390/nu13020368",
+     "title": "Calcium Supplements and Risk of Cardiovascular Disease: A Meta-Analysis of Clinical Trials",
+     "year": 2021,
+     "firstAuthor": "Myung SK",
+     "journal": "Nutrients",
+     "citedBy": 50,
+     "n": 28935,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    },
+    {
+     "pmid": "31284304",
+     "doi": "10.7326/m19-0341",
+     "title": "Effects of Nutritional Supplements and Dietary Interventions on Cardiovascular Outcomes: An Umbrella Review and Evidence Map",
+     "year": 2019,
+     "firstAuthor": "Khan SU",
+     "journal": "Annals of internal medicine",
+     "citedBy": 145,
+     "n": 992129,
+     "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "38441097",
+     "doi": "10.1148/radiol.231557",
+     "title": "Coronary Artery Calcium Score Predicts Major Adverse Cardiovascular Events in Stable Chest Pain",
+     "year": 2024,
+     "firstAuthor": "Biavati F",
+     "journal": "Radiology",
+     "citedBy": 27,
+     "n": 1749,
+     "why": "A large trial (about 1,749 people) from 2024, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.19047619047619047,
+    "trials": 21,
+    "inclusions": 25,
+    "reviews": [
+     {
+      "pmid": "37743221",
+      "trials": 11
+     },
+     {
+      "pmid": "33530332",
+      "trials": 14
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "33509399",
+     "31284304"
+    ],
+    "shared": [
+     {
+      "pmid": "9887161",
+      "title": "Calcium supplements for the prevention of colorectal adenomas. Calcium Polyp Prevention Study Group",
+      "year": 1999,
+      "n": 930,
+      "inReviews": [
+       "37743221",
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "11073017",
+      "title": "Calcium and fibre supplementation in prevention of colorectal adenoma recurrence: a randomised intervention trial. European Cancer Prevention Organisation Study Group",
+      "year": 2000,
+      "n": 665,
+      "inReviews": [
+       "37743221",
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "19001206",
+      "title": "Randomized controlled trial of calcium supplementation in healthy, nonosteoporotic, older men",
+      "year": 2008,
+      "n": 323,
+      "inReviews": [
+       "37743221",
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "20148911",
+      "title": "Discrepant influence of vitamin D status on parathyroid hormone and bone mass after two years of calcium supplementation",
+      "year": 2010,
+      "n": 175,
+      "inReviews": [
+       "37743221",
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "24131320",
+      "title": "Calcium plus vitamin D supplementation and health outcomes five years after active intervention ended: the Women's Health Initiative",
+      "year": 2013,
+      "n": 36282,
+      "inReviews": [
+       "37743221"
+      ]
+     },
+     {
+      "pmid": "21880848",
+      "title": "Calcium and vitamin D supplements and health outcomes: a reanalysis of the Women's Health Initiative (WHI) limited-access data set",
+      "year": 2011,
+      "n": 15646,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "15885294",
+      "title": "Oral vitamin D3 and calcium for secondary prevention of low-trauma fractures in elderly people (Randomised Evaluation of Calcium Or vitamin D, RECORD): a randomised placebo-controlled trial",
+      "year": 2005,
+      "n": 5292,
+      "inReviews": [
+       "37743221"
+      ]
+     },
+     {
+      "pmid": "22112804",
+      "title": "Long-term follow-up for mortality and cancer in a randomized placebo-controlled trial of vitamin D(3) and/or calcium (RECORD trial)",
+      "year": 2012,
+      "n": 5292,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "26465985",
+      "title": "A Trial of Calcium and Vitamin D for the Prevention of Colorectal Adenomas",
+      "year": 2015,
+      "n": 2259,
+      "inReviews": [
+       "37743221"
+      ]
+     },
+     {
+      "pmid": "18198394",
+      "title": "Vascular events in healthy older women receiving calcium supplementation: randomised controlled trial",
+      "year": 2008,
+      "n": 1471,
+      "inReviews": [
+       "37743221"
+      ]
+     },
+     {
+      "pmid": "20614474",
+      "title": "Calcium supplementation and the risks of atherosclerotic vascular disease in older women: results of a 5-year RCT and a 4.5-year follow-up",
+      "year": 2011,
+      "n": 1460,
+      "inReviews": [
+       "37743221"
+      ]
+     },
+     {
+      "pmid": "16636212",
+      "title": "Effects of calcium supplementation on clinical fracture and bone structure: results of a 5-year, double-blind, placebo-controlled trial in elderly women",
+      "year": 2006,
+      "n": 1460,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "17556697",
+      "title": "Vitamin D and calcium supplementation reduces cancer risk: results of a randomized trial",
+      "year": 2007,
+      "n": 1179,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "17594775",
+      "title": "Treatment with alendronate plus calcium, alendronate alone, or calcium alone for postmenopausal low bone mineral density",
+      "year": 2007,
+      "n": 701,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "2203964",
+      "title": "A controlled trial of the effect of calcium supplementation on bone density in postmenopausal women",
+      "year": 1990,
+      "n": 301,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "9797910",
+      "title": "Calcium and vitamin D supplementation increases spinal BMD in healthy, postmenopausal women",
+      "year": 1998,
+      "n": 240,
+      "inReviews": [
+       "37743221"
+      ]
+     },
+     {
+      "pmid": "16507374",
+      "title": "Clinical and laboratory safety of one year's use of a combination calcium + vitamin D tablet in ambulatory elderly women with vitamin D insufficiency: results of a multicenter, randomized, double-blind, placebo-controlled study",
+      "year": 2005,
+      "n": 192,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "25274192",
+      "title": "Acute and 3-month effects of microcrystalline hydroxyapatite, calcium citrate and calcium carbonate on serum calcium and markers of bone turnover: a randomised controlled trial in postmenopausal women",
+      "year": 2014,
+      "n": 100,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "26420590",
+      "title": "Acute effects of calcium supplements on blood pressure and blood coagulation: secondary analysis of a randomised controlled trial in post-menopausal women",
+      "year": 2015,
+      "n": 100,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "7709944",
+      "title": "Long-term effects of calcium supplementation on bone loss and fractures in postmenopausal women: a randomized controlled trial",
+      "year": 1995,
+      "n": 78,
+      "inReviews": [
+       "33530332"
+      ]
+     },
+     {
+      "pmid": "25398967",
+      "title": "Risk of heart failure among postmenopausal women: a secondary analysis of the randomized trial of vitamin D plus calcium of the women's health initiative",
+      "year": 2015,
+      "inReviews": [
+       "37743221"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 9
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 6,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "15851647",
+     "title": "Renal outcomes in high-risk hypertensive patients treated with an angiotensin-converting enzyme inhibitor or a calcium channel blocker vs a diuretic: a report from the Antihypertensive and Lipid-Lowering Treatment to Prevent Heart Attack Trial (ALLHAT)",
+     "year": 2005,
+     "n": 18109
+    },
+    {
+     "pmid": "17309935",
+     "title": "Calcium/vitamin D supplementation and cardiovascular events",
+     "year": 2007,
+     "n": 36282
+    },
+    {
+     "pmid": "20435188",
+     "title": "Clinical synergy of perindopril and calcium-channel blocker in the prevention of cardiac events and mortality in patients with coronary artery disease. Post hoc analysis of the EUROPA study",
+     "year": 2010,
+     "n": 1100
+    },
+    {
+     "pmid": "21677054",
+     "title": "Nutritional supplementation during pregnancy and offspring cardiovascular disease risk in The Gambia",
+     "year": 2011,
+     "n": 1267
+    },
+    {
+     "pmid": "27926633",
+     "title": "Effects of Calcium, Vitamin D, and Hormone Therapy on Cardiovascular Disease Risk Factors in the Women's Health Initiative: A Randomized Controlled Trial",
+     "year": 2017,
+     "n": 68132
+    },
+    {
+     "pmid": "31145202",
+     "title": "Women's Health Initiative clinical trials: potential interactive effect of calcium and vitamin D supplementation with hormonal therapy on cardiovascular disease",
+     "year": 2019,
+     "n": 27347
+    },
+    {
+     "pmid": "38441097",
+     "title": "Coronary Artery Calcium Score Predicts Major Adverse Cardiovascular Events in Stable Chest Pain",
+     "year": 2024,
+     "n": 1749
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "20671013",
+     "21505219",
+     "25042841"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "37743221",
+      "doi": "10.1016/j.hlc.2023.07.008",
+      "title": "Association Between Calcium Supplementation and the Risk of Cardiovascular Disease and Stroke: A Systematic Review and Meta-Analysis",
+      "year": 2023,
+      "firstAuthor": "Sim MG",
+      "journal": "Heart, lung & circulation",
+      "citedBy": 2,
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     },
+     {
+      "pmid": "33509399",
+      "doi": "10.1016/j.jacc.2020.09.619",
+      "title": "Supplemental Vitamins and Minerals for Cardiovascular Disease Prevention and Treatment: JACC Focus Seminar",
+      "year": 2021,
+      "firstAuthor": "Jenkins DJA",
+      "journal": "Journal of the American College of Cardiology",
+      "citedBy": 71,
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     },
+     {
+      "pmid": "33530332",
+      "doi": "10.3390/nu13020368",
+      "title": "Calcium Supplements and Risk of Cardiovascular Disease: A Meta-Analysis of Clinical Trials",
+      "year": 2021,
+      "firstAuthor": "Myung SK",
+      "journal": "Nutrients",
+      "citedBy": 50,
+      "n": 28935,
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     },
+     {
+      "pmid": "31284304",
+      "doi": "10.7326/m19-0341",
+      "title": "Effects of Nutritional Supplements and Dietary Interventions on Cardiovascular Outcomes: An Umbrella Review and Evidence Map",
+      "year": 2019,
+      "firstAuthor": "Khan SU",
+      "journal": "Annals of internal medicine",
+      "citedBy": 145,
+      "n": 992129,
+      "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); screened as answering the question"
+     },
+     {
+      "pmid": "38441097",
+      "doi": "10.1148/radiol.231557",
+      "title": "Coronary Artery Calcium Score Predicts Major Adverse Cardiovascular Events in Stable Chest Pain",
+      "year": 2024,
+      "firstAuthor": "Biavati F",
+      "journal": "Radiology",
+      "citedBy": 27,
+      "n": 1749,
+      "why": "A large trial (about 1,749 people) from 2024, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+     "intervention": "Calcium supplements, alone or with vitamin D",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Heart attacks, strokes or other cardiovascular events"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 12,
+     "partly": 1,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "25042841",
+      "title": "The effects of calcium supplementation on verified coronary heart disease hospitalization and death in postmenopausal women: a collaborative meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pooled RCTs of calcium with or without vitamin D against placebo or no treatment for coronary heart disease, but only in elderly women."
+     },
+     {
+      "pmid": "25491763",
+      "title": "Cardiovascular complications of calcium supplements",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Narrative review that summarises earlier meta-analyses; it doesn't do its own pooling of randomised trials."
+     },
+     {
+      "pmid": "22651380",
+      "title": "Interactions of commonly used dietary supplements with cardiovascular drugs: a systematic review",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Looks at supplements given alongside cardiovascular drugs, not calcium compared with placebo for cardiovascular events."
+     },
+     {
+      "pmid": "21409434",
+      "title": "Cardiovascular effects of calcium supplementation",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Narrative review that discusses an earlier meta-analysis; it doesn't do its own pooling of randomised trials."
+     }
+    ]
+   }
+  },
+  {
+   "id": "kidney-stones",
+   "label": "Kidney stones",
+   "finding": "Kidney stones",
+   "counts": {
+    "reviews": 24,
+    "trialReviews": 4,
+    "trials": 39,
+    "largeTrials": 1
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1980,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "31005969",
+     "title": "Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial",
+     "year": 2019,
+     "n": 5110
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "16481635",
+     "24729336"
+    ],
+    "citedNotEligible": [
+     "16481635",
+     "24729336"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Calcium supplements, alone or with vitamin D",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Kidney stones"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 2,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "26969574",
+      "title": "Risk of recurrence of idiopathic calcium kidney stones: analysis of data from the literature",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Looks at how often stones come back in people who already form calcium stones, across many treatments; calcium supplements against placebo are not tested."
+     },
+     {
+      "pmid": "23137489",
+      "title": "Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Calcium supplements and kidney stone outcomes match, but only in people with osteoporosis, sometimes with other drugs, and it includes cohort studies."
+     },
+     {
+      "pmid": "19321253",
+      "title": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Covers diet, fluids and unnamed supplements to prevent repeat stones in stone formers; calcium appears only as part of mixed diets, not as a supplement."
+     },
+     {
+      "pmid": "18845701",
+      "title": "Calcium supplementation and incident kidney stone risk: a systematic review",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Calcium supplements and new kidney stones match, but it covers only postmenopausal women and is a narrative review of trials and observational data."
+     }
+    ]
+   }
+  },
+  {
+   "id": "pre-eclampsia",
+   "label": "Pre-eclampsia",
+   "finding": "Pre-eclampsia and high blood pressure in pregnancy",
+   "counts": {
+    "reviews": 92,
+    "trialReviews": 41,
+    "trials": 220,
+    "largeTrials": 19
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42397815",
+     "doi": "10.25259/ijmr_1582_2025",
+     "title": "Nutritional supplements for preventing preeclampsia: A network meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Wang C",
+     "journal": "The Indian journal of medical research",
+     "citedBy": 0,
+     "n": 18133,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "41330480",
+     "doi": "10.1002/14651858.cd001059.pub6",
+     "title": "Calcium supplementation during pregnancy for preventing hypertensive disorders and related problems",
+     "year": 2025,
+     "firstAuthor": "Cluver CA",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 2,
+     "n": 37504,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "38013011",
+     "doi": "10.1016/j.cpcardiol.2023.102217",
+     "title": "Association between calcium supplementation and gestational hypertension, and preeclampsia: A Meta-analysis of 26 randomized controlled trials",
+     "year": 2024,
+     "firstAuthor": "Jaiswal V",
+     "journal": "Current problems in cardiology",
+     "citedBy": 6,
+     "n": 20038,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "35596262",
+     "doi": "10.1111/1471-0528.17222",
+     "title": "Calcium for pre-eclampsia prevention: A systematic review and network meta-analysis to guide personalised antenatal care",
+     "year": 2022,
+     "firstAuthor": "Woo Kinshella ML",
+     "journal": "BJOG : an international journal of obstetrics and gynaecology",
+     "citedBy": 56,
+     "n": 20445,
+     "why": "The most comprehensive review of trials on this outcome (30 trials, 2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4107142857142857,
+    "trials": 28,
+    "inclusions": 51,
+    "reviews": [
+     {
+      "pmid": "42397815",
+      "trials": 8
+     },
+     {
+      "pmid": "38013011",
+      "trials": 19
+     },
+     {
+      "pmid": "35596262",
+      "trials": 24
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "41330480"
+    ],
+    "shared": [
+     {
+      "pmid": "16522392",
+      "title": "World Health Organization randomized trial of calcium supplementation among low calcium intake pregnant women",
+      "year": 2006,
+      "n": 8325,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "30696573",
+      "title": "Prepregnancy and early pregnancy calcium supplementation among women at high risk of pre-eclampsia: a multicentre, double-blind, randomised, placebo-controlled trial",
+      "year": 2019,
+      "n": 1355,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "1922250",
+      "title": "Calcium supplementation to prevent hypertensive disorders of pregnancy",
+      "year": 1991,
+      "n": 1194,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "8987323",
+      "title": "Calcium supplementation and prevention of pregnancy induced hypertension",
+      "year": 1996,
+      "n": 201,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "3623260",
+      "title": "Effect of calcium and vitamin D supplementation on toxaemia of pregnancy",
+      "year": 1987,
+      "n": 200,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "9241285",
+      "title": "Calcium supplementation and the risk of preeclampsia in Ecuadorian pregnant teenagers",
+      "year": 1997,
+      "n": 135,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "9540946",
+      "title": "Prevention of preeclampsia by linoleic acid and calcium supplementation: a randomized controlled trial",
+      "year": 1998,
+      "n": 43,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "11430936",
+      "title": "Supplementary calcium in prevention of pre-eclampsia",
+      "year": 2001,
+      "inReviews": [
+       "42397815",
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "9211675",
+      "title": "Trial of calcium to prevent preeclampsia",
+      "year": 1997,
+      "n": 4589,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "8058229",
+      "title": "Prevention of pregnancy-induced hypertension by calcium supplementation in angiotensin II-sensitive patients",
+      "year": 1994,
+      "n": 281,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "2220915",
+      "title": "Calcium supplementation during pregnancy may reduce preterm delivery in high-risk populations",
+      "year": 1990,
+      "n": 95,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "26467311",
+      "title": "The effects of vitamin D plus calcium supplementation on metabolic profiles, biomarkers of inflammation, oxidative stress and pregnancy outcomes in pregnant women at risk for pre-eclampsia",
+      "year": 2016,
+      "n": 60,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "18851852",
+      "title": "Calcium supplementation for the prevention of pre-eclampsia",
+      "year": 2009,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "3306493",
+      "title": "Calcium supplementation reduces blood pressure during pregnancy: results of a randomized controlled clinical trial",
+      "year": 1987,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "10099740",
+      "title": "Calcium supplementation in nulliparous women for the prevention of pregnancy-induced hypertension, preeclampsia and preterm birth: an Australian randomized trial. FRACOG and the ACT Study Group",
+      "year": 1999,
+      "inReviews": [
+       "38013011",
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "18696358",
+      "title": "Calcium supplementation during pregnancy for preventing hypertensive disorders is not associated with changes in platelet count, urate, and urinary protein: a randomized control trial",
+      "year": 2008,
+      "n": 8312,
+      "inReviews": [
+       "38013011"
+      ]
+     },
+     {
+      "pmid": "33302116",
+      "title": "The effect of calcium supplementation on blood pressure in non-pregnant women with previous pre-eclampsia: A randomized placebo-controlled study",
+      "year": 2021,
+      "n": 1355,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "15512028",
+      "title": "Prevention of hypertensive disorders of pregnancy",
+      "year": 1998,
+      "n": 510,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "7712843",
+      "title": "Calcium supplementation during pregnancy for reducing pregnancy induced hypertension",
+      "year": 1995,
+      "n": 106,
+      "inReviews": [
+       "38013011"
+      ]
+     },
+     {
+      "pmid": "23902782",
+      "title": "Unexpected long-term effects of calcium supplementation in pregnancy on maternal bone outcomes in women with a low calcium intake: a follow-up study",
+      "year": 2013,
+      "n": 79,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "24163957",
+      "title": "Effect of calcium-vitamin D supplementation on metabolic profiles in pregnant women at risk for pre-eclampsia: a randomized placebo-controlled trial",
+      "year": 2012,
+      "n": 49,
+      "inReviews": [
+       "38013011"
+      ]
+     },
+     {
+      "pmid": "24728212",
+      "title": "Aspirin plus calcium supplementation to prevent superimposed preeclampsia: a randomized trial",
+      "year": 2014,
+      "n": 49,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "17065044",
+      "title": "Lower rate of preeclampsia after antioxidant supplementation in pregnant women with low antioxidant status",
+      "year": 2006,
+      "n": 31,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "16243339",
+      "title": "Calcium plus linoleic acid therapy for pregnancy-induced hypertension",
+      "year": 2005,
+      "n": 18,
+      "inReviews": [
+       "38013011"
+      ]
+     },
+     {
+      "pmid": "16580574",
+      "title": "Calcium and conjugated linoleic acid reduces pregnancy-induced hypertension and decreases intracellular calcium in lymphocytes",
+      "year": 2006,
+      "n": 12,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "1967748",
+      "title": "Dietary calcium supplementation and prevention of pregnancy hypertension",
+      "year": 1990,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "10476618",
+      "title": "Calcium and low-dose aspirin prophylaxis in women at high risk of pregnancy-induced hypertension",
+      "year": 1999,
+      "inReviews": [
+       "35596262"
+      ]
+     },
+     {
+      "pmid": "11837466",
+      "title": "Calcium supplementation in pre-eclampsia",
+      "year": 2001,
+      "inReviews": [
+       "35596262"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 10
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 1990,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 12
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 10
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1995,
+     "reviews": 2,
+     "trials": 12
+    },
+    {
+     "year": 1996,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 12
+    },
+    {
+     "year": 1998,
+     "reviews": 2,
+     "trials": 10
+    },
+    {
+     "year": 1999,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2000,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2006,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 2,
+     "trials": 7
+    },
+    {
+     "year": 2010,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 6,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 6,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 5,
+     "trials": 6
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2017,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 8,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 5
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "1922250",
+     "title": "Calcium supplementation to prevent hypertensive disorders of pregnancy",
+     "year": 1991,
+     "n": 1194
+    },
+    {
+     "pmid": "1669525",
+     "title": "Trials of hypertension prevention. Phase I design",
+     "year": 1991,
+     "n": 2182
+    },
+    {
+     "pmid": "1342280",
+     "title": "Baseline characteristics of participants in phase I of the Trials of Hypertension Prevention",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1586398",
+     "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "8932976",
+     "title": "Trial of Calcium for Preeclampsia Prevention (CPEP): rationale, design, and methods",
+     "year": 1996,
+     "n": 2295
+    },
+    {
+     "pmid": "9211675",
+     "title": "Trial of calcium to prevent preeclampsia",
+     "year": 1997,
+     "n": 4589
+    },
+    {
+     "pmid": "9022561",
+     "title": "Efficacy of nonpharmacologic interventions in adults with high-normal blood pressure: results from phase 1 of the Trials of Hypertension Prevention. Trials of Hypertension Prevention Collaborative Research Group",
+     "year": 1997,
+     "n": 2182
+    },
+    {
+     "pmid": "9396883",
+     "title": "Risk factors associated with preeclampsia in healthy nulliparous women. The Calcium for Preeclampsia Prevention (CPEP) Study Group",
+     "year": 1997,
+     "n": 4589
+    },
+    {
+     "pmid": "9790393",
+     "title": "The relationship between abnormal glucose tolerance and hypertensive disorders of pregnancy in healthy nulliparous women. Calcium for Preeclampsia Prevention (CPEP) Study Group",
+     "year": 1998,
+     "n": 4589
+    },
+    {
+     "pmid": "11078178",
+     "title": "Effects of isradipine or enalapril on blood pressure in salt-sensitive hypertensives during low and high dietary salt intake. MIST II Trial Investigators",
+     "year": 2000,
+     "n": 1916
+    },
+    {
+     "pmid": "11262466",
+     "title": "Nutrient intake and hypertensive disorders of pregnancy: Evidence from a large prospective cohort",
+     "year": 2001,
+     "n": 4589
+    },
+    {
+     "pmid": "15851647",
+     "title": "Renal outcomes in high-risk hypertensive patients treated with an angiotensin-converting enzyme inhibitor or a calcium channel blocker vs a diuretic: a report from the Antihypertensive and Lipid-Lowering Treatment to Prevent Heart Attack Trial (ALLHAT)",
+     "year": 2005,
+     "n": 18109
+    },
+    {
+     "pmid": "17689635",
+     "title": "Blood pressure dynamics during pregnancy and spontaneous preterm birth",
+     "year": 2007,
+     "n": 5167
+    },
+    {
+     "pmid": "18824662",
+     "title": "Effect of calcium and vitamin D supplementation on blood pressure: the Women's Health Initiative Randomized Trial",
+     "year": 2008,
+     "n": 36282
+    },
+    {
+     "pmid": "18696358",
+     "title": "Calcium supplementation during pregnancy for preventing hypertensive disorders is not associated with changes in platelet count, urate, and urinary protein: a randomized control trial",
+     "year": 2008,
+     "n": 8312
+    },
+    {
+     "pmid": "29073916",
+     "title": "Participant recruitment and retention in longitudinal preconception randomized trials: lessons learnt from the Calcium And Pre-eclampsia (CAP) trial",
+     "year": 2017,
+     "n": 1354
+    },
+    {
+     "pmid": "30696573",
+     "title": "Prepregnancy and early pregnancy calcium supplementation among women at high risk of pre-eclampsia: a multicentre, double-blind, randomised, placebo-controlled trial",
+     "year": 2019,
+     "n": 1355
+    },
+    {
+     "pmid": "33302116",
+     "title": "The effect of calcium supplementation on blood pressure in non-pregnant women with previous pre-eclampsia: A randomized placebo-controlled study",
+     "year": 2021,
+     "n": 1355
+    },
+    {
+     "pmid": "40639854",
+     "title": "Hypertensive disorders of pregnancy and perinatal outcomes: two prospective cohort studies of nulliparous women in India and Tanzania",
+     "year": 2025,
+     "n": 10570
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "30277579"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "42397815",
+      "doi": "10.25259/ijmr_1582_2025",
+      "title": "Nutritional supplements for preventing preeclampsia: A network meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Wang C",
+      "journal": "The Indian journal of medical research",
+      "citedBy": 0,
+      "n": 18133,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "41330480",
+      "doi": "10.1002/14651858.cd001059.pub6",
+      "title": "Calcium supplementation during pregnancy for preventing hypertensive disorders and related problems",
+      "year": 2025,
+      "firstAuthor": "Cluver CA",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 2,
+      "n": 37504,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "38013011",
+      "doi": "10.1016/j.cpcardiol.2023.102217",
+      "title": "Association between calcium supplementation and gestational hypertension, and preeclampsia: A Meta-analysis of 26 randomized controlled trials",
+      "year": 2024,
+      "firstAuthor": "Jaiswal V",
+      "journal": "Current problems in cardiology",
+      "citedBy": 6,
+      "n": 20038,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "35596262",
+      "doi": "10.1111/1471-0528.17222",
+      "title": "Calcium for pre-eclampsia prevention: A systematic review and network meta-analysis to guide personalised antenatal care",
+      "year": 2022,
+      "firstAuthor": "Woo Kinshella ML",
+      "journal": "BJOG : an international journal of obstetrics and gynaecology",
+      "citedBy": 56,
+      "n": 20445,
+      "why": "The most comprehensive review of trials on this outcome (30 trials, 2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Pregnant women",
+     "intervention": "Calcium supplements during pregnancy",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Pre-eclampsia or high blood pressure in pregnancy"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 19,
+     "partly": 6,
+     "no": 16,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40965861",
+      "title": "Calcium supplementation commenced before pregnancy for preventing hypertensive disorders and related problems",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Calcium vs placebo for pre-eclampsia, but supplements started before pregnancy in non-pregnant women who had pre-eclampsia before."
+     },
+     {
+      "pmid": "39560075",
+      "title": "Calcium supplementation (other than for preventing or treating hypertension) for improving pregnancy and infant outcomes",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Calcium in pregnancy, but this review explicitly excludes hypertension outcomes and looks at preterm birth and birthweight."
+     },
+     {
+      "pmid": "37653760",
+      "title": "Clinical efficacy of low-dose aspirin combined with calcium in preventing preeclampsia: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Calcium given with aspirin and compared with aspirin alone, in high-risk pregnant women, for pre-eclampsia."
+     },
+     {
+      "pmid": "36352102",
+      "title": "Micronutrient supplementation interventions in preconception and pregnant women at increased risk of developing pre-eclampsia: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Has a calcium subgroup for pre-eclampsia, but only in high-risk women, and some started before conception."
+     },
+     {
+      "pmid": "35014026",
+      "title": "Calcium supplementation for prevention of primary hypertension",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Calcium for primary hypertension in normotensive people in general, not in pregnancy."
+     },
+     {
+      "pmid": "34693985",
+      "title": "Calcium supplementation for prevention of primary hypertension",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Calcium for primary hypertension in normotensive people in general, not in pregnancy."
+     },
+     {
+      "pmid": "32067744",
+      "title": "Effect of Calcium and Vitamin D Co-supplementation on Blood Pressure: A Systematic Review and Meta-Analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Calcium plus vitamin D for blood pressure in general populations, not pregnancy."
+     },
+     {
+      "pmid": "31523806",
+      "title": "Calcium supplementation commencing before or early in pregnancy, for preventing hypertensive disorders of pregnancy",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Calcium vs placebo for pre-eclampsia, but started before or early in pregnancy, in women with previous pre-eclampsia."
+     },
+     {
+      "pmid": "28949421",
+      "title": "Calcium supplementation commencing before or early in pregnancy, or food fortification with calcium, for preventing hypertensive disorders of pregnancy",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Its only included trial gave calcium together with antioxidants and other supplements, starting in early pregnancy."
+     },
+     {
+      "pmid": "28230063",
+      "title": "Effects of calcium plus vitamin D supplementation on blood pressure: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Calcium plus vitamin D for blood pressure in adults in general, not pregnancy."
+     },
+     {
+      "pmid": "26126003",
+      "title": "Calcium supplementation for prevention of primary hypertension",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Calcium for primary hypertension in normotensive people in general, not in pregnancy."
+     },
+     {
+      "pmid": "25922862",
+      "title": "Calcium supplementation (other than for preventing or treating hypertension) for improving pregnancy and infant outcomes",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Pregnant women given calcium vs placebo/no treatment, but the review explicitly excludes hypertension outcomes and looks at preterm birth and birthweight."
+     },
+     {
+      "pmid": "21501435",
+      "title": "Role of calcium supplementation during pregnancy in reducing risk of developing gestational hypertensive disorders: a meta-analysis of studies from developing countries",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "RCTs of calcium in pregnancy for gestational hypertension and pre-eclampsia, but limited to women in developing countries."
+     },
+     {
+      "pmid": "21975761",
+      "title": "Calcium supplementation (other than for preventing or treating hypertension) for improving pregnancy and infant outcomes",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Pregnant women given calcium vs placebo/no treatment, but outcomes other than hypertension (preterm birth, birthweight) are the focus."
+     },
+     {
+      "pmid": "17386111",
+      "title": "Effect of maternal calcium intake during pregnancy on children's blood pressure: a systematic review of the literature",
+      "year": 2007,
+      "fits": "no",
+      "reason": "Outcome is blood pressure in the offspring, not maternal pre-eclampsia, and it includes observational studies."
+     },
+     {
+      "pmid": "16673011",
+      "title": "Blood pressure response to calcium supplementation: a meta-analysis of randomized controlled trials",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Calcium and blood pressure in non-pregnant people only."
+     },
+     {
+      "pmid": "16625609",
+      "title": "Calcium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Treats primary hypertension in non-pregnant adults; pregnant women were excluded."
+     },
+     {
+      "pmid": "16856060",
+      "title": "Combined calcium, magnesium and potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Combined mineral supplements for primary hypertension in non-pregnant adults."
+     },
+     {
+      "pmid": "10075392",
+      "title": "The influence of dietary and nondietary calcium supplementation on blood pressure: an updated metaanalysis of randomized controlled trials",
+      "year": 1999,
+      "fits": "no",
+      "reason": "Calcium and blood pressure in hypertensive or normotensive people generally, not pregnancy outcomes."
+     },
+     {
+      "pmid": "8610952",
+      "title": "Dietary calcium and blood pressure: a meta-analysis of randomized clinical trials",
+      "year": 1996,
+      "fits": "no",
+      "reason": "Calcium and blood pressure in general normotensive and hypertensive persons, not pregnant women."
+     },
+     {
+      "pmid": "8596234",
+      "title": "Effects of dietary calcium supplementation on blood pressure. A meta-analysis of randomized controlled trials",
+      "year": 1996,
+      "fits": "no",
+      "reason": "Calcium vs placebo and blood pressure in general populations, not pregnancy or pre-eclampsia."
+     },
+     {
+      "pmid": "2145869",
+      "title": "Calcium and blood pressure. An epidemiologic perspective",
+      "year": 1990,
+      "fits": "no",
+      "reason": "Epidemiologic review of calcium and blood pressure that excludes trials in pregnant women."
+     }
+    ]
+   }
+  },
+  {
+   "id": "adenomas",
+   "label": "Bowel polyps",
+   "finding": "Bowel polyps (colorectal adenomas) coming back",
+   "counts": {
+    "reviews": 34,
+    "trialReviews": 9,
+    "trials": 61,
+    "largeTrials": 6
+   },
+   "chosenReviews": [
+    {
+     "pmid": "28796047",
+     "doi": "10.1097/md.0000000000007661",
+     "title": "Effects of calcium on the incidence of recurrent colorectal adenomas: A systematic review with meta-analysis and trial sequential analysis of randomized controlled trials",
+     "year": 2017,
+     "firstAuthor": "Veettil SK",
+     "journal": "Medicine",
+     "citedBy": 8,
+     "n": 2234,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    },
+    {
+     "pmid": "27182169",
+     "doi": "10.3748/wjg.v22.i18.4594",
+     "title": "Calcium supplementation for the prevention of colorectal adenomas: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2016,
+     "firstAuthor": "Bonovas S",
+     "journal": "World journal of gastroenterology",
+     "citedBy": 34,
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+    },
+    {
+     "pmid": "20685491",
+     "doi": "10.1016/j.clinthera.2010.04.024",
+     "title": "Supplemental calcium in the chemoprevention of colorectal cancer: a systematic review and meta-analysis",
+     "year": 2010,
+     "firstAuthor": "Carroll C",
+     "journal": "Clinical therapeutics",
+     "citedBy": 64,
+     "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "36701139",
+     "doi": "10.1001/jamaoncol.2022.6924",
+     "title": "Impact of Common Vitamin D-Binding Protein Isoforms on Supplemental Vitamin D3 and/or Calcium Effects on Colorectal Adenoma Recurrence Risk: A Secondary Analysis of a Randomized Clinical Trial",
+     "year": 2023,
+     "firstAuthor": "Gibbs DC",
+     "journal": "JAMA oncology",
+     "citedBy": 12,
+     "n": 2259,
+     "why": "A large trial (about 2,259 people) from 2023, as new as the newest review or newer"
+    },
+    {
+     "pmid": "27978548",
+     "doi": "10.1001/jamaoncol.2016.5917",
+     "title": "Vitamin D Receptor Genotype, Vitamin D3 Supplementation, and Risk of Colorectal Adenomas: A Randomized Clinical Trial",
+     "year": 2017,
+     "firstAuthor": "Barry EL",
+     "journal": "JAMA oncology",
+     "citedBy": 76,
+     "n": 2259,
+     "why": "A large trial (about 2,259 people) from 2017, as new as the newest review or newer"
+    },
+    {
+     "pmid": "30833381",
+     "doi": "10.1158/1940-6207.capr-19-0023",
+     "title": "No Evidence for Posttreatment Effects of Vitamin D and Calcium Supplementation on Risk of Colorectal Adenomas in a Randomized Trial",
+     "year": 2019,
+     "firstAuthor": "Calderwood AH",
+     "journal": "Cancer prevention research (Philadelphia, Pa.)",
+     "citedBy": 22,
+     "n": 1121,
+     "why": "A large trial (about 1,121 people) from 2019, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.5,
+    "trials": 8,
+    "inclusions": 12,
+    "reviews": [
+     {
+      "pmid": "28796047",
+      "trials": 4
+     },
+     {
+      "pmid": "27182169",
+      "trials": 8
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "20685491"
+    ],
+    "shared": [
+     {
+      "pmid": "26465985",
+      "title": "A Trial of Calcium and Vitamin D for the Prevention of Colorectal Adenomas",
+      "year": 2015,
+      "n": 2259,
+      "inReviews": [
+       "28796047",
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "9887161",
+      "title": "Calcium supplements for the prevention of colorectal adenomas. Calcium Polyp Prevention Study Group",
+      "year": 1999,
+      "n": 930,
+      "inReviews": [
+       "28796047",
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "11073017",
+      "title": "Calcium and fibre supplementation in prevention of colorectal adenoma recurrence: a randomised intervention trial. European Cancer Prevention Organisation Study Group",
+      "year": 2000,
+      "n": 665,
+      "inReviews": [
+       "28796047",
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "9586828",
+      "title": "Growth and recurrence of colorectal polyps: a double-blind 3-year intervention with calcium and antioxidants",
+      "year": 1998,
+      "n": 116,
+      "inReviews": [
+       "28796047",
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "9237061",
+      "title": "Chemoprevention of metachronous adenomas of the large bowel: design and interim results of a randomized trial of calcium and fibre. ECP Colon Group",
+      "year": 1997,
+      "n": 655,
+      "inReviews": [
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "1463996",
+      "title": "Growth of colorectal polyps: design of a prospective, randomized, placebo-controlled intervention study in patients with colorectal polyps",
+      "year": 1992,
+      "n": 108,
+      "inReviews": [
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "10668490",
+      "title": "Calcium supplements and colorectal adenomas. Polyp Prevention Study Group",
+      "year": 1999,
+      "inReviews": [
+       "27182169"
+      ]
+     },
+     {
+      "pmid": "15199111",
+      "title": "Effect of calcium supplementation on the risk of large bowel polyps",
+      "year": 2004,
+      "inReviews": [
+       "27182169"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "15671222",
+     "title": "The association of calcium and vitamin D with risk of colorectal adenomas",
+     "year": 2005,
+     "n": 1905
+    },
+    {
+     "pmid": "16481636",
+     "title": "Calcium plus vitamin D supplementation and the risk of colorectal cancer",
+     "year": 2006,
+     "n": 36282
+    },
+    {
+     "pmid": "26465985",
+     "title": "A Trial of Calcium and Vitamin D for the Prevention of Colorectal Adenomas",
+     "year": 2015,
+     "n": 2259
+    },
+    {
+     "pmid": "27978548",
+     "title": "Vitamin D Receptor Genotype, Vitamin D3 Supplementation, and Risk of Colorectal Adenomas: A Randomized Clinical Trial",
+     "year": 2017,
+     "n": 2259
+    },
+    {
+     "pmid": "30833381",
+     "title": "No Evidence for Posttreatment Effects of Vitamin D and Calcium Supplementation on Risk of Colorectal Adenomas in a Randomized Trial",
+     "year": 2019,
+     "n": 1121
+    },
+    {
+     "pmid": "36701139",
+     "title": "Impact of Common Vitamin D-Binding Protein Isoforms on Supplemental Vitamin D3 and/or Calcium Effects on Colorectal Adenoma Recurrence Risk: A Secondary Analysis of a Randomized Clinical Trial",
+     "year": 2023,
+     "n": 2259
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "26465985"
+    ],
+    "citedNotEligible": [
+     "26465985"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "28796047",
+      "doi": "10.1097/md.0000000000007661",
+      "title": "Effects of calcium on the incidence of recurrent colorectal adenomas: A systematic review with meta-analysis and trial sequential analysis of randomized controlled trials",
+      "year": 2017,
+      "firstAuthor": "Veettil SK",
+      "journal": "Medicine",
+      "citedBy": 8,
+      "n": 2234,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "27182169",
+      "doi": "10.3748/wjg.v22.i18.4594",
+      "title": "Calcium supplementation for the prevention of colorectal adenomas: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2016,
+      "firstAuthor": "Bonovas S",
+      "journal": "World journal of gastroenterology",
+      "citedBy": 34,
+      "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+     },
+     {
+      "pmid": "20685491",
+      "doi": "10.1016/j.clinthera.2010.04.024",
+      "title": "Supplemental calcium in the chemoprevention of colorectal cancer: a systematic review and meta-analysis",
+      "year": 2010,
+      "firstAuthor": "Carroll C",
+      "journal": "Clinical therapeutics",
+      "citedBy": 64,
+      "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+     },
+     {
+      "pmid": "36701139",
+      "doi": "10.1001/jamaoncol.2022.6924",
+      "title": "Impact of Common Vitamin D-Binding Protein Isoforms on Supplemental Vitamin D3 and/or Calcium Effects on Colorectal Adenoma Recurrence Risk: A Secondary Analysis of a Randomized Clinical Trial",
+      "year": 2023,
+      "firstAuthor": "Gibbs DC",
+      "journal": "JAMA oncology",
+      "citedBy": 12,
+      "n": 2259,
+      "why": "A large trial (about 2,259 people) from 2023, as new as the newest review or newer"
+     },
+     {
+      "pmid": "27978548",
+      "doi": "10.1001/jamaoncol.2016.5917",
+      "title": "Vitamin D Receptor Genotype, Vitamin D3 Supplementation, and Risk of Colorectal Adenomas: A Randomized Clinical Trial",
+      "year": 2017,
+      "firstAuthor": "Barry EL",
+      "journal": "JAMA oncology",
+      "citedBy": 76,
+      "n": 2259,
+      "why": "A large trial (about 2,259 people) from 2017, as new as the newest review or newer"
+     },
+     {
+      "pmid": "30833381",
+      "doi": "10.1158/1940-6207.capr-19-0023",
+      "title": "No Evidence for Posttreatment Effects of Vitamin D and Calcium Supplementation on Risk of Colorectal Adenomas in a Randomized Trial",
+      "year": 2019,
+      "firstAuthor": "Calderwood AH",
+      "journal": "Cancer prevention research (Philadelphia, Pa.)",
+      "citedBy": 22,
+      "n": 1121,
+      "why": "A large trial (about 1,121 people) from 2019, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults who had bowel polyps (colorectal adenomas) removed, or adults in general",
+     "intervention": "Calcium supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Colorectal adenomas (bowel polyps), new or coming back"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 0,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "25156950",
+      "title": "Calcium intake and colorectal adenoma risk: dose-response meta-analysis of prospective observational studies",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Pools prospective observational studies of calcium intake, not randomised trials of supplements against placebo."
+     },
+     {
+      "pmid": "24623471",
+      "title": "Calcium intake and colorectal cancer risk: dose-response meta-analysis of prospective observational studies",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Pools observational studies of calcium intake, not randomised trials, and the outcome is colorectal cancer rather than adenomas."
+     }
+    ]
+   }
+  }
+ ]
+}

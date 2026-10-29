@@ -1,0 +1,456 @@
+{
+ "topic": "vitamin_a",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "lung-cancer": {
+   "question": {
+    "population": "Adults, including smokers, former smokers and people exposed to asbestos",
+    "intervention": "Beta-carotene supplements (alone or with other vitamins)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Lung cancer"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "35405977",
+     "fits": "yes",
+     "reason": "Pools RCTs of beta-carotene supplements and lung cancer risk in people without lung cancer, with a subgroup for smokers and asbestos workers."
+    },
+    {
+     "pmid": "18429004",
+     "fits": "yes",
+     "reason": "Pools randomised trials of beta-carotene supplements and lung cancer incidence in current and former smokers, which is within the target population."
+    },
+    {
+     "pmid": "18689373",
+     "fits": "yes",
+     "reason": "Pools six RCTs comparing beta-carotene supplements with placebo for lung cancer risk; the observational studies are analysed separately."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults, healthy or with various diseases",
+    "intervention": "Beta-carotene or vitamin A supplements (alone or with other antioxidants, with results for them apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "35928292",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults with any health condition comparing beta-carotene with placebo or no intervention on death from any cause."
+    },
+    {
+     "pmid": "28513263",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin A versus control on mortality, but the population is children under 5, not adults."
+    },
+    {
+     "pmid": "24040282",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults giving separate all-cause mortality results for beta-carotene and vitamin A versus placebo or no intervention."
+    },
+    {
+     "pmid": "20522482",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled RCTs of vitamin A given to postpartum mothers, but the outcome is infant death, not the adults' own death."
+    },
+    {
+     "pmid": "22419320",
+     "fits": "yes",
+     "reason": "Pooled RCTs in healthy adults and adults with diseases testing antioxidants including beta-carotene and vitamin A versus placebo on mortality."
+    },
+    {
+     "pmid": "18425980",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults versus placebo or no intervention, with separate all-cause mortality results for vitamin A and beta-carotene."
+    },
+    {
+     "pmid": "17327526",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults versus placebo or no intervention, reporting all-cause mortality separately for beta-carotene and vitamin A."
+    },
+    {
+     "pmid": "12522272",
+     "fits": "no",
+     "reason": "A narrative critical review of Indian trials in children with no pooled analysis; both the population and the method differ."
+    }
+   ]
+  },
+  "cancer": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Beta-carotene supplements (alone or with other vitamins)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New cancers (overall or by type)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38287248",
+     "fits": "no",
+     "reason": "Pooled only case-control and cohort studies of carotenoid intake; it did not pool randomised trials of beta-carotene supplements."
+    },
+    {
+     "pmid": "35405977",
+     "fits": "yes",
+     "reason": "Pooled RCTs of beta-carotene supplements in people without lung cancer and reported lung cancer incidence."
+    },
+    {
+     "pmid": "34635464",
+     "fits": "no",
+     "reason": "Studied breast cancer survivors taking vitamins A, C or E after diagnosis; the outcome was survival, not new cancers."
+    },
+    {
+     "pmid": "35727272",
+     "fits": "yes",
+     "reason": "Pooled RCTs in healthy adults of beta-carotene, with or without vitamin A, and reported lung cancer incidence."
+    },
+    {
+     "pmid": "18429004",
+     "fits": "partly",
+     "reason": "Pooled beta-carotene RCTs for lung cancer, but reported results only for current and former smokers, a narrower group."
+    },
+    {
+     "pmid": "21981610",
+     "fits": "yes",
+     "reason": "Pooled RCTs of beta-carotene alone versus placebo for cancer incidence, with a separate primary prevention analysis."
+    },
+    {
+     "pmid": "28244289",
+     "fits": "yes",
+     "reason": "Pooled RCTs of supplements for bladder cancer, with a subgroup for beta-carotene alone."
+    },
+    {
+     "pmid": "19876916",
+     "fits": "yes",
+     "reason": "Pooled RCTs of beta-carotene versus placebo for overall cancer incidence and incidence by cancer site."
+    },
+    {
+     "pmid": "18677777",
+     "fits": "partly",
+     "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; no beta-carotene-only cancer result is reported."
+    },
+    {
+     "pmid": "18689373",
+     "fits": "yes",
+     "reason": "Pooled six RCTs of beta-carotene supplements versus placebo for lung cancer risk."
+    },
+    {
+     "pmid": "20661819",
+     "fits": "yes",
+     "reason": "Pooled RCTs of beta-carotene versus placebo for prostate cancer incidence."
+    },
+    {
+     "pmid": "15495084",
+     "fits": "partly",
+     "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; beta-carotene-specific results cover mortality only."
+    },
+    {
+     "pmid": "19145725",
+     "fits": "partly",
+     "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; no beta-carotene-only cancer result is reported."
+    },
+    {
+     "pmid": "15464182",
+     "fits": "partly",
+     "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; beta-carotene-specific results cover mortality only."
+    },
+    {
+     "pmid": "16880453",
+     "fits": "partly",
+     "reason": "In general adults, beta-carotene was given only with minerals such as selenium and zinc, and the trials were summarised without pooling."
+    }
+   ]
+  },
+  "birth-defects": {
+   "question": {
+    "population": "Pregnant women",
+    "intervention": "Preformed vitamin A (retinol) supplements in early pregnancy",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Birth defects in the baby"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40605146",
+     "fits": "no",
+     "reason": "Looks at maternal vitamin A, C or E intake, mostly in observational studies, and child breathing problems, not birth defects; vitamin A was not pooled."
+    },
+    {
+     "pmid": "40752545",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin A in pregnancy or breastfeeding, but outcomes are only nutrient blood levels, not birth defects."
+    },
+    {
+     "pmid": "29846525",
+     "fits": "no",
+     "reason": "Looks at retinol in breast milk and postpartum supplements, not supplements in early pregnancy or birth defects."
+    },
+    {
+     "pmid": "35852163",
+     "fits": "partly",
+     "reason": "Covers vitamin A in pregnancy and reports birth defects, but that result comes from observational studies of vitamin A given with other nutrients."
+    },
+    {
+     "pmid": "26503498",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin A alone vs placebo in pregnant women, but the abstract reports mortality, preterm birth and birthweight, not birth defects."
+    },
+    {
+     "pmid": "30859783",
+     "fits": "no",
+     "reason": "Looks at vitamin A for preventing or treating malaria in pregnancy and childhood, not birth defects."
+    },
+    {
+     "pmid": "21069707",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin A in pregnant women, but the abstract reports mortality, anaemia, infection and birthweight, not birth defects."
+    },
+    {
+     "pmid": "21069669",
+     "fits": "partly",
+     "reason": "Withdrawn review of vitamin A RCTs in pregnancy; it did no pooling and reports maternal outcomes, not birth defects."
+    },
+    {
+     "pmid": "20522482",
+     "fits": "no",
+     "reason": "Looks at supplements given to mothers after birth and infant deaths or illness, not early pregnancy or birth defects."
+    },
+    {
+     "pmid": "12519564",
+     "fits": "partly",
+     "reason": "Reviews vitamin A RCTs in pregnant women, but it did no pooling and reports maternal outcomes, not birth defects."
+    },
+    {
+     "pmid": "22742601",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin A or beta-carotene in pregnancy, but the abstract reports birthweight, fetal loss and mortality, not birth defects."
+    }
+   ]
+  },
+  "children": {
+   "question": {
+    "population": "Children aged 6 months to 5 years, mostly in low- and middle-income countries",
+    "intervention": "Vitamin A supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Death and illness (diarrhoea, measles, infections)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42008030",
+     "fits": "partly",
+     "reason": "Vitamin A is used to treat children who already have pneumonia, and the review mainly compares doses with each other rather than with placebo."
+    },
+    {
+     "pmid": "38738639",
+     "fits": "partly",
+     "reason": "Vitamin A vs control to prevent infection in LMIC children, but ages run up to 7 years, neonates are included, and the only outcome is upper respiratory infections."
+    },
+    {
+     "pmid": "37634852",
+     "fits": "no",
+     "reason": "This reviews food-based approaches, not supplements, in women and children, with vitamin A status as the outcome."
+    },
+    {
+     "pmid": "35463913",
+     "fits": "no",
+     "reason": "The population is very-low-birth-weight preterm infants and the outcomes are neonatal conditions such as BPD, a different question."
+    },
+    {
+     "pmid": "40787612",
+     "fits": "partly",
+     "reason": "Vitamin A in malnourished LMIC children, but it is mixed with other nutrients, non-randomised studies are included, and the outcome is only vaccine seroconversion."
+    },
+    {
+     "pmid": "34959803",
+     "fits": "partly",
+     "reason": "Randomised trials of vitamin A alone vs placebo in children, but the only outcome is respiratory infection and the age range is not stated."
+    },
+    {
+     "pmid": "35928292",
+     "fits": "no",
+     "reason": "This covers beta-carotene supplements in adults, a different intervention and population."
+    },
+    {
+     "pmid": "35294044",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin A supplements in community children aged 6 months to 5 years for death and illness."
+    },
+    {
+     "pmid": "35852163",
+     "fits": "no",
+     "reason": "Vitamin A is given to mothers during pregnancy and the outcomes are fetal and newborn growth."
+    },
+    {
+     "pmid": "35584136",
+     "fits": "yes",
+     "reason": "Updated meta-analysis of randomised trials of vitamin A supplements vs control for death in children under five in LMICs."
+    },
+    {
+     "pmid": "28282701",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin A supplements in community children aged 6 months to 5 years for death and illness."
+    },
+    {
+     "pmid": "28513263",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of vitamin A vs control for death in children under five in vitamin A deficient countries."
+    },
+    {
+     "pmid": "27580345",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo is given to treat children who already have measles, and the outcomes are blindness and blood retinol."
+    },
+    {
+     "pmid": "21868478",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin A supplements in children aged 6 months to 5 years for death, diarrhoea and measles."
+    },
+    {
+     "pmid": "29429465",
+     "fits": "partly",
+     "reason": "Vitamin A is an add-on treatment for children who already have pneumonia, not prevention in healthy children."
+    },
+    {
+     "pmid": "21491401",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo is given to treat children who already have measles, and the outcomes are blindness and blood retinol."
+    },
+    {
+     "pmid": "35753314",
+     "fits": "no",
+     "reason": "This reviews micronutrient-fortified foods, not vitamin A supplements, with growth and blood markers as outcomes."
+    },
+    {
+     "pmid": "24436005",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo is given to treat children who already have measles, and the outcomes are blindness and blood retinol."
+    },
+    {
+     "pmid": "21975770",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo for death and illness in LMICs, but the children are infants aged 6 months or younger, or their mothers after birth."
+    },
+    {
+     "pmid": "21154399",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin A supplements in community children aged 6 months to 5 years for death and illness."
+    },
+    {
+     "pmid": "27552058",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo or no supplementation with death as an outcome, but the population is very low birth weight newborns, not children 6 months to 5 years."
+    },
+    {
+     "pmid": "12640379",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin A supplements in children 6 months to 7 years, with diarrhoea and respiratory infection outcomes."
+    },
+    {
+     "pmid": "24040282",
+     "fits": "no",
+     "reason": "Trials of antioxidant supplements in adults aged 18 to 103, not young children."
+    },
+    {
+     "pmid": "24740209",
+     "fits": "no",
+     "reason": "School-age children; looks at helminths with micronutrient status and multimicronutrient effects on worm infection, not vitamin A for death or illness."
+    },
+    {
+     "pmid": "21975731",
+     "fits": "partly",
+     "reason": "Vitamin A vs control with death as an outcome, but the population is very low birth weight newborns, not children 6 months to 5 years."
+    },
+    {
+     "pmid": "18254093",
+     "fits": "partly",
+     "reason": "Vitamin A to prevent lower respiratory infections in children up to 7, but results are described trial by trial with no pooled estimate."
+    },
+    {
+     "pmid": "20522482",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials on infant death and illness, but the vitamin A was given to mothers after birth, not to the children."
+    },
+    {
+     "pmid": "17943744",
+     "fits": "partly",
+     "reason": "Vitamin A for death and morbidity, but in very low birth weight newborns compared with standard vitamin A regimens."
+    },
+    {
+     "pmid": "22419320",
+     "fits": "no",
+     "reason": "Antioxidant supplements for preventing death in adults, not young children."
+    },
+    {
+     "pmid": "18425980",
+     "fits": "no",
+     "reason": "Antioxidant prevention trials in healthy people and patients with mostly adult diseases, not young children."
+    },
+    {
+     "pmid": "24028603",
+     "fits": "partly",
+     "reason": "Vitamin A in children, but for treating severe acute malnutrition, mainly comparing high and low doses, with no pooled analysis."
+    },
+    {
+     "pmid": "17327526",
+     "fits": "no",
+     "reason": "Antioxidant supplement trials in adults, not young children."
+    },
+    {
+     "pmid": "8426449",
+     "fits": "yes",
+     "reason": "Pooled controlled trials of vitamin A supplements given to children in communities, with child death as the outcome."
+    },
+    {
+     "pmid": "12522272",
+     "fits": "partly",
+     "reason": "Vitamin A trials on child death and illness, but limited to India and appraised narratively without pooling."
+    },
+    {
+     "pmid": "16235283",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo for death and complications, but it treats children who already have measles rather than preventing illness."
+    },
+    {
+     "pmid": "11509101",
+     "fits": "partly",
+     "reason": "Includes vitamin A supplement trials in children, but the outcome is linear growth, not death or illness."
+    },
+    {
+     "pmid": "16034908",
+     "fits": "partly",
+     "reason": "Vitamin A in children, but as an added treatment for existing non-measles pneumonia rather than prevention."
+    },
+    {
+     "pmid": "12519545",
+     "fits": "partly",
+     "reason": "Vitamin A for death and morbidity, but in very low birth weight newborns compared with standard vitamin A regimens."
+    },
+    {
+     "pmid": "12521271",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo for death in children 6 months to 13 years, but it treats existing measles rather than preventing illness."
+    },
+    {
+     "pmid": "10796372",
+     "fits": "partly",
+     "reason": "Vitamin A for death and morbidity, but in very low birth weight newborns compared with standard vitamin A regimens."
+    },
+    {
+     "pmid": "11869601",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo in children with death and complications as outcomes, but it treats diagnosed measles rather than preventing illness."
+    },
+    {
+     "pmid": "11405993",
+     "fits": "partly",
+     "reason": "Vitamin A vs placebo in children with death and complications as outcomes, but it treats diagnosed measles rather than preventing illness."
+    }
+   ]
+  }
+ }
+}

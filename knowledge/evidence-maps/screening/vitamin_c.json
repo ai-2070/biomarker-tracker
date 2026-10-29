@@ -1,0 +1,397 @@
+{
+ "topic": "vitamin_c",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "kidney-stones": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Vitamin C supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Kidney stones, or oxalate in urine"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "30178451",
+     "fits": "partly",
+     "reason": "Adults, vitamin C supplements and kidney stones match, but the pooled studies look observational (dose-based odds ratios; RCTs called for), not randomised trials."
+    }
+   ]
+  },
+  "with-iron": {
+   "question": {
+    "population": "Adults with iron-deficiency anaemia taking iron tablets",
+    "intervention": "Vitamin C tablets added to iron tablets",
+    "comparison": "Iron tablets alone",
+    "outcome": "Haemoglobin and iron stores (ferritin)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42349680",
+     "fits": "no",
+     "reason": "Tests vitamin C-rich fruits or juices eaten with meals in females and children, not vitamin C tablets added to iron tablets in anaemic adults."
+    },
+    {
+     "pmid": "19783342",
+     "fits": "partly",
+     "reason": "Pools RCTs of vitamin C on haemoglobin and ferritin, but in hemodialysis patients on standard anaemia care, not adults taking iron tablets alone."
+    }
+   ]
+  },
+  "colds-catching": {
+   "question": {
+    "population": "Children and adults in the general community",
+    "intervention": "Vitamin C every day",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How many people catch colds (or respiratory infections)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "34967304",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of regular vitamin C and reported the risk ratio for developing respiratory illness."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "partly",
+     "reason": "Pooled vitamin C trials separately for ARI occurrence, but included adults only, not children."
+    },
+    {
+     "pmid": "33102597",
+     "fits": "no",
+     "reason": "Vitamin C was added to antiviral treatment for existing colds and compared with antivirals alone; outcome was symptom relief."
+    },
+    {
+     "pmid": "23440782",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of regular vitamin C, with a separate cold incidence result for the general community."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "no",
+     "reason": "Analysed zinc, vitamin D and vitamins A and E; no vitamin C trials were included."
+    },
+    {
+     "pmid": "17636648",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of preventive daily vitamin C for cold incidence in the normal population."
+    },
+    {
+     "pmid": "15495002",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of continuous daily vitamin C for the risk of developing a cold."
+    },
+    {
+     "pmid": "15971944",
+     "fits": "yes",
+     "reason": "No abstract; the title matches vitamin C for preventing colds, so it is kept for full-text check."
+    },
+    {
+     "pmid": "10796569",
+     "fits": "partly",
+     "reason": "Daily vitamin C and cold incidence match, but it included non-randomised trials and reported no pooled incidence estimate."
+    },
+    {
+     "pmid": "15605943",
+     "fits": "partly",
+     "reason": "Vitamin C and respiratory infection incidence match, but only military personnel, crowded students and marathon runners."
+    }
+   ]
+  },
+  "colds-stress": {
+   "question": {
+    "population": "People under heavy physical stress (marathon runners, skiers, soldiers)",
+    "intervention": "Vitamin C every day",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How many people catch colds (results for this group apart)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41687812",
+     "fits": "no",
+     "reason": "Vitamin C vs placebo in exercisers, but outcomes are post-exercise inflammation and oxidative stress markers, not cold incidence."
+    },
+    {
+     "pmid": "34967304",
+     "fits": "partly",
+     "reason": "Pools regular vitamin C vs placebo on respiratory illness incidence, but in general populations with no heavy-physical-stress subgroup reported."
+    },
+    {
+     "pmid": "40166056",
+     "fits": "no",
+     "reason": "Dialysis patients and lipid peroxidation markers; a different population and outcome."
+    },
+    {
+     "pmid": "32162041",
+     "fits": "no",
+     "reason": "Single-bout exercise in healthy volunteers with oxidative stress, inflammation and muscle outcomes; no cold incidence."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "partly",
+     "reason": "Pools vitamin C on respiratory infection occurrence, but in general adults with no separate analysis for heavy physical stress."
+    },
+    {
+     "pmid": "31851538",
+     "fits": "no",
+     "reason": "Vitamin C and/or E during exercise training with performance and adaptation outcomes; no cold incidence."
+    },
+    {
+     "pmid": "33102597",
+     "fits": "no",
+     "reason": "Vitamin C plus antiviral to treat existing colds vs antiviral alone; not prevention in physically stressed people."
+    },
+    {
+     "pmid": "23440782",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of regular vitamin C on cold incidence with a separate subgroup of marathon runners, skiers and soldiers."
+    },
+    {
+     "pmid": "17636648",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of prophylactic vitamin C on cold incidence with a subgroup of marathon runners, skiers and soldiers."
+    },
+    {
+     "pmid": "15495002",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of prophylactic vitamin C on cold incidence with a subgroup of marathon runners, skiers and soldiers."
+    },
+    {
+     "pmid": "15971944",
+     "fits": "partly",
+     "reason": "Title suggests vitamin C to prevent colds, but there is no abstract to confirm a heavy-physical-stress subgroup or pooled trials."
+    },
+    {
+     "pmid": "10796569",
+     "fits": "partly",
+     "reason": "Vitamin C to prevent colds, but includes non-randomised trials and reports no separate analysis for physically stressed people."
+    },
+    {
+     "pmid": "15605943",
+     "fits": "partly",
+     "reason": "Covers soldiers and marathon runners on cold incidence, but mixes in students, includes non-randomised trials and reports no pooled analysis."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "no",
+     "reason": "Reviews zinc, vitamin D and vitamins A and E for colds; no vitamin C trials were analysed."
+    }
+   ]
+  },
+  "colds-duration": {
+   "question": {
+    "population": "Children and adults",
+    "intervention": "Vitamin C every day, or started when a cold begins",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How long colds last and how bad they are"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "34967304",
+     "fits": "partly",
+     "reason": "Vitamin C vs placebo with pooled duration and severity matches, but the outcome is respiratory tract infections in general rather than colds specifically."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "partly",
+     "reason": "Pools vitamin C trials on how long infections last, but only in adults and for acute respiratory infections in general rather than colds."
+    },
+    {
+     "pmid": "33102597",
+     "fits": "partly",
+     "reason": "Treats colds with vitamin C added to antiviral drugs, compared with antivirals alone rather than placebo, in trials from China."
+    },
+    {
+     "pmid": "23440782",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled trials of daily and cold-onset vitamin C in adults and children for cold duration and severity."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "no",
+     "reason": "Pooled data cover zinc, vitamin D and vitamins A and E; vitamin C was left out of the analysis."
+    },
+    {
+     "pmid": "17636648",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled trials of daily and cold-onset vitamin C in adults and children for cold duration and severity."
+    },
+    {
+     "pmid": "15495002",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled trials of daily and cold-onset vitamin C in adults and children for cold duration and severity."
+    },
+    {
+     "pmid": "15971944",
+     "fits": "yes",
+     "reason": "Title matches the question on every part, but there is no abstract, so the methods and pooling could not be checked."
+    },
+    {
+     "pmid": "10796569",
+     "fits": "partly",
+     "reason": "Daily and cold-onset vitamin C for cold duration matches, but randomised and non-randomised trials were pooled together."
+    },
+    {
+     "pmid": "15605943",
+     "fits": "no",
+     "reason": "Covers only soldiers, students and marathon runners, and reports how often colds and pneumonia occur, not how long or bad they are."
+    }
+   ]
+  },
+  "chronic-disease": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Vitamin C supplements (alone, or with results for vitamin C apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart disease, cancer or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41521729",
+     "fits": "no",
+     "reason": "Two parts differ: the people all have type 2 diabetes, and the outcomes are blood sugar, lipids and blood pressure rather than heart disease, cancer or death."
+    },
+    {
+     "pmid": "38291560",
+     "fits": "partly",
+     "reason": "Vitamin C is compared with placebo, but the outcome is stroke rather than heart disease, and randomised trials are pooled together with cohort studies."
+    },
+    {
+     "pmid": "40914496",
+     "fits": "no",
+     "reason": "The people have coronary artery disease, the antioxidants are mostly not vitamin C, and the outcomes are oxidative stress markers."
+    },
+    {
+     "pmid": "33472962",
+     "fits": "no",
+     "reason": "Two parts differ: the people have type 2 diabetes, and the outcomes are blood markers and blood pressure rather than heart disease, cancer or death."
+    },
+    {
+     "pmid": "34635464",
+     "fits": "no",
+     "reason": "The people are breast cancer patients, the studies are observational, and it looks at survival after diagnosis rather than prevention."
+    },
+    {
+     "pmid": "31035414",
+     "fits": "no",
+     "reason": "This is about treating people who already have cancer with vitamin C, and few of the included studies are randomised."
+    },
+    {
+     "pmid": "34325683",
+     "fits": "partly",
+     "reason": "Mainly a Mendelian randomisation study; its meta-analysis of vitamin C and cancer pools cohort studies with randomised trials."
+    },
+    {
+     "pmid": "32148118",
+     "fits": "no",
+     "reason": "The people are cancer survivors, and the vitamin C results come only from observational studies."
+    },
+    {
+     "pmid": "33509399",
+     "fits": "yes",
+     "reason": "Pools randomised trials of supplements, including vitamin C reported on its own, for heart disease outcomes and death from any cause."
+    },
+    {
+     "pmid": "23994417",
+     "fits": "no",
+     "reason": "The outcome is kidney injury from contrast dye in patients having coronary angiography."
+    },
+    {
+     "pmid": "32718091",
+     "fits": "no",
+     "reason": "Vitamin C is given into a vein around a heart procedure (PCI), and the outcomes are mostly markers of heart injury."
+    },
+    {
+     "pmid": "27529239",
+     "fits": "partly",
+     "reason": "Looks at vitamin C and heart disease, but mixes trial and cohort evidence and does not appear to pool the randomised trials."
+    },
+    {
+     "pmid": "30683434",
+     "fits": "partly",
+     "reason": "Vitamin C supplements are studied, but the outcomes are only heart disease risk markers such as blood pressure and lipids, not actual disease."
+    },
+    {
+     "pmid": "28301692",
+     "fits": "yes",
+     "reason": "Randomised trials of vitamin C alone against placebo in healthy or at-risk adults, reporting heart disease events and death from any cause."
+    },
+    {
+     "pmid": "36480969",
+     "fits": "yes",
+     "reason": "Pools randomised trials of micronutrients, with vitamin C reported separately for heart disease outcomes."
+    },
+    {
+     "pmid": "35727272",
+     "fits": "partly",
+     "reason": "Randomised trials in healthy adults covering heart disease, cancer and death, but the abstract gives no separate result for vitamin C."
+    },
+    {
+     "pmid": "17327526",
+     "fits": "yes",
+     "reason": "Randomised trials in adults of antioxidants against placebo, with a separate analysis of vitamin C and death from any cause."
+    },
+    {
+     "pmid": "18425980",
+     "fits": "yes",
+     "reason": "Randomised trials in healthy and sick adults of antioxidants against placebo for death, with each antioxidant, vitamin C included, assessed separately."
+    },
+    {
+     "pmid": "20661819",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin C against placebo for how often prostate cancer occurs and how often it causes death."
+    },
+    {
+     "pmid": "22419320",
+     "fits": "yes",
+     "reason": "Updated pooling of randomised trials in adults of antioxidants, vitamin C included, against placebo or no treatment for death."
+    },
+    {
+     "pmid": "18677777",
+     "fits": "partly",
+     "reason": "Placebo-controlled prevention trials on cancer and death that include vitamin C, but the abstract shows only pooled antioxidant results, not vitamin C apart."
+    },
+    {
+     "pmid": "24532094",
+     "fits": "no",
+     "reason": "Patients with heart attack undergoing PCI, treated with mixed antioxidant drugs, with oxidative stress and damage outcomes; a different question."
+    },
+    {
+     "pmid": "23437244",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials on cardiovascular events and death include vitamin C, but the abstract shows only pooled antioxidant vitamin results."
+    },
+    {
+     "pmid": "19145725",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials on gastrointestinal cancer and death include vitamin C, but the abstract shows only pooled antioxidant results."
+    },
+    {
+     "pmid": "15495084",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials on gastrointestinal cancer and death include vitamin C, but the abstract gives no separate vitamin C result."
+    },
+    {
+     "pmid": "24620628",
+     "fits": "partly",
+     "reason": "Colorectal cancer and death outcomes vs placebo, but vitamin C is reported only combined with vitamin E, and some trials enrolled adenoma patients."
+    },
+    {
+     "pmid": "11982737",
+     "fits": "partly",
+     "reason": "Covers antioxidant vitamins, including vitamin C, for heart disease prevention, but it is a mixed narrative review with no pooled vitamin C trial result."
+    },
+    {
+     "pmid": "16880453",
+     "fits": "partly",
+     "reason": "Adults and outcomes of cancer, heart disease and death match, but vitamin C is given only in multivitamin or mineral combinations."
+    }
+   ]
+  }
+ }
+}

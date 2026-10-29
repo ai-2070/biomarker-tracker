@@ -1,0 +1,321 @@
+{
+ "topic": "selenium",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "graves-eyes": {
+   "question": {
+    "population": "Adults with Graves' orbitopathy (thyroid eye disease)",
+    "intervention": "Selenium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Eye disease activity, how the disease develops, and quality of life"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39138905",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing selenium with placebo in Graves' orbitopathy patients, reporting clinical activity score and GO-QOL outcomes."
+    }
+   ]
+  },
+  "hashimoto": {
+   "question": {
+    "population": "Adults with Hashimoto's thyroiditis",
+    "intervention": "Selenium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Thyroid hormones and dose of thyroid medicine, well-being, or thyroid antibodies"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40898469",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of selenium in Hashimoto's thyroiditis, reporting thyroid antibodies and thyroid hormones (TSH, FT3, FT4)."
+    },
+    {
+     "pmid": "38243784",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of selenium in Hashimoto's thyroiditis versus control, reporting thyroid hormones, antibodies and patient-reported outcomes."
+    },
+    {
+     "pmid": "37335715",
+     "fits": "partly",
+     "reason": "Selenium in Hashimoto's thyroiditis with antibody outcomes, but it pooled 'controlled trials' that are not clearly all randomised."
+    },
+    {
+     "pmid": "37513612",
+     "fits": "yes",
+     "reason": "Overview that re-pooled RCTs of selenium in autoimmune (Hashimoto's) thyroiditis, reporting thyroid antibody outcomes by LT4 status."
+    },
+    {
+     "pmid": "33894732",
+     "fits": "partly",
+     "reason": "Pooled RCTs of selenium vs placebo, but in autoimmune thyroid disease generally, not only Hashimoto's thyroiditis."
+    },
+    {
+     "pmid": "23744563",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of selenium vs placebo in adults with Hashimoto's thyroiditis; pooled antibody data and reported well-being."
+    },
+    {
+     "pmid": "27702392",
+     "fits": "partly",
+     "reason": "Adults with autoimmune thyroiditis given selenium vs placebo/LT4 with antibody outcomes, but it pooled controlled trials, not only RCTs."
+    },
+    {
+     "pmid": "27683225",
+     "fits": "partly",
+     "reason": "Adults with autoimmune thyroiditis, selenium vs placebo, TSH and quality of life, but it pooled controlled trials, not only RCTs."
+    },
+    {
+     "pmid": "20883174",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised placebo-controlled trials of selenium in Hashimoto's patients on LT4, reporting antibodies and mood/well-being."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults without diabetes at the start",
+    "intervention": "Selenium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New type 2 diabetes, or blood sugar"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37574154",
+     "fits": "partly",
+     "reason": "Pooled RCTs of selenium vs placebo on fasting blood sugar, but the population is not limited to adults without diabetes."
+    },
+    {
+     "pmid": "36432623",
+     "fits": "partly",
+     "reason": "Pooled selenium RCTs on glucose markers, but only in patients with cardiometabolic diseases, so this is treatment rather than prevention."
+    },
+    {
+     "pmid": "33895112",
+     "fits": "no",
+     "reason": "Pools only observational studies of selenium exposure, not randomised trials of supplements."
+    },
+    {
+     "pmid": "36781602",
+     "fits": "partly",
+     "reason": "Selenium was always given together with probiotics, so its effect on blood sugar cannot be separated."
+    },
+    {
+     "pmid": "35304727",
+     "fits": "partly",
+     "reason": "Selenium is one of the add-on supplements studied, but the population is people who already have type 2 diabetes."
+    },
+    {
+     "pmid": "35963372",
+     "fits": "partly",
+     "reason": "Network meta-analysis includes selenium for glycemic markers, but only in adults who already have type 2 diabetes."
+    },
+    {
+     "pmid": "29974401",
+     "fits": "yes",
+     "reason": "Pooled RCTs of 200 µg/day selenium vs placebo for new type 2 diabetes, alongside a separate analysis of observational studies."
+    },
+    {
+     "pmid": "28992632",
+     "fits": "partly",
+     "reason": "Pooled selenium RCTs on fasting glucose and insulin, but only in patients with metabolic diseases."
+    },
+    {
+     "pmid": "36839303",
+     "fits": "no",
+     "reason": "Covers diabetic patients with glutathione and cardiometabolic outcomes, includes many supplements, and pools no data."
+    },
+    {
+     "pmid": "28570649",
+     "fits": "no",
+     "reason": "Antioxidants for diabetic kidney disease, with kidney outcomes rather than diabetes incidence or blood sugar."
+    },
+    {
+     "pmid": "31148299",
+     "fits": "partly",
+     "reason": "Selenium RCTs on glucose outcomes, but in adults who already have type 2 diabetes (treatment, not prevention)."
+    },
+    {
+     "pmid": "24858736",
+     "fits": "yes",
+     "reason": "Pooled RCTs of selenium vs control for the risk of developing type 2 diabetes."
+    }
+   ]
+  },
+  "cancer": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Selenium supplements (alone, or with results for selenium apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New cancers (overall or by type)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "29936712",
+     "fits": "yes",
+     "reason": "Mostly observational studies, but it reports a separate pooled RCT subgroup of selenium vs control for prostate cancer incidence."
+    },
+    {
+     "pmid": "29376219",
+     "fits": "yes",
+     "reason": "Pools RCTs of selenium supplements vs placebo in adults for any cancer and site-specific cancer incidence."
+    },
+    {
+     "pmid": "21563143",
+     "fits": "partly",
+     "reason": "Selenium vs placebo RCTs in adults for cancer, but the RCTs were summarised narratively rather than pooled."
+    },
+    {
+     "pmid": "24683040",
+     "fits": "yes",
+     "reason": "Includes RCTs of selenium in healthy adults and pools them when two or more report a cancer outcome."
+    },
+    {
+     "pmid": "22004275",
+     "fits": "yes",
+     "reason": "Pools RCTs of selenium alone vs placebo for cancer incidence."
+    },
+    {
+     "pmid": "22073154",
+     "fits": "partly",
+     "reason": "Selenium and lung cancer with RCTs, but the abstract shows no pooled RCT estimate and mixes in observational and treatment evidence."
+    },
+    {
+     "pmid": "18677777",
+     "fits": "yes",
+     "reason": "Pools antioxidant vs placebo RCTs for GI cancers, includes 9 selenium trials, and singles out selenium's effect."
+    },
+    {
+     "pmid": "20661819",
+     "fits": "yes",
+     "reason": "Reports a separate pooled analysis of selenium vs placebo RCTs for prostate cancer incidence."
+    },
+    {
+     "pmid": "18173999",
+     "fits": "yes",
+     "reason": "Antioxidant vs placebo RCT meta-analysis that reports separate selenium results for cancer incidence."
+    },
+    {
+     "pmid": "24620628",
+     "fits": "yes",
+     "reason": "Antioxidant vs placebo RCT meta-analysis that reports a separate selenium estimate for colorectal cancer incidence."
+    },
+    {
+     "pmid": "16184479",
+     "fits": "no",
+     "reason": "Only cohort and case-control studies of selenium intake; no randomised trials of supplements."
+    },
+    {
+     "pmid": "15495084",
+     "fits": "partly",
+     "reason": "Antioxidant vs placebo RCTs for GI cancers include selenium, but the abstract shows no separate selenium result."
+    },
+    {
+     "pmid": "19145725",
+     "fits": "partly",
+     "reason": "Antioxidant vs placebo RCTs for GI cancers include selenium, but the abstract reports only pooled antioxidant effects."
+    },
+    {
+     "pmid": "15464182",
+     "fits": "yes",
+     "reason": "Antioxidant vs placebo RCTs for GI cancers, with a separate result reported for selenium trials."
+    },
+    {
+     "pmid": "24217421",
+     "fits": "partly",
+     "reason": "Selenium is among single-nutrient trials in adults, but the evidence is described as heterogeneous with no clear selenium-specific pooled result."
+    },
+    {
+     "pmid": "16880453",
+     "fits": "partly",
+     "reason": "Selenium was given only in combination with other vitamins and minerals, with no separate selenium result."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults from the general population or at higher risk of heart disease",
+    "intervention": "Selenium supplements (alone, or with results for selenium apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart and blood vessel disease, or death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41738711",
+     "fits": "partly",
+     "reason": "Selenium vs placebo in RCTs, but only in people with metabolic diseases and outcomes are blood risk markers, not heart disease or death."
+    },
+    {
+     "pmid": "42741176",
+     "fits": "no",
+     "reason": "Bibliometric study with a narrative summary; it does not pool randomised trials of selenium against placebo."
+    },
+    {
+     "pmid": "29083329",
+     "fits": "no",
+     "reason": "Review of experimental and lab studies on selenium and metabolic risk factors, with no pooled trials on heart disease or death."
+    },
+    {
+     "pmid": "33053149",
+     "fits": "yes",
+     "reason": "Pools RCTs of selenium alone against control for heart and blood vessel disease and death from any cause."
+    },
+    {
+     "pmid": "28965605",
+     "fits": "yes",
+     "reason": "Pools RCTs of selenium supplements and reports coronary heart disease death, plus blood markers."
+    },
+    {
+     "pmid": "36480969",
+     "fits": "yes",
+     "reason": "Pools RCTs of many micronutrients and reports selenium on its own for heart and blood vessel disease outcomes."
+    },
+    {
+     "pmid": "23440843",
+     "fits": "yes",
+     "reason": "Pools RCTs of selenium only vs placebo or nothing in general or high-risk adults, for heart disease and death from any cause."
+    },
+    {
+     "pmid": "25990689",
+     "fits": "yes",
+     "reason": "Pools RCTs of oral selenium supplements and reports the effect on heart and blood vessel disease."
+    },
+    {
+     "pmid": "18425980",
+     "fits": "yes",
+     "reason": "Pools RCTs of antioxidants vs placebo or nothing for death from any cause in healthy and ill adults, and looks at each antioxidant, including selenium, apart."
+    },
+    {
+     "pmid": "18173999",
+     "fits": "no",
+     "reason": "Outcomes are cancer cases and cancer deaths, not heart disease or death from any cause."
+    },
+    {
+     "pmid": "22419320",
+     "fits": "partly",
+     "reason": "Pools antioxidant RCTs for death from any cause, but the abstract shows no selenium-only result and antioxidants were often given together."
+    },
+    {
+     "pmid": "17327526",
+     "fits": "yes",
+     "reason": "Pools RCTs of antioxidants vs placebo for death from any cause and reports selenium apart."
+    },
+    {
+     "pmid": "17023702",
+     "fits": "partly",
+     "reason": "Pools RCTs on coronary heart disease, but of supplements containing selenium, which may be combined with other nutrients."
+    },
+    {
+     "pmid": "24217421",
+     "fits": "partly",
+     "reason": "Primary prevention of heart disease in general adults, but selenium is grouped with other single nutrients and no separate pooled result is shown."
+    }
+   ]
+  }
+ }
+}

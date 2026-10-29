@@ -1,0 +1,140 @@
+{
+ "topic": "vitamin_k",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "warfarin": {
+   "question": {
+    "population": "People on warfarin (or another vitamin K antagonist) with unstable INR",
+    "intervention": "Low-dose vitamin K supplements every day",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How stable the INR is (time in the target range)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "24170485",
+     "fits": "partly",
+     "reason": "Population, oral vitamin K and TTR outcome match, but the pooled TTR estimate combines randomised trials with non-randomised studies."
+    },
+    {
+     "pmid": "23744743",
+     "fits": "partly",
+     "reason": "Pooled RCTs of daily low-dose vitamin K vs placebo on TTR in VKA users, but most patients had stable INR and data on unstable INR were insufficient."
+    },
+    {
+     "pmid": "24832594",
+     "fits": "partly",
+     "reason": "RCTs of low-dose vitamin K vs placebo in warfarin users, not limited to unstable INR; only one trial reported TTR, so no pooled TTR estimate."
+    },
+    {
+     "pmid": "25416564",
+     "fits": "no",
+     "reason": "Compares newer anticoagulants with warfarin by kidney function; it does not study vitamin K supplements."
+    }
+   ]
+  },
+  "fractures": {
+   "question": {
+    "population": "Women after menopause or people with osteoporosis",
+    "intervention": "Vitamin K1 or K2 (including menatetrenone, MK-4) supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Fractures"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "31076817",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of oral vitamin K versus control in postmenopausal or osteoporotic patients reports clinical and vertebral fractures."
+    },
+    {
+     "pmid": "16801507",
+     "fits": "partly",
+     "reason": "Pools RCTs of vitamin K versus control for fractures, but the population is any adults, not specifically postmenopausal or osteoporotic."
+    },
+    {
+     "pmid": "19410972",
+     "fits": "partly",
+     "reason": "Matches population, vitamin K1/K2 and clinical fractures, but it is a narrative review of 7 RCTs with no pooled analysis."
+    }
+   ]
+  },
+  "calcification": {
+   "question": {
+    "population": "Adults with or at risk of vascular calcification (including people with kidney disease)",
+    "intervention": "Vitamin K1 or K2 supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Calcification or stiffness of arteries and heart valves"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38282652",
+     "fits": "no",
+     "reason": "Pools vitamin K RCTs but the outcomes are metabolic and inflammatory risk factors (HOMA-IR, CRP, lipids), not calcification or stiffness."
+    },
+    {
+     "pmid": "36704782",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin K vs control in CKD adults, reporting calcification scores and pulse wave velocity (arterial stiffness)."
+    },
+    {
+     "pmid": "37252246",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin K vs control, reporting coronary, other artery and valve calcification plus vascular stiffness."
+    },
+    {
+     "pmid": "26389791",
+     "fits": "partly",
+     "reason": "Vitamin K alone vs placebo or none in adults, but outcomes are CVD events and risk factors; the one trial reported only MGP, blood pressure and lipids."
+    },
+    {
+     "pmid": "32977548",
+     "fits": "yes",
+     "reason": "Reviews RCTs of vitamin K1 or K2 in adults on artery and valve calcification and stiffness, though results are summarised without a meta-analysis."
+    }
+   ]
+  },
+  "bone-density": {
+   "question": {
+    "population": "Women after menopause or people with low bone density",
+    "intervention": "Vitamin K1 or K2 supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Bone mineral density"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41268154",
+     "fits": "partly",
+     "reason": "Vitamin K2 in postmenopausal osteoporosis matches, but the review only measured blood bone turnover markers, not bone mineral density."
+    },
+    {
+     "pmid": "35711002",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin K2 in postmenopausal women with osteoporosis and reported lumbar and forearm bone mineral density."
+    },
+    {
+     "pmid": "34649591",
+     "fits": "partly",
+     "reason": "Vitamin K was always given together with calcium, and the population was humans in general, not only postmenopausal women."
+    },
+    {
+     "pmid": "36033779",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin K2 in postmenopausal women against controls and reported lumbar spine bone mineral density."
+    },
+    {
+     "pmid": "31076817",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral vitamin K against controls, with a separate bone mineral density analysis for postmenopausal or osteoporotic patients."
+    },
+    {
+     "pmid": "21674202",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin K on bone mineral density, but in adults generally with no stated postmenopausal or low bone density subgroup."
+    }
+   ]
+  }
+ }
+}

@@ -51,7 +51,7 @@ export function isRetracted(r: Pick<EvidenceRecord, "pubTypes" | "title">): bool
 /** A review of trials of giving the nutrient (not of blood levels in observational studies). */
 export function isTrialReview(r: Pick<EvidenceRecord, "title" | "abstract">): boolean {
   const text = `${r.title} ${r.abstract}`;
-  return /\brandomi[sz]ed\b|\bRCTs?\b|\bcontrolled trials?\b/i.test(text) && /\bsupplement\w*|\bintervention\w*|\btreatment\b|\badministration\b|\bgiven\b/i.test(text);
+  return /\brandomi[sz]ed\b|\bRCTs?\b|\bcontrolled trials?\b|\bintervention (studies|trials)\b/i.test(text) && /\bsupplement\w*|\bintervention\w*|\btreatment\b|\badministration\b|\bgiven\b/i.test(text);
 }
 
 const PEOPLE = "participants|patients|adults|women|men|subjects|individuals|people|persons|children|infants|volunteers|residents|participants";
@@ -125,10 +125,15 @@ const pick = (r: Classified, why: string): Chosen => ({
   why,
 });
 
+/** Titles of reviews that cover several supplements at once ("Nutritional supplements for migraine prevention"). */
+export const SEVERAL_SUPPLEMENTS = /\b(dietary|nutritional) supplements?\b|\bsupplements\b|\bmicronutrients?\b|\bvitamins\b|\bminerals\b|\bnutraceuticals?\b|\bmultivitamins?\b/i;
+
 /**
  * Reviews eligible for an outcome: meta-analyses or systematic reviews of trials, in people, not
  * retracted, with the topic in the title (so a review of every falls-prevention method, which mentions
- * vitamin D only in its abstract, isn't counted as a vitamin D review).
+ * vitamin D only in its abstract, isn't counted as a vitamin D review). A review of several supplements
+ * counts when the topic is in its abstract. A review without an abstract can't be checked for trials,
+ * so it is kept for screening rather than dropped.
  */
 export function eligibleReviews(records: readonly Classified[], outcome: string, topicInTitle?: RegExp, excludeTitle?: RegExp): Classified[] {
   return records.filter(
@@ -137,8 +142,8 @@ export function eligibleReviews(records: readonly Classified[], outcome: string,
       r.population !== "animal" &&
       !r.retracted &&
       r.outcomes.includes(outcome) &&
-      isTrialReview(r) &&
-      (!topicInTitle || topicInTitle.test(r.title)) &&
+      (isTrialReview(r) || !r.abstract.trim()) &&
+      (!topicInTitle || topicInTitle.test(r.title) || (SEVERAL_SUPPLEMENTS.test(r.title) && topicInTitle.test(r.abstract))) &&
       // A review of a different group of people (sepsis, surgery, pregnancy...) answers a different question.
       (!excludeTitle || !excludeTitle.test(r.title)),
   );
@@ -257,12 +262,15 @@ export interface EvidenceMapOutcome {
 export interface EvidenceMapFile {
   topic: string;
   nutrientId: string;
+  /** The nutrient in sentences ("vitamin D"), and how the search was narrowed, if it was. */
+  name: string;
+  scope?: string;
   builtAt: string;
   fetchedAt: string;
   source: string;
   queries: Record<string, string>;
   rules: string[];
-  counts: { all: number; retrieved: number; animal: number; retracted: number; reviews: number; trials: number; guidelines: number };
+  counts: { all?: number; retrieved: number; animal: number; retracted: number; reviews: number; trials: number; guidelines: number };
   guidelines: Chosen[];
   outcomes: EvidenceMapOutcome[];
 }
@@ -272,10 +280,10 @@ export function validateEvidenceMap(v: unknown): string[] {
   if (typeof v !== "object" || v === null) return ["not an object"];
   const m = v as Partial<EvidenceMapFile>;
   const e: string[] = [];
-  if (typeof m.topic !== "string" || typeof m.nutrientId !== "string") e.push("topic and nutrient are missing");
+  if (typeof m.topic !== "string" || typeof m.nutrientId !== "string" || typeof m.name !== "string") e.push("topic and nutrient are missing");
   if (typeof m.builtAt !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(m.builtAt)) e.push("builtAt must be a date");
   if (!Array.isArray(m.rules) || m.rules.length === 0) e.push("the rules must be written down");
-  if (!m.counts || typeof m.counts.all !== "number") e.push("counts are missing");
+  if (!m.counts || typeof m.counts.retrieved !== "number") e.push("counts are missing");
   if (!Array.isArray(m.outcomes) || m.outcomes.length === 0) e.push("no outcomes");
   else
     for (const o of m.outcomes) {

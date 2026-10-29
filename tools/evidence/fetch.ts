@@ -67,7 +67,7 @@ async function all(query: string) {
   return out;
 }
 
-const base = `(${topic.terms.map((t) => `TITLE_ABS:"${t}"`).join(" OR ")}) AND SRC:MED`;
+const base = `(${topic.terms.map((t) => `TITLE_ABS:"${t}"`).join(" OR ")})${topic.context ? ` AND (${topic.context})` : ""} AND SRC:MED`;
 const queries = {
   all: base,
   reviews: `${base} AND (PUB_TYPE:"meta-analysis" OR PUB_TYPE:"systematic review")`,

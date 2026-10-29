@@ -135,6 +135,31 @@
      "pmid": "23840373",
      "fits": "yes",
      "reason": "Pools 11 placebo-controlled RCTs of vitamin D to prevent respiratory tract infections."
+    },
+    {
+     "pmid": "42143317",
+     "fits": "yes",
+     "reason": "Pools RCTs in children of vitamin D (low and high dose) versus placebo for preventing respiratory infections, with direct comparisons and a network meta-analysis."
+    },
+    {
+     "pmid": "37403822",
+     "fits": "partly",
+     "reason": "Vitamin D to prevent pneumonia, but only in children with earlier pneumonia; with no abstract, the design and comparison are unclear."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in adults pooling vitamin D supplementation for preventing acute respiratory infections."
+    },
+    {
+     "pmid": "33858268",
+     "fits": "partly",
+     "reason": "Includes vitamin D RCTs for viral respiratory infections, but mixes prevention with treatment and describes no pooled vitamin D analysis."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "yes",
+     "reason": "Reviews RCTs in healthy adults, including 8 vitamin D trials, of single micronutrients given by mouth, with cold incidence as an outcome."
     }
    ]
   },
@@ -311,6 +336,51 @@
      "pmid": "21835895",
      "fits": "partly",
      "reason": "Pooled RCTs give vitamin D as treatment to men with advanced prostate cancer, and the outcome is survival rather than new cancers."
+    },
+    {
+     "pmid": "37513667",
+     "fits": "no",
+     "reason": "Covers nutraceuticals given alongside treatment to people who already have cancer, with outcomes like progression and inflammation markers, not new cancers."
+    },
+    {
+     "pmid": "37375676",
+     "fits": "no",
+     "reason": "Covers colorectal cancer patients, with outcomes of inflammation, nutrition and hospital complications, not cancer incidence or cancer death."
+    },
+    {
+     "pmid": "40290044",
+     "fits": "no",
+     "reason": "Covers mixed supplements in breast cancer patients, mainly for quality of life; no pooled analysis of vitamin D against placebo for cancer outcomes."
+    },
+    {
+     "pmid": "25746389",
+     "fits": "no",
+     "reason": "Looks at blood vitamin D levels and survival in colorectal cancer patients, not randomised trials of vitamin D supplements."
+    },
+    {
+     "pmid": "32148118",
+     "fits": "partly",
+     "reason": "Vitamin D supplements in cancer survivors, a narrower group; the pooled data are mostly observational and the vitamin D result shown is total mortality."
+    },
+    {
+     "pmid": "19730382",
+     "fits": "no",
+     "reason": "Covers observational studies of sunlight and vitamin D levels and cancer, not a pooled analysis of randomised supplement trials."
+    },
+    {
+     "pmid": "35727272",
+     "fits": "yes",
+     "reason": "Pooled 19 randomised trials of vitamin D in healthy adults without cancer and reported cancer incidence."
+    },
+    {
+     "pmid": "23601861",
+     "fits": "no",
+     "reason": "Tests calcium supplements given without vitamin D, so the intervention is different."
+    },
+    {
+     "pmid": "23567264",
+     "fits": "no",
+     "reason": "Covers supplements as treatment in prostate cancer patients, with PSA levels as the outcome, not new cancers or cancer deaths."
     }
    ]
   },
@@ -527,6 +597,31 @@
      "pmid": "22486204",
      "fits": "partly",
      "reason": "Placebo-controlled vitamin D RCTs, but pooled outcomes are glucose markers; new diabetes is only described from two trials, not pooled."
+    },
+    {
+     "pmid": "35963372",
+     "fits": "no",
+     "reason": "Trials enrolled adults who already had type 2 diabetes and measured blood glucose markers, not new diabetes in people without it."
+    },
+    {
+     "pmid": "35684094",
+     "fits": "no",
+     "reason": "Umbrella review of supplements for treating existing type 2 diabetes, with glucose and insulin markers as outcomes, not new diabetes."
+    },
+    {
+     "pmid": "23107484",
+     "fits": "no",
+     "reason": "Pooled observational studies of vitamin D levels and future diabetes, not randomised trials of vitamin D against placebo."
+    },
+    {
+     "pmid": "28084431",
+     "fits": "no",
+     "reason": "Trials in people with type 2 diabetes that measured blood pressure, not prevention of new diabetes."
+    },
+    {
+     "pmid": "17389701",
+     "fits": "partly",
+     "reason": "Trials in at-risk people suggest prevention, but mainly with vitamin D plus calcium, and most outcomes are glucose markers."
     }
    ]
   },
@@ -683,6 +778,21 @@
      "pmid": "22605432",
      "fits": "yes",
      "reason": "Pools randomised trials in older adults with a separate vitamin D alone analysis for death from any cause, alongside vitamin D with calcium."
+    },
+    {
+     "pmid": "28539415",
+     "fits": "no",
+     "reason": "This is a single cohort study modelling trial power from blood vitamin D levels, not a review that pooled randomised trials of supplements."
+    },
+    {
+     "pmid": "25129266",
+     "fits": "no",
+     "reason": "It pools studies of older adults' blood vitamin D levels against death, not randomised trials comparing supplements with placebo."
+    },
+    {
+     "pmid": "32148118",
+     "fits": "partly",
+     "reason": "It pools vitamin D supplements against none for death from any cause, but only in cancer survivors and mostly from observational studies."
     }
    ]
   },
@@ -799,6 +909,51 @@
      "pmid": "21505219",
      "fits": "partly",
      "reason": "Placebo-controlled trials with cardiovascular outcomes in community-dwelling women, but vitamin D is only given together with calcium, never alone."
+    },
+    {
+     "pmid": "38291560",
+     "fits": "partly",
+     "reason": "Vitamin D vs placebo for stroke matches, but the network analysis pooled 17 RCTs with 39 cohort studies rather than randomised trials alone."
+    },
+    {
+     "pmid": "33509399",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of supplements including vitamin D on cardiovascular outcomes, reporting no effect of vitamin D on CVD."
+    },
+    {
+     "pmid": "25129266",
+     "fits": "no",
+     "reason": "Looks at blood vitamin D levels in observational studies, not randomised trials of giving vitamin D supplements."
+    },
+    {
+     "pmid": "36480969",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of micronutrients, including vitamin D, on cardiovascular events; vitamin D showed no effect on CVD."
+    },
+    {
+     "pmid": "32379630",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs of vitamins including vitamin D for preventing cardiovascular events and cardiovascular death."
+    },
+    {
+     "pmid": "31284304",
+     "fits": "partly",
+     "reason": "Umbrella review of RCTs on cardiovascular outcomes in adults, but the abstract reports vitamin D only combined with calcium."
+    },
+    {
+     "pmid": "35727272",
+     "fits": "yes",
+     "reason": "Pooled RCTs in healthy adults of vitamin D versus control on composite cardiovascular events and mortality."
+    },
+    {
+     "pmid": "25491763",
+     "fits": "no",
+     "reason": "Narrative review of calcium supplements, with or without vitamin D, and cardiovascular risk, not a pooled analysis of vitamin D alone."
+    },
+    {
+     "pmid": "20671013",
+     "fits": "no",
+     "reason": "Meta-analysis of calcium supplements given without vitamin D; vitamin D is not the intervention."
     }
    ]
   },
@@ -1065,6 +1220,302 @@
      "pmid": "12919233",
      "fits": "yes",
      "reason": "Pooled RCTs of vitamin D vs control on falls in older people (RR 0.99), with combined calcium trials discussed separately."
+    }
+   ]
+  },
+  "large-doses": {
+   "question": {
+    "population": "Older adults (not a group defined by one illness)",
+    "intervention": "Very large doses of vitamin D given at long intervals (a bolus, such as once a year or every few months)",
+    "comparison": "Placebo, or smaller daily doses",
+    "outcome": "Falls or fractures"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41063100",
+     "fits": "no",
+     "reason": "Daily calcium plus vitamin D in postmenopausal women with osteoporosis; no bolus or intermittent high-dose vitamin D is assessed."
+    },
+    {
+     "pmid": "42161415",
+     "fits": "partly",
+     "reason": "Vitamin D vs placebo on fractures and falls in adults, but the abstract reports no separate analysis of bolus or intermittent high doses."
+    },
+    {
+     "pmid": "42320168",
+     "fits": "no",
+     "reason": "Daily high-dose vitamin D in multiple sclerosis patients, with MRI, immune and safety outcomes rather than falls or fractures."
+    },
+    {
+     "pmid": "38615341",
+     "fits": "yes",
+     "reason": "Pools RCTs of intermittent high-dose oral vitamin D3 in elderly people and reports falls and fractures."
+    },
+    {
+     "pmid": "38698349",
+     "fits": "yes",
+     "reason": "Network meta-analysis of falls in older adults with a subgroup on intermittent vitamin D compared with placebo or daily dosing."
+    },
+    {
+     "pmid": "38494682",
+     "fits": "no",
+     "reason": "Combined calcium plus vitamin D in older osteoporotic people; no bolus or intermittent high-dose analysis."
+    },
+    {
+     "pmid": "37544189",
+     "fits": "partly",
+     "reason": "Narrative review limited to postmenopausal women; mostly daily doses, with only one annual-bolus trial reporting fractures and falls and no pooling."
+    },
+    {
+     "pmid": "35842938",
+     "fits": "no",
+     "reason": "Daily vitamin D3 plus calcium for hip fracture in older people; no bolus dosing."
+    },
+    {
+     "pmid": "37120684",
+     "fits": "yes",
+     "reason": "Pools RCTs of intermittent or single high-dose vitamin D on falls and fractures; the population is adults generally rather than only older adults."
+    },
+    {
+     "pmid": "38997531",
+     "fits": "partly",
+     "reason": "Vitamin D vs placebo on fractures and falls in healthy people 60 and older, but no separate bolus or intermittent analysis is reported."
+    },
+    {
+     "pmid": "38362274",
+     "fits": "no",
+     "reason": "Active vitamin D analogues such as calcitriol and eldecalcitol, not large intermittent doses of vitamin D."
+    },
+    {
+     "pmid": "35504603",
+     "fits": "yes",
+     "reason": "Meta-analysis of fractures and falls with a subgroup by dosing interval, comparing intermittent with daily vitamin D."
+    },
+    {
+     "pmid": "34656949",
+     "fits": "partly",
+     "reason": "Vitamin D vs placebo on falls in older adults, including intermittent doses, but no separate bolus or intermittent analysis is reported."
+    },
+    {
+     "pmid": "32846760",
+     "fits": "partly",
+     "reason": "Vitamin D on falls and fractures, but subgroups are by form and calcium co-use, not by bolus or intermittent dosing."
+    },
+    {
+     "pmid": "28718008",
+     "fits": "partly",
+     "reason": "Vitamin D with or without calcium on falls in the elderly, but there is no bolus or intermittent dosing analysis."
+    },
+    {
+     "pmid": "36034418",
+     "fits": "partly",
+     "reason": "Vitamin D vs placebo on falls in people over 50, analysed by daily dose level rather than bolus or intermittent dosing."
+    },
+    {
+     "pmid": "37654099",
+     "fits": "partly",
+     "reason": "Vitamin D on falls and fractures in older adults, with subgroups by dose level but no bolus or intermittent analysis reported."
+    },
+    {
+     "pmid": "30529281",
+     "fits": "no",
+     "reason": "Large-dose vitamin D, but the outcomes are adverse events such as hypercalcemia and kidney stones, not falls or fractures."
+    },
+    {
+     "pmid": "31860103",
+     "fits": "partly",
+     "reason": "Vitamin D alone, daily or intermittent, on fractures, but no separate pooled analysis of bolus dosing is reported."
+    },
+    {
+     "pmid": "37602580",
+     "fits": "partly",
+     "reason": "Calcium and/or vitamin D vs placebo on fractures in people over 60, but no analysis of bolus or intermittent dosing is reported."
+    },
+    {
+     "pmid": "33037694",
+     "fits": "no",
+     "reason": "Treats pneumonia in any age group, with pneumonia outcomes rather than falls or fractures."
+    },
+    {
+     "pmid": "33043722",
+     "fits": "partly",
+     "reason": "Pools vitamin D trials on fractures, but compares daily doses and types with no bolus analysis reported, and the population is not stated as older adults."
+    },
+    {
+     "pmid": "29279934",
+     "fits": "partly",
+     "reason": "Matches older adults, placebo and fractures, but analyses vitamin D by dose with no separate bolus or intermittent dosing analysis."
+    },
+    {
+     "pmid": "35676320",
+     "fits": "no",
+     "reason": "Compares bolus with daily vitamin D, but the outcome is cancer, not falls or fractures."
+    },
+    {
+     "pmid": "20540727",
+     "fits": "partly",
+     "reason": "Pools vitamin D vs placebo for hip fracture, but compares daily dose levels only and does not restrict to older adults."
+    },
+    {
+     "pmid": "19797342",
+     "fits": "partly",
+     "reason": "Matches older adults and falls, but compares daily dose levels rather than large intermittent bolus doses."
+    },
+    {
+     "pmid": "34687206",
+     "fits": "no",
+     "reason": "Umbrella review of meta-analysis quality on fractures in adults, not a pooling of trials of bolus dosing."
+    },
+    {
+     "pmid": "31619412",
+     "fits": "partly",
+     "reason": "Matches community-dwelling older adults and fractures, but compares dose levels with no bolus or interval-dosing analysis."
+    },
+    {
+     "pmid": "25365192",
+     "fits": "no",
+     "reason": "Children with asthma and daily doses, with asthma outcomes rather than falls or fractures."
+    },
+    {
+     "pmid": "15886381",
+     "fits": "partly",
+     "reason": "Matches older persons, placebo and fractures, but analyses daily doses of 400 or 700-800 IU rather than bolus dosing."
+    },
+    {
+     "pmid": "30049963",
+     "fits": "no",
+     "reason": "Describes design features of vitamin D fall trials without pooling their effects."
+    },
+    {
+     "pmid": "20302551",
+     "fits": "no",
+     "reason": "Limited to postmenopausal women and 800 IU daily dosing, so both population and intervention differ."
+    },
+    {
+     "pmid": "26429406",
+     "fits": "no",
+     "reason": "Patients with acute fractures; outcomes are deficiency prevalence, blood 25(OH)D and fracture healing."
+    },
+    {
+     "pmid": "29677308",
+     "fits": "partly",
+     "reason": "Matches community-dwelling adults 50+, placebo and fractures, but reports no separate analysis of bolus dosing."
+    },
+    {
+     "pmid": "22762317",
+     "fits": "partly",
+     "reason": "Pools trials in people 65+ including 4-monthly dosing vs placebo for fractures, but analyses actual daily intake, not a bolus subgroup."
+    },
+    {
+     "pmid": "24729336",
+     "fits": "partly",
+     "reason": "Matches older people, placebo and fractures, but the abstract reports no separate analysis of large intermittent doses."
+    },
+    {
+     "pmid": "24768505",
+     "fits": "partly",
+     "reason": "Pools vitamin D trials on falls, but does not separate bolus dosing and the population is not stated."
+    },
+    {
+     "pmid": "15113819",
+     "fits": "partly",
+     "reason": "Matches older adults, placebo or calcium and falls, but does not analyse large intermittent bolus doses."
+    },
+    {
+     "pmid": "25602255",
+     "fits": "yes",
+     "reason": "Pools randomised trials of high-dose intermittent vitamin D in older adults, reporting falls and fractures."
+    },
+    {
+     "pmid": "25964289",
+     "fits": "no",
+     "reason": "Narrative literature review on fracture healing with no pooled analysis of bolus dosing."
+    },
+    {
+     "pmid": "22184690",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin D with or without calcium for fractures in older adults, but no separate analysis of large intermittent bolus doses is described."
+    },
+    {
+     "pmid": "20579169",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin D for falls in older adults, but the doses were 200-1,000 IU and no bolus-dose analysis is described."
+    },
+    {
+     "pmid": "19307517",
+     "fits": "partly",
+     "reason": "Pooled RCTs of oral vitamin D for fractures in people 65+ by received dose, but it does not analyse large intermittent bolus doses separately."
+    },
+    {
+     "pmid": "26510847",
+     "fits": "partly",
+     "reason": "Fracture RCTs in middle-aged to older adults, but vitamin D was always given with calcium and bolus dosing is not examined."
+    },
+    {
+     "pmid": "19370554",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin D with or without calcium versus placebo for fractures in older people, but no bolus-dose analysis is described."
+    },
+    {
+     "pmid": "25551377",
+     "fits": "no",
+     "reason": "A methods study of why overlapping vitamin D fracture meta-analyses disagree, not a pooled analysis of bolus dosing."
+    },
+    {
+     "pmid": "21795448",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin D for falls in mostly elderly people, but no separate analysis of large intermittent bolus doses is described."
+    },
+    {
+     "pmid": "16034849",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin D with or without calcium versus placebo for fractures in older people, but no bolus-dose analysis is described."
+    },
+    {
+     "pmid": "18239843",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled RCTs on falls, but the focus is native vitamin D versus its analogues, not large intermittent bolus doses."
+    },
+    {
+     "pmid": "17349055",
+     "fits": "partly",
+     "reason": "Pooled fracture RCTs comparing high and low vitamin D doses, but the doses are daily amounts, not large intermittent boluses."
+    },
+    {
+     "pmid": "21060990",
+     "fits": "no",
+     "reason": "A meta-regression asking whether bone density changes predict fracture reduction with calcium with or without vitamin D; a different question."
+    },
+    {
+     "pmid": "11279685",
+     "fits": "partly",
+     "reason": "Pooled vitamin D fracture RCTs, but the population is elderly people with osteoporosis and bolus dosing is not examined."
+    },
+    {
+     "pmid": "17264183",
+     "fits": "partly",
+     "reason": "Pooled RCTs of oral vitamin D with or without calcium for hip fracture in people 50+, but bolus dosing is not examined."
+    },
+    {
+     "pmid": "15692726",
+     "fits": "partly",
+     "reason": "Fracture and bone density RCTs, but in people with osteoporosis, including steroid-induced cases, comparing vitamin D analogues and not bolus dosing."
+    },
+    {
+     "pmid": "17720017",
+     "fits": "partly",
+     "reason": "Fracture RCTs in people 50+, but the intervention is calcium alone or calcium with vitamin D, and bolus dosing is not examined."
+    },
+    {
+     "pmid": "10796331",
+     "fits": "partly",
+     "reason": "Vitamin D fracture RCTs, but in elderly people with osteoporosis, results come mostly from single trials, and bolus dosing is not examined."
+    },
+    {
+     "pmid": "12919233",
+     "fits": "partly",
+     "reason": "Pooled RCTs of vitamin D for falls in older people, but no separate analysis of large intermittent bolus doses is described."
     }
    ]
   }

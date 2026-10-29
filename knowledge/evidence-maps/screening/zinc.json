@@ -1,0 +1,342 @@
+{
+ "topic": "zinc",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "urinary": {
+   "question": {
+    "population": "Older adults",
+    "intervention": "High-dose zinc supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Urinary or genitourinary problems, or hospital stays for them"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38507438",
+     "fits": "no",
+     "reason": "Observational studies of zinc levels or intake and prostate cancer risk; no randomised zinc supplement versus placebo trials and no urinary outcome."
+    },
+    {
+     "pmid": "41482855",
+     "fits": "no",
+     "reason": "Supplements, including zinc, for cancer supportive care such as oral mucositis; not older adults and no urinary or genitourinary outcome."
+    },
+    {
+     "pmid": "36449274",
+     "fits": "no",
+     "reason": "Supplements, including zinc, to treat hair loss; the population and outcome differ and there is no urinary outcome."
+    },
+    {
+     "pmid": "37878272",
+     "fits": "no",
+     "reason": "Nutraceuticals, including zinc, to treat acne; the population and outcome differ and there is no urinary outcome."
+    },
+    {
+     "pmid": "35684094",
+     "fits": "no",
+     "reason": "Supplements, including zinc, for blood sugar control in type 2 diabetes; outcomes are glycaemic, not urinary."
+    },
+    {
+     "pmid": "16880453",
+     "fits": "no",
+     "reason": "Multivitamin/mineral combinations that include zinc, in general adults; outcomes are cancer and chronic disease, not urinary problems."
+    }
+   ]
+  },
+  "colds-catching": {
+   "question": {
+    "population": "Children and adults",
+    "intervention": "Zinc taken regularly to prevent colds",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How many people catch colds (or respiratory infections)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42143317",
+     "fits": "partly",
+     "reason": "Pools RCTs of zinc vs placebo for preventing respiratory infections, but only in children under 18, not children and adults."
+    },
+    {
+     "pmid": "38719213",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of zinc alone in children or adults, with the proportion developing colds as an outcome for prevention trials."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "partly",
+     "reason": "Pools RCTs of zinc on how often respiratory infections occur, but only in adults, not children."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "partly",
+     "reason": "Looks at RCTs of zinc given alone and cold incidence, but only in healthy adults, not children."
+    },
+    {
+     "pmid": "21328251",
+     "fits": "yes",
+     "reason": "Includes placebo-controlled preventive zinc trials of at least five months and pools how often people developed a cold (incidence rate ratio)."
+    },
+    {
+     "pmid": "23775705",
+     "fits": "yes",
+     "reason": "Includes placebo-controlled preventive zinc trials of at least five months and pools how often people developed a cold (incidence rate ratio)."
+    },
+    {
+     "pmid": "20156999",
+     "fits": "partly",
+     "reason": "Pools RCTs of routine zinc for preventing respiratory infection, but only in young children in developing countries and only lower respiratory infection."
+    }
+   ]
+  },
+  "colds-duration": {
+   "question": {
+    "population": "Mostly healthy adults with a new cold",
+    "intervention": "Zinc (mostly lozenges) started at the first symptoms",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How long colds last"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42143317",
+     "fits": "no",
+     "reason": "Looks at preventing respiratory infections in children and measures how often they happen, not how long colds last in adults."
+    },
+    {
+     "pmid": "38719213",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of zinc used to treat colds, mostly in adults, and reports cold duration as a primary outcome."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "partly",
+     "reason": "Pools zinc trials in adults for symptom duration, but covers acute respiratory infections broadly and doesn't say zinc started at symptom onset."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "yes",
+     "reason": "Reviews RCTs of zinc alone in healthy adults and pools cold duration, finding about 2.25 fewer days."
+    },
+    {
+     "pmid": "21328251",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled trials of zinc started within 24 hours of cold symptoms in healthy people and reports cold duration."
+    },
+    {
+     "pmid": "23775705",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled treatment trials of zinc, mostly lozenges, started within 24 hours of symptoms and reports duration in days."
+    },
+    {
+     "pmid": "20156999",
+     "fits": "no",
+     "reason": "Looks at zinc to prevent lower respiratory infections in children in developing countries and measures how often they happen, not cold duration."
+    }
+   ]
+  },
+  "colds-side-effects": {
+   "question": {
+    "population": "People taking zinc for colds",
+    "intervention": "Zinc (lozenges, syrup or tablets)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Side effects (bad taste, nausea)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42143317",
+     "fits": "no",
+     "reason": "Looks at supplements to prevent respiratory infections in children and measures how often infections occur, not zinc side effects in people with colds."
+    },
+    {
+     "pmid": "38719213",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of zinc for the common cold, with adverse events such as unpleasant taste and vomiting as a primary outcome."
+    },
+    {
+     "pmid": "33472840",
+     "fits": "no",
+     "reason": "Looks at micronutrients for respiratory infections in adults and measures how often infections occur and how long symptoms last, not side effects."
+    },
+    {
+     "pmid": "32342851",
+     "fits": "no",
+     "reason": "Zinc for colds in healthy adults, but the outcomes are cold incidence, duration and severity, not side effects."
+    },
+    {
+     "pmid": "21328251",
+     "fits": "yes",
+     "reason": "Placebo-controlled RCTs of zinc for the common cold, and the abstract reports that zinc lozenges can cause side effects."
+    },
+    {
+     "pmid": "23775705",
+     "fits": "partly",
+     "reason": "Placebo-controlled RCTs of zinc for the common cold, but the abstract shown is cut off and only reports incidence, duration and severity, not side effects."
+    },
+    {
+     "pmid": "20156999",
+     "fits": "no",
+     "reason": "Zinc to prevent lower respiratory infection in children in developing countries; the outcome is how often infections occur, not side effects of treating colds."
+    }
+   ]
+  },
+  "blood-sugar": {
+   "question": {
+    "population": "Adults with or without diabetes",
+    "intervention": "Zinc supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Fasting blood sugar, HbA1c or insulin resistance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42594341",
+     "fits": "yes",
+     "reason": "Pools RCTs of zinc supplementation in people with diabetes or prediabetes and reports insulin resistance outcomes (serum insulin, HOMA-IR)."
+    },
+    {
+     "pmid": "40738717",
+     "fits": "no",
+     "reason": "Looks at micronutrient status and ulcer healing in diabetic foot, not zinc's effect on glucose, HbA1c or insulin resistance."
+    },
+    {
+     "pmid": "38224402",
+     "fits": "no",
+     "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipids and body composition, not glycaemic measures."
+    },
+    {
+     "pmid": "37870684",
+     "fits": "yes",
+     "reason": "Pools zinc RCTs in prediabetes and type 2 diabetes and reports fasting blood glucose and HbA1c."
+    },
+    {
+     "pmid": "37183697",
+     "fits": "yes",
+     "reason": "Pools RCTs of zinc alone versus placebo in adults with type 2 diabetes and reports fasting blood sugar and HbA1c."
+    },
+    {
+     "pmid": "37604307",
+     "fits": "no",
+     "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipid profiles."
+    },
+    {
+     "pmid": "35963372",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs that includes zinc in adults with type 2 diabetes, with HbA1c, fasting blood sugar and HOMA-IR as outcomes."
+    },
+    {
+     "pmid": "35304727",
+     "fits": "yes",
+     "reason": "Pools RCTs of add-on supplements, including zinc, in type 2 diabetes for HbA1c, fasting glucose and HOMA-IR."
+    },
+    {
+     "pmid": "35946077",
+     "fits": "yes",
+     "reason": "Pools RCTs of zinc alone versus control in type 2 diabetes for fasting glucose, HbA1c and HOMA-IR."
+    },
+    {
+     "pmid": "32451277",
+     "fits": "no",
+     "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipid profiles."
+    },
+    {
+     "pmid": "31161192",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled zinc RCTs, with and without diabetes, for fasting glucose, HbA1c and HOMA-IR."
+    },
+    {
+     "pmid": "35684094",
+     "fits": "partly",
+     "reason": "Umbrella review of earlier meta-analyses in type 2 diabetes, including zinc, rather than its own pooling of RCTs."
+    },
+    {
+     "pmid": "23137858",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled zinc RCTs for fasting glucose, HbA1c and insulin, with a subgroup for people with metabolic disease."
+    },
+    {
+     "pmid": "26020622",
+     "fits": "yes",
+     "reason": "Cochrane review that pools zinc versus placebo or no treatment trials in adults with insulin resistance for HOMA-IR."
+    },
+    {
+     "pmid": "17253560",
+     "fits": "partly",
+     "reason": "Right question (zinc versus placebo in adults with insulin resistance), but only one trial was included, so nothing was pooled."
+    }
+   ]
+  },
+  "amd": {
+   "question": {
+    "population": "People who already have age-related macular degeneration (AMD), or older adults",
+    "intervention": "Zinc, alone or with antioxidant vitamins (such as the AREDS formula)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "AMD getting worse, or new AMD"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37702300",
+     "fits": "yes",
+     "reason": "Pooled RCTs in people with AMD: antioxidant vitamins and minerals (mainly AREDS with zinc) vs placebo or none, outcome progression to late AMD."
+    },
+    {
+     "pmid": "23652490",
+     "fits": "yes",
+     "reason": "Reviews RCTs of zinc vs control in adults 50+ with or without AMD, with progression to advanced AMD as an outcome; cohort studies were also included."
+    },
+    {
+     "pmid": "28756618",
+     "fits": "yes",
+     "reason": "Pooled RCTs in people with AMD: antioxidant vitamin or mineral supplements, including AREDS, vs placebo or none, outcome progression to late AMD."
+    },
+    {
+     "pmid": "28756617",
+     "fits": "partly",
+     "reason": "Prevention RCTs in the general population tested vitamins C and E, beta-carotene and multivitamins; zinc is only possibly present inside a multivitamin."
+    },
+    {
+     "pmid": "23152201",
+     "fits": "yes",
+     "reason": "RCTs in people with AMD comparing antioxidants plus zinc (AREDS) with placebo or none, outcome progression to advanced AMD."
+    },
+    {
+     "pmid": "18425071",
+     "fits": "yes",
+     "reason": "Pooled RCTs include antioxidants plus zinc vs control in people with AMD signs, outcome progression to advanced AMD."
+    },
+    {
+     "pmid": "22696317",
+     "fits": "no",
+     "reason": "Prevention RCTs tested only vitamin E and beta-carotene; no trials of zinc or zinc with antioxidants were included."
+    },
+    {
+     "pmid": "18253971",
+     "fits": "no",
+     "reason": "Included trials tested only alpha-tocopherol and beta-carotene for preventing AMD; zinc was not studied."
+    },
+    {
+     "pmid": "16625532",
+     "fits": "yes",
+     "reason": "RCTs in people with AMD comparing antioxidants plus zinc (AREDS) with control, outcome progression to advanced AMD."
+    },
+    {
+     "pmid": "22268800",
+     "fits": "partly",
+     "reason": "Broad lifestyle and nutrition review of meta-analyses and observational studies; it covers the AREDS zinc formula but does not systematically pool RCTs."
+    },
+    {
+     "pmid": "12076389",
+     "fits": "yes",
+     "reason": "RCTs in people with AMD comparing antioxidants and/or zinc with control, outcome progression to advanced AMD; the results were not combined statistically."
+    },
+    {
+     "pmid": "11869572",
+     "fits": "yes",
+     "reason": "RCTs in people with AMD comparing antioxidants and/or zinc with control, outcome progression to advanced AMD; the results were not combined statistically."
+    }
+   ]
+  }
+ }
+}

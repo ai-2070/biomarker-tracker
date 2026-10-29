@@ -1,0 +1,3200 @@
+{
+ "topic": "potassium",
+ "nutrientId": "potassium",
+ "name": "potassium",
+ "scope": "in papers about supplements, salt substitutes, intake or diet",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"potassium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:\"salt substitute\" OR TITLE_ABS:\"salt substitutes\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"potassium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:\"salt substitute\" OR TITLE_ABS:\"salt substitutes\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"potassium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:\"salt substitute\" OR TITLE_ABS:\"salt substitutes\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"potassium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:\"salt substitute\" OR TITLE_ABS:\"salt substitutes\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"potassium\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:\"salt substitute\" OR TITLE_ABS:\"salt substitutes\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with potassium (potassium) in its title or abstract, in papers about supplements, salt substitutes, intake or diet; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving potassium, with potassium in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded potassium trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 18303,
+  "retrieved": 1262,
+  "animal": 70,
+  "retracted": 0,
+  "reviews": 185,
+  "trials": 973,
+  "guidelines": 31
+ },
+ "guidelines": [
+  {
+   "pmid": "23617019",
+   "title": "Guideline: Potassium Intake for Adults and Children",
+   "year": 2012,
+   "citedBy": 4,
+   "why": "One of the newest guidelines with potassium in the title"
+  },
+  {
+   "pmid": "10333852",
+   "title": "Lifestyle modifications to prevent and control hypertension. 6. Recommendations on potassium, magnesium and calcium. Canadian Hypertension Society, Canadian Coalition for High Blood Pressure Prevention and Control, Laboratory Centre for Disease Control at Health Canada, Heart and Stroke Foundation of Canada",
+   "year": 1999,
+   "journal": "CMAJ : Canadian Medical Association journal = journal de l'Association medicale canadienne",
+   "citedBy": 22,
+   "why": "One of the newest guidelines with potassium in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "bp-high",
+   "label": "Blood pressure (high)",
+   "finding": "Blood pressure in people with high blood pressure",
+   "counts": {
+    "reviews": 42,
+    "trialReviews": 14,
+    "trials": 258,
+    "largeTrials": 20
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32500831",
+     "doi": "10.1161/jaha.119.015719",
+     "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
+     "year": 2020,
+     "firstAuthor": "Filippini T",
+     "journal": "Journal of the American Heart Association",
+     "citedBy": 199,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "30661034",
+     "doi": "10.1136/heartjnl-2018-314036",
+     "title": "Effect of low-sodium salt substitutes on blood pressure, detected hypertension, stroke and mortality",
+     "year": 2019,
+     "firstAuthor": "Hernandez AV",
+     "journal": "Heart (British Cardiac Society)",
+     "citedBy": 57,
+     "n": 5224,
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+    },
+    {
+     "pmid": "28024910",
+     "doi": "10.1016/j.ijcard.2016.12.048",
+     "title": "The effect of potassium supplementation on blood pressure in hypertensive subjects: A systematic review and meta-analysis",
+     "year": 2017,
+     "firstAuthor": "Filippini T",
+     "journal": "International journal of cardiology",
+     "citedBy": 120,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "31986290",
+     "doi": "10.1016/j.ahj.2019.12.020",
+     "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+     "year": 2020,
+     "firstAuthor": "Huang L",
+     "journal": "American heart journal",
+     "citedBy": 23,
+     "n": 20996,
+     "why": "A large trial (about 20,996 people) from 2020, as new as the newest review or newer"
+    },
+    {
+     "pmid": "40148710",
+     "doi": "10.1007/s10654-025-01216-x",
+     "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+     "year": 2025,
+     "firstAuthor": "Li X",
+     "journal": "European journal of epidemiology",
+     "citedBy": 2,
+     "n": 20995,
+     "why": "A large trial (about 20,995 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "40077763",
+     "doi": "10.3390/nu17050893",
+     "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+     "year": 2025,
+     "firstAuthor": "Du X",
+     "journal": "Nutrients",
+     "citedBy": 4,
+     "n": 7512,
+     "why": "A large trial (about 7,512 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "32066973",
+     "doi": "10.1038/s41591-020-0754-2",
+     "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+     "year": 2020,
+     "firstAuthor": "Bernabe-Ortiz A",
+     "journal": "Nature medicine",
+     "citedBy": 160,
+     "n": 2376,
+     "why": "A large trial (about 2,376 people) from 2020, as new as the newest review or newer"
+    },
+    {
+     "pmid": "37055566",
+     "doi": "10.1038/s41591-023-02286-8",
+     "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+     "year": 2023,
+     "firstAuthor": "Yuan Y",
+     "journal": "Nature medicine",
+     "citedBy": 77,
+     "n": 1612,
+     "why": "A large trial (about 1,612 people) from 2023, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.05,
+    "trials": 30,
+    "inclusions": 33,
+    "reviews": [
+     {
+      "pmid": "32500831",
+      "trials": 28
+     },
+     {
+      "pmid": "30661034",
+      "trials": 1
+     },
+     {
+      "pmid": "28024910",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "7795836",
+      "title": "The effect of potassium supplementation in persons with a high-normal blood pressure. Results from phase I of the Trials of Hypertension Prevention (TOHP). Trials of Hypertension Prevention (TOHP) Collaborative Research Group",
+      "year": 1995,
+      "n": 353,
+      "inReviews": [
+       "32500831",
+       "28024910"
+      ]
+     },
+     {
+      "pmid": "22149452",
+      "title": "Effect of potassium supplementation on renal tubular function, ambulatory blood pressure and pulse wave velocity in healthy humans",
+      "year": 2012,
+      "n": 21,
+      "inReviews": [
+       "32500831",
+       "28024910"
+      ]
+     },
+     {
+      "pmid": "3734451",
+      "title": "Potassium supplementation does not lower blood pressure in normotensive women",
+      "year": 1986,
+      "inReviews": [
+       "32500831",
+       "28024910"
+      ]
+     },
+     {
+      "pmid": "28577665",
+      "title": "Rationale, design, and baseline characteristics of the Salt Substitute and Stroke Study (SSaSS)-A large-scale cluster randomized controlled trial",
+      "year": 2017,
+      "n": 20996,
+      "inReviews": [
+       "30661034"
+      ]
+     },
+     {
+      "pmid": "1586398",
+      "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+      "year": 1992,
+      "n": 2182,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "11446724",
+      "title": "Effect of potassium supplementation on blood pressure in Chinese: a randomized, placebo-controlled trial",
+      "year": 2001,
+      "n": 150,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3475429",
+      "title": "Australian National Health and Medical Research Council dietary salt study in mild hypertension",
+      "year": 1986,
+      "n": 55,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "20083724",
+      "title": "Effects of potassium chloride and potassium bicarbonate on endothelial function, cardiovascular risk factors, and bone turnover in mild hypertensives",
+      "year": 2010,
+      "n": 42,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "25673113",
+      "title": "Effects of sodium and potassium supplementation on blood pressure and arterial stiffness: a fully controlled dietary intervention study",
+      "year": 2015,
+      "n": 37,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3300841",
+      "title": "Controlled trial of long term oral potassium supplements in patients with mild hypertension",
+      "year": 1987,
+      "n": 37,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "9799029",
+      "title": "Effects of potassium supplementation on office, home, and 24-h blood pressure in patients with essential hypertension",
+      "year": 1998,
+      "n": 29,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "12821954",
+      "title": "Blood pressure response to changes in sodium and potassium intake: a metaregression analysis of randomised trials",
+      "year": 2003,
+      "n": 27,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "7750429",
+      "title": "[Potassium citrate versus potassium chloride in essential hypertension. Effects on hemodynamic, hormonal and metabolic parameters]",
+      "year": 1995,
+      "n": 25,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "6708394",
+      "title": "Low-sodium diet versus low-sodium/high-potassium diet for treatment of hypertension",
+      "year": 1984,
+      "n": 21,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3907484",
+      "title": "Potassium supplementation fails to lower blood pressure in hypertensive patients receiving a potassium losing diuretic",
+      "year": 1985,
+      "n": 19,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3883170",
+      "title": "Potassium supplementation in hypertensive patients with diuretic-induced hypokalemia",
+      "year": 1985,
+      "n": 16,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "1921255",
+      "title": "The influence of oral potassium citrate/bicarbonate on blood pressure in essential hypertension during unrestricted salt intake",
+      "year": 1991,
+      "n": 12,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3295034",
+      "title": "Sodium restriction and potassium supplementation in young people with mildly elevated blood pressure",
+      "year": 1987,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "20673378",
+      "title": "Increased potassium intake from fruit and vegetables or supplements does not lower blood pressure or improve vascular function in UK men and women with early hypertension: a randomised controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "18053306",
+      "title": "The effect of a dietary supplement of potassium chloride or potassium citrate on blood pressure in predominantly normotensive volunteers",
+      "year": 2008,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "2072372",
+      "title": "Potassium supplementation lowers blood pressure and increases urinary kallikrein in essential hypertensives",
+      "year": 1991,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "24048291",
+      "title": "A randomised controlled trial evaluating the effect of potassium supplementation on vascular function and the renin-angiotensin-aldosterone system",
+      "year": 2014,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "6143083",
+      "title": "Blood-pressure response to moderate sodium restriction and to potassium supplementation in mild essential hypertension",
+      "year": 1984,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3514747",
+      "title": "Potassium supplementation in blacks with mild to moderate essential hypertension",
+      "year": 1986,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "27448942",
+      "title": "Effects of Potassium Magnesium Citrate Supplementation on 24-Hour Ambulatory Blood Pressure and Oxidative Stress Marker in Prehypertensive and Hypertensive Subjects",
+      "year": 2016,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "26330658",
+      "title": "Why Your Mother Was Right: How Potassium Intake Reduces Blood Pressure",
+      "year": 2015,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "1336526",
+      "title": "Potassium supplementation reduces clinic and ambulatory blood pressure in elderly hypertensive patients",
+      "year": 1992,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3241259",
+      "title": "Effect of potassium supplementation combined with dietary sodium reduction on blood pressure in men taking antihypertensive medication",
+      "year": 1988,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3917702",
+      "title": "Moderate potassium chloride supplementation in essential hypertension: is it additive to moderate sodium restriction?",
+      "year": 1985,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "26599222",
+      "title": "Effects of potassium supplementation on markers of osmoregulation and volume regulation: results of a fully controlled dietary intervention study",
+      "year": 2016,
+      "inReviews": [
+       "28024910"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1978,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 15
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 13
+    },
+    {
+     "year": 1991,
+     "reviews": 1,
+     "trials": 12
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 7
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 7
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 5
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "1669525",
+     "title": "Trials of hypertension prevention. Phase I design",
+     "year": 1991,
+     "n": 2182
+    },
+    {
+     "pmid": "1342280",
+     "title": "Baseline characteristics of participants in phase I of the Trials of Hypertension Prevention",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1586398",
+     "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1338084",
+     "title": "Antihypertensive efficacy and side effects of three beta-blockers and a diuretic in elderly hypertensives: a report from the STOP-Hypertension study",
+     "year": 1992,
+     "n": 1627
+    },
+    {
+     "pmid": "8921782",
+     "title": "Relationship to blood pressure of combinations of dietary macronutrients. Findings of the Multiple Risk Factor Intervention Trial (MRFIT)",
+     "year": 1996,
+     "n": 11342
+    },
+    {
+     "pmid": "9022561",
+     "title": "Efficacy of nonpharmacologic interventions in adults with high-normal blood pressure: results from phase 1 of the Trials of Hypertension Prevention. Trials of Hypertension Prevention Collaborative Research Group",
+     "year": 1997,
+     "n": 2182
+    },
+    {
+     "pmid": "9468008",
+     "title": "Diet or diuretic? Treatment of newly diagnosed mild to moderate hypertension in the elderly",
+     "year": 1997,
+     "n": 6555
+    },
+    {
+     "pmid": "9554680",
+     "title": "Influence of long-term, low-dose, diuretic-based, antihypertensive therapy on glucose, lipid, uric acid, and potassium levels in older men and women with isolated systolic hypertension: The Systolic Hypertension in the Elderly Program. SHEP Cooperative Research Group",
+     "year": 1998,
+     "n": 4736
+    },
+    {
+     "pmid": "11464259",
+     "title": "A comparison of dietary and non-dietary factors of hypertension and normal blood pressure in a Chinese population",
+     "year": 2001,
+     "n": 2068
+    },
+    {
+     "pmid": "18982860",
+     "title": "Characteristics of the Chinese subjects entered the hypertension in the very elderly trial",
+     "year": 2008,
+     "n": 1348
+    },
+    {
+     "pmid": "19462490",
+     "title": "Differential associations of dietary sodium and potassium intake with blood pressure: a focus on pulse pressure",
+     "year": 2009,
+     "n": 4919
+    },
+    {
+     "pmid": "23093587",
+     "title": "A nutrient-wide association study on blood pressure",
+     "year": 2012,
+     "n": 4680
+    },
+    {
+     "pmid": "22070095",
+     "title": "Impact of alcohol habits and smoking on the risk of new-onset atrial fibrillation in hypertensive patients with ECG left ventricular hypertrophy: the LIFE study",
+     "year": 2012,
+     "n": 9193
+    },
+    {
+     "pmid": "27712772",
+     "title": "Sodium Intake and All-Cause Mortality Over 20 Years in the Trials of Hypertension Prevention",
+     "year": 2016,
+     "n": 2974
+    },
+    {
+     "pmid": "30636547",
+     "title": "Mediterranean-Style Diet Improves Systolic Blood Pressure and Arterial Stiffness in Older Adults",
+     "year": 2019,
+     "n": 1294
+    },
+    {
+     "pmid": "31986290",
+     "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+     "year": 2020,
+     "n": 20996
+    },
+    {
+     "pmid": "32066973",
+     "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+     "year": 2020,
+     "n": 2376
+    },
+    {
+     "pmid": "37055566",
+     "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+     "year": 2023,
+     "n": 1612
+    },
+    {
+     "pmid": "40148710",
+     "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+     "year": 2025,
+     "n": 20995
+    },
+    {
+     "pmid": "40077763",
+     "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+     "year": 2025,
+     "n": 7512
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28419159",
+     "16856053"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "32500831",
+      "doi": "10.1161/jaha.119.015719",
+      "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "firstAuthor": "Filippini T",
+      "journal": "Journal of the American Heart Association",
+      "citedBy": 199,
+      "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+     },
+     {
+      "pmid": "30661034",
+      "doi": "10.1136/heartjnl-2018-314036",
+      "title": "Effect of low-sodium salt substitutes on blood pressure, detected hypertension, stroke and mortality",
+      "year": 2019,
+      "firstAuthor": "Hernandez AV",
+      "journal": "Heart (British Cardiac Society)",
+      "citedBy": 57,
+      "n": 5224,
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     },
+     {
+      "pmid": "28024910",
+      "doi": "10.1016/j.ijcard.2016.12.048",
+      "title": "The effect of potassium supplementation on blood pressure in hypertensive subjects: A systematic review and meta-analysis",
+      "year": 2017,
+      "firstAuthor": "Filippini T",
+      "journal": "International journal of cardiology",
+      "citedBy": 120,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "31986290",
+      "doi": "10.1016/j.ahj.2019.12.020",
+      "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+      "year": 2020,
+      "firstAuthor": "Huang L",
+      "journal": "American heart journal",
+      "citedBy": 23,
+      "n": 20996,
+      "why": "A large trial (about 20,996 people) from 2020, as new as the newest review or newer"
+     },
+     {
+      "pmid": "40148710",
+      "doi": "10.1007/s10654-025-01216-x",
+      "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+      "year": 2025,
+      "firstAuthor": "Li X",
+      "journal": "European journal of epidemiology",
+      "citedBy": 2,
+      "n": 20995,
+      "why": "A large trial (about 20,995 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "40077763",
+      "doi": "10.3390/nu17050893",
+      "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+      "year": 2025,
+      "firstAuthor": "Du X",
+      "journal": "Nutrients",
+      "citedBy": 4,
+      "n": 7512,
+      "why": "A large trial (about 7,512 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "32066973",
+      "doi": "10.1038/s41591-020-0754-2",
+      "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+      "year": 2020,
+      "firstAuthor": "Bernabe-Ortiz A",
+      "journal": "Nature medicine",
+      "citedBy": 160,
+      "n": 2376,
+      "why": "A large trial (about 2,376 people) from 2020, as new as the newest review or newer"
+     },
+     {
+      "pmid": "37055566",
+      "doi": "10.1038/s41591-023-02286-8",
+      "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+      "year": 2023,
+      "firstAuthor": "Yuan Y",
+      "journal": "Nature medicine",
+      "citedBy": 77,
+      "n": 1612,
+      "why": "A large trial (about 1,612 people) from 2023, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with high blood pressure",
+     "intervention": "Potassium supplements (or potassium-enriched salt substitutes)",
+     "comparison": "Placebo, no supplement, or ordinary salt",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 4,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41578335",
+      "title": "Comparative effects of salt substitutes on blood pressure, cardiovascular events and mortality: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Potassium-enriched salt substitutes vs regular salt with blood pressure outcomes, but trials cover adults in general and no separate analysis in people with high blood pressure is reported."
+     },
+     {
+      "pmid": "39939826",
+      "title": "Effectiveness of self-monitoring devices measuring the urinary sodium-to-potassium ratio, urinary salt (sodium) excretion, or salt concentration in foods for blood pressure management: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "The intervention is self-monitoring devices for sodium and potassium, not potassium supplements or salt substitutes."
+     },
+     {
+      "pmid": "39519450",
+      "title": "Magnesium and Potassium Supplementation for Systolic Blood Pressure Reduction in the General Normotensive Population: A Systematic Review and Subgroup Meta-Analysis for Optimal Dosage and Treatment Length",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Placebo-controlled potassium supplement trials with blood pressure outcomes, but in people with normal blood pressure, not high blood pressure."
+     },
+     {
+      "pmid": "33674705",
+      "title": "The impact of baseline potassium intake on the dose-response relation between sodium reduction and blood pressure change: systematic review and meta-analysis of randomized trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "The intervention is sodium reduction; baseline potassium intake is only studied as a modifier of that effect."
+     },
+     {
+      "pmid": "26852373",
+      "title": "Nutraceuticals with a clinically detectable blood pressure-lowering effect: a review of available randomized clinical trials and their meta-analyses",
+      "year": 2017,
+      "fits": "no",
+      "reason": "A narrative overview of many nutraceuticals for blood pressure, not a pooled analysis of potassium supplement trials."
+     },
+     {
+      "pmid": "25398734",
+      "title": "Sodium-to-potassium ratio and blood pressure, hypertension, and related factors",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Looks at how the sodium-to-potassium ratio relates to blood pressure across trials and observational studies, without pooling potassium supplement trials."
+     },
+     {
+      "pmid": "16856060",
+      "title": "Combined calcium, magnesium and potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Adults with high blood pressure and blood pressure outcomes, but potassium is only given combined with magnesium or calcium."
+     },
+     {
+      "pmid": "9168293",
+      "title": "Effects of oral potassium on blood pressure. Meta-analysis of randomized controlled clinical trials",
+      "year": 1997,
+      "fits": "partly",
+      "reason": "Pools randomised trials of potassium supplements on blood pressure, but in people in general, with no separate analysis for high blood pressure reported."
+     }
+    ]
+   }
+  },
+  {
+   "id": "bp-normal",
+   "label": "Blood pressure (normal)",
+   "finding": "Blood pressure in people with normal blood pressure",
+   "counts": {
+    "reviews": 42,
+    "trialReviews": 14,
+    "trials": 258,
+    "largeTrials": 20
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39519450",
+     "doi": "10.3390/nu16213617",
+     "title": "Magnesium and Potassium Supplementation for Systolic Blood Pressure Reduction in the General Normotensive Population: A Systematic Review and Subgroup Meta-Analysis for Optimal Dosage and Treatment Length",
+     "year": 2024,
+     "firstAuthor": "Behers BJ",
+     "journal": "Nutrients",
+     "citedBy": 8,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "30661034",
+     "doi": "10.1136/heartjnl-2018-314036",
+     "title": "Effect of low-sodium salt substitutes on blood pressure, detected hypertension, stroke and mortality",
+     "year": 2019,
+     "firstAuthor": "Hernandez AV",
+     "journal": "Heart (British Cardiac Society)",
+     "citedBy": 57,
+     "n": 5224,
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+    },
+    {
+     "pmid": "26039623",
+     "doi": "10.1097/hjh.0000000000000611",
+     "title": "Daily potassium intake and sodium-to-potassium ratio in the reduction of blood pressure: a meta-analysis of randomized controlled trials",
+     "year": 2015,
+     "firstAuthor": "Binia A",
+     "journal": "Journal of hypertension",
+     "citedBy": 172,
+     "n": 917,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "40148710",
+     "doi": "10.1007/s10654-025-01216-x",
+     "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+     "year": 2025,
+     "firstAuthor": "Li X",
+     "journal": "European journal of epidemiology",
+     "citedBy": 2,
+     "n": 20995,
+     "why": "A large trial (about 20,995 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "40077763",
+     "doi": "10.3390/nu17050893",
+     "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+     "year": 2025,
+     "firstAuthor": "Du X",
+     "journal": "Nutrients",
+     "citedBy": 4,
+     "n": 7512,
+     "why": "A large trial (about 7,512 people) from 2025, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.15217391304347827,
+    "trials": 23,
+    "inclusions": 30,
+    "reviews": [
+     {
+      "pmid": "39519450",
+      "trials": 11
+     },
+     {
+      "pmid": "30661034",
+      "trials": 1
+     },
+     {
+      "pmid": "26039623",
+      "trials": 18
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "7795836",
+      "title": "The effect of potassium supplementation in persons with a high-normal blood pressure. Results from phase I of the Trials of Hypertension Prevention (TOHP). Trials of Hypertension Prevention (TOHP) Collaborative Research Group",
+      "year": 1995,
+      "n": 353,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "11446724",
+      "title": "Effect of potassium supplementation on blood pressure in Chinese: a randomized, placebo-controlled trial",
+      "year": 2001,
+      "n": 150,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3734451",
+      "title": "Potassium supplementation does not lower blood pressure in normotensive women",
+      "year": 1986,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "20673378",
+      "title": "Increased potassium intake from fruit and vegetables or supplements does not lower blood pressure or improve vascular function in UK men and women with early hypertension: a randomised controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "8526698",
+      "title": "Effect of potassium supplementation on blood pressure in African Americans on a low-potassium diet. A randomized, double-blind, placebo-controlled trial",
+      "year": 1996,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "18053306",
+      "title": "The effect of a dietary supplement of potassium chloride or potassium citrate on blood pressure in predominantly normotensive volunteers",
+      "year": 2008,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "12844375",
+      "title": "The effect of low-dose potassium supplementation on blood pressure in apparently healthy volunteers",
+      "year": 2003,
+      "inReviews": [
+       "39519450",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "28577665",
+      "title": "Rationale, design, and baseline characteristics of the Salt Substitute and Stroke Study (SSaSS)-A large-scale cluster randomized controlled trial",
+      "year": 2017,
+      "n": 20996,
+      "inReviews": [
+       "30661034"
+      ]
+     },
+     {
+      "pmid": "3570421",
+      "title": "Double-blind, placebo-controlled trial of potassium chloride in the treatment of mild hypertension",
+      "year": 1987,
+      "n": 101,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3475429",
+      "title": "Australian National Health and Medical Research Council dietary salt study in mild hypertension",
+      "year": 1986,
+      "n": 55,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "20083724",
+      "title": "Effects of potassium chloride and potassium bicarbonate on endothelial function, cardiovascular risk factors, and bone turnover in mild hypertensives",
+      "year": 2010,
+      "n": 42,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3300841",
+      "title": "Controlled trial of long term oral potassium supplements in patients with mild hypertension",
+      "year": 1987,
+      "n": 37,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "12821954",
+      "title": "Blood pressure response to changes in sodium and potassium intake: a metaregression analysis of randomised trials",
+      "year": 2003,
+      "n": 27,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "6125727",
+      "title": "Moderate potassium supplementation in essential hypertension",
+      "year": 1982,
+      "n": 23,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "22149452",
+      "title": "Effect of potassium supplementation on renal tubular function, ambulatory blood pressure and pulse wave velocity in healthy humans",
+      "year": 2012,
+      "n": 21,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "9449404",
+      "title": "Effect on blood pressure of potassium, calcium, and magnesium in women with low habitual intake",
+      "year": 1998,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "6128451",
+      "title": "Randomised double-blind cross-over trial of potassium on blood-pressure in normal subjects",
+      "year": 1982,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "26330658",
+      "title": "Why Your Mother Was Right: How Potassium Intake Reduces Blood Pressure",
+      "year": 2015,
+      "inReviews": [
+       "39519450"
+      ]
+     },
+     {
+      "pmid": "3514747",
+      "title": "Potassium supplementation in blacks with mild to moderate essential hypertension",
+      "year": 1986,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "1336526",
+      "title": "Potassium supplementation reduces clinic and ambulatory blood pressure in elderly hypertensive patients",
+      "year": 1992,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "6143083",
+      "title": "Blood-pressure response to moderate sodium restriction and to potassium supplementation in mild essential hypertension",
+      "year": 1984,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "2072372",
+      "title": "Potassium supplementation lowers blood pressure and increases urinary kallikrein in essential hypertensives",
+      "year": 1991,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "1929022",
+      "title": "Increasing the dietary potassium intake reduces the need for antihypertensive medication",
+      "year": 1991,
+      "inReviews": [
+       "26039623"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1978,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 15
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 13
+    },
+    {
+     "year": 1991,
+     "reviews": 1,
+     "trials": 12
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 7
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 7
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 5
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "1669525",
+     "title": "Trials of hypertension prevention. Phase I design",
+     "year": 1991,
+     "n": 2182
+    },
+    {
+     "pmid": "1342280",
+     "title": "Baseline characteristics of participants in phase I of the Trials of Hypertension Prevention",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1586398",
+     "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1338084",
+     "title": "Antihypertensive efficacy and side effects of three beta-blockers and a diuretic in elderly hypertensives: a report from the STOP-Hypertension study",
+     "year": 1992,
+     "n": 1627
+    },
+    {
+     "pmid": "8921782",
+     "title": "Relationship to blood pressure of combinations of dietary macronutrients. Findings of the Multiple Risk Factor Intervention Trial (MRFIT)",
+     "year": 1996,
+     "n": 11342
+    },
+    {
+     "pmid": "9022561",
+     "title": "Efficacy of nonpharmacologic interventions in adults with high-normal blood pressure: results from phase 1 of the Trials of Hypertension Prevention. Trials of Hypertension Prevention Collaborative Research Group",
+     "year": 1997,
+     "n": 2182
+    },
+    {
+     "pmid": "9468008",
+     "title": "Diet or diuretic? Treatment of newly diagnosed mild to moderate hypertension in the elderly",
+     "year": 1997,
+     "n": 6555
+    },
+    {
+     "pmid": "9554680",
+     "title": "Influence of long-term, low-dose, diuretic-based, antihypertensive therapy on glucose, lipid, uric acid, and potassium levels in older men and women with isolated systolic hypertension: The Systolic Hypertension in the Elderly Program. SHEP Cooperative Research Group",
+     "year": 1998,
+     "n": 4736
+    },
+    {
+     "pmid": "11464259",
+     "title": "A comparison of dietary and non-dietary factors of hypertension and normal blood pressure in a Chinese population",
+     "year": 2001,
+     "n": 2068
+    },
+    {
+     "pmid": "18982860",
+     "title": "Characteristics of the Chinese subjects entered the hypertension in the very elderly trial",
+     "year": 2008,
+     "n": 1348
+    },
+    {
+     "pmid": "19462490",
+     "title": "Differential associations of dietary sodium and potassium intake with blood pressure: a focus on pulse pressure",
+     "year": 2009,
+     "n": 4919
+    },
+    {
+     "pmid": "23093587",
+     "title": "A nutrient-wide association study on blood pressure",
+     "year": 2012,
+     "n": 4680
+    },
+    {
+     "pmid": "22070095",
+     "title": "Impact of alcohol habits and smoking on the risk of new-onset atrial fibrillation in hypertensive patients with ECG left ventricular hypertrophy: the LIFE study",
+     "year": 2012,
+     "n": 9193
+    },
+    {
+     "pmid": "27712772",
+     "title": "Sodium Intake and All-Cause Mortality Over 20 Years in the Trials of Hypertension Prevention",
+     "year": 2016,
+     "n": 2974
+    },
+    {
+     "pmid": "30636547",
+     "title": "Mediterranean-Style Diet Improves Systolic Blood Pressure and Arterial Stiffness in Older Adults",
+     "year": 2019,
+     "n": 1294
+    },
+    {
+     "pmid": "31986290",
+     "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+     "year": 2020,
+     "n": 20996
+    },
+    {
+     "pmid": "32066973",
+     "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+     "year": 2020,
+     "n": 2376
+    },
+    {
+     "pmid": "37055566",
+     "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+     "year": 2023,
+     "n": 1612
+    },
+    {
+     "pmid": "40148710",
+     "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+     "year": 2025,
+     "n": 20995
+    },
+    {
+     "pmid": "40077763",
+     "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+     "year": 2025,
+     "n": 7512
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23558164"
+    ],
+    "citedNotEligible": [
+     "23558164"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39519450",
+      "doi": "10.3390/nu16213617",
+      "title": "Magnesium and Potassium Supplementation for Systolic Blood Pressure Reduction in the General Normotensive Population: A Systematic Review and Subgroup Meta-Analysis for Optimal Dosage and Treatment Length",
+      "year": 2024,
+      "firstAuthor": "Behers BJ",
+      "journal": "Nutrients",
+      "citedBy": 8,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "30661034",
+      "doi": "10.1136/heartjnl-2018-314036",
+      "title": "Effect of low-sodium salt substitutes on blood pressure, detected hypertension, stroke and mortality",
+      "year": 2019,
+      "firstAuthor": "Hernandez AV",
+      "journal": "Heart (British Cardiac Society)",
+      "citedBy": 57,
+      "n": 5224,
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     },
+     {
+      "pmid": "26039623",
+      "doi": "10.1097/hjh.0000000000000611",
+      "title": "Daily potassium intake and sodium-to-potassium ratio in the reduction of blood pressure: a meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "firstAuthor": "Binia A",
+      "journal": "Journal of hypertension",
+      "citedBy": 172,
+      "n": 917,
+      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     },
+     {
+      "pmid": "40148710",
+      "doi": "10.1007/s10654-025-01216-x",
+      "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+      "year": 2025,
+      "firstAuthor": "Li X",
+      "journal": "European journal of epidemiology",
+      "citedBy": 2,
+      "n": 20995,
+      "why": "A large trial (about 20,995 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "40077763",
+      "doi": "10.3390/nu17050893",
+      "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+      "year": 2025,
+      "firstAuthor": "Du X",
+      "journal": "Nutrients",
+      "citedBy": 4,
+      "n": 7512,
+      "why": "A large trial (about 7,512 people) from 2025, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with normal blood pressure (or results reported separately for them)",
+     "intervention": "Potassium supplements (or potassium-enriched salt substitutes)",
+     "comparison": "Placebo, no supplement, or ordinary salt",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 6,
+     "no": 5,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41578335",
+      "title": "Comparative effects of salt substitutes on blood pressure, cardiovascular events and mortality: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pooled RCTs of potassium-enriched salt substitutes vs regular salt for BP in adults, but no separate results for people with normal blood pressure."
+     },
+     {
+      "pmid": "39939826",
+      "title": "Effectiveness of self-monitoring devices measuring the urinary sodium-to-potassium ratio, urinary salt (sodium) excretion, or salt concentration in foods for blood pressure management: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Tests self-monitoring devices for sodium/potassium, not potassium supplements or salt substitutes."
+     },
+     {
+      "pmid": "33674705",
+      "title": "The impact of baseline potassium intake on the dose-response relation between sodium reduction and blood pressure change: systematic review and meta-analysis of randomized trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Tests sodium reduction, with baseline potassium only as an effect modifier, not potassium supplementation."
+     },
+     {
+      "pmid": "32500831",
+      "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pooled RCTs of potassium supplements on BP, but mostly in hypertensive adults and the abstract gives no clear normotensive results."
+     },
+     {
+      "pmid": "28024910",
+      "title": "The effect of potassium supplementation on blood pressure in hypertensive subjects: A systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pooled RCTs of potassium supplements on BP, but only in hypertensive people."
+     },
+     {
+      "pmid": "28419159",
+      "title": "Oral potassium supplementation for management of essential hypertension: A meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pooled placebo-controlled RCTs of potassium supplements on BP, but only in people with essential hypertension."
+     },
+     {
+      "pmid": "26852373",
+      "title": "Nutraceuticals with a clinically detectable blood pressure-lowering effect: a review of available randomized clinical trials and their meta-analyses",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Broad narrative review of many nutraceuticals for BP, with no pooled potassium analysis in normotensive adults."
+     },
+     {
+      "pmid": "25398734",
+      "title": "Sodium-to-potassium ratio and blood pressure, hypertension, and related factors",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Looks at the sodium-to-potassium ratio across trials and observational studies, not a pooled analysis of potassium supplements."
+     },
+     {
+      "pmid": "16856053",
+      "title": "Potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Pooled RCTs of potassium supplements vs placebo on BP, but only in adults with raised blood pressure."
+     },
+     {
+      "pmid": "16856060",
+      "title": "Combined calcium, magnesium and potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Potassium is given only together with other minerals, and only to people with hypertension, so two parts differ."
+     },
+     {
+      "pmid": "9168293",
+      "title": "Effects of oral potassium on blood pressure. Meta-analysis of randomized controlled clinical trials",
+      "year": 1997,
+      "fits": "partly",
+      "reason": "Pooled RCTs of potassium supplements on BP, but the abstract gives no separate results for normotensive adults."
+     }
+    ]
+   }
+  },
+  {
+   "id": "bp-dose",
+   "label": "Blood pressure by amount",
+   "finding": "Blood pressure at large supplement amounts",
+   "counts": {
+    "reviews": 46,
+    "trialReviews": 14,
+    "trials": 258,
+    "largeTrials": 20
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32500831",
+     "doi": "10.1161/jaha.119.015719",
+     "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
+     "year": 2020,
+     "firstAuthor": "Filippini T",
+     "journal": "Journal of the American Heart Association",
+     "citedBy": 199,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "28024910",
+     "doi": "10.1016/j.ijcard.2016.12.048",
+     "title": "The effect of potassium supplementation on blood pressure in hypertensive subjects: A systematic review and meta-analysis",
+     "year": 2017,
+     "firstAuthor": "Filippini T",
+     "journal": "International journal of cardiology",
+     "citedBy": 120,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    },
+    {
+     "pmid": "26039623",
+     "doi": "10.1097/hjh.0000000000000611",
+     "title": "Daily potassium intake and sodium-to-potassium ratio in the reduction of blood pressure: a meta-analysis of randomized controlled trials",
+     "year": 2015,
+     "firstAuthor": "Binia A",
+     "journal": "Journal of hypertension",
+     "citedBy": 172,
+     "n": 917,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "31986290",
+     "doi": "10.1016/j.ahj.2019.12.020",
+     "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+     "year": 2020,
+     "firstAuthor": "Huang L",
+     "journal": "American heart journal",
+     "citedBy": 23,
+     "n": 20996,
+     "why": "A large trial (about 20,996 people) from 2020, as new as the newest review or newer"
+    },
+    {
+     "pmid": "40148710",
+     "doi": "10.1007/s10654-025-01216-x",
+     "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+     "year": 2025,
+     "firstAuthor": "Li X",
+     "journal": "European journal of epidemiology",
+     "citedBy": 2,
+     "n": 20995,
+     "why": "A large trial (about 20,995 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "40077763",
+     "doi": "10.3390/nu17050893",
+     "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+     "year": 2025,
+     "firstAuthor": "Du X",
+     "journal": "Nutrients",
+     "citedBy": 4,
+     "n": 7512,
+     "why": "A large trial (about 7,512 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "32066973",
+     "doi": "10.1038/s41591-020-0754-2",
+     "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+     "year": 2020,
+     "firstAuthor": "Bernabe-Ortiz A",
+     "journal": "Nature medicine",
+     "citedBy": 160,
+     "n": 2376,
+     "why": "A large trial (about 2,376 people) from 2020, as new as the newest review or newer"
+    },
+    {
+     "pmid": "37055566",
+     "doi": "10.1038/s41591-023-02286-8",
+     "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+     "year": 2023,
+     "firstAuthor": "Yuan Y",
+     "journal": "Nature medicine",
+     "citedBy": 77,
+     "n": 1612,
+     "why": "A large trial (about 1,612 people) from 2023, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.23529411764705882,
+    "trials": 34,
+    "inclusions": 50,
+    "reviews": [
+     {
+      "pmid": "32500831",
+      "trials": 28
+     },
+     {
+      "pmid": "28024910",
+      "trials": 4
+     },
+     {
+      "pmid": "26039623",
+      "trials": 18
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "7795836",
+      "title": "The effect of potassium supplementation in persons with a high-normal blood pressure. Results from phase I of the Trials of Hypertension Prevention (TOHP). Trials of Hypertension Prevention (TOHP) Collaborative Research Group",
+      "year": 1995,
+      "n": 353,
+      "inReviews": [
+       "32500831",
+       "28024910",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3734451",
+      "title": "Potassium supplementation does not lower blood pressure in normotensive women",
+      "year": 1986,
+      "inReviews": [
+       "32500831",
+       "28024910",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "11446724",
+      "title": "Effect of potassium supplementation on blood pressure in Chinese: a randomized, placebo-controlled trial",
+      "year": 2001,
+      "n": 150,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3475429",
+      "title": "Australian National Health and Medical Research Council dietary salt study in mild hypertension",
+      "year": 1986,
+      "n": 55,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "20083724",
+      "title": "Effects of potassium chloride and potassium bicarbonate on endothelial function, cardiovascular risk factors, and bone turnover in mild hypertensives",
+      "year": 2010,
+      "n": 42,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3300841",
+      "title": "Controlled trial of long term oral potassium supplements in patients with mild hypertension",
+      "year": 1987,
+      "n": 37,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "12821954",
+      "title": "Blood pressure response to changes in sodium and potassium intake: a metaregression analysis of randomised trials",
+      "year": 2003,
+      "n": 27,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "22149452",
+      "title": "Effect of potassium supplementation on renal tubular function, ambulatory blood pressure and pulse wave velocity in healthy humans",
+      "year": 2012,
+      "n": 21,
+      "inReviews": [
+       "32500831",
+       "28024910"
+      ]
+     },
+     {
+      "pmid": "20673378",
+      "title": "Increased potassium intake from fruit and vegetables or supplements does not lower blood pressure or improve vascular function in UK men and women with early hypertension: a randomised controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "18053306",
+      "title": "The effect of a dietary supplement of potassium chloride or potassium citrate on blood pressure in predominantly normotensive volunteers",
+      "year": 2008,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "2072372",
+      "title": "Potassium supplementation lowers blood pressure and increases urinary kallikrein in essential hypertensives",
+      "year": 1991,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "6143083",
+      "title": "Blood-pressure response to moderate sodium restriction and to potassium supplementation in mild essential hypertension",
+      "year": 1984,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "3514747",
+      "title": "Potassium supplementation in blacks with mild to moderate essential hypertension",
+      "year": 1986,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "1336526",
+      "title": "Potassium supplementation reduces clinic and ambulatory blood pressure in elderly hypertensive patients",
+      "year": 1992,
+      "inReviews": [
+       "32500831",
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "1586398",
+      "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+      "year": 1992,
+      "n": 2182,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3570421",
+      "title": "Double-blind, placebo-controlled trial of potassium chloride in the treatment of mild hypertension",
+      "year": 1987,
+      "n": 101,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "25673113",
+      "title": "Effects of sodium and potassium supplementation on blood pressure and arterial stiffness: a fully controlled dietary intervention study",
+      "year": 2015,
+      "n": 37,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "9799029",
+      "title": "Effects of potassium supplementation on office, home, and 24-h blood pressure in patients with essential hypertension",
+      "year": 1998,
+      "n": 29,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "7750429",
+      "title": "[Potassium citrate versus potassium chloride in essential hypertension. Effects on hemodynamic, hormonal and metabolic parameters]",
+      "year": 1995,
+      "n": 25,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "6125727",
+      "title": "Moderate potassium supplementation in essential hypertension",
+      "year": 1982,
+      "n": 23,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "6708394",
+      "title": "Low-sodium diet versus low-sodium/high-potassium diet for treatment of hypertension",
+      "year": 1984,
+      "n": 21,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3907484",
+      "title": "Potassium supplementation fails to lower blood pressure in hypertensive patients receiving a potassium losing diuretic",
+      "year": 1985,
+      "n": 19,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3883170",
+      "title": "Potassium supplementation in hypertensive patients with diuretic-induced hypokalemia",
+      "year": 1985,
+      "n": 16,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "1921255",
+      "title": "The influence of oral potassium citrate/bicarbonate on blood pressure in essential hypertension during unrestricted salt intake",
+      "year": 1991,
+      "n": 12,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3295034",
+      "title": "Sodium restriction and potassium supplementation in young people with mildly elevated blood pressure",
+      "year": 1987,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "24048291",
+      "title": "A randomised controlled trial evaluating the effect of potassium supplementation on vascular function and the renin-angiotensin-aldosterone system",
+      "year": 2014,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "27448942",
+      "title": "Effects of Potassium Magnesium Citrate Supplementation on 24-Hour Ambulatory Blood Pressure and Oxidative Stress Marker in Prehypertensive and Hypertensive Subjects",
+      "year": 2016,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "26330658",
+      "title": "Why Your Mother Was Right: How Potassium Intake Reduces Blood Pressure",
+      "year": 2015,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3241259",
+      "title": "Effect of potassium supplementation combined with dietary sodium reduction on blood pressure in men taking antihypertensive medication",
+      "year": 1988,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "3917702",
+      "title": "Moderate potassium chloride supplementation in essential hypertension: is it additive to moderate sodium restriction?",
+      "year": 1985,
+      "inReviews": [
+       "32500831"
+      ]
+     },
+     {
+      "pmid": "26599222",
+      "title": "Effects of potassium supplementation on markers of osmoregulation and volume regulation: results of a fully controlled dietary intervention study",
+      "year": 2016,
+      "inReviews": [
+       "28024910"
+      ]
+     },
+     {
+      "pmid": "8526698",
+      "title": "Effect of potassium supplementation on blood pressure in African Americans on a low-potassium diet. A randomized, double-blind, placebo-controlled trial",
+      "year": 1996,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "1929022",
+      "title": "Increasing the dietary potassium intake reduces the need for antihypertensive medication",
+      "year": 1991,
+      "inReviews": [
+       "26039623"
+      ]
+     },
+     {
+      "pmid": "12844375",
+      "title": "The effect of low-dose potassium supplementation on blood pressure in apparently healthy volunteers",
+      "year": 2003,
+      "inReviews": [
+       "26039623"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1975,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1978,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 15
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 13
+    },
+    {
+     "year": 1991,
+     "reviews": 1,
+     "trials": 12
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 7
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 7
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 5
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "1669525",
+     "title": "Trials of hypertension prevention. Phase I design",
+     "year": 1991,
+     "n": 2182
+    },
+    {
+     "pmid": "1342280",
+     "title": "Baseline characteristics of participants in phase I of the Trials of Hypertension Prevention",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1586398",
+     "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
+     "year": 1992,
+     "n": 2182
+    },
+    {
+     "pmid": "1338084",
+     "title": "Antihypertensive efficacy and side effects of three beta-blockers and a diuretic in elderly hypertensives: a report from the STOP-Hypertension study",
+     "year": 1992,
+     "n": 1627
+    },
+    {
+     "pmid": "8921782",
+     "title": "Relationship to blood pressure of combinations of dietary macronutrients. Findings of the Multiple Risk Factor Intervention Trial (MRFIT)",
+     "year": 1996,
+     "n": 11342
+    },
+    {
+     "pmid": "9022561",
+     "title": "Efficacy of nonpharmacologic interventions in adults with high-normal blood pressure: results from phase 1 of the Trials of Hypertension Prevention. Trials of Hypertension Prevention Collaborative Research Group",
+     "year": 1997,
+     "n": 2182
+    },
+    {
+     "pmid": "9468008",
+     "title": "Diet or diuretic? Treatment of newly diagnosed mild to moderate hypertension in the elderly",
+     "year": 1997,
+     "n": 6555
+    },
+    {
+     "pmid": "9554680",
+     "title": "Influence of long-term, low-dose, diuretic-based, antihypertensive therapy on glucose, lipid, uric acid, and potassium levels in older men and women with isolated systolic hypertension: The Systolic Hypertension in the Elderly Program. SHEP Cooperative Research Group",
+     "year": 1998,
+     "n": 4736
+    },
+    {
+     "pmid": "11464259",
+     "title": "A comparison of dietary and non-dietary factors of hypertension and normal blood pressure in a Chinese population",
+     "year": 2001,
+     "n": 2068
+    },
+    {
+     "pmid": "18982860",
+     "title": "Characteristics of the Chinese subjects entered the hypertension in the very elderly trial",
+     "year": 2008,
+     "n": 1348
+    },
+    {
+     "pmid": "19462490",
+     "title": "Differential associations of dietary sodium and potassium intake with blood pressure: a focus on pulse pressure",
+     "year": 2009,
+     "n": 4919
+    },
+    {
+     "pmid": "23093587",
+     "title": "A nutrient-wide association study on blood pressure",
+     "year": 2012,
+     "n": 4680
+    },
+    {
+     "pmid": "22070095",
+     "title": "Impact of alcohol habits and smoking on the risk of new-onset atrial fibrillation in hypertensive patients with ECG left ventricular hypertrophy: the LIFE study",
+     "year": 2012,
+     "n": 9193
+    },
+    {
+     "pmid": "27712772",
+     "title": "Sodium Intake and All-Cause Mortality Over 20 Years in the Trials of Hypertension Prevention",
+     "year": 2016,
+     "n": 2974
+    },
+    {
+     "pmid": "30636547",
+     "title": "Mediterranean-Style Diet Improves Systolic Blood Pressure and Arterial Stiffness in Older Adults",
+     "year": 2019,
+     "n": 1294
+    },
+    {
+     "pmid": "31986290",
+     "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+     "year": 2020,
+     "n": 20996
+    },
+    {
+     "pmid": "32066973",
+     "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+     "year": 2020,
+     "n": 2376
+    },
+    {
+     "pmid": "37055566",
+     "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+     "year": 2023,
+     "n": 1612
+    },
+    {
+     "pmid": "40148710",
+     "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+     "year": 2025,
+     "n": 20995
+    },
+    {
+     "pmid": "40077763",
+     "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+     "year": 2025,
+     "n": 7512
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "32500831"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "28024910",
+      "doi": "10.1016/j.ijcard.2016.12.048",
+      "title": "The effect of potassium supplementation on blood pressure in hypertensive subjects: A systematic review and meta-analysis",
+      "year": 2017,
+      "firstAuthor": "Filippini T",
+      "journal": "International journal of cardiology",
+      "citedBy": 120,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "26039623",
+      "doi": "10.1097/hjh.0000000000000611",
+      "title": "Daily potassium intake and sodium-to-potassium ratio in the reduction of blood pressure: a meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "firstAuthor": "Binia A",
+      "journal": "Journal of hypertension",
+      "citedBy": 172,
+      "n": 917,
+      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     },
+     {
+      "pmid": "31986290",
+      "doi": "10.1016/j.ahj.2019.12.020",
+      "title": "Interim effects of salt substitution on urinary electrolytes and blood pressure in the China Salt Substitute and Stroke Study (SSaSS)",
+      "year": 2020,
+      "firstAuthor": "Huang L",
+      "journal": "American heart journal",
+      "citedBy": 23,
+      "n": 20996,
+      "why": "A large trial (about 20,996 people) from 2020, as new as the newest review or newer"
+     },
+     {
+      "pmid": "40148710",
+      "doi": "10.1007/s10654-025-01216-x",
+      "title": "Effects of salt substitution on cumulative blood pressure: a secondary analysis of the SSaSS",
+      "year": 2025,
+      "firstAuthor": "Li X",
+      "journal": "European journal of epidemiology",
+      "citedBy": 2,
+      "n": 20995,
+      "why": "A large trial (about 20,995 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "40077763",
+      "doi": "10.3390/nu17050893",
+      "title": "Effect of Salt Reduction Interventions in Lowering Blood Pressure and Salt Intake in Zhejiang Province, China, 2017-2021: A Randomized Controlled Trial",
+      "year": 2025,
+      "firstAuthor": "Du X",
+      "journal": "Nutrients",
+      "citedBy": 4,
+      "n": 7512,
+      "why": "A large trial (about 7,512 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "32066973",
+      "doi": "10.1038/s41591-020-0754-2",
+      "title": "Effect of salt substitution on community-wide blood pressure and hypertension incidence",
+      "year": 2020,
+      "firstAuthor": "Bernabe-Ortiz A",
+      "journal": "Nature medicine",
+      "citedBy": 160,
+      "n": 2376,
+      "why": "A large trial (about 2,376 people) from 2020, as new as the newest review or newer"
+     },
+     {
+      "pmid": "37055566",
+      "doi": "10.1038/s41591-023-02286-8",
+      "title": "Salt substitution and salt-supply restriction for lowering blood pressure in elderly care facilities: a cluster-randomized trial",
+      "year": 2023,
+      "firstAuthor": "Yuan Y",
+      "journal": "Nature medicine",
+      "citedBy": 77,
+      "n": 1612,
+      "why": "A large trial (about 1,612 people) from 2023, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, mostly with high blood pressure",
+     "intervention": "Potassium supplements at different amounts (a dose-response analysis)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 6,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41578335",
+      "title": "Comparative effects of salt substitutes on blood pressure, cardiovascular events and mortality: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Potassium is given only as a salt substitute that also cuts sodium, compared with regular salt rather than placebo; the outcome includes blood pressure."
+     },
+     {
+      "pmid": "39939826",
+      "title": "Effectiveness of self-monitoring devices measuring the urinary sodium-to-potassium ratio, urinary salt (sodium) excretion, or salt concentration in foods for blood pressure management: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Tests self-monitoring devices for sodium and potassium, not potassium supplements at different doses."
+     },
+     {
+      "pmid": "39519450",
+      "title": "Magnesium and Potassium Supplementation for Systolic Blood Pressure Reduction in the General Normotensive Population: A Systematic Review and Subgroup Meta-Analysis for Optimal Dosage and Treatment Length",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Placebo-controlled potassium trials with dose subgroups and blood pressure outcomes, but the population is normotensive rather than mostly hypertensive."
+     },
+     {
+      "pmid": "33674705",
+      "title": "The impact of baseline potassium intake on the dose-response relation between sodium reduction and blood pressure change: systematic review and meta-analysis of randomized trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at sodium reduction and treats baseline potassium intake as a modifier, not potassium supplementation."
+     },
+     {
+      "pmid": "30661034",
+      "title": "Effect of low-sodium salt substitutes on blood pressure, detected hypertension, stroke and mortality",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Potassium is given only within low-sodium salt substitutes, compared with regular salt; no dose-response for potassium supplements."
+     },
+     {
+      "pmid": "28419159",
+      "title": "Oral potassium supplementation for management of essential hypertension: A meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Placebo-controlled potassium RCTs in essential hypertension with blood pressure outcomes, but no dose-response analysis is reported."
+     },
+     {
+      "pmid": "26852373",
+      "title": "Nutraceuticals with a clinically detectable blood pressure-lowering effect: a review of available randomized clinical trials and their meta-analyses",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Narrative review of many nutraceuticals for blood pressure, with no pooled analysis of potassium dose."
+     },
+     {
+      "pmid": "25398734",
+      "title": "Sodium-to-potassium ratio and blood pressure, hypertension, and related factors",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Narrative synthesis of the sodium-to-potassium ratio from RCTs and observational studies, with no pooling of potassium supplement doses."
+     },
+     {
+      "pmid": "16856060",
+      "title": "Combined calcium, magnesium and potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Potassium is given only in combination with magnesium or calcium, in hypertensive adults; no dose-response analysis is reported."
+     },
+     {
+      "pmid": "9168293",
+      "title": "Effects of oral potassium on blood pressure. Meta-analysis of randomized controlled clinical trials",
+      "year": 1997,
+      "fits": "partly",
+      "reason": "Pools RCTs of potassium supplements against control for blood pressure, but the population is mixed and no dose-response result is reported."
+     }
+    ]
+   }
+  },
+  {
+   "id": "kidney-stones",
+   "label": "Kidney stones (citrate)",
+   "finding": "New kidney stones (potassium citrate, under medical care)",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 3,
+    "trials": 53,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "26439475"
+    ],
+    "citedNotEligible": [
+     "26439475"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults who have had calcium-containing kidney stones",
+     "intervention": "Potassium citrate (or other citrate)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "New kidney stones or stone growth"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 2,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42423994",
+      "title": "Effects of Potassium Citrate Supplementation on Bone Turnover Markers in Postmenopausal Women: A GRADE-Assessed Systematic Review, Meta-analysis and Trial Sequential Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Population is postmenopausal women with bone loss and outcomes are bone turnover markers, not kidney stone recurrence."
+     },
+     {
+      "pmid": "27915395",
+      "title": "Effect of potassium citrate supplement on stone recurrence before or after lithotripsy: systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pooled RCTs of potassium citrate for stone recurrence, but only in patients having lithotripsy, and calcium stones are not specified."
+     },
+     {
+      "pmid": "19321253",
+      "title": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "RCTs in adults with past kidney stones, outcome recurrence, but the abstract doesn't say potassium citrate was among the supplements tested."
+     }
+    ]
+   }
+  },
+  {
+   "id": "bone",
+   "label": "Calcium loss and bone",
+   "finding": "Calcium loss in urine and a marker of bone breakdown",
+   "counts": {
+    "reviews": 8,
+    "trialReviews": 3,
+    "trials": 73,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "25572045"
+    ],
+    "citedNotEligible": [
+     "25572045"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults (not people on dialysis)",
+     "intervention": "Potassium bicarbonate or potassium citrate (alkaline potassium salts)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Calcium in urine, markers of bone breakdown, or bone density"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 1,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42423994",
+      "title": "Effects of Potassium Citrate Supplementation on Bone Turnover Markers in Postmenopausal Women: A GRADE-Assessed Systematic Review, Meta-analysis and Trial Sequential Analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Potassium citrate vs placebo RCTs pooled for urinary calcium and bone turnover markers, but only in postmenopausal women, a narrower group than all adults."
+     },
+     {
+      "pmid": "28711425",
+      "title": "Minerals and Sarcopenia; The Role of Calcium, Iron, Magnesium, Phosphorus, Potassium, Selenium, Sodium, and Zinc on Muscle Mass, Muscle Strength, and Physical Performance in Older Adults: A Systematic Review",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at minerals and muscle mass, strength and performance in older adults, not alkaline potassium salts and urine calcium or bone outcomes."
+     },
+     {
+      "pmid": "16856060",
+      "title": "Combined calcium, magnesium and potassium supplementation for the management of primary hypertension in adults",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Combined mineral supplements for treating high blood pressure, with blood pressure as the outcome rather than urine calcium or bone outcomes."
+     }
+    ]
+   }
+  }
+ ]
+}

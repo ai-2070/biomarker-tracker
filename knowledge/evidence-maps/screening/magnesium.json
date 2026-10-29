@@ -1,0 +1,317 @@
+{
+ "topic": "magnesium",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "sleep": {
+   "question": {
+    "population": "Older adults with trouble sleeping (insomnia), or adults in general",
+    "intervention": "Oral magnesium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Sleep (time to fall asleep, sleep time, sleep quality)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42661485",
+     "fits": "partly",
+     "reason": "RCTs of oral magnesium alone for sleep in adults match the question, but the results were synthesised narratively, not pooled."
+    },
+    {
+     "pmid": "35184264",
+     "fits": "partly",
+     "reason": "Adults and magnesium vs placebo or low intake for sleep match, but observational studies are mixed with RCTs and nothing was pooled."
+    },
+    {
+     "pmid": "33865376",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium vs placebo in older adults with insomnia, reporting time to fall asleep and total sleep time."
+    },
+    {
+     "pmid": "33441476",
+     "fits": "partly",
+     "reason": "Meta-analysis of supplement RCTs on sleep quality, but magnesium trials were only discussed and not pooled because data were inadequate."
+    }
+   ]
+  },
+  "migraine": {
+   "question": {
+    "population": "Adults (or children) with migraine",
+    "intervention": "Oral magnesium taken every day to prevent attacks",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How often migraine attacks happen and how bad they are"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42707444",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in adults with migraine includes a magnesium vs placebo comparison for prevention, reporting attack frequency and severity."
+    },
+    {
+     "pmid": "39404918",
+     "fits": "yes",
+     "reason": "Pooled RCTs of supplements for migraine prevention, with a separate magnesium vs control analysis of attack frequency, severity and monthly migraine days."
+    },
+    {
+     "pmid": "26752497",
+     "fits": "yes",
+     "reason": "Has a separate pooled analysis of 10 RCTs of oral magnesium vs control to prevent migraine, reporting attack frequency and intensity."
+    }
+   ]
+  },
+  "cramps": {
+   "question": {
+    "population": "Adults with leg cramps that have no known cause, mostly older adults",
+    "intervention": "Magnesium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How often cramps happen and how bad they are"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "34247796",
+     "fits": "partly",
+     "reason": "Pooled RCTs of oral magnesium versus control for cramp frequency, but only in pregnant women, not adults with idiopathic cramps."
+    },
+    {
+     "pmid": "32956536",
+     "fits": "yes",
+     "reason": "Pooled RCTs of magnesium versus placebo or no treatment, including five trials in people with idiopathic cramps; cramp outcomes assessed."
+    },
+    {
+     "pmid": "22972143",
+     "fits": "yes",
+     "reason": "Separate analysis of idiopathic cramps (mostly older adults) comparing magnesium with placebo on cramp frequency."
+    }
+   ]
+  },
+  "pregnancy": {
+   "question": {
+    "population": "Pregnant women",
+    "intervention": "Oral magnesium supplements during pregnancy",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Pre-eclampsia, the baby's growth or birth weight, preterm birth or stillbirth"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38128389",
+     "fits": "partly",
+     "reason": "Pooled RCTs of magnesium versus control in pregnancy, but in women with gestational diabetes as treatment, and the target outcomes are not clearly reported."
+    },
+    {
+     "pmid": "34907820",
+     "fits": "no",
+     "reason": "Women with gestational diabetes, and only glucose and lipid blood markers were pooled, with no pre-eclampsia, growth, preterm or stillbirth outcomes."
+    },
+    {
+     "pmid": "34247796",
+     "fits": "no",
+     "reason": "Oral magnesium versus control in pregnant women, but the outcome is leg cramps, not pre-eclampsia, growth, preterm birth or stillbirth."
+    },
+    {
+     "pmid": "34775542",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium versus control in pregnant women for preventing pre-eclampsia."
+    },
+    {
+     "pmid": "36352102",
+     "fits": "partly",
+     "reason": "Pre-eclampsia outcome, but only high-risk women, and just one magnesium trial among several micronutrients."
+    },
+    {
+     "pmid": "34209454",
+     "fits": "no",
+     "reason": "Women with gestational diabetes, magnesium only combined with zinc and calcium, and outcomes are oxidative stress markers."
+    },
+    {
+     "pmid": "24696187",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of oral magnesium versus placebo or no treatment in pregnancy, covering pre-eclampsia, SGA and perinatal mortality."
+    },
+    {
+     "pmid": "11687087",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium versus placebo or control in pregnancy, reporting preterm birth, low birth weight and SGA."
+    },
+    {
+     "pmid": "10796220",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium versus placebo in pregnancy, reporting preterm birth, low birthweight and SGA."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults with or without high blood pressure",
+    "intervention": "Oral magnesium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41000008",
+     "fits": "yes",
+     "reason": "Pooled RCTs of magnesium supplements versus placebo on blood pressure in adults with and without hypertension."
+    },
+    {
+     "pmid": "40641714",
+     "fits": "partly",
+     "reason": "Pooled RCTs of magnesium and blood pressure, but only in people with type 2 diabetes, which is a narrower group."
+    },
+    {
+     "pmid": "39519450",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of magnesium on systolic blood pressure in normotensive adults, analysed separately from potassium."
+    },
+    {
+     "pmid": "36741996",
+     "fits": "partly",
+     "reason": "Pooled RCTs of magnesium and blood pressure, but only in people with type 2 diabetes, which is a narrower group."
+    },
+    {
+     "pmid": "32385715",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled RCTs of magnesium and blood pressure, but only in people with type 2 diabetes."
+    },
+    {
+     "pmid": "28724644",
+     "fits": "partly",
+     "reason": "Pooled RCTs of magnesium and blood pressure, but only in people with insulin resistance, prediabetes or chronic diseases."
+    },
+    {
+     "pmid": "22318649",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials of magnesium supplements, with systolic and diastolic blood pressure as the main outcomes."
+    },
+    {
+     "pmid": "26852373",
+     "fits": "no",
+     "reason": "Narrative review of many nutraceuticals for blood pressure, with no pooled analysis of magnesium trials."
+    },
+    {
+     "pmid": "27402922",
+     "fits": "yes",
+     "reason": "Pooled double-blind placebo-controlled RCTs of oral magnesium on blood pressure in normotensive and hypertensive adults."
+    },
+    {
+     "pmid": "16856052",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium versus placebo or no treatment on blood pressure in adults with high blood pressure."
+    },
+    {
+     "pmid": "16856060",
+     "fits": "partly",
+     "reason": "Magnesium was only given together with potassium or calcium, never on its own, in adults with high blood pressure."
+    },
+    {
+     "pmid": "12160191",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of magnesium supplements on blood pressure in people with and without high blood pressure."
+    }
+   ]
+  },
+  "blood-sugar": {
+   "question": {
+    "population": "People with type 2 diabetes or at high risk of it",
+    "intervention": "Oral magnesium supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Fasting blood sugar, HbA1c or insulin resistance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42426860",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium vs placebo in people with diabetes and prediabetes, reporting insulin resistance, HbA1c and fasting glucose."
+    },
+    {
+     "pmid": "41580698",
+     "fits": "partly",
+     "reason": "Women with PCOS only, and magnesium is pooled with other minerals rather than analysed alone against placebo."
+    },
+    {
+     "pmid": "40641714",
+     "fits": "yes",
+     "reason": "Pooled RCTs of magnesium supplements in type 2 diabetes, reporting fasting blood glucose and HbA1c."
+    },
+    {
+     "pmid": "40738717",
+     "fits": "no",
+     "reason": "Looks at micronutrient status and ulcer healing in diabetic foot, not magnesium's effect on blood sugar or insulin resistance."
+    },
+    {
+     "pmid": "36741996",
+     "fits": "yes",
+     "reason": "Pooled 24 RCTs of magnesium supplements in type 2 diabetes, reporting fasting glucose and HbA1c."
+    },
+    {
+     "pmid": "34836329",
+     "fits": "yes",
+     "reason": "Pooled double-blind RCTs of oral magnesium vs placebo in people with or at high risk of diabetes, reporting glucose and insulin sensitivity."
+    },
+    {
+     "pmid": "35045911",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium in type 2 diabetes, reporting HbA1c and fasting blood sugar."
+    },
+    {
+     "pmid": "31758631",
+     "fits": "yes",
+     "reason": "Includes a separate pooled analysis of RCTs of magnesium in type 2 diabetes or high-risk people, reporting fasting glucose and HOMA-IR."
+    },
+    {
+     "pmid": "35963372",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in type 2 diabetes with magnesium as its own arm, reporting HbA1c, fasting blood sugar and HOMA-IR."
+    },
+    {
+     "pmid": "32468224",
+     "fits": "no",
+     "reason": "Outcome is blood lipids only, not blood sugar, HbA1c or insulin resistance."
+    },
+    {
+     "pmid": "32385715",
+     "fits": "no",
+     "reason": "Outcomes are blood pressure and body weight measures, not blood sugar or insulin resistance."
+    },
+    {
+     "pmid": "28150351",
+     "fits": "partly",
+     "reason": "Pools diabetic and non-diabetic people together, and no matching diabetes-only glucose analysis is clearly reported."
+    },
+    {
+     "pmid": "27329332",
+     "fits": "partly",
+     "reason": "Oral magnesium RCTs with glucose, HbA1c and HOMA-IR outcomes, but diabetic and general non-diabetic people are pooled together."
+    },
+    {
+     "pmid": "27530471",
+     "fits": "yes",
+     "reason": "Pooled double-blind RCTs of oral magnesium vs placebo in people with or at high risk of diabetes, reporting glucose and HOMA-IR."
+    },
+    {
+     "pmid": "35684094",
+     "fits": "partly",
+     "reason": "Umbrella review that combines earlier meta-analyses in type 2 diabetes instead of pooling the trials directly."
+    },
+    {
+     "pmid": "28724644",
+     "fits": "no",
+     "reason": "Outcome is blood pressure, not blood sugar, HbA1c or insulin resistance."
+    },
+    {
+     "pmid": "28526383",
+     "fits": "partly",
+     "reason": "Reviews magnesium trials on insulin resistance across mixed clinical conditions without pooling the results."
+    },
+    {
+     "pmid": "16978367",
+     "fits": "yes",
+     "reason": "Pooled double-blind RCTs of oral magnesium vs placebo in type 2 diabetes, reporting HbA1c and fasting glucose."
+    }
+   ]
+  }
+ }
+}

@@ -53,14 +53,14 @@ export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; c
         </p>
       </div>
 
-      <ol className="grid gap-2 sm:grid-cols-4" aria-label="From every record to the studies used">
-        <Step big={n(c.all)} text="records mention vitamin D" />
+      <ol className={cx("grid gap-2", c.all !== undefined ? "sm:grid-cols-4" : "sm:grid-cols-3")} aria-label="From every record to the studies used">
+        {c.all !== undefined && <Step big={n(c.all)} text={`records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`} />}
         <Step big={n(c.retrieved)} text="are reviews, randomised trials or guidelines: all downloaded" />
         <Step big={`${n(c.reviews)} · ${n(c.trials)}`} text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`} />
         {o.screening ? (
-          <Step big={`${o.screening.counts.yes}`} text={`reviews answer the question on ${o.label.toLowerCase()}, of ${o.counts.trialReviews} the rules found`} />
+          <Step big={`${o.screening.counts.yes}`} text={`reviews answer the question (${o.label}), of ${o.counts.trialReviews} the rules found`} />
         ) : (
-          <Step big={`${o.counts.trialReviews}`} text={`reviews of vitamin D trials on ${o.label.toLowerCase()}, after the rules below`} />
+          <Step big={`${o.counts.trialReviews}`} text={`reviews of ${map.name} trials (${o.label}), after the rules below`} />
         )}
       </ol>
 
@@ -79,7 +79,7 @@ export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; c
         ))}
       </div>
 
-      <Outcome o={o} citedTitles={citedTitles} />
+      <Outcome o={o} name={map.name} citedTitles={citedTitles} />
 
       <details className="max-w-3xl">
         <summary className="min-h-11 cursor-pointer py-2 font-medium">The rules, and what they can't do yet</summary>
@@ -114,13 +114,13 @@ function Step({ big, text }: { big: string; text: string }) {
   );
 }
 
-function Outcome({ o, citedTitles }: { o: EvidenceMapOutcome; citedTitles: Record<string, string> }) {
+function Outcome({ o, name, citedTitles }: { o: EvidenceMapOutcome; name: string; citedTitles: Record<string, string> }) {
   const reviewLetter = (pmid: string) => String.fromCharCode(65 + o.chosenReviews.findIndex((r) => r.pmid === pmid));
   return (
     <div className="flex flex-col gap-6">
       <p className="max-w-3xl">
-        {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have {o.label.toLowerCase()} in their title;{" "}
-        {o.counts.trialReviews} are reviews of vitamin D trials{o.screening ? ` (${o.screening.counts.yes} of them answer the question below)` : " that fit the question"}, and{" "}
+        {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have this outcome in their title;{" "}
+        {o.counts.trialReviews} are reviews of {name} trials{o.screening ? ` (${o.screening.counts.yes} of them answer the question below)` : " that fit the question"}, and{" "}
         {o.counts.largeTrials} trials had 1,000 people or more.
       </p>
 
@@ -130,6 +130,13 @@ function Outcome({ o, citedTitles }: { o: EvidenceMapOutcome; citedTitles: Recor
 
       <section className="flex flex-col gap-2">
         <h3 className="font-serif text-xl font-normal">Reviews chosen by the rules</h3>
+        {o.chosenReviews.length === 0 && (
+          <p className="max-w-3xl rounded-lg bg-sunken p-3 text-sm">
+            <span className="font-medium">No review of trials answers this question yet</span>
+            {o.counts.trialReviews > 0 ? `: the ${o.counts.trialReviews} the rules found were about a nearby question (listed above with the reasons).` : "."} The
+            finding rests on the studies it cites, such as single trials or studies that follow people over time, so it is less certain.
+          </p>
+        )}
         <ol className="flex flex-col gap-2">
           {o.chosenReviews.map((r) => (
             <li key={r.pmid ?? r.title} className="flex gap-3 rounded-lg border border-line p-3">
@@ -146,23 +153,10 @@ function Outcome({ o, citedTitles }: { o: EvidenceMapOutcome; citedTitles: Recor
             </li>
           ))}
         </ol>
-        {o.newerLargeTrials.length > 0 && (
-          <>
-            <h4 className="mt-2 font-medium">Large trials as new as these reviews</h4>
-            <p className="text-sm text-ink-2">The reviews may not include them yet, so they're listed apart.</p>
-            <ul className="flex flex-col gap-1.5">
-              {o.newerLargeTrials.map((t) => (
-                <li key={t.pmid ?? t.title}>
-                  <PaperLink c={t} />
-                  <span className="text-sm text-ink-2"> · {t.year} · about {n(t.n ?? 0)} people</span>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
+        {o.newerLargeTrials.length > 0 && <NewerTrials key={o.id} trials={o.newerLargeTrials} />}
       </section>
 
-      {o.overlap && <Overlap o={o} letter={reviewLetter} />}
+      {o.overlap && <Overlap o={o} name={name} letter={reviewLetter} />}
 
       <section className="flex max-w-3xl flex-col gap-2 rounded-lg bg-sunken p-3">
         <h3 className="font-medium">Compared with this page</h3>
@@ -191,6 +185,34 @@ function Outcome({ o, citedTitles }: { o: EvidenceMapOutcome; citedTitles: Recor
         )}
       </section>
     </div>
+  );
+}
+
+/** Large trials as new as the chosen reviews (largest first), six at a time. */
+function NewerTrials({ trials }: { trials: EvidenceMapOutcome["newerLargeTrials"] }) {
+  const [all, setAll] = useState(false);
+  const shown = all ? trials : trials.slice(0, 6);
+  return (
+    <>
+      <h4 className="mt-2 font-medium">Large trials as new as these reviews</h4>
+      <p className="text-sm text-ink-2">
+        Trials of 1,000 people or more with this outcome in the title, from the year of the newest chosen review on. The reviews may not include
+        them yet, and they weren't screened against the question, so some may be about a nearby one.
+      </p>
+      <ul className="flex flex-col gap-1.5">
+        {shown.map((t) => (
+          <li key={t.pmid ?? t.title}>
+            <PaperLink c={t} />
+            <span className="text-sm text-ink-2"> · {t.year} · about {n(t.n ?? 0)} people</span>
+          </li>
+        ))}
+      </ul>
+      {trials.length > shown.length && (
+        <button type="button" onClick={() => setAll(true)} className="self-start text-sm text-accent">
+          Show all {trials.length} trials
+        </button>
+      )}
+    </>
   );
 }
 
@@ -344,7 +366,7 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
 }
 
 /** Which trials each chosen review pooled (from its reference list), and the overlap measure. */
-function Overlap({ o, letter }: { o: EvidenceMapOutcome; letter: (pmid: string) => string }) {
+function Overlap({ o, name, letter }: { o: EvidenceMapOutcome; name: string; letter: (pmid: string) => string }) {
   const ov = o.overlap!;
   const [all, setAll] = useState(false);
   const shown = all ? ov.shared : ov.shared.slice(0, 12);
@@ -365,7 +387,7 @@ function Overlap({ o, letter }: { o: EvidenceMapOutcome; letter: (pmid: string) 
             <tr>
               <th className="py-1 pr-3 text-left font-medium text-ink-2">Trial</th>
               {cols.map((c) => (
-                <th key={c.pmid} className="w-10 py-1 text-center font-medium" title={`${c.trials} vitamin D trials in its references`}>
+                <th key={c.pmid} className="w-10 py-1 text-center font-medium" title={`${c.trials} ${name} trials in its references`}>
                   {letter(c.pmid)}
                 </th>
               ))}

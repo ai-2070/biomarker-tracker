@@ -1,0 +1,5539 @@
+{
+ "topic": "folate",
+ "nutrientId": "folate",
+ "name": "folic acid",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"folic acid\" OR TITLE_ABS:\"folate\" OR TITLE_ABS:\"methylfolate\" OR TITLE_ABS:\"5-methyltetrahydrofolate\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"folic acid\" OR TITLE_ABS:\"folate\" OR TITLE_ABS:\"methylfolate\" OR TITLE_ABS:\"5-methyltetrahydrofolate\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"folic acid\" OR TITLE_ABS:\"folate\" OR TITLE_ABS:\"methylfolate\" OR TITLE_ABS:\"5-methyltetrahydrofolate\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"folic acid\" OR TITLE_ABS:\"folate\" OR TITLE_ABS:\"methylfolate\" OR TITLE_ABS:\"5-methyltetrahydrofolate\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"folic acid\" OR TITLE_ABS:\"folate\" OR TITLE_ABS:\"methylfolate\" OR TITLE_ABS:\"5-methyltetrahydrofolate\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with folic acid (folic acid, folate, methylfolate, 5-methyltetrahydrofolate) in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving folic acid, with folic acid in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded folic acid trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 54313,
+  "retrieved": 3439,
+  "animal": 34,
+  "retracted": 8,
+  "reviews": 1163,
+  "trials": 2169,
+  "guidelines": 63
+ },
+ "guidelines": [
+  {
+   "pmid": "36056234",
+   "doi": "10.1038/s41431-022-01180-0",
+   "title": "Dutch pharmacogenetics working group guideline for the gene-drug interaction of ABCG2, HLA-B and Allopurinol, and MTHFR, folic acid and methotrexate",
+   "year": 2024,
+   "journal": "European journal of human genetics : EJHG",
+   "citedBy": 29,
+   "why": "One of the newest guidelines with folic acid in the title"
+  },
+  {
+   "pmid": "35691683",
+   "doi": "10.1016/j.jogc.2022.04.004",
+   "title": "Guideline No. 427: Folic Acid and Multivitamin Supplementation for Prevention of Folic Acid-Sensitive Congenital Anomalies",
+   "year": 2022,
+   "journal": "Journal of obstetrics and gynaecology Canada : JOGC = Journal d'obstetrique et gynecologie du Canada : JOGC",
+   "citedBy": 46,
+   "why": "One of the newest guidelines with folic acid in the title"
+  },
+  {
+   "pmid": "29303218",
+   "doi": "10.5603/gp.a2017.0113",
+   "title": "Folate supplementation during the preconception period, pregnancy and puerperium. Polish Society of Gynecologists and Obstetricians Guidelines",
+   "year": 2017,
+   "journal": "Ginekologia polska",
+   "citedBy": 15,
+   "why": "One of the newest guidelines with folic acid in the title"
+  },
+  {
+   "pmid": "26334606",
+   "doi": "10.1016/s1701-2163(15)30230-9",
+   "title": "Pre-conception Folic Acid and Multivitamin Supplementation for the Primary and Secondary Prevention of Neural Tube Defects and Other Folic Acid-Sensitive Congenital Anomalies",
+   "year": 2015,
+   "journal": "Journal of obstetrics and gynaecology Canada : JOGC = Journal d'obstetrique et gynecologie du Canada : JOGC",
+   "citedBy": 159,
+   "why": "One of the newest guidelines with folic acid in the title"
+  },
+  {
+   "pmid": "25996016",
+   "title": "Guideline: Optimal Serum and Red Blood Cell Folate Concentrations in Women of Reproductive Age for Prevention of Neural Tube Defects",
+   "year": 2015,
+   "citedBy": 1,
+   "why": "One of the newest guidelines with folic acid in the title"
+  },
+  {
+   "pmid": "24942828",
+   "doi": "10.1111/bjh.12959",
+   "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+   "year": 2014,
+   "journal": "British journal of haematology",
+   "citedBy": 303,
+   "why": "One of the newest guidelines with folic acid in the title"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "neural-tube",
+   "label": "Neural tube defects",
+   "finding": "Neural tube defects (such as spina bifida) in the baby",
+   "counts": {
+    "reviews": 92,
+    "trialReviews": 14,
+    "trials": 26,
+    "largeTrials": 5
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39074459",
+     "doi": "10.1159/000539803",
+     "title": "Preconception Folic Acid and Multivitamin Supplementation for the Prevention of Neural Tube Defect: An Umbrella Review of Systematic Review and Meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Abate BB",
+     "journal": "Neuroepidemiology",
+     "citedBy": 10,
+     "n": 296816,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "26662928",
+     "doi": "10.1002/14651858.cd007950.pub3",
+     "title": "Effects and safety of periconceptional oral folate supplementation for preventing birth defects",
+     "year": 2015,
+     "firstAuthor": "De-Regil LM",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 311,
+     "n": 7391,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    },
+    {
+     "pmid": "20927767",
+     "doi": "10.1002/14651858.cd007950.pub2",
+     "title": "Effects and safety of periconceptional folate supplementation for preventing birth defects",
+     "year": 2010,
+     "firstAuthor": "De-Regil LM",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 202,
+     "n": 6105,
+     "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3939393939393939,
+    "trials": 66,
+    "inclusions": 118,
+    "reviews": [
+     {
+      "pmid": "39074459",
+      "trials": 2
+     },
+     {
+      "pmid": "26662928",
+      "trials": 65
+     },
+     {
+      "pmid": "20927767",
+      "trials": 51
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "1307234",
+      "title": "Prevention of the first occurrence of neural-tube defects by periconceptional vitamin supplementation",
+      "year": 1992,
+      "n": 4753,
+      "inReviews": [
+       "39074459",
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "10597955",
+      "title": "The influence of folic acid supplement on the outcome of pregnancies in the county of Funen in Denmark. Part I",
+      "year": 1999,
+      "n": 14021,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "10597956",
+      "title": "The influence of folic acid supplement on the outcome of pregnancies in the county of Funen in Denmark. Part II. Congenital anomalies. A randomised study",
+      "year": 1999,
+      "n": 8293,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19336358",
+      "title": "Effects of maternal multimicronutrient supplementation on the mental development of infants in rural western China: follow-up evaluation of a double-blind, randomized, controlled trial",
+      "year": 2009,
+      "n": 5828,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "18996930",
+      "title": "Impact of micronutrient supplementation during pregnancy on birth weight, duration of gestation, and perinatal mortality in rural western China: double blind cluster randomised controlled trial",
+      "year": 2008,
+      "n": 5828,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "8992436",
+      "title": "[Peri-conceptional multivitamin administration may result in higher frequency of twin pregnancies]",
+      "year": 1996,
+      "n": 5502,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "7970646",
+      "title": "[Prevention of the first occurrence of anencephaly and spina bifida with periconceptional multivitamin supplementation (conclusion)]",
+      "year": 1994,
+      "n": 5502,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "8588492",
+      "title": "The higher rate of multiple births after periconceptional multivitamin supplementation: an analysis of causes",
+      "year": 1994,
+      "n": 5502,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "12637400",
+      "title": "Effects of alternative maternal micronutrient supplements on low birth weight in rural Nepal: double blind randomised community trial",
+      "year": 2003,
+      "n": 4926,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19778983",
+      "title": "Antenatal and postnatal iron supplementation and childhood mortality in rural Nepal: a prospective follow-up in a randomized, controlled community trial",
+      "year": 2009,
+      "n": 4926,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "14668283",
+      "title": "Effects of maternal micronutrient supplementation on fetal loss and infant mortality: a cluster-randomized trial in Nepal",
+      "year": 2003,
+      "n": 4926,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "18644934",
+      "title": "The effect of maternal micronutrient supplementation on early neonatal morbidity in rural Nepal: a randomised, controlled, community trial",
+      "year": 2008,
+      "n": 3927,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "8324432",
+      "title": "Prevention of congenital abnormalities by periconceptional multivitamin supplementation",
+      "year": 1993,
+      "n": 3713,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19549749",
+      "title": "Antenatal micronutrient supplementation reduces metabolic syndrome in 6- to 8-year-old children in rural Nepal",
+      "year": 2009,
+      "n": 3524,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "11906540",
+      "title": "Consequences of surveying folate awareness",
+      "year": 2002,
+      "n": 2431,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "14662212",
+      "title": "Periconceptional multivitamin supplementation and multimalformed offspring",
+      "year": 2003,
+      "n": 2391,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "11688615",
+      "title": "The increasing knowledge of the role of periconceptional folate in Victorian women of child-bearing age: follow-up of a randomised community intervention trial",
+      "year": 2001,
+      "n": 1997,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "1677062",
+      "title": "Prevention of neural tube defects: results of the Medical Research Council Vitamin Study. MRC Vitamin Study Research Group",
+      "year": 1991,
+      "n": 1817,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "17551129",
+      "title": "Folic acid for the prevention of colorectal adenomas: a randomized clinical trial",
+      "year": 2007,
+      "n": 1021,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "16600929",
+      "title": "Antenatal supplementation with micronutrients and biochemical indicators of status and subclinical infection in rural Nepal",
+      "year": 2006,
+      "n": 740,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "9776529",
+      "title": "Long-term somatic and mental development of children after periconceptional multivitamin supplementation",
+      "year": 1998,
+      "n": 625,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "11247198",
+      "title": "Multicentric study of efficacy of periconceptional folic acid containing vitamin supplementation in prevention of open neural tube defects from India",
+      "year": 2000,
+      "n": 466,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19000845",
+      "title": "Computerized counseling for folate knowledge and use: a randomized controlled trial",
+      "year": 2008,
+      "n": 446,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "1489222",
+      "title": "A randomised trial of low dose folic acid to prevent neural tube defects. The Irish Vitamin Study Group",
+      "year": 1992,
+      "n": 354,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19864409",
+      "title": "A randomized trial on folic acid supplementation and risk of recurrent colorectal adenoma",
+      "year": 2009,
+      "n": 338,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "9400511",
+      "title": "Minimum effective dose of folic acid for food fortification to prevent neural-tube defects",
+      "year": 1997,
+      "n": 323,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "16014852",
+      "title": "Reduction of the efficacy of antifolate antimalarial therapy by folic acid supplementation",
+      "year": 2005,
+      "n": 303,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "15846191",
+      "title": "Randomized trial of a physician-based intervention to increase the use of folic acid supplements among women",
+      "year": 2005,
+      "n": 279,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19668928",
+      "title": "Prenatal multiple micronutrient supplementation impact on biochemical indicators during pregnancy and postpartum",
+      "year": 2009,
+      "n": 258,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19139780",
+      "title": "Comparison study on the effect of prenatal administration of high dose and low dose folic acid",
+      "year": 2009,
+      "n": 246,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "12600857",
+      "title": "Comparison of the effect of low-dose supplementation with L-5-methyltetrahydrofolate or folic acid on plasma homocysteine: a randomized placebo-controlled study",
+      "year": 2003,
+      "n": 167,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19793860",
+      "title": "Periconceptional iron supplementation does not reduce anemia or improve iron status among pregnant women in rural Bangladesh",
+      "year": 2009,
+      "n": 146,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "14985224",
+      "title": "Supplementation with [6S]-5-methyltetrahydrofolate or folic acid equally reduces plasma total homocysteine concentrations in healthy women",
+      "year": 2004,
+      "n": 144,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "18680228",
+      "title": "Folic acid supplementation inhibits recurrence of colorectal adenomas: a randomized chemoprevention trial",
+      "year": 2008,
+      "n": 137,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "16210715",
+      "title": "Effect of time of initiation and dose of prenatal iron and folic acid supplementation on iron and folate nutriture of Korean women during pregnancy",
+      "year": 2005,
+      "n": 131,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "14985695",
+      "title": "Effects of once-a-week or daily folic acid supplementation on red blood cell folate concentrations in women",
+      "year": 2004,
+      "n": 114,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "12421850",
+      "title": "Increases in blood folate indices are similar in women of childbearing age supplemented with [6S]-5-methyltetrahydrofolate and folic acid",
+      "year": 2002,
+      "n": 104,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "12391385",
+      "title": "Low-dose folic acid lowers plasma homocysteine levels in women of child-bearing age",
+      "year": 2002,
+      "n": 95,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "16600937",
+      "title": "[6S]-5-Methyltetrahydrofolate is at least as effective as folic acid in preventing a decline in blood folate concentrations during lactation",
+      "year": 2006,
+      "n": 72,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "17211965",
+      "title": "Double-blind, placebo-controlled study of Fertilityblend: a nutritional supplement for improving fertility in women",
+      "year": 2006,
+      "n": 53,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "15134155",
+      "title": "A nutritional supplement for improving fertility in women: a pilot study",
+      "year": 2004,
+      "n": 15,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19368922",
+      "title": "Effects of prenatal micronutrient supplementation on complications of labor and delivery and puerperal morbidity in rural Nepal",
+      "year": 2009,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "7979565",
+      "title": "Pregnancy outcomes in a randomised controlled trial of periconceptional multivitamin supplementation. Final report",
+      "year": 1994,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "16614435",
+      "title": "Treatment effects of maternal micronutrient supplementation vary by percentiles of the birth weight distribution in rural Nepal",
+      "year": 2006,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "15262481",
+      "title": "Effect of supplementation with folic acid throughout pregnancy on plasma homocysteine concentration",
+      "year": 2004,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "8882400",
+      "title": "Reduction of urinary tract and cardiovascular defects by periconceptional multivitamin supplementation",
+      "year": 1996,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "14608063",
+      "title": "Supplementation with micronutrients in addition to iron and folic acid does not further improve the hematologic status of pregnant women in rural Nepal",
+      "year": 2003,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "6786536",
+      "title": "Double-blind randomised controlled trial of folate treatment before conception to prevent recurrence of neural-tube defects",
+      "year": 1981,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "1579267",
+      "title": "Folate supplements prevent recurrence of neural tube defects",
+      "year": 1992,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "19158211",
+      "title": "Steady state folate concentrations achieved with 5 compared with 1.1 mg folic acid supplementation among women of childbearing age",
+      "year": 2009,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "11432768",
+      "title": "Inter-pregnancy folate and iron status of women in an inner-city population",
+      "year": 2001,
+      "inReviews": [
+       "26662928",
+       "20927767"
+      ]
+     },
+     {
+      "pmid": "23181832",
+      "title": "Oral cleft prevention program (OCPP)",
+      "year": 2012,
+      "n": 6000,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "25516314",
+      "title": "Effect of daily milk supplementation on serum and umbilical cord blood folic acid concentrations in pregnant Han and Mongolian women and birth characteristics in China",
+      "year": 2014,
+      "n": 4052,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "23380913",
+      "title": "High dosage folic acid supplementation, oral cleft recurrence and fetal growth",
+      "year": 2013,
+      "n": 2508,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "21865563",
+      "title": "Low maternal vitamin B-12 status is associated with offspring insulin resistance regardless of antenatal micronutrient supplementation in rural Nepal",
+      "year": 2011,
+      "n": 1132,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "25905863",
+      "title": "Multivitamin and iron supplementation to prevent periconceptional anemia in rural tanzanian women: a randomized, controlled trial",
+      "year": 2015,
+      "n": 802,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "21177506",
+      "title": "Prenatal micronutrient supplementation and intellectual and motor function in early school-aged children in Nepal",
+      "year": 2010,
+      "n": 676,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "19403710",
+      "title": "Periconceptional iron and folate status is inadequate among married, nulliparous women in rural Bangladesh",
+      "year": 2009,
+      "n": 272,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "18426639",
+      "title": "Effect of different dosage and administration schedules of folic acid on blood folate levels in a population of Honduran women of reproductive age",
+      "year": 2008,
+      "n": 140,
+      "inReviews": [
+       "26662928"
+      ]
+     },
+     {
+      "pmid": "23719554",
+      "title": "Impact of continuing folic acid after the first trimester of pregnancy: findings of a randomized trial of Folic Acid Supplementation in the Second and Third Trimesters",
+      "year": 2013,
+      "n": 119,
+      "inReviews": [
+       "26662928"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 6,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 8,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 10,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 7,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 6,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 10,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 8,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "1677062",
+     "title": "Prevention of neural tube defects: results of the Medical Research Council Vitamin Study. MRC Vitamin Study Research Group",
+     "year": 1991,
+     "n": 1817
+    },
+    {
+     "pmid": "8324432",
+     "title": "Prevention of congenital abnormalities by periconceptional multivitamin supplementation",
+     "year": 1993,
+     "n": 3713
+    },
+    {
+     "pmid": "7970646",
+     "title": "[Prevention of the first occurrence of anencephaly and spina bifida with periconceptional multivitamin supplementation (conclusion)]",
+     "year": 1994,
+     "n": 5502
+    },
+    {
+     "pmid": "10597956",
+     "title": "The influence of folic acid supplement on the outcome of pregnancies in the county of Funen in Denmark. Part II. Congenital anomalies. A randomised study",
+     "year": 1999,
+     "n": 8293
+    },
+    {
+     "pmid": "31005964",
+     "title": "Defining the plasma folate concentration associated with the red blood cell folate concentration threshold for optimal neural tube defects prevention: a population-based, randomized trial of folic acid supplementation",
+     "year": 2019,
+     "n": 1673
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "26662928"
+    ],
+    "citedNotChosen": [
+     "37526713"
+    ],
+    "citedNotEligible": [
+     "37526713"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39074459",
+      "doi": "10.1159/000539803",
+      "title": "Preconception Folic Acid and Multivitamin Supplementation for the Prevention of Neural Tube Defect: An Umbrella Review of Systematic Review and Meta-analysis",
+      "year": 2025,
+      "firstAuthor": "Abate BB",
+      "journal": "Neuroepidemiology",
+      "citedBy": 10,
+      "n": 296816,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "20927767",
+      "doi": "10.1002/14651858.cd007950.pub2",
+      "title": "Effects and safety of periconceptional folate supplementation for preventing birth defects",
+      "year": 2010,
+      "firstAuthor": "De-Regil LM",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 202,
+      "n": 6105,
+      "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Women before conception and in early pregnancy",
+     "intervention": "Folic acid supplements (alone or with other vitamins)",
+     "comparison": "Placebo, no supplement, or other vitamins without folic acid",
+     "outcome": "Neural tube defects in the baby"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 5,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37526714",
+      "title": "Folic Acid Supplementation to Prevent Neural Tube Defects: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "PICO matches folic acid for NTD prevention, but the NTD evidence in this update came only from observational studies, not pooled trials."
+     },
+     {
+      "pmid": "28097361",
+      "title": "Folic Acid Supplementation for the Prevention of Neural Tube Defects: An Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Matches folic acid for NTD prevention, but includes only one trial plus observational studies and did not pool the data."
+     },
+     {
+      "pmid": "25687545",
+      "title": "Maternal folic acid supplementation and the risk of congenital heart defects in offspring: a meta-analysis of epidemiological observational studies",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Outcome is congenital heart defects, not neural tube defects, and the studies are mainly observational."
+     },
+     {
+      "pmid": "20348114",
+      "title": "Folic acid to reduce neonatal mortality from neural tube disorders",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "The trial meta-analysis covers only NTD recurrence, and the primary prevention estimate combines one trial with cohort studies."
+     },
+     {
+      "pmid": "17990333",
+      "title": "Folic acid supplementation and neural tube defect recurrence prevention",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Pools randomised trials of folic acid for NTDs, but only in women with a previous NTD-affected pregnancy (recurrence)."
+     },
+     {
+      "pmid": "17022907",
+      "title": "Prenatal multivitamin supplementation and rates of congenital anomalies: a meta-analysis",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Folic acid-fortified multivitamins and NTDs, but cohort studies and RCTs are pooled together rather than trials alone."
+     },
+     {
+      "pmid": "8605127",
+      "title": "Blood folic acid and vitamin B12 in relation to neural tube defects",
+      "year": 1996,
+      "fits": "no",
+      "reason": "Compares blood folate and B12 levels between NTD and unaffected pregnancies; it does not evaluate the effect of supplementation."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart attacks and death",
+   "finding": "Heart attacks and death",
+   "counts": {
+    "reviews": 101,
+    "trialReviews": 39,
+    "trials": 204,
+    "largeTrials": 81
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41830012",
+     "doi": "10.3390/nu18050842",
+     "title": "Complex Effects of B-Vitamin Combinations on Cardiovascular Diseases: A Systematic Review and Meta-Analysis of Randomized Controlled Trials over Three Decades",
+     "year": 2026,
+     "firstAuthor": "Ren R",
+     "journal": "Nutrients",
+     "citedBy": 1,
+     "n": 68363,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "38824900",
+     "doi": "10.1016/j.clnu.2024.05.034",
+     "title": "Folic acid supplementation for stroke prevention: A systematic review and meta-analysis of 21 randomized clinical trials worldwide",
+     "year": 2024,
+     "firstAuthor": "Zhang N",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 21,
+     "n": 115559,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "38432716",
+     "doi": "10.1016/j.ajcnut.2023.12.021",
+     "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+     "year": 2024,
+     "firstAuthor": "Zhang N",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 12,
+     "n": 76664,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "31284304",
+     "doi": "10.7326/m19-0341",
+     "title": "Effects of Nutritional Supplements and Dietary Interventions on Cardiovascular Outcomes: An Umbrella Review and Evidence Map",
+     "year": 2019,
+     "firstAuthor": "Khan SU",
+     "journal": "Annals of internal medicine",
+     "citedBy": 145,
+     "n": 992129,
+     "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "42209710",
+     "doi": "10.1038/s41371-026-01144-7",
+     "title": "Lifestyle profiles and long-term blood pressure control are associated with lower risks of stroke and all-cause mortality among treated hypertensive patients: findings from the China Stroke Primary Prevention Trial",
+     "year": 2026,
+     "firstAuthor": "Zhou Z",
+     "journal": "Journal of human hypertension",
+     "citedBy": 0,
+     "n": 20638,
+     "why": "A large trial (about 20,638 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.36507936507936506,
+    "trials": 21,
+    "inclusions": 44,
+    "reviews": [
+     {
+      "pmid": "41830012",
+      "trials": 14
+     },
+     {
+      "pmid": "38824900",
+      "trials": 18
+     },
+     {
+      "pmid": "38432716",
+      "trials": 11
+     },
+     {
+      "pmid": "31284304",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "25771069",
+      "title": "Efficacy of folic acid therapy in primary prevention of stroke among adults with hypertension in China: the CSPPT randomized clinical trial",
+      "year": 2015,
+      "n": 20702,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "31284304"
+      ]
+     },
+     {
+      "pmid": "16531613",
+      "title": "Homocysteine lowering with folic acid and B vitamins in vascular disease",
+      "year": 2006,
+      "n": 5522,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "18460663",
+      "title": "Effect of folic acid and B vitamins on risk of cardiovascular events and total mortality among women at high risk for cardiovascular disease: a randomized trial",
+      "year": 2008,
+      "n": 5442,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "16531614",
+      "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+      "year": 2006,
+      "n": 3749,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "14762035",
+      "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+      "year": 2004,
+      "n": 3680,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "21115589",
+      "title": "Effects of B vitamins and omega 3 fatty acids on cardiovascular diseases: a randomised placebo controlled trial",
+      "year": 2010,
+      "n": 2501,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "17848650",
+      "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+      "year": 2007,
+      "n": 2056,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "20231532",
+      "title": "B vitamins and the risk of total mortality and cardiovascular disease in end-stage renal disease: results of a randomized controlled trial",
+      "year": 2010,
+      "n": 650,
+      "inReviews": [
+       "41830012",
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "20688574",
+      "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+      "year": 2010,
+      "n": 8164,
+      "inReviews": [
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "20571015",
+      "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+      "year": 2010,
+      "n": 6033,
+      "inReviews": [
+       "41830012",
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "18714059",
+      "title": "Mortality and cardiovascular events in patients treated with homocysteine-lowering B vitamins after coronary angiography: a randomized controlled trial",
+      "year": 2008,
+      "n": 3096,
+      "inReviews": [
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "21482964",
+      "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+      "year": 2011,
+      "n": 2056,
+      "inReviews": [
+       "38824900",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "26147383",
+      "title": "Effects of 2-year vitamin B12 and folic acid supplementation in hyperhomocysteinemic elderly on arterial stiffness and cardiovascular outcomes within the B-PROOF trial",
+      "year": 2015,
+      "n": 569,
+      "inReviews": [
+       "41830012",
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "16545638",
+      "title": "Cardiovascular morbidity and mortality in the Atherosclerosis and Folic Acid Supplementation Trial (ASFAST) in chronic renal failure: a multicenter, randomized, controlled trial",
+      "year": 2006,
+      "n": 315,
+      "inReviews": [
+       "41830012",
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "20424250",
+      "title": "Effect of B-vitamin therapy on progression of diabetic nephropathy: a randomized controlled trial",
+      "year": 2010,
+      "n": 238,
+      "inReviews": [
+       "41830012",
+       "38432716"
+      ]
+     },
+     {
+      "pmid": "31932513",
+      "title": "Interaction of serum vitamin B12 and folate with MTHFR genotypes on risk of ischemic stroke",
+      "year": 2020,
+      "n": 20702,
+      "inReviews": [
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "16923411",
+      "title": "Rationale and design of the Folic Acid for Vascular Outcome Reduction In Transplantation (FAVORIT) trial",
+      "year": 2006,
+      "n": 4000,
+      "inReviews": [
+       "41830012"
+      ]
+     },
+     {
+      "pmid": "14747389",
+      "title": "Randomized trial of folic acid for prevention of cardiovascular events in end-stage renal disease",
+      "year": 2004,
+      "n": 510,
+      "inReviews": [
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "10683000",
+      "title": "Effect of homocysteine-lowering treatment with folic acid plus vitamin B6 on progression of subclinical atherosclerosis: a randomised, placebo-controlled trial",
+      "year": 2000,
+      "n": 167,
+      "inReviews": [
+       "41830012"
+      ]
+     },
+     {
+      "pmid": "16755160",
+      "title": "Homocysteine-lowering vitamin B treatment decreases cardiovascular events in hemodialysis patients",
+      "year": 2006,
+      "n": 114,
+      "inReviews": [
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "16103563",
+      "title": "Secondary prevention with folic acid: results of the Goes extension study",
+      "year": 2005,
+      "inReviews": [
+       "38824900"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 2002,
+     "reviews": 2,
+     "trials": 8
+    },
+    {
+     "year": 2003,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 2,
+     "trials": 16
+    },
+    {
+     "year": 2005,
+     "reviews": 2,
+     "trials": 8
+    },
+    {
+     "year": 2006,
+     "reviews": 2,
+     "trials": 11
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 15
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 10
+    },
+    {
+     "year": 2009,
+     "reviews": 4,
+     "trials": 10
+    },
+    {
+     "year": 2010,
+     "reviews": 4,
+     "trials": 15
+    },
+    {
+     "year": 2011,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 7,
+     "trials": 13
+    },
+    {
+     "year": 2013,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 2015,
+     "reviews": 7,
+     "trials": 8
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 7
+    },
+    {
+     "year": 2017,
+     "reviews": 7,
+     "trials": 12
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2019,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 5,
+     "trials": 5
+    },
+    {
+     "year": 2023,
+     "reviews": 6,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "11171873",
+     "title": "Intake of vegetables rich in carotenoids and risk of coronary heart disease in men: The Physicians' Health Study",
+     "year": 2001,
+     "n": 15220
+    },
+    {
+     "pmid": "11867886",
+     "title": "The VITATOPS (Vitamins to Prevent Stroke) Trial: rationale and design of an international, large, simple, randomised trial of homocysteine-lowering multivitamin therapy in patients with recent transient ischaemic attack or stroke",
+     "year": 2002,
+     "n": 8000
+    },
+    {
+     "pmid": "12417369",
+     "title": "Vitamin intervention for stroke prevention",
+     "year": 2002,
+     "n": 3688
+    },
+    {
+     "pmid": "14625623",
+     "title": "Background and rationale of the SU.FOL.OM3 study: double-blind randomized placebo-controlled secondary prevention trial to test the impact of supplementation with folate, vitamin B6 and B12 and/or omega-3 fatty acids on the prevention of recurrent ischemic events in subjects with atherosclerosis in the coronary or cerebral arteries",
+     "year": 2003,
+     "n": 3000
+    },
+    {
+     "pmid": "14668283",
+     "title": "Effects of maternal micronutrient supplementation on fetal loss and infant mortality: a cluster-randomized trial in Nepal",
+     "year": 2003,
+     "n": 4926
+    },
+    {
+     "pmid": "14762035",
+     "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+     "year": 2004,
+     "n": 3680
+    },
+    {
+     "pmid": "15023883",
+     "title": "Blood pressure and risk of secondary cardiovascular events in women: the Women's Antioxidant Cardiovascular Study (WACS)",
+     "year": 2004,
+     "n": 5218
+    },
+    {
+     "pmid": "15608435",
+     "title": "Sustained homocysteine-lowering effect over time of folic acid-based multivitamin therapy in stroke patients despite increasing folate status in the population",
+     "year": 2005,
+     "n": 2002
+    },
+    {
+     "pmid": "16015266",
+     "title": "Effects of prenatal multimicronutrient supplements on birth weight and perinatal mortality: a randomised, controlled trial in Guinea-Bissau",
+     "year": 2005,
+     "n": 2100
+    },
+    {
+     "pmid": "16450017",
+     "title": "Rationale, design and baseline characteristics of a large, simple, randomized trial of combined folic acid and vitamins B6 and B12 in high-risk patients: the Heart Outcomes Prevention Evaluation (HOPE)-2 trial",
+     "year": 2006,
+     "n": 5522
+    },
+    {
+     "pmid": "16413877",
+     "title": "Effects of routine prophylactic supplementation with iron and folic acid on admission to hospital and mortality in preschool children in a high malaria transmission setting: community-based, randomised, placebo-controlled trial",
+     "year": 2006,
+     "n": 24076
+    },
+    {
+     "pmid": "16531614",
+     "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+     "year": 2006,
+     "n": 3749
+    },
+    {
+     "pmid": "16413878",
+     "title": "Effect of routine prophylactic supplementation with iron and folic acid on preschool child mortality in southern Nepal: community-based, cluster-randomised, placebo-controlled trial",
+     "year": 2006,
+     "n": 25490
+    },
+    {
+     "pmid": "18705976",
+     "title": "VITATOPS, the VITAmins TO prevent stroke trial: rationale and design of a randomised trial of B-vitamin therapy in patients with recent transient ischaemic attack or stroke (NCT00097669) (ISRCTN74743444)",
+     "year": 2007,
+     "n": 8000
+    },
+    {
+     "pmid": "17182810",
+     "title": "Adding zinc to supplemental iron and folic acid does not affect mortality and severe morbidity in young children",
+     "year": 2007,
+     "n": 94359
+    },
+    {
+     "pmid": "17848650",
+     "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+     "year": 2007,
+     "n": 2056
+    },
+    {
+     "pmid": "17920918",
+     "title": "Effect of daily zinc supplementation on child mortality in southern Nepal: a community-based, cluster randomised, placebo-controlled trial",
+     "year": 2007,
+     "n": 41276
+    },
+    {
+     "pmid": "17405163",
+     "title": "Maternal caffeine consumption and risk of cardiovascular malformations",
+     "year": 2007,
+     "n": 4196
+    },
+    {
+     "pmid": "18996930",
+     "title": "Impact of micronutrient supplementation during pregnancy on birth weight, duration of gestation, and perinatal mortality in rural western China: double blind cluster randomised controlled trial",
+     "year": 2008,
+     "n": 5828
+    },
+    {
+     "pmid": "18714059",
+     "title": "Mortality and cardiovascular events in patients treated with homocysteine-lowering B vitamins after coronary angiography: a randomized controlled trial",
+     "year": 2008,
+     "n": 3096
+    },
+    {
+     "pmid": "19064521",
+     "title": "A trial of B vitamins and cognitive function among women at high risk of cardiovascular disease",
+     "year": 2008,
+     "n": 5442
+    },
+    {
+     "pmid": "18460663",
+     "title": "Effect of folic acid and B vitamins on risk of cardiovascular events and total mortality among women at high risk for cardiovascular disease: a randomized trial",
+     "year": 2008,
+     "n": 5442
+    },
+    {
+     "pmid": "18207017",
+     "title": "Effect of maternal multiple micronutrient supplementation on fetal loss and infant death in Indonesia: a double-blind cluster-randomised trial",
+     "year": 2008,
+     "n": 31290
+    },
+    {
+     "pmid": "19228852",
+     "title": "Homocysteine-lowering therapy and stroke risk, severity, and disability: additional findings from the HOPE 2 trial",
+     "year": 2009,
+     "n": 5522
+    },
+    {
+     "pmid": "19778983",
+     "title": "Antenatal and postnatal iron supplementation and childhood mortality in rural Nepal: a prospective follow-up in a randomized, controlled community trial",
+     "year": 2009,
+     "n": 4926
+    },
+    {
+     "pmid": "19237716",
+     "title": "Folic acid, pyridoxine, and cyanocobalamin combination treatment and age-related macular degeneration in women: the Women's Antioxidant and Folic Acid Cardiovascular Study",
+     "year": 2009,
+     "n": 5205
+    },
+    {
+     "pmid": "19339045",
+     "title": "Effects of a polypill (Polycap) on risk factors in middle-aged individuals without cardiovascular disease (TIPS): a phase II, double-blind, randomised trial",
+     "year": 2009,
+     "n": 2053
+    },
+    {
+     "pmid": "20303789",
+     "title": "Folic acid supplementation and cardiac and stroke mortality among hemodialysis patients",
+     "year": 2010,
+     "n": 1846
+    },
+    {
+     "pmid": "20571015",
+     "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+     "year": 2010,
+     "n": 6033
+    },
+    {
+     "pmid": "21243915",
+     "title": "Effects of maternal micronutrient supplementation on fetal loss and under-2-years child mortality: long-term follow-up of a randomised controlled trial from Guinea-Bissau",
+     "year": 2010,
+     "n": 2100
+    },
+    {
+     "pmid": "20688574",
+     "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+     "year": 2010,
+     "n": 8164
+    },
+    {
+     "pmid": "21115589",
+     "title": "Effects of B vitamins and omega 3 fatty acids on cardiovascular diseases: a randomised placebo controlled trial",
+     "year": 2010,
+     "n": 2501
+    },
+    {
+     "pmid": "21482964",
+     "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+     "year": 2011,
+     "n": 2056
+    },
+    {
+     "pmid": "22492374",
+     "title": "Prospective study of methylenetetrahydrofolate reductase (MTHFR) variant C677T and risk of all-cause and cardiovascular disease mortality among 6000 US adults",
+     "year": 2012,
+     "n": 5925
+    },
+    {
+     "pmid": "22665104",
+     "title": "Effects of prenatal micronutrient and early food supplementation on maternal hemoglobin, birth weight, and infant mortality among children in Bangladesh: the MINIMat randomized trial",
+     "year": 2012,
+     "n": 4436
+    },
+    {
+     "pmid": "22474057",
+     "title": "Treatment with B vitamins and incidence of cancer in patients with previous stroke or transient ischemic attack: results of a randomized placebo-controlled trial",
+     "year": 2012,
+     "n": 8164
+    },
+    {
+     "pmid": "22554931",
+     "title": "Antiplatelet therapy and the effects of B vitamins in patients with previous stroke or transient ischaemic attack: a post-hoc subanalysis of VITATOPS, a randomised, placebo-controlled trial",
+     "year": 2012,
+     "n": 8164
+    },
+    {
+     "pmid": "22648722",
+     "title": "Supplementation with B vitamins or n-3 fatty acids and depressive symptoms in cardiovascular disease survivors: ancillary findings from the SUpplementation with FOLate, vitamins B-6 and B-12 and/or OMega-3 fatty acids (SU.FOL.OM3) randomized trial",
+     "year": 2012,
+     "n": 2501
+    },
+    {
+     "pmid": "22594581",
+     "title": "Kidney function and risk of cardiovascular disease and mortality in kidney transplant recipients: the FAVORIT trial",
+     "year": 2012,
+     "n": 4016
+    },
+    {
+     "pmid": "22621970",
+     "title": "Associations of plasma 25-hydroxyvitamin D and 1,25-dihydroxyvitamin D concentrations with death and progression to maintenance dialysis in patients with advanced kidney disease",
+     "year": 2012,
+     "n": 1099
+    },
+    {
+     "pmid": "25536256",
+     "title": "Effect of maternal multiple micronutrient vs iron-folic acid supplementation on infant mortality and adverse birth outcomes in rural Bangladesh: the JiVitA-3 randomized trial",
+     "year": 2014,
+     "n": 127282
+    },
+    {
+     "pmid": "24627349",
+     "title": "BP, cardiovascular disease, and death in the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+     "year": 2014,
+     "n": 3474
+    },
+    {
+     "pmid": "24621441",
+     "title": "The association between postdiagnosis dietary supplement use and total mortality differs by diet quality among older female cancer survivors",
+     "year": 2014,
+     "n": 2118
+    },
+    {
+     "pmid": "24393610",
+     "title": "Equity in adherence to and effect of prenatal food and micronutrient supplementation on child mortality: results from the MINIMat randomized trial, Bangladesh",
+     "year": 2014,
+     "n": 4436
+    },
+    {
+     "pmid": "24710321",
+     "title": "Baseline plasma fatty acids profile and incident cardiovascular events in the SU.FOL.OM3 trial: the evidence revisited",
+     "year": 2014,
+     "n": 2263
+    },
+    {
+     "pmid": "25771069",
+     "title": "Efficacy of folic acid therapy in primary prevention of stroke among adults with hypertension in China: the CSPPT randomized clinical trial",
+     "year": 2015,
+     "n": 20702
+    },
+    {
+     "pmid": "23490255",
+     "title": "The China Stroke Secondary Prevention Trial (CSSPT) protocol: a double-blinded, randomized, controlled trial of combined folic acid and B vitamins for secondary prevention of stroke",
+     "year": 2015,
+     "n": 8000
+    },
+    {
+     "pmid": "25871304",
+     "title": "Incident cancer in a cohort of 3,247 cancer diagnosis free ischemic stroke patients",
+     "year": 2015,
+     "n": 100000
+    },
+    {
+     "pmid": "27729579",
+     "title": "Folic Acid Therapy Reduces the First Stroke Risk Associated With Hypercholesterolemia Among Hypertensive Patients",
+     "year": 2016,
+     "n": 20702
+    },
+    {
+     "pmid": "27548766",
+     "title": "Efficacy of Folic Acid Therapy on the Progression of Chronic Kidney Disease: The Renal Substudy of the China Stroke Primary Prevention Trial",
+     "year": 2016,
+     "n": 15104
+    },
+    {
+     "pmid": "26803590",
+     "title": "B vitamin treatments modify the risk of myocardial infarction associated with a MTHFD1 polymorphism in patients with stable angina pectoris",
+     "year": 2016,
+     "n": 2381
+    },
+    {
+     "pmid": "26455512",
+     "title": "Effect of folic acid supplementation on risk of new-onset diabetes in adults with hypertension in China: Findings from the China Stroke Primary Prevention Trial (CSPPT)",
+     "year": 2016,
+     "n": 20702
+    },
+    {
+     "pmid": "28360116",
+     "title": "Homocysteine and Stroke Risk: Modifying Effect of Methylenetetrahydrofolate Reductase C677T Polymorphism and Folic Acid Intervention",
+     "year": 2017,
+     "n": 20424
+    },
+    {
+     "pmid": "29030456",
+     "title": "Association between percent decline in serum total homocysteine and risk of first stroke",
+     "year": 2017,
+     "n": 16867
+    },
+    {
+     "pmid": "28441699",
+     "title": "Folic acid therapy reduces the risk of mortality associated with heavy proteinuria among hypertensive patients",
+     "year": 2017,
+     "n": 20702
+    },
+    {
+     "pmid": "28607125",
+     "title": "Effects of Folic Acid Therapy on the New-Onset Proteinuria in Chinese Hypertensive Patients: A Post Hoc Analysis of the Renal Substudy of CSPPT (China Stroke Primary Prevention Trial)",
+     "year": 2017,
+     "n": 13071
+    },
+    {
+     "pmid": "28779492",
+     "title": "Prenatal early food and multiple micronutrient supplementation trial reduced infant mortality in Bangladesh, but did not influence morbidity",
+     "year": 2017,
+     "n": 4436
+    },
+    {
+     "pmid": "28148501",
+     "title": "Folic acid therapy reduces serum uric acid in hypertensive patients: a substudy of the China Stroke Primary Prevention Trial (CSPPT)",
+     "year": 2017,
+     "n": 15364
+    },
+    {
+     "pmid": "28225483",
+     "title": "Homocysteine and all-cause mortality in hypertensive adults without pre-existing cardiovascular conditions: Effect modification by MTHFR C677T polymorphism",
+     "year": 2017,
+     "n": 20424
+    },
+    {
+     "pmid": "28288974",
+     "title": "China Stroke Primary Prevention Trial: Visit-to-Visit Systolic Blood Pressure Variability Is an Independent Predictor of Primary Stroke in Hypertensive Patients",
+     "year": 2017,
+     "n": 20702
+    },
+    {
+     "pmid": "28579423",
+     "title": "Serum Phosphorus and Risk of Cardiovascular Disease, All-Cause Mortality, or Graft Failure in Kidney Transplant Recipients: An Ancillary Study of the FAVORIT Trial Cohort",
+     "year": 2017,
+     "n": 3138
+    },
+    {
+     "pmid": "28284844",
+     "title": "Investigating methotrexate toxicity within a randomized double-blinded, placebo-controlled trial: Rationale and design of the Cardiovascular Inflammation Reduction Trial-Adverse Events (CIRT-AE) Study",
+     "year": 2017,
+     "n": 7000
+    },
+    {
+     "pmid": "29273594",
+     "title": "Effect of Smoking and Folate Levels on the Efficacy of Folic Acid Therapy in Prevention of Stroke in Hypertensive Men",
+     "year": 2018,
+     "n": 8384
+    },
+    {
+     "pmid": "29747834",
+     "title": "Platelet Count Affects Efficacy of Folic Acid in Preventing First Stroke",
+     "year": 2018,
+     "n": 10789
+    },
+    {
+     "pmid": "29036427",
+     "title": "Impact of achieved blood pressure on renal function decline and first stroke in hypertensive patients with chronic kidney disease",
+     "year": 2018,
+     "n": 3230
+    },
+    {
+     "pmid": "30193001",
+     "title": "Urinary excretion of homocysteine thiolactone and the risk of acute myocardial infarction in coronary artery disease patients: the WENBIT trial",
+     "year": 2019,
+     "n": 2049
+    },
+    {
+     "pmid": "30624586",
+     "title": "Plasma retinol and the risk of first stroke in hypertensive adults: a nested case-control study",
+     "year": 2019,
+     "n": 20702
+    },
+    {
+     "pmid": "30037726",
+     "title": "Albuminuria and Allograft Failure, Cardiovascular Disease Events, and All-Cause Death in Stable Kidney Transplant Recipients: A Cohort Analysis of the FAVORIT Trial",
+     "year": 2019,
+     "n": 3511
+    },
+    {
+     "pmid": "31042283",
+     "title": "Effect of Vein-First vs Artery-First Surgical Technique on Circulating Tumor Cells and Survival in Patients With Non-Small Cell Lung Cancer: A Randomized Clinical Trial and Registry-Based Propensity Score Matching Analysis",
+     "year": 2019,
+     "n": 2018
+    },
+    {
+     "pmid": "31932513",
+     "title": "Interaction of serum vitamin B12 and folate with MTHFR genotypes on risk of ischemic stroke",
+     "year": 2020,
+     "n": 20702
+    },
+    {
+     "pmid": "31865785",
+     "title": "Estimated Stroke-Free Survival of Folic Acid Therapy for Hypertensive Adults: Projection Based on the CSPPT",
+     "year": 2020,
+     "n": 19053
+    },
+    {
+     "pmid": "32363743",
+     "title": "Positive association of serum uric acid with new-onset diabetes in Chinese women with hypertension in a retrospective analysis of the China Stroke Primary Prevention Trial",
+     "year": 2020,
+     "n": 14943
+    },
+    {
+     "pmid": "33148481",
+     "title": "Interaction of serum calcium and folic acid treatment on first stroke in hypertensive males",
+     "year": 2021,
+     "n": 20702
+    },
+    {
+     "pmid": "32800386",
+     "title": "Long-term effects of folic acid and vitamin-B12 supplementation on fracture risk and cardiovascular disease: Extended follow-up of the B-PROOF trial",
+     "year": 2021,
+     "n": 2919
+    },
+    {
+     "pmid": "36301961",
+     "title": "Homocysteine thiolactone contributes to the prognostic value of fibrin clot structure/function in coronary artery disease",
+     "year": 2022,
+     "n": 1952
+    },
+    {
+     "pmid": "36280851",
+     "title": "Cost-effectiveness of folic acid therapy for primary prevention of stroke in patients with hypertension",
+     "year": 2022,
+     "n": 20702
+    },
+    {
+     "pmid": "34654026",
+     "title": "Self-Perceived Psychological Stress and Risk of First Stroke in Treated Hypertensive Patients",
+     "year": 2022,
+     "n": 20688
+    },
+    {
+     "pmid": "37121550",
+     "title": "B-vitamin Treatment Modifies the Mortality Risk Associated with Calcium Channel Blockers in Patients with Suspected Stable Angina Pectoris: A Prospective Cohort Study",
+     "year": 2023,
+     "n": 3991
+    },
+    {
+     "pmid": "39607503",
+     "title": "Association of dietary patterns derived by reduced-rank regression with colorectal cancer risk and mortality",
+     "year": 2024,
+     "n": 1044
+    },
+    {
+     "pmid": "39821957",
+     "title": "Posttreatment Blood Pressure as a Key Predictor in a 5-Year Stroke Prediction Model",
+     "year": 2025,
+     "n": 20702
+    },
+    {
+     "pmid": "42209710",
+     "title": "Lifestyle profiles and long-term blood pressure control are associated with lower risks of stroke and all-cause mortality among treated hypertensive patients: findings from the China Stroke Primary Prevention Trial",
+     "year": 2026,
+     "n": 20638
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28816346"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41830012",
+      "doi": "10.3390/nu18050842",
+      "title": "Complex Effects of B-Vitamin Combinations on Cardiovascular Diseases: A Systematic Review and Meta-Analysis of Randomized Controlled Trials over Three Decades",
+      "year": 2026,
+      "firstAuthor": "Ren R",
+      "journal": "Nutrients",
+      "citedBy": 1,
+      "n": 68363,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "38824900",
+      "doi": "10.1016/j.clnu.2024.05.034",
+      "title": "Folic acid supplementation for stroke prevention: A systematic review and meta-analysis of 21 randomized clinical trials worldwide",
+      "year": 2024,
+      "firstAuthor": "Zhang N",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 21,
+      "n": 115559,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "38432716",
+      "doi": "10.1016/j.ajcnut.2023.12.021",
+      "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+      "year": 2024,
+      "firstAuthor": "Zhang N",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 12,
+      "n": 76664,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "31284304",
+      "doi": "10.7326/m19-0341",
+      "title": "Effects of Nutritional Supplements and Dietary Interventions on Cardiovascular Outcomes: An Umbrella Review and Evidence Map",
+      "year": 2019,
+      "firstAuthor": "Khan SU",
+      "journal": "Annals of internal medicine",
+      "citedBy": 145,
+      "n": 992129,
+      "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); screened as answering the question"
+     },
+     {
+      "pmid": "42209710",
+      "doi": "10.1038/s41371-026-01144-7",
+      "title": "Lifestyle profiles and long-term blood pressure control are associated with lower risks of stroke and all-cause mortality among treated hypertensive patients: findings from the China Stroke Primary Prevention Trial",
+      "year": 2026,
+      "firstAuthor": "Zhou Z",
+      "journal": "Journal of human hypertension",
+      "citedBy": 0,
+      "n": 20638,
+      "why": "A large trial (about 20,638 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or without heart and blood vessel disease (not a group defined by another illness)",
+     "intervention": "Folic acid, alone or with vitamin B12 and B6, to lower homocysteine",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Heart attacks, other cardiovascular events, or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 26,
+     "partly": 4,
+     "no": 9,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42231372",
+      "title": "Efficacy and safety of folic acid on homocysteine and cardiovascular surrogate biomarkers in hyperhomocysteinemia: a systematic review and meta-analysis of RCTs",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Folic acid alone vs placebo in RCTs, but only in adults with high homocysteine, and outcomes are blood markers with no adjudicated cardiovascular events."
+     },
+     {
+      "pmid": "38291560",
+      "title": "From A to E: Uniting vitamins against stroke risk-A systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Folate and B-complex vs placebo for stroke, but the network meta-analysis mixes RCTs with cohort studies."
+     },
+     {
+      "pmid": "37464830",
+      "title": "B Vitamins as Adjunctive Treatment for Chronic Heart Failure",
+      "year": 2023,
+      "fits": "no",
+      "reason": "B vitamins as treatment for chronic heart failure, with lab and haemodynamic measures as outcomes rather than events."
+     },
+     {
+      "pmid": "34083034",
+      "title": "Impact of dietary and lifestyle interventions in elderly or people diagnosed with diabetes, metabolic disorders, cardiovascular disease, cancer and micronutrient deficiency on micronuclei frequency - A systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at lifestyle and diet interventions in people with various illnesses, and the outcome is micronuclei frequency, not cardiovascular events."
+     },
+     {
+      "pmid": "29025632",
+      "title": "Modifiers of the effect of maternal multiple micronutrient supplementation on stillbirth, birth outcomes, and infant mortality: a meta-analysis of individual patient data from 17 randomised trials in low-income and middle-income countries",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Pregnant women given multiple micronutrients vs iron-folic acid, with birth outcomes and infant mortality."
+     },
+     {
+      "pmid": "25687545",
+      "title": "Maternal folic acid supplementation and the risk of congenital heart defects in offspring: a meta-analysis of epidemiological observational studies",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Maternal folic acid and congenital heart defects in offspring, mostly in observational studies."
+     },
+     {
+      "pmid": "24217421",
+      "title": "Vitamin and mineral supplements in the primary prevention of cardiovascular disease and cancer: An updated systematic evidence review for the U.S. Preventive Services Task Force",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Covers many vitamins and minerals for primary prevention; folic acid is one of several, and pooled folic acid results for CVD are unclear."
+     },
+     {
+      "pmid": "23765945",
+      "title": "Effect of B vitamins and lowering homocysteine on cognitive impairment in patients with previous stroke or transient ischemic attack: a prespecified secondary analysis of a randomized, placebo-controlled trial and meta-analysis",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Outcome is cognitive impairment after stroke, not cardiovascular events or death."
+     },
+     {
+      "pmid": "20348114",
+      "title": "Folic acid to reduce neonatal mortality from neural tube disorders",
+      "year": 2010,
+      "fits": "no",
+      "reason": "Looks at folic acid in pregnancy to prevent neural tube defects and neonatal death, not cardiovascular outcomes in adults."
+     },
+     {
+      "pmid": "20120796",
+      "title": "Multiple micronutrient supplementation during pregnancy in low-income countries: a meta-analysis of effects on stillbirths and on early and late neonatal mortality",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Compares multiple micronutrients with iron-folic acid in pregnancy for stillbirth and neonatal death."
+     },
+     {
+      "pmid": "18803866",
+      "title": "The effect of long-term homocysteine-lowering on carotid intima-media thickness and flow-mediated vasodilation in stroke patients: a randomized controlled trial and meta-analysis",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Pooled B-vitamin trials, but outcomes are vascular markers (CIMT, FMD) rather than cardiovascular events."
+     },
+     {
+      "pmid": "15116076",
+      "title": "Evidence for a protective (synergistic?) effect of B-vitamins and omega-3 fatty acids on cardiovascular diseases",
+      "year": 2004,
+      "fits": "no",
+      "reason": "Narrative review of B-vitamins and omega-3 fatty acids with no pooled trial analysis of cardiovascular events."
+     },
+     {
+      "pmid": "9919473",
+      "title": "Can dietary supplements with folic acid or vitamin B6 reduce cardiovascular risk? Design of clinical trials to test the homocysteine hypothesis of vascular disease",
+      "year": 1998,
+      "fits": "no",
+      "reason": "Describes the design of future trials and does not pool trial results."
+     }
+    ]
+   }
+  },
+  {
+   "id": "stroke",
+   "label": "Stroke",
+   "finding": "Stroke",
+   "counts": {
+    "reviews": 25,
+    "trialReviews": 16,
+    "trials": 48,
+    "largeTrials": 34
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38824900",
+     "doi": "10.1016/j.clnu.2024.05.034",
+     "title": "Folic acid supplementation for stroke prevention: A systematic review and meta-analysis of 21 randomized clinical trials worldwide",
+     "year": 2024,
+     "firstAuthor": "Zhang N",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 21,
+     "n": 115559,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "38432716",
+     "doi": "10.1016/j.ajcnut.2023.12.021",
+     "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+     "year": 2024,
+     "firstAuthor": "Zhang N",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 12,
+     "n": 76664,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "28404799",
+     "doi": "10.1212/wnl.0000000000003909",
+     "title": "Meta-analysis of folic acid efficacy trials in stroke prevention: Insight into effect modifiers",
+     "year": 2017,
+     "firstAuthor": "Zhao M",
+     "journal": "Neurology",
+     "citedBy": 38,
+     "n": 82723,
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "39821957",
+     "doi": "10.1111/jch.14974",
+     "title": "Posttreatment Blood Pressure as a Key Predictor in a 5-Year Stroke Prediction Model",
+     "year": 2025,
+     "firstAuthor": "Zhang N",
+     "journal": "Journal of clinical hypertension (Greenwich, Conn.)",
+     "citedBy": 0,
+     "n": 20702,
+     "why": "A large trial (about 20,702 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "42209710",
+     "doi": "10.1038/s41371-026-01144-7",
+     "title": "Lifestyle profiles and long-term blood pressure control are associated with lower risks of stroke and all-cause mortality among treated hypertensive patients: findings from the China Stroke Primary Prevention Trial",
+     "year": 2026,
+     "firstAuthor": "Zhou Z",
+     "journal": "Journal of human hypertension",
+     "citedBy": 0,
+     "n": 20638,
+     "why": "A large trial (about 20,638 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.5,
+    "trials": 28,
+    "inclusions": 56,
+    "reviews": [
+     {
+      "pmid": "38824900",
+      "trials": 18
+     },
+     {
+      "pmid": "38432716",
+      "trials": 11
+     },
+     {
+      "pmid": "28404799",
+      "trials": 27
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "20688574",
+      "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+      "year": 2010,
+      "n": 8164,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "16531613",
+      "title": "Homocysteine lowering with folic acid and B vitamins in vascular disease",
+      "year": 2006,
+      "n": 5522,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "18460663",
+      "title": "Effect of folic acid and B vitamins on risk of cardiovascular events and total mortality among women at high risk for cardiovascular disease: a randomized trial",
+      "year": 2008,
+      "n": 5442,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "16531614",
+      "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+      "year": 2006,
+      "n": 3749,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "14762035",
+      "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+      "year": 2004,
+      "n": 3680,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "18714059",
+      "title": "Mortality and cardiovascular events in patients treated with homocysteine-lowering B vitamins after coronary angiography: a randomized controlled trial",
+      "year": 2008,
+      "n": 3096,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "21115589",
+      "title": "Effects of B vitamins and omega 3 fatty acids on cardiovascular diseases: a randomised placebo controlled trial",
+      "year": 2010,
+      "n": 2501,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "21482964",
+      "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+      "year": 2011,
+      "n": 2056,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "17848650",
+      "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+      "year": 2007,
+      "n": 2056,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "20231532",
+      "title": "B vitamins and the risk of total mortality and cardiovascular disease in end-stage renal disease: results of a randomized controlled trial",
+      "year": 2010,
+      "n": 650,
+      "inReviews": [
+       "38824900",
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "25771069",
+      "title": "Efficacy of folic acid therapy in primary prevention of stroke among adults with hypertension in China: the CSPPT randomized clinical trial",
+      "year": 2015,
+      "n": 20702,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "20571015",
+      "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+      "year": 2010,
+      "n": 6033,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "26147383",
+      "title": "Effects of 2-year vitamin B12 and folic acid supplementation in hyperhomocysteinemic elderly on arterial stiffness and cardiovascular outcomes within the B-PROOF trial",
+      "year": 2015,
+      "n": 569,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "14747389",
+      "title": "Randomized trial of folic acid for prevention of cardiovascular events in end-stage renal disease",
+      "year": 2004,
+      "n": 510,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "16545638",
+      "title": "Cardiovascular morbidity and mortality in the Atherosclerosis and Folic Acid Supplementation Trial (ASFAST) in chronic renal failure: a multicenter, randomized, controlled trial",
+      "year": 2006,
+      "n": 315,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "20424250",
+      "title": "Effect of B-vitamin therapy on progression of diabetic nephropathy: a randomized controlled trial",
+      "year": 2010,
+      "n": 238,
+      "inReviews": [
+       "38432716",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "16755160",
+      "title": "Homocysteine-lowering vitamin B treatment decreases cardiovascular events in hemodialysis patients",
+      "year": 2006,
+      "n": 114,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "16103563",
+      "title": "Secondary prevention with folic acid: results of the Goes extension study",
+      "year": 2005,
+      "inReviews": [
+       "38824900",
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "31932513",
+      "title": "Interaction of serum vitamin B12 and folate with MTHFR genotypes on risk of ischemic stroke",
+      "year": 2020,
+      "n": 20702,
+      "inReviews": [
+       "38824900"
+      ]
+     },
+     {
+      "pmid": "27834686",
+      "title": "Elevated Homocysteine Concentrations Decrease the Antihypertensive Effect of Angiotensin-Converting Enzyme Inhibitors in Hypertensive Patients",
+      "year": 2017,
+      "n": 10783,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "17551129",
+      "title": "Folic acid for the prevention of colorectal adenomas: a randomized clinical trial",
+      "year": 2007,
+      "n": 1021,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "16960155",
+      "title": "Homocysteine lowering by B vitamins and the secondary prevention of deep vein thrombosis and pulmonary embolism: A randomized, placebo-controlled, double-blind trial",
+      "year": 2007,
+      "n": 701,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "15215483",
+      "title": "Folate therapy and in-stent restenosis after coronary stenting",
+      "year": 2004,
+      "n": 636,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "12821232",
+      "title": "Secondary prevention with folic acid: effects on clinical outcomes",
+      "year": 2003,
+      "n": 593,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "12190367",
+      "title": "Effect of homocysteine-lowering therapy with folic acid, vitamin B12, and vitamin B6 on clinical outcome after percutaneous coronary intervention: the Swiss Heart study: a randomized controlled trial",
+      "year": 2002,
+      "n": 553,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "14975544",
+      "title": "Efficacy of folic acid when added to statin therapy in patients with hypercholesterolemia following acute myocardial infarction: a randomised pilot trial",
+      "year": 2004,
+      "n": 283,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "19515873",
+      "title": "Folic acid-based intervention in non-ST elevation acute coronary syndromes",
+      "year": 2009,
+      "n": 240,
+      "inReviews": [
+       "28404799"
+      ]
+     },
+     {
+      "pmid": "17403173",
+      "title": "Uremic hyperhomocysteinemia: a randomized trial of folate treatment for the prevention of cardiovascular events",
+      "year": 2007,
+      "n": 186,
+      "inReviews": [
+       "28404799"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "11867886",
+     "title": "The VITATOPS (Vitamins to Prevent Stroke) Trial: rationale and design of an international, large, simple, randomised trial of homocysteine-lowering multivitamin therapy in patients with recent transient ischaemic attack or stroke",
+     "year": 2002,
+     "n": 8000
+    },
+    {
+     "pmid": "12417369",
+     "title": "Vitamin intervention for stroke prevention",
+     "year": 2002,
+     "n": 3688
+    },
+    {
+     "pmid": "14762035",
+     "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+     "year": 2004,
+     "n": 3680
+    },
+    {
+     "pmid": "15608435",
+     "title": "Sustained homocysteine-lowering effect over time of folic acid-based multivitamin therapy in stroke patients despite increasing folate status in the population",
+     "year": 2005,
+     "n": 2002
+    },
+    {
+     "pmid": "18705976",
+     "title": "VITATOPS, the VITAmins TO prevent stroke trial: rationale and design of a randomised trial of B-vitamin therapy in patients with recent transient ischaemic attack or stroke (NCT00097669) (ISRCTN74743444)",
+     "year": 2007,
+     "n": 8000
+    },
+    {
+     "pmid": "19228852",
+     "title": "Homocysteine-lowering therapy and stroke risk, severity, and disability: additional findings from the HOPE 2 trial",
+     "year": 2009,
+     "n": 5522
+    },
+    {
+     "pmid": "20303789",
+     "title": "Folic acid supplementation and cardiac and stroke mortality among hemodialysis patients",
+     "year": 2010,
+     "n": 1846
+    },
+    {
+     "pmid": "20688574",
+     "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+     "year": 2010,
+     "n": 8164
+    },
+    {
+     "pmid": "22474057",
+     "title": "Treatment with B vitamins and incidence of cancer in patients with previous stroke or transient ischemic attack: results of a randomized placebo-controlled trial",
+     "year": 2012,
+     "n": 8164
+    },
+    {
+     "pmid": "22554931",
+     "title": "Antiplatelet therapy and the effects of B vitamins in patients with previous stroke or transient ischaemic attack: a post-hoc subanalysis of VITATOPS, a randomised, placebo-controlled trial",
+     "year": 2012,
+     "n": 8164
+    },
+    {
+     "pmid": "24004645",
+     "title": "The effect of homocysteine-lowering with B-vitamins on osteoporotic fractures in patients with cerebrovascular disease: substudy of VITATOPS, a randomised placebo-controlled trial",
+     "year": 2013,
+     "n": 8164
+    },
+    {
+     "pmid": "25771069",
+     "title": "Efficacy of folic acid therapy in primary prevention of stroke among adults with hypertension in China: the CSPPT randomized clinical trial",
+     "year": 2015,
+     "n": 20702
+    },
+    {
+     "pmid": "23490255",
+     "title": "The China Stroke Secondary Prevention Trial (CSSPT) protocol: a double-blinded, randomized, controlled trial of combined folic acid and B vitamins for secondary prevention of stroke",
+     "year": 2015,
+     "n": 8000
+    },
+    {
+     "pmid": "25871304",
+     "title": "Incident cancer in a cohort of 3,247 cancer diagnosis free ischemic stroke patients",
+     "year": 2015,
+     "n": 100000
+    },
+    {
+     "pmid": "27729579",
+     "title": "Folic Acid Therapy Reduces the First Stroke Risk Associated With Hypercholesterolemia Among Hypertensive Patients",
+     "year": 2016,
+     "n": 20702
+    },
+    {
+     "pmid": "27548766",
+     "title": "Efficacy of Folic Acid Therapy on the Progression of Chronic Kidney Disease: The Renal Substudy of the China Stroke Primary Prevention Trial",
+     "year": 2016,
+     "n": 15104
+    },
+    {
+     "pmid": "26455512",
+     "title": "Effect of folic acid supplementation on risk of new-onset diabetes in adults with hypertension in China: Findings from the China Stroke Primary Prevention Trial (CSPPT)",
+     "year": 2016,
+     "n": 20702
+    },
+    {
+     "pmid": "28360116",
+     "title": "Homocysteine and Stroke Risk: Modifying Effect of Methylenetetrahydrofolate Reductase C677T Polymorphism and Folic Acid Intervention",
+     "year": 2017,
+     "n": 20424
+    },
+    {
+     "pmid": "29030456",
+     "title": "Association between percent decline in serum total homocysteine and risk of first stroke",
+     "year": 2017,
+     "n": 16867
+    },
+    {
+     "pmid": "28607125",
+     "title": "Effects of Folic Acid Therapy on the New-Onset Proteinuria in Chinese Hypertensive Patients: A Post Hoc Analysis of the Renal Substudy of CSPPT (China Stroke Primary Prevention Trial)",
+     "year": 2017,
+     "n": 13071
+    },
+    {
+     "pmid": "28148501",
+     "title": "Folic acid therapy reduces serum uric acid in hypertensive patients: a substudy of the China Stroke Primary Prevention Trial (CSPPT)",
+     "year": 2017,
+     "n": 15364
+    },
+    {
+     "pmid": "28288974",
+     "title": "China Stroke Primary Prevention Trial: Visit-to-Visit Systolic Blood Pressure Variability Is an Independent Predictor of Primary Stroke in Hypertensive Patients",
+     "year": 2017,
+     "n": 20702
+    },
+    {
+     "pmid": "29273594",
+     "title": "Effect of Smoking and Folate Levels on the Efficacy of Folic Acid Therapy in Prevention of Stroke in Hypertensive Men",
+     "year": 2018,
+     "n": 8384
+    },
+    {
+     "pmid": "29747834",
+     "title": "Platelet Count Affects Efficacy of Folic Acid in Preventing First Stroke",
+     "year": 2018,
+     "n": 10789
+    },
+    {
+     "pmid": "29036427",
+     "title": "Impact of achieved blood pressure on renal function decline and first stroke in hypertensive patients with chronic kidney disease",
+     "year": 2018,
+     "n": 3230
+    },
+    {
+     "pmid": "30624586",
+     "title": "Plasma retinol and the risk of first stroke in hypertensive adults: a nested case-control study",
+     "year": 2019,
+     "n": 20702
+    },
+    {
+     "pmid": "31932513",
+     "title": "Interaction of serum vitamin B12 and folate with MTHFR genotypes on risk of ischemic stroke",
+     "year": 2020,
+     "n": 20702
+    },
+    {
+     "pmid": "31865785",
+     "title": "Estimated Stroke-Free Survival of Folic Acid Therapy for Hypertensive Adults: Projection Based on the CSPPT",
+     "year": 2020,
+     "n": 19053
+    },
+    {
+     "pmid": "32363743",
+     "title": "Positive association of serum uric acid with new-onset diabetes in Chinese women with hypertension in a retrospective analysis of the China Stroke Primary Prevention Trial",
+     "year": 2020,
+     "n": 14943
+    },
+    {
+     "pmid": "33148481",
+     "title": "Interaction of serum calcium and folic acid treatment on first stroke in hypertensive males",
+     "year": 2021,
+     "n": 20702
+    },
+    {
+     "pmid": "36280851",
+     "title": "Cost-effectiveness of folic acid therapy for primary prevention of stroke in patients with hypertension",
+     "year": 2022,
+     "n": 20702
+    },
+    {
+     "pmid": "34654026",
+     "title": "Self-Perceived Psychological Stress and Risk of First Stroke in Treated Hypertensive Patients",
+     "year": 2022,
+     "n": 20688
+    },
+    {
+     "pmid": "39821957",
+     "title": "Posttreatment Blood Pressure as a Key Predictor in a 5-Year Stroke Prediction Model",
+     "year": 2025,
+     "n": 20702
+    },
+    {
+     "pmid": "42209710",
+     "title": "Lifestyle profiles and long-term blood pressure control are associated with lower risks of stroke and all-cause mortality among treated hypertensive patients: findings from the China Stroke Primary Prevention Trial",
+     "year": 2026,
+     "n": 20638
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28816346",
+     "25771069"
+    ],
+    "citedNotEligible": [
+     "28816346",
+     "25771069"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "38824900",
+      "doi": "10.1016/j.clnu.2024.05.034",
+      "title": "Folic acid supplementation for stroke prevention: A systematic review and meta-analysis of 21 randomized clinical trials worldwide",
+      "year": 2024,
+      "firstAuthor": "Zhang N",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 21,
+      "n": 115559,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "38432716",
+      "doi": "10.1016/j.ajcnut.2023.12.021",
+      "title": "Dosage exploration of combined B-vitamin supplementation in stroke prevention: a meta-analysis and systematic review",
+      "year": 2024,
+      "firstAuthor": "Zhang N",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 12,
+      "n": 76664,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "28404799",
+      "doi": "10.1212/wnl.0000000000003909",
+      "title": "Meta-analysis of folic acid efficacy trials in stroke prevention: Insight into effect modifiers",
+      "year": 2017,
+      "firstAuthor": "Zhao M",
+      "journal": "Neurology",
+      "citedBy": 38,
+      "n": 82723,
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     },
+     {
+      "pmid": "39821957",
+      "doi": "10.1111/jch.14974",
+      "title": "Posttreatment Blood Pressure as a Key Predictor in a 5-Year Stroke Prediction Model",
+      "year": 2025,
+      "firstAuthor": "Zhang N",
+      "journal": "Journal of clinical hypertension (Greenwich, Conn.)",
+      "citedBy": 0,
+      "n": 20702,
+      "why": "A large trial (about 20,702 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "42209710",
+      "doi": "10.1038/s41371-026-01144-7",
+      "title": "Lifestyle profiles and long-term blood pressure control are associated with lower risks of stroke and all-cause mortality among treated hypertensive patients: findings from the China Stroke Primary Prevention Trial",
+      "year": 2026,
+      "firstAuthor": "Zhou Z",
+      "journal": "Journal of human hypertension",
+      "citedBy": 0,
+      "n": 20638,
+      "why": "A large trial (about 20,638 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults (with or without high blood pressure or heart disease)",
+     "intervention": "Folic acid, alone or with vitamin B12 and B6",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Stroke"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 12,
+     "partly": 2,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "38291560",
+      "title": "From A to E: Uniting vitamins against stroke risk-A systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Network analysis compares folate and other vitamins with placebo for stroke, but it mixes cohort studies with randomised trials."
+     },
+     {
+      "pmid": "29078842",
+      "title": "Folic Acid Supplementation for Stroke Prevention in Patients With Cardiovascular Disease",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pooled randomised trials of folic acid for stroke, but only in patients with cardiovascular disease, a narrower group."
+     },
+     {
+      "pmid": "23765945",
+      "title": "Effect of B vitamins and lowering homocysteine on cognitive impairment in patients with previous stroke or transient ischemic attack: a prespecified secondary analysis of a randomized, placebo-controlled trial and meta-analysis",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Single trial in stroke survivors whose outcome is cognitive impairment, not stroke."
+     },
+     {
+      "pmid": "18803866",
+      "title": "The effect of long-term homocysteine-lowering on carotid intima-media thickness and flow-mediated vasodilation in stroke patients: a randomized controlled trial and meta-analysis",
+      "year": 2008,
+      "fits": "no",
+      "reason": "Outcomes are artery wall thickness and blood-vessel function (vascular markers), not stroke."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cognition",
+   "label": "Memory and dementia",
+   "finding": "Memory, thinking and dementia",
+   "counts": {
+    "reviews": 66,
+    "trialReviews": 19,
+    "trials": 95,
+    "largeTrials": 7
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39064642",
+     "doi": "10.3390/nu16142199",
+     "title": "A Comparative Study Evaluating the Effectiveness of Folate-Based B Vitamin Intervention on Cognitive Function of Older Adults under Mandatory Folic Acid Fortification Policy: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2024,
+     "firstAuthor": "Zhang L",
+     "journal": "Nutrients",
+     "citedBy": 7,
+     "n": 42768,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "38964091",
+     "doi": "10.1016/j.archger.2024.105540",
+     "title": "Effects of folic acid supplementation on cognitive function and inflammation in elderly patients with mild cognitive impairment: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2024,
+     "firstAuthor": "Wang M",
+     "journal": "Archives of gerontology and geriatrics",
+     "citedBy": 7,
+     "n": 1102,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "34432056",
+     "doi": "10.1093/nutrit/nuab057",
+     "title": "B vitamins and prevention of cognitive decline and incident dementia: a systematic review and meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Wang Z",
+     "journal": "Nutrition reviews",
+     "citedBy": 106,
+     "n": 46175,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.27884615384615385,
+    "trials": 52,
+    "inclusions": 81,
+    "reviews": [
+     {
+      "pmid": "39064642",
+      "trials": 49
+     },
+     {
+      "pmid": "38964091",
+      "trials": 10
+     },
+     {
+      "pmid": "34432056",
+      "trials": 22
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "18854539",
+      "title": "High-dose B vitamin supplementation and cognitive decline in Alzheimer disease: a randomized controlled trial",
+      "year": 2008,
+      "n": 340,
+      "inReviews": [
+       "39064642",
+       "38964091",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "16807413",
+      "title": "A controlled trial of homocysteine lowering and cognitive performance",
+      "year": 2006,
+      "n": 276,
+      "inReviews": [
+       "39064642",
+       "38964091",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "26508298",
+      "title": "Effects of 6-Month Folic Acid Supplementation on Cognitive Function and Blood Biomarkers in Mild Cognitive Impairment: A Randomized Controlled Trial in China",
+      "year": 2016,
+      "n": 180,
+      "inReviews": [
+       "39064642",
+       "38964091",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "25391305",
+      "title": "Results of 2-year vitamin B treatment on cognitive performance: secondary data from an RCT",
+      "year": 2014,
+      "n": 2919,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "17240287",
+      "title": "Effect of 3-year folic acid supplementation on cognitive function in older adults in the FACIT trial: a randomised, double blind, controlled trial",
+      "year": 2007,
+      "n": 818,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "20861451",
+      "title": "Vitamins B(12), B(6), and folic acid for cognition in older men",
+      "year": 2010,
+      "n": 299,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "20838622",
+      "title": "Homocysteine-lowering by B vitamins slows the rate of accelerated brain atrophy in mild cognitive impairment: a randomized controlled trial",
+      "year": 2010,
+      "n": 271,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "26757190",
+      "title": "Omega-3 Fatty Acid Status Enhances the Prevention of Cognitive Decline by B Vitamins in Mild Cognitive Impairment",
+      "year": 2016,
+      "n": 266,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "32856190",
+      "title": "Effect of folic acid combined with docosahexaenoic acid intervention on mild cognitive impairment in elderly: a randomized double-blind, placebo-controlled trial",
+      "year": 2021,
+      "n": 240,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "31345146",
+      "title": "Effects of Folic Acid and Vitamin B12, Alone and in Combination on Cognitive Function and Inflammatory Factors in the Elderly with Mild Cognitive Impairment: A Single-blind Experimental Design",
+      "year": 2019,
+      "n": 240,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "15883442",
+      "title": "Significant correlations of plasma homocysteine and serum methylmalonic acid with movement and cognitive performance in elderly subjects but no improvement from short-term vitamin therapy: a placebo-controlled randomized study",
+      "year": 2005,
+      "n": 209,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "16895884",
+      "title": "Effect of oral vitamin B-12 with or without folic acid on cognitive function in older people with mild vitamin B-12 deficiency: a randomized, placebo-controlled trial",
+      "year": 2006,
+      "n": 195,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "35704085",
+      "title": "DHA status influences effects of B-vitamin supplementation on cognitive ageing: a post-hoc analysis of the B-proof trial",
+      "year": 2022,
+      "n": 191,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "16332666",
+      "title": "Randomized controlled trial of homocysteine-lowering vitamin treatment in elderly patients with vascular disease",
+      "year": 2005,
+      "n": 185,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "29255930",
+      "title": "Effects of folic acid supplementation on cognitive function and Aβ-related biomarkers in mild cognitive impairment: a randomized controlled trial",
+      "year": 2019,
+      "n": 180,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "25877495",
+      "title": "Brain atrophy in cognitively impaired elderly: the importance of long-chain ω-3 fatty acids and B vitamin status in a randomized controlled trial",
+      "year": 2015,
+      "n": 168,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "18308888",
+      "title": "Walking or vitamin B for cognition in older adults with mild cognitive impairment? A randomised controlled trial",
+      "year": 2008,
+      "n": 152,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "12823643",
+      "title": "Effect of vitamins and aspirin on markers of platelet activation, oxidative stress and homocysteine in people at high risk of dementia",
+      "year": 2003,
+      "n": 149,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "21216507",
+      "title": "A randomized placebo controlled trial of homocysteine lowering to reduce cognitive decline in older demented people",
+      "year": 2011,
+      "n": 140,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "21780182",
+      "title": "Cognitive and clinical outcomes of homocysteine-lowering B-vitamin treatment in mild cognitive impairment: a randomized controlled trial",
+      "year": 2012,
+      "n": 133,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "34101780",
+      "title": "Effects of Folic Acid and Vitamin B12 Supplementation on Cognitive Impairment and Inflammation in Patients with Alzheimer's Disease: A Randomized, Single-Blinded, Placebo-Controlled Trial",
+      "year": 2021,
+      "n": 120,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "18042476",
+      "title": "Efficacy of multivitamin supplementation containing vitamins B6 and B12 and folic acid as adjunctive treatment with a cholinesterase inhibitor in Alzheimer's disease: a 26-week, randomized, double-blind, placebo-controlled study in Taiwanese patients",
+      "year": 2007,
+      "n": 45,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "17600848",
+      "title": "A randomised double-blind placebo-controlled trial of folic acid supplementation of cholinesterase inhibitors in Alzheimer's disease",
+      "year": 2008,
+      "n": 23,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "16359741",
+      "title": "Effects of folic acid supplementation on psychomotor performance and hemorheology in healthy elderly subjects",
+      "year": 2006,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "31787369",
+      "title": "A randomized placebo-controlled trial of using B vitamins to prevent cognitive decline in older mild cognitive impairment patients",
+      "year": 2020,
+      "inReviews": [
+       "39064642",
+       "38964091"
+      ]
+     },
+     {
+      "pmid": "23690582",
+      "title": "Preventing Alzheimer's disease-related gray matter atrophy by B-vitamin treatment",
+      "year": 2013,
+      "inReviews": [
+       "39064642",
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "20688574",
+      "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+      "year": 2010,
+      "n": 8164,
+      "inReviews": [
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "20571015",
+      "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+      "year": 2010,
+      "n": 6033,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "19064521",
+      "title": "A trial of B vitamins and cognitive function among women at high risk of cardiovascular disease",
+      "year": 2008,
+      "n": 5442,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "14762035",
+      "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+      "year": 2004,
+      "n": 3680,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "21593490",
+      "title": "Cognitive function after supplementation with B vitamins and long-chain omega-3 fatty acids: ancillary findings from the SU.FOL.OM3 randomized trial",
+      "year": 2011,
+      "n": 1748,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "22170358",
+      "title": "Oral folic acid and vitamin B-12 supplementation to prevent cognitive decline in community-dwelling older adults with depressive symptoms--the Beyond Ageing Project: a randomized controlled trial",
+      "year": 2012,
+      "n": 900,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "33564824",
+      "title": "Positive effects of folic acid supplementation on cognitive aging are dependent on ω-3 fatty acid status: a post hoc analysis of the FACIT trial",
+      "year": 2021,
+      "n": 791,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "19628319",
+      "title": "Homocysteine lowering and cognition in CKD: the Veterans Affairs homocysteine study",
+      "year": 2009,
+      "n": 659,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "33935094",
+      "title": "Paraoxonase 1, B Vitamins Supplementation, and Mild Cognitive Impairment",
+      "year": 2021,
+      "n": 196,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "33749643",
+      "title": "Effects of Folic Acid Combined with DHA Supplementation on Cognitive Function and Amyloid-β-Related Biomarkers in Older Adults with Mild Cognitive Impairment by a Randomized, Double Blind, Placebo-Controlled Trial",
+      "year": 2021,
+      "n": 160,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "27340344",
+      "title": "Folic Acid Supplementation Mitigates Alzheimer's Disease by Reducing Inflammation: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 121,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "25589719",
+      "title": "A Phase II Randomized Clinical Trial of a Nutritional Formulation for Cognition and Mood in Alzheimer's Disease",
+      "year": 2015,
+      "n": 106,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "36057827",
+      "title": "B Vitamin Supplementation Slows Cognitive Decline in Mild Cognitive Impairment Patients with Frontal Lobe Atrophy",
+      "year": 2022,
+      "n": 83,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "10815792",
+      "title": "Folate sufficient subjects do not accumulate additional folates during supplementation",
+      "year": 2000,
+      "n": 82,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "17616840",
+      "title": "The effect of walking and vitamin B supplementation on quality of life in community-dwelling adults with mild cognitive impairment: a randomized, controlled trial",
+      "year": 2007,
+      "n": 78,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "22711385",
+      "title": "Effects of a multivitamin, mineral and herbal supplement on cognition and blood biomarkers in older men: a randomised, placebo-controlled trial",
+      "year": 2012,
+      "n": 51,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "33913373",
+      "title": "A pilot study of thiamin and folic acid in hemodialysis patients with cognitive impairment",
+      "year": 2021,
+      "n": 25,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "19056706",
+      "title": "Efficacy of a vitamin/nutriceutical formulation for moderate-stage to later-stage Alzheimer's disease: a placebo-controlled pilot study",
+      "year": 2009,
+      "n": 12,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "12028259",
+      "title": "A randomized, double-blind, placebo-controlled study of oral vitamin B12 supplementation in older patients with subnormal or borderline serum vitamin B12 concentrations",
+      "year": 2002,
+      "n": 10,
+      "inReviews": [
+       "34432056"
+      ]
+     },
+     {
+      "pmid": "12042457",
+      "title": "Short-term folate, vitamin B-12 or vitamin B-6 supplementation slightly affects memory performance but not mood in women of various ages",
+      "year": 2002,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "20191258",
+      "title": "A vitamin/nutriceutical formulation improves memory and cognitive performance in community-dwelling adults without dementia",
+      "year": 2010,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "24944062",
+      "title": "Folic acid handling by the human gut: implications for food fortification and supplementation",
+      "year": 2014,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "15917019",
+      "title": "Cognitive performance in relation to vitamin status in healthy elderly German women-the effect of 6-month multivitamin supplementation",
+      "year": 2005,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "26402075",
+      "title": "A Nutritional Formulation for Cognitive Performance in Mild Cognitive Impairment: A Placebo-Controlled Trial with an Open-Label Extension",
+      "year": 2015,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "26967219",
+      "title": "Maintenance of Cognitive Performance and Mood for Individuals with Alzheimer's Disease Following Consumption of a Nutraceutical Formulation: A One-Year, Open-Label Study",
+      "year": 2016,
+      "inReviews": [
+       "39064642"
+      ]
+     },
+     {
+      "pmid": "15321804",
+      "title": "Changes in basal and postmethionine load concentrations of total homocysteine and cystathionine after B vitamin intervention",
+      "year": 2004,
+      "inReviews": [
+       "34432056"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2009,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2012,
+     "reviews": 3,
+     "trials": 7
+    },
+    {
+     "year": 2013,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2020,
+     "reviews": 5,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2022,
+     "reviews": 7,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 7,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "19064521",
+     "title": "A trial of B vitamins and cognitive function among women at high risk of cardiovascular disease",
+     "year": 2008,
+     "n": 5442
+    },
+    {
+     "pmid": "21593490",
+     "title": "Cognitive function after supplementation with B vitamins and long-chain omega-3 fatty acids: ancillary findings from the SU.FOL.OM3 randomized trial",
+     "year": 2011,
+     "n": 1748
+    },
+    {
+     "pmid": "24481688",
+     "title": "Three-month B vitamin supplementation in pre-school children affects folate status and homocysteine, but not cognitive performance",
+     "year": 2014,
+     "n": 1002
+    },
+    {
+     "pmid": "25391305",
+     "title": "Results of 2-year vitamin B treatment on cognitive performance: secondary data from an RCT",
+     "year": 2014,
+     "n": 2919
+    },
+    {
+     "pmid": "27604769",
+     "title": "Effects of prenatal multiple micronutrient supplementation on growth and cognition through 2 y of age in rural Bangladesh: the JiVitA-3 Trial",
+     "year": 2016,
+     "n": 8529
+    },
+    {
+     "pmid": "28104188",
+     "title": "Maternal multiple micronutrient supplementation and other biomedical and socioenvironmental influences on children's cognition at age 9-12 years in Indonesia: follow-up of the SUMMIT randomised trial",
+     "year": 2017,
+     "n": 27356
+    },
+    {
+     "pmid": "32019814",
+     "title": "Vitamin B12, Folate, and Cognition in 6- to 9-Year-Olds: A Randomized Controlled Trial",
+     "year": 2020,
+     "n": 1000
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "24965307",
+     "30383288"
+    ],
+    "citedNotEligible": [
+     "24965307",
+     "30383288"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39064642",
+      "doi": "10.3390/nu16142199",
+      "title": "A Comparative Study Evaluating the Effectiveness of Folate-Based B Vitamin Intervention on Cognitive Function of Older Adults under Mandatory Folic Acid Fortification Policy: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2024,
+      "firstAuthor": "Zhang L",
+      "journal": "Nutrients",
+      "citedBy": 7,
+      "n": 42768,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "38964091",
+      "doi": "10.1016/j.archger.2024.105540",
+      "title": "Effects of folic acid supplementation on cognitive function and inflammation in elderly patients with mild cognitive impairment: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "firstAuthor": "Wang M",
+      "journal": "Archives of gerontology and geriatrics",
+      "citedBy": 7,
+      "n": 1102,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "34432056",
+      "doi": "10.1093/nutrit/nuab057",
+      "title": "B vitamins and prevention of cognitive decline and incident dementia: a systematic review and meta-analysis",
+      "year": 2022,
+      "firstAuthor": "Wang Z",
+      "journal": "Nutrition reviews",
+      "citedBy": 106,
+      "n": 46175,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Older adults, with or without mild memory problems",
+     "intervention": "Folic acid, alone or with vitamin B12 and B6",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Memory, thinking or dementia"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 8,
+     "partly": 9,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41764841",
+      "title": "Nutritional supplements and cognition in healthy aging and mild cognitive impairment patients: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Older adults with or without MCI, but folic acid is reported for cognition only with DHA; B vitamins alone are reported only for blood markers."
+     },
+     {
+      "pmid": "38465839",
+      "title": "Effects of folic acid supplementation on cognitive impairment: A meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Folic acid RCTs on cognition, but only in people already diagnosed with cognitive impairment, including AD and VCI, so it is about treatment."
+     },
+     {
+      "pmid": "38700503",
+      "title": "Role of vitamin B12 and folic acid in treatment of Alzheimer's disease: a meta-analysis of randomized control trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "B12 plus folic acid versus placebo on cognition, but only in people with Alzheimer's disease, so it is about treatment."
+     },
+     {
+      "pmid": "34058062",
+      "title": "Impact of supplementation with vitamins B6 , B12 , and/or folic acid on the reduction of homocysteine levels in patients with mild cognitive impairment: A systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "B vitamins in MCI, but the only outcome is homocysteine, a blood marker, and it includes non-randomised studies."
+     },
+     {
+      "pmid": "33463361",
+      "title": "Baseline folic acid status affects the effectiveness of folic acid supplements in cognitively relevant outcomes in older adults: a systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Folic acid RCTs on cognition in older adults, but the trials were summarised without being pooled."
+     },
+     {
+      "pmid": "23765945",
+      "title": "Effect of B vitamins and lowering homocysteine on cognitive impairment in patients with previous stroke or transient ischemic attack: a prespecified secondary analysis of a randomized, placebo-controlled trial and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "B vitamins versus placebo on cognitive impairment, but the population is patients with previous stroke or TIA."
+     },
+     {
+      "pmid": "22566307",
+      "title": "[Effect of folate and related nutrients on cognitive function in older people; systematic review]",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Folate and cognition in older adults, but mostly observational studies and no pooled trial analysis."
+     },
+     {
+      "pmid": "20847412",
+      "title": "B-vitamins and fatty acids in the prevention and treatment of Alzheimer's disease and dementia: a systematic review",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Covers B vitamins and fatty acids together and mixes cohort studies with RCTs; trial results were not pooled."
+     },
+     {
+      "pmid": "19570123",
+      "title": "Homocysteine, vitamin B12, folate and cognitive functions: a systematic and critical review of the literature",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Narrative review of how homocysteine, folate and B12 levels relate to cognition; no pooled trials."
+     },
+     {
+      "pmid": "17210874",
+      "title": "Vitamin B6, B12, and folic acid supplementation and cognitive function: a systematic review of randomized trials",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "RCTs of B6, B12 and folic acid on cognition in people with normal or impaired cognition, but summarised without pooling."
+     },
+     {
+      "pmid": "15250847",
+      "title": "A critical evaluation of the relationship between serum vitamin B, folate and total homocysteine with cognitive impairment in the elderly",
+      "year": 2004,
+      "fits": "no",
+      "reason": "Observational studies linking blood vitamin levels to cognition; no supplementation trials."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cancer",
+   "label": "Cancer",
+   "finding": "Cancer",
+   "counts": {
+    "reviews": 170,
+    "trialReviews": 11,
+    "trials": 111,
+    "largeTrials": 20
+   },
+   "chosenReviews": [
+    {
+     "pmid": "29132834",
+     "doi": "10.1016/j.clnu.2017.10.010",
+     "title": "Folic acid intake and folate status and colorectal cancer risk: A systematic review and meta-analysis",
+     "year": 2018,
+     "firstAuthor": "Moazzen S",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 76,
+     "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+    },
+    {
+     "pmid": "26131763",
+     "doi": "10.1038/srep12044",
+     "title": "Folic acid supplements and colorectal cancer risk: meta-analysis of randomized controlled trials",
+     "year": 2015,
+     "firstAuthor": "Qin T",
+     "journal": "Scientific reports",
+     "citedBy": 36,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    },
+    {
+     "pmid": "23352552",
+     "doi": "10.1016/s0140-6736(12)62001-7",
+     "title": "Effects of folic acid supplementation on overall and site-specific cancer incidence during the randomised trials: meta-analyses of data on 50,000 individuals",
+     "year": 2013,
+     "firstAuthor": "Vollset SE",
+     "journal": "Lancet (London, England)",
+     "citedBy": 226,
+     "n": 49621,
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "30341095",
+     "doi": "10.1158/1055-9965.epi-17-1198",
+     "title": "Folic Acid and Vitamin B12 Supplementation and the Risk of Cancer: Long-term Follow-up of the B Vitamins for the Prevention of Osteoporotic Fractures (B-PROOF) Trial",
+     "year": 2019,
+     "firstAuthor": "Oliai Araghi S",
+     "journal": "Cancer epidemiology, biomarkers & prevention : a publication of the American Association for Cancer Research, cosponsored by the American Society of Preventive Oncology",
+     "citedBy": 64,
+     "n": 2524,
+     "why": "A large trial (about 2,524 people) from 2019, as new as the newest review or newer"
+    },
+    {
+     "pmid": "31042283",
+     "doi": "10.1001/jamasurg.2019.0972",
+     "title": "Effect of Vein-First vs Artery-First Surgical Technique on Circulating Tumor Cells and Survival in Patients With Non-Small Cell Lung Cancer: A Randomized Clinical Trial and Registry-Based Propensity Score Matching Analysis",
+     "year": 2019,
+     "firstAuthor": "Wei S",
+     "journal": "JAMA surgery",
+     "citedBy": 75,
+     "n": 2018,
+     "why": "A large trial (about 2,018 people) from 2019, as new as the newest review or newer"
+    },
+    {
+     "pmid": "29570772",
+     "doi": "10.1111/bjd.16571",
+     "title": "Risk of basal cell carcinoma in a randomized clinical trial of aspirin and folic acid for the prevention of colorectal adenomas",
+     "year": 2018,
+     "firstAuthor": "Passarelli MN",
+     "journal": "The British journal of dermatology",
+     "citedBy": 6,
+     "n": 1121,
+     "why": "A large trial (about 1,121 people) from 2018, as new as the newest review or newer"
+    },
+    {
+     "pmid": "39607503",
+     "doi": "10.1007/s00394-024-03513-9",
+     "title": "Association of dietary patterns derived by reduced-rank regression with colorectal cancer risk and mortality",
+     "year": 2024,
+     "firstAuthor": "Abebe Z",
+     "journal": "European journal of nutrition",
+     "citedBy": 7,
+     "n": 1044,
+     "why": "A large trial (about 1,044 people) from 2024, as new as the newest review or newer"
+    },
+    {
+     "pmid": "31401653",
+     "doi": "10.1093/ajcn/nqz160",
+     "title": "Folic acid supplementation and risk of colorectal neoplasia during long-term follow-up of a randomized clinical trial",
+     "year": 2019,
+     "firstAuthor": "Passarelli MN",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 18,
+     "n": 1021,
+     "why": "A large trial (about 1,021 people) from 2019, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.2962962962962963,
+    "trials": 27,
+    "inclusions": 43,
+    "reviews": [
+     {
+      "pmid": "29132834",
+      "trials": 15
+     },
+     {
+      "pmid": "26131763",
+      "trials": 12
+     },
+     {
+      "pmid": "23352552",
+      "trials": 16
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "20571015",
+      "title": "Effects of homocysteine-lowering with folic acid plus vitamin B12 vs placebo on mortality and major morbidity in myocardial infarction survivors: a randomized trial",
+      "year": 2010,
+      "n": 6033,
+      "inReviews": [
+       "29132834",
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "16531613",
+      "title": "Homocysteine lowering with folic acid and B vitamins in vascular disease",
+      "year": 2006,
+      "n": 5522,
+      "inReviews": [
+       "29132834",
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "18984888",
+      "title": "Effect of combined folic acid, vitamin B6, and vitamin B12 on cancer risk in women: a randomized trial",
+      "year": 2008,
+      "n": 2721,
+      "inReviews": [
+       "29132834",
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "17551129",
+      "title": "Folic acid for the prevention of colorectal adenomas: a randomized clinical trial",
+      "year": 2007,
+      "n": 1021,
+      "inReviews": [
+       "29132834",
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "18022173",
+      "title": "Aspirin and folic acid for the prevention of recurrent colorectal adenomas",
+      "year": 2008,
+      "n": 945,
+      "inReviews": [
+       "29132834",
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "19864409",
+      "title": "A randomized trial on folic acid supplementation and risk of recurrent colorectal adenoma",
+      "year": 2009,
+      "n": 338,
+      "inReviews": [
+       "29132834",
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "22474057",
+      "title": "Treatment with B vitamins and incidence of cancer in patients with previous stroke or transient ischemic attack: results of a randomized placebo-controlled trial",
+      "year": 2012,
+      "n": 8164,
+      "inReviews": [
+       "29132834",
+       "26131763"
+      ]
+     },
+     {
+      "pmid": "1307234",
+      "title": "Prevention of the first occurrence of neural-tube defects by periconceptional vitamin supplementation",
+      "year": 1992,
+      "n": 4753,
+      "inReviews": [
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "1677062",
+      "title": "Prevention of neural tube defects: results of the Medical Research Council Vitamin Study. MRC Vitamin Study Research Group",
+      "year": 1991,
+      "n": 1817,
+      "inReviews": [
+       "26131763",
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "23682073",
+      "title": "Folic acid prevents the initial occurrence of sporadic colorectal adenoma in Chinese older than 50 years of age: a randomized clinical trial",
+      "year": 2013,
+      "inReviews": [
+       "29132834",
+       "26131763"
+      ]
+     },
+     {
+      "pmid": "20007302",
+      "title": "Folate intake, post-folic acid grain fortification, and pancreatic cancer risk in the Prostate, Lung, Colorectal, and Ovarian Cancer Screening Trial",
+      "year": 2010,
+      "n": 57187,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "16339055",
+      "title": "Folate, vitamin B6, multivitamin supplements, and colorectal cancer risk in women",
+      "year": 2006,
+      "n": 37916,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "20688574",
+      "title": "B vitamins in patients with recent transient ischaemic attack or stroke in the VITAmins TO Prevent Stroke (VITATOPS) trial: a randomised, double-blind, parallel, placebo-controlled trial",
+      "year": 2010,
+      "n": 8164,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "16531614",
+      "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+      "year": 2006,
+      "n": 3749,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "14762035",
+      "title": "Lowering homocysteine in patients with ischemic stroke to prevent recurrent stroke, myocardial infarction, and death: the Vitamin Intervention for Stroke Prevention (VISP) randomized controlled trial",
+      "year": 2004,
+      "n": 3680,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "21115589",
+      "title": "Effects of B vitamins and omega 3 fatty acids on cardiovascular diseases: a randomised placebo controlled trial",
+      "year": 2010,
+      "n": 2501,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "18665162",
+      "title": "Dietary intake of selected B vitamins in relation to risk of major cancers in women",
+      "year": 2008,
+      "n": 2491,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "21482964",
+      "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+      "year": 2011,
+      "n": 2056,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "17848650",
+      "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+      "year": 2007,
+      "n": 2056,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "23066166",
+      "title": "Effect of combined folic acid, vitamin B(6), and vitamin B(12) on colorectal adenoma",
+      "year": 2012,
+      "n": 1470,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "16960155",
+      "title": "Homocysteine lowering by B vitamins and the secondary prevention of deep vein thrombosis and pulmonary embolism: A randomized, placebo-controlled, double-blind trial",
+      "year": 2007,
+      "n": 701,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "19276452",
+      "title": "Folic acid and risk of prostate cancer: results from a randomized clinical trial",
+      "year": 2009,
+      "n": 643,
+      "inReviews": [
+       "23352552"
+      ]
+     },
+     {
+      "pmid": "15215483",
+      "title": "Folate therapy and in-stent restenosis after coronary stenting",
+      "year": 2004,
+      "n": 636,
+      "inReviews": [
+       "26131763"
+      ]
+     },
+     {
+      "pmid": "18680228",
+      "title": "Folic acid supplementation inhibits recurrence of colorectal adenomas: a randomized chemoprevention trial",
+      "year": 2008,
+      "n": 137,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "18990766",
+      "title": "One-carbon metabolism biomarkers and risk of colon and rectal cancers",
+      "year": 2008,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "18843003",
+      "title": "Colorectal adenomas in a randomized folate trial: the role of baseline dietary and circulating folate levels",
+      "year": 2008,
+      "inReviews": [
+       "29132834"
+      ]
+     },
+     {
+      "pmid": "6786536",
+      "title": "Double-blind randomised controlled trial of folate treatment before conception to prevent recurrence of neural-tube defects",
+      "year": 1981,
+      "inReviews": [
+       "26131763"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2007,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2009,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2010,
+     "reviews": 9,
+     "trials": 8
+    },
+    {
+     "year": 2011,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 12,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 20,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 18,
+     "trials": 7
+    },
+    {
+     "year": 2015,
+     "reviews": 8,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 7,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 6,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 6,
+     "trials": 6
+    },
+    {
+     "year": 2020,
+     "reviews": 12,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 7,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 10,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 7,
+     "trials": 5
+    },
+    {
+     "year": 2024,
+     "reviews": 9,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 9,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "11588893",
+     "title": "Dietary supplement use in the Prostate Cancer Prevention Trial: implications for prevention trials",
+     "year": 2001,
+     "n": 15387
+    },
+    {
+     "pmid": "16339055",
+     "title": "Folate, vitamin B6, multivitamin supplements, and colorectal cancer risk in women",
+     "year": 2006,
+     "n": 37916
+    },
+    {
+     "pmid": "18065596",
+     "title": "Fruit and vegetable intake and prevalence of colorectal adenoma in a cancer screening trial",
+     "year": 2007,
+     "n": 29413
+    },
+    {
+     "pmid": "18984888",
+     "title": "Effect of combined folic acid, vitamin B6, and vitamin B12 on cancer risk in women: a randomized trial",
+     "year": 2008,
+     "n": 2721
+    },
+    {
+     "pmid": "18665162",
+     "title": "Dietary intake of selected B vitamins in relation to risk of major cancers in women",
+     "year": 2008,
+     "n": 2491
+    },
+    {
+     "pmid": "19843671",
+     "title": "Genetic variants of methyl metabolizing enzymes and epigenetic regulators: associations with promoter CpG island hypermethylation in colorectal cancer",
+     "year": 2009,
+     "n": 120852
+    },
+    {
+     "pmid": "20007302",
+     "title": "Folate intake, post-folic acid grain fortification, and pancreatic cancer risk in the Prostate, Lung, Colorectal, and Ovarian Cancer Screening Trial",
+     "year": 2010,
+     "n": 57187
+    },
+    {
+     "pmid": "20828635",
+     "title": "A randomized trial of genetic and environmental risk assessment (GERA) for colorectal cancer risk in primary care: trial design and baseline findings",
+     "year": 2011,
+     "n": 2223
+    },
+    {
+     "pmid": "22331983",
+     "title": "B vitamin and/or ω-3 fatty acid supplementation and cancer: ancillary findings from the supplementation with folate, vitamins B6 and B12, and/or omega-3 fatty acids (SU.FOL.OM3) randomized trial",
+     "year": 2012,
+     "n": 2501
+    },
+    {
+     "pmid": "22474057",
+     "title": "Treatment with B vitamins and incidence of cancer in patients with previous stroke or transient ischemic attack: results of a randomized placebo-controlled trial",
+     "year": 2012,
+     "n": 8164
+    },
+    {
+     "pmid": "24621441",
+     "title": "The association between postdiagnosis dietary supplement use and total mortality differs by diet quality among older female cancer survivors",
+     "year": 2014,
+     "n": 2118
+    },
+    {
+     "pmid": "26156743",
+     "title": "Prospective association between dietary folate intake and skin cancer risk: results from the Supplémentation en Vitamines et Minéraux Antioxydants cohort",
+     "year": 2015,
+     "n": 5880
+    },
+    {
+     "pmid": "25871304",
+     "title": "Incident cancer in a cohort of 3,247 cancer diagnosis free ischemic stroke patients",
+     "year": 2015,
+     "n": 100000
+    },
+    {
+     "pmid": "27001568",
+     "title": "A Randomized, Double-Blind, Placebo-Controlled, Phase III Study to Assess Efficacy and Safety of Weekly Farletuzumab in Combination With Carboplatin and Taxane in Patients With Ovarian Cancer in First Platinum-Sensitive Relapse",
+     "year": 2016,
+     "n": 1100
+    },
+    {
+     "pmid": "26991917",
+     "title": "Effect of folic acid supplementation on cancer risk among adults with hypertension in China: A randomized clinical trial",
+     "year": 2017,
+     "n": 20702
+    },
+    {
+     "pmid": "29570772",
+     "title": "Risk of basal cell carcinoma in a randomized clinical trial of aspirin and folic acid for the prevention of colorectal adenomas",
+     "year": 2018,
+     "n": 1121
+    },
+    {
+     "pmid": "31401653",
+     "title": "Folic acid supplementation and risk of colorectal neoplasia during long-term follow-up of a randomized clinical trial",
+     "year": 2019,
+     "n": 1021
+    },
+    {
+     "pmid": "30341095",
+     "title": "Folic Acid and Vitamin B12 Supplementation and the Risk of Cancer: Long-term Follow-up of the B Vitamins for the Prevention of Osteoporotic Fractures (B-PROOF) Trial",
+     "year": 2019,
+     "n": 2524
+    },
+    {
+     "pmid": "31042283",
+     "title": "Effect of Vein-First vs Artery-First Surgical Technique on Circulating Tumor Cells and Survival in Patients With Non-Small Cell Lung Cancer: A Randomized Clinical Trial and Registry-Based Propensity Score Matching Analysis",
+     "year": 2019,
+     "n": 2018
+    },
+    {
+     "pmid": "39607503",
+     "title": "Association of dietary patterns derived by reduced-rank regression with colorectal cancer risk and mortality",
+     "year": 2024,
+     "n": 1044
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "23352552"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "29132834",
+      "doi": "10.1016/j.clnu.2017.10.010",
+      "title": "Folic acid intake and folate status and colorectal cancer risk: A systematic review and meta-analysis",
+      "year": 2018,
+      "firstAuthor": "Moazzen S",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 76,
+      "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+     },
+     {
+      "pmid": "26131763",
+      "doi": "10.1038/srep12044",
+      "title": "Folic acid supplements and colorectal cancer risk: meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "firstAuthor": "Qin T",
+      "journal": "Scientific reports",
+      "citedBy": 36,
+      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     },
+     {
+      "pmid": "30341095",
+      "doi": "10.1158/1055-9965.epi-17-1198",
+      "title": "Folic Acid and Vitamin B12 Supplementation and the Risk of Cancer: Long-term Follow-up of the B Vitamins for the Prevention of Osteoporotic Fractures (B-PROOF) Trial",
+      "year": 2019,
+      "firstAuthor": "Oliai Araghi S",
+      "journal": "Cancer epidemiology, biomarkers & prevention : a publication of the American Association for Cancer Research, cosponsored by the American Society of Preventive Oncology",
+      "citedBy": 64,
+      "n": 2524,
+      "why": "A large trial (about 2,524 people) from 2019, as new as the newest review or newer"
+     },
+     {
+      "pmid": "31042283",
+      "doi": "10.1001/jamasurg.2019.0972",
+      "title": "Effect of Vein-First vs Artery-First Surgical Technique on Circulating Tumor Cells and Survival in Patients With Non-Small Cell Lung Cancer: A Randomized Clinical Trial and Registry-Based Propensity Score Matching Analysis",
+      "year": 2019,
+      "firstAuthor": "Wei S",
+      "journal": "JAMA surgery",
+      "citedBy": 75,
+      "n": 2018,
+      "why": "A large trial (about 2,018 people) from 2019, as new as the newest review or newer"
+     },
+     {
+      "pmid": "29570772",
+      "doi": "10.1111/bjd.16571",
+      "title": "Risk of basal cell carcinoma in a randomized clinical trial of aspirin and folic acid for the prevention of colorectal adenomas",
+      "year": 2018,
+      "firstAuthor": "Passarelli MN",
+      "journal": "The British journal of dermatology",
+      "citedBy": 6,
+      "n": 1121,
+      "why": "A large trial (about 1,121 people) from 2018, as new as the newest review or newer"
+     },
+     {
+      "pmid": "39607503",
+      "doi": "10.1007/s00394-024-03513-9",
+      "title": "Association of dietary patterns derived by reduced-rank regression with colorectal cancer risk and mortality",
+      "year": 2024,
+      "firstAuthor": "Abebe Z",
+      "journal": "European journal of nutrition",
+      "citedBy": 7,
+      "n": 1044,
+      "why": "A large trial (about 1,044 people) from 2024, as new as the newest review or newer"
+     },
+     {
+      "pmid": "31401653",
+      "doi": "10.1093/ajcn/nqz160",
+      "title": "Folic acid supplementation and risk of colorectal neoplasia during long-term follow-up of a randomized clinical trial",
+      "year": 2019,
+      "firstAuthor": "Passarelli MN",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 18,
+      "n": 1021,
+      "why": "A large trial (about 1,021 people) from 2019, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+     "intervention": "Folic acid supplements, alone or with other B vitamins",
+     "comparison": "Placebo or no treatment",
+     "outcome": "New cancers"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 5,
+     "partly": 5,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41314820",
+      "title": "Folate exposures and risk of colorectal cancer: an umbrella review of meta-analyses of observational studies and randomised controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Umbrella review of meta-analyses mixing observational studies and RCTs; the supplement estimate for colorectal cancer in the general population looks observational."
+     },
+     {
+      "pmid": "34083034",
+      "title": "Impact of dietary and lifestyle interventions in elderly or people diagnosed with diabetes, metabolic disorders, cardiovascular disease, cancer and micronutrient deficiency on micronuclei frequency - A systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Folate is among the interventions for elderly or diseased groups, but the outcome is only a genomic marker (micronuclei), not new cancers."
+     },
+     {
+      "pmid": "24217421",
+      "title": "Vitamin and mineral supplements in the primary prevention of cardiovascular disease and cancer: An updated systematic evidence review for the U.S. Preventive Services Task Force",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Primary-prevention adults and cancer outcomes, but folic acid is one of many supplements and no pooled folic acid estimate is reported."
+     },
+     {
+      "pmid": "19863600",
+      "title": "Folic acid supplementation and colorectal cancer risk: a meta-analysis",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Randomised folate vs none, but the participants had prior adenomas and the main outcome is adenoma recurrence rather than cancer alone."
+     },
+     {
+      "pmid": "16880453",
+      "title": "The efficacy and safety of multivitamin and mineral supplement use to prevent cancer and chronic disease in adults: a systematic review for a National Institutes of Health state-of-the-science conference",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Adults and cancer prevention, but the supplements are multivitamin/mineral combinations, not folic acid or B vitamins specifically."
+     },
+     {
+      "pmid": "14726972",
+      "title": "Folic acid and sulfasalazine for colorectal carcinoma chemoprevention in patients with ulcerative colitis: the old and new evidence",
+      "year": 2003,
+      "fits": "no",
+      "reason": "Ulcerative colitis patients in non-randomised studies, with folate assessed alongside sulfasalazine; the authors say RCTs are still needed."
+     }
+    ]
+   }
+  },
+  {
+   "id": "methotrexate",
+   "label": "Methotrexate side effects",
+   "finding": "Side effects of methotrexate",
+   "counts": {
+    "reviews": 33,
+    "trialReviews": 6,
+    "trials": 46,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "9458200",
+     "title": "The efficacy of folic acid and folinic acid in reducing methotrexate gastrointestinal toxicity in rheumatoid arthritis. A metaanalysis of randomized controlled trials",
+     "year": 1998,
+     "firstAuthor": "Ortiz Z",
+     "journal": "The Journal of rheumatology",
+     "citedBy": 99,
+     "n": 307,
+     "why": "One of the newest meta-analyses of trials on this outcome (1998); screened as answering the question"
+    },
+    {
+     "pmid": "29975207",
+     "doi": "10.1097/rhu.0000000000000810",
+     "title": "Folate Supplementation for Methotrexate Therapy in Patients With Rheumatoid Arthritis: A Systematic Review",
+     "year": 2019,
+     "firstAuthor": "Liu L",
+     "journal": "Journal of clinical rheumatology : practical reports on rheumatic & musculoskeletal diseases",
+     "citedBy": 32,
+     "n": 709,
+     "why": "One of the newest systematic reviews of trials on this outcome (2019); screened as answering the question"
+    },
+    {
+     "pmid": "24737913",
+     "doi": "10.3899/jrheum.130738",
+     "title": "Folic acid and folinic acid for reducing side effects in patients receiving methotrexate for rheumatoid arthritis",
+     "year": 2014,
+     "firstAuthor": "Shea B",
+     "journal": "The Journal of rheumatology",
+     "citedBy": 90,
+     "n": 624,
+     "why": "One of the newest systematic reviews of trials on this outcome (2014); screened as answering the question"
+    },
+    {
+     "pmid": "10796393",
+     "doi": "10.1002/14651858.cd000951",
+     "title": "Folic acid and folinic acid for reducing side effects in patients receiving methotrexate for rheumatoid arthritis",
+     "year": 2000,
+     "firstAuthor": "Ortiz Z",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 42,
+     "n": 307,
+     "why": "The most comprehensive review of trials on this outcome (12 trials, 2000); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "32066146",
+     "doi": "10.7326/m19-3369",
+     "title": "Adverse Effects of Low-Dose Methotrexate: A Randomized Trial",
+     "year": 2020,
+     "firstAuthor": "Solomon DH",
+     "journal": "Annals of internal medicine",
+     "citedBy": 170,
+     "n": 6158,
+     "why": "A large trial (about 6,158 people) from 2020, as new as the newest review or newer"
+    },
+    {
+     "pmid": "30415610",
+     "doi": "10.1056/nejmoa1809798",
+     "title": "Low-Dose Methotrexate for the Prevention of Atherosclerotic Events",
+     "year": 2019,
+     "firstAuthor": "Ridker PM",
+     "journal": "The New England journal of medicine",
+     "citedBy": 1067,
+     "n": 4786,
+     "why": "A large trial (about 4,786 people) from 2019, as new as the newest review or newer"
+    },
+    {
+     "pmid": "34551998",
+     "doi": "10.1681/asn.2021050598",
+     "title": "Effect of Low-Dose Methotrexate on eGFR and Kidney Adverse Events: A Randomized Clinical Trial",
+     "year": 2021,
+     "firstAuthor": "Sparks JA",
+     "journal": "Journal of the American Society of Nephrology : JASN",
+     "citedBy": 26,
+     "n": 2391,
+     "why": "A large trial (about 2,391 people) from 2021, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.1111111111111111,
+    "trials": 9,
+    "inclusions": 11,
+    "reviews": [
+     {
+      "pmid": "29975207",
+      "trials": 5
+     },
+     {
+      "pmid": "24737913",
+      "trials": 3
+     },
+     {
+      "pmid": "10796393",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "9458200"
+    ],
+    "shared": [
+     {
+      "pmid": "7978695",
+      "title": "Supplementation with folic acid during methotrexate therapy for rheumatoid arthritis. A double-blind, placebo-controlled trial",
+      "year": 1994,
+      "n": 79,
+      "inReviews": [
+       "29975207",
+       "24737913",
+       "10796393"
+      ]
+     },
+     {
+      "pmid": "16200612",
+      "title": "Reduction of the efficacy of methotrexate by the use of folic acid: post hoc analysis from two randomized controlled studies",
+      "year": 2005,
+      "n": 999,
+      "inReviews": [
+       "29975207"
+      ]
+     },
+     {
+      "pmid": "11465701",
+      "title": "Effect of folic or folinic acid supplementation on the toxicity and efficacy of methotrexate in rheumatoid arthritis: a forty-eight week, multicenter, randomized, double-blind, placebo-controlled study",
+      "year": 2001,
+      "n": 434,
+      "inReviews": [
+       "29975207"
+      ]
+     },
+     {
+      "pmid": "15124248",
+      "title": "Economic evaluation of folate supplementation during methotrexate treatment in rheumatoid arthritis",
+      "year": 2004,
+      "n": 141,
+      "inReviews": [
+       "24737913"
+      ]
+     },
+     {
+      "pmid": "26063325",
+      "title": "Comparison of two different folic acid doses with methotrexate--a randomized controlled trial (FOLVARI Study)",
+      "year": 2015,
+      "n": 100,
+      "inReviews": [
+       "29975207"
+      ]
+     },
+     {
+      "pmid": "9517760",
+      "title": "Folic acid supplementation prevents deficient blood folate levels and hyperhomocysteinemia during longterm, low dose methotrexate therapy for rheumatoid arthritis: implications for cardiovascular disease prevention",
+      "year": 1998,
+      "n": 79,
+      "inReviews": [
+       "10796393"
+      ]
+     },
+     {
+      "pmid": "11035130",
+      "title": "Do patients with rheumatoid arthritis established on methotrexate and folic acid 5 mg daily need to continue folic acid supplements long term?",
+      "year": 2000,
+      "n": 75,
+      "inReviews": [
+       "24737913"
+      ]
+     },
+     {
+      "pmid": "16704650",
+      "title": "Folic acid supplementation during treatment of psoriasis with methotrexate: a randomized, double-blind, placebo-controlled trial",
+      "year": 2006,
+      "n": 22,
+      "inReviews": [
+       "29975207"
+      ]
+     },
+     {
+      "pmid": "1934868",
+      "title": "Homocysteine levels in patients with rheumatoid arthritis treated with low-dose methotrexate",
+      "year": 1991,
+      "inReviews": [
+       "10796393"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 6,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "28284844",
+     "title": "Investigating methotrexate toxicity within a randomized double-blinded, placebo-controlled trial: Rationale and design of the Cardiovascular Inflammation Reduction Trial-Adverse Events (CIRT-AE) Study",
+     "year": 2017,
+     "n": 7000
+    },
+    {
+     "pmid": "30415610",
+     "title": "Low-Dose Methotrexate for the Prevention of Atherosclerotic Events",
+     "year": 2019,
+     "n": 4786
+    },
+    {
+     "pmid": "32066146",
+     "title": "Adverse Effects of Low-Dose Methotrexate: A Randomized Trial",
+     "year": 2020,
+     "n": 6158
+    },
+    {
+     "pmid": "34551998",
+     "title": "Effect of Low-Dose Methotrexate on eGFR and Kidney Adverse Events: A Randomized Clinical Trial",
+     "year": 2021,
+     "n": 2391
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23728635"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "9458200",
+      "title": "The efficacy of folic acid and folinic acid in reducing methotrexate gastrointestinal toxicity in rheumatoid arthritis. A metaanalysis of randomized controlled trials",
+      "year": 1998,
+      "firstAuthor": "Ortiz Z",
+      "journal": "The Journal of rheumatology",
+      "citedBy": 99,
+      "n": 307,
+      "why": "One of the newest meta-analyses of trials on this outcome (1998); screened as answering the question"
+     },
+     {
+      "pmid": "29975207",
+      "doi": "10.1097/rhu.0000000000000810",
+      "title": "Folate Supplementation for Methotrexate Therapy in Patients With Rheumatoid Arthritis: A Systematic Review",
+      "year": 2019,
+      "firstAuthor": "Liu L",
+      "journal": "Journal of clinical rheumatology : practical reports on rheumatic & musculoskeletal diseases",
+      "citedBy": 32,
+      "n": 709,
+      "why": "One of the newest systematic reviews of trials on this outcome (2019); screened as answering the question"
+     },
+     {
+      "pmid": "24737913",
+      "doi": "10.3899/jrheum.130738",
+      "title": "Folic acid and folinic acid for reducing side effects in patients receiving methotrexate for rheumatoid arthritis",
+      "year": 2014,
+      "firstAuthor": "Shea B",
+      "journal": "The Journal of rheumatology",
+      "citedBy": 90,
+      "n": 624,
+      "why": "One of the newest systematic reviews of trials on this outcome (2014); screened as answering the question"
+     },
+     {
+      "pmid": "10796393",
+      "doi": "10.1002/14651858.cd000951",
+      "title": "Folic acid and folinic acid for reducing side effects in patients receiving methotrexate for rheumatoid arthritis",
+      "year": 2000,
+      "firstAuthor": "Ortiz Z",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 42,
+      "n": 307,
+      "why": "The most comprehensive review of trials on this outcome (12 trials, 2000); screened as answering the question"
+     },
+     {
+      "pmid": "32066146",
+      "doi": "10.7326/m19-3369",
+      "title": "Adverse Effects of Low-Dose Methotrexate: A Randomized Trial",
+      "year": 2020,
+      "firstAuthor": "Solomon DH",
+      "journal": "Annals of internal medicine",
+      "citedBy": 170,
+      "n": 6158,
+      "why": "A large trial (about 6,158 people) from 2020, as new as the newest review or newer"
+     },
+     {
+      "pmid": "30415610",
+      "doi": "10.1056/nejmoa1809798",
+      "title": "Low-Dose Methotrexate for the Prevention of Atherosclerotic Events",
+      "year": 2019,
+      "firstAuthor": "Ridker PM",
+      "journal": "The New England journal of medicine",
+      "citedBy": 1067,
+      "n": 4786,
+      "why": "A large trial (about 4,786 people) from 2019, as new as the newest review or newer"
+     },
+     {
+      "pmid": "34551998",
+      "doi": "10.1681/asn.2021050598",
+      "title": "Effect of Low-Dose Methotrexate on eGFR and Kidney Adverse Events: A Randomized Clinical Trial",
+      "year": 2021,
+      "firstAuthor": "Sparks JA",
+      "journal": "Journal of the American Society of Nephrology : JASN",
+      "citedBy": 26,
+      "n": 2391,
+      "why": "A large trial (about 2,391 people) from 2021, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with rheumatoid arthritis (or similar conditions) taking low-dose methotrexate",
+     "intervention": "Folic acid or folinic acid",
+     "comparison": "Placebo or no folate",
+     "outcome": "Side effects (liver, stomach and gut, mouth sores) and stopping methotrexate"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 5,
+     "partly": 0,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "25721372",
+      "title": "Methotrexate Dosing Regimen for Plaque-type Psoriasis: A Systematic Review of the Use of Test-dose, Start-dose, Dosing Scheme, Dose Adjustments, Maximum Dose and Folic Acid Supplementation",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Reviews methotrexate dosing for psoriasis and only describes folic acid use; it does not pool folate versus no-folate side effect outcomes."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetic-kidney",
+   "label": "Diabetic kidney disease",
+   "finding": "Kidney function and heart events in diabetic kidney disease",
+   "counts": {
+    "reviews": 44,
+    "trialReviews": 11,
+    "trials": 128,
+    "largeTrials": 19
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2012,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 11
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 7
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 5
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "17848650",
+     "title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial",
+     "year": 2007,
+     "n": 2056
+    },
+    {
+     "pmid": "19491213",
+     "title": "Effect of homocysteine-lowering treatment with folic Acid and B vitamins on risk of type 2 diabetes in women: a randomized, controlled trial",
+     "year": 2009,
+     "n": 4252
+    },
+    {
+     "pmid": "21482964",
+     "title": "Homocysteine-lowering and cardiovascular disease outcomes in kidney transplant recipients: primary results from the Folic Acid for Vascular Outcome Reduction in Transplantation trial",
+     "year": 2011,
+     "n": 2056
+    },
+    {
+     "pmid": "22594581",
+     "title": "Kidney function and risk of cardiovascular disease and mortality in kidney transplant recipients: the FAVORIT trial",
+     "year": 2012,
+     "n": 4016
+    },
+    {
+     "pmid": "22621970",
+     "title": "Associations of plasma 25-hydroxyvitamin D and 1,25-dihydroxyvitamin D concentrations with death and progression to maintenance dialysis in patients with advanced kidney disease",
+     "year": 2012,
+     "n": 1099
+    },
+    {
+     "pmid": "23514767",
+     "title": "Combined food and micronutrient supplements during pregnancy have limited impact on child blood pressure and kidney function in rural Bangladesh",
+     "year": 2013,
+     "n": 3267
+    },
+    {
+     "pmid": "26473975",
+     "title": "Intake of Vitamin and Mineral Supplements and Longitudinal Association with HbA1c Levels in the General Non-Diabetic Population--Results from the MONICA/KORA S3/F3 Study",
+     "year": 2015,
+     "n": 4447
+    },
+    {
+     "pmid": "27548766",
+     "title": "Efficacy of Folic Acid Therapy on the Progression of Chronic Kidney Disease: The Renal Substudy of the China Stroke Primary Prevention Trial",
+     "year": 2016,
+     "n": 15104
+    },
+    {
+     "pmid": "26455512",
+     "title": "Effect of folic acid supplementation on risk of new-onset diabetes in adults with hypertension in China: Findings from the China Stroke Primary Prevention Trial (CSPPT)",
+     "year": 2016,
+     "n": 20702
+    },
+    {
+     "pmid": "28607125",
+     "title": "Effects of Folic Acid Therapy on the New-Onset Proteinuria in Chinese Hypertensive Patients: A Post Hoc Analysis of the Renal Substudy of CSPPT (China Stroke Primary Prevention Trial)",
+     "year": 2017,
+     "n": 13071
+    },
+    {
+     "pmid": "28579423",
+     "title": "Serum Phosphorus and Risk of Cardiovascular Disease, All-Cause Mortality, or Graft Failure in Kidney Transplant Recipients: An Ancillary Study of the FAVORIT Trial Cohort",
+     "year": 2017,
+     "n": 3138
+    },
+    {
+     "pmid": "29036427",
+     "title": "Impact of achieved blood pressure on renal function decline and first stroke in hypertensive patients with chronic kidney disease",
+     "year": 2018,
+     "n": 3230
+    },
+    {
+     "pmid": "29379943",
+     "title": "Efficacy of Oral Mixed Tocotrienols in Diabetic Peripheral Neuropathy: A Randomized Clinical Trial",
+     "year": 2018,
+     "n": 14289
+    },
+    {
+     "pmid": "30037726",
+     "title": "Albuminuria and Allograft Failure, Cardiovascular Disease Events, and All-Cause Death in Stable Kidney Transplant Recipients: A Cohort Analysis of the FAVORIT Trial",
+     "year": 2019,
+     "n": 3511
+    },
+    {
+     "pmid": "32363743",
+     "title": "Positive association of serum uric acid with new-onset diabetes in Chinese women with hypertension in a retrospective analysis of the China Stroke Primary Prevention Trial",
+     "year": 2020,
+     "n": 14943
+    },
+    {
+     "pmid": "32755254",
+     "title": "Degree of Blood Pressure Control and Incident Diabetes Mellitus in Chinese Adults With Hypertension",
+     "year": 2020,
+     "n": 14978
+    },
+    {
+     "pmid": "30799192",
+     "title": "U-shaped association between serum albumin and development of chronic kidney disease in general hypertensive patients",
+     "year": 2020,
+     "n": 12621
+    },
+    {
+     "pmid": "34551998",
+     "title": "Effect of Low-Dose Methotrexate on eGFR and Kidney Adverse Events: A Randomized Clinical Trial",
+     "year": 2021,
+     "n": 2391
+    },
+    {
+     "pmid": "35277398",
+     "title": "Myo-inositol nutritional supplement for prevention of gestational diabetes (EMmY): a randomised, placebo-controlled, double-blind pilot trial with nested qualitative study",
+     "year": 2022,
+     "n": 1326
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "20424250"
+    ],
+    "citedNotEligible": [
+     "20424250"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People with diabetes and kidney disease",
+     "intervention": "Folic acid with vitamin B12 and B6 (B vitamins)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Kidney function, heart events or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 3,
+     "no": 8,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41393929",
+      "title": "Effects of folic acid with vitamin B12/vitamin B6 intervention on serum homocysteine metabolism and complications in patients with type 2 diabetes: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pools RCTs of folic acid with B12/B6 against controls for complications, but in type 2 diabetes generally, not specifically people with kidney disease."
+     },
+     {
+      "pmid": "39828265",
+      "title": "Effects of water-soluble vitamins on glycemic control and insulin resistance in adult type 2 diabetes: an umbrella review of meta-analyses",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Umbrella review of water-soluble vitamins for glycemic control in type 2 diabetes; no kidney population and no kidney, heart or death outcomes."
+     },
+     {
+      "pmid": "40738717",
+      "title": "Micronutrient status of patients with diabetic foot: A systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Describes micronutrient status in diabetic foot ulcers; not a pooled analysis of B-vitamin trials for kidney, heart or death outcomes."
+     },
+     {
+      "pmid": "38649347",
+      "title": "Folic acid supplementation on inflammation and homocysteine in type 2 diabetes mellitus: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Folic acid alone in type 2 diabetes, with only inflammation and homocysteine blood markers; kidney disease and clinical outcomes are not covered."
+     },
+     {
+      "pmid": "34371867",
+      "title": "Folic Acid Supplementation Improves Glycemic Control for Diabetes Prevention and Management: A Systematic Review and Dose-Response Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Folic acid alone in adults, with glycemic control markers as the outcomes; not about kidney disease, heart events or death."
+     },
+     {
+      "pmid": "34083034",
+      "title": "Impact of dietary and lifestyle interventions in elderly or people diagnosed with diabetes, metabolic disorders, cardiovascular disease, cancer and micronutrient deficiency on micronuclei frequency - A systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Lifestyle and diet interventions in various chronic diseases, with micronucleus frequency as the outcome; a different question."
+     },
+     {
+      "pmid": "30615110",
+      "title": "Effect of folate supplementation on insulin sensitivity and type 2 diabetes: a meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Folate with or without other B vitamins for insulin resistance and type 2 diabetes risk; not about kidney disease or heart or death outcomes."
+     },
+     {
+      "pmid": "29501221",
+      "title": "The effects of folate supplementation on glucose metabolism and risk of type 2 diabetes: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Folate versus placebo for glucose metabolism and diabetes risk; not about people with diabetes and kidney disease or clinical outcomes."
+     },
+     {
+      "pmid": "29342488",
+      "title": "The Effects of Folate Supplementation on Diabetes Biomarkers Among Patients with Metabolic Diseases: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Folate in metabolic diseases, with diabetes blood markers as the outcomes; no kidney population and no clinical outcomes."
+     },
+     {
+      "pmid": "23313356",
+      "title": "Homocysteine-lowering therapy with folic acid is effective in cardiovascular disease prevention in patients with kidney disease: a meta-analysis of randomized controlled trials",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools RCTs of folic acid for cardiovascular disease in kidney disease, but people are not limited to those with diabetes (diabetes only looked at by baseline share)."
+     },
+     {
+      "pmid": "21088292",
+      "title": "Folic acid therapy and cardiovascular disease in ESRD or advanced chronic kidney disease: a meta-analysis",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Pools RCTs of folic acid for cardiovascular disease in advanced kidney disease, but people are not limited to those with diabetes."
+     }
+    ]
+   }
+  }
+ ]
+}

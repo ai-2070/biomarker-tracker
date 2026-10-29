@@ -35,9 +35,10 @@ export function loadTopic(id: string | undefined) {
       seen.add(key);
       return true;
     })
-    .map((r) => classify(r, topic.outcomes));
+    .map((r) => classify(r, topic.outcomes))
+    .filter((r) => !topic.localFilter || topic.localFilter.test(`${r.title} ${r.abstract}`));
   // The topic's own terms (plain words, no special characters) must be in a review's title.
-  const topicTitle = new RegExp(topic.terms.join("|"), "i");
+  const topicTitle = topic.titleTerms ?? new RegExp(topic.terms.join("|"), "i");
   const eligible = (outcomeId: string) => {
     const o = topic.outcomes.find((x) => x.id === outcomeId)!;
     return eligibleReviews(records, o.id, topicTitle, o.excludeTitle);

@@ -1,0 +1,316 @@
+{
+ "topic": "vitamin_b12",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "older-doses": {
+   "question": {
+    "population": "Older people with mild B12 deficiency",
+    "intervention": "B12 by mouth at different daily amounts",
+    "comparison": "A lower amount",
+    "outcome": "Correction of deficiency markers (methylmalonic acid, B12 levels)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38432716",
+     "fits": "no",
+     "reason": "Looks at folic acid, B6 and B12 given together to prevent stroke in general populations, not B12 doses for deficiency markers in older people."
+    },
+    {
+     "pmid": "38300291",
+     "fits": "no",
+     "reason": "Looks at vitamins and fatty acids for cognition in mild cognitive impairment, not oral B12 dose comparisons for deficiency markers."
+    },
+    {
+     "pmid": "29520083",
+     "fits": "no",
+     "reason": "Older people match, but it compares B12 with placebo rather than with a lower dose, and the outcome is haemoglobin rather than MMA or B12 levels."
+    },
+    {
+     "pmid": "35056365",
+     "fits": "no",
+     "reason": "Looks at physical activity and micronutrients for cognitive performance in children, a different population and question."
+    },
+    {
+     "pmid": "18947260",
+     "fits": "partly",
+     "reason": "Covers oral B12 to treat deficiency in elderly patients, but it has no pooled comparison of daily doses and gives no dosing strategy."
+    },
+    {
+     "pmid": "18843658",
+     "fits": "no",
+     "reason": "Compares folic acid with or without B12 against placebo for cognition in elderly or demented people, not B12 doses for deficiency markers."
+    },
+    {
+     "pmid": "20573208",
+     "fits": "no",
+     "reason": "Looks at whether low B12 is linked to anaemia in older people, with placebo-controlled trials on haemoglobin and no dose comparison."
+    }
+   ]
+  },
+  "neuropathy": {
+   "question": {
+    "population": "People with diabetes and nerve damage (diabetic neuropathy), including people on metformin",
+    "intervention": "Vitamin B12 (including methylcobalamin)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Nerve damage symptoms, pain, or nerve function"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40612436",
+     "fits": "partly",
+     "reason": "Population and nerve outcomes match, but methylcobalamin is given only with dapagliflozin and the comparator is not clearly placebo or no treatment."
+    },
+    {
+     "pmid": "40410378",
+     "fits": "no",
+     "reason": "Compares acupoint injection of vitamin B12 with other routes of B12, so there is no placebo or no-treatment comparison."
+    },
+    {
+     "pmid": "35440313",
+     "fits": "no",
+     "reason": "Studies whether metformin causes B12 deficiency, not B12 supplementation for neuropathy."
+    },
+    {
+     "pmid": "36007447",
+     "fits": "no",
+     "reason": "Methylcobalamin is the active comparator against herbal medicines, so B12 is not tested against placebo or no treatment."
+    },
+    {
+     "pmid": "37654090",
+     "fits": "partly",
+     "reason": "Covers B12 trials for diabetic neuropathy pain within broader neuropathic pain, but no pooled B12-vs-placebo analysis is reported."
+    },
+    {
+     "pmid": "24959880",
+     "fits": "no",
+     "reason": "Examines metformin's effect on B12 blood levels, not B12 treatment for neuropathy."
+    },
+    {
+     "pmid": "30383660",
+     "fits": "partly",
+     "reason": "Methylcobalamin plus PGE1 vs PGE1 alone isolates the B12 add-on for neuropathy, but B12 is only given with another drug."
+    },
+    {
+     "pmid": "29979431",
+     "fits": "no",
+     "reason": "Fasudil plus methylcobalamin vs methylcobalamin alone tests fasudil, not B12, since both arms receive B12."
+    },
+    {
+     "pmid": "25800109",
+     "fits": "no",
+     "reason": "Both arms receive methylcobalamin and PGE1; the review tests added lipoic acid, not B12."
+    },
+    {
+     "pmid": "24522613",
+     "fits": "no",
+     "reason": "PGE1 plus methylcobalamin vs methylcobalamin alone tests PGE1, since both arms receive B12."
+    }
+   ]
+  },
+  "oral-vs-injection": {
+   "question": {
+    "population": "Adults with B12 deficiency",
+    "intervention": "High-dose B12 by mouth",
+    "comparison": "B12 injections",
+    "outcome": "Blood B12 levels, other deficiency markers or symptoms"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41487531",
+     "fits": "partly",
+     "reason": "Compares oral/sublingual B12 with IM injections, but pools RCTs with observational studies and reports only blood markers (cobalamin, homocysteine)."
+    },
+    {
+     "pmid": "40410378",
+     "fits": "no",
+     "reason": "Compares B12 acupoint injection with other B12 routes for diabetic neuropathy, not oral B12 versus injections for B12 deficiency."
+    },
+    {
+     "pmid": "39964959",
+     "fits": "partly",
+     "reason": "Compares oral with parenteral B12 for deficiency anaemia in RCTs, but the population is children, not adults."
+    },
+    {
+     "pmid": "19683698",
+     "fits": "partly",
+     "reason": "Reviews oral B12 for deficiency in elderly patients only, with no pooled oral-versus-injection comparison."
+    },
+    {
+     "pmid": "18947260",
+     "fits": "partly",
+     "reason": "Reviews oral B12 for deficiency in elderly patients only, with no pooled oral-versus-injection comparison."
+    },
+    {
+     "pmid": "20088746",
+     "fits": "partly",
+     "reason": "Reviews oral B12 for deficiency in elderly patients, mentioning injections but not pooling an oral-versus-injection comparison."
+    },
+    {
+     "pmid": "29543316",
+     "fits": "yes",
+     "reason": "RCTs of oral vs IM B12 in B12-deficient adults, with serum B12, symptoms and markers; matches PICO but trials were not meta-analysed."
+    },
+    {
+     "pmid": "16034940",
+     "fits": "yes",
+     "reason": "RCTs of high-dose oral vs IM B12 for deficiency, with haematological and neurological outcomes; matches PICO but pooling is not stated."
+    },
+    {
+     "pmid": "16585128",
+     "fits": "yes",
+     "reason": "RCTs of oral vs IM B12 for deficiency, with serum B12, homocysteine, MMA, haemoglobin and symptoms; matches PICO but pooling is not stated."
+    },
+    {
+     "pmid": "19032377",
+     "fits": "partly",
+     "reason": "Reviews oral B12 for deficiency in adults and elderly, but has no explicit pooled comparison with injections."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults with or without heart and blood vessel disease",
+    "intervention": "Vitamin B12 with folic acid (often with B6) to lower homocysteine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, strokes or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38432716",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of folic acid with B12 and B6 against a control, with stroke as the outcome."
+    },
+    {
+     "pmid": "37464830",
+     "fits": "partly",
+     "reason": "B vitamins given as treatment in chronic heart failure; outcomes are lab values and heart measures, not heart attacks, strokes or death."
+    },
+    {
+     "pmid": "27453118",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of folic acid with B12 and B6 against control for cardiovascular events, heart attack and stroke."
+    },
+    {
+     "pmid": "26355679",
+     "fits": "yes",
+     "reason": "Network meta-analysis of randomised trials that compares folic acid plus B12 (with or without B6) with placebo for stroke."
+    },
+    {
+     "pmid": "19821378",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of homocysteine-lowering B vitamins in people with or without heart disease, for heart attack, stroke and death."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "no",
+     "reason": "The outcome is cognitive impairment after stroke, not heart attacks, strokes or death."
+    },
+    {
+     "pmid": "25323814",
+     "fits": "partly",
+     "reason": "Pooled randomised trials of folic acid-based homocysteine lowering for stroke; the intervention is not specifically B12 with folic acid."
+    },
+    {
+     "pmid": "18803866",
+     "fits": "partly",
+     "reason": "B12 with folic acid and B6 in stroke patients, but the outcomes are only artery-wall thickness and function, not clinical events."
+    }
+   ]
+  },
+  "cognition-mood": {
+   "question": {
+    "population": "Adults without a clear B12 deficiency",
+    "intervention": "Vitamin B12 (alone or with other B vitamins)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Memory and thinking, low mood, or tiredness"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41764841",
+     "fits": "partly",
+     "reason": "Healthy older adults and MCI on cognition, but the abstract reports B12 results only for blood markers, and its cognitive benefits come from other supplements."
+    },
+    {
+     "pmid": "42227307",
+     "fits": "partly",
+     "reason": "Compares B12 with placebo and measures cognition, but the population is children under 12, not adults."
+    },
+    {
+     "pmid": "38700503",
+     "fits": "partly",
+     "reason": "Pools placebo-controlled trials of B12 plus folic acid on cognition, but only in people with Alzheimer's disease (treatment, not prevention)."
+    },
+    {
+     "pmid": "38300291",
+     "fits": "partly",
+     "reason": "Pools vitamin trials including B12 on cognition, but only in people with mild cognitive impairment."
+    },
+    {
+     "pmid": "41280388",
+     "fits": "no",
+     "reason": "Narrative review of vitamins, genetic variants and depression that mixes study designs; no pooled B12-versus-placebo trials."
+    },
+    {
+     "pmid": "33809274",
+     "fits": "yes",
+     "reason": "Pools trials of B12 alone or B complex in people without overt deficiency, on cognition, depression and fatigue."
+    },
+    {
+     "pmid": "25644193",
+     "fits": "partly",
+     "reason": "Placebo-controlled folate and/or B12 trials on depression, but mostly in patients with major depression on antidepressants."
+    },
+    {
+     "pmid": "35056365",
+     "fits": "partly",
+     "reason": "Looks at B12 and school/cognitive performance, but in children aged 6 to 11, not adults."
+    },
+    {
+     "pmid": "28988944",
+     "fits": "no",
+     "reason": "Add-on supplements to antidepressants in major depression; B12 had only one trial and was not pooled."
+    },
+    {
+     "pmid": "35156551",
+     "fits": "partly",
+     "reason": "RCTs of B vitamins including B12 on depression and anxiety, but mainly as treatment for diagnosed disorders, with no pooled analysis."
+    },
+    {
+     "pmid": "12918012",
+     "fits": "partly",
+     "reason": "B12 versus placebo on cognition, but the only included trials were in people with dementia and low B12 levels."
+    },
+    {
+     "pmid": "14584018",
+     "fits": "partly",
+     "reason": "The main intervention is folic acid; B12 is only given together with it, in healthy and demented older people."
+    },
+    {
+     "pmid": "23765945",
+     "fits": "partly",
+     "reason": "B vitamins including B12 versus placebo on cognition, but only in patients with previous stroke or TIA."
+    },
+    {
+     "pmid": "19570123",
+     "fits": "no",
+     "reason": "Narrative review of homocysteine, B12 and folate links with cognition; no pooled trial analysis."
+    },
+    {
+     "pmid": "24158923",
+     "fits": "no",
+     "reason": "Supplements to prevent postnatal depression in pregnant or new mothers; the included trials did not test B12."
+    },
+    {
+     "pmid": "17210874",
+     "fits": "partly",
+     "reason": "Covers placebo-controlled B12 trials on cognition in adults, but summarises them without pooling."
+    }
+   ]
+  }
+ }
+}
