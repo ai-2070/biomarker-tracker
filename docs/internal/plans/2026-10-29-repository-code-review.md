@@ -1077,3 +1077,71 @@ This pass adds five distinct findings, excluding the previous 106 entries and th
 | Cumulative | 15 | 90 | 6 | 111 |
 
 Round 7 adds no new P1 finding. Its additions concern validation bypass, sample-date provenance, backup availability and incorrect reference population/scope.
+
+## Round 8 — read failures, save ordering and import aggregation
+
+This pass adds five distinct findings after excluding the previous 111 entries and their root-cause variants. Reviewed device aggregation and review/save handling, developer data-generation/provenance tooling, and remaining profile persistence/preference boundaries. No application fixes were made.
+
+### R8-001 — P1: A transient profile-file read failure becomes an empty working copy and can erase intact history
+
+- **Location:** `server/store.ts:11–16`; profile consumption at `server/profiles.ts:211–221`; destructive replacement at `src/app/profiles.ts:86–96`.
+- **Trigger:** A profile's existing `results.json` temporarily cannot be read, for example because of a filesystem sharing/permission error, when the profile is loaded into the browser.
+- **Defect/impact:** `readJSON()` catches every error and returns the same fallback used for an absent optional file. The profile-data read therefore succeeds with an empty measurements array instead of surfacing the failure. Loading clears the browser's previous copy; a later ordinary save writes the false-empty array over the still-intact results file. Parse errors have the same unchecked fallback behavior.
+- **Verification — executed actual filesystem/load/save functions with one injected read failure:** Created a temporary profile containing one valid ferritin result and a fake-IndexedDB working copy. Injected one `EBUSY` failure only for that profile's results-file read; the profile-data GET was a mocked transport calling actual `getProfileData()`. Actual `loadIntoBrowser()` completed with zero measurements. After restoring normal reads, the disk still contained its original result; editing the profile and saving actual `browserData()` through `saveProfileData()` reduced the disk file to zero results. Receipt: `injectedReadFailures:1, diskRowsBeforeSave:1, browserRowsAfterLoad:0, diskRowsAfterSave:0`.
+- **Fix direction:** Distinguish explicitly allowed missing legacy/optional files from read/parse failures. Fail the profile load before replacing the working copy, and never treat an unreadable existing data component as authoritative emptiness.
+- **Distinctness:** Earlier profile findings concern save failures, ownership, startup reconciliation, partial writes or restore validation. Here an intact file is misread as empty before any save fails, and that false state is later accepted as a successful write.
+
+### R8-002 — P2: An older autosave can overwrite a newer successful snapshot of the same profile
+
+- **Location:** `src/app/profiles.ts:133–146,161–165`; incomplete flush tracking at `:180–184`.
+- **Trigger:** Edit again while an earlier autosave is still in flight; the newer request reaches persistence before the delayed older request.
+- **Defect/impact:** `push()` clears `dirty` before awaiting the upload, but has no single-flight/ordering guard. The next debounce can start another full-snapshot PUT. Both requests may succeed in reverse persistence order, leaving the folder behind the browser without a failed-save signal. A subsequent flush sees no dirty work and does not repair the overwritten generation.
+- **Verification — executed actual saver and folder persistence with a controlled transport interleaving:** Started the real saver against fake IndexedDB and a temporary profile; held the first PUT before persistence, added a second dated result, allowed its PUT to persist, then released the first. Both mocked HTTP responses succeeded and actual `saveProfileData()` handled both bodies. After settling and calling actual `flushSaving()`, observed `requestRows:[1,2], persistedRowsInCompletionOrder:[2,1], browserRows:2, folderRows:1`. The transport delay was synthetic; natural loopback timing was not benchmarked.
+- **Fix direction:** Serialize uploads per profile, drain any newer dirty snapshot after the current upload, and make flush wait for the complete in-flight/drain sequence.
+- **Distinctness:** No profile switch, failed request or stale React meal props were involved. This is request ordering between two correctly captured snapshots of the same open profile, not R1-002's rejected-save transition or R4-006's captured-record edit race.
+
+### R8-003 — P2: Header normalization discards the common `SpO2` oxygen column before review
+
+- **Location:** `src/core/importers/deviceFiles.ts:65–67`; recognition at `:179–184`.
+- **Trigger:** Import `oximeter.csv` containing `Date,SpO2` and `2026-03-01,97`.
+- **Defect/impact:** Camel-case splitting changes the supported abbreviation into `Sp O2`; oxygen recognition expects `spo2` without that space. The file produces no importable series, so its valid oxygen reading cannot be reviewed/remapped or saved.
+- **Verification — executed core path and the actual production browser importer:** Actual `parseCsv()` → `tableOf()` produced headers `["Date","Sp O2"]`; `readTable()` returned `columns:[], other:["Sp O2"], dated:true`. Uploading that CSV in the browser showed one file with nothing to import, an ignored-columns section and a disabled Save button.
+- **Fix direction:** Preserve the abbreviation during normalization or recognize its normalized spelling consistently.
+- **Distinctness:** This is column-identity loss before value parsing, not the earlier screenshot unit/decimal failures or Apple mixed-unit aggregation.
+
+### R8-004 — P2: Overlapping daily-summary files silently double the saved daily total
+
+- **Location:** `src/app/pages/DeviceImportPage.tsx:101–105`; total aggregation at `src/core/importers/deviceFiles.ts:612–627`.
+- **Trigger:** Select `activities-2026-03-01.csv` containing March 1's 8,000-step daily summary and `activities-2026-03-02.csv` containing that same March 1 summary plus March 2's 9,000 steps.
+- **Defect/impact:** Filename-family/header grouping concatenates the repeated daily summaries before summing. The review now contains one series, so the separate-series overlap warning cannot identify the collision. Save-time marker/date checks only see an already-inflated one-value-per-day result and cannot undo the double counting.
+- **Verification — executed actual browser selection, review and Save:** Uploaded both synthetic CSVs together. The review showed one Daily steps series from two files, two days and latest value 9,000, with no overlap warning. After Save, actual IndexedDB contained `2026-03-01 → 16000` and `2026-03-02 → 9000`; only one measurement was saved for each date. The first day's note even described two readings, but did not distinguish duplicated daily summaries from incremental counts.
+- **Fix direction:** Retain source/granularity provenance and reconcile repeated daily summaries across files before summing. Do not broadly suppress genuinely incremental step/activity records merely because their values match.
+- **Distinctness:** Earlier duplicate-row/coverage findings save repeated observations or mistake row count for independent days. Here only one daily measurement is saved, but its value has already been corrupted.
+
+### R8-005 — P2: Any-design evidence maps describe non-trial reviews as reviews of trials
+
+- **Location:** `tools/evidence/build.ts:52`; generated-reason default at `src/core/evidenceMap.ts:191–196`; published wording at `src/app/components/EvidenceMap.tsx:134,165`.
+- **Trigger:** Build/display an outcome with `anyDesign:true`, such as biotin → Wrong lab results, whose eligible evidence deliberately includes laboratory/observational reviews.
+- **Defect/impact:** Eligibility correctly honors the any-design exception, but the builder changes the chosen-review description only for whole food maps, not these supplement outcomes. It falls back to “of trials on this outcome.” The output also loses the outcome distinction needed by the UI's eligibility summary, which calls these reviews “reviews of biotin trials.” This presents a stronger/different evidence design than the selection rule actually requires.
+- **Verification — executed selection helpers, shipped output and the actual browser display:** A synthetic laboratory/observational review had ordinary trial-review eligibility 0 and actual any-design eligibility 1; actual `chooseFrom()` described it as `One of the newest systematic reviews of trials on this outcome (2026)`. The shipped biotin map gives the equivalent 2016 rationale to PMID 27362288. In the browser, Wrong lab results displayed `2 reviews and 0 randomised trials ... 1 are reviews of biotin trials` and rendered that trial-review rationale beside the case/literature-review title; the screenshot confirmed it. No external paper-design revalidation or scientific regrading was performed.
+- **Fix direction:** Carry the outcome's any-design distinction through generated rationale, output schema and UI count/empty-state descriptions; describe the admitted evidence accurately rather than assuming all supplement-map reviews pool trials.
+- **Distinctness:** This concerns loss of an explicit evidence-design exception, not the earlier classification precedence, screening-cache/provenance or bibliography-overlap defects.
+
+### Round 8 verification and exclusions
+
+- `bun run test`: **57 files / 778 tests passed**, exit 0; the AI SDK image-part deprecation warning remained.
+- `bun run build`: **passed**, including both TypeScript projects and production bundling, exit 0; the large-chunk warning remained.
+- Persistence probes used actual profile filesystem functions, the actual browser synchronization/load functions and fake IndexedDB with mocked transport/fault boundaries. The autosave-ordering receipt came from a completed probe with the saver's returned teardown callback; temporary profile data and databases were removed.
+- Browser checks used an isolated static-preview origin and synthetic CSV/IndexedDB data. Exercised oxygen-file rejection, the overlapping daily-summary review/save path and the shipped biotin evidence map. Browser records were cleared, the review tab closed and the preview stopped; the owned CSV fixtures were removed.
+- The generator slice established no additional concrete CoFID/fetch/load defect. Original spreadsheet values were not independently rechecked. Broader payload-size concerns, malformed preference contents and hypothetical spreadsheet changes were not counted without stronger supported-input evidence.
+- Existing mixed-unit, duplicate-day coverage, date, remapping and other root-cause variants were excluded. No external provider/research service, installed agent or real profile was used. No application source, permanent tests, dependencies, configuration or knowledge data was changed.
+
+### Cumulative triage after Round 8
+
+| Scope | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Rounds 1–7 | 15 | 90 | 6 | 111 |
+| Round 8 additions | 1 | 4 | 0 | 5 |
+| Cumulative | 16 | 94 | 6 | 116 |
+
+The new high-priority item is intact profile history being erased after a transient read failure (**R8-001**). Other additions concern same-profile save ordering, lost/inflated device data and inaccurate evidence-design descriptions.
