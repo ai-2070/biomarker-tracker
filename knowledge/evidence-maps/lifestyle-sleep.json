@@ -1,0 +1,3660 @@
+{
+ "topic": "lifestyle-sleep",
+ "kind": "lifestyle",
+ "lifestyleId": "sleep",
+ "name": "sleep",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "mortality": "((TITLE_ABS:\"sleep duration\" OR TITLE_ABS:\"short sleep\" OR TITLE_ABS:\"long sleep\" OR TITLE_ABS:\"hours of sleep\" OR TITLE_ABS:\"sleep length\" OR TITLE_ABS:\"short sleepers\" OR TITLE_ABS:\"long sleepers\") AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:deaths)) AND SRC:MED",
+  "cardiovascular": "((TITLE_ABS:\"sleep duration\" OR TITLE_ABS:\"short sleep\" OR TITLE_ABS:\"long sleep\" OR TITLE_ABS:\"hours of sleep\" OR TITLE_ABS:\"sleep length\" OR TITLE_ABS:\"short sleepers\" OR TITLE_ABS:\"long sleepers\") AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:\"heart disease\" OR TITLE_ABS:stroke OR TITLE_ABS:\"myocardial infarction\")) AND SRC:MED",
+  "insulin": "((TITLE_ABS:\"sleep restriction\" OR TITLE_ABS:\"sleep deprivation\" OR TITLE_ABS:\"sleep loss\" OR TITLE_ABS:\"short sleep\" OR TITLE_ABS:\"sleep curtailment\" OR TITLE_ABS:\"sleep fragmentation\" OR TITLE_ABS:\"circadian misalignment\" OR TITLE_ABS:\"sleep disruption\") AND (TITLE_ABS:\"insulin sensitivity\" OR TITLE_ABS:\"insulin resistance\" OR TITLE_ABS:\"glucose metabolism\" OR TITLE_ABS:\"glucose tolerance\" OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic)) AND SRC:MED",
+  "intake-weight": "((TITLE_ABS:\"sleep restriction\" OR TITLE_ABS:\"sleep deprivation\" OR TITLE_ABS:\"sleep loss\" OR TITLE_ABS:\"short sleep\" OR TITLE_ABS:\"sleep curtailment\" OR TITLE_ABS:\"sleep fragmentation\" OR TITLE_ABS:\"circadian misalignment\" OR TITLE_ABS:\"sleep disruption\") AND (TITLE_ABS:\"energy intake\" OR TITLE_ABS:\"food intake\" OR TITLE_ABS:appetite OR TITLE_ABS:\"body weight\" OR TITLE_ABS:\"weight gain\" OR TITLE_ABS:adiposity OR TITLE_ABS:obesity OR TITLE_ABS:\"energy balance\")) AND SRC:MED",
+  "cbt-i": "((TITLE_ABS:\"cognitive behavioral therapy for insomnia\" OR TITLE_ABS:\"cognitive behavioural therapy for insomnia\" OR TITLE_ABS:\"CBT-I\" OR TITLE_ABS:CBTI OR TITLE_ABS:\"digital cognitive behavioral therapy\" OR TITLE_ABS:\"digital cognitive behavioural therapy\") AND (TITLE_ABS:insomnia)) AND SRC:MED",
+  "regularity": "((TITLE_ABS:\"sleep regularity\" OR TITLE_ABS:\"irregular sleep\" OR TITLE_ABS:\"sleep variability\" OR TITLE_ABS:\"sleep irregularity\" OR TITLE_ABS:\"social jetlag\" OR TITLE_ABS:\"sleep timing\" OR TITLE_ABS:\"sleep schedule\") AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:cardiovascular OR TITLE_ABS:\"health outcomes\" OR TITLE_ABS:cardiometabolic)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 7350,
+  "retrieved": 1148,
+  "animal": 0,
+  "retracted": 1,
+  "reviews": 442,
+  "trials": 689,
+  "guidelines": 14
+ },
+ "guidelines": [
+  {
+   "pmid": "41975142",
+   "doi": "10.1007/s44470-025-00038-8",
+   "title": "Combination treatment for chronic insomnia disorder in adults: an American Academy of Sleep Medicine clinical practice guideline",
+   "year": 2026,
+   "journal": "Journal of clinical sleep medicine : JCSM : official publication of the American Academy of Sleep Medicine",
+   "citedBy": 4,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "42925456",
+   "doi": "10.1007/s44470-026-00084-w",
+   "title": "Management of shift work disorder: an American Academy of Sleep Medicine clinical practice guideline",
+   "year": 2026,
+   "journal": "Journal of clinical sleep medicine : JCSM : official publication of the American Academy of Sleep Medicine",
+   "citedBy": 0,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "41578309",
+   "doi": "10.1186/s13052-026-02198-6",
+   "title": "Digital media exposure and pediatric health: the recommendations from the Italian Society of Pediatrics Digital Dependency Commission",
+   "year": 2026,
+   "journal": "Italian journal of pediatrics",
+   "citedBy": 2,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "39923608",
+   "doi": "10.1016/j.sleep.2025.01.033",
+   "title": "Clinical practice guidelines for switching or deprescribing hypnotic medications for chronic insomnia: Results of European neuropsychopharmacology and sleep expert's consensus group",
+   "year": 2025,
+   "journal": "Sleep medicine",
+   "citedBy": 16,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "41187937",
+   "doi": "10.1055/s-0045-1812323",
+   "title": "Z-drug abuse and dependence: clinical guideline of the Brazilian Academy of Neurology for diagnosis and management",
+   "year": 2025,
+   "journal": "Arquivos de neuro-psiquiatria",
+   "citedBy": 0,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "38016484",
+   "doi": "10.1111/jsr.14035",
+   "title": "The European Insomnia Guideline: An update on the diagnosis and treatment of insomnia 2023",
+   "year": 2023,
+   "journal": "Journal of sleep research",
+   "citedBy": 576,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "mortality",
+   "label": "Sleep length and death",
+   "finding": "Short or long sleep and death from any cause",
+   "counts": {
+    "all": 1095,
+    "reviews": 24,
+    "trialReviews": 24,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40072785",
+     "doi": "10.1007/s11357-025-01592-y",
+     "title": "Imbalanced sleep increases mortality risk by 14-34%: a meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Ungvari Z",
+     "journal": "GeroScience",
+     "citedBy": 11,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "30058510",
+     "doi": "10.1017/s2045796018000379",
+     "title": "Sleep duration and risk of all-cause mortality: a systematic review and meta-analysis",
+     "year": 2019,
+     "firstAuthor": "García-Perdomo HA",
+     "journal": "Epidemiology and psychiatric sciences",
+     "citedBy": 58,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    },
+    {
+     "pmid": "30371228",
+     "doi": "10.1161/jaha.118.008552",
+     "title": "Self-Reported Sleep Duration and Quality and Cardiovascular Disease and Mortality: A Dose-Response Meta-Analysis",
+     "year": 2018,
+     "firstAuthor": "Kwok CS",
+     "journal": "Journal of the American Heart Association",
+     "citedBy": 401,
+     "n": 3340684,
+     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2009,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "20469800"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "40072785",
+      "doi": "10.1007/s11357-025-01592-y",
+      "title": "Imbalanced sleep increases mortality risk by 14-34%: a meta-analysis",
+      "year": 2025,
+      "firstAuthor": "Ungvari Z",
+      "journal": "GeroScience",
+      "citedBy": 11,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "30058510",
+      "doi": "10.1017/s2045796018000379",
+      "title": "Sleep duration and risk of all-cause mortality: a systematic review and meta-analysis",
+      "year": 2019,
+      "firstAuthor": "García-Perdomo HA",
+      "journal": "Epidemiology and psychiatric sciences",
+      "citedBy": 58,
+      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     },
+     {
+      "pmid": "30371228",
+      "doi": "10.1161/jaha.118.008552",
+      "title": "Self-Reported Sleep Duration and Quality and Cardiovascular Disease and Mortality: A Dose-Response Meta-Analysis",
+      "year": 2018,
+      "firstAuthor": "Kwok CS",
+      "journal": "Journal of the American Heart Association",
+      "citedBy": 401,
+      "n": 3340684,
+      "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "Short or long usual sleep",
+     "comparison": "About 7 hours a night (or another middle amount)",
+     "outcome": "Death from any cause"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 8,
+     "partly": 13,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40072786",
+      "title": "Inadequate sleep increases stroke risk: evidence from a comprehensive meta-analysis of incidence and mortality",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Adults with short or long sleep, but the outcome is stroke incidence and stroke mortality, not death from any cause."
+     },
+     {
+      "pmid": "40735026",
+      "title": "Sleep Traits to the Risk of Breast Cancer Disease Incidence, Adverse Progression and Mortality: Evidence From a Global Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at sleep quality and duration for breast cancer incidence, progression and cancer-specific death, partly in patients."
+     },
+     {
+      "pmid": "41424529",
+      "title": "Beyond sleep duration: protocol for a systematic review of multidimensional sleep health in relation to cardiovascular disease and mortality",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Protocol only, no results; it targets several sleep dimensions beyond duration for all-cause mortality and MACE."
+     },
+     {
+      "pmid": "40217556",
+      "title": "The associations between physical activity, sedentary behaviour, and sleep with mortality and incident cardiovascular disease, cancer, diabetes and mental health in adults: a systematic review and meta-analysis of prospective cohort studies",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "All-cause mortality in adults, but sleep is pooled only in combination with physical activity levels, not on its own."
+     },
+     {
+      "pmid": "35245890",
+      "title": "Relationship of sleep duration with the risk of stroke incidence and stroke mortality: an updated systematic review and dose-response meta-analysis of prospective cohort studies",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Short and long sleep in cohorts, but the outcomes are stroke incidence and stroke mortality only."
+     },
+     {
+      "pmid": "35616624",
+      "title": "Sleep duration and risk of cancer incidence and mortality: A pooled analysis of six population-based cohorts in Japan",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools six Japanese cohorts (not a systematic search), comparing sleep with 7 h for cancer incidence and cancer death only."
+     },
+     {
+      "pmid": "34755597",
+      "title": "Association of obstructive sleep apnea and nocturnal hypoxemia with all-cancer incidence and mortality: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Exposure is obstructive sleep apnea and low night-time oxygen, and the outcome is cancer, not sleep duration and all-cause death."
+     },
+     {
+      "pmid": "33567861",
+      "title": "Associations Between Self-Reported Sleep Duration and Mortality in Employed Individuals: Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Short and long sleep vs 7-8 h for all-cause mortality, but only in employed adults aged 18-64, a narrower group."
+     },
+     {
+      "pmid": "32723316",
+      "title": "The relationship between sleep duration and all-cause mortality in the older people: an updated and dose-response meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Short and long sleep and all-cause mortality, but only in older people, a narrower group."
+     },
+     {
+      "pmid": "30903483",
+      "title": "The association between sleep duration and cancer-specific mortality: a systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Short and long sleep vs recommended, but in cancer survivors, with mainly cancer-specific mortality."
+     },
+     {
+      "pmid": "31182327",
+      "title": "Association between total sleep time and all cancer mortality: non-linear dose-response meta-analysis of cohort studies",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "General population, short and long vs about 7 h of sleep, but the outcome is all-cancer mortality only."
+     },
+     {
+      "pmid": "26888725",
+      "title": "Sleep duration and mortality in the elderly: a systematic review with meta-analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Short and long sleep vs reference for all-cause mortality, but only in adults aged 60 and over."
+     },
+     {
+      "pmid": "27938917",
+      "title": "Sleep duration and total cancer mortality: a meta-analysis of prospective studies",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Short and long vs about 7 h of sleep, but the outcome is total cancer mortality only."
+     },
+     {
+      "pmid": "27584562",
+      "title": "Sleep duration and risk of stroke events and stroke mortality: A systematic review and meta-analysis of prospective cohort studies",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Sleep duration vs 7 h, but the results cover only stroke events and stroke mortality."
+     },
+     {
+      "pmid": "26422535",
+      "title": "Association of Sleep Duration with the Morbidity and Mortality of Coronary Artery Disease: A Meta-analysis of Prospective Studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Short and long vs normal sleep, but the outcome is coronary artery disease illness and death, not all-cause death."
+     },
+     {
+      "pmid": "19645959",
+      "title": "From sleep duration to mortality: implications of meta-analysis and future directions",
+      "year": 2009,
+      "fits": "no",
+      "reason": "No abstract, and the title suggests a commentary on a meta-analysis rather than a systematic review that pools studies itself."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart disease and stroke",
+   "finding": "Short or long sleep and heart disease or stroke",
+   "counts": {
+    "all": 2004,
+    "reviews": 28,
+    "trialReviews": 28,
+    "trials": 11,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40072786",
+     "doi": "10.1007/s11357-025-01593-x",
+     "title": "Inadequate sleep increases stroke risk: evidence from a comprehensive meta-analysis of incidence and mortality",
+     "year": 2025,
+     "firstAuthor": "Ungvari Z",
+     "journal": "GeroScience",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "35245890",
+     "doi": "10.1016/j.sleep.2021.11.001",
+     "title": "Relationship of sleep duration with the risk of stroke incidence and stroke mortality: an updated systematic review and dose-response meta-analysis of prospective cohort studies",
+     "year": 2022,
+     "firstAuthor": "Wang H",
+     "journal": "Sleep medicine",
+     "citedBy": 49,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "29206050",
+     "doi": "10.1177/2048872617741733",
+     "title": "Association between short and long sleep durations and cardiovascular outcomes: a systematic review and meta-analysis",
+     "year": 2019,
+     "firstAuthor": "Krittanawong C",
+     "journal": "European heart journal. Acute cardiovascular care",
+     "citedBy": 125,
+     "n": 816995,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 3,
+    "inclusions": 3,
+    "reviews": [
+     {
+      "pmid": "40072786",
+      "trials": 1
+     },
+     {
+      "pmid": "29206050",
+      "trials": 2
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "35245890"
+    ],
+    "shared": [
+     {
+      "pmid": "15583226",
+      "title": "Brief communication: Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite",
+      "year": 2004,
+      "n": 12,
+      "inReviews": [
+       "29206050"
+      ]
+     },
+     {
+      "pmid": "25424573",
+      "title": "Experimental sleep restriction causes endothelial dysfunction in healthy humans",
+      "year": 2014,
+      "inReviews": [
+       "40072786"
+      ]
+     },
+     {
+      "pmid": "23070488",
+      "title": "Impaired insulin signaling in human adipocytes after experimental sleep restriction: a randomized, crossover study",
+      "year": 2012,
+      "inReviews": [
+       "29206050"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "29018021",
+     "title": "Short Sleep Duration, Obstructive Sleep Apnea, Shiftwork, and the Risk of Adverse Cardiovascular Events in Patients After an Acute Coronary Syndrome",
+     "year": 2017,
+     "n": 13026
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "21300732"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "40072786",
+      "doi": "10.1007/s11357-025-01593-x",
+      "title": "Inadequate sleep increases stroke risk: evidence from a comprehensive meta-analysis of incidence and mortality",
+      "year": 2025,
+      "firstAuthor": "Ungvari Z",
+      "journal": "GeroScience",
+      "citedBy": 4,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "35245890",
+      "doi": "10.1016/j.sleep.2021.11.001",
+      "title": "Relationship of sleep duration with the risk of stroke incidence and stroke mortality: an updated systematic review and dose-response meta-analysis of prospective cohort studies",
+      "year": 2022,
+      "firstAuthor": "Wang H",
+      "journal": "Sleep medicine",
+      "citedBy": 49,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     },
+     {
+      "pmid": "29206050",
+      "doi": "10.1177/2048872617741733",
+      "title": "Association between short and long sleep durations and cardiovascular outcomes: a systematic review and meta-analysis",
+      "year": 2019,
+      "firstAuthor": "Krittanawong C",
+      "journal": "European heart journal. Acute cardiovascular care",
+      "citedBy": 125,
+      "n": 816995,
+      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "Short or long usual sleep",
+     "comparison": "About 7 hours a night (or another middle amount)",
+     "outcome": "Heart disease or stroke (new cases or deaths)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 17,
+     "partly": 6,
+     "no": 5,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41079009",
+      "title": "Causal association between sleep duration, daytime napping, sleep disorders and ischemic heart disease: A systematic review and meta‑analysis of Mendelian randomization studies",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Sleep duration and ischaemic heart disease match, but it pools Mendelian randomisation studies instead of trials or cohorts, with no 7-hour comparison."
+     },
+     {
+      "pmid": "41424529",
+      "title": "Beyond sleep duration: protocol for a systematic review of multidimensional sleep health in relation to cardiovascular disease and mortality",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Protocol only, with no results yet; it centres on several sleep dimensions beyond duration, with MACE and mortality as outcomes."
+     },
+     {
+      "pmid": "39082631",
+      "title": "Expression of Concern: \"Short and long sleep durations are both associated with increased risk of stroke: a meta-analysis of observational studies\"",
+      "year": 2024,
+      "fits": "no",
+      "reason": "This is an expression of concern notice with no abstract, not a review that can be screened."
+     },
+     {
+      "pmid": "36889030",
+      "title": "Post-stroke sleep disturbance and recurrent cardiovascular and cerebrovascular events: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Only stroke survivors were studied, which is an illness-defined group, and only one included study looked at sleep duration."
+     },
+     {
+      "pmid": "40217556",
+      "title": "The associations between physical activity, sedentary behaviour, and sleep with mortality and incident cardiovascular disease, cancer, diabetes and mental health in adults: a systematic review and meta-analysis of prospective cohort studies",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Sleep duration is analysed only in combination with physical activity, not alone, though cardiovascular outcomes are included."
+     },
+     {
+      "pmid": "32619932",
+      "title": "Sleep duration and cardiovascular risk factors in children and adolescents: A systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Covers children and adolescents, not adults, and looks at heart risk factors like blood pressure rather than heart disease or stroke events."
+     },
+     {
+      "pmid": "32384904",
+      "title": "Association of physical activity, sedentary behaviours and sleep duration with cardiovascular diseases and lipid profiles: a Mendelian randomization analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "This is a single genetic (Mendelian randomisation) analysis, not a review of studies, and it does not compare short or long sleep with about 7 hours."
+     },
+     {
+      "pmid": "30954762",
+      "title": "The bidirectional impact of sleep and circadian rhythm dysfunction in human ischaemic stroke: A systematic review",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Reviews long sleep as a risk for ischaemic stroke, but this is only one type of stroke and it is mixed in with sleep disorders and effects after stroke."
+     },
+     {
+      "pmid": "29717377",
+      "title": "A Systematic Review of Sleep, Hypertension, and Cardiovascular Risk in Children and Adolescents",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Covers children and adolescents and looks at heart risk factors like blood pressure and obesity, not heart disease or stroke events."
+     },
+     {
+      "pmid": "27840384",
+      "title": "Association of Subjective and Objective Sleep Duration as well as Sleep Quality with Non-Invasive Markers of Sub-Clinical Cardiovascular Disease (CVD): A Systematic Review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Sleep duration matches, but outcomes are subclinical markers such as artery calcium and wall thickness, not heart disease or stroke events."
+     },
+     {
+      "pmid": "24282622",
+      "title": "Short sleep duration is associated with risk of future diabetes but not cardiovascular disease: a prospective study and meta-analysis",
+      "year": 2013,
+      "fits": "no",
+      "reason": "The meta-analysis covers only new diabetes; heart disease was looked at in a single cohort study, not pooled across studies."
+     }
+    ]
+   }
+  },
+  {
+   "id": "insulin",
+   "label": "Insulin sensitivity",
+   "finding": "Insulin sensitivity after shortened or disturbed sleep",
+   "counts": {
+    "all": 707,
+    "reviews": 10,
+    "trialReviews": 10,
+    "trials": 39,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35189549",
+     "doi": "10.1016/j.smrv.2022.101594",
+     "title": "Effects of sleep manipulation on markers of insulin sensitivity: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Sondrup N",
+     "journal": "Sleep medicine reviews",
+     "citedBy": 66,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "30870662",
+     "doi": "10.1016/j.smrv.2019.02.002",
+     "title": "Effects of sleep restriction on metabolism-related parameters in healthy adults: A comprehensive review and meta-analysis of randomized controlled trials",
+     "year": 2019,
+     "firstAuthor": "Zhu B",
+     "journal": "Sleep medicine reviews",
+     "citedBy": 132,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    },
+    {
+     "pmid": "35494895",
+     "doi": "10.7759/cureus.23501",
+     "title": "Does Insufficient Sleep Increase the Risk of Developing Insulin Resistance: A Systematic Review",
+     "year": 2022,
+     "firstAuthor": "Singh T",
+     "journal": "Cureus",
+     "citedBy": 25,
+     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.125,
+    "trials": 40,
+    "inclusions": 50,
+    "reviews": [
+     {
+      "pmid": "35189549",
+      "trials": 19
+     },
+     {
+      "pmid": "30870662",
+      "trials": 28
+     },
+     {
+      "pmid": "35494895",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "26361380",
+      "title": "A single night of partial sleep loss impairs fasting insulin sensitivity but does not affect cephalic phase insulin release in young men",
+      "year": 2016,
+      "n": 16,
+      "inReviews": [
+       "35189549",
+       "30870662",
+       "35494895"
+      ]
+     },
+     {
+      "pmid": "25658017",
+      "title": "Subchronic sleep restriction causes tissue-specific insulin resistance",
+      "year": 2015,
+      "n": 14,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "29862620",
+      "title": "Differential effects of the circadian system and circadian misalignment on insulin sensitivity and insulin secretion in humans",
+      "year": 2018,
+      "n": 14,
+      "inReviews": [
+       "35189549",
+       "35494895"
+      ]
+     },
+     {
+      "pmid": "23070488",
+      "title": "Impaired insulin signaling in human adipocytes after experimental sleep restriction: a randomized, crossover study",
+      "year": 2012,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "19567526",
+      "title": "Exposure to recurrent sleep restriction in the setting of high caloric intake and physical inactivity results in increased insulin resistance and reduced glucose tolerance",
+      "year": 2009,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "23115399",
+      "title": "Short sleep duration, glucose dysregulation and hormonal regulation of appetite in men and women",
+      "year": 2012,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "25105727",
+      "title": "Acute Changes in Sleep Duration on Eating Behaviors and Appetite-Regulating Hormones in Overweight/Obese Adults",
+      "year": 2015,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "30140739",
+      "title": "Acute sleep loss results in tissue-specific alterations in genome-wide DNA methylation state and metabolic fuel utilization in humans",
+      "year": 2018,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "27866988",
+      "title": "The effects of partial sleep restriction and altered sleep timing on appetite and food reward",
+      "year": 2017,
+      "inReviews": [
+       "35189549",
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "26538305",
+      "title": "Resting metabolic rate varies by race and by sleep duration",
+      "year": 2015,
+      "n": 36,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "31053213",
+      "title": "Effects of Two-Week Sleep Extension on Glucose Metabolism in Chronically Sleep-Deprived Individuals",
+      "year": 2019,
+      "n": 21,
+      "inReviews": [
+       "35494895"
+      ]
+     },
+     {
+      "pmid": "25683266",
+      "title": "Metabolic and hormonal effects of 'catch-up' sleep in men with chronic, repetitive, lifestyle-driven sleep restriction",
+      "year": 2015,
+      "n": 19,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "33940082",
+      "title": "Severe sleep restriction suppresses appetite independent of effects on appetite regulating hormones in healthy young men without obesity",
+      "year": 2021,
+      "n": 18,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "29129611",
+      "title": "Effect of sleep curtailment on dietary behavior and physical activity: A randomized crossover trial",
+      "year": 2018,
+      "n": 16,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "21715510",
+      "title": "Short sleep duration increases energy intakes but does not change energy expenditure in normal-weight individuals",
+      "year": 2011,
+      "n": 15,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "21471283",
+      "title": "Acute sleep deprivation reduces energy expenditure in healthy men",
+      "year": 2011,
+      "n": 14,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "15583226",
+      "title": "Brief communication: Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite",
+      "year": 2004,
+      "n": 12,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "17519315",
+      "title": "Sleep loss alters basal metabolic hormone secretion and modulates the dynamic counterregulatory response to hypoglycemia",
+      "year": 2007,
+      "n": 10,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "30535338",
+      "title": "Sleep Loss Disrupts Morning-to-Evening Differences in Human White Adipose Tissue Transcriptome",
+      "year": 2019,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "29233906",
+      "title": "Skeletal muscle insulin signaling and whole-body glucose metabolism following acute sleep restriction in healthy males",
+      "year": 2017,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "22985906",
+      "title": "Effects of three weeks of mild sleep restriction implemented in the home environment on multiple metabolic and endocrine markers in healthy young men",
+      "year": 2013,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "30615104",
+      "title": "Impact of sleep restriction on metabolic outcomes induced by overfeeding: a randomized controlled trial in healthy individuals",
+      "year": 2019,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "22914550",
+      "title": "Effect of a phase advance and phase delay of the 24-h cycle on energy metabolism, appetite, and related hormones",
+      "year": 2012,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "26771705",
+      "title": "Effects of the Internal Circadian System and Circadian Misalignment on Glucose Tolerance in Chronic Shift Workers",
+      "year": 2016,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "23951335",
+      "title": "Sleep architecture when sleeping at an unusual circadian time and associations with insulin sensitivity",
+      "year": 2013,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "32475359",
+      "title": "Glucose control upon waking is unaffected by hourly sleep fragmentation during the night, but is impaired by morning caffeinated coffee",
+      "year": 2020,
+      "inReviews": [
+       "35189549"
+      ]
+     },
+     {
+      "pmid": "28071649",
+      "title": "Effect of shortened sleep on energy expenditure, core body temperature, and appetite: a human randomised crossover trial",
+      "year": 2017,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "26612385",
+      "title": "Sleep Restriction Enhances the Daily Rhythm of Circulating Levels of Endocannabinoid 2-Arachidonoylglycerol",
+      "year": 2016,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "26467988",
+      "title": "Elevated ghrelin predicts food intake during experimental sleep restriction",
+      "year": 2016,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "20357041",
+      "title": "Acute partial sleep deprivation increases food intake in healthy men",
+      "year": 2010,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "24352294",
+      "title": "Postprandial thermogenesis and substrate oxidation are unaffected by sleep restriction",
+      "year": 2014,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "23392199",
+      "title": "Effects of experimental sleep restriction on caloric intake and activity energy expenditure",
+      "year": 2013,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "19056602",
+      "title": "Sleep curtailment is accompanied by increased intake of calories from snacks",
+      "year": 2009,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "23428257",
+      "title": "Acute sleep deprivation increases portion size and affects food choice in young men",
+      "year": 2013,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "22259064",
+      "title": "Acute sleep deprivation enhances the brain's response to hedonic food stimuli: an fMRI study",
+      "year": 2012,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "22357722",
+      "title": "Sleep restriction leads to increased activation of brain regions sensitive to food stimuli",
+      "year": 2012,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "24839251",
+      "title": "Increased impulsivity in response to food cues after sleep loss in healthy young men",
+      "year": 2014,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "24088722",
+      "title": "Experimental sleep curtailment causes wake-dependent increases in 24-h energy expenditure as measured by whole-room indirect calorimetry",
+      "year": 2013,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "22760574",
+      "title": "Sleep restriction is not associated with a positive energy balance in adolescent boys",
+      "year": 2012,
+      "inReviews": [
+       "30870662"
+      ]
+     },
+     {
+      "pmid": "23954406",
+      "title": "Effects of sleep restriction on the human plasma metabolome",
+      "year": 2013,
+      "inReviews": [
+       "30870662"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "29526681",
+     "title": "Sleep duration, obesity and insulin resistance in a multi-ethnic UK population at high risk of diabetes",
+     "year": 2018,
+     "n": 2848
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "35189549"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "30870662",
+      "doi": "10.1016/j.smrv.2019.02.002",
+      "title": "Effects of sleep restriction on metabolism-related parameters in healthy adults: A comprehensive review and meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "firstAuthor": "Zhu B",
+      "journal": "Sleep medicine reviews",
+      "citedBy": 132,
+      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     },
+     {
+      "pmid": "35494895",
+      "doi": "10.7759/cureus.23501",
+      "title": "Does Insufficient Sleep Increase the Risk of Developing Insulin Resistance: A Systematic Review",
+      "year": 2022,
+      "firstAuthor": "Singh T",
+      "journal": "Cureus",
+      "citedBy": 25,
+      "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, mostly healthy",
+     "intervention": "Shortened, broken-up or mistimed sleep (in trials), or short sleep",
+     "comparison": "Normal sleep",
+     "outcome": "Insulin sensitivity or glucose tolerance"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 3,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42634055",
+      "title": "Impact of Sleep on Glucose Metabolism in Individuals With Overweight or Obesity: A Systematic Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Sleep restriction and insulin sensitivity or glucose regulation match, but it covers only adults with overweight or obesity."
+     },
+     {
+      "pmid": "42769672",
+      "title": "Obstructive sleep apnoea and glucose dysregulation in type 2 diabetes: a systematic review of the literature",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks mainly at obstructive sleep apnoea in people with type 2 diabetes, not short or disrupted sleep in mostly healthy adults."
+     },
+     {
+      "pmid": "42424773",
+      "title": "The interplay between circadian misalignment or sleep disturbances and cognition and brain function in individuals with different degrees of insulin resistance - a systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The outcome is cognition and brain function in insulin-resistant people, not insulin sensitivity or glucose tolerance."
+     },
+     {
+      "pmid": "40280326",
+      "title": "Effects of acute exercise or short-term exercise interventions on metabolic markers during experimentally-induced sleep loss in humans: A systematic literature review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Covers sleep loss in trials and glucose and insulin markers, but the main question is whether exercise offsets sleep loss, not sleep loss versus normal sleep."
+     },
+     {
+      "pmid": "34970158",
+      "title": "Gender Differences in the Context of Obstructive Sleep Apnea and Metabolic Diseases",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Narrative review of sleep apnoea, sex differences and metabolic disease, not short or disrupted sleep and insulin sensitivity."
+     },
+     {
+      "pmid": "26944909",
+      "title": "The impact of sleep amount and sleep quality on glycemic control in type 2 diabetes: A systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Compares short with normal sleep, but only in people with type 2 diabetes and measures HbA1c, not insulin sensitivity or glucose tolerance."
+     },
+     {
+      "pmid": "22832862",
+      "title": "TRIB1 constitutes a molecular link between regulation of sleep and lipid metabolism in humans",
+      "year": 2012,
+      "fits": "no",
+      "reason": "A genetic study of a lipid gene and sleep length, not a systematic review of sleep and insulin sensitivity."
+     }
+    ]
+   }
+  },
+  {
+   "id": "intake-weight",
+   "label": "Eating and weight",
+   "finding": "How much people eat, and body weight, after shortened sleep",
+   "counts": {
+    "all": 2269,
+    "reviews": 34,
+    "trialReviews": 34,
+    "trials": 68,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38835720",
+     "doi": "10.1002/osp4.772",
+     "title": "Short sleep duration is associated with higher risk of central obesity in adults: A systematic review and meta-analysis of prospective cohort studies",
+     "year": 2024,
+     "firstAuthor": "Kohanmoo A",
+     "journal": "Obesity science & practice",
+     "citedBy": 24,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39469806",
+     "doi": "10.1111/ggi.15004",
+     "title": "Association of sleep duration with obesity in older adults: A systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Jiang H",
+     "journal": "Geriatrics & gerontology international",
+     "citedBy": 10,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39079836",
+     "doi": "10.1016/j.numecd.2024.06.008",
+     "title": "Sex differences in the association between short sleep duration and obesity: A systematic-review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Lange MG",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 7,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "34620371",
+     "doi": "10.1016/j.clnesp.2021.07.029",
+     "title": "Effect of sleep duration on dietary intake, desire to eat, measures of food intake and metabolic hormones: A systematic review of clinical trials",
+     "year": 2021,
+     "firstAuthor": "Soltanieh S",
+     "journal": "Clinical nutrition ESPEN",
+     "citedBy": 34,
+     "n": 43,
+     "why": "The most comprehensive review on this finding (50 trials, 2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "39989394",
+     "doi": "10.1111/apa.70012",
+     "title": "Diet, Activity and Sleep Clusters Associated With Obesity Markers of Children in the US-Affiliated Pacific",
+     "year": 2025,
+     "firstAuthor": "Dumuid D",
+     "journal": "Acta paediatrica (Oslo, Norway : 1992)",
+     "citedBy": 0,
+     "n": 1780,
+     "why": "A large trial (about 1,780 people) from 2025, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.03225806451612903,
+    "trials": 31,
+    "inclusions": 33,
+    "reviews": [
+     {
+      "pmid": "38835720",
+      "trials": 1
+     },
+     {
+      "pmid": "39469806",
+      "trials": 2
+     },
+     {
+      "pmid": "34620371",
+      "trials": 30
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "39079836"
+    ],
+    "shared": [
+     {
+      "pmid": "22259064",
+      "title": "Acute sleep deprivation enhances the brain's response to hedonic food stimuli: an fMRI study",
+      "year": 2012,
+      "inReviews": [
+       "39469806",
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "23729925",
+      "title": "Dietary intake following experimentally restricted sleep in adolescents",
+      "year": 2013,
+      "inReviews": [
+       "39469806",
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "23483886",
+      "title": "Evening chronotype is associated with changes in eating behavior, more sleep apnea, and increased stress hormones in short sleeping obese individuals",
+      "year": 2013,
+      "n": 119,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "20723551",
+      "title": "Effects of sleep restriction on adiponectin levels in healthy men and women",
+      "year": 2010,
+      "n": 74,
+      "inReviews": [
+       "38835720"
+      ]
+     },
+     {
+      "pmid": "27999367",
+      "title": "Phenotypic Stability of Energy Balance Responses to Experimental Total Sleep Deprivation and Sleep Restriction in Healthy Adults",
+      "year": 2016,
+      "n": 66,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "28401667",
+      "title": "Increased energy intake following sleep restriction in men and women: A one-size-fits-all conclusion?",
+      "year": 2017,
+      "n": 43,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "26538305",
+      "title": "Resting metabolic rate varies by race and by sleep duration",
+      "year": 2015,
+      "n": 36,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "29438540",
+      "title": "Influence of sleep restriction on weight loss outcomes associated with caloric restriction",
+      "year": 2018,
+      "n": 21,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "29129611",
+      "title": "Effect of sleep curtailment on dietary behavior and physical activity: A randomized crossover trial",
+      "year": 2018,
+      "n": 16,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "21715510",
+      "title": "Short sleep duration increases energy intakes but does not change energy expenditure in normal-weight individuals",
+      "year": 2011,
+      "n": 15,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "21471283",
+      "title": "Acute sleep deprivation reduces energy expenditure in healthy men",
+      "year": 2011,
+      "n": 14,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "15583226",
+      "title": "Brief communication: Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite",
+      "year": 2004,
+      "n": 12,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "20921542",
+      "title": "Insufficient sleep undermines dietary efforts to reduce adiposity",
+      "year": 2010,
+      "n": 10,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "28071649",
+      "title": "Effect of shortened sleep on energy expenditure, core body temperature, and appetite: a human randomised crossover trial",
+      "year": 2017,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "22760574",
+      "title": "Sleep restriction is not associated with a positive energy balance in adolescent boys",
+      "year": 2012,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "25706861",
+      "title": "Sweet/dessert foods are more appealing to adolescents after sleep restriction",
+      "year": 2015,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "26612385",
+      "title": "Sleep Restriction Enhances the Daily Rhythm of Circulating Levels of Endocannabinoid 2-Arachidonoylglycerol",
+      "year": 2016,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "20357041",
+      "title": "Acute partial sleep deprivation increases food intake in healthy men",
+      "year": 2010,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "23392199",
+      "title": "Effects of experimental sleep restriction on caloric intake and activity energy expenditure",
+      "year": 2013,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "22972835",
+      "title": "Alterations in sleep architecture in response to experimental sleep curtailment are associated with signs of positive energy balance",
+      "year": 2012,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "19056602",
+      "title": "Sleep curtailment is accompanied by increased intake of calories from snacks",
+      "year": 2009,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "26467988",
+      "title": "Elevated ghrelin predicts food intake during experimental sleep restriction",
+      "year": 2016,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "25105727",
+      "title": "Acute Changes in Sleep Duration on Eating Behaviors and Appetite-Regulating Hormones in Overweight/Obese Adults",
+      "year": 2015,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "27866988",
+      "title": "The effects of partial sleep restriction and altered sleep timing on appetite and food reward",
+      "year": 2017,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "23428257",
+      "title": "Acute sleep deprivation increases portion size and affects food choice in young men",
+      "year": 2013,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "30893841",
+      "title": "Increased Hunger, Food Cravings, Food Reward, and Portion Size Selection after Sleep Curtailment in Women Without Obesity",
+      "year": 2019,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "24839251",
+      "title": "Increased impulsivity in response to food cues after sleep loss in healthy young men",
+      "year": 2014,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "23115399",
+      "title": "Short sleep duration, glucose dysregulation and hormonal regulation of appetite in men and women",
+      "year": 2012,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "22357722",
+      "title": "Sleep restriction leads to increased activation of brain regions sensitive to food stimuli",
+      "year": 2012,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "19567526",
+      "title": "Exposure to recurrent sleep restriction in the setting of high caloric intake and physical inactivity results in increased insulin resistance and reduced glucose tolerance",
+      "year": 2009,
+      "inReviews": [
+       "34620371"
+      ]
+     },
+     {
+      "pmid": "24088722",
+      "title": "Experimental sleep curtailment causes wake-dependent increases in 24-h energy expenditure as measured by whole-room indirect calorimetry",
+      "year": 2013,
+      "inReviews": [
+       "34620371"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26189601",
+     "title": "Nighttime sleep duration and hedonic eating in childhood",
+     "year": 2015,
+     "n": 1008
+    },
+    {
+     "pmid": "29526681",
+     "title": "Sleep duration, obesity and insulin resistance in a multi-ethnic UK population at high risk of diabetes",
+     "year": 2018,
+     "n": 2848
+    },
+    {
+     "pmid": "39989394",
+     "title": "Diet, Activity and Sleep Clusters Associated With Obesity Markers of Children in the US-Affiliated Pacific",
+     "year": 2025,
+     "n": 1780
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "27804960",
+     "26098388"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "38835720",
+      "doi": "10.1002/osp4.772",
+      "title": "Short sleep duration is associated with higher risk of central obesity in adults: A systematic review and meta-analysis of prospective cohort studies",
+      "year": 2024,
+      "firstAuthor": "Kohanmoo A",
+      "journal": "Obesity science & practice",
+      "citedBy": 24,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39469806",
+      "doi": "10.1111/ggi.15004",
+      "title": "Association of sleep duration with obesity in older adults: A systematic review and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Jiang H",
+      "journal": "Geriatrics & gerontology international",
+      "citedBy": 10,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39079836",
+      "doi": "10.1016/j.numecd.2024.06.008",
+      "title": "Sex differences in the association between short sleep duration and obesity: A systematic-review and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Lange MG",
+      "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+      "citedBy": 7,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "34620371",
+      "doi": "10.1016/j.clnesp.2021.07.029",
+      "title": "Effect of sleep duration on dietary intake, desire to eat, measures of food intake and metabolic hormones: A systematic review of clinical trials",
+      "year": 2021,
+      "firstAuthor": "Soltanieh S",
+      "journal": "Clinical nutrition ESPEN",
+      "citedBy": 34,
+      "n": 43,
+      "why": "The most comprehensive review on this finding (50 trials, 2021); screened as answering the question"
+     },
+     {
+      "pmid": "39989394",
+      "doi": "10.1111/apa.70012",
+      "title": "Diet, Activity and Sleep Clusters Associated With Obesity Markers of Children in the US-Affiliated Pacific",
+      "year": 2025,
+      "firstAuthor": "Dumuid D",
+      "journal": "Acta paediatrica (Oslo, Norway : 1992)",
+      "citedBy": 0,
+      "n": 1780,
+      "why": "A large trial (about 1,780 people) from 2025, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Shortened sleep (in trials), or short usual sleep",
+     "comparison": "Normal sleep",
+     "outcome": "How much people eat (energy intake), appetite or body weight"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 17,
+     "partly": 13,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42659532",
+      "title": "Relationship Between Sleep Duration and Obesity in Children Aged 6-12 Years and Adolescents Aged 13-18 Years: A Meta-Analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Short sleep and obesity match, but the population is children and adolescents."
+     },
+     {
+      "pmid": "42670398",
+      "title": "Sleep Duration and Quality, Sleep Disorders and Their Association with Adiposity Markers in Adults from the Middle East: A Systematic Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Sleep duration and adiposity in adults match, but only Middle Eastern adults are covered and the studies are mostly cross-sectional."
+     },
+     {
+      "pmid": "42634055",
+      "title": "Impact of Sleep on Glucose Metabolism in Individuals With Overweight or Obesity: A Systematic Review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The outcome is glucose metabolism in adults with overweight, not energy intake, appetite or body weight."
+     },
+     {
+      "pmid": "40843663",
+      "title": "The Role of Sex in the Impact of Sleep Restriction on Appetite- and Weight-Regulating Hormones in Healthy Adults: A Systematic Review of Human Studies",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Sleep restriction in healthy adults matches, but the outcome is appetite-regulating hormones rather than intake, appetite or weight."
+     },
+     {
+      "pmid": "41462718",
+      "title": "Sleep and Obesity Risk in Children: A Systematic Review of Multiple Dimensions of Sleep",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Sleep duration and obesity risk match, but the population is children aged 0 to 18."
+     },
+     {
+      "pmid": "37673709",
+      "title": "The efficacy of bariatric surgery on pulmonary function and sleep architecture of patients with obstructive sleep apnea and co-morbid obesity: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "This review is about bariatric surgery for sleep apnoea, which is a different question."
+     },
+     {
+      "pmid": "33487495",
+      "title": "Short duration of sleep and incidence of overweight or obesity in Chinese children and adolescents: A systematic review and meta-analysis of prospective studies",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Short sleep and overweight match, but the population is Chinese children and adolescents."
+     },
+     {
+      "pmid": "33237635",
+      "title": "Systematic review and meta-analyses of the relationship between short sleep and incidence of obesity and effectiveness of sleep interventions on weight gain in preschool children",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Short sleep and obesity or weight gain match, but the population is preschool children, not adults."
+     },
+     {
+      "pmid": "33450724",
+      "title": "Sleep duration and obesity in children and adolescents: evidence from an updated and dose-response meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Short sleep and obesity match, but the population is children and adolescents, not adults."
+     },
+     {
+      "pmid": "32537891",
+      "title": "Associations of short sleep duration with appetite-regulating hormones and adipokines: A systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Short sleep versus recommended sleep matches, but the outcome is appetite hormones, not intake, appetite or weight."
+     },
+     {
+      "pmid": "31911659",
+      "title": "Are obstructive sleep apnea and sleep improved in response to multidisciplinary weight loss interventions in youth with obesity? A systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Asks whether weight loss programmes improve sleep apnoea and sleep in youth, which is a different question."
+     },
+     {
+      "pmid": "30741778",
+      "title": "The Combined Impact of Sleep and Diet on Adiposity in Infants, Toddlers, and Young Children: A Systematic Review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Young children only, and it looks at combined sleep and diet effects rather than short sleep on its own."
+     },
+     {
+      "pmid": "29401314",
+      "title": "Sleep duration and incidence of obesity in infants, children, and adolescents: a systematic review and meta-analysis of prospective studies",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Short sleep and obesity or BMI change match, but the population is infants, children and adolescents."
+     },
+     {
+      "pmid": "28818457",
+      "title": "Relationship between sleep duration and childhood obesity: Systematic review including the potential underlying mechanisms",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Short sleep and obesity match, but the population is children, not adults."
+     },
+     {
+      "pmid": "28073179",
+      "title": "Sleep duration and obesity in children: A systematic review and meta-analysis of prospective cohort studies",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Short sleep and obesity or BMI match, but the population is children, not adults."
+     },
+     {
+      "pmid": "27269366",
+      "title": "Short sleep duration and obesity among children: A systematic review and meta-analysis of prospective studies",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Short sleep and obesity match, but the population is children and adolescents, not adults."
+     },
+     {
+      "pmid": "25589359",
+      "title": "Longitudinal impact of sleep on overweight and obesity in children and adolescents: a systematic review and bias-adjusted meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Short sleep and later overweight match, but the population is children and adolescents, not adults."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cbt-i",
+   "label": "Insomnia therapy (CBT-I)",
+   "finding": "Insomnia: falling asleep, waking in the night, and insomnia severity, with CBT-I",
+   "counts": {
+    "all": 2011,
+    "reviews": 180,
+    "trialReviews": 180,
+    "trials": 418,
+    "largeTrials": 14
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41540418",
+     "doi": "10.1186/s12912-026-04313-8",
+     "title": "Effects of nurse-led cognitive behavioral therapy on insomnia in adults: a meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Bai T",
+     "journal": "BMC nursing",
+     "citedBy": 1,
+     "n": 1537,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "42240717",
+     "doi": "10.1007/s11325-026-03723-x",
+     "title": "Efficacy of fully automated digital cognitive behavioral therapy for insomnia in adults: a systematic review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Gao K",
+     "journal": "Sleep & breathing = Schlaf & Atmung",
+     "citedBy": 0,
+     "n": 3507,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "42841437",
+     "doi": "10.1093/sleep/zsag264",
+     "title": "Sleep Healthy Using the Internet: A Meta-Analysis of Twenty Years of Research on a Digital Cognitive Behavioral Therapy for Insomnia Program",
+     "year": 2026,
+     "firstAuthor": "Shaffer KM",
+     "journal": "Sleep",
+     "citedBy": 0,
+     "n": 14166,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "38231522",
+     "doi": "10.1001/jamapsychiatry.2023.5060",
+     "title": "Components and Delivery Formats of Cognitive Behavioral Therapy for Chronic Insomnia in Adults: A Systematic Review and Component Network Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Furukawa Y",
+     "journal": "JAMA psychiatry",
+     "citedBy": 131,
+     "n": 31452,
+     "why": "The most comprehensive review on this finding (241 trials, 2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.03571428571428571,
+    "trials": 14,
+    "inclusions": 15,
+    "reviews": [
+     {
+      "pmid": "41540418",
+      "trials": 3
+     },
+     {
+      "pmid": "42240717",
+      "trials": 11
+     },
+     {
+      "pmid": "38231522",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "42841437"
+    ],
+    "shared": [
+     {
+      "pmid": "32069463",
+      "title": "Nurse-Guided Internet-Delivered Cognitive Behavioral Therapy for Insomnia in General Practice: Results from a Pragmatic Randomized Clinical Trial",
+      "year": 2020,
+      "n": 134,
+      "inReviews": [
+       "41540418",
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "33328044",
+      "title": "Effects of digital cognitive behavioural therapy for insomnia on insomnia severity: a large-scale randomised controlled trial",
+      "year": 2020,
+      "n": 5349,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "27902836",
+      "title": "Effect of a Web-Based Cognitive Behavior Therapy for Insomnia Intervention With 1-Year Follow-up: A Randomized Clinical Trial",
+      "year": 2017,
+      "n": 303,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "39675747",
+      "title": "Effectiveness and safety of an interactive internet-based intervention to improve insomnia: Results from a randomised controlled trial",
+      "year": 2025,
+      "n": 290,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "40528280",
+      "title": "Effectiveness of internet-based self-help cognitive behavioral therapy for insomnia (CBT-I) among community adults: A randomized controlled trial",
+      "year": 2025,
+      "n": 179,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "39250131",
+      "title": "Nurse-Supported Self-Directed Cognitive Behavioral Therapy for Insomnia: A Randomized Clinical Trial",
+      "year": 2024,
+      "n": 178,
+      "inReviews": [
+       "41540418"
+      ]
+     },
+     {
+      "pmid": "31909725",
+      "title": "Efficacy of a Self-Help Web-Based Recovery Training in Improving Sleep in Workers: Randomized Controlled Trial in the General Working Population",
+      "year": 2020,
+      "n": 89,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "36972049",
+      "title": "Digital Cognitive Behavioral Therapy for Insomnia Using a Smartphone Application in China: A Pilot Randomized Clinical Trial",
+      "year": 2023,
+      "n": 82,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "28400355",
+      "title": "Mobile Phone-Delivered Cognitive Behavioral Therapy for Insomnia: A Randomized Waitlist Controlled Trial",
+      "year": 2017,
+      "n": 77,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "35462241",
+      "title": "Network Intervention Analyses of cognitive therapy and behavior therapy for insomnia: Symptom specific effects and process measures",
+      "year": 2022,
+      "n": 65,
+      "inReviews": [
+       "38231522"
+      ]
+     },
+     {
+      "pmid": "38156655",
+      "title": "Investigating the subjective and objective efficacy of a cognitive behavioural therapy for insomnia (CBT-I)-based smartphone app on sleep: A randomised controlled trial",
+      "year": 2024,
+      "n": 29,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "38895830",
+      "title": "Investigating the efficacy of digital cognitive behavioural therapy in comparison to a sleep-monitoring application via integrated diary and actigraphy: A randomised-controlled trial",
+      "year": 2025,
+      "n": 29,
+      "inReviews": [
+       "42240717"
+      ]
+     },
+     {
+      "pmid": "33609425",
+      "title": "The effect of nurse-led Internet-based cognitive behavioural therapy for insomnia on patients with cardiovascular disease: A randomized controlled trial with 6-month follow-up",
+      "year": 2021,
+      "inReviews": [
+       "41540418"
+      ]
+     },
+     {
+      "pmid": "30185239",
+      "title": "Randomized Controlled Trial to Test the Efficacy of an Unguided Online Intervention with Automated Feedback for the Treatment of Insomnia",
+      "year": 2019,
+      "inReviews": [
+       "42240717"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 17
+    },
+    {
+     "year": 2015,
+     "reviews": 6,
+     "trials": 20
+    },
+    {
+     "year": 2016,
+     "reviews": 4,
+     "trials": 18
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 18
+    },
+    {
+     "year": 2018,
+     "reviews": 10,
+     "trials": 22
+    },
+    {
+     "year": 2019,
+     "reviews": 9,
+     "trials": 23
+    },
+    {
+     "year": 2020,
+     "reviews": 12,
+     "trials": 33
+    },
+    {
+     "year": 2021,
+     "reviews": 7,
+     "trials": 32
+    },
+    {
+     "year": 2022,
+     "reviews": 19,
+     "trials": 37
+    },
+    {
+     "year": 2023,
+     "reviews": 27,
+     "trials": 38
+    },
+    {
+     "year": 2024,
+     "reviews": 18,
+     "trials": 45
+    },
+    {
+     "year": 2025,
+     "reviews": 31,
+     "trials": 48
+    },
+    {
+     "year": 2026,
+     "reviews": 29,
+     "trials": 35
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26827250",
+     "title": "Effectiveness of an online insomnia program (SHUTi) for prevention of depressive episodes (the GoodNight Study): a randomised controlled trial",
+     "year": 2016,
+     "n": 1149
+    },
+    {
+     "pmid": "29792241",
+     "title": "Efficacy of digital CBT for insomnia to reduce depression across demographic groups: a randomized trial",
+     "year": 2019,
+     "n": 1358
+    },
+    {
+     "pmid": "30264137",
+     "title": "Effect of Digital Cognitive Behavioral Therapy for Insomnia on Health, Psychological Well-being, and Sleep-Related Quality of Life: A Randomized Clinical Trial",
+     "year": 2019,
+     "n": 1711
+    },
+    {
+     "pmid": "31968068",
+     "title": "Efficacy of Digital Cognitive Behavioral Therapy for the Treatment of Insomnia Symptoms Among Pregnant Women: A Randomized Clinical Trial",
+     "year": 2020,
+     "n": 2258
+    },
+    {
+     "pmid": "33328044",
+     "title": "Effects of digital cognitive behavioural therapy for insomnia on insomnia severity: a large-scale randomised controlled trial",
+     "year": 2020,
+     "n": 5349
+    },
+    {
+     "pmid": "32112507",
+     "title": "Long-term benefits of digital cognitive behavioural therapy for insomnia: Follow-up report from a randomized clinical trial",
+     "year": 2020,
+     "n": 1711
+    },
+    {
+     "pmid": "33964166",
+     "title": "The effect of sleep-wake intraindividual variability in digital cognitive behavioral therapy for insomnia: a mediation analysis of a large-scale RCT",
+     "year": 2021,
+     "n": 1720
+    },
+    {
+     "pmid": "33249492",
+     "title": "Digital cognitive behavioral therapy for insomnia promotes later health resilience during the coronavirus disease 19 (COVID-19) pandemic",
+     "year": 2021,
+     "n": 2020
+    },
+    {
+     "pmid": "33908343",
+     "title": "A population health approach to insomnia using internet-based cognitive behavioral therapy for insomnia",
+     "year": 2021,
+     "n": 136630
+    },
+    {
+     "pmid": "35224810",
+     "title": "Digital cognitive behaviour therapy for insomnia (dCBT-I): Chronotype moderation on intervention outcomes",
+     "year": 2022,
+     "n": 1721
+    },
+    {
+     "pmid": "35526432",
+     "title": "The effects of digital CBT-I on work productivity and activity levels and the mediational role of insomnia symptoms: Data from a randomized controlled trial with 6-month follow-up",
+     "year": 2022,
+     "n": 1721
+    },
+    {
+     "pmid": "37506538",
+     "title": "Dysfunctional beliefs and attitudes about sleep (DBAS) mediate outcomes in dCBT-I on psychological distress, fatigue, and insomnia severity",
+     "year": 2023,
+     "n": 1073
+    },
+    {
+     "pmid": "39024778",
+     "title": "Digital cognitive behavioral therapy for insomnia for people with comorbid psychological distress: A large scale randomized controlled trial",
+     "year": 2024,
+     "n": 1721
+    },
+    {
+     "pmid": "38018031",
+     "title": "Sleep-specific outcomes attributable to digitally delivered cognitive behavioral therapy for insomnia in adults with insomnia and depressive symptoms",
+     "year": 2024,
+     "n": 1149
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "26054060",
+     "32950013"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41540418",
+      "doi": "10.1186/s12912-026-04313-8",
+      "title": "Effects of nurse-led cognitive behavioral therapy on insomnia in adults: a meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Bai T",
+      "journal": "BMC nursing",
+      "citedBy": 1,
+      "n": 1537,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "42240717",
+      "doi": "10.1007/s11325-026-03723-x",
+      "title": "Efficacy of fully automated digital cognitive behavioral therapy for insomnia in adults: a systematic review and meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Gao K",
+      "journal": "Sleep & breathing = Schlaf & Atmung",
+      "citedBy": 0,
+      "n": 3507,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "42841437",
+      "doi": "10.1093/sleep/zsag264",
+      "title": "Sleep Healthy Using the Internet: A Meta-Analysis of Twenty Years of Research on a Digital Cognitive Behavioral Therapy for Insomnia Program",
+      "year": 2026,
+      "firstAuthor": "Shaffer KM",
+      "journal": "Sleep",
+      "citedBy": 0,
+      "n": 14166,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "38231522",
+      "doi": "10.1001/jamapsychiatry.2023.5060",
+      "title": "Components and Delivery Formats of Cognitive Behavioral Therapy for Chronic Insomnia in Adults: A Systematic Review and Component Network Meta-Analysis",
+      "year": 2024,
+      "firstAuthor": "Furukawa Y",
+      "journal": "JAMA psychiatry",
+      "citedBy": 131,
+      "n": 31452,
+      "why": "The most comprehensive review on this finding (241 trials, 2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with chronic insomnia (reviews limited to one other illness, such as cancer, count as partly)",
+     "intervention": "Cognitive behavioural therapy for insomnia (CBT-I), face to face or digital",
+     "comparison": "Waiting list, sleep advice, sham treatment or usual care",
+     "outcome": "Time to fall asleep, time awake in the night, sleep efficiency or insomnia severity"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 37,
+     "partly": 83,
+     "no": 60,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42439579",
+      "title": "Comparative Effects of Various Modalities of Cognitive Behavioral Therapy for Insomnia in Adolescents: A Systematic Review and Network Meta-Analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CBT-I against usual care with sleep onset, efficiency and insomnia severity outcomes, but the population is adolescents, not adults."
+     },
+     {
+      "pmid": "42670890",
+      "title": "Comparative Effects of Various Delivery Methods of Cognitive Behavioral Therapy for Insomnia Among Patients With Cancers: Systematic Review and Network Meta-Analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CBT-I delivery modes against usual care with all the named sleep outcomes, but limited to adults with cancer."
+     },
+     {
+      "pmid": "42681083",
+      "title": "Digital Cognitive Behavioral Therapy for Insomnia in Older Adults: A Systematic Review and Meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Digital CBT-I against control conditions for insomnia severity, but limited to a narrower group: adults aged 60 and over."
+     },
+     {
+      "pmid": "42751933",
+      "title": "Cognitive behavioral therapy for insomnia-assisted discontinuation or reduction of benzodiazepine receptor agonists and Z-drugs in chronic insomnia: A systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CBT-I during hypnotic tapering in chronic insomnia; insomnia severity is pooled but the main focus and comparisons are drug discontinuation."
+     },
+     {
+      "pmid": "42119336",
+      "title": "Efficacy of digital cognitive behavioural therapy for insomnia in Armed Forces and Veteran populations - A systematic review and meta-analysis of randomised controlled trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Digital CBT-I against minimal-contact controls for insomnia severity, but limited to armed forces and veterans."
+     },
+     {
+      "pmid": "42247852",
+      "title": "Pharmacological and non-pharmacological treatments for chronic insomnia in perimenopausal and postmenopausal women: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Menopausal women with chronic insomnia; CBT-I is pooled with other non-drug treatments rather than analysed on its own."
+     },
+     {
+      "pmid": "42317719",
+      "title": "Interventions for managing clinically relevant sleep disturbances or insomnia in cancer patients and survivors: an up-to-date systematic review and meta-analysis of self-reported sleep disturbance",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CBT-I for clinically relevant insomnia, but limited to cancer patients and survivors."
+     },
+     {
+      "pmid": "42813493",
+      "title": "Pharmacological and non-pharmacological interventions of insomnia in geriatrics: A systematic review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Face-to-face CBT-I improved sleep efficiency and time awake at night, but only in older adults."
+     },
+     {
+      "pmid": "41798544",
+      "title": "Cognitive Behavioral Therapy for Insomnia in Postpartum Depression: A Meta-Analysis of Therapeutic Outcomes and Barriers to Clinical Use",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CBT-I in perinatal women with insomnia severity outcomes; narrower population and comparators include any intervention."
+     },
+     {
+      "pmid": "42435604",
+      "title": "Long-term efficacy of cognitive behavioural therapy for insomnia (CBT-I) on depressive symptoms: A systematic review and meta-analysis of randomised controlled trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "CBT-I in adults with insomnia, but the outcome is depressive symptoms, not sleep onset, wake time, efficiency or insomnia severity."
+     },
+     {
+      "pmid": "42547685",
+      "title": "Acceptance and commitment therapy for insomnia: an updated meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews acceptance and commitment therapy, not CBT-I against waitlist, advice, sham or usual care."
+     },
+     {
+      "pmid": "42421223",
+      "title": "Comparative efficacy of different components of cognitive behavioral therapy for insomnia on work productivity: A systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "CBT-I components are assessed for work productivity, not sleep onset, wake time, efficiency or insomnia severity."
+     },
+     {
+      "pmid": "41843996",
+      "title": "The acceptability of digital cognitive behavioural therapy for insomnia interventions: A mixed methods systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews how acceptable digital CBT-I is, not its effect on sleep outcomes against a control."
+     },
+     {
+      "pmid": "42621510",
+      "title": "The historical and contemporary aspects of cognitive behavioral therapy for insomnia in recent 30 years: a bibliometric study",
+      "year": 2026,
+      "fits": "no",
+      "reason": "A bibliometric analysis of CBT-I research, not a synthesis of effects on sleep outcomes."
+     },
+     {
+      "pmid": "42248986",
+      "title": "The effect of internet-based acceptance and commitment therapy on sleep quality and insomnia in adults: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews internet-based acceptance and commitment therapy, not CBT-I."
+     },
+     {
+      "pmid": "41934053",
+      "title": "Comparative Effectiveness of Brief Behavioral Therapy for Insomnia: A Network Meta-Analysis of Psychological Outcomes",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Brief behavioural therapy for insomnia assessed for depression, anxiety and fatigue, not the named sleep outcomes."
+     },
+     {
+      "pmid": "41723407",
+      "title": "Electrical vestibular nerve stimulation as a novel therapeutic approach for insomnia: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Studies vestibular nerve stimulation versus sham, not CBT-I."
+     },
+     {
+      "pmid": "42856849",
+      "title": "Comparative effectiveness of traditional Chinese medicine treatment strategies for insomnia: a systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Network meta-analysis of traditional Chinese medicine strategies; CBT-I is only a comparison node."
+     },
+     {
+      "pmid": "42727109",
+      "title": "Effectiveness of Wearable Digital Therapeutics in Improving Sleep Outcomes Among Individuals With Insomnia: Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Studies stand-alone wearable digital devices, not CBT-I."
+     },
+     {
+      "pmid": "42107468",
+      "title": "Comparative efficacy of positive airway pressure-based combination therapy in comorbid insomnia and sleep apnea: A systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "CBT-I combined with PAP for insomnia with sleep apnea, compared with PAP alone, not waitlist or usual care."
+     },
+     {
+      "pmid": "41861511",
+      "title": "Predictors and moderators of treatment outcomes from cognitive behavioural interventions for insomnia in adults: A systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews predictors and moderators of CBT-I response, not effects versus a control."
+     },
+     {
+      "pmid": "42165712",
+      "title": "Can Cognitive Behavioral Therapy for Insomnia (CBT-I) Reduce Biomarkers of Inflammation? A Systematic Review of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Outcomes are inflammatory biomarkers, not sleep onset, wake time, sleep efficiency or insomnia severity."
+     },
+     {
+      "pmid": "40956569",
+      "title": "A Systematic Review of Economic Evaluations on Interventions Targeting Insomnia or Hypersomnia",
+      "year": 2026,
+      "fits": "no",
+      "reason": "A review of economic evaluations across many sleep treatments; the outcomes are costs, not sleep measures."
+     },
+     {
+      "pmid": "41389384",
+      "title": "Time to take the Declaration of Helsinki seriously? A systematic review of comparison conditions in clinical trials on internet-delivered cognitive behavioral therapy for insomnia",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews which comparators internet CBT-I trials used and research ethics, not treatment effects on sleep."
+     },
+     {
+      "pmid": "41601519",
+      "title": "Effectiveness of unguided digital cognitive behavioral therapy for insomnia on depressive symptoms: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Unguided digital CBT-I with insomnia outcomes, but limited to adults with insomnia and depression together."
+     },
+     {
+      "pmid": "39924148",
+      "title": "Effectiveness of current digital cognitive behavioural therapy for insomnia interventions for adolescents with insomnia symptoms: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Digital CBT-I with insomnia, sleep onset and wake time outcomes, but the population is adolescents, mostly in within-subject studies."
+     },
+     {
+      "pmid": "40982264",
+      "title": "Cognitive Behavioral Therapy for Insomnia in People With Chronic Disease: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I with insomnia severity, sleep efficiency and sleep onset outcomes, but limited to adults with chronic disease."
+     },
+     {
+      "pmid": "41259947",
+      "title": "Remission, treatment response, and treatment adherence across the delivery methods of cognitive behavioral therapy for insomnia: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I delivery formats against control in insomnia, but the outcome is remission or response rather than the named sleep measures."
+     },
+     {
+      "pmid": "41061442",
+      "title": "Cognitive behavioral therapy for insomnia in people with schizophrenia: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I against usual care for insomnia severity, but limited to adults with schizophrenia."
+     },
+     {
+      "pmid": "41531400",
+      "title": "Effects of cognitive behavioral therapy on sleep quality and insomnia severity index in women with menopausal insomnia: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I with insomnia severity outcomes, but limited to menopausal women, a narrower population."
+     },
+     {
+      "pmid": "40114473",
+      "title": "The effects of cognitive behavioral therapy for insomnia in patients with cardiovascular disease: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I versus control on insomnia severity, but limited to patients with cardiovascular disease."
+     },
+     {
+      "pmid": "41121501",
+      "title": "Comparative Efficacy of Brief Behavioral Therapy for Insomnia: A Systematic Review and Network Meta-Analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Mainly brief behavioural therapy versus usual care on sleep outcomes; full CBT-I is only a network comparator."
+     },
+     {
+      "pmid": "40369457",
+      "title": "Effects of cognitive-behavioral therapy for insomnia compared with controls among cancer survivors: a systematic review and meta-analysis of randomized trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I versus usual care, waitlist or sleep hygiene on insomnia severity, but limited to cancer survivors."
+     },
+     {
+      "pmid": "39864131",
+      "title": "Cognitive behavioral therapy for insomnia across the spectrum of alcohol use disorder: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I versus control on insomnia severity, but limited to adults with alcohol use disorder."
+     },
+     {
+      "pmid": "39680961",
+      "title": "Cognitive and behavioural therapy for insomnia in the treatment of adolescent insomnia: A systematic review and meta-analysis of randomised controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I and insomnia symptom outcomes match, but the population is adolescents aged 10-19, not adults."
+     },
+     {
+      "pmid": "40100466",
+      "title": "Comparative efficacy of interventions for insomnia in cancer patients: a systematic review and network meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I versus standard care on insomnia severity and sleep efficiency, but limited to people with cancer."
+     },
+     {
+      "pmid": "40180888",
+      "title": "Effectiveness of Cognitive Behavioural Therapy for Insomnia (CBT-I) in Individuals With Neurodevelopmental Conditions: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I for insomnia, but limited to people with neurodevelopmental conditions, including children, and mostly before-after studies."
+     },
+     {
+      "pmid": "41694129",
+      "title": "Summary of the best evidence that cognitive behavioral therapy for insomnia improves sleep quality in patients with chronic insomnia",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Chronic insomnia and CBT-I match, but it summarises guidelines and reviews on sleep quality with no defined comparison."
+     },
+     {
+      "pmid": "41262391",
+      "title": "Cognitive behavioral therapy for insomnia in neurodegenerative disorders-targeting sleep disturbances in Alzheimer's and Parkinson's disease: a scoping review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I for insomnia severity, but limited to adults with Alzheimer's, MCI or Parkinson's, with mixed comparators."
+     },
+     {
+      "pmid": "40765616",
+      "title": "Industry sponsorship bias in randomized controlled trials of digital cognitive behavioral therapy for insomnia: a meta-research study based on the 2023 Brazilian guidelines on the diagnosis and treatment of insomnia in adults",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Includes digital CBT-I RCTs vs waitlist or minimal care on ISI, but analyses sponsorship bias rather than the treatment effect."
+     },
+     {
+      "pmid": "41170811",
+      "title": "Cognitive behavioural therapy for insomnia in people with cancer",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I RCTs on insomnia severity and sleep diary outcomes, but limited to people with cancer."
+     },
+     {
+      "pmid": "37828853",
+      "title": "Telehealth versus face-to-face delivery of cognitive behavioural therapy for insomnia: A systematic review and meta-analysis of randomised controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CBT-I for insomnia, but compares telehealth with face-to-face delivery, not with waitlist or usual care."
+     },
+     {
+      "pmid": "40176550",
+      "title": "Efficacy of digital cognitive behavioral therapy for treating insomnia in adults aged 65 and older: a secondary analysis using individual participant data from three randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pools three trials of digital CBT-I vs controls on insomnia, but only adults aged 65+ and not a systematic search."
+     },
+     {
+      "pmid": "40668370",
+      "title": "Evaluating the Effectiveness of Cognitive Behavioral Therapy for Insomnia in School Settings: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "School-based CBT-I in adolescents, analysed within groups without control comparisons."
+     },
+     {
+      "pmid": "39571405",
+      "title": "Effectiveness of digital cognitive behavioral therapy for insomnia on professional activity: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Digital CBT-I outcomes are work-related (presenteeism, rumination), not sleep or insomnia severity."
+     },
+     {
+      "pmid": "41278217",
+      "title": "Cognitive behavioral therapy for insomnia as a suicide prevention strategy: a protocol for a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "A protocol whose outcomes are suicidal ideation, behaviour and deaths, not sleep outcomes."
+     },
+     {
+      "pmid": "40452498",
+      "title": "A systematic review of anti-suicidal effects of sedative-hypnotics and cognitive behavioral therapy for insomnia",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Outcome is suicidality, not sleep onset, waking, sleep efficiency or insomnia severity."
+     },
+     {
+      "pmid": "40369158",
+      "title": "Author Correction: Comparative efficacy of onsite, digital, and other settings for cognitive behavioral therapy for insomnia: a systematic review and network meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Author correction notice with no abstract, not a review."
+     },
+     {
+      "pmid": "39908628",
+      "title": "A commentary on the article: \"Treatment effect heterogeneity of cognitive behavioral therapy for insomnia-A meta-analysis\"",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Commentary on a meta-analysis, not a systematic review."
+     },
+     {
+      "pmid": "39965279",
+      "title": "Corrigendum to \"Treatment effect heterogeneity of cognitive behavioral therapy for insomnia - A meta-analysis\" [Sleep Medicine Reviews 77 (2024) 101966]",
+      "year": 2025,
+      "fits": "no",
+      "reason": "This is a corrigendum with no abstract, not a review of studies, so it cannot be judged as one."
+     },
+     {
+      "pmid": "41347621",
+      "title": "Acupuncture for insomnia in people with cancer",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews acupuncture, not CBT-I, for insomnia in people with cancer."
+     },
+     {
+      "pmid": "38226714",
+      "title": "Digital cognitive behavioural therapy for patients with insomnia and depression: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Digital CBT-I versus controls on insomnia severity, but limited to people with comorbid depression."
+     },
+     {
+      "pmid": "39504928",
+      "title": "Network meta-analysis examining efficacy of components of cognitive behavioural therapy for insomnia",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Adults with insomnia and insomnia severity match, but it analyses separate CBT-I components using pre-post effects rather than whole CBT-I versus control."
+     },
+     {
+      "pmid": "39628800",
+      "title": "The efficacy of cognitive behavioral therapy for insomnia in adolescents: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "CBT-I with insomnia, sleep onset and sleep efficiency outcomes, but the population is adolescents, not adults."
+     },
+     {
+      "pmid": "38795362",
+      "title": "Is cognitive behavioral therapy for insomnia more cost-effective? New-perspective on economic evaluations: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "CBT-I versus no treatment, sleep hygiene or usual care in adults, but the focus is cost-effectiveness with unspecified efficacy outcomes."
+     },
+     {
+      "pmid": "39111059",
+      "title": "Cognitive behavioral therapy for insomnia in people with chronic musculoskeletal pain. A systematic review and dose-response meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "CBT-I versus control on insomnia, but limited to people with chronic musculoskeletal pain."
+     },
+     {
+      "pmid": "39242039",
+      "title": "Cognitive behavioral therapy for insomnia to treat major depressive disorder with comorbid insomnia: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "CBT-I versus control in adults with depression and insomnia; the main outcome is depression, with insomnia remission as secondary."
+     },
+     {
+      "pmid": "39181023",
+      "title": "Effect of minimal cognitive behavioral therapy for patients with acute insomnia: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "CBT-I versus no CBT-I on insomnia severity and sleep latency, but the population has acute rather than chronic insomnia."
+     },
+     {
+      "pmid": "39188094",
+      "title": "Initial treatment choices for long-term remission of chronic insomnia disorder in adults: a systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Adults with chronic insomnia and CBT-I, but compared with drugs or combination, not waitlist, advice, sham or usual care."
+     },
+     {
+      "pmid": "38781520",
+      "title": "Interventions for insomnia in cancer patients and survivors-a comprehensive systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "CBT-I vs controls on insomnia severity, but limited to cancer patients and survivors."
+     },
+     {
+      "pmid": "39372699",
+      "title": "Efficacy of non-pharmacological interventions on sleep quality in patients with cancer-related insomnia: a network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Network meta-analysis includes CBT-I vs control on ISI, but limited to cancer-related insomnia."
+     },
+     {
+      "pmid": "37586843",
+      "title": "The effectiveness of stimulus control in cognitive behavioural therapy for insomnia in adults: A systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Adults with insomnia vs controls, but analyses stimulus control alone, a single CBT-I component."
+     },
+     {
+      "pmid": "38524162",
+      "title": "Efficacy of cognitive behavioral therapy for insomnia in the perinatal period: a meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools trials of CBT-I on insomnia severity, but only in perinatal women, a narrower group."
+     },
+     {
+      "pmid": "39520969",
+      "title": "CBT-I for prevention and early intervention in mental disturbances: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at CBT-I for preventing psychiatric disorders, with depression and suicide outcomes rather than sleep outcomes."
+     },
+     {
+      "pmid": "39186370",
+      "title": "Efficacy of eHealth Versus In-Person Cognitive Behavioral Therapy for Insomnia: Systematic Review and Meta-Analysis of Equivalence",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares digital CBT-I head to head with face-to-face CBT-I, not with waiting list, advice, sham or usual care."
+     },
+     {
+      "pmid": "38749363",
+      "title": "The effect of physical exercise interventions on insomnia: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews physical exercise for insomnia, not CBT-I."
+     },
+     {
+      "pmid": "39577024",
+      "title": "Corrigendum to \"Network meta-analysis examining efficacy of components of cognitive behavioural therapy for insomnia' [Clinical Psychology Review 114 (2024) 102507]",
+      "year": 2024,
+      "fits": "no",
+      "reason": "This is a corrigendum with no abstract, not a review of studies, so it cannot be judged as one."
+     },
+     {
+      "pmid": "37927792",
+      "title": "The efficacy of digital cognitive behavioral therapy for insomnia and depression: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Digital CBT-I trials on insomnia severity, but limited to adults with both insomnia and depression."
+     },
+     {
+      "pmid": "37657127",
+      "title": "Effect of cognitive behavioral therapy for insomnia in workers: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CBT-I vs control on ISI, sleep onset, waking and sleep efficiency, but limited to workers."
+     },
+     {
+      "pmid": "37952481",
+      "title": "A comprehensive insight on cognitive behavioral therapy for insomnia in pregnant women: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CBT-I RCTs on insomnia severity, but limited to pregnant women."
+     },
+     {
+      "pmid": "36872072",
+      "title": "The effect of cognitive behavioural therapy for insomnia in people with comorbid insomnia and sleep apnoea: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CBT-I on insomnia severity, but limited to people with comorbid sleep apnoea and not limited to controlled comparisons."
+     },
+     {
+      "pmid": "36459948",
+      "title": "Is cognitive behavioral therapy for insomnia (CBTi) efficacious for treating insomnia symptoms in shift workers? A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CBT-I on insomnia severity, but limited to shift workers and pools pre-post changes, not control comparisons."
+     },
+     {
+      "pmid": "36543054",
+      "title": "Cognitive-behavioral therapy for insomnia with objective short sleep duration phenotype: A systematic review with meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CBT-I in insomnia disorder, but compares response between short and normal sleep phenotypes, not against a control."
+     },
+     {
+      "pmid": "36529887",
+      "title": "Efficacy of cognitive behavioural therapy for insomnia or sleep disturbance in pregnant women: A systematic review ad meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pools trials of CBT-I against control on insomnia severity, sleep onset latency and sleep efficiency, but only in pregnant women, a narrower group."
+     },
+     {
+      "pmid": "37271575",
+      "title": "Can mindfulness-based interventions improve outcomes in cognitive-behavioural therapy for chronic insomnia disorder in the general population? Systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Adults with chronic insomnia and insomnia severity match, but it tests mindfulness added to CBT-I against active controls, not CBT-I itself."
+     },
+     {
+      "pmid": "37726877",
+      "title": "Cognitive behavioural therapy for insomnia in inpatient psychiatric care: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews CBT-I for insomnia, but only in psychiatric inpatients, and most included studies had no comparison group."
+     },
+     {
+      "pmid": "36461882",
+      "title": "Is Cognitive Behavioral Therapy for Insomnia Effective for Improving Sleep Duration in Individuals with Insomnia? A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pools trials of CBT-I in people with chronic insomnia, but the outcome is total sleep time, which is not one of the named outcomes."
+     },
+     {
+      "pmid": "37398584",
+      "title": "Residual insomnia in major depressive disorder: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Includes CBT-I for residual insomnia, but limited to major depression and covers many treatments without the named comparisons."
+     },
+     {
+      "pmid": "36802110",
+      "title": "The effectiveness of the behavioural components of cognitive behavioural therapy for insomnia in older adults: A systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Older adults with insomnia only, and it tests the behavioural parts (sleep restriction, stimulus control) rather than full CBT-I, mostly in pre-post studies."
+     },
+     {
+      "pmid": "37610075",
+      "title": "Training of professionals in cognitive behavioural therapy for insomnia - A systematic review of peer-reviewed studies",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews how professionals are trained to deliver CBT-I, not CBT-I's effect on patients against a comparison."
+     },
+     {
+      "pmid": "38095732",
+      "title": "Representation of race and ethnicity among cancer survivors in trials of cognitive behavioral therapy for insomnia (CBT-I): A systematic review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews how well racial and ethnic groups are represented in cancer CBT-I trials, not sleep outcomes against a comparison."
+     },
+     {
+      "pmid": "37862834",
+      "title": "Challenging beliefs for quality sleep: A systematic review of maladaptive sleep beliefs and treatment outcomes following cognitive behavioral therapy for insomnia",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews how changes in sleep beliefs relate to CBT-I outcomes, not CBT-I against a comparison."
+     },
+     {
+      "pmid": "36827635",
+      "title": "Efficacy of Cognitive Behavioral Therapy for Insomnia for the Treatment of Child and Adolescent Anxiety and Depression: A Systematic Review From Randomized Controlled Trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Children and adolescents, with anxiety and depression outcomes rather than insomnia measures."
+     },
+     {
+      "pmid": "37861514",
+      "title": "Efficacy of acupuncture or moxibustion in treating senile insomnia compared with a control group: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews acupuncture or moxibustion in older adults, not CBT-I against the named comparisons."
+     },
+     {
+      "pmid": "36476211",
+      "title": "The Effect of Cognitive Behavioral Therapy for Insomnia (CBT-I) on Cardiometabolic Health Biomarkers: A Systematic Review of Randomized Controlled Trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Outcomes are cardiometabolic biomarkers, not sleep onset, time awake, sleep efficiency or insomnia severity."
+     },
+     {
+      "pmid": "36787999",
+      "title": "Neuroimaging Correlates of Cognitive Behavioral Therapy for Insomnia (CBT-I): A Systematic Literature Review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Outcomes are brain imaging findings, not sleep onset, time awake, sleep efficiency or insomnia severity."
+     },
+     {
+      "pmid": "37527850",
+      "title": "Complementary and alternative treatments for insomnia disorder: a systematic umbrella review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Umbrella review of alternative treatments such as acupuncture and melatonin, not CBT-I."
+     },
+     {
+      "pmid": "37654128",
+      "title": "Personality and insomnia: A systematic review and narrative synthesis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Looks at links between personality and insomnia, not CBT-I against a control."
+     },
+     {
+      "pmid": "37202368",
+      "title": "Brain stimulation techniques as novel treatment options for insomnia: A systematic review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Tests brain stimulation for insomnia, not CBT-I."
+     },
+     {
+      "pmid": "37029781",
+      "title": "Does insomnia treatment prevent depression?",
+      "year": 2023,
+      "fits": "no",
+      "reason": "The review looks at CBT-I for preventing depression onset, not at sleep outcomes."
+     },
+     {
+      "pmid": "36410076",
+      "title": "Comparison of the effectiveness of cognitive behavioral therapy for insomnia, cognitive behavioral therapy for pain, and hybrid cognitive behavioral therapy for insomnia and pain in individuals with comorbid insomnia and chronic pain: A systematic review and network meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools trials of CBT-I against control on sleep, but only in people with insomnia and chronic pain together, one other illness."
+     },
+     {
+      "pmid": "35968818",
+      "title": "Efficacy of cognitive behavioral therapy for insomnia (CBT-I) in older adults with insomnia: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools studies of CBT-I on sleep efficiency and other sleep measures, but only in older adults, a narrower group."
+     },
+     {
+      "pmid": "35330480",
+      "title": "Effectiveness of Digital Cognitive Behavioral Therapy for Insomnia in Young People: Preliminary Findings from Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools trials of digital CBT-I on sleep outcomes, but in adolescents and college students rather than adults generally."
+     },
+     {
+      "pmid": "35303692",
+      "title": "Systematic review and meta-analysis of cognitive-behavioural therapy for insomnia on subjective and actigraphy-measured sleep and comorbid symptoms in cancer survivors",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools studies of CBT-I on insomnia severity, sleep efficiency, time awake and time to fall asleep, but only in cancer survivors."
+     },
+     {
+      "pmid": "35996803",
+      "title": "Cognitive behavior therapy for insomnia in cancer patients: a systematic review and network meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools trials of CBT-I against inactive controls on insomnia severity, sleep efficiency, time to fall asleep and time awake, but only in cancer patients."
+     },
+     {
+      "pmid": "35653951",
+      "title": "Effects of cognitive behavioral therapy for insomnia (CBT-I) on quality of life: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools trials of face-to-face and digital CBT-I against controls, but the outcome is quality of life, not the named sleep outcomes."
+     },
+     {
+      "pmid": "35240417",
+      "title": "Cognitive behavioral therapy for insomnia in patients with mental disorders and comorbid insomnia: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "CBT-I vs placebo, waitlist or usual care on insomnia severity, but limited to adults with comorbid mental disorders."
+     },
+     {
+      "pmid": "35151065",
+      "title": "Telemedicine and insomnia: a comprehensive systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Covers telemedicine for insomnia broadly, including diagnosis, with CBT-I vs no intervention pooled from only two studies."
+     },
+     {
+      "pmid": "34297651",
+      "title": "Cognitive behavioral therapy for insomnia (CBT-i) in patients with fibromyalgia: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "CBT-I on sleep efficiency, but limited to fibromyalgia and compared with other non-drug treatments."
+     },
+     {
+      "pmid": "36027795",
+      "title": "Comparative efficacy and acceptability of psychotherapies, pharmacotherapies, and their combination for the treatment of adult insomnia: A systematic review and network meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Adults with insomnia and CBT-I on the named sleep outcomes, but compared with drug treatment rather than the named comparisons."
+     },
+     {
+      "pmid": "35700174",
+      "title": "Effect of internet-delivered cognitive behavioral therapy on insomnia in convalescent patients with COVID-19: Protocol for a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "A protocol with no results yet, limited to people recovering from COVID-19 who have insomnia and receive internet CBT."
+     },
+     {
+      "pmid": "35419652",
+      "title": "Insomnia evaluation and treatment during peripartum: a joint position paper from the European Insomnia Network task force \"Sleep and Women,\" the Italian Marcè Society and international experts task force for perinatal mental health",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Systematic and narrative review of insomnia treatment including CBT-I, but only in women around pregnancy and birth, with no clear comparator."
+     },
+     {
+      "pmid": "36332409",
+      "title": "Reply to Liu et al.: \"Effects of cognitive behavioral therapy for insomnia (CBT-I) on quality of life: A systematic review and meta-analysis\"",
+      "year": 2022,
+      "fits": "no",
+      "reason": "A reply letter with no abstract, about CBT-I and quality of life rather than the named sleep outcomes."
+     },
+     {
+      "pmid": "35398650",
+      "title": "Approaches to the assessment of adherence to CBT-I, predictors of adherence, and the association of adherence to outcomes: A systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Looks at how adherence to CBT-I is measured and what predicts it, not at CBT-I against a control."
+     },
+     {
+      "pmid": "35492706",
+      "title": "The Role of Acupuncture in the Management of Insomnia as a Major or Residual Symptom Among Patients With Active or Previous Depression: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Tests acupuncture for insomnia linked to depression, not CBT-I."
+     },
+     {
+      "pmid": "36355585",
+      "title": "Systematic Review of Clinical Practice Guidelines for Insomnia Disorder",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Appraises clinical practice guidelines, mainly on drug treatment, and does not review CBT-I trials against a control on sleep outcomes."
+     },
+     {
+      "pmid": "33610967",
+      "title": "Cognitive behavioral therapy for insomnia in patients with chronic pain - A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "CBT-I randomised trials on sleep outcomes, but limited to people with comorbid chronic pain."
+     },
+     {
+      "pmid": "32987319",
+      "title": "Efficacy of cognitive behavioral therapy for insomnia in breast cancer: A meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "CBT-I trials on insomnia and sleep quality, but limited to people with breast cancer."
+     },
+     {
+      "pmid": "33360841",
+      "title": "Effects of cognitive behavioural therapy on insomnia in adults with tinnitus: Systematic review and meta-analysis of randomised controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Limited to adults with tinnitus, and the CBT-based programmes may not be CBT-I; insomnia severity is pooled."
+     },
+     {
+      "pmid": "33984745",
+      "title": "The clinical effects of sleep restriction therapy for insomnia: A meta-analysis of randomised controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools RCTs vs minimal or no control on insomnia severity and sleep outcomes, but tests sleep restriction alone rather than full CBT-I."
+     },
+     {
+      "pmid": "33887655",
+      "title": "How does cognitive behavioural therapy for insomnia work? A systematic review and meta-analysis of mediators of change",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Reviews mediators of change in CBT-I, not its effect against waitlist, advice, sham or usual care."
+     },
+     {
+      "pmid": "32992228",
+      "title": "Does cognitive behaviour therapy for insomnia reduce repetitive negative thinking and sleep-related worry beliefs? A systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Outcome is repetitive negative thinking and worry, not the named sleep outcomes."
+     },
+     {
+      "pmid": "32115395",
+      "title": "Cognitive behavioural therapy monotherapy for insomnia: A meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "CBT-I in insomnia with sleep outcomes, but compared with active treatments rather than waiting list, advice, sham or usual care."
+     },
+     {
+      "pmid": "32860556",
+      "title": "Cognitive Behavioural Therapy for Insomnia Monotherapy in Patients with Medical or Psychiatric Comorbidities: a Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Limited to patients with medical or psychiatric conditions, and compares CBT-I with active treatments."
+     },
+     {
+      "pmid": "33692609",
+      "title": "An Evaluation of Cognitive Behavioral Therapy for Insomnia: A Systematic Review and Application of Tolin's Criteria for Empirically Supported Treatments",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Reviews earlier meta-analyses of CBT-I for insomnia outcomes rather than primary studies, and no comparator is named."
+     },
+     {
+      "pmid": "32733587",
+      "title": "The Clinical Effectiveness of Cognitive Behavioral Therapy for Patients with Insomnia and Depression: A Systematic Review and Meta-Analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pools CBT-I vs no treatment on insomnia scales, but only in people whose insomnia comes with depression."
+     },
+     {
+      "pmid": "31927422",
+      "title": "Non-pharmacological treatment for insomnia following acquired brain injury: A systematic review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Reviews non-drug insomnia treatments including CBT, but only in adults after brain injury or stroke."
+     },
+     {
+      "pmid": "32580450",
+      "title": "A Systematic Review and Network Meta-Analysis of Randomized Controlled Trials Evaluating the Evidence Base of Melatonin, Light Exposure, Exercise, and Complementary and Alternative Medicine for Patients with Insomnia Disorder",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "The network meta-analysis is about melatonin, light, exercise and CAM, with CBT-I only as a reference treatment."
+     },
+     {
+      "pmid": "31816582",
+      "title": "Changes in dysfunctional beliefs about sleep after cognitive behavioral therapy for insomnia: A systematic literature review and meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "CBT-I trials against controls, but the outcome is dysfunctional beliefs about sleep, not sleep onset, waking, efficiency or severity."
+     },
+     {
+      "pmid": "32739824",
+      "title": "Economic evaluation of cognitive behavioural therapy for insomnia (CBT-I) for improving health outcomes in adult populations: A systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Economic evaluations of CBT-I, so the outcome is cost-effectiveness rather than sleep."
+     },
+     {
+      "pmid": "32777632",
+      "title": "The efficacy of cognitive and behavior therapies for insomnia on daytime symptoms: A systematic review and network meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "CBT-I in insomnia, but the outcomes are daytime symptoms, not sleep onset, waking, efficiency or severity."
+     },
+     {
+      "pmid": "32481348",
+      "title": "Comparison between acupuncture and cognitive behavioral therapy for primary insomnia: A protocol for systematic review and network meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "This is a protocol only, so no studies have been reviewed or pooled yet, although the planned PICO is close."
+     },
+     {
+      "pmid": "31648145",
+      "title": "Psychosocial intervention for discontinuing benzodiazepine hypnotics in patients with chronic insomnia: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Narrower group: chronic insomnia patients stopping benzodiazepines; CBT-I plus tapering against tapering alone, with insomnia symptoms."
+     },
+     {
+      "pmid": "31208061",
+      "title": "Insomnia and Information and Communication Technologies (ICT) in Elderly People: A Systematic Review",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Technology-delivered CBT-I in older adults only, with outcomes like disability and quality of life, not sleep measures."
+     },
+     {
+      "pmid": "31699744",
+      "title": "Economic evaluation of cognitive behavioural therapy for insomnia (CBT-I) for improving health outcomes in adult population: a systematic review protocol",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Protocol for a review of CBT-I costs, with no sleep outcomes and no studies reviewed yet."
+     },
+     {
+      "pmid": "30529432",
+      "title": "Insomnia and mortality: A meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at the link between insomnia and death, not at CBT-I treatment."
+     },
+     {
+      "pmid": "29791593",
+      "title": "Efficacy of cognitive behavioral therapy in children and adolescents with insomnia: a systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "CBT-I with sleep onset and efficiency outcomes, but in children and adolescents rather than adults."
+     },
+     {
+      "pmid": "30135762",
+      "title": "Digitally-delivered cognitive-behavioural therapy for youth insomnia: A systematic review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Digital CBT-I with sleep outcomes, but the population is young people and adolescents, not adults."
+     },
+     {
+      "pmid": "30420826",
+      "title": "Current Treatment of Comorbid Insomnia and Obstructive Sleep Apnea With CBTI and PAP-Therapy: A Systematic Review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Limited to insomnia with sleep apnea, and CBT-I is mostly combined with PAP therapy."
+     },
+     {
+      "pmid": "29887256",
+      "title": "The cognitive treatment components and therapies of cognitive behavioral therapy for insomnia: A systematic review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "It reviews only the cognitive components of CBT-I, not the full programme, and comparators are not stated."
+     },
+     {
+      "pmid": "28619248",
+      "title": "The effectiveness of behavioural and cognitive behavioural therapies for insomnia on depressive and fatigue symptoms: A systematic review and network meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at CBT-I effects on depression and fatigue symptoms, not on sleep onset, wake time, efficiency or insomnia severity."
+     },
+     {
+      "pmid": "29782076",
+      "title": "Effect of insomnia treatments on depression: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at insomnia treatments in people with depression, with depression as the outcome rather than sleep."
+     },
+     {
+      "pmid": "29455893",
+      "title": "Cognitive Behavioural Therapy for Insomnia (CBT-I) to treat depression: A systematic review",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Reviews CBT-I as a treatment for depression, with depression outcomes rather than sleep outcomes."
+     },
+     {
+      "pmid": "28918315",
+      "title": "Does cognitive behavioural therapy for insomnia improve cognitive performance? A systematic review and narrative synthesis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at CBT-I effects on cognitive performance, not on sleep onset, wake time, efficiency or insomnia severity."
+     },
+     {
+      "pmid": "26434673",
+      "title": "A systematic review and meta-analysis of randomized controlled trials of cognitive behavior therapy for insomnia (CBT-I) in cancer survivors",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "RCTs of CBT-I versus control with SE, SOL, WASO and ISI, but limited to people with cancer."
+     },
+     {
+      "pmid": "26581107",
+      "title": "Internet-Based Cognitive Behavioral Therapy for Insomnia (ICBT-i) Improves Comorbid Anxiety and Depression-A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2015,
+      "fits": "no",
+      "reason": "The outcomes are anxiety and depression, not sleep onset, wake time, sleep efficiency or insomnia severity."
+     },
+     {
+      "pmid": "24892895",
+      "title": "Cognitive and behavioural therapy for insomnia (CBT-I) in psychiatric populations: a systematic review",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "CBT-I reviewed only in psychiatric comorbid groups; comparators and specific sleep outcomes are not stated."
+     },
+     {
+      "pmid": "24971014",
+      "title": "Sleeping well with cancer: a systematic review of cognitive behavioral therapy for insomnia in cancer patients",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "CBT-I with subjective sleep outcomes, including controlled studies, but limited to people with cancer."
+     },
+     {
+      "pmid": "23602124",
+      "title": "Adherence to cognitive behavioral therapy for insomnia: a systematic review",
+      "year": 2013,
+      "fits": "no",
+      "reason": "The review covers adherence to CBT-I, not its effect against a control on sleep outcomes."
+     },
+     {
+      "pmid": "25343044",
+      "title": "Yoga as Treatment for Insomnia Among Cancer Patients and Survivors: A Systematic Review",
+      "year": 2013,
+      "fits": "no",
+      "reason": "The intervention is yoga, not CBT-I."
+     },
+     {
+      "pmid": "22631616",
+      "title": "Comparative effectiveness of cognitive behavioral therapy for insomnia: a systematic review",
+      "year": 2012,
+      "fits": "no",
+      "reason": "CBT-I is compared with medication, not with waiting list, sleep advice, sham or usual care."
+     },
+     {
+      "pmid": "21482322",
+      "title": "Meta-analytic review of the impact of cognitive-behavior therapy for insomnia on concomitant anxiety",
+      "year": 2011,
+      "fits": "no",
+      "reason": "The outcome is anxiety, not sleep onset, wake time, sleep efficiency or insomnia severity."
+     },
+     {
+      "pmid": "19506825",
+      "title": "[Insomnias. II. Pharmacological and psychotherapeutic treatment options]",
+      "year": 2009,
+      "fits": "no",
+      "reason": "This is a narrative overview of drug and psychological treatments, not a systematic review of CBT-I versus control."
+     }
+    ]
+   }
+  },
+  {
+   "id": "regularity",
+   "label": "Sleep regularity",
+   "finding": "Sleep regularity (going to sleep and waking at similar times) and death from any cause",
+   "counts": {
+    "all": 389,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 6,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41259946",
+     "doi": "10.1016/j.smrv.2025.102203",
+     "title": "Sleep regularity as an important component of sleep hygiene: a systematic review",
+     "year": 2025,
+     "firstAuthor": "Kalkanis A",
+     "journal": "Sleep medicine reviews",
+     "citedBy": 4,
+     "why": "One of the newest systematic reviews on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "36081237",
+     "doi": "10.1016/j.smrv.2022.101688",
+     "title": "Associations between sleep variability and cardiometabolic health: A systematic review",
+     "year": 2022,
+     "firstAuthor": "Zhu B",
+     "journal": "Sleep medicine reviews",
+     "citedBy": 61,
+     "n": 133403,
+     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "33054339",
+     "doi": "10.1139/apnm-2020-0032",
+     "title": "Sleep timing, sleep consistency, and health in adults: a systematic review",
+     "year": 2020,
+     "firstAuthor": "Chaput JP",
+     "journal": "Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",
+     "citedBy": 245,
+     "n": 92340,
+     "why": "One of the newest systematic reviews on this finding (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 2,
+    "inclusions": 2,
+    "reviews": [
+     {
+      "pmid": "36081237",
+      "trials": 1
+     },
+     {
+      "pmid": "33054339",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "41259946"
+    ],
+    "shared": [
+     {
+      "pmid": "32511726",
+      "title": "Intraindividual variability in sleep schedule: effects of an internet-based cognitive-behavioral therapy for insomnia program and its relation with symptom remission",
+      "year": 2020,
+      "n": 303,
+      "inReviews": [
+       "36081237"
+      ]
+     },
+     {
+      "pmid": "29332677",
+      "title": "Pilot study of sleep and meal timing effects, independent of sleep duration and food intake, on insulin sensitivity in healthy individuals",
+      "year": 2018,
+      "inReviews": [
+       "33054339"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "37738616"
+    ],
+    "citedNotEligible": [
+     "37738616"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41259946",
+      "doi": "10.1016/j.smrv.2025.102203",
+      "title": "Sleep regularity as an important component of sleep hygiene: a systematic review",
+      "year": 2025,
+      "firstAuthor": "Kalkanis A",
+      "journal": "Sleep medicine reviews",
+      "citedBy": 4,
+      "why": "One of the newest systematic reviews on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "36081237",
+      "doi": "10.1016/j.smrv.2022.101688",
+      "title": "Associations between sleep variability and cardiometabolic health: A systematic review",
+      "year": 2022,
+      "firstAuthor": "Zhu B",
+      "journal": "Sleep medicine reviews",
+      "citedBy": 61,
+      "n": 133403,
+      "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+     },
+     {
+      "pmid": "33054339",
+      "doi": "10.1139/apnm-2020-0032",
+      "title": "Sleep timing, sleep consistency, and health in adults: a systematic review",
+      "year": 2020,
+      "firstAuthor": "Chaput JP",
+      "journal": "Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",
+      "citedBy": 245,
+      "n": 92340,
+      "why": "One of the newest systematic reviews on this finding (2020); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "Regular sleep (going to sleep and waking at similar times)",
+     "comparison": "Irregular sleep",
+     "outcome": "Death, heart disease or cardiometabolic health"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 0,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41101484",
+      "title": "The association between sleep variability and cognitive function: A systematic review and meta analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The exposure (sleep variability) matches, but the outcome is cognitive function, not death or cardiometabolic health."
+     },
+     {
+      "pmid": "35481337",
+      "title": "Sleep timing and health indicators in children and adolescents: a systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Covers children and adolescents and looks at sleep timing rather than regularity, mostly with non-cardiometabolic outcomes."
+     },
+     {
+      "pmid": "31387413",
+      "title": "Associations between social jetlag and mental health in young people: A systematic review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Covers young people and social jetlag, with mental health outcomes rather than death or cardiometabolic health."
+     }
+    ]
+   }
+  }
+ ]
+}

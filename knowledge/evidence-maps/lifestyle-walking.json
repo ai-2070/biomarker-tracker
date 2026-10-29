@@ -1,0 +1,3170 @@
+{
+ "topic": "lifestyle-walking",
+ "kind": "lifestyle",
+ "lifestyleId": "walking",
+ "name": "walking",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "mortality": "((TITLE_ABS:\"daily steps\" OR TITLE_ABS:\"step count\" OR TITLE_ABS:\"step counts\" OR TITLE_ABS:\"steps per day\" OR TITLE_ABS:pedometer OR TITLE_ABS:pedometers OR TITLE_ABS:walking) AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:deaths)) AND SRC:MED",
+  "cardiovascular": "((TITLE_ABS:\"daily steps\" OR TITLE_ABS:\"step count\" OR TITLE_ABS:\"step counts\" OR TITLE_ABS:\"steps per day\" OR TITLE_ABS:pedometer OR TITLE_ABS:pedometers OR TITLE_ABS:walking) AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:\"heart disease\" OR TITLE_ABS:stroke OR TITLE_ABS:\"myocardial infarction\")) AND SRC:MED",
+  "risk-factors": "((TITLE_ABS:walking OR TITLE_ABS:\"walking group\" OR TITLE_ABS:\"walking groups\" OR TITLE_ABS:\"brisk walking\" OR TITLE_ABS:\"walking program\" OR TITLE_ABS:\"walking programme\") AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:\"cardiorespiratory fitness\" OR TITLE_ABS:\"aerobic fitness\" OR TITLE_ABS:VO2max OR TITLE_ABS:\"body weight\" OR TITLE_ABS:waist OR TITLE_ABS:\"body mass index\" OR TITLE_ABS:\"cardiovascular risk factors\")) AND SRC:MED",
+  "diabetes": "((TITLE_ABS:\"daily steps\" OR TITLE_ABS:\"step count\" OR TITLE_ABS:\"step counts\" OR TITLE_ABS:\"steps per day\" OR TITLE_ABS:pedometer OR TITLE_ABS:pedometers OR TITLE_ABS:walking) AND (TITLE_ABS:diabetes OR TITLE_ABS:HbA1c OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic OR TITLE_ABS:\"blood glucose\")) AND SRC:MED",
+  "depression": "((TITLE_ABS:\"daily steps\" OR TITLE_ABS:\"step count\" OR TITLE_ABS:\"step counts\" OR TITLE_ABS:\"steps per day\" OR TITLE_ABS:pedometer OR TITLE_ABS:pedometers OR TITLE_ABS:walking) AND (TITLE_ABS:depression OR TITLE_ABS:depressive OR TITLE_ABS:depressed)) AND SRC:MED",
+  "pace": "((TITLE_ABS:\"walking speed\" OR TITLE_ABS:\"walking pace\" OR TITLE_ABS:\"gait speed\" OR TITLE_ABS:\"stepping rate\" OR TITLE_ABS:\"step cadence\" OR TITLE_ABS:\"brisk walking\") AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:diabetes OR TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:stroke)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 29051,
+  "retrieved": 5085,
+  "animal": 18,
+  "retracted": 8,
+  "reviews": 1533,
+  "trials": 3499,
+  "guidelines": 16
+ },
+ "guidelines": [
+  {
+   "pmid": "40401760",
+   "doi": "10.1177/23969873251338142",
+   "title": "European Stroke Organisation (ESO) guideline on motor rehabilitation",
+   "year": 2025,
+   "journal": "European stroke journal",
+   "citedBy": 44,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "38964837",
+   "doi": "10.1093/ejcts/ezae166",
+   "title": "The pectus care guidelines: best practice consensus guidelines from the joint specialist societies SCTS/MF/CWIG/BOA/BAPS for the treatment of patients with pectus abnormalities",
+   "year": 2024,
+   "journal": "European journal of cardio-thoracic surgery : official journal of the European Association for Cardio-thoracic Surgery",
+   "citedBy": 23,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "37302121",
+   "doi": "10.1002/dmrr.3651",
+   "title": "Guidelines on the prevention of foot ulcers in persons with diabetes (IWGDF 2023 update)",
+   "year": 2024,
+   "journal": "Diabetes/metabolism research and reviews",
+   "citedBy": 192,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "33675603",
+   "doi": "10.1097/npt.0000000000000347",
+   "title": "A Clinical Practice Guideline for the Use of Ankle-Foot Orthoses and Functional Electrical Stimulation Post-Stroke",
+   "year": 2021,
+   "journal": "Journal of neurologic physical therapy : JNPT",
+   "citedBy": 37,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "31834165",
+   "doi": "10.1097/npt.0000000000000303",
+   "title": "Clinical Practice Guideline to Improve Locomotor Function Following Chronic Stroke, Incomplete Spinal Cord Injury, and Brain Injury",
+   "year": 2020,
+   "journal": "Journal of neurologic physical therapy : JNPT",
+   "citedBy": 275,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "32998820",
+   "doi": "10.1016/j.numecd.2020.08.021",
+   "title": "Walking for subjects with type 2 diabetes: A systematic review and joint AMD/SID/SISMES evidence-based practical guideline",
+   "year": 2020,
+   "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+   "citedBy": 50,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "mortality",
+   "label": "Death",
+   "finding": "Death from any cause",
+   "counts": {
+    "all": 5470,
+    "reviews": 18,
+    "trialReviews": 18,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38901742",
+     "doi": "10.1016/j.ypmed.2024.108047",
+     "title": "Daily steps and all-cause mortality: An umbrella review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Rodríguez-Gutiérrez E",
+     "journal": "Preventive medicine",
+     "citedBy": 11,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "37555441",
+     "doi": "10.1093/eurjpc/zwad229",
+     "title": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Banach M",
+     "journal": "European journal of preventive cardiology",
+     "citedBy": 183,
+     "n": 226889,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "37676198",
+     "doi": "10.1016/j.jacc.2023.07.029",
+     "title": "Relationship of Daily Step Counts to All-Cause Mortality and Cardiovascular Events",
+     "year": 2023,
+     "firstAuthor": "Stens NA",
+     "journal": "Journal of the American College of Cardiology",
+     "citedBy": 90,
+     "n": 111309,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 2,
+    "inclusions": 2,
+    "reviews": [
+     {
+      "pmid": "37555441",
+      "trials": 1
+     },
+     {
+      "pmid": "37676198",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "38901742"
+    ],
+    "shared": [
+     {
+      "pmid": "24361242",
+      "title": "Association between change in daily ambulatory activity and cardiovascular events in people with impaired glucose tolerance (NAVIGATOR trial): a cohort analysis",
+      "year": 2014,
+      "n": 9306,
+      "inReviews": [
+       "37676198"
+      ]
+     },
+     {
+      "pmid": "29197830",
+      "title": "Association of Accelerometry-Measured Physical Activity and Cardiovascular Events in Mobility-Limited Older Adults: The LIFE (Lifestyle Interventions and Independence for Elders) Study",
+      "year": 2017,
+      "n": 1590,
+      "inReviews": [
+       "37555441"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "35247352",
+     "40713949"
+    ],
+    "citedNotEligible": [
+     "40713949"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "38901742",
+      "doi": "10.1016/j.ypmed.2024.108047",
+      "title": "Daily steps and all-cause mortality: An umbrella review and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Rodríguez-Gutiérrez E",
+      "journal": "Preventive medicine",
+      "citedBy": 11,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "37555441",
+      "doi": "10.1093/eurjpc/zwad229",
+      "title": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Banach M",
+      "journal": "European journal of preventive cardiology",
+      "citedBy": 183,
+      "n": 226889,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     },
+     {
+      "pmid": "37676198",
+      "doi": "10.1016/j.jacc.2023.07.029",
+      "title": "Relationship of Daily Step Counts to All-Cause Mortality and Cardiovascular Events",
+      "year": 2023,
+      "firstAuthor": "Stens NA",
+      "journal": "Journal of the American College of Cardiology",
+      "citedBy": 90,
+      "n": 111309,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "More daily steps or more walking",
+     "comparison": "Fewer steps or less walking",
+     "outcome": "Death from any cause"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 12,
+     "partly": 5,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40266699",
+      "title": "Systematic review and meta-analysis of the association between usual walking speed and all-cause mortality and risk of major non-communicable diseases",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "General population and all-cause mortality match, but the exposure is usual walking speed rather than more steps or more walking."
+     },
+     {
+      "pmid": "39133765",
+      "title": "Dose-response association between walking speed and all-cause mortality: A systematic review and meta-analysis of cohort studies",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "All-cause mortality in cohorts matches, but the exposure is walking speed rather than the amount of walking or daily steps."
+     },
+     {
+      "pmid": "37595090",
+      "title": "Corrigendum to: The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "This is a correction notice for a published review, not a systematic review."
+     },
+     {
+      "pmid": "32590383",
+      "title": "Cardiorespiratory Fitness, Physical Activity, Walking Speed, Lack of Participation in Leisure Activities, and Lung Cancer Mortality: A Systematic Review and Meta-Analysis of Prospective Cohort Studies",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Main focus is fitness, activity and lung cancer death; walking speed, not amount of walking, is the exposure analysed for all-cause death."
+     },
+     {
+      "pmid": "34729613",
+      "title": "Walking Speed and Mortality: An Updated Systematic Review",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "All-cause mortality matches, but the exposure is slow walking speed, not the amount of walking or steps."
+     },
+     {
+      "pmid": "27004653",
+      "title": "Usual walking speed and all-cause mortality risk in older people: A systematic review and meta-analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "The exposure is usual walking speed rather than the amount of walking, and the population is limited to older adults."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart disease and stroke",
+   "finding": "Heart disease and stroke (cardiovascular disease)",
+   "counts": {
+    "all": 10967,
+    "reviews": 136,
+    "trialReviews": 61,
+    "trials": 295,
+    "largeTrials": 5
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37555441",
+     "doi": "10.1093/eurjpc/zwad229",
+     "title": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Banach M",
+     "journal": "European journal of preventive cardiology",
+     "citedBy": 183,
+     "n": 226889,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "36537288",
+     "doi": "10.1161/circulationaha.122.061288",
+     "title": "Prospective Association of Daily Steps With Cardiovascular Disease: A Harmonized Meta-Analysis",
+     "year": 2023,
+     "firstAuthor": "Paluch AE",
+     "journal": "Circulation",
+     "citedBy": 94,
+     "n": 20152,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "37676198",
+     "doi": "10.1016/j.jacc.2023.07.029",
+     "title": "Relationship of Daily Step Counts to All-Cause Mortality and Cardiovascular Events",
+     "year": 2023,
+     "firstAuthor": "Stens NA",
+     "journal": "Journal of the American College of Cardiology",
+     "citedBy": 90,
+     "n": 111309,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "38134254",
+     "doi": "10.1161/strokeaha.123.044596",
+     "title": "Increasing Activity After Stroke: A Randomized Controlled Trial of High-Intensity Walking and Step Activity Intervention",
+     "year": 2024,
+     "firstAuthor": "Thompson ED",
+     "journal": "Stroke",
+     "citedBy": 48,
+     "n": 2385,
+     "why": "A large trial (about 2,385 people) from 2024, as new as the newest review or newer"
+    },
+    {
+     "pmid": "38913003",
+     "doi": "10.1016/j.jacc.2024.06.001",
+     "title": "Efficacy of Semaglutide by Sex in Obesity-Related Heart Failure With Preserved Ejection Fraction: STEP-HFpEF Trials",
+     "year": 2024,
+     "firstAuthor": "Verma S",
+     "journal": "Journal of the American College of Cardiology",
+     "citedBy": 48,
+     "n": 1145,
+     "why": "A large trial (about 1,145 people) from 2024, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.3333333333333333,
+    "trials": 3,
+    "inclusions": 5,
+    "reviews": [
+     {
+      "pmid": "37555441",
+      "trials": 1
+     },
+     {
+      "pmid": "36537288",
+      "trials": 3
+     },
+     {
+      "pmid": "37676198",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "24361242",
+      "title": "Association between change in daily ambulatory activity and cardiovascular events in people with impaired glucose tolerance (NAVIGATOR trial): a cohort analysis",
+      "year": 2014,
+      "n": 9306,
+      "inReviews": [
+       "36537288",
+       "37676198"
+      ]
+     },
+     {
+      "pmid": "29197830",
+      "title": "Association of Accelerometry-Measured Physical Activity and Cardiovascular Events in Mobility-Limited Older Adults: The LIFE (Lifestyle Interventions and Independence for Elders) Study",
+      "year": 2017,
+      "n": 1590,
+      "inReviews": [
+       "37555441",
+       "36537288"
+      ]
+     },
+     {
+      "pmid": "34468691",
+      "title": "Effect of Goal-Setting Approaches Within a Gamification Intervention to Increase Physical Activity Among Economically Disadvantaged Adults at Elevated Risk for Major Adverse Cardiovascular Events: The ENGAGE Randomized Clinical Trial",
+      "year": 2021,
+      "n": 500,
+      "inReviews": [
+       "36537288"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 7
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2009,
+     "reviews": 4,
+     "trials": 10
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 8
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 11
+    },
+    {
+     "year": 2012,
+     "reviews": 4,
+     "trials": 8
+    },
+    {
+     "year": 2013,
+     "reviews": 3,
+     "trials": 16
+    },
+    {
+     "year": 2014,
+     "reviews": 5,
+     "trials": 11
+    },
+    {
+     "year": 2015,
+     "reviews": 5,
+     "trials": 13
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 14
+    },
+    {
+     "year": 2017,
+     "reviews": 7,
+     "trials": 13
+    },
+    {
+     "year": 2018,
+     "reviews": 13,
+     "trials": 15
+    },
+    {
+     "year": 2019,
+     "reviews": 5,
+     "trials": 19
+    },
+    {
+     "year": 2020,
+     "reviews": 11,
+     "trials": 12
+    },
+    {
+     "year": 2021,
+     "reviews": 10,
+     "trials": 27
+    },
+    {
+     "year": 2022,
+     "reviews": 13,
+     "trials": 13
+    },
+    {
+     "year": 2023,
+     "reviews": 10,
+     "trials": 7
+    },
+    {
+     "year": 2024,
+     "reviews": 10,
+     "trials": 16
+    },
+    {
+     "year": 2025,
+     "reviews": 12,
+     "trials": 18
+    },
+    {
+     "year": 2026,
+     "reviews": 11,
+     "trials": 17
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "22462692",
+     "title": "How to improve walking, balance and social participation following stroke: a comparison of the long term effects of two walking aids--canes and an orthosis TheraTogs--on the recovery of gait following acute stroke. A study protocol for a multi-centre, single blind, randomised control trial",
+     "year": 2012,
+     "n": 9000
+    },
+    {
+     "pmid": "26936861",
+     "title": "Economic Evaluation Plan (EEP) for A Very Early Rehabilitation Trial (AVERT): An international trial to compare the costs and cost-effectiveness of commencing out of bed standing and walking training (very early mobilization) within 24 h of stroke onset with usual stroke unit care",
+     "year": 2016,
+     "n": 2104
+    },
+    {
+     "pmid": "33323209",
+     "title": "The effect of digital physical activity interventions on daily step count: a randomised controlled crossover substudy of the MyHeart Counts Cardiovascular Health Study",
+     "year": 2019,
+     "n": 2783
+    },
+    {
+     "pmid": "38134254",
+     "title": "Increasing Activity After Stroke: A Randomized Controlled Trial of High-Intensity Walking and Step Activity Intervention",
+     "year": 2024,
+     "n": 2385
+    },
+    {
+     "pmid": "38913003",
+     "title": "Efficacy of Semaglutide by Sex in Obesity-Related Heart Failure With Preserved Ejection Fraction: STEP-HFpEF Trials",
+     "year": 2024,
+     "n": 1145
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "40713949"
+    ],
+    "citedNotEligible": [
+     "40713949"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "37555441",
+      "doi": "10.1093/eurjpc/zwad229",
+      "title": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Banach M",
+      "journal": "European journal of preventive cardiology",
+      "citedBy": 183,
+      "n": 226889,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     },
+     {
+      "pmid": "36537288",
+      "doi": "10.1161/circulationaha.122.061288",
+      "title": "Prospective Association of Daily Steps With Cardiovascular Disease: A Harmonized Meta-Analysis",
+      "year": 2023,
+      "firstAuthor": "Paluch AE",
+      "journal": "Circulation",
+      "citedBy": 94,
+      "n": 20152,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     },
+     {
+      "pmid": "37676198",
+      "doi": "10.1016/j.jacc.2023.07.029",
+      "title": "Relationship of Daily Step Counts to All-Cause Mortality and Cardiovascular Events",
+      "year": 2023,
+      "firstAuthor": "Stens NA",
+      "journal": "Journal of the American College of Cardiology",
+      "citedBy": 90,
+      "n": 111309,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     },
+     {
+      "pmid": "38134254",
+      "doi": "10.1161/strokeaha.123.044596",
+      "title": "Increasing Activity After Stroke: A Randomized Controlled Trial of High-Intensity Walking and Step Activity Intervention",
+      "year": 2024,
+      "firstAuthor": "Thompson ED",
+      "journal": "Stroke",
+      "citedBy": 48,
+      "n": 2385,
+      "why": "A large trial (about 2,385 people) from 2024, as new as the newest review or newer"
+     },
+     {
+      "pmid": "38913003",
+      "doi": "10.1016/j.jacc.2024.06.001",
+      "title": "Efficacy of Semaglutide by Sex in Obesity-Related Heart Failure With Preserved Ejection Fraction: STEP-HFpEF Trials",
+      "year": 2024,
+      "firstAuthor": "Verma S",
+      "journal": "Journal of the American College of Cardiology",
+      "citedBy": 48,
+      "n": 1145,
+      "why": "A large trial (about 1,145 people) from 2024, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "More daily steps or more walking",
+     "comparison": "Fewer steps or less walking",
+     "outcome": "Heart disease or stroke (new cases or deaths)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 8,
+     "partly": 5,
+     "no": 48,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41491049",
+      "title": "Slow walking speed and risk of cardiovascular events in type 2 diabetes: a systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at walking speed rather than amount of walking, and only in people with type 2 diabetes."
+     },
+     {
+      "pmid": "42750176",
+      "title": "Effect of blood flow restricted walking on cardiovascular fitness, muscular development, and functional performance in adults: A systematic review with meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at walking with blood flow restriction and outcomes like fitness and strength, not heart disease or stroke."
+     },
+     {
+      "pmid": "41269895",
+      "title": "Effects of dual-task training on walking and balance in stroke patients: A systematic review and network meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at dual-task training for walking and balance in stroke patients, which is a different question."
+     },
+     {
+      "pmid": "42951167",
+      "title": "Acute autonomic and cardiovascular responses to walking in natural versus urban environments: A systematic review and three-level meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at short-term heart rate and blood pressure during walks in nature vs cities, not heart disease or stroke."
+     },
+     {
+      "pmid": "41980865",
+      "title": "Comment on: Effects of Sling Exercise Training on Walking Ability and Balance Function in Patients With Stroke: A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "This is a comment on a stroke rehabilitation review, not a systematic review that fits the question."
+     },
+     {
+      "pmid": "41420322",
+      "title": "Effects of Sling Exercise Training on Walking Ability and Balance Function in Patients With Stroke: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at sling exercise for walking ability in stroke patients, not walking to prevent heart disease or stroke."
+     },
+     {
+      "pmid": "40068054",
+      "title": "Comparing the effectiveness of dual-task and single-task training on walking function in stroke recovery: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Compares dual-task and single-task training on walking ability in stroke patients, which is a different question."
+     },
+     {
+      "pmid": "39476525",
+      "title": "The effects of nordic walking on the cardiovascular risk factors in older adults: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at Nordic walking and cardiovascular risk factors, not new cases of or deaths from heart disease or stroke."
+     },
+     {
+      "pmid": "38665701",
+      "title": "Footsteps to Wellness: A Systematic Review and Meta-Analysis of Walking Pace and Coronary Artery Disease Event",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Adults without heart disease, with heart disease events as outcome, but exposure is walking pace not amount, and stroke is not covered."
+     },
+     {
+      "pmid": "38872081",
+      "title": "Effectiveness of pedometer-based walking programmes in improving some modifiable risk factors of stroke among community-dwelling older adults: a systematic review, theoretical synthesis and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Pedometer walking programmes in older adults, but outcomes are stroke risk factors like blood pressure, not actual strokes."
+     },
+     {
+      "pmid": "39593446",
+      "title": "Action observation training for improving walking ability and balance of stroke patients: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Stroke patients given action observation training; outcomes are walking ability and balance, not new heart disease or stroke."
+     },
+     {
+      "pmid": "39621381",
+      "title": "The Effectiveness of Therapeutic Exercise Interventions With Virtual Reality on Balance and Walking Among Persons With Chronic Stroke: Systematic Review, Meta-Analysis, and Meta-Regression of Randomized Controlled Trials",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Chronic stroke patients given virtual reality exercise; outcomes are balance and walking, not heart disease or stroke events."
+     },
+     {
+      "pmid": "39258157",
+      "title": "Effects of body weight support training on balance and walking function in stroke patients: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Stroke patients given body weight support training; outcomes are balance and gait, not heart disease or stroke events."
+     },
+     {
+      "pmid": "38394189",
+      "title": "The effect of moderate and vigorous aerobic exercise training on the cognitive and walking ability among stroke patients during different periods: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Stroke patients given aerobic exercise; outcomes are cognition and walking ability, not heart disease or stroke events."
+     },
+     {
+      "pmid": "37732513",
+      "title": "The effects of cycling on walking outcomes in adults with stroke: a systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Cycling in stroke patients with walking outcomes; not walking amount and heart disease or stroke events."
+     },
+     {
+      "pmid": "37595090",
+      "title": "Corrigendum to: The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "This is a correction notice, not a systematic review."
+     },
+     {
+      "pmid": "37433730",
+      "title": "Impact of wearable device-based interventions with feedback for increasing daily walking activity and physical capacities in cardiovascular patients: a systematic review and meta-analysis of randomised controlled trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Patients with heart disease using wearables; outcomes are steps and fitness, not new heart disease or stroke."
+     },
+     {
+      "pmid": "36875661",
+      "title": "Brain activation of the PFC during dual-task walking in stroke patients: A systematic review and meta-analysis of functional near-infrared spectroscopy studies",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Measures brain activity during dual-task walking in stroke patients; not about walking and heart disease or stroke risk."
+     },
+     {
+      "pmid": "37266514",
+      "title": "Can post stroke walking improve via telerehabilitation? A systematic review in adults with stroke",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Covers telerehabilitation for walking recovery in stroke survivors; walking is the outcome, not the exposure."
+     },
+     {
+      "pmid": "35443210",
+      "title": "First Systematic Review and Meta-analysis of the Validity and Test-Retest Reliability of Physical Activity Monitors for Estimating Energy Expenditure During Walking in Individuals With Stroke",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Tests how accurately activity monitors estimate energy use in stroke patients; no heart disease or stroke outcomes."
+     },
+     {
+      "pmid": "36684839",
+      "title": "Does whole-body vibration training have a positive effect on balance and walking function in patients with stroke? A meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Whole-body vibration in stroke patients with balance and walking outcomes; not heart disease or stroke events."
+     },
+     {
+      "pmid": "36086722",
+      "title": "Does noninvasive cerebellar stimulation improve the balance and walking function of patients with stroke: A meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Cerebellar stimulation in stroke patients with balance and walking outcomes; not heart disease or stroke events."
+     },
+     {
+      "pmid": "33715555",
+      "title": "Effectiveness of walking training on balance, motor functions, activity, participation and quality of life in people with chronic stroke: a systematic review with meta-analysis and meta-regression of recent randomized controlled trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Walking training in chronic stroke patients with function and quality of life outcomes; not heart disease or stroke events."
+     },
+     {
+      "pmid": "36226075",
+      "title": "Walking speed at the acute and subacute stroke stage: A descriptive meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Describes walking speed after stroke; no exposure comparison and no heart disease or stroke event outcomes."
+     },
+     {
+      "pmid": "33857653",
+      "title": "Equations for estimating the oxygen cost of walking in stroke patients: Systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Covers equations for the oxygen cost of walking in stroke patients, not walking as an exposure for heart disease or stroke risk."
+     },
+     {
+      "pmid": "34644226",
+      "title": "Effects of action observation training on the walking ability of patients post stroke: a systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Covers action observation training for walking ability after stroke; walking is the outcome, not the exposure."
+     },
+     {
+      "pmid": "32432905",
+      "title": "Effect of types of ankle-foot orthoses on energy expenditure metrics during walking in individuals with stroke: a systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Covers ankle-foot orthoses and the energy cost of walking in stroke patients, a different question."
+     },
+     {
+      "pmid": "34884208",
+      "title": "Walking the Line with Ticagrelor: Meta-Analysis Comparing the Safety and Efficacy of Ticagrelor Monotherapy after a Short Course of Ticagrelor-Based Dual Antiplatelet Therapy versus Standard Therapy in Complex Percutaneous Coronary Intervention",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Compares antiplatelet drug regimens after coronary stenting, not walking."
+     },
+     {
+      "pmid": "34354172",
+      "title": "Effectiveness of an ankle-foot orthosis on walking in patients with stroke: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Ankle-foot orthoses in stroke patients with gait outcomes; not walking amount and heart disease or stroke events."
+     },
+     {
+      "pmid": "33280836",
+      "title": "[Trunk kinematics during walking in stroke patients: A systematic review]",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Covers trunk movement during walking in stroke patients, not walking as an exposure for cardiovascular events."
+     },
+     {
+      "pmid": "33308803",
+      "title": "Walking pace and the risk of stroke: A meta-analysis of prospective cohort studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "General adults, but the exposure is walking pace rather than amount of walking, and the outcome is stroke only."
+     },
+     {
+      "pmid": "32629648",
+      "title": "Effectiveness of backward walking for people affected by stroke: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Backward walking training in stroke patients with gait and balance outcomes; not heart disease or stroke events."
+     },
+     {
+      "pmid": "32722338",
+      "title": "Effectiveness of Respiratory Muscle Training for Pulmonary Function and Walking Ability in Patients with Stroke: A Systematic Review with Meta-Analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Respiratory muscle training in stroke patients with lung function and walking outcomes; not heart disease or stroke events."
+     },
+     {
+      "pmid": "31822115",
+      "title": "The effects of ankle-foot orthoses on walking speed in patients with stroke: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Ankle-foot orthoses in stroke patients with walking speed outcomes; not walking amount and heart disease or stroke events."
+     },
+     {
+      "pmid": "31570262",
+      "title": "High Intensity Exercise for Walking Competency in Individuals with Stroke: A Systematic Review and Meta-Analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "High intensity exercise in stroke patients with walking outcomes; not walking amount and heart disease or stroke events."
+     },
+     {
+      "pmid": "30805654",
+      "title": "Updates and comments on: Influence of transcutaneous electrical nerve stimulation on spasticity, balance, and walking speed in stroke patients: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "A comment on a review of nerve stimulation in stroke patients, not a review of walking and cardiovascular events."
+     },
+     {
+      "pmid": "30375325",
+      "title": "The Improvement of Walking Ability Following Stroke",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Gait training methods in stroke patients with walking speed and distance outcomes; not heart disease or stroke events."
+     },
+     {
+      "pmid": "28862711",
+      "title": "Influence of transcutaneous electrical nerve stimulation on spasticity, balance, and walking speed in stroke patients: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Covers nerve stimulation for spasticity and walking speed in stroke patients, not walking as an exposure for cardiovascular events."
+     },
+     {
+      "pmid": "29206272",
+      "title": "Comments on: Influence of transcutaneous electrical nerve stimulation on spasticity, balance, and walking speed in stroke patients: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "A comment on a review of nerve stimulation in stroke patients, not a review of walking and cardiovascular events."
+     },
+     {
+      "pmid": "29065080",
+      "title": "Walking Speed, Risk Factors, and Cardiovascular Events in Older Adults-Systematic Review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Older adults and cardiovascular events match, but the exposure is walking speed, not amount of walking or steps."
+     },
+     {
+      "pmid": "29067853",
+      "title": "Nordic walking for individuals with cardiovascular disease: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Nordic walking in people with heart disease; outcomes are exercise capacity and mobility, not new events or deaths."
+     },
+     {
+      "pmid": "25579505",
+      "title": "The effect of walking on risk factors for cardiovascular disease: an updated systematic review and meta-analysis of randomised control trials",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Walking trials in inactive adults, but the outcomes are risk factors like blood pressure, not heart disease or stroke."
+     },
+     {
+      "pmid": "25590442",
+      "title": "Walking training associated with virtual reality-based training increases walking speed of individuals with chronic stroke: systematic review with meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Covers virtual reality walking training for walking speed in chronic stroke, a different question."
+     },
+     {
+      "pmid": "25329391",
+      "title": "Impact of walking on glycemic control and other cardiovascular risk factors in type 2 diabetes: a meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Walking trials in people with type 2 diabetes; outcomes are blood sugar and risk factors, not heart disease or stroke."
+     },
+     {
+      "pmid": "24246405",
+      "title": "Lower limb co-contraction during walking in subjects with stroke: A systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Covers leg muscle co-contraction during walking in stroke patients, a different question."
+     },
+     {
+      "pmid": "23192710",
+      "title": "Cardiovascular conditioning for comfortable gait speed and total distance walked during the chronic stage of stroke: a meta-analysis",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Covers cardiovascular conditioning for walking speed and distance in chronic stroke; walking is the outcome."
+     },
+     {
+      "pmid": "22094228",
+      "title": "Interventions for coordination of walking following stroke: systematic review",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Covers interventions for gait coordination after stroke; walking is the outcome, not the exposure."
+     },
+     {
+      "pmid": "22729787",
+      "title": "Improving walking capacity by surgical correction of equinovarus foot deformity in adult patients with stroke or traumatic brain injury: a systematic review",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Covers surgery for foot deformity to improve walking after stroke or brain injury, a different question."
+     },
+     {
+      "pmid": "21613511",
+      "title": "Clinical measurement of walking balance in people post stroke: a systematic review",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Covers measures of walking balance in people after stroke, a different question."
+     },
+     {
+      "pmid": "27820213",
+      "title": "Interventions for improving coordination of axial segments and lower limbs during walking following stroke: Systematic Review",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Studies gait-coordination therapy in people who already had a stroke, with gait coordination as the outcome, not daily steps and new heart disease or stroke."
+     },
+     {
+      "pmid": "19882347",
+      "title": "Economic evaluation of the direct healthcare cost savings resulting from the use of walking interventions to prevent coronary heart disease in Australia",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "An economic evaluation with a meta-analysis of walking and coronary heart disease only, not stroke."
+     },
+     {
+      "pmid": "19306107",
+      "title": "Quantifying the dose-response of walking in reducing coronary heart disease risk: meta-analysis",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Walking dose in the general population, but the outcome is coronary heart disease only, without stroke."
+     },
+     {
+      "pmid": "15153151",
+      "title": "The orthotic effect of functional electrical stimulation on the improvement of walking in stroke patients with a dropped foot: a systematic review",
+      "year": 2004,
+      "fits": "no",
+      "reason": "Covers electrical stimulation for dropped foot to improve walking in stroke patients, a different question."
+     }
+    ]
+   }
+  },
+  {
+   "id": "risk-factors",
+   "label": "Blood pressure and fitness",
+   "finding": "Blood pressure, fitness, weight and waist",
+   "counts": {
+    "all": 9831,
+    "reviews": 32,
+    "trialReviews": 22,
+    "trials": 124,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38872081",
+     "doi": "10.1186/s12877-024-05069-z",
+     "title": "Effectiveness of pedometer-based walking programmes in improving some modifiable risk factors of stroke among community-dwelling older adults: a systematic review, theoretical synthesis and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Ibeneme SC",
+     "journal": "BMC geriatrics",
+     "citedBy": 2,
+     "n": 1546,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "35593130",
+     "doi": "10.1177/00368504221101636",
+     "title": "Walking and resting blood pressure: An inter-individual response difference meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Kelley GA",
+     "journal": "Science progress",
+     "citedBy": 14,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "29858464",
+     "doi": "10.1136/bjsports-2017-098558",
+     "title": "Effects of frequency, intensity, duration and volume of walking interventions on CVD risk factors: a systematic review and meta-regression analysis of randomised controlled trials among inactive healthy adults",
+     "year": 2018,
+     "firstAuthor": "Oja P",
+     "journal": "British journal of sports medicine",
+     "citedBy": 98,
+     "n": 2001,
+     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+    },
+    {
+     "pmid": "20863494",
+     "doi": "10.1016/j.ijnurstu.2010.08.008",
+     "title": "The effect of walking intervention on blood pressure control: a systematic review",
+     "year": 2010,
+     "firstAuthor": "Lee LL",
+     "journal": "International journal of nursing studies",
+     "citedBy": 54,
+     "why": "The most comprehensive review on this finding (27 trials, 2010); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.13043478260869565,
+    "trials": 46,
+    "inclusions": 58,
+    "reviews": [
+     {
+      "pmid": "38872081",
+      "trials": 13
+     },
+     {
+      "pmid": "29858464",
+      "trials": 27
+     },
+     {
+      "pmid": "20863494",
+      "trials": 18
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "35593130"
+    ],
+    "shared": [
+     {
+      "pmid": "17055561",
+      "title": "Evaluating a community-based walking intervention for hypertensive older people in Taiwan: a randomized controlled trial",
+      "year": 2007,
+      "n": 202,
+      "inReviews": [
+       "38872081",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "12055113",
+      "title": "Randomised, controlled walking trials in postmenopausal women: the minimum dose to improve aerobic fitness?",
+      "year": 2002,
+      "n": 121,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "8882996",
+      "title": "Influence of walking volume on health benefits in women post-menopause",
+      "year": 1996,
+      "n": 79,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "17699531",
+      "title": "Randomised controlled trial of home-based walking programmes at and below current recommended levels of exercise in sedentary adults",
+      "year": 2007,
+      "n": 61,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "8198040",
+      "title": "Moderate- and high-intensity exercise lowers blood pressure in normotensive subjects 60 to 79 years of age",
+      "year": 1994,
+      "n": 44,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "10200809",
+      "title": "Walking with its training effects on the fitness and activity patterns of 79-91 year old females",
+      "year": 1999,
+      "n": 38,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "16716211",
+      "title": "The effect of a worksite based walking programme on cardiovascular risk in previously sedentary civil servants [NCT00284479]",
+      "year": 2006,
+      "n": 37,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "15916998",
+      "title": "The effects of 60 minutes of brisk walking per week, accumulated in two different patterns, on cardiovascular risk",
+      "year": 2005,
+      "n": 31,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "11689731",
+      "title": "Increasing daily walking lowers blood pressure in postmenopausal women",
+      "year": 2001,
+      "n": 24,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "15917061",
+      "title": "Brisk walking, fitness, and cardiovascular risk: a randomized controlled trial in primary care",
+      "year": 2005,
+      "n": 21,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "12121427",
+      "title": "Walking trials in postmenopausal women: effect of one vs two daily bouts on aerobic fitness",
+      "year": 2002,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "9475657",
+      "title": "Training effects of short and long bouts of brisk walking in sedentary women",
+      "year": 1998,
+      "inReviews": [
+       "29858464",
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "31237875",
+      "title": "Effect of pedometer-based walking interventions on long-term health outcomes: Prospective 4-year follow-up of two randomised controlled trials using routine primary care data",
+      "year": 2019,
+      "n": 2013,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "22585884",
+      "title": "Healthy Steps trial: pedometer-based advice and physical activity for low-active older adults",
+      "year": 2012,
+      "n": 330,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "7489529",
+      "title": "Walking program reduces elevated cholesterol in women postmenopause",
+      "year": 1995,
+      "n": 300,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "30836804",
+      "title": "\"Worth the Walk\": Culturally Tailored Stroke Risk Factor Reduction Intervention in Community Senior Centers",
+      "year": 2019,
+      "n": 233,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "17605959",
+      "title": "Effects of high-intensity interval walking training on physical fitness and blood pressure in middle-aged and older people",
+      "year": 2007,
+      "n": 186,
+      "inReviews": [
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "31286632",
+      "title": "Controlled randomized trial of walking exercise with positive education on cardiovascular fitness and happiness in retired older adults",
+      "year": 2019,
+      "n": 150,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "20484759",
+      "title": "A comparison of fitness training to a pedometer-based walking program matched for total energy cost",
+      "year": 2010,
+      "n": 128,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "24572255",
+      "title": "Relative importance of step count, intensity, and duration on physical activity's impact on vascular structure and function in previously sedentary older adults",
+      "year": 2014,
+      "n": 114,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "24285336",
+      "title": "Light physical activity determined by a motion sensor decreases insulin resistance, improves lipid homeostasis and reduces visceral fat in high-risk subjects: PreDiabEx study RCT",
+      "year": 2014,
+      "n": 113,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "24937024",
+      "title": "Effects of physical exercise on health-related quality of life and blood lipids in perimenopausal women: a randomized placebo-controlled trial",
+      "year": 2014,
+      "n": 79,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "24770699",
+      "title": "Exercise volume and intensity: a dose-response relationship with health benefits",
+      "year": 2014,
+      "n": 72,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "23859934",
+      "title": "Effects of a physical activity and healthy eating intervention to reduce stroke risk factors in older adults",
+      "year": 2013,
+      "n": 69,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "21314449",
+      "title": "Effectiveness of long and short bout walking on increasing physical activity in women",
+      "year": 2011,
+      "n": 60,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "24534270",
+      "title": "Accumulated brisk walking reduces arterial stiffness in overweight adults: evidence from a randomized control trial",
+      "year": 2014,
+      "n": 58,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "17156836",
+      "title": "Walking towards health in a university community: a feasibility study",
+      "year": 2007,
+      "n": 58,
+      "inReviews": [
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "8287662",
+      "title": "Brisk walking and serum lipoprotein variables in formerly sedentary men aged 42-59 years",
+      "year": 1993,
+      "n": 48,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "7957147",
+      "title": "The influence of a 1-year programme of brisk walking on endurance fitness and body composition in previously sedentary men aged 42-59 years",
+      "year": 1994,
+      "n": 48,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "26041459",
+      "title": "Effects of the DASH Diet and Walking on Blood Pressure in Patients With Type 2 Diabetes and Uncontrolled Hypertension: A Randomized Controlled Trial",
+      "year": 2015,
+      "n": 40,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "18442621",
+      "title": "Regular use of pedometer does not enhance beneficial outcomes in a physical activity intervention study in type 2 diabetes mellitus",
+      "year": 2008,
+      "n": 34,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "8563674",
+      "title": "Failure of 40 weeks of brisk walking to alter blood lipids in normolipemic women",
+      "year": 1995,
+      "n": 27,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "8668449",
+      "title": "Effects of a walking program on attributional style, depression, and self-esteem in women",
+      "year": 1995,
+      "n": 27,
+      "inReviews": [
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "15530585",
+      "title": "The effects of short- vs. long-bout exercise on mood, VO2max, and percent body fat",
+      "year": 2005,
+      "n": 21,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "9931171",
+      "title": "Daily aerobic exercise improves reactive hyperemia in patients with essential hypertension",
+      "year": 1999,
+      "n": 20,
+      "inReviews": [
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "23492248",
+      "title": "The relationship between changes in steps/day and health outcomes after a pedometer-based physical activity intervention with telephone support in type 2 diabetes patients",
+      "year": 2013,
+      "n": 18,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "16219018",
+      "title": "Relationship between pedometer-registered activity, aerobic capacity and self-reported activity and fitness in patients with type 2 diabetes",
+      "year": 2005,
+      "n": 15,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "20551485",
+      "title": "Walking toward a new me: the impact of prescribed walking 10,000 steps/day on physical and psychological well-being",
+      "year": 2010,
+      "n": 15,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "21054290",
+      "title": "Do pedometers increase physical activity in sedentary older women? A randomized controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "19614943",
+      "title": "Improved cardiovascular health following a progressive walking and dietary intervention for type 2 diabetes",
+      "year": 2009,
+      "inReviews": [
+       "38872081"
+      ]
+     },
+     {
+      "pmid": "16937604",
+      "title": "Walking, body composition, and blood pressure dose-response in African American and white women",
+      "year": 2006,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "18580406",
+      "title": "Low-intensity exercise exerts beneficial effects on plasma lipids via PPARgamma",
+      "year": 2008,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "8350608",
+      "title": "The effects of a walking program on body composition and serum lipids and lipoproteins in overweight women",
+      "year": 1993,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "14507293",
+      "title": "Walking trials in postmenopausal women: effect of low doses of exercise and exercise fractionization on coronary risk factors",
+      "year": 2003,
+      "inReviews": [
+       "29858464"
+      ]
+     },
+     {
+      "pmid": "1960829",
+      "title": "Women walking for health and fitness. How much is enough?",
+      "year": 1991,
+      "inReviews": [
+       "20863494"
+      ]
+     },
+     {
+      "pmid": "14569279",
+      "title": "Controlled outcome evaluation of the First Step Program: a daily physical activity intervention for individuals with type II diabetes",
+      "year": 2004,
+      "inReviews": [
+       "20863494"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 3,
+     "trials": 8
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 9
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 5
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 6
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "17615064",
+     "title": "A factorial-design cluster randomised controlled trial investigating the cost-effectiveness of a nutrition supplement and an exercise programme on pneumonia incidence, walking capacity and body mass index in older people living in Santiago, Chile: the CENEX study protocol",
+     "year": 2007,
+     "n": 2800
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "25579505",
+     "25601182"
+    ],
+    "citedNotEligible": [
+     "25601182"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "38872081",
+      "doi": "10.1186/s12877-024-05069-z",
+      "title": "Effectiveness of pedometer-based walking programmes in improving some modifiable risk factors of stroke among community-dwelling older adults: a systematic review, theoretical synthesis and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Ibeneme SC",
+      "journal": "BMC geriatrics",
+      "citedBy": 2,
+      "n": 1546,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "35593130",
+      "doi": "10.1177/00368504221101636",
+      "title": "Walking and resting blood pressure: An inter-individual response difference meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "firstAuthor": "Kelley GA",
+      "journal": "Science progress",
+      "citedBy": 14,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     },
+     {
+      "pmid": "29858464",
+      "doi": "10.1136/bjsports-2017-098558",
+      "title": "Effects of frequency, intensity, duration and volume of walking interventions on CVD risk factors: a systematic review and meta-regression analysis of randomised controlled trials among inactive healthy adults",
+      "year": 2018,
+      "firstAuthor": "Oja P",
+      "journal": "British journal of sports medicine",
+      "citedBy": 98,
+      "n": 2001,
+      "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     },
+     {
+      "pmid": "20863494",
+      "doi": "10.1016/j.ijnurstu.2010.08.008",
+      "title": "The effect of walking intervention on blood pressure control: a systematic review",
+      "year": 2010,
+      "firstAuthor": "Lee LL",
+      "journal": "International journal of nursing studies",
+      "citedBy": 54,
+      "why": "The most comprehensive review on this finding (27 trials, 2010); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, mostly inactive at the start (reviews of one illness count as partly)",
+     "intervention": "A walking programme or walking group",
+     "comparison": "No exercise or usual activity",
+     "outcome": "Blood pressure, fitness (VO2max), body weight or waist size"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 11,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42405260",
+      "title": "The optimal dose of brisk walking for improving blood pressure in hypertensive patients: a systematic review and bayesian meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "RCTs of brisk walking and blood pressure, but only in people with hypertension."
+     },
+     {
+      "pmid": "42434753",
+      "title": "A systematic review and meta-analysis of the effects of walking training on cardiorespiratory fitness in cancer patients",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Walking versus usual care or no intervention, with VO2 peak/max as an outcome, but only in cancer patients."
+     },
+     {
+      "pmid": "42514229",
+      "title": "Changes in Cardiometabolic Risk Factors Following Nordic Walking in Adults with Prediabetes or Diabetes: A Systematic Review and Meta-Analysis of Pre-Post Interventions",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Nordic walking with BMI, waist and BP, but only in people with prediabetes or diabetes, and it uses before-and-after changes with no control group."
+     },
+     {
+      "pmid": "39476525",
+      "title": "The effects of nordic walking on the cardiovascular risk factors in older adults: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "RCTs in older adults with BP and BMI, but the exercise is Nordic (pole) walking and the comparison group is not stated."
+     },
+     {
+      "pmid": "41097698",
+      "title": "Effects of Nordic Walking on Physical Fitness in Patients with Cancer: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Nordic walking versus no intervention in cancer patients; fitness was measured by the 6-minute walk test, not VO2max."
+     },
+     {
+      "pmid": "39444461",
+      "title": "Brisk Walking Exercise Has Benefits of Lowering Blood Pressure in Hypertension Sufferers: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Brisk walking versus no brisk walking with blood pressure as the outcome, but only in people with hypertension."
+     },
+     {
+      "pmid": "39258157",
+      "title": "Effects of body weight support training on balance and walking function in stroke patients: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Body-weight-supported gait training in stroke patients, with balance and gait as outcomes; a different question."
+     },
+     {
+      "pmid": "35147898",
+      "title": "The Acute Effects of Interrupting Prolonged Sitting Time in Adults with Standing and Light-Intensity Walking on Biomarkers of Cardiometabolic Health in Adults: A Systematic Review and Meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "One-day crossover trials of short walking breaks during long periods of sitting, not a walking programme."
+     },
+     {
+      "pmid": "33630309",
+      "title": "Walking for hypertension",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "RCTs of walking vs no-intervention control in people aged 16+, but participants aren't stated to be inactive and the only outcome is blood pressure (plus heart rate)."
+     },
+     {
+      "pmid": "32590383",
+      "title": "Cardiorespiratory Fitness, Physical Activity, Walking Speed, Lack of Participation in Leisure Activities, and Lung Cancer Mortality: A Systematic Review and Meta-Analysis of Prospective Cohort Studies",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Cohort studies of fitness, activity and walking speed against lung cancer mortality; this is not a walking programme and does not measure BP, VO2max or weight."
+     },
+     {
+      "pmid": "28169568",
+      "title": "The Influence of Age, Sex and Body Mass Index on the Effectiveness of Brisk Walking for Obesity Management in Adults: A Systematic Review and Meta-Analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "RCTs of brisk walking with body weight and waist outcomes, but only in adults with obesity."
+     },
+     {
+      "pmid": "29065080",
+      "title": "Walking Speed, Risk Factors, and Cardiovascular Events in Older Adults-Systematic Review",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Looks at walking speed as a test of cardiovascular risk in older adults, not a walking programme compared with no exercise."
+     },
+     {
+      "pmid": "27187009",
+      "title": "Effects of walking on body composition in perimenopausal and postmenopausal women: a systematic review and meta-analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Walking versus no exercise in inactive people with body weight as the outcome, but only peri- and postmenopausal women."
+     },
+     {
+      "pmid": "25329391",
+      "title": "Impact of walking on glycemic control and other cardiovascular risk factors in type 2 diabetes: a meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Walking RCTs with BMI and blood pressure, but only in people with type 2 diabetes."
+     },
+     {
+      "pmid": "11493045",
+      "title": "Walking and resting blood pressure in adults: a meta-analysis",
+      "year": 2001,
+      "fits": "partly",
+      "reason": "Walking-only programmes vs control in sedentary adults match, but the review covers only one outcome, resting blood pressure."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Type 2 diabetes",
+   "finding": "Type 2 diabetes: new cases, and blood sugar in people who have it",
+   "counts": {
+    "all": 3714,
+    "reviews": 18,
+    "trialReviews": 16,
+    "trials": 101,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42456792",
+     "doi": "10.1016/j.exger.2026.113239",
+     "title": "Effect of walking training on blood glucose control and metabolic health in patients with type 2 diabetes: A systematic review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Yuan H",
+     "journal": "Experimental gerontology",
+     "citedBy": 0,
+     "n": 483,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "38220510",
+     "doi": "10.1016/j.numecd.2023.11.017",
+     "title": "Pedometer- and accelerometer- based physical activity interventions in Type 2 diabetes: A systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "de Oliveira VLP",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 7,
+     "n": 1969,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "38045671",
+     "doi": "10.15605/jafes.038.02.20",
+     "title": "Effect of Yoga and Walking on Glycemic Control for the Management of Type 2 Diabetes: A Systematic Review and Meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Dhali B",
+     "journal": "Journal of the ASEAN Federation of Endocrine Societies",
+     "citedBy": 10,
+     "n": 1820,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.05,
+    "trials": 20,
+    "inclusions": 22,
+    "reviews": [
+     {
+      "pmid": "42456792",
+      "trials": 4
+     },
+     {
+      "pmid": "38220510",
+      "trials": 14
+     },
+     {
+      "pmid": "38045671",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "23002086",
+      "title": "The effects of free-living interval-walking training on glycemic control, body composition, and physical fitness in type 2 diabetic patients: a randomized, controlled trial",
+      "year": 2013,
+      "n": 12,
+      "inReviews": [
+       "38220510",
+       "38045671"
+      ]
+     },
+     {
+      "pmid": "29335328",
+      "title": "Walking prescription of 10 000 steps per day in patients with type 2 diabetes mellitus: a randomised trial in Nigerian general practice",
+      "year": 2018,
+      "inReviews": [
+       "42456792",
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "21705068",
+      "title": "Diet or diet plus physical activity versus usual care in patients with newly diagnosed type 2 diabetes: the Early ACTID randomised controlled trial",
+      "year": 2011,
+      "n": 593,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "30429410",
+      "title": "Effects of a diet with or without physical activity on angiopoietin-like protein 8 concentrations in overweight/obese patients with newly diagnosed type 2 diabetes: a randomized controlled trial",
+      "year": 2019,
+      "n": 128,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "12421890",
+      "title": "Effects of the amount and intensity of exercise on plasma lipoproteins",
+      "year": 2002,
+      "n": 84,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "16439498",
+      "title": "Impact of using a pedometer on time spent walking in older adults with type 2 diabetes",
+      "year": 2006,
+      "n": 57,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "20019197",
+      "title": "Promoting physical activity for persons with diabetes",
+      "year": 2010,
+      "n": 53,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "18297259",
+      "title": "Brisk walking compared with an individualised medical fitness programme for patients with type 2 diabetes: a randomised controlled trial",
+      "year": 2008,
+      "n": 49,
+      "inReviews": [
+       "42456792"
+      ]
+     },
+     {
+      "pmid": "20338978",
+      "title": "A cognitive-behavioural pedometer-based group intervention on physical activity and sedentary behaviour in individuals with type 2 diabetes",
+      "year": 2010,
+      "n": 41,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "26041459",
+      "title": "Effects of the DASH Diet and Walking on Blood Pressure in Patients With Type 2 Diabetes and Uncontrolled Hypertension: A Randomized Controlled Trial",
+      "year": 2015,
+      "n": 40,
+      "inReviews": [
+       "42456792"
+      ]
+     },
+     {
+      "pmid": "34582701",
+      "title": "Effects of 12 Weeks Practice of Yoga on Heart Rate Variability in Males with Type 2 Diabetes Receiving Oral Antidiabetic Drugs: A Randomized Control Trial",
+      "year": 2021,
+      "n": 40,
+      "inReviews": [
+       "38045671"
+      ]
+     },
+     {
+      "pmid": "18442621",
+      "title": "Regular use of pedometer does not enhance beneficial outcomes in a physical activity intervention study in type 2 diabetes mellitus",
+      "year": 2008,
+      "n": 34,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "16979410",
+      "title": "Efficacy of a pedometer-based physical activity program on parameters of diabetes control in type 2 diabetes mellitus",
+      "year": 2006,
+      "n": 30,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "21052886",
+      "title": "Increasing physical activity in Belgian type 2 diabetes patients: a three-arm randomized controlled trial",
+      "year": 2011,
+      "n": 24,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "24980650",
+      "title": "A yoga intervention for type 2 diabetes risk reduction: a pilot randomized controlled trial",
+      "year": 2014,
+      "n": 21,
+      "inReviews": [
+       "38045671"
+      ]
+     },
+     {
+      "pmid": "23492248",
+      "title": "The relationship between changes in steps/day and health outcomes after a pedometer-based physical activity intervention with telephone support in type 2 diabetes patients",
+      "year": 2013,
+      "n": 18,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "27261988",
+      "title": "Effects of Buddhist walking meditation on glycemic control and vascular function in patients with type 2 diabetes",
+      "year": 2016,
+      "n": 12,
+      "inReviews": [
+       "38045671"
+      ]
+     },
+     {
+      "pmid": "28074635",
+      "title": "Physician step prescription and monitoring to improve ARTERial health (SMARTER): A randomized controlled trial in patients with type 2 diabetes and hypertension",
+      "year": 2017,
+      "inReviews": [
+       "42456792"
+      ]
+     },
+     {
+      "pmid": "19945929",
+      "title": "Effectiveness of an aerobic walking program using heart rate monitor and pedometer on the parameters of diabetes control in Asian Indians with type 2 diabetes",
+      "year": 2010,
+      "inReviews": [
+       "38220510"
+      ]
+     },
+     {
+      "pmid": "14569279",
+      "title": "Controlled outcome evaluation of the First Step Program: a daily physical activity intervention for individuals with type II diabetes",
+      "year": 2004,
+      "inReviews": [
+       "38220510"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 8
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 8
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 7
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2026,
+     "reviews": 6,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "21081539",
+     "title": "Lessened decline in physical activity and impairment of older adults with diabetes with telemedicine and pedometer use: results from the IDEATel study",
+     "year": 2011,
+     "n": 1650
+    },
+    {
+     "pmid": "34157994",
+     "title": "Process evaluation of the Sophia Step Study- a primary care based three-armed randomized controlled trial using self-monitoring of steps with and without counseling in prediabetes and type 2 diabetes",
+     "year": 2021,
+     "n": 18188
+    },
+    {
+     "pmid": "39744353",
+     "title": "Long-term impact of Diabetes Prevention Program interventions on walking endurance",
+     "year": 2024,
+     "n": 1830
+    },
+    {
+     "pmid": "40169145",
+     "title": "Semaglutide and walking capacity in people with symptomatic peripheral artery disease and type 2 diabetes (STRIDE): a phase 3b, double-blind, randomised, placebo-controlled trial",
+     "year": 2025,
+     "n": 1363
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "40713949",
+     "25329391"
+    ],
+    "citedNotEligible": [
+     "40713949"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42456792",
+      "doi": "10.1016/j.exger.2026.113239",
+      "title": "Effect of walking training on blood glucose control and metabolic health in patients with type 2 diabetes: A systematic review and meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Yuan H",
+      "journal": "Experimental gerontology",
+      "citedBy": 0,
+      "n": 483,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "38220510",
+      "doi": "10.1016/j.numecd.2023.11.017",
+      "title": "Pedometer- and accelerometer- based physical activity interventions in Type 2 diabetes: A systematic review and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "de Oliveira VLP",
+      "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+      "citedBy": 7,
+      "n": 1969,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "38045671",
+      "doi": "10.15605/jafes.038.02.20",
+      "title": "Effect of Yoga and Walking on Glycemic Control for the Management of Type 2 Diabetes: A Systematic Review and Meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Dhali B",
+      "journal": "Journal of the ASEAN Federation of Endocrine Societies",
+      "citedBy": 10,
+      "n": 1820,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults without diabetes (new cases), or adults with type 2 diabetes (blood sugar)",
+     "intervention": "More daily steps or a walking programme",
+     "comparison": "Fewer steps, or no walking programme",
+     "outcome": "New type 2 diabetes, or HbA1c and blood sugar"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 6,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41523744",
+      "title": "Effect of Nordic Walking on Anthropometrics, Glycemia, and Lipid Profile in Adults With Prediabetes or Diabetes: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools trials of Nordic walking (with poles) in adults with prediabetes or diabetes; HbA1c is reported, but the walking type and group are broader."
+     },
+     {
+      "pmid": "42514229",
+      "title": "Changes in Cardiometabolic Risk Factors Following Nordic Walking in Adults with Prediabetes or Diabetes: A Systematic Review and Meta-Analysis of Pre-Post Interventions",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Nordic walking in people with prediabetes or diabetes, and it only compares before and after, with no non-walking comparison group."
+     },
+     {
+      "pmid": "41491049",
+      "title": "Slow walking speed and risk of cardiovascular events in type 2 diabetes: a systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at walking speed and cardiovascular events in type 2 diabetes, not step counts or walking programmes and blood sugar."
+     },
+     {
+      "pmid": "41858857",
+      "title": "Mind-body exercise for improving balance, aerobic capacity, walking ability, muscle strength, and mental health in patients with type 2 diabetes: a network meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Compares mind-body exercises for balance, fitness, strength and mental health, not blood sugar."
+     },
+     {
+      "pmid": "38050034",
+      "title": "Walking speed and the risk of type 2 diabetes: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Cohort studies of new type 2 diabetes, but the exposure is walking speed rather than daily steps or a walking programme."
+     },
+     {
+      "pmid": "38091004",
+      "title": "Meta-Analysis: Faster Walking Linked With Lower Type 2 Diabetes Risk",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "No abstract; the title links faster walking to type 2 diabetes risk, so the exposure is walking speed, not steps or a programme."
+     },
+     {
+      "pmid": "36715875",
+      "title": "After Dinner Rest a While, After Supper Walk a Mile? A Systematic Review with Meta-analysis on the Acute Postprandial Glycemic Response to Exercise Before and After Meal Ingestion in Healthy Subjects and Patients with Impaired Glucose Tolerance",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Single exercise sessions timed around meals, in a mixed group with and without diabetes; the outcome is only the blood sugar rise after meals."
+     },
+     {
+      "pmid": "33217794",
+      "title": "Evaluation of walking exercise on glycemic control in patients with type 2 diabetes mellitus: A protocol for systematic review and meta-analysis of randomized cross-over controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Only a protocol for a review of walking and blood sugar control in type 2 diabetes; it has no pooled results yet."
+     },
+     {
+      "pmid": "26926674",
+      "title": "Pedometer intervention and weight loss in overweight and obese adults with Type 2 diabetes: a meta-analysis",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Pedometer interventions in type 2 diabetes, but the outcome is weight loss, not blood sugar or HbA1c."
+     }
+    ]
+   }
+  },
+  {
+   "id": "depression",
+   "label": "Depression",
+   "finding": "Depression and depressive symptoms",
+   "counts": {
+    "all": 3873,
+    "reviews": 5,
+    "trialReviews": 4,
+    "trials": 29,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39680407",
+     "doi": "10.1001/jamanetworkopen.2024.51208",
+     "title": "Daily Step Count and Depression in Adults: A Systematic Review and Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Bizzozero-Peroni B",
+     "journal": "JAMA network open",
+     "citedBy": 27,
+     "n": 96173,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39045858",
+     "doi": "10.2196/48355",
+     "title": "The Effect of Walking on Depressive and Anxiety Symptoms: Systematic Review and Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Xu Z",
+     "journal": "JMIR public health and surveillance",
+     "citedBy": 26,
+     "n": 8636,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "38355154",
+     "40713949",
+     "25601182"
+    ],
+    "citedNotEligible": [
+     "38355154",
+     "40713949",
+     "25601182"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39680407",
+      "doi": "10.1001/jamanetworkopen.2024.51208",
+      "title": "Daily Step Count and Depression in Adults: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "firstAuthor": "Bizzozero-Peroni B",
+      "journal": "JAMA network open",
+      "citedBy": 27,
+      "n": 96173,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39045858",
+      "doi": "10.2196/48355",
+      "title": "The Effect of Walking on Depressive and Anxiety Symptoms: Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "firstAuthor": "Xu Z",
+      "journal": "JMIR public health and surveillance",
+      "citedBy": 26,
+      "n": 8636,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, with or without depression",
+     "intervention": "Walking or more daily steps",
+     "comparison": "Less walking, usual care or no exercise",
+     "outcome": "Depression or depressive symptoms"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "34704837",
+      "title": "Does Walking Reduce Postpartum Depressive Symptoms? A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Walking versus control with depressive symptoms as the outcome, but the population is narrower: only postpartum mothers with mild-to-moderate depression."
+     },
+     {
+      "pmid": "31420232",
+      "title": "Relationship Between Mood, Thinking, and Walking: A Systematic Review Examining Depressive Symptoms, Executive Function, and Gait",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at gait speed alongside depression and executive function in older adults as a triad; walking or steps is not studied as an exposure or intervention."
+     }
+    ]
+   }
+  },
+  {
+   "id": "pace",
+   "label": "Walking pace",
+   "finding": "Walking pace",
+   "counts": {
+    "all": 4911,
+    "reviews": 60,
+    "trialReviews": 37,
+    "trials": 52,
+    "largeTrials": 5
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40266699",
+     "doi": "10.1080/02640414.2025.2496082",
+     "title": "Systematic review and meta-analysis of the association between usual walking speed and all-cause mortality and risk of major non-communicable diseases",
+     "year": 2025,
+     "firstAuthor": "Wu Q",
+     "journal": "Journal of sports sciences",
+     "citedBy": 2,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "38050034",
+     "doi": "10.1136/bjsports-2023-107336",
+     "title": "Walking speed and the risk of type 2 diabetes: a systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Jayedi A",
+     "journal": "British journal of sports medicine",
+     "citedBy": 22,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39133765",
+     "doi": "10.1080/02640414.2024.2390302",
+     "title": "Dose-response association between walking speed and all-cause mortality: A systematic review and meta-analysis of cohort studies",
+     "year": 2024,
+     "firstAuthor": "Liu Y",
+     "journal": "Journal of sports sciences",
+     "citedBy": 4,
+     "n": 530841,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "40929147",
+     "doi": "10.1093/gerona/glaf198",
+     "title": "Effect of aspirin on grip strength and gait speed in community-dwelling older adults in the ASPirin in Reducing Events in the Elderly (ASPREE) Study",
+     "year": 2025,
+     "firstAuthor": "Phyo AZZ",
+     "journal": "The journals of gerontology. Series A, Biological sciences and medical sciences",
+     "citedBy": 1,
+     "n": 6203,
+     "why": "A large trial (about 6,203 people) from 2025, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0,
+    "trials": 2,
+    "inclusions": 2,
+    "reviews": [
+     {
+      "pmid": "40266699",
+      "trials": 1
+     },
+     {
+      "pmid": "39133765",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "38050034"
+    ],
+    "shared": [
+     {
+      "pmid": "20371746",
+      "title": "Physical activity and risk of stroke in women",
+      "year": 2010,
+      "n": 39315,
+      "inReviews": [
+       "40266699"
+      ]
+     },
+     {
+      "pmid": "35579606",
+      "title": "Comparison of moderate and vigorous walking exercise on reducing depression in middle-aged and older adults: A pilot randomized controlled trial",
+      "year": 2023,
+      "n": 10,
+      "inReviews": [
+       "39133765"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 7,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 6,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "19922671",
+     "title": "Inverse association between insulin resistance and gait speed in nondiabetic older men: results from the U.S. National Health and Nutrition Examination Survey (NHANES) 1999-2002",
+     "year": 2009,
+     "n": 1168
+    },
+    {
+     "pmid": "28166324",
+     "title": "Effect of Intensive Blood Pressure Control on Gait Speed and Mobility Limitation in Adults 75 Years or Older: A Randomized Clinical Trial",
+     "year": 2017,
+     "n": 2636
+    },
+    {
+     "pmid": "35122085",
+     "title": "Long-Term Aspirin Use and Self-Reported Walking Speed in Older Men: The Physicians' Health Study",
+     "year": 2022,
+     "n": 14315
+    },
+    {
+     "pmid": "35639376",
+     "title": "Association of Dual Decline in Cognition and Gait Speed With Risk of Dementia in Older Adults",
+     "year": 2022,
+     "n": 19114
+    },
+    {
+     "pmid": "40929147",
+     "title": "Effect of aspirin on grip strength and gait speed in community-dwelling older adults in the ASPirin in Reducing Events in the Elderly (ASPREE) Study",
+     "year": 2025,
+     "n": 6203
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "38050034"
+    ],
+    "citedNotChosen": [
+     "35247352"
+    ],
+    "citedNotEligible": [
+     "35247352"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "40266699",
+      "doi": "10.1080/02640414.2025.2496082",
+      "title": "Systematic review and meta-analysis of the association between usual walking speed and all-cause mortality and risk of major non-communicable diseases",
+      "year": 2025,
+      "firstAuthor": "Wu Q",
+      "journal": "Journal of sports sciences",
+      "citedBy": 2,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "39133765",
+      "doi": "10.1080/02640414.2024.2390302",
+      "title": "Dose-response association between walking speed and all-cause mortality: A systematic review and meta-analysis of cohort studies",
+      "year": 2024,
+      "firstAuthor": "Liu Y",
+      "journal": "Journal of sports sciences",
+      "citedBy": 4,
+      "n": 530841,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "40929147",
+      "doi": "10.1093/gerona/glaf198",
+      "title": "Effect of aspirin on grip strength and gait speed in community-dwelling older adults in the ASPirin in Reducing Events in the Elderly (ASPREE) Study",
+      "year": 2025,
+      "firstAuthor": "Phyo AZZ",
+      "journal": "The journals of gerontology. Series A, Biological sciences and medical sciences",
+      "citedBy": 1,
+      "n": 6203,
+      "why": "A large trial (about 6,203 people) from 2025, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "A faster usual walking pace or stepping rate",
+     "comparison": "A slower pace",
+     "outcome": "Death, heart disease, stroke or type 2 diabetes"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 9,
+     "partly": 9,
+     "no": 19,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41491049",
+      "title": "Slow walking speed and risk of cardiovascular events in type 2 diabetes: a systematic review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares walking speed with heart disease events, but only in people with type 2 diabetes, a group defined by one illness."
+     },
+     {
+      "pmid": "41824374",
+      "title": "Associations of cardiovascular risk factors with handgrip strength and gait speed among older males and females: A systematic review protocol",
+      "year": 2026,
+      "fits": "no",
+      "reason": "A protocol on heart risk factors as predictors of gait speed, which is the reverse direction; it does not look at death or disease outcomes."
+     },
+     {
+      "pmid": "39991779",
+      "title": "Gait Speed and All-Cause Mortality in Whole-Spectrum Chronic Kidney Disease: A Systematic Review and Meta-Analysis Included 6217 Participants",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Gait speed and all-cause death match, but the population is people with chronic kidney disease, a group defined by one illness."
+     },
+     {
+      "pmid": "39290341",
+      "title": "Impact of Wearable Device-Based Walking Programs on Gait Speed in Older Adults: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Tests wearable walking programmes with gait speed as the outcome, not death or disease."
+     },
+     {
+      "pmid": "38358907",
+      "title": "Multiple imputation of systematically missing data on gait speed in the Swedish National Study on Aging and Care",
+      "year": 2024,
+      "fits": "no",
+      "reason": "A simulation study of methods for filling in missing gait speed data, not a review of studies on pace and death."
+     },
+     {
+      "pmid": "34665474",
+      "title": "Slow gait speed is associated with worse postoperative outcomes in cardiac surgery: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Slow versus normal gait speed and death or stroke match, but the population is cardiac surgery patients, not adults in general."
+     },
+     {
+      "pmid": "36226075",
+      "title": "Walking speed at the acute and subacute stroke stage: A descriptive meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Describes walking speed in stroke patients, not walking speed as a risk for these outcomes."
+     },
+     {
+      "pmid": "32590383",
+      "title": "Cardiorespiratory Fitness, Physical Activity, Walking Speed, Lack of Participation in Leisure Activities, and Lung Cancer Mortality: A Systematic Review and Meta-Analysis of Prospective Cohort Studies",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Mainly about fitness and lung cancer death; walking speed is only a subgroup and is compared against age-matched peers for all-cause death."
+     },
+     {
+      "pmid": "32098749",
+      "title": "Gait and fate: Baseline gait speed and mortality after transcatheter aortic valve implantation",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Slow versus fast gait speed and death match, but the population is patients having heart valve replacement (TAVI)."
+     },
+     {
+      "pmid": "31822115",
+      "title": "The effects of ankle-foot orthoses on walking speed in patients with stroke: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Tests ankle-foot orthoses for walking speed in stroke patients, a different question."
+     },
+     {
+      "pmid": "30805654",
+      "title": "Updates and comments on: Influence of transcutaneous electrical nerve stimulation on spasticity, balance, and walking speed in stroke patients: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "A comment on a review of nerve stimulation in stroke patients, a different question."
+     },
+     {
+      "pmid": "30570081",
+      "title": "Physical frailty and gait speed in community elderly: a systematic review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Older adults living at home and gait speed match, but the review is about frailty and death is only one of many associations."
+     },
+     {
+      "pmid": "30338417",
+      "title": "Meta-analysis identifies mitochondrial DNA sequence variants associated with walking speed",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at genetic variants linked to walking speed, not walking speed as a risk for death or disease."
+     },
+     {
+      "pmid": "28862711",
+      "title": "Influence of transcutaneous electrical nerve stimulation on spasticity, balance, and walking speed in stroke patients: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Tests nerve stimulation for spasticity and walking speed in stroke patients, a different question."
+     },
+     {
+      "pmid": "29738743",
+      "title": "Effects of Physical Exercise Interventions on Dual-Task Gait Speed Following Stroke: A Systematic Review and Meta-Analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Tests exercise programmes for dual-task gait speed after stroke, a different question."
+     },
+     {
+      "pmid": "29206272",
+      "title": "Comments on: Influence of transcutaneous electrical nerve stimulation on spasticity, balance, and walking speed in stroke patients: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "A comment on a review of nerve stimulation in stroke patients; it does not look at walking pace as an exposure for death or disease."
+     },
+     {
+      "pmid": "29111465",
+      "title": "Effectiveness of Circuit-Based Exercises on Gait Speed, Balance, and Functional Mobility in People Affected by Stroke: A Meta-Analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at circuit exercise to improve gait speed after stroke; gait speed is the outcome, not the exposure."
+     },
+     {
+      "pmid": "29065080",
+      "title": "Walking Speed, Risk Factors, and Cardiovascular Events in Older Adults-Systematic Review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Links walking speed to heart events, stroke and death, but only in adults over 60, and partly looks at risk factors instead."
+     },
+     {
+      "pmid": "27004653",
+      "title": "Usual walking speed and all-cause mortality risk in older people: A systematic review and meta-analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Compares slowest and fastest usual walking speed for all-cause death, but only in older people aged 65 and over."
+     },
+     {
+      "pmid": "26362356",
+      "title": "Measurement of gait speed in older adults to identify complications associated with frailty: A systematic review",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Notes that slow gait predicts early death in older adults, but it focuses on frailty screening for older cancer patients."
+     },
+     {
+      "pmid": "26126532",
+      "title": "What type, or combination of exercise can improve preferred gait speed in older adults? A meta-analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Looks at exercise types that improve gait speed in older adults; gait speed is the outcome, not an exposure for death or disease."
+     },
+     {
+      "pmid": "24915643",
+      "title": "Single and dual task tests of gait speed are equivalent in the prediction of falls in older people: a systematic review and meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Looks at gait speed tests for predicting falls, not death, heart disease, stroke or diabetes."
+     },
+     {
+      "pmid": "25590442",
+      "title": "Walking training associated with virtual reality-based training increases walking speed of individuals with chronic stroke: systematic review with meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Tests virtual reality walking training for walking speed after stroke, a different question."
+     },
+     {
+      "pmid": "24798823",
+      "title": "Minimal clinically important difference for change in comfortable gait speed of adults with pathology: a systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Reports the smallest meaningful change in gait speed in patient groups; it does not link pace to death or disease."
+     },
+     {
+      "pmid": "21929322",
+      "title": "Investigation into the reliability and validity of the measurement of elderly people's clinical walking speed: a systematic review",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Checks how reliable and valid walking speed measurements are, not walking speed as a risk for these outcomes."
+     },
+     {
+      "pmid": "23192710",
+      "title": "Cardiovascular conditioning for comfortable gait speed and total distance walked during the chronic stage of stroke: a meta-analysis",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Looks at exercise training to improve gait speed after stroke; gait speed is the outcome, not an exposure linked to death or disease."
+     },
+     {
+      "pmid": "23192712",
+      "title": "Resistance training for gait speed and total distance walked during the chronic stage of stroke: a meta-analysis",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Looks at resistance training to improve gait speed after stroke; gait speed is the outcome, not the exposure."
+     },
+     {
+      "pmid": "16731222",
+      "title": "The therapeutic effect of functional and transcutaneous electric stimulation on improving gait speed in stroke patients: a meta-analysis",
+      "year": 2006,
+      "fits": "no",
+      "reason": "Looks at electrical stimulation to improve gait speed after stroke; gait speed is the outcome, not the exposure."
+     }
+    ]
+   }
+  }
+ ]
+}

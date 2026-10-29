@@ -1,0 +1,862 @@
+{
+ "topic": "lifestyle-walking",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "depression": {
+   "question": {
+    "population": "Adults, with or without depression",
+    "intervention": "Walking or more daily steps",
+    "comparison": "Less walking, usual care or no exercise",
+    "outcome": "Depression or depressive symptoms"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39680407",
+     "fits": "yes",
+     "reason": "Pools observational and prospective cohort studies of adults' daily step counts compared with fewer steps, with depression or depressive symptoms as the outcome."
+    },
+    {
+     "pmid": "39045858",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of walking in adults that pools effects on depressive symptoms against control groups."
+    },
+    {
+     "pmid": "34704837",
+     "fits": "partly",
+     "reason": "Walking versus control with depressive symptoms as the outcome, but the population is narrower: only postpartum mothers with mild-to-moderate depression."
+    },
+    {
+     "pmid": "31420232",
+     "fits": "no",
+     "reason": "Looks at gait speed alongside depression and executive function in older adults as a triad; walking or steps is not studied as an exposure or intervention."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "More daily steps or more walking",
+    "comparison": "Fewer steps or less walking",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40266699",
+     "fits": "partly",
+     "reason": "General population and all-cause mortality match, but the exposure is usual walking speed rather than more steps or more walking."
+    },
+    {
+     "pmid": "39133765",
+     "fits": "partly",
+     "reason": "All-cause mortality in cohorts matches, but the exposure is walking speed rather than the amount of walking or daily steps."
+    },
+    {
+     "pmid": "38901742",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of adults on daily steps and all-cause mortality, comparing more with fewer steps."
+    },
+    {
+     "pmid": "37555441",
+     "fits": "yes",
+     "reason": "Pooled cohorts of mostly healthy adults on daily step count and all-cause mortality, per 1000-step increment."
+    },
+    {
+     "pmid": "35819337",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies comparing higher with lower daily step counts for all-cause mortality."
+    },
+    {
+     "pmid": "35247352",
+     "fits": "yes",
+     "reason": "Meta-analysis of adult cohorts relating steps per day to all-cause mortality, comparing step-count quartiles."
+    },
+    {
+     "pmid": "34417979",
+     "fits": "yes",
+     "reason": "Pooled prospective cohorts in the general population on steps per day and all-cause mortality."
+    },
+    {
+     "pmid": "37676198",
+     "fits": "yes",
+     "reason": "Meta-analysis in the general population of daily step counts and all-cause mortality, with dose-response."
+    },
+    {
+     "pmid": "34547483",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of daily step count and all-cause mortality in middle-aged and older adults."
+    },
+    {
+     "pmid": "32563261",
+     "fits": "yes",
+     "reason": "Systematic review of prospective studies of non-patient adults on daily steps and all-cause mortality."
+    },
+    {
+     "pmid": "35961790",
+     "fits": "yes",
+     "reason": "The title describes a meta-analysis of per-day step count and all-cause mortality. There is no abstract, so this is judged on the title alone."
+    },
+    {
+     "pmid": "32590383",
+     "fits": "partly",
+     "reason": "Main focus is fitness, activity and lung cancer death; walking speed, not amount of walking, is the exposure analysed for all-cause death."
+    },
+    {
+     "pmid": "37682838",
+     "fits": "yes",
+     "reason": "The title describes a meta-analysis of daily step count and all-cause mortality. There is no abstract, so this is judged on the title alone."
+    },
+    {
+     "pmid": "37595090",
+     "fits": "no",
+     "reason": "This is a correction notice for a published review, not a systematic review."
+    },
+    {
+     "pmid": "34729613",
+     "fits": "partly",
+     "reason": "All-cause mortality matches, but the exposure is slow walking speed, not the amount of walking or steps."
+    },
+    {
+     "pmid": "27004653",
+     "fits": "partly",
+     "reason": "The exposure is usual walking speed rather than the amount of walking, and the population is limited to older adults."
+    },
+    {
+     "pmid": "25344355",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohorts healthy at baseline, with walking analysed separately against all-cause mortality."
+    },
+    {
+     "pmid": "19638833",
+     "fits": "yes",
+     "reason": "The title describes a meta-analysis of walking and all-cause mortality. There is no abstract, so this is judged on the title alone."
+    }
+   ]
+  },
+  "pace": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "A faster usual walking pace or stepping rate",
+    "comparison": "A slower pace",
+    "outcome": "Death, heart disease, stroke or type 2 diabetes"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40266699",
+     "fits": "yes",
+     "reason": "Pools studies of general-population adults comparing faster and slower usual walking speed for death, heart disease and type 2 diabetes."
+    },
+    {
+     "pmid": "39133765",
+     "fits": "yes",
+     "reason": "Pools cohort studies of adults comparing the fastest and slowest walking speed for all-cause death."
+    },
+    {
+     "pmid": "41491049",
+     "fits": "partly",
+     "reason": "Compares walking speed with heart disease events, but only in people with type 2 diabetes, a group defined by one illness."
+    },
+    {
+     "pmid": "32590383",
+     "fits": "partly",
+     "reason": "Mainly about fitness and lung cancer death; walking speed is only a subgroup and is compared against age-matched peers for all-cause death."
+    },
+    {
+     "pmid": "34729613",
+     "fits": "yes",
+     "reason": "Systematically reviews studies linking slow versus faster walking speed to death from all causes."
+    },
+    {
+     "pmid": "27004653",
+     "fits": "partly",
+     "reason": "Compares slowest and fastest usual walking speed for all-cause death, but only in older people aged 65 and over."
+    },
+    {
+     "pmid": "30338417",
+     "fits": "no",
+     "reason": "Looks at genetic variants linked to walking speed, not walking speed as a risk for death or disease."
+    },
+    {
+     "pmid": "24915643",
+     "fits": "no",
+     "reason": "Looks at gait speed tests for predicting falls, not death, heart disease, stroke or diabetes."
+    },
+    {
+     "pmid": "29065080",
+     "fits": "partly",
+     "reason": "Links walking speed to heart events, stroke and death, but only in adults over 60, and partly looks at risk factors instead."
+    },
+    {
+     "pmid": "26362356",
+     "fits": "partly",
+     "reason": "Notes that slow gait predicts early death in older adults, but it focuses on frailty screening for older cancer patients."
+    },
+    {
+     "pmid": "21929322",
+     "fits": "no",
+     "reason": "Checks how reliable and valid walking speed measurements are, not walking speed as a risk for these outcomes."
+    },
+    {
+     "pmid": "38665701",
+     "fits": "yes",
+     "reason": "Pools cohorts of adults without heart disease comparing fastest and slowest walking pace for coronary heart disease events."
+    },
+    {
+     "pmid": "39290341",
+     "fits": "no",
+     "reason": "Tests wearable walking programmes with gait speed as the outcome, not death or disease."
+    },
+    {
+     "pmid": "36226075",
+     "fits": "no",
+     "reason": "Describes walking speed in stroke patients, not walking speed as a risk for these outcomes."
+    },
+    {
+     "pmid": "31822115",
+     "fits": "no",
+     "reason": "Tests ankle-foot orthoses for walking speed in stroke patients, a different question."
+    },
+    {
+     "pmid": "28862711",
+     "fits": "no",
+     "reason": "Tests nerve stimulation for spasticity and walking speed in stroke patients, a different question."
+    },
+    {
+     "pmid": "33308803",
+     "fits": "yes",
+     "reason": "Pools cohorts of adults comparing fastest and slowest walking pace for risk of stroke."
+    },
+    {
+     "pmid": "29738743",
+     "fits": "no",
+     "reason": "Tests exercise programmes for dual-task gait speed after stroke, a different question."
+    },
+    {
+     "pmid": "30805654",
+     "fits": "no",
+     "reason": "A comment on a review of nerve stimulation in stroke patients, a different question."
+    },
+    {
+     "pmid": "25590442",
+     "fits": "no",
+     "reason": "Tests virtual reality walking training for walking speed after stroke, a different question."
+    },
+    {
+     "pmid": "29206272",
+     "fits": "no",
+     "reason": "A comment on a review of nerve stimulation in stroke patients; it does not look at walking pace as an exposure for death or disease."
+    },
+    {
+     "pmid": "23192710",
+     "fits": "no",
+     "reason": "Looks at exercise training to improve gait speed after stroke; gait speed is the outcome, not an exposure linked to death or disease."
+    },
+    {
+     "pmid": "24798823",
+     "fits": "no",
+     "reason": "Reports the smallest meaningful change in gait speed in patient groups; it does not link pace to death or disease."
+    },
+    {
+     "pmid": "38050034",
+     "fits": "yes",
+     "reason": "Pools cohort studies of adults that compare faster with slower walking speed for risk of type 2 diabetes."
+    },
+    {
+     "pmid": "39991779",
+     "fits": "partly",
+     "reason": "Gait speed and all-cause death match, but the population is people with chronic kidney disease, a group defined by one illness."
+    },
+    {
+     "pmid": "41824374",
+     "fits": "no",
+     "reason": "A protocol on heart risk factors as predictors of gait speed, which is the reverse direction; it does not look at death or disease outcomes."
+    },
+    {
+     "pmid": "34665474",
+     "fits": "partly",
+     "reason": "Slow versus normal gait speed and death or stroke match, but the population is cardiac surgery patients, not adults in general."
+    },
+    {
+     "pmid": "30056008",
+     "fits": "yes",
+     "reason": "Pools cohort studies linking slower gait speed to death and heart disease in mostly older adults."
+    },
+    {
+     "pmid": "38358907",
+     "fits": "no",
+     "reason": "A simulation study of methods for filling in missing gait speed data, not a review of studies on pace and death."
+    },
+    {
+     "pmid": "29111465",
+     "fits": "no",
+     "reason": "Looks at circuit exercise to improve gait speed after stroke; gait speed is the outcome, not the exposure."
+    },
+    {
+     "pmid": "32098749",
+     "fits": "partly",
+     "reason": "Slow versus fast gait speed and death match, but the population is patients having heart valve replacement (TAVI)."
+    },
+    {
+     "pmid": "30570081",
+     "fits": "partly",
+     "reason": "Older adults living at home and gait speed match, but the review is about frailty and death is only one of many associations."
+    },
+    {
+     "pmid": "27131770",
+     "fits": "yes",
+     "reason": "Systematically reviews studies linking slower gait speed to death from heart disease in older adults."
+    },
+    {
+     "pmid": "26126532",
+     "fits": "no",
+     "reason": "Looks at exercise types that improve gait speed in older adults; gait speed is the outcome, not an exposure for death or disease."
+    },
+    {
+     "pmid": "23192712",
+     "fits": "no",
+     "reason": "Looks at resistance training to improve gait speed after stroke; gait speed is the outcome, not the exposure."
+    },
+    {
+     "pmid": "16731222",
+     "fits": "no",
+     "reason": "Looks at electrical stimulation to improve gait speed after stroke; gait speed is the outcome, not the exposure."
+    },
+    {
+     "pmid": "19924348",
+     "fits": "yes",
+     "reason": "Systematically reviews cohort studies of usual gait speed predicting outcomes including death in older adults living at home."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "More daily steps or more walking",
+    "comparison": "Fewer steps or less walking",
+    "outcome": "Heart disease or stroke (new cases or deaths)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37555441",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking more daily steps to lower cardiovascular death in mostly healthy adults."
+    },
+    {
+     "pmid": "37676198",
+     "fits": "yes",
+     "reason": "Meta-analysis of more daily steps vs fewer and new cardiovascular disease in the general population."
+    },
+    {
+     "pmid": "41491049",
+     "fits": "no",
+     "reason": "Looks at walking speed rather than amount of walking, and only in people with type 2 diabetes."
+    },
+    {
+     "pmid": "36537288",
+     "fits": "yes",
+     "reason": "Meta-analysis of daily steps and fatal and non-fatal heart disease and stroke in adults."
+    },
+    {
+     "pmid": "34547483",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of step count and cardiovascular events in adults."
+    },
+    {
+     "pmid": "32563261",
+     "fits": "yes",
+     "reason": "Systematic review of daily steps and cardiovascular cases and deaths in adults who are not patients."
+    },
+    {
+     "pmid": "37682838",
+     "fits": "yes",
+     "reason": "The title describes a meta-analysis of daily step count and cardiovascular death. There is no abstract, but the title matches."
+    },
+    {
+     "pmid": "37595090",
+     "fits": "no",
+     "reason": "This is a correction notice, not a systematic review."
+    },
+    {
+     "pmid": "34884208",
+     "fits": "no",
+     "reason": "Compares antiplatelet drug regimens after coronary stenting, not walking."
+    },
+    {
+     "pmid": "29065080",
+     "fits": "partly",
+     "reason": "Older adults and cardiovascular events match, but the exposure is walking speed, not amount of walking or steps."
+    },
+    {
+     "pmid": "19638833",
+     "fits": "yes",
+     "reason": "The title describes a meta-analysis of walking and cardiovascular risk. There is no abstract, but the title matches."
+    },
+    {
+     "pmid": "19882347",
+     "fits": "partly",
+     "reason": "An economic evaluation with a meta-analysis of walking and coronary heart disease only, not stroke."
+    },
+    {
+     "pmid": "42750176",
+     "fits": "no",
+     "reason": "Looks at walking with blood flow restriction and outcomes like fitness and strength, not heart disease or stroke."
+    },
+    {
+     "pmid": "41420322",
+     "fits": "no",
+     "reason": "Looks at sling exercise for walking ability in stroke patients, not walking to prevent heart disease or stroke."
+    },
+    {
+     "pmid": "41269895",
+     "fits": "no",
+     "reason": "Looks at dual-task training for walking and balance in stroke patients, which is a different question."
+    },
+    {
+     "pmid": "42951167",
+     "fits": "no",
+     "reason": "Looks at short-term heart rate and blood pressure during walks in nature vs cities, not heart disease or stroke."
+    },
+    {
+     "pmid": "41980865",
+     "fits": "no",
+     "reason": "This is a comment on a stroke rehabilitation review, not a systematic review that fits the question."
+    },
+    {
+     "pmid": "40068054",
+     "fits": "no",
+     "reason": "Compares dual-task and single-task training on walking ability in stroke patients, which is a different question."
+    },
+    {
+     "pmid": "38872081",
+     "fits": "no",
+     "reason": "Pedometer walking programmes in older adults, but outcomes are stroke risk factors like blood pressure, not actual strokes."
+    },
+    {
+     "pmid": "39476525",
+     "fits": "no",
+     "reason": "Looks at Nordic walking and cardiovascular risk factors, not new cases of or deaths from heart disease or stroke."
+    },
+    {
+     "pmid": "39593446",
+     "fits": "no",
+     "reason": "Stroke patients given action observation training; outcomes are walking ability and balance, not new heart disease or stroke."
+    },
+    {
+     "pmid": "39621381",
+     "fits": "no",
+     "reason": "Chronic stroke patients given virtual reality exercise; outcomes are balance and walking, not heart disease or stroke events."
+    },
+    {
+     "pmid": "39258157",
+     "fits": "no",
+     "reason": "Stroke patients given body weight support training; outcomes are balance and gait, not heart disease or stroke events."
+    },
+    {
+     "pmid": "38394189",
+     "fits": "no",
+     "reason": "Stroke patients given aerobic exercise; outcomes are cognition and walking ability, not heart disease or stroke events."
+    },
+    {
+     "pmid": "38665701",
+     "fits": "partly",
+     "reason": "Adults without heart disease, with heart disease events as outcome, but exposure is walking pace not amount, and stroke is not covered."
+    },
+    {
+     "pmid": "35443210",
+     "fits": "no",
+     "reason": "Tests how accurately activity monitors estimate energy use in stroke patients; no heart disease or stroke outcomes."
+    },
+    {
+     "pmid": "37433730",
+     "fits": "no",
+     "reason": "Patients with heart disease using wearables; outcomes are steps and fitness, not new heart disease or stroke."
+    },
+    {
+     "pmid": "36875661",
+     "fits": "no",
+     "reason": "Measures brain activity during dual-task walking in stroke patients; not about walking and heart disease or stroke risk."
+    },
+    {
+     "pmid": "37732513",
+     "fits": "no",
+     "reason": "Cycling in stroke patients with walking outcomes; not walking amount and heart disease or stroke events."
+    },
+    {
+     "pmid": "34354172",
+     "fits": "no",
+     "reason": "Ankle-foot orthoses in stroke patients with gait outcomes; not walking amount and heart disease or stroke events."
+    },
+    {
+     "pmid": "36684839",
+     "fits": "no",
+     "reason": "Whole-body vibration in stroke patients with balance and walking outcomes; not heart disease or stroke events."
+    },
+    {
+     "pmid": "32629648",
+     "fits": "no",
+     "reason": "Backward walking training in stroke patients with gait and balance outcomes; not heart disease or stroke events."
+    },
+    {
+     "pmid": "36086722",
+     "fits": "no",
+     "reason": "Cerebellar stimulation in stroke patients with balance and walking outcomes; not heart disease or stroke events."
+    },
+    {
+     "pmid": "31570262",
+     "fits": "no",
+     "reason": "High intensity exercise in stroke patients with walking outcomes; not walking amount and heart disease or stroke events."
+    },
+    {
+     "pmid": "33715555",
+     "fits": "no",
+     "reason": "Walking training in chronic stroke patients with function and quality of life outcomes; not heart disease or stroke events."
+    },
+    {
+     "pmid": "29067853",
+     "fits": "no",
+     "reason": "Nordic walking in people with heart disease; outcomes are exercise capacity and mobility, not new events or deaths."
+    },
+    {
+     "pmid": "36226075",
+     "fits": "no",
+     "reason": "Describes walking speed after stroke; no exposure comparison and no heart disease or stroke event outcomes."
+    },
+    {
+     "pmid": "32722338",
+     "fits": "no",
+     "reason": "Respiratory muscle training in stroke patients with lung function and walking outcomes; not heart disease or stroke events."
+    },
+    {
+     "pmid": "31822115",
+     "fits": "no",
+     "reason": "Ankle-foot orthoses in stroke patients with walking speed outcomes; not walking amount and heart disease or stroke events."
+    },
+    {
+     "pmid": "30375325",
+     "fits": "no",
+     "reason": "Gait training methods in stroke patients with walking speed and distance outcomes; not heart disease or stroke events."
+    },
+    {
+     "pmid": "33857653",
+     "fits": "no",
+     "reason": "Covers equations for the oxygen cost of walking in stroke patients, not walking as an exposure for heart disease or stroke risk."
+    },
+    {
+     "pmid": "28862711",
+     "fits": "no",
+     "reason": "Covers nerve stimulation for spasticity and walking speed in stroke patients, not walking as an exposure for cardiovascular events."
+    },
+    {
+     "pmid": "34644226",
+     "fits": "no",
+     "reason": "Covers action observation training for walking ability after stroke; walking is the outcome, not the exposure."
+    },
+    {
+     "pmid": "33308803",
+     "fits": "partly",
+     "reason": "General adults, but the exposure is walking pace rather than amount of walking, and the outcome is stroke only."
+    },
+    {
+     "pmid": "37266514",
+     "fits": "no",
+     "reason": "Covers telerehabilitation for walking recovery in stroke survivors; walking is the outcome, not the exposure."
+    },
+    {
+     "pmid": "32432905",
+     "fits": "no",
+     "reason": "Covers ankle-foot orthoses and the energy cost of walking in stroke patients, a different question."
+    },
+    {
+     "pmid": "30805654",
+     "fits": "no",
+     "reason": "A comment on a review of nerve stimulation in stroke patients, not a review of walking and cardiovascular events."
+    },
+    {
+     "pmid": "33280836",
+     "fits": "no",
+     "reason": "Covers trunk movement during walking in stroke patients, not walking as an exposure for cardiovascular events."
+    },
+    {
+     "pmid": "25579505",
+     "fits": "no",
+     "reason": "Walking trials in inactive adults, but the outcomes are risk factors like blood pressure, not heart disease or stroke."
+    },
+    {
+     "pmid": "25590442",
+     "fits": "no",
+     "reason": "Covers virtual reality walking training for walking speed in chronic stroke, a different question."
+    },
+    {
+     "pmid": "29206272",
+     "fits": "no",
+     "reason": "A comment on a review of nerve stimulation in stroke patients, not a review of walking and cardiovascular events."
+    },
+    {
+     "pmid": "25329391",
+     "fits": "no",
+     "reason": "Walking trials in people with type 2 diabetes; outcomes are blood sugar and risk factors, not heart disease or stroke."
+    },
+    {
+     "pmid": "19306107",
+     "fits": "partly",
+     "reason": "Walking dose in the general population, but the outcome is coronary heart disease only, without stroke."
+    },
+    {
+     "pmid": "23192710",
+     "fits": "no",
+     "reason": "Covers cardiovascular conditioning for walking speed and distance in chronic stroke; walking is the outcome."
+    },
+    {
+     "pmid": "24246405",
+     "fits": "no",
+     "reason": "Covers leg muscle co-contraction during walking in stroke patients, a different question."
+    },
+    {
+     "pmid": "19207874",
+     "fits": "yes",
+     "reason": "Observational studies of more walking and fatal and non-fatal cardiovascular disease, including heart disease and stroke, in men and women."
+    },
+    {
+     "pmid": "21613511",
+     "fits": "no",
+     "reason": "Covers measures of walking balance in people after stroke, a different question."
+    },
+    {
+     "pmid": "22094228",
+     "fits": "no",
+     "reason": "Covers interventions for gait coordination after stroke; walking is the outcome, not the exposure."
+    },
+    {
+     "pmid": "22729787",
+     "fits": "no",
+     "reason": "Covers surgery for foot deformity to improve walking after stroke or brain injury, a different question."
+    },
+    {
+     "pmid": "15153151",
+     "fits": "no",
+     "reason": "Covers electrical stimulation for dropped foot to improve walking in stroke patients, a different question."
+    },
+    {
+     "pmid": "27820213",
+     "fits": "no",
+     "reason": "Studies gait-coordination therapy in people who already had a stroke, with gait coordination as the outcome, not daily steps and new heart disease or stroke."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults without diabetes (new cases), or adults with type 2 diabetes (blood sugar)",
+    "intervention": "More daily steps or a walking programme",
+    "comparison": "Fewer steps, or no walking programme",
+    "outcome": "New type 2 diabetes, or HbA1c and blood sugar"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41491049",
+     "fits": "no",
+     "reason": "Looks at walking speed and cardiovascular events in type 2 diabetes, not step counts or walking programmes and blood sugar."
+    },
+    {
+     "pmid": "25329391",
+     "fits": "yes",
+     "reason": "Pools trials of walking against control in adults with type 2 diabetes, with HbA1c as an outcome."
+    },
+    {
+     "pmid": "41523744",
+     "fits": "partly",
+     "reason": "Pools trials of Nordic walking (with poles) in adults with prediabetes or diabetes; HbA1c is reported, but the walking type and group are broader."
+    },
+    {
+     "pmid": "42514229",
+     "fits": "partly",
+     "reason": "Nordic walking in people with prediabetes or diabetes, and it only compares before and after, with no non-walking comparison group."
+    },
+    {
+     "pmid": "42456792",
+     "fits": "yes",
+     "reason": "Pools trials of walking training against control in type 2 diabetes, with HbA1c as an outcome."
+    },
+    {
+     "pmid": "41858857",
+     "fits": "no",
+     "reason": "Compares mind-body exercises for balance, fitness, strength and mental health, not blood sugar."
+    },
+    {
+     "pmid": "38220510",
+     "fits": "yes",
+     "reason": "Pools trials of pedometer- and accelerometer-based step interventions in type 2 diabetes, with HbA1c and fasting glucose as outcomes."
+    },
+    {
+     "pmid": "38045671",
+     "fits": "yes",
+     "reason": "Includes a separate analysis of walking against no exercise in type 2 diabetes, with HbA1c and fasting glucose as outcomes."
+    },
+    {
+     "pmid": "38050034",
+     "fits": "partly",
+     "reason": "Cohort studies of new type 2 diabetes, but the exposure is walking speed rather than daily steps or a walking programme."
+    },
+    {
+     "pmid": "36715875",
+     "fits": "partly",
+     "reason": "Single exercise sessions timed around meals, in a mixed group with and without diabetes; the outcome is only the blood sugar rise after meals."
+    },
+    {
+     "pmid": "38091004",
+     "fits": "partly",
+     "reason": "No abstract; the title links faster walking to type 2 diabetes risk, so the exposure is walking speed, not steps or a programme."
+    },
+    {
+     "pmid": "28173623",
+     "fits": "yes",
+     "reason": "Pools trials of pedometer and accelerometer interventions in type 2 diabetes, with HbA1c as an outcome."
+    },
+    {
+     "pmid": "33217794",
+     "fits": "partly",
+     "reason": "Only a protocol for a review of walking and blood sugar control in type 2 diabetes; it has no pooled results yet."
+    },
+    {
+     "pmid": "26926674",
+     "fits": "no",
+     "reason": "Pedometer interventions in type 2 diabetes, but the outcome is weight loss, not blood sugar or HbA1c."
+    },
+    {
+     "pmid": "24160358",
+     "fits": "yes",
+     "reason": "Systematically reviews trials of pedometer-based walking in type 2 diabetes and reports blood glucose control."
+    },
+    {
+     "pmid": "24571580",
+     "fits": "yes",
+     "reason": "Pools trials of step counter use against control in type 2 diabetes, with HbA1c as an outcome."
+    }
+   ]
+  },
+  "risk-factors": {
+   "question": {
+    "population": "Adults, mostly inactive at the start (reviews of one illness count as partly)",
+    "intervention": "A walking programme or walking group",
+    "comparison": "No exercise or usual activity",
+    "outcome": "Blood pressure, fitness (VO2max), body weight or waist size"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "32590383",
+     "fits": "no",
+     "reason": "Cohort studies of fitness, activity and walking speed against lung cancer mortality; this is not a walking programme and does not measure BP, VO2max or weight."
+    },
+    {
+     "pmid": "29065080",
+     "fits": "no",
+     "reason": "Looks at walking speed as a test of cardiovascular risk in older adults, not a walking programme compared with no exercise."
+    },
+    {
+     "pmid": "38872081",
+     "fits": "yes",
+     "reason": "RCTs of pedometer-based walking programmes in community-dwelling older adults, with pooled blood pressure and waist circumference."
+    },
+    {
+     "pmid": "39476525",
+     "fits": "partly",
+     "reason": "RCTs in older adults with BP and BMI, but the exercise is Nordic (pole) walking and the comparison group is not stated."
+    },
+    {
+     "pmid": "39258157",
+     "fits": "no",
+     "reason": "Body-weight-supported gait training in stroke patients, with balance and gait as outcomes; a different question."
+    },
+    {
+     "pmid": "25579505",
+     "fits": "yes",
+     "reason": "RCTs of walking only versus no exercise in inactive adults, pooling VO2max, blood pressure, waist and weight."
+    },
+    {
+     "pmid": "29858464",
+     "fits": "yes",
+     "reason": "RCTs of walking versus a no-walking control in inactive healthy adults, pooling BP, body mass and VO2max."
+    },
+    {
+     "pmid": "25329391",
+     "fits": "partly",
+     "reason": "Walking RCTs with BMI and blood pressure, but only in people with type 2 diabetes."
+    },
+    {
+     "pmid": "17275896",
+     "fits": "yes",
+     "reason": "Walking RCTs in sedentary adults, pooling VO2max, body weight and resting blood pressure."
+    },
+    {
+     "pmid": "20863494",
+     "fits": "yes",
+     "reason": "RCTs of walking interventions versus a non-intervention control, with blood pressure as the outcome."
+    },
+    {
+     "pmid": "42405260",
+     "fits": "partly",
+     "reason": "RCTs of brisk walking and blood pressure, but only in people with hypertension."
+    },
+    {
+     "pmid": "42434753",
+     "fits": "partly",
+     "reason": "Walking versus usual care or no intervention, with VO2 peak/max as an outcome, but only in cancer patients."
+    },
+    {
+     "pmid": "42514229",
+     "fits": "partly",
+     "reason": "Nordic walking with BMI, waist and BP, but only in people with prediabetes or diabetes, and it uses before-and-after changes with no control group."
+    },
+    {
+     "pmid": "39444461",
+     "fits": "partly",
+     "reason": "Brisk walking versus no brisk walking with blood pressure as the outcome, but only in people with hypertension."
+    },
+    {
+     "pmid": "35174137",
+     "fits": "yes",
+     "reason": "Systematic review of brisk walking in older adults, reporting cardiorespiratory fitness and body composition."
+    },
+    {
+     "pmid": "28169568",
+     "fits": "partly",
+     "reason": "RCTs of brisk walking with body weight and waist outcomes, but only in adults with obesity."
+    },
+    {
+     "pmid": "41097698",
+     "fits": "partly",
+     "reason": "Nordic walking versus no intervention in cancer patients; fitness was measured by the 6-minute walk test, not VO2max."
+    },
+    {
+     "pmid": "35147898",
+     "fits": "no",
+     "reason": "One-day crossover trials of short walking breaks during long periods of sitting, not a walking programme."
+    },
+    {
+     "pmid": "27187009",
+     "fits": "partly",
+     "reason": "Walking versus no exercise in inactive people with body weight as the outcome, but only peri- and postmenopausal women."
+    },
+    {
+     "pmid": "35593130",
+     "fits": "yes",
+     "reason": "Meta-analysis of walking RCTs with resting blood pressure as the outcome."
+    },
+    {
+     "pmid": "33630309",
+     "fits": "partly",
+     "reason": "RCTs of walking vs no-intervention control in people aged 16+, but participants aren't stated to be inactive and the only outcome is blood pressure (plus heart rate)."
+    },
+    {
+     "pmid": "11493045",
+     "fits": "partly",
+     "reason": "Walking-only programmes vs control in sedentary adults match, but the review covers only one outcome, resting blood pressure."
+    }
+   ]
+  }
+ }
+}

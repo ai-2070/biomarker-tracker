@@ -1,0 +1,832 @@
+{
+ "topic": "lifestyle-sauna",
+ "kind": "lifestyle",
+ "lifestyleId": "sauna",
+ "name": "sauna",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "mortality": "((TITLE_ABS:sauna OR TITLE_ABS:saunas OR TITLE_ABS:\"sauna bathing\" OR TITLE_ABS:\"passive heat\" OR TITLE_ABS:\"heat therapy\" OR TITLE_ABS:\"thermal therapy\" OR TITLE_ABS:\"hot water immersion\" OR TITLE_ABS:waon) AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:\"sudden cardiac\" OR TITLE_ABS:cardiovascular)) AND SRC:MED",
+  "stroke": "((TITLE_ABS:sauna OR TITLE_ABS:saunas OR TITLE_ABS:\"sauna bathing\" OR TITLE_ABS:\"passive heat\" OR TITLE_ABS:\"heat therapy\" OR TITLE_ABS:\"thermal therapy\" OR TITLE_ABS:\"hot water immersion\" OR TITLE_ABS:waon) AND (TITLE_ABS:stroke OR TITLE_ABS:cerebrovascular)) AND SRC:MED",
+  "dementia": "((TITLE_ABS:sauna OR TITLE_ABS:saunas OR TITLE_ABS:\"sauna bathing\" OR TITLE_ABS:\"passive heat\" OR TITLE_ABS:\"heat therapy\" OR TITLE_ABS:\"thermal therapy\" OR TITLE_ABS:\"hot water immersion\" OR TITLE_ABS:waon) AND (TITLE_ABS:dementia OR TITLE_ABS:alzheimer OR TITLE_ABS:alzheimer's OR TITLE_ABS:cognitive OR TITLE_ABS:cognition)) AND SRC:MED",
+  "blood-pressure": "((TITLE_ABS:sauna OR TITLE_ABS:saunas OR TITLE_ABS:\"sauna bathing\" OR TITLE_ABS:\"passive heat\" OR TITLE_ABS:\"heat therapy\" OR TITLE_ABS:\"thermal therapy\" OR TITLE_ABS:\"hot water immersion\" OR TITLE_ABS:waon) AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:hypertension OR TITLE_ABS:hypertensive)) AND SRC:MED",
+  "inflammation": "((TITLE_ABS:sauna OR TITLE_ABS:saunas OR TITLE_ABS:\"sauna bathing\" OR TITLE_ABS:\"passive heat\" OR TITLE_ABS:\"heat therapy\" OR TITLE_ABS:\"thermal therapy\" OR TITLE_ABS:\"hot water immersion\" OR TITLE_ABS:waon) AND (TITLE_ABS:\"C-reactive protein\" OR TITLE_ABS:CRP OR TITLE_ABS:inflammation OR TITLE_ABS:inflammatory)) AND SRC:MED",
+  "heart-failure": "((TITLE_ABS:waon OR TITLE_ABS:sauna OR TITLE_ABS:\"thermal therapy\" OR TITLE_ABS:\"far-infrared\" OR TITLE_ABS:\"far infrared\" OR TITLE_ABS:\"heat therapy\") AND (TITLE_ABS:\"heart failure\")) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 1015,
+  "retrieved": 123,
+  "animal": 0,
+  "retracted": 0,
+  "reviews": 56,
+  "trials": 66,
+  "guidelines": 1
+ },
+ "guidelines": [
+  {
+   "pmid": "33567467",
+   "doi": "10.1055/a-1369-5274",
+   "title": "Endoscopic diagnosis and management of nonvariceal upper gastrointestinal hemorrhage (NVUGIH): European Society of Gastrointestinal Endoscopy (ESGE) Guideline - Update 2021",
+   "year": 2021,
+   "journal": "Endoscopy",
+   "citedBy": 399,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "mortality",
+   "label": "Heart deaths and death",
+   "finding": "Sudden cardiac death, death from heart and blood vessel disease, and death from any cause",
+   "counts": {
+    "all": 489,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 9,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "25705824",
+     "30486813",
+     "36255556"
+    ],
+    "citedNotEligible": [
+     "25705824",
+     "30486813",
+     "36255556"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "Sauna bathing, or other passive heat (hot baths, heat therapy)",
+     "comparison": "Less or no sauna use",
+     "outcome": "Sudden cardiac death, deaths from heart disease, or death from any cause"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 0,
+     "no": 5,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41049507",
+      "title": "Non-acute effects of passive heating interventions on cardiometabolic risk and vascular health: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Passive heating in adults matches, but outcomes are cardiometabolic and vascular markers, not sudden cardiac, cardiovascular or all-cause death."
+     },
+     {
+      "pmid": "36343372",
+      "title": "Cardiovascular autonomic modulation during passive heating protocols: a systematic review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Passive heating in healthy adults matches, but the outcome is cardiovascular autonomic control (HRV, baroreflex), not death."
+     },
+     {
+      "pmid": "34329397",
+      "title": "Acute and short-term efficacy of sauna treatment on cardiovascular function: a meta-analysis: reply",
+      "year": 2021,
+      "fits": "no",
+      "reason": "This is an author reply to a letter, not a systematic review, and there is no abstract reporting mortality outcomes."
+     },
+     {
+      "pmid": "34329398",
+      "title": "Letter regarding 'Acute and short-term efficacy of sauna treatment on cardiovascular function: a meta-analysis'",
+      "year": 2021,
+      "fits": "no",
+      "reason": "This is a letter about a meta-analysis, not a systematic review, and there is no abstract reporting mortality outcomes."
+     },
+     {
+      "pmid": "32814462",
+      "title": "Acute and short-term efficacy of sauna treatment on cardiovascular function: A meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Sauna exposure matches, but outcomes are acute and short-term cardiovascular function measures, not death, and many participants were patients."
+     }
+    ]
+   }
+  },
+  {
+   "id": "stroke",
+   "label": "Stroke",
+   "finding": "Stroke",
+   "counts": {
+    "all": 81,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "29720543"
+    ],
+    "citedNotEligible": [
+     "29720543"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "dementia",
+   "label": "Dementia",
+   "finding": "Dementia and Alzheimer's disease",
+   "counts": {
+    "all": 121,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 2,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "27932366"
+    ],
+    "citedNotEligible": [
+     "27932366"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "all": 254,
+    "reviews": 4,
+    "trialReviews": 4,
+    "trials": 17,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41049507",
+     "doi": "10.1016/j.ajpc.2025.101082",
+     "title": "Non-acute effects of passive heating interventions on cardiometabolic risk and vascular health: systematic review and meta-analysis of randomized controlled trials",
+     "year": 2025,
+     "firstAuthor": "Hamaya R",
+     "journal": "American journal of preventive cardiology",
+     "citedBy": 2,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "33866630",
+     "doi": "10.1113/ep089424",
+     "title": "The effect of heat therapy on blood pressure and peripheral vascular function: A systematic review and meta-analysis",
+     "year": 2021,
+     "firstAuthor": "Pizzey FK",
+     "journal": "Experimental physiology",
+     "citedBy": 37,
+     "n": 10,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.5384615384615384,
+    "trials": 13,
+    "inclusions": 20,
+    "reviews": [
+     {
+      "pmid": "41049507",
+      "trials": 10
+     },
+     {
+      "pmid": "33866630",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "18922381",
+      "title": "Beneficial effects of Waon therapy on patients with chronic heart failure: results of a prospective multicenter study",
+      "year": 2008,
+      "n": 188,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "27001189",
+      "title": "Waon Therapy for Managing Chronic Heart Failure - Results From a Multicenter Prospective Randomized WAON-CHF Study",
+      "year": 2016,
+      "n": 73,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "33002377",
+      "title": "Leg heat therapy improves perceived physical function but does not enhance walking capacity or vascular function in patients with peripheral artery disease",
+      "year": 2020,
+      "n": 32,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "20884178",
+      "title": "Improvement of autonomic nervous activity by Waon therapy in patients with chronic heart failure",
+      "year": 2011,
+      "n": 27,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "15564698",
+      "title": "Effects of repeated sauna treatment on ventricular arrhythmias in patients with chronic heart failure",
+      "year": 2004,
+      "n": 20,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "21173495",
+      "title": "Effect of Waon therapy on oxidative stress in chronic heart failure",
+      "year": 2011,
+      "n": 20,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "15090706",
+      "title": "Repeated sauna therapy reduces urinary 8-epi-prostaglandin F(2alpha)",
+      "year": 2004,
+      "n": 14,
+      "inReviews": [
+       "41049507",
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "35785965",
+      "title": "Effects of regular sauna bathing in conjunction with exercise on cardiovascular function: a multi-arm, randomized controlled trial",
+      "year": 2022,
+      "n": 47,
+      "inReviews": [
+       "41049507"
+      ]
+     },
+     {
+      "pmid": "35771219",
+      "title": "Effects of home-based leg heat therapy on walking performance in patients with symptomatic peripheral artery disease: a pilot randomized trial",
+      "year": 2022,
+      "n": 34,
+      "inReviews": [
+       "41049507"
+      ]
+     },
+     {
+      "pmid": "37650138",
+      "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial",
+      "year": 2023,
+      "n": 33,
+      "inReviews": [
+       "41049507"
+      ]
+     },
+     {
+      "pmid": "31002283",
+      "title": "Heat therapy vs. supervised exercise therapy for peripheral arterial disease: a 12-wk randomized, controlled trial",
+      "year": 2019,
+      "n": 11,
+      "inReviews": [
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "27286178",
+      "title": "Repeated Warm Water Immersion Induces Similar Cerebrovascular Adaptations to 8 Weeks of Moderate-Intensity Exercise Training in Females",
+      "year": 2016,
+      "inReviews": [
+       "33866630"
+      ]
+     },
+     {
+      "pmid": "27707723",
+      "title": "Acute hot water immersion is protective against impaired vascular function following forearm ischemia-reperfusion in young healthy humans",
+      "year": 2016,
+      "inReviews": [
+       "33866630"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "29269746",
+     "32814462",
+     "35785965",
+     "28633297",
+     "31126559"
+    ],
+    "citedNotEligible": [
+     "29269746",
+     "35785965",
+     "28633297",
+     "31126559"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41049507",
+      "doi": "10.1016/j.ajpc.2025.101082",
+      "title": "Non-acute effects of passive heating interventions on cardiometabolic risk and vascular health: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "firstAuthor": "Hamaya R",
+      "journal": "American journal of preventive cardiology",
+      "citedBy": 2,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "33866630",
+      "doi": "10.1113/ep089424",
+      "title": "The effect of heat therapy on blood pressure and peripheral vascular function: A systematic review and meta-analysis",
+      "year": 2021,
+      "firstAuthor": "Pizzey FK",
+      "journal": "Experimental physiology",
+      "citedBy": 37,
+      "n": 10,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with heart risk factors",
+     "intervention": "Sauna bathing, or other passive heat (single sessions or weeks of it)",
+     "comparison": "No sauna or heat",
+     "outcome": "Blood pressure, or new high blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "36343372",
+      "title": "Cardiovascular autonomic modulation during passive heating protocols: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Passive heating and sauna in healthy adults match, but outcomes are autonomic measures such as blood pressure variability and baroreflex rather than blood pressure levels."
+     },
+     {
+      "pmid": "32814462",
+      "title": "Acute and short-term efficacy of sauna treatment on cardiovascular function: A meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pooled acute and short-term sauna studies, but outcomes are general cardiovascular function with blood pressure not clearly reported, and the population includes cardiac patients."
+     }
+    ]
+   }
+  },
+  {
+   "id": "inflammation",
+   "label": "Inflammation (CRP)",
+   "finding": "Inflammation (C-reactive protein, CRP)",
+   "counts": {
+    "all": 250,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "29209938",
+     "32599642",
+     "36255556"
+    ],
+    "citedNotEligible": [
+     "29209938",
+     "32599642",
+     "36255556"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "heart-failure",
+   "label": "Heart failure (Waon)",
+   "finding": "Heart failure symptoms and heart function (Waon therapy, in hospital)",
+   "counts": {
+    "all": 91,
+    "reviews": 3,
+    "trialReviews": 3,
+    "trials": 8,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32017138",
+     "doi": "10.1111/aor.13659",
+     "title": "Can heat therapy help patients with heart failure?",
+     "year": 2020,
+     "firstAuthor": "Ye WN",
+     "journal": "Artificial organs",
+     "citedBy": 11,
+     "n": 506,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "30239008",
+     "doi": "10.1002/clc.23077",
+     "title": "Effects of sauna bath on heart failure: A systematic review and meta-analysis",
+     "year": 2018,
+     "firstAuthor": "Källström M",
+     "journal": "Clinical cardiology",
+     "citedBy": 10,
+     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+    },
+    {
+     "pmid": "29409954",
+     "doi": "10.1016/j.cardfail.2018.01.008",
+     "title": "Effect of Waon Therapy in Individuals With Heart Failure: A Systematic Review",
+     "year": 2018,
+     "firstAuthor": "Rocha Conceição LS",
+     "journal": "Journal of cardiac failure",
+     "citedBy": 9,
+     "why": "One of the newest systematic reviews on this finding (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.8571428571428571,
+    "trials": 7,
+    "inclusions": 13,
+    "reviews": [
+     {
+      "pmid": "32017138",
+      "trials": 7
+     },
+     {
+      "pmid": "30239008",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "29409954"
+    ],
+    "shared": [
+     {
+      "pmid": "18922381",
+      "title": "Beneficial effects of Waon therapy on patients with chronic heart failure: results of a prospective multicenter study",
+      "year": 2008,
+      "n": 188,
+      "inReviews": [
+       "32017138",
+       "30239008"
+      ]
+     },
+     {
+      "pmid": "27001189",
+      "title": "Waon Therapy for Managing Chronic Heart Failure - Results From a Multicenter Prospective Randomized WAON-CHF Study",
+      "year": 2016,
+      "n": 73,
+      "inReviews": [
+       "32017138",
+       "30239008"
+      ]
+     },
+     {
+      "pmid": "20884178",
+      "title": "Improvement of autonomic nervous activity by Waon therapy in patients with chronic heart failure",
+      "year": 2011,
+      "n": 27,
+      "inReviews": [
+       "32017138",
+       "30239008"
+      ]
+     },
+     {
+      "pmid": "15564698",
+      "title": "Effects of repeated sauna treatment on ventricular arrhythmias in patients with chronic heart failure",
+      "year": 2004,
+      "n": 20,
+      "inReviews": [
+       "32017138",
+       "30239008"
+      ]
+     },
+     {
+      "pmid": "21173495",
+      "title": "Effect of Waon therapy on oxidative stress in chronic heart failure",
+      "year": 2011,
+      "n": 20,
+      "inReviews": [
+       "32017138",
+       "30239008"
+      ]
+     },
+     {
+      "pmid": "19154844",
+      "title": "Safety, acceptance, and physiologic effects of sauna bathing in people with chronic heart failure: a pilot report",
+      "year": 2009,
+      "inReviews": [
+       "32017138",
+       "30239008"
+      ]
+     },
+     {
+      "pmid": "14564334",
+      "title": "Thermal hydrotherapy improves quality of life and hemodynamic function in patients with chronic heart failure",
+      "year": 2003,
+      "n": 15,
+      "inReviews": [
+       "32017138"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "30239008"
+    ],
+    "citedNotChosen": [
+     "27001189",
+     "18922381"
+    ],
+    "citedNotEligible": [
+     "27001189",
+     "18922381"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "32017138",
+      "doi": "10.1111/aor.13659",
+      "title": "Can heat therapy help patients with heart failure?",
+      "year": 2020,
+      "firstAuthor": "Ye WN",
+      "journal": "Artificial organs",
+      "citedBy": 11,
+      "n": 506,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     },
+     {
+      "pmid": "29409954",
+      "doi": "10.1016/j.cardfail.2018.01.008",
+      "title": "Effect of Waon Therapy in Individuals With Heart Failure: A Systematic Review",
+      "year": 2018,
+      "firstAuthor": "Rocha Conceição LS",
+      "journal": "Journal of cardiac failure",
+      "citedBy": 9,
+      "why": "One of the newest systematic reviews on this finding (2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People with chronic heart failure",
+     "intervention": "Waon therapy (a mild far-infrared sauna) or other repeated heat therapy",
+     "comparison": "Usual heart failure care without it",
+     "outcome": "Symptoms, exercise capacity or heart function"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  }
+ ]
+}

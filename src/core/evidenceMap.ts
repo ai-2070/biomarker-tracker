@@ -162,8 +162,8 @@ export function eligibleReviews(records: readonly Classified[], outcome: string,
       r.population !== "animal" &&
       !r.retracted &&
       r.outcomes.includes(outcome) &&
-      // Claims about foods rest on cohort, absorption and food-analysis studies too, so any design counts.
-      (kind === "food" || isTrialReview(r) || !r.abstract.trim()) &&
+      // Claims about foods and habits rest on cohort, absorption and food-analysis studies too, so any design counts.
+      (anyDesignKind(kind) || isTrialReview(r) || !r.abstract.trim()) &&
       (!topicInTitle || topicInTitle.test(r.title) || (SEVERAL_SUPPLEMENTS.test(r.title) && topicInTitle.test(r.abstract))) &&
       // A review of a different group of people (sepsis, surgery, pregnancy...) answers a different question.
       (!excludeTitle || !excludeTitle.test(r.title)),
@@ -285,9 +285,10 @@ export interface EvidenceMapFile {
   topic: string;
   /** A supplement map (default) or a map of claims about foods. */
   kind?: MapKind;
-  /** The nutrient page it belongs to, or the food comparison topic (knowledge/food-comparison). */
+  /** The nutrient page it belongs to, the food comparison topic (knowledge/food-comparison) or the lifestyle entry. */
   nutrientId?: string;
   comparisonId?: string;
+  lifestyleId?: string;
   /** The nutrient in sentences ("vitamin D"), and how the search was narrowed, if it was. */
   name: string;
   scope?: string;
@@ -306,7 +307,8 @@ export function validateEvidenceMap(v: unknown): string[] {
   if (typeof v !== "object" || v === null) return ["not an object"];
   const m = v as Partial<EvidenceMapFile>;
   const e: string[] = [];
-  if (typeof m.topic !== "string" || typeof m.name !== "string" || (typeof m.nutrientId !== "string") === (typeof m.comparisonId !== "string")) e.push("topic and nutrient are missing");
+  const owners = [m.nutrientId, m.comparisonId, m.lifestyleId].filter((x) => typeof x === "string").length;
+  if (typeof m.topic !== "string" || typeof m.name !== "string" || owners !== 1) e.push("a map needs a topic, a name and exactly one page it belongs to");
   if (typeof m.builtAt !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(m.builtAt)) e.push("builtAt must be a date");
   if (!Array.isArray(m.rules) || m.rules.length === 0) e.push("the rules must be written down");
   if (!m.counts || typeof m.counts.retrieved !== "number") e.push("counts are missing");
@@ -358,10 +360,13 @@ export interface Decision {
  * What a map is about: a supplement (reviews of trials of giving it) or a claim about foods (reviews of
  * any design: trials, cohort studies, absorption studies, food analyses).
  */
-export type MapKind = "supplement" | "food";
+export type MapKind = "supplement" | "food" | "lifestyle";
+
+/** Food and lifestyle maps: a search per finding or claim, and reviews of any design (cohorts, absorption studies, trials). */
+export const anyDesignKind = (kind: MapKind | undefined) => kind === "food" || kind === "lifestyle";
 
 export const questionText = (q: Question, kind: MapKind = "supplement") =>
-  `Population: ${q.population}\n${kind === "food" ? "Food or exposure" : "Intervention"}: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
+  `Population: ${q.population}\n${kind === "food" ? "Food or exposure" : kind === "lifestyle" ? "Habit or exposure" : "Intervention"}: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
 
 /** The prompt for one batch of reviews. Abstracts are shortened; the model judges only what it is given. */
 export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], kind: MapKind = "supplement", maxAbstract = 2500): string {
@@ -369,20 +374,25 @@ export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, 
     .filter((r) => r.pmid)
     .map((r) => `PMID ${r.pmid} (${r.year ?? "year unknown"})\nTitle: ${r.title}\nAbstract: ${r.abstract.slice(0, maxAbstract) || "(none)"}`)
     .join("\n\n---\n\n");
-  const food = kind === "food";
+  const food = anyDesignKind(kind);
+  const habit = kind === "lifestyle";
   return [
     "You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:",
     "",
     questionText(q, kind),
     "",
     food
-      ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (trials, cohort studies, absorption or feeding studies, analyses of foods) that match the population, food or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
+      ? habit
+        ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
+        : 'fits = "yes": the review pooled or systematically reviewed studies of any design (trials, cohort studies, absorption or feeding studies, analyses of foods) that match the population, food or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
       : 'fits = "yes": the review pooled randomised trials matching the population, intervention, comparison and outcome (a separate analysis or subgroup that matches counts).',
     food
-      ? 'fits = "partly": close, but one part differs (for example a supplement instead of the food, a narrower or different group of people, or only one part of the claim).'
+      ? habit
+        ? 'fits = "partly": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
+        : 'fits = "partly": close, but one part differs (for example a supplement instead of the food, a narrower or different group of people, or only one part of the claim).'
       : 'fits = "partly": close, but one part differs (for example the vitamin is only given together with something else, a narrower or different group of people, treating an illness instead of preventing it, or the outcome is only a blood marker).',
     'fits = "no": a different question.',
-    `Judge only from the title and abstract given. Don't judge whether ${food ? "the claim is true" : "the supplement works"}, and don't use outside knowledge about the paper.`,
+    `Judge only from the title and abstract given. Don't judge whether ${habit ? "the habit works" : food ? "the claim is true" : "the supplement works"}, and don't use outside knowledge about the paper.`,
     "",
     'Answer with JSON only, no other text: [{"pmid": "...", "fits": "yes" | "partly" | "no", "reason": "one plain sentence, under 200 characters, saying which part matches or differs"}], one entry per review, in the same order.',
     "",

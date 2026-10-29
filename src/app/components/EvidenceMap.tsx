@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { Chosen, EvidenceMapFile, EvidenceMapOutcome } from "../../core/evidenceMap";
+import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutcome, type MapKind } from "../../core/evidenceMap";
 import { formatDate } from "../format";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";
@@ -13,7 +13,7 @@ import { cx } from "./ui";
 
 const maps = import.meta.glob<EvidenceMapFile>("../../../knowledge/evidence-maps/*.json", { import: "default" });
 
-/** A map by its file name: a nutrient's id ("vitamin_d"), or "food-<topic>" for the food comparison. */
+/** A map by its file name: a nutrient's id ("vitamin_d"), "food-<topic>" for the food comparison, or "lifestyle-<id>". */
 export function useEvidenceMap(mapId: string): EvidenceMapFile | undefined {
   const [map, setMap] = useState<EvidenceMapFile>();
   useEffect(() => {
@@ -45,20 +45,23 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
   if (!map) return <p className="text-ink-2">Loading the evidence map…</p>;
   const o = map.outcomes.find((x) => x.id === outcomeId) ?? map.outcomes[0]!;
   const c = map.counts;
-  const food = map.kind === "food";
+  // Food and lifestyle maps search claim by claim (or finding by finding) and count reviews of any design.
+  const food = anyDesignKind(map.kind);
+  const kind: MapKind = map.kind ?? "supplement";
+  const claim = kind === "food" ? "claim" : "finding";
   return (
     <div className="flex flex-col gap-6">
       <div className="max-w-3xl">
         <p className="text-ink-2">
           {food
-            ? "Instead of picking studies by hand, each claim has its own written search of every PubMed record, and the reviews were chosen by written rules."
+            ? `Instead of picking studies by hand, each ${claim} has its own written search of every PubMed record, and the reviews were chosen by written rules.`
             : "Instead of picking studies by hand, every PubMed record was searched and the studies for each finding were chosen by written rules."}{" "}
           Built {formatDate(map.builtAt)} from {map.source}.
         </p>
       </div>
 
       <ol className={cx("grid gap-2", c.all !== undefined ? "sm:grid-cols-4" : "sm:grid-cols-3")} aria-label="From every record to the studies used">
-        {c.all !== undefined && <Step big={n(c.all)} text={food ? "records match the searches for these claims" : `records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`} />}
+        {c.all !== undefined && <Step big={n(c.all)} text={food ? `records match the searches for these ${claim}s` : `records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`} />}
         <Step big={n(c.retrieved)} text="are reviews, randomised trials or guidelines: all downloaded" />
         <Step big={`${n(c.reviews)} · ${n(c.trials)}`} text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`} />
         {o.screening ? (
@@ -83,7 +86,7 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
         ))}
       </div>
 
-      <Outcome o={o} name={map.name} food={food} citedTitles={citedTitles} />
+      <Outcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
 
       <details className="max-w-3xl">
         <summary className="min-h-11 cursor-pointer py-2 font-medium">The rules, and what they can't do yet</summary>
@@ -100,7 +103,7 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
             its reason, and a clinician still has to check them.
           </li>
           <li>They don't judge quality (risk of bias), which needs reading each paper's methods.</li>
-          <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the {food ? "verdicts" : "findings"} on this page do.</li>
+          <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the {kind === "food" ? "verdicts" : "findings"} on this page do.</li>
           <li>Trial sizes and the number of trials a review pooled are read from abstracts and can be missing or off.</li>
         </ul>
         <p className="mt-3 text-sm text-ink-2">The searches, rules and the code that applies them are in the app's repository, so anyone can run them again and check.</p>
@@ -118,13 +121,15 @@ function Step({ big, text }: { big: string; text: string }) {
   );
 }
 
-function Outcome({ o, name, food, citedTitles }: { o: EvidenceMapOutcome; name: string; food: boolean; citedTitles: Record<string, string> }) {
+function Outcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; name: string; food: boolean; kind: MapKind; citedTitles: Record<string, string> }) {
+  const claim = kind === "food" ? "claim" : "finding";
+  const verdict = kind === "food" ? "verdict" : "finding";
   const reviewLetter = (pmid: string) => String.fromCharCode(65 + o.chosenReviews.findIndex((r) => r.pmid === pmid));
   return (
     <div className="flex flex-col gap-6">
       {food ? (
         <p className="max-w-3xl">
-          {o.counts.all !== undefined && <>{n(o.counts.all)} records match this claim's search. </>}
+          {o.counts.all !== undefined && <>{n(o.counts.all)} records match this {claim}'s search. </>}
           {n(o.counts.reviews)} systematic reviews and {n(o.counts.trials)} randomised trials in people fit its words
           {o.screening ? `; ${o.screening.counts.yes} of the reviews answer the question below` : ""}, and {o.counts.largeTrials} trials had 1,000 people or more.
         </p>
@@ -136,7 +141,7 @@ function Outcome({ o, name, food, citedTitles }: { o: EvidenceMapOutcome; name: 
         </p>
       )}
 
-      {o.screening && <Screening s={o.screening} food={food} />}
+      {o.screening && <Screening s={o.screening} kind={kind} />}
 
       <Timeline o={o} />
 
@@ -144,9 +149,9 @@ function Outcome({ o, name, food, citedTitles }: { o: EvidenceMapOutcome; name: 
         <h3 className="font-serif text-xl font-normal">Reviews chosen by the rules</h3>
         {o.chosenReviews.length === 0 && (
           <p className="max-w-3xl rounded-lg bg-sunken p-3 text-sm">
-            <span className="font-medium">{food ? "No systematic review answers this claim yet" : "No review of trials answers this question yet"}</span>
+            <span className="font-medium">{food ? `No systematic review answers this ${claim} yet` : "No review of trials answers this question yet"}</span>
             {o.counts.trialReviews > 0 ? `: the ${o.counts.trialReviews} the rules found were about a nearby question${o.screening ? " (listed above with the reasons)" : ""}.` : "."}{" "}
-            {food
+            {kind === "food"
               ? "The verdict rests on the studies it cites, such as single absorption studies, trials or studies that follow people over time, so it is less certain."
               : "The finding rests on the studies it cites, such as single trials or studies that follow people over time, so it is less certain."}
           </p>
@@ -177,7 +182,7 @@ function Outcome({ o, name, food, citedTitles }: { o: EvidenceMapOutcome; name: 
         <h3 className="font-medium">Compared with this page</h3>
         {o.finding ? (
           <>
-            <p className="text-sm text-ink-2">{food ? "The claim's verdict cites:" : `The finding "${o.finding}" cites:`}</p>
+            <p className="text-sm text-ink-2">{kind === "food" ? "The claim's verdict cites:" : `The finding "${o.finding}" cites:`}</p>
             <ul className="flex flex-col gap-1 text-sm">
               {[...o.page.alsoChosen, ...o.page.citedNotChosen].map((p) => (
                 <li key={p}>
@@ -191,7 +196,7 @@ function Outcome({ o, name, food, citedTitles }: { o: EvidenceMapOutcome; name: 
             {o.page.chosenNotCited.length > 0 && (
               <p className="text-sm">
                 <span className="font-medium">To check:</span> {o.page.chosenNotCited.length} chosen {o.page.chosenNotCited.length === 1 ? "study isn't" : "studies aren't"} on the
-                page yet. A newer review can change {food ? "a verdict" : "a finding"}; until someone reads them, the {food ? "verdict" : "finding"} stays as written.
+                page yet. A newer review can change a {verdict}; until someone reads them, the {verdict} stays as written.
               </p>
             )}
           </>
@@ -232,10 +237,10 @@ function NewerTrials({ trials }: { trials: EvidenceMapOutcome["newerLargeTrials"
 }
 
 /** The finding's question, how many reviews answer it, and the ones left out with the model's reason. */
-function Screening({ s, food }: { s: NonNullable<EvidenceMapOutcome["screening"]>; food: boolean }) {
+function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]>; kind: MapKind }) {
   const rows: [string, string][] = [
     ["Who", s.question.population],
-    [food ? "Food or exposure" : "Given", s.question.intervention],
+    [kind === "food" ? "Food or exposure" : kind === "lifestyle" ? "Habit or exposure" : "Given", s.question.intervention],
     ["Compared with", s.question.comparison],
     ["Measured", s.question.outcome],
   ];

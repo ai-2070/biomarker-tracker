@@ -6,6 +6,7 @@
  */
 import type { MapKind, Question } from "../../src/core/evidenceMap";
 import { FOOD_TOPICS } from "./foodTopics";
+import { LIFESTYLE_TOPICS } from "./lifestyleTopics";
 
 export interface OutcomeDef {
   id: string;
@@ -29,11 +30,13 @@ export interface OutcomeDef {
 
 export interface TopicDef {
   id: string;
-  /** "supplement" (default): one search for the nutrient, reviews of trials. "food": a search per claim, reviews of any design. */
+  /** "supplement" (default): one search for the nutrient, reviews of trials. "food" and "lifestyle": a search per claim or finding, reviews of any design. */
   kind?: MapKind;
   /** The nutrient page (supplement maps) or the food comparison topic (food maps) the map belongs to. */
   nutrientId?: string;
   comparisonId?: string;
+  /** Lifestyle maps: the entry in knowledge/lifestyle. */
+  lifestyleId?: string;
   /** In sentences: "records mention calcium". */
   name: string;
   /** Searched in titles and abstracts (any of them). */
@@ -406,4 +409,5 @@ export const TOPICS: TopicDef[] = [
     ],
   },
   ...FOOD_TOPICS,
+  ...LIFESTYLE_TOPICS,
 ];
