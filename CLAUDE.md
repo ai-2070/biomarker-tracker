@@ -219,7 +219,8 @@ One assistant, no teams or multi-agent setups. Model choice, Skills and MCP sett
 - Item: name, the person's own amount (free text, never set by the app), type (supplement / diet / medication / lifestyle), time of day (`PLAN_TIMES`), note. The page shows the day as a schedule, links supplements to Supplementation (`nutrientFor`, by name or other name, a form number allowed: "Vitamin D3"), warns about items that interact with each other (`pairWarnings`, from the nutrients' interactions) and with the person's medicines or conditions (`interactionsFor` with `safetyNotes` of habits, profile and the items).
 - **Start** turns each item into a habit (`habitsForPlan`: name plus amount) from a chosen date (`startPlan`); **stop** ends them today, or removes ones that hadn't begun (`stopPlan`). Watches are added on those habits in Habits.
 - **Share**: `planToFile` (items only: no ids, dates, habits or results) and `planFromFile` (new ids, validated). No built-in named protocols (they would mean suggesting doses).
-- Brain: `get_protocols` (with linked nutrients and interactions between items; amounts are the person's own, never changed or suggested); OpenClaw's data summary lists them.
+- Brain: `get_protocols` (with linked nutrients and interactions between items; amounts are the person's own, never changed or suggested); OpenClaw's data summary lists them. `propose_protocol` writes down a protocol from the person's own text (a pasted routine) as a chat card they create (`planFromProposal`, checked on the server and again in the page; items, times, amounts and conditions copied exactly, nothing added; not next to a critical result); it opens on the protocol's page.
+- The example profile has two: "My daily routine" and "Standard Routine" (a larger supplement routine the user gave, no amounts, some items only if deficient), which shows the interaction warnings.
 
 ## Supplementation (vitamins and minerals)
 

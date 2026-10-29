@@ -95,6 +95,18 @@ describe("protocols", () => {
     expect(out.protocols[0]!.interactionsBetweenItems.length).toBeGreaterThan(0);
     expect(parseSnapshot({ ...snapshot, plans: [{ ...plan, name: "" }] }).ok).toBe(false);
   });
+
+  it("writes down a protocol from the person's text as a card, and keeps the whole step", async () => {
+    const calm: HealthSnapshot = { ...snapshot, measurements: snapshot.measurements.filter((x) => x.biomarkerId !== "potassium") };
+    const items = Array.from({ length: 24 }, (_, i) => ({ label: `Item ${i}`, category: "supplement", when: "morning", note: "With food or extra virgin olive oil" }));
+    const input = { name: "Standard Routine", items: [...items, { label: "Iron", category: "supplement", when: "evening" }, { label: "Calcium", category: "supplement", when: "midday" }] };
+    const run = (snap: HealthSnapshot, x: unknown) => healthTools(snap).propose_protocol!.execute!(x as never, { toolCallId: "t", messages: [] } as never) as Promise<Record<string, unknown>>;
+    const r = await run(calm, input);
+    expect(r.shownToPerson).toEqual({ name: "Standard Routine", items: 26 });
+    expect((r.interactionsBetweenItems as unknown[]).length).toBeGreaterThan(0);
+    expect((await run(snapshot, input)).error).toMatch(/critical/);
+    expect(JSON.parse(toolStep("propose_protocol", input).input)).toEqual(input);
+  });
 });
 
 describe("habit suggestions", () => {

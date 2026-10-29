@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { NutrientDef } from "../../src/core/nutrients";
-import { habitsForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planToFile, validatePlan, type Plan } from "../../src/core/plans";
+import { habitsForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan } from "../../src/core/plans";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "nutrients");
 const nutrients = readdirSync(DIR).map((f) => JSON.parse(readFileSync(join(DIR, f), "utf8")) as NutrientDef);
@@ -68,6 +68,21 @@ describe("protocols", () => {
     expect(planFromFile("{", id, "x")).toMatchObject({ ok: false });
     expect(planFromFile('{"kind":"other"}', id, "x")).toMatchObject({ ok: false });
     expect(planFromFile(JSON.stringify({ kind: "biomarker-tracker-protocol", version: 1, name: "", items: [] }), id, "x")).toMatchObject({ ok: false });
+  });
+
+  it("builds a protocol Brain wrote down from the person's text, with fresh ids, never running", () => {
+    const r = planFromProposal(
+      { name: " Standard Routine ", items: [{ label: "Creatine", category: "supplement", when: "morning" }, { label: "Iron", category: "supplement", when: "evening", note: "Only if deficient", amount: " " }], active: { since: "2026-01-01", habitIds: [] } },
+      id,
+      "2026-10-29T00:00:00.000Z",
+    );
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.plan.name).toBe("Standard Routine");
+    expect(r.plan.items[1]).toEqual({ id: expect.any(String), label: "Iron", category: "supplement", when: "evening", note: "Only if deficient" });
+    expect(r.plan.active).toBeUndefined();
+    expect(planFromProposal({ name: "X", items: [] }, id, "x")).toMatchObject({ ok: false });
+    expect(planFromProposal({ name: "X", items: [{ label: "A", category: "supplement", when: "noon" }] }, id, "x")).toMatchObject({ ok: false, error: expect.stringMatching(/time/) });
   });
 
   it("turns each item into a habit with the person's own amount", () => {

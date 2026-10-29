@@ -15,8 +15,8 @@ export function toolStep(name: string, input: unknown): ToolStep {
     if (typeof i.server === "string" && typeof i.tool === "string") return { tool: i.tool, server: i.server, input: JSON.stringify(i.input ?? {}).slice(0, 200) };
   }
   const [server, tool] = name.includes("__") ? name.split("__", 2) : [undefined, name];
-  // A habit suggestion is kept whole: the page builds the confirm card from it.
-  const max = !server && tool === "propose_habit" ? 2000 : 200;
+  // Habit and protocol suggestions are kept whole: the page builds the confirm card from them.
+  const max = !server && tool === "propose_habit" ? 2000 : !server && tool === "propose_protocol" ? 30_000 : 200;
   return { tool: tool!, ...(server ? { server } : {}), input: JSON.stringify(input ?? {}).slice(0, max) };
 }
 

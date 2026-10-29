@@ -13,10 +13,11 @@ import { todayIso } from "../../core/dates";
 import type { HabitProposal } from "../../core/habitProposal";
 import { defaultRetestDays } from "../../core/habits";
 import { safetyNotes, validateProtocol } from "../../core/protocols";
-import { addProtocol, watchHabit } from "../../db/db";
+import { addProtocol, savePlan, watchHabit } from "../../db/db";
+import { itemsByTime, pairWarnings } from "../../core/plans";
 import { formatDate, showMeasurement } from "../format";
 import { useAllMeasurements, useProfile } from "../hooks";
-import { BIOMARKER_MAP, fullName } from "../knowledge";
+import { BIOMARKER_MAP, NUTRIENTS, fullName } from "../knowledge";
 import { uploadFile, useProfiles } from "../profiles";
 import { href } from "../router";
 import { INTERACTIVE_SELECTOR, brainShortcut } from "./logic";
@@ -61,6 +62,7 @@ const TOOL_TEXT: Record<string, string> = {
   get_study: "Read a study on Europe PMC",
   get_nutrient: "Read the vitamins and minerals knowledge base",
   get_protocols: "Read your protocols",
+  propose_protocol: "Wrote down a protocol for you to create",
   read_skill: "Followed a skill",
   research_tools: "Listed a research source's tools",
 };
@@ -422,6 +424,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
       return <ReviewTurn turn={t} model={model} />;
     case "habit":
       return <HabitTurn turn={t} />;
+    case "protocol":
+      return <ProtocolTurn turn={t} />;
   }
 }
 
@@ -837,6 +841,100 @@ function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) {
       <div className="flex flex-wrap gap-2">
         <Button onClick={() => void add()} disabled={saving || !label.trim()}>
           {saving ? "Adding…" : "Add to Habits"}
+        </Button>
+        <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
+          Not now
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+const TIME_WORD: Record<string, string> = { morning: "Morning", "with meals": "With meals", midday: "Midday", evening: "Evening", bedtime: "Bedtime", "any time": "Any time" };
+
+/**
+ * A protocol Brain wrote down from the person's text. They check the items and create it (it opens
+ * on the Protocols page, where everything can be edited); nothing is saved before that.
+ */
+function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
+  const [name, setName] = useState(turn.plan.name);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string>();
+  const nameId = useId();
+  const groups = itemsByTime(turn.plan);
+  const pairs = pairWarnings(turn.plan, NUTRIENTS);
+
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Protocol not created.</p>;
+  if (turn.state === "saved") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-ok-soft p-3 text-sm">
+        <span className="flex items-center gap-2">
+          <CheckIcon className="size-4 text-ok" /> Protocol created: <span className="font-medium">{name}</span>
+        </span>
+        <a href={href({ name: "plan", id: turn.plan.id })} className="font-medium text-ink underline underline-offset-2">
+          Open it
+        </a>
+      </div>
+    );
+  }
+
+  async function create() {
+    if (!name.trim()) return setError("Give the protocol a name.");
+    setSaving(true);
+    try {
+      await savePlan({ ...turn.plan, name: name.trim().slice(0, 80) });
+      setHabitState(turn.id, "saved");
+    } catch {
+      setError("The protocol couldn't be saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+      <div>
+        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">
+          Protocol from your text · {turn.plan.items.length} {turn.plan.items.length === 1 ? "item" : "items"}
+        </p>
+        <p className="mt-1 text-sm text-ink-2">Check that every item, time and amount matches what you wrote. You can change anything on the Protocols page afterwards.</p>
+      </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor={nameId} className="text-sm font-medium">
+          Name
+        </label>
+        <input id={nameId} value={name} maxLength={80} onChange={(e) => setName(e.target.value)} className={inputStyles} />
+      </div>
+      <div className="flex max-h-72 flex-col gap-2 overflow-y-auto rounded-lg bg-sunken p-2 text-sm">
+        {groups.map((g) => (
+          <div key={g.when}>
+            <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{TIME_WORD[g.when]}</p>
+            <ul className="mt-0.5">
+              {g.items.map((i) => (
+                <li key={i.id}>
+                  {i.label}
+                  {i.amount && <span className="text-ink-2"> · {i.amount}</span>}
+                  {i.note && <span className="text-ink-2"> ({i.note})</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      {pairs.length > 0 && (
+        <p className="rounded-lg bg-warn-soft p-2 text-sm">
+          <span className="font-medium">Items that interact: </span>
+          {pairs.map((w) => `${w.a} and ${w.b}`).join("; ")}. Details on the protocol's page.
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => void create()} disabled={saving}>
+          {saving ? "Creating…" : "Create protocol"}
         </Button>
         <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
           Not now
