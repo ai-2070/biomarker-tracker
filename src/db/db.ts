@@ -2,6 +2,7 @@ import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
 import { syncWatch, watchFor } from "../core/habits";
 import { habitsForPlan, type Plan } from "../core/plans";
+import type { IntakeDay } from "../core/intake";
 import type { Meal } from "../core/meals";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 
@@ -19,6 +20,8 @@ export class TrackerDB extends Dexie {
   plans!: EntityTable<Plan, "id">;
   /** Meals the person built (foods and grams). */
   meals!: EntityTable<Meal, "id">;
+  /** Days of eating logged in Daily intake. */
+  intake!: EntityTable<IntakeDay, "id">;
 
   constructor(name = "biomarker-tracker") {
     super(name);
@@ -33,6 +36,8 @@ export class TrackerDB extends Dexie {
     this.version(3).stores({ plans: "id" });
     // v4: meals.
     this.version(4).stores({ meals: "id" });
+    // v5: daily intake (days of meals and foods eaten).
+    this.version(5).stores({ intake: "id, date" });
   }
 }
 
@@ -92,6 +97,16 @@ export async function saveMeal(m: Meal, database = db): Promise<void> {
 
 export async function deleteMeal(id: string, database = db): Promise<void> {
   await database.meals.delete(id);
+}
+
+// Daily intake
+
+export async function saveIntakeDay(d: IntakeDay, database = db): Promise<void> {
+  await database.intake.put(d);
+}
+
+export async function deleteIntakeDay(id: string, database = db): Promise<void> {
+  await database.intake.delete(id);
 }
 
 // Measurements
@@ -266,7 +281,8 @@ export async function importBackup(backup: Backup, mode: ImportMode, database = 
 }
 
 export async function deleteEverything(database = db): Promise<void> {
-  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings], async () => {
+  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.intake, database.settings], async () => {
+    await database.intake.clear();
     await database.measurements.clear();
     await database.protocols.clear();
     await database.experiments.clear();

@@ -6,7 +6,7 @@ import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
 import { Brain } from "../brain/Brain";
 import { openBrain, useBrain } from "../brain/store";
-import { AgeIcon, BookIcon, BowlIcon, BrainIcon, ClipboardIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, StarIcon, BodyIcon } from "./icons";
+import { AgeIcon, BodyIcon, BookIcon, BowlIcon, BrainIcon, ClipboardIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, IntakeIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, StarIcon } from "./icons";
 import { REPO_URL } from "./settings/AboutSettings";
 import { ProfileMenu } from "./ProfileMenu";
 import { buttonStyles, cx } from "./ui";
@@ -32,6 +32,7 @@ const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: 
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
 const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
 const PLANS: NavItem = { label: "Protocols", to: { name: "plans" }, icon: ClipboardIcon, active: (r) => r.name === "plans" || r.name === "plan" };
+const INTAKE: NavItem = { label: "Daily intake", to: { name: "intake" }, icon: IntakeIcon, active: (r) => r.name === "intake" };
 const MEALS: NavItem = { label: "Meals", to: { name: "meals" }, icon: BowlIcon, active: (r) => r.name === "meals" || r.name === "meal" || r.name === "example-meal" };
 const SUPPLEMENTS: NavItem = { label: "Supplementation", to: { name: "supplements" }, icon: BookIcon, active: (r) => r.name === "supplements" || r.name === "nutrient" };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
@@ -41,7 +42,7 @@ const GROUPS: { label?: string; items: NavItem[] }[] = [
   { items: [DASHBOARD] },
   { label: "Health", items: [BLOOD, BODY, AGE] },
   // Things you build and follow: habits to log and watch, protocols, meals.
-  { label: "Tools", items: [HABITS, PLANS, MEALS] },
+  { label: "Tools", items: [HABITS, PLANS, MEALS, INTAKE] },
   // Research-based knowledge, not your own data: kept apart from Health.
   { label: "Knowledge", items: [SUPPLEMENTS] },
   { label: "Connect", items: [DEVICES] },

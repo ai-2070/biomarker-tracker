@@ -204,3 +204,11 @@ export const SearchIcon = (p: P) => (
     <path d="m16 16 4.5 4.5" />
   </Icon>
 );
+
+/** A plate seen from above with a share marked: daily intake. */
+export const IntakeIcon = (p: P) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 3.5V12l6 6" />
+  </Icon>
+);

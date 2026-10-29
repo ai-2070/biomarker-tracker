@@ -1,3 +1,4 @@
+import type { IntakeDay } from "../core/intake";
 import type { Meal } from "../core/meals";
 import type { Plan } from "../core/plans";
 import { useSyncExternalStore } from "react";
@@ -69,4 +70,9 @@ export function useMediaQuery(query: string): boolean {
     () => window.matchMedia(query).matches,
     () => false,
   );
+}
+
+/** Days logged in Daily intake, newest first. */
+export function useIntakeDays(): IntakeDay[] | undefined {
+  return useLiveQuery(async () => (await db.intake.toArray()).sort((a, b) => b.date.localeCompare(a.date)), []);
 }
