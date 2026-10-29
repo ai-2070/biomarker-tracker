@@ -1,0 +1,406 @@
+{
+  "topic": "vitamins",
+  "title": "The vitamin question",
+  "intro": "Some vitamins come mainly or only from animal foods, and others mainly from fruit and vegetables. These claims look at each one: where it is found, how well the body uses the plant and animal forms, and what studies of people on different diets show.",
+  "claims": [
+    {
+      "id": "vitamins-b12-animal-only",
+      "claim": "Vitamin B12 is only found in animal foods",
+      "verdict": "supported",
+      "grade": "high",
+      "favours": "animal foods",
+      "summary": "B12 is made by microbes, not by plants or animals. It builds up in animal foods: meat, fish, shellfish, eggs and milk. Fortified foods and supplements are reliable non-animal sources. Dried nori seaweed contains some real B12, but most other algae have little, and spirulina tablets contain mainly pseudovitamin B12 (83% in one analysis), which the body can't use. Reviews found B12 depletion or deficiency common among vegetarians, more so in vegans: 62% of pregnant vegetarian women in the studies reviewed, and 11–90% of older vegetarians. The other side: in recent Swiss and German studies, vegans' B12 status was as good as meat-eaters' because most used supplements. Among animal foods, B12 from eggs seems to be absorbed less well (under 9%) than from fish (about 42%) or meat (about 56–89%).",
+      "whyThisGrade": [
+        "Well-understood biology, confirmed by food analyses",
+        "Consistent finding across many studies of vegetarians and vegans",
+        "Studies of people using supplements show the gap closes"
+      ],
+      "studies": [
+        {
+          "pmid": "17959839",
+          "doi": "10.3181/0703-mr-67",
+          "title": "Vitamin B12 sources and bioavailability",
+          "year": 2007,
+          "studyType": "review"
+        },
+        {
+          "pmid": "10552882",
+          "doi": "10.1021/jf990541b",
+          "title": "Pseudovitamin B(12) is the predominant cobamide of an algal health food, spirulina tablets",
+          "year": 1999,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "23356638",
+          "doi": "10.1111/nure.12001",
+          "title": "How prevalent is vitamin B(12) deficiency among vegetarians?",
+          "year": 2013,
+          "studyType": "review"
+        },
+        {
+          "pmid": "42109795",
+          "doi": "10.2903/j.efsa.2015.4150",
+          "title": "Scientific Opinion on Dietary Reference Values for cobalamin (vitamin B12)",
+          "year": 2015,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "26502280",
+          "doi": "10.1007/s00394-015-1079-7",
+          "title": "Micronutrient status and intake in omnivores, vegetarians and vegans in Switzerland",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 206
+        },
+        {
+          "pmid": "33161940",
+          "doi": "10.3238/arztebl.2020.0575",
+          "title": "Vitamin and Mineral Status in a Vegan Diet",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 72
+        }
+      ]
+    },
+    {
+      "id": "vitamins-vitamin-a-retinol",
+      "claim": "Real vitamin A is only in animal foods; plants only give beta-carotene, which many people can't convert",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "Preformed vitamin A (retinol) is found only in animal foods such as liver, eggs and dairy, and in fortified foods and supplements; in the EPIC-Oxford cohort vegans had the lowest retinol intake. Plants provide beta-carotene and similar pigments, which the body turns into vitamin A. How well it does this varies a lot: studies found it takes between about 3.6 and 28 µg of dietary beta-carotene to make 1 µg of retinol, depending on the food, the fat in the meal and the person. Two common variants of the BCMO1 gene (the enzyme that does the conversion) lowered conversion by 32–69% in carriers. The other side: 'poor converter' does not mean 'no conversion', and none of these studies measured vitamin A deficiency in people eating plant-based diets. Preformed vitamin A is also the form that is harmful in excess: in a study of 22,748 pregnant women, high intakes of preformed vitamin A early in pregnancy were linked with more birth defects.",
+      "whyThisGrade": [
+        "Where retinol occurs is well established",
+        "Conversion figures come from careful isotope studies, but they vary widely between studies and people",
+        "The gene study measured short-term responses to a large dose, not vitamin A status from food"
+      ],
+      "studies": [
+        {
+          "pmid": "12740075",
+          "doi": "10.1079/phn2002430",
+          "title": "EPIC-Oxford: lifestyle characteristics and nutrient intakes in a cohort of 33 883 meat-eaters and 31 546 non meat-eaters in the UK",
+          "year": 2003,
+          "studyType": "observational",
+          "n": 65429
+        },
+        {
+          "pmid": "20200262",
+          "doi": "10.3945/ajcn.2010.28674g",
+          "title": "Bioconversion of dietary provitamin A carotenoids to vitamin A in humans",
+          "year": 2010,
+          "studyType": "review"
+        },
+        {
+          "pmid": "19103647",
+          "doi": "10.1096/fj.08-121962",
+          "title": "Two common single nucleotide polymorphisms in the gene encoding beta-carotene 15,15'-monoxygenase alter beta-carotene metabolism in female volunteers",
+          "year": 2009,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "7477116",
+          "doi": "10.1056/nejm199511233332101",
+          "title": "Teratogenicity of high vitamin A intake",
+          "year": 1995,
+          "studyType": "observational",
+          "n": 22748
+        }
+      ]
+    },
+    {
+      "id": "vitamins-vitamin-d-food",
+      "claim": "Vitamin D comes from animal foods, so people who avoid them run low",
+      "verdict": "partly supported",
+      "grade": "low",
+      "favours": "neither",
+      "summary": "Few foods contain much vitamin D in either group: oily fish, eggs and liver on the animal side, and mushrooms exposed to UV light (as vitamin D2) and fortified foods on the plant side. The skin also makes vitamin D in sunlight, and the amount varies so much that reference intakes are set assuming little sun. In the EPIC-Oxford study, blood vitamin D (25-hydroxyvitamin D) followed how many animal foods people ate: meat-eaters averaged 77 nmol/L and vegans 56 nmol/L. The gap was 20% in summer and 38% in winter. The other side: in that study low levels (under 25 nmol/L) were uncommon in every diet group (under 1% to 8%), and a German study found no difference between vegans and meat-eaters, most of whom used supplements. Vitamin D3 (the animal form) raised blood levels more than D2 when given as large, infrequent doses, but the difference was lost with daily intake.",
+      "whyThisGrade": [
+        "Large but cross-sectional study; season, sun and supplements confound the comparison",
+        "Few studies of vitamin D-related health outcomes by diet group",
+        "Food sources are small compared with sunlight for most people"
+      ],
+      "studies": [
+        {
+          "pmid": "20854716",
+          "doi": "10.1017/s1368980010002454",
+          "title": "Plasma concentrations of 25-hydroxyvitamin D in meat eaters, fish eaters, vegetarians and vegans: results from the EPIC-Oxford study",
+          "year": 2011,
+          "studyType": "observational",
+          "n": 2107
+        },
+        {
+          "pmid": "30322118",
+          "doi": "10.3390/nu10101498",
+          "title": "A Review of Mushrooms as a Potential Source of Dietary Vitamin D",
+          "year": 2018,
+          "studyType": "review"
+        },
+        {
+          "pmid": "22552031",
+          "doi": "10.3945/ajcn.111.031070",
+          "title": "Comparison of vitamin D2 and vitamin D3 supplementation in raising serum 25-hydroxyvitamin D status: a systematic review and meta-analysis",
+          "year": 2012,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "21118827",
+          "doi": "10.1210/jc.2010-2704",
+          "title": "The 2011 report on dietary reference intakes for calcium and vitamin D from the Institute of Medicine: what clinicians need to know",
+          "year": 2011,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "33161940",
+          "doi": "10.3238/arztebl.2020.0575",
+          "title": "Vitamin and Mineral Status in a Vegan Diet",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 72
+        }
+      ]
+    },
+    {
+      "id": "vitamins-vitamin-k2",
+      "claim": "Vitamin K2 from animal foods does something the K1 in leafy greens can't",
+      "verdict": "not enough evidence",
+      "grade": "low",
+      "favours": "neither",
+      "summary": "Vitamin K1 (phylloquinone) comes mainly from green vegetables and plant margarines. Vitamin K2 (menaquinones) is found in meat, liver, butter, egg yolk and cheese, and in natto, a fermented soya food, which is a plant source. In a small study, blood K2 after natto was about 10 times higher than blood K1 after spinach. In the Rotterdam cohort, people eating the most K2 had fewer coronary heart disease deaths, but people who eat more cheese and meat differ in many ways. Meta-analyses of supplement trials found that vitamin K slowed artery calcification a little, in small, varied studies; these trials measured calcification, not heart attacks or deaths. EFSA (the European Food Safety Authority) found too little evidence on menaquinones to set any reference intake for K2, and set one for K1 only.",
+      "whyThisGrade": [
+        "The heart finding comes from one observational cohort, open to confounding",
+        "Supplement trials are small, varied and measure calcification, not heart attacks or deaths",
+        "Supplements are not the same as K2 from whole foods"
+      ],
+      "studies": [
+        {
+          "pmid": "11356998",
+          "doi": "10.1159/000054147",
+          "title": "Determination of phylloquinone and menaquinones in food. Effect of food matrix on circulating vitamin K concentrations",
+          "year": 2000,
+          "studyType": "rct",
+          "n": 6
+        },
+        {
+          "pmid": "15514282",
+          "doi": "10.1093/jn/134.11.3100",
+          "title": "Dietary intake of menaquinone is associated with a reduced risk of coronary heart disease: the Rotterdam Study",
+          "year": 2004,
+          "studyType": "observational",
+          "n": 4807
+        },
+        {
+          "pmid": "30514729",
+          "doi": "10.1136/heartjnl-2018-313955",
+          "title": "Vitamin K status, supplementation and vascular disease: a systematic review and meta-analysis",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "37252246",
+          "doi": "10.3389/fnut.2023.1115069",
+          "title": "Vitamin K supplementation and vascular calcification: a systematic review and meta-analysis of randomized controlled trials",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 1533
+        },
+        {
+          "pmid": "32625486",
+          "doi": "10.2903/j.efsa.2017.4780",
+          "title": "Dietary reference values for vitamin K",
+          "year": 2017,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "id": "vitamins-omega-3",
+      "claim": "Only fish gives the omega-3 fats the body needs; plant omega-3 barely converts",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "Fish and seafood contain the long-chain omega-3 fats EPA (eicosapentaenoic acid) and DHA (docosahexaenoic acid). Some plant foods and oils contain ALA (alpha-linolenic acid), which the body can lengthen into EPA to a limited extent and into DHA hardly at all; women convert somewhat more than men. Vegetarians and vegans had lower blood EPA and DHA, but the levels stayed stable over years on the diet. The other side: fish is not the only source of DHA. In a trial, DHA from algal oil capsules raised blood DHA as much as the same amount from cooked salmon. And for health outcomes the difference is smaller than the claim suggests: a Cochrane review of 86 trials found that more EPA and DHA (mostly as capsules) made little or no difference to deaths and only slightly lowered coronary heart disease, while more ALA may slightly lower cardiovascular events. It found little evidence on eating fish itself.",
+      "whyThisGrade": [
+        "Conversion is well measured with tracer studies",
+        "Health outcome evidence comes mainly from supplement trials, not from fish or plant foods",
+        "Blood levels are lower in plant eaters, but what that means for health is uncertain"
+      ],
+      "studies": [
+        {
+          "pmid": "16188209",
+          "doi": "10.1051/rnd:2005047",
+          "title": "Conversion of alpha-linolenic acid to longer-chain polyunsaturated fatty acids in human adults",
+          "year": 2005,
+          "studyType": "review"
+        },
+        {
+          "pmid": "19269799",
+          "doi": "10.1016/j.plefa.2009.01.004",
+          "title": "alpha-Linolenic acid supplementation and conversion to n-3 long-chain polyunsaturated fatty acids in humans",
+          "year": 2009,
+          "studyType": "review"
+        },
+        {
+          "pmid": "16087975",
+          "doi": "10.1093/ajcn.82.2.327",
+          "title": "Long-chain n-3 polyunsaturated fatty acids in plasma in British meat-eating, vegetarian, and vegan men",
+          "year": 2005,
+          "studyType": "observational",
+          "n": 659
+        },
+        {
+          "pmid": "18589030",
+          "doi": "10.1016/j.jada.2008.04.020",
+          "title": "Algal-oil capsules and cooked salmon: nutritionally equivalent sources of docosahexaenoic acid",
+          "year": 2008,
+          "studyType": "rct",
+          "n": 32
+        },
+        {
+          "pmid": "32114706",
+          "doi": "10.1002/14651858.cd003177.pub5",
+          "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 162796
+        }
+      ]
+    },
+    {
+      "id": "vitamins-fewer-b-vitamins",
+      "claim": "Plants have fewer B vitamins than animal foods",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "It depends on the B vitamin. B12 is the clear case: plant foods are not a reliable source. But in the EPIC-Oxford cohort of over 65,000 people, vegans had the highest intakes of thiamin (vitamin B1) and folate (vitamin B9), and the lowest of B12. A systematic review of 141 studies found higher folate intake in vegetarians and vegans than in meat-eaters. For the others the picture is mixed: in a Swiss study omnivores had the lowest niacin (B3) intake, yet low B6 and niacin status was most common in vegetarians; a German study found different riboflavin (B2) intakes between vegans and meat-eaters. Omnivores had the most folate deficiency (58%) in the Swiss study.",
+      "whyThisGrade": [
+        "Large cohorts and a systematic review agree on B12, thiamin and folate",
+        "Cross-sectional data; intake questionnaires and supplement use differ between studies",
+        "Few and inconsistent studies for B2, B3 and B6 status"
+      ],
+      "studies": [
+        {
+          "pmid": "12740075",
+          "doi": "10.1079/phn2002430",
+          "title": "EPIC-Oxford: lifestyle characteristics and nutrient intakes in a cohort of 33 883 meat-eaters and 31 546 non meat-eaters in the UK",
+          "year": 2003,
+          "studyType": "observational",
+          "n": 65429
+        },
+        {
+          "pmid": "35010904",
+          "doi": "10.3390/nu14010029",
+          "title": "Nutrient Intake and Status in Adults Consuming Plant-Based Diets Compared to Meat-Eaters: A Systematic Review",
+          "year": 2021,
+          "studyType": "review"
+        },
+        {
+          "pmid": "26502280",
+          "doi": "10.1007/s00394-015-1079-7",
+          "title": "Micronutrient status and intake in omnivores, vegetarians and vegans in Switzerland",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 206
+        },
+        {
+          "pmid": "33161940",
+          "doi": "10.3238/arztebl.2020.0575",
+          "title": "Vitamin and Mineral Status in a Vegan Diet",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 72
+        }
+      ]
+    },
+    {
+      "id": "vitamins-vitamin-c-fruit",
+      "claim": "Vitamin C comes mainly from fruit and vegetables",
+      "verdict": "supported",
+      "grade": "moderate",
+      "favours": "fruit",
+      "summary": "Diets with more plant foods contain more vitamin C. In EPIC-Oxford vegans had the highest vitamin C intake, a systematic review found higher intake in vegetarians and vegans, and in a Swiss study omnivores had the lowest. Staple grains provide almost none. In a 6-month trial in 690 adults, encouraging more fruit and vegetables (about 1.4 extra portions a day) raised blood vitamin C, along with several carotenoids, more than in the control group. The limits: the trial tested whole fruit and vegetables, not vitamin C alone, and blood vitamin C also depends on smoking, illness and supplements.",
+      "whyThisGrade": [
+        "Consistent intake data across large cohorts and a systematic review",
+        "One randomised trial of whole fruit and vegetables showing a rise in blood vitamin C",
+        "The trial relied on self-reported intake"
+      ],
+      "studies": [
+        {
+          "pmid": "12076551",
+          "doi": "10.1016/s0140-6736(02)98858-6",
+          "title": "Effects of fruit and vegetable consumption on plasma antioxidant concentrations and blood pressure: a randomised controlled trial",
+          "year": 2002,
+          "studyType": "rct",
+          "n": 690
+        },
+        {
+          "pmid": "12740075",
+          "doi": "10.1079/phn2002430",
+          "title": "EPIC-Oxford: lifestyle characteristics and nutrient intakes in a cohort of 33 883 meat-eaters and 31 546 non meat-eaters in the UK",
+          "year": 2003,
+          "studyType": "observational",
+          "n": 65429
+        },
+        {
+          "pmid": "35010904",
+          "doi": "10.3390/nu14010029",
+          "title": "Nutrient Intake and Status in Adults Consuming Plant-Based Diets Compared to Meat-Eaters: A Systematic Review",
+          "year": 2021,
+          "studyType": "review"
+        },
+        {
+          "pmid": "32630245",
+          "doi": "10.3390/nu12071963",
+          "title": "Factors Affecting Vitamin C Status and Prevalence of Deficiency: A Global Health Perspective",
+          "year": 2020,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "id": "vitamins-folate-plants",
+      "claim": "Folate comes mainly from vegetables, legumes and fruit",
+      "verdict": "supported",
+      "grade": "moderate",
+      "favours": "plant foods",
+      "summary": "Plant-based diets consistently contain more folate: vegans had the highest intake in EPIC-Oxford, a systematic review found the same across studies, and omnivores had the lowest folate intake and the most deficiency (58%) in a Swiss study. In a 4-week controlled feeding trial, a diet high in vegetables and citrus fruit raised folate status and lowered homocysteine (a blood marker that rises when folate is low), much as folic acid tablets did; food folate was about 60–98% as available as folic acid. The other side: folate from food is absorbed less well than the folic acid used in supplements and fortified foods, and the trial tested whole foods rather than folate alone.",
+      "whyThisGrade": [
+        "Consistent intake data across cohorts and a systematic review",
+        "A small but controlled feeding trial of whole foods",
+        "Intake data come from questionnaires and food tables, which have their own errors"
+      ],
+      "studies": [
+        {
+          "pmid": "10356077",
+          "doi": "10.1093/jn/129.6.1135",
+          "title": "Dietary folate from vegetables and citrus fruit decreases plasma homocysteine concentrations in humans in a dietary controlled trial",
+          "year": 1999,
+          "studyType": "rct",
+          "n": 66
+        },
+        {
+          "pmid": "12740075",
+          "doi": "10.1079/phn2002430",
+          "title": "EPIC-Oxford: lifestyle characteristics and nutrient intakes in a cohort of 33 883 meat-eaters and 31 546 non meat-eaters in the UK",
+          "year": 2003,
+          "studyType": "observational",
+          "n": 65429
+        },
+        {
+          "pmid": "35010904",
+          "doi": "10.3390/nu14010029",
+          "title": "Nutrient Intake and Status in Adults Consuming Plant-Based Diets Compared to Meat-Eaters: A Systematic Review",
+          "year": 2021,
+          "studyType": "review"
+        },
+        {
+          "pmid": "26502280",
+          "doi": "10.1007/s00394-015-1079-7",
+          "title": "Micronutrient status and intake in omnivores, vegetarians and vegans in Switzerland",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 206
+        }
+      ]
+    }
+  ]
+}

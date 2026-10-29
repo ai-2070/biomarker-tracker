@@ -1,0 +1,341 @@
+{
+  "topic": "absorption",
+  "title": "The absorption question",
+  "intro": "How much of a nutrient the body takes up depends on the food it comes in, the rest of the meal and the body's own stores. These claims compare animal foods, fruit and other plant foods on how well their iron, zinc, calcium and protein are absorbed, and whether the differences matter in practice.",
+  "claims": [
+    {
+      "id": "absorption-haem-iron",
+      "claim": "Iron from meat and fish is absorbed much better than iron from plants",
+      "verdict": "supported",
+      "grade": "moderate",
+      "favours": "animal foods",
+      "summary": "Meat and fish contain haem iron, which the gut takes up in a different way from the non-haem iron in plants, eggs and dairy. In one study of the same meal, about 15% of haem iron was absorbed against 7% of non-haem iron. Whole-diet estimates for people with empty iron stores are 14–18% for mixed diets and 5–12% for vegetarian diets. The other side: the body adapts. When iron stores are low it absorbs more non-haem iron, and in a 10-week study the gap between a high- and a low-absorption diet shrank from about 8-fold to 4-fold. Even in a meat-containing study diet, only 1.8 of about 16 mg of iron a day was haem iron, so the rest of the meal matters too.",
+      "whyThisGrade": [
+        "Consistent results from isotope studies that measure absorption directly",
+        "Short-term absorption studies overestimate the difference between diets, because absorption adapts over weeks",
+        "How much is absorbed depends strongly on a person's iron stores, so single figures are averages"
+      ],
+      "studies": [
+        {
+          "pmid": "20200263",
+          "doi": "10.3945/ajcn.2010.28674f",
+          "title": "Iron bioavailability and dietary reference values",
+          "year": 2010,
+          "studyType": "review"
+        },
+        {
+          "pmid": "12145016",
+          "doi": "10.1093/ajcn/76.2.419",
+          "title": "Initial uptake and absorption of nonheme iron and absorption of heme iron in humans are unaffected by the addition of calcium as cheese to a meal with high iron bioavailability",
+          "year": 2002,
+          "studyType": "rct",
+          "n": 17
+        },
+        {
+          "pmid": "10617952",
+          "doi": "10.1093/ajcn/71.1.94",
+          "title": "Adaptation of iron absorption in men consuming diets with high or low iron bioavailability",
+          "year": 2000,
+          "studyType": "rct",
+          "n": 31
+        },
+        {
+          "pmid": "11010941",
+          "doi": "10.1093/ajcn/72.4.982",
+          "title": "Adaptation in iron absorption: iron supplementation reduces nonheme-iron but not heme-iron absorption from food",
+          "year": 2000,
+          "studyType": "rct",
+          "n": 57
+        }
+      ]
+    },
+    {
+      "id": "absorption-phytate",
+      "claim": "Phytic acid in grains, beans, nuts and seeds blocks the absorption of iron and zinc",
+      "verdict": "supported",
+      "grade": "moderate",
+      "favours": "animal foods",
+      "summary": "Phytate (phytic acid and its salts) binds iron and zinc in the gut. In a classic study, adding phytate to bread lowered iron absorption by 18% at the smallest amount and by 82% at the largest. Vitamin C in the same meal partly undid this. EFSA (the European Food Safety Authority) sets higher zinc reference intakes for diets with more phytate: for adult women the average requirement rises from 6.2 to 10.2 mg a day as phytate intake rises from 300 to 1,200 mg a day. The other side: soaking, sprouting (germination), fermenting (including the rising of bread dough) and some cooking reduce phytate or break it down into forms that no longer block absorption, so how a food is prepared changes a lot. Animal foods contain no phytate. This claim is about absorption only, not about other effects of phytate-rich foods.",
+      "whyThisGrade": [
+        "Clear dose-response in controlled absorption studies",
+        "Effects measured in single meals are larger than across a whole, varied diet",
+        "Phytate content varies widely with preparation, and food tables rarely list it"
+      ],
+      "studies": [
+        {
+          "pmid": "2911999",
+          "doi": "10.1093/ajcn/49.1.140",
+          "title": "Iron absorption in man: ascorbic acid and dose-dependent inhibition by phytate",
+          "year": 1989,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "42087959",
+          "doi": "10.2903/j.efsa.2014.3844",
+          "title": "Scientific Opinion on Dietary Reference Values for zinc",
+          "year": 2014,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "30010865",
+          "doi": "10.1093/nutrit/nuy028",
+          "title": "Implications of phytate in plant-based foods for iron and zinc bioavailability, setting dietary requirements, and formulating programs and policies",
+          "year": 2018,
+          "studyType": "review"
+        },
+        {
+          "pmid": "17374686",
+          "doi": "10.1093/jn/137.4.1097",
+          "title": "Traditional food-processing and preparation practices to enhance the bioavailability of micronutrients in plant-based diets",
+          "year": 2007,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "id": "absorption-oxalate-calcium",
+      "claim": "The calcium in spinach and other greens is mostly not absorbed",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "True for high-oxalate greens, not for greens in general. Oxalate binds calcium in the gut. The spinach in one crossover study had slightly more oxalate than needed to bind all its calcium, and only 5.1% of its calcium was absorbed, against 27.6% from milk. Kale is low in oxalate, and 40.9% of its calcium was absorbed against 32.1% from milk in the same people. Other greens weren't tested in these studies. The other side: low-oxalate greens such as kale absorb well, but a review noted that the amounts of vegetables needed to reach usual calcium intakes are large, which is why fortified foods are common in plant-based diets.",
+      "whyThisGrade": [
+        "Direct isotope studies comparing each food with milk in the same people",
+        "Small studies (11 and 13 people), but the results fit the known chemistry of oxalate",
+        "Studies measured absorption, not bone health"
+      ],
+      "studies": [
+        {
+          "pmid": "3354496",
+          "doi": "10.1093/ajcn/47.4.707",
+          "title": "Calcium absorbability from spinach",
+          "year": 1988,
+          "studyType": "rct",
+          "n": 13
+        },
+        {
+          "pmid": "2321572",
+          "doi": "10.1093/ajcn/51.4.656",
+          "title": "Calcium absorption from kale",
+          "year": 1990,
+          "studyType": "rct",
+          "n": 11
+        },
+        {
+          "pmid": "10479229",
+          "doi": "10.1093/ajcn/70.3.543s",
+          "title": "Choices for achieving adequate dietary calcium with a vegetarian diet",
+          "year": 1999,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "id": "absorption-meal-partners",
+      "claim": "Meat or vitamin C in a meal helps the body absorb plant iron, while tea, coffee and calcium block it",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "In single-meal studies all of these effects are real. Beef, lamb, pork, liver, fish and chicken raised non-haem iron absorption 2- to 4-fold compared with egg white, while milk, cheese and egg did not (the 'meat factor', whose cause is still unclear). Adding 50 g of pork to a high-phytate meal raised absorption by 44%. A meal with beef protein gave 4.2 times the non-haem iron absorption of one with fava bean protein. Tea cut absorption by 79–94%, and 165 mg of calcium from milk or cheese by 50–60%. The other side: over a whole diet the effects shrink. Varying vitamin C intake over 5 days barely changed iron absorption from the diet, cheese did not lower absorption from a high-absorption meal, and 6 months of calcium supplements with meals did not lower ferritin (iron stores).",
+      "whyThisGrade": [
+        "Large, repeated effects in controlled single-meal absorption studies",
+        "Much smaller effects across whole diets, where enhancers and inhibitors mix",
+        "Few long-term studies of iron stores; the existing ones (vitamin C, calcium) found little change"
+      ],
+      "studies": [
+        {
+          "pmid": "941868",
+          "doi": "10.1093/ajcn/29.8.859",
+          "title": "Food iron absorption in human subjects. III. Comparison of the effect of animal proteins on nonheme iron absorption",
+          "year": 1976,
+          "studyType": "rct",
+          "n": 70
+        },
+        {
+          "pmid": "12499338",
+          "doi": "10.1093/ajcn/77.1.173",
+          "title": "Nonheme-iron absorption from a phytate-rich meal is increased by the addition of small amounts of pork meat",
+          "year": 2003,
+          "studyType": "rct",
+          "n": 45
+        },
+        {
+          "pmid": "35956338",
+          "doi": "10.3390/nu14153162",
+          "title": "Lower Non-Heme Iron Absorption in Healthy Females from Single Meals with Texturized Fava Bean Protein Compared to Beef and Cod Protein Meals: Two Single-Blinded Randomized Trials",
+          "year": 2022,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "10999016",
+          "doi": "10.1017/s0007114599000537",
+          "title": "Inhibition of non-haem iron absorption in man by polyphenolic-containing beverages",
+          "year": 1999,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "1984335",
+          "doi": "10.1093/ajcn/53.1.112",
+          "title": "Calcium: effect of different amounts on nonheme- and heme-iron absorption in humans",
+          "year": 1991,
+          "studyType": "rct",
+          "n": 126
+        },
+        {
+          "pmid": "11124756",
+          "doi": "10.1093/ajcn/73.1.93",
+          "title": "Effect of ascorbic acid intake on nonheme-iron absorption from a complete diet",
+          "year": 2001,
+          "studyType": "rct",
+          "n": 12
+        },
+        {
+          "pmid": "9665102",
+          "doi": "10.1093/ajcn/68.1.96",
+          "title": "Effect of calcium supplementation on daily nonheme-iron absorption and long-term iron status",
+          "year": 1998,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "21462112",
+          "doi": "10.1024/0300-9831/a000036",
+          "title": "Calcium and iron absorption--mechanisms and public health relevance",
+          "year": 2010,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "id": "absorption-fibre-minerals",
+      "claim": "Fibre in plant foods blocks the absorption of minerals",
+      "verdict": "not supported",
+      "grade": "low",
+      "favours": "neither",
+      "summary": "For iron, the blocking effect usually blamed on fibre comes mainly from phytate, which sits alongside fibre in bran and whole grains. When phytate was washed out of bran or broken down, most of bran's effect on iron absorption disappeared, and adding phytate back restored it. A systematic review of fibres such as inulin, pectin and guar gum found no clear link with iron absorption or iron status. The limits: most of those studies were in animals, the human studies were few and short, and less is known about zinc and calcium.",
+      "whyThisGrade": [
+        "One well-designed human absorption study separating fibre from phytate",
+        "The systematic review included only 9 human studies; most were in animals",
+        "Little direct human evidence for zinc and calcium"
+      ],
+      "studies": [
+        {
+          "pmid": "3034044",
+          "doi": "10.1093/ajcn/45.5.988",
+          "title": "Phytates and the inhibitory effect of bran on iron absorption in man",
+          "year": 1987,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "35403512",
+          "doi": "10.1080/10408398.2022.2060933",
+          "title": "Effects of dietary fiber on intestinal iron absorption, and physiological status: a systematic review of in vivo and clinical studies",
+          "year": 2023,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "id": "absorption-protein-quality",
+      "claim": "Animal protein is higher quality than plant protein",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "On protein scores, yes. Scores such as DIAAS (digestible indispensable amino acid score) and the older PDCAAS (protein digestibility-corrected amino acid score) rate how digestible a protein is and whether it has enough of each essential amino acid. Milk proteins score higher than soya, pea or wheat. Essential amino acids made up 21–22% of oat, lupin and wheat protein against 32–43% of egg and milk proteins. Plant proteins are usually lower in lysine (cereals especially) and methionine (legumes especially). The other side: mixing plant proteins, such as grains with legumes, fills these gaps, and reviews found that diets with legumes, nuts and seeds meet adult protein needs. In a meta-analysis of 16 trials, animal and plant protein gave similar gains in lean mass and strength; animal protein did slightly better on percent lean mass and in adults under 50. Reviews note that the question is more complex in older adults.",
+      "whyThisGrade": [
+        "Amino acid content and digestibility are measured directly and consistently",
+        "Digestibility data come partly from animal models (pigs, rats)",
+        "Trials on muscle outcomes are small and mostly short; people usually ate enough protein overall"
+      ],
+      "studies": [
+        {
+          "pmid": "28382889",
+          "doi": "10.1017/s0007114517000125",
+          "title": "Values for digestible indispensable amino acid scores (DIAAS) for some dairy and plant proteins may better describe protein quality than values calculated using the concept for protein digestibility-corrected amino acid scores (PDCAAS)",
+          "year": 2017,
+          "studyType": "animal"
+        },
+        {
+          "pmid": "30167963",
+          "doi": "10.1007/s00726-018-2640-5",
+          "title": "Protein content and amino acid composition of commercially available plant-based protein isolates",
+          "year": 2018,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "8172124",
+          "doi": "10.1093/ajcn/59.5.1203s",
+          "title": "Plant proteins in relation to human protein and amino acid nutrition",
+          "year": 1994,
+          "studyType": "review"
+        },
+        {
+          "pmid": "31690027",
+          "doi": "10.3390/nu11112661",
+          "title": "Dietary Protein and Amino Acids in Vegetarian Diets-A Review",
+          "year": 2019,
+          "studyType": "review"
+        },
+        {
+          "pmid": "33670701",
+          "doi": "10.3390/nu13020661",
+          "title": "Animal Protein versus Plant Protein in Supporting Lean Mass and Muscle Strength: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "id": "absorption-deficiency-in-practice",
+      "claim": "Because plant iron and zinc are absorbed less well, vegetarians and vegans end up deficient",
+      "verdict": "partly supported",
+      "grade": "low",
+      "favours": "depends",
+      "summary": "Stores are lower on average, but deficiency is not the rule. A meta-analysis of 24 studies found ferritin (iron stores) about 30 µg/L lower in vegetarians, with a larger gap in men (about 62 µg/L) than in women (about 14–18 µg/L). Another meta-analysis found zinc intake about 0.9 mg a day lower and blood zinc slightly lower, more so in vegans and women. The other side: in a Swiss study iron deficiency was about as common in omnivores, vegetarians and vegans, though zinc deficiency was most common in vegans (47%); a German study found iron deficiency in 4 of 36 vegans and 3 of 36 meat-eaters. Very high iron stores are not a goal either. Calcium is a separate story: in the EPIC-Oxford cohort vegans had more hip fractures than meat-eaters (about 15 more per 1,000 people over 10 years), only partly explained by calcium and protein intake.",
+      "whyThisGrade": [
+        "Mostly cross-sectional studies, which can't show cause and effect",
+        "Definitions of vegetarian diets, and use of supplements, differ between studies",
+        "Results vary by sex, country and type of diet"
+      ],
+      "studies": [
+        {
+          "pmid": "27880062",
+          "doi": "10.1080/10408398.2016.1259210",
+          "title": "The effect of vegetarian diets on iron status in adults: A systematic review and meta-analysis",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "23595983",
+          "doi": "10.1002/jsfa.6179",
+          "title": "Effect of vegetarian diets on zinc status: a systematic review and meta-analysis of studies in humans",
+          "year": 2013,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "26502280",
+          "doi": "10.1007/s00394-015-1079-7",
+          "title": "Micronutrient status and intake in omnivores, vegetarians and vegans in Switzerland",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 206
+        },
+        {
+          "pmid": "33161940",
+          "doi": "10.3238/arztebl.2020.0575",
+          "title": "Vitamin and Mineral Status in a Vegan Diet",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 72
+        },
+        {
+          "pmid": "33222682",
+          "doi": "10.1186/s12916-020-01815-3",
+          "title": "Vegetarian and vegan diets and risks of total and site-specific fractures: results from the prospective EPIC-Oxford study",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 54898
+        }
+      ]
+    }
+  ]
+}
