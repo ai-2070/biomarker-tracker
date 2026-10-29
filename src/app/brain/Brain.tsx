@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
+import { TIME_LABEL, whenExtras } from "../components/PlanWhen";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { providerInfo } from "../../core/aiProviders";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "../../core/trends";
@@ -858,7 +859,6 @@ function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) {
   );
 }
 
-const TIME_WORD: Record<string, string> = { morning: "Morning", "with meals": "With meals", midday: "Midday", evening: "Evening", bedtime: "Bedtime", "any time": "Any time" };
 
 /**
  * A protocol Brain wrote down from the person's text. They check the items and create it (it opens
@@ -916,12 +916,13 @@ function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
       <div className="flex max-h-72 flex-col gap-2 overflow-y-auto rounded-lg bg-sunken p-2 text-sm">
         {groups.map((g) => (
           <div key={g.when}>
-            <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{TIME_WORD[g.when]}</p>
+            <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{TIME_LABEL[g.when]}</p>
             <ul className="mt-0.5">
               {g.items.map((i) => (
                 <li key={i.id}>
                   {i.label}
                   {i.amount && <span className="text-ink-2"> · {i.amount}</span>}
+                  {whenExtras(i) && <span className="text-ink-2"> · {whenExtras(i)}</span>}
                   {i.note && <span className="text-ink-2"> ({i.note})</span>}
                 </li>
               ))}

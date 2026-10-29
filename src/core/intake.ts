@@ -1,6 +1,8 @@
 import { SAFETY_LIMITS } from "./foods";
 import { MAX_GRAMS, NUTRIENT_OF_KEY, adultReference, mealSafetyBlock, mealTotals, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "./meals";
 import { interactionsFor, type NutrientDef } from "./nutrients";
+import type { PlanItem } from "./plans";
+import { MAX_LABEL } from "./protocols";
 import type { SafetyId, Sex } from "./types";
 
 /**
@@ -13,7 +15,36 @@ import type { SafetyId, Sex } from "./types";
 
 export type IntakeItem =
   | { id: string; kind: "meal"; mealId: string; portions: number }
-  | { id: string; kind: "food"; foodId: string; grams: number };
+  | { id: string; kind: "food"; foodId: string; grams: number }
+  /** A supplement the person takes, with their own amount from its label (never suggested by the app). */
+  | { id: string; kind: "supplement"; nutrient: string; amount: number; name?: string };
+
+/**
+ * Nutrients a supplement can add, by food-table key, in the unit labels use in the EU. Folate is folic
+ * acid (µg), counted as 1.7 × in dietary folate equivalents (EFSA: µg DFE = µg food folate + 1.7 × µg
+ * folic acid); vitamin A is preformed (retinol), so it also counts toward retinol's upper limit; omega-3
+ * is EPA + DHA in mg (the food table keeps grams).
+ */
+export const SUPPLEMENT_NUTRIENTS: readonly { key: string; label: string; unit: "mg" | "µg" }[] = [
+  { key: "vitaminA", label: "Vitamin A (retinol)", unit: "µg" },
+  { key: "vitaminD", label: "Vitamin D", unit: "µg" },
+  { key: "vitaminE", label: "Vitamin E", unit: "mg" },
+  { key: "vitaminK1", label: "Vitamin K", unit: "µg" },
+  { key: "vitaminB6", label: "Vitamin B6", unit: "mg" },
+  { key: "vitaminB12", label: "Vitamin B12", unit: "µg" },
+  { key: "folate", label: "Folic acid", unit: "µg" },
+  { key: "vitaminC", label: "Vitamin C", unit: "mg" },
+  { key: "calcium", label: "Calcium", unit: "mg" },
+  { key: "magnesium", label: "Magnesium", unit: "mg" },
+  { key: "potassium", label: "Potassium", unit: "mg" },
+  { key: "iron", label: "Iron", unit: "mg" },
+  { key: "zinc", label: "Zinc", unit: "mg" },
+  { key: "selenium", label: "Selenium", unit: "µg" },
+  { key: "iodine", label: "Iodine", unit: "µg" },
+  { key: "epaDha", label: "Omega-3 (EPA + DHA)", unit: "mg" },
+];
+const SUPPLEMENT_KEYS = new Set(SUPPLEMENT_NUTRIENTS.map((n) => n.key));
+export const MAX_SUPPLEMENT_AMOUNT = 100_000;
 
 export const MAX_INTAKE_ITEMS = 60;
 
@@ -31,7 +62,11 @@ export function validateIntakeItems(v: unknown): string[] {
     } else if (i.kind === "food") {
       if (typeof i.foodId !== "string" || !i.foodId) errs.push("a food item has no food");
       if (typeof i.grams !== "number" || !(i.grams >= 1 && i.grams <= MAX_GRAMS)) errs.push(`grams must be between 1 and ${MAX_GRAMS}`);
-    } else errs.push("an item is neither a meal nor a food");
+    } else if (i.kind === "supplement") {
+      if (typeof i.nutrient !== "string" || !SUPPLEMENT_KEYS.has(i.nutrient)) errs.push("a supplement has no known nutrient");
+      if (typeof i.amount !== "number" || !(i.amount > 0 && i.amount <= MAX_SUPPLEMENT_AMOUNT)) errs.push("a supplement amount must be more than 0");
+      if (i.name !== undefined && (typeof i.name !== "string" || i.name.length > 80)) errs.push("a supplement name must be under 80 characters");
+    } else errs.push("an item is neither a meal, a food nor a supplement");
   }
   return [...new Set(errs)];
 }
@@ -41,6 +76,7 @@ export function expandItems(list: readonly IntakeItem[], meals: readonly Meal[])
   const items: MealItem[] = [];
   let missingMeals = 0;
   for (const it of list) {
+    if (it.kind === "supplement") continue;
     if (it.kind === "food") items.push({ foodId: it.foodId, grams: it.grams });
     else {
       const meal = meals.find((m) => m.id === it.mealId);
@@ -51,10 +87,33 @@ export function expandItems(list: readonly IntakeItem[], meals: readonly Meal[])
   return { items, missingMeals };
 }
 
-/** The list added up (unmeasured values never count as zero: each total says in how many foods it was measured). */
-export function intakeTotals(list: readonly IntakeItem[], meals: readonly Meal[], db: FoodDb): { totals: Record<string, Total>; missingMeals: number } {
+/**
+ * The list added up: foods from the table (unmeasured values never count as zero), plus supplements,
+ * each counted as one more source. `supplements` keeps the supplements' own amounts per key, in the
+ * label unit (folic acid in µg, not DFE), for the upper limits that cover supplements only.
+ */
+export function intakeTotals(
+  list: readonly IntakeItem[],
+  meals: readonly Meal[],
+  db: FoodDb,
+): { totals: Record<string, Total>; supplements: Record<string, number>; missingMeals: number } {
   const e = expandItems(list, meals);
-  return { totals: mealTotals(e.items, db), missingMeals: e.missingMeals };
+  const totals = mealTotals(e.items, db);
+  const supplements: Record<string, number> = {};
+  for (const it of list) if (it.kind === "supplement") supplements[it.nutrient] = (supplements[it.nutrient] ?? 0) + it.amount;
+  const add = (key: string, amount: number) => {
+    const t = totals[key] ?? { amount: 0, measuredIn: 0, of: 0 };
+    totals[key] = { amount: t.amount + amount, measuredIn: t.measuredIn + 1, of: t.of + 1 };
+  };
+  for (const [key, amount] of Object.entries(supplements)) {
+    if (key === "folate") add("folate", amount * 1.7);
+    else if (key === "epaDha") add("epaDha", amount / 1000);
+    else if (key === "vitaminA") {
+      add("vitaminA", amount);
+      add("retinol", amount);
+    } else add(key, amount);
+  }
+  return { totals, supplements, missingMeals: e.missingMeals };
 }
 
 /**
@@ -191,6 +250,9 @@ export const UL_FROM_FOOD: Readonly<Record<string, string>> = {
   vitamin_a: "retinol",
 };
 
+/** Upper limits that cover supplements only, compared with the supplements' own amounts (folic acid in µg). */
+export const UL_FROM_SUPPLEMENTS: Readonly<Record<string, string>> = { magnesium: "magnesium", folate: "folate" };
+
 export interface NutrientRow {
   key: string;
   nutrient: NutrientDef;
@@ -201,11 +263,18 @@ export interface NutrientRow {
   reference?: { amount: number; unit: string; type: "PRI" | "AI"; group: string };
   /** Percent of the day's reference intake. */
   share?: number;
-  upperLimit?: { amount: number; unit: string; compared: number };
+  /** `from`: what the limit covers, and so what was compared: all sources, or supplements only. */
+  upperLimit?: { amount: number; unit: string; compared: number; from: "all" | "supplements" };
   status: "below" | "met" | "above-upper-limit" | "no-reference" | "not-measured";
 }
 
-export function nutrientRows(totals: Record<string, Total>, db: FoodDb, nutrients: readonly NutrientDef[], person: { sex?: Sex; age?: number }): NutrientRow[] {
+export function nutrientRows(
+  totals: Record<string, Total>,
+  db: FoodDb,
+  nutrients: readonly NutrientDef[],
+  person: { sex?: Sex; age?: number },
+  supplements: Readonly<Record<string, number>> = {},
+): NutrientRow[] {
   const rows: NutrientRow[] = [];
   for (const [key, id] of Object.entries(NUTRIENT_OF_KEY)) {
     const n = nutrients.find((x) => x.id === id);
@@ -218,7 +287,13 @@ export function nutrientRows(totals: Record<string, Total>, db: FoodDb, nutrient
     const ulKey = UL_FROM_FOOD[n.id];
     const compared = ulKey ? totals[ulKey] : undefined;
     // Unmeasured counts as nothing known: the room left under the limit is never made smaller by a guess.
-    const upperLimit = ul && ulKey && db.nutrients[ulKey]?.unit === ul.unit ? { amount: ul.amount, unit: ul.unit, compared: compared?.measuredIn ? compared.amount : 0 } : undefined;
+    const suppKey = UL_FROM_SUPPLEMENTS[n.id];
+    const upperLimit =
+      ul && ulKey && db.nutrients[ulKey]?.unit === ul.unit
+        ? { amount: ul.amount, unit: ul.unit, compared: compared?.measuredIn ? compared.amount : 0, from: "all" as const }
+        : ul && suppKey
+          ? { amount: ul.amount, unit: ul.unit, compared: supplements[suppKey] ?? 0, from: "supplements" as const }
+          : undefined;
     const status: NutrientRow["status"] =
       t.measuredIn === 0 ? "not-measured" : upperLimit && upperLimit.compared > upperLimit.amount ? "above-upper-limit" : share === undefined ? "no-reference" : share < 100 ? "below" : "met";
     rows.push({ key, nutrient: n, amount: t.amount, unit, measuredIn: t.measuredIn, of: t.of, ...(ref ? { reference: ref } : {}), ...(share !== undefined ? { share } : {}), ...(upperLimit ? { upperLimit } : {}), status });
@@ -270,7 +345,7 @@ export function upperLimitRoom(rows: readonly NutrientRow[]): UpperLimitRoom {
   const out: Record<string, { room: number; name: string }> = {};
   for (const r of rows) {
     const key = UL_FROM_FOOD[r.nutrient.id];
-    if (key && r.upperLimit) out[key] = { room: r.upperLimit.amount - r.upperLimit.compared, name: r.nutrient.name.toLowerCase() };
+    if (key && r.upperLimit?.from === "all") out[key] = { room: r.upperLimit.amount - r.upperLimit.compared, name: r.nutrient.name.toLowerCase() };
   }
   return out;
 }
@@ -329,4 +404,45 @@ export function mealsRichIn<M extends { id: string; name: string; items: readonl
     .filter((x) => x.amount > 0)
     .sort((a, b) => b.amount - a.amount)
     .slice(0, limit);
+}
+
+// ---- From the analyzer to a protocol, and back -----------------------------------------------------
+
+const clip = (t: string, max: number) => (t.length > max ? `${t.slice(0, max - 1).trimEnd()}…` : t);
+const amountText = (n: number) => String(Math.round(n * 100) / 100);
+
+/**
+ * The list as protocol items: meals and foods as diet items (meals linked to the meal), supplements as
+ * supplement items with the person's own amount as they entered it. Nothing is added or changed.
+ */
+export function intakeToPlanItems(list: readonly IntakeItem[], meals: readonly Meal[], db: FoodDb, newId: () => string): PlanItem[] {
+  return list.flatMap((it): PlanItem[] => {
+    if (it.kind === "meal") {
+      const meal = meals.find((m) => m.id === it.mealId);
+      if (!meal) return [];
+      return [{ id: newId(), label: clip(meal.name, MAX_LABEL), amount: `${amountText(it.portions)} ${it.portions === 1 ? "portion" : "portions"}`, category: "diet", when: "any time", mealId: meal.id }];
+    }
+    if (it.kind === "food") {
+      const name = db.foods.find((f) => f[0] === it.foodId)?.[1] ?? it.foodId;
+      return [{ id: newId(), label: clip(name, MAX_LABEL), amount: `${amountText(it.grams)} g`, category: "diet", when: "any time" }];
+    }
+    const n = SUPPLEMENT_NUTRIENTS.find((x) => x.key === it.nutrient);
+    return [{ id: newId(), label: clip(it.name?.trim() || (n?.label ?? it.nutrient), MAX_LABEL), amount: `${amountText(it.amount)} ${n?.unit ?? ""}`.trim(), category: "supplement", when: "any time" }];
+  });
+}
+
+/**
+ * The amount a protocol item gives for a supplement, when it's written plainly in the nutrient's own unit
+ * ("25 µg", "400 mg", "1,000 mcg"); otherwise nothing, and the person types it. Never converted or guessed.
+ */
+export function parseLabelAmount(text: string | undefined, unit: "mg" | "µg"): number | undefined {
+  if (!text) return undefined;
+  const m = /^\s*(\d{1,6}(?:[.,]\d{3})*(?:[.,]\d+)?)\s*(mg|µg|μg|mcg|ug)\s*$/i.exec(text);
+  if (!m) return undefined;
+  const u = m[2]!.toLowerCase() === "mg" ? "mg" : "µg";
+  if (u !== unit) return undefined;
+  const raw = m[1]!;
+  // "1,000" or "1.000" with three digits after the mark is a thousands mark; otherwise a decimal one.
+  const value = /^\d{1,3}([.,]\d{3})+$/.test(raw) ? Number(raw.replace(/[.,]/g, "")) : Number(raw.replace(",", "."));
+  return value > 0 && value <= MAX_SUPPLEMENT_AMOUNT ? value : undefined;
 }

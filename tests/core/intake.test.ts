@@ -1,8 +1,9 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { EXAMPLE_DAY, energyVsResting, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "../../src/core/intake";
+import { EXAMPLE_DAY, energyVsResting, intakeToPlanItems, parseLabelAmount, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "../../src/core/intake";
 import type { FoodDb, Meal } from "../../src/core/meals";
+import { itemErrors } from "../../src/core/plans";
 import type { NutrientDef } from "../../src/core/nutrients";
 import type { FoodTable } from "../../src/core/types";
 
@@ -70,9 +71,9 @@ describe("daily intake", () => {
     const rows = new Map(nutrientRows(totals, db, nutrients, { sex: "f", age: 40 }).map((r) => [r.nutrient.id, r]));
     expect(rows.get("vitamin_c")!.reference).toMatchObject({ amount: 95 });
     expect(rows.get("calcium")!.status).toBe("below");
-    // Magnesium's and folate's upper limits are for supplements and folic acid only: never compared with food.
-    expect(rows.get("magnesium")!.upperLimit).toBeUndefined();
-    expect(rows.get("folate")!.upperLimit).toBeUndefined();
+    // Magnesium's and folate's upper limits are for supplements and folic acid only: food counts as nothing toward them.
+    expect(rows.get("magnesium")!.upperLimit).toMatchObject({ from: "supplements", compared: 0 });
+    expect(rows.get("folate")!.upperLimit).toMatchObject({ from: "supplements", compared: 0 });
     // Vitamin A's covers preformed vitamin A only: compared with retinol.
     const liver = nutrientRows(intakeTotals([{ id: "a", kind: "food", foodId: "18-494", grams: 100 }], [], db).totals, db, nutrients, { sex: "f", age: 40 });
     const a = liver.find((r) => r.nutrient.id === "vitamin_a")!;
@@ -138,5 +139,79 @@ describe("daily intake", () => {
     // Within what most adults use for the example person (resting about 1,320 kcal).
     const kcal = intakeTotals(items, [], db).totals.energyKcal!.amount;
     expect(energyVsResting(kcal, 1320)?.band).toBe("within");
+  });
+
+  it("adds the person's supplements: folic acid as 1.7 × DFE, vitamin A as retinol, omega-3 from mg", () => {
+    const base = intakeTotals([{ id: "a", kind: "food", foodId: kiwi, grams: 75 }], [], db).totals;
+    const r = intakeTotals(
+      [
+        { id: "a", kind: "food", foodId: kiwi, grams: 75 },
+        { id: "s1", kind: "supplement", nutrient: "folate", amount: 400 },
+        { id: "s2", kind: "supplement", nutrient: "vitaminA", amount: 800 },
+        { id: "s3", kind: "supplement", nutrient: "epaDha", amount: 500 },
+        { id: "s4", kind: "supplement", nutrient: "vitaminD", amount: 10 },
+        { id: "s5", kind: "supplement", nutrient: "vitaminD", amount: 15 },
+      ],
+      [],
+      db,
+    );
+    expect(r.totals.folate!.amount).toBeCloseTo(base.folate!.amount + 680, 6);
+    expect(r.totals.retinol!.amount).toBeCloseTo((base.retinol?.measuredIn ? base.retinol.amount : 0) + 800, 6);
+    expect(r.totals.epaDha!.amount).toBeCloseTo((base.epaDha?.measuredIn ? base.epaDha.amount : 0) + 0.5, 6);
+    expect(r.supplements).toEqual({ folate: 400, vitaminA: 800, epaDha: 500, vitaminD: 25 });
+    expect(r.totals.vitaminD!.measuredIn).toBe((base.vitaminD?.measuredIn ?? 0) + 1);
+    expect(validateIntakeItems([{ id: "x", kind: "supplement", nutrient: "creatine", amount: 5 }]).join()).toMatch(/known nutrient/);
+    expect(validateIntakeItems([{ id: "x", kind: "supplement", nutrient: "vitaminD", amount: 0 }]).join()).toMatch(/more than 0/);
+  });
+
+  it("checks supplement-only upper limits against the supplements: magnesium and folic acid", () => {
+    const r = intakeTotals([{ id: "s", kind: "supplement", nutrient: "magnesium", amount: 400 }, { id: "f", kind: "supplement", nutrient: "folate", amount: 400 }], [], db);
+    const rows = new Map(nutrientRows(r.totals, db, nutrients, { sex: "f", age: 40 }, r.supplements).map((x) => [x.nutrient.id, x]));
+    expect(rows.get("magnesium")!.upperLimit).toMatchObject({ amount: 250, compared: 400, from: "supplements" });
+    expect(rows.get("magnesium")!.status).toBe("above-upper-limit");
+    // 400 µg of folic acid is under 1000; the DFE total is 680 µg, which is what the reference uses.
+    expect(rows.get("folate")!.upperLimit).toMatchObject({ amount: 1000, compared: 400, from: "supplements" });
+    expect(rows.get("folate")!.status).toBe("met");
+    // Magnesium in food never counts toward that limit, and the limit never hides magnesium-rich foods.
+    const food = intakeTotals([{ id: "a", kind: "food", foodId: "14-842", grams: 300 }], [], db);
+    const m = nutrientRows(food.totals, db, nutrients, { sex: "f", age: 40 }, food.supplements).find((x) => x.nutrient.id === "magnesium")!;
+    expect(m.upperLimit?.compared).toBe(0);
+    expect(upperLimitRoom([m])).toEqual({});
+  });
+
+  it("turns the list into protocol items, copying amounts as entered", () => {
+    let n = 0;
+    const items = intakeToPlanItems(
+      [
+        { id: "a", kind: "meal", mealId: "m1", portions: 1.5 },
+        { id: "b", kind: "meal", mealId: "gone", portions: 1 },
+        { id: "c", kind: "food", foodId: kiwi, grams: 75 },
+        { id: "d", kind: "supplement", nutrient: "vitaminD", amount: 25, name: "Vitamin D3" },
+        { id: "e", kind: "supplement", nutrient: "magnesium", amount: 200 },
+      ],
+      [breakfast],
+      db,
+      () => `p${++n}`,
+    );
+    expect(items.map((i) => [i.label, i.amount, i.category, i.when])).toEqual([
+      ["Porridge", "1.5 portions", "diet", "any time"],
+      ["Kiwi fruit, flesh only, raw", "75 g", "diet", "any time"],
+      ["Vitamin D3", "25 µg", "supplement", "any time"],
+      ["Magnesium", "200 mg", "supplement", "any time"],
+    ]);
+    expect(items[0]!.mealId).toBe("m1");
+    for (const i of items) expect(itemErrors(i)).toEqual([]);
+  });
+
+  it("reads a protocol item's amount only when it's written plainly in the right unit", () => {
+    expect(parseLabelAmount("25 µg", "µg")).toBe(25);
+    expect(parseLabelAmount("25 mcg", "µg")).toBe(25);
+    expect(parseLabelAmount("1,000 µg", "µg")).toBe(1000);
+    expect(parseLabelAmount("2,5 mg", "mg")).toBe(2.5);
+    expect(parseLabelAmount("400mg", "mg")).toBe(400);
+    expect(parseLabelAmount("2000 IU", "µg")).toBeUndefined();
+    expect(parseLabelAmount("25 µg", "mg")).toBeUndefined();
+    expect(parseLabelAmount("1 capsule", "mg")).toBeUndefined();
+    expect(parseLabelAmount(undefined, "mg")).toBeUndefined();
   });
 });

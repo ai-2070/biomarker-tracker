@@ -5,11 +5,12 @@ import { findingCounts, interactionsFor } from "../../core/nutrients";
 import { dailyReference, mealNote } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { formatValue } from "../../core/units";
-import { PLAN_TIMES, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "../../core/plans";
+import { itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "../../core/plans";
 import { safetyLabels, safetyNotes, type ProtocolCategory } from "../../core/protocols";
 import type { SafetyId } from "../../core/types";
 import { deletePlan, newId, savePlan, startPlan, stopPlan } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
+import { TIME_LABEL, WhenFields, whenExtras, whenFields, whenOf, type WhenValue } from "../components/PlanWhen";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -19,15 +20,6 @@ import { useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { NUTRIENTS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
-
-const TIME_LABEL: Record<PlanTime, string> = {
-  morning: "Morning",
-  midday: "Midday",
-  evening: "Evening",
-  bedtime: "Bedtime",
-  "with meals": "With meals",
-  "any time": "Any time",
-};
 
 /** One protocol: its items as a day's schedule, warnings, and start / stop / share. */
 export function PlanPage({ id }: { id: string }) {
@@ -191,8 +183,8 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
           {item.label}
           {item.amount && <span className="font-normal text-ink-2"> · {item.amount}</span>}
         </p>
-        {(item.category !== "supplement" || item.note) && (
-          <p className="text-sm text-ink-2">{[item.category !== "supplement" && CATEGORY_LABEL[item.category], item.note].filter(Boolean).join(" · ")}</p>
+        {(item.category !== "supplement" || item.note || whenExtras(item)) && (
+          <p className="text-sm text-ink-2">{[item.category !== "supplement" && CATEGORY_LABEL[item.category], whenExtras(item), item.note].filter(Boolean).join(" · ")}</p>
         )}
         {n && (
           <p className="mt-1 flex flex-wrap gap-x-2 text-sm text-ink-2">
@@ -230,7 +222,9 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
   const [label, setLabel] = useState(initial?.label ?? "");
   const [amount, setAmount] = useState(initial?.amount ?? "");
   const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? "supplement");
-  const [when, setWhen] = useState<PlanTime>(initial?.when ?? "morning");
+  const [timing, setTiming] = useState<WhenValue>(() => whenOf(initial));
+  const when = timing.when;
+  const setWhen = (w: PlanTime) => setTiming((t) => ({ ...t, when: w }));
   const [note, setNote] = useState(initial?.note ?? "");
   const [mealId, setMealId] = useState(initial?.mealId ?? "");
   const [error, setError] = useState<string>();
@@ -244,7 +238,7 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
     setLabel(meal.name.slice(0, 80));
     setCategory("diet");
     setNote(mealNote(meal));
-    if (when !== "midday" && when !== "evening" && when !== "with meals") setWhen("midday");
+    if (when !== "midday" && when !== "evening") setWhen("midday");
     setError(undefined);
   }
 
@@ -256,7 +250,7 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
       label: label.trim(),
       ...(amount.trim() ? { amount: amount.trim() } : {}),
       category,
-      when,
+      ...whenFields(timing),
       ...(note.trim() ? { note: note.trim() } : {}),
       ...(mealId && meals.some((m) => m.id === mealId) ? { mealId } : {}),
     });
@@ -299,7 +293,7 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
         options={(Object.keys(CATEGORY_LABEL) as ProtocolCategory[]).map((c) => ({ value: c, label: CATEGORY_LABEL[c] }))}
       />
       {category === "medication" && <Notice>This is only for your own record. Don't start, stop or change a medicine without talking to your doctor.</Notice>}
-      <ChoiceGroup<PlanTime> label="When" value={when} onChange={setWhen} options={PLAN_TIMES.map((t) => ({ value: t, label: TIME_LABEL[t] }))} />
+      <WhenFields value={timing} onChange={setTiming} />
       <Field.Root className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>Note (optional)</Field.Label>
         <Field.Control value={note} onValueChange={setNote} placeholder="e.g. with breakfast, 3 times a week" maxLength={300} autoComplete="off" className={inputStyles} />
