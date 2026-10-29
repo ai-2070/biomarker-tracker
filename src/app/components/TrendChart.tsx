@@ -8,7 +8,7 @@ import { niceTicks } from "../../core/scale";
 import { formatValue, fromCanonical } from "../../core/units";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "../../core/types";
 import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
-import { CHART_PRESETS, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "./timeControls";
+import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "./timeControls";
 import { cx } from "./ui";
 import { FLAG_LABEL, formatDate, showRange } from "../format";
 
@@ -149,7 +149,7 @@ export function TrendChart({
   const height = width < 640 ? 256 : 288;
   const plotLeft = CHART_LAYOUT.yAxisWidth + CHART_LAYOUT.padX;
   const plotWidth = Math.max(width - plotLeft - CHART_LAYOUT.marginRight - CHART_LAYOUT.padX, 1);
-  const t = useTimeView(full, { left: plotLeft, width: plotWidth }, { ref: box, minSpan: 14, onChange: () => setMoved(true) });
+  const t = useTimeView(full, { left: plotLeft, width: plotWidth }, { ref: box, minSpan: 14, drag: "select", onChange: () => setMoved(true) });
   const v = t.v;
   const fromIso = isoOfDay(v.from);
   const toIso = isoOfDay(v.to);
@@ -177,6 +177,8 @@ export function TrendChart({
   // Daily readings from a watch: small dots, so the line stays readable.
   const dense = inView.length > 60;
   const stats = statsBetween(readings, fromIso, toIso);
+  const sel = t.selection;
+  const selStats = sel ? statsBetween(readings, isoOfDay(sel.from), isoOfDay(sel.to)) : undefined;
   const shaded = habit ? protocols.find((p) => p.id === habit) : undefined;
   const showOutKey = hasRange && band && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
   const summary = `Chart of ${def.name} in ${unit}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} averages`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Reference range"} ${rangeText}` : ""}.`;
@@ -230,12 +232,12 @@ export function TrendChart({
       <div
         {...t.bind}
         role="img"
-        aria-label={`${summary} Arrow keys move through time, plus and minus zoom, 0 shows everything.`}
-        className={cx("w-full rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent", t.zoomed && "cursor-grab active:cursor-grabbing")}
+        aria-label={`${summary} Drag across the chart to select a period. Arrow keys move through time, plus and minus zoom, 0 shows everything, Enter zooms to a selection.`}
+        className="w-full cursor-crosshair rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         style={{ ...t.bind.style, height }}
       >
         {width > 0 && (
-          <LineChart width={width} height={height} data={drawn} margin={{ top: 12, right: CHART_LAYOUT.marginRight, bottom: 4, left: 0 }}>
+          <LineChart accessibilityLayer={false} width={width} height={height} data={drawn} margin={{ top: 12, right: CHART_LAYOUT.marginRight, bottom: 4, left: 0 }}>
             <CartesianGrid vertical={false} stroke="var(--color-line)" />
             {band && (
               <ReferenceArea
@@ -245,6 +247,17 @@ export function TrendChart({
                 fill="var(--color-chart-band)"
                 fillOpacity={0.1}
                 stroke="none"
+                ifOverflow="hidden"
+              />
+            )}
+            {sel && (
+              <ReferenceArea
+                x1={Math.max(sel.from, v.from) * DAY_MS}
+                x2={Math.min(sel.to, v.to) * DAY_MS}
+                fill="var(--color-accent)"
+                fillOpacity={0.12}
+                stroke="var(--color-accent)"
+                strokeOpacity={0.6}
                 ifOverflow="hidden"
               />
             )}
@@ -332,6 +345,20 @@ export function TrendChart({
           </LineChart>
         )}
       </div>
+
+      {t.zoomed && <Overview t={t} lines={[{ points: sorted.map((m) => ({ day: dayNumber(m.date), value: m.value })), color: "var(--color-chart-line)" }]} />}
+
+      <SelectionBar t={t}>
+        {selStats ? (
+          <span className="tabular-nums">
+            {selStats.count} {selStats.count === 1 ? "reading" : "readings"}
+            {selStats.count > 1 &&
+              ` · average ${withUnit(selStats.average)} · from ${withUnit(selStats.first.value)} to ${withUnit(selStats.last.value)} (${selStats.change > 0 ? "+" : selStats.change < 0 ? "−" : "±"}${formatValue(Math.abs(conv(selStats.last.value) - conv(selStats.first.value)))} ${unit})`}
+          </span>
+        ) : (
+          "No readings in this period."
+        )}
+      </SelectionBar>
 
       <figcaption className="flex flex-col gap-2 text-sm text-ink-2">
         {stats && (

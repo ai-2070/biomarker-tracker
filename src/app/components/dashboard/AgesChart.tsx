@@ -7,7 +7,7 @@ import { niceTicks } from "../../../core/scale";
 import { timeTicks } from "../../../core/timeWindow";
 import type { Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { formatDate, formatYears } from "../../format";
-import { TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
+import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
 import { Card, cx } from "../ui";
 
 /**
@@ -103,7 +103,7 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
   const box = useRef<HTMLDivElement>(null);
   const width = useWidth(box);
   const plotW = Math.max(width - PAD_L - PAD_R, 1);
-  const t = useTimeView(full, { left: PAD_L, width: plotW }, { ref: box, onChange: () => setHover(null) });
+  const t = useTimeView(full, { left: PAD_L, width: plotW }, { ref: box, drag: "select", onChange: () => setHover(null) });
   const v = t.v;
   const fromIso = isoOfDay(v.from);
   const toIso = isoOfDay(v.to);
@@ -156,6 +156,16 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
     return best ? { s: best.s, p: best.p } : null;
   };
   const hs = hover ? SERIES.find((s) => s.id === hover.s)! : undefined;
+
+  // A selected period: each shown estimate's first and last value in it.
+  const sel = t.selection;
+  const selChanges = sel
+    ? visible.flatMap(({ s }) => {
+        const inside = history[s.id].filter((p) => p.date >= isoOfDay(sel.from) && p.date <= isoOfDay(sel.to));
+        return inside.length ? [{ s, first: inside[0]!, last: inside.at(-1)! }] : [];
+      })
+    : [];
+  const show = (p: AgePoint) => (mode === "ages" ? formatYears(p.years) : signed(p.years - p.age));
 
   const latest = available.map((s) => ({ s, p: history[s.id].at(-1)! }));
   const summary = `Chart of your age estimates from ${formatDate(fromIso)} to ${formatDate(toIso)}. ${latest
@@ -210,8 +220,8 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
       <div
         {...t.bind}
         role="img"
-        aria-label={`${summary} Arrow keys move through time, plus and minus zoom, 0 shows everything.`}
-        className={cx("relative w-full rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent", t.zoomed && "cursor-grab active:cursor-grabbing")}
+        aria-label={`${summary} Drag across the chart to select a period. Arrow keys move through time, plus and minus zoom, 0 shows everything, Enter zooms to a selection.`}
+        className="relative w-full cursor-crosshair rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         style={{ ...t.bind.style, height }}
         onMouseMove={(e) => !t.isDragging() && setHover(pick(e.clientX, e.clientY))}
         onMouseLeave={() => setHover(null)}
@@ -240,6 +250,18 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
             <line x1={PAD_L} x2={PAD_L + plotW} y1={plotBottom} y2={plotBottom} className="stroke-line-strong" strokeWidth={1} />
 
             <g clipPath="url(#ages-plot)">
+              {sel && (
+                <rect
+                  x={x(Math.max(sel.from, v.from))}
+                  y={TOP - 6}
+                  width={Math.max(x(Math.min(sel.to, v.to)) - x(Math.max(sel.from, v.from)), 1)}
+                  height={plotBottom - TOP + 6}
+                  fill="var(--color-accent)"
+                  fillOpacity={0.12}
+                  stroke="var(--color-accent)"
+                  strokeOpacity={0.6}
+                />
+              )}
               {shown.calendar &&
                 (mode === "ages" ? (
                   <line x1={x(v.from)} x2={x(v.to)} y1={y(calAt(v.from))} y2={y(calAt(v.to))} stroke="var(--color-ink-2)" strokeWidth={1.5} strokeDasharray="5 5" />
@@ -303,6 +325,24 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
           </div>
         )}
       </div>
+
+      {t.zoomed && <Overview t={t} lines={visible.map(({ s }) => ({ points: history[s.id].map((p) => ({ day: dayNumber(p.date), value: value(p) })), color: s.color }))} />}
+
+      <SelectionBar t={t}>
+        {selChanges.length ? (
+          <span className="tabular-nums">
+            {selChanges.map(({ s, first, last }, i) => (
+              <span key={s.id}>
+                {i > 0 && " · "}
+                {s.short} {show(first)} → {show(last)}
+                {first !== last && ` (${signed(value(last) - value(first))})`}
+              </span>
+            ))}
+          </span>
+        ) : (
+          "No estimates in this period."
+        )}
+      </SelectionBar>
 
       <p className="text-sm text-ink-2">
         Hollow markers are approximate: a PhenoAge with a CRP below the lab's limit, or a fitness age at the end of the table (25 or younger, 75 or
