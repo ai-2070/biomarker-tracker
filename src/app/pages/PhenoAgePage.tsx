@@ -6,7 +6,7 @@ import { BirthMonthField } from "../components/BirthMonthField";
 import { FitnessForYourAge } from "../components/dashboard/fitness";
 import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, formatYears, showMeasurement } from "../format";
-import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
+import { useAllMeasurements, useProfile, useProtocols, useShowExpirationDate } from "../hooks";
 import { HeartAgeSection } from "../components/dashboard/heartAge";
 import { FitnessAgeSection } from "../components/dashboard/fitnessAge";
 import { AgesChart } from "../components/dashboard/AgesChart";
@@ -22,6 +22,8 @@ export function PhenoAgePage() {
   const all = useAllMeasurements();
   const profile = useProfile();
   const protocols = useProtocols() ?? [];
+  // Off unless turned on in Settings → Appearance (and with it, its easter egg).
+  const showExpiration = useShowExpirationDate();
 
   if (all === undefined) return <p className="text-ink-2">Loading…</p>;
   const summary = summarizePhenoAge(all, profile.birthMonth);
@@ -33,7 +35,7 @@ export function PhenoAgePage() {
         Biological age
       </PageTitle>
       <div className="flex flex-col gap-5">
-        <BestBefore measurements={all} profile={profile} protocols={protocols} />
+        {showExpiration && <BestBefore measurements={all} profile={profile} protocols={protocols} />}
         <AgesChart measurements={all} profile={profile} protocols={protocols} />
         <PaceOfAging measurements={all} profile={profile} protocols={protocols} />
         <h2 className="-mb-2 font-serif text-2xl font-normal">PhenoAge, from blood tests</h2>

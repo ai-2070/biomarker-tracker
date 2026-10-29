@@ -3,6 +3,7 @@ import { parseLabText, type ParsedReport } from "../../core/importers/labText";
 import { assistantProfile } from "../../core/profile";
 import type { Measurement } from "../../core/types";
 import { db, getProfile } from "../../db/db";
+import { EXPIRATION_KEY } from "../hooks";
 import { api } from "../api";
 import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
@@ -247,9 +248,9 @@ export async function addFiles(files: File[]): Promise<void> {
 
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
-  const [measurements, protocols, experiments, plans, meals, profile] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile()]);
-  // The name and private notes never leave this page.
-  return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name };
+  const [measurements, protocols, experiments, plans, meals, profile, expiration] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile(), db.settings.get(EXPIRATION_KEY)]);
+  // The name and private notes never leave this page. The expiration date only when it's turned on.
+  return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, expirationDate: expiration?.value === true };
 }
 
 /** Sends the draft (or `text`) with any attached documents. `model` labels the answer. */
