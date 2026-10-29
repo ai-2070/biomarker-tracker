@@ -115,6 +115,69 @@ export function rowSpan(rows: readonly NormRow[], r: NormRow): [number, number] 
   return [r.ageFrom - (before ?? after ?? half), r.ageFrom + (after ?? before ?? half)];
 }
 
+/**
+ * The age whose typical result (median, or average) matches yours, in one norm table: "typical of
+ * women about 38". Only the side of the curve after its best age is used (results there get worse
+ * with age), the table's ages are joined with straight lines (like fitness age), and nothing past the
+ * table is guessed: better than the best age's typical result says so; worse than the last closed age
+ * group says "that age or older". A comparison with other people, not a body age.
+ */
+export type AgeMatch =
+  | { kind: "age"; age: number }
+  /** At or better than the typical result of the best age group (around `age`). */
+  | { kind: "best"; age: number }
+  /** At or better than the youngest group in the table, which is also its best: nothing younger was measured. */
+  | { kind: "youngest"; ageFrom: number; ageTo?: number }
+  /** Worse than the typical result of the oldest group: like people `age` and older, or worse. */
+  | { kind: "oldest"; age: number };
+
+export function ageMatch(set: NormSet, sex: Sex, value: number, higherIsBetter: boolean): AgeMatch | undefined {
+  if (set.kind === "bands") return undefined;
+  const result = set.ceiling !== undefined ? Math.min(value, set.ceiling) : value;
+  const rows = set.rows
+    .filter((r) => r.sex === sex || r.sex === "any")
+    .map((r) => ({ r, typical: r.p50 ?? r.mean }))
+    .filter((x): x is { r: NormRow; typical: number } => x.typical !== undefined)
+    .sort((a, b) => a.r.ageFrom - b.r.ageFrom);
+  if (rows.length < 2) return undefined;
+  const mid = (r: NormRow) => (r.ageTo === undefined ? r.ageFrom : r.ageTo === r.ageFrom ? r.ageFrom : (r.ageFrom + r.ageTo + 1) / 2);
+  const better = (a: number, b: number) => (higherIsBetter ? a >= b : a <= b);
+  // The best age group: where the typical result peaks (the first one, if several tie).
+  let best = 0;
+  rows.forEach((x, i) => {
+    if (higherIsBetter ? x.typical > rows[best]!.typical : x.typical < rows[best]!.typical) best = i;
+  });
+  if (better(result, rows[best]!.typical)) {
+    const r = rows[best]!.r;
+    return best === 0 ? { kind: "youngest", ageFrom: r.ageFrom, ...(r.ageTo !== undefined && r.ageTo !== r.ageFrom ? { ageTo: r.ageTo } : {}) } : { kind: "best", age: Math.round(mid(r)) };
+  }
+  for (let i = best; i < rows.length - 1; i++) {
+    const a = rows[i]!;
+    const b = rows[i + 1]!;
+    if (!better(result, b.typical)) continue;
+    // Between a (better) and b: a straight line between their ages, unless b is an open "and over" group.
+    if (b.r.ageTo === undefined) return { kind: "oldest", age: b.r.ageFrom };
+    const span = a.typical - b.typical;
+    const f = span === 0 ? 0 : (a.typical - result) / span;
+    return { kind: "age", age: Math.round(mid(a.r) + f * (mid(b.r) - mid(a.r))) };
+  }
+  const last = rows.at(-1)!.r;
+  return { kind: "oldest", age: last.ageTo === undefined || last.ageTo === last.ageFrom ? last.ageFrom : last.ageTo };
+}
+
+/** Your place among the youngest people in each norm table (Bryan Johnson's "compared with 20-year-olds"), by the same rules as for your own age. */
+export function placeAmongYoungest(test: FitnessTestDef, value: number, sex: Sex, variant = test.defaultVariant): NormResult[] {
+  const out: NormResult[] = [];
+  for (const set of test.norms) {
+    if (variant !== undefined && set.variant !== undefined && set.variant !== variant) continue;
+    const row = set.rows.filter((r) => r.sex === sex || r.sex === "any").sort((a, b) => a.ageFrom - b.ageFrom)[0];
+    if (!row) continue;
+    const place = placeInRow(set, row, value);
+    if (place) out.push({ set, row, place });
+  }
+  return out;
+}
+
 /** The table row for a sex and age, or undefined when the table doesn't cover them. */
 export function normRow(set: NormSet, sex: Sex | undefined, age: number): NormRow | undefined {
   const fits = (r: NormRow) => {
@@ -210,6 +273,15 @@ export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: r
         date: last.date,
         lowerIsBetter: !t.higherIsBetter,
         comparedWith: places.map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
+        ...(person.sex
+          ? {
+              comparedWithYoungest: placeAmongYoungest(t, last.value, person.sex).map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
+              typicalOfAge: t.norms.flatMap((set) => {
+                const m = ageMatch(set, person.sex!, last.value, t.higherIsBetter);
+                return m ? [{ norms: set.label, ...m }] : [];
+              }),
+            }
+          : {}),
         ...(places.length === 0 ? { note: who.sex && who.age !== undefined ? "No norms cover this age and sex." : "Sex and birth month are needed to compare." } : {}),
         ...(met.length ? { thresholdsMet: met.map((c) => c.label) } : {}),
       },
