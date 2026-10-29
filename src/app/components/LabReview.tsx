@@ -57,6 +57,7 @@ export function Review({
   onCancel,
   onSaved,
   inChat = false,
+  kind = "lab",
 }: {
   fileName: string;
   ocr: boolean;
@@ -65,6 +66,8 @@ export function Review({
   onSaved: (saved: Measurement[], skipped: number, date: string) => void;
   /** Inside Brain: no sticky footer, a "Not now" button. */
   inChat?: boolean;
+  /** "body": values from a health app screenshot (no lab, wording about measurements). */
+  kind?: "lab" | "body";
 }) {
   const existing = useAllMeasurements();
   const today = todayIso();
@@ -151,16 +154,16 @@ export function Review({
         {ocr && (
           <Notice tone="warn" title="Read from a picture: check every value">
             Text recognition can misread letters and numbers, for example 0 and O, 1 and 7, or a missing decimal point. Compare each value and unit with
-            the report before saving.
+            the {kind === "body" ? "screenshot" : "report"} before saving.
           </Notice>
         )}
         <p className="text-ink-2">
-          Found <span className="font-medium text-ink">{rows.length}</span> results in {fileName}. Compare each one with your report, fix
-          anything that's wrong, and untick rows you don't want.
+          Found <span className="font-medium text-ink">{rows.length}</span> {kind === "body" ? "body measurements" : "results"} in {fileName}. Compare each one with your{" "}
+          {kind === "body" ? "screenshot" : "report"}, fix anything that's wrong, and untick rows you don't want.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field.Root invalid={!!dateError} className="flex flex-col gap-1.5">
-            <Field.Label className={labelStyles}>Date of the blood test</Field.Label>
+            <Field.Label className={labelStyles}>{kind === "body" ? "Date measured" : "Date of the blood test"}</Field.Label>
             <Field.Control
               type="date"
               value={date}
@@ -175,10 +178,12 @@ export function Review({
               {dateError}
             </Field.Error>
           </Field.Root>
-          <Field.Root className="flex flex-col gap-1.5">
-            <Field.Label className={labelStyles}>Lab name (optional)</Field.Label>
-            <Field.Control value={lab} onValueChange={setLab} autoComplete="off" className={inputStyles} />
-          </Field.Root>
+          {kind === "lab" && (
+            <Field.Root className="flex flex-col gap-1.5">
+              <Field.Label className={labelStyles}>Lab name (optional)</Field.Label>
+              <Field.Control value={lab} onValueChange={setLab} autoComplete="off" className={inputStyles} />
+            </Field.Root>
+          )}
         </div>
         {!report.date && <Notice tone="warn">No sample date was found in the report. Please enter it.</Notice>}
         {report.dateNote && <Notice tone="warn">{report.dateNote}</Notice>}
@@ -187,7 +192,7 @@ export function Review({
       <ul className="flex flex-col gap-3">
         {rows.map((r) => (
           <li key={r.key}>
-            <RowEditor row={r} onChange={(patch) => update(r.key, patch)} />
+            <RowEditor row={r} kind={kind} onChange={(patch) => update(r.key, patch)} />
           </li>
         ))}
       </ul>
@@ -210,7 +215,7 @@ export function Review({
   );
 }
 
-function RowEditor({ row, onChange }: { row: Row; onChange: (patch: Partial<Row>) => void }) {
+function RowEditor({ row, kind, onChange }: { row: Row; kind: "lab" | "body"; onChange: (patch: Partial<Row>) => void }) {
   const [changing, setChanging] = useState(false);
   const def = row.biomarkerId ? BIOMARKER_MAP.get(row.biomarkerId) : undefined;
   const checkId = useId();
@@ -247,7 +252,7 @@ function RowEditor({ row, onChange }: { row: Row; onChange: (patch: Partial<Row>
           )}
 
           <p className="rounded-md bg-sunken px-2 py-1 font-mono text-xs break-words text-ink-2">
-            <span className="sr-only">From the report: </span>
+            <span className="sr-only">As read from the file: </span>
             {row.line}
           </p>
 
@@ -257,14 +262,18 @@ function RowEditor({ row, onChange }: { row: Row; onChange: (patch: Partial<Row>
               <Field.Control value={row.value} onValueChange={(value) => onChange({ value })} inputMode="decimal" className={inputStyles} />
             </Field.Root>
             <UnitSelect labelClassName="text-sm text-ink-2" label="Unit" units={def ? listUnits(def) : []} value={row.unit} onChange={(unit) => onChange({ unit, problems: [] })} disabled={!def} />
-            <Field.Root className="flex flex-col gap-1">
-              <Field.Label className="text-sm text-ink-2">Range from</Field.Label>
-              <Field.Control value={row.labLow} onValueChange={(labLow) => onChange({ labLow })} inputMode="decimal" className={inputStyles} />
-            </Field.Root>
-            <Field.Root className="flex flex-col gap-1">
-              <Field.Label className="text-sm text-ink-2">Range to</Field.Label>
-              <Field.Control value={row.labHigh} onValueChange={(labHigh) => onChange({ labHigh })} inputMode="decimal" className={inputStyles} />
-            </Field.Root>
+            {kind === "lab" && (
+              <>
+                <Field.Root className="flex flex-col gap-1">
+                  <Field.Label className="text-sm text-ink-2">Range from</Field.Label>
+                  <Field.Control value={row.labLow} onValueChange={(labLow) => onChange({ labLow })} inputMode="decimal" className={inputStyles} />
+                </Field.Root>
+                <Field.Root className="flex flex-col gap-1">
+                  <Field.Label className="text-sm text-ink-2">Range to</Field.Label>
+                  <Field.Control value={row.labHigh} onValueChange={(labHigh) => onChange({ labHigh })} inputMode="decimal" className={inputStyles} />
+                </Field.Root>
+              </>
+            )}
           </div>
 
           {row.problems.map((p) => (

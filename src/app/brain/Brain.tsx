@@ -437,7 +437,7 @@ function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; 
     let keepError: string | undefined;
     if (turn.file && mode === "folders" && active) {
       try {
-        kept = (await uploadFile(active.id, turn.file, `Lab report from ${date}, ${list.length} ${list.length === 1 ? "result" : "results"} saved (via Brain)`)).originalName;
+        kept = (await uploadFile(active.id, turn.file, `${turn.kind === "body" ? "Health app screenshot" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`)).originalName;
       } catch (e) {
         keepError = e instanceof Error ? e.message : "unknown error";
       }
@@ -454,7 +454,7 @@ function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; 
         <span className="min-w-0 truncate font-medium">{turn.fileName}</span>
         <span className="shrink-0 text-ink-2">· read on this computer</span>
       </p>
-      <Review fileName={turn.fileName} ocr={turn.ocr} report={turn.report} inChat onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
+      <Review fileName={turn.fileName} ocr={turn.ocr} report={turn.report} inChat kind={turn.kind ?? "lab"} onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
     </div>
   );
 }
@@ -474,7 +474,7 @@ function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>
         <span className="font-medium">
           Saved {list.length} {list.length === 1 ? "result" : "results"}
         </span>{" "}
-        from the blood test on {when}.{(turn.skipped ?? 0) > 0 && ` ${turn.skipped} ${turn.skipped === 1 ? "was" : "were"} already saved.`}
+        {turn.kind === "body" ? `measured on ${when}` : `from the blood test on ${when}`}.{(turn.skipped ?? 0) > 0 && ` ${turn.skipped} ${turn.skipped === 1 ? "was" : "were"} already saved.`}
         {turn.kept && <span className="text-ink-2"> The report is kept in this profile's folder.</span>}
       </p>
       {turn.keepError && <p className="text-sm text-warn">The report itself couldn't be kept in the profile folder: {turn.keepError}</p>}
@@ -501,10 +501,20 @@ function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>
       )}
       {list.length > 0 && critical.length === 0 && (
         <div className="flex flex-wrap gap-2">
-          <Button variant="secondary" onClick={() => void send(model, `Explain my results from the blood test on ${when} that I just added. Which are outside the range, and what can affect them?`)}>
+          <Button
+            variant="secondary"
+            onClick={() =>
+              void send(
+                model,
+                turn.kind === "body"
+                  ? `Explain the body measurements from ${when} that I just added, compared with my earlier ones.`
+                  : `Explain my results from the blood test on ${when} that I just added. Which are outside the range, and what can affect them?`,
+              )
+            }
+          >
             Explain these results
           </Button>
-          <Button variant="quiet" onClick={() => void send(model, `What changed in my blood test on ${when} compared with my earlier tests?`)}>
+          <Button variant="quiet" onClick={() => void send(model, turn.kind === "body" ? `How do my body measurements from ${when} compare with the weeks before?` : `What changed in my blood test on ${when} compared with my earlier tests?`)}>
             What changed?
           </Button>
         </div>

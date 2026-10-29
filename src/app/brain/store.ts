@@ -7,6 +7,8 @@ import { api } from "../api";
 import { BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
+import { parseHealthScreenshot } from "../../core/importers/screenshot";
+import { todayIso } from "../../core/dates";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
 
@@ -29,6 +31,8 @@ export type Turn =
       ocr: boolean;
       report: ParsedReport;
       state: "open" | "saved" | "dismissed";
+      /** "body": values from a health app screenshot. */
+      kind?: "lab" | "body";
       saved?: Measurement[];
       skipped?: number;
       date?: string;
@@ -154,6 +158,17 @@ export async function addFiles(files: File[]): Promise<void> {
           turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, file, ocr, report, state: "open" }],
         }));
         continue;
+      }
+      // A health app screenshot (heart rate, HRV, sleep…): body measurements, checked the same way.
+      if (isImage(file)) {
+        const shot = parseHealthScreenshot(text, todayIso());
+        if (shot.rows.length > 0) {
+          set((s) => ({
+            attachments: s.attachments.filter((a) => a.id !== id),
+            turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, file, ocr: true, report: shot, state: "open", kind: "body" }],
+          }));
+          continue;
+        }
       }
       if (!text.trim()) throw new Error("No text was found in this file.");
       set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined } : a)) }));
