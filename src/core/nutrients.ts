@@ -99,7 +99,7 @@ const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object
 const isStr = (v: unknown): v is string => typeof v === "string" && v.trim().length > 0;
 const strList = (v: unknown, min = 0): boolean => Array.isArray(v) && v.length >= min && v.every(isStr);
 
-function citationErrors(v: unknown, where: string): string[] {
+export function citationErrors(v: unknown, where: string): string[] {
   if (!Array.isArray(v) || v.length === 0) return [`${where} needs at least one source`];
   const errs: string[] = [];
   v.forEach((s, i) => {
@@ -110,7 +110,7 @@ function citationErrors(v: unknown, where: string): string[] {
   return errs;
 }
 
-function findingErrors(v: unknown, where: string): string[] {
+export function findingErrors(v: unknown, where: string): string[] {
   if (!Array.isArray(v)) return [`${where} must be a list`];
   return v.flatMap((f, i) => {
     const at = `${where} ${i + 1}`;

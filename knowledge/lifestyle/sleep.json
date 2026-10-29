@@ -1,0 +1,426 @@
+{
+  "id": "sleep",
+  "name": "Sleep",
+  "category": "sleep",
+  "otherNames": [
+    "Sleep duration",
+    "Hours of sleep",
+    "Sleep regularity",
+    "Sleep schedule",
+    "Insomnia",
+    "CBT-I (cognitive behavioural therapy for insomnia)"
+  ],
+  "summary": "Sleep is a regular, reversible state the body needs every day. Expert panels in the United States recommend at least 7 hours a night for adults: 7 to 9 hours for most adults and 7 to 8 hours from 65. In large studies both short and long sleep were linked with a higher risk of dying, and in short trials cutting sleep lowered insulin sensitivity and made people eat more.",
+  "howItWorks": [
+    "A night is made of repeating cycles: lighter non-REM sleep, then deep (slow-wave) sleep, then REM (rapid eye movement) sleep, the stage linked with dreaming. In healthy adults measured in a sleep lab, a cycle lasted about 90 minutes on average, with wide differences between people and nights.",
+    "Deep sleep makes up more of the early night, and REM sleep more of the late night. Hormones follow this pattern: growth hormone peaks and cortisol is lowest during the deep sleep of the early night, and cortisol rises during the REM-rich late night.",
+    "With age, adults spend less of the night in deep sleep and REM sleep, take longer to fall asleep and wake more during the night.",
+    "In sleep-restriction trials, shorter nights made the body less sensitive to insulin and people ate more without using more energy, which may be part of how short sleep is linked with diabetes and weight gain. How much of the long-term risk this explains isn't known.",
+    "Long sleep has no known mechanism of harm. The authors of the large meta-analysis say the link between long sleep and death may come from illnesses that make people sleep longer, or from other differences between people."
+  ],
+  "whatStudiesDid": "The sleep-duration studies asked adults by questionnaire how long they usually slept, then followed them for 4 to 25 years and counted deaths, heart disease and strokes. The sleep-regularity study measured sleep with a wrist-worn activity monitor for one week in about 61,000 UK Biobank participants, then followed them for about 6 years. The sleep-restriction trials shortened people's sleep for a few nights or weeks, usually in a sleep laboratory, and compared them with normal sleep. The insomnia trials compared CBT-I (cognitive behavioural therapy for insomnia: a structured programme of several parts, such as changing thoughts about sleep, keeping the bed for sleep, limiting time in bed, sleep habits and relaxation) delivered by a therapist or online, with no treatment, a waiting list, usual care or general sleep education.",
+  "markers": [
+    "sleep_duration",
+    "sleep_deep",
+    "sleep_rem",
+    "glucose",
+    "weight"
+  ],
+  "asHabit": false,
+  "findings": [
+    {
+      "outcome": "Short or long sleep and death from any cause",
+      "population": "Adults in 16 cohort studies (27 groups, 1,382,999 people) followed for 4 to 25 years, sleep reported by questionnaire",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Very large cohorts with deaths taken from death certificates",
+        "Observational: sleep was reported once by questionnaire, and short and long sleep were defined differently from study to study",
+        "Results differed between studies, especially for long sleep",
+        "The authors say long sleep may be a sign of illness rather than a cause"
+      ],
+      "summary": "A 2010 meta-analysis pooled 16 prospective studies with 27 cohort groups, 1,382,999 people and 112,566 deaths, followed for 4 to 25 years. Compared with people sleeping a middle amount (7 hours a night in most studies), short sleepers had a 12% higher risk of dying (relative risk 1.12, 95% CI 1.06 to 1.18) and long sleepers a 30% higher risk (1.30, 1.22 to 1.38). Short sleep meant anything from 5 or fewer to under 7 hours, and long sleep more than 8 or 9 hours or longer, depending on the study. Results differed between studies. The authors say the link with long sleep may be explained by other illnesses and differences between people, and that it isn't known whether sleep duration is a cause or a marker of ill health.",
+      "bottomLine": "In 16 cohort studies with almost 1.4 million adults, short sleepers had a 12% and long sleepers a 30% higher risk of dying than people sleeping about 7 hours. These are links, not proof: long sleep may be a sign of illness rather than its cause.",
+      "studies": [
+        {
+          "pmid": "20469800",
+          "doi": "10.1093/sleep/33.5.585",
+          "title": "Sleep duration and all-cause mortality: a systematic review and meta-analysis of prospective studies",
+          "year": 2010,
+          "studyType": "meta-analysis",
+          "n": 1382999
+        }
+      ]
+    },
+    {
+      "outcome": "Short or long sleep and heart disease or stroke",
+      "population": "Adults in 15 cohort studies (24 groups, 474,684 people) followed for 6.9 to 25 years, sleep reported by questionnaire",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Large cohorts with events taken from death certificates and registers",
+        "Observational: sleep was reported by questionnaire, so other differences between people may explain part of the link",
+        "Short sleep was linked with heart disease and, borderline, with stroke, but not with cardiovascular disease as a whole",
+        "The authors call sleep duration a predictor 'or marker' of these outcomes"
+      ],
+      "summary": "A 2011 meta-analysis pooled 15 prospective studies (24 cohort groups, 474,684 people, 16,067 events) followed for 6.9 to 25 years. Short sleep was linked with a higher risk of developing or dying of coronary heart disease (relative risk 1.48, 95% CI 1.22 to 1.80) and stroke (1.15, 1.00 to 1.31), but not of cardiovascular disease as a whole (1.03, 0.93 to 1.15). Long sleep was linked with a higher risk of coronary heart disease (1.38, 1.15 to 1.66), stroke (1.65, 1.45 to 1.87) and cardiovascular disease as a whole (1.41, 1.19 to 1.68). The authors conclude that short and long sleep are predictors, or markers, of heart and blood vessel disease.",
+      "bottomLine": "In 15 cohort studies with 474,684 adults, short sleep was linked with 48% more coronary heart disease, and long sleep with 38% more heart disease and 65% more strokes. Sleep was self-reported, and the authors call it a predictor or marker, not a proven cause.",
+      "studies": [
+        {
+          "pmid": "21300732",
+          "doi": "10.1093/eurheartj/ehr007",
+          "title": "Sleep duration predicts cardiovascular outcomes: a systematic review and meta-analysis of prospective studies",
+          "year": 2011,
+          "studyType": "meta-analysis",
+          "n": 474684
+        }
+      ]
+    },
+    {
+      "outcome": "Insulin sensitivity after shortened or disturbed sleep",
+      "population": "Adults in randomised trials that shortened sleep, suppressed deep sleep, broke up sleep or shifted it out of step with the body clock",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised controlled trials, 21 of them pooled for sleep restriction",
+        "Consistent across several ways of measuring insulin sensitivity",
+        "Short trials measuring insulin sensitivity, not diabetes itself; whether the change lasts over years isn't tested",
+        "Few trials for deep-sleep suppression, broken sleep and REM disturbance"
+      ],
+      "summary": "A 2022 meta-analysis of randomised controlled trials found 35 eligible articles and pooled 21 sleep-restriction studies. Restricting sleep reduced insulin sensitivity, measured with glucose tolerance tests and HOMA-IR (an estimate of insulin resistance from fasting glucose and insulin). Measured with the most precise method (a clamp test), whole-body insulin sensitivity also fell, but one clamp measure, peripheral insulin sensitivity, did not change. Sleep out of step with the body clock and suppressed deep sleep also lowered insulin sensitivity, while disturbed REM sleep and broken-up sleep had no effect, in a few small trials. The authors conclude that sleep duration, quality and timing matter for metabolism and type 2 diabetes risk.",
+      "bottomLine": "Across 21 randomised trials, shortening sleep made the body less sensitive to insulin, and so did sleep out of step with the body clock and suppressed deep sleep. The trials were short and measured insulin sensitivity, not diabetes itself.",
+      "studies": [
+        {
+          "pmid": "35189549",
+          "doi": "10.1016/j.smrv.2022.101594",
+          "title": "Effects of sleep manipulation on markers of insulin sensitivity: A systematic review and meta-analysis of randomized controlled trials",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "How much people eat, and body weight, after shortened sleep",
+      "population": "Adults in short trials that cut sleep for one or more nights and compared it with normal sleep",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Controlled trials, but few and small: 11 studies with 172 people in the pooled analysis",
+        "Short trials, mostly in laboratories, where eating may differ from everyday life",
+        "Effects on body weight were inconsistent, so the long-term effect on weight isn't shown"
+      ],
+      "summary": "A 2017 meta-analysis of 17 intervention studies (496 people) pooled 11 of them (172 people). After partial sleep deprivation, people ate 385 kcal more a day than after normal sleep (95% CI 252 to 517), with more fat and less protein, while the energy they used, at rest and in total, did not change. The authors say this may contribute to weight gain in the long term. A 2015 review of 18 randomised trials found that sleep restriction increased food intake, but effects on body weight were inconsistent, and few trials tested what happens when sleep is lengthened.",
+      "bottomLine": "In short trials, people ate about 385 kcal more on days after shortened sleep, without using more energy. The trials were small and short, and effects on body weight were inconsistent, so the long-term effect on weight isn't known.",
+      "studies": [
+        {
+          "pmid": "27804960",
+          "doi": "10.1038/ejcn.2016.201",
+          "title": "The effects of partial sleep deprivation on energy balance: a systematic review and meta-analysis",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 496
+        },
+        {
+          "pmid": "26098388",
+          "doi": "10.1111/obr.12296",
+          "title": "A systematic review and meta-analysis of randomized controlled trials of the impact of sleep duration on adiposity and components of energy balance",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Insomnia: falling asleep, waking in the night, and insomnia severity, with CBT-I",
+      "population": "Adults with chronic insomnia in randomised trials of CBT-I, face to face or digital (online or by app)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Two meta-analyses of randomised trials agree",
+        "Talking and digital therapies can't be blinded, and sleep was mostly reported in diaries and questionnaires",
+        "Results varied a lot between digital trials",
+        "The face-to-face review left out people with insomnia alongside other medical, sleep or mental health conditions"
+      ],
+      "summary": "A 2015 meta-analysis of 20 randomised trials (1,162 adults, mean age 56) compared face-to-face CBT-I with no active treatment. After treatment, people fell asleep 19 minutes faster (95% CI 14 to 24), spent 26 minutes less awake during the night (15 to 37) and spent about 10% more of their time in bed asleep, while total sleep time rose by about 8 minutes, which was not clearly different from no change. No harms were reported, and the changes seemed to last. A 2020 meta-analysis of 33 trials of digital CBT-I found insomnia severity scores 5.00 points lower than with control (−5.68 to −4.33) after treatment and 3.48 points lower after a year, with results varying a lot between trials. Face-to-face CBT-I improved scores by 3.07 points more than digital, within the 4 points the authors counted as no meaningful difference.",
+      "bottomLine": "In 20 trials of adults with chronic insomnia, CBT-I helped people fall asleep 19 minutes faster and spend 26 minutes less awake at night, though total sleep barely changed. Online and app versions also lowered insomnia severity, with benefits still seen after a year.",
+      "studies": [
+        {
+          "pmid": "26054060",
+          "doi": "10.7326/m14-2841",
+          "title": "Cognitive Behavioral Therapy for Chronic Insomnia: A Systematic Review and Meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 1162
+        },
+        {
+          "pmid": "32950013",
+          "doi": "10.1016/j.sleep.2020.08.020",
+          "title": "Efficacy of digital cognitive behavioural therapy for insomnia: a meta-analysis of randomised controlled trials",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 9364
+        }
+      ]
+    },
+    {
+      "outcome": "Sleep regularity (going to sleep and waking at similar times) and death from any cause",
+      "population": "60,977 UK Biobank participants, average age 63, sleep measured with a wrist-worn activity monitor for one week",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Large cohort with sleep measured by a device rather than remembered",
+        "A single study, not yet confirmed in other cohorts",
+        "Observational, with one week of measurement per person; the authors list the single week as a limit",
+        "Adjusted for many health and lifestyle factors, but other differences between people may remain"
+      ],
+      "summary": "A 2024 UK Biobank study calculated a Sleep Regularity Index from one week of wrist activity data in 60,977 people (average age 62.8) and followed them for about 6.3 years, during which 1,859 died. Compared with the fifth with the least regular sleep, the other fifths had a 20% to 48% lower risk of dying, after adjusting for age, sex, ethnicity and social, lifestyle and health factors. The most regular fifth had a hazard ratio of 0.70 (95% CI 0.59 to 0.83) in the fully adjusted model. In this study, regularity predicted death more strongly than sleep duration did. The authors note that one week gives only a snapshot of a person's sleep.",
+      "bottomLine": "In 60,977 UK adults whose sleep was measured for a week, people with more regular sleep had a 20% to 48% lower risk of dying over about 6 years than the least regular fifth. It is one observational study, with one week of measurement each.",
+      "studies": [
+        {
+          "pmid": "37738616",
+          "doi": "10.1093/sleep/zsad253",
+          "title": "Sleep regularity is a stronger predictor of mortality risk than sleep duration: A prospective cohort study",
+          "year": 2024,
+          "studyType": "observational",
+          "n": 60977
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "ranges",
+      "title": "Recommended hours of sleep by age",
+      "caption": "Hours of sleep a day that the National Sleep Foundation's expert panel recommended in 2015 for healthy people with normal sleep. The age bands are the ones the National Sleep Foundation gives in its public summary. The panel says needs vary from person to person, and that sleep outside these ranges may be appropriate for some people. The American Academy of Sleep Medicine's statement recommends 7 or more hours for adults.",
+      "unit": "hours",
+      "rows": [
+        {
+          "label": "Newborns (0–3 months)",
+          "low": 14,
+          "high": 17
+        },
+        {
+          "label": "Infants (4–11 months)",
+          "low": 12,
+          "high": 15
+        },
+        {
+          "label": "Toddlers (1–2 years)",
+          "low": 11,
+          "high": 14
+        },
+        {
+          "label": "Preschool children (3–5 years)",
+          "low": 10,
+          "high": 13
+        },
+        {
+          "label": "School-age children (6–13 years)",
+          "low": 9,
+          "high": 11
+        },
+        {
+          "label": "Teenagers (14–17 years)",
+          "low": 8,
+          "high": 10
+        },
+        {
+          "label": "Young adults and adults (18–64 years)",
+          "low": 7,
+          "high": 9
+        },
+        {
+          "label": "Older adults (65 and over)",
+          "low": 7,
+          "high": 8
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "29073412",
+          "doi": "10.1016/j.sleh.2014.12.010",
+          "title": "National Sleep Foundation's sleep time duration recommendations: methodology and results summary",
+          "year": 2015,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "29073398",
+          "doi": "10.1016/j.sleh.2015.10.004",
+          "title": "National Sleep Foundation's updated sleep duration recommendations: final report",
+          "year": 2015,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "26039963",
+          "doi": "10.5665/sleep.4716",
+          "title": "Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society",
+          "year": 2015,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Short and long sleep and the risk of dying",
+      "caption": "16 cohort studies, 1,382,999 adults followed for 4 to 25 years. Risk of dying compared with people sleeping a middle amount, 7 hours a night in most studies (1 = no difference); lines show the 95% confidence interval. Short and long sleep were defined differently from study to study. Sleep was self-reported, and these are links in groups of people: long sleep in particular may be a sign of illness rather than its cause.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Middle amount of sleep (7 hours in most studies)"
+      },
+      "items": [
+        {
+          "label": "Middle amount of sleep",
+          "value": 1,
+          "note": "The comparison group"
+        },
+        {
+          "label": "Short sleep",
+          "value": 1.12,
+          "low": 1.06,
+          "high": 1.18,
+          "note": "From 5 or fewer to under 7 hours, depending on the study"
+        },
+        {
+          "label": "Long sleep",
+          "value": 1.3,
+          "low": 1.22,
+          "high": 1.38,
+          "note": "More than 8 hours or longer, depending on the study"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "20469800",
+          "doi": "10.1093/sleep/33.5.585",
+          "title": "Sleep duration and all-cause mortality: a systematic review and meta-analysis of prospective studies",
+          "year": 2010,
+          "studyType": "meta-analysis",
+          "n": 1382999
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "A typical night: sleep cycles",
+      "caption": "A typical pattern in healthy adults, not a rule: cycle length varies between people and nights, and watches and rings estimate stages less exactly than a sleep lab.",
+      "steps": [
+        {
+          "label": "Light sleep",
+          "text": "Sleep begins with the lighter non-REM stages (stages 1 and 2)."
+        },
+        {
+          "label": "Deep sleep",
+          "text": "Deep (slow-wave) sleep follows. It makes up more of the early night, when growth hormone peaks and cortisol is at its lowest."
+        },
+        {
+          "label": "REM sleep",
+          "text": "A period of REM (rapid eye movement) sleep ends the cycle. In healthy adults in a sleep lab, a cycle of non-REM and REM sleep lasted about 90 minutes on average (90 ± 25 minutes)."
+        },
+        {
+          "label": "Repeat",
+          "text": "The cycle repeats through the night. REM sleep makes up more of the late night, and cortisol rises towards morning."
+        },
+        {
+          "label": "With age",
+          "text": "In adults, the share of deep sleep and of REM sleep falls with age, and waking during the night becomes more common."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "39784706",
+          "doi": "10.7554/elife.96784",
+          "title": "Fractal cycles of sleep, a new aperiodic activity-based definition of sleep cycles",
+          "year": 2025,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "19944302",
+          "doi": "10.1016/j.ogc.2009.10.001",
+          "title": "Sleep, hormones, and memory",
+          "year": 2009,
+          "studyType": "review"
+        },
+        {
+          "pmid": "15586779",
+          "doi": "10.1093/sleep/27.7.1255",
+          "title": "Meta-analysis of quantitative sleep parameters from childhood to old age in healthy individuals: developing normative sleep values across the human lifespan",
+          "year": 2004,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Loud snoring with pauses in breathing, gasping at night, or heavy daytime sleepiness",
+      "note": "These can be signs of sleep apnoea, where breathing stops and starts during sleep. It is worth seeing a doctor, because it can be tested for and treated."
+    },
+    {
+      "with": "Trouble sleeping most nights for weeks or longer",
+      "note": "Ongoing insomnia is worth discussing with a doctor, who can look for causes such as pain, low mood, medicines or other sleep disorders. CBT-I is a treatment given by a trained therapist or a structured online programme; the face-to-face trials left out people with other medical, sleep or mental health conditions."
+    },
+    {
+      "with": "Night or rotating shift work",
+      "note": "In trials, sleep out of step with the body clock lowered insulin sensitivity. Shift workers with sleep problems, or with diabetes, can ask a doctor or occupational health service about it.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Sleeping pills or other medicines for sleep",
+      "note": "Changes to sleep medicines, including coming off them, are best planned with the doctor who prescribed them."
+    },
+    {
+      "with": "Regularly sleeping much longer than usual, or still tired after long nights",
+      "note": "In the large studies, long sleep may have been a sign of an illness. It is worth mentioning to a doctor."
+    }
+  ],
+  "cautions": [
+    "Sleeping less than 7 hours a night regularly is linked with more errors and accidents.",
+    "One short night is not a health problem: the studies looked at usual sleep over years, or at several nights of restriction in trials.",
+    "Sleep numbers from a watch or ring are estimates; comparing nights on the same device says more than comparing with other people."
+  ],
+  "unknowns": [
+    "The links between hours of sleep and death, heart disease and stroke come from observational studies in which people reported their own sleep. Illness can cause long sleep, and the authors say it isn't known whether sleep duration is a cause or a marker of ill health.",
+    "How much sleep a particular person needs isn't known: the expert panel says needs vary from person to person, and that sleep outside the recommended ranges may be appropriate for some.",
+    "Wearables misjudge sleep stages. In a sleep-lab comparison of seven consumer devices in 34 healthy young adults, devices detected sleep well (sensitivity 0.93 or more) but detected wake poorly (specificity 0.18 to 0.54), stage results were inconsistent, and they did worse on disrupted nights.",
+    "The sleep-restriction trials lasted days to weeks. Whether the same changes in insulin sensitivity and eating continue over years of short sleep, and whether sleeping longer reverses them, is not well tested.",
+    "Sleep regularity has been linked with lower death rates in one large cohort, with one week of measurement each; whether making sleep more regular lowers risk hasn't been tested in trials."
+  ],
+  "sources": [
+    {
+      "pmid": "26039963",
+      "doi": "10.5665/sleep.4716",
+      "title": "Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29073412",
+      "doi": "10.1016/j.sleh.2014.12.010",
+      "title": "National Sleep Foundation's sleep time duration recommendations: methodology and results summary",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29073398",
+      "doi": "10.1016/j.sleh.2015.10.004",
+      "title": "National Sleep Foundation's updated sleep duration recommendations: final report",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "33378539",
+      "doi": "10.1093/sleep/zsaa291",
+      "title": "Performance of seven consumer sleep-tracking devices compared with polysomnography",
+      "year": 2021,
+      "studyType": "observational",
+      "n": 34
+    },
+    {
+      "pmid": "15586779",
+      "doi": "10.1093/sleep/27.7.1255",
+      "title": "Meta-analysis of quantitative sleep parameters from childhood to old age in healthy individuals: developing normative sleep values across the human lifespan",
+      "year": 2004,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

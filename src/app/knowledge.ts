@@ -6,6 +6,7 @@ import { validateBiomarkerDef } from "../core/knowledge";
 import type { BiomarkerCategory, BiomarkerDef, EvidenceClaim, FoodTable } from "../core/types";
 import foodTable from "../../knowledge/foods/cofid-foods.json";
 import { lowerFirst } from "./format";
+import { validateLifestyleDef, type LifestyleDef } from "../core/lifestyle";
 
 // Bundled at build time; nothing is fetched at runtime.
 const modules = import.meta.glob<unknown>("../../knowledge/biomarkers/*.json", { eager: true, import: "default" });
@@ -104,6 +105,18 @@ function loadNutrients(): NutrientDef[] {
 }
 
 export const NUTRIENTS: readonly NutrientDef[] = loadNutrients();
+
+// Lifestyle (walking, sauna, red light, sleep, cold water…): research-based, with visuals from the studies.
+const lifestyleModules = import.meta.glob<unknown>("../../knowledge/lifestyle/*.json", { eager: true, import: "default" });
+export const LIFESTYLE: readonly LifestyleDef[] = Object.entries(lifestyleModules)
+  .filter(([path, json]) => {
+    const errors = validateLifestyleDef(json);
+    if (errors.length > 0) console.error(`Invalid knowledge file ${path}:`, errors);
+    return errors.length === 0;
+  })
+  .map(([, json]) => json as LifestyleDef)
+  .sort((a, b) => a.name.localeCompare(b.name));
+export const LIFESTYLE_MAP: ReadonlyMap<string, LifestyleDef> = new Map(LIFESTYLE.map((l) => [l.id, l]));
 export const NUTRIENT_MAP: ReadonlyMap<string, NutrientDef> = new Map(NUTRIENTS.map((n) => [n.id, n]));
 
 // Fitness tests with norms for age and sex (Body page, Biological age page), one file per test.

@@ -1,0 +1,489 @@
+{
+  "id": "cold_water",
+  "name": "Cold showers and cold water immersion",
+  "category": "heat and cold",
+  "otherNames": [
+    "cold shower",
+    "cold plunge",
+    "ice bath",
+    "cold-water immersion (CWI)",
+    "winter swimming",
+    "cold water swimming",
+    "cryotherapy (water)"
+  ],
+  "summary": "Getting into cold water, from ending a shower with cold to sitting in an ice bath or swimming in winter. The first moments set off a strong reflex called cold shock: a gasp, fast breathing and a jump in heart rate and blood pressure. The trials are mostly small and short; the clearest findings are less muscle soreness after exercise, and smaller muscle gains when cold is used after every strength session.",
+  "howItWorks": [
+    "Sudden cooling of the skin stimulates cold sensors, which set off the cold shock response: a gasp, fast breathing that overrides conscious control, a faster heart and higher blood pressure.",
+    "The response gets smaller with repeated immersions (habituation), and in one lab study the effect on heart rate was still there more than a year later.",
+    "After exercise, cold water eased soreness in trials, though exactly how is not well understood. After strength training it also damped the signals in muscle that lead to growth.",
+    "Cold makes the body produce more heat, partly through brown fat, a kind of fat that burns energy to make heat. How much this matters for health in people is not known.",
+    "Claims about immunity, mood and metabolism rest on small or uncontrolled studies. Why sickness absence fell in the Dutch shower trial while days of illness didn't is not known."
+  ],
+  "whatStudiesDid": "A Dutch trial had 3,018 adults aged 18 to 65, with no habit of cold showers, end their usual warm shower with 30, 60 or 90 seconds of cold for 30 days in a row, then as they chose for 60 more days, compared with warm showers only. Exercise trials had people sit in water below 15 °C after exercise; one had men do strength training 2 days a week for 12 weeks with 10 minutes of cold water or an active cool-down after each session. Wellbeing trials used baths or showers at 7 to 15 °C for 30 seconds to 2 hours. Lab studies immersed people in 10 to 15 °C water for a few minutes to measure cold shock, and studies of winter swimmers followed people who dip in cold water 2 to 3 times a week.",
+  "markers": ["heart_rate", "bp_systolic", "bp_diastolic", "hrv"],
+  "findings": [
+    {
+      "outcome": "Sickness absence from work and days of illness",
+      "population": "3,018 Dutch adults aged 18 to 65 without serious illness and new to cold showers, in winter",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "One large randomised trial, not repeated",
+        "People knew which group they were in (not blinded), and everything was self-reported",
+        "Fewer days off work, but no clear change in the number of days people felt ill"
+      ],
+      "summary": "In a Dutch randomised trial, 3,018 adults ended a warm shower with 30, 60 or 90 seconds of cold for 30 days in a row, then as they chose for 60 more days, or kept to warm showers. 79 % of those in the cold groups completed the first 30 days. Self-reported sickness absence from work was 29 % lower in the cold shower groups (incidence rate ratio 0.71), but the number of days people felt ill did not differ clearly between groups. People knew their group and reported their own illness and absence. A 2025 review of cold-water immersion found no clear effect on measures of immune function in the hour after cold water.",
+      "bottomLine": "In one large Dutch trial, adults who ended warm showers with cold reported 29 % less sickness absence from work, but no clear change in the number of days they felt ill. People knew their group and reported everything themselves.",
+      "studies": [
+        {
+          "pmid": "27631616",
+          "doi": "10.1371/journal.pone.0161749",
+          "title": "The Effect of Cold Showering on Health and Work: A Randomized Controlled Trial.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 3018
+        },
+        {
+          "pmid": "39879231",
+          "doi": "10.1371/journal.pone.0317615",
+          "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 3177
+        }
+      ]
+    },
+    {
+      "outcome": "Mood, stress, wellbeing and sleep",
+      "population": "Healthy adults in trials of cold baths, showers or plunges, and adults in studies of cold showers, cold-water immersion and winter swimming",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Few randomised trials, small samples and little diversity among the people studied",
+        "Most studies in the 2026 review had a high, serious or critical risk of bias",
+        "Effects became smaller when only controlled studies were counted, and confidence intervals were wide"
+      ],
+      "summary": "A 2025 meta-analysis of 11 randomised studies (3,177 people) of cold water at 7 to 15 °C found lower stress 12 hours after cold water, but no clear effect on stress immediately, 1 hour, 24 hours or 48 hours after. Sleep quality and quality of life improved in some studies, but mood did not. A 2026 meta-analysis of 13 studies (4,105 people) of cold showers, cold-water immersion and winter swimming found results that generally leaned towards less depression and stress and better wellbeing and mood, but with wide confidence intervals and smaller effects in controlled studies only; anxiety showed little consistent benefit. Its authors concluded that the evidence does not establish that cold water improves mood or stress, and that it should not be seen as a treatment for mental health conditions on its own.",
+      "bottomLine": "Studies of cold water lean towards less stress and better wellbeing, but the effects shrink in the better-controlled studies and most studies have a high risk of bias. A 2026 review concluded the evidence does not establish a benefit for mood or stress.",
+      "studies": [
+        {
+          "pmid": "39879231",
+          "doi": "10.1371/journal.pone.0317615",
+          "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 3177
+        },
+        {
+          "pmid": "42819812",
+          "doi": "10.3389/fphys.2026.1926423",
+          "title": "Cold-water exposure and psychological outcomes in adults: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 4105
+        }
+      ]
+    },
+    {
+      "outcome": "Muscle soreness after exercise",
+      "population": "Mostly young, active adults sitting in water below 15 °C after hard or unaccustomed exercise, compared with rest",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many trials, but small ones, and the Cochrane review rated their quality low",
+        "Results varied between trials, and soreness is self-rated by people who know they had cold water",
+        "Water temperature, time in the water and the exercise differed from trial to trial; most trials did not check for side effects"
+      ],
+      "summary": "A Cochrane review of 17 small trials (366 people) found less muscle soreness after cold-water immersion than after rest, at 24, 48, 72 and 96 hours after exercise (standardised mean differences from -0.55 to -0.93), and lower ratings of tiredness straight after. Cold water was no better than contrast (alternating hot and cold) or warm-water immersion. Study quality was low and the results varied. A 2026 umbrella review of 15 meta-analyses found the same reduction in soreness up to 96 hours, and better heart rate variability straight after exercise, but rated the certainty of the evidence low to very low.",
+      "bottomLine": "In small trials, sitting in cold water after exercise eased muscle soreness over the next 4 days compared with resting, but it was no better than warm water or alternating hot and cold. The trials were of low quality.",
+      "studies": [
+        {
+          "pmid": "22336838",
+          "doi": "10.1002/14651858.cd008262.pub2",
+          "title": "Cold-water immersion (cryotherapy) for preventing and treating muscle soreness after exercise.",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 366
+        },
+        {
+          "pmid": "42816732",
+          "doi": "10.1186/s40798-026-01116-8",
+          "title": "Strategic Application of Post-exercise Cold-Water Immersion to Enhance Performance Recovery and Adaptation: An Umbrella Review of 15 Published Systematic Reviews with Meta-analysis.",
+          "year": 2026,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Muscle growth and strength gains with regular cold water after strength training",
+      "population": "Adults doing resistance (strength) training who had cold water after each session, compared with training without it",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Consistent direction across a trial, a meta-analysis and an umbrella review",
+        "Few and small studies (8 in the 2024 meta-analysis), rated fair to poor quality",
+        "The 12-week trial was in 21 active men only; the umbrella review rated the certainty low to very low"
+      ],
+      "summary": "In a 12-week trial, 21 active men did strength training 2 days a week with either 10 minutes of cold water or an active cool-down after each session. Strength and muscle mass increased more in the active cool-down group; type II muscle fibre size grew by 17 % in that group but not with cold water. A separate experiment in the same paper found that cold water damped the signals in muscle that lead to growth. A 2024 meta-analysis of 8 studies found smaller muscle gains when cold water followed strength training, and a 2026 umbrella review found that cold water after exercise impaired gains in strength and muscle size.",
+      "bottomLine": "When cold water followed every strength-training session, muscle size and strength grew less than with training alone, in a 12-week trial and in reviews of the few studies. The studies were small, and the trial was in men only.",
+      "studies": [
+        {
+          "pmid": "26174323",
+          "doi": "10.1113/jp270570",
+          "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 21
+        },
+        {
+          "doi": "10.1002/ejsc.12074",
+          "title": "Throwing cold water on muscle growth: A systematic review with meta-analysis of the effects of postexercise cold water immersion on resistance training-induced hypertrophy",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "42816732",
+          "doi": "10.1186/s40798-026-01116-8",
+          "title": "Strategic Application of Post-exercise Cold-Water Immersion to Enhance Performance Recovery and Adaptation: An Umbrella Review of 15 Published Systematic Reviews with Meta-analysis.",
+          "year": 2026,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Brown fat, metabolism and insulin sensitivity",
+      "population": "Small groups: 8 people with type 2 diabetes in mild cold, young winter-swimming men compared with others, and mixed studies of cold-water exposure",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Very small studies, often of one sex, with different temperatures and kinds of water",
+        "Mostly short or uncontrolled; the diabetes study used 10 days of mild cold, not repeated cold water",
+        "No trials of health outcomes such as diabetes or heart disease"
+      ],
+      "summary": "In 8 people with type 2 diabetes, 10 days of mild cold at 14 to 15 °C raised insulin sensitivity by about 43 %. Muscle showed clear changes, while glucose uptake by brown fat rose only a little. Experienced winter-swimming men, who dip 2 to 3 times a week, made more heat in response to cold than other men. A 2022 review of 104 studies concluded that cold water seems to reduce or change body fat and improve insulin sensitivity, but that most studies were small, often of one sex, with different temperatures and water, and that it is unclear whether winter swimmers are healthier because of it.",
+      "bottomLine": "Small studies suggest cold can raise heat production and insulin sensitivity, in one study of 8 people with diabetes by about 43 %. The studies were tiny and short, and it is unclear whether winter swimmers are healthier because of the cold.",
+      "studies": [
+        {
+          "pmid": "26147760",
+          "doi": "10.1038/nm.3891",
+          "title": "Short-term cold acclimation improves insulin sensitivity in patients with type 2 diabetes mellitus.",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 8
+        },
+        {
+          "pmid": "34755128",
+          "doi": "10.1016/j.xcrm.2021.100408",
+          "title": "Altered brown fat thermoregulation and enhanced cold-induced thermogenesis in young, healthy, winter-swimming men.",
+          "year": 2021,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "36137565",
+          "doi": "10.1080/22423982.2022.2111789",
+          "title": "Health effects of voluntary exposure to cold water - a continuing subject of debate.",
+          "year": 2022,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart rate, blood pressure and heart rhythm in the first moments in cold water",
+      "population": "Healthy volunteers in lab immersions, and experienced winter swimmers",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The cold shock response is found consistently in lab studies",
+        "The studies are small and measure the body's response, not how often it leads to harm",
+        "No good trials of whether regular cold water changes resting blood pressure"
+      ],
+      "summary": "Sudden immersion in cold water sets off cold shock: a gasp, fast breathing, a faster heart and higher blood pressure. In men immersed in 10 °C water, heart rate averaged 128 beats a minute in the first 30 seconds before they got used to it. Cold water submersion can cause irregular heartbeats even in healthy volunteers, which a review links to the cold shock and diving reflexes acting together, for example when holding the breath under water. In 28 winter swimmers, systolic blood pressure rose while they waited undressed in the cold, did not rise further in the water, and was back to its usual level 4 minutes later; very high pressures were recorded in several of them. The response gets smaller with repeated immersions.",
+      "bottomLine": "The first moments in cold water raise heart rate and blood pressure sharply and can cause irregular heartbeats, even in healthy people. The response shrinks with repeated immersions; whether regular cold water changes resting blood pressure is not known.",
+      "studies": [
+        {
+          "pmid": "16714416",
+          "doi": "10.1152/japplphysiol.01201.2005",
+          "title": "Respiratory responses to cold water immersion: neural pathways, interactions, and clinical consequences awake and asleep.",
+          "year": 2006,
+          "studyType": "review"
+        },
+        {
+          "pmid": "11072768",
+          "doi": "10.1007/s004210000255",
+          "title": "Permanence of the habituation of the initial responses to cold-water immersion in humans.",
+          "year": 2000,
+          "studyType": "observational",
+          "n": 12
+        },
+        {
+          "pmid": "22547634",
+          "doi": "10.1113/jphysiol.2012.229864",
+          "title": "'Autonomic conflict': a different way to die during cold water immersion?",
+          "year": 2012,
+          "studyType": "review"
+        },
+        {
+          "pmid": "6101458",
+          "doi": "10.1016/s0140-6736(80)90605-4",
+          "title": "Blood-pressure response to swimming in ice-cold water.",
+          "year": 1980,
+          "studyType": "observational",
+          "n": 28
+        },
+        {
+          "pmid": "38211547",
+          "doi": "10.1016/j.jtherbio.2023.103775",
+          "title": "Habituation of the cold shock response: A systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 145
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "The Dutch cold shower trial: days off sick and days ill",
+      "caption": "3,018 adults, 90 days in winter. Each bar compares the cold shower groups with the group that kept to warm showers (1 = no difference); lines show the 95% confidence interval. Days off work were 29 % fewer; days of feeling ill were not clearly different, since that interval reaches 1. Everything was self-reported and people knew their group.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "Warm showers only (the comparison group)" },
+      "items": [
+        { "label": "Days off sick from work", "value": 0.71, "low": 0.56, "high": 0.89, "note": "Incidence rate ratio" },
+        { "label": "Days of feeling ill", "value": 0.89, "low": 0.77, "high": 1.01, "note": "Incidence rate ratio; not a clear difference" }
+      ],
+      "sources": [
+        {
+          "pmid": "27631616",
+          "doi": "10.1371/journal.pone.0161749",
+          "title": "The Effect of Cold Showering on Health and Work: A Randomized Controlled Trial.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 3018
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "Cold shock: the first moments in cold water",
+      "caption": "What lab studies measured when people were suddenly immersed in cold water. The numbers come from one small study of men in 10 °C water and a meta-analysis of habituation studies. In open water, a gasp or fast breathing can mean breathing in water.",
+      "steps": [
+        { "label": "The skin cools suddenly", "text": "The fall in skin temperature stimulates cold sensors in the skin, which set off a reflex called cold shock." },
+        { "label": "A gasp", "text": "An involuntary deep breath in, which can't be held back." },
+        { "label": "Fast, uncontrolled breathing", "text": "Breathing speeds up and overrides conscious control. In men in 10 °C water it averaged 47 breaths a minute in the first 30 seconds." },
+        { "label": "Heart rate and blood pressure jump", "text": "The heart speeds up (128 beats a minute in the same study) and blood pressure rises. Irregular heartbeats can occur, especially when holding the breath under water." },
+        { "label": "The danger in open water", "text": "Reviews describe cold shock as a precursor to drowning: the gasp and fast breathing can draw in water, and they make it harder to swim or act safely." },
+        { "label": "Smaller with repeats", "text": "The response gets smaller with repeated immersions: a 2024 meta-analysis found this after about 4 immersions, with heart rate rising about 14 beats a minute less." }
+      ],
+      "sources": [
+        {
+          "pmid": "16714416",
+          "doi": "10.1152/japplphysiol.01201.2005",
+          "title": "Respiratory responses to cold water immersion: neural pathways, interactions, and clinical consequences awake and asleep.",
+          "year": 2006,
+          "studyType": "review"
+        },
+        {
+          "pmid": "11072768",
+          "doi": "10.1007/s004210000255",
+          "title": "Permanence of the habituation of the initial responses to cold-water immersion in humans.",
+          "year": 2000,
+          "studyType": "observational",
+          "n": 12
+        },
+        {
+          "pmid": "22547634",
+          "doi": "10.1113/jphysiol.2012.229864",
+          "title": "'Autonomic conflict': a different way to die during cold water immersion?",
+          "year": 2012,
+          "studyType": "review"
+        },
+        {
+          "pmid": "38211547",
+          "doi": "10.1016/j.jtherbio.2023.103775",
+          "title": "Habituation of the cold shock response: A systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 145
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Muscle soreness after exercise: cold water compared with rest",
+      "caption": "Cochrane review of small trials. Each bar is the difference in soreness between cold-water immersion and rest at a time after exercise, as a standardised mean difference (below 0 = less sore with cold water); lines show the 95% confidence interval. The trials were of low quality and their results varied.",
+      "scale": "linear",
+      "unit": "standardised mean difference",
+      "reference": { "value": 0, "label": "No difference from rest" },
+      "items": [
+        { "label": "24 hours after", "value": -0.55, "low": -0.84, "high": -0.27, "note": "10 trials" },
+        { "label": "48 hours after", "value": -0.66, "low": -0.97, "high": -0.35, "note": "8 trials" },
+        { "label": "72 hours after", "value": -0.93, "low": -1.36, "high": -0.51, "note": "4 trials" },
+        { "label": "96 hours after", "value": -0.58, "low": -1.0, "high": -0.16, "note": "5 trials" }
+      ],
+      "sources": [
+        {
+          "pmid": "22336838",
+          "doi": "10.1002/14651858.cd008262.pub2",
+          "title": "Cold-water immersion (cryotherapy) for preventing and treating muscle soreness after exercise.",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 366
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Heart disease or an irregular heartbeat",
+      "note": "Cold shock makes the heart race and blood pressure jump, and cold water can cause irregular heartbeats even in healthy volunteers. It's worth talking to a doctor before trying cold water."
+    },
+    {
+      "with": "High blood pressure",
+      "note": "Blood pressure rises in the cold, and very high pressures were recorded in some experienced winter swimmers. It's worth talking to a doctor first, especially if blood pressure isn't well controlled."
+    },
+    {
+      "with": "Raynaud's or poor circulation in the hands and feet",
+      "note": "People with these conditions weren't included in the studies here. It's worth asking a doctor whether cold water is safe."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "Cold water hasn't been studied in pregnancy. It's worth talking to a doctor or midwife first.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Open water, especially alone",
+      "note": "The gasp and fast breathing of cold shock are linked to drowning. Most of the studies here were in labs, baths and showers, not open water."
+    }
+  ],
+  "cautions": [
+    "The first moments are the riskiest: the gasp and fast breathing can't be controlled, and breathing in water is the main danger in open water.",
+    "Holding the breath with the face in cold water combines cold shock with the diving reflex, which a review links to irregular heartbeats.",
+    "Cold water after every strength-training session was linked to smaller gains in muscle and strength.",
+    "Cold-water immersion raised markers of inflammation straight after and 1 hour after, in a 2025 meta-analysis; what this means for health isn't known.",
+    "Cold water is not a treatment for depression or other mental health conditions; the 2026 review said so plainly."
+  ],
+  "unknowns": [
+    "Most trials are small and short, from days to a few months. No long-term trials have looked at illness, heart disease, diabetes or deaths.",
+    "Claims about immunity, metabolism, brown fat and mood rest on small, uncontrolled or high-risk-of-bias studies.",
+    "The Dutch trial found fewer days off work but not fewer days of illness; why, and whether it would happen in other people, isn't known.",
+    "Whether winter swimmers are healthier because of the cold, or were healthier to begin with, is unclear.",
+    "Whether regular cold water changes resting blood pressure or resting heart rate hasn't been tested in good trials.",
+    "Which temperature, how long and how often, if any, matters most isn't known: the studies used very different water temperatures and times."
+  ],
+  "sources": [
+    {
+      "pmid": "27631616",
+      "doi": "10.1371/journal.pone.0161749",
+      "title": "The Effect of Cold Showering on Health and Work: A Randomized Controlled Trial.",
+      "year": 2016,
+      "studyType": "rct",
+      "n": 3018
+    },
+    {
+      "pmid": "39879231",
+      "doi": "10.1371/journal.pone.0317615",
+      "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis",
+      "n": 3177
+    },
+    {
+      "pmid": "42819812",
+      "doi": "10.3389/fphys.2026.1926423",
+      "title": "Cold-water exposure and psychological outcomes in adults: a systematic review and meta-analysis.",
+      "year": 2026,
+      "studyType": "meta-analysis",
+      "n": 4105
+    },
+    {
+      "pmid": "22336838",
+      "doi": "10.1002/14651858.cd008262.pub2",
+      "title": "Cold-water immersion (cryotherapy) for preventing and treating muscle soreness after exercise.",
+      "year": 2012,
+      "studyType": "meta-analysis",
+      "n": 366
+    },
+    {
+      "pmid": "42816732",
+      "doi": "10.1186/s40798-026-01116-8",
+      "title": "Strategic Application of Post-exercise Cold-Water Immersion to Enhance Performance Recovery and Adaptation: An Umbrella Review of 15 Published Systematic Reviews with Meta-analysis.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26174323",
+      "doi": "10.1113/jp270570",
+      "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training.",
+      "year": 2015,
+      "studyType": "rct",
+      "n": 21
+    },
+    {
+      "doi": "10.1002/ejsc.12074",
+      "title": "Throwing cold water on muscle growth: A systematic review with meta-analysis of the effects of postexercise cold water immersion on resistance training-induced hypertrophy",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "16714416",
+      "doi": "10.1152/japplphysiol.01201.2005",
+      "title": "Respiratory responses to cold water immersion: neural pathways, interactions, and clinical consequences awake and asleep.",
+      "year": 2006,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22547634",
+      "doi": "10.1113/jphysiol.2012.229864",
+      "title": "'Autonomic conflict': a different way to die during cold water immersion?",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38211547",
+      "doi": "10.1016/j.jtherbio.2023.103775",
+      "title": "Habituation of the cold shock response: A systematic review and meta-analysis.",
+      "year": 2024,
+      "studyType": "meta-analysis",
+      "n": 145
+    },
+    {
+      "pmid": "11072768",
+      "doi": "10.1007/s004210000255",
+      "title": "Permanence of the habituation of the initial responses to cold-water immersion in humans.",
+      "year": 2000,
+      "studyType": "observational",
+      "n": 12
+    },
+    {
+      "pmid": "6101458",
+      "doi": "10.1016/s0140-6736(80)90605-4",
+      "title": "Blood-pressure response to swimming in ice-cold water.",
+      "year": 1980,
+      "studyType": "observational",
+      "n": 28
+    },
+    {
+      "pmid": "26147760",
+      "doi": "10.1038/nm.3891",
+      "title": "Short-term cold acclimation improves insulin sensitivity in patients with type 2 diabetes mellitus.",
+      "year": 2015,
+      "studyType": "observational",
+      "n": 8
+    },
+    {
+      "pmid": "34755128",
+      "doi": "10.1016/j.xcrm.2021.100408",
+      "title": "Altered brown fat thermoregulation and enhanced cold-induced thermogenesis in young, healthy, winter-swimming men.",
+      "year": 2021,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "36137565",
+      "doi": "10.1080/22423982.2022.2111789",
+      "title": "Health effects of voluntary exposure to cold water - a continuing subject of debate.",
+      "year": 2022,
+      "studyType": "review"
+    }
+  ]
+}

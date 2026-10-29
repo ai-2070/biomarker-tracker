@@ -29,7 +29,7 @@ const RETEST_OPTIONS = [
  * Habits: supplements, food, medicines and routines with their dates. Any habit can watch markers;
  * then it shows what changed, compared with normal test-to-test variation (the old self-experiments).
  */
-export function HabitsPage({ add, marker, meal }: { add?: string; marker?: string; meal?: string }) {
+export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?: string; meal?: string; type?: ProtocolCategory }) {
   const protocols = useProtocols();
   const experiments = useExperiments();
   const all = useAllMeasurements();
@@ -58,7 +58,7 @@ export function HabitsPage({ add, marker, meal }: { add?: string; marker?: strin
         {adding ? (
           <Card>
             <h2 className="mb-4 font-serif text-2xl font-normal">New habit</h2>
-            <HabitForm today={today} all={all} tested={tested} prefillLabel={add} prefillMarker={marker} prefillMeal={meal} onDone={() => setAdding(false)} />
+            <HabitForm today={today} all={all} tested={tested} prefillLabel={add} prefillMarker={marker} prefillMeal={meal} prefillCategory={type} onDone={() => setAdding(false)} />
           </Card>
         ) : (
           <div>
@@ -382,6 +382,7 @@ function HabitForm({
   prefillLabel,
   prefillMarker,
   prefillMeal,
+  prefillCategory,
   today,
   all,
   tested,
@@ -391,6 +392,7 @@ function HabitForm({
   prefillLabel?: string;
   prefillMarker?: string;
   prefillMeal?: string;
+  prefillCategory?: ProtocolCategory;
   today: string;
   all: Measurement[];
   tested: ReadonlySet<string>;
@@ -404,7 +406,7 @@ function HabitForm({
   const [mealId, setMealId] = useState(prefillMeal ?? "");
   const [planId, setPlanId] = useState("");
   const [label, setLabel] = useState(initial?.label ?? prefillLabel?.slice(0, 80) ?? "");
-  const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? (prefillMeal ? "diet" : "supplement"));
+  const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? prefillCategory ?? (prefillMeal ? "diet" : "supplement"));
   // A meal chosen by link fills the name in once the meals have loaded.
   const [filled, setFilled] = useState(false);
   if (startMeal && !filled && !label) {

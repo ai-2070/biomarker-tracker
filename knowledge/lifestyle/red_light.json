@@ -1,0 +1,564 @@
+{
+  "id": "red_light",
+  "name": "Red light therapy",
+  "category": "light",
+  "otherNames": [
+    "Photobiomodulation (PBM)",
+    "Low-level light therapy (LLLT)",
+    "Low-level laser therapy",
+    "Near-infrared light therapy",
+    "LED light therapy",
+    "Cold laser"
+  ],
+  "summary": "Red or near-infrared light, from LEDs or low-power lasers, shone on the skin to change how cells behave without heating them. Trials found more hair in pattern hair loss and some effect on wrinkles, and a cancer-care guideline recommends it, given by clinicians, to prevent mouth sores during some cancer treatments. Most trials are small and use different devices and doses, and how it works in people is still a hypothesis.",
+  "howItWorks": [
+    "Light is described by its wavelength, measured in nanometres (nm, a billionth of a metre). The eye sees from about 400 nm (violet) to 700 nm (red). Near-infrared light, just beyond red, is invisible.",
+    "Devices use LEDs (light-emitting diodes, the small lamps in most masks and panels) or low-power lasers. They are meant to change how cells work without burning or heating them, unlike lasers used to cut or remove tissue.",
+    "Longer wavelengths reach deeper: red light passes deeper into skin than blue light, and can reach through its whole thickness. In a range called the optical window, the skin's main light absorbers (melanin, haemoglobin and water) absorb least, so the light gets further.",
+    "The leading hypothesis: cytochrome c oxidase, an enzyme in mitochondria (the parts of cells that make energy), absorbs the light. This frees nitric oxide that was blocking the enzyme, so the cell makes more ATP (its energy currency) and sends signals that switch on genes for repair and against inflammation. Light-sensitive ion channels in cells are another proposed target. These ideas come from cell and animal studies; they are not proven in people.",
+    "Dose matters. How strong the light is at the skin is its irradiance, in milliwatts per square centimetre (mW/cm²). The energy delivered over a session is measured in joules (J) per square centimetre. In lab studies low doses stimulated cells and high doses inhibited them (a biphasic dose response)."
+  ],
+  "whatStudiesDid": "Trials shone red light (611 to 655 nm) or near-infrared light (785 to 904 nm), from LEDs or low-power lasers, on one area at a time. Face trials used sessions twice a week for 4 weeks, 30 sessions twice a week, or a home LED mask for 16 weeks. Hair trials used home combs, caps or helmets; in two trials a helmet was used for 25 minutes every other day for 16 weeks. Knee, muscle, mouth and wound trials were run by clinicians or researchers, with a set dose for each treatment spot. Mouth-sore prevention was given in hospital to people having cancer treatment.",
+  "markers": [],
+  "findings": [
+    {
+      "outcome": "Wrinkles, skin roughness and collagen (skin ageing)",
+      "population": "Adults with facial wrinkles or wanting smoother skin, in randomised trials with a sham device or an untreated group",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "A few randomised trials of 60 to 136 people, each with a different device, wavelength and schedule",
+        "One trial reported changes against each person's starting point rather than against the sham group",
+        "The home mask trial was funded by a company, though blinded raters judged the results",
+        "Short follow-up: weeks to a few months"
+      ],
+      "summary": "In a 2014 trial, 136 volunteers were randomly assigned to red light (611 to 650 nm), a broader red and near-infrared light (570 to 850 nm), twice a week for 30 sessions, or to no treatment. The treated groups had better skin feeling and complexion, less roughness and denser collagen on ultrasound, and blinded ratings of photographs favoured treatment; the broader light gave no extra benefit over red alone. In a 2025 trial of 60 Asian adults aged 30 to 65, a home mask with 630 nm red and 850 nm near-infrared LEDs improved crow's feet more than a sham mask over 16 weeks, as judged by independent raters; the trial was funded by a company. A 2007 split-face trial of 76 people (633 nm, 830 nm or both, twice a week for 4 weeks) found wrinkles reduced by up to 36% and skin elasticity up by up to 19% compared with the start, and more collagen in skin samples. No serious side effects were reported. These are small, short trials with different devices.",
+      "bottomLine": "In a few small randomised trials, red and near-infrared light on the face reduced wrinkles and roughness and increased collagen more than no treatment or a sham mask. Devices and schedules all differed, follow-up was short, and one trial was company-funded.",
+      "studies": [
+        {
+          "pmid": "24286286",
+          "doi": "10.1089/pho.2013.3616",
+          "title": "A controlled trial to determine the efficacy of red and near-infrared light treatment in patient satisfaction, reduction of fine lines, wrinkles, skin roughness, and intradermal collagen density increase",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 136
+        },
+        {
+          "pmid": "39960921",
+          "doi": "10.1097/md.0000000000041596",
+          "title": "Clinical study to evaluate the efficacy and safety of home-used LED and IRED mask for crow's feet: A multi-center, randomized, double-blind, sham-controlled study",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "17566756",
+          "doi": "10.1016/j.jphotobiol.2007.04.008",
+          "title": "A prospective, randomized, placebo-controlled, double-blinded, and split-face clinical study on LED phototherapy for skin rejuvenation: clinical, profilometric, histologic, ultrastructural, and biochemical evaluations and comparison of three different treatment settings",
+          "year": 2007,
+          "studyType": "rct",
+          "n": 76
+        }
+      ]
+    },
+    {
+      "outcome": "Hair density in pattern hair loss (androgenetic alopecia)",
+      "population": "Men and women with pattern hair loss, in double-blind trials against sham devices (combs, caps and helmets, mostly used at home)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Several meta-analyses of sham-controlled randomised trials agree on more hair density",
+        "Results varied a lot between trials",
+        "A review noted that some trials had links with industry",
+        "Trials lasted weeks to about 6 months; long-term results are unknown"
+      ],
+      "summary": "A 2019 meta-analysis of 11 double-blind randomised trials found more hair density with low-level laser therapy than with sham devices, in both men and women and with both comb and helmet devices, though the trials differed a lot. A 2021 meta-analysis of 15 studies (795 people) and a 2025 meta-analysis of 38 studies (3,098 patients, most with pattern hair loss) also found more hair density than with placebo, after 4 to 26 weeks of use. In two trials of a home helmet with 655 nm lasers and LEDs, used every other day for 16 weeks, men had a 39% greater increase in hair counts than with a sham helmet, and women also gained more hair than with the sham. A 2020 review of 10 randomised trials found the devices safe, with only minor side effects, but warned that some trials had links with industry. Results for other kinds of hair loss were too few to pool.",
+      "bottomLine": "In sham-controlled trials of laser and LED combs, caps and helmets, men and women with pattern hair loss gained more hair density than with sham devices. Trials differed a lot, lasted months not years, and some had links with industry.",
+      "studies": [
+        {
+          "pmid": "30706177",
+          "doi": "10.1007/s10103-019-02723-6",
+          "title": "Comparative effectiveness of low-level laser therapy for adult androgenic alopecia: a system review and meta-analysis of randomized controlled trials",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31746251",
+          "doi": "10.1080/09546634.2019.1688755",
+          "title": "Meta-analysis of photobiomodulation for the treatment of androgenetic alopecia",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 795
+        },
+        {
+          "pmid": "39404126",
+          "doi": "10.1097/dss.0000000000004442",
+          "title": "Low-Level Laser and LED Therapy in Alopecia: A Systematic Review and Meta-Analysis",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 3098
+        },
+        {
+          "pmid": "24078483",
+          "doi": "10.1002/lsm.22173",
+          "title": "The growth of human scalp hair mediated by visible red light laser and LED sources in males",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 44
+        },
+        {
+          "pmid": "25124964",
+          "doi": "10.1002/lsm.22277",
+          "title": "The growth of human scalp hair in females using visible red light laser and LED sources",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 47
+        },
+        {
+          "pmid": "33088809",
+          "doi": "10.1159/000509001",
+          "title": "Examining the Safety and Efficacy of Low-Level Laser Therapy for Male and Female Pattern Hair Loss: A Review of the Literature",
+          "year": 2020,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Preventing painful mouth sores (oral mucositis) during cancer treatment",
+      "population": "People having a stem cell transplant, or radiotherapy with or without chemotherapy for head and neck cancer, treated in hospital",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "An international guideline (MASCC/ISOO) based on a systematic review with graded levels of evidence",
+        "Recommended only for prevention, in specific cancer treatments, with specific device settings",
+        "Not enough evidence for treating sores already present, or for sores from chemotherapy alone",
+        "Clinical settings varied widely between studies"
+      ],
+      "summary": "In 2019 the Mucositis Study Group of MASCC/ISOO (the Multinational Association of Supportive Care in Cancer and the International Society of Oral Oncology) systematically reviewed photobiomodulation. It recommended it for preventing oral mucositis and its pain in people having a stem cell transplant, radiotherapy for head and neck cancer, or radiotherapy with chemotherapy. Each recommendation is for 1 or 2 specific protocols, and the guideline says the clinician should keep to every setting of the chosen protocol. No guideline was possible for treating sores already present or for sores caused by chemotherapy alone, because the evidence was inadequate. A 2016 review found no reports of poor tumour outcomes, but called confirming that the light doesn't affect how the cancer responds a critical priority. This is care given by cancer teams, not with home devices.",
+      "bottomLine": "An international cancer-care guideline recommends red or near-infrared light, given with specific settings by clinicians, to prevent painful mouth sores during stem cell transplants and head and neck radiotherapy. Evidence was too weak for treating sores already present.",
+      "studies": [
+        {
+          "pmid": "31286228",
+          "doi": "10.1007/s00520-019-04890-2",
+          "title": "Systematic review of photobiomodulation for the management of oral mucositis in cancer patients and clinical practice guidelines",
+          "year": 2019,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "26984240",
+          "doi": "10.1007/s00520-016-3152-z",
+          "title": "Low level laser therapy/photobiomodulation in the management of side effects of chemoradiation therapy in head and neck cancer: part 1: mechanisms of action, dosimetric, and safety considerations",
+          "year": 2016,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Knee osteoarthritis pain and disability",
+      "population": "Adults with knee osteoarthritis, in trials against a sham (placebo) laser, some alongside exercise",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analyses disagree: two found less pain, one found no clear difference",
+        "Trials used many different wavelengths and doses",
+        "Major knee osteoarthritis guidelines did not recommend it (as noted in 2019)",
+        "With exercise, pain improved but strength, movement and function did not"
+      ],
+      "summary": "A 2019 meta-analysis of 22 placebo-controlled trials (1,063 people) found that laser therapy reduced pain by about 14 mm more than placebo on a visual analogue scale (a line on which people mark their pain) at the end of treatment, and more with the doses recommended by the World Association for Laser Therapy (785 to 860 nm at 4 to 8 J, or 904 nm at 1 to 3 J, per treatment spot); disability was also lower, and no side effects were reported. A 2015 meta-analysis of 9 trials (518 people) found no clear difference from sham in pain, stiffness or function, including in trials that followed those recommendations. A 2023 meta-analysis of 14 trials (820 people) found less pain with laser plus exercise than with sham laser plus exercise, but no better knee movement, muscle strength or function. The 2019 review noted that major knee osteoarthritis guidelines don't recommend the therapy.",
+      "bottomLine": "For knee osteoarthritis, one large review found low-level laser eased pain more than placebo, while another found no clear difference. With exercise, pain improved but strength and function did not. Major guidelines did not recommend it.",
+      "studies": [
+        {
+          "pmid": "31662383",
+          "doi": "10.1136/bmjopen-2019-031142",
+          "title": "Efficacy of low-level laser therapy on pain and disability in knee osteoarthritis: systematic review and meta-analysis of randomised placebo-controlled trials",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 1063
+        },
+        {
+          "pmid": "25914044",
+          "doi": "10.1016/j.joca.2015.04.005",
+          "title": "Effectiveness of low-level laser therapy in patients with knee osteoarthritis: a systematic review and meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 518
+        },
+        {
+          "pmid": "36576096",
+          "doi": "10.1080/08990220.2022.2157387",
+          "title": "Effect of low-level laser therapy plus exercise therapy on pain, range of motion, muscle strength, and function in knee osteoarthritis - a systematic review and meta-analysis",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 820
+        }
+      ]
+    },
+    {
+      "outcome": "Exercise performance and muscle recovery",
+      "population": "Healthy adults, from inactive people to athletes, given light on their muscles before exercise in placebo-controlled trials",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many small trials (37 studies with 586 people in one review)",
+        "Benefits only for some kinds of exercise, and not in physically active people in one review",
+        "Wide variety of devices, wavelengths and doses"
+      ],
+      "summary": "A 2022 meta-analysis of 37 double-blind, placebo-controlled crossover studies (586 participants) found that light before exercise improved muscle endurance in single-joint exercises and time to exhaustion in cycling, but not muscle strength, running or swimming. A 2024 meta-analysis of 34 randomised trials found better muscle endurance and recovery of strength, and lower creatine kinase (an enzyme released by damaged muscle) after exercise. In that review the benefits were seen in inactive people and in athletes, but not in physically active people.",
+      "bottomLine": "In placebo-controlled trials, light on muscles before exercise improved muscle endurance and some measures of recovery, but not strength, running or swimming. One review found no benefit in physically active people.",
+      "studies": [
+        {
+          "pmid": "35802348",
+          "doi": "10.1007/s40279-022-01714-y",
+          "title": "Deconstructing the Ergogenic Effects of Photobiomodulation: A Systematic Review and Meta-analysis of its Efficacy in Improving Mode-Specific Exercise Performance in Humans",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 586
+        },
+        {
+          "pmid": "38758297",
+          "doi": "10.1007/s10103-024-04079-y",
+          "title": "Can pre-exercise photobiomodulation improve muscle endurance and promote recovery from muscle strength and injuries in people with different activity levels? A meta-analysis of randomized controlled trials",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Healing of diabetic foot ulcers",
+      "population": "People with diabetic foot ulcers, given low-level laser as an add-on to usual wound care under medical supervision",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The 2021 review rated the quality of the evidence very low (GRADE)",
+        "13 small trials with 413 patients in total",
+        "The best settings are not known"
+      ],
+      "summary": "A 2021 meta-analysis of 13 randomised trials (413 patients) found that low-level laser therapy, added to other care, about doubled the chance of an ulcer healing completely (risk ratio 2.10), shrank ulcers more and shortened healing time compared with control. The authors rated the quality of the evidence as very low and called for larger, better trials. A 2025 meta-analysis of 11 studies (657 people) with grade I to II ulcers also found more complete healing and fewer infections. This is treatment under medical care, alongside standard wound care.",
+      "bottomLine": "In small trials, low-level laser added to other care helped more diabetic foot ulcers heal completely and heal faster. The evidence was rated very low quality, and this is treatment under medical care.",
+      "studies": [
+        {
+          "pmid": "33751853",
+          "doi": "10.1111/iwj.13577",
+          "title": "The effect of low-level laser therapy on diabetic foot ulcers: A meta-analysis of randomised controlled trials",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 413
+        },
+        {
+          "pmid": "40186874",
+          "doi": "10.1111/wrr.70021",
+          "title": "Intervention effects of low-level laser therapy (LLLT) on grade I-II ulcers in diabetic foot patients: A meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 657
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "spectrum",
+      "title": "Where red light therapy sits in the spectrum",
+      "caption": "Light is measured by its wavelength in nanometres (nm). The eye sees about 400 to 700 nm, which a dermatology review splits into violet and blue, green, yellow, orange and red. Near-infrared light, beyond 700 nm, is invisible. Red light therapy uses the red end of what we see and the near-infrared just beyond it. The marks are wavelengths used in trials in this entry. The first optical window of tissue (650 to 950 nm), where light gets deepest, comes from an optics study; other sources give other edges, such as 600 to 1300 nm for skin.",
+      "from": 400,
+      "to": 1100,
+      "bands": [
+        { "label": "Violet and blue", "from": 400, "to": 500 },
+        { "label": "Green", "from": 500, "to": 565 },
+        { "label": "Yellow", "from": 565, "to": 590 },
+        { "label": "Orange", "from": 590, "to": 625 },
+        { "label": "Red", "from": 625, "to": 700 },
+        { "label": "Near-infrared (invisible)", "from": 700, "to": 1100 },
+        { "label": "Tissue's first optical window", "from": 650, "to": 950 }
+      ],
+      "marks": [
+        { "nm": 630, "label": "red LED in a home face-mask trial (crow's feet)", "group": "Used in trials and studies" },
+        { "nm": 633, "label": "red LED in a split-face wrinkle trial", "group": "Used in trials and studies" },
+        { "nm": 655, "label": "red lasers and LEDs in home hair-growth helmet trials", "group": "Used in trials and studies" },
+        { "nm": 810, "label": "near-infrared proposed for light through the skull to the brain", "group": "Used in trials and studies" },
+        { "nm": 830, "label": "near-infrared LED in the split-face wrinkle trial", "group": "Used in trials and studies" },
+        { "nm": 850, "label": "near-infrared LED in the home face-mask trial", "group": "Used in trials and studies" },
+        { "nm": 904, "label": "near-infrared laser in knee osteoarthritis trials", "group": "Used in trials and studies" }
+      ],
+      "sources": [
+        {
+          "pmid": "33640508",
+          "doi": "10.1016/j.jaad.2021.02.048",
+          "title": "Visible light. Part I: Properties and cutaneous effects of visible light",
+          "year": 2021,
+          "studyType": "review"
+        },
+        {
+          "pmid": "24805808",
+          "doi": "10.1117/1.jbo.19.5.056004",
+          "title": "Deep optical imaging of tissue using the second and third near-infrared spectral windows",
+          "year": 2014,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "39960921",
+          "doi": "10.1097/md.0000000000041596",
+          "title": "Clinical study to evaluate the efficacy and safety of home-used LED and IRED mask for crow's feet: A multi-center, randomized, double-blind, sham-controlled study",
+          "year": 2025,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "17566756",
+          "doi": "10.1016/j.jphotobiol.2007.04.008",
+          "title": "A prospective, randomized, placebo-controlled, double-blinded, and split-face clinical study on LED phototherapy for skin rejuvenation: clinical, profilometric, histologic, ultrastructural, and biochemical evaluations and comparison of three different treatment settings",
+          "year": 2007,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "24078483",
+          "doi": "10.1002/lsm.22173",
+          "title": "The growth of human scalp hair mediated by visible red light laser and LED sources in males",
+          "year": 2013,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "31357574",
+          "doi": "10.3390/brainsci9080179",
+          "title": "Computational Modeling of the Photon Transport, Tissue Heating, and Cytochrome C Oxidase Absorption during Transcranial Near-Infrared Stimulation",
+          "year": 2019,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "31662383",
+          "doi": "10.1136/bmjopen-2019-031142",
+          "title": "Efficacy of low-level laser therapy on pain and disability in knee osteoarthritis: systematic review and meta-analysis of randomised placebo-controlled trials",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "spectrum",
+      "title": "What absorbs the light",
+      "caption": "What soaks up light decides how far it gets. Haemoglobin in blood absorbs blue, green and yellow light strongly (peaks at 418, 542 and 577 nm). Melanin, the skin's pigment, absorbs visible light too, so darker skin may let less light through, and few trials report results by skin tone. Water absorbs strongly at longer near-infrared wavelengths. Between 600 and 1300 nm, the skin's optical window, melanin, haemoglobin and water absorb least. In HeLa cells (a human cell line, in a dish), responses to light peaked at about 620, 680, 760 and 820 nm (Karu's action spectra), matching light absorbed by cytochrome c oxidase; in later analyses the peaks fell between 613.5–623.5, 667.5–683.7, 750.7–772.3 and 812.5–846.0 nm. These peaks come from cells, not from people.",
+      "from": 400,
+      "to": 1300,
+      "bands": [
+        { "label": "Visible light", "from": 400, "to": 700 },
+        { "label": "Near-infrared (invisible; IRA runs to 1440 nm)", "from": 700, "to": 1300 },
+        { "label": "Skin's optical window: melanin, haemoglobin and water absorb least", "from": 600, "to": 1300 }
+      ],
+      "marks": [
+        { "nm": 620, "label": "red peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
+        { "nm": 680, "label": "far-red peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
+        { "nm": 760, "label": "first near-infrared peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
+        { "nm": 820, "label": "second near-infrared peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
+        { "nm": 418, "label": "haemoglobin absorption peak (blue)", "group": "Haemoglobin: where blood absorbs most" },
+        { "nm": 542, "label": "haemoglobin absorption peak", "group": "Haemoglobin: where blood absorbs most" },
+        { "nm": 577, "label": "haemoglobin absorption peak", "group": "Haemoglobin: where blood absorbs most" }
+      ],
+      "sources": [
+        {
+          "pmid": "14872239",
+          "doi": "10.1039/b306126d",
+          "title": "Photobiological modulation of cell attachment via cytochrome c oxidase",
+          "year": 2004,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "16144476",
+          "doi": "10.1089/pho.2005.23.355",
+          "title": "Exact action spectra for cellular responses relevant to phototherapy",
+          "year": 2005,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "33640508",
+          "doi": "10.1016/j.jaad.2021.02.048",
+          "title": "Visible light. Part I: Properties and cutaneous effects of visible light",
+          "year": 2021,
+          "studyType": "review"
+        },
+        {
+          "pmid": "24805808",
+          "doi": "10.1117/1.jbo.19.5.056004",
+          "title": "Deep optical imaging of tissue using the second and third near-infrared spectral windows",
+          "year": 2014,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "41983886",
+          "doi": "10.1590/1516-3180.2025.3358.26012026",
+          "title": "Is photobiomodulation therapy free from racial bias?: a narrative review of skin pigmentation",
+          "year": 2026,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "How it's thought to work (the leading hypothesis)",
+      "caption": "This chain comes from cell and animal studies summarised in reviews. It is the leading hypothesis, not a proven account of what happens in people, and other light-sensitive targets in cells (such as ion channels) are also proposed.",
+      "steps": [
+        {
+          "label": "Light gets in",
+          "text": "Red and near-infrared light passes into skin and the tissue below. Longer wavelengths reach deeper; red light can reach through the whole thickness of the skin."
+        },
+        {
+          "label": "Mitochondria absorb it",
+          "text": "Cytochrome c oxidase, the last enzyme of the energy-making chain in mitochondria, contains haem and copper and absorbs red and near-infrared light."
+        },
+        {
+          "label": "Nitric oxide is released",
+          "text": "The light is thought to knock off nitric oxide that was blocking the enzyme, so electrons flow again and the mitochondria's charge rises."
+        },
+        {
+          "label": "More energy and signals",
+          "text": "Cells make more ATP (their energy currency), with a brief burst of reactive oxygen species, more nitric oxide and changes in calcium and cyclic AMP, which act as signals."
+        },
+        {
+          "label": "Genes switch on",
+          "text": "These signals activate transcription factors, turning on genes for protein building, cell movement and growth, antioxidant enzymes and calming inflammation."
+        },
+        {
+          "label": "Dose decides the direction",
+          "text": "In lab studies low doses stimulated cells and high doses inhibited them, and stressed cells responded differently from healthy ones."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "28070154",
+          "doi": "10.1109/jstqe.2016.2561201",
+          "title": "Proposed Mechanisms of Photobiomodulation or Low-Level Light Therapy",
+          "year": 2016,
+          "studyType": "review"
+        },
+        {
+          "pmid": "28748217",
+          "doi": "10.3934/biophy.2017.3.337",
+          "title": "Mechanisms and applications of the anti-inflammatory effects of photobiomodulation",
+          "year": 2017,
+          "studyType": "review"
+        },
+        {
+          "pmid": "29164625",
+          "doi": "10.1111/php.12864",
+          "title": "Mechanisms and Mitochondrial Redox Signaling in Photobiomodulation",
+          "year": 2018,
+          "studyType": "review"
+        },
+        {
+          "pmid": "33640508",
+          "doi": "10.1016/j.jaad.2021.02.048",
+          "title": "Visible light. Part I: Properties and cutaneous effects of visible light",
+          "year": 2021,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Eyes: bright LEDs and lasers",
+      "note": "A dermatology review notes that lasers in the visible range can damage the retina and that eye protection matched to the wavelength is recommended. Near-infrared light can't be seen, so a strong source may not look bright. A 2023 report described retinal damage after repeated low-level red-light laser exposure. Ask an eye doctor before using any light device near the eyes."
+    },
+    {
+      "with": "Medicines, creams or conditions that make skin sensitive to light",
+      "note": "Some medicines and skin treatments make skin react to light. In photodynamic therapy a cream is applied on purpose so that red or blue light then destroys cells, and porphyrias (rare conditions with a build-up of porphyrins) make skin react to visible light. Check with a doctor or pharmacist first."
+    },
+    {
+      "with": "Darker skin",
+      "note": "In two safety trials of high-dose red LED light on the forearm, darker skin reacted more: the highest dose without problems was 320 J/cm² for skin of colour and 480 J/cm² for non-Hispanic white skin. Melanin also absorbs part of the light, and few trials report results by skin tone."
+    },
+    {
+      "with": "Skin cancer, past cancer, or a mole that is changing",
+      "note": "Lab studies of tumour cells give mixed results. A 2023 systematic review found no clinical trial linking light therapy for skin with new or returning cancer, but a 2016 review said its effect on tumours has not been studied enough. A changing or unusual mole needs a doctor's check, and people being treated for cancer should ask their cancer team."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "The trials described here did not report results in pregnancy, so safety then has not been shown. Talk to your doctor or midwife first.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Diabetes and foot ulcers",
+      "note": "The foot-ulcer trials added light to wound care under medical supervision. A foot ulcer needs medical care; talk to your doctor or foot care team.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "More is not better: lab studies show a biphasic dose response, where low doses stimulate cells and high doses inhibit them.",
+    "In two safety trials of red LED light on the forearm three times a week for 3 weeks, the highest doses (480 and 640 J/cm²) caused blistering and long-lasting redness in a few people.",
+    "Home devices vary widely. A 2026 study of four LED face masks found large differences in irradiance, in some cases more than sunlight, and the makers gave no data on the energy emitted. A study of five hand-held home LED devices found the makers' dose instructions didn't add up to an accurate dose.",
+    "Medical uses in the trials (mouth sores during cancer treatment, foot ulcers, knee pain) were given by clinicians with set protocols; results with home devices may differ."
+  ],
+  "unknowns": [
+    "Most trials are small and short, and they use different wavelengths, doses, schedules and devices, so their results are hard to combine or compare.",
+    "The best dose for any use is not known, and low and high doses can have opposite effects.",
+    "Home devices vary widely in output and are rarely measured independently, so a result from one device may not apply to another.",
+    "The mechanism (light absorbed by cytochrome c oxidase, releasing nitric oxide) is the leading hypothesis, supported by cell and animal studies. How a change in cells in a dish becomes fewer wrinkles or less pain in people is not mapped.",
+    "Whether years of regular use are safe or useful is not known: trials lasted weeks to months.",
+    "Melanin absorbs part of the light, yet few trials report results by skin tone.",
+    "No blood test or body measurement in this app tracks its effect."
+  ],
+  "sources": [
+    {
+      "pmid": "33640508",
+      "doi": "10.1016/j.jaad.2021.02.048",
+      "title": "Visible light. Part I: Properties and cutaneous effects of visible light",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "28070154",
+      "doi": "10.1109/jstqe.2016.2561201",
+      "title": "Proposed Mechanisms of Photobiomodulation or Low-Level Light Therapy",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "10365442",
+      "doi": "10.1016/s1011-1344(98)00219-x",
+      "title": "Primary and secondary mechanisms of action of visible to near-IR radiation on cells",
+      "year": 1999,
+      "studyType": "review"
+    },
+    {
+      "pmid": "31483941",
+      "doi": "10.1002/jbio.201960014",
+      "title": "Safety of light emitting diode-red light on human skin: Two randomized controlled trials",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 115
+    },
+    {
+      "pmid": "36722207",
+      "doi": "10.1093/asj/sjad018",
+      "title": "Photobiomodulation: A Systematic Review of the Oncologic Safety of Low-Level Light Therapy for Aesthetic Skin Rejuvenation",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37227712",
+      "doi": "10.1001/jamaophthalmol.2023.1548",
+      "title": "Retinal Damage After Repeated Low-level Red-Light Laser Exposure",
+      "year": 2023,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "42080982",
+      "doi": "10.1007/s43630-026-00908-x",
+      "title": "Spectral emission variability in commercial led masks for cosmetic use",
+      "year": 2026,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "39996950",
+      "doi": "10.3390/dj13020076",
+      "title": "Photobiomodulation LED Devices for Home Use: Design, Function and Potential: A Pilot Study",
+      "year": 2025,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "41983886",
+      "doi": "10.1590/1516-3180.2025.3358.26012026",
+      "title": "Is photobiomodulation therapy free from racial bias?: a narrative review of skin pigmentation",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

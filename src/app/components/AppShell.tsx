@@ -6,7 +6,7 @@ import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
 import { Brain } from "../brain/Brain";
 import { openBrain, useBrain } from "../brain/store";
-import { AgeIcon, BodyIcon, BookIcon, BowlIcon, BrainIcon, ClipboardIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, IntakeIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, StarIcon } from "./icons";
+import { AgeIcon, BodyIcon, BookIcon, BowlIcon, BrainIcon, ClipboardIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, IntakeIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, StarIcon, SunIcon } from "./icons";
 import { REPO_URL } from "./settings/AboutSettings";
 import { ProfileMenu } from "./ProfileMenu";
 import { buttonStyles, cx } from "./ui";
@@ -35,6 +35,7 @@ const PLANS: NavItem = { label: "Protocols", to: { name: "plans" }, icon: Clipbo
 const INTAKE: NavItem = { label: "Intake analyzer", to: { name: "intake" }, icon: IntakeIcon, active: (r) => r.name === "intake" };
 const MEALS: NavItem = { label: "Meals", to: { name: "meals" }, icon: BowlIcon, active: (r) => r.name === "meals" || r.name === "meal" || r.name === "example-meal" };
 const SUPPLEMENTS: NavItem = { label: "Supplementation", to: { name: "supplements" }, icon: BookIcon, active: (r) => r.name === "supplements" || r.name === "nutrient" };
+const LIFESTYLE_NAV: NavItem = { label: "Lifestyle", to: { name: "lifestyle" }, icon: SunIcon, active: (r) => r.name === "lifestyle" || r.name === "lifestyle-item" };
 const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
 const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: SettingsIcon, active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup" };
 
@@ -44,7 +45,7 @@ const GROUPS: { label?: string; items: NavItem[] }[] = [
   // Things you build and follow: habits to log and watch, protocols, meals.
   { label: "Tools", items: [HABITS, PLANS, MEALS, INTAKE] },
   // Research-based knowledge, not your own data: kept apart from Health.
-  { label: "Knowledge", items: [SUPPLEMENTS] },
+  { label: "Knowledge", items: [SUPPLEMENTS, LIFESTYLE_NAV] },
   { label: "Connect", items: [DEVICES] },
 ];
 

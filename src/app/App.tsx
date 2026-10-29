@@ -26,6 +26,8 @@ import { href, useRoute, type Route } from "./router";
 // The chart library is large; load it only when a marker page is opened.
 const MarkerPage = lazy(() => import("./pages/MarkerPage").then((m) => ({ default: m.MarkerPage })));
 const SupplementsPage = lazy(() => import("./pages/SupplementsPage").then((m) => ({ default: m.SupplementsPage })));
+const LifestylePage = lazy(() => import("./pages/LifestylePage").then((m) => ({ default: m.LifestylePage })));
+const LifestyleItemPage = lazy(() => import("./pages/LifestylePage").then((m) => ({ default: m.LifestyleItemPage })));
 const NutrientPage = lazy(() => import("./pages/NutrientPage").then((m) => ({ default: m.NutrientPage })));
 const PlansPage = lazy(() => import("./pages/PlansPage").then((m) => ({ default: m.PlansPage })));
 const PlanPage = lazy(() => import("./pages/PlanPage").then((m) => ({ default: m.PlanPage })));
@@ -147,7 +149,11 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <ImportPage />;
     case "habits":
       // Keyed so a new "add" link opens a fresh form.
-      return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}|${route.meal ?? ""}`} add={route.add} marker={route.marker} meal={route.meal} />;
+      return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}|${route.meal ?? ""}|${route.type ?? ""}`} add={route.add} marker={route.marker} meal={route.meal} type={route.type} />;
+    case "lifestyle":
+      return <LifestylePage />;
+    case "lifestyle-item":
+      return <LifestyleItemPage key={route.id} id={route.id} />;
     case "experiment":
       return <ExperimentPage key={route.id} id={route.id} />;
     case "supplements":

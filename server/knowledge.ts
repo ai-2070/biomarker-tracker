@@ -5,6 +5,7 @@ import { validateEvidenceClaim } from "../src/core/evidence";
 import { validateBiomarkerDef } from "../src/core/knowledge";
 import { validateFitnessTest, type FitnessTestDef } from "../src/core/fitnessTests";
 import { validateNutrientDef, type NutrientDef } from "../src/core/nutrients";
+import { validateLifestyleDef, type LifestyleDef } from "../src/core/lifestyle";
 import type { FoodDb } from "../src/core/meals";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
 import { ROOT } from "./store";
@@ -30,7 +31,7 @@ function readAll(dir: string): unknown[] {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as unknown);
 }
 
-let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[]; fitness: FitnessTestDef[] } | undefined;
+let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[]; fitness: FitnessTestDef[]; lifestyle: LifestyleDef[] } | undefined;
 
 export function knowledge() {
   if (!cache) {
@@ -43,7 +44,9 @@ export function knowledge() {
     const nutrients = (fs.existsSync(dir) ? readAll(dir) : []).filter((j) => validateNutrientDef(j).length === 0) as NutrientDef[];
     const fdir = path.join(k, "fitness");
     const fitness = (fs.existsSync(fdir) ? readAll(fdir) : []).filter((j) => validateFitnessTest(j).length === 0) as FitnessTestDef[];
-    cache = { defs, evidence, foods, nutrients, fitness };
+    const ldir = path.join(k, "lifestyle");
+    const lifestyle = (fs.existsSync(ldir) ? readAll(ldir) : []).filter((j) => validateLifestyleDef(j).length === 0) as LifestyleDef[];
+    cache = { defs, evidence, foods, nutrients, fitness, lifestyle };
   }
   return cache;
 }
@@ -60,6 +63,15 @@ export function findNutrient(query: string): NutrientDef | undefined {
   const q = query.trim().toLowerCase().replace(/[\s-]+/g, "_");
   const words = query.trim().toLowerCase();
   return knowledge().nutrients.find((n) => n.id === q || n.name.toLowerCase() === words || n.otherNames.some((o) => o.toLowerCase().startsWith(words)));
+}
+
+/** Find a lifestyle topic by id, name or other name ("sauna", "daily steps", "cold shower"). */
+export function findLifestyle(query: string): LifestyleDef | undefined {
+  const q = query.trim().toLowerCase().replace(/[\s-]+/g, "_");
+  const words = query.trim().toLowerCase();
+  return knowledge().lifestyle.find(
+    (l) => l.id === q || l.name.toLowerCase() === words || l.name.toLowerCase().startsWith(words) || l.otherNames.some((o) => o.toLowerCase().startsWith(words)),
+  );
 }
 
 /** Find a marker by id, name, abbreviation or any alias (case-insensitive). */
