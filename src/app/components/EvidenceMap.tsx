@@ -13,17 +13,18 @@ import { cx } from "./ui";
 
 const maps = import.meta.glob<EvidenceMapFile>("../../../knowledge/evidence-maps/*.json", { import: "default" });
 
-export function useEvidenceMap(nutrientId: string): EvidenceMapFile | undefined {
+/** A map by its file name: a nutrient's id ("vitamin_d"), or "food-<topic>" for the food comparison. */
+export function useEvidenceMap(mapId: string): EvidenceMapFile | undefined {
   const [map, setMap] = useState<EvidenceMapFile>();
   useEffect(() => {
-    const load = Object.entries(maps).find(([path]) => path.endsWith(`/${nutrientId}.json`))?.[1];
+    const load = Object.entries(maps).find(([path]) => path.endsWith(`/${mapId}.json`))?.[1];
     if (load) void load().then(setMap);
-  }, [nutrientId]);
-  return map;
+  }, [mapId]);
+  return map?.topic === mapId ? map : undefined;
 }
 
-/** Whether a nutrient has an evidence map (without loading it). */
-export const hasEvidenceMap = (nutrientId: string) => Object.keys(maps).some((p) => p.endsWith(`/${nutrientId}.json`));
+/** Whether there is an evidence map (without loading it). */
+export const hasEvidenceMap = (mapId: string) => Object.keys(maps).some((p) => p.endsWith(`/${mapId}.json`));
 
 const n = (x: number) => x.toLocaleString("en-GB");
 const REVIEW_COLOR = "var(--color-age-heart)";
@@ -38,33 +39,36 @@ function PaperLink({ c }: { c: Pick<Chosen, "pmid" | "doi" | "title"> }) {
   );
 }
 
-export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; citedTitles: Record<string, string> }) {
-  const map = useEvidenceMap(nutrientId);
-  const [outcomeId, setOutcomeId] = useState<string>();
+export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; citedTitles: Record<string, string>; outcome?: string }) {
+  const map = useEvidenceMap(mapId);
+  const [outcomeId, setOutcomeId] = useState<string | undefined>(outcome);
   if (!map) return <p className="text-ink-2">Loading the evidence map…</p>;
   const o = map.outcomes.find((x) => x.id === outcomeId) ?? map.outcomes[0]!;
   const c = map.counts;
+  const food = map.kind === "food";
   return (
     <div className="flex flex-col gap-6">
       <div className="max-w-3xl">
         <p className="text-ink-2">
-          Instead of picking studies by hand, every PubMed record was searched and the studies for each finding were chosen by written rules.
+          {food
+            ? "Instead of picking studies by hand, each claim has its own written search of every PubMed record, and the reviews were chosen by written rules."
+            : "Instead of picking studies by hand, every PubMed record was searched and the studies for each finding were chosen by written rules."}{" "}
           Built {formatDate(map.builtAt)} from {map.source}.
         </p>
       </div>
 
       <ol className={cx("grid gap-2", c.all !== undefined ? "sm:grid-cols-4" : "sm:grid-cols-3")} aria-label="From every record to the studies used">
-        {c.all !== undefined && <Step big={n(c.all)} text={`records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`} />}
+        {c.all !== undefined && <Step big={n(c.all)} text={food ? "records match the searches for these claims" : `records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`} />}
         <Step big={n(c.retrieved)} text="are reviews, randomised trials or guidelines: all downloaded" />
         <Step big={`${n(c.reviews)} · ${n(c.trials)}`} text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`} />
         {o.screening ? (
           <Step big={`${o.screening.counts.yes}`} text={`reviews answer the question (${o.label}), of ${o.counts.trialReviews} the rules found`} />
         ) : (
-          <Step big={`${o.counts.trialReviews}`} text={`reviews of ${map.name} trials (${o.label}), after the rules below`} />
+          <Step big={`${o.counts.trialReviews}`} text={food ? `systematic reviews (${o.label}), after the rules below` : `reviews of ${map.name} trials (${o.label}), after the rules below`} />
         )}
       </ol>
 
-      <div role="tablist" aria-label="Outcome" className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
+      <div role="tablist" aria-label={food ? "Claim" : "Outcome"} className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
         {map.outcomes.map((x) => (
           <button
             key={x.id}
@@ -79,7 +83,7 @@ export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; c
         ))}
       </div>
 
-      <Outcome o={o} name={map.name} citedTitles={citedTitles} />
+      <Outcome o={o} name={map.name} food={food} citedTitles={citedTitles} />
 
       <details className="max-w-3xl">
         <summary className="min-h-11 cursor-pointer py-2 font-medium">The rules, and what they can't do yet</summary>
@@ -96,7 +100,7 @@ export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; c
             its reason, and a clinician still has to check them.
           </li>
           <li>They don't judge quality (risk of bias), which needs reading each paper's methods.</li>
-          <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the findings above do.</li>
+          <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the {food ? "verdicts" : "findings"} on this page do.</li>
           <li>Trial sizes and the number of trials a review pooled are read from abstracts and can be missing or off.</li>
         </ul>
         <p className="mt-3 text-sm text-ink-2">The searches, rules and the code that applies them are in the app's repository, so anyone can run them again and check.</p>
@@ -114,17 +118,25 @@ function Step({ big, text }: { big: string; text: string }) {
   );
 }
 
-function Outcome({ o, name, citedTitles }: { o: EvidenceMapOutcome; name: string; citedTitles: Record<string, string> }) {
+function Outcome({ o, name, food, citedTitles }: { o: EvidenceMapOutcome; name: string; food: boolean; citedTitles: Record<string, string> }) {
   const reviewLetter = (pmid: string) => String.fromCharCode(65 + o.chosenReviews.findIndex((r) => r.pmid === pmid));
   return (
     <div className="flex flex-col gap-6">
-      <p className="max-w-3xl">
-        {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have this outcome in their title;{" "}
-        {o.counts.trialReviews} are reviews of {name} trials{o.screening ? ` (${o.screening.counts.yes} of them answer the question below)` : " that fit the question"}, and{" "}
-        {o.counts.largeTrials} trials had 1,000 people or more.
-      </p>
+      {food ? (
+        <p className="max-w-3xl">
+          {o.counts.all !== undefined && <>{n(o.counts.all)} records match this claim's search. </>}
+          {n(o.counts.reviews)} systematic reviews and {n(o.counts.trials)} randomised trials in people fit its words
+          {o.screening ? `; ${o.screening.counts.yes} of the reviews answer the question below` : ""}, and {o.counts.largeTrials} trials had 1,000 people or more.
+        </p>
+      ) : (
+        <p className="max-w-3xl">
+          {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have this outcome in their title;{" "}
+          {o.counts.trialReviews} are reviews of {name} trials{o.screening ? ` (${o.screening.counts.yes} of them answer the question below)` : " that fit the question"}, and{" "}
+          {o.counts.largeTrials} trials had 1,000 people or more.
+        </p>
+      )}
 
-      {o.screening && <Screening s={o.screening} />}
+      {o.screening && <Screening s={o.screening} food={food} />}
 
       <Timeline o={o} />
 
@@ -132,9 +144,11 @@ function Outcome({ o, name, citedTitles }: { o: EvidenceMapOutcome; name: string
         <h3 className="font-serif text-xl font-normal">Reviews chosen by the rules</h3>
         {o.chosenReviews.length === 0 && (
           <p className="max-w-3xl rounded-lg bg-sunken p-3 text-sm">
-            <span className="font-medium">No review of trials answers this question yet</span>
-            {o.counts.trialReviews > 0 ? `: the ${o.counts.trialReviews} the rules found were about a nearby question (listed above with the reasons).` : "."} The
-            finding rests on the studies it cites, such as single trials or studies that follow people over time, so it is less certain.
+            <span className="font-medium">{food ? "No systematic review answers this claim yet" : "No review of trials answers this question yet"}</span>
+            {o.counts.trialReviews > 0 ? `: the ${o.counts.trialReviews} the rules found were about a nearby question${o.screening ? " (listed above with the reasons)" : ""}.` : "."}{" "}
+            {food
+              ? "The verdict rests on the studies it cites, such as single absorption studies, trials or studies that follow people over time, so it is less certain."
+              : "The finding rests on the studies it cites, such as single trials or studies that follow people over time, so it is less certain."}
           </p>
         )}
         <ol className="flex flex-col gap-2">
@@ -156,13 +170,14 @@ function Outcome({ o, name, citedTitles }: { o: EvidenceMapOutcome; name: string
         {o.newerLargeTrials.length > 0 && <NewerTrials key={o.id} trials={o.newerLargeTrials} />}
       </section>
 
-      {o.overlap && <Overlap o={o} name={name} letter={reviewLetter} />}
+      {/* Food claims rest mostly on cohort and absorption studies that aren't downloaded, so shared trials say little there. */}
+      {o.overlap && !food && <Overlap o={o} name={name} letter={reviewLetter} />}
 
       <section className="flex max-w-3xl flex-col gap-2 rounded-lg bg-sunken p-3">
         <h3 className="font-medium">Compared with this page</h3>
         {o.finding ? (
           <>
-            <p className="text-sm text-ink-2">The finding "{o.finding}" cites:</p>
+            <p className="text-sm text-ink-2">{food ? "The claim's verdict cites:" : `The finding "${o.finding}" cites:`}</p>
             <ul className="flex flex-col gap-1 text-sm">
               {[...o.page.alsoChosen, ...o.page.citedNotChosen].map((p) => (
                 <li key={p}>
@@ -176,7 +191,7 @@ function Outcome({ o, name, citedTitles }: { o: EvidenceMapOutcome; name: string
             {o.page.chosenNotCited.length > 0 && (
               <p className="text-sm">
                 <span className="font-medium">To check:</span> {o.page.chosenNotCited.length} chosen {o.page.chosenNotCited.length === 1 ? "study isn't" : "studies aren't"} on the
-                page yet. A newer review can change a finding; until someone reads them, the finding above stays as written.
+                page yet. A newer review can change {food ? "a verdict" : "a finding"}; until someone reads them, the {food ? "verdict" : "finding"} stays as written.
               </p>
             )}
           </>
@@ -217,10 +232,10 @@ function NewerTrials({ trials }: { trials: EvidenceMapOutcome["newerLargeTrials"
 }
 
 /** The finding's question, how many reviews answer it, and the ones left out with the model's reason. */
-function Screening({ s }: { s: NonNullable<EvidenceMapOutcome["screening"]> }) {
+function Screening({ s, food }: { s: NonNullable<EvidenceMapOutcome["screening"]>; food: boolean }) {
   const rows: [string, string][] = [
     ["Who", s.question.population],
-    ["Given", s.question.intervention],
+    [food ? "Food or exposure" : "Given", s.question.intervention],
     ["Compared with", s.question.comparison],
     ["Measured", s.question.outcome],
   ];

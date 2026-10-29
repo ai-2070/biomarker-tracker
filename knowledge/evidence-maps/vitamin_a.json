@@ -24,9 +24,9 @@
  ],
  "counts": {
   "retrieved": 2181,
-  "animal": 53,
+  "animal": 52,
   "retracted": 4,
-  "reviews": 385,
+  "reviews": 386,
   "trials": 1721,
   "guidelines": 14
  },
@@ -3099,7 +3099,7 @@
    "label": "Young children",
    "finding": "Death and illness in young children",
    "counts": {
-    "reviews": 102,
+    "reviews": 103,
     "trialReviews": 42,
     "trials": 387,
     "largeTrials": 90
@@ -4036,7 +4036,7 @@
     },
     {
      "year": 2026,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 3
     }
    ],

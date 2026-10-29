@@ -58,7 +58,7 @@ await Promise.all(
       const ids = batch.map((r) => r.pmid!);
       // One retry for a batch that comes back short or malformed.
       for (let attempt = 0; attempt < 2; attempt++) {
-        const got = parseScreening(await ask(screeningPrompt(o.question, batch)), ids);
+        const got = parseScreening(await ask(screeningPrompt(o.question, batch, topic.kind ?? "supplement")), ids);
         for (const d of got) done.set(d.pmid, d);
         if (ids.every((id) => done.has(id))) break;
       }

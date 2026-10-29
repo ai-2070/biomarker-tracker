@@ -2,7 +2,9 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { classify, eligibleReviews, type Decision, type EvidenceRecord, type Question } from "../../src/core/evidenceMap";
+import type { ComparisonTopicFile } from "../../src/core/foodComparison";
 import type { NutrientDef } from "../../src/core/nutrients";
+import type { Citation } from "../../src/core/types";
 import { TOPICS } from "./topics";
 
 export const ROOT = join(import.meta.dirname, "..", "..");
@@ -23,9 +25,17 @@ export function loadTopic(id: string | undefined) {
     fetchedAt: string;
     queries: Record<string, string>;
     counts: Record<string, number>;
+    /** Food maps: records each claim's own search found. */
+    outcomeCounts?: Record<string, number>;
     records: { reviews: EvidenceRecord[]; trials: EvidenceRecord[]; guidelines: EvidenceRecord[] };
   };
-  const nutrient = JSON.parse(readFileSync(join(ROOT, "knowledge", "nutrients", `${topic.nutrientId}.json`), "utf8")) as NutrientDef;
+  const food = topic.kind === "food";
+  const read = <T,>(...path: string[]) => JSON.parse(readFileSync(join(ROOT, "knowledge", ...path), "utf8")) as T;
+  // What each outcome checks, and the studies it cites: a nutrient finding, or a food comparison claim.
+  const claims = food ? read<ComparisonTopicFile>("food-comparison", `${topic.comparisonId}.json`).claims : [];
+  const nutrient = food ? undefined : read<NutrientDef>("nutrients", `${topic.nutrientId}.json`);
+  const studiesFor = (finding: string | undefined): Citation[] =>
+    !finding ? [] : food ? (claims.find((c) => c.id === finding)?.studies ?? []) : (nutrient?.findings.find((f) => f.outcome === finding)?.studies ?? []);
   // One record per paper (a review can also be a guideline).
   const seen = new Set<string>();
   const records = [...raw.records.guidelines, ...raw.records.reviews, ...raw.records.trials]
@@ -37,13 +47,14 @@ export function loadTopic(id: string | undefined) {
     })
     .map((r) => classify(r, topic.outcomes))
     .filter((r) => !topic.localFilter || topic.localFilter.test(`${r.title} ${r.abstract}`));
-  // The topic's own terms (plain words, no special characters) must be in a review's title.
-  const topicTitle = topic.titleTerms ?? new RegExp(topic.terms.join("|"), "i");
+  // The topic's own terms (plain words, no special characters) must be in a review's title. Food maps
+  // search claim by claim, so the claim's own search and title words do that job.
+  const topicTitle = food ? undefined : (topic.titleTerms ?? new RegExp(topic.terms.join("|"), "i"));
   const eligible = (outcomeId: string) => {
     const o = topic.outcomes.find((x) => x.id === outcomeId)!;
-    return eligibleReviews(records, o.id, topicTitle, o.excludeTitle);
+    return eligibleReviews(records, o.id, topicTitle, o.excludeTitle, food ? "food" : "supplement");
   };
   const screeningFile = join(SCREENING_DIR, `${topic.id}.json`);
   const screening = existsSync(screeningFile) ? (JSON.parse(readFileSync(screeningFile, "utf8")) as ScreeningFile) : undefined;
-  return { topic, raw, nutrient, records, topicTitle, eligible, screening, screeningFile };
+  return { topic, raw, food, studiesFor, records, topicTitle, eligible, screening, screeningFile };
 }

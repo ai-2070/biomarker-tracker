@@ -25,9 +25,9 @@
  "counts": {
   "all": 14253,
   "retrieved": 590,
-  "animal": 40,
+  "animal": 39,
   "retracted": 0,
-  "reviews": 211,
+  "reviews": 212,
   "trials": 312,
   "guidelines": 27
  },
@@ -91,7 +91,7 @@
    "label": "Child development (pregnancy)",
    "finding": "Child development after iodine supplements in pregnancy",
    "counts": {
-    "reviews": 84,
+    "reviews": 85,
     "trialReviews": 20,
     "trials": 103,
     "largeTrials": 16
@@ -538,7 +538,7 @@
     },
     {
      "year": 2026,
-     "reviews": 7,
+     "reviews": 8,
      "trials": 2
     }
    ],
@@ -1537,7 +1537,7 @@
    "label": "Schoolchildren's thinking",
    "finding": "Thinking skills in schoolchildren",
    "counts": {
-    "reviews": 34,
+    "reviews": 35,
     "trialReviews": 8,
     "trials": 61,
     "largeTrials": 8
@@ -1704,7 +1704,7 @@
     },
     {
      "year": 2026,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 2
     }
    ],
@@ -1855,7 +1855,7 @@
    "label": "Young children's development",
    "finding": "Mental development of young children in iodine-deficient areas",
    "counts": {
-    "reviews": 50,
+    "reviews": 51,
     "trialReviews": 13,
     "trials": 67,
     "largeTrials": 8
@@ -2184,7 +2184,7 @@
     },
     {
      "year": 2026,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 2
     }
    ],

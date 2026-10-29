@@ -166,3 +166,30 @@ describe("eligible reviews: several supplements, missing abstracts", () => {
     expect(ids).toEqual(["1", "3"]);
   });
 });
+
+describe("maps of claims about foods", () => {
+  const rec3 = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: ["Meta-Analysis"], mesh: ["Humans"], citedBy: 0, ...o });
+  it("puts a record on a claim only when that claim's search found it and its title fits", () => {
+    const outcomes = [{ id: "mercury", title: /mercury/i }, { id: "metals" }];
+    const found = classify(rec3({ title: "Mercury in fish: a systematic review", matched: ["mercury"] }), outcomes);
+    expect(found.outcomes).toEqual(["mercury"]);
+    const both = classify(rec3({ title: "Mercury and cadmium in seafood", matched: ["mercury", "metals"] }), outcomes);
+    expect(both.outcomes).toEqual(["mercury", "metals"]);
+    // Without `matched` (supplement maps) only the title decides.
+    expect(classify(rec3({ title: "Mercury exposure" }), outcomes).outcomes).toEqual(["mercury"]);
+  });
+  it("counts reviews of any design for food claims, and words the screening question for a food", () => {
+    const cohort = classify(rec3({ pmid: "c", title: "Fish intake and mortality: meta-analysis of cohort studies", abstract: "We pooled 20 prospective cohort studies.", matched: ["fish"] }), [{ id: "fish" }]);
+    expect(eligibleReviews([cohort], "fish").map((r) => r.pmid)).toEqual([]);
+    expect(eligibleReviews([cohort], "fish", undefined, undefined, "food").map((r) => r.pmid)).toEqual(["c"]);
+    const prompt = screeningPrompt({ population: "People", intervention: "Eating fish", comparison: "Less fish", outcome: "Death" }, [{ pmid: "c", title: "T", year: 2020, abstract: "A" }], "food");
+    expect(prompt).toContain("Food or exposure: Eating fish");
+    expect(prompt).toContain("studies of any design");
+    expect(prompt).toContain("whether the claim is true");
+  });
+  it("doesn't take reviews of people eating fish or dairy for animal studies", () => {
+    expect(classify(rec3({ title: "Dairy foods and cholesterol", mesh: [] }), []).population).toBe("unclear");
+    expect(classify(rec3({ title: "Fish consumption in pregnancy", mesh: [] }), []).population).toBe("unclear");
+    expect(classify(rec3({ title: "Zebrafish models of iron uptake", mesh: [] }), []).population).toBe("animal");
+  });
+});

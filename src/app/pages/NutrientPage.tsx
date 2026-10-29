@@ -193,7 +193,7 @@ export function NutrientPage({ id }: { id: string }) {
         {hasEvidenceMap(n.id) && (
           <Card id="evidence-map" className="flex scroll-mt-6 flex-col gap-4">
             <H2>How the evidence was found</H2>
-            <EvidenceMap nutrientId={n.id} citedTitles={Object.fromEntries([...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => f.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))} />
+            <EvidenceMap mapId={n.id} citedTitles={Object.fromEntries([...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => f.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))} />
           </Card>
         )}
 

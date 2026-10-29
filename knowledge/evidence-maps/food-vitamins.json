@@ -1,0 +1,2627 @@
+{
+ "topic": "food-vitamins",
+ "kind": "food",
+ "comparisonId": "vitamins",
+ "name": "vitamins in foods",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "vitamins-b12-animal-only": "((TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:cobalamin) AND (TITLE_ABS:vegetarian* OR TITLE_ABS:vegan* OR TITLE_ABS:\"plant-based\" OR TITLE_ABS:\"plant foods\" OR TITLE_ABS:algae OR TITLE_ABS:seaweed OR TITLE_ABS:spirulina OR TITLE_ABS:fermented)) AND SRC:MED",
+  "vitamins-vitamin-a-retinol": "((TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"provitamin A\") AND (TITLE_ABS:conversion OR TITLE_ABS:bioconversion OR TITLE_ABS:BCO1 OR TITLE_ABS:BCMO1 OR TITLE_ABS:\"vitamin A status\" OR TITLE_ABS:\"retinol equivalent\" OR TITLE_ABS:bioefficacy OR TITLE_ABS:bioavailability)) AND SRC:MED",
+  "vitamins-vitamin-d-food": "((TITLE_ABS:\"vitamin D\" OR TITLE_ABS:\"25-hydroxyvitamin D\") AND (TITLE_ABS:vegetarian* OR TITLE_ABS:vegan* OR TITLE_ABS:\"plant-based\")) AND SRC:MED",
+  "vitamins-vitamin-k2": "((TITLE_ABS:menaquinone* OR TITLE_ABS:\"vitamin K2\") AND (TITLE_ABS:phylloquinone OR TITLE_ABS:\"vitamin K1\" OR TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:calcification OR TITLE_ABS:bone OR TITLE_ABS:fracture*)) AND SRC:MED",
+  "vitamins-omega-3": "((TITLE_ABS:\"alpha-linolenic acid\" OR TITLE_ABS:\"algal oil\" OR TITLE_ABS:\"algae oil\" OR TITLE_ABS:flaxseed OR TITLE_ABS:linseed OR TITLE_ABS:\"plant omega-3\" OR TITLE_ABS:\"plant-derived omega-3\") AND (TITLE_ABS:EPA OR TITLE_ABS:DHA OR TITLE_ABS:eicosapentaenoic OR TITLE_ABS:docosahexaenoic OR TITLE_ABS:conversion)) AND SRC:MED",
+  "vitamins-fewer-b-vitamins": "((TITLE_ABS:vegetarian* OR TITLE_ABS:vegan* OR TITLE_ABS:\"plant-based\") AND (TITLE_ABS:thiamin* OR TITLE_ABS:riboflavin OR TITLE_ABS:niacin OR TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:folate OR TITLE_ABS:\"B vitamins\" OR TITLE_ABS:\"nutrient intake\" OR TITLE_ABS:micronutrient*)) AND SRC:MED",
+  "vitamins-vitamin-c-fruit": "((TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:ascorbate) AND (TITLE_ABS:fruit* OR TITLE_ABS:vegetable*) AND (TITLE_ABS:intake OR TITLE_ABS:plasma OR TITLE_ABS:status OR TITLE_ABS:source*)) AND SRC:MED",
+  "vitamins-folate-plants": "((TITLE_ABS:folate) AND (TITLE_ABS:vegetable* OR TITLE_ABS:legume* OR TITLE_ABS:fruit* OR TITLE_ABS:vegetarian* OR TITLE_ABS:vegan* OR TITLE_ABS:\"plant-based\") AND (TITLE_ABS:intake OR TITLE_ABS:status OR TITLE_ABS:bioavailability)) AND SRC:MED"
+ },
+ "rules": [
+  "Each claim has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 9712,
+  "retrieved": 779,
+  "animal": 43,
+  "retracted": 3,
+  "reviews": 181,
+  "trials": 542,
+  "guidelines": 9
+ },
+ "guidelines": [
+  {
+   "pmid": "38276922",
+   "doi": "10.1053/j.gastro.2023.11.303",
+   "title": "AGA Clinical Practice Update on Diet and Nutritional Therapies in Patients With Inflammatory Bowel Disease: Expert Review",
+   "year": 2024,
+   "journal": "Gastroenterology",
+   "citedBy": 210,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "36566976",
+   "doi": "10.1016/j.jbspin.2022.105521",
+   "title": "Dietary recommendations in the prevention and treatment of osteoporosis",
+   "year": 2023,
+   "journal": "Joint bone spine",
+   "citedBy": 33,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "31615715",
+   "doi": "10.1016/j.arcped.2019.09.001",
+   "title": "Vegan diet in children and adolescents. Recommendations from the French-speaking Pediatric Hepatology, Gastroenterology and Nutrition Group (GFHGNP)",
+   "year": 2019,
+   "journal": "Archives de pediatrie : organe officiel de la Societe francaise de pediatrie",
+   "citedBy": 58,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "29174030",
+   "doi": "10.1016/j.numecd.2017.10.020",
+   "title": "Position paper on vegetarian diets from the working group of the Italian Society of Human Nutrition",
+   "year": 2017,
+   "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+   "citedBy": 169,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "22669700",
+   "doi": "10.1055/s-0032-1305074",
+   "title": "[Nutrition in pregnancy - Practice recommendations of the Network \"Healthy Start - Young Family Network\"]",
+   "year": 2012,
+   "journal": "Deutsche medizinische Wochenschrift (1946)",
+   "citedBy": 6,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "19278045",
+   "doi": "10.1016/j.jada.2009.01.005",
+   "title": "Position of the American Dietetic Association, Dietitians of Canada, and the American College of Sports Medicine: Nutrition and athletic performance",
+   "year": 2009,
+   "journal": "Journal of the American Dietetic Association",
+   "citedBy": 263,
+   "why": "One of the newest guidelines the claims' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "vitamins-b12-animal-only",
+   "label": "B12",
+   "finding": "vitamins-b12-animal-only",
+   "counts": {
+    "all": 887,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 11,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39373282",
+     "doi": "10.1111/nbu.12712",
+     "title": "A systematic review and meta-analysis of functional vitamin B12 status among adult vegans",
+     "year": 2024,
+     "firstAuthor": "Niklewicz A",
+     "journal": "Nutrition bulletin",
+     "citedBy": 12,
+     "n": 12,
+     "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "17959839",
+     "10552882",
+     "23356638",
+     "42109795",
+     "26502280",
+     "33161940"
+    ],
+    "citedNotEligible": [
+     "17959839",
+     "10552882",
+     "23356638",
+     "42109795",
+     "26502280",
+     "33161940"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39373282",
+      "doi": "10.1111/nbu.12712",
+      "title": "A systematic review and meta-analysis of functional vitamin B12 status among adult vegans",
+      "year": 2024,
+      "firstAuthor": "Niklewicz A",
+      "journal": "Nutrition bulletin",
+      "citedBy": 12,
+      "n": 12,
+      "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Vegetarian or vegan diets, or plant foods (algae, seaweed, fermented foods) as sources of B12",
+     "comparison": "Diets that include animal foods, or animal foods as sources",
+     "outcome": "B12 content of the foods, or B12 status in people"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 3,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "39136672",
+      "title": "Vitamin B12 Status in Vegan and Vegetarian Seventh-Day Adventists: A Systematic Review and Meta-Analysis of Serum Levels and Dietary Intake",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares serum B12 in vegetarian or vegan and omnivore groups, but only in Seventh-day Adventists, a narrower group of people."
+     },
+     {
+      "pmid": "41487531",
+      "title": "Efficacy of sublingual and oral vitamin B12 versus intramuscular administration: insights from a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Compares routes of B12 supplementation (oral, sublingual, injection), not plant-based versus animal-food diets or food sources."
+     },
+     {
+      "pmid": "39047712",
+      "title": "Hallucinations and Vitamin B12 Deficiency: A Systematic Review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Case studies of hallucinations in B12 deficiency; it does not compare diets or food sources of B12."
+     },
+     {
+      "pmid": "36413044",
+      "title": "Vitamin B12 levels in children and adolescents on plant-based diets: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Compares B12 levels on plant-based and omnivorous diets, but only in children and adolescents aged 5 to 18, a narrower group."
+     },
+     {
+      "pmid": "35343314",
+      "title": "Vitamin B12 sources in non-animal foods: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews B12 content of seaweeds, mushrooms and fermented foods, but does not compare them with animal food sources."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-vitamin-a-retinol",
+   "label": "Vitamin A from plants",
+   "finding": "vitamins-vitamin-a-retinol",
+   "counts": {
+    "all": 937,
+    "reviews": 3,
+    "trialReviews": 3,
+    "trials": 57,
+    "largeTrials": 5
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "14639794",
+     "title": "Relationship between soup consumption, folate, beta-carotene, and vitamin C status in a French adult population",
+     "year": 2003,
+     "n": 2874
+    },
+    {
+     "pmid": "21389041",
+     "title": "Serum retinol and risk of prostate cancer",
+     "year": 2011,
+     "n": 29104
+    },
+    {
+     "pmid": "25740751",
+     "title": "Circulating IGF-1 may mediate improvements in haemoglobin associated with vitamin A status during pregnancy in rural Nepalese women",
+     "year": 2015,
+     "n": 1186
+    },
+    {
+     "pmid": "27169838",
+     "title": "Provitamin A-biofortified maize increases serum β-carotene, but not retinol, in marginally nourished children: a cluster-randomized trial in rural Zambia",
+     "year": 2016,
+     "n": 1024
+    },
+    {
+     "pmid": "27798345",
+     "title": "Provitamin A Carotenoid-Biofortified Maize Consumption Increases Pupillary Responsiveness among Zambian Children in a Randomized Controlled Trial",
+     "year": 2016,
+     "n": 1024
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "12740075",
+     "20200262",
+     "19103647",
+     "7477116"
+    ],
+    "citedNotEligible": [
+     "12740075",
+     "20200262",
+     "19103647",
+     "7477116"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Beta-carotene from plant foods",
+     "comparison": "Ready-made vitamin A (retinol) from animal foods or supplements",
+     "outcome": "How much is turned into vitamin A, or vitamin A status"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 2,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41470877",
+      "title": "Vitamins D, A and E, and Beta-Carotene in Adherent and Non-Adherent Individuals with Phenylketonuria: Cross-Sectional Study, Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Compares vitamin levels by diet adherence in phenylketonuria; it does not look at converting plant beta-carotene versus retinol."
+     },
+     {
+      "pmid": "37634852",
+      "title": "Effects of Food-Based Approaches on Vitamin A Status of Women and Children: A Systematic Review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews provitamin A foods and vitamin A status, but only in women and young children, and with no clear comparison to preformed retinol."
+     },
+     {
+      "pmid": "20927743",
+      "title": "Vitamin A supplementation for postpartum women",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Covers beta-carotene and retinol supplements and vitamin A status, but uses supplements not foods, only postpartum women, mostly against placebo."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-vitamin-d-food",
+   "label": "Vitamin D",
+   "finding": "vitamins-vitamin-d-food",
+   "counts": {
+    "all": 524,
+    "reviews": 13,
+    "trialReviews": 13,
+    "trials": 7,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41382333",
+     "doi": "10.1080/10408398.2025.2572983",
+     "title": "Lacto-ovo-vegetarian and vegan diets in children and adolescents: a systematic review and meta-analysis of nutritional and health outcomes",
+     "year": 2026,
+     "firstAuthor": "Lotti S",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 5,
+     "n": 48626,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "39428613",
+     "doi": "10.1111/apa.17463",
+     "title": "Vitamin D intake and status in children and adolescents: Comparing vegetarian, vegan, and omnivorous diets",
+     "year": 2025,
+     "firstAuthor": "Devulapalli CS.",
+     "journal": "Acta paediatrica (Oslo, Norway : 1992)",
+     "citedBy": 10,
+     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+    },
+    {
+     "pmid": "40647286",
+     "doi": "10.3390/nu17132183",
+     "title": "Vegetarian Diet and Dietary Intake, Health, and Nutritional Status in Infants, Children, and Adolescents: A Systematic Review",
+     "year": 2025,
+     "firstAuthor": "Reis D",
+     "journal": "Nutrients",
+     "citedBy": 6,
+     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "20854716",
+     "30322118",
+     "22552031",
+     "21118827",
+     "33161940"
+    ],
+    "citedNotEligible": [
+     "20854716",
+     "30322118",
+     "22552031",
+     "21118827",
+     "33161940"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41382333",
+      "doi": "10.1080/10408398.2025.2572983",
+      "title": "Lacto-ovo-vegetarian and vegan diets in children and adolescents: a systematic review and meta-analysis of nutritional and health outcomes",
+      "year": 2026,
+      "firstAuthor": "Lotti S",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 5,
+      "n": 48626,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "39428613",
+      "doi": "10.1111/apa.17463",
+      "title": "Vitamin D intake and status in children and adolescents: Comparing vegetarian, vegan, and omnivorous diets",
+      "year": 2025,
+      "firstAuthor": "Devulapalli CS.",
+      "journal": "Acta paediatrica (Oslo, Norway : 1992)",
+      "citedBy": 10,
+      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     },
+     {
+      "pmid": "40647286",
+      "doi": "10.3390/nu17132183",
+      "title": "Vegetarian Diet and Dietary Intake, Health, and Nutritional Status in Infants, Children, and Adolescents: A Systematic Review",
+      "year": 2025,
+      "firstAuthor": "Reis D",
+      "journal": "Nutrients",
+      "citedBy": 6,
+      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "A vegetarian or vegan diet",
+     "comparison": "Diets that include animal foods",
+     "outcome": "Vitamin D intake or blood levels"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 1,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41030267",
+      "title": "Nutrition and diet in rheumatoid arthritis, axial spondyloarthritis, and psoriatic arthritis: a systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at diets and supplements for disease activity in arthritis, not vitamin D intake or levels by diet type."
+     },
+     {
+      "pmid": "39332772",
+      "title": "A Systematic Review on the Impact of Plant-Based Milk Consumption on Growth and Nutrition in Children and Adolescents",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Compares serum vitamin D in children drinking plant-based milk with those drinking cow milk; a single food, not a whole vegetarian diet."
+     },
+     {
+      "pmid": "37654090",
+      "title": "The role of diet and non-pharmacologic supplements in the treatment of chronic neuropathic pain: A systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at diet and supplements for treating neuropathic pain, not vitamin D in vegetarians compared with omnivores."
+     },
+     {
+      "pmid": "38692645",
+      "title": "Post-diagnosis dietary factors, supplement use and colorectal cancer prognosis: A Global Cancer Update Programme (CUP Global) systematic literature review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at diet after diagnosis and colorectal cancer survival, not vitamin D levels by vegetarian or omnivorous diet."
+     },
+     {
+      "pmid": "34959845",
+      "title": "The Role of Diet, Alcohol, BMI, and Physical Activity in Cancer Mortality: Summary Findings of the EPIC Study",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at diet and cancer death in the EPIC study, not vitamin D levels in vegetarians compared with meat-eaters."
+     },
+     {
+      "pmid": "32585000",
+      "title": "Rheumatoid arthritis and dietary interventions: systematic review of clinical trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at dietary treatments for rheumatoid arthritis outcomes, not vitamin D intake or levels by diet type."
+     },
+     {
+      "pmid": "32903693",
+      "title": "The Role of Diet, Eating Behavior, and Nutrition Intervention in Seasonal Affective Disorder: A Systematic Review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Looks at diet and seasonal affective disorder, not vitamin D levels in vegetarians compared with omnivores."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-vitamin-k2",
+   "label": "Vitamin K2",
+   "finding": "vitamins-vitamin-k2",
+   "counts": {
+    "all": 993,
+    "reviews": 18,
+    "trialReviews": 18,
+    "trials": 65,
+    "largeTrials": 2
+   },
+   "chosenReviews": [
+    {
+     "pmid": "31119401",
+     "doi": "10.1007/s00394-019-01998-3",
+     "title": "Association of vitamin K with cardiovascular events and all-cause mortality: a systematic review and meta-analysis",
+     "year": 2019,
+     "firstAuthor": "Chen HG",
+     "journal": "European journal of nutrition",
+     "citedBy": 59,
+     "n": 222592,
+     "why": "One of the newest meta-analyses on this claim (2019); screened as answering the question"
+    },
+    {
+     "pmid": "16801507",
+     "doi": "10.1001/archinte.166.12.1256",
+     "title": "Vitamin K and the prevention of fractures: systematic review and meta-analysis of randomized controlled trials",
+     "year": 2006,
+     "firstAuthor": "Cockayne S",
+     "journal": "Archives of internal medicine",
+     "citedBy": 225,
+     "why": "One of the newest meta-analyses on this claim (2006); screened as answering the question"
+    },
+    {
+     "pmid": "41393956",
+     "doi": "10.3389/fnut.2025.1713726",
+     "title": "Habitual natto intake elevates serum MK-7 levels, enhances osteocalcin carboxylation, and supports bone density: a meta-analysis of Japanese evidence",
+     "year": 2025,
+     "firstAuthor": "Wen Z",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 4,
+     "n": 2327,
+     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 7,
+    "inclusions": 7,
+    "reviews": [
+     {
+      "pmid": "31119401",
+      "trials": 2
+     },
+     {
+      "pmid": "41393956",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "16801507"
+    ],
+    "shared": [
+     {
+      "pmid": "24647393",
+      "title": "Dietary intake of vitamin K is inversely associated with mortality risk",
+      "year": 2014,
+      "n": 7216,
+      "inReviews": [
+       "31119401"
+      ]
+     },
+     {
+      "pmid": "25694037",
+      "title": "Menaquinone-7 supplementation improves arterial stiffness in healthy postmenopausal women. A double-blind randomised clinical trial",
+      "year": 2015,
+      "n": 244,
+      "inReviews": [
+       "31119401"
+      ]
+     },
+     {
+      "pmid": "23525894",
+      "title": "Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women",
+      "year": 2013,
+      "n": 244,
+      "inReviews": [
+       "41393956"
+      ]
+     },
+     {
+      "pmid": "33030563",
+      "title": "The effect of vitamin MK-7 on bone mineral density and microarchitecture in postmenopausal women with osteopenia, a 3-year randomized, placebo-controlled clinical trial",
+      "year": 2021,
+      "n": 142,
+      "inReviews": [
+       "41393956"
+      ]
+     },
+     {
+      "pmid": "23140417",
+      "title": "Comparison of menaquinone-4 and menaquinone-7 bioavailability in healthy women",
+      "year": 2012,
+      "inReviews": [
+       "41393956"
+      ]
+     },
+     {
+      "pmid": "19937427",
+      "title": "Vitamin K2 supplementation does not influence bone loss in early menopausal women: a randomised double-blind placebo-controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "41393956"
+      ]
+     },
+     {
+      "pmid": "15242015",
+      "title": "Promotion of bone formation by fermented soybean (Natto) intake in premenopausal women",
+      "year": 2004,
+      "inReviews": [
+       "41393956"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "24647393",
+     "title": "Dietary intake of vitamin K is inversely associated with mortality risk",
+     "year": 2014,
+     "n": 7216
+    },
+    {
+     "pmid": "30624568",
+     "title": "Vitamin K intake and prostate cancer risk in the Prostate, Lung, Colorectal, and Ovarian Cancer (PLCO) Screening Trial",
+     "year": 2019,
+     "n": 48090
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "11356998",
+     "15514282",
+     "30514729",
+     "37252246",
+     "32625486"
+    ],
+    "citedNotEligible": [
+     "11356998",
+     "15514282",
+     "30514729",
+     "37252246",
+     "32625486"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "31119401",
+      "doi": "10.1007/s00394-019-01998-3",
+      "title": "Association of vitamin K with cardiovascular events and all-cause mortality: a systematic review and meta-analysis",
+      "year": 2019,
+      "firstAuthor": "Chen HG",
+      "journal": "European journal of nutrition",
+      "citedBy": 59,
+      "n": 222592,
+      "why": "One of the newest meta-analyses on this claim (2019); screened as answering the question"
+     },
+     {
+      "pmid": "16801507",
+      "doi": "10.1001/archinte.166.12.1256",
+      "title": "Vitamin K and the prevention of fractures: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2006,
+      "firstAuthor": "Cockayne S",
+      "journal": "Archives of internal medicine",
+      "citedBy": 225,
+      "why": "One of the newest meta-analyses on this claim (2006); screened as answering the question"
+     },
+     {
+      "pmid": "41393956",
+      "doi": "10.3389/fnut.2025.1713726",
+      "title": "Habitual natto intake elevates serum MK-7 levels, enhances osteocalcin carboxylation, and supports bone density: a meta-analysis of Japanese evidence",
+      "year": 2025,
+      "firstAuthor": "Wen Z",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 4,
+      "n": 2327,
+      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Vitamin K2 (menaquinones) from foods such as cheese, meat and natto, or as supplements",
+     "comparison": "Vitamin K1 from leafy greens, or less vitamin K2",
+     "outcome": "Heart disease, artery calcification, bone density or fractures"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 5,
+     "partly": 11,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41599883",
+      "title": "The Differential Effects of Vitamin K Across Glycaemic Outcomes in Prediabetes and Type 2 Diabetes Mellitus",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Outcomes are blood sugar and insulin measures in prediabetes and diabetes, not heart disease, artery calcification, bone density or fractures."
+     },
+     {
+      "pmid": "41268154",
+      "title": "The effect of vitamin K2 supplementation on bone turnover biochemical markers in postmenopausal osteoporosis patients: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Vitamin K2 supplements, but only in postmenopausal women with osteoporosis, and outcomes are bone turnover markers, not bone density or fractures."
+     },
+     {
+      "pmid": "40428819",
+      "title": "Exploring the Link Between Vitamin K and Depression: A Systematic Review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Outcome is depression, not heart disease, artery calcification, bone density or fractures."
+     },
+     {
+      "pmid": "38282652",
+      "title": "The effect of vitamin K supplementation on cardiovascular risk factors: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Vitamin K supplements with a K2 vs K1 subgroup, but outcomes are heart risk factors like lipids and insulin resistance, not heart disease or calcification."
+     },
+     {
+      "pmid": "39657786",
+      "title": "Effects of vitamin K supplementation on bone mineral density at different sites and bone metabolism in the middle-aged and elderly population",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Vitamin K supplements and bone density in middle-aged and older adults, but K2 is not shown separately from K1."
+     },
+     {
+      "pmid": "35711002",
+      "title": "Efficacy and safety of vitamin K2 for postmenopausal women with osteoporosis at a long-term follow-up: meta-analysis and systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Vitamin K2 supplements on bone density and fractures, but only in postmenopausal women with osteoporosis, a narrower group."
+     },
+     {
+      "pmid": "36033779",
+      "title": "Efficacy of vitamin K2 in the prevention and treatment of postmenopausal osteoporosis: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Vitamin K2 supplements on bone density and fractures, but only in postmenopausal women, a narrower group."
+     },
+     {
+      "pmid": "34649591",
+      "title": "The combined effect of vitamin K and calcium on bone mineral density in humans: a meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Bone density with a K2 vs K1 subgroup, but vitamin K is always given together with calcium."
+     },
+     {
+      "pmid": "32219282",
+      "title": "The combination effect of vitamin K and vitamin D on human bone quality: a meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Bone density with a K2 subgroup, but vitamin K is always given together with vitamin D."
+     },
+     {
+      "pmid": "28403946",
+      "title": "Vitamin K and osteoporosis: Myth or reality?",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Reviews vitamin K intake, levels and supplements on bone density and fractures, but does not separate K2 from K1."
+     },
+     {
+      "pmid": "25516361",
+      "title": "Does vitamin K2 play a role in the prevention and treatment of osteoporosis for postmenopausal women: a meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Vitamin K2 trials on bone density and fractures, but only in postmenopausal women, a narrower group."
+     },
+     {
+      "pmid": "19818211",
+      "title": "Vitamin K to prevent fractures in older women: systematic review and economic evaluation",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Vitamin K1 and K2 trials on fracture prevention, but only in postmenopausal women with osteoporosis or osteopenia."
+     },
+     {
+      "pmid": "18830045",
+      "title": "[Vitamin K2]",
+      "year": 2008,
+      "fits": "partly",
+      "reason": "Covers K2 treatment of osteoporosis for bone density and fractures, but it is a short narrative overview limited to osteoporosis patients."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-omega-3",
+   "label": "Omega-3 from plants",
+   "finding": "vitamins-omega-3",
+   "counts": {
+    "all": 2221,
+    "reviews": 21,
+    "trialReviews": 21,
+    "trials": 97,
+    "largeTrials": 8
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32114706",
+     "doi": "10.1002/14651858.cd003177.pub5",
+     "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+     "year": 2020,
+     "firstAuthor": "Abdelhamid AS",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 215,
+     "n": 162796,
+     "why": "One of the newest meta-analyses on this claim (2020); screened as answering the question"
+    },
+    {
+     "pmid": "30019766",
+     "doi": "10.1002/14651858.cd003177.pub3",
+     "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+     "year": 2018,
+     "firstAuthor": "Abdelhamid AS",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 148,
+     "n": 112059,
+     "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+    },
+    {
+     "pmid": "30521670",
+     "doi": "10.1002/14651858.cd003177.pub4",
+     "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+     "year": 2018,
+     "firstAuthor": "Abdelhamid AS",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 129,
+     "n": 112059,
+     "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 1,
+    "trials": 6,
+    "inclusions": 18,
+    "reviews": [
+     {
+      "pmid": "32114706",
+      "trials": 6
+     },
+     {
+      "pmid": "30019766",
+      "trials": 6
+     },
+     {
+      "pmid": "30521670",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "20929341",
+      "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
+      "year": 2010,
+      "n": 4837,
+      "inReviews": [
+       "32114706",
+       "30019766",
+       "30521670"
+      ]
+     },
+     {
+      "pmid": "20362710",
+      "title": "Effect of low doses of n-3 fatty acids on cardiovascular diseases in 4,837 post-myocardial infarction patients: design and baseline characteristics of the Alpha Omega Trial",
+      "year": 2010,
+      "n": 4837,
+      "inReviews": [
+       "32114706",
+       "30019766",
+       "30521670"
+      ]
+     },
+     {
+      "pmid": "23774275",
+      "title": "No effect of n-3 fatty acids on high-sensitivity C-reactive protein after myocardial infarction: the Alpha Omega Trial",
+      "year": 2014,
+      "n": 2425,
+      "inReviews": [
+       "32114706",
+       "30019766",
+       "30521670"
+      ]
+     },
+     {
+      "pmid": "22394170",
+      "title": "No effects of n-3 fatty acid supplementation on serum total testosterone levels in older men: the Alpha Omega Trial",
+      "year": 2012,
+      "n": 1850,
+      "inReviews": [
+       "32114706",
+       "30019766",
+       "30521670"
+      ]
+     },
+     {
+      "pmid": "9625397",
+      "title": "Mediterranean dietary pattern in a randomized trial: prolonged survival and possible reduced cancer rate",
+      "year": 1998,
+      "n": 605,
+      "inReviews": [
+       "32114706",
+       "30019766",
+       "30521670"
+      ]
+     },
+     {
+      "pmid": "9310278",
+      "title": "Randomized, double-blind, placebo-controlled trial of fish oil and mustard oil in patients with suspected acute myocardial infarction: the Indian experiment of infarct survival--4",
+      "year": 1997,
+      "n": 122,
+      "inReviews": [
+       "32114706",
+       "30019766",
+       "30521670"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 8
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "16579802",
+     "title": "Fish oil in various doses or flax oil in pregnancy and timing of spontaneous delivery: a randomised controlled trial",
+     "year": 2006,
+     "n": 3098
+    },
+    {
+     "pmid": "19933935",
+     "title": "Serum long-chain n-3 polyunsaturated fatty acids and risk of hospital diagnosis of atrial fibrillation in men",
+     "year": 2009,
+     "n": 2174
+    },
+    {
+     "pmid": "20929341",
+     "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
+     "year": 2010,
+     "n": 4837
+    },
+    {
+     "pmid": "20362710",
+     "title": "Effect of low doses of n-3 fatty acids on cardiovascular diseases in 4,837 post-myocardial infarction patients: design and baseline characteristics of the Alpha Omega Trial",
+     "year": 2010,
+     "n": 4837
+    },
+    {
+     "pmid": "22394170",
+     "title": "No effects of n-3 fatty acid supplementation on serum total testosterone levels in older men: the Alpha Omega Trial",
+     "year": 2012,
+     "n": 1850
+    },
+    {
+     "pmid": "23774275",
+     "title": "No effect of n-3 fatty acids on high-sensitivity C-reactive protein after myocardial infarction: the Alpha Omega Trial",
+     "year": 2014,
+     "n": 2425
+    },
+    {
+     "pmid": "24879357",
+     "title": "No effect of n-3 fatty acids supplementation on NT-proBNP after myocardial infarction: the Alpha Omega Trial",
+     "year": 2015,
+     "n": 4837
+    },
+    {
+     "pmid": "29137111",
+     "title": "Effect of Omega-3 Fatty Acid Supplementation on Plasma Fibroblast Growth Factor 23 Levels in Post-Myocardial Infarction Patients with Chronic Kidney Disease: The Alpha Omega Trial",
+     "year": 2017,
+     "n": 4837
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "32114706"
+    ],
+    "citedNotChosen": [
+     "16188209",
+     "19269799",
+     "16087975",
+     "18589030"
+    ],
+    "citedNotEligible": [
+     "16188209",
+     "19269799",
+     "16087975",
+     "18589030"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "30019766",
+      "doi": "10.1002/14651858.cd003177.pub3",
+      "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+      "year": 2018,
+      "firstAuthor": "Abdelhamid AS",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 148,
+      "n": 112059,
+      "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+     },
+     {
+      "pmid": "30521670",
+      "doi": "10.1002/14651858.cd003177.pub4",
+      "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+      "year": 2018,
+      "firstAuthor": "Abdelhamid AS",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 129,
+      "n": 112059,
+      "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Plant omega-3 (ALA from flax, walnuts, rapeseed) or algal oil",
+     "comparison": "Fish or fish oil (EPA and DHA)",
+     "outcome": "Conversion to EPA and DHA, blood levels, or heart disease and death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 5,
+     "no": 10,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41493572",
+      "title": "Omega-3 Fatty Acid Supplementation and Vascular Health Biomarkers - A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares ALA with EPA/DHA in a subgroup, but only in people with CVD and for vascular function markers, not conversion, blood levels or heart events."
+     },
+     {
+      "pmid": "41482231",
+      "title": "Can Omega-3 Fatty Acids Serve as a Preventive Strategy for Age-Related Macular Degeneration? A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at omega-3 intake and age-related macular degeneration, not conversion, blood levels or heart disease."
+     },
+     {
+      "pmid": "34749130",
+      "title": "Dietary omega-3 polyunsaturated fatty acids and fish intake and risk of age-related macular degeneration",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at omega-3 and fish intake and macular degeneration, not conversion, blood levels or heart disease."
+     },
+     {
+      "pmid": "32039806",
+      "title": "Efficacy of n-3 fatty acids supplementation on the prevention of pregnancy induced-hypertension or preeclampsia: A systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Looks at omega-3 supplements for preeclampsia in pregnancy, a different outcome."
+     },
+     {
+      "pmid": "31847055",
+      "title": "Omega-3 and omega-6 polyunsaturated fatty acids for dry eye disease",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at omega-3 and omega-6 supplements for dry eye disease, a different outcome."
+     },
+     {
+      "pmid": "30594823",
+      "title": "The effectiveness of omega-3 supplementation in reducing ADHD associated symptoms in children as measured by the Conners' rating scales: A systematic review of randomized controlled trials",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at omega-3 supplements for ADHD symptoms in children, a different question."
+     },
+     {
+      "pmid": "30307735",
+      "title": "Omega-3 Fatty Acids and Maternal and Child Health: An Updated Systematic Review",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Covers algal DHA and fish oil in pregnancy and infancy for birth and child outcomes, not conversion or heart disease."
+     },
+     {
+      "pmid": "25687496",
+      "title": "The effect of modifying dietary LA and ALA intakes on omega-3 long chain polyunsaturated fatty acid (n-3 LCPUFA) status in human adults: a systematic review and commentary",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Reviews whether dietary ALA changes EPA/DHA status, but has no fish or fish oil comparison."
+     },
+     {
+      "pmid": "25787237",
+      "title": "Effect of individual omega-3 fatty acids on the risk of prostate cancer: a systematic review and dose-response meta-analysis of prospective cohort studies",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Looks at individual omega-3s and prostate cancer risk, a different outcome."
+     },
+     {
+      "pmid": "23741290",
+      "title": "N-6 and N-3 fatty acid cholesteryl esters in relation to fatal CHD in a Dutch adult population: a nested case-control study and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools blood ALA and EPA-DHA levels against fatal heart disease, but measures blood levels rather than food or oil intake."
+     },
+     {
+      "pmid": "22113870",
+      "title": "A meta-analysis shows that docosahexaenoic acid from algal oil reduces serum triglycerides and increases HDL-cholesterol and LDL-cholesterol in persons without coronary heart disease",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Algal oil DHA trials, but the outcome is blood lipids and there is no fish oil comparison."
+     },
+     {
+      "pmid": "22591895",
+      "title": "Omega-3 fatty acids and incident type 2 diabetes: a systematic review and meta-analysis",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Looks at ALA and EPA/DHA and type 2 diabetes risk, a different outcome."
+     },
+     {
+      "pmid": "19328262",
+      "title": "A systemic review of the roles of n-3 fatty acids in health and disease",
+      "year": 2009,
+      "fits": "no",
+      "reason": "A broad review of n-3 fats across health and disease, with no focused ALA or algal oil versus fish oil comparison."
+     },
+     {
+      "pmid": "18951003",
+      "title": "Omega-3 PUFA: good or bad for prostate cancer?",
+      "year": 2008,
+      "fits": "no",
+      "reason": "Looks at omega-3 intake or blood levels and prostate cancer, a different outcome."
+     },
+     {
+      "pmid": "15825825",
+      "title": "The effect of alpha-linolenic acid and linoleic acid on the growth and development of formula-fed infants: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Reports ALA effects on infant blood DHA levels, but only in formula-fed infants, and compares against standard formula rather than fish oil (EPA/DHA)."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-fewer-b-vitamins",
+   "label": "B vitamins",
+   "finding": "vitamins-fewer-b-vitamins",
+   "counts": {
+    "all": 1244,
+    "reviews": 17,
+    "trialReviews": 17,
+    "trials": 23,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35010904",
+     "doi": "10.3390/nu14010029",
+     "title": "Nutrient Intake and Status in Adults Consuming Plant-Based Diets Compared to Meat-Eaters: A Systematic Review",
+     "year": 2021,
+     "firstAuthor": "Neufingerl N",
+     "journal": "Nutrients",
+     "citedBy": 314,
+     "why": "One of the newest systematic reviews on this claim (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "35010904"
+    ],
+    "citedNotChosen": [
+     "12740075",
+     "26502280",
+     "33161940"
+    ],
+    "citedNotEligible": [
+     "12740075",
+     "26502280",
+     "33161940"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "A vegetarian or vegan diet",
+     "comparison": "Diets that include animal foods",
+     "outcome": "Intake or status of B vitamins (B1, B2, B3, B6, folate, B12)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 10,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41382333",
+      "title": "Lacto-ovo-vegetarian and vegan diets in children and adolescents: a systematic review and meta-analysis of nutritional and health outcomes",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares vegetarian/vegan with omnivorous diets for B12 and folate intake and B12 deficiency, but only in children."
+     },
+     {
+      "pmid": "41275510",
+      "title": "Vegetarian and Vegan Diets and the Risk of Hip Fracture in Adults: A Systematic Review and Meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Outcome is hip fracture risk, not B vitamin intake or status."
+     },
+     {
+      "pmid": "40819279",
+      "title": "Vegan diet and nutritional status in infants, children and adolescents: A position paper based on a systematic search by the ESPGHAN Nutrition Committee",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares vegan with omnivorous diets for nutritional adequacy and biomarkers, including B12, but only in children."
+     },
+     {
+      "pmid": "40647286",
+      "title": "Vegetarian Diet and Dietary Intake, Health, and Nutritional Status in Infants, Children, and Adolescents: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares folate and B12 intake between vegetarian and omnivorous diets, but only in children."
+     },
+     {
+      "pmid": "38657969",
+      "title": "Mapping the evidence of novel plant-based foods: a systematic review of nutritional, health, and environmental impacts in high-income countries",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares the nutrients in novel plant-based foods with animal foods, but does not cover whole diets and names no B vitamins."
+     },
+     {
+      "pmid": "39408296",
+      "title": "The Association of a Vegan Diet during Pregnancy with Maternal and Child Outcomes: A Systematic Review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Compares vegan with omnivorous diets for micronutrients and B12 levels, but only in pregnant women."
+     },
+     {
+      "pmid": "37811643",
+      "title": "Health aspects of vegan diets among children and adolescents: a systematic review and meta-analyses",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools B2, folate and B12 data for vegan versus omnivorous diets, but only in children and adolescents."
+     },
+     {
+      "pmid": "39332772",
+      "title": "A Systematic Review on the Impact of Plant-Based Milk Consumption on Growth and Nutrition in Children and Adolescents",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Exposure is plant-based milk rather than a vegetarian diet, and B vitamin outcomes are not reported."
+     },
+     {
+      "pmid": "37892416",
+      "title": "Nutrient Intake and Status in Children and Adolescents Consuming Plant-Based Diets Compared to Meat-Eaters: A Systematic Review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Compares B12 and folate intake and status between plant-based and meat-eating diets, but only in children and adolescents."
+     },
+     {
+      "pmid": "38054787",
+      "title": "Calcium intake in vegan and vegetarian diets: A systematic review and Meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Outcome is calcium intake, not B vitamins."
+     },
+     {
+      "pmid": "37178356",
+      "title": "Plant-Based Diets Reduce Blood Pressure: A Systematic Review of Recent Evidence",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Outcome is blood pressure, not B vitamin intake or status."
+     },
+     {
+      "pmid": "36079848",
+      "title": "Do Vegetarian Diets Provide Adequate Nutrient Intake during Complementary Feeding? A Systematic Review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Covers micronutrient adequacy of vegetarian diets in infants only, with no B vitamins named."
+     },
+     {
+      "pmid": "33341313",
+      "title": "Intake and adequacy of the vegan diet. A systematic review of the evidence",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Reports vegan intake of B1, B2, B3, B6, folate and B12, but compares it with WHO recommendations rather than diets with animal foods."
+     },
+     {
+      "pmid": "30571724",
+      "title": "Cardiometabolic risk factors in vegans; A meta-analysis of observational studies",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Outcomes are cardiometabolic risk factors, not B vitamin intake or status."
+     },
+     {
+      "pmid": "28299420",
+      "title": "Vegetarian diets in children: a systematic review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Covers folate intake and B12 status in vegetarian diets compared with controls, but only in children."
+     },
+     {
+      "pmid": "23595983",
+      "title": "Effect of vegetarian diets on zinc status: a systematic review and meta-analysis of studies in humans",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Outcome is zinc intake and status, not B vitamins."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-vitamin-c-fruit",
+   "label": "Vitamin C",
+   "finding": "vitamins-vitamin-c-fruit",
+   "counts": {
+    "all": 2811,
+    "reviews": 10,
+    "trialReviews": 10,
+    "trials": 73,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "26349405",
+     "doi": "10.1017/s0007114515003165",
+     "title": "Comparative validity of vitamin C and carotenoids as indicators of fruit and vegetable intake: a systematic review and meta-analysis of randomised controlled trials",
+     "year": 2015,
+     "firstAuthor": "Pennant M",
+     "journal": "The British journal of nutrition",
+     "citedBy": 30,
+     "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+    },
+    {
+     "pmid": "21888531",
+     "doi": "10.1080/10408398.2010.482217",
+     "title": "Biomarkers of fruit and vegetable intake in human intervention studies: a systematic review",
+     "year": 2011,
+     "firstAuthor": "Baldrick FR",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 78,
+     "why": "One of the newest systematic reviews on this claim (2011); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 26,
+    "inclusions": 26,
+    "reviews": [
+     {
+      "pmid": "26349405",
+      "trials": 2
+     },
+     {
+      "pmid": "21888531",
+      "trials": 24
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12076551",
+      "title": "Effects of fruit and vegetable consumption on plasma antioxidant concentrations and blood pressure: a randomised controlled trial",
+      "year": 2002,
+      "n": 690,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "9625397",
+      "title": "Mediterranean dietary pattern in a randomized trial: prolonged survival and possible reduced cancer rate",
+      "year": 1998,
+      "n": 605,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "7797808",
+      "title": "Effect of antioxidant-rich foods on plasma ascorbic acid, cardiac enzyme, and lipid peroxide levels in patients hospitalized with acute myocardial infarction",
+      "year": 1995,
+      "n": 505,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "12702620",
+      "title": "Behavioural counselling to increase consumption of fruit and vegetables in low income adults: randomised trial",
+      "year": 2003,
+      "n": 271,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "17602170",
+      "title": "Impact of multiple genetic polymorphisms on effects of a 4-week blueberry juice intervention on ex vivo induced lymphocytic DNA damage in human volunteers",
+      "year": 2007,
+      "n": 168,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "16766775",
+      "title": "Effects of high fruit-vegetable and/or low-fat intervention on plasma micronutrient levels",
+      "year": 2006,
+      "n": 122,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "17413113",
+      "title": "The contribution of plant foods to the vitamin A supply of lactating women in Vietnam: a randomized controlled trial",
+      "year": 2007,
+      "n": 73,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "22476876",
+      "title": "Impact of the quantity and flavonoid content of fruits and vegetables on markers of intake in adults with an increased risk of cardiovascular disease: the FLAVURS trial",
+      "year": 2013,
+      "n": 59,
+      "inReviews": [
+       "26349405"
+      ]
+     },
+     {
+      "pmid": "17284750",
+      "title": "Watercress supplementation in diet reduces lymphocyte DNA damage and alters blood antioxidant status in healthy adults",
+      "year": 2007,
+      "n": 30,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "11678487",
+      "title": "High vegetable and fruit diet intervention in premenopausal women with cervical intraepithelial neoplasia",
+      "year": 2001,
+      "n": 27,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "16032375",
+      "title": "The effects of cranberry juice consumption on antioxidant status and biomarkers relating to heart disease and cancer in healthy human volunteers",
+      "year": 2006,
+      "n": 20,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "11302008",
+      "title": "Partial resistance of low density lipoprotein to oxidation in vivo after increased intake of berries",
+      "year": 2000,
+      "n": 20,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "15277160",
+      "title": "Supplementation with cactus pear (Opuntia ficus-indica) fruit decreases oxidative stress in healthy humans: a comparative study with vitamin C",
+      "year": 2004,
+      "n": 18,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "14684757",
+      "title": "Orange juice ingestion and supplemental vitamin C are equally effective at reducing plasma lipid peroxidation in healthy adult women",
+      "year": 2003,
+      "n": 11,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "20673378",
+      "title": "Increased potassium intake from fruit and vegetables or supplements does not lower blood pressure or improve vascular function in UK men and women with early hypertension: a randomised controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "26349405"
+      ]
+     },
+     {
+      "pmid": "15277161",
+      "title": "Carotenoid bioavailability is higher from salads ingested with full-fat than with fat-reduced salad dressings as measured with electrochemical detection",
+      "year": 2004,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "15370099",
+      "title": "Effects of kiwi fruit consumption on platelet aggregation and plasma lipids in healthy human volunteers",
+      "year": 2004,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "9459371",
+      "title": "Citrus fruit supplementation reduces lipoprotein oxidation in young men ingesting a diet high in saturated fat: presumptive evidence for an interaction between vitamins C and E in vivo",
+      "year": 1998,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "8019375",
+      "title": "A pilot study on the use of plasma carotenoids and ascorbic acid as markers of compliance to a high fruit and vegetable dietary intervention",
+      "year": 1994,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "8505665",
+      "title": "The bioavailability to humans of ascorbic acid from oranges, orange juice and cooked broccoli is similar to that of synthetic ascorbic acid",
+      "year": 1993,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "17056812",
+      "title": "Supplementation with fruit and vegetable soups and beverages increases plasma carotenoid concentrations but does not alter markers of oxidative stress or cardiovascular risk factors",
+      "year": 2006,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "9264275",
+      "title": "Responsiveness of carotenoids to a high vegetable diet intervention designed to prevent breast cancer recurrence",
+      "year": 1997,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "12395217",
+      "title": "Plasma concentration response to drinks containing beta-carotene as carrot juice or formulated as a water dispersible powder",
+      "year": 2002,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "11385058",
+      "title": "A vegetable/fruit concentrate with high antioxidant capacity has no effect on biomarkers of antioxidant status in male smokers",
+      "year": 2001,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "9925128",
+      "title": "Effect of fruit juice intake on urinary quercetin excretion and biomarkers of antioxidative status",
+      "year": 1999,
+      "inReviews": [
+       "21888531"
+      ]
+     },
+     {
+      "pmid": "9224079",
+      "title": "Randomised controlled trial of effect of fruit and vegetable consumption on plasma concentrations of lipids and antioxidants",
+      "year": 1997,
+      "inReviews": [
+       "21888531"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "14639794",
+     "title": "Relationship between soup consumption, folate, beta-carotene, and vitamin C status in a French adult population",
+     "year": 2003,
+     "n": 2874
+    },
+    {
+     "pmid": "18469253",
+     "title": "Relationship between iron status and dietary fruit and vegetables based on their vitamin C and fiber content",
+     "year": 2008,
+     "n": 4358
+    },
+    {
+     "pmid": "20178625",
+     "title": "Weight loss in individuals with metabolic syndrome given DASH diet counseling when provided a low sodium vegetable juice: a randomized controlled trial",
+     "year": 2010,
+     "n": 1800
+    },
+    {
+     "pmid": "21955649",
+     "title": "Fruit and vegetable intake and cognitive function in the SU.VI.MAX 2 prospective study",
+     "year": 2011,
+     "n": 2533
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "12076551",
+     "12740075",
+     "35010904",
+     "32630245"
+    ],
+    "citedNotEligible": [
+     "12076551",
+     "12740075",
+     "35010904",
+     "32630245"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "26349405",
+      "doi": "10.1017/s0007114515003165",
+      "title": "Comparative validity of vitamin C and carotenoids as indicators of fruit and vegetable intake: a systematic review and meta-analysis of randomised controlled trials",
+      "year": 2015,
+      "firstAuthor": "Pennant M",
+      "journal": "The British journal of nutrition",
+      "citedBy": 30,
+      "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+     },
+     {
+      "pmid": "21888531",
+      "doi": "10.1080/10408398.2010.482217",
+      "title": "Biomarkers of fruit and vegetable intake in human intervention studies: a systematic review",
+      "year": 2011,
+      "firstAuthor": "Baldrick FR",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 78,
+      "why": "One of the newest systematic reviews on this claim (2011); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Eating fruit and vegetables",
+     "comparison": "Eating fewer, or other diets",
+     "outcome": "Vitamin C intake or blood levels"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 3,
+     "no": 5,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42349680",
+      "title": "Does consuming ascorbate-rich fruits and fruit juices with meals improve iron bioavailability? A systematic review and meta-analysis of interventions",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Ascorbate-rich fruits are the exposure, but the outcomes are iron absorption and iron status, not vitamin C intake or blood levels."
+     },
+     {
+      "pmid": "33919894",
+      "title": "Vegetable Extracts and Nutrients Useful in the Recovery from Helicobacter pylori Infection: A Systematic Review on Clinical Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Plant extracts and vitamin C supplements for H. pylori eradication, not fruit and vegetable intake vs vitamin C levels."
+     },
+     {
+      "pmid": "28347371",
+      "title": "Use of biomarkers to assess fruit and vegetable intake",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Discusses plasma vitamin C as a marker of fruit and vegetable intake, but it is a narrative review with no pooled comparison."
+     },
+     {
+      "pmid": "26091353",
+      "title": "Impact of 100% Fruit Juice Consumption on Diet and Weight Status of Children: An Evidence-based Review",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Narrower: 100% fruit juice in children only, with vitamin C intake as one of several nutrient outcomes."
+     },
+     {
+      "pmid": "27153845",
+      "title": "An update of the WCRF/AICR systematic literature review on esophageal and gastric cancers and citrus fruits intake",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Citrus fruit intake vs oesophageal and gastric cancer risk, not vitamin C intake or blood levels."
+     },
+     {
+      "pmid": "17997863",
+      "title": "Is plasma vitamin C an appropriate biomarker of vitamin C intake? A systematic review and meta-analysis",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Outcome is plasma vitamin C, but the exposure is measured dietary vitamin C intake, not fruit and vegetable eating as such."
+     },
+     {
+      "pmid": "10738129",
+      "title": "Meta-analysis of studies on breast cancer risk and diet: the role of fruit and vegetable consumption and the intake of associated micronutrients",
+      "year": 2000,
+      "fits": "no",
+      "reason": "Fruit, vegetable and vitamin C intake vs breast cancer risk; vitamin C is an exposure here, not an outcome."
+     },
+     {
+      "pmid": "9725654",
+      "title": "By how much does fruit and vegetable consumption reduce the risk of ischaemic heart disease?",
+      "year": 1998,
+      "fits": "no",
+      "reason": "Fruit and vegetable markers vs ischaemic heart disease risk; serum vitamin C is used as an exposure marker, not an outcome."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamins-folate-plants",
+   "label": "Folate",
+   "finding": "vitamins-folate-plants",
+   "counts": {
+    "all": 1166,
+    "reviews": 1,
+    "trialReviews": 1,
+    "trials": 18,
+    "largeTrials": 2
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "14639794",
+     "title": "Relationship between soup consumption, folate, beta-carotene, and vitamin C status in a French adult population",
+     "year": 2003,
+     "n": 2874
+    },
+    {
+     "pmid": "16497600",
+     "title": "Responsiveness of homocysteine concentrations to food and supplemental folate intakes in smokers and never-smokers enrolled in a diet intervention trial",
+     "year": 2006,
+     "n": 3088
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "10356077",
+     "12740075",
+     "35010904",
+     "26502280"
+    ],
+    "citedNotEligible": [
+     "10356077",
+     "12740075",
+     "35010904",
+     "26502280"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Vegetables, legumes, fruit or plant-based diets",
+     "comparison": "Other foods or diets, or folic acid",
+     "outcome": "Folate intake, status or how well it is absorbed"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 0,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "11840835",
+      "title": "Risk of inadequate intakes of vitamins A, B1, B6, C, E, folate, iron and calcium in the Spanish population aged 4 to 18",
+      "year": 2001,
+      "fits": "no",
+      "reason": "Estimates inadequate folate intake in Spanish children and teens, but doesn't compare intake of vegetables, fruit or legumes with other foods for folate."
+     }
+    ]
+   }
+  }
+ ]
+}
