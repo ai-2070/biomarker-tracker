@@ -29,6 +29,10 @@
   --color-chart-line: #1e9070;
   --color-chart-band: #1e9070;
   --color-chart-out: #b4391e;
+  /* The three ages on the Biological age chart (validated as a categorical set, light and dark). */
+  --color-age-blood: #1e9070;
+  --color-age-heart: #2a78d6;
+  --color-age-fitness: #c2457a;
 
   --color-ok: #17785d;
   --color-ok-soft: #e7f4ee;
@@ -180,6 +184,9 @@
   --color-chart-line: #2aa382;
   --color-chart-band: #2aa382;
   --color-chart-out: #e0644e;
+  --color-age-blood: #2aa382;
+  --color-age-heart: #3987e5;
+  --color-age-fitness: #d55181;
 
   --color-ok: #4cc79e;
   --color-ok-soft: #15302a;
