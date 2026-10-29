@@ -37,7 +37,8 @@ export function TrendChart({
 }: {
   def: BiomarkerDef;
   measurements: Measurement[];
-  range: ResolvedRange | undefined;
+  /** A personal range has `from`: the band starts where the readings it was built from start. */
+  range: (ResolvedRange & { from?: string }) | undefined;
   unit: string;
   profile: Profile;
   /** Log entries to draw under the chart. */
@@ -67,7 +68,9 @@ export function TrendChart({
   // Few points: tick exactly at each sample date. Many: let the chart choose.
   const ticks = points.length <= 5 ? [...new Set(points.map((p) => p.t))] : undefined;
   const rangeText = showRange(def, range, unit);
-  const summary = `Chart of ${def.name} in ${unit}, ${points.length} results from ${formatDate(points[0]!.date)} to ${formatDate(points[points.length - 1]!.date)}${rangeText ? `. Reference range ${rangeText}` : ""}.`;
+  // Daily readings from a watch: small dots, so the line stays readable.
+  const dense = points.length > 60;
+  const summary = `Chart of ${def.name} in ${unit}, ${points.length} results from ${formatDate(points[0]!.date)} to ${formatDate(points[points.length - 1]!.date)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Reference range"} ${rangeText}` : ""}.`;
 
   return (
     <figure className="m-0">
@@ -77,6 +80,7 @@ export function TrendChart({
             <CartesianGrid vertical={false} stroke="var(--color-line)" />
             {(low !== undefined || high !== undefined) && (
               <ReferenceArea
+                {...(range?.from ? { x1: Date.parse(range.from) } : {})}
                 y1={low ?? yMin}
                 y2={high ?? yMax}
                 fill="var(--color-chart-band)"
@@ -118,7 +122,7 @@ export function TrendChart({
                     <div className="font-semibold">
                       {p.label} {unit}
                     </div>
-                    <div className="text-ink-2">{FLAG_LABEL[p.flag]}</div>
+                    {p.flag !== "unknown" && <div className="text-ink-2">{FLAG_LABEL[p.flag]}</div>}
                   </div>
                 );
               }}
@@ -141,10 +145,10 @@ export function TrendChart({
                     key={index}
                     cx={cx}
                     cy={cy}
-                    r={payload.out ? 6 : 4.5}
+                    r={payload.out ? 6 : dense ? 2 : 4.5}
                     fill={payload.out ? "var(--color-chart-out)" : "var(--color-chart-line)"}
                     stroke="var(--color-surface)"
-                    strokeWidth={2}
+                    strokeWidth={dense && !payload.out ? 0 : 2}
                   />
                 );
               }}
@@ -157,13 +161,18 @@ export function TrendChart({
         {rangeText && (
           <span className="flex items-center gap-1.5">
             <span aria-hidden="true" className="inline-block h-3 w-5 rounded-sm bg-chart-band/15" />
-            Reference range ({range?.source === "lab" ? "from your lab" : "typical adult"})
+            {range?.source === "personal"
+              ? "Your usual range (from your own readings)"
+              : `Reference range (${range?.source === "lab" ? "from your lab" : def.judgeAverageOfDays ? `checked against the ${def.judgeAverageOfDays}-day average` : "typical adult"})`}
           </span>
         )}
-        <span className="flex items-center gap-1.5">
-          <span aria-hidden="true" className="inline-block size-3 rounded-full bg-chart-out" />
-          Outside the range
-        </span>
+        {/* Points are marked only when a single reading can be out of range. */}
+        {range?.source !== "personal" && (!def.judgeAverageOfDays || def.criticalRange) && (
+          <span className="flex items-center gap-1.5">
+            <span aria-hidden="true" className="inline-block size-3 rounded-full bg-chart-out" />
+            Outside the range
+          </span>
+        )}
       </figcaption>
       <ProtocolLanes protocols={protocols} from={points[0]!.date} to={points[points.length - 1]!.date} today={today} />
     </figure>

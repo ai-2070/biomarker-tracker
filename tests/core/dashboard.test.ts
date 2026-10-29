@@ -12,9 +12,10 @@ const d = buildDashboard({ ...demo, measurements: demo.measurements.filter((m) =
 const body = buildDashboard({ ...demo, measurements: demo.measurements.filter((m) => isBody(m.biomarkerId)), profile: demo.person, defs, today });
 
 describe("body dashboard", () => {
-  it("has every body measurement, measured monthly", () => {
+  it("has every body measurement: monthly for two years, and every night for the last 10 weeks", () => {
     expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "exercise_hr", "glucose_home", "heart_rate", "hrv", "hrv_resting", "resting_hr", "sleep_deep", "sleep_duration", "sleep_rem", "spo2", "vo2max", "waist", "weight"]);
-    expect(body.draws).toHaveLength(24);
+    // 24 monthly days (3 of them in the last 10 weeks) and 70 nights from the watch.
+    expect(body.draws).toHaveLength(24 - 3 + 70);
     expect(body.critical).toHaveLength(0);
     expect(body.bioAge).toHaveLength(0);
   });

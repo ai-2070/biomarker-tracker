@@ -9,6 +9,7 @@
     "ms": 1
   },
   "rangeNote": "There's no single normal value: HRV falls with age and differs a lot between people, so compare it with your own baseline. This is RMSSD, the measure most rings and Android watches report; Apple Watch reports SDNN, a different measure, so don't mix the two.",
+  "personalRange": true,
   "summary": "The small changes in time between heartbeats (RMSSD, in milliseconds). Higher usually means the calming side of the nervous system is more active. It moves day to day with sleep, alcohol, illness, stress and training.",
   "high": {
     "meaning": "Higher than your usual is generally a sign of recovery and good fitness. A sudden very high or erratic value can also come from an irregular heartbeat or a sensor error.",
@@ -31,6 +32,20 @@
       "doi": "10.3389/fpubh.2017.00258",
       "title": "An Overview of Heart Rate Variability Metrics and Norms",
       "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23852425",
+      "doi": "10.1007/s40279-013-0071-8",
+      "title": "Training adaptation and heart rate variability in elite endurance athletes: opening the door to effective monitoring",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24578692",
+      "doi": "10.3389/fphys.2014.00073",
+      "title": "Monitoring training status with HR measures: do all roads lead to Rome?",
+      "year": 2014,
       "studyType": "review"
     }
   ]

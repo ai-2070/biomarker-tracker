@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -18,9 +18,6 @@ describe("BMI and waist-to-height", () => {
     expect(bmi(70, undefined)).toBeUndefined();
     expect(bmi(70, 60)).toBeUndefined();
     expect(bmi(0, 175)).toBeUndefined();
-  });
-  it("names the usual adult bands", () => {
-    expect([18.4, 18.5, 24.9, 25, 29.9, 30].map(bmiBand)).toEqual(["under", "healthy", "healthy", "over", "over", "obesity"]);
   });
   it("divides waist by height", () => {
     expect(waistToHeight(84, 168)).toBe(0.5);
@@ -109,7 +106,7 @@ describe("entering body measurements", () => {
 describe("recent average", () => {
   it("averages the last week when there are enough nights", () => {
     const nights = [m("sleep_duration", "2026-10-10", 9), m("sleep_duration", "2026-10-23", 6), m("sleep_duration", "2026-10-25", 7), m("sleep_duration", "2026-10-29", 8)];
-    expect(recentAverage(nights)).toEqual({ value: 7, count: 3 });
+    expect(recentAverage(nights)).toMatchObject({ value: 7, count: 3 });
     expect(recentAverage(nights.slice(-2))).toBeUndefined();
     expect(recentAverage([])).toBeUndefined();
   });

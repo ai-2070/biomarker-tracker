@@ -68,14 +68,6 @@ export function bmi(weightKg: number, heightCm: number | undefined): number | un
 }
 
 /**
- * The usual adult BMI bands (WHO). BMI can't tell muscle from fat, and the bands fit some
- * groups poorly (for example older or South Asian adults), so it's shown as a rough guide.
- */
-export function bmiBand(b: number): "under" | "healthy" | "over" | "obesity" {
-  return b < 18.5 ? "under" : b < 25 ? "healthy" : b < 30 ? "over" : "obesity";
-}
-
-/**
  * Basal metabolic rate (kcal a day): the energy the body uses at complete rest, estimated with the
  * Mifflin–St Jeor equation (Mifflin 1990, PMID 2305711), the most accurate of the common equations in
  * a systematic review (Frankenfield 2005, PMID 15883556; within 10 % for most adults). Only for adults
@@ -168,16 +160,5 @@ export function validateBodyEntry(
   return { ok: true, measurements: out };
 }
 
-/**
- * Average of the readings in the `days` days up to the latest one (e.g. the last week of sleep), when
- * there are at least `min` of them; otherwise undefined.
- */
-export function recentAverage(series: readonly Measurement[], days = 7, min = 3): { value: number; count: number } | undefined {
-  const sorted = sortByDate(series);
-  const last = sorted.at(-1);
-  if (!last) return undefined;
-  const from = new Date(Date.parse(last.date) - (days - 1) * 86_400_000).toISOString().slice(0, 10);
-  const recent = sorted.filter((m) => m.date >= from);
-  if (recent.length < min) return undefined;
-  return { value: recent.reduce((s, m) => s + m.value, 0) / recent.length, count: recent.length };
-}
+// Lives with the range checks (sleep is judged on it); kept here too for the body code that uses it.
+export { recentAverage } from "./trends";

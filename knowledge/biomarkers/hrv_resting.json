@@ -9,6 +9,7 @@
     "ms": 1
   },
   "rangeNote": "Measured at rest, usually overnight or first thing in the morning, which makes it the most comparable HRV value from day to day. In short resting recordings of healthy adults, RMSSD averaged about 42 ms (most between roughly 19 and 75), lower with age. Your own trend matters more than these numbers.",
+  "personalRange": true,
   "summary": "Heart rate variability (RMSSD) measured while resting or asleep. Followed over weeks, it shows recovery, sleep, illness and the effect of habits such as alcohol or training.",
   "high": {
     "meaning": "Higher than your usual generally means good recovery.",
@@ -32,6 +33,20 @@
       "doi": "10.3389/fpubh.2017.00258",
       "title": "An Overview of Heart Rate Variability Metrics and Norms",
       "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23852425",
+      "doi": "10.1007/s40279-013-0071-8",
+      "title": "Training adaptation and heart rate variability in elite endurance athletes: opening the door to effective monitoring",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24578692",
+      "doi": "10.3389/fphys.2014.00073",
+      "title": "Monitoring training status with HR measures: do all roads lead to Rome?",
+      "year": 2014,
       "studyType": "review"
     }
   ]

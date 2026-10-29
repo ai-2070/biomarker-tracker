@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmiBand, bmrMifflin, recentAverage, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
+import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
 import { ageAt } from "../../../core/phenoageDraws";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { todayIso } from "../../../core/dates";
 import type { DashboardMarker } from "../../../core/dashboard";
-import { flagMeasurement, sortByDate } from "../../../core/trends";
+import { personalRange } from "../../../core/personalRange";
+import { flagLatest, flagMeasurement, recentAverage, resolveRange, sortByDate } from "../../../core/trends";
 import type { Measurement, Profile } from "../../../core/types";
 import { listUnits } from "../../../core/units";
 import { addMeasurements } from "../../../db/db";
@@ -18,7 +19,6 @@ import { Button, FlagBadge, cx, errorStyles, inputStyles, labelStyles as formLab
 import { Sparkline } from "./Sparkline";
 import { Figure } from "./widgets";
 
-const BMI_TEXT = { under: "Below the usual adult range (18.5–25)", healthy: "Within the usual adult range (18.5–25)", over: "Above the usual adult range (18.5–25)", obesity: "Well above the usual adult range (18.5–25)" } as const;
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
 
@@ -64,7 +64,7 @@ export function BmiFigure({ ms, profile, className }: { ms: Measurement[]; profi
       label="BMI"
       href={href({ name: "marker", id: "weight" })}
       className={className}
-      foot={b === undefined ? (profile.heightCm ? "Add your weight to see it." : "Add your height in Settings → Your data.") : `${BMI_TEXT[bmiBand(b)]}. A rough guide: it can't tell muscle from fat.`}
+      foot={b === undefined ? (profile.heightCm ? "Add your weight to see it." : "Add your height in Settings → Your data.") : "No range shown: BMI can't tell muscle from fat. Waist and body fat say more."}
     >
       <p className={cx(big, b === undefined && "text-ink-2")}>{b === undefined ? "–" : b.toFixed(1)}</p>
     </Figure>
@@ -182,29 +182,39 @@ export function LatestFigure({ ms, id, label, profile, className }: { ms: Measur
   const def = BIOMARKER_MAP.get(id)!;
   const series = sortByDate(ms.filter((m) => m.biomarkerId === id));
   const last = series.at(-1);
-  const flag = last ? flagMeasurement(def, last, profile) : undefined;
+  const flag = last ? flagLatest(def, series, profile) : undefined;
   // Sleep varies night to night: a week's average says more than one night.
   const week = SLEEP_FIELDS.has(id) ? recentAverage(series) : undefined;
+  // Judged on the average (sleep): the average is the headline, last night the detail.
+  const byAverage = !!def.judgeAverageOfDays && !!week;
+  const range = last ? resolveRange(def, last, profile) : undefined;
+  const usual = def.personalRange ? personalRange(series) : undefined;
+  const ms1 = (v: number) => `${Math.round(v)} ${unit}`;
+  const foot = !last
+    ? DEVICE_FIELDS.has(id)
+      ? "From a watch or ring, or type it in"
+      : "Not measured yet"
+    : byAverage
+      ? `Last night ${formatHours(last.value)}.${range?.low !== undefined && range.high !== undefined ? ` The usual advice is ${range.low}–${range.high} hours.` : ""}`
+      : def.judgeAverageOfDays
+        ? `${formatDate(last.date)}. Judged on a week's average, which needs 3 nights.`
+        : week
+          ? `Average over the last week: ${formatHours(week.value)}`
+          : def.personalRange
+            ? usual
+              ? `${usual.recent ? `Last week ${ms1(usual.recent.value)}; ` : ""}your usual ${Math.round(usual.low)}–${ms1(usual.high)}`
+              : "Your usual range appears after 2 weeks of readings."
+            : (sinceEarlier(series, id, unit) ?? formatDate(last.date));
   return (
-    <Figure
-      label={label}
-      href={href({ name: "marker", id })}
-      className={className}
-      foot={
-        !last
-          ? DEVICE_FIELDS.has(id)
-            ? "From a watch or ring, or type it in"
-            : "Not measured yet"
-          : week && id === "sleep_duration"
-            ? `Average over the last week: ${formatHours(week.value)} (${week.count} nights). The usual advice is at least 7 hours.`
-            : week
-              ? `Average over the last week: ${formatHours(week.value)}`
-              : (sinceEarlier(series, id, unit) ?? formatDate(last.date))
-      }
-    >
+    <Figure label={label} href={href({ name: "marker", id })} className={className} foot={foot}>
       {last ? (
         <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
-          {unit === "h" ? (
+          {byAverage && week ? (
+            <>
+              <span className={big}>{formatHours(week.value)}</span>
+              <span className="text-ink-2">a night, last week</span>
+            </>
+          ) : unit === "h" ? (
             <span className={big}>{formatHours(last.value)}</span>
           ) : (
             <>
@@ -213,6 +223,9 @@ export function LatestFigure({ ms, id, label, profile, className }: { ms: Measur
             </>
           )}
           {flag && flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}
+          {usual?.recent && usual.recent.position !== "within" && (
+            <span className="rounded-full bg-sunken px-2.5 py-0.5 text-sm text-ink-2">{usual.recent.position === "below" ? "Lower than usual" : "Higher than usual"}</span>
+          )}
         </p>
       ) : (
         <p className="font-serif text-4xl text-ink-2">–</p>

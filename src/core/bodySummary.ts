@@ -1,17 +1,26 @@
-import { bmi, bmiBand, bmrMifflin, latestBloodPressure, latestBody, recentAverage, waistToHeight } from "./body";
+import { bmi, bmrMifflin, latestBloodPressure, latestBody, recentAverage, waistToHeight } from "./body";
 import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData } from "./heartAge";
 import { fitnessAge, vo2maxForAge } from "./fitnessAge";
 import { ageAt } from "./phenoageDraws";
-import { sortByDate } from "./trends";
-import type { Measurement, Profile, ProtocolEntry } from "./types";
+import { personalRange } from "./personalRange";
+import { flagLatest, resolveRange, sortByDate } from "./trends";
+import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
 
 const r1 = (v: number) => Math.round(v * 10) / 10;
 
 /**
  * The app's own calculations from body measurements, for Brain (and anything else that needs them):
- * so a model reports these numbers instead of working them out itself.
+ * so a model reports these numbers instead of working them out itself. With the marker definitions,
+ * each measurement also gets its range and flag (sleep judged on the week's average) or, for HRV, the
+ * person's own usual range.
  */
-export function bodySummary(profile: Profile, measurements: readonly Measurement[], protocols: readonly ProtocolEntry[], today: string) {
+export function bodySummary(
+  profile: Profile,
+  measurements: readonly Measurement[],
+  protocols: readonly ProtocolEntry[],
+  today: string,
+  defs?: ReadonlyMap<string, BiomarkerDef>,
+) {
   const latest = latestBody(measurements);
   const series = (id: string) => sortByDate(measurements.filter((m) => m.biomarkerId === id));
   const weekAvg = (id: string) => recentAverage(series(id));
@@ -28,12 +37,34 @@ export function bodySummary(profile: Profile, measurements: readonly Measurement
     const last = s.at(-1);
     if (!last) return undefined;
     const week = weekAvg(id);
-    return { latest: r1(last.value), date: last.date, ...(week ? { lastWeekAverage: r1(week.value), lastWeekReadings: week.count } : {}) };
+    const def = defs?.get(id);
+    const range = def ? resolveRange(def, last, profile) : undefined;
+    const flag = def ? flagLatest(def, s, profile) : undefined;
+    const usual = def?.personalRange ? personalRange(s) : undefined;
+    return {
+      latest: r1(last.value),
+      date: last.date,
+      ...(week ? { lastWeekAverage: r1(week.value), lastWeekReadings: week.count } : {}),
+      ...(range ? { range: { low: range.low, high: range.high }, ...(def?.judgeAverageOfDays ? { rangeCheckedAgainst: "the last week's average, not one night" } : {}) } : {}),
+      ...(flag && flag !== "unknown" ? { flag } : {}),
+      ...(usual
+        ? {
+            usualRange: {
+              low: r1(usual.low),
+              high: r1(usual.high),
+              ...(usual.recent ? { lastWeek: r1(usual.recent.value), lastWeekIs: `${usual.recent.position} the usual range` } : {}),
+              note: `This person's own usual range from ${usual.baseline.count} readings (${usual.baseline.from} to ${usual.baseline.to}), not a medical range. Nothing is out of range because of it.`,
+            },
+          }
+        : def?.personalRange
+          ? { usualRange: "Not enough readings yet (needs 2 weeks)." }
+          : {}),
+    };
   };
 
   return {
     ...(w ? { weightKg: { latest: r1(w.value), date: w.date } } : {}),
-    ...(b !== undefined ? { bmi: { value: r1(b), band: bmiBand(b), note: "A rough guide: BMI can't tell muscle from fat. Never a target." } } : {}),
+    ...(b !== undefined ? { bmi: { value: r1(b), note: "No range is used: BMI can't tell muscle from fat. Never a target." } } : {}),
     ...(latest.waist && waistToHeight(latest.waist.value, profile.heightCm) !== undefined
       ? { waistToHeight: { value: Math.round(waistToHeight(latest.waist.value, profile.heightCm)! * 100) / 100, guide: "below 0.5 is the usual guide" } }
       : {}),
@@ -49,8 +80,10 @@ export function bodySummary(profile: Profile, measurements: readonly Measurement
           },
         }
       : {}),
+    ...opt("bodyFatPercent", latestOf("body_fat")),
     ...opt("restingHeartRateBpm", latestOf("resting_hr")),
     ...opt("restingHrvMs", latestOf("hrv_resting")),
+    ...opt("hrvMs", latestOf("hrv")),
     ...opt("bloodOxygenPercent", latestOf("spo2")),
     ...opt("sleepHours", latestOf("sleep_duration")),
     ...opt("deepSleepHours", latestOf("sleep_deep")),

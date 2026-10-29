@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   computeTrend,
+  flagLatest,
   flagMeasurement,
   flagValue,
   groupByBiomarker,
@@ -48,6 +49,48 @@ describe("resolveRange", () => {
   });
   it("supports one-sided ranges", () => {
     expect(resolveRange(def("hdl"), {}, { sex: "f" })).toEqual({ low: 1.2, high: undefined, source: "default" });
+  });
+  it("uses the age band on the day measured (body fat, Gallagher 2000)", () => {
+    const fat = def("body_fat");
+    const woman = { sex: "f" as const, birthMonth: "1980-06" };
+    expect(resolveRange(fat, { date: "2015-01-10" }, woman)).toMatchObject({ low: 21, high: 33 }); // 34
+    expect(resolveRange(fat, { date: "2026-01-10" }, woman)).toMatchObject({ low: 23, high: 34 }); // 45
+    expect(resolveRange(fat, { date: "2026-01-10" }, { sex: "m", birthMonth: "1960-06" })).toMatchObject({ low: 13, high: 25 }); // 65
+    // Outside every band (under 20, 80 and over): no range rather than a wrong one.
+    expect(resolveRange(fat, { date: "2026-01-10" }, { sex: "f", birthMonth: "2010-01" })).toBeUndefined();
+    expect(resolveRange(fat, { date: "2026-01-10" }, { sex: "f", birthMonth: "1940-01" })).toBeUndefined();
+    // Age or sex unknown: the widest span of the bands that could apply.
+    expect(resolveRange(fat, {}, { sex: "m" })).toMatchObject({ low: 8, high: 25 });
+    expect(resolveRange(fat, {}, {})).toMatchObject({ low: 8, high: 36 });
+  });
+  it("gives sleep 7–9 hours, and 7–8 from 65", () => {
+    const sleep = def("sleep_duration");
+    expect(resolveRange(sleep, { date: "2026-01-10" }, { birthMonth: "1990-01" })).toMatchObject({ low: 7, high: 9 });
+    expect(resolveRange(sleep, { date: "2026-01-10" }, { birthMonth: "1955-01" })).toMatchObject({ low: 7, high: 8 });
+    expect(resolveRange(sleep, {}, {})).toMatchObject({ low: 7, high: 9 });
+  });
+});
+
+describe("markers judged on a week's average (sleep)", () => {
+  const sleep = def("sleep_duration");
+  const night = (date: string, value: number) => measurement({ biomarkerId: "sleep_duration", date, value, originalUnit: "h" });
+  const profile = { birthMonth: "1990-01" };
+
+  it("never flags one night", () => {
+    expect(flagMeasurement(sleep, night("2026-10-28", 4), profile)).toBe("unknown");
+  });
+  it("flags the average of the last 7 days", () => {
+    const shortWeek = ["2026-10-23", "2026-10-25", "2026-10-27", "2026-10-28"].map((d) => night(d, 6));
+    expect(flagLatest(sleep, shortWeek, profile)).toBe("low");
+    // One short night in a good week: fine.
+    const goodWeek = [night("2026-10-24", 8), night("2026-10-26", 8.5), night("2026-10-27", 8), night("2026-10-28", 4.5)];
+    expect(flagLatest(sleep, goodWeek, profile)).toBe("normal");
+    // Too few nights for an average: no verdict.
+    expect(flagLatest(sleep, [night("2026-10-27", 5), night("2026-10-28", 5)], profile)).toBe("unknown");
+  });
+  it("flags other markers on their latest reading", () => {
+    const k = [measurement({ biomarkerId: "potassium", date: "2026-01-01", value: 3 }), measurement({ biomarkerId: "potassium", date: "2026-02-01", value: 4.2 })];
+    expect(flagLatest(def("potassium"), k)).toBe("normal");
   });
 });
 

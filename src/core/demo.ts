@@ -72,6 +72,8 @@ const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.
 
 export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
+/** Days of nightly watch data (sleep, HRV) before today. */
+const NIGHTLY_DAYS = 70;
 
 /**
  * Only the example's body measurements, for example profiles made before body measurements existed.
@@ -183,15 +185,30 @@ export function demoProfile(today: string): DemoData {
     // HRV rises a little as fitness improves; blood oxygen stays normal.
     body("heart_rate", Math.round(wobble(76 - t * 4, 0.03, 1)));
     body("exercise_hr", Math.round(wobble(133 - t * 6, 0.025, 1)));
-    body("hrv", Math.round(wobble(34 + t * 5, 0.08, 1)));
-    body("hrv_resting", Math.round(wobble(41 + t * 7, 0.07, 1)));
+    // The last 10 weeks come from the watch every night (below).
+    const nightly = date >= addDays(today, -NIGHTLY_DAYS);
+    if (!nightly) body("hrv", Math.round(wobble(34 + t * 5, 0.08, 1)));
+    if (!nightly) body("hrv_resting", Math.round(wobble(41 + t * 7, 0.07, 1)));
     body("spo2", Math.round(wobble(97, 0.008, 1)));
     // Sleep (a monthly sample night; a synced watch gives every night): a little longer over time.
-    body("sleep_duration", wobble(6.9 + t * 0.4, 0.05, 0.1));
+    if (!nightly) body("sleep_duration", wobble(6.9 + t * 0.4, 0.05, 0.1));
     body("sleep_deep", wobble(1.1, 0.12, 0.1));
     body("sleep_rem", wobble(1.5, 0.1, 0.1));
     // VO2max from the watch: a little higher as the walking habit continues.
     body("vo2max", wobble(34 + t * 2.5, 0.02, 0.1));
+  }
+
+  // The last 10 weeks, every night from the watch: sleep and HRV vary night to night, so the app
+  // judges sleep on a week's average and shows HRV against this person's own usual range.
+  for (let d = NIGHTLY_DAYS; d >= 1; d--) {
+    const date = addDays(today, -d);
+    const night = (biomarkerId: string, value: number) => {
+      n += 1;
+      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "device" });
+    };
+    night("sleep_duration", wobble(7.3, 0.08, 0.05));
+    night("hrv", Math.round(wobble(39, 0.25, 1)));
+    night("hrv_resting", Math.round(wobble(48, 0.2, 1)));
   }
 
   const protocols: ProtocolEntry[] = [
