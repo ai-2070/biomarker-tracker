@@ -1,0 +1,24 @@
+CLAUDE.md
+  h_64425bc75e3f3d 185
+src/app/components/dashboard/agePace.tsx
+  h_64425bc75e3f3d 3-4,85,119-159
+src/app/pages/MarkerPage.tsx
+  h_64425bc75e3f3d 25,139
+src/core/agePace.ts
+  h_64425bc75e3f3d 85-118
+src/core/demo.ts
+  h_64425bc75e3f3d 170
+tests/core/agePace.test.ts
+  h_64425bc75e3f3d 2,41-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a32531b63bce49970cbf01f6f5501ff3d75ca8e9",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
