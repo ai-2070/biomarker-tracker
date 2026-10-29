@@ -1,0 +1,28 @@
+CLAUDE.md
+  h_64425bc75e3f3d 174,178
+server/healthTools.ts
+  h_64425bc75e3f3d 38-39,53,226-228
+src/app/brain/store.ts
+  h_64425bc75e3f3d 6,251-253
+src/app/components/dashboard/bestBefore.tsx
+  h_64425bc75e3f3d 9-10,14,47-49,115,117-126,131,140
+src/app/components/settings/AppearanceSettings.tsx
+  h_64425bc75e3f3d 2,7,10,13-42
+src/app/easterEggs.ts
+  h_64425bc75e3f3d 1
+src/app/hooks.ts
+  h_64425bc75e3f3d 75-86
+src/app/pages/PhenoAgePage.tsx
+  h_64425bc75e3f3d 9,25-26,38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "69ac1bee15fcd276ef3ca078ea8412925407d826",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
