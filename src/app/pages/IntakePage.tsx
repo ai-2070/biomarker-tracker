@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { bmrMifflin } from "../../core/body";
-import { addDays, isIsoDate, todayIso } from "../../core/dates";
+import { todayIso } from "../../core/dates";
 import {
   ACTIVITY_LEVELS,
   energyVsResting,
   foodIdeas,
+  EXAMPLE_DAY,
   gapAdvice,
   intakeTotals,
   upperLimitRoom,
@@ -12,7 +13,6 @@ import {
   mealsRichIn,
   nutrientRows,
   type GapIdea,
-  type IntakeDay,
   type IntakeItem,
   type MacroKey,
   type MacroRow,
@@ -25,14 +25,14 @@ import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker, sortByDate } from "../../core/trends";
 import type { Measurement, Profile, SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
-import { deleteIntakeDay, newId, saveIntakeDay } from "../../db/db";
+import { newId } from "../../db/db";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { StudyLink } from "../components/evidence";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, FlagBadge, Notice, PageTitle, cx, inputStyles, labelStyles } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement } from "../format";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
-import { useAllMeasurements, useDisplayUnits, useIntakeDays, useMeals, useProfile, useProtocols } from "../hooks";
+import { setIntakeList, useAllMeasurements, useDisplayUnits, useIntakeList, useMeals, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, FOODS, NUTRIENTS } from "../knowledge";
 import { href } from "../router";
 
@@ -59,86 +59,44 @@ const MACRO_LABEL: Record<MacroKey, string> = {
   sodium: "Salt",
 };
 
-export function IntakePage({ date: initial }: { date?: string }) {
+export function IntakePage() {
   const db = useFoodDb();
   const meals = useMeals() ?? [];
-  const days = useIntakeDays();
+  const list = useIntakeList();
   const profile = useProfile();
   const all = useAllMeasurements() ?? [];
   const protocols = useProtocols() ?? [];
-  const [date, setDate] = useState(initial && isIsoDate(initial) ? initial : todayIso());
-  const [view, setView] = useState<"day" | "week">("day");
   const notes = safetyNotes(safetyLabels(protocols, profile));
   const safety: SafetyId[] = notes.map((n) => n.id);
-
-  const day = days?.find((d) => d.date === date);
-  const week = (days ?? []).filter((d) => d.date <= date && d.date > addDays(date, -7) && d.items.length > 0);
-  const shown = view === "day" ? (day && day.items.length ? [day] : []) : week;
-
-  const save = (items: IntakeItem[]) => {
-    if (items.length === 0) {
-      if (day) void deleteIntakeDay(day.id);
-      return;
-    }
-    void saveIntakeDay({ ...(day ?? { id: newId(), date }), items });
-  };
+  const items = list ?? [];
+  const save = (next: IntakeItem[]) => void setIntakeList(next);
 
   return (
     <>
-      <PageTitle sub="Add what you ate on a day, from your meals or the food table. The app adds it up and compares it with EU reference values for a whole day. A description, not a target or a diet.">
-        Daily intake
+      <PageTitle sub="Put in what someone eats in a day, from your meals or the food table, and see it added up and compared with EU reference values for a whole day. An analysis, not a diary, a target or a diet.">
+        Daily intake analyzer
       </PageTitle>
-
-      <div className="mb-5 flex flex-wrap items-end gap-3">
-        <div className="flex items-end gap-1">
-          <Button variant="secondary" aria-label="Day before" onClick={() => setDate(addDays(date, -1))}>
-            ←
-          </Button>
-          <label className="flex flex-col gap-1.5">
-            <span className={labelStyles}>Day</span>
-            <input type="date" value={date} max={todayIso()} onChange={(e) => isIsoDate(e.target.value) && setDate(e.target.value)} className={cx(inputStyles, "w-44")} />
-          </label>
-          <Button variant="secondary" aria-label="Day after" disabled={date >= todayIso()} onClick={() => setDate(addDays(date, 1))}>
-            →
-          </Button>
-        </div>
-        <div role="tablist" aria-label="Show" className="flex gap-1 rounded-xl border border-line bg-sunken p-1">
-          {(
-            [
-              ["day", "This day"],
-              ["week", "7-day average"],
-            ] as const
-          ).map(([v, label]) => (
-            <button
-              key={v}
-              role="tab"
-              type="button"
-              aria-selected={view === v}
-              onClick={() => setView(v)}
-              className={cx("min-h-9 rounded-lg px-3 text-sm transition-colors duration-150", view === v ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-8">
         <div className="flex flex-col gap-5">
-          <DayEditor day={day} db={db} meals={meals} save={save} date={date} />
+          <ListEditor items={items} db={db} meals={meals} save={save} />
           {notes.length > 0 && <SafetyNotices notes={notes} />}
         </div>
         <div className="flex min-w-0 flex-col gap-5">
           {!db ? (
             <p className="text-ink-2">Loading the food table…</p>
-          ) : shown.length === 0 ? (
-            <Card>
-              <p className="text-ink-2">
-                {view === "day" ? "Nothing logged for this day yet. Add a meal or a food to see the day's totals." : "No days logged in the 7 days up to this one."}
-              </p>
+          ) : items.length === 0 ? (
+            <Card className="flex flex-col items-start gap-3">
+              <p className="text-ink-2">Add meals or foods to see the totals, how they compare with the reference values, and what would add the most where something is low.</p>
+              <Button
+                variant="secondary"
+                onClick={() => save(EXAMPLE_DAY.map(([foodId, grams]) => ({ id: newId(), kind: "food" as const, foodId, grams })))}
+              >
+                Try an example day
+              </Button>
             </Card>
           ) : (
-            <Analysis days={shown} view={view} db={db} profile={profile} all={all} safety={safety} />
+            <Analysis items={items} db={db} profile={profile} all={all} safety={safety} />
           )}
         </div>
       </div>
@@ -146,9 +104,8 @@ export function IntakePage({ date: initial }: { date?: string }) {
   );
 }
 
-/** The day's meals and foods, with ways to add more. */
-function DayEditor({ day, db, meals, save, date }: { day?: IntakeDay; db?: FoodDb; meals: Meal[]; save: (items: IntakeItem[]) => void; date: string }) {
-  const items = day?.items ?? [];
+/** The list of meals and foods, with ways to add more. */
+function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: FoodDb; meals: Meal[]; save: (items: IntakeItem[]) => void }) {
   const [mode, setMode] = useState<"meal" | "food">(meals.length ? "meal" : "food");
   const [mealId, setMealId] = useState("");
   const [portions, setPortions] = useState("1");
@@ -163,7 +120,14 @@ function DayEditor({ day, db, meals, save, date }: { day?: IntakeDay; db?: FoodD
   };
   return (
     <Card className="flex flex-col gap-4">
-      <h2 className="font-serif text-2xl font-normal">{date === todayIso() ? "Today" : formatDate(date)}</h2>
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="font-serif text-2xl font-normal">A day of food</h2>
+        {items.length > 0 && (
+          <Button variant="quiet" className="min-h-10 text-sm" onClick={() => save([])}>
+            Clear
+          </Button>
+        )}
+      </div>
       {items.length === 0 ? (
         <p className="text-ink-2">Nothing yet.</p>
       ) : (
@@ -290,21 +254,19 @@ function DayEditor({ day, db, meals, save, date }: { day?: IntakeDay; db?: FoodD
 }
 
 /** Totals, energy against resting use, macros, vitamins and minerals, and what would close the gaps. */
-function Analysis({ days, view, db, profile, all, safety }: { days: IntakeDay[]; view: "day" | "week"; db: FoodDb; profile: Profile; all: Measurement[]; safety: SafetyId[] }) {
+function Analysis({ items, db, profile, all, safety }: { items: IntakeItem[]; db: FoodDb; profile: Profile; all: Measurement[]; safety: SafetyId[] }) {
   const meals = useMeals() ?? [];
-  const last = days.map((d) => d.date).sort().at(-1)!;
-  const { totals, missingMeals } = intakeTotals(days, meals, db);
-  const age = profile.birthMonth ? ageAt(profile.birthMonth, last) : undefined;
-  const weight = sortByDate(all.filter((m) => m.biomarkerId === "weight" && m.date <= last)).at(-1) ?? sortByDate(all.filter((m) => m.biomarkerId === "weight")).at(-1);
+  const { totals, missingMeals } = intakeTotals(items, meals, db);
+  const age = profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined;
+  const weight = sortByDate(all.filter((m) => m.biomarkerId === "weight")).at(-1);
   const macros = macroRows(totals, weight?.value);
   const vitamins = nutrientRows(totals, db, NUTRIENTS, { ...(profile.sex ? { sex: profile.sex } : {}), ...(age !== undefined ? { age } : {}) });
   const kcal = totals.energyKcal;
   const resting = weight ? bmrMifflin(weight.value, profile.heightCm, age, profile.sex) : undefined;
-  const label = view === "day" ? "this day" : `the average of ${days.length} logged ${days.length === 1 ? "day" : "days"} in the 7 days up to ${formatDate(last)}`;
   return (
     <>
-      {missingMeals > 0 && <Notice tone="warn">{missingMeals} logged {missingMeals === 1 ? "meal was" : "meals were"} deleted since, so the totals leave them out.</Notice>}
-      <EnergyCard kcal={kcal} resting={resting} label={label} />
+      {missingMeals > 0 && <Notice tone="warn">{missingMeals} {missingMeals === 1 ? "meal in the list was" : "meals in the list were"} deleted since, so the totals leave them out.</Notice>}
+      <EnergyCard kcal={kcal} resting={resting} />
       <MacroCard rows={macros} totals={totals} weightKnown={!!weight} />
       <NutrientCard rows={vitamins} />
       <Gaps vitamins={vitamins} macros={macros} db={db} safety={safety} all={all} profile={profile} />
@@ -319,13 +281,13 @@ function Analysis({ days, view, db, profile, all, safety }: { days: IntakeDay[];
   );
 }
 
-function EnergyCard({ kcal, resting, label }: { kcal?: Total; resting?: number; label: string }) {
+function EnergyCard({ kcal, resting }: { kcal?: Total; resting?: number }) {
   const e = kcal && resting ? energyVsResting(kcal.amount, resting) : undefined;
   const r = (x: number) => Math.round(x).toLocaleString("en-GB");
   const message = !e
     ? undefined
     : e.band === "below-resting"
-      ? `Less than your body uses at rest (about ${r(resting!)} kcal). If nothing is missing from the log and days like this are usual, it's worth talking to a doctor or dietitian.`
+      ? `Less than your body uses at rest (about ${r(resting!)} kcal); most adults use 1.4 to 2.0 times that in a day. If something is missing from the list, add it to see the whole day.`
       : e.band === "below-low-active"
         ? `Between your resting rate and what a mostly sitting day uses (about ${r(resting! * ACTIVITY_LEVELS.lowActive)} kcal, 1.4 × resting).`
         : e.band === "within"
@@ -333,15 +295,12 @@ function EnergyCard({ kcal, resting, label }: { kcal?: Total; resting?: number; 
           : `More than most adults use in a day unless very active (2.0 × resting is about ${r(resting! * ACTIVITY_LEVELS.veryActive)} kcal).`;
   return (
     <Card className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="font-serif text-2xl font-normal">Energy</h2>
-        <p className="text-sm text-ink-2">{label}</p>
-      </div>
+      <h2 className="font-serif text-2xl font-normal">Energy</h2>
       <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
         <span className="font-serif text-5xl leading-none tabular-nums">{kcal ? r(kcal.amount) : "–"}</span>
         <span className="text-ink-2">kcal</span>
         {e && (
-          <span className={cx("rounded-full px-2.5 py-0.5 text-sm font-medium", e.band === "within" ? "bg-ok-soft text-ok" : e.band === "below-resting" ? "bg-warn-soft text-warn" : "bg-sunken text-ink")}>
+          <span className={cx("rounded-full px-2.5 py-0.5 text-sm font-medium", e.band === "within" ? "bg-ok-soft text-ok" : "bg-sunken text-ink")}>
             {formatValue(Math.round(e.ratio * 10) / 10)} × your resting rate
           </span>
         )}
@@ -350,7 +309,7 @@ function EnergyCard({ kcal, resting, label }: { kcal?: Total; resting?: number; 
       {!resting && <p className="text-sm text-ink-2">Add your weight, height, month of birth and sex to compare with your resting energy use.</p>}
       <p className="max-w-3xl text-sm text-ink-2">
         Compared with your resting metabolic rate (Mifflin–St Jeor) and EFSA's activity levels, 1.4 × resting for low active up to 2.0 × for
-        very active (<StudyLink s={EFSA_ENERGY} />). Logs often miss drinks, oils and snacks, and one day says little. Not a target: the app
+        very active (<StudyLink s={EFSA_ENERGY} />). Lists often miss drinks, oils and snacks, and one day says little. Not a target: the app
         never sets a calorie goal.
       </p>
     </Card>

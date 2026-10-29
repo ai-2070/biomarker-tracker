@@ -5,7 +5,6 @@
  * diet experiment. Same input date, same data (a seeded random generator adds small wobbles).
  */
 import { addDays } from "./dates";
-import type { IntakeDay } from "./intake";
 import type { Plan } from "./plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
@@ -15,8 +14,6 @@ export interface DemoData {
   protocols: ProtocolEntry[];
   experiments: Experiment[];
   plans: Plan[];
-  /** Days logged in Daily intake (foods by CoFID code and grams). */
-  intake: IntakeDay[];
 }
 
 /** Canonical units of the markers used here (a test checks them against the knowledge base). */
@@ -292,72 +289,5 @@ export function demoProfile(today: string): DemoData {
       createdAt: `${addDays(today, -3)}T08:00:00.000Z`,
     },
   ];
-  // Daily intake: three ordinary days of food in the last few days, by CoFID code and grams. Low in
-  // vitamin D and omega-3 except on the fish day, so the page has something to show.
-  const food = (foodId: string, grams: number, k: number) => ({ id: `example-food-${k}`, kind: "food" as const, foodId, grams });
-  const intakeDays: [number, [string, number][]][] = [
-    [
-      -1,
-      [
-        ["11-788", 50], // porridge oats (dry)
-        ["12-313", 250], // semi-skimmed milk
-        ["14-318", 120], // banana
-        ["11-981", 80], // wholemeal bread
-        ["12-940", 100], // boiled eggs
-        ["13-517", 80], // tomatoes
-        ["11-1129", 220], // pasta, boiled
-        ["18-323", 130], // chicken breast, grilled
-        ["13-503", 80], // broccoli, boiled
-        ["17-038", 15], // olive oil
-        ["14-319", 150], // apple
-        ["12-555", 150], // Greek yoghurt
-        ["14-896", 30], // almonds
-        ["17-685", 10], // butter
-      ],
-    ],
-    [
-      -2,
-      [
-        ["12-555", 150], // Greek yoghurt
-        ["14-324", 80], // strawberries
-        ["14-896", 25], // almonds
-        ["13-661", 150], // lentils, boiled
-        ["13-524", 80], // red pepper
-        ["11-981", 80], // wholemeal bread
-        ["16-418", 100], // red salmon
-        ["13-610", 200], // new potatoes, boiled
-        ["13-573", 80], // spinach, boiled
-        ["17-038", 10], // olive oil
-        ["14-327", 130], // orange
-        ["11-788", 50], // porridge oats (dry)
-        ["12-313", 250], // semi-skimmed milk
-        ["14-318", 120], // banana
-        ["11-981", 80], // more wholemeal bread
-        ["17-685", 10], // butter
-      ],
-    ],
-    [
-      -3,
-      [
-        ["11-788", 50], // porridge oats (dry)
-        ["12-313", 250], // semi-skimmed milk
-        ["14-371", 75], // kiwi
-        ["11-981", 120], // wholemeal bread
-        ["17-685", 10], // butter
-        ["11-869", 180], // brown rice, boiled
-        ["13-660", 120], // kidney beans
-        ["13-497", 80], // carrots, boiled
-        ["17-038", 15], // olive oil
-        ["14-318", 120], // banana
-        ["12-940", 100], // boiled eggs
-        ["12-555", 150], // Greek yoghurt
-        ["14-896", 25], // almonds
-        ["14-319", 150], // apple
-      ],
-    ],
-  ];
-  let f = 0;
-  const intake: IntakeDay[] = intakeDays.map(([offset, foods]) => ({ id: `example-day${offset}`, date: addDays(today, offset), items: foods.map(([id, g]) => food(id, g, ++f)) }));
-
-  return { person, measurements, protocols, experiments, plans, intake };
+  return { person, measurements, protocols, experiments, plans };
 }

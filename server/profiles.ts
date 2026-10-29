@@ -16,7 +16,6 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import { cleanProfile, isProfile, parseBackup } from "../src/core/backup";
 import { validatePlan, type Plan } from "../src/core/plans";
-import { validateIntakeDay, type IntakeDay } from "../src/core/intake";
 import { validateMeal, type Meal } from "../src/core/meals";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../src/core/types";
 import { dataPath, getSettings, readJSON, updateSettings, writeJSON } from "./store";
@@ -72,8 +71,6 @@ export interface ProfileData {
   plans: Plan[];
   /** Meals (meals.json). */
   meals: Meal[];
-  /** Days logged in Daily intake (intake.json). */
-  intake: IntakeDay[];
   settings: Record<string, unknown>;
 }
 
@@ -96,7 +93,6 @@ log.json          supplements, diet changes, medicines and habits
 experiments.json  self-experiments
 protocols.json    protocols (sets of supplements, foods, exercise you follow)
 meals.json        meals you built (foods and grams)
-intake.json       days of eating logged in Daily intake
 settings.json     display settings for this profile
 files/            scanned lab reports and other documents
 files.json        list of those files
@@ -133,14 +129,7 @@ function newId(name: string): string {
 
 const readMeta = (dir: string) => readJSON<ProfileFile | null>(path.join(dir, "profile.json"), null);
 
-type DataInput = { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; plans?: unknown; meals?: unknown; intake?: unknown; settings?: unknown };
-
-function validIntake(v: unknown): IntakeDay[] {
-  if (v === undefined) return [];
-  if (!Array.isArray(v) || v.length > 5000) throw new ProfileError(400, "The daily intake log is damaged.");
-  for (const d of v) if (validateIntakeDay(d).length) throw new ProfileError(400, `A logged day is damaged: ${validateIntakeDay(d)[0]}.`);
-  return v as IntakeDay[];
-}
+type DataInput = { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; plans?: unknown; meals?: unknown; settings?: unknown };
 
 function validMeals(v: unknown): Meal[] {
   if (v === undefined) return [];
@@ -161,7 +150,7 @@ function validateData(input: DataInput): Omit<ProfileData, "settings"> {
   if (!isProfile(person)) throw new ProfileError(400, "The person's details are damaged.");
   const r = parseBackup({ app: "biomarker-tracker", version: 2, measurements: input.measurements ?? [], protocols: input.protocols ?? [], experiments: input.experiments ?? [], profile: {} });
   if (!r.ok) throw new ProfileError(400, r.error);
-  return { person: cleanProfile(person), measurements: r.backup.measurements, protocols: r.backup.protocols, experiments: r.backup.experiments, plans: validPlans(input.plans), meals: validMeals(input.meals), intake: validIntake(input.intake) };
+  return { person: cleanProfile(person), measurements: r.backup.measurements, protocols: r.backup.protocols, experiments: r.backup.experiments, plans: validPlans(input.plans), meals: validMeals(input.meals) };
 }
 
 function validSettings(v: unknown): Record<string, unknown> {
@@ -178,7 +167,6 @@ function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "setti
   writeJSON(path.join(dir, "experiments.json"), data.experiments);
   writeJSON(path.join(dir, "protocols.json"), data.plans);
   writeJSON(path.join(dir, "meals.json"), data.meals);
-  writeJSON(path.join(dir, "intake.json"), data.intake);
   if (data.settings) writeJSON(path.join(dir, "settings.json"), data.settings);
   writeJSON(path.join(dir, "profile.json"), { ...meta, person: data.person, updatedAt: new Date().toISOString() });
 }
@@ -230,7 +218,6 @@ export function getProfileData(id: string): ProfileData {
     experiments: readJSON(path.join(dir, "experiments.json"), []),
     plans: readJSON(path.join(dir, "protocols.json"), []),
     meals: readJSON(path.join(dir, "meals.json"), []),
-    intake: readJSON(path.join(dir, "intake.json"), []),
     settings: readJSON(path.join(dir, "settings.json"), {}),
   };
 }
@@ -358,7 +345,6 @@ export function restoreZip(zip: Buffer): ProfileSummary {
     experiments: json("experiments.json", []),
     plans: json("protocols.json", []),
     meals: json("meals.json", []),
-    intake: json("intake.json", []),
     settings: json("settings.json", {}),
   });
   const index = json("files.json", []);
