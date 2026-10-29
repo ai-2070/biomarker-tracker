@@ -107,6 +107,7 @@ export function isProfile(v: unknown): v is Profile {
     optional(v.sex, (s) => s === "m" || s === "f") &&
     optional(v.birthMonth, (b) => isStr(b) && isBirthMonth(b)) &&
     optional(v.heightCm, (h) => isNum(h) && h >= 40 && h <= 260) &&
+    optional(v.country, (c) => isStr(c) && /^([A-Z]{2}|EU27_2020)$/.test(c)) &&
     optional(v.diet, (d) => d === "omnivore" || d === "vegetarian" || d === "vegan" || d === "pescatarian" || d === "other") &&
     optional(v.smoking, (s) => s === "never" || s === "former" || s === "current") &&
     optional(v.conditions, shortText(2000)) &&
@@ -124,6 +125,7 @@ export function cleanProfile(p: Profile): Profile {
   if (p.sex) out.sex = p.sex;
   if (p.birthMonth) out.birthMonth = p.birthMonth;
   if (p.heightCm !== undefined) out.heightCm = p.heightCm;
+  if (p.country) out.country = p.country;
   if (p.diet) out.diet = p.diet;
   if (p.smoking) out.smoking = p.smoking;
   if (text(p.conditions)) out.conditions = text(p.conditions);

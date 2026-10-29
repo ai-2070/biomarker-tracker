@@ -108,6 +108,7 @@ export function demoProfile(today: string): DemoData {
     heightCm: 168,
     diet: "omnivore",
     smoking: "never",
+    country: "HU",
     notes: "Made-up example data to show how the app works. None of these results belong to a real person.",
   };
 

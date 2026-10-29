@@ -8,6 +8,20 @@ import { validateNutrientDef, type NutrientDef } from "../src/core/nutrients";
 import type { FoodDb } from "../src/core/meals";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
 import { ROOT } from "./store";
+import type { LifeTableFile } from "../src/core/lifeTable";
+
+let tables: LifeTableFile | null | undefined;
+/** Eurostat life tables (knowledge/lifetables), read once; null when the file is missing. */
+export function lifeTables(): LifeTableFile | undefined {
+  if (tables === undefined) {
+    try {
+      tables = JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "lifetables", "eurostat.json"), "utf8")) as LifeTableFile;
+    } catch {
+      tables = null;
+    }
+  }
+  return tables ?? undefined;
+}
 
 function readAll(dir: string): unknown[] {
   return fs
