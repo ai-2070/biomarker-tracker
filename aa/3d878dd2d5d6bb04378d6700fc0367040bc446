@@ -1,0 +1,14 @@
+docs/internal/plans/2026-10-29-repository-code-review.md
+  h_64425bc75e3f3d 1080-1147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aa3d878dd2d5d6bb04378d6700fc0367040bc446",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
