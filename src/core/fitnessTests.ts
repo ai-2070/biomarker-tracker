@@ -184,6 +184,39 @@ export function cutoffsMet(test: FitnessTestDef, value: number, person: { sex?: 
   });
 }
 
+/** Who a norm row describes: "women 40–49", "men at age 50", "men and women 70 and over". */
+export function rowWho(row: NormRow): string {
+  const sex = row.sex === "m" ? "men" : row.sex === "f" ? "women" : "men and women";
+  const ages = row.ageTo === undefined ? `${row.ageFrom} and over` : row.ageFrom === row.ageTo ? `at age ${row.ageFrom}` : `${row.ageFrom}–${row.ageTo}`;
+  return `${sex} ${ages}`;
+}
+
+/**
+ * Every fitness test's latest result compared with the norms, for Brain: the same comparisons the
+ * page shows, so the model reports them instead of working anything out.
+ */
+export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: readonly { biomarkerId: string; date: string; value: number }[], person: { sex?: Sex; ageAt?: (date: string) => number }) {
+  return tests.flatMap((t) => {
+    const last = measurements.filter((m) => m.biomarkerId === t.id).sort((a, b) => a.date.localeCompare(b.date)).at(-1);
+    if (!last) return [];
+    const who = { ...(person.sex ? { sex: person.sex } : {}), ...(person.ageAt ? { age: person.ageAt(last.date) } : {}) };
+    const places = placeResult(t, last.value, who);
+    const met = cutoffsMet(t, last.value, who);
+    return [
+      {
+        test: t.name,
+        latest: last.value,
+        unit: t.unit,
+        date: last.date,
+        lowerIsBetter: !t.higherIsBetter,
+        comparedWith: places.map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
+        ...(places.length === 0 ? { note: who.sex && who.age !== undefined ? "No norms cover this age and sex." : "Sex and birth month are needed to compare." } : {}),
+        ...(met.length ? { thresholdsMet: met.map((c) => c.label) } : {}),
+      },
+    ];
+  });
+}
+
 /**
  * Plain words for a place: "Good", "between the 25th and 50th percentile", "about average". Percentiles
  * are said so that higher is always better: for a timed test (lower is better) the time's 25th to 50th

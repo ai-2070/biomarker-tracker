@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, bmrMifflinTerms, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmiTerms, bmrMifflin, bmrMifflinTerms, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -21,6 +21,10 @@ describe("BMI and waist-to-height", () => {
   });
   it("divides waist by height", () => {
     expect(waistToHeight(84, 168)).toBe(0.5);
+    expect(bmiTerms(67.2, 168)).toMatchObject({ heightM: 1.68 });
+    expect(bmiTerms(67.2, 168)!.heightSquared).toBeCloseTo(2.8224, 6);
+    expect(bmiTerms(67.2, 168)!.bmi).toBeCloseTo(23.81, 2);
+    expect(bmiTerms(67.2, undefined)).toBeUndefined();
     expect(waistToHeight(84, undefined)).toBeUndefined();
   });
 });

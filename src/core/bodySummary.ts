@@ -4,6 +4,7 @@ import { fitnessAge, vo2maxForAge } from "./fitnessAge";
 import { ageAt } from "./phenoageDraws";
 import { personalRange } from "./personalRange";
 import { flagLatest, resolveRange, sortByDate } from "./trends";
+import { fitnessSummary, type FitnessTestDef } from "./fitnessTests";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
 
 const r1 = (v: number) => Math.round(v * 10) / 10;
@@ -20,6 +21,7 @@ export function bodySummary(
   protocols: readonly ProtocolEntry[],
   today: string,
   defs?: ReadonlyMap<string, BiomarkerDef>,
+  tests?: readonly FitnessTestDef[],
 ) {
   const latest = latestBody(measurements);
   const series = (id: string) => sortByDate(measurements.filter((m) => m.biomarkerId === id));
@@ -90,6 +92,14 @@ export function bodySummary(
     ...opt("remSleepHours", latestOf("sleep_rem")),
     ...opt("vo2maxMlKgMin", latestOf("vo2max")),
     ...fitness(profile, measurements, today),
+    ...(tests?.length
+      ? (() => {
+          const done = fitnessSummary(tests, measurements, { ...(profile.sex ? { sex: profile.sex } : {}), ...(profile.birthMonth ? { ageAt: (d: string) => ageAt(profile.birthMonth!, d) } : {}) });
+          return done.length
+            ? { fitnessTests: { results: done, note: "Compared with published norms for age and sex (a comparison with other people, not a diagnosis or a target). Thresholds are ones doctors use, worth mentioning to a doctor." } }
+            : {};
+        })()
+      : {}),
     heartAge:
       h.input && !h.outOfRange
         ? {

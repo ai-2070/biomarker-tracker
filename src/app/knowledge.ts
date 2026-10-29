@@ -1,4 +1,5 @@
 import { TOPICS, validateComparisonTopic, type ComparisonTopicFile } from "../core/foodComparison";
+import { validateFitnessTest, type FitnessTestDef } from "../core/fitnessTests";
 import { validateNutrientDef, type NutrientDef } from "../core/nutrients";
 import { validateEvidenceClaim } from "../core/evidence";
 import { validateBiomarkerDef } from "../core/knowledge";
@@ -103,6 +104,18 @@ function loadNutrients(): NutrientDef[] {
 
 export const NUTRIENTS: readonly NutrientDef[] = loadNutrients();
 export const NUTRIENT_MAP: ReadonlyMap<string, NutrientDef> = new Map(NUTRIENTS.map((n) => [n.id, n]));
+
+// Fitness tests with norms for age and sex (Body page, Biological age page), one file per test.
+const fitnessModules = import.meta.glob<unknown>("../../knowledge/fitness/*.json", { eager: true, import: "default" });
+export const FITNESS: readonly FitnessTestDef[] = Object.entries(fitnessModules).flatMap(([path, json]) => {
+  const errors = validateFitnessTest(json);
+  if (errors.length) {
+    console.error(`Invalid knowledge file ${path}:`, errors);
+    return [];
+  }
+  return [json as FitnessTestDef];
+});
+export const FITNESS_MAP: ReadonlyMap<string, FitnessTestDef> = new Map(FITNESS.map((t) => [t.id, t]));
 
 // Animal foods, fruit and plants compared (Meals page), one file per topic.
 const comparisonModules = import.meta.glob<unknown>("../../knowledge/food-comparison/*.json", { eager: true, import: "default" });

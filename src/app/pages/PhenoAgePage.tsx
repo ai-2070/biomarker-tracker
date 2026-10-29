@@ -3,6 +3,7 @@ import { summarizePhenoAge, type PhenoAgeDraw } from "../../core/phenoageDraws";
 import type { Profile } from "../../core/types";
 import { setProfile } from "../../db/db";
 import { BirthMonthField } from "../components/BirthMonthField";
+import { FitnessForYourAge } from "../components/dashboard/fitness";
 import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, formatYears, showMeasurement } from "../format";
 import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
@@ -61,6 +62,7 @@ export function PhenoAgePage() {
         <Explanation profile={profile} />
         <HeartAgeSection ms={bodyOnly(all)} profile={profile} protocols={protocols} />
         <FitnessAgeSection ms={bodyOnly(all)} profile={profile} />
+        <FitnessForYourAge ms={bodyOnly(all)} profile={profile} />
       </div>
     </>
   );
