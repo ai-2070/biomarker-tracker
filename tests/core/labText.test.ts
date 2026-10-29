@@ -230,3 +230,12 @@ describe("piecesToLines", () => {
     expect(piecesToLines([p("  ", 0, 0), p("", 5, 5)])).toEqual([]);
   });
 });
+
+describe("DunedinPACE from a DNA test report", () => {
+  it("reads the value, with the unit assumed when the report prints none", () => {
+    const r = parseLabText("Collection date: 2026-03-02\nDunedinPACE 0.83", defs);
+    const row = r.rows.find((x) => x.biomarkerId === "dunedinpace")!;
+    expect(row).toMatchObject({ value: "0.83", unit: "years/year" });
+    expect(row.notes.join(" ")).toMatch(/No unit printed/);
+  });
+});

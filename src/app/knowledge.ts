@@ -37,6 +37,7 @@ export const CATEGORY_ORDER: readonly BiomarkerCategory[] = [
   "Iron & vitamins",
   "Electrolytes",
   "Inflammation",
+  "Aging",
   "Body",
 ];
 

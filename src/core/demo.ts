@@ -57,6 +57,7 @@ export const DEMO_UNITS: Record<string, string> = {
   vo2max: "mL/kg/min",
   steps: "steps",
   active_minutes: "min",
+  dunedinpace: "years/year",
   pushups: "reps",
   grip_strength: "kg",
   sit_to_stand_5x: "s",
@@ -161,6 +162,11 @@ export function demoProfile(today: string): DemoData {
       add(date, "alt", wobble(19, 0.1, 1));
     }
   });
+
+  // Two DunedinPACE results from a DNA methylation test of the same blood samples, sent to another lab:
+  // the app records them, it doesn't calculate them.
+  add(draws[5]!, "dunedinpace", 0.94, { lab: "Example DNA lab" });
+  add(draws[9]!, "dunedinpace", 0.88, { lab: "Example DNA lab" });
 
   // The diet experiment: start two weeks after test 7. Two lipid tests before and two after, as the
   // app suggests, so the change can be told apart from normal test-to-test variation.

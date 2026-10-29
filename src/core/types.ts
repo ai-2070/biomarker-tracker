@@ -78,6 +78,8 @@ export type BiomarkerCategory =
   | "Iron & vitamins"
   | "Electrolytes"
   | "Inflammation"
+  /** Measures of how fast the body ages from a specialised blood test (DunedinPACE). */
+  | "Aging"
   /** Not a blood test: weight, waist, blood pressure, heart rate. */
   | "Body";
 
