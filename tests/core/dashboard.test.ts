@@ -26,7 +26,7 @@ describe("dashboard summary", () => {
   it("counts markers in range against those that can be judged", () => {
     expect(d.judged).toBe(d.markers.filter((m) => m.flag !== "unknown").length);
     expect(d.inRange + d.toWatch.length).toBe(d.judged);
-    expect(d.markers).toHaveLength(21);
+    expect(d.markers).toHaveLength(22);
   });
 
   it("lists markers to watch first, then the biggest changes", () => {

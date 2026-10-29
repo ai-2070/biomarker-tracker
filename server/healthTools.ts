@@ -22,6 +22,7 @@ import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, vali
 import { dailyReference, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
 import { findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
+import { phenoAgePace } from "../src/core/agePace";
 
 export interface HealthSnapshot {
   measurements: Measurement[];
@@ -187,6 +188,8 @@ export function levers(s: HealthSnapshot, def: BiomarkerDef) {
 
 export function biologicalAge(s: HealthSnapshot) {
   const sum = summarizePhenoAge(s.measurements, s.profile.birthMonth);
+  const pace = phenoAgePace(sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined).map((d) => ({ date: d.date, years: d.phenoAge!, approximate: d.approximate.length > 0 })));
+  const dunedin = s.measurements.filter((m) => m.biomarkerId === "dunedinpace").sort((a, b) => a.date.localeCompare(b.date));
   return {
     draws: sum.draws.map((d) => ({
       date: d.date,
@@ -198,6 +201,23 @@ export function biologicalAge(s: HealthSnapshot) {
     })),
     latestIncomplete: sum.latestPartial ?? null,
     about: "PhenoAge (Levine et al. 2018): 9 routine markers and age turned into the age at which an average person in a US survey had the same risk. An estimate, not a measurement.",
+    phenoAgePace: pace
+      ? {
+          pace: Math.round(pace.pace * 100) / 100,
+          likelyRange: [Math.round(pace.low * 100) / 100, Math.round(pace.high * 100) / 100],
+          verdict: pace.verdict,
+          tests: pace.tests,
+          from: pace.from,
+          to: pace.to,
+          about: "Computed by the app: PhenoAge years per calendar year across this person's own tests in the last 3 years (slope, 95% range). 1.0 = in step with the calendar. Not DunedinPACE. Say 'unclear' when the range includes 1.",
+        }
+      : "Needs at least 3 PhenoAge results over a year or more.",
+    dunedinPace: dunedin.length
+      ? {
+          results: dunedin.map((m) => ({ date: m.date, value: m.value })),
+          about: "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
+        }
+      : "No DunedinPACE result recorded (it needs a DNA methylation test, not a routine blood test).",
   };
 }
 
@@ -396,7 +416,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
       },
     }),
     get_biological_age: tool({
-      description: "PhenoAge for each blood test that had all 9 markers, computed by the app.",
+      description: "PhenoAge for each blood test that had all 9 markers, how fast PhenoAge changes per calendar year (with its uncertainty), and any DunedinPACE (DNA test) results, all computed or recorded by the app.",
       inputSchema: z.object({}),
       execute: async () => biologicalAge(s),
     }),

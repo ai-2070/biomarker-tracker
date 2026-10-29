@@ -1,0 +1,39 @@
+{
+  "id": "dunedinpace",
+  "name": "DunedinPACE (pace of aging)",
+  "category": "Aging",
+  "aliases": ["DunedinPACE", "Dunedin PACE", "DunedinPACE score", "Pace of aging (DunedinPACE)"],
+  "canonicalUnit": "years/year",
+  "conversions": {
+    "years/year": 1
+  },
+  "rangeNote": "There's no clinical range. 1.0 is the average pace for a midlife adult: one year of biological aging per calendar year; 0.8 is 20 % slower, 1.2 is 20 % faster. Younger people tend to have lower values and older people higher ones. It comes from a DNA methylation test of a blood sample (an array test from a specialised lab), not from a routine blood test, and the app never calculates it: it records the result your lab reports. Values from different labs or test versions may not match exactly.",
+  "summary": "How fast your body is aging, estimated from a DNA methylation blood test (DunedinPACE). It was trained to predict how quickly 19 measures of organ health declined over 20 years in people born in Dunedin, New Zealand, in 1972–73.",
+  "high": {
+    "meaning": "Above 1.0: faster than the average pace. In studies, faster DunedinPACE was linked with more illness, disability and earlier death. One result is an estimate for a group pattern, not a diagnosis.",
+    "commonCauses": ["Older age (values rise with age)", "Childhood adversity (linked to faster pace in the studies)", "Differences between labs or test versions"]
+  },
+  "low": {
+    "meaning": "Below 1.0: slower than the average pace. Younger people tend to have lower values. A lower number doesn't prove that aging was slowed or reversed.",
+    "commonCauses": ["Younger age", "Differences between labs or test versions"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "35029144",
+      "doi": "10.7554/eLife.73420",
+      "title": "DunedinPACE, a DNA methylation biomarker of the pace of aging",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 1037
+    },
+    {
+      "pmid": "26150497",
+      "doi": "10.1073/pnas.1506264112",
+      "title": "Quantification of biological aging in young adults",
+      "year": 2015,
+      "studyType": "observational",
+      "n": 954
+    }
+  ]
+}

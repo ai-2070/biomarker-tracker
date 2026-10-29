@@ -10,6 +10,7 @@ import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
 import { HeartAgeSection } from "../components/dashboard/heartAge";
 import { FitnessAgeSection } from "../components/dashboard/fitnessAge";
 import { AgesChart } from "../components/dashboard/AgesChart";
+import { PaceOfAging } from "../components/dashboard/agePace";
 import { bodyOnly } from "../knowledge";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
@@ -32,6 +33,7 @@ export function PhenoAgePage() {
       </PageTitle>
       <div className="flex flex-col gap-5">
         <AgesChart measurements={all} profile={profile} protocols={protocols} />
+        <PaceOfAging measurements={all} profile={profile} protocols={protocols} />
         <h2 className="-mb-2 font-serif text-2xl font-normal">PhenoAge, from blood tests</h2>
         {!latest ? (
           <NeedsMarkers partial={summary.latestPartial} />

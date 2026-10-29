@@ -21,6 +21,7 @@ const CATEGORIES = new Set([
   "Iron & vitamins",
   "Electrolytes",
   "Inflammation",
+  "Aging",
   "Body",
 ]);
 

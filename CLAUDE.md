@@ -169,6 +169,14 @@ PhenoAge = 141.50225 + ln( -0.00553 * ln(1 - M) ) / 0.090165
 
 ---
 
+## Pace of aging
+
+- A "Pace of aging" card on the Biological age page (`components/dashboard/agePace.tsx`), two measures shown apart, never averaged:
+  - **Pace of your PhenoAge** (`src/core/agePace.ts`, tested): the least-squares slope of PhenoAge against calendar time over the tests in the last 3 years (at least 3 tests over a year or more; 14 days of slack for test dates), with a 95% interval (t, n − 2). Verdict only when the whole interval agrees: falling (top below 0), slower (top below 1), faster (bottom above 1), otherwise unclear. Labelled as computed by the app and not DunedinPACE.
+  - **DunedinPACE** (`knowledge/biomarkers/dunedinpace.json`, category "Aging"): a DNA methylation blood test from a specialised lab (Belsky et al., eLife 2022, PMID 35029144; Pace of Aging, PNAS 2015, PMID 26150497). The app only records the reported number (typed in, or read from a report: one unit, assumed when none is printed) and never calculates it: its code is for research use only and needs methylation array data. No clinical range.
+- Not added: WHOOP Age and WHOOP's "Pace of Aging" (a company white paper, not validated, overlap corrections unpublished; adding hazard ratios from separate studies is a combined score, which this app avoids). Decided 2026-10-29.
+- Brain's `get_biological_age` returns both (`phenoAgePace` with its range and verdict; DunedinPACE results as recorded). The example profile has two made-up DunedinPACE results on its blood draws.
+
 ## Heart age (Framingham, body data)
 
 - `src/core/heartAge.ts` (tested): Framingham general CVD risk, office-based model with BMI (D'Agostino 2008, PMID 18212285); coefficients from the Framingham Heart Study's site and its `gencardio_bmi.xls` (checked 2026-10-29). Heart age = the age at which normal risk factors (systolic 125 untreated, BMI 22.5, non-smoker, no diabetes, the calculator's reference values) give the same 10-year risk; closed form. Tests use the calculator's own example (woman, 30, normal factors → risk 0.010801167676829593, heart age 30).
