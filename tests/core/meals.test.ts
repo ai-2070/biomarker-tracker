@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { SAFETY_LIMITS } from "../../src/core/foods";
-import { adultReference, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
+import { FOOD_NAMES, adultReference, closestFoods, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
 import type { NutrientDef } from "../../src/core/nutrients";
 import type { FoodTable } from "../../src/core/types";
 
@@ -124,3 +124,25 @@ describe("daily reference next to a supplement", () => {
     expect(mealNote({ items: [{ foodId: "a", grams: 50 }] })).toBe("Meal: 1 food, 50 g");
   });
 });
+
+describe("finding foods by other names", () => {
+  it("finds a food under the name the table uses", () => {
+    expect(searchFoods(db, "dark chocolate")[0]!.name).toBe("Chocolate, plain");
+    expect(searchFoods(db, "zucchini")[0]!.name).toMatch(/^Courgette/);
+    expect(searchFoods(db, "chickpeas")[0]!.name).toMatch(/chick peas/);
+    expect(searchFoods(db, "oatmeal").some((f) => /^Porridge/.test(f.name))).toBe(true);
+  });
+
+  it("every other name leads somewhere in the table", () => {
+    for (const [typed] of FOOD_NAMES) expect(searchFoods(db, typed).length, typed).toBeGreaterThan(0);
+  });
+
+  it("says nothing matches, then offers the closest foods by their most telling words", () => {
+    expect(searchFoods(db, "blood orange juice")).toEqual([]);
+    expect(closestFoods(db, "blood orange juice")[0]!.name).toMatch(/^Orange juice/);
+    expect(searchFoods(db, "beet juice")).toEqual([]);
+    expect(closestFoods(db, "beet juice")[0]!.name).toMatch(/^Beetroot/);
+    expect(closestFoods(db, "with and of")).toEqual([]);
+  });
+});
+

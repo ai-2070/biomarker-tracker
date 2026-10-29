@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { todayIso } from "../../core/dates";
-import { MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, searchFoods, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
+import { MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { formatValue } from "../../core/units";
 import { deleteMeal, newId, saveMeal } from "../../db/db";
@@ -15,6 +15,7 @@ import { useMeals, useProfile } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, NUTRIENT_MAP, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
+import { FoodResults } from "../components/FoodResults";
 
 const fmt = (v: number) => formatValue(v < 10 ? Math.round(v * 100) / 100 : Math.round(v * 10) / 10);
 const MACRO_LABEL: Record<(typeof MACROS)[number], string> = {
@@ -89,7 +90,6 @@ function NameField({ meal }: { meal: Meal }) {
 /** The foods and grams; for the person's meals, a search to add more and grams to change. */
 function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; editable: boolean }) {
   const [query, setQuery] = useState("");
-  const results = db && query.trim().length >= 2 ? searchFoods(db, query, 12) : [];
   const save = (items: MealItem[]) => void saveMeal({ ...meal, items });
   return (
     <Card className="flex flex-col gap-3">
@@ -141,26 +141,16 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
               className={inputStyles}
             />
           </label>
-          {results.length > 0 && (
-            <ul className="flex max-h-72 flex-col overflow-y-auto rounded-lg border border-line">
-              {results.map((f) => (
-                <li key={f.id}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      save([...meal.items, { foodId: f.id, grams: 100 }]);
-                      setQuery("");
-                    }}
-                    className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-sunken"
-                  >
-                    <span>{f.name}</span>
-                    <span className="shrink-0 text-sm text-ink-2">Add 100 g</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          {db && query.trim().length >= 2 && results.length === 0 && <p className="text-sm text-ink-2">No food in the table matches every word. Try fewer or simpler words.</p>}
+          <FoodResults
+            db={db}
+            query={query}
+            limit={12}
+            action="Add 100 g"
+            onPick={(f) => {
+              save([...meal.items, { foodId: f.id, grams: 100 }]);
+              setQuery("");
+            }}
+          />
           <p className="text-xs text-ink-2">Weights are of the food as eaten (cooked foods are listed cooked in the table). 2,887 foods from CoFID 2021.</p>
         </div>
       )}
