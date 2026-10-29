@@ -57,7 +57,11 @@ export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; c
         <Step big={n(c.all)} text="records mention vitamin D" />
         <Step big={n(c.retrieved)} text="are reviews, randomised trials or guidelines: all downloaded" />
         <Step big={`${n(c.reviews)} · ${n(c.trials)}`} text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`} />
-        <Step big={`${o.counts.trialReviews}`} text={`reviews of vitamin D trials on ${o.label.toLowerCase()}, after the rules below`} />
+        {o.screening ? (
+          <Step big={`${o.screening.counts.yes}`} text={`reviews answer the question on ${o.label.toLowerCase()}, of ${o.counts.trialReviews} the rules found`} />
+        ) : (
+          <Step big={`${o.counts.trialReviews}`} text={`reviews of vitamin D trials on ${o.label.toLowerCase()}, after the rules below`} />
+        )}
       </ol>
 
       <div role="tablist" aria-label="Outcome" className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
@@ -86,7 +90,11 @@ export function EvidenceMap({ nutrientId, citedTitles }: { nutrientId: string; c
         </ol>
         <p className="mt-3 font-medium">What the rules can't do yet</p>
         <ul className="mt-1 flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
-          <li>They read titles and abstracts, not the papers: a review of blood-sugar control in people who already have diabetes can be chosen for "preventing diabetes", and a review that mentions death only as a side effect for "death".</li>
+          <li>
+            The rules and the screening read titles and abstracts, not the full papers. Without screening, a review of blood-sugar control in people
+            who already have diabetes could be chosen for "preventing diabetes". A model can still misjudge a review, so every decision is listed with
+            its reason, and a clinician still has to check them.
+          </li>
           <li>They don't judge quality (risk of bias), which needs reading each paper's methods.</li>
           <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the findings above do.</li>
           <li>Trial sizes and the number of trials a review pooled are read from abstracts and can be missing or off.</li>
@@ -112,9 +120,11 @@ function Outcome({ o, citedTitles }: { o: EvidenceMapOutcome; citedTitles: Recor
     <div className="flex flex-col gap-6">
       <p className="max-w-3xl">
         {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have {o.label.toLowerCase()} in their title;{" "}
-        {o.counts.trialReviews} are reviews of vitamin D trials that fit the question, and {o.counts.largeTrials} trials had 1,000 people or
-        more.
+        {o.counts.trialReviews} are reviews of vitamin D trials{o.screening ? ` (${o.screening.counts.yes} of them answer the question below)` : " that fit the question"}, and{" "}
+        {o.counts.largeTrials} trials had 1,000 people or more.
       </p>
+
+      {o.screening && <Screening s={o.screening} />}
 
       <Timeline o={o} />
 
@@ -181,6 +191,55 @@ function Outcome({ o, citedTitles }: { o: EvidenceMapOutcome; citedTitles: Recor
         )}
       </section>
     </div>
+  );
+}
+
+/** The finding's question, how many reviews answer it, and the ones left out with the model's reason. */
+function Screening({ s }: { s: NonNullable<EvidenceMapOutcome["screening"]> }) {
+  const rows: [string, string][] = [
+    ["Who", s.question.population],
+    ["Given", s.question.intervention],
+    ["Compared with", s.question.comparison],
+    ["Measured", s.question.outcome],
+  ];
+  const { yes, partly, no, unscreened } = s.counts;
+  return (
+    <section className="flex max-w-3xl flex-col gap-3">
+      <h3 className="font-serif text-xl font-normal">The question each review was checked against</h3>
+      <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
+        {rows.map(([k, v]) => (
+          <div key={k} className="contents">
+            <dt className="text-ink-2">{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="text-ink-2">
+        <span className="font-medium text-ink">{yes}</span> {yes === 1 ? "review answers" : "reviews answer"} it, {partly} only partly, {no}{" "}
+        {no === 1 ? "doesn't" : "don't"}
+        {unscreened > 0 ? `, ${unscreened} not checked yet` : ""}. Only the ones that answer it can be chosen below. Checked by {s.by} ({formatDate(s.at)});
+        not yet checked by a clinician.
+      </p>
+      {s.left.length > 0 && (
+        <details>
+          <summary className="min-h-11 cursor-pointer py-2 text-sm font-medium">Reviews left out, and why ({s.left.length})</summary>
+          <ul className="flex flex-col gap-2.5">
+            {s.left.map((r) => (
+              <li key={r.pmid} className="text-sm">
+                <a href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+                  {r.title}
+                </a>
+                <span className="text-ink-2"> · {r.year}</span>
+                <span className="block text-ink-2">
+                  <span className="font-medium text-ink">{r.fits === "partly" ? "Partly: " : "Not this question: "}</span>
+                  {r.reason}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </section>
   );
 }
 
