@@ -92,6 +92,24 @@ export function bmrMifflinTerms(
   return { weight: 10 * weightKg, height: 6.25 * heightCm!, age: -5 * ageYears!, sex: sex === "m" ? 5 : -161, total, outsideStudyAges: ageYears! < 19 || ageYears! >= 79 };
 }
 
+/**
+ * A second estimate that uses body fat: Cunningham 1980 (PMID 7435418), 500 + 22 × lean mass (kg), with
+ * lean mass = weight × (1 − body fat %). From the latest weight and the latest body fat, only when they
+ * were measured within 30 days of each other. Shown beside Mifflin–St Jeor, not instead of it: in
+ * Mifflin's own data fat-free mass predicted less well than weight, height, age and sex (R² 0.64 vs 0.71),
+ * and in athletes no equation was reliably best (meta-analysis 2023, PMID 37632665). Home body-fat
+ * readings can be several points off, and that error carries into this estimate.
+ */
+export function rmrCunningham(ms: readonly Measurement[]): { total: number; leanKg: number; weight: Measurement; bodyFat: Measurement } | undefined {
+  const latest = latestBody(ms);
+  const weight = latest.weight;
+  const bodyFat = latest.body_fat;
+  if (!weight || !bodyFat || !(weight.value > 0) || bodyFat.value < 2 || bodyFat.value > 70) return undefined;
+  if (Math.abs(Date.parse(weight.date) - Date.parse(bodyFat.date)) > 30 * 86_400_000) return undefined;
+  const leanKg = weight.value * (1 - bodyFat.value / 100);
+  return { total: 500 + 22 * leanKg, leanKg, weight, bodyFat };
+}
+
 /** Waist ÷ height. Below 0.5 is the usual guide for adults (Ashwell 2012, PMID 22106927). */
 export function waistToHeight(waistCm: number, heightCm: number | undefined): number | undefined {
   if (!heightCm || heightCm < 100 || heightCm > 250 || !(waistCm > 0)) return undefined;

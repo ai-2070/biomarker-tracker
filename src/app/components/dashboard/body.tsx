@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmrMifflinTerms, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
+import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmrMifflinTerms, latestBloodPressure, rmrCunningham, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
 import { ageAt } from "../../../core/phenoageDraws";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { todayIso } from "../../../core/dates";
@@ -81,6 +81,7 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
   const w = latestBody(ms).weight;
   const age = w && profile.birthMonth ? ageAt(profile.birthMonth, w.date) : undefined;
   const terms = w ? bmrMifflinTerms(w.value, profile.heightCm, age, profile.sex) : undefined;
+  const lean = rmrCunningham(ms);
   const missing = [!w && "weight", !profile.heightCm && "height", !profile.birthMonth && "month of birth", !profile.sex && "sex"].filter(Boolean) as string[];
   const kcal = (v: number) => Math.round(v).toLocaleString("en-GB");
   return (
@@ -149,6 +150,22 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
                   </tbody>
                 </table>
               </div>
+              {lean && (
+                <div className="rounded-lg border border-line p-3">
+                  <p className="text-sm font-medium">With your body fat (Cunningham equation)</p>
+                  <p className="mt-1 text-sm text-ink-2 tabular-nums">
+                    Lean mass {formatValue(Math.round(lean.leanKg * 10) / 10)} kg (weight {formatValue(lean.weight.value)} kg, body fat {formatValue(lean.bodyFat.value)} %,{" "}
+                    {formatDate(lean.bodyFat.date)}) → 500 + 22 × {formatValue(Math.round(lean.leanKg * 10) / 10)} ={" "}
+                    <span className="font-medium text-ink">{kcal(lean.total)} kcal a day</span>
+                  </p>
+                  <p className="mt-2 text-sm text-ink-2">
+                    Shown beside the main estimate, not instead of it. Using body fat isn't more accurate for most people: in Mifflin&apos;s own
+                    data, fat-free mass predicted measured values less well than weight, height, age and sex, and in a review of athletes no
+                    equation was reliably best. Home body-fat readings can be several points off, and that error carries into this number.
+                    Different equations giving different numbers is why both are estimates.
+                  </p>
+                </div>
+              )}
               <ul className="flex list-disc flex-col gap-1 pl-5 text-sm text-ink-2">
                 <li>An estimate: within about 10 % of a measured value for most adults, further off for some people, especially with a lot of muscle or a lot of body fat.</li>
                 {terms.outsideStudyAges && <li>Your age is outside the ages the equation was made from (19 to 78), so it may be less accurate.</li>}
@@ -164,6 +181,16 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
               <li>
                 <StudyLink s={{ pmid: "2305711", doi: "10.1093/ajcn/51.2.241", title: "A new predictive equation for resting energy expenditure in healthy individuals", year: 1990, studyType: "observational", n: 498 }} />
               </li>
+              {lean && (
+                <li>
+                  <StudyLink s={{ pmid: "7435418", doi: "10.1093/ajcn/33.11.2372", title: "A reanalysis of the factors influencing basal metabolic rate in normal adults", year: 1980, studyType: "observational", n: 223 }} />
+                </li>
+              )}
+              {lean && (
+                <li>
+                  <StudyLink s={{ pmid: "37632665", doi: "10.1007/s40279-023-01896-z", title: "Accuracy of Resting Metabolic Rate Prediction Equations in Athletes: A Systematic Review with Meta-analysis", year: 2023, studyType: "meta-analysis", n: 1430 }} />
+                </li>
+              )}
               <li>
                 <StudyLink s={{ pmid: "15883556", title: "Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review", year: 2005, studyType: "review" }} />
               </li>

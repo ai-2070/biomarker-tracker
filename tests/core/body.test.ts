@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, bmrMifflinTerms, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, bmrMifflinTerms, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -36,6 +36,14 @@ describe("basal metabolic rate", () => {
     expect(t).toMatchObject({ weight: 672, height: 1050, sex: -161, outsideStudyAges: false });
     expect(bmrMifflinTerms(70, 170, 80, "m")).toMatchObject({ sex: 5, outsideStudyAges: true });
     expect(bmrMifflinTerms(70, undefined, 40, "m")).toBeUndefined();
+  });
+  it("adds Cunningham's lean-mass estimate only with a body-fat reading near the weight", () => {
+    const r = rmrCunningham([m("weight", "2026-10-22", 67.2), m("body_fat", "2026-10-01", 29.2)])!;
+    expect(r.leanKg).toBeCloseTo(47.578, 3);
+    expect(r.total).toBeCloseTo(500 + 22 * 47.5776, 2);
+    expect(rmrCunningham([m("weight", "2026-10-22", 67.2), m("body_fat", "2026-08-01", 29.2)])).toBeUndefined();
+    expect(rmrCunningham([m("weight", "2026-10-22", 67.2)])).toBeUndefined();
+    expect(rmrCunningham([m("weight", "2026-10-22", 67.2), m("body_fat", "2026-10-20", 1)])).toBeUndefined();
   });
   it("needs an adult with weight, height, age and sex", () => {
     expect(bmrMifflin(60, undefined, 40, "f")).toBeUndefined();
