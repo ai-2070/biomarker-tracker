@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, bmrMifflinTerms, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -29,6 +29,13 @@ describe("basal metabolic rate", () => {
   it("uses the Mifflin–St Jeor equation", () => {
     expect(bmrMifflin(80, 180, 30, "m")).toBe(1780);
     expect(bmrMifflin(60, 165, 40, "f")).toBeCloseTo(1270.25, 2);
+    // The example profile: a woman, 67.2 kg, 168 cm, 47.6 years.
+    expect(bmrMifflin(67.2, 168, 47.6, "f")).toBeCloseTo(1323, 0);
+    const t = bmrMifflinTerms(67.2, 168, 47.6, "f")!;
+    expect(t.weight + t.height + t.age + t.sex).toBeCloseTo(t.total, 6);
+    expect(t).toMatchObject({ weight: 672, height: 1050, sex: -161, outsideStudyAges: false });
+    expect(bmrMifflinTerms(70, 170, 80, "m")).toMatchObject({ sex: 5, outsideStudyAges: true });
+    expect(bmrMifflinTerms(70, undefined, 40, "m")).toBeUndefined();
   });
   it("needs an adult with weight, height, age and sex", () => {
     expect(bmrMifflin(60, undefined, 40, "f")).toBeUndefined();

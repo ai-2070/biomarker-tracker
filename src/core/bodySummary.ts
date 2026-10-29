@@ -1,4 +1,4 @@
-import { bmi, bmrMifflin, latestBloodPressure, latestBody, recentAverage, waistToHeight } from "./body";
+import { bmi, bmrMifflin, latestBloodPressure, latestBody, recentAverage, waistToHeight, waistToHeightBand } from "./body";
 import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData } from "./heartAge";
 import { fitnessAge, vo2maxForAge } from "./fitnessAge";
 import { ageAt } from "./phenoageDraws";
@@ -66,10 +66,10 @@ export function bodySummary(
     ...(w ? { weightKg: { latest: r1(w.value), date: w.date } } : {}),
     ...(b !== undefined ? { bmi: { value: r1(b), note: "No range is used: BMI can't tell muscle from fat. Never a target." } } : {}),
     ...(latest.waist && waistToHeight(latest.waist.value, profile.heightCm) !== undefined
-      ? { waistToHeight: { value: Math.round(waistToHeight(latest.waist.value, profile.heightCm)! * 100) / 100, guide: "below 0.5 is the usual guide" } }
+      ? { waistToHeight: { value: Math.round(waistToHeight(latest.waist.value, profile.heightCm)! * 100) / 100, guide: "below 0.5 is the usual guide", range: waistToHeightBand(waistToHeight(latest.waist.value, profile.heightCm)!) } }
       : {}),
     ...(bmr !== undefined
-      ? { basalMetabolicRate: { kcalPerDay: Math.round(bmr), method: "Mifflin-St Jeor", note: "An estimate (about ±10%) of energy used at complete rest. Not a target and not an intake recommendation." } }
+      ? { basalMetabolicRate: { kcalPerDay: Math.round(bmr), method: "Mifflin-St Jeor", note: "Resting metabolic rate (often called basal metabolic rate): an estimate (about ±10%) of energy used at rest. Not a target and not an intake recommendation." } }
       : {}),
     ...(bp
       ? {

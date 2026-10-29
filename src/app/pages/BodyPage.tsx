@@ -130,7 +130,7 @@ export function BodyPage() {
                 <ul className="mt-2 flex list-disc flex-col gap-1.5 pl-5 text-sm text-ink-2">
                   <li>BMI and waist size are rough guides to health risk, not verdicts. BMI can't tell muscle from fat.</li>
                   <li>Home blood pressure runs lower than in a clinic. One high reading isn't a diagnosis; repeated ones are worth discussing with a doctor.</li>
-                  <li>Basal metabolic rate is an estimate of the energy your body uses at rest. It isn't a target, and not a reason to eat less; for changes to your weight, talk to your doctor or a dietitian.</li>
+                  <li>Resting metabolic rate (often called basal metabolic rate) is an estimate of the energy your body uses at rest. It isn't a target, and not a reason to eat less; for changes to your weight, talk to your doctor or a dietitian.</li>
                   <li>Home glucose meters can be about 15 % off. A diagnosis always needs a lab test.</li>
                   <li>Watches and rings estimate heart rate, HRV, blood oxygen and sleep stages; compare them with your own past readings rather than with other people. Company sleep scores aren't imported: they're each company's own formula.</li>
                   <li>Day-to-day swings are normal. Measure the same way and at the same time of day, and follow the trend.</li>

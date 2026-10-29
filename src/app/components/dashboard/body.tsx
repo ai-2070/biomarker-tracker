@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
+import { Dialog } from "@base-ui/react/dialog";
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
+import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmrMifflinTerms, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
 import { ageAt } from "../../../core/phenoageDraws";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { todayIso } from "../../../core/dates";
@@ -8,16 +9,17 @@ import type { DashboardMarker } from "../../../core/dashboard";
 import { personalRange } from "../../../core/personalRange";
 import { flagLatest, flagMeasurement, recentAverage, resolveRange, sortByDate } from "../../../core/trends";
 import type { Measurement, Profile } from "../../../core/types";
-import { listUnits } from "../../../core/units";
+import { formatValue, listUnits } from "../../../core/units";
 import { addMeasurements } from "../../../db/db";
 import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement } from "../../format";
 import { useDisplayUnits } from "../../hooks";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
 import { UnitSelect } from "../UnitSelect";
-import { Button, FlagBadge, cx, errorStyles, inputStyles, labelStyles as formLabel } from "../ui";
+import { StudyLink } from "../evidence";
+import { Button, FlagBadge, buttonStyles, cx, errorStyles, inputStyles, labelStyles as formLabel } from "../ui";
 import { Sparkline } from "./Sparkline";
-import { Figure } from "./widgets";
+import { Figure, cardStyles, labelStyles as figureLabel } from "./widgets";
 
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
@@ -71,34 +73,114 @@ export function BmiFigure({ ms, profile, className }: { ms: Measurement[]; profi
   );
 }
 
-/** Basal metabolic rate, from the latest weight, height, age and sex. Shown as an estimate, never as a target. */
+/**
+ * Resting metabolic rate, from the latest weight, height, age and sex. Shown as an estimate, never as a
+ * target. It has no chart of its own, so it opens an explanation with the sum worked through.
+ */
 export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profile: Profile; className?: string }) {
   const w = latestBody(ms).weight;
   const age = w && profile.birthMonth ? ageAt(profile.birthMonth, w.date) : undefined;
-  const value = w ? bmrMifflin(w.value, profile.heightCm, age, profile.sex) : undefined;
+  const terms = w ? bmrMifflinTerms(w.value, profile.heightCm, age, profile.sex) : undefined;
   const missing = [!w && "weight", !profile.heightCm && "height", !profile.birthMonth && "month of birth", !profile.sex && "sex"].filter(Boolean) as string[];
+  const kcal = (v: number) => Math.round(v).toLocaleString("en-GB");
   return (
-    <Figure
-      label="Basal metabolic rate"
-      href={href({ name: "marker", id: "weight" })}
-      className={className}
-      foot={
-        value === undefined
-          ? missing.length
-            ? `Needs your ${missing.join(", ")} (Settings → Your data).`
-            : "For adults only."
-          : "Energy your body uses at complete rest, estimated from weight, height, age and sex (Mifflin–St Jeor, about ±10 %). Not a target."
-      }
-    >
-      {value === undefined ? (
-        <p className="font-serif text-4xl text-ink-2">–</p>
-      ) : (
-        <p className="flex items-baseline gap-1.5">
-          <span className={big}>{Math.round(value).toLocaleString("en-GB")}</span>
-          <span className="text-ink-2">kcal a day</span>
-        </p>
-      )}
-    </Figure>
+    <Dialog.Root>
+      <Dialog.Trigger
+        className={cx(
+          cardStyles,
+          className,
+          "group flex min-h-40 cursor-pointer flex-col gap-2 text-left text-ink transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        )}
+      >
+        <span className={figureLabel}>Resting metabolic rate</span>
+        {terms === undefined ? (
+          <span className="font-serif text-4xl text-ink-2">–</span>
+        ) : (
+          <span className="flex items-baseline gap-1.5">
+            <span className={big}>{kcal(terms.total)}</span>
+            <span className="text-ink-2">kcal a day</span>
+          </span>
+        )}
+        <span className="text-sm text-ink-2">
+          {terms === undefined
+            ? missing.length
+              ? `Needs your ${missing.join(", ")} (Settings → Your data).`
+              : "For adults only."
+            : "Energy your body uses at rest, estimated from weight, height, age and sex. Not a target."}
+        </span>
+        {terms !== undefined && <span className="mt-auto text-sm font-medium text-accent">How it's worked out</span>}
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] w-[34rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
+          <div>
+            <Dialog.Title className="font-serif text-2xl font-normal">Resting metabolic rate</Dialog.Title>
+            <Dialog.Description className="mt-1 text-ink-2">
+              The energy your body uses at rest, awake and lying still: breathing, heartbeat, keeping warm. Often called basal metabolic rate.
+              Your whole day uses more, with moving and digesting.
+            </Dialog.Description>
+          </div>
+          {terms && w ? (
+            <>
+              <div className="rounded-lg bg-sunken p-3">
+                <p className="text-sm text-ink-2">Mifflin–St Jeor equation, with your numbers</p>
+                <table className="mt-2 w-full text-sm tabular-nums">
+                  <tbody>
+                    <tr>
+                      <td className="py-0.5">10 × weight {formatValue(w.value)} kg ({formatDate(w.date)})</td>
+                      <td className="py-0.5 text-right">{kcal(terms.weight)}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-0.5">+ 6.25 × height {formatValue(profile.heightCm!)} cm</td>
+                      <td className="py-0.5 text-right">+ {kcal(terms.height)}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-0.5">− 5 × age {formatValue(Math.round(age! * 10) / 10)} years</td>
+                      <td className="py-0.5 text-right">− {kcal(-terms.age)}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-0.5">{profile.sex === "m" ? "+ 5 (men)" : "− 161 (women)"}</td>
+                      <td className="py-0.5 text-right">{terms.sex > 0 ? `+ ${terms.sex}` : `− ${-terms.sex}`}</td>
+                    </tr>
+                    <tr className="border-t border-line font-medium">
+                      <td className="pt-1.5">Resting metabolic rate</td>
+                      <td className="pt-1.5 text-right">{kcal(terms.total)} kcal a day</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ul className="flex list-disc flex-col gap-1 pl-5 text-sm text-ink-2">
+                <li>An estimate: within about 10 % of a measured value for most adults, further off for some people, especially with a lot of muscle or a lot of body fat.</li>
+                {terms.outsideStudyAges && <li>Your age is outside the ages the equation was made from (19 to 78), so it may be less accurate.</li>}
+                <li>Not a target and not how much to eat. The app never sets an intake or a deficit.</li>
+              </ul>
+            </>
+          ) : (
+            <p className="text-ink-2">{missing.length ? `Needs your ${missing.join(", ")}. Add them in Settings → Your data, and your weight on the Body page.` : "Only worked out for adults."}</p>
+          )}
+          <div className="text-sm text-ink-2">
+            <p className="font-medium text-ink">Sources</p>
+            <ul className="mt-1 flex flex-col gap-1">
+              <li>
+                <StudyLink s={{ pmid: "2305711", doi: "10.1093/ajcn/51.2.241", title: "A new predictive equation for resting energy expenditure in healthy individuals", year: 1990, studyType: "observational", n: 498 }} />
+              </li>
+              <li>
+                <StudyLink s={{ pmid: "15883556", title: "Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review", year: 2005, studyType: "review" }} />
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a href={href({ name: "marker", id: "weight" })} className={buttonStyles.secondary}>
+              Weight chart
+            </a>
+            <a href={href({ name: "data", tab: "data" })} className={buttonStyles.secondary}>
+              Height, birth month, sex
+            </a>
+            <Dialog.Close className={cx(buttonStyles.quiet, "ml-auto")}>Close</Dialog.Close>
+          </div>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 
