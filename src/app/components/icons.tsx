@@ -138,6 +138,13 @@ export const ArrowRightIcon = (p: P) => (
   </Icon>
 );
 
+/** A chevron pointing down; rotated by its parent when open. */
+export const ChevronIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+  </Icon>
+);
+
 export const MinusIcon = (p: P) => (
   <Icon {...p}>
     <path d="M5 12h14" />

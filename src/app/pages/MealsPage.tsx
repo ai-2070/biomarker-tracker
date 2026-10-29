@@ -7,7 +7,8 @@ import type { SafetyId } from "../../core/types";
 import { newId, saveMeal } from "../../db/db";
 import { openBrain } from "../brain/store";
 import { DarkMatterExplainer } from "../components/DarkMatter";
-import { FoodComparison } from "../components/FoodComparison";
+import { COMPARISON_CLAIMS, FoodComparison } from "../components/FoodComparison";
+import { Fold, FoldGroup } from "../components/disclosure";
 import { BrainIcon, PlusIcon } from "../components/icons";
 import { Button, Card, PageTitle } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
@@ -52,7 +53,7 @@ export function MealsPage() {
 
   return (
     <>
-      <PageTitle sub="Build a meal from foods and grams and see what the food table measured in it: energy, protein, fat, carbohydrate, fibre, vitamins and minerals. No targets, no diet plans.">
+      <PageTitle sub="Build a meal from foods and grams and see what it contains. No targets, no diet plans.">
         Meals
       </PageTitle>
       <div className="mb-5 flex flex-wrap gap-2">
@@ -65,9 +66,6 @@ export function MealsPage() {
       </div>
 
       <div className="flex flex-col gap-6">
-        <DarkMatterExplainer db={db} />
-        <FoodComparison />
-
         <section className="flex flex-col gap-3">
           <h2 className="font-serif text-2xl font-normal">Your meals</h2>
           {meals === undefined ? (
@@ -130,6 +128,15 @@ export function MealsPage() {
             </p>
           )}
         </section>
+
+        <FoldGroup>
+          <Fold title="What food tables can't tell you" summary="They measure about 30 nutrients; food holds more than 26,000 chemicals. What this means for the numbers here.">
+            <DarkMatterExplainer db={db} />
+          </Fold>
+          <Fold title="Animal foods, fruit and plants: what research says" summary={`${COMPARISON_CLAIMS} common claims about absorption, vitamins, the food matrix and safety, each with a verdict and sources.`}>
+            <FoodComparison />
+          </Fold>
+        </FoldGroup>
       </div>
     </>
   );

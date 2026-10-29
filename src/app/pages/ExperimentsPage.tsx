@@ -98,10 +98,9 @@ export function ExperimentPage({ id }: { id: string }) {
       </a>
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">What changed · {CATEGORY_LABEL[e.category]}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{e.change}</h1>
           <p className="mt-1 text-ink-2">
-            Started {formatDate(e.start)} · re-test from {formatDate(due)}
+            {CATEGORY_LABEL[e.category]} · started {formatDate(e.start)} · re-test from {formatDate(due)}
             {e.end && ` · ended ${formatDate(e.end)}`}
           </p>
         </div>

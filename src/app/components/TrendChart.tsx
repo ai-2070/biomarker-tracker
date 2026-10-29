@@ -44,7 +44,8 @@ interface ChartPrefs {
   fit: boolean;
   habits: boolean;
 }
-const DEFAULT_PREFS: ChartPrefs = { group: "each", band: true, fit: false, habits: true };
+// Habits under the chart are off until asked for: the chart stays light.
+const DEFAULT_PREFS: ChartPrefs = { group: "each", band: true, fit: false, habits: false };
 
 /** Chart choices are remembered per marker in this browser (a convenience; nothing depends on it). */
 function usePrefs(id: string): [ChartPrefs, (p: Partial<ChartPrefs>) => void] {

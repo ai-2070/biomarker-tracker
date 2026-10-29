@@ -29,12 +29,15 @@ export function ResearchPanel({
   critical,
   question,
   topic: initialTopic = "",
+  bare = false,
 }: {
   name: string;
   terms: string[];
   critical: boolean;
   question: string;
   topic?: string;
+  /** Inside a fold: no card and no heading (the fold has its own). */
+  bare?: boolean;
 }) {
   const [filter, setFilter] = useState<SearchFilter>("reviews");
   const [topic, setTopic] = useState(initialTopic);
@@ -57,15 +60,20 @@ export function ResearchPanel({
   }
 
   const papers = state.result?.papers ?? [];
+  const Box = bare ? "div" : Card;
   return (
-    <Card className="flex flex-col gap-4">
-      <div>
-        <h2 className="font-serif text-2xl font-normal">Research</h2>
-        <p className="mt-1 text-ink-2">
-          Search published studies about {name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your
-          results are not.
-        </p>
-      </div>
+    <Box className="flex flex-col gap-4">
+      {bare ? (
+        <p className="text-ink-2">Only the search words are sent, to Europe PMC (or PubMed if it's down). Your results are not.</p>
+      ) : (
+        <div>
+          <h2 className="font-serif text-2xl font-normal">Research</h2>
+          <p className="mt-1 text-ink-2">
+            Search published studies about {name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your
+            results are not.
+          </p>
+        </div>
+      )}
 
       <form onSubmit={search} className="flex flex-col gap-4">
         <ChoiceGroup<SearchFilter>
@@ -120,7 +128,7 @@ export function ResearchPanel({
           )}
         </div>
       )}
-    </Card>
+    </Box>
   );
 }
 

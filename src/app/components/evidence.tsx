@@ -19,14 +19,26 @@ export const STUDY_LABEL: Record<Citation["studyType"], string> = {
   guideline: "Guideline",
 };
 
-export function GradeBadge({ grade, className }: { grade: EvidenceGrade; className?: string }) {
+const FILLED: Record<EvidenceGrade, number> = { high: 3, moderate: 2, low: 1, "very low": 0 };
+
+/** Three small dots, filled for the grade: drawn, so they match the icon set. */
+export function GradeDots({ grade }: { grade: EvidenceGrade }) {
+  return (
+    <svg width="22" height="8" viewBox="0 0 22 8" aria-hidden="true" className="shrink-0">
+      {[0, 1, 2].map((i) => (
+        <circle key={i} cx={4 + i * 7} cy="4" r="3" className={i < FILLED[grade] ? "fill-accent" : "fill-none stroke-line-strong"} strokeWidth="1.25" />
+      ))}
+    </svg>
+  );
+}
+
+/** The evidence grade: dots and a word. `short` drops "evidence" (for rows). */
+export function GradeBadge({ grade, className, short = false }: { grade: EvidenceGrade; className?: string; short?: boolean }) {
   const g = GRADE[grade];
   return (
-    <span className={cx("inline-flex items-center rounded-full bg-sunken px-2 py-0.5 text-sm font-medium whitespace-nowrap", className)}>
-      <span aria-hidden="true" className="mr-1 tracking-tight text-accent">
-        {g.dots}
-      </span>
-      {g.label} evidence
+    <span className={cx("inline-flex items-center gap-1.5 whitespace-nowrap", short ? "text-xs text-ink-2" : "rounded-full bg-sunken px-2 py-0.5 text-sm font-medium", className)}>
+      <GradeDots grade={grade} />
+      {short ? g.label : `${g.label} evidence`}
     </span>
   );
 }

@@ -9,7 +9,8 @@ import { ConfirmDialog } from "../components/ConfirmDialog";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { TrendChart } from "../components/TrendChart";
 import { ResearchPanel } from "../components/ResearchPanel";
-import { LeversPanel } from "../components/LeversPanel";
+import { LeversPanel, leversHeading } from "../components/LeversPanel";
+import { Fold, FoldGroup, Row, Rows } from "../components/disclosure";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, LinkButton, Notice } from "../components/ui";
 import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement, showRange, showValue } from "../format";
@@ -32,6 +33,7 @@ export function MarkerPage({ id }: { id: string }) {
   const unit = displayUnitFor(def, units[def.id]);
   const trend = measurements ? computeTrend(measurements) : undefined;
   const latestFlag = trend && measurements ? flagLatest(def, measurements, profile) : undefined;
+  const levers = leversHeading(def, latestFlag, protocols, profile);
   const usual = def.personalRange && measurements ? personalRange(measurements) : undefined;
   const range = usual
     ? { low: usual.low, high: usual.high, source: "personal" as const, from: usual.baseline.from }
@@ -54,7 +56,6 @@ export function MarkerPage({ id }: { id: string }) {
 
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{def.category}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{fullName(def)}</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -117,21 +118,39 @@ export function MarkerPage({ id }: { id: string }) {
               <TrendChart key={def.id} def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
             </Card>
 
-            <MeasurementList def={def} measurements={measurements} unit={unit} profile={profile} protocols={protocols} />
           </>
         )}
 
-        <About def={def} unit={unit} profile={profile} range={range} />
-
-        {/* No suggestions next to a critical value: the urgent banner comes first. */}
-        {!(latestFlag && isCritical(latestFlag)) && <LeversPanel def={def} flag={latestFlag} protocols={protocols} />}
-
-        <ResearchPanel
-          name={def.name}
-          terms={markerTerms(def.name, def.abbreviation)}
-          question={`What does research say about what affects my ${nameInSentence(def)}?`}
-          critical={!!latestFlag && isCritical(latestFlag)}
-        />
+        {/* Explanation, levers and research one tap away; levers open by themselves when the result is out of range. */}
+        <FoldGroup className="mt-2">
+          {measurements && measurements.length > 0 && (
+            <Fold title="All results" summary={`${measurements.length} ${measurements.length === 1 ? "result" : "results"}, newest first. Open one for its range, lab and what you were doing then.`}>
+              <MeasurementList def={def} measurements={measurements} unit={unit} profile={profile} protocols={protocols} />
+            </Fold>
+          )}
+          <Fold title={`What is ${def.abbreviation ?? def.name}?`} summary={firstSentence(def.summary)}>
+            <About def={def} unit={unit} profile={profile} range={range} />
+          </Fold>
+          {/* No suggestions next to a critical value: the urgent banner comes first. */}
+          {!(latestFlag && isCritical(latestFlag)) && levers.count > 0 && (
+            <Fold
+              title={levers.title}
+              summary={`${levers.count} ${levers.count === 1 ? "option" : "options"} from research, each graded${levers.focus ? `, for a ${levers.focus} result` : ""}`}
+              defaultOpen={!!levers.focus}
+            >
+              <LeversPanel def={def} flag={latestFlag} protocols={protocols} />
+            </Fold>
+          )}
+          <Fold title="Search research" summary={`Published studies about ${nameInSentence(def)}`}>
+            <ResearchPanel
+              bare
+              name={def.name}
+              terms={markerTerms(def.name, def.abbreviation)}
+              question={`What does research say about what affects my ${nameInSentence(def)}?`}
+              critical={!!latestFlag && isCritical(latestFlag)}
+            />
+          </Fold>
+        </FoldGroup>
       </div>
     </>
   );
@@ -187,68 +206,65 @@ function MeasurementList({
   // Newest first; long lists (daily values from a watch) start short.
   const rows = showAll ? all : all.slice(0, RESULTS_SHOWN);
   return (
-    <Card>
-      <h2 className="mb-3 flex items-baseline gap-2 font-serif text-2xl font-normal">
-        All results <span className="font-sans text-base text-ink-2 tabular-nums">{all.length}</span>
-      </h2>
-      <ul id={`results-${def.id}`} className="flex flex-col divide-y divide-line">
+    <div>
+      <Rows>
         {rows.map((m) => {
           const flag = flagMeasurement(def, m, profile);
           const r = resolveRange(def, m, profile);
           const entered = m.originalUnit !== unit ? `${m.qualifier ?? ""}${formatValue(m.originalValue)} ${m.originalUnit}` : undefined;
+          const during = activeOn(protocols, m.date);
           return (
-            <li key={m.id} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3">
-              <div className="min-w-0">
-                <p className="font-medium">
-                  <span className="tabular-nums">{showMeasurement(def, m, unit)}</span> {unit}{" "}
-                  <span className="font-normal text-ink-2">· {formatDate(m.date)}</span>
-                </p>
+            <Row
+              key={m.id}
+              title={
+                <span>
+                  <span className="tabular-nums">{showMeasurement(def, m, unit)}</span> {unit}
+                  <span className="font-normal text-ink-2"> · {formatDate(m.date)}</span>
+                </span>
+              }
+              aside={flag !== "unknown" ? <FlagBadge flag={flag} /> : undefined}
+            >
+              <p className="text-sm text-ink-2">
+                {[
+                  entered && `Entered as ${entered}`,
+                  r && `Range ${showRange(def, r, unit)}${r.source === "lab" ? " (lab)" : ""}`,
+                  m.fasted === true ? "Fasting" : m.fasted === false ? "Not fasting" : undefined,
+                  m.lab,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </p>
+              {m.note && <p className="text-sm text-ink-2 italic">{m.note}</p>}
+              {during.length > 0 && (
                 <p className="text-sm text-ink-2">
-                  {[
-                    entered && `Entered as ${entered}`,
-                    r && `Range ${showRange(def, r, unit)}${r.source === "lab" ? " (lab)" : ""}`,
-                    m.fasted === true ? "Fasting" : m.fasted === false ? "Not fasting" : undefined,
-                    m.lab,
-                  ]
-                    .filter(Boolean)
-                    .join(" · ")}
+                  <span className="font-medium text-ink">At the time: </span>
+                  {during.map((p) => p.label).join(", ")}
                 </p>
-                {m.note && <p className="text-sm text-ink-2 italic">{m.note}</p>}
-                {activeOn(protocols, m.date).length > 0 && (
-                  <p className="text-sm text-ink-2">
-                    <span className="font-medium text-ink">At the time: </span>
-                    {activeOn(protocols, m.date)
-                      .map((p) => p.label)
-                      .join(", ")}
-                  </p>
-                )}
-              </div>
-              <div className="flex items-center gap-2">
-                {/* "No range" on every row says nothing: the About section explains it once. */}
-                {flag !== "unknown" && <FlagBadge flag={flag} />}
+              )}
+              <div>
                 <ConfirmDialog
-                  trigger={<span>Delete</span>}
+                  trigger={<span>Delete this result</span>}
                   triggerVariant="quiet"
-                  triggerClassName="text-sm"
+                  triggerClassName="text-sm -ml-3"
                   title="Delete this result?"
                   description={`${def.name} ${showMeasurement(def, m, unit)} ${unit} from ${formatDate(m.date)} will be removed from this device. This cannot be undone.`}
                   confirmLabel="Delete result"
                   onConfirm={() => deleteMeasurement(m.id)}
                 />
               </div>
-            </li>
+            </Row>
           );
         })}
-      </ul>
+      </Rows>
       {all.length > RESULTS_SHOWN && (
-        <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-line pt-3">
-          <Button variant="secondary" aria-expanded={showAll} aria-controls={`results-${def.id}`} onClick={() => setShowAll((v) => !v)}>
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <Button variant="secondary" aria-expanded={showAll} onClick={() => setShowAll((v) => !v)}>
             {showAll ? "Show fewer" : `Show all ${all.length} results`}
           </Button>
           {!showAll && <span className="text-sm text-ink-2">Showing the newest {RESULTS_SHOWN}.</span>}
         </div>
       )}
-    </Card>
+    </div>
   );
 }
 
@@ -266,8 +282,7 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
       ? " The range changes with age. Add your month of birth on the Data page to use the matching one."
       : "";
   return (
-    <Card className="flex flex-col gap-4">
-      <h2 className="font-serif text-2xl font-normal">What is {def.abbreviation ?? def.name}?</h2>
+    <div className="flex flex-col gap-4">
       <p>{def.summary}</p>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -307,8 +322,14 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
       <p className="text-sm text-ink-2">
         This explains what the marker means in general. It is not a diagnosis. Talk to your doctor about your own results.
       </p>
-    </Card>
+    </div>
   );
+}
+
+/** The first sentence of a text, for a fold's summary line. */
+function firstSentence(text: string): string {
+  const m = /^.*?[.!?](\s|$)/.exec(text);
+  return (m ? m[0] : text).trim();
 }
 
 function Meaning({ title, meaning, causes }: { title: string; meaning: string; causes: string[] }) {

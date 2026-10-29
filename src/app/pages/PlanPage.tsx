@@ -14,7 +14,7 @@ import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
-import { CATEGORY_LABEL, formatDate, lowerFirst } from "../format";
+import { CATEGORY_LABEL, formatDate } from "../format";
 import { usePlans, useProfile, useProtocols } from "../hooks";
 import { NUTRIENTS } from "../knowledge";
 import { href } from "../router";
@@ -61,9 +61,6 @@ export function PlanPage({ id }: { id: string }) {
       ) : (
         <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
-              Protocol{plan.active ? ` · running since ${formatDate(plan.active.since)}` : ""}
-            </p>
             <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{plan.name}</h1>
             {plan.description && <p className="mt-1 max-w-2xl text-ink-2">{plan.description}</p>}
             {plan.source && <p className="mt-1 text-sm text-ink-2">Source: {plan.source}</p>}
@@ -81,35 +78,25 @@ export function PlanPage({ id }: { id: string }) {
           <Card className="flex flex-col gap-3">
             <h2 className="font-serif text-2xl font-normal">Check before you start</h2>
             <SafetyNotices notes={notes} />
-            {pairs.length > 0 && (
-              <div>
-                <h3 className="mb-1 font-medium">Items that interact with each other</h3>
-                <ul className="flex flex-col gap-2">
-                  {pairs.map((w) => (
-                    <li key={`${w.a}|${w.b}`} className="rounded-lg bg-warn-soft p-3">
-                      <span className="font-medium">
-                        {w.a} and {w.b}:
-                      </span>{" "}
-                      {w.note}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {withYou.length > 0 && (
-              <div>
-                <h3 className="mb-1 font-medium">Items that interact with your medicines or conditions</h3>
-                <ul className="flex flex-col gap-2">
-                  {withYou.map(({ n, x }) => (
-                    <li key={`${n.id}|${x.with}`} className="rounded-lg bg-warn-soft p-3">
-                      <span className="font-medium">
-                        {n.name} and {x.with.toLowerCase()}:
-                      </span>{" "}
-                      {x.note}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {(pairs.length > 0 || withYou.length > 0) && (
+              <ul className="flex flex-col divide-y divide-warn/20 rounded-lg bg-warn-soft px-3">
+                {pairs.map((w) => (
+                  <li key={`${w.a}|${w.b}`} className="py-2.5">
+                    <span className="font-medium">
+                      {w.a} and {w.b}:
+                    </span>{" "}
+                    {w.note}
+                  </li>
+                ))}
+                {withYou.map(({ n, x }) => (
+                  <li key={`${n.id}|${x.with}`} className="py-2.5">
+                    <span className="font-medium">
+                      {n.name} and your {x.with.toLowerCase()}:
+                    </span>{" "}
+                    {x.note}
+                  </li>
+                ))}
+              </ul>
             )}
           </Card>
         )}
@@ -139,7 +126,7 @@ export function PlanPage({ id }: { id: string }) {
             itemsByTime(plan).map((g) => (
               <section key={g.when}>
                 <h3 className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{TIME_LABEL[g.when]}</h3>
-                <ul className="flex flex-col divide-y divide-line rounded-lg border border-line">
+                <ul className="flex flex-col divide-y divide-line">
                   {g.items.map((item) =>
                     editing === item.id ? (
                       <li key={item.id} className="p-3">
@@ -149,16 +136,15 @@ export function PlanPage({ id }: { id: string }) {
                             update({ ...plan, items: plan.items.map((i) => (i.id === item.id ? next : i)) });
                             setEditing(null);
                           }}
+                          onRemove={() => {
+                            update({ ...plan, items: plan.items.filter((i) => i.id !== item.id) });
+                            setEditing(null);
+                          }}
                           onCancel={() => setEditing(null)}
                         />
                       </li>
                     ) : (
-                      <ItemRow
-                        key={item.id}
-                        item={item}
-                        onEdit={() => setEditing(item.id)}
-                        onRemove={() => update({ ...plan, items: plan.items.filter((i) => i.id !== item.id) })}
-                      />
+                      <ItemRow key={item.id} item={item} onEdit={() => setEditing(item.id)} />
                     ),
                   )}
                 </ul>
@@ -170,12 +156,8 @@ export function PlanPage({ id }: { id: string }) {
         <Share plan={plan} />
 
         <p className="text-sm text-ink-2">
-          EU reference intakes and upper limits are population values from the European Food Safety Authority (EFSA): what covers most healthy
-          adults from all food, and the most that is unlikely to harm over a long time. They aren't a dose or a target for you.
-        </p>
-        <p className="text-sm text-ink-2">
-          The app never suggests what or how much to take: amounts here are your own. Talk to your doctor or pharmacist before starting
-          supplements, especially if you take medicines, are pregnant or have a health condition.
+          Amounts are your own; the app never suggests what or how much to take. EU intakes and upper limits (EFSA) describe groups of healthy
+          adults from all food, not a dose for you. Talk to your doctor or pharmacist before starting supplements, especially with medicines.
         </p>
       </div>
     </>
@@ -184,7 +166,7 @@ export function PlanPage({ id }: { id: string }) {
 
 const num = (v: number) => formatValue(v);
 
-function ItemRow({ item, onEdit, onRemove }: { item: PlanItem; onEdit: () => void; onRemove: () => void }) {
+function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   const profile = useProfile();
   const n = nutrientFor(item, NUTRIENTS);
   const counts = n ? findingCounts(n) : undefined;
@@ -202,51 +184,37 @@ function ItemRow({ item, onEdit, onRemove }: { item: PlanItem; onEdit: () => voi
           {item.label}
           {item.amount && <span className="font-normal text-ink-2"> · {item.amount}</span>}
         </p>
-        <p className="text-sm text-ink-2">
-          {CATEGORY_LABEL[item.category]}
-          {item.note && ` · ${item.note}`}
-        </p>
-        {n && (intake || ref?.upperLimit) && (
-          <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+        {(item.category !== "supplement" || item.note) && (
+          <p className="text-sm text-ink-2">{[item.category !== "supplement" && CATEGORY_LABEL[item.category], item.note].filter(Boolean).join(" · ")}</p>
+        )}
+        {n && (
+          <p className="mt-1 flex flex-wrap gap-x-2 text-sm text-ink-2">
             {intake && (
-              <span>
-                <span className="text-ink-2">EU reference intake: </span>
-                <span className="tabular-nums">{intake}</span>
-                {ref?.intake && <span className="text-ink-2"> ({ref.intake.type === "PRI" ? "reference intake" : "adequate intake"}, from all food)</span>}
+              <span title={ref?.intake ? `${ref.intake.type === "PRI" ? "Population reference intake" : "Adequate intake"}, from all food` : undefined}>
+                EU intake <span className="text-ink tabular-nums">{intake}</span>
               </span>
             )}
             {ref?.upperLimit && (
               <span title={ref.upperLimit.note}>
-                <span className="text-ink-2">Upper limit: </span>
-                <span className="tabular-nums">
-                  {num(ref.upperLimit.amount)} {ref.upperLimit.unit} a day
-                </span>
+                · upper limit <span className="text-ink tabular-nums">{num(ref.upperLimit.amount)} {ref.upperLimit.unit}</span>
               </span>
+            )}
+            {counts && (
+              <a href={href({ name: "nutrient", id: n.id })} className="text-ink underline underline-offset-2">
+                · What research says
+              </a>
             )}
           </p>
         )}
-        {n && counts && (
-          <a href={href({ name: "nutrient", id: n.id })} className="mt-1 inline-flex min-h-9 items-center gap-1 text-sm text-ink underline underline-offset-2">
-            What research says about {lowerFirst(n.name)}
-            <span className="text-ink-2 no-underline">
-              ({[counts.helps && `${counts.helps} benefit${counts.helps === 1 ? "" : "s"}`, counts["no clear effect"] && `${counts["no clear effect"]} no clear effect`, counts.harms && `${counts.harms} harm${counts.harms === 1 ? "" : "s"}`].filter(Boolean).join(", ")})
-            </span>
-          </a>
-        )}
       </div>
-      <div className="flex gap-1">
-        <Button variant="quiet" className="min-h-10 text-sm" onClick={onEdit}>
-          Edit
-        </Button>
-        <Button variant="quiet" className="min-h-10 text-sm" onClick={onRemove}>
-          Remove
-        </Button>
-      </div>
+      <Button variant="quiet" className="min-h-10 text-sm" onClick={onEdit} aria-label={`Edit ${item.label}`}>
+        Edit
+      </Button>
     </li>
   );
 }
 
-function ItemForm({ initial, onSave, onCancel }: { initial?: PlanItem; onSave: (item: PlanItem) => void; onCancel: () => void }) {
+function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem; onSave: (item: PlanItem) => void; onCancel: () => void; onRemove?: () => void }) {
   const [label, setLabel] = useState(initial?.label ?? "");
   const [amount, setAmount] = useState(initial?.amount ?? "");
   const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? "supplement");
@@ -300,6 +268,11 @@ function ItemForm({ initial, onSave, onCancel }: { initial?: PlanItem; onSave: (
         <Button variant="quiet" onClick={onCancel}>
           Cancel
         </Button>
+        {onRemove && (
+          <Button variant="quiet" className="ml-auto text-danger" onClick={onRemove}>
+            Remove item
+          </Button>
+        )}
       </div>
     </form>
   );
@@ -421,28 +394,25 @@ function Share({ plan }: { plan: Plan }) {
     location.hash = href({ name: "plan", id: copy.id });
   }
   return (
-    <Card className="flex flex-col gap-3">
-      <h2 className="font-serif text-2xl font-normal">Share and manage</h2>
-      <p className="text-ink-2">The file has the items and amounts only: none of your results, habits or details.</p>
-      <div className="flex flex-wrap gap-2">
-        <Button variant="secondary" onClick={download} disabled={plan.items.length === 0}>
-          Save as a file
-        </Button>
-        <Button variant="secondary" onClick={() => void duplicate()}>
-          Duplicate
-        </Button>
-        <ConfirmDialog
-          trigger="Delete"
-          triggerVariant="quiet"
-          title="Delete this protocol?"
-          description={plan.active ? "Its habits stay in Habits, with their results." : "This can't be undone."}
-          confirmLabel="Delete protocol"
-          onConfirm={async () => {
-            await deletePlan(plan.id);
-            location.hash = href({ name: "plans" });
-          }}
-        />
-      </div>
-    </Card>
+    <div className="flex flex-wrap items-center gap-x-1 gap-y-2 border-t border-line pt-4">
+      <Button variant="quiet" onClick={download} disabled={plan.items.length === 0}>
+        Save as a file
+      </Button>
+      <Button variant="quiet" onClick={() => void duplicate()}>
+        Duplicate
+      </Button>
+      <ConfirmDialog
+        trigger="Delete"
+        triggerVariant="quiet"
+        title="Delete this protocol?"
+        description={plan.active ? "Its habits stay in Habits, with their results." : "This can't be undone."}
+        confirmLabel="Delete protocol"
+        onConfirm={async () => {
+          await deletePlan(plan.id);
+          location.hash = href({ name: "plans" });
+        }}
+      />
+      <span className="text-sm text-ink-2">The file has the items and amounts only, none of your results or details.</span>
+    </div>
   );
 }
