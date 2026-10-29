@@ -22,6 +22,12 @@ export interface NutrientFinding {
   whyThisGrade: string[];
   /** Plain-language summary, including the limits of the evidence. */
   summary: string;
+  /**
+   * The finding in one or two plain sentences (about 25-45 words): who, what happened, how much, and
+   * the main limit. Shown first; the full summary and sources are one tap away. Written from the
+   * summary only, adding nothing it doesn't say.
+   */
+  bottomLine?: string;
   studies: Citation[];
 }
 
@@ -74,6 +80,9 @@ export interface NutrientDef {
   sources: Citation[];
 }
 
+/** A bottom line is one or two real sentences: not a label, not a paragraph. */
+export const BOTTOM_LINE = { min: 90, max: 340 } as const;
+
 const STUDY_TYPES = new Set(["meta-analysis", "rct", "observational", "animal", "in vitro", "review", "guideline"]);
 const GRADES = new Set(["high", "moderate", "low", "very low"]);
 const EFFECTS = new Set(["helps", "no clear effect", "harms", "mixed"]);
@@ -105,6 +114,8 @@ function findingErrors(v: unknown, where: string): string[] {
     if (!isStr(f.effect) || !EFFECTS.has(f.effect)) errs.push(`${at} effect is invalid`);
     if (!isStr(f.grade) || !GRADES.has(f.grade)) errs.push(`${at} grade is invalid`);
     if (!strList(f.whyThisGrade, 1)) errs.push(`${at} needs at least one reason for its grade`);
+    if (f.bottomLine !== undefined && !(isStr(f.bottomLine) && f.bottomLine.length >= BOTTOM_LINE.min && f.bottomLine.length <= BOTTOM_LINE.max))
+      errs.push(`${at} bottomLine must be ${BOTTOM_LINE.min}-${BOTTOM_LINE.max} characters`);
     return [...errs, ...citationErrors(f.studies, at)];
   });
 }
@@ -161,7 +172,7 @@ export function nutrientText(n: NutrientDef): string[] {
     ...n.forms.flatMap((f) => [f.name, f.note]),
     n.reference.upperLimit?.note ?? "",
     n.reference.noUpperLimit ?? "",
-    ...[...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => [f.outcome, f.population, f.summary, ...f.whyThisGrade]),
+    ...[...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", ...f.whyThisGrade]),
     ...n.interactions.flatMap((x) => [x.with, x.note]),
     ...n.cautions,
   ];

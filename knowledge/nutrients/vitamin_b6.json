@@ -116,6 +116,7 @@
         "Trials were small, used different scales, and reported little on safety for mother and baby"
       ],
       "summary": "B6, alone or combined with the antihistamine doxylamine, seems to ease mild to moderate nausea a little, but the evidence is not strong. Severe vomiting in pregnancy (hyperemesis) was not part of these reviews. Some women take high amounts for weeks; EFSA's upper limit also applies in pregnancy. Talk to your doctor or midwife before using B6 for pregnancy sickness.",
+      "bottomLine": "Reviews of pregnant women with mild to moderate nausea found that B6, alone or with the antihistamine doxylamine, seemed to ease it a little. The evidence is not strong, and severe vomiting in pregnancy (hyperemesis) wasn't part of these reviews.",
       "studies": [
         {
           "pmid": "26348534",
@@ -144,6 +145,7 @@
         "Few outcomes reported; preterm birth and low birth weight were not reported"
       ],
       "summary": "There is not enough evidence that B6 in pregnancy changes pre-eclampsia, eclampsia, Apgar scores or breast milk production. One trial suggested less tooth decay in the mothers. The trials are old, small and unclear in their methods.",
+      "bottomLine": "Old, small trials in pregnant women gave too little evidence to say whether B6 changes pre-eclampsia, the baby's health score at birth (Apgar) or breast milk production. One trial suggested less tooth decay in the mothers.",
       "studies": [
         {
           "pmid": "26039815",
@@ -166,6 +168,7 @@
         "Small trials with positive results may be over-represented"
       ],
       "summary": "In this review, more women reported improvement in overall and depressive premenstrual symptoms with B6 than with placebo. The authors said conclusions were limited by the low quality of the trials. Several of the reports of nerve damage from B6 came from women taking it long-term for PMS, so the benefit is uncertain and the risk is real.",
+      "bottomLine": "In a review of trials in women with premenstrual syndrome, more reported improvement in overall and low-mood symptoms with B6 than with a dummy pill (placebo). The trials were of low quality, and several reports of nerve damage came from women on B6 long-term for this.",
       "studies": [
         {
           "pmid": "10334745",
@@ -188,6 +191,7 @@
         "In one trial, B6 with folic acid and B12 showed a trend towards harm"
       ],
       "summary": "In the NORVIT trial of 3749 people after a heart attack, B6 alone did not lower the risk of another heart attack, stroke or sudden death, and the combination of B6, folic acid and B12 showed a borderline increase in risk. Across homocysteine-lowering trials, heart attacks and deaths did not fall. Lowering homocysteine, a blood level, did not turn into a heart benefit.",
+      "bottomLine": "In a trial of 3749 people after a heart attack, B6 alone did not lower the risk of another heart attack, stroke or sudden death, and B6 with folic acid and B12 showed a borderline rise in risk. Lowering the blood level homocysteine did not bring a heart benefit.",
       "studies": [
         {
           "pmid": "16531614",
@@ -217,6 +221,7 @@
         "In mild memory problems, B6 was given with other B vitamins, and Cochrane found probably little or no effect"
       ],
       "summary": "Small trials of B6 alone found no clear benefit on memory or mood in healthy older people. Combined B vitamins in people with mild memory problems had probably little or no effect on memory and thinking over 6 to 24 months. There is not enough evidence to say B6 helps the brain in people who are not deficient.",
+      "bottomLine": "Small trials in healthy older people found no clear benefit of B6 alone on memory or mood. In people with mild memory problems, combined B vitamins probably made little or no difference over 6 to 24 months.",
       "studies": [
         {
           "pmid": "14584010",
@@ -247,6 +252,7 @@
         "EFSA considers the link well established"
       ],
       "summary": "The first case series described seven adults with severe loss of feeling and balance after taking very large amounts of B6; all improved after stopping. Later reports found nerve symptoms at far lower amounts taken for longer. EFSA used these data to lower its upper limit to 12 mg a day for adults. Exactly how low the risk starts is uncertain, which is why the limit includes a safety margin.",
+      "bottomLine": "Case reports describe loss of feeling and balance in people on B6 supplements for months or years, first at very large amounts and later at far lower ones. The first seven patients all improved once off B6; exactly how low the risk starts is uncertain.",
       "studies": [
         {
           "pmid": "6308447",

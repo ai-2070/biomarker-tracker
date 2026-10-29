@@ -126,6 +126,7 @@
         "Measured directly in the trials"
       ],
       "summary": "Vitamin D supplements reliably raise the blood level. In the D-Health trial of older Australians, the average level was 115 nmol/L with vitamin D and 77 nmol/L with placebo. D3 raised it more than D2, mainly when given in large, infrequent amounts. Raising a blood level is not the same as a health benefit: the findings below show what happened to health outcomes.",
+      "bottomLine": "Across many trials in adults, vitamin D supplements reliably raised the blood level (in D-Health, 115 nmol/L against 77 nmol/L with placebo). A higher blood level is not the same as a health benefit.",
       "studies": [
         {
           "pmid": "22552031",
@@ -156,6 +157,7 @@
         "Few trials included only people with very low levels, so they are under-represented"
       ],
       "summary": "On its own, vitamin D did not prevent fractures or falls, or meaningfully change bone density, in people who were not selected for deficiency. Trials in VITAL used 2000 IU a day for about 5 years. Given together with calcium, the Cochrane review found a small drop in hip fractures, mainly in people living in care homes (about 9 fewer per 1000 people a year there, about 1 fewer per 1000 among people living at home); see the calcium page. People with very low levels or with osteoporosis were not the focus of these trials.",
+      "bottomLine": "In older adults living at home, mostly not deficient, vitamin D on its own did not prevent fractures or falls. With calcium there was a small drop in hip fractures, mainly in care homes. People with very low levels were not the focus.",
       "studies": [
         {
           "pmid": "30293909",
@@ -202,6 +204,7 @@
         "The signal for fewer cancer deaths is less certain: it came mainly from daily dosing and was not seen in D-Health"
       ],
       "summary": "Vitamin D did not lower the number of people who got cancer, heart attacks or strokes, or who died, in VITAL (2000 IU a day, about 5 years), D-Health (60,000 IU once a month, 5 years) or DO-HEALTH. Meta-analyses found about 13 to 16% fewer deaths from cancer, mostly in trials with daily dosing, but D-Health's monthly dosing leaned the other way. Whether vitamin D lowers cancer deaths is still uncertain.",
+      "bottomLine": "In large trials of healthy adults over 50 or 60, mostly not deficient, vitamin D did not lower cancer, heart attacks, strokes or deaths. Meta-analyses found fewer cancer deaths with daily dosing, but this is still uncertain.",
       "studies": [
         {
           "pmid": "30415629",
@@ -248,6 +251,7 @@
         "Most trials had a low risk of bias"
       ],
       "summary": "Across many trials, slightly fewer people taking vitamin D had a respiratory infection. The difference was small and mostly came from trials with small daily amounts and from trials in children. It is not known whether this applies to COVID-19.",
+      "bottomLine": "In 43 trials of children and adults, slightly fewer people taking vitamin D had a respiratory infection. The difference was small and came mostly from trials in children and with small daily amounts. Whether it applies to COVID-19 is unknown.",
       "studies": [
         {
           "pmid": "33798465",
@@ -271,6 +275,7 @@
         "The larger benefit at higher blood levels compares groups that were not randomised"
       ],
       "summary": "In people with prediabetes, vitamin D lowered the risk of developing type 2 diabetes by about 15% over 3 years (about 3 fewer cases per 100 people). The trials were not powered to detect rare harms such as kidney stones or high calcium. This does not apply to people with normal blood sugar.",
+      "bottomLine": "In adults with prediabetes, vitamin D lowered the risk of type 2 diabetes by about 15% over 3 years, about 3 fewer cases per 100 people. It does not apply to normal blood sugar, and the trials could not reliably detect rare harms.",
       "studies": [
         {
           "pmid": "36745886",
@@ -292,6 +297,7 @@
         "The excess of falls was largest in the 3 months after each dose, which fits a real effect"
       ],
       "summary": "In a trial of 500,000 IU given once a year, women in the vitamin D group had about 15% more falls and 26% more fractures than with placebo. This is why large occasional amounts are viewed with caution. It does not show the same for daily intake.",
+      "bottomLine": "In women aged 70 and over at high risk of fracture, 500,000 IU given once a year led to about 15% more falls and 26% more fractures than placebo. The trial does not show the same for daily intake.",
       "studies": [
         {
           "pmid": "20460620",

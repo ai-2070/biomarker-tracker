@@ -5,6 +5,7 @@ import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
 import { GradeBadge, StudyLink } from "../components/evidence";
+import { Glance, anchorId } from "../components/glance";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Card, FlagBadge, LinkButton, cx } from "../components/ui";
@@ -98,6 +99,7 @@ export function NutrientPage({ id }: { id: string }) {
         </Card>
 
         <Findings
+          prefix="trial"
           title="What trials of supplements found"
           intro="Outcome by outcome, strongest evidence first. Who was studied matters: a benefit in people who were low says little about people who aren't."
           findings={n.findings}
@@ -105,6 +107,7 @@ export function NutrientPage({ id }: { id: string }) {
 
         {n.foodFindings && n.foodFindings.length > 0 && (
           <Findings
+            prefix="food"
             title="What studies of foods found"
             intro="Foods rich in it, not the supplement. A food brings many other compounds, so these findings don't carry over to supplements, or the other way round."
             findings={n.foodFindings}
@@ -248,19 +251,28 @@ function Status({ n, all }: { n: NutrientDef; all: Parameters<typeof groupByBiom
   );
 }
 
-function Findings({ title, intro, findings }: { title: string; intro: string; findings: NutrientFinding[] }) {
+function Findings({ title, intro, findings, prefix }: { title: string; intro: string; findings: NutrientFinding[]; prefix: string }) {
   return (
     <Card className="flex flex-col gap-4">
       <div>
         <H2>{title}</H2>
         <p className="mt-1 text-ink-2">{intro}</p>
       </div>
+      <Glance
+        caption={title}
+        rows={sortFindings(findings).map((f) => ({
+          id: anchorId(prefix, `${f.outcome} ${f.population}`),
+          label: f.outcome,
+          result: <span className={cx("rounded-full px-2 py-0.5 text-xs font-medium", EFFECT[f.effect].className)}>{EFFECT[f.effect].label}</span>,
+          grade: f.grade,
+        }))}
+      />
       <ul className="flex flex-col gap-3">
         {sortFindings(findings).map((f) => {
           const e = EFFECT[f.effect];
           return (
             <li key={`${f.outcome}|${f.population}`}>
-              <article className="flex flex-col gap-2 rounded-lg border border-line p-3">
+              <article id={anchorId(prefix, `${f.outcome} ${f.population}`)} tabIndex={-1} className="flex scroll-mt-6 flex-col gap-2 rounded-lg border border-line p-3 outline-none">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <h3 className="font-medium">{f.outcome}</h3>
                   <span className="flex shrink-0 flex-wrap items-center gap-2 text-sm">
@@ -277,9 +289,11 @@ function Findings({ title, intro, findings }: { title: string; intro: string; fi
                   <span className="font-medium text-ink">Studied in: </span>
                   {f.population}
                 </p>
-                <p>{f.summary}</p>
+                <p>{f.bottomLine ?? f.summary}</p>
                 <details>
-                  <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Why this grade, and sources</summary>
+                  <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">{f.bottomLine ? "Read the full summary, why this grade, and sources" : "Why this grade, and sources"}</summary>
+                  {f.bottomLine && <p className="mb-3">{f.summary}</p>}
+                  <p className="mb-1 text-sm font-medium">Why this grade</p>
                   <ul className="list-disc pl-5 text-sm text-ink-2">
                     {f.whyThisGrade.map((w) => (
                       <li key={w}>{w}</li>
