@@ -147,7 +147,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <ImportPage />;
     case "habits":
       // Keyed so a new "add" link opens a fresh form.
-      return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}`} add={route.add} marker={route.marker} />;
+      return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}|${route.meal ?? ""}`} add={route.add} marker={route.marker} meal={route.meal} />;
     case "experiment":
       return <ExperimentPage key={route.id} id={route.id} />;
     case "supplements":

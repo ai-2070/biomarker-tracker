@@ -7,14 +7,14 @@ import { chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMar
 import { durationDays, safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory, type ProtocolField } from "../../core/protocols";
 import { groupByBiomarker } from "../../core/trends";
 import type { Experiment, Measurement, ProtocolEntry } from "../../core/types";
-import { addProtocol, deleteExperiment, deleteHabit, saveHabit, watchHabit } from "../../db/db";
+import { addProtocol, deleteExperiment, deleteHabit, saveHabit, startPlan, watchHabit } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate, formatDuration, formatPercent, showValue } from "../format";
-import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
+import { useAllMeasurements, useExperiments, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, shortName } from "../knowledge";
 import { href } from "../router";
 import { MarkerChoice, PhaseBadge } from "./ExperimentsPage";
@@ -29,12 +29,12 @@ const RETEST_OPTIONS = [
  * Habits: supplements, food, medicines and routines with their dates. Any habit can watch markers;
  * then it shows what changed, compared with normal test-to-test variation (the old self-experiments).
  */
-export function HabitsPage({ add, marker }: { add?: string; marker?: string }) {
+export function HabitsPage({ add, marker, meal }: { add?: string; marker?: string; meal?: string }) {
   const protocols = useProtocols();
   const experiments = useExperiments();
   const all = useAllMeasurements();
   const profile = useProfile();
-  const [adding, setAdding] = useState(add !== undefined);
+  const [adding, setAdding] = useState(add !== undefined || meal !== undefined);
   const today = todayIso();
 
   if (!protocols || !experiments || !all) return <p className="text-ink-2">Loading…</p>;
@@ -58,7 +58,7 @@ export function HabitsPage({ add, marker }: { add?: string; marker?: string }) {
         {adding ? (
           <Card>
             <h2 className="mb-4 font-serif text-2xl font-normal">New habit</h2>
-            <HabitForm today={today} all={all} tested={tested} prefillLabel={add} prefillMarker={marker} onDone={() => setAdding(false)} />
+            <HabitForm today={today} all={all} tested={tested} prefillLabel={add} prefillMarker={marker} prefillMeal={meal} onDone={() => setAdding(false)} />
           </Card>
         ) : (
           <div>
@@ -381,6 +381,7 @@ function HabitForm({
   initial,
   prefillLabel,
   prefillMarker,
+  prefillMeal,
   today,
   all,
   tested,
@@ -389,13 +390,36 @@ function HabitForm({
   initial?: ProtocolEntry;
   prefillLabel?: string;
   prefillMarker?: string;
+  prefillMeal?: string;
   today: string;
   all: Measurement[];
   tested: ReadonlySet<string>;
   onDone: () => void;
 }) {
+  const meals = useMeals() ?? [];
+  const plans = usePlans() ?? [];
+  const startMeal = prefillMeal ? meals.find((m) => m.id === prefillMeal) : undefined;
+  // A new habit can start from your own words, one of your meals, or a whole protocol.
+  const [from, setFrom] = useState<"own" | "meal" | "protocol">(prefillMeal ? "meal" : "own");
+  const [mealId, setMealId] = useState(prefillMeal ?? "");
+  const [planId, setPlanId] = useState("");
   const [label, setLabel] = useState(initial?.label ?? prefillLabel?.slice(0, 80) ?? "");
-  const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? "supplement");
+  const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? (prefillMeal ? "diet" : "supplement"));
+  // A meal chosen by link fills the name in once the meals have loaded.
+  const [filled, setFilled] = useState(false);
+  if (startMeal && !filled && !label) {
+    setFilled(true);
+    setLabel(startMeal.name.slice(0, 80));
+  }
+  const pickMeal = (id: string) => {
+    setMealId(id);
+    const m = meals.find((x) => x.id === id);
+    if (m) {
+      setLabel(m.name.slice(0, 80));
+      setCategory("diet");
+    }
+  };
+  const plan = plans.find((p) => p.id === (planId || plans[0]?.id));
   const [start, setStart] = useState(initial?.start ?? today);
   const [end, setEnd] = useState(initial?.end ?? "");
   const [watching, setWatching] = useState(!!prefillMarker);
@@ -424,8 +448,109 @@ function HabitForm({
     }
   }
 
+  const sourcePicker = !initial && (
+    <div role="tablist" aria-label="Start from" className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
+      {(
+        [
+          ["own", "Write your own"],
+          ["meal", "A meal"],
+          ["protocol", "A protocol"],
+        ] as const
+      ).map(([v, text]) => (
+        <button
+          key={v}
+          role="tab"
+          type="button"
+          aria-selected={from === v}
+          onClick={() => setFrom(v)}
+          className={cx("min-h-9 rounded-lg px-3 text-sm transition-colors duration-150", from === v ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
+        >
+          {text}
+        </button>
+      ))}
+    </div>
+  );
+
+  if (!initial && from === "protocol") {
+    return (
+      <div className="flex flex-col gap-5">
+        {sourcePicker}
+        {plans.length === 0 ? (
+          <p className="text-ink-2">
+            No protocols yet. <a href={href({ name: "plans" })}>Write one in Protocols</a>: a set of supplements, foods or routines you follow.
+          </p>
+        ) : (
+          <>
+            <label className="flex flex-col gap-1.5">
+              <span className={labelStyles}>Protocol</span>
+              <select value={plan?.id ?? ""} onChange={(e) => setPlanId(e.target.value)} className={inputStyles}>
+                {plans.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} ({p.items.length} {p.items.length === 1 ? "item" : "items"})
+                  </option>
+                ))}
+              </select>
+            </label>
+            {plan?.active ? (
+              <p className="text-ink-2">
+                Running since {formatDate(plan.active.since)}. Its items are already habits below; <a href={href({ name: "plan", id: plan.id })}>open the protocol</a> to stop it.
+              </p>
+            ) : (
+              <>
+                <Field.Root className="flex flex-col gap-1.5 sm:max-w-xs">
+                  <Field.Label className={labelStyles}>Start</Field.Label>
+                  <Field.Control type="date" value={start} onValueChange={setStart} className={inputStyles} />
+                  <Field.Description className={helpStyles}>Each item becomes a habit from this day. Watch markers on them afterwards.</Field.Description>
+                </Field.Root>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    disabled={!plan || plan.items.length === 0 || saving}
+                    onClick={() => {
+                      if (!plan) return;
+                      setSaving(true);
+                      void startPlan(plan, start || today).then(() => {
+                        setSaving(false);
+                        onDone();
+                      });
+                    }}
+                  >
+                    Start protocol
+                  </Button>
+                  <Button variant="quiet" onClick={onDone}>
+                    Cancel
+                  </Button>
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-5">
+      {sourcePicker}
+      {!initial && from === "meal" &&
+        (meals.length === 0 ? (
+          <p className="text-ink-2">
+            No meals yet. <a href={href({ name: "meals" })}>Build one in Meals</a>, or write your own.
+          </p>
+        ) : (
+          <label className="flex flex-col gap-1.5">
+            <span className={labelStyles}>Meal</span>
+            <select value={mealId} onChange={(e) => pickMeal(e.target.value)} className={inputStyles}>
+              <option value="" disabled>
+                Choose a meal
+              </option>
+              {meals.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        ))}
       <Field.Root invalid={!!errors.label} className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>What do you take or change?</Field.Label>
         <Field.Control value={label} onValueChange={setLabel} placeholder="e.g. Vitamin D 2000 IU daily" autoComplete="off" maxLength={100} className={inputStyles} />

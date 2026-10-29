@@ -21,6 +21,7 @@ describe("router", () => {
   it("sends the old log and experiment addresses to Habits", () => {
     expect(parseHash("#/log")).toEqual({ name: "habits" });
     expect(parseHash("#/log?add=Iron")).toEqual({ name: "habits", add: "Iron" });
+    expect(parseHash("#/habits?meal=m1")).toEqual({ name: "habits", meal: "m1" });
     expect(parseHash("#/experiments")).toEqual({ name: "habits" });
     expect(parseHash("#/experiments/new?marker=ldl&change=Oats")).toEqual({ name: "habits", add: "Oats", marker: "ldl" });
     expect(parseHash("#/experiments/new")).toEqual({ name: "habits", add: "" });
