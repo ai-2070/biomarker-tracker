@@ -29,7 +29,7 @@ export type Route =
   /** Supplements, food, medicines and routines. `add` opens the form (with this name); `marker` is pre-ticked to watch. */
   | { name: "habits"; add?: string; marker?: string; meal?: string }
   | { name: "experiment"; id: string }
-  | { name: "supplements"; kind?: "vitamin" | "mineral" }
+  | { name: "supplements"; kind?: "vitamin" | "mineral" | "supplement" }
   | { name: "nutrient"; id: string }
   | { name: "plans" }
   | { name: "plan"; id: string }
@@ -89,7 +89,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "experiment" && parts[1] && parts.length === 2) return { name: "experiment", id: parts[1] };
   if (parts[0] === "supplements" && parts.length === 1) {
     const kind = params.get("kind");
-    return kind === "vitamin" || kind === "mineral" ? { name: "supplements", kind } : { name: "supplements" };
+    return kind === "vitamin" || kind === "mineral" || kind === "supplement" ? { name: "supplements", kind } : { name: "supplements" };
   }
   if (parts[0] === "supplements" && parts[1] && parts.length === 2) return { name: "nutrient", id: parts[1] };
   if (parts[0] === "protocols" && parts.length === 1) return { name: "plans" };

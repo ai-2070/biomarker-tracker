@@ -1,0 +1,358 @@
+{
+  "id": "biotin",
+  "name": "Biotin (vitamin B7)",
+  "kind": "vitamin",
+  "otherNames": [
+    "vitamin B7",
+    "vitamin H",
+    "D-biotin",
+    "D(+)-biotin",
+    "MD1003 (high-dose pharmaceutical biotin)"
+  ],
+  "summary": "Biotin is a B vitamin that helps four enzymes make fats, break down some amino acids and make glucose. It is in many foods, and a real shortage is rare. The most important thing to know about biotin supplements is that high amounts can make some blood tests give wrong results, including thyroid and heart tests.",
+  "roles": [
+    "Helping enzymes that make fatty acids",
+    "Breaking down some amino acids, such as leucine",
+    "Making glucose in the liver between meals (gluconeogenesis)",
+    "Supplying the body's energy cycle in cells",
+    "Cell growth, including immune cells"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no marker for biotin, and there is no routine blood test for it. Blood biotin is a poor guide: when healthy volunteers ate raw egg white for 20 days, their blood biotin did not fall significantly, while signs in the urine showed falling status. Researchers use urine biotin and urine 3-hydroxyisovaleric acid (3-HIA) instead, but EFSA notes that these haven't been studied enough in the general population to tell low from adequate status. Biotin can also change other results: with high-dose supplements, thyroid tests such as TSH (thyroid-stimulating hormone) and free T4 (free thyroxine), which this app tracks, may be wrong. Tell the lab and your doctor if you use biotin."
+  },
+  "low": {
+    "signs": [
+      "Thinning hair or hair loss",
+      "A red, scaly rash, often around the eyes, nose and mouth",
+      "Fungal skin infections",
+      "Low mood, tiredness and lack of energy",
+      "Muscle aches, and tingling or unusual sensitivity of the skin",
+      "In babies: floppy muscles and slow development"
+    ],
+    "atRisk": [
+      "People with biotinidase deficiency, an inherited condition picked up by newborn screening programmes and treated with biotin from birth",
+      "People who eat a lot of raw egg white over a long time (a protein in it, avidin, binds biotin)",
+      "People on long-term epilepsy medicines (anticonvulsants), such as phenytoin, primidone or carbamazepine",
+      "Pregnant women (mild shortage may be common, though its effects on babies are not known)",
+      "People fed by drip (parenteral nutrition) without added biotin",
+      "Possibly heavy drinkers, people on long-term dialysis and people with inflammatory bowel disease (less certain)"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Blood test results that don't fit how a person feels, such as thyroid results that look like an overactive thyroid"
+    ],
+    "note": "No harm to the body has been shown from high biotin intakes, but the Scientific Committee on Food (SCF, 2001) found no systematic safety studies of very high amounts in healthy people. People with inherited biotin disorders have been given up to 100 mg a day without reported side effects, although their condition may have hidden them. In multiple sclerosis trials, 300 mg a day caused side effects about as often as placebo. The known problem is with lab tests: biotin in the blood can make some test results falsely high or falsely low. Biotin leaves the body in urine, and in case reports the wrong results went away after a pause, but how long that takes depends on the amount and the test."
+  },
+  "foodSources": {
+    "examples": [
+      "Liver and kidney",
+      "Egg yolk (cooked eggs)",
+      "Soya beans and lentils",
+      "Nuts",
+      "Mushrooms and spinach",
+      "Smaller amounts in meat, fruit, cereals and bread"
+    ],
+    "note": "Published amounts of biotin in foods vary widely, partly between foods and partly because of different lab methods, so they aren't in this app's food table. In five EU countries, average intakes of adults under about 65 were 26 to 50 µg a day (EFSA). Raw egg white binds biotin and stops it being absorbed; thorough cooking breaks this protein down."
+  },
+  "forms": [
+    {
+      "name": "D-biotin",
+      "note": "The natural form, and the only one the body's enzymes use. It is the form used in supplements, and free biotin from supplements is absorbed almost completely."
+    },
+    {
+      "name": "High-dose 'hair, skin and nails' products",
+      "note": "Often contain milligrams rather than micrograms. 10 mg a day, an amount common in such supplements, is 250 times EFSA's adequate intake of 40 µg. These amounts are the ones known to disturb lab tests."
+    },
+    {
+      "name": "MD1003 (pharmaceutical high-dose biotin)",
+      "note": "A medicine-grade form studied for progressive multiple sclerosis at 300 mg a day (7,500 times the adequate intake). The large phase 3 trial found no clear benefit."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults", "amount": 40, "unit": "µg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 40, "unit": "µg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 45, "unit": "µg", "type": "AI" }
+    ],
+    "noUpperLimit": "EFSA has set no tolerable upper intake level for biotin. Its predecessor, the Scientific Committee on Food (SCF, 2001), said a number couldn't be worked out because there were no systematic studies of how the effects of biotin change with the amount. It judged the risk from food and from the supplements in use then to be low, but found too little data to draw conclusions about very high-dose supplements. EFSA's current overview of upper limits still says there are no adequate data to derive one. EFSA set an adequate intake (AI) of 40 µg a day for adults, the same for men and women and in pregnancy, plus 5 µg in breastfeeding, based on intakes in the EU, because the data were too limited to work out an average requirement. No upper limit does not mean any amount is free of problems: high amounts disturb many lab tests.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2014.3580",
+        "title": "Scientific Opinion on Dietary Reference Values for biotin",
+        "year": 2014,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Wrong results on blood tests that use biotin (immunoassays), including thyroid and heart tests",
+      "population": "Healthy adults using a common supplement amount, and people using very high doses",
+      "effect": "harms",
+      "grade": "high",
+      "whyThisGrade": [
+        "An experiment in healthy adults at a common supplement amount (tests with and without biotin compared), matching lab studies and many case reports",
+        "The cause is understood: extra biotin competes in the test's own chemistry",
+        "Which tests are affected, and by how much, differs between test makers and test versions",
+        "How often wrong results lead to a wrong diagnosis or treatment hasn't been measured"
+      ],
+      "summary": "Many blood tests use biotin and a protein called streptavidin to catch what they measure (immunoassays), and extra biotin in the blood can disturb them. In a small study, 6 healthy adults used 10 mg a day for a week, an amount common in supplements: 9 of 23 biotin-based tests gave wrong results, some falsely high and some falsely low, while none of 14 tests without biotin did. In a man using very high doses, thyroid tests looked like severe Graves' disease (an overactive thyroid), with very high free thyroxine (free T4) and suppressed TSH (thyroid-stimulating hormone), although he had no symptoms; the results became normal when the biotin was paused. One heart attack test (a fifth-generation troponin T test) was disturbed at blood levels reached with 10 mg a day, which could delay or miss a diagnosis of heart damage; two other troponin tests were not. In a large US clinic, 7.7% of outpatients said they used biotin, and 7.4% of emergency patients had blood levels at or above the lowest level known to disturb one maker's tests. Tests differ by maker, so the risk depends on the lab, and how often this leads to a wrong diagnosis or treatment hasn't been measured.",
+      "bottomLine": "At 10 mg a day, an amount common in supplements, biotin gave wrong results in 9 of 23 biotin-based blood tests in a small study. It can make thyroid tests look like an overactive thyroid and hide heart damage on one troponin test; the risk depends on the lab's tests.",
+      "studies": [
+        {
+          "pmid": "28973622",
+          "doi": "10.1001/jama.2017.13705",
+          "title": "Association of Biotin Ingestion With Performance of Hormone and Nonhormone Assays in Healthy Adults",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 6
+        },
+        {
+          "pmid": "27043844",
+          "doi": "10.1089/thy.2015.0664",
+          "title": "Misdiagnosis of Graves' Disease with Apparent Severe Hyperthyroidism in a Patient Taking Biotin Megadoses",
+          "year": 2016,
+          "studyType": "observational",
+          "n": 1
+        },
+        {
+          "pmid": "30715102",
+          "doi": "10.1093/ajcp/aqy172",
+          "title": "Susceptibility of Cardiac Troponin Assays to Biotin Interference",
+          "year": 2019,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "30036510",
+          "doi": "10.1016/j.clinbiochem.2018.07.004",
+          "title": "Prevalence of biotin supplement usage in outpatients and plasma biotin concentrations in patients presenting to the emergency department",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 1442
+        }
+      ]
+    },
+    {
+      "outcome": "Disability and walking in progressive multiple sclerosis",
+      "population": "Adults with primary or secondary progressive multiple sclerosis (MS), given very high-dose biotin (MD1003, 300 mg a day)",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of 3 randomised trials with 889 people, with low risk of bias",
+        "The first trial was positive, but the larger phase 3 trial (SPI2, 642 people) found no significant benefit",
+        "The SPI2 trial was funded by the maker"
+      ],
+      "summary": "A first trial of 154 people with progressive MS found that 13 (12.6%) of those on high-dose biotin improved in disability, against none on placebo. The larger SPI2 trial, with 642 people in 13 countries, found no significant difference: 12% improved on biotin and 9% on placebo. A meta-analysis of 3 trials with 889 people found insufficient evidence of less disability; more people improved their 25-foot walking time on biotin (moderate certainty). Side effects were about as common as on placebo, but 4.7% of people on biotin had lab-test interference, against none on placebo. The SPI2 authors concluded that high-dose biotin can't be recommended for progressive MS. SPI2 was funded by the maker.",
+      "bottomLine": "In the large SPI2 trial of 642 people with progressive multiple sclerosis, 300 mg of biotin a day gave no significant benefit: 12% improved on biotin and 9% on placebo. A meta-analysis found a possible gain in walking time, and lab-test interference in 4.7% of users.",
+      "studies": [
+        {
+          "pmid": "33222767",
+          "doi": "10.1016/s1474-4422(20)30347-1",
+          "title": "Safety and efficacy of MD1003 (high-dose biotin) in patients with progressive multiple sclerosis (SPI2): a randomised, double-blind, placebo-controlled, phase 3 trial",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 642
+        },
+        {
+          "pmid": "27589059",
+          "doi": "10.1177/1352458516667568",
+          "title": "MD1003 (high-dose biotin) for the treatment of progressive multiple sclerosis: A randomised, double-blind, placebo-controlled study",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 154
+        },
+        {
+          "pmid": "34332461",
+          "doi": "10.1016/j.msard.2021.103159",
+          "title": "High-dose biotin for multiple sclerosis: A systematic review and meta-analyses of randomized controlled trials",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 889
+        }
+      ]
+    },
+    {
+      "outcome": "Hair growth and hair loss",
+      "population": "People with hair loss or wanting healthier hair, most without a biotin shortage",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Only one placebo-controlled trial of hair growth, which found no difference",
+        "The rest are case reports of people with an underlying cause, and two small studies open to bias",
+        "No good trials in healthy people, although biotin is widely sold for hair"
+      ],
+      "summary": "A 2017 review found only 18 reported cases of biotin use for hair and nail changes. Every person had an underlying cause, such as a biotin shortage or a rare hair condition (uncombable hair), and all improved. A 2024 review found 3 studies of hair: the best, a double-blind placebo-controlled trial, found no difference in hair growth between biotin and placebo; the other two, in people on the acne medicine isotretinoin and in women after weight-loss stomach surgery (sleeve gastrectomy), were open to several biases and showed no striking benefit. There is no good evidence that biotin helps hair in people who aren't short of it. Hair loss has many causes that a doctor can look into.",
+      "bottomLine": "The only placebo-controlled trial of biotin for hair growth found no difference from placebo. Reports of benefit come from people with a biotin shortage or a rare hair condition, so there is no good evidence that biotin helps hair in people who aren't short of it.",
+      "studies": [
+        {
+          "pmid": "28879195",
+          "doi": "10.1159/000462981",
+          "title": "A Review of the Use of Biotin for Hair Loss",
+          "year": 2017,
+          "studyType": "review"
+        },
+        {
+          "pmid": "39148962",
+          "title": "Biotin for Hair Loss: Teasing Out the Evidence",
+          "year": 2024,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Brittle nails",
+      "population": "People with brittle nails and some other nail problems",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "A narrative review, not a systematic one",
+        "The review called for larger trials with control groups, so the existing studies give weak evidence",
+        "Other nail problems are supported only by case reports"
+      ],
+      "summary": "A 2018 review found clinical trials reporting firmer, harder and thicker brittle nails with oral biotin, and case reports of improvement in a few other nail problems, such as worn-down or rough nails. The authors said larger trials with control groups are still needed to know whether it works. Brittle nails can come from many causes, and nails grow slowly, so short uncontrolled studies are hard to judge.",
+      "bottomLine": "A review found trials reporting firmer, harder and thicker brittle nails with biotin, and case reports for a few other nail problems. Its authors said larger trials with control groups are still needed to know whether biotin really works.",
+      "studies": [
+        {
+          "pmid": "29057689",
+          "doi": "10.1080/09546634.2017.1395799",
+          "title": "Biotin for the treatment of nail disease: what is the evidence?",
+          "year": 2018,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and blood fats",
+      "population": "Adults with type 2 diabetes",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Meta-analysis of only 5 small randomised trials with 445 people",
+        "Short trials (28 to 90 days)",
+        "For fasting glucose and triglycerides, the range of likely results included no change",
+        "Too little data on HbA1c and on LDL and HDL cholesterol"
+      ],
+      "summary": "A meta-analysis pooled 5 randomised trials with 445 people with type 2 diabetes, given biotin for 28 to 90 days. Total cholesterol was lower by 0.22 mmol/L. The authors also reported lower fasting glucose (by 1.21 mmol/L) and triglycerides (by 0.59 mmol/L), but for both the range of likely results included no change. Insulin did not change, and there was too little data on HbA1c (long-term blood sugar), LDL or HDL cholesterol to draw conclusions. The trials were few, small and short.",
+      "bottomLine": "In 5 short trials with 445 people with type 2 diabetes, total cholesterol was 0.22 mmol/L lower with biotin. Falls in fasting glucose and triglycerides were uncertain, and there was too little data on HbA1c (long-term blood sugar).",
+      "studies": [
+        {
+          "pmid": "36386951",
+          "doi": "10.3389/fnut.2022.1046800",
+          "title": "Influence of biotin intervention on glycemic control and lipid profile in patients with type 2 diabetes mellitus: A systematic review and meta-analysis",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 445
+        }
+      ]
+    },
+    {
+      "outcome": "A urine sign of low biotin status (3-hydroxyisovaleric acid, 3-HIA) in pregnancy",
+      "population": "Pregnant women in early or late pregnancy with raised urine 3-HIA",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One small randomised trial with 26 women",
+        "Only two weeks long, and only a urine marker was measured",
+        "No outcomes for the health of mothers or babies"
+      ],
+      "summary": "About half of pregnant women excrete more 3-HIA in urine, a sign that a biotin-dependent enzyme is working less well. In a randomised trial of 26 pregnant women with raised 3-HIA, 300 µg of biotin a day for 14 days lowered it in both early and late pregnancy, while it rose slightly on placebo. The authors took this as evidence that mild biotin shortage is common in pregnancy. The trial measured only a urine marker over two weeks; it didn't look at the health of mothers or babies.",
+      "bottomLine": "In a small trial of 26 pregnant women with a raised urine sign of low biotin status, biotin for two weeks lowered it, while it rose slightly on placebo. The trial didn't look at the health of mothers or babies.",
+      "studies": [
+        {
+          "pmid": "11815321",
+          "doi": "10.1093/ajcn/75.2.295",
+          "title": "Marginal biotin deficiency during normal pregnancy",
+          "year": 2002,
+          "studyType": "rct",
+          "n": 26
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Blood tests (immunoassays), including thyroid tests (TSH, free T4), troponin heart tests and hormone tests",
+      "note": "High-dose biotin can make some results falsely high and others falsely low, depending on how the test is built. It can make thyroid results look like an overactive thyroid and can hide heart damage on some troponin tests. Tell the lab or your doctor if you use it, including in hair, skin and nail products and multivitamins. The authors of one case report thought that at least two days without it before biotin-sensitive tests should avoid major errors, but this differs by amount and test."
+    },
+    {
+      "with": "Epilepsy medicines (anticonvulsants)",
+      "note": "In 264 people on long-term anticonvulsants, blood biotin was lower than in people not taking them, and lower with phenytoin, primidone or carbamazepine than with sodium valproate. A later study found faster breakdown of biotin in adults on these medicines. Talk to the prescriber if this is a concern; don't change epilepsy medicines without them."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "A mild biotin shortage may be common in pregnancy, but it isn't known whether extra biotin changes the health of mothers or babies. EFSA's adequate intake in pregnancy is the same as for other adults. Talk to your doctor or midwife before using high-dose supplements in pregnancy.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Raw egg white",
+      "note": "Avidin, a protein in raw egg white, binds biotin and stops it being absorbed. Eating a lot of raw egg white for a long time can cause a shortage; thorough cooking breaks avidin down."
+    }
+  ],
+  "cautions": [
+    "If you use biotin, tell your doctor and the lab before blood tests, especially thyroid, heart (troponin) and hormone tests. They can say whether and how long to pause it beforehand.",
+    "Thyroid results that suggest an overactive thyroid in someone without symptoms can be caused by biotin; mention any biotin use to your doctor before treatment is decided.",
+    "Check labels: 'hair, skin and nails' products often contain hundreds of times EFSA's adequate intake of 40 µg a day.",
+    "Claims that biotin improves hair, skin or nails in people who aren't short of it aren't supported by good studies. Hair loss has many causes that a doctor can look into."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "28701385",
+      "doi": "10.3945/jn.116.238956",
+      "title": "Biotin: From Nutrition to Therapeutics",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27362288",
+      "doi": "10.1210/jc.2016-1971",
+      "title": "Factitious Graves' Disease Due to Biotin Immunoassay Interference-A Case and Review of the Literature",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "30855699",
+      "doi": "10.5603/ep.a2018.0084",
+      "title": "The effect of biotin interference on the results of blood hormone assays",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33112775",
+      "doi": "10.1515/cclm-2020-0104",
+      "title": "Evaluating the performance of an updated high-sensitivity troponin T assay with increased tolerance to biotin",
+      "year": 2021,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "32440248",
+      "doi": "10.2147/phmt.s198656",
+      "title": "Biotinidase Deficiency: Prevalence, Impact And Management Strategies",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "7181453",
+      "doi": "10.1002/ana.410120513",
+      "title": "Impaired biotin status in anticonvulsant therapy",
+      "year": 1982,
+      "studyType": "observational",
+      "n": 264
+    },
+    {
+      "pmid": "9371938",
+      "doi": "10.1212/wnl.49.5.1444",
+      "title": "Biotin catabolism is accelerated in adults receiving long-term therapy with anticonvulsants",
+      "year": 1997,
+      "studyType": "observational"
+    }
+  ]
+}

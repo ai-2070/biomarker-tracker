@@ -1,0 +1,404 @@
+{
+  "id": "psyllium",
+  "name": "Psyllium (a fibre supplement)",
+  "kind": "supplement",
+  "otherNames": [
+    "psyllium husk",
+    "ispaghula",
+    "ispaghula husk",
+    "Plantago ovata",
+    "Plantago ovata husk",
+    "psyllium seed husk",
+    "soluble fibre",
+    "bulk-forming laxative"
+  ],
+  "summary": "Psyllium is the husk of the seeds of a plant called Plantago ovata, also known as ispaghula. It is a mostly soluble fibre: with water it swells into a thick gel, and it passes through the gut largely undigested and not broken down by gut bacteria. It is sold as husk, powder or capsules, and is used for constipation and to lower cholesterol.",
+  "roles": [
+    "Holds water in the bowel, making stools softer and bulkier",
+    "Forms a gel in the small intestine that slows how fast food is digested and absorbed",
+    "Lowers LDL cholesterol (the 'bad' cholesterol) in trials",
+    "Counts towards dietary fibre intake, which EFSA links to normal bowel function"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "There is no blood test for fibre intake or 'fibre status'. Intake is judged from what a person eats, against EFSA's adequate intake for dietary fibre of 25 g a day for adults (EFSA is the European Food Safety Authority). The markers in this app that psyllium trials measured are LDL cholesterol, fasting glucose and HbA1c (average blood sugar over about 3 months); they show the effect of everything a person eats and does, not fibre intake itself."
+  },
+  "low": {
+    "signs": [
+      "Hard or infrequent stools (constipation): EFSA based its adequate intake for fibre on normal bowel function",
+      "There is no deficiency disease from too little fibre, and no test shows a shortage"
+    ],
+    "atRisk": [
+      "People who eat few whole grains, pulses, fruit, vegetables and potatoes, the main sources of fibre",
+      "Many adults in Europe: EFSA found average intakes of 16 to 29 g a day, often below the 25 g adequate intake"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Gas (flatulence) and bloating, more common with fibre than with placebo in trials",
+      "Blockage of the gullet or bowel, rare, when psyllium is swallowed without enough fluid or by people with swallowing problems or a narrowed gut",
+      "Allergic reactions, rare, mostly in people who have handled psyllium powder at work"
+    ],
+    "note": "EFSA set no upper limit for dietary fibre. The problems with psyllium come from how it is used rather than from a set amount: it swells with water, so too little fluid can let it form a lump that blocks the gullet or bowel. Case reports describe this in an older man with Parkinson's disease, a young man with constipation who drank too little, and after a gastric band operation. Gas and bloating are common at first."
+  },
+  "foodSources": {
+    "examples": [
+      "Psyllium is not an everyday food; it is added to some breakfast cereals",
+      "Fibre in general: whole grain cereals, pulses (beans, lentils, chickpeas), fruit, vegetables and potatoes",
+      "Gel-forming soluble fibre like psyllium's: beta-glucan in oats and barley"
+    ],
+    "cofidNutrient": "fibre",
+    "note": "The food table's fibre values are total fibre. They do not say how much of it is gel-forming, which is what lowers cholesterol and blood sugar in trials; fibres that don't form a gel (such as inulin or wheat bran) do not have those effects."
+  },
+  "forms": [
+    {
+      "name": "Psyllium husk (whole flakes)",
+      "note": "The seed husk as it is. It is stirred into water or another drink and swallowed before it thickens. Trials of cholesterol, constipation and IBS used around 10 g a day (a median of 10.2 g in the cholesterol trials), as research, not as a dose for anyone."
+    },
+    {
+      "name": "Psyllium powder (ground husk)",
+      "note": "Ground husk. It needs the same plenty of fluid: one case of a blocked gullet followed psyllium husk powder. Breathing in the powder is how people who handle it at work became allergic."
+    },
+    {
+      "name": "Capsules",
+      "note": "Contain powdered husk, which swells in the same way, so fluid matters with capsules too."
+    },
+    {
+      "name": "Psyllium-enriched foods",
+      "note": "Some breakfast cereals have psyllium added. A 1997 meta-analysis found that psyllium-enriched cereals lowered total and LDL cholesterol in adults with high cholesterol."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults (dietary fibre from all sources)", "amount": 25, "unit": "g", "type": "AI" }
+    ],
+    "noUpperLimit": "EFSA set no tolerable upper intake level for dietary fibre. Its 2010 opinion set an adequate intake of 25 g a day for adults, based on normal bowel function, and noted that diets rich in fibre-containing foods with more than 25 g a day were linked to lower risk of heart disease and type 2 diabetes and better weight maintenance. The 25 g is for fibre from all foods; it is not an amount of psyllium. The risks of psyllium itself (blockage when taken with too little fluid, allergy) don't depend on a fixed amount.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2010.1462",
+        "title": "Scientific Opinion on Dietary Reference Values for carbohydrates and dietary fibre",
+        "year": 2010,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "LDL cholesterol",
+      "population": "Adults with or without high cholesterol, in trials lasting at least 3 weeks",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "28 randomised trials (1,924 people) pointing the same way",
+        "The review authors rated it moderate because the size of the effect varied between trials",
+        "Measures a blood marker, not heart attacks or strokes"
+      ],
+      "summary": "A 2018 meta-analysis of 28 randomised trials (1,924 people) found that psyllium, a median of about 10.2 g a day as studied, lowered LDL cholesterol by 0.33 mmol/L, non-HDL cholesterol by 0.39 mmol/L and apolipoprotein B (the protein on cholesterol-carrying particles) by 0.05 g/L compared with control. The authors rated the evidence moderate for LDL because results varied between trials. A 2018 meta-analysis of 3 trials in people already taking statins found extra LDL lowering when psyllium was added, about equal to doubling the statin dose; most of its authors worked for Procter & Gamble, which sells psyllium. No trial measured heart attacks or strokes.",
+      "bottomLine": "Across 28 trials (1,924 adults), psyllium lowered LDL cholesterol by 0.33 mmol/L compared with control. A smaller analysis found it added to statins' effect. These are blood test changes; no trial measured heart attacks or strokes.",
+      "studies": [
+        {
+          "pmid": "30239559",
+          "doi": "10.1093/ajcn/nqy115",
+          "title": "Effect of psyllium (Plantago ovata) fiber on LDL cholesterol and alternative lipid targets, non-HDL cholesterol and apolipoprotein B: a systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 1924
+        },
+        {
+          "pmid": "30078477",
+          "doi": "10.1016/j.amjcard.2018.06.040",
+          "title": "Meta-Analysis of Usefulness of Psyllium Fiber as Adjuvant Antilipid Therapy to Enhance Cholesterol Lowering Efficacy of Statins.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar (fasting glucose and HbA1c)",
+      "population": "Adults with type 2 diabetes; also people at risk of it and people with normal blood sugar",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials whose results differ a great deal from each other",
+        "The largest analysis was written mainly by staff of a company that sells psyllium and used its own trial records",
+        "Measures blood sugar, not diabetes complications"
+      ],
+      "summary": "A 2015 meta-analysis of 35 randomised trials found that in people being treated for type 2 diabetes, psyllium taken before meals lowered fasting blood sugar by 37.0 mg/dL (milligrams per decilitre) and HbA1c by 0.97 percentage points (10.6 mmol/mol). The effect grew with how high blood sugar was at the start: none in people with normal blood sugar, modest in people at risk. Its authors were mostly from Procter & Gamble, which sells psyllium, and it included the company's own trial records. A 2020 meta-analysis of 8 trials (395 people with diabetes) also found fasting blood sugar 31.71 mg/dL lower and HbA1c 0.91 percentage points lower, but results varied hugely between trials, and body weight did not change.",
+      "bottomLine": "In people with type 2 diabetes, psyllium lowered fasting blood sugar, and HbA1c by 0.91 to 0.97 percentage points, in two meta-analyses, with no effect in people with normal blood sugar. Trials were small and varied, and the largest analysis came from a company that sells psyllium.",
+      "studies": [
+        {
+          "pmid": "26561625",
+          "doi": "10.3945/ajcn.115.106989",
+          "title": "Psyllium fiber improves glycemic control proportional to loss of glycemic control: a meta-analysis of data in euglycemic subjects, patients at risk of type 2 diabetes mellitus, and patients being treated for type 2 diabetes mellitus.",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31919936",
+          "doi": "10.1002/ptr.6609",
+          "title": "The effect of psyllium consumption on weight, body mass index, lipid profile, and glucose metabolism in diabetic patients: A systematic review and dose-response meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 395
+        }
+      ]
+    },
+    {
+      "outcome": "Long-lasting constipation",
+      "population": "Adults with chronic constipation",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "16 randomised trials, but results varied considerably",
+        "An earlier review judged the evidence low quality with a high risk of bias",
+        "Most trials were small"
+      ],
+      "summary": "A 2022 meta-analysis of 16 randomised trials (1,251 adults) found that 66 % of people responded to fibre supplements against 41 % with control; psyllium was one of the two fibres with a clear effect. Stools became more frequent and softer, mostly in trials with more than 10 g of fibre a day for at least 4 weeks. Gas was more common with fibre. The authors urged caution because results varied a lot. An earlier 2016 meta-analysis of 7 trials found 77 % responded to fibre against 44 % with placebo, but rated the evidence low quality.",
+      "bottomLine": "In 16 trials of adults with chronic constipation, 66 % responded to fibre supplements against 41 % with control, and psyllium was one of the fibres that clearly worked. Gas was more common, and results varied a lot between trials.",
+      "studies": [
+        {
+          "pmid": "35816465",
+          "doi": "10.1093/ajcn/nqac184",
+          "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1251
+        },
+        {
+          "pmid": "27170558",
+          "doi": "10.1111/apt.13662",
+          "title": "Systematic review with meta-analysis: effect of fibre supplementation on chronic idiopathic constipation in adults.",
+          "year": 2016,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Irritable bowel syndrome (IBS) symptoms",
+      "population": "Adults with IBS, including patients in general practice",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Consistent results across 14 trials, but most were small",
+        "Few IBS trials were at low risk of bias",
+        "Symptoms were reported by the patients themselves, which placebo can affect"
+      ],
+      "summary": "A 2014 meta-analysis of 14 randomised trials (906 people with IBS) found that fibre helped, but only soluble fibre such as psyllium: about 7 people needed soluble fibre for one more to improve. Bran, an insoluble fibre, showed no clear benefit. A 2008 meta-analysis found the benefit of fibre limited to ispaghula (psyllium). In a 2009 trial of 275 people in general practice, more people had adequate relief with psyllium than with placebo in the first and second months (57 % against 35 %, then 59 % against 41 %); bran helped only in the third month, and people on bran dropped out early more often because symptoms got worse.",
+      "bottomLine": "In 14 trials (906 people with IBS), soluble fibre such as psyllium eased symptoms: about 7 people needed it for one more to improve. Bran showed no clear benefit. Most trials were small.",
+      "studies": [
+        {
+          "pmid": "25070054",
+          "doi": "10.1038/ajg.2014.195",
+          "title": "The effect of fiber supplementation on irritable bowel syndrome: a systematic review and meta-analysis.",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 906
+        },
+        {
+          "pmid": "19008265",
+          "doi": "10.1136/bmj.a2313",
+          "title": "Effect of fibre, antispasmodics, and peppermint oil in the treatment of irritable bowel syndrome: systematic review and meta-analysis.",
+          "year": 2008,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "19713235",
+          "doi": "10.1136/bmj.b3154",
+          "title": "Soluble or insoluble fibre in irritable bowel syndrome in primary care? Randomised placebo controlled trial.",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 275
+        },
+        {
+          "pmid": "31859183",
+          "doi": "10.1016/s2468-1253(19)30324-3",
+          "title": "Efficacy of soluble fibre, antispasmodic drugs, and gut-brain neuromodulators in irritable bowel syndrome: a systematic review and network meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Body weight and waist size",
+      "population": "Adults; one analysis only people with overweight or obesity",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Two meta-analyses reached opposite conclusions",
+        "The analysis that found a benefit had 6 small studies and was written by staff of a company that sells psyllium",
+        "The larger analysis of 22 trials found no clear effect"
+      ],
+      "summary": "A 2020 meta-analysis of 22 randomised trials in adults found no clear effect of psyllium on body weight, BMI (body mass index) or waist size. A 2023 meta-analysis limited to 6 studies (354 people with overweight or obesity), where psyllium was taken just before meals for about 4.8 months, found 2.1 kg more weight loss, a BMI 0.8 lower and a waist 2.2 cm smaller than control; its authors were from Procter & Gamble, which sells psyllium. In people with diabetes, a 2020 meta-analysis found no change in weight or BMI.",
+      "bottomLine": "A meta-analysis of 22 trials found no clear effect of psyllium on weight, BMI or waist size. A smaller one of 6 studies in people with overweight, by a company that sells psyllium, found 2.1 kg more weight loss.",
+      "studies": [
+        {
+          "pmid": "30880409",
+          "doi": "10.1080/10408398.2018.1553140",
+          "title": "The effects of psyllium supplementation on body weight, body mass index and waist circumference in adults: A systematic review and dose-response meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "37163454",
+          "doi": "10.1097/jxx.0000000000000882",
+          "title": "Psyllium is a natural nonfermented gel-forming fiber that is effective for weight loss: A comprehensive review and meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 354
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults, in trials aimed at people with high blood pressure",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "11 small trials (592 people)",
+        "The effect is small (about 2 mmHg)",
+        "Only one meta-analysis, and no trial measured heart attacks or strokes"
+      ],
+      "summary": "A 2020 meta-analysis of 11 randomised trials (592 people) found the top number of blood pressure (systolic) 2.04 mmHg lower with psyllium than with control. The effect was larger in people whose blood pressure was higher to begin with. The effect is small compared with blood pressure medicines, and the trials did not look at heart attacks or strokes.",
+      "bottomLine": "In 11 small trials (592 people), the top number of blood pressure was about 2 mmHg lower with psyllium, more so when it started higher. That is small next to blood pressure medicines.",
+      "studies": [
+        {
+          "pmid": "32066221",
+          "doi": "10.3904/kjim.2019.049",
+          "title": "The effect of psyllium supplementation on blood pressure: a systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 592
+        }
+      ]
+    }
+  ],
+  "foodFindings": [
+    {
+      "outcome": "Death, heart disease, stroke, type 2 diabetes and bowel cancer (fibre from foods, not psyllium)",
+      "population": "Healthy adults in 185 prospective cohort studies and 58 trials; studies of supplements were left out",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Very large amount of data (just under 135 million person-years)",
+        "Mostly observational: people who eat more fibre differ in other ways too",
+        "The review authors rated the evidence for dietary fibre moderate"
+      ],
+      "summary": "A 2019 series of meta-analyses, partly funded by the World Health Organization, looked at fibre from foods and left out trials of supplements. People who ate the most fibre had 15 to 30 % lower rates of death, heart disease, stroke, type 2 diabetes and bowel cancer than those who ate the least. The lowest risks were at 25 to 29 g of fibre a day. Trials of higher-fibre diets showed lower body weight, systolic blood pressure and total cholesterol. These findings are about whole foods such as whole grains, and cannot be assumed for psyllium.",
+      "bottomLine": "In cohort studies, people who ate the most fibre from foods had 15 to 30 % lower rates of death, heart disease, stroke, type 2 diabetes and bowel cancer. This is about fibre-rich foods, not psyllium, and is mostly observational.",
+      "studies": [
+        {
+          "pmid": "30638909",
+          "doi": "10.1016/s0140-6736(18)31809-9",
+          "title": "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Diabetes medicines",
+      "note": "In trials psyllium lowered blood sugar most in people being treated for type 2 diabetes, and its researchers said more studies are needed on using it with glucose-lowering medicines. Blood sugar could fall further than expected. Talk to your doctor before adding it.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Other medicines taken at the same time",
+      "note": "The gel can change how much of a medicine is absorbed and how fast. A 2012 review found few clinical studies, with variable results, and both helpful and harmful effects possible. Psyllium is often advised to be taken apart from other medicines; a pharmacist can say how far apart for a given medicine."
+    },
+    {
+      "with": "Lithium",
+      "note": "A 1990 case report described an interaction between lithium and ispaghula husk. Lithium needs steady blood levels, so this is one to discuss with the doctor or pharmacist."
+    },
+    {
+      "with": "Cholesterol-lowering statins",
+      "note": "In 3 trials, adding psyllium to a statin lowered LDL cholesterol further. That is a reason to tell the doctor, not to change a statin."
+    }
+  ],
+  "cautions": [
+    "Psyllium swells with water. Swallowed with too little fluid, it has blocked the gullet or bowel in case reports, which is why it is meant to be mixed with plenty of fluid.",
+    "Not suitable without a doctor's advice for people with swallowing difficulties, a narrowed or blocked bowel, or after stomach operations such as a gastric band.",
+    "Gas and bloating are common, especially at first.",
+    "People who handle psyllium powder at work (nurses, pharmaceutical workers) can become allergic; in one study of hospital staff 5 to 12 % were sensitised, and rare cases of asthma and anaphylaxis (a severe allergic reaction) have followed.",
+    "Constipation that is new, lasts, or comes with blood, weight loss or pain is a reason to see a doctor rather than to use a laxative.",
+    "Some of the most positive analyses (blood sugar, weight, statins) were written by staff of a company that sells psyllium."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "27863994",
+      "doi": "10.1016/j.jand.2016.09.021",
+      "title": "Understanding the Physics of Functional Fibers in the Gastrointestinal Tract: An Evidence-Based Approach to Resolving Enduring Misconceptions about Insoluble and Soluble Fiber.",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22920146",
+      "doi": "10.1517/17425255.2012.716038",
+      "title": "Drug interactions with the dietary fiber Plantago ovata husk.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "9311953",
+      "doi": "10.1093/jn/127.10.1973",
+      "title": "Psyllium-enriched cereals lower blood total cholesterol and LDL cholesterol, but not HDL cholesterol, in hypercholesterolemic adults: results of a meta-analysis.",
+      "year": 1997,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35321163",
+      "doi": "10.12998/wjcc.v10.i7.2336",
+      "title": "Acute esophageal obstruction after ingestion of psyllium seed husk powder: A case report.",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "30321826",
+      "doi": "10.1016/j.ijscr.2018.10.001",
+      "title": "Intestinal obstruction caused by a laxative drug (Psyllium): A case report and review of the literature.",
+      "year": 2018,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "25771442",
+      "doi": "10.1016/j.soard.2015.01.018",
+      "title": "Pouch outlet obstruction by psyllium-based bulk laxative bezoar in a patient with gastric banding.",
+      "year": 2015,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "2252254",
+      "doi": "10.1164/ajrccm/142.6_pt_1.1359",
+      "title": "Prevalence of occupational asthma and immunologic sensitization to psyllium among health personnel in chronic care hospitals.",
+      "year": 1990,
+      "studyType": "observational",
+      "n": 193
+    },
+    {
+      "pmid": "8792925",
+      "doi": "10.1111/j.1398-9995.1996.tb04604.x",
+      "title": "Psyllium laxative-induced anaphylaxis, asthma, and rhinitis.",
+      "year": 1996,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "1968148",
+      "doi": "10.1016/0140-6736(90)90256-5",
+      "title": "Interaction between lithium salts and ispaghula husk.",
+      "year": 1990,
+      "studyType": "observational",
+      "n": 1
+    }
+  ]
+}
