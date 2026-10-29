@@ -72,6 +72,18 @@ export function useMediaQuery(query: string): boolean {
   );
 }
 
+/** The expiration date on the Biological age page: off unless turned on, per profile (kept in its settings). */
+export const EXPIRATION_KEY = "showExpirationDate";
+
+export function useShowExpirationDate(): boolean | undefined {
+  return useLiveQuery(async () => (await db.settings.get(EXPIRATION_KEY))?.value === true, []);
+}
+
+export async function setShowExpirationDate(on: boolean): Promise<void> {
+  if (on) await db.settings.put({ key: EXPIRATION_KEY, value: true });
+  else await db.settings.delete(EXPIRATION_KEY);
+}
+
 const INTAKE_KEY = "intakeList";
 
 /** The Daily intake analyzer's list: one per profile, kept in its settings (not a diary). */

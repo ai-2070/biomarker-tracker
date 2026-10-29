@@ -35,6 +35,8 @@ export interface HealthSnapshot {
   plans?: Plan[];
   /** Meals the person built (foods and grams). */
   meals?: Meal[];
+  /** The expiration date is turned on in Settings (off by default). */
+  expirationDate?: boolean;
 }
 
 /** Validate what the page sent, with the same checks as a backup file. */
@@ -48,7 +50,7 @@ export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot 
   const meals = Array.isArray(o.meals) ? o.meals : [];
   if (meals.length > 1000 || meals.some((m) => validateMeal(m).length > 0)) return { ok: false, error: "The meals are damaged." };
   // Name and private notes are dropped here too, even if a page sent them.
-  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[], meals: meals as Meal[] } };
+  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[], meals: meals as Meal[], expirationDate: o.expirationDate === true } };
 }
 
 const r = (n: number | undefined) => (n === undefined ? undefined : roundForDisplay(n));
@@ -221,7 +223,9 @@ export function biologicalAge(s: HealthSnapshot) {
           about: "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
         }
       : "No DunedinPACE result recorded (it needs a DNA methylation test, not a routine blood test).",
-    expirationDate: bestBeforeFor(s, sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined).map((d) => ({ date: d.date, age: d.age!, phenoAge: d.phenoAge! }))),
+    expirationDate: !s.expirationDate
+      ? "Turned off in Settings (it's off by default). Don't estimate it or a date of death; say it can be turned on in Settings → Appearance if the person asks."
+      : bestBeforeFor(s, sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined).map((d) => ({ date: d.date, age: d.age!, phenoAge: d.phenoAge! }))),
   };
 }
 

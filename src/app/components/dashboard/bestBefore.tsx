@@ -6,11 +6,12 @@ import { mortalityFromPhenoAge } from "../../../core/phenoage";
 import { summarizePhenoAge } from "../../../core/phenoageDraws";
 import type { Citation, Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { setProfile } from "../../../db/db";
-import { EGG_ODDS, easterEggsOn } from "../../easterEggs";
+import { Popover } from "@base-ui/react/popover";
+import { EGG_ODDS } from "../../easterEggs";
 import { formatDate } from "../../format";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
-import { Card } from "../ui";
+import { Card, cx } from "../ui";
 import { SimpleSelect } from "../UnitSelect";
 
 const LIU_2018: Citation = {
@@ -43,9 +44,9 @@ const yrs = (v: number) => v.toFixed(1);
  */
 export function BestBefore({ measurements, profile, protocols }: { measurements: readonly Measurement[]; profile: Profile; protocols: readonly ProtocolEntry[] }) {
   const [file, setFile] = useState<LifeTableFile>();
-  // Easter egg, about once in 50 views (unless turned off): tomorrow, a car crash. Always labelled as a joke,
-  // with the real date right under it.
-  const [egg] = useState(() => (easterEggsOn() && Math.random() < 1 / EGG_ODDS ? Date.now() + 86_400_000 + Math.floor(Math.random() * 86_400) * 1000 - (Date.now() % 1000) : undefined));
+  // Easter egg (the user's idea), about once in 50 views: the main date becomes tomorrow, a car crash. The
+  // cause says what it is on hover or tap; the sentences below name the real median date.
+  const [egg] = useState(() => (Math.random() < 1 / EGG_ODDS ? Date.now() + 86_400_000 + Math.floor(Math.random() * 86_400) * 1000 - (Date.now() % 1000) : undefined));
   useEffect(() => {
     void import("../../../../knowledge/lifetables/eurostat.json").then((m) => setFile(m.default as LifeTableFile));
   }, []);
@@ -111,18 +112,23 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
     <Card className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
         <p className={label}>Expiration date</p>
+        <p className={cx("font-serif text-3xl leading-tight tabular-nums sm:text-5xl", egg !== undefined && "text-danger")}>{exact.format(new Date(egg ?? head.medianAt))}</p>
         {egg !== undefined && (
-          <div className="mb-3 flex flex-col gap-1 border-b border-line pb-4">
-            <p className="font-serif text-3xl leading-tight tabular-nums text-danger sm:text-5xl">{exact.format(new Date(egg))}</p>
-            <p className="font-medium">Cause: car crash.</p>
-            <p className="text-sm text-ink-2">Easter egg (1 in {EGG_ODDS}). Not real: nothing in your data says this. Your actual date is below. Turn jokes off in Settings → Appearance.</p>
-          </div>
+          <Popover.Root>
+            <Popover.Trigger openOnHover delay={150} className="cursor-help self-start font-medium underline decoration-dotted underline-offset-4">
+              Cause: car crash.
+            </Popover.Trigger>
+            <Popover.Portal>
+              <Popover.Positioner side="bottom" align="start" sideOffset={6} collisionPadding={12} className="z-[60] outline-none">
+                <Popover.Popup className="rounded-lg border border-line bg-surface px-3 py-2 text-sm shadow-md">Easter egg (1 in {EGG_ODDS})</Popover.Popup>
+              </Popover.Positioner>
+            </Popover.Portal>
+          </Popover.Root>
         )}
-        <p className="font-serif text-3xl leading-tight tabular-nums sm:text-5xl">{exact.format(new Date(head.medianAt))}</p>
         <p className="max-w-3xl">
           {mine && shift ? (
             <>
-              Half of {who} in {where} whose blood tests look like yours live past this moment, and half don't. Your PhenoAge runs{" "}
+              Half of {who} in {where} whose blood tests look like yours live past {egg !== undefined ? exact.format(new Date(head.medianAt)) : "this moment"}, and half don't. Your PhenoAge runs{" "}
               <span className="font-medium">
                 {yrs(Math.abs(shift.shift))} years {shift.shift < 0 ? "younger" : "older"}
               </span>{" "}
@@ -131,7 +137,7 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
             </>
           ) : (
             <>
-              Half of {who} aged {ageNow} in {where} live past this moment, and half don't. Add blood tests with the 9 PhenoAge markers to compare you
+              Half of {who} aged {ageNow} in {where} live past {egg !== undefined ? exact.format(new Date(head.medianAt)) : "this moment"}, and half don't. Add blood tests with the 9 PhenoAge markers to compare you
               with {who} whose blood tests look like yours.
             </>
           )}
