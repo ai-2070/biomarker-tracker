@@ -7,7 +7,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:\"pyridoxine\" OR TITLE_ABS:\"pyridoxal\" OR TITLE_ABS:\"pyridoxamine\") AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:\"pyridoxine\" OR TITLE_ABS:\"pyridoxal\" OR TITLE_ABS:\"pyridoxamine\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:\"pyridoxine\" OR TITLE_ABS:\"pyridoxal\" OR TITLE_ABS:\"pyridoxamine\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:\"pyridoxine\" OR TITLE_ABS:\"pyridoxal\" OR TITLE_ABS:\"pyridoxamine\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:\"pyridoxine\" OR TITLE_ABS:\"pyridoxal\" OR TITLE_ABS:\"pyridoxamine\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"vitamin B6\" OR TITLE_ABS:\"pyridoxine\" OR TITLE_ABS:\"pyridoxal\" OR TITLE_ABS:\"pyridoxamine\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -23,10 +23,10 @@
  ],
  "counts": {
   "all": 20412,
-  "retrieved": 714,
-  "animal": 11,
+  "retrieved": 745,
+  "animal": 12,
   "retracted": 0,
-  "reviews": 208,
+  "reviews": 239,
   "trials": 483,
   "guidelines": 11
  },
@@ -56,7 +56,7 @@
    "label": "Nausea in pregnancy",
    "finding": "Nausea and vomiting in early pregnancy",
    "counts": {
-    "reviews": 23,
+    "reviews": 25,
     "trialReviews": 1,
     "trials": 29,
     "largeTrials": 1
@@ -171,7 +171,7 @@
     },
     {
      "year": 2025,
-     "reviews": 1,
+     "reviews": 3,
      "trials": 1
     },
     {
@@ -231,8 +231,8 @@
    "label": "Pregnancy outcomes",
    "finding": "Pregnancy outcomes such as pre-eclampsia, birth weight and Apgar scores",
    "counts": {
-    "reviews": 31,
-    "trialReviews": 3,
+    "reviews": 32,
+    "trialReviews": 4,
     "trials": 35,
     "largeTrials": 2
    },
@@ -507,7 +507,7 @@
     },
     {
      "year": 2025,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
@@ -592,7 +592,7 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 3,
+     "yes": 4,
      "partly": 0,
      "no": 0,
      "unscreened": 0
@@ -768,8 +768,8 @@
    "label": "Heart, stroke and death",
    "finding": "Heart attacks, strokes and death",
    "counts": {
-    "reviews": 16,
-    "trialReviews": 9,
+    "reviews": 19,
+    "trialReviews": 11,
     "trials": 54,
     "largeTrials": 24
    },
@@ -914,7 +914,7 @@
     },
     {
      "year": 2018,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
@@ -924,8 +924,13 @@
     },
     {
      "year": 2020,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
     },
     {
      "year": 2022,
@@ -1167,8 +1172,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 5,
-     "partly": 1,
-     "no": 3,
+     "partly": 2,
+     "no": 4,
      "unscreened": 0
     },
     "left": [
@@ -1178,6 +1183,20 @@
       "year": 2023,
       "fits": "no",
       "reason": "Treats chronic heart failure and looks at blood pressure, LVEF and lab markers, not heart attacks, strokes or death."
+     },
+     {
+      "pmid": "34123655",
+      "title": "Effect of Vitamin B6, B9, and B12 Supplementation on Homocysteine Level and Cardiovascular Outcomes in Stroke Patients: A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pooled placebo-controlled trials of B6, folic acid and B12 for stroke, heart attack and vascular death, but only in people who already had a stroke."
+     },
+     {
+      "pmid": "32846865",
+      "title": "Effect of sodium cantharidinate/vitamin B6 injection on survival, liver function, immune function, and quality of life in patients with hepatocellular carcinoma: Protocol for a meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "This is a protocol about a cantharidinate/B6 cancer injection for liver cancer patients, not B vitamins to prevent heart attacks, strokes or death."
      },
      {
       "pmid": "23765945",
@@ -1208,7 +1227,7 @@
    "label": "Memory and mood",
    "finding": "Memory, thinking and mood in older people",
    "counts": {
-    "reviews": 15,
+    "reviews": 17,
     "trialReviews": 8,
     "trials": 22,
     "largeTrials": 2
@@ -1326,7 +1345,7 @@
     },
     {
      "year": 2021,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
@@ -1351,7 +1370,7 @@
     },
     {
      "year": 2026,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     }
    ],
@@ -1462,7 +1481,7 @@
    "label": "Nerve damage",
    "finding": "Nerve damage (peripheral neuropathy) from long-term high intakes",
    "counts": {
-    "reviews": 7,
+    "reviews": 8,
     "trialReviews": 2,
     "trials": 11,
     "largeTrials": 2
@@ -1494,6 +1513,11 @@
      "year": 2018,
      "reviews": 0,
      "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
     },
     {
      "year": 2020,

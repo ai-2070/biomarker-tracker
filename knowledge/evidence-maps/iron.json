@@ -8,7 +8,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"iron\" OR TITLE_ABS:\"ferrous sulfate\" OR TITLE_ABS:\"ferrous sulphate\" OR TITLE_ABS:\"ferrous fumarate\" OR TITLE_ABS:\"ferrous gluconate\" OR TITLE_ABS:\"ferrous bisglycinate\" OR TITLE_ABS:\"ferric\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:oral) AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"iron\" OR TITLE_ABS:\"ferrous sulfate\" OR TITLE_ABS:\"ferrous sulphate\" OR TITLE_ABS:\"ferrous fumarate\" OR TITLE_ABS:\"ferrous gluconate\" OR TITLE_ABS:\"ferrous bisglycinate\" OR TITLE_ABS:\"ferric\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:oral) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"iron\" OR TITLE_ABS:\"ferrous sulfate\" OR TITLE_ABS:\"ferrous sulphate\" OR TITLE_ABS:\"ferrous fumarate\" OR TITLE_ABS:\"ferrous gluconate\" OR TITLE_ABS:\"ferrous bisglycinate\" OR TITLE_ABS:\"ferric\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:oral) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"iron\" OR TITLE_ABS:\"ferrous sulfate\" OR TITLE_ABS:\"ferrous sulphate\" OR TITLE_ABS:\"ferrous fumarate\" OR TITLE_ABS:\"ferrous gluconate\" OR TITLE_ABS:\"ferrous bisglycinate\" OR TITLE_ABS:\"ferric\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:oral) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"iron\" OR TITLE_ABS:\"ferrous sulfate\" OR TITLE_ABS:\"ferrous sulphate\" OR TITLE_ABS:\"ferrous fumarate\" OR TITLE_ABS:\"ferrous gluconate\" OR TITLE_ABS:\"ferrous bisglycinate\" OR TITLE_ABS:\"ferric\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:oral) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"iron\" OR TITLE_ABS:\"ferrous sulfate\" OR TITLE_ABS:\"ferrous sulphate\" OR TITLE_ABS:\"ferrous fumarate\" OR TITLE_ABS:\"ferrous gluconate\" OR TITLE_ABS:\"ferrous bisglycinate\" OR TITLE_ABS:\"ferric\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:oral) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -24,10 +24,10 @@
  ],
  "counts": {
   "all": 44740,
-  "retrieved": 3794,
-  "animal": 111,
+  "retrieved": 3978,
+  "animal": 113,
   "retracted": 7,
-  "reviews": 869,
+  "reviews": 1050,
   "trials": 2725,
   "guidelines": 78
  },
@@ -93,8 +93,8 @@
    "label": "Anaemia in women",
    "finding": "Anaemia, haemoglobin and iron stores",
    "counts": {
-    "reviews": 283,
-    "trialReviews": 68,
+    "reviews": 358,
+    "trialReviews": 87,
     "trials": 960,
     "largeTrials": 76
    },
@@ -1297,7 +1297,7 @@
     },
     {
      "year": 2013,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 38
     },
     {
@@ -1307,12 +1307,12 @@
     },
     {
      "year": 2015,
-     "reviews": 15,
+     "reviews": 18,
      "trials": 29
     },
     {
      "year": 2016,
-     "reviews": 15,
+     "reviews": 16,
      "trials": 30
     },
     {
@@ -1327,42 +1327,42 @@
     },
     {
      "year": 2019,
-     "reviews": 20,
+     "reviews": 25,
      "trials": 28
     },
     {
      "year": 2020,
-     "reviews": 15,
+     "reviews": 19,
      "trials": 24
     },
     {
      "year": 2021,
-     "reviews": 20,
+     "reviews": 26,
      "trials": 35
     },
     {
      "year": 2022,
-     "reviews": 26,
+     "reviews": 33,
      "trials": 40
     },
     {
      "year": 2023,
-     "reviews": 16,
+     "reviews": 18,
      "trials": 29
     },
     {
      "year": 2024,
-     "reviews": 28,
+     "reviews": 45,
      "trials": 21
     },
     {
      "year": 2025,
-     "reviews": 35,
+     "reviews": 50,
      "trials": 26
     },
     {
      "year": 2026,
-     "reviews": 24,
+     "reviews": 38,
      "trials": 34
     }
    ],
@@ -2273,8 +2273,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 3,
-     "partly": 13,
-     "no": 52,
+     "partly": 15,
+     "no": 69,
      "unscreened": 0
     },
     "left": [
@@ -2286,11 +2286,11 @@
       "reason": "Compares iron with no iron for haemoglobin and ferritin, but the people are blood donors, including men, not women with periods in general."
      },
      {
-      "pmid": "42163962",
-      "title": "Effects of sourdough- or regular-bread fermentation, and phytate reduction on iron bioavailability, absorption, and iron status in humans: a systematic review of intervention studies",
+      "pmid": "42829776",
+      "title": "Impact of oil fortification with iron in the prevention of anemia-A systematic review",
       "year": 2026,
-      "fits": "no",
-      "reason": "Studies bread fermentation and phytate reduction, not iron supplements against placebo."
+      "fits": "partly",
+      "reason": "Women aged 18-40 with low ferritin and iron-store outcomes match, but the intervention is iron-fortified margarine, not supplements (single trial)."
      },
      {
       "pmid": "42828220",
@@ -2300,6 +2300,13 @@
       "reason": "Asks how iron deficiency affects HbA1c test results, not how iron supplements affect anaemia."
      },
      {
+      "pmid": "42597309",
+      "title": "Efficacy and safety of probiotics in the treatment of iron deficiency anemia in Chinese children: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Tests probiotics in Chinese children with iron deficiency anaemia, not iron supplements in women."
+     },
+     {
       "pmid": "41187664",
       "title": "Efficacy and safety of intravenous iron supplementation for perioperative iron deficiency anemia: a systematic review and network meta-analysis of randomized controlled trials",
       "year": 2026,
@@ -2307,11 +2314,11 @@
       "reason": "Looks at intravenous iron for surgical patients with anaemia, not oral iron for women with periods against placebo."
      },
      {
-      "pmid": "42597309",
-      "title": "Efficacy and safety of probiotics in the treatment of iron deficiency anemia in Chinese children: a systematic review and meta-analysis",
+      "pmid": "42163962",
+      "title": "Effects of sourdough- or regular-bread fermentation, and phytate reduction on iron bioavailability, absorption, and iron status in humans: a systematic review of intervention studies",
       "year": 2026,
       "fits": "no",
-      "reason": "Tests probiotics in Chinese children with iron deficiency anaemia, not iron supplements in women."
+      "reason": "Studies bread fermentation and phytate reduction, not iron supplements against placebo."
      },
      {
       "pmid": "42654261",
@@ -2321,18 +2328,18 @@
       "reason": "Looks at diet patterns in adults with obesity, not iron supplements against placebo."
      },
      {
+      "pmid": "39951396",
+      "title": "Optimal dose and duration of iron supplementation for treating iron deficiency anaemia in children and adolescents: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pools trials of iron vs placebo/no treatment on haemoglobin, but in children and adolescents of both sexes with IDA (treatment), not menstruating women."
+     },
+     {
       "pmid": "39806515",
       "title": "Role of preconception nutrition supplements in maternal anemia and intrauterine growth: a systematic review and meta-analysis of randomized controlled trials",
       "year": 2025,
       "fits": "partly",
       "reason": "Non-pregnant women before conception got iron-folic acid and other mixes vs control, but iron is combined with other nutrients and haemoglobin is measured in pregnancy."
-     },
-     {
-      "pmid": "40063701",
-      "title": "Effect of Increasing Red Meat Intake on Iron Status in Adults with Normal and Suboptimal Iron Status: A Systematic Literature Review and Meta-Analysis of Intervention Studies",
-      "year": 2025,
-      "fits": "no",
-      "reason": "Tests eating more red meat, not iron supplements."
      },
      {
       "pmid": "40841680",
@@ -2349,6 +2356,20 @@
       "reason": "Placebo-controlled iron trials in menstruating adults, but the outcomes are mental health and thinking, not anaemia or iron stores."
      },
      {
+      "pmid": "40063701",
+      "title": "Effect of Increasing Red Meat Intake on Iron Status in Adults with Normal and Suboptimal Iron Status: A Systematic Literature Review and Meta-Analysis of Intervention Studies",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Tests eating more red meat, not iron supplements."
+     },
+     {
+      "pmid": "39301668",
+      "title": "Systematic Review and Meta-Analysis: Iron Deficiency and Iron Deficiency Anemia Among Military Recruits Undergoing Basic Combat Training",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Observational prevalence of anaemia and iron deficiency in military recruits during training; no iron supplement intervention."
+     },
+     {
       "pmid": "40823948",
       "title": "Effect of Interventions on Iron-Deficiency Anemia Among School-Going Children in India: A Systematic Review and Network Meta-Analysis",
       "year": 2025,
@@ -2363,6 +2384,13 @@
       "reason": "Tests probiotics and prebiotics, not iron supplements against placebo."
      },
      {
+      "pmid": "40611956",
+      "title": "Impact of Helicobacter pylori infection on iron deficiency anemia in children: a systematic review and meta-analysis with early intervention implications",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at H. pylori infection and its treatment in children, not iron supplements against placebo in women."
+     },
+     {
       "pmid": "41173412",
       "title": "Efficacy of Iron-Rich Snacks in Improving Iron Status Among Adolescent Girls (10‒19 Years): A Systematic Review",
       "year": 2025,
@@ -2370,11 +2398,11 @@
       "reason": "Tests iron-rich snack foods in adolescent girls, not iron supplements."
      },
      {
-      "pmid": "40611956",
-      "title": "Impact of Helicobacter pylori infection on iron deficiency anemia in children: a systematic review and meta-analysis with early intervention implications",
+      "pmid": "40080504",
+      "title": "Treatment strategies for non-responders to oral iron and folic acid treatment in anemic children: A systematic review",
       "year": 2025,
       "fits": "no",
-      "reason": "Looks at H. pylori infection and its treatment in children, not iron supplements against placebo in women."
+      "reason": "Management of children under five not responding to oral iron and folic acid; different population and question."
      },
      {
       "pmid": "38407751",
@@ -2391,13 +2419,6 @@
       "reason": "Weekly iron vs placebo with an adolescent girls ferritin analysis, but iron is always combined with folic acid and the review covers children too."
      },
      {
-      "pmid": "38405188",
-      "title": "Effect of IV ferric carboxy maltose for moderate/severe anemia: a systematic review and meta-analysis",
-      "year": 2024,
-      "fits": "no",
-      "reason": "Looks at intravenous ferric carboxymaltose for moderate to severe anaemia, compared with other iron treatments."
-     },
-     {
       "pmid": "39716076",
       "title": "Efficacy of probiotic, prebiotic, and synbiotics supplements in individuals with anemia: a systematic review and meta-analysis of randomized controlled trials",
       "year": 2024,
@@ -2405,11 +2426,60 @@
       "reason": "Tests probiotics, prebiotics and synbiotics in people with anaemia, not iron supplements."
      },
      {
+      "pmid": "38291525",
+      "title": "The effectiveness of oral bovine lactoferrin compared to iron supplementation in patients with a low hemoglobin profile: A systematic review and meta-analysis of randomized clinical trials",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares lactoferrin with iron supplements in mixed patient groups; iron is the comparator, not tested against placebo."
+     },
+     {
+      "pmid": "38405188",
+      "title": "Effect of IV ferric carboxy maltose for moderate/severe anemia: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at intravenous ferric carboxymaltose for moderate to severe anaemia, compared with other iron treatments."
+     },
+     {
+      "pmid": "40765927",
+      "title": "Efficacy of vitamin C with Fe supplementation in patients with iron deficiency anemia: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares iron plus vitamin C with iron alone in IDA patients; no placebo or no-treatment comparison of iron."
+     },
+     {
       "pmid": "38655186",
       "title": "Safety and efficacy of East Asian herbal medicine for iron deficiency anemia in children and adolescents: a systematic review and meta-analysis",
       "year": 2024,
       "fits": "no",
       "reason": "Compares herbal medicine with oral iron in children with iron deficiency anaemia, so there is no iron vs placebo comparison in women with periods."
+     },
+     {
+      "pmid": "39230802",
+      "title": "Comment on: \"Effects of Oral Iron Supplementation on Blood Iron Status in Athletes: A Systematic Review, Meta-analysis and Meta-regression of Randomized Controlled Trials\"",
+      "year": 2024,
+      "fits": "no",
+      "reason": "A comment letter on an athlete iron review, not a systematic review itself; no abstract to assess."
+     },
+     {
+      "pmid": "39177717",
+      "title": "Response to Comment on \"Effects of Oral Iron Supplementation on Blood Iron Status in Athletes: A Systematic Review, Meta-analysis and Meta-regression of Randomized Controlled Trials\"",
+      "year": 2024,
+      "fits": "no",
+      "reason": "An author response to a comment, not a systematic review itself; no abstract to assess."
+     },
+     {
+      "pmid": "39634908",
+      "title": "Daily versus intermittent iron supplementation among children with iron deficiency anemia: A meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares daily vs intermittent iron in children with IDA; no placebo comparison and different population."
+     },
+     {
+      "pmid": "39010146",
+      "title": "Efficacy of iron supplementation on physical capacity in non-anaemic iron-deficient individuals: protocol for an individual patient data meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Protocol only, with no pooled results; outcomes are physical capacity, quality of life and fatigue in iron-deficient non-anaemic people."
      },
      {
       "pmid": "37979057",
@@ -2440,11 +2510,11 @@
       "reason": "Compares ferrous bisglycinate with other iron supplements, not with placebo, and pools only pregnant women and children."
      },
      {
-      "pmid": "37665781",
-      "title": "Fortification of condiments and seasonings with iron for preventing anaemia and improving health",
+      "pmid": "36178088",
+      "title": "Systematic review and meta-analysis of intravenous iron-carbohydrate complexes in HFrEF patients with iron deficiency",
       "year": 2023,
       "fits": "no",
-      "reason": "Tests condiments fortified with iron in the general population, not iron supplements."
+      "reason": "IV iron in heart failure patients, with heart failure outcomes; this is a different population, route and question."
      },
      {
       "pmid": "36963849",
@@ -2454,11 +2524,11 @@
       "reason": "Tests iron-fortified milk in preschool children, not iron supplements in women with periods."
      },
      {
-      "pmid": "36178088",
-      "title": "Systematic review and meta-analysis of intravenous iron-carbohydrate complexes in HFrEF patients with iron deficiency",
+      "pmid": "37665781",
+      "title": "Fortification of condiments and seasonings with iron for preventing anaemia and improving health",
       "year": 2023,
       "fits": "no",
-      "reason": "IV iron in heart failure patients, with heart failure outcomes; this is a different population, route and question."
+      "reason": "Tests condiments fortified with iron in the general population, not iron supplements."
      },
      {
       "pmid": "37661669",
@@ -2482,6 +2552,13 @@
       "reason": "Compares IV iron dosing frequencies in kidney-related anaemia; different population, route and comparison."
      },
      {
+      "pmid": "36408243",
+      "title": "The efficiency and safety of Shengxuening tablet on treating and preventing iron deficiency anemia: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Compares Shengxuening tablets with iron or other controls for IDA; not iron supplements vs placebo in menstruating women."
+     },
+     {
       "pmid": "35807904",
       "title": "Effectiveness of Dietary Interventions to Treat Iron-Deficiency Anemia in Women: A Systematic Review of Randomized Controlled Trials",
       "year": 2022,
@@ -2494,6 +2571,13 @@
       "year": 2022,
       "fits": "no",
       "reason": "Compares two bariatric surgeries for anaemia risk; no iron supplement versus placebo or no treatment."
+     },
+     {
+      "pmid": "36994018",
+      "title": "Effect of iron-fortified rice on the hemoglobin level of the individuals aged more than six months: A meta-analysis of controlled trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Iron-fortified rice in anyone over six months; both the intervention (fortification) and the population differ."
      },
      {
       "pmid": "34371850",
@@ -2510,13 +2594,6 @@
       "reason": "Looks at how calcium intake affects iron status, not iron supplements vs placebo."
      },
      {
-      "pmid": "33461239",
-      "title": "Wheat flour fortification with iron and other micronutrients for reducing anaemia and improving iron status in populations",
-      "year": 2021,
-      "fits": "no",
-      "reason": "Iron-fortified wheat flour in general populations is food fortification, not iron supplements."
-     },
-     {
       "pmid": "33871598",
       "title": "Effects of dietary polyphenol supplementation on iron status and erythropoiesis: a systematic review and meta-analysis of randomized controlled trials",
       "year": 2021,
@@ -2524,11 +2601,11 @@
       "reason": "Looks at polyphenol supplements and iron status, not iron supplements."
      },
      {
-      "pmid": "33582785",
-      "title": "Can Double Fortification of Salt with Iron and Iodine Reduce Anemia, Iron Deficiency Anemia, Iron Deficiency, Iodine Deficiency, and Functional Outcomes? Evidence of Efficacy, Effectiveness, and Safety",
+      "pmid": "33520436",
+      "title": "Effectiveness of iron polymaltose complex in treatment and prevention of iron deficiency anemia in children: a systematic review and meta-analysis",
       "year": 2021,
       "fits": "no",
-      "reason": "Double-fortified salt for all population groups; food fortification, not iron supplements."
+      "reason": "Compares iron polymaltose with ferrous sulphate in children; active comparator and different population."
      },
      {
       "pmid": "34590114",
@@ -2538,6 +2615,20 @@
       "reason": "Lipid-based nutrient supplements in children aged 6-24 months; different population and intervention."
      },
      {
+      "pmid": "33461239",
+      "title": "Wheat flour fortification with iron and other micronutrients for reducing anaemia and improving iron status in populations",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Iron-fortified wheat flour in general populations is food fortification, not iron supplements."
+     },
+     {
+      "pmid": "33582785",
+      "title": "Can Double Fortification of Salt with Iron and Iodine Reduce Anemia, Iron Deficiency Anemia, Iron Deficiency, Iodine Deficiency, and Functional Outcomes? Evidence of Efficacy, Effectiveness, and Safety",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Double-fortified salt for all population groups; food fortification, not iron supplements."
+     },
+     {
       "pmid": "32677706",
       "title": "Wheat flour fortification with iron for reducing anaemia and improving iron status in populations",
       "year": 2020,
@@ -2545,11 +2636,11 @@
       "reason": "Iron-fortified wheat flour in general populations is food fortification, not iron supplements."
      },
      {
-      "pmid": "31811820",
-      "title": "Iron therapy for preoperative anaemia",
-      "year": 2019,
-      "fits": "partly",
-      "reason": "Iron vs placebo or no treatment with haemoglobin and ferritin outcomes, but in anaemic adults before surgery, treating anaemia rather than in women with periods."
+      "pmid": "33511051",
+      "title": "Shengxuening versus Oral Iron Supplementation for the Treatment of Renal Anemia: A Systematic Review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Shengxuening vs oral iron for renal anaemia; different population and comparison."
      },
      {
       "pmid": "29611716",
@@ -2559,18 +2650,18 @@
       "reason": "Iron supplements with haemoglobin and ferritin outcomes, but compared against dietary iron rather than placebo or no treatment."
      },
      {
+      "pmid": "31811820",
+      "title": "Iron therapy for preoperative anaemia",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Iron vs placebo or no treatment with haemoglobin and ferritin outcomes, but in anaemic adults before surgery, treating anaemia rather than in women with periods."
+     },
+     {
       "pmid": "31860749",
       "title": "Intravenous iron therapy for non-anaemic, iron-deficient adults",
       "year": 2019,
       "fits": "partly",
       "reason": "Placebo-controlled with haemoglobin and ferritin outcomes, but intravenous iron for treating iron-deficient adults of both sexes."
-     },
-     {
-      "pmid": "30689458",
-      "title": "A systematic literature review and indirect comparison of iron isomaltoside and ferric carboxymaltose in iron deficiency anemia after failure or intolerance of oral iron treatment",
-      "year": 2019,
-      "fits": "no",
-      "reason": "Indirect comparison of two IV iron products; no placebo comparison and not women with periods."
      },
      {
       "pmid": "31762068",
@@ -2585,6 +2676,20 @@
       "year": 2019,
       "fits": "no",
       "reason": "Tests probiotics on iron absorption, not iron supplements versus placebo in women with periods."
+     },
+     {
+      "pmid": "30689458",
+      "title": "A systematic literature review and indirect comparison of iron isomaltoside and ferric carboxymaltose in iron deficiency anemia after failure or intolerance of oral iron treatment",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Indirect comparison of two IV iron products; no placebo comparison and not women with periods."
+     },
+     {
+      "pmid": "31673228",
+      "title": "The Effects of Dietary Polyphenols on Circulating Cardiovascular Disease Biomarkers and Iron Status: A Systematic Review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Effects of dietary polyphenols on cardiovascular markers and iron status; not iron supplementation."
      },
      {
       "pmid": "29626044",
@@ -2629,6 +2734,13 @@
       "reason": "Intravenous iron for anaemia in surgical patients; different population and intervention."
      },
      {
+      "pmid": "27681259",
+      "title": "Iron supplementation to treat anaemia in adult critical care patients: a systematic review and meta-analysis",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Iron (mostly intravenous) vs placebo in critically ill adult ICU patients; different population and route."
+     },
+     {
       "pmid": "25644019",
       "title": "Systematic review and meta-analysis: what is the evidence for oral iron supplementation in treating anaemia in elderly people?",
       "year": 2015,
@@ -2650,11 +2762,32 @@
       "reason": "Preoperative iron for anaemic colorectal cancer patients, not meta-analysed; different population and question."
      },
      {
+      "pmid": "26629120",
+      "title": "Daily iron supplementation on cognitive performance in primary-school-aged children with and without anemia: a meta-analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Daily iron in primary-school children with cognitive outcomes; different population and outcome."
+     },
+     {
       "pmid": "25825534",
       "title": "Screening and routine supplementation for iron deficiency anemia: a systematic review",
       "year": 2015,
       "fits": "no",
       "reason": "The population is children aged 6 to 24 months, not menstruating women."
+     },
+     {
+      "pmid": "26433017",
+      "title": "Evidence of the effectiveness of flour fortification programs on iron status and anemia: a systematic review",
+      "year": 2015,
+      "fits": "no",
+      "reason": "National flour fortification programs evaluated with pre-post studies, not randomised trials of iron supplements."
+     },
+     {
+      "pmid": "25905157",
+      "title": "Routine Iron Supplementation and Screening for Iron Deficiency Anemia in Children Ages 6 to 24 Months: A Systematic Review to Update the U.S. Preventive Services Task Force Recommendation",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Routine iron supplementation and screening in children aged 6-24 months; different population."
      },
      {
       "pmid": "24990381",
@@ -2741,8 +2874,8 @@
    "label": "Pregnancy",
    "finding": "Anaemia and iron deficiency in pregnancy, and outcomes for the baby",
    "counts": {
-    "reviews": 188,
-    "trialReviews": 72,
+    "reviews": 228,
+    "trialReviews": 91,
     "trials": 504,
     "largeTrials": 117
    },
@@ -2759,6 +2892,16 @@
      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
     },
     {
+     "pmid": "31144465",
+     "doi": "10.1111/jebm.12344",
+     "title": "Oral iron-based interventions for prevention of critical outcomes in pregnancy and postnatal care: An overview and update of systematic reviews",
+     "year": 2019,
+     "firstAuthor": "Abraha I",
+     "journal": "Journal of evidence-based medicine",
+     "citedBy": 23,
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+    },
+    {
      "pmid": "26198451",
      "doi": "10.1002/14651858.cd004736.pub5",
      "title": "Daily oral iron supplementation during pregnancy",
@@ -2768,17 +2911,6 @@
      "citedBy": 353,
      "n": 43274,
      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
-    },
-    {
-     "pmid": "23235616",
-     "doi": "10.1002/14651858.cd004736.pub4",
-     "title": "Daily oral iron supplementation during pregnancy",
-     "year": 2012,
-     "firstAuthor": "Peña-Rosas JP",
-     "journal": "The Cochrane database of systematic reviews",
-     "citedBy": 138,
-     "n": 27402,
-     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
     }
    ],
    "newerLargeTrials": [
@@ -2916,34 +3048,34 @@
     }
    ],
    "overlap": {
-    "cca": 0.7083333333333334,
+    "cca": 0.41964285714285715,
     "trials": 168,
-    "inclusions": 406,
+    "inclusions": 309,
     "reviews": [
      {
       "pmid": "39145520",
       "trials": 167
      },
      {
-      "pmid": "26198451",
-      "trials": 125
+      "pmid": "31144465",
+      "trials": 17
      },
      {
-      "pmid": "23235616",
-      "trials": 114
+      "pmid": "26198451",
+      "trials": 125
      }
     ],
     "reviewsWithoutReferences": [],
     "shared": [
      {
-      "pmid": "19336358",
-      "title": "Effects of maternal multimicronutrient supplementation on the mental development of infants in rural western China: follow-up evaluation of a double-blind, randomized, controlled trial",
-      "year": 2009,
-      "n": 5828,
+      "pmid": "23303315",
+      "title": "Micronutrient supplementation and pregnancy outcomes: double-blind randomized controlled trial in China",
+      "year": 2013,
+      "n": 18775,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -2953,8 +3085,8 @@
       "n": 5828,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -2964,184 +3096,8 @@
       "n": 4926,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19778983",
-      "title": "Antenatal and postnatal iron supplementation and childhood mortality in rural Nepal: a prospective follow-up in a randomized, controlled community trial",
-      "year": 2009,
-      "n": 4926,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "14668283",
-      "title": "Effects of maternal micronutrient supplementation on fetal loss and infant mortality: a cluster-randomized trial in Nepal",
-      "year": 2003,
-      "n": 4926,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "18644934",
-      "title": "The effect of maternal micronutrient supplementation on early neonatal morbidity in rural Nepal: a randomised, controlled, community trial",
-      "year": 2008,
-      "n": 3927,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19549749",
-      "title": "Antenatal micronutrient supplementation reduces metabolic syndrome in 6- to 8-year-old children in rural Nepal",
-      "year": 2009,
-      "n": 3524,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "2010577",
-      "title": "A randomized comparison of routine versus selective iron supplementation during pregnancy",
-      "year": 1991,
-      "n": 2912,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "2025036",
-      "title": "Iron supplementation, maternal packed cell volume, and fetal growth",
-      "year": 1991,
-      "n": 2912,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "7631683",
-      "title": "Long-term follow-up of mothers and their infants in a randomized trial on iron prophylaxis during pregnancy",
-      "year": 1995,
-      "n": 2693,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16015266",
-      "title": "Effects of prenatal multimicronutrient supplements on birth weight and perinatal mortality: a randomised, controlled trial in Guinea-Bissau",
-      "year": 2005,
-      "n": 2100,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "21243915",
-      "title": "Effects of maternal micronutrient supplementation on fetal loss and under-2-years child mortality: long-term follow-up of a randomised controlled trial from Guinea-Bissau",
-      "year": 2010,
-      "n": 2100,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19589154",
-      "title": "Assessment of dietary intake among pregnant women in a rural area of western China",
-      "year": 2009,
-      "n": 1420,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "22085869",
-      "title": "No effect of maternal micronutrient supplementation on early childhood growth in rural western China: 30 month follow-up evaluation of a double blind, cluster randomized controlled trial",
-      "year": 2012,
-      "n": 1388,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "21865563",
-      "title": "Low maternal vitamin B-12 status is associated with offspring insulin resistance regardless of antenatal micronutrient supplementation in rural Nepal",
-      "year": 2011,
-      "n": 1132,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "12600867",
-      "title": "Multiple micronutrient supplementation during pregnancy does not lead to greater infant birth size than does iron-only supplementation: a randomized controlled trial in a semirural community in Mexico",
-      "year": 2003,
-      "n": 873,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16600929",
-      "title": "Antenatal supplementation with micronutrients and biochemical indicators of status and subclinical infection in rural Nepal",
-      "year": 2006,
-      "n": 740,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "21177506",
-      "title": "Prenatal micronutrient supplementation and intellectual and motor function in early school-aged children in Nepal",
-      "year": 2010,
-      "n": 676,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "15766997",
-      "title": "Effects of antenatal multiple micronutrient supplementation on birthweight and gestational duration in Nepal: double-blind, randomised controlled trial",
-      "year": 2005,
-      "n": 600,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3151,8 +3107,8 @@
       "n": 599,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3162,30 +3118,8 @@
       "n": 513,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "7660438",
-      "title": "The response to iron supplementation of pregnant women with the haemoglobin genotype AA or AS",
-      "year": 1995,
-      "n": 497,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16685054",
-      "title": "Effect of iron supplementation during pregnancy on the intelligence quotient and behavior of children at 4 y of age: long-term follow-up of a randomized controlled trial",
-      "year": 2006,
-      "n": 430,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3195,52 +3129,8 @@
       "n": 430,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "15715531",
-      "title": "Iron prophylaxis during pregnancy -- how much iron is needed? A randomized dose- response study of 20-80 mg ferrous iron daily in pregnant women",
-      "year": 2005,
-      "n": 427,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "10878651",
-      "title": "Can iron status be improved in each of the three trimesters? A community-based study",
-      "year": 2000,
-      "n": 425,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "2596434",
-      "title": "Hemoglobin as a predictor of response to iron therapy and its use in screening and prevalence estimates",
-      "year": 1989,
-      "n": 412,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16424650",
-      "title": "Side effects of oral iron prophylaxis in pregnancy--myth or reality?",
-      "year": 2006,
-      "n": 404,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3250,41 +3140,8 @@
       "n": 370,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "10682464",
-      "title": "[Clinical experience with iron supplementation in pregnancy]",
-      "year": 1998,
-      "n": 369,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "18806105",
-      "title": "Retinol and riboflavin supplementation decreases the prevalence of anemia in Chinese pregnant women taking iron and folic Acid supplements",
-      "year": 2008,
-      "n": 366,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19527383",
-      "title": "Effect of education and pill count on hemoglobin status during prenatal care in Nepalese women: a randomized controlled trial",
-      "year": 2009,
-      "n": 320,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3294,52 +3151,8 @@
       "n": 310,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16733739",
-      "title": "Body iron and individual iron prophylaxis in pregnancy--should the iron dose be adjusted according to serum ferritin?",
-      "year": 2006,
-      "n": 301,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16760504",
-      "title": "Lack of inhibition of the anti-malarial action of sulfadoxine-pyrimethamine by folic acid supplementation when used for intermittent preventive treatment in Gambian primigravidae",
-      "year": 2006,
-      "n": 261,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19406557",
-      "title": "Iron prophylaxis in pregnancy: intravenous route versus oral route",
-      "year": 2009,
-      "n": 260,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "2696020",
-      "title": "[Therapy and iron supplements with ferritin iron during pregnancy. Randomized prospective study of 458 cases]",
-      "year": 1989,
-      "n": 254,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3349,30 +3162,8 @@
       "n": 251,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "17977537",
-      "title": "Iron status markers in nonanemic pregnant women with and without iron supplementation",
-      "year": 2008,
-      "n": 244,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "15777891",
-      "title": "Oral versus high dose parenteral iron supplementation in pregnancy",
-      "year": 2005,
-      "n": 220,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3382,63 +3173,8 @@
       "n": 218,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "10842553",
-      "title": "The effectiveness of weekly iron supplementation in pregnant women of rural northern Malawi",
-      "year": 2000,
-      "n": 211,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "1802636",
-      "title": "Iron supplementation during pregnancy. Effect on iron status markers, serum erythropoietin and human placental lactogen. A placebo controlled study in 207 Danish women",
-      "year": 1991,
-      "n": 207,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "10684161",
-      "title": "[Effect of iron supplementation and its frequency during pregnancy]",
-      "year": 1999,
-      "n": 203,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "6881917",
-      "title": "Iron supplements versus placebo during pregnancy: its effects on iron and folate status on mothers and newborns",
-      "year": 1983,
-      "n": 203,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "1971872",
-      "title": "Gastric delivery system for iron supplementation",
-      "year": 1990,
-      "n": 200,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
       ]
      },
      {
@@ -3448,8 +3184,490 @@
       "n": 197,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
+       "31144465",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "8141223",
+      "title": "Maternal erythropoietin in singleton pregnancies: a randomized trial on the effect of oral hematinic supplementation",
+      "year": 1994,
+      "n": 97,
+      "inReviews": [
+       "39145520",
+       "31144465",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "9351406",
+      "title": "Iron supplementation in pregnancy: is less enough? A randomized, placebo controlled trial of low dose iron supplementation with and without heme iron",
+      "year": 1997,
+      "n": 30,
+      "inReviews": [
+       "39145520",
+       "31144465",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "22073795",
+      "title": "Impact of prophylactic iron supplementation in healthy pregnant women on maternal iron status and birth outcome",
+      "year": 2011,
+      "inReviews": [
+       "39145520",
+       "31144465",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "17209188",
+      "title": "Effect of high-dose iron supplements on fractional zinc absorption and status in pregnant women",
+      "year": 2007,
+      "inReviews": [
+       "39145520",
+       "31144465",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "25536256",
+      "title": "Effect of maternal multiple micronutrient vs iron-folic acid supplementation on infant mortality and adverse birth outcomes in rural Bangladesh: the JiVitA-3 randomized trial",
+      "year": 2014,
+      "n": 127282,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "19336358",
+      "title": "Effects of maternal multimicronutrient supplementation on the mental development of infants in rural western China: follow-up evaluation of a double-blind, randomized, controlled trial",
+      "year": 2009,
+      "n": 5828,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "19778983",
+      "title": "Antenatal and postnatal iron supplementation and childhood mortality in rural Nepal: a prospective follow-up in a randomized, controlled community trial",
+      "year": 2009,
+      "n": 4926,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "14668283",
+      "title": "Effects of maternal micronutrient supplementation on fetal loss and infant mortality: a cluster-randomized trial in Nepal",
+      "year": 2003,
+      "n": 4926,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "18644934",
+      "title": "The effect of maternal micronutrient supplementation on early neonatal morbidity in rural Nepal: a randomised, controlled, community trial",
+      "year": 2008,
+      "n": 3927,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "19549749",
+      "title": "Antenatal micronutrient supplementation reduces metabolic syndrome in 6- to 8-year-old children in rural Nepal",
+      "year": 2009,
+      "n": 3524,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "2010577",
+      "title": "A randomized comparison of routine versus selective iron supplementation during pregnancy",
+      "year": 1991,
+      "n": 2912,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "2025036",
+      "title": "Iron supplementation, maternal packed cell volume, and fetal growth",
+      "year": 1991,
+      "n": 2912,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "7631683",
+      "title": "Long-term follow-up of mothers and their infants in a randomized trial on iron prophylaxis during pregnancy",
+      "year": 1995,
+      "n": 2693,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "26063068",
+      "title": "Prenatal Iron Supplementation Reduces Maternal Anemia, Iron Deficiency, and Iron Deficiency Anemia in a Randomized Clinical Trial in Rural China, but Iron Deficiency Remains Widespread in Mothers and Neonates",
+      "year": 2015,
+      "n": 2371,
+      "inReviews": [
+       "39145520",
+       "31144465"
+      ]
+     },
+     {
+      "pmid": "16015266",
+      "title": "Effects of prenatal multimicronutrient supplements on birth weight and perinatal mortality: a randomised, controlled trial in Guinea-Bissau",
+      "year": 2005,
+      "n": 2100,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "21243915",
+      "title": "Effects of maternal micronutrient supplementation on fetal loss and under-2-years child mortality: long-term follow-up of a randomised controlled trial from Guinea-Bissau",
+      "year": 2010,
+      "n": 2100,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "19589154",
+      "title": "Assessment of dietary intake among pregnant women in a rural area of western China",
+      "year": 2009,
+      "n": 1420,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "22085869",
+      "title": "No effect of maternal micronutrient supplementation on early childhood growth in rural western China: 30 month follow-up evaluation of a double blind, cluster randomized controlled trial",
+      "year": 2012,
+      "n": 1388,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "23853552",
+      "title": "The effect of intermittent antenatal iron supplementation on maternal and infant outcomes in rural Viet Nam: a cluster randomised trial",
+      "year": 2013,
+      "n": 1258,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "21865563",
+      "title": "Low maternal vitamin B-12 status is associated with offspring insulin resistance regardless of antenatal micronutrient supplementation in rural Nepal",
+      "year": 2011,
+      "n": 1132,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "24438754",
+      "title": "Adapting iron dose supplementation in pregnancy for greater effectiveness on mother and child health: protocol of the ECLIPSES randomized clinical trial",
+      "year": 2014,
+      "n": 878,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "12600867",
+      "title": "Multiple micronutrient supplementation during pregnancy does not lead to greater infant birth size than does iron-only supplementation: a randomized controlled trial in a semirural community in Mexico",
+      "year": 2003,
+      "n": 873,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "23400604",
+      "title": "Effect of iron deficiency anemia in pregnancy on child mental development in rural China",
+      "year": 2013,
+      "n": 850,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "24744317",
+      "title": "Iron-containing micronutrient supplementation of Chinese women with no or mild anemia during pregnancy improved iron status but did not affect perinatal anemia",
+      "year": 2014,
+      "n": 834,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "16600929",
+      "title": "Antenatal supplementation with micronutrients and biochemical indicators of status and subclinical infection in rural Nepal",
+      "year": 2006,
+      "n": 740,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "21177506",
+      "title": "Prenatal micronutrient supplementation and intellectual and motor function in early school-aged children in Nepal",
+      "year": 2010,
+      "n": 676,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "15766997",
+      "title": "Effects of antenatal multiple micronutrient supplementation on birthweight and gestational duration in Nepal: double-blind, randomised controlled trial",
+      "year": 2005,
+      "n": 600,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "7660438",
+      "title": "The response to iron supplementation of pregnant women with the haemoglobin genotype AA or AS",
+      "year": 1995,
+      "n": 497,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "16685054",
+      "title": "Effect of iron supplementation during pregnancy on the intelligence quotient and behavior of children at 4 y of age: long-term follow-up of a randomized controlled trial",
+      "year": 2006,
+      "n": 430,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "15715531",
+      "title": "Iron prophylaxis during pregnancy -- how much iron is needed? A randomized dose- response study of 20-80 mg ferrous iron daily in pregnant women",
+      "year": 2005,
+      "n": 427,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "10878651",
+      "title": "Can iron status be improved in each of the three trimesters? A community-based study",
+      "year": 2000,
+      "n": 425,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "2596434",
+      "title": "Hemoglobin as a predictor of response to iron therapy and its use in screening and prevalence estimates",
+      "year": 1989,
+      "n": 412,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "16424650",
+      "title": "Side effects of oral iron prophylaxis in pregnancy--myth or reality?",
+      "year": 2006,
+      "n": 404,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "22888611",
+      "title": "Impact of twice weekly versus daily iron supplementation during pregnancy on maternal and fetal haematological indices: a randomized clinical trial",
+      "year": 2012,
+      "n": 370,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "10682464",
+      "title": "[Clinical experience with iron supplementation in pregnancy]",
+      "year": 1998,
+      "n": 369,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "18806105",
+      "title": "Retinol and riboflavin supplementation decreases the prevalence of anemia in Chinese pregnant women taking iron and folic Acid supplements",
+      "year": 2008,
+      "n": 366,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "19527383",
+      "title": "Effect of education and pill count on hemoglobin status during prenatal care in Nepalese women: a randomized controlled trial",
+      "year": 2009,
+      "n": 320,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "16733739",
+      "title": "Body iron and individual iron prophylaxis in pregnancy--should the iron dose be adjusted according to serum ferritin?",
+      "year": 2006,
+      "n": 301,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "16760504",
+      "title": "Lack of inhibition of the anti-malarial action of sulfadoxine-pyrimethamine by folic acid supplementation when used for intermittent preventive treatment in Gambian primigravidae",
+      "year": 2006,
+      "n": 261,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "19406557",
+      "title": "Iron prophylaxis in pregnancy: intravenous route versus oral route",
+      "year": 2009,
+      "n": 260,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "2696020",
+      "title": "[Therapy and iron supplements with ferritin iron during pregnancy. Randomized prospective study of 458 cases]",
+      "year": 1989,
+      "n": 254,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "17977537",
+      "title": "Iron status markers in nonanemic pregnant women with and without iron supplementation",
+      "year": 2008,
+      "n": 244,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "15777891",
+      "title": "Oral versus high dose parenteral iron supplementation in pregnancy",
+      "year": 2005,
+      "n": 220,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "10842553",
+      "title": "The effectiveness of weekly iron supplementation in pregnant women of rural northern Malawi",
+      "year": 2000,
+      "n": 211,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "1802636",
+      "title": "Iron supplementation during pregnancy. Effect on iron status markers, serum erythropoietin and human placental lactogen. A placebo controlled study in 207 Danish women",
+      "year": 1991,
+      "n": 207,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "10684161",
+      "title": "[Effect of iron supplementation and its frequency during pregnancy]",
+      "year": 1999,
+      "n": 203,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "6881917",
+      "title": "Iron supplements versus placebo during pregnancy: its effects on iron and folate status on mothers and newborns",
+      "year": 1983,
+      "n": 203,
+      "inReviews": [
+       "39145520",
+       "26198451"
+      ]
+     },
+     {
+      "pmid": "1971872",
+      "title": "Gastric delivery system for iron supplementation",
+      "year": 1990,
+      "n": 200,
+      "inReviews": [
+       "39145520",
+       "26198451"
       ]
      },
      {
@@ -3459,140 +3677,7 @@
       "n": 192,
       "inReviews": [
        "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "11053509",
-      "title": "Daily iron supplementation is more effective than twice weekly iron supplementation in pregnant women in Pakistan in a randomized double-blind clinical trial",
-      "year": 2000,
-      "n": 191,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "21147712",
-      "title": "A combination of iron and retinol supplementation benefits iron status, IL-2 level and lymphocyte proliferation in anemic pregnant women",
-      "year": 2010,
-      "n": 186,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "15531679",
-      "title": "Zinc plus beta-carotene supplementation of pregnant women is superior to beta-carotene supplementation alone in improving vitamin A status in both mothers and infants",
-      "year": 2004,
-      "n": 170,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "18482454",
-      "title": "Effect of iron content on the tolerability of prenatal multivitamins in pregnancy",
-      "year": 2008,
-      "n": 167,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19757261",
-      "title": "Adherence and tolerability of iron-containing prenatal multivitamins in pregnant women with pre-existing gastrointestinal conditions",
-      "year": 2009,
-      "n": 166,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "2672177",
-      "title": "[Prevention of iron-deficiency anemia in pregnancy using early iron supplementation: a controlled trial]",
-      "year": 1989,
-      "n": 165,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "22094835",
-      "title": "Moderate NaFeEDTA and ferrous sulfate supplementation can improve both hematologic status and oxidative stress in anemic pregnant women",
-      "year": 2011,
-      "n": 153,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "19793860",
-      "title": "Periconceptional iron supplementation does not reduce anemia or improve iron status among pregnant women in rural Bangladesh",
-      "year": 2009,
-      "n": 146,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16210715",
-      "title": "Effect of time of initiation and dose of prenatal iron and folic acid supplementation on iron and folate nutriture of Korean women during pregnancy",
-      "year": 2005,
-      "n": 131,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "8122498",
-      "title": "Iron status markers and serum erythropoietin in 120 mothers and newborn infants. Effect of iron supplementation in normal pregnancy",
-      "year": 1994,
-      "n": 120,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "9277046",
-      "title": "Serum erythropoietin during normal pregnancy: relationship to hemoglobin and iron status markers and impact of iron supplementation in a longitudinal, placebo-controlled study on 118 women",
-      "year": 1997,
-      "n": 118,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
-      ]
-     },
-     {
-      "pmid": "16740440",
-      "title": "Weekly iron as a safe alternative to daily supplementation for nonanemic pregnant women",
-      "year": 2006,
-      "n": 116,
-      "inReviews": [
-       "39145520",
-       "26198451",
-       "23235616"
+       "26198451"
       ]
      }
     ]
@@ -3755,7 +3840,7 @@
     },
     {
      "year": 2009,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 25
     },
     {
@@ -3785,7 +3870,7 @@
     },
     {
      "year": 2015,
-     "reviews": 13,
+     "reviews": 14,
      "trials": 19
     },
     {
@@ -3800,47 +3885,47 @@
     },
     {
      "year": 2018,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 16
     },
     {
      "year": 2019,
-     "reviews": 15,
+     "reviews": 17,
      "trials": 21
     },
     {
      "year": 2020,
-     "reviews": 13,
+     "reviews": 16,
      "trials": 13
     },
     {
      "year": 2021,
-     "reviews": 8,
+     "reviews": 14,
      "trials": 16
     },
     {
      "year": 2022,
-     "reviews": 12,
+     "reviews": 16,
      "trials": 25
     },
     {
      "year": 2023,
-     "reviews": 9,
+     "reviews": 10,
      "trials": 21
     },
     {
      "year": 2024,
-     "reviews": 15,
+     "reviews": 21,
      "trials": 12
     },
     {
      "year": 2025,
-     "reviews": 22,
+     "reviews": 33,
      "trials": 20
     },
     {
      "year": 2026,
-     "reviews": 10,
+     "reviews": 14,
      "trials": 13
     }
    ],
@@ -4556,6 +4641,16 @@
     "citedNotEligible": [],
     "chosenNotCited": [
      {
+      "pmid": "31144465",
+      "doi": "10.1111/jebm.12344",
+      "title": "Oral iron-based interventions for prevention of critical outcomes in pregnancy and postnatal care: An overview and update of systematic reviews",
+      "year": 2019,
+      "firstAuthor": "Abraha I",
+      "journal": "Journal of evidence-based medicine",
+      "citedBy": 23,
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     },
+     {
       "pmid": "26198451",
       "doi": "10.1002/14651858.cd004736.pub5",
       "title": "Daily oral iron supplementation during pregnancy",
@@ -4565,17 +4660,6 @@
       "citedBy": 353,
       "n": 43274,
       "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
-     },
-     {
-      "pmid": "23235616",
-      "doi": "10.1002/14651858.cd004736.pub4",
-      "title": "Daily oral iron supplementation during pregnancy",
-      "year": 2012,
-      "firstAuthor": "Peña-Rosas JP",
-      "journal": "The Cochrane database of systematic reviews",
-      "citedBy": 138,
-      "n": 27402,
-      "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
      },
      {
       "pmid": "40653272",
@@ -4721,12 +4805,26 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 9,
-     "partly": 10,
-     "no": 53,
+     "yes": 13,
+     "partly": 13,
+     "no": 65,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "42129691",
+      "title": "Impact of maternal micronutrient supplementation on pregnancy outcomes in developing countries: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Has iron-folic acid vs control for low birth weight, but mixes in nutrient-status studies and reports no maternal anaemia outcome."
+     },
+     {
+      "pmid": "42699946",
+      "title": "Comparative Effectiveness of Iron Supplementation in Indian Pregnant Women: A Network Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Compares iron formulations and oral vs parenteral iron in anaemic women, with no placebo or no-iron comparison and only blood-marker outcomes."
+     },
      {
       "pmid": "42426275",
       "title": "Efficacy and safety of intravenous ferric carboxymaltose versus oral iron in pregnant women with anemia: a systematic review and meta-analysis",
@@ -4740,6 +4838,13 @@
       "year": 2026,
       "fits": "no",
       "reason": "Compares intravenous with oral iron for treating iron deficiency anaemia, not oral iron with placebo or no iron."
+     },
+     {
+      "pmid": "42078226",
+      "title": "Intravenous and Oral Iron Strategies for Iron-Deficiency Anemia in Pregnancy: A Systematic Review of Randomized Controlled Trials From a Hematology Perspective",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Qualitative review of intravenous vs oral iron for treating anaemia, with no placebo or no-iron comparison and no pooling."
      },
      {
       "pmid": "41955565",
@@ -4756,11 +4861,18 @@
       "reason": "Oral iron against placebo or no iron, but only in non-anaemic pregnant women, and observational studies are included; the abstract reports only maternal outcomes."
      },
      {
-      "pmid": "41081933",
-      "title": "The effect of intravenous iron supplementation compared to oral iron supplementation during pregnancy on neonatal outcomes-a systematic review of randomized controlled trials",
+      "pmid": "39569449",
+      "title": "Impact of iron-folic acid supplementation on maternal and neonatal outcomes: A systematic review & meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Iron-folic acid vs folic acid or control in pregnancy for low birth weight and preterm birth, but no maternal anaemia outcome."
+     },
+     {
+      "pmid": "41316195",
+      "title": "Dysregulated iron metabolism related to ferroptosis in polycystic ovary syndrome: a meta-analysis and a case-control study in pregnant women",
       "year": 2025,
       "fits": "no",
-      "reason": "Compares intravenous with oral iron on newborn outcomes; it has no placebo or no-iron group."
+      "reason": "Compares iron status in women with PCOS vs controls and does not test iron supplementation."
      },
      {
       "pmid": "39715461",
@@ -4770,18 +4882,25 @@
       "reason": "Looks at health education to improve use of iron-folic acid supplements, not at the supplement against placebo."
      },
      {
+      "pmid": "39545365",
+      "title": "Effect of Nutrition Education During Pregnancy on Iron-Folic Acid Supplementation Compliance and Anemia in Low- and Middle-Income Countries: A Systematic Review and Meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "The intervention is nutrition education to improve iron-folic acid adherence, not iron supplements vs no iron."
+     },
+     {
+      "pmid": "41081933",
+      "title": "The effect of intravenous iron supplementation compared to oral iron supplementation during pregnancy on neonatal outcomes-a systematic review of randomized controlled trials",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Compares intravenous with oral iron on newborn outcomes; it has no placebo or no-iron group."
+     },
+     {
       "pmid": "40451462",
       "title": "Contribution of Maternal Adherence to the Effect of Multiple Micronutrient Supplementation During Pregnancy: A Systematic Review and Individual Participant Data Meta-analysis",
       "year": 2025,
       "fits": "no",
       "reason": "Compares multiple micronutrient supplements with iron-folic acid, looking at adherence; it has no placebo or no-iron group."
-     },
-     {
-      "pmid": "39087437",
-      "title": "Recombinant erythropoietin for the treatment of iron deficiency anemia in pregnancy: A systematic review",
-      "year": 2025,
-      "fits": "no",
-      "reason": "Looks at erythropoietin plus iron against iron alone for treating anaemia in pregnancy."
      },
      {
       "pmid": "39806515",
@@ -4791,11 +4910,18 @@
       "reason": "Covers supplements given before conception, including multiple nutrients, not oral iron during pregnancy."
      },
      {
-      "pmid": "41470911",
-      "title": "Long-Term Effects of Multiple-Micronutrient Supplementation During Pregnancy, Lactation, and Early Childhood on the Cognitive Development of Children Aged 4-14 Years: A Systematic Review of Randomized Controlled Trials",
+      "pmid": "40034615",
+      "title": "Comparing the Treatment Outcomes of Oral and Injectable Iron Therapies for Anemia in Pregnancy: A Meta-Analysis",
       "year": 2025,
       "fits": "no",
-      "reason": "Looks at multiple micronutrients and long-term child cognitive outcomes, not iron against placebo."
+      "reason": "Compares intravenous vs oral iron for treating anaemia, with no placebo or no-iron comparison."
+     },
+     {
+      "pmid": "39087437",
+      "title": "Recombinant erythropoietin for the treatment of iron deficiency anemia in pregnancy: A systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at erythropoietin plus iron against iron alone for treating anaemia in pregnancy."
      },
      {
       "pmid": "39890230",
@@ -4805,11 +4931,11 @@
       "reason": "Tests multiple micronutrient or lipid-based supplements, mostly against iron-folic acid as control, not iron vs no iron."
      },
      {
-      "pmid": "39651609",
-      "title": "Effect and safety of intravenous iron compared to oral iron for treatment of iron deficiency anaemia in pregnancy",
-      "year": 2024,
+      "pmid": "41470911",
+      "title": "Long-Term Effects of Multiple-Micronutrient Supplementation During Pregnancy, Lactation, and Early Childhood on the Cognitive Development of Children Aged 4-14 Years: A Systematic Review of Randomized Controlled Trials",
+      "year": 2025,
       "fits": "no",
-      "reason": "Compares intravenous with oral iron for treating iron deficiency anaemia in pregnancy; it has no placebo or no-iron group."
+      "reason": "Looks at multiple micronutrients and long-term child cognitive outcomes, not iron against placebo."
      },
      {
       "pmid": "39343168",
@@ -4817,6 +4943,13 @@
       "year": 2024,
       "fits": "no",
       "reason": "Compares different daily doses of iron with each other, not iron with placebo or no iron."
+     },
+     {
+      "pmid": "39651609",
+      "title": "Effect and safety of intravenous iron compared to oral iron for treatment of iron deficiency anaemia in pregnancy",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares intravenous with oral iron for treating iron deficiency anaemia in pregnancy; it has no placebo or no-iron group."
      },
      {
       "pmid": "38167523",
@@ -4833,13 +4966,6 @@
       "reason": "Looks at digital tools to improve adherence to iron supplements, not at iron against placebo."
      },
      {
-      "pmid": "39125379",
-      "title": "The Effects of Prenatal Iron Supplementation on Offspring Neurodevelopment in Upper Middle- or High-Income Countries: A Systematic Review",
-      "year": 2024,
-      "fits": "no",
-      "reason": "Prenatal iron trials, but the outcome is child neurodevelopment, not maternal anaemia or birth outcomes."
-     },
-     {
       "pmid": "38946784",
       "title": "Effect of preconception multiple micronutrients vs. iron-folic acid supplementation on maternal and birth outcomes among women from developing countries: a systematic review and meta-analysis",
       "year": 2024,
@@ -4854,18 +4980,25 @@
       "reason": "Tests lipid-based nutrient supplements against iron-folic acid or multiple micronutrients, not iron vs no iron."
      },
      {
+      "pmid": "39125379",
+      "title": "The Effects of Prenatal Iron Supplementation on Offspring Neurodevelopment in Upper Middle- or High-Income Countries: A Systematic Review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Prenatal iron trials, but the outcome is child neurodevelopment, not maternal anaemia or birth outcomes."
+     },
+     {
+      "pmid": "38983402",
+      "title": "Comparative efficacy and safety of Chinese patent medicines of iron deficiency anemia during pregnancy: A network meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares Chinese patent medicines plus oral iron vs oral iron alone for treating anaemia."
+     },
+     {
       "pmid": "37403900",
       "title": "Iron supplements in pregnant women with normal iron status: A systematic review and meta-analysis",
       "year": 2023,
       "fits": "partly",
       "reason": "Randomised trials of oral iron against no iron with anaemia, birth weight and preterm outcomes, but only in non-anaemic, iron-replete pregnant women."
-     },
-     {
-      "pmid": "35893877",
-      "title": "Effectiveness of Dietary Interventions in Prevention and Treatment of Iron-Deficiency Anemia in Pregnant Women: A Systematic Review of Randomized Controlled Trials",
-      "year": 2022,
-      "fits": "no",
-      "reason": "Tests dietary interventions such as fortified foods and counselling, not oral iron supplements vs placebo or no iron."
      },
      {
       "pmid": "35921671",
@@ -4875,11 +5008,11 @@
       "reason": "Population is preterm or low birth weight infants given iron, not pregnant women."
      },
      {
-      "pmid": "36067799",
-      "title": "Iron Salts, High Levels of Hemoglobin and Ferritin in Pregnancy, and Development of Gestational Diabetes: A Systematic Review",
+      "pmid": "39280957",
+      "title": "Efficacy and Safety of Shengxuening Combined with Conventional Iron Supplementation in the Treatment of Anemia during Pregnancy: A Systematic Review and Meta-analysis",
       "year": 2022,
       "fits": "no",
-      "reason": "Pregnant women and iron, but the outcome is gestational diabetes, and it mixes in observational studies."
+      "reason": "Compares Shengxuening plus iron vs iron alone for treating anaemia in pregnancy."
      },
      {
       "pmid": "33846729",
@@ -4887,6 +5020,20 @@
       "year": 2022,
       "fits": "no",
       "reason": "Tests multiple micronutrients against iron-folic acid in adolescents, not iron vs no iron."
+     },
+     {
+      "pmid": "35893877",
+      "title": "Effectiveness of Dietary Interventions in Prevention and Treatment of Iron-Deficiency Anemia in Pregnant Women: A Systematic Review of Randomized Controlled Trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Tests dietary interventions such as fortified foods and counselling, not oral iron supplements vs placebo or no iron."
+     },
+     {
+      "pmid": "36067799",
+      "title": "Iron Salts, High Levels of Hemoglobin and Ferritin in Pregnancy, and Development of Gestational Diabetes: A Systematic Review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Pregnant women and iron, but the outcome is gestational diabetes, and it mixes in observational studies."
      },
      {
       "pmid": "34171281",
@@ -4901,6 +5048,20 @@
       "year": 2020,
       "fits": "partly",
       "reason": "Narrower group (pregnant women with sickle cell disease); mostly prevalence studies, with only one trial of iron vs no iron."
+     },
+     {
+      "pmid": "32318374",
+      "title": "Meta-analysis approach on iron fortification and its effect on pregnancy and its outcome through randomized, controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "RCTs in pregnancy on Hb, anaemia, low birth weight and preterm birth, but the intervention is iron-fortified food, not supplements."
+     },
+     {
+      "pmid": "32509609",
+      "title": "Comparison of different doses of daily iron supplementation for anemia prophylaxis in pregnancy: A systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Compares different oral iron doses and excluded placebo-controlled studies."
      },
      {
       "pmid": "31441077",
@@ -4924,11 +5085,11 @@
       "reason": "Compares intravenous with oral iron for treating anaemia, so there is no placebo or no-iron comparison."
      },
      {
-      "pmid": "30873598",
-      "title": "Multiple-micronutrient supplementation for women during pregnancy",
+      "pmid": "30814805",
+      "title": "Parenteral Versus Oral Iron for Treatment of Iron Deficiency Anaemia During Pregnancy and post-partum: A Systematic Review",
       "year": 2019,
       "fits": "no",
-      "reason": "Tests multiple micronutrients against iron with or without folic acid, not iron vs no iron."
+      "reason": "Compares intravenous iron sucrose vs oral iron for treating anaemia, with no placebo or no-iron comparison."
      },
      {
       "pmid": "31532494",
@@ -4936,6 +5097,13 @@
       "year": 2019,
       "fits": "no",
       "reason": "Population is preterm and low birth weight infants, not pregnant women."
+     },
+     {
+      "pmid": "30873598",
+      "title": "Multiple-micronutrient supplementation for women during pregnancy",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Tests multiple micronutrients against iron with or without folic acid, not iron vs no iron."
      },
      {
       "pmid": "30783211",
@@ -4952,13 +5120,6 @@
       "reason": "Observational meta-analysis of iron status and gestational diabetes, not trials of iron supplements."
      },
      {
-      "pmid": "28921558",
-      "title": "Safety and efficacy of intravenous iron polymaltose, iron sucrose and ferric carboxymaltose in pregnancy: A systematic review",
-      "year": 2018,
-      "fits": "no",
-      "reason": "Compares intravenous iron preparations for treating anaemia, with no oral iron vs placebo comparison."
-     },
-     {
       "pmid": "29728086",
       "title": "The effect of universal maternal antenatal iron supplementation on neurodevelopment in offspring: a systematic review and meta-analysis",
       "year": 2018,
@@ -4966,11 +5127,18 @@
       "reason": "Antenatal iron trials, but the outcome is offspring neurodevelopment, not maternal anaemia or birth weight."
      },
      {
-      "pmid": "30168868",
-      "title": "Lipid-based nutrient supplements for maternal, birth, and infant developmental outcomes",
+      "pmid": "28921558",
+      "title": "Safety and efficacy of intravenous iron polymaltose, iron sucrose and ferric carboxymaltose in pregnancy: A systematic review",
       "year": 2018,
       "fits": "no",
-      "reason": "Tests lipid-based nutrient supplements against iron-folic acid or other controls, not iron vs no iron."
+      "reason": "Compares intravenous iron preparations for treating anaemia, with no oral iron vs placebo comparison."
+     },
+     {
+      "pmid": "30045772",
+      "title": "Adherence to prenatal iron-folic acid supplementation in low- and middle-income countries (LMIC): a protocol for systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Protocol on prevalence and causes of iron-folic acid adherence, not on supplement effects."
      },
      {
       "pmid": "28084782",
@@ -4980,6 +5148,13 @@
       "reason": "Looks at prenatal iron status and child neurodevelopment, mostly observational, not maternal anaemia or birth outcomes."
      },
      {
+      "pmid": "30168868",
+      "title": "Lipid-based nutrient supplements for maternal, birth, and infant developmental outcomes",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Tests lipid-based nutrient supplements against iron-folic acid or other controls, not iron vs no iron."
+     },
+     {
       "pmid": "29059584",
       "title": "Lactoferrin or ferrous salts for iron deficiency anemia in pregnancy: A meta-analysis of randomized trials",
       "year": 2017,
@@ -4987,18 +5162,18 @@
       "reason": "Compares lactoferrin with ferrous iron for treating anaemia; it has no placebo or no-iron group."
      },
      {
-      "pmid": "28407219",
-      "title": "Multiple-micronutrient supplementation for women during pregnancy",
-      "year": 2017,
-      "fits": "no",
-      "reason": "Tests multiple micronutrients against iron with or without folic acid, not iron vs no iron."
-     },
-     {
       "pmid": "29025632",
       "title": "Modifiers of the effect of maternal multiple micronutrient supplementation on stillbirth, birth outcomes, and infant mortality: a meta-analysis of individual patient data from 17 randomised trials in low-income and middle-income countries",
       "year": 2017,
       "fits": "no",
       "reason": "Compares multiple micronutrients with iron-folic acid vs iron-folic acid alone, so iron is not the tested intervention."
+     },
+     {
+      "pmid": "28407219",
+      "title": "Multiple-micronutrient supplementation for women during pregnancy",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Tests multiple micronutrients against iron with or without folic acid, not iron vs no iron."
      },
      {
       "pmid": "26509354",
@@ -5057,11 +5232,11 @@
       "reason": "Includes iron trials in pregnancy reporting birth weight and gestation, but pools mostly children and does not report maternal anaemia."
      },
      {
-      "pmid": "22786531",
-      "title": "Intermittent oral iron supplementation during pregnancy",
+      "pmid": "22794149",
+      "title": "Benefits of iron supplementation for low birth weight infants: a systematic review",
       "year": 2012,
       "fits": "no",
-      "reason": "Compares intermittent vs daily iron, so both arms get iron; there is no placebo or no-iron comparison."
+      "reason": "The population is low birth weight infants given iron, not pregnant women."
      },
      {
       "pmid": "22742608",
@@ -5069,6 +5244,13 @@
       "year": 2012,
       "fits": "no",
       "reason": "Compares multiple micronutrients against iron plus folic acid, so iron is not tested against no iron."
+     },
+     {
+      "pmid": "22786531",
+      "title": "Intermittent oral iron supplementation during pregnancy",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Compares intermittent vs daily iron, so both arms get iron; there is no placebo or no-iron comparison."
      },
      {
       "pmid": "23152228",
@@ -5106,18 +5288,18 @@
       "reason": "Daily iron with or without folate vs placebo/no intervention in pregnancy, but only maternal anaemia outcomes; no birth weight or preterm birth."
      },
      {
-      "pmid": "21501436",
-      "title": "Effect of multiple micronutrient supplementation during pregnancy on maternal and birth outcomes",
-      "year": 2011,
-      "fits": "no",
-      "reason": "Compares multiple micronutrients with iron-folate, so iron is not tested against no iron."
-     },
-     {
       "pmid": "21673856",
       "title": "Maternal multiple micronutrient supplementation and pregnancy outcomes in developing countries: meta-analysis and meta-regression",
       "year": 2011,
       "fits": "no",
       "reason": "Compares multiple micronutrients with iron and folic acid; iron is in both arms, so there is no iron vs no iron comparison."
+     },
+     {
+      "pmid": "21501436",
+      "title": "Effect of multiple micronutrient supplementation during pregnancy on maternal and birth outcomes",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Compares multiple micronutrients with iron-folate, so iron is not tested against no iron."
      },
      {
       "pmid": "20410098",
@@ -5139,6 +5321,13 @@
       "year": 2009,
       "fits": "no",
       "reason": "Compares multiple micronutrients with iron-folic acid on birth size and gestation; this is not iron vs no iron."
+     },
+     {
+      "pmid": "20120797",
+      "title": "Multiple micronutrient supplementation during pregnancy in developing-country settings: policy and program implications of the results of a meta-analysis",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Compares multiple micronutrients vs iron-folic acid, with no no-iron comparison."
      },
      {
       "pmid": "17443522",
@@ -5176,8 +5365,8 @@
    "label": "Tiredness",
    "finding": "Tiredness (fatigue) in people with low iron but no anaemia",
    "counts": {
-    "reviews": 27,
-    "trialReviews": 9,
+    "reviews": 31,
+    "trialReviews": 10,
     "trials": 120,
     "largeTrials": 5
    },
@@ -5348,7 +5537,7 @@
     },
     {
      "year": 2013,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 2
     },
     {
@@ -5358,7 +5547,7 @@
     },
     {
      "year": 2015,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 7
     },
     {
@@ -5378,7 +5567,7 @@
     },
     {
      "year": 2019,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 6
     },
     {
@@ -5413,7 +5602,7 @@
     },
     {
      "year": 2026,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 3
     }
    ],
@@ -5520,7 +5709,7 @@
     "counts": {
      "yes": 1,
      "partly": 0,
-     "no": 8,
+     "no": 9,
      "unscreened": 0
     },
     "left": [
@@ -5567,6 +5756,13 @@
       "reason": "School-aged children, with micronutrient effects on cognitive performance as the outcome, not fatigue."
      },
      {
+      "pmid": "26629120",
+      "title": "Daily iron supplementation on cognitive performance in primary-school-aged children with and without anemia: a meta-analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Population is children aged 5-12 with or without anaemia, not adults with low ferritin, and the outcome is cognitive performance, not fatigue."
+     },
+     {
       "pmid": "24717371",
       "title": "Iron supplementation benefits physical performance in women of reproductive age: a systematic review and meta-analysis",
       "year": 2014,
@@ -5588,8 +5784,8 @@
    "label": "Stomach and gut side effects",
    "finding": "Stomach and gut side effects",
    "counts": {
-    "reviews": 58,
-    "trialReviews": 21,
+    "reviews": 76,
+    "trialReviews": 30,
     "trials": 105,
     "largeTrials": 4
    },
@@ -5604,6 +5800,17 @@
      "citedBy": 533,
      "n": 6831,
      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    },
+    {
+     "pmid": "21942989",
+     "doi": "10.1186/1471-2326-11-4",
+     "title": "Meta-analysis of efficacy and safety of intravenous ferric carboxymaltose (Ferinject) from clinical trial reports and published trial data",
+     "year": 2011,
+     "firstAuthor": "Moore RA",
+     "journal": "BMC blood disorders",
+     "citedBy": 89,
+     "n": 2348,
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
     }
    ],
    "newerLargeTrials": [
@@ -5652,6 +5859,334 @@
      "why": "A large trial (about 1,000 people) from 2018, as new as the newest review or newer"
     }
    ],
+   "overlap": {
+    "cca": 0.14285714285714285,
+    "trials": 35,
+    "inclusions": 40,
+    "reviews": [
+     {
+      "pmid": "25700159",
+      "trials": 34
+     },
+     {
+      "pmid": "21942989",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19682342",
+      "title": "Large-dose intravenous ferric carboxymaltose injection for iron deficiency anemia in heavy uterine bleeding: a randomized, controlled trial",
+      "year": 2009,
+      "n": 477,
+      "inReviews": [
+       "25700159",
+       "21942989"
+      ]
+     },
+     {
+      "pmid": "18928998",
+      "title": "Ferric carboxymaltose injection in the treatment of postpartum iron deficiency anemia: a randomized controlled clinical trial",
+      "year": 2008,
+      "n": 291,
+      "inReviews": [
+       "25700159",
+       "21942989"
+      ]
+     },
+     {
+      "pmid": "18234203",
+      "title": "Comparative efficacy and safety of intravenous ferric carboxymaltose in the treatment of postpartum iron deficiency anemia",
+      "year": 2008,
+      "n": 227,
+      "inReviews": [
+       "25700159",
+       "21942989"
+      ]
+     },
+     {
+      "pmid": "17666600",
+      "title": "Intravenous ferric carboxymaltose compared with oral iron in the treatment of postpartum anemia: a randomized controlled trial",
+      "year": 2007,
+      "inReviews": [
+       "25700159",
+       "21942989"
+      ]
+     },
+     {
+      "pmid": "18371137",
+      "title": "A novel intravenous iron formulation for treatment of anemia in inflammatory bowel disease: the ferric carboxymaltose (FERINJECT) randomized controlled trial",
+      "year": 2008,
+      "inReviews": [
+       "25700159",
+       "21942989"
+      ]
+     },
+     {
+      "pmid": "12816784",
+      "title": "Efficacy and tolerability of low-dose iron supplements during pregnancy: a randomized controlled trial",
+      "year": 2003,
+      "n": 430,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "24145678",
+      "title": "A randomized, open-label, non-inferiority study of intravenous iron isomaltoside 1,000 (Monofer) compared with oral iron for treatment of anemia in IBD (PROCEED)",
+      "year": 2013,
+      "n": 338,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "19406557",
+      "title": "Iron prophylaxis in pregnancy: intravenous route versus oral route",
+      "year": 2009,
+      "n": 260,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "20929915",
+      "title": "A randomized controlled trial comparing intravenous ferric carboxymaltose with oral iron for treatment of iron deficiency anaemia of non-dialysis-dependent chronic kidney disease patients",
+      "year": 2011,
+      "n": 255,
+      "inReviews": [
+       "21942989"
+      ]
+     },
+     {
+      "pmid": "1971872",
+      "title": "Gastric delivery system for iron supplementation",
+      "year": 1990,
+      "n": 200,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "22777991",
+      "title": "Effect of iron supplementation on fatigue in nonanemic menstruating women with low ferritin: a randomized controlled trial",
+      "year": 2012,
+      "n": 198,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "17296819",
+      "title": "Intravenous ferric gluconate significantly improves response to epoetin alfa versus oral iron or no iron in anemic patients with cancer receiving chemotherapy",
+      "year": 2007,
+      "n": 187,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "15051778",
+      "title": "Intravenous iron optimizes the response to recombinant human erythropoietin in cancer patients with chemotherapy-related anemia: a multicenter, open-label, randomized trial",
+      "year": 2004,
+      "n": 157,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "20962160",
+      "title": "The effects of iron fortification on the gut microbiota in African children: a randomized controlled trial in Cote d'Ivoire",
+      "year": 2010,
+      "n": 139,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "22925176",
+      "title": "Intravenous iron sucrose versus oral iron in treatment of iron deficiency anemia in pregnancy: a randomized clinical trial",
+      "year": 2013,
+      "n": 100,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "15824508",
+      "title": "Comparison of intravenous iron sucrose to oral iron in the treatment of anemic patients with chronic kidney disease not on dialysis",
+      "year": 2005,
+      "n": 96,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "17290563",
+      "title": "Does maternal iron supplementation during the lactation period affect iron status of exclusively breast-fed infants?",
+      "year": 2006,
+      "n": 86,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "3810831",
+      "title": "Carbonyl iron for short-term supplementation in female blood donors",
+      "year": 1987,
+      "n": 75,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "14765861",
+      "title": "Treatment of anaemia after joint replacement. A double-blind, randomised, controlled trial of ferrous sulphate versus placebo",
+      "year": 2004,
+      "n": 72,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "23387416",
+      "title": "A randomized, double-blind clinical study on the safety and tolerability of an iron multi-amino acid chelate preparation in premenopausal women",
+      "year": 2013,
+      "n": 60,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "16316362",
+      "title": "A randomized, controlled trial comparing IV iron sucrose to oral iron in anemic patients with nondialysis-dependent CKD",
+      "year": 2005,
+      "n": 56,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "11904617",
+      "title": "Iron therapy in iron deficiency anemia in pregnancy: intravenous route versus oral route",
+      "year": 2002,
+      "n": 50,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "16279906",
+      "title": "Intravenous iron sucrose versus oral iron supplementation for the treatment of iron deficiency anemia in patients with inflammatory bowel disease--a randomized, controlled, open-label, multicenter study",
+      "year": 2005,
+      "n": 46,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "17035697",
+      "title": "A randomized controlled trial of oral versus intravenous iron in chronic kidney disease",
+      "year": 2006,
+      "n": 39,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "1799918",
+      "title": "Tolerability of iron: a comparison of bis-glycino iron II and ferrous sulfate",
+      "year": 1991,
+      "n": 38,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "19330567",
+      "title": "Intravenous iron sucrose is superior to oral iron sulphate for correcting anaemia and restoring iron stores in IBD patients: A randomized, controlled, evaluator-blind, multicentre study",
+      "year": 2009,
+      "n": 35,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "24899360",
+      "title": "A rapid, simple questionnaire to assess gastrointestinal symptoms after oral ferrous sulphate supplementation",
+      "year": 2014,
+      "n": 10,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "22272750",
+      "title": "Clinical evaluation of iron treatment efficiency among non-anemic but iron-deficient female blood donors: a randomized controlled trial",
+      "year": 2012,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "22290270",
+      "title": "A randomized controlled trial of intravenous or oral iron for posttransplant anemia in kidney transplantation",
+      "year": 2012,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "15931282",
+      "title": "Prevention of iron deficiency anemia in adolescent and adult pregnancies",
+      "year": 2003,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "19245362",
+      "title": "Randomized, double-blind, placebo-controlled trial of effects of enteral iron supplementation on anemia and risk of infection during surgical critical illness",
+      "year": 2009,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "17004982",
+      "title": "Intravenous versus oral iron therapy for postpartum anaemia",
+      "year": 2006,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "21643774",
+      "title": "Efficacy and tolerability of a prolonged release ferrous sulphate formulation in iron deficiency anaemia: a non-inferiority controlled trial",
+      "year": 2012,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "19194189",
+      "title": "The factors that affect milk-to-serum ratio for iron during early lactation",
+      "year": 2009,
+      "inReviews": [
+       "25700159"
+      ]
+     },
+     {
+      "pmid": "18363581",
+      "title": "Short-term ferrous sulfate supplementation in female blood donors",
+      "year": 2008,
+      "inReviews": [
+       "25700159"
+      ]
+     }
+    ]
+   },
    "timeline": [
     {
      "year": 1979,
@@ -5755,7 +6290,7 @@
     },
     {
      "year": 2011,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 4
     },
     {
@@ -5785,7 +6320,7 @@
     },
     {
      "year": 2017,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 3
     },
     {
@@ -5800,7 +6335,7 @@
     },
     {
      "year": 2020,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 2
     },
     {
@@ -5810,27 +6345,27 @@
     },
     {
      "year": 2022,
-     "reviews": 10,
+     "reviews": 11,
      "trials": 4
     },
     {
      "year": 2023,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 5
     },
     {
      "year": 2024,
-     "reviews": 4,
+     "reviews": 7,
      "trials": 8
     },
     {
      "year": 2025,
-     "reviews": 2,
+     "reviews": 9,
      "trials": 2
     },
     {
      "year": 2026,
-     "reviews": 7,
+     "reviews": 10,
      "trials": 4
     }
    ],
@@ -5871,6 +6406,17 @@
      "27087396"
     ],
     "chosenNotCited": [
+     {
+      "pmid": "21942989",
+      "doi": "10.1186/1471-2326-11-4",
+      "title": "Meta-analysis of efficacy and safety of intravenous ferric carboxymaltose (Ferinject) from clinical trial reports and published trial data",
+      "year": 2011,
+      "firstAuthor": "Moore RA",
+      "journal": "BMC blood disorders",
+      "citedBy": 89,
+      "n": 2348,
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     },
      {
       "pmid": "31708151",
       "doi": "10.1016/s2214-109x(19)30427-9",
@@ -5927,9 +6473,9 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 1,
-     "partly": 4,
-     "no": 16,
+     "yes": 2,
+     "partly": 7,
+     "no": 21,
      "unscreened": 0
     },
     "left": [
@@ -5941,6 +6487,13 @@
       "reason": "Compares IV iron with oral iron and reports nausea, but only in pregnant women, the oral iron type is unspecified, and cohorts are included."
      },
      {
+      "pmid": "42597309",
+      "title": "Efficacy and safety of probiotics in the treatment of iron deficiency anemia in Chinese children: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Evaluates probiotics in children, not oral ferrous sulfate versus placebo or IV iron."
+     },
+     {
       "pmid": "41187664",
       "title": "Efficacy and safety of intravenous iron supplementation for perioperative iron deficiency anemia: a systematic review and network meta-analysis of randomized controlled trials",
       "year": 2026,
@@ -5948,11 +6501,25 @@
       "reason": "Compares IV iron preparations with placebo in surgical patients; no oral iron arm."
      },
      {
-      "pmid": "42597309",
-      "title": "Efficacy and safety of probiotics in the treatment of iron deficiency anemia in Chinese children: a systematic review and meta-analysis",
-      "year": 2026,
-      "fits": "no",
-      "reason": "Evaluates probiotics in children, not oral ferrous sulfate versus placebo or IV iron."
+      "pmid": "41080322",
+      "title": "Comparative Effectiveness and Safety of Intravenous Versus Oral Iron Therapy With Iron-Deficient Heart Failure: A Network Meta-Analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares oral iron (including ferrous sulfate) with IV iron and placebo, but only in heart failure, and the abstract reports no gut side-effect outcomes."
+     },
+     {
+      "pmid": "40686725",
+      "title": "Intravenous Versus Oral Iron After Gastrointestinal Bleeding: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares IV with oral iron in randomised trials, but only after gut bleeding, and the outcomes are blood markers and response, not gut side effects."
+     },
+     {
+      "pmid": "40821477",
+      "title": "Efficacy and safety of iron supplements for restless leg syndrome, a systematic review, meta-analysis, meta-regression, and trial sequential analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pools trials of iron against placebo for restless legs, but the oral form isn't stated and only overall adverse events are reported."
      },
      {
       "pmid": "39651609",
@@ -5962,11 +6529,32 @@
       "reason": "RCTs of IV vs oral iron (often ferrous sulfate) with adverse events, but limited to pregnant women and GI effects are not specified."
      },
      {
+      "pmid": "39839869",
+      "title": "Efficacy and safety of intravenous ferric carboxymaltose in the treatment of Restless Legs Syndrome: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Studies IV ferric carboxymaltose against placebo for restless legs, not oral ferrous sulfate."
+     },
+     {
       "pmid": "38655186",
       "title": "Safety and efficacy of East Asian herbal medicine for iron deficiency anemia in children and adolescents: a systematic review and meta-analysis",
       "year": 2024,
       "fits": "no",
       "reason": "Evaluates herbal medicine versus oral iron in children, a different intervention and population."
+     },
+     {
+      "pmid": "39835061",
+      "title": "Safety and Efficacy of Ferric Carboxymaltose for Iron Deficiency Anemia in Inflammatory Bowel Disease: A Systematic Review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews IV ferric carboxymaltose in IBD and mixes in observational studies; oral ferrous sulfate is not the intervention studied."
+     },
+     {
+      "pmid": "38983402",
+      "title": "Comparative efficacy and safety of Chinese patent medicines of iron deficiency anemia during pregnancy: A network meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares Chinese patent medicines plus oral iron against oral iron alone in pregnancy; a different question."
      },
      {
       "pmid": "38776289",
@@ -5988,6 +6576,20 @@
       "year": 2022,
       "fits": "no",
       "reason": "Compares IV iron dosing frequencies in renal anaemia; no oral iron."
+     },
+     {
+      "pmid": "36408243",
+      "title": "The efficiency and safety of Shengxuening tablet on treating and preventing iron deficiency anemia: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "The intervention is Shengxuening tablets, with standard iron only as the comparator."
+     },
+     {
+      "pmid": "39280957",
+      "title": "Efficacy and Safety of Shengxuening Combined with Conventional Iron Supplementation in the Treatment of Anemia during Pregnancy: A Systematic Review and Meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Compares Shengxuening plus iron against iron alone in pregnancy; a different question."
      },
      {
       "pmid": "33582785",
@@ -6081,8 +6683,8 @@
    "label": "Every other day vs daily",
    "finding": "Iron every other day compared with every day",
    "counts": {
-    "reviews": 27,
-    "trialReviews": 21,
+    "reviews": 32,
+    "trialReviews": 24,
     "trials": 174,
     "largeTrials": 16
    },
@@ -6235,7 +6837,7 @@
     },
     {
      "year": 2015,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 4
     },
     {
@@ -6260,7 +6862,7 @@
     },
     {
      "year": 2020,
-     "reviews": 1,
+     "reviews": 3,
      "trials": 8
     },
     {
@@ -6280,7 +6882,7 @@
     },
     {
      "year": 2024,
-     "reviews": 5,
+     "reviews": 7,
      "trials": 2
     },
     {
@@ -6431,8 +7033,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 1,
-     "partly": 7,
-     "no": 13,
+     "partly": 8,
+     "no": 15,
      "unscreened": 0
     },
     "left": [
@@ -6444,18 +7046,18 @@
       "reason": "Compares dietary patterns in obese adults, not intermittent versus daily oral iron supplementation."
      },
      {
+      "pmid": "39634908",
+      "title": "Daily versus intermittent iron supplementation among children with iron deficiency anemia: A meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Compares intermittent vs daily oral iron for haemoglobin in iron-deficiency anaemia, but the group is children aged 2 months to 18 years, not only adults and teenagers."
+     },
+     {
       "pmid": "37979057",
       "title": "Daily versus alternate day oral iron therapy in iron deficiency anemia: a systematic review",
       "year": 2024,
       "fits": "partly",
       "reason": "Daily vs alternate-day iron in IDA with matching outcomes, but synthesis appears narrative and includes quasi-experimental studies."
-     },
-     {
-      "pmid": "39145520",
-      "title": "Daily oral iron supplementation during pregnancy",
-      "year": 2024,
-      "fits": "no",
-      "reason": "Compares daily iron with placebo or no iron in pregnancy; no intermittent vs daily comparison."
      },
      {
       "pmid": "39343168",
@@ -6479,6 +7081,13 @@
       "reason": "Weekly iron-folic acid vs placebo; outcomes are parasitic reinfection and growth, not iron status vs daily dosing."
      },
      {
+      "pmid": "39145520",
+      "title": "Daily oral iron supplementation during pregnancy",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares daily iron with placebo or no iron in pregnancy; no intermittent vs daily comparison."
+     },
+     {
       "pmid": "36849195",
       "title": "Oral iron supplementation and anaemia in children according to schedule, duration, dose and cosupplementation: a systematic review and meta-analysis of 129 randomised trials",
       "year": 2023,
@@ -6491,6 +7100,13 @@
       "year": 2023,
       "fits": "no",
       "reason": "Examines zinc supplementation and malaria risk, not iron dosing frequency."
+     },
+     {
+      "pmid": "32509609",
+      "title": "Comparison of different doses of daily iron supplementation for anemia prophylaxis in pregnancy: A systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Compares different daily doses of iron in pregnant women for prevention; it does not compare every-other-day dosing with daily dosing."
      },
      {
       "pmid": "30699468",
@@ -6521,6 +7137,13 @@
       "reason": "Intermittent vs daily iron comparison, but in pregnant women for prevention, often combined with folic acid."
      },
      {
+      "pmid": "26629120",
+      "title": "Daily iron supplementation on cognitive performance in primary-school-aged children with and without anemia: a meta-analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Compares daily iron with control for cognition in school-aged children; it does not compare intermittent with daily dosing."
+     },
+     {
       "pmid": "26198451",
       "title": "Daily oral iron supplementation during pregnancy",
       "year": 2015,
@@ -6528,18 +7151,18 @@
       "reason": "Daily iron vs no iron or placebo in pregnancy; no intermittent vs daily comparison."
      },
      {
-      "pmid": "25104162",
-      "title": "Effect of daily iron supplementation on health in children aged 4-23 months: a systematic review and meta-analysis of randomised controlled trials",
-      "year": 2013,
-      "fits": "no",
-      "reason": "Daily iron vs control in children aged 4-23 months; different population and comparison."
-     },
-     {
       "pmid": "23478873",
       "title": "Effects of daily iron supplementation in 2- to 5-year-old children: systematic review and meta-analysis",
       "year": 2013,
       "fits": "no",
       "reason": "Daily iron vs control in children aged 2-5 years; different population and comparison."
+     },
+     {
+      "pmid": "25104162",
+      "title": "Effect of daily iron supplementation on health in children aged 4-23 months: a systematic review and meta-analysis of randomised controlled trials",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Daily iron vs control in children aged 4-23 months; different population and comparison."
      },
      {
       "pmid": "24130243",
@@ -6584,7 +7207,7 @@
    "label": "Ferrous bisglycinate",
    "finding": "Ferrous bisglycinate compared with other iron forms",
    "counts": {
-    "reviews": 6,
+    "reviews": 7,
     "trialReviews": 4,
     "trials": 43,
     "largeTrials": 0
@@ -6752,6 +7375,11 @@
      "year": 2025,
      "reviews": 1,
      "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
     }
    ],
    "largeTrials": [],

@@ -8,7 +8,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"zinc\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -24,10 +24,10 @@
  ],
  "counts": {
   "all": 25187,
-  "retrieved": 2315,
-  "animal": 243,
+  "retrieved": 2428,
+  "animal": 248,
   "retracted": 6,
-  "reviews": 596,
+  "reviews": 703,
   "trials": 1448,
   "guidelines": 19
  },
@@ -64,8 +64,8 @@
    "label": "Catching colds",
    "finding": "Catching colds",
    "counts": {
-    "reviews": 10,
-    "trialReviews": 7,
+    "reviews": 11,
+    "trialReviews": 8,
     "trials": 24,
     "largeTrials": 3
    },
@@ -479,7 +479,7 @@
     },
     {
      "year": 2020,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -570,7 +570,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 3,
-     "partly": 4,
+     "partly": 5,
      "no": 0,
      "unscreened": 0
     },
@@ -597,6 +597,13 @@
       "reason": "Looks at RCTs of zinc given alone and cold incidence, but only in healthy adults, not children."
      },
      {
+      "pmid": "33101426",
+      "title": "Role of Zinc Supplementation in the Improvement of Acute Respiratory Infections among Iranian Children: A Systematic Review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Zinc was used to treat existing respiratory infections in Iranian children, not to prevent colds, and the outcomes were symptom improvement and discharge."
+     },
+     {
       "pmid": "20156999",
       "title": "Zinc supplementation for the prevention of acute lower respiratory infection in children in developing countries: meta-analysis and meta-regression of randomized trials",
       "year": 2010,
@@ -611,8 +618,8 @@
    "label": "How long colds last",
    "finding": "How long colds last, when zinc is started at the first symptoms",
    "counts": {
-    "reviews": 10,
-    "trialReviews": 7,
+    "reviews": 11,
+    "trialReviews": 8,
     "trials": 24,
     "largeTrials": 3
    },
@@ -1026,7 +1033,7 @@
     },
     {
      "year": 2020,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -1117,7 +1124,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 4,
-     "partly": 1,
+     "partly": 2,
      "no": 2,
      "unscreened": 0
     },
@@ -1137,6 +1144,13 @@
       "reason": "Pools zinc trials in adults for symptom duration, but covers acute respiratory infections broadly and doesn't say zinc started at symptom onset."
      },
      {
+      "pmid": "33101426",
+      "title": "Role of Zinc Supplementation in the Improvement of Acute Respiratory Infections among Iranian Children: A Systematic Review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "It tests zinc treatment against a comparator, but in Iranian children with acute respiratory infections, not adults with colds, and without pooling cold duration."
+     },
+     {
       "pmid": "20156999",
       "title": "Zinc supplementation for the prevention of acute lower respiratory infection in children in developing countries: meta-analysis and meta-regression of randomized trials",
       "year": 2010,
@@ -1151,8 +1165,8 @@
    "label": "Side effects for colds",
    "finding": "Side effects of zinc for colds",
    "counts": {
-    "reviews": 10,
-    "trialReviews": 7,
+    "reviews": 11,
+    "trialReviews": 8,
     "trials": 24,
     "largeTrials": 3
    },
@@ -1549,7 +1563,7 @@
     },
     {
      "year": 2020,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -1630,7 +1644,7 @@
     "counts": {
      "yes": 2,
      "partly": 1,
-     "no": 4,
+     "no": 5,
      "unscreened": 0
     },
     "left": [
@@ -1654,6 +1668,13 @@
       "year": 2020,
       "fits": "no",
       "reason": "Zinc for colds in healthy adults, but the outcomes are cold incidence, duration and severity, not side effects."
+     },
+     {
+      "pmid": "33101426",
+      "title": "Role of Zinc Supplementation in the Improvement of Acute Respiratory Infections among Iranian Children: A Systematic Review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Covers zinc for acute respiratory infections in hospitalised Iranian children with symptom and discharge outcomes; no side-effect outcome and no pooling."
      },
      {
       "pmid": "23775705",
@@ -2428,18 +2449,18 @@
       "reason": "Observational studies of zinc levels or intake and prostate cancer risk; no randomised zinc supplement versus placebo trials and no urinary outcome."
      },
      {
-      "pmid": "36449274",
-      "title": "Evaluation of the Safety and Effectiveness of Nutritional Supplements for Treating Hair Loss: A Systematic Review",
-      "year": 2023,
-      "fits": "no",
-      "reason": "Supplements, including zinc, to treat hair loss; the population and outcome differ and there is no urinary outcome."
-     },
-     {
       "pmid": "37878272",
       "title": "Safety and Effectiveness of Oral Nutraceuticals for Treating Acne: A Systematic Review",
       "year": 2023,
       "fits": "no",
       "reason": "Nutraceuticals, including zinc, to treat acne; the population and outcome differ and there is no urinary outcome."
+     },
+     {
+      "pmid": "36449274",
+      "title": "Evaluation of the Safety and Effectiveness of Nutritional Supplements for Treating Hair Loss: A Systematic Review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Supplements, including zinc, to treat hair loss; the population and outcome differ and there is no urinary outcome."
      },
      {
       "pmid": "35684094",
@@ -2463,8 +2484,8 @@
    "label": "Blood sugar",
    "finding": "Blood sugar (fasting glucose, HbA1c)",
    "counts": {
-    "reviews": 44,
-    "trialReviews": 15,
+    "reviews": 58,
+    "trialReviews": 22,
     "trials": 84,
     "largeTrials": 4
    },
@@ -2915,7 +2936,7 @@
     },
     {
      "year": 2012,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 2
     },
     {
@@ -2950,22 +2971,22 @@
     },
     {
      "year": 2019,
-     "reviews": 2,
+     "reviews": 6,
      "trials": 4
     },
     {
      "year": 2020,
-     "reviews": 4,
+     "reviews": 6,
      "trials": 7
     },
     {
      "year": 2021,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 2
     },
     {
      "year": 2022,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 2
     },
     {
@@ -2980,12 +3001,12 @@
     },
     {
      "year": 2025,
-     "reviews": 5,
+     "reviews": 8,
      "trials": 1
     },
     {
      "year": 2026,
-     "reviews": 5,
+     "reviews": 7,
      "trials": 1
     }
    ],
@@ -3076,9 +3097,9 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 9,
+     "yes": 12,
      "partly": 2,
-     "no": 4,
+     "no": 8,
      "unscreened": 0
     },
     "left": [
@@ -3111,11 +3132,39 @@
       "reason": "Umbrella review of earlier meta-analyses in type 2 diabetes, including zinc, rather than its own pooling of RCTs."
      },
      {
+      "pmid": "34178870",
+      "title": "The effects of dietary/herbal supplements and the serum levels of micronutrients on the healing of diabetic foot ulcers in animal and human models: a systematic review",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at many supplements for diabetic foot ulcer healing, not zinc versus placebo for blood sugar or insulin resistance."
+     },
+     {
       "pmid": "32451277",
       "title": "Effects of zinc supplementation on lipid profile in patients with type 2 diabetes mellitus: A systematic review and meta-analysis of randomized controlled trials",
       "year": 2020,
       "fits": "no",
       "reason": "Zinc RCTs in type 2 diabetes, but the outcomes are only lipid profiles."
+     },
+     {
+      "pmid": "32513577",
+      "title": "Comment on the systematic review: \"Effects of zinc supplementation on lipid profile in patients with type 2 diabetes mellitus\"",
+      "year": 2020,
+      "fits": "no",
+      "reason": "A comment on another review about lipid profile, not a review pooling trials on blood sugar outcomes."
+     },
+     {
+      "pmid": "31277146",
+      "title": "The effect of zinc supplementation in pre-diabetes: A protocol for systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "This is only a protocol with no pooled results yet, and it is limited to adults with pre-diabetes."
+     },
+     {
+      "pmid": "31890694",
+      "title": "Dietary antioxidative supplements and diabetic retinopathy; a systematic review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at antioxidant supplements and diabetic retinopathy, not zinc effects on blood sugar, HbA1c or insulin resistance."
      },
      {
       "pmid": "17253560",

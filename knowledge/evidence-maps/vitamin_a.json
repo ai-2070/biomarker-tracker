@@ -8,7 +8,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"retinol\" OR TITLE_ABS:\"retinyl palmitate\" OR TITLE_ABS:\"retinyl acetate\" OR TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"β-carotene\" OR TITLE_ABS:\"provitamin A\" OR TITLE_ABS:\"vitamin A supplementation\" OR TITLE_ABS:\"vitamin A supplements\" OR TITLE_ABS:\"vitamin A deficiency\" OR TITLE_ABS:\"vitamin A intake\") AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"retinol\" OR TITLE_ABS:\"retinyl palmitate\" OR TITLE_ABS:\"retinyl acetate\" OR TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"β-carotene\" OR TITLE_ABS:\"provitamin A\" OR TITLE_ABS:\"vitamin A supplementation\" OR TITLE_ABS:\"vitamin A supplements\" OR TITLE_ABS:\"vitamin A deficiency\" OR TITLE_ABS:\"vitamin A intake\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"retinol\" OR TITLE_ABS:\"retinyl palmitate\" OR TITLE_ABS:\"retinyl acetate\" OR TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"β-carotene\" OR TITLE_ABS:\"provitamin A\" OR TITLE_ABS:\"vitamin A supplementation\" OR TITLE_ABS:\"vitamin A supplements\" OR TITLE_ABS:\"vitamin A deficiency\" OR TITLE_ABS:\"vitamin A intake\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"retinol\" OR TITLE_ABS:\"retinyl palmitate\" OR TITLE_ABS:\"retinyl acetate\" OR TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"β-carotene\" OR TITLE_ABS:\"provitamin A\" OR TITLE_ABS:\"vitamin A supplementation\" OR TITLE_ABS:\"vitamin A supplements\" OR TITLE_ABS:\"vitamin A deficiency\" OR TITLE_ABS:\"vitamin A intake\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"retinol\" OR TITLE_ABS:\"retinyl palmitate\" OR TITLE_ABS:\"retinyl acetate\" OR TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"β-carotene\" OR TITLE_ABS:\"provitamin A\" OR TITLE_ABS:\"vitamin A supplementation\" OR TITLE_ABS:\"vitamin A supplements\" OR TITLE_ABS:\"vitamin A deficiency\" OR TITLE_ABS:\"vitamin A intake\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"retinol\" OR TITLE_ABS:\"retinyl palmitate\" OR TITLE_ABS:\"retinyl acetate\" OR TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:\"β-carotene\" OR TITLE_ABS:\"provitamin A\" OR TITLE_ABS:\"vitamin A supplementation\" OR TITLE_ABS:\"vitamin A supplements\" OR TITLE_ABS:\"vitamin A deficiency\" OR TITLE_ABS:\"vitamin A intake\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -23,10 +23,10 @@
   "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin A and beta-carotene trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
  ],
  "counts": {
-  "retrieved": 2181,
+  "retrieved": 2228,
   "animal": 52,
   "retracted": 4,
-  "reviews": 386,
+  "reviews": 433,
   "trials": 1721,
   "guidelines": 14
  },
@@ -80,7 +80,7 @@
    "label": "Lung cancer",
    "finding": "Lung cancer (beta-carotene supplements)",
    "counts": {
-    "reviews": 10,
+    "reviews": 11,
     "trialReviews": 3,
     "trials": 45,
     "largeTrials": 13
@@ -408,6 +408,11 @@
      "year": 2024,
      "reviews": 0,
      "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
     }
    ],
    "largeTrials": [
@@ -562,8 +567,8 @@
    "label": "Cancer overall",
    "finding": "Cancer overall and other cancer types (beta-carotene supplements)",
    "counts": {
-    "reviews": 68,
-    "trialReviews": 15,
+    "reviews": 73,
+    "trialReviews": 16,
     "trials": 196,
     "largeTrials": 54
    },
@@ -1155,7 +1160,7 @@
     },
     {
      "year": 2015,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 2
     },
     {
@@ -1190,12 +1195,12 @@
     },
     {
      "year": 2022,
-     "reviews": 9,
+     "reviews": 11,
      "trials": 0
     },
     {
      "year": 2023,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 0
     },
     {
@@ -1210,7 +1215,7 @@
     },
     {
      "year": 2026,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     }
    ],
@@ -1597,7 +1602,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 7,
-     "partly": 6,
+     "partly": 7,
      "no": 2,
      "unscreened": 0
     },
@@ -1617,6 +1622,13 @@
       "reason": "Studied breast cancer survivors taking vitamins A, C or E after diagnosis; the outcome was survival, not new cancers."
      },
      {
+      "pmid": "25875487",
+      "title": "Dietary supplements and risk of cause-specific death, cardiovascular disease, and cancer: a protocol for a systematic review and network meta-analysis of primary prevention trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Plans to pool primary-prevention trials in adults that include beta-carotene, with cancer incidence as an outcome, but this is only a protocol with no pooled results yet."
+     },
+     {
       "pmid": "18429004",
       "title": "Beta-carotene in multivitamins and the possible risk of lung cancer among smokers versus former smokers: a meta-analysis and evaluation of national brands",
       "year": 2008,
@@ -1624,15 +1636,15 @@
       "reason": "Pooled beta-carotene RCTs for lung cancer, but reported results only for current and former smokers, a narrower group."
      },
      {
-      "pmid": "18677777",
-      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+      "pmid": "19145725",
+      "title": "Systematic review: primary and secondary prevention of gastrointestinal cancers with antioxidant supplements",
       "year": 2008,
       "fits": "partly",
       "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; no beta-carotene-only cancer result is reported."
      },
      {
-      "pmid": "19145725",
-      "title": "Systematic review: primary and secondary prevention of gastrointestinal cancers with antioxidant supplements",
+      "pmid": "18677777",
+      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
       "year": 2008,
       "fits": "partly",
       "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; no beta-carotene-only cancer result is reported."
@@ -1645,15 +1657,15 @@
       "reason": "In general adults, beta-carotene was given only with minerals such as selenium and zinc, and the trials were summarised without pooling."
      },
      {
-      "pmid": "15495084",
-      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
+      "pmid": "15464182",
+      "title": "Antioxidant supplements for prevention of gastrointestinal cancers: a systematic review and meta-analysis",
       "year": 2004,
       "fits": "partly",
       "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; beta-carotene-specific results cover mortality only."
      },
      {
-      "pmid": "15464182",
-      "title": "Antioxidant supplements for prevention of gastrointestinal cancers: a systematic review and meta-analysis",
+      "pmid": "15495084",
+      "title": "Antioxidant supplements for preventing gastrointestinal cancers",
       "year": 2004,
       "fits": "partly",
       "reason": "Pooled beta-carotene with other antioxidants, including selenium, for gastrointestinal cancers; beta-carotene-specific results cover mortality only."
@@ -1666,8 +1678,8 @@
    "label": "Death from any cause",
    "finding": "Death from any cause",
    "counts": {
-    "reviews": 39,
-    "trialReviews": 8,
+    "reviews": 43,
+    "trialReviews": 11,
     "trials": 81,
     "largeTrials": 49
    },
@@ -2550,7 +2562,7 @@
     },
     {
      "year": 2010,
-     "reviews": 3,
+     "reviews": 5,
      "trials": 5
     },
     {
@@ -2575,7 +2587,7 @@
     },
     {
      "year": 2015,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 4
     },
     {
@@ -2605,7 +2617,7 @@
     },
     {
      "year": 2021,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -3065,8 +3077,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 5,
-     "partly": 2,
-     "no": 1,
+     "partly": 4,
+     "no": 2,
      "unscreened": 0
     },
     "left": [
@@ -3078,11 +3090,32 @@
       "reason": "Pooled RCTs of vitamin A versus control on mortality, but the population is children under 5, not adults."
      },
      {
+      "pmid": "25875487",
+      "title": "Dietary supplements and risk of cause-specific death, cardiovascular disease, and cancer: a protocol for a systematic review and network meta-analysis of primary prevention trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Protocol for adult primary-prevention trials of supplements incl. beta-carotene/vitamin A vs control on all-cause mortality, but no pooled results yet."
+     },
+     {
       "pmid": "20522482",
       "title": "Maternal postpartum vitamin A supplementation for the prevention of mortality and morbidity in infancy: a systematic review of randomized controlled trials",
       "year": 2010,
       "fits": "partly",
       "reason": "Pooled placebo-controlled RCTs of vitamin A given to postpartum mothers, but the outcome is infant death, not the adults' own death."
+     },
+     {
+      "pmid": "22254063",
+      "title": "Reexamination of a meta-analysis of the effect of antioxidant supplementation on mortality and health in randomized trials",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Re-examines antioxidant trials (beta-carotene, vitamin A, E) in adults, but tallies trials' primary outcomes rather than pooling all-cause mortality."
+     },
+     {
+      "pmid": "20864442",
+      "title": "Comment on: 'Maternal postpartum vitamin A supplementation for the prevention of mortality and morbidity in infancy: a systematic review of randomised controlled trials'",
+      "year": 2010,
+      "fits": "no",
+      "reason": "A comment on a review of maternal postpartum vitamin A for infant mortality, so the population and outcome differ."
      },
      {
       "pmid": "12522272",
@@ -3099,8 +3132,8 @@
    "label": "Young children",
    "finding": "Death and illness in young children",
    "counts": {
-    "reviews": 103,
-    "trialReviews": 42,
+    "reviews": 115,
+    "trialReviews": 46,
     "trials": 387,
     "largeTrials": 90
    },
@@ -3956,7 +3989,7 @@
     },
     {
      "year": 2010,
-     "reviews": 4,
+     "reviews": 6,
      "trials": 11
     },
     {
@@ -3981,7 +4014,7 @@
     },
     {
      "year": 2015,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 10
     },
     {
@@ -3996,7 +4029,7 @@
     },
     {
      "year": 2018,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 7
     },
     {
@@ -4006,12 +4039,12 @@
     },
     {
      "year": 2020,
-     "reviews": 7,
+     "reviews": 8,
      "trials": 10
     },
     {
      "year": 2021,
-     "reviews": 4,
+     "reviews": 6,
      "trials": 4
     },
     {
@@ -4021,22 +4054,22 @@
     },
     {
      "year": 2023,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 0
     },
     {
      "year": 2024,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 4
     },
     {
      "year": 2025,
-     "reviews": 5,
+     "reviews": 7,
      "trials": 1
     },
     {
      "year": 2026,
-     "reviews": 7,
+     "reviews": 8,
      "trials": 3
     }
    ],
@@ -4668,8 +4701,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 8,
-     "partly": 24,
-     "no": 10,
+     "partly": 25,
+     "no": 13,
      "unscreened": 0
     },
     "left": [
@@ -4679,6 +4712,13 @@
       "year": 2026,
       "fits": "partly",
       "reason": "Vitamin A is used to treat children who already have pneumonia, and the review mainly compares doses with each other rather than with placebo."
+     },
+     {
+      "pmid": "41502896",
+      "title": "Effects of vitamin A and vitamin D3 supplementation on child growth and development in low- and middle-income countries: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Vitamin A trials in children aged 0-5 in low- and middle-income countries match, but the outcome is growth, not death or illness."
      },
      {
       "pmid": "40787612",
@@ -4758,6 +4798,13 @@
       "reason": "Vitamin A vs placebo or no supplementation with death as an outcome, but the population is very low birth weight newborns, not children 6 months to 5 years."
      },
      {
+      "pmid": "25875487",
+      "title": "Dietary supplements and risk of cause-specific death, cardiovascular disease, and cancer: a protocol for a systematic review and network meta-analysis of primary prevention trials",
+      "year": 2015,
+      "fits": "no",
+      "reason": "This is a protocol covering many supplements in adults, with chronic disease and death outcomes, not young children."
+     },
+     {
       "pmid": "24436005",
       "title": "Routine vitamin A supplementation for the prevention of blindness due to measles infection in children",
       "year": 2014,
@@ -4821,6 +4868,20 @@
       "reason": "Placebo-controlled trials on infant death and illness, but the vitamin A was given to mothers after birth, not to the children."
      },
      {
+      "pmid": "22254063",
+      "title": "Reexamination of a meta-analysis of the effect of antioxidant supplementation on mortality and health in randomized trials",
+      "year": 2010,
+      "fits": "no",
+      "reason": "Re-examines antioxidant trials in mixed, mostly adult groups by primary outcome, rather than vitamin A in young children."
+     },
+     {
+      "pmid": "20864442",
+      "title": "Comment on: 'Maternal postpartum vitamin A supplementation for the prevention of mortality and morbidity in infancy: a systematic review of randomised controlled trials'",
+      "year": 2010,
+      "fits": "no",
+      "reason": "A comment on a review of vitamin A given to mothers after birth, not to children aged 6 months to 5 years."
+     },
+     {
       "pmid": "18254093",
       "title": "Vitamin A for preventing acute lower respiratory tract infections in children up to seven years of age",
       "year": 2008,
@@ -4870,18 +4931,18 @@
       "reason": "Vitamin A trials on child death and illness, but limited to India and appraised narratively without pooling."
      },
      {
-      "pmid": "12519545",
-      "title": "Vitamin A supplementation for preventing morbidity and mortality in very low birthweight infants",
-      "year": 2002,
-      "fits": "partly",
-      "reason": "Vitamin A for death and morbidity, but in very low birth weight newborns compared with standard vitamin A regimens."
-     },
-     {
       "pmid": "12521271",
       "title": "Vitamin A for the treatment of children with measles--a systematic review",
       "year": 2002,
       "fits": "partly",
       "reason": "Vitamin A vs placebo for death in children 6 months to 13 years, but it treats existing measles rather than preventing illness."
+     },
+     {
+      "pmid": "12519545",
+      "title": "Vitamin A supplementation for preventing morbidity and mortality in very low birthweight infants",
+      "year": 2002,
+      "fits": "partly",
+      "reason": "Vitamin A for death and morbidity, but in very low birth weight newborns compared with standard vitamin A regimens."
      },
      {
       "pmid": "11869601",
@@ -4919,8 +4980,8 @@
    "label": "Birth defects",
    "finding": "Birth defects (preformed vitamin A in early pregnancy)",
    "counts": {
-    "reviews": 25,
-    "trialReviews": 11,
+    "reviews": 28,
+    "trialReviews": 12,
     "trials": 113,
     "largeTrials": 24
    },
@@ -5004,7 +5065,7 @@
     },
     {
      "year": 2010,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 10
     },
     {
@@ -5059,7 +5120,7 @@
     },
     {
      "year": 2021,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 2
     },
     {
@@ -5069,7 +5130,7 @@
     },
     {
      "year": 2023,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 2
     },
     {
@@ -5253,7 +5314,7 @@
     "counts": {
      "yes": 0,
      "partly": 7,
-     "no": 4,
+     "no": 5,
      "unscreened": 0
     },
     "left": [
@@ -5326,6 +5387,13 @@
       "year": 2010,
       "fits": "no",
       "reason": "Looks at supplements given to mothers after birth and infant deaths or illness, not early pregnancy or birth defects."
+     },
+     {
+      "pmid": "20864442",
+      "title": "Comment on: 'Maternal postpartum vitamin A supplementation for the prevention of mortality and morbidity in infancy: a systematic review of randomised controlled trials'",
+      "year": 2010,
+      "fits": "no",
+      "reason": "This is a comment on a review of postpartum vitamin A for infant death and illness, not early-pregnancy supplements and birth defects."
      },
      {
       "pmid": "12519564",

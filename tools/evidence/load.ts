@@ -52,7 +52,7 @@ export function loadTopic(id: string | undefined) {
   const topicTitle = food ? undefined : (topic.titleTerms ?? new RegExp(topic.terms.join("|"), "i"));
   const eligible = (outcomeId: string) => {
     const o = topic.outcomes.find((x) => x.id === outcomeId)!;
-    return eligibleReviews(records, o.id, topicTitle, o.excludeTitle, food ? "food" : "supplement");
+    return eligibleReviews(records, o.id, topicTitle, o.excludeTitle, food || o.anyDesign ? "food" : "supplement");
   };
   const screeningFile = join(SCREENING_DIR, `${topic.id}.json`);
   const screening = existsSync(screeningFile) ? (JSON.parse(readFileSync(screeningFile, "utf8")) as ScreeningFile) : undefined;

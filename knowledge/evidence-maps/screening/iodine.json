@@ -50,6 +50,16 @@
      "pmid": "15106221",
      "fits": "partly",
      "reason": "Iodine supplements for children in iodine-deficient areas with cognitive outcomes, but it mixed in non-randomised trials and pooled nothing (narrative only)."
+    },
+    {
+     "pmid": "15734706",
+     "fits": "partly",
+     "reason": "Iodine and child IQ match, but it pools non-randomised area and before/after comparisons in severe deficiency, mostly prenatal iodine, not RCTs in schoolchildren."
+    },
+    {
+     "pmid": "12411065",
+     "fits": "partly",
+     "reason": "Iodine and IQ in 5-15 year olds match, but it pools non-randomised before/after comparisons, mostly in severe deficiency areas, not placebo-controlled RCTs."
     }
    ]
   },
@@ -126,6 +136,16 @@
      "pmid": "16625632",
      "fits": "partly",
      "reason": "An iodine RCT in preterm infants, a different group, and the included trial did not measure neurodevelopment."
+    },
+    {
+     "pmid": "15734706",
+     "fits": "partly",
+     "reason": "Iodine in pregnancy vs ongoing deficiency with child IQ matches, but it pooled non-randomised Chinese comparison studies of children under 16, not RCTs."
+    },
+    {
+     "pmid": "12411065",
+     "fits": "partly",
+     "reason": "Iodine correction vs none with IQ in deficient areas matches, but it pooled non-randomised studies of children aged 5-15, not RCTs."
     }
    ]
   },
@@ -192,6 +212,31 @@
      "pmid": "10796152",
      "fits": "no",
      "reason": "Trials in severely deficient areas with endemic cretinism, reporting infant deaths, cretinism and development, not maternal thyroid function."
+    },
+    {
+     "pmid": "33112293",
+     "fits": "partly",
+     "reason": "Trials of iodine supplements in pregnancy reported maternal thyroid outcomes, but these were only narratively synthesised; pooling covered infant outcomes only."
+    },
+    {
+     "pmid": "30101325",
+     "fits": "no",
+     "reason": "Erratum to a review of iodised salt and iodine supplements on prenatal and postnatal growth, not maternal thyroid function."
+    },
+    {
+     "pmid": "25908676",
+     "fits": "no",
+     "reason": "Protocol for a review of iodine effects on child somatic growth, not maternal thyroid function, and it reports no pooled results."
+    },
+    {
+     "pmid": "29505547",
+     "fits": "no",
+     "reason": "Erratum to a review of iodine intake levels and thyroid disease in China, not iodine supplementation trials in pregnant women."
+    },
+    {
+     "pmid": "32187267",
+     "fits": "no",
+     "reason": "Review of how common insufficient iodine intake is among pregnant women, not trials of iodine supplements versus placebo."
     }
    ]
   },
@@ -303,6 +348,36 @@
      "pmid": "10796152",
      "fits": "partly",
      "reason": "Maternal iodine with psychomotor development outcomes, but in populations with endemic cretinism (severe deficiency)."
+    },
+    {
+     "pmid": "33112293",
+     "fits": "yes",
+     "reason": "Pooled trials of iodine supplements in pregnancy versus control, with child cognitive, language and motor development as outcomes."
+    },
+    {
+     "pmid": "30101325",
+     "fits": "no",
+     "reason": "An erratum with no abstract, for a review on growth rather than child development."
+    },
+    {
+     "pmid": "25908676",
+     "fits": "no",
+     "reason": "A protocol with no results, and its outcome is physical growth rather than cognitive or motor development."
+    },
+    {
+     "pmid": "32187267",
+     "fits": "no",
+     "reason": "Looks at how much iodine pregnant women get, not at the effect of supplements on child development."
+    },
+    {
+     "pmid": "15734706",
+     "fits": "partly",
+     "reason": "Pregnancy iodine and child IQ match, but it covers severely deficient areas and pools non-randomised Chinese studies."
+    },
+    {
+     "pmid": "12411065",
+     "fits": "no",
+     "reason": "Compares children in areas before and after iodine correction, mostly severe deficiency, not supplements given in pregnancy in trials."
     }
    ]
   }

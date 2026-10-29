@@ -75,6 +75,21 @@
      "pmid": "19321253",
      "fits": "partly",
      "reason": "Reviews diet trials in adults with past stones, but reports that no trial tested lowering oxalate on its own."
+    },
+    {
+     "pmid": "40458577",
+     "fits": "no",
+     "reason": "Reviews drugs, herbal supplements and other non-guideline therapies for calcium oxalate stones, not oxalate from food or lowering dietary oxalate."
+    },
+    {
+     "pmid": "32525478",
+     "fits": "no",
+     "reason": "Looks at how much and what types of fluid people drink in relation to kidney stones, not oxalate from food or less dietary oxalate."
+    },
+    {
+     "pmid": "31061807",
+     "fits": "partly",
+     "reason": "Kidney stones and urine oxalate match, but the people are limited to those with hyperoxaluria and the exposure is sticking to diet advice, not oxalate intake."
     }
    ]
   },
@@ -406,6 +421,56 @@
      "pmid": "17765971",
      "fits": "no",
      "reason": "Broad review of environmental and occupational pesticide exposure in Pakistan, not residues in produce or organic vs conventional food."
+    },
+    {
+     "pmid": "41503107",
+     "fits": "partly",
+     "reason": "Looks at type 2 diabetes and serum pollutants, including organochlorine pesticides, but the exposure is not tied to residues in fruit or vegetables."
+    },
+    {
+     "pmid": "42865094",
+     "fits": "yes",
+     "reason": "Systematically reviews pesticide residues in date fruits and checks them against Codex and EU maximum residue levels, finding some exceedances."
+    },
+    {
+     "pmid": "41250306",
+     "fits": "no",
+     "reason": "Assesses whether mass spectrometry methods measure pesticides reliably, not health effects or exceedance of safety limits."
+    },
+    {
+     "pmid": "41324093",
+     "fits": "partly",
+     "reason": "Reviews pesticide residues in foods in Ghana in general, not only produce, and reports detection rates rather than clear exceedance of safety limits."
+    },
+    {
+     "pmid": "42073300",
+     "fits": "no",
+     "reason": "Reviews portable biosensor kits for detecting pesticides, not health effects or exceedance of safety limits."
+    },
+    {
+     "pmid": "42051654",
+     "fits": "partly",
+     "reason": "Covers health effects of pesticide exposure, but only in pregnant women and newborns, and the exposure is not specific to residues in produce."
+    },
+    {
+     "pmid": "38144849",
+     "fits": "yes",
+     "reason": "Meta-analysis of organophosphorus residues in fruit and vegetables against Codex, EU and Chinese limits, finding some exceedances."
+    },
+    {
+     "pmid": "41727409",
+     "fits": "partly",
+     "reason": "Links organophosphate residue exposure to fatty liver disease, but exposure was measured in urine and not tied to fruit or vegetables."
+    },
+    {
+     "pmid": "32305678",
+     "fits": "partly",
+     "reason": "Plans to estimate exposure against acceptable daily intake, but for honey and bee products rather than produce, and it is only a protocol."
+    },
+    {
+     "pmid": "26478886",
+     "fits": "no",
+     "reason": "Measures organochlorine residues in breast milk, not in fruit or vegetables, and assesses neither health effects nor safety limits."
     }
    ]
   },
@@ -632,6 +697,46 @@
      "pmid": "24069382",
      "fits": "partly",
      "reason": "Pools dietary cadmium intake and cancer risk, but looks at total dietary intake rather than comparing specific foods like rice or seafood."
+    },
+    {
+     "pmid": "40003598",
+     "fits": "no",
+     "reason": "Looks at how heavy metals affect the growth and physiology of rice plants, not at people's dietary exposure or health effects."
+    },
+    {
+     "pmid": "42382194",
+     "fits": "partly",
+     "reason": "Pools As, Cd and Pb levels and dietary risk for adults and children, but the food is vegetable oils and the comparison is between oils."
+    },
+    {
+     "pmid": "37416859",
+     "fits": "yes",
+     "reason": "Pools As, Cd and Pb levels in edible seafood and estimates health risks to human consumers."
+    },
+    {
+     "pmid": "39649832",
+     "fits": "partly",
+     "reason": "Covers infant exposure to Cd and Pb, but the exposure source is breast milk rather than foods like rice, vegetables or seafood."
+    },
+    {
+     "pmid": "38919294",
+     "fits": "partly",
+     "reason": "Pools studies on a health effect of cadmium exposure (prostate cancer), but does not compare exposure from specific foods."
+    },
+    {
+     "pmid": "39759480",
+     "fits": "yes",
+     "reason": "Reviews Pb, Cd and As levels in vegetables, with estimated daily intakes and health risk indices for consumers."
+    },
+    {
+     "pmid": "40726918",
+     "fits": "no",
+     "reason": "Reviews animal studies on how a high-fat diet changes arsenic toxicity, mainly from drinking water, not food sources of exposure in people."
+    },
+    {
+     "pmid": "31032526",
+     "fits": "yes",
+     "reason": "Reviews how bioavailable arsenic in rice is to humans compared with other foods, including bioaccessibility studies."
     }
    ]
   },
@@ -933,6 +1038,66 @@
      "pmid": "24373292",
      "fits": "no",
      "reason": "About influenza control in care homes, not food or foodborne illness."
+    },
+    {
+     "pmid": "42366882",
+     "fits": "partly",
+     "reason": "Pools pathogen prevalence in animal-derived foods, but has no comparison with plant foods."
+    },
+    {
+     "pmid": "41681399",
+     "fits": "partly",
+     "reason": "Covers Yersinia in livestock and meat products, but has no plant-food comparison and includes live animals."
+    },
+    {
+     "pmid": "42511308",
+     "fits": "no",
+     "reason": "Reviews AI methods for detecting pathogens, not contamination or illness from animal versus plant foods."
+    },
+    {
+     "pmid": "34900321",
+     "fits": "partly",
+     "reason": "Pools parasite prevalence in raw vegetables only, so it covers just the plant-food side with no animal foods."
+    },
+    {
+     "pmid": "36277096",
+     "fits": "yes",
+     "reason": "Pools Listeria prevalence across food sources, with subgroups by food type including vegetable-origin foods."
+    },
+    {
+     "pmid": "38058426",
+     "fits": "no",
+     "reason": "Studies bacteriophage control of E. coli in vegetables, an intervention question rather than an animal versus plant comparison."
+    },
+    {
+     "pmid": "39866847",
+     "fits": "no",
+     "reason": "Reviews drug treatment of Salmonella infections, not foodborne exposure from animal versus plant foods."
+    },
+    {
+     "pmid": "30275908",
+     "fits": "partly",
+     "reason": "Pools Campylobacter prevalence in vegetables and fruits only, so there are no animal foods."
+    },
+    {
+     "pmid": "34202947",
+     "fits": "partly",
+     "reason": "Reviews Listeria in the fresh produce supply chain only, with no animal foods."
+    },
+    {
+     "pmid": "30275948",
+     "fits": "partly",
+     "reason": "Links listeriosis to dairy, meat and fruit eaten in pregnancy, but covers a narrower group (pregnant women)."
+    },
+    {
+     "pmid": "21239401",
+     "fits": "partly",
+     "reason": "Covers health effects of acrylamide, a cooking by-product, but does not compare animal and plant foods."
+    },
+    {
+     "pmid": "37881298",
+     "fits": "no",
+     "reason": "A protocol on public health intelligence during outbreaks, a different question."
     }
    ]
   },
@@ -1019,6 +1184,36 @@
      "pmid": "16242602",
      "fits": "partly",
      "reason": "Pools three prospective studies of prenatal methylmercury and IQ for a fish risk-benefit analysis, but covers only the mercury harm side."
+    },
+    {
+     "pmid": "42038240",
+     "fits": "no",
+     "reason": "Looks at measured mercury exposure and childhood allergies, not fish eating and its effects on mercury exposure, development, heart disease or benefit-risk."
+    },
+    {
+     "pmid": "41897693",
+     "fits": "no",
+     "reason": "Reviews lab methods for measuring mercury species in seafood, not the health effects or exposure from eating fish."
+    },
+    {
+     "pmid": "41227721",
+     "fits": "partly",
+     "reason": "Reviews mercury levels in European seafood, which bears on dietary exposure, but does not assess people's exposure, health outcomes or benefits."
+    },
+    {
+     "pmid": "42020534",
+     "fits": "partly",
+     "reason": "Pools mercury data in fish and wildlife to estimate dietary exposure, but only for Indigenous Peoples in Canada and only the exposure outcome."
+    },
+    {
+     "pmid": "42868764",
+     "fits": "partly",
+     "reason": "Covers mercury exposure and child development in mothers and newborns eating fish, but only Amazonian populations and without a clear fish intake comparison."
+    },
+    {
+     "pmid": "39830718",
+     "fits": "partly",
+     "reason": "Reviews mercury in fish and the health risk for people eating it, but only in the Tapajós basin and only the risk side, not benefits."
     }
    ]
   },
@@ -1130,6 +1325,46 @@
      "pmid": "22153059",
      "fits": "partly",
      "reason": "Tree nut polyphenol content and antioxidant capacity, mostly food analyses; few human studies of oxidative markers."
+    },
+    {
+     "pmid": "42650225",
+     "fits": "no",
+     "reason": "The studies are in zebrafish, mice and rats only. No people were included, so the population does not match."
+    },
+    {
+     "pmid": "42741206",
+     "fits": "partly",
+     "reason": "It includes trials of polyphenols on oxidative markers in people, but only those with inhalation-related lung disease, alongside lab and animal studies."
+    },
+    {
+     "pmid": "42510521",
+     "fits": "no",
+     "reason": "It covers one medicinal plant's chemistry and lab or animal antioxidant activity. It has no human evidence on antioxidant status in the body."
+    },
+    {
+     "pmid": "39963561",
+     "fits": "partly",
+     "reason": "RCTs of antioxidants, including plant extracts like silymarin, curcumin and EGCG, report MDA, but only in diabetic nephropathy and mixed with vitamins and minerals."
+    },
+    {
+     "pmid": "39006877",
+     "fits": "partly",
+     "reason": "RCTs of polyphenol-rich foods measured oxidative stress, but only in patients with hyperlipidemia, a narrower group of people."
+    },
+    {
+     "pmid": "32414132",
+     "fits": "no",
+     "reason": "This non-systematic review covers in vitro digestion and antioxidant activity in the lab, not oxidative stress markers in people."
+    },
+    {
+     "pmid": "25618800",
+     "fits": "no",
+     "reason": "The meta-analysis pooled curcuminoid effects on CRP, an inflammation marker. Oxidative stress markers came from a single trial only."
+    },
+    {
+     "pmid": "27649255",
+     "fits": "partly",
+     "reason": "RCTs of flavonoid-rich foods measured oxidative stress markers, but only in adults at risk of heart disease, a narrower group of people."
     }
    ]
   },
@@ -1281,6 +1516,41 @@
      "pmid": "16310065",
      "fits": "no",
      "reason": "Narrative review of indoor tanning risks and regulation, unrelated to antinutrients in plant foods."
+    },
+    {
+     "pmid": "40003077",
+     "fits": "no",
+     "reason": "Covers dietary tannins in small ruminants (sheep and goats), not people, and measures livestock performance rather than human health harm."
+    },
+    {
+     "pmid": "38672383",
+     "fits": "no",
+     "reason": "Covers saponin extracts as feed additives in ruminants, not people, and measures animal production outcomes."
+    },
+    {
+     "pmid": "39830560",
+     "fits": "no",
+     "reason": "Reviews plant lectins as possible oral cancer treatments in cell and animal studies, not harm to people from eating antinutrient-rich foods."
+    },
+    {
+     "pmid": "35815140",
+     "fits": "no",
+     "reason": "Covers dietary tannins and fatty acid processing in the rumen of livestock, not human health harm."
+    },
+    {
+     "pmid": "34828048",
+     "fits": "no",
+     "reason": "Covers tannin extract supplements in ruminant feed and animal intake and performance, not people."
+    },
+    {
+     "pmid": "36830554",
+     "fits": "no",
+     "reason": "Reviews plant compounds as feed additives and dewormers for ruminants, not harm to people from antinutrient-rich foods."
+    },
+    {
+     "pmid": "34841126",
+     "fits": "no",
+     "reason": "Covers tannin-rich tropical plants and methane output from ruminants, an environmental outcome in animals, not human health."
     }
    ]
   }

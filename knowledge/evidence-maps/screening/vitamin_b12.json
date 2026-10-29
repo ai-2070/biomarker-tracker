@@ -106,6 +106,36 @@
      "pmid": "24522613",
      "fits": "no",
      "reason": "PGE1 plus methylcobalamin vs methylcobalamin alone tests PGE1, since both arms receive B12."
+    },
+    {
+     "pmid": "36457818",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin B12 versus control or placebo in diabetic neuropathy, measuring neuropathic symptoms, pain and vibration threshold."
+    },
+    {
+     "pmid": "36008079",
+     "fits": "no",
+     "reason": "Protocol with no pooled results; it studies B12 complex with alpha-lipoic acid and measures inflammation, lipid and glucose markers, not nerve outcomes."
+    },
+    {
+     "pmid": "25502588",
+     "fits": "no",
+     "reason": "Looks at whether metformin causes B12 deficiency, not at B12 supplements for nerve symptoms or function."
+    },
+    {
+     "pmid": "25052901",
+     "fits": "no",
+     "reason": "A comment on a meta-analysis with no abstract, not a systematic review itself."
+    },
+    {
+     "pmid": "25027297",
+     "fits": "no",
+     "reason": "A comment on a meta-analysis with no abstract, not a systematic review itself."
+    },
+    {
+     "pmid": "24602352",
+     "fits": "no",
+     "reason": "A comment on a meta-analysis with no abstract, not a systematic review itself."
     }
    ]
   },
@@ -167,6 +197,11 @@
      "pmid": "19032377",
      "fits": "partly",
      "reason": "Reviews oral B12 for deficiency in adults and elderly, but has no explicit pooled comparison with injections."
+    },
+    {
+     "pmid": "30261596",
+     "fits": "partly",
+     "reason": "Compares oral 1000 µg B12 with injections, including 4 RCTs, but only in people whose deficiency comes from gut disorders, and it does not say the trials were pooled."
     }
    ]
   },
@@ -218,6 +253,11 @@
      "pmid": "18803866",
      "fits": "partly",
      "reason": "B12 with folic acid and B6 in stroke patients, but the outcomes are only artery-wall thickness and function, not clinical events."
+    },
+    {
+     "pmid": "26420127",
+     "fits": "yes",
+     "reason": "Pooled RCTs of folic acid with B6 and B12 versus placebo and reported both homocysteine and cardiovascular disease risk, which matches the question."
     }
    ]
   },
@@ -309,6 +349,11 @@
      "pmid": "17210874",
      "fits": "partly",
      "reason": "Covers placebo-controlled B12 trials on cognition in adults, but summarises them without pooling."
+    },
+    {
+     "pmid": "39655146",
+     "fits": "yes",
+     "reason": "Pooled RCTs of B12 (alone or as B complex) in a general or possibly MCI adult population, with memory and depressive symptoms as outcomes; comparator not stated."
     }
    ]
   }

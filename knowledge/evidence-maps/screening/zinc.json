@@ -86,6 +86,11 @@
      "pmid": "20156999",
      "fits": "partly",
      "reason": "Pools RCTs of routine zinc for preventing respiratory infection, but only in young children in developing countries and only lower respiratory infection."
+    },
+    {
+     "pmid": "33101426",
+     "fits": "partly",
+     "reason": "Zinc was used to treat existing respiratory infections in Iranian children, not to prevent colds, and the outcomes were symptom improvement and discharge."
     }
    ]
   },
@@ -132,6 +137,11 @@
      "pmid": "20156999",
      "fits": "no",
      "reason": "Looks at zinc to prevent lower respiratory infections in children in developing countries and measures how often they happen, not cold duration."
+    },
+    {
+     "pmid": "33101426",
+     "fits": "partly",
+     "reason": "It tests zinc treatment against a comparator, but in Iranian children with acute respiratory infections, not adults with colds, and without pooling cold duration."
     }
    ]
   },
@@ -178,6 +188,11 @@
      "pmid": "20156999",
      "fits": "no",
      "reason": "Zinc to prevent lower respiratory infection in children in developing countries; the outcome is how often infections occur, not side effects of treating colds."
+    },
+    {
+     "pmid": "33101426",
+     "fits": "no",
+     "reason": "Covers zinc for acute respiratory infections in hospitalised Iranian children with symptom and discharge outcomes; no side-effect outcome and no pooling."
     }
    ]
   },
@@ -264,6 +279,41 @@
      "pmid": "17253560",
      "fits": "partly",
      "reason": "Right question (zinc versus placebo in adults with insulin resistance), but only one trial was included, so nothing was pooled."
+    },
+    {
+     "pmid": "32722790",
+     "fits": "yes",
+     "reason": "Pooled trials of zinc alone versus placebo in people, with analyses of fasting blood glucose, HbA1c and insulin resistance."
+    },
+    {
+     "pmid": "31277146",
+     "fits": "no",
+     "reason": "This is only a protocol with no pooled results yet, and it is limited to adults with pre-diabetes."
+    },
+    {
+     "pmid": "31008092",
+     "fits": "yes",
+     "reason": "Pooled RCTs in type 2 diabetes with a zinc-alone (no co-supplement) subgroup versus controls for fasting blood glucose and HbA1c."
+    },
+    {
+     "pmid": "22515411",
+     "fits": "yes",
+     "reason": "Pooled zinc versus placebo studies in people with diabetes for fasting blood glucose and HbA1c."
+    },
+    {
+     "pmid": "32513577",
+     "fits": "no",
+     "reason": "A comment on another review about lipid profile, not a review pooling trials on blood sugar outcomes."
+    },
+    {
+     "pmid": "34178870",
+     "fits": "no",
+     "reason": "Looks at many supplements for diabetic foot ulcer healing, not zinc versus placebo for blood sugar or insulin resistance."
+    },
+    {
+     "pmid": "31890694",
+     "fits": "no",
+     "reason": "Looks at antioxidant supplements and diabetic retinopathy, not zinc effects on blood sugar, HbA1c or insulin resistance."
     }
    ]
   },

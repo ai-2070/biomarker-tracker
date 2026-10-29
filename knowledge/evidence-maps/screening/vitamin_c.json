@@ -36,6 +36,21 @@
      "pmid": "19783342",
      "fits": "partly",
      "reason": "Pools RCTs of vitamin C on haemoglobin and ferritin, but in hemodialysis patients on standard anaemia care, not adults taking iron tablets alone."
+    },
+    {
+     "pmid": "42246021",
+     "fits": "partly",
+     "reason": "Vitamin C added to standard anaemia treatment with Hb and ferritin outcomes, but only in hemodialysis patients on erythropoietin, not general iron-deficiency anaemia."
+    },
+    {
+     "pmid": "40765927",
+     "fits": "yes",
+     "reason": "Pooled RCTs in iron-deficiency anaemia comparing oral iron plus vitamin C with iron alone, reporting haemoglobin and ferritin."
+    },
+    {
+     "pmid": "21721439",
+     "fits": "partly",
+     "reason": "Vitamin C as an add-on in anaemia, but only in EPO-hyporesponsive hemodialysis patients, and outcomes are Hb and TSAT rather than ferritin."
     }
    ]
   },
@@ -97,6 +112,26 @@
      "pmid": "15605943",
      "fits": "partly",
      "reason": "Vitamin C and respiratory infection incidence match, but only military personnel, crowded students and marathon runners."
+    },
+    {
+     "pmid": "33997048",
+     "fits": "no",
+     "reason": "This is an erratum notice with no review content; the original article it corrects was about relieving cold symptoms, not preventing colds."
+    },
+    {
+     "pmid": "31377890",
+     "fits": "no",
+     "reason": "This is a letter to the editor criticising a meta-analysis, not a systematic review that pools trials itself."
+    },
+    {
+     "pmid": "31463576",
+     "fits": "no",
+     "reason": "This is the authors' reply to a letter, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "9059230",
+     "fits": "yes",
+     "reason": "It pooled placebo-controlled trials of daily vitamin C (at least 1 g/d) in ordinary people, and the outcome was how often colds occurred."
     }
    ]
   },
@@ -178,6 +213,41 @@
      "pmid": "32342851",
      "fits": "no",
      "reason": "Reviews zinc, vitamin D and vitamins A and E for colds; no vitamin C trials were analysed."
+    },
+    {
+     "pmid": "41932611",
+     "fits": "no",
+     "reason": "This is a critique of a review on post-exercise recovery, not on cold incidence, and it has no abstract to show a matching analysis."
+    },
+    {
+     "pmid": "33997048",
+     "fits": "no",
+     "reason": "This is an erratum to a review on relieving cold symptoms in general, not on preventing colds in people under heavy physical stress."
+    },
+    {
+     "pmid": "31377890",
+     "fits": "no",
+     "reason": "This is a letter about a meta-analysis on colds in children, not a review of people under heavy physical stress."
+    },
+    {
+     "pmid": "31463576",
+     "fits": "no",
+     "reason": "This is an authors' reply to a letter about colds in children, not a review of people under heavy physical stress."
+    },
+    {
+     "pmid": "33673055",
+     "fits": "no",
+     "reason": "It reviews vitamin C and E against muscle soreness after exercise, not cold incidence."
+    },
+    {
+     "pmid": "23794586",
+     "fits": "no",
+     "reason": "The outcome is exercise-induced bronchoconstriction, not how many people catch colds."
+    },
+    {
+     "pmid": "9059230",
+     "fits": "partly",
+     "reason": "It pools placebo-controlled trials of daily vitamin C on cold incidence, but the subgroups are British males and females, not people under heavy physical stress."
     }
    ]
   },
@@ -239,6 +309,26 @@
      "pmid": "15605943",
      "fits": "no",
      "reason": "Covers only soldiers, students and marathon runners, and reports how often colds and pneumonia occur, not how long or bad they are."
+    },
+    {
+     "pmid": "33997048",
+     "fits": "no",
+     "reason": "This is an erratum notice correcting a published meta-analysis; it is not itself a review and reports no pooled data."
+    },
+    {
+     "pmid": "31377890",
+     "fits": "no",
+     "reason": "This is a letter to the editor criticising a meta-analysis, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "31463576",
+     "fits": "no",
+     "reason": "This is the authors' reply to a letter to the editor, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "9059230",
+     "fits": "no",
+     "reason": "It pools placebo-controlled vitamin C trials, but it measures how often colds occur, not how long they last or how bad they are."
     }
    ]
   },
@@ -390,6 +480,31 @@
      "pmid": "16880453",
      "fits": "partly",
      "reason": "Adults and outcomes of cancer, heart disease and death match, but vitamin C is given only in multivitamin or mineral combinations."
+    },
+    {
+     "pmid": "40287064",
+     "fits": "no",
+     "reason": "This is a letter to the editor about another review, not a systematic review, and it has no abstract to check against the question."
+    },
+    {
+     "pmid": "39594542",
+     "fits": "no",
+     "reason": "Mostly preclinical studies of antioxidants given during pregnancy for fetal growth restriction, not vitamin C supplements in adults to prevent disease or death."
+    },
+    {
+     "pmid": "26634093",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin C supplements versus placebo or control for cancer and cancer death in general participants, with a subgroup for vitamin C given alone."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "The question matches (adults, vitamin C among supplements, death, heart disease, cancer), but this is only a protocol with no pooled results yet."
+    },
+    {
+     "pmid": "10463913",
+     "fits": "yes",
+     "reason": "The title describes a meta-analysis of vitamin C supplements for preventing heart disease. There is no abstract to confirm the trial designs or the comparison."
     }
    ]
   }

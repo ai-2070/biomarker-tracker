@@ -26,10 +26,10 @@
  ],
  "counts": {
   "all": 6547,
-  "retrieved": 489,
-  "animal": 17,
+  "retrieved": 507,
+  "animal": 18,
   "retracted": 0,
-  "reviews": 80,
+  "reviews": 97,
   "trials": 382,
   "guidelines": 10
  },
@@ -732,8 +732,8 @@
    "finding": "absorption-meal-partners",
    "counts": {
     "all": 1218,
-    "reviews": 9,
-    "trialReviews": 9,
+    "reviews": 10,
+    "trialReviews": 10,
     "trials": 120,
     "largeTrials": 4
    },
@@ -924,6 +924,11 @@
      "trials": 2
     },
     {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
      "year": 2020,
      "reviews": 0,
      "trials": 5
@@ -1052,7 +1057,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 2,
-     "partly": 6,
+     "partly": 7,
      "no": 1,
      "unscreened": 0
     },
@@ -1091,6 +1096,13 @@
       "year": 2021,
       "fits": "partly",
       "reason": "Polyphenol supplements and iron status, rather than tea or coffee drunk with plant-iron meals."
+     },
+     {
+      "pmid": "31673228",
+      "title": "The Effects of Dietary Polyphenols on Circulating Cardiovascular Disease Biomarkers and Iron Status: A Systematic Review",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Looks at polyphenols, including catechin drinks and supplements, on iron status over weeks, but not tea or coffee with plant-iron meals specifically."
      },
      {
       "pmid": "27880062",
@@ -1364,8 +1376,8 @@
    "finding": "absorption-protein-quality",
    "counts": {
     "all": 340,
-    "reviews": 14,
-    "trialReviews": 14,
+    "reviews": 15,
+    "trialReviews": 15,
     "trials": 42,
     "largeTrials": 0
    },
@@ -1559,6 +1571,11 @@
      "trials": 3
     },
     {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
      "year": 2023,
      "reviews": 3,
      "trials": 3
@@ -1653,7 +1670,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 8,
-     "partly": 4,
+     "partly": 5,
      "no": 2,
      "unscreened": 0
     },
@@ -1694,6 +1711,13 @@
       "reason": "Compares whey and soy protein, but the outcome is inflammatory cytokines, not muscle or protein quality."
      },
      {
+      "pmid": "35418173",
+      "title": "The effect of animal versus plant protein on muscle mass, muscle strength, physical performance and sarcopenia in adults: protocol for a systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Matches adults, plant vs animal protein and muscle mass/strength, but it is only a protocol with no pooled or reviewed results yet."
+     },
+     {
       "pmid": "29474360",
       "title": "Animal versus plant protein and adult bone health: A systematic review and meta-analysis from the National Osteoporosis Foundation",
       "year": 2018,
@@ -1709,8 +1733,8 @@
    "finding": "absorption-deficiency-in-practice",
    "counts": {
     "all": 1448,
-    "reviews": 3,
-    "trialReviews": 3,
+    "reviews": 6,
+    "trialReviews": 6,
     "trials": 8,
     "largeTrials": 0
    },
@@ -1734,6 +1758,16 @@
      "journal": "Journal of the science of food and agriculture",
      "citedBy": 48,
      "why": "One of the newest meta-analyses on this claim (2013); screened as answering the question"
+    },
+    {
+     "pmid": "40842789",
+     "doi": "10.7759/cureus.88461",
+     "title": "Risk of Osteoporosis and Anemia in Plant-Based Diets: A Systematic Review of Nutritional Deficiencies and Clinical Implications",
+     "year": 2025,
+     "firstAuthor": "Akinwumi FE",
+     "journal": "Cureus",
+     "citedBy": 3,
+     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
     }
    ],
    "newerLargeTrials": [],
@@ -1751,7 +1785,9 @@
       "trials": 8
      }
     ],
-    "reviewsWithoutReferences": [],
+    "reviewsWithoutReferences": [
+     "40842789"
+    ],
     "shared": [
      {
       "pmid": "12728219",
@@ -1881,8 +1917,13 @@
     },
     {
      "year": 2025,
-     "reviews": 0,
+     "reviews": 2,
      "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
     }
    ],
    "largeTrials": [],
@@ -1901,7 +1942,18 @@
      "33161940",
      "33222682"
     ],
-    "chosenNotCited": []
+    "chosenNotCited": [
+     {
+      "pmid": "40842789",
+      "doi": "10.7759/cureus.88461",
+      "title": "Risk of Osteoporosis and Anemia in Plant-Based Diets: A Systematic Review of Nutritional Deficiencies and Clinical Implications",
+      "year": 2025,
+      "firstAuthor": "Akinwumi FE",
+      "journal": "Cureus",
+      "citedBy": 3,
+      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     }
+    ]
    },
    "screening": {
     "question": {
@@ -1913,12 +1965,26 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 2,
+     "yes": 3,
      "partly": 1,
-     "no": 0,
+     "no": 2,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "42582747",
+      "title": "Systematic Review on Plant-Based Therapies for the Management of Sickle Cell Anaemia",
+      "year": 2026,
+      "fits": "no",
+      "reason": "This is about plant-derived extracts used to treat sickle cell anaemia, not vegetarian or vegan diets compared with diets that include meat."
+     },
+     {
+      "pmid": "41281788",
+      "title": "Synergic Treatment of Plant-Based Antioxidants with Iron Chelators for Iron Overload in Transfusion-Dependent-Thalassemia Patients: A Systematic Review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "This is about plant antioxidant supplements given with iron chelators for iron overload in thalassemia, not vegetarian diets or iron deficiency."
+     },
      {
       "pmid": "26056918",
       "title": "Zinc Status of Vegetarians during Pregnancy: A Systematic Review of Observational Studies and Meta-Analysis of Zinc Intake",

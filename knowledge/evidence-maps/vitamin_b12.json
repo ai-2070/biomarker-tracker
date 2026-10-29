@@ -7,7 +7,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"vitamin B12\" OR TITLE_ABS:\"cobalamin\" OR TITLE_ABS:\"cyanocobalamin\" OR TITLE_ABS:\"methylcobalamin\" OR TITLE_ABS:\"hydroxocobalamin\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -23,10 +23,10 @@
  ],
  "counts": {
   "all": 26833,
-  "retrieved": 1169,
+  "retrieved": 1258,
   "animal": 36,
   "retracted": 3,
-  "reviews": 397,
+  "reviews": 488,
   "trials": 709,
   "guidelines": 21
  },
@@ -80,8 +80,8 @@
    "label": "Tablets vs injections",
    "finding": "Blood B12 levels: high-dose tablets compared with injections",
    "counts": {
-    "reviews": 10,
-    "trialReviews": 10,
+    "reviews": 14,
+    "trialReviews": 11,
     "trials": 52,
     "largeTrials": 2
    },
@@ -380,7 +380,7 @@
     },
     {
      "year": 2018,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 2
     },
     {
@@ -405,7 +405,7 @@
     },
     {
      "year": 2024,
-     "reviews": 0,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -415,7 +415,7 @@
     },
     {
      "year": 2026,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 4
     }
    ],
@@ -490,7 +490,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 3,
-     "partly": 6,
+     "partly": 7,
      "no": 1,
      "unscreened": 0
     },
@@ -515,6 +515,13 @@
       "year": 2025,
       "fits": "partly",
       "reason": "Compares oral with parenteral B12 for deficiency anaemia in RCTs, but the population is children, not adults."
+     },
+     {
+      "pmid": "30261596",
+      "title": "Systematic Review and Pragmatic Clinical Approach to Oral and Nasal Vitamin B12 (Cobalamin) Treatment in Patients with Vitamin B12 Deficiency Related to Gastrointestinal Disorders",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Compares oral 1000 µg B12 with injections, including 4 RCTs, but only in people whose deficiency comes from gut disorders, and it does not say the trials were pooled."
      },
      {
       "pmid": "20088746",
@@ -552,7 +559,7 @@
    "label": "Doses in older people",
    "finding": "Correcting mild deficiency in older people: low compared with high doses",
    "counts": {
-    "reviews": 28,
+    "reviews": 32,
     "trialReviews": 7,
     "trials": 110,
     "largeTrials": 6
@@ -652,7 +659,7 @@
     },
     {
      "year": 2013,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 4
     },
     {
@@ -692,7 +699,7 @@
     },
     {
      "year": 2021,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 0
     },
     {
@@ -712,12 +719,12 @@
     },
     {
      "year": 2025,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 3
     },
     {
      "year": 2026,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 4
     }
    ],
@@ -842,12 +849,22 @@
    "label": "Memory, mood and tiredness",
    "finding": "Memory and thinking, low mood and tiredness",
    "counts": {
-    "reviews": 46,
-    "trialReviews": 16,
+    "reviews": 51,
+    "trialReviews": 17,
     "trials": 58,
     "largeTrials": 6
    },
    "chosenReviews": [
+    {
+     "pmid": "39655146",
+     "doi": "10.7759/cureus.73350",
+     "title": "Assessment of Vitamin B12 Efficacy on Cognitive Memory Function and Depressive Symptoms: A Systematic Review and Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Alzahrani H.",
+     "journal": "Cureus",
+     "citedBy": 1,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
     {
      "pmid": "33809274",
      "doi": "10.3390/nu13030923",
@@ -873,6 +890,97 @@
      "why": "A large trial (about 2,157 people) from 2026, as new as the newest review or newer"
     }
    ],
+   "overlap": {
+    "cca": 0.5,
+    "trials": 8,
+    "inclusions": 12,
+    "reviews": [
+     {
+      "pmid": "39655146",
+      "trials": 4
+     },
+     {
+      "pmid": "33809274",
+      "trials": 8
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "27886078",
+      "title": "Effects of Two-Year Vitamin B12 and Folic Acid Supplementation on Depressive Symptoms and Quality of Life in Older Adults with Elevated Homocysteine Concentrations: Additional Results from the B-PROOF Study, an RCT",
+      "year": 2016,
+      "n": 2919,
+      "inReviews": [
+       "39655146",
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "25391305",
+      "title": "Results of 2-year vitamin B treatment on cognitive performance: secondary data from an RCT",
+      "year": 2014,
+      "n": 2919,
+      "inReviews": [
+       "39655146",
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "20592433",
+      "title": "Mental health literacy, folic acid and vitamin B12, and physical activity for the prevention of depression in older adults: randomised controlled trial",
+      "year": 2010,
+      "n": 909,
+      "inReviews": [
+       "39655146",
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "31787369",
+      "title": "A randomized placebo-controlled trial of using B vitamins to prevent cognitive decline in older mild cognitive impairment patients",
+      "year": 2020,
+      "inReviews": [
+       "39655146",
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "15883442",
+      "title": "Significant correlations of plasma homocysteine and serum methylmalonic acid with movement and cognitive performance in elderly subjects but no improvement from short-term vitamin therapy: a placebo-controlled randomized study",
+      "year": 2005,
+      "n": 209,
+      "inReviews": [
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "27823800",
+      "title": "A randomized placebo controlled trial of vitamin B12 supplementation to prevent cognitive decline in older diabetic people with borderline low serum vitamin B12",
+      "year": 2017,
+      "n": 12,
+      "inReviews": [
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "4583554",
+      "title": "A pilot study of vitamin B12 in the treatment of tiredness",
+      "year": 1973,
+      "inReviews": [
+       "33809274"
+      ]
+     },
+     {
+      "pmid": "20805005",
+      "title": "No clear potentiation of antidepressant medication effects by folic acid+vitamin B12 in a large community sample",
+      "year": 2011,
+      "inReviews": [
+       "33809274"
+      ]
+     }
+    ]
+   },
    "timeline": [
     {
      "year": 1973,
@@ -921,7 +1029,7 @@
     },
     {
      "year": 2008,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
@@ -986,7 +1094,7 @@
     },
     {
      "year": 2021,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 3
     },
     {
@@ -1001,17 +1109,17 @@
     },
     {
      "year": 2024,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 0
     },
     {
      "year": 2025,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 0
     },
     {
      "year": 2026,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 2
     }
    ],
@@ -1061,6 +1169,16 @@
     "citedNotEligible": [],
     "chosenNotCited": [
      {
+      "pmid": "39655146",
+      "doi": "10.7759/cureus.73350",
+      "title": "Assessment of Vitamin B12 Efficacy on Cognitive Memory Function and Depressive Symptoms: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "firstAuthor": "Alzahrani H.",
+      "journal": "Cureus",
+      "citedBy": 1,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
       "pmid": "41241003",
       "doi": "10.1016/j.ajcnut.2025.11.005",
       "title": "Association between hemoglobin levels and mild cognitive impairment in generally healthy European community-dwelling older adults: a 3-year prospective analysis of the DO-HEALTH trial",
@@ -1083,7 +1201,7 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 1,
+     "yes": 2,
      "partly": 11,
      "no": 4,
      "unscreened": 0
@@ -1202,8 +1320,8 @@
    "label": "Heart, stroke and death",
    "finding": "Heart attacks, strokes and death (B12 given together with folic acid, often with B6)",
    "counts": {
-    "reviews": 26,
-    "trialReviews": 8,
+    "reviews": 30,
+    "trialReviews": 9,
     "trials": 59,
     "largeTrials": 20
    },
@@ -1446,6 +1564,11 @@
      "trials": 2
     },
     {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
      "year": 2019,
      "reviews": 1,
      "trials": 0
@@ -1467,12 +1590,12 @@
     },
     {
      "year": 2023,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 0
     },
     {
      "year": 2024,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 1
     },
     {
@@ -1662,7 +1785,7 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 4,
+     "yes": 5,
      "partly": 3,
      "no": 1,
      "unscreened": 0
@@ -1704,12 +1827,24 @@
    "label": "Diabetic nerve damage",
    "finding": "Nerve damage from diabetes (diabetic neuropathy)",
    "counts": {
-    "reviews": 27,
-    "trialReviews": 10,
+    "reviews": 41,
+    "trialReviews": 16,
     "trials": 42,
     "largeTrials": 3
    },
-   "chosenReviews": [],
+   "chosenReviews": [
+    {
+     "pmid": "36457818",
+     "doi": "10.7759/cureus.31783",
+     "title": "The Impact of Vitamin B12 Supplementation on Clinical Outcomes in Patients With Diabetic Neuropathy: A Meta-Analysis of Randomized Controlled Trials",
+     "year": 2022,
+     "firstAuthor": "Karedath J",
+     "journal": "Cureus",
+     "citedBy": 10,
+     "n": 12,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    }
+   ],
    "newerLargeTrials": [],
    "timeline": [
     {
@@ -1769,12 +1904,12 @@
     },
     {
      "year": 2014,
-     "reviews": 2,
+     "reviews": 5,
      "trials": 3
     },
     {
      "year": 2015,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 2
     },
     {
@@ -1794,12 +1929,12 @@
     },
     {
      "year": 2019,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 4
     },
     {
      "year": 2020,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 3
     },
     {
@@ -1809,22 +1944,22 @@
     },
     {
      "year": 2022,
-     "reviews": 1,
+     "reviews": 5,
      "trials": 0
     },
     {
      "year": 2023,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 0
     },
     {
      "year": 2024,
-     "reviews": 1,
+     "reviews": 3,
      "trials": 1
     },
     {
      "year": 2025,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 0
     },
     {
@@ -1861,7 +1996,19 @@
     "citedNotEligible": [
      "33513879"
     ],
-    "chosenNotCited": []
+    "chosenNotCited": [
+     {
+      "pmid": "36457818",
+      "doi": "10.7759/cureus.31783",
+      "title": "The Impact of Vitamin B12 Supplementation on Clinical Outcomes in Patients With Diabetic Neuropathy: A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2022,
+      "firstAuthor": "Karedath J",
+      "journal": "Cureus",
+      "citedBy": 10,
+      "n": 12,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     }
+    ]
    },
    "screening": {
     "question": {
@@ -1873,9 +2020,9 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 0,
+     "yes": 1,
      "partly": 3,
-     "no": 7,
+     "no": 12,
      "unscreened": 0
     },
     "left": [
@@ -1915,6 +2062,13 @@
       "reason": "Methylcobalamin is the active comparator against herbal medicines, so B12 is not tested against placebo or no treatment."
      },
      {
+      "pmid": "36008079",
+      "title": "Exploring the effectiveness of vitamin B12 complex and alpha-lipoic acid as a treatment for diabetes mellitus/neuropathy: a protocol for systematic review and meta-analysis of randomised controlled trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Protocol with no pooled results; it studies B12 complex with alpha-lipoic acid and measures inflammation, lipid and glucose markers, not nerve outcomes."
+     },
+     {
       "pmid": "30383660",
       "title": "Prostaglandin E1 plus methylcobalamin combination therapy versus prostaglandin E1 monotherapy for patients with diabetic peripheral neuropathy: A meta-analysis of randomized controlled trials",
       "year": 2018,
@@ -1936,6 +2090,13 @@
       "reason": "Both arms receive methylcobalamin and PGE1; the review tests added lipoic acid, not B12."
      },
      {
+      "pmid": "25502588",
+      "title": "The role of metformin on vitamin B12 deficiency: a meta-analysis review",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Looks at whether metformin causes B12 deficiency, not at B12 supplements for nerve symptoms or function."
+     },
+     {
       "pmid": "24959880",
       "title": "Vitamin B12 status in metformin treated patients: systematic review",
       "year": 2014,
@@ -1948,6 +2109,27 @@
       "year": 2014,
       "fits": "no",
       "reason": "PGE1 plus methylcobalamin vs methylcobalamin alone tests PGE1, since both arms receive B12."
+     },
+     {
+      "pmid": "25052901",
+      "title": "Comment on Xu et al.: Meta-analysis of methylcobalamin alone and in combination with lipoic acid in patients with diabetic peripheral neuropathy",
+      "year": 2014,
+      "fits": "no",
+      "reason": "A comment on a meta-analysis with no abstract, not a systematic review itself."
+     },
+     {
+      "pmid": "25027297",
+      "title": "Comment on Deng et al. entitled \"meta-analysis of methylcobalamin alone and in combination with prostaglandin E1 in the treatment of diabetic peripheral neuropathy\"",
+      "year": 2014,
+      "fits": "no",
+      "reason": "A comment on a meta-analysis with no abstract, not a systematic review itself."
+     },
+     {
+      "pmid": "24602352",
+      "title": "Comment on Xu et al.: Meta-analysis of methylcobalamin alone and in combination with lipoic acid in patients with diabetic peripheral neuropathy",
+      "year": 2014,
+      "fits": "no",
+      "reason": "A comment on a meta-analysis with no abstract, not a systematic review itself."
      }
     ]
    }

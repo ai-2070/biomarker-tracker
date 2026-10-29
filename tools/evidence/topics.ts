@@ -20,6 +20,11 @@ export interface OutcomeDef {
   excludeTitle?: RegExp;
   /** The finding's question, for screening each eligible review's abstract (tools/evidence/screen.ts). */
   question: Question;
+  /**
+   * Reviews of any study design count for this outcome (supplement maps otherwise need reviews of
+   * trials): for evidence that comes from lab or observational studies, like biotin and lab tests.
+   */
+  anyDesign?: boolean;
 }
 
 export interface TopicDef {
@@ -315,6 +320,89 @@ export const TOPICS: TopicDef[] = [
       { id: "amd", label: "Macular degeneration", finding: "Worsening of age-related macular degeneration (AMD), an eye disease of older age", title: words(AMD), excludeTitle: not(), question: q("People who already have age-related macular degeneration (AMD), or older adults", "Zinc, alone or with antioxidant vitamins (such as the AREDS formula)", "AMD getting worse, or new AMD") },
       { id: "urinary", label: "Urinary problems", finding: "Hospital stays for urinary problems", title: words("urinar\\w*", "genitourinary", "prostat\\w*", "adverse", "safety", "side effects?", "toxicity"), excludeTitle: not("children", "infants?"), question: q("Older adults", "High-dose zinc supplements", "Urinary or genitourinary problems, or hospital stays for them") },
       { id: "blood-sugar", label: "Blood sugar", finding: "Blood sugar (fasting glucose, HbA1c)", title: words(GLUCOSE, "metabolic"), excludeTitle: not("gestational", "pregnan\\w*", "polycystic"), question: q("Adults with or without diabetes", "Zinc supplements", "Fasting blood sugar, HbA1c or insulin resistance") },
+    ],
+  },
+  {
+    id: "omega_3",
+    nutrientId: "omega_3",
+    name: "omega-3",
+    terms: ["omega-3", "n-3 fatty acids", "n-3 fatty acid", "fish oil", "eicosapentaenoic acid", "docosahexaenoic acid", "krill oil", "algal oil"],
+    titleTerms: words("omega-?3", "n-3", "ω-3", "fish oils?", "eicosapentaenoic", "docosahexaenoic", "EPA", "DHA", "krill oil", "algal oil", "marine fatty acids?", "polyunsaturated fatty acids?"),
+    outcomes: [
+      { id: "triglycerides", label: "Triglycerides", finding: "Triglycerides (a blood fat)", title: words("triglycerid\\w*", "triacylglycerol\\w*", "lipids?", "lipid profile", "dyslipid\\w*", "hypertriglycerid\\w*"), excludeTitle: not("pregnan\\w*", "children", "infants?", "dialysis", "parenteral"), question: q("Adults with normal or high triglycerides", "Omega-3 supplements (fish oil, EPA and/or DHA)", "Triglycerides") },
+      { id: "cardiovascular", label: "Heart attacks, strokes, deaths", finding: "Heart attacks, strokes and deaths", title: words(CVD, DEATH), excludeTitle: not("heart failure", "dialysis", "pregnan\\w*", "infants?", "preterm", "parenteral", "cancer patients"), question: q(GENERAL, "Omega-3 supplements (fish oil, EPA and/or DHA; prescription icosapent ethyl only with results apart)", "Heart attacks, strokes, cardiovascular death or death from any cause") },
+      { id: "atrial-fibrillation", label: "Atrial fibrillation", finding: "Atrial fibrillation (an irregular heartbeat)", title: words("atrial fibrillation", "arrhythmi\\w*"), excludeTitle: not("postoperative"), question: q("Adults (not after heart surgery)", "Omega-3 supplements", "New atrial fibrillation") },
+      { id: "bleeding", label: "Bleeding", finding: "Bleeding", title: words("bleed\\w*", "ha?emorrhag\\w*"), excludeTitle: not(), question: q("Adults, including people taking antiplatelet medicines", "Omega-3 supplements", "Bleeding events") },
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", title: words(BP), excludeTitle: not("pregnan\\w*", "pre-?eclampsia", "children"), question: q("Adults with or without high blood pressure", "Omega-3 supplements", "Blood pressure") },
+      { id: "depression", label: "Depression", finding: "Depression", title: words("depress\\w*", "mood"), excludeTitle: not("postpartum", "perinatal", "pregnan\\w*", "children", "adolescents?", "bipolar"), question: q("Adults with depression, or without it (prevention)", "Omega-3 supplements", "Depressive symptoms or new depression") },
+      { id: "preterm", label: "Preterm birth", finding: "Preterm birth (baby born before 37 weeks)", title: words("preterm", "premature", "pregnan\\w*", "gestation\\w*", "birth"), excludeTitle: not("infant formula", "neonat\\w*"), question: q("Pregnant women", "Omega-3 supplements, or foods with added omega-3, during pregnancy", "Preterm birth") },
+    ],
+  },
+  {
+    id: "creatine",
+    nutrientId: "creatine",
+    name: "creatine",
+    terms: ["creatine"],
+    context: SUPPLEMENT_CONTEXT,
+    scope: SUPPLEMENT_SCOPE,
+    titleTerms: words("creatine"),
+    outcomes: [
+      { id: "strength-older", label: "Strength, older adults", finding: "Muscle strength and lean mass, with resistance training", title: words("strength", "lean", "muscle\\w*", "sarcopeni\\w*", "physical function", "body composition", "resistance training", "older", "elderly", "aging", "ageing"), excludeTitle: not("kinase", "dialysis", "heart failure", "children", "adolescents?", "muscular dystroph\\w*", "myopath\\w*"), question: q("Adults over about 55", "Creatine with resistance training", "Muscle strength and lean mass", "Placebo with the same training") },
+      { id: "performance-young", label: "Strength and sprints, under 50", finding: "Strength and short, repeated bursts of hard exercise", title: words("performance", "sprint\\w*", "strength", "power", "exercise", "anaerobic", "high-intensity", "athlet\\w*"), excludeTitle: not("kinase", "older", "elderly", "aged", "sarcopeni\\w*", "children"), question: q("Healthy adults under 50", "Creatine", "Strength or repeated short, hard exercise") },
+      { id: "endurance", label: "Endurance", finding: "Endurance performance", title: words("endurance", "aerobic", "cycling", "running", "time trial"), excludeTitle: not("kinase"), question: q("Trained adults", "Creatine", "Endurance performance") },
+      { id: "cognition", label: "Memory and thinking", finding: "Memory and thinking", title: words(COGNITION, "brain", "mental"), excludeTitle: not("kinase", "children"), question: q("Adults, healthy or with an illness", "Creatine", "Memory and thinking") },
+      { id: "depression", label: "Depression", finding: "Symptoms of depression", title: words("depress\\w*", "mood"), excludeTitle: not("kinase", "children", "adolescents?"), question: q("Adults with or without depression", "Creatine, alone or with an antidepressant", "Depressive symptoms") },
+      { id: "kidney", label: "Kidney function", finding: "Kidney function, and the blood creatinine test", title: words("kidney", "renal", "creatinine", "glomerular"), excludeTitle: not("kinase"), question: q("Adults, mostly healthy", "Creatine", "Kidney function, or blood creatinine and eGFR") },
+      { id: "body-weight", label: "Body weight and water", finding: "Body weight, body water and body fat", title: words("body weight", "body composition", "water", "fat mass", "weight gain", "adipos\\w*"), excludeTitle: not("kinase", "children"), question: q("Healthy adults", "Creatine", "Body weight, body water or body fat") },
+    ],
+  },
+  {
+    id: "biotin",
+    nutrientId: "biotin",
+    name: "biotin",
+    terms: ["biotin"],
+    // Biotin is everywhere in lab methods (biotin–streptavidin): only papers about taking it.
+    context: `${SUPPLEMENT_CONTEXT} OR TITLE_ABS:interference OR TITLE_ABS:megadose* OR TITLE_ABS:"high-dose biotin" OR TITLE_ABS:deficien*`,
+    scope: "in papers about supplements, intake, diet, deficiency, high doses or lab test interference",
+    titleTerms: words("biotin", "vitamin B7", "vitamin H"),
+    outcomes: [
+      { id: "lab-interference", label: "Wrong lab results", finding: "Wrong results on blood tests that use biotin (immunoassays), including thyroid and heart tests", title: words("interfer\\w*", "immunoassays?", "assays?", "thyroid", "troponin", "laborator\\w*", "test results?", "misdiagnos\\w*"), anyDesign: true, excludeTitle: not("biotinylat\\w*"), question: q("People taking biotin supplements", "Biotin, especially high doses", "Results of immunoassay blood tests (thyroid, troponin, hormones): falsely high or low", "No biotin") },
+      { id: "multiple-sclerosis", label: "Multiple sclerosis", finding: "Disability and walking in progressive multiple sclerosis", title: words("multiple sclerosis", "MS"), excludeTitle: not(), question: q("Adults with progressive multiple sclerosis", "Very high-dose biotin", "Disability and walking") },
+      { id: "hair", label: "Hair", finding: "Hair growth and hair loss", title: words("hair", "alopecia"), anyDesign: true, excludeTitle: not(), question: q("People with hair loss or wanting healthier hair", "Biotin supplements", "Hair growth or hair loss", "No biotin, or placebo") },
+      { id: "nails", label: "Nails", finding: "Brittle nails", title: words("nails?", "onycho\\w*"), anyDesign: true, excludeTitle: not(), question: q("People with brittle nails", "Biotin supplements", "Nail strength or appearance", "No biotin, or placebo") },
+      { id: "diabetes", label: "Blood sugar and fats", finding: "Blood sugar and blood fats", title: words(GLUCOSE, "lipids?", "cholesterol", "triglycerid\\w*"), excludeTitle: not("gestational"), question: q("Adults with type 2 diabetes", "Biotin supplements", "Blood sugar, HbA1c or blood fats") },
+      { id: "pregnancy", label: "Status in pregnancy", finding: "A urine sign of low biotin status (3-hydroxyisovaleric acid, 3-HIA) in pregnancy", title: words("pregnan\\w*", "3-hydroxyisovaleric", "status"), anyDesign: true, excludeTitle: not(), question: q("Pregnant women", "Biotin supplements", "Markers of biotin status (urine 3-hydroxyisovaleric acid)", "No biotin") },
+    ],
+  },
+  {
+    id: "psyllium",
+    nutrientId: "psyllium",
+    name: "psyllium",
+    terms: ["psyllium", "ispaghula", "Plantago ovata"],
+    titleTerms: words("psyllium", "ispaghula", "plantago", "fib(re|er)s?", "viscous fib\\w*", "soluble fib\\w*"),
+    outcomes: [
+      { id: "ldl", label: "LDL cholesterol", finding: "LDL cholesterol", title: words("LDL", "cholesterol", "lipids?", "lipoprotein\\w*", "lipid profile"), excludeTitle: not("children", "pa?ediatric"), question: q("Adults with or without high cholesterol", "Psyllium (or a fibre supplement with results for psyllium apart)", "LDL cholesterol") },
+      { id: "glucose", label: "Blood sugar", finding: "Blood sugar (fasting glucose and HbA1c)", title: words(GLUCOSE, "glyc\\w*"), excludeTitle: not("gestational", "children"), question: q("Adults with type 2 diabetes, at risk of it, or with normal blood sugar", "Psyllium", "Fasting glucose or HbA1c") },
+      { id: "constipation", label: "Constipation", finding: "Long-lasting constipation", title: words("constipation", "bowel movements?", "stools?", "laxatives?"), excludeTitle: not("child\\w*", "pa?ediatric", "infants?", "opioid\\w*"), question: q("Adults with chronic constipation", "Psyllium or other fibre supplements (with results for psyllium apart)", "Constipation (stool frequency, symptoms)") },
+      { id: "ibs", label: "IBS", finding: "Irritable bowel syndrome (IBS) symptoms", title: words("irritable bowel", "IBS"), excludeTitle: not("child\\w*", "pa?ediatric"), question: q("Adults with irritable bowel syndrome", "Psyllium or other soluble fibre", "IBS symptoms") },
+      { id: "weight", label: "Body weight", finding: "Body weight and waist size", title: words("weight", "body mass", "BMI", "obes\\w*", "waist", "adipos\\w*"), excludeTitle: not("children", "pa?ediatric"), question: q("Adults", "Psyllium", "Body weight, body mass index or waist size") },
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", title: words(BP), excludeTitle: not("pregnan\\w*", "children"), question: q("Adults, with or without high blood pressure", "Psyllium or other fibre supplements (with results for psyllium apart)", "Blood pressure") },
+    ],
+  },
+  {
+    id: "coq10",
+    nutrientId: "coq10",
+    name: "CoQ10",
+    terms: ["coenzyme Q10", "CoQ10", "ubiquinone", "ubiquinol"],
+    titleTerms: words("coenzyme Q10", "CoQ10", "Co-?Q10", "Q10", "ubiquinon\\w*", "ubiquinol"),
+    outcomes: [
+      { id: "heart-failure", label: "Heart failure", finding: "Heart failure: deaths and hospital stays", title: words("heart failure", "cardiac function", "ejection fraction", "cardiomyopath\\w*"), excludeTitle: not("children", "chemotherapy"), question: q("Adults with heart failure on standard treatment", "CoQ10 added to treatment", "Deaths, hospital stays or heart function") },
+      { id: "migraine", label: "Migraine", finding: "Migraine attacks", title: words("migraine\\w*", "headaches?"), excludeTitle: not(), question: q("Adults with migraine", "CoQ10 to prevent attacks", "How often attacks happen and how bad they are") },
+      { id: "statin-muscle", label: "Statin muscle aches", finding: "Muscle aches from statins", title: words("statin\\w*", "myopath\\w*", "myalgia", "muscle"), excludeTitle: not(), question: q("Adults taking statins, most with muscle symptoms", "CoQ10", "Muscle pain or aches") },
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", title: words(BP), excludeTitle: not("pregnan\\w*", "pre-?eclampsia"), question: q("Adults with high blood pressure", "CoQ10", "Blood pressure") },
+      { id: "metabolic", label: "Blood sugar and fats", finding: "Blood sugar and blood fats (HbA1c, cholesterol, triglycerides)", title: words(GLUCOSE, "lipids?", "cholesterol", "triglycerid\\w*", "metabolic"), excludeTitle: not("gestational", "children"), question: q("Adults, often with diabetes or other metabolic conditions", "CoQ10", "HbA1c, blood sugar, cholesterol or triglycerides") },
+      { id: "fatigue", label: "Tiredness", finding: "Tiredness (fatigue)", title: words("fatigue", "tired\\w*", "energy"), excludeTitle: not(), question: q("Adults, healthy or with an illness", "CoQ10", "Tiredness (fatigue)") },
+      { id: "exercise", label: "Exercise", finding: "Exercise performance", title: words("exercise", "performance", "athlet\\w*", "endurance", "muscle damage"), excludeTitle: not("heart failure"), question: q("Healthy adults, including athletes", "CoQ10", "Exercise performance") },
     ],
   },
   ...FOOD_TOPICS,

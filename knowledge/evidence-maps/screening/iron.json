@@ -55,6 +55,11 @@
      "pmid": "17277426",
      "fits": "no",
      "reason": "Children and adolescents, with physical performance outcomes such as heart rate, not fatigue."
+    },
+    {
+     "pmid": "26629120",
+     "fits": "no",
+     "reason": "Population is children aged 5-12 with or without anaemia, not adults with low ferritin, and the outcome is cognitive performance, not fatigue."
     }
    ]
   },
@@ -202,6 +207,51 @@
      "pmid": "24135037",
      "fits": "no",
      "reason": "Covers EPO and IV iron for perioperative transfusion; oral iron is only a comparator, with no GI side-effect outcomes and no pooled analysis."
+    },
+    {
+     "pmid": "41080322",
+     "fits": "partly",
+     "reason": "Compares oral iron (including ferrous sulfate) with IV iron and placebo, but only in heart failure, and the abstract reports no gut side-effect outcomes."
+    },
+    {
+     "pmid": "39839869",
+     "fits": "no",
+     "reason": "Studies IV ferric carboxymaltose against placebo for restless legs, not oral ferrous sulfate."
+    },
+    {
+     "pmid": "40686725",
+     "fits": "partly",
+     "reason": "Compares IV with oral iron in randomised trials, but only after gut bleeding, and the outcomes are blood markers and response, not gut side effects."
+    },
+    {
+     "pmid": "40821477",
+     "fits": "partly",
+     "reason": "Pools trials of iron against placebo for restless legs, but the oral form isn't stated and only overall adverse events are reported."
+    },
+    {
+     "pmid": "39835061",
+     "fits": "no",
+     "reason": "Reviews IV ferric carboxymaltose in IBD and mixes in observational studies; oral ferrous sulfate is not the intervention studied."
+    },
+    {
+     "pmid": "36408243",
+     "fits": "no",
+     "reason": "The intervention is Shengxuening tablets, with standard iron only as the comparator."
+    },
+    {
+     "pmid": "38983402",
+     "fits": "no",
+     "reason": "Compares Chinese patent medicines plus oral iron against oral iron alone in pregnancy; a different question."
+    },
+    {
+     "pmid": "39280957",
+     "fits": "no",
+     "reason": "Compares Shengxuening plus iron against iron alone in pregnancy; a different question."
+    },
+    {
+     "pmid": "21942989",
+     "fits": "yes",
+     "reason": "Pools randomised trials of IV ferric carboxymaltose against oral iron and placebo in adults, and reports constipation, diarrhoea and nausea."
     }
    ]
   },
@@ -318,6 +368,21 @@
      "pmid": "24130243",
      "fits": "no",
      "reason": "Compares daily iron with no iron or placebo in children aged 5-12, not every-other-day versus daily iron in adults or teenagers."
+    },
+    {
+     "pmid": "39634908",
+     "fits": "partly",
+     "reason": "Compares intermittent vs daily oral iron for haemoglobin in iron-deficiency anaemia, but the group is children aged 2 months to 18 years, not only adults and teenagers."
+    },
+    {
+     "pmid": "32509609",
+     "fits": "no",
+     "reason": "Compares different daily doses of iron in pregnant women for prevention; it does not compare every-other-day dosing with daily dosing."
+    },
+    {
+     "pmid": "26629120",
+     "fits": "no",
+     "reason": "Compares daily iron with control for cognition in school-aged children; it does not compare intermittent with daily dosing."
     }
    ]
   },
@@ -689,6 +754,101 @@
      "pmid": "10796140",
      "fits": "yes",
      "reason": "Controlled trials of iron supplementation in pregnant women; reports haemoglobin/ferritin plus maternal and fetal outcomes."
+    },
+    {
+     "pmid": "42699946",
+     "fits": "no",
+     "reason": "Compares iron formulations and oral vs parenteral iron in anaemic women, with no placebo or no-iron comparison and only blood-marker outcomes."
+    },
+    {
+     "pmid": "42129691",
+     "fits": "partly",
+     "reason": "Has iron-folic acid vs control for low birth weight, but mixes in nutrient-status studies and reports no maternal anaemia outcome."
+    },
+    {
+     "pmid": "42078226",
+     "fits": "no",
+     "reason": "Qualitative review of intravenous vs oral iron for treating anaemia, with no placebo or no-iron comparison and no pooling."
+    },
+    {
+     "pmid": "41316195",
+     "fits": "no",
+     "reason": "Compares iron status in women with PCOS vs controls and does not test iron supplementation."
+    },
+    {
+     "pmid": "39545365",
+     "fits": "no",
+     "reason": "The intervention is nutrition education to improve iron-folic acid adherence, not iron supplements vs no iron."
+    },
+    {
+     "pmid": "39569449",
+     "fits": "partly",
+     "reason": "Iron-folic acid vs folic acid or control in pregnancy for low birth weight and preterm birth, but no maternal anaemia outcome."
+    },
+    {
+     "pmid": "40034615",
+     "fits": "no",
+     "reason": "Compares intravenous vs oral iron for treating anaemia, with no placebo or no-iron comparison."
+    },
+    {
+     "pmid": "38983402",
+     "fits": "no",
+     "reason": "Compares Chinese patent medicines plus oral iron vs oral iron alone for treating anaemia."
+    },
+    {
+     "pmid": "39163033",
+     "fits": "yes",
+     "reason": "Pooled RCTs of iron vs placebo or no iron in pregnant women for anaemia, iron deficiency, preterm birth and low birth weight."
+    },
+    {
+     "pmid": "39280957",
+     "fits": "no",
+     "reason": "Compares Shengxuening plus iron vs iron alone for treating anaemia in pregnancy."
+    },
+    {
+     "pmid": "39196981",
+     "fits": "yes",
+     "reason": "Pooled RCTs of routine iron vs placebo or none in pregnancy for anaemia, preterm birth and low birth weight."
+    },
+    {
+     "pmid": "30814805",
+     "fits": "no",
+     "reason": "Compares intravenous iron sucrose vs oral iron for treating anaemia, with no placebo or no-iron comparison."
+    },
+    {
+     "pmid": "32509609",
+     "fits": "no",
+     "reason": "Compares different oral iron doses and excluded placebo-controlled studies."
+    },
+    {
+     "pmid": "32318374",
+     "fits": "partly",
+     "reason": "RCTs in pregnancy on Hb, anaemia, low birth weight and preterm birth, but the intervention is iron-fortified food, not supplements."
+    },
+    {
+     "pmid": "30045772",
+     "fits": "no",
+     "reason": "Protocol on prevalence and causes of iron-folic acid adherence, not on supplement effects."
+    },
+    {
+     "pmid": "22794149",
+     "fits": "no",
+     "reason": "The population is low birth weight infants given iron, not pregnant women."
+    },
+    {
+     "pmid": "31144465",
+     "fits": "yes",
+     "reason": "Pooled trials of oral iron vs placebo or none in pregnancy for maternal anaemia, preterm birth and low birth weight."
+    },
+    {
+     "pmid": "20120797",
+     "fits": "no",
+     "reason": "Compares multiple micronutrients vs iron-folic acid, with no no-iron comparison."
+    },
+    {
+     "pmid": "25927136",
+     "fits": "yes",
+     "reason": "Pooled RCTs of iron vs placebo in pregnancy for anaemia at term, and reports preterm birth and low birth weight."
     }
    ]
   },
@@ -1040,6 +1200,101 @@
      "pmid": "17537292",
      "fits": "no",
      "reason": "Pools trials in infants to examine sex differences in anaemia, not menstruating women."
+    },
+    {
+     "pmid": "39951396",
+     "fits": "partly",
+     "reason": "Pools trials of iron vs placebo/no treatment on haemoglobin, but in children and adolescents of both sexes with IDA (treatment), not menstruating women."
+    },
+    {
+     "pmid": "39301668",
+     "fits": "no",
+     "reason": "Observational prevalence of anaemia and iron deficiency in military recruits during training; no iron supplement intervention."
+    },
+    {
+     "pmid": "42829776",
+     "fits": "partly",
+     "reason": "Women aged 18-40 with low ferritin and iron-store outcomes match, but the intervention is iron-fortified margarine, not supplements (single trial)."
+    },
+    {
+     "pmid": "38291525",
+     "fits": "no",
+     "reason": "Compares lactoferrin with iron supplements in mixed patient groups; iron is the comparator, not tested against placebo."
+    },
+    {
+     "pmid": "40765927",
+     "fits": "no",
+     "reason": "Compares iron plus vitamin C with iron alone in IDA patients; no placebo or no-treatment comparison of iron."
+    },
+    {
+     "pmid": "39230802",
+     "fits": "no",
+     "reason": "A comment letter on an athlete iron review, not a systematic review itself; no abstract to assess."
+    },
+    {
+     "pmid": "39177717",
+     "fits": "no",
+     "reason": "An author response to a comment, not a systematic review itself; no abstract to assess."
+    },
+    {
+     "pmid": "40080504",
+     "fits": "no",
+     "reason": "Management of children under five not responding to oral iron and folic acid; different population and question."
+    },
+    {
+     "pmid": "39634908",
+     "fits": "no",
+     "reason": "Compares daily vs intermittent iron in children with IDA; no placebo comparison and different population."
+    },
+    {
+     "pmid": "39010146",
+     "fits": "no",
+     "reason": "Protocol only, with no pooled results; outcomes are physical capacity, quality of life and fatigue in iron-deficient non-anaemic people."
+    },
+    {
+     "pmid": "36408243",
+     "fits": "no",
+     "reason": "Compares Shengxuening tablets with iron or other controls for IDA; not iron supplements vs placebo in menstruating women."
+    },
+    {
+     "pmid": "33520436",
+     "fits": "no",
+     "reason": "Compares iron polymaltose with ferrous sulphate in children; active comparator and different population."
+    },
+    {
+     "pmid": "36994018",
+     "fits": "no",
+     "reason": "Iron-fortified rice in anyone over six months; both the intervention (fortification) and the population differ."
+    },
+    {
+     "pmid": "33511051",
+     "fits": "no",
+     "reason": "Shengxuening vs oral iron for renal anaemia; different population and comparison."
+    },
+    {
+     "pmid": "27681259",
+     "fits": "no",
+     "reason": "Iron (mostly intravenous) vs placebo in critically ill adult ICU patients; different population and route."
+    },
+    {
+     "pmid": "31673228",
+     "fits": "no",
+     "reason": "Effects of dietary polyphenols on cardiovascular markers and iron status; not iron supplementation."
+    },
+    {
+     "pmid": "26629120",
+     "fits": "no",
+     "reason": "Daily iron in primary-school children with cognitive outcomes; different population and outcome."
+    },
+    {
+     "pmid": "26433017",
+     "fits": "no",
+     "reason": "National flour fortification programs evaluated with pre-post studies, not randomised trials of iron supplements."
+    },
+    {
+     "pmid": "25905157",
+     "fits": "no",
+     "reason": "Routine iron supplementation and screening in children aged 6-24 months; different population."
     }
    ]
   }

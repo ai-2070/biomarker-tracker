@@ -146,6 +146,9 @@ const map = {
         ...(screening
           ? [`Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by ${screening.by}. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.`]
           : []),
+        ...(topic.outcomes.some((o) => o.anyDesign)
+          ? [`For ${topic.outcomes.filter((o) => o.anyDesign).map((o) => o.label.toLowerCase()).join(", ")}, reviews of any study design count, because that evidence comes from lab or observational studies rather than trials.`]
+          : []),
         `Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded ${topic.name} trials, measured as the corrected covered area (Pieper 2014, PMID 24581293).`,
       ],
   counts,

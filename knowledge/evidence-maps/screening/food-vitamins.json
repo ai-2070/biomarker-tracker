@@ -82,6 +82,21 @@
      "pmid": "35343314",
      "fits": "partly",
      "reason": "Reviews B12 content of seaweeds, mushrooms and fermented foods, but does not compare them with animal food sources."
+    },
+    {
+     "pmid": "37441514",
+     "fits": "partly",
+     "reason": "Includes vegans and vegetarians and B12 status, but the exposure is B12 intake from diet and supplements, with no comparison against diets that include animal foods."
+    },
+    {
+     "pmid": "30261596",
+     "fits": "no",
+     "reason": "Reviews oral versus intramuscular B12 treatment for deficiency in gastrointestinal disorders, not B12 from plant foods or plant-based diets."
+    },
+    {
+     "pmid": "33204422",
+     "fits": "no",
+     "reason": "Reviews case reports of optic neuropathy caused by B12 deficiency; it does not compare B12 sources or diets."
     }
    ]
   },
@@ -143,6 +158,16 @@
      "pmid": "9725654",
      "fits": "no",
      "reason": "Fruit and vegetable markers vs ischaemic heart disease risk; serum vitamin C is used as an exposure marker, not an outcome."
+    },
+    {
+     "pmid": "35208201",
+     "fits": "partly",
+     "reason": "Reviews blood vitamin C as a biomarker of fruit and vegetable intake, but only in children and adolescents, and vitamin C is one of many biomarkers."
+    },
+    {
+     "pmid": "26078867",
+     "fits": "partly",
+     "reason": "Reports vitamin C intake and tissue levels, but compares Eastern and Western European populations rather than people eating more or less fruit and vegetables."
     }
    ]
   },
@@ -219,6 +244,11 @@
      "pmid": "28299420",
      "fits": "yes",
      "reason": "Systematic review of nutrient status in vegetarian children against controls, including low vitamin D status."
+    },
+    {
+     "pmid": "42030471",
+     "fits": "partly",
+     "reason": "RCTs in healthy adults report vitamin D status, but the exposure is partly swapping animal protein for plant protein, not a full vegetarian or vegan diet."
     }
    ]
   },
@@ -320,6 +350,16 @@
      "pmid": "16801507",
      "fits": "yes",
      "reason": "Pools adult trials of menaquinone (K2) and phytonadione (K1) supplements on bone loss and fractures."
+    },
+    {
+     "pmid": "38046003",
+     "fits": "partly",
+     "reason": "Compares vitamin K1 and K2 supplements on calcification and mortality, but only in dialysis patients, including some children, not adults in general."
+    },
+    {
+     "pmid": "28496349",
+     "fits": "no",
+     "reason": "Looks at vitamin K supplements and insulin sensitivity, not heart disease, artery calcification, bone density or fractures."
     }
    ]
   },
@@ -436,6 +476,26 @@
      "pmid": "15825825",
      "fits": "partly",
      "reason": "Reports ALA effects on infant blood DHA levels, but only in formula-fed infants, and compares against standard formula rather than fish oil (EPA/DHA)."
+    },
+    {
+     "pmid": "36381743",
+     "fits": "no",
+     "reason": "Looks at omega-3 versus placebo for brain function, with no plant or algal versus fish comparison and no conversion, blood level or heart outcomes."
+    },
+    {
+     "pmid": "38628754",
+     "fits": "no",
+     "reason": "Looks at omega-3 intake and women's fertility, not plant or algal versus fish omega-3 for conversion, blood levels or heart disease."
+    },
+    {
+     "pmid": "29721237",
+     "fits": "no",
+     "reason": "Looks at omega-3 supplements for epileptic seizures, with no plant versus fish comparison and no conversion, blood level or heart outcomes."
+    },
+    {
+     "pmid": "23193480",
+     "fits": "partly",
+     "reason": "Analyses ALA and fish EPA/DHA intake separately in cohort studies, but the outcome is prostate cancer, not conversion, blood levels or heart disease."
     }
    ]
   },
@@ -532,6 +592,21 @@
      "pmid": "30571724",
      "fits": "no",
      "reason": "Outcomes are cardiometabolic risk factors, not B vitamin intake or status."
+    },
+    {
+     "pmid": "42030471",
+     "fits": "partly",
+     "reason": "Reports B12 and folate status, but the exposure is partly replacing animal protein with plant protein, not a full vegetarian or vegan diet."
+    },
+    {
+     "pmid": "42179288",
+     "fits": "partly",
+     "reason": "Compares vegan and vegetarian diets with diets including animal foods and reports B12 status, but covers only children aged 6 months to 11 years."
+    },
+    {
+     "pmid": "42511108",
+     "fits": "no",
+     "reason": "Reviews the nutrient content of vegan versus meat-based dog and cat food, not diets eaten by people."
     }
    ]
   }

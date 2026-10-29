@@ -132,6 +132,16 @@
      "pmid": "9168293",
      "fits": "partly",
      "reason": "Pools randomised trials of potassium supplements on blood pressure, but in people in general, with no separate analysis for high blood pressure reported."
+    },
+    {
+     "pmid": "40612568",
+     "fits": "yes",
+     "reason": "Pooled RCTs of potassium supplementation alone on blood pressure, with a separate subgroup analysis for adults with hypertension."
+    },
+    {
+     "pmid": "37836507",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled trials of potassium on blood pressure, but only in normotensive people rather than adults with high blood pressure."
     }
    ]
   },
@@ -213,6 +223,16 @@
      "pmid": "9168293",
      "fits": "partly",
      "reason": "Pools RCTs of potassium supplements against control for blood pressure, but the population is mixed and no dose-response result is reported."
+    },
+    {
+     "pmid": "40612568",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of RCTs of potassium supplementation alone on blood pressure, with a separate subgroup of adults with hypertension."
+    },
+    {
+     "pmid": "37836507",
+     "fits": "no",
+     "reason": "Population is normotensive rather than hypertensive, and potassium vs placebo was pooled pairwise with no dose-response analysis."
     }
    ]
   },
@@ -294,6 +314,16 @@
      "pmid": "9168293",
      "fits": "partly",
      "reason": "Pooled RCTs of potassium supplements on BP, but the abstract gives no separate results for normotensive adults."
+    },
+    {
+     "pmid": "40612568",
+     "fits": "yes",
+     "reason": "Pooled RCTs of potassium supplementation on blood pressure, with a separate subgroup analysis for adults without hypertension."
+    },
+    {
+     "pmid": "37836507",
+     "fits": "yes",
+     "reason": "Pooled meta-analysis of potassium supplements versus placebo on systolic and diastolic blood pressure in a normotensive population."
     }
    ]
   }

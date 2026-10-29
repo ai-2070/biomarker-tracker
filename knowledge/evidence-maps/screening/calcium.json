@@ -302,6 +302,46 @@
      "pmid": "8601931",
      "fits": "yes",
      "reason": "Pooled 14 randomised trials of calcium supplements versus control in pregnant women, reporting blood pressure and pre-eclampsia."
+    },
+    {
+     "pmid": "37836507",
+     "fits": "no",
+     "reason": "Pooled calcium versus placebo trials in the general normotensive population, not pregnant women, with blood pressure as the outcome."
+    },
+    {
+     "pmid": "37169508",
+     "fits": "partly",
+     "reason": "Calcium for pre-eclampsia in pregnancy matches, but this is a protocol with no pooled results yet, and it also covers supplements started before pregnancy."
+    },
+    {
+     "pmid": "38302677",
+     "fits": "yes",
+     "reason": "Re-analysed 13 randomised trials of calcium versus placebo during pregnancy, with pre-eclampsia as the outcome."
+    },
+    {
+     "pmid": "26929766",
+     "fits": "partly",
+     "reason": "Calcium during pregnancy matches, but the outcome is the offspring's blood pressure, not the mother's, and observational studies are included."
+    },
+    {
+     "pmid": "20687064",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of calcium versus placebo in pregnancy, with high blood pressure and pre-eclampsia as outcomes."
+    },
+    {
+     "pmid": "10206630",
+     "fits": "no",
+     "reason": "A letter about a meta-analysis of dietary calcium and blood pressure, not a review of calcium supplements in pregnancy."
+    },
+    {
+     "pmid": "9690358",
+     "fits": "no",
+     "reason": "A commentary on epidemiological calcium intake and blood pressure data, not pregnancy supplement trials."
+    },
+    {
+     "pmid": "9143217",
+     "fits": "no",
+     "reason": "A letter questioning an epidemiological meta-analysis of dietary calcium and blood pressure, not pregnancy trials."
     }
    ]
   },
@@ -393,6 +433,16 @@
      "pmid": "24217421",
      "fits": "yes",
      "reason": "Reviewed trials of supplements, including calcium, for primary prevention of CVD in community-dwelling adults."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "This is a protocol only, with no pooled results yet. It plans to cover calcium in adults with CVD outcomes, but limits the mean age to 70 or under."
+    },
+    {
+     "pmid": "21157727",
+     "fits": "yes",
+     "reason": "The title matches calcium supplements and heart attack risk. There is no abstract, so the population and comparison are assumed rather than confirmed."
     }
    ]
   },
@@ -504,6 +554,26 @@
      "pmid": "17264183",
      "fits": "yes",
      "reason": "Pools RCTs of vitamin D plus calcium vs placebo or no treatment for hip fracture in postmenopausal women and older men."
+    },
+    {
+     "pmid": "39672580",
+     "fits": "partly",
+     "reason": "Protocol for RCTs of calcium and/or vitamin D vs placebo for fractures, but it has no pooled results yet and covers all adults, not over-50s."
+    },
+    {
+     "pmid": "29947867",
+     "fits": "no",
+     "reason": "A letter critiquing another meta-analysis of calcium/vitamin D and fractures in adults 50+; it is not a systematic review itself."
+    },
+    {
+     "pmid": "27401092",
+     "fits": "partly",
+     "reason": "Erratum adding analyses to a meta-analysis of calcium plus vitamin D and fractures; there is no abstract, so population and comparison are unclear."
+    },
+    {
+     "pmid": "22970899",
+     "fits": "no",
+     "reason": "Reviews lab studies of calcium hydroxide in dental root canals and tooth fracture, not calcium supplements for bone fractures."
     }
    ]
   },
@@ -630,6 +700,26 @@
      "pmid": "7472660",
      "fits": "no",
      "reason": "Covers adults aged 18 to 50, mostly in cross-sectional studies, so the population falls outside the over-50 group and few trials are included."
+    },
+    {
+     "pmid": "39688675",
+     "fits": "no",
+     "reason": "This correction notice has no abstract. The original review tests Asian herbal medicine added to calcium/vitamin D in osteoporosis patients, not calcium versus placebo."
+    },
+    {
+     "pmid": "38512462",
+     "fits": "no",
+     "reason": "This correction notice has no abstract. The original review tests Asian herbal medicine added to calcium/vitamin D in osteoporosis patients, not calcium versus placebo."
+    },
+    {
+     "pmid": "17708864",
+     "fits": "partly",
+     "reason": "Calcium or milk versus control on bone mineral density matches, but the people are children, not adults over 50."
+    },
+    {
+     "pmid": "23932583",
+     "fits": "no",
+     "reason": "Women with breast cancer, calcium mostly given with vitamin D, and only before-after data with no unsupplemented control group."
     }
    ]
   }

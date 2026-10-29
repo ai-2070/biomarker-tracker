@@ -56,6 +56,11 @@
      "pmid": "19410972",
      "fits": "partly",
      "reason": "Matches population, vitamin K1/K2 and clinical fractures, but it is a narrative review of 7 RCTs with no pooled analysis."
+    },
+    {
+     "pmid": "35625785",
+     "fits": "yes",
+     "reason": "Pools RCTs of oral vitamin K versus control in postmenopausal and osteoporotic women, and reports vertebral and clinical fracture outcomes."
     }
    ]
   },
@@ -133,6 +138,11 @@
      "pmid": "21674202",
      "fits": "partly",
      "reason": "Pooled RCTs of vitamin K on bone mineral density, but in adults generally with no stated postmenopausal or low bone density subgroup."
+    },
+    {
+     "pmid": "35625785",
+     "fits": "partly",
+     "reason": "Pooled RCTs of oral vitamin K vs control on femoral BMD, but in adults generally; the abstract shows no separate BMD analysis for postmenopausal or low-BMD people."
     }
    ]
   }
