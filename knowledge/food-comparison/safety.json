@@ -1,0 +1,325 @@
+{
+  "topic": "safety",
+  "title": "The safety question",
+  "intro": "Both animal and plant foods can contain things that do harm: metals from soil and water, natural plant compounds, pesticide residues, germs, and substances made by cooking. The claims below look at how much each matters at the amounts people normally eat.",
+  "claims": [
+    {
+      "id": "heavy-metals-plant-foods",
+      "claim": "Plant foods such as rice, grains and vegetables are a major source of heavy metals",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "For cadmium, arsenic and lead, plant foods are the main dietary sources, largely because people eat a lot of them. EFSA (the European Food Safety Authority) found that cereals, vegetables, nuts and pulses, potatoes and also meat supplied most dietary cadmium, while the highest concentrations were in seaweed, fish and seafood, and chocolate. Average adult intake in Europe was close to or slightly above the tolerable weekly intake; vegetarians (from more cereals, nuts, oilseeds and pulses), regular eaters of mussels, clams and similar shellfish or of wild mushrooms, smokers and children could reach about twice it. EFSA judged the risk to an individual's kidneys at these intakes very low, but said exposure across the population should be reduced. For inorganic arsenic, rice, rice products, other grains and drinking water were the main sources, with the highest intakes in infants and toddlers; EFSA's 2024 update concluded that current intakes raise a health concern. For lead, cereal products contribute most, no safe threshold has been found, and young children are the group of most concern. How much reaches a food depends on where it was grown, the soil, fertilisers and water.",
+      "whyThisGrade": [
+        "Based on official European risk assessments using large measurement datasets (about 140,000 results for cadmium alone)",
+        "Health effects at usual intakes are estimated from studies of higher exposure and early warning markers, not observed directly",
+        "Levels vary widely by region, soil, product and species",
+        "These assessments weigh harm only; the benefits of the same foods are judged separately"
+      ],
+      "studies": [
+        {
+          "doi": "10.2903/j.efsa.2009.980",
+          "title": "Cadmium in food - Scientific opinion of the Panel on Contaminants in the Food Chain",
+          "year": 2009,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "33537067",
+          "doi": "10.2903/j.efsa.2021.6380",
+          "title": "Chronic dietary exposure to inorganic arsenic",
+          "year": 2021,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "38239496",
+          "doi": "10.2903/j.efsa.2024.8488",
+          "title": "Update of the risk assessment of inorganic arsenic in food",
+          "year": 2024,
+          "studyType": "guideline"
+        },
+        {
+          "doi": "10.2903/j.efsa.2010.1570",
+          "title": "Scientific Opinion on Lead in Food",
+          "year": 2010,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "id": "mercury-in-fish",
+      "claim": "Mercury makes fish unsafe to eat",
+      "verdict": "partly supported",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "Fish is the main source of methylmercury, the form that harms the developing brain. EFSA found that tuna, swordfish, cod, whiting and pike contributed most in Europe. Average intakes stay below the tolerable weekly intake except in some young children, but high fish eaters, possibly including pregnant women, may exceed it up to about six-fold, and unborn children are the most vulnerable. The same fish bring benefits: eating 1–4 servings a week has been linked with better brain development in children of women who ate fish in pregnancy and with less heart disease in adults. EFSA concluded that species high in mercury are the problem: with those, fewer than 1–2 servings a week can reach the limit. A review of human studies found that modest fish intake (1–2 servings a week) was linked with 36 % fewer deaths from coronary heart disease, and judged that for adults, and for women of childbearing age apart from a few species, the benefits outweigh the risks. So the answer depends on the species, the amount and the person.",
+      "whyThisGrade": [
+        "Large European exposure assessments and many human cohort studies on mercury and on fish",
+        "The benefit estimates come largely from observational studies",
+        "Mercury content differs greatly between species and regions",
+        "Risk and benefit are weighed with models, not tested in trials"
+      ],
+      "studies": [
+        {
+          "doi": "10.2903/j.efsa.2012.2985",
+          "title": "Scientific Opinion on the risk for public health related to the presence of mercury and methylmercury in food",
+          "year": 2012,
+          "studyType": "guideline"
+        },
+        {
+          "doi": "10.2903/j.efsa.2015.3982",
+          "title": "Statement on the benefits of fish/seafood consumption compared to the risks of methylmercury in fish/seafood",
+          "year": 2015,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "17047219",
+          "doi": "10.1001/jama.296.15.1885",
+          "title": "Fish intake, contaminants, and human health: evaluating the risks and the benefits",
+          "year": 2006,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "id": "antinutrients-harmful",
+      "claim": "Antinutrients (lectins, phytate, oxalate, tannins, saponins, goitrogens) make plant foods harmful",
+      "verdict": "not supported",
+      "grade": "low",
+      "favours": "neither",
+      "summary": "Antinutrients are natural plant compounds that can interfere with digestion or nutrient uptake. Legumes contain the most, then cereals. Some harms are real but specific. Raw or undercooked red kidney beans cause sudden vomiting and diarrhoea: the UK recorded 50 suspected incidents between 1976 and 1989, and the lectin responsible is destroyed by soaking and thorough cooking. Goitrogens in some cabbage-family vegetables can lower iodine uptake by the thyroid; collards, Brussels sprouts and some Russian kale contain enough goitrin to possibly do this, while broccoli and most kale contain little. Soy, often named as a thyroid risk, did not change thyroid hormone levels in a review of 18 trial reports and raised TSH (thyroid-stimulating hormone) only very slightly, of unclear meaning. Phytate and tannins lower the uptake of iron and zinc (see the absorption section), and oxalate matters for some people with kidney stones (see the oxalate claim). Some of these compounds may also have benefits, and a 2025 review concluded that more studies in people are needed. In cohort studies, eating more legumes, the richest source, was linked with lower risk of ischaemic heart disease (14 % lower per 4 servings of 100 g a week), not higher.",
+      "whyThisGrade": [
+        "Clear harm is documented only for specific cases, such as raw kidney beans",
+        "Much of the concern comes from laboratory and animal studies, often at high doses or with raw foods",
+        "Few long-term studies in people measure health outcomes of antinutrients at normal cooked intakes",
+        "The soy and thyroid trials are randomised but short and varied"
+      ],
+      "studies": [
+        {
+          "pmid": "39895386",
+          "doi": "10.1111/nbu.12732",
+          "title": "A Comprehensive Review of Antinutrients in Plant-Based Foods and Their Key Ingredients",
+          "year": 2025,
+          "studyType": "review"
+        },
+        {
+          "pmid": "2249712",
+          "doi": "10.1017/s095026880004810x",
+          "title": "Red kidney bean poisoning in the UK: an analysis of 50 suspected incidents between 1976 and 1989",
+          "year": 1990,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "26946249",
+          "doi": "10.1093/nutrit/nuv110",
+          "title": "Concentrations of thiocyanate and goitrin in human plasma, their precursor concentrations in brassica vegetables, and associated potential risk for hypothyroidism",
+          "year": 2016,
+          "studyType": "review"
+        },
+        {
+          "pmid": "30850697",
+          "doi": "10.1038/s41598-019-40647-x",
+          "title": "Systematic Review and Meta-analysis on the Effect of Soy on Thyroid Function",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24898241",
+          "doi": "10.3945/ajcn.113.076901",
+          "title": "Consumption of nuts and legumes and risk of incident ischemic heart disease, stroke, and diabetes: a systematic review and meta-analysis",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 501791
+        }
+      ]
+    },
+    {
+      "id": "oxalate-kidney-stones",
+      "claim": "High-oxalate plant foods such as spinach cause kidney stones",
+      "verdict": "partly supported",
+      "grade": "low",
+      "favours": "depends",
+      "summary": "Most kidney stones are made of calcium oxalate, and in controlled feeding studies food oxalate supplied about a quarter to two-fifths of the oxalate in urine, more than half when the diet was low in calcium. In three large US cohorts (about 240,000 people), those eating the most oxalate had about 21–22 % more stones than those eating the least among men and older women, and no difference among younger women; spinach supplied over 40 % of intake. The authors concluded oxalate is not a major risk factor for stones in general. A DASH-style diet (Dietary Approaches to Stop Hypertension: rich in fruit, vegetables, nuts, legumes, low-fat dairy and whole grains, low in salt, sugary drinks and red and processed meat), which contains more oxalate, went with 40–45 % fewer stones in the same cohorts. In a 5-year randomised trial with 120 men with repeated calcium oxalate stones, a diet with normal calcium and less animal protein and salt halved repeat stones (12 versus 23 men) compared with a low-calcium diet. So oxalate matters mainly for people prone to these stones, together with calcium, salt and animal protein; urology guidelines tailor diet to each person's urine tests.",
+      "whyThisGrade": [
+        "The cohorts are large but observational, with oxalate estimated from questionnaires",
+        "Feeding studies show the mechanism but are small and short",
+        "The one randomised trial, in men with recurrent stones, tested a whole diet rather than oxalate alone",
+        "The effect depends on calcium eaten at the same meal and on each person's stone risk"
+      ],
+      "studies": [
+        {
+          "pmid": "11135080",
+          "doi": "10.1046/j.1523-1755.2001.00488.x",
+          "title": "Contribution of dietary oxalate to urinary oxalate excretion",
+          "year": 2001,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "17538185",
+          "doi": "10.1681/asn.2007020219",
+          "title": "Oxalate intake and the risk for nephrolithiasis",
+          "year": 2007,
+          "studyType": "observational",
+          "n": 240681
+        },
+        {
+          "pmid": "19679672",
+          "doi": "10.1681/asn.2009030276",
+          "title": "DASH-style diet associates with reduced risk for kidney stones",
+          "year": 2009,
+          "studyType": "observational",
+          "n": 241766
+        },
+        {
+          "pmid": "11784873",
+          "doi": "10.1056/nejmoa010369",
+          "title": "Comparison of two diets for the prevention of recurrent stones in idiopathic hypercalciuria",
+          "year": 2002,
+          "studyType": "rct",
+          "n": 120
+        },
+        {
+          "pmid": "24857648",
+          "doi": "10.1016/j.juro.2014.05.006",
+          "title": "Medical management of kidney stones: AUA guideline",
+          "year": 2014,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "id": "plant-compounds-destroy-antioxidants",
+      "claim": "Plant compounds are toxins that destroy the body's antioxidants",
+      "verdict": "not supported",
+      "grade": "low",
+      "favours": "neither",
+      "summary": "Polyphenols and similar plant compounds can act as pro-oxidants (the opposite of antioxidants) in test tubes, and many cell-culture findings are distorted because these compounds react with the culture fluid itself. In people, neither a strong antioxidant nor a pro-oxidant effect has been clearly shown, because blood levels after eating these foods stay very low. The large rise in blood 'antioxidant capacity' after flavonoid-rich foods appears to come mainly from a rise in uric acid, not from the flavonoids. One idea, called hormesis, is that some plant compounds are mildly stressful at the amounts in food and switch on the body's own defences, including its antioxidant enzymes; this is supported mostly by cell and animal studies. The antioxidant story also failed in pill form: 78 trials of antioxidant supplements found no fall in deaths. So the claim that plant compounds destroy antioxidants, and the opposite claim that they work by being antioxidants, both lack human evidence. Neither says anything direct about health; the evidence on eating fruit and vegetables is covered in the food matrix section.",
+      "whyThisGrade": [
+        "The claim rests on test-tube and cell studies, which say little about what happens in the body",
+        "Many cell-culture results are artefacts of compounds reacting with the culture medium",
+        "No human studies show that eating fruit or vegetables lowers the body's antioxidant defences",
+        "The protective hormesis idea also comes mostly from cell and animal work"
+      ],
+      "studies": [
+        {
+          "pmid": "18284912",
+          "doi": "10.1016/j.abb.2008.01.028",
+          "title": "Are polyphenols antioxidants or pro-oxidants? What do we learn from cell culture and in vivo studies?",
+          "year": 2008,
+          "studyType": "review"
+        },
+        {
+          "pmid": "17157175",
+          "doi": "10.1016/j.freeradbiomed.2006.04.033",
+          "title": "Consumption of flavonoid-rich foods and increased plasma antioxidant capacity in humans: cause, consequence, or epiphenomenon?",
+          "year": 2006,
+          "studyType": "review"
+        },
+        {
+          "pmid": "18543123",
+          "doi": "10.1007/s12017-008-8037-y",
+          "title": "Hormetic dietary phytochemicals",
+          "year": 2008,
+          "studyType": "review"
+        },
+        {
+          "pmid": "22419320",
+          "doi": "10.1002/14651858.cd007176.pub2",
+          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+          "year": 2012,
+          "studyType": "meta-analysis",
+          "n": 296707
+        }
+      ]
+    },
+    {
+      "id": "pesticide-residues",
+      "claim": "Pesticide residues make fruit and vegetables do more harm than good",
+      "verdict": "not supported",
+      "grade": "low",
+      "favours": "plant foods",
+      "summary": "In EFSA's 2023 monitoring, 1.0 % of 13,246 randomly chosen food samples in the EU were above the legal residue limits (2.0 % of 132,793 samples targeted at likely problems), and the dietary risk was judged very low for most population groups. A risk-benefit model for Quebec, Canada, based on what 4,727 people ate, estimated that for every cancer case residues might cause, fruit and vegetables prevented at least 88; but some pesticides exceeded safety thresholds for the highest-exposed children, and the authors called for lower residues while keeping intake high. The other side: in 325 women having fertility treatment, eating more of the fruit and vegetables that tend to carry high residues was linked with lower chances of pregnancy and live birth, and in a French cohort of 68,946 adults, frequent organic food buyers had 25 % fewer cancers (0.6 % in absolute terms). Both are observational, and organic buyers differ in many other ways. No study has shown that the residues outweigh the benefits of eating fruit and vegetables.",
+      "whyThisGrade": [
+        "Residue monitoring is large and measured, but the health risk is calculated from safety limits rather than observed",
+        "The risk-benefit comparison is a model with many assumptions",
+        "Studies suggesting harm are observational, in specific groups, and may be confounded",
+        "Long-term effects of low-level mixtures of residues are hard to study"
+      ],
+      "studies": [
+        {
+          "pmid": "40371318",
+          "doi": "10.2903/j.efsa.2025.9398",
+          "title": "The 2023 European Union report on pesticide residues in food",
+          "year": 2025,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "28802169",
+          "doi": "10.1016/j.envint.2017.07.023",
+          "title": "Human health risk assessment on the consumption of fruits and vegetables containing residual pesticides: A cancer and non-cancer risk/benefit perspective",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 4727
+        },
+        {
+          "pmid": "29084307",
+          "doi": "10.1001/jamainternmed.2017.5038",
+          "title": "Association Between Pesticide Residue Intake From Consumption of Fruits and Vegetables and Pregnancy Outcomes Among Women Undergoing Infertility Treatment With Assisted Reproductive Technology",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 325
+        },
+        {
+          "pmid": "30422212",
+          "doi": "10.1001/jamainternmed.2018.4357",
+          "title": "Association of Frequency of Organic Food Consumption With Cancer Risk: Findings From the NutriNet-Santé Prospective Cohort Study",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 68946
+        }
+      ]
+    },
+    {
+      "id": "germs-and-cooking-by-products",
+      "claim": "Animal foods carry more food-safety risks, from germs and cooking by-products, than plant foods",
+      "verdict": "mixed",
+      "grade": "moderate",
+      "favours": "depends",
+      "summary": "Germs: in the EU in 2024, the most reported infections passed from animals to people were Campylobacter and Salmonella; Salmonella in eggs and egg products was the food pairing of most concern, and Listeria caused the most severe illness. Yet foods not of animal origin, especially vegetables, caused the most deaths in well-documented outbreaks that year. In US outbreak data from 1998 to 2008, produce caused 46 % of illnesses, while poultry caused more deaths than any other food. Cooking by-products: well-done and high-heat cooked meat contains heterocyclic amines (HCAs), strong mutagens in laboratory tests that cause tumours in animals, and most studies in people suggest a higher cancer risk with high intake. Plant foods have their own: acrylamide forms in starchy foods cooked above 120 °C and is highest in coffee and fried potato products; EFSA found no concern for non-cancer effects at current intakes but a concern for cancer based on animal evidence, while studies in people haven't shown it causes cancer. So risk depends on the particular food and how it is handled and cooked.",
+      "whyThisGrade": [
+        "Infection figures come from large official surveillance systems, but outbreak data capture only some illnesses",
+        "Linking an illness to one food is often uncertain",
+        "Cancer evidence for cooking by-products comes from animal studies and observational studies in people",
+        "Risk changes a lot with storage, handling and cooking method"
+      ],
+      "studies": [
+        {
+          "pmid": "41377167",
+          "doi": "10.2903/j.efsa.2025.9759",
+          "title": "The European Union One Health 2024 Zoonoses Report",
+          "year": 2025,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "23622497",
+          "doi": "10.3201/eid1903.111866",
+          "title": "Attribution of foodborne illnesses, hospitalizations, and deaths to food commodities by using outbreak data, United States, 1998-2008",
+          "year": 2013,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "19838915",
+          "doi": "10.1080/01635580802710741",
+          "title": "Well-done meat intake, heterocyclic amine exposure, and cancer risk",
+          "year": 2009,
+          "studyType": "review"
+        },
+        {
+          "doi": "10.2903/j.efsa.2015.4104",
+          "title": "Scientific Opinion on acrylamide in food",
+          "year": 2015,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  ]
+}
