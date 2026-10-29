@@ -84,6 +84,51 @@ export function waistToHeight(waistCm: number, heightCm: number | undefined): nu
   return waistCm / heightCm;
 }
 
+/**
+ * Waist-to-height ranges used by Ashwell et al. (PLoS One 2014, PMID 25198730, and the boundaries it
+ * cites): below 0.4 may mean low body weight, 0.4 to below 0.5 is the usual guide, 0.5 to below 0.6 is
+ * increased health risk, 0.6 and above high risk. A guide for adults, not a diagnosis.
+ */
+export type WaistToHeightBand = "low" | "guide" | "increased" | "high";
+export function waistToHeightBand(ratio: number): WaistToHeightBand {
+  // Rounded to 2 decimals first, so the shown 0.50 and the band agree.
+  const r = Math.round(ratio * 100) / 100;
+  return r < 0.4 ? "low" : r < 0.5 ? "guide" : r < 0.6 ? "increased" : "high";
+}
+
+/**
+ * Years of life lost by waist-to-height ratio: Ashwell et al. 2014 (PLoS One, PMID 25198730), Table 3,
+ * copied exactly. British non-smokers (HALS and HSE data); compared with a ratio of 0.5 for men and 0.46
+ * for women; the ratio assumed to stay the same for the rest of life. Only these ages and ratios were
+ * tabulated, so nothing in between is filled in.
+ */
+export const WHTR_YEARS_LOST: readonly { sex: "m" | "f"; age: 30 | 50 | 70; years: readonly [number, number, number, number] }[] = [
+  { sex: "m", age: 30, years: [0, 1.7, 7.2, 20.2] },
+  { sex: "m", age: 50, years: [0, 1.4, 5.8, 14.3] },
+  { sex: "m", age: 70, years: [0, 0.5, 2.9, 6.7] },
+  { sex: "f", age: 30, years: [0.1, 1.4, 4.6, 10.6] },
+  { sex: "f", age: 50, years: [0.1, 1.3, 4.1, 9.2] },
+  { sex: "f", age: 70, years: [0, 0.8, 2.7, 5.9] },
+];
+/** The ratios the years-lost table has columns for (the last is "0.8 or more"). */
+export const WHTR_YEARS_LOST_RATIOS = [0.5, 0.6, 0.7, 0.8] as const;
+
+/**
+ * The table row nearest the person's age (30 for under 40, 50 for 40–59, 70 from 60), with the
+ * columns the ratio sits between: `from` is the last column at or below it, `to` the next one.
+ */
+export function waistToHeightYearsLost(
+  ratio: number,
+  person: { sex?: "m" | "f"; age?: number },
+): { row: (typeof WHTR_YEARS_LOST)[number]; from?: number; to?: number } | undefined {
+  if (!person.sex || person.age === undefined || person.age < 18) return undefined;
+  const age = person.age < 40 ? 30 : person.age < 60 ? 50 : 70;
+  const row = WHTR_YEARS_LOST.find((r) => r.sex === person.sex && r.age === age)!;
+  const r = Math.round(ratio * 100) / 100;
+  const i = WHTR_YEARS_LOST_RATIOS.findLastIndex((x) => r >= x);
+  return { row, ...(i >= 0 ? { from: i } : {}), ...(i < WHTR_YEARS_LOST_RATIOS.length - 1 ? { to: i + 1 } : {}) };
+}
+
 /** Latest measurement of each body field. */
 export function latestBody(ms: readonly Measurement[]): Partial<Record<BodyField, Measurement>> {
   const out: Partial<Record<BodyField, Measurement>> = {};

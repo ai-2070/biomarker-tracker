@@ -135,7 +135,7 @@ export function WaistFigure({ ms, profile, className }: { ms: Measurement[]; pro
       label="Waist"
       href={href({ name: "marker", id: "waist" })}
       className={className}
-      foot={!last ? "Not measured yet" : ratio !== undefined ? `${ratio.toFixed(2)} of your height (the usual guide is below 0.5)` : formatDate(last.date)}
+      foot={!last ? "Not measured yet" : ratio !== undefined ? `${formatDate(last.date)} · ${ratio.toFixed(2)} of your height` : formatDate(last.date)}
     >
       {last ? (
         <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">

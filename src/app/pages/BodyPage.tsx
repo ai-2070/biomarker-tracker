@@ -9,6 +9,7 @@ import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/wid
 import { HeartAgeFigure } from "../components/dashboard/heartAge";
 import { FitnessAgeFigure } from "../components/dashboard/fitnessAge";
 import { CriticalBanner } from "../components/CriticalBanner";
+import { WaistToHeightFigure } from "../components/dashboard/waistToHeight";
 import { PlusIcon } from "../components/icons";
 import { Button, Card, LinkButton, Notice } from "../components/ui";
 import { formatDate, lowerFirst } from "../format";
@@ -92,9 +93,10 @@ export function BodyPage() {
                   {g.id === "size" && (
                     <>
                       <WeightFigure ms={body} />
+                      <WaistFigure ms={body} profile={profile} />
+                      <WaistToHeightFigure ms={body} profile={profile} />
                       <BmiFigure ms={body} profile={profile} />
                       <BmrFigure ms={body} profile={profile} />
-                      <WaistFigure ms={body} profile={profile} />
                     </>
                   )}
                   {g.id === "heart" && (

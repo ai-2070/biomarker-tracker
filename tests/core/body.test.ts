@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmrMifflin, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -109,5 +109,28 @@ describe("recent average", () => {
     expect(recentAverage(nights)).toMatchObject({ value: 7, count: 3 });
     expect(recentAverage(nights.slice(-2))).toBeUndefined();
     expect(recentAverage([])).toBeUndefined();
+  });
+
+  it("puts waist-to-height in Ashwell's ranges, rounded as shown", () => {
+    expect(waistToHeightBand(0.39)).toBe("low");
+    expect(waistToHeightBand(0.45)).toBe("guide");
+    expect(waistToHeightBand(0.499)).toBe("increased"); // shown as 0.50
+    expect(waistToHeightBand(0.5)).toBe("increased");
+    expect(waistToHeightBand(0.594)).toBe("increased");
+    expect(waistToHeightBand(0.6)).toBe("high");
+  });
+
+  it("finds the years-of-life-lost row for the nearest tabulated age and the columns around the ratio", () => {
+    const at = (ratio: number, sex: "m" | "f", age: number) => {
+      const r = waistToHeightYearsLost(ratio, { sex, age });
+      return r && [r.row.sex, r.row.age, r.from, r.to];
+    };
+    expect(at(0.55, "m", 35)).toEqual(["m", 30, 0, 1]);
+    expect(at(0.6, "f", 45)).toEqual(["f", 50, 1, 2]);
+    expect(at(0.45, "m", 65)).toEqual(["m", 70, undefined, 0]);
+    expect(at(0.85, "f", 72)).toEqual(["f", 70, 3, undefined]);
+    expect(waistToHeightYearsLost(0.55, { sex: "m", age: 50 })?.row.years).toEqual([0, 1.4, 5.8, 14.3]);
+    expect(waistToHeightYearsLost(0.55, { age: 50 })).toBeUndefined();
+    expect(waistToHeightYearsLost(0.55, { sex: "f", age: 16 })).toBeUndefined();
   });
 });
