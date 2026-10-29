@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog } from "@base-ui/react/dialog";
-import type { PlanCategory } from "../../core/plans";
+import type { PlanCategory, PlanItem } from "../../core/plans";
 import { newId, savePlan } from "../../db/db";
 import { usePlans } from "../hooks";
 import { href } from "../router";
@@ -11,7 +11,7 @@ import { Button, buttonStyles, cx, inputStyles, labelStyles } from "./ui";
  * "Add to a protocol" from a supplement's page: the item's name, the person's own amount (optional, never
  * suggested), when it's taken, and which protocol (or a new one). Saved straight to the protocol.
  */
-export function AddToProtocol({ label, category = "supplement" }: { label: string; category?: PlanCategory }) {
+export function AddToProtocol({ label, category = "supplement", extra, amountHint = "e.g. 25 µg" }: { label: string; category?: PlanCategory; extra?: Pick<PlanItem, "mealId" | "note">; amountHint?: string }) {
   const plans = usePlans() ?? [];
   const [open, setOpen] = useState(false);
   const [planId, setPlanId] = useState<string>("");
@@ -23,7 +23,7 @@ export function AddToProtocol({ label, category = "supplement" }: { label: strin
   const full = target ? target.items.length >= 60 : false;
 
   function add() {
-    const item = { id: newId(), label: name.trim().slice(0, 80) || label, ...(amount.trim() ? { amount: amount.trim().slice(0, 40) } : {}), category, ...whenFields(timing) };
+    const item = { id: newId(), label: name.trim().slice(0, 80) || label, ...(amount.trim() ? { amount: amount.trim().slice(0, 40) } : {}), category, ...whenFields(timing), ...extra };
     if (target) void savePlan({ ...target, items: [...target.items, item] }).then(() => setSaved({ id: target.id, name: target.name }));
     else {
       const p = { id: newId(), name: "My protocol", items: [item], createdAt: new Date().toISOString() };
@@ -77,7 +77,7 @@ export function AddToProtocol({ label, category = "supplement" }: { label: strin
                 </label>
                 <label className="flex flex-col gap-1.5">
                   <span className={labelStyles}>Amount (optional)</span>
-                  <input value={amount} onChange={(e) => setAmount(e.target.value)} maxLength={40} placeholder="e.g. 25 µg" autoComplete="off" className={inputStyles} />
+                  <input value={amount} onChange={(e) => setAmount(e.target.value)} maxLength={40} placeholder={amountHint} autoComplete="off" className={inputStyles} />
                 </label>
               </div>
               <WhenFields value={timing} onChange={setTiming} />

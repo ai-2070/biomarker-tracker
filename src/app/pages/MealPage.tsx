@@ -2,16 +2,16 @@ import { useState } from "react";
 import { todayIso } from "../../core/dates";
 import { MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, searchFoods, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
-import { PLAN_TIMES, type PlanTime } from "../../core/plans";
 import { formatValue } from "../../core/units";
-import { deleteMeal, newId, saveMeal, savePlan } from "../../db/db";
+import { deleteMeal, newId, saveMeal } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { Fold, FoldGroup } from "../components/disclosure";
 import { GradeBadge } from "../components/evidence";
-import { Button, Card, cx, inputStyles, labelStyles } from "../components/ui";
+import { AddToProtocol } from "../components/AddToProtocol";
+import { Button, Card, LinkButton, cx, inputStyles, labelStyles } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
-import { useMeals, usePlans, useProfile } from "../hooks";
+import { useMeals, useProfile } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, NUTRIENT_MAP, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
@@ -314,68 +314,18 @@ function Evidence({ claimIds }: { claimIds: string[] }) {
   );
 }
 
-/** Add to a protocol, delete. */
+/** Start as a habit, add to a protocol, delete. */
 function Manage({ meal }: { meal: Meal }) {
-  const plans = usePlans() ?? [];
-  const [planId, setPlanId] = useState("");
-  const [when, setWhen] = useState<PlanTime>("midday");
-  const [added, setAdded] = useState<string>();
-  const plan = plans.find((p) => p.id === (planId || plans[0]?.id));
   return (
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">Use it</h2>
-      {plans.length > 0 ? (
-        <div className="flex flex-wrap items-end gap-2">
-          <label className="flex flex-col gap-1.5">
-            <span className={labelStyles}>Add to a protocol</span>
-            <select value={plan?.id ?? ""} onChange={(e) => setPlanId(e.target.value)} className={cx(inputStyles, "min-w-48")}>
-              {plans.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flex flex-col gap-1.5">
-            <span className={labelStyles}>When</span>
-            <select value={when} onChange={(e) => setWhen(e.target.value as PlanTime)} className={inputStyles}>
-              {PLAN_TIMES.map((t) => (
-                <option key={t} value={t}>
-                  {t[0]!.toUpperCase() + t.slice(1)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <Button
-            variant="secondary"
-            disabled={!plan || meal.items.length === 0}
-            onClick={() => {
-              if (!plan) return;
-              void savePlan({ ...plan, items: [...plan.items, { id: newId(), label: meal.name.slice(0, 80), category: "diet", when, note: mealNote(meal), mealId: meal.id }] }).then(() =>
-                setAdded(plan.id),
-              );
-            }}
-          >
-            Add
-          </Button>
-        </div>
-      ) : (
-        <p className="text-ink-2">
-          Create a{" "}
-          <a href={href({ name: "plans" })} className="text-ink underline underline-offset-2">
-            protocol
-          </a>{" "}
-          to add this meal to a routine you follow.
-        </p>
-      )}
-      {added && (
-        <p className="text-sm">
-          Added.{" "}
-          <a href={href({ name: "plan", id: added })} className="text-ink underline underline-offset-2">
-            Open the protocol
-          </a>
-        </p>
-      )}
+      <div className="flex flex-wrap gap-2">
+        <LinkButton variant="secondary" href={href({ name: "habits", meal: meal.id })}>
+          Start as a habit
+        </LinkButton>
+        {meal.items.length > 0 && <AddToProtocol label={meal.name} category="diet" extra={{ mealId: meal.id, note: mealNote(meal) }} amountHint="e.g. 1 portion" />}
+      </div>
+      <p className="text-sm text-ink-2">A habit lets you watch markers and see what changed after you started eating it regularly.</p>
       <div>
         <ConfirmDialog
           trigger="Delete meal"
