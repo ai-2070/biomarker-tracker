@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Field } from "@base-ui/react/field";
 import { LIFE_TABLE_COUNTRIES } from "../../core/lifeTable";
 import type { Diet, Profile, Sex, Smoking } from "../../core/types";
@@ -72,19 +73,7 @@ export function ProfileBasics({ value, onChange, nameRequired }: { value: Profil
 export function ProfileDetails({ value, onChange, showNotes }: { value: Profile; onChange: (p: Profile) => void; showNotes?: boolean }) {
   return (
     <div className="flex flex-col gap-5">
-      <Field.Root className="flex flex-col gap-1.5">
-        <Field.Label className={labelStyles}>Height (cm)</Field.Label>
-        <Field.Control
-          value={value.heightCm === undefined ? "" : String(value.heightCm)}
-          onValueChange={(v) => {
-            const n = Number(v.replace(",", "."));
-            onChange(withField(value, "heightCm", v.trim() && Number.isFinite(n) && n >= 40 && n <= 260 ? Math.round(n) : undefined));
-          }}
-          inputMode="numeric"
-          placeholder="e.g. 170"
-          className={`${inputStyles} max-w-40`}
-        />
-      </Field.Root>
+      <HeightField value={value.heightCm} onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))} />
       <SimpleSelect
         label="Country you live in"
         options={COUNTRIES}
@@ -141,5 +130,38 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
         </Field.Root>
       )}
     </div>
+  );
+}
+
+/**
+ * Height in cm. The box keeps exactly what's typed (so "1" on the way to "170" stays), and the profile
+ * gets a height only once it's a real one (40–260 cm); clearing the box clears it.
+ */
+function HeightField({ value, onChange }: { value?: number; onChange: (cm: number | undefined) => void }) {
+  const [text, setText] = useState(value === undefined ? "" : String(value));
+  const [typing, setTyping] = useState(false);
+  const n = Number(text.replace(",", "."));
+  const valid = text.trim() !== "" && Number.isFinite(n) && n >= 40 && n <= 260;
+  // Only after leaving the box: "17" on the way to "170" is not a mistake.
+  const wrong = !typing && text.trim() !== "" && !valid;
+  return (
+    <Field.Root className="flex flex-col gap-1.5" invalid={wrong}>
+      <Field.Label className={labelStyles}>Height (cm)</Field.Label>
+      <Field.Control
+        value={text}
+        onValueChange={(v) => {
+          setText(v);
+          const x = Number(v.replace(",", "."));
+          if (!v.trim()) onChange(undefined);
+          else if (Number.isFinite(x) && x >= 40 && x <= 260) onChange(Math.round(x));
+        }}
+        onFocus={() => setTyping(true)}
+        onBlur={() => setTyping(false)}
+        inputMode="decimal"
+        placeholder="e.g. 170"
+        className={`${inputStyles} max-w-40`}
+      />
+      {wrong && <p className={helpStyles}>Between 40 and 260 cm, so it isn't saved yet.</p>}
+    </Field.Root>
   );
 }
