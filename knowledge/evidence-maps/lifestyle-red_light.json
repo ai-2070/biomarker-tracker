@@ -1,0 +1,2799 @@
+{
+ "topic": "lifestyle-red_light",
+ "kind": "lifestyle",
+ "lifestyleId": "red_light",
+ "name": "red light therapy",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "skin": "((TITLE_ABS:photobiomodulation OR TITLE_ABS:\"low-level laser therapy\" OR TITLE_ABS:\"low level laser therapy\" OR TITLE_ABS:\"low-level light therapy\" OR TITLE_ABS:\"low-level laser\" OR TITLE_ABS:LLLT OR TITLE_ABS:\"red light\" OR TITLE_ABS:\"near-infrared light\" OR TITLE_ABS:\"light-emitting diode\" OR TITLE_ABS:\"LED therapy\" OR TITLE_ABS:\"LED phototherapy\") AND (TITLE_ABS:wrinkle OR TITLE_ABS:wrinkles OR TITLE_ABS:\"skin aging\" OR TITLE_ABS:\"skin ageing\" OR TITLE_ABS:photoaging OR TITLE_ABS:photoageing OR TITLE_ABS:\"skin rejuvenation\" OR TITLE_ABS:collagen)) AND SRC:MED",
+  "hair": "((TITLE_ABS:photobiomodulation OR TITLE_ABS:\"low-level laser therapy\" OR TITLE_ABS:\"low level laser therapy\" OR TITLE_ABS:\"low-level light therapy\" OR TITLE_ABS:\"low-level laser\" OR TITLE_ABS:LLLT OR TITLE_ABS:\"red light\" OR TITLE_ABS:\"near-infrared light\" OR TITLE_ABS:\"light-emitting diode\" OR TITLE_ABS:\"LED therapy\" OR TITLE_ABS:\"LED phototherapy\") AND (TITLE_ABS:\"hair loss\" OR TITLE_ABS:alopecia OR TITLE_ABS:\"hair growth\" OR TITLE_ABS:androgenetic)) AND SRC:MED",
+  "mucositis": "((TITLE_ABS:photobiomodulation OR TITLE_ABS:\"low-level laser therapy\" OR TITLE_ABS:\"low level laser therapy\" OR TITLE_ABS:\"low-level light therapy\" OR TITLE_ABS:\"low-level laser\" OR TITLE_ABS:LLLT OR TITLE_ABS:\"red light\" OR TITLE_ABS:\"near-infrared light\" OR TITLE_ABS:\"light-emitting diode\" OR TITLE_ABS:\"LED therapy\" OR TITLE_ABS:\"LED phototherapy\") AND (TITLE_ABS:\"oral mucositis\" OR TITLE_ABS:mucositis)) AND SRC:MED",
+  "knee": "((TITLE_ABS:photobiomodulation OR TITLE_ABS:\"low-level laser therapy\" OR TITLE_ABS:\"low level laser therapy\" OR TITLE_ABS:\"low-level light therapy\" OR TITLE_ABS:\"low-level laser\" OR TITLE_ABS:LLLT OR TITLE_ABS:\"red light\" OR TITLE_ABS:\"near-infrared light\" OR TITLE_ABS:\"light-emitting diode\" OR TITLE_ABS:\"LED therapy\" OR TITLE_ABS:\"LED phototherapy\") AND (TITLE_ABS:\"knee osteoarthritis\" OR TITLE_ABS:osteoarthritis)) AND SRC:MED",
+  "exercise": "((TITLE_ABS:photobiomodulation OR TITLE_ABS:\"low-level laser therapy\" OR TITLE_ABS:\"low level laser therapy\" OR TITLE_ABS:\"low-level light therapy\" OR TITLE_ABS:\"low-level laser\" OR TITLE_ABS:LLLT OR TITLE_ABS:\"red light\" OR TITLE_ABS:\"near-infrared light\" OR TITLE_ABS:\"light-emitting diode\" OR TITLE_ABS:\"LED therapy\" OR TITLE_ABS:\"LED phototherapy\") AND (TITLE_ABS:\"exercise performance\" OR TITLE_ABS:\"muscle performance\" OR TITLE_ABS:\"muscle fatigue\" OR TITLE_ABS:\"muscle recovery\" OR TITLE_ABS:\"muscle damage\" OR TITLE_ABS:athletes OR TITLE_ABS:\"athletic performance\" OR TITLE_ABS:exercise)) AND SRC:MED",
+  "foot-ulcers": "((TITLE_ABS:photobiomodulation OR TITLE_ABS:\"low-level laser therapy\" OR TITLE_ABS:\"low level laser therapy\" OR TITLE_ABS:\"low-level light therapy\" OR TITLE_ABS:\"low-level laser\" OR TITLE_ABS:LLLT OR TITLE_ABS:\"red light\" OR TITLE_ABS:\"near-infrared light\" OR TITLE_ABS:\"light-emitting diode\" OR TITLE_ABS:\"LED therapy\" OR TITLE_ABS:\"LED phototherapy\") AND (TITLE_ABS:\"diabetic foot\" OR TITLE_ABS:\"foot ulcer\" OR TITLE_ABS:\"foot ulcers\" OR TITLE_ABS:\"diabetic ulcer\" OR TITLE_ABS:\"diabetic ulcers\" OR TITLE_ABS:\"wound healing\")) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 3160,
+  "retrieved": 730,
+  "animal": 17,
+  "retracted": 1,
+  "reviews": 296,
+  "trials": 406,
+  "guidelines": 7
+ },
+ "guidelines": [
+  {
+   "pmid": "38101929",
+   "doi": "10.1136/bmj-2023-076227",
+   "title": "Management of chronic pain associated with temporomandibular disorders: a clinical practice guideline",
+   "year": 2023,
+   "journal": "BMJ (Clinical research ed.)",
+   "citedBy": 82,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "34003240",
+   "doi": "10.1093/ptj/pzab127",
+   "title": "Clinical Practice Guideline for Physical Therapist Management of People With Rheumatoid Arthritis",
+   "year": 2021,
+   "journal": "Physical therapy",
+   "citedBy": 19,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "33942459",
+   "doi": "10.1002/ejp.1788",
+   "title": "Noninvasive management of soft tissue disorders of the shoulder: A clinical practice guideline from the Ontario Protocol for Traffic Injury Management (OPTIMa) collaboration",
+   "year": 2021,
+   "journal": "European journal of pain (London, England)",
+   "citedBy": 10,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "28192789",
+   "doi": "10.7326/m16-2367",
+   "title": "Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain: A Clinical Practice Guideline From the American College of Physicians",
+   "year": 2017,
+   "journal": "Annals of internal medicine",
+   "citedBy": 2058,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "26984876",
+   "doi": "10.1007/s00586-016-4467-7",
+   "title": "Management of neck pain and associated disorders: A clinical practice guideline from the Ontario Protocol for Traffic Injury Management (OPTIMa) Collaboration",
+   "year": 2016,
+   "journal": "European spine journal : official publication of the European Spine Society, the European Spinal Deformity Society, and the European Section of the Cervical Spine Research Society",
+   "citedBy": 205,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "22113602",
+   "title": "Physiotherapy in hip and knee osteoarthritis: development of a practice guideline concerning initial assessment, treatment and evaluation",
+   "year": 2011,
+   "journal": "Acta reumatologica portuguesa",
+   "citedBy": 63,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "skin",
+   "label": "Skin ageing",
+   "finding": "Wrinkles, skin roughness and collagen (skin ageing)",
+   "counts": {
+    "all": 796,
+    "reviews": 4,
+    "trialReviews": 3,
+    "trials": 16,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42875609",
+     "doi": "10.1007/s00266-026-06333-w",
+     "title": "Efficacy and Safety of At-Home Light-Emitting Diode Photobiomodulation for Facial Rejuvenation: A Systematic Review",
+     "year": 2026,
+     "firstAuthor": "Das RK",
+     "journal": "Aesthetic plastic surgery",
+     "citedBy": 0,
+     "n": 365,
+     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "24286286",
+     "39960921",
+     "17566756"
+    ],
+    "citedNotEligible": [
+     "24286286",
+     "39960921",
+     "17566756"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42875609",
+      "doi": "10.1007/s00266-026-06333-w",
+      "title": "Efficacy and Safety of At-Home Light-Emitting Diode Photobiomodulation for Facial Rejuvenation: A Systematic Review",
+      "year": 2026,
+      "firstAuthor": "Das RK",
+      "journal": "Aesthetic plastic surgery",
+      "citedBy": 0,
+      "n": 365,
+      "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with wrinkles or ageing skin",
+     "intervention": "Red or near-infrared light (photobiomodulation, LED or low-level laser)",
+     "comparison": "A sham device or no treatment",
+     "outcome": "Wrinkles, skin roughness, collagen or skin appearance"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "36722207",
+      "title": "Photobiomodulation: A Systematic Review of the Oncologic Safety of Low-Level Light Therapy for Aesthetic Skin Rejuvenation",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Light therapy for skin rejuvenation, but the outcome is cancer safety rather than wrinkles or skin appearance, and much of the evidence is preclinical."
+     },
+     {
+      "pmid": "32431001",
+      "title": "The expression of opsins in the human skin and its implications for photobiomodulation: A Systematic Review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Reviews which light-sensing proteins (opsins) are found in animal and human skin; it does not assess light treatment for wrinkles against a control."
+     }
+    ]
+   }
+  },
+  {
+   "id": "hair",
+   "label": "Hair loss",
+   "finding": "Hair density in pattern hair loss (androgenetic alopecia)",
+   "counts": {
+    "all": 232,
+    "reviews": 17,
+    "trialReviews": 17,
+    "trials": 20,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42339398",
+     "doi": "10.1159/000551411",
+     "title": "Lasers and Energy-Based Devices in the Treatment of Androgenetic Alopecia: A Systematic Review and Meta-Analysis",
+     "year": 2026,
+     "firstAuthor": "Alahmadi M",
+     "journal": "Skin appendage disorders",
+     "citedBy": 0,
+     "n": 3298,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "39404126",
+     "doi": "10.1097/dss.0000000000004442",
+     "title": "Low-Level Laser and LED Therapy in Alopecia: A Systematic Review and Meta-Analysis",
+     "year": 2025,
+     "firstAuthor": "Perez SM",
+     "journal": "Dermatologic surgery : official publication for American Society for Dermatologic Surgery [et al.]",
+     "citedBy": 7,
+     "n": 3098,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "35510860",
+     "doi": "10.1097/dss.0000000000003472",
+     "title": "Photobiomodulation Therapy With Different Wavebands for Hair Loss: A Systematic Review and Meta-Analysis",
+     "year": 2022,
+     "firstAuthor": "Zhang Y",
+     "journal": "Dermatologic surgery : official publication for American Society for Dermatologic Surgery [et al.]",
+     "citedBy": 10,
+     "n": 966,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "30706177",
+     "doi": "10.1007/s10103-019-02723-6",
+     "title": "Comparative effectiveness of low-level laser therapy for adult androgenic alopecia: a system review and meta-analysis of randomized controlled trials",
+     "year": 2019,
+     "firstAuthor": "Liu KH",
+     "journal": "Lasers in medical science",
+     "citedBy": 36,
+     "why": "The most comprehensive review on this finding (11 trials, 2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.36666666666666664,
+    "trials": 15,
+    "inclusions": 26,
+    "reviews": [
+     {
+      "pmid": "39404126",
+      "trials": 15
+     },
+     {
+      "pmid": "35510860",
+      "trials": 2
+     },
+     {
+      "pmid": "30706177",
+      "trials": 9
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "42339398"
+    ],
+    "shared": [
+     {
+      "pmid": "19366270",
+      "title": "HairMax LaserComb laser phototherapy device in the treatment of male androgenetic alopecia: A randomized, double-blind, sham device-controlled, multicentre trial",
+      "year": 2009,
+      "n": 110,
+      "inReviews": [
+       "39404126",
+       "35510860",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "24474647",
+      "title": "Efficacy and safety of a low-level laser device in the treatment of male and female pattern hair loss: a multicenter, randomized, sham device-controlled, double-blind study",
+      "year": 2014,
+      "n": 188,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "29957664",
+      "title": "Efficacy and Safety of a Low-Level Light Therapy for Androgenetic Alopecia: A 24-Week, Randomized, Double-Blind, Self-Comparison, Sham Device-Controlled Trial",
+      "year": 2018,
+      "n": 100,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "30027912",
+      "title": "The effectiveness of adding low-level light therapy to minoxidil 5% solution in the treatment of patients with androgenetic alopecia",
+      "year": 2018,
+      "n": 50,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "28489273",
+      "title": "Low level light-minoxidil 5% combination versus either therapeutic modality alone in management of female patterned hair loss: A randomized controlled study",
+      "year": 2017,
+      "n": 45,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "25124964",
+      "title": "The growth of human scalp hair in females using visible red light laser and LED sources",
+      "year": 2014,
+      "n": 24,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "24078483",
+      "title": "The growth of human scalp hair mediated by visible red light laser and LED sources in males",
+      "year": 2013,
+      "n": 22,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "30569416",
+      "title": "Low-level laser therapy for the treatment of androgenetic alopecia in Thai men and women: a 24-week, randomized, double-blind, sham device-controlled trial",
+      "year": 2019,
+      "n": 20,
+      "inReviews": [
+       "39404126",
+       "35510860"
+      ]
+     },
+     {
+      "pmid": "28328705",
+      "title": "Novel Approach to Treating Androgenetic Alopecia in Females With Photobiomodulation (Low-Level Laser Therapy)",
+      "year": 2017,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "23551662",
+      "title": "Low-level light therapy for androgenetic alopecia: a 24-week, randomized, double-blind, sham device-controlled multicenter trial",
+      "year": 2013,
+      "inReviews": [
+       "39404126",
+       "30706177"
+      ]
+     },
+     {
+      "pmid": "36345917",
+      "title": "The efficacy and safety of the combination of photobiomodulation therapy and pulsed electromagnetic field therapy on androgenetic alopecia",
+      "year": 2023,
+      "n": 80,
+      "inReviews": [
+       "39404126"
+      ]
+     },
+     {
+      "pmid": "37060420",
+      "title": "The use of photobiomodulation therapy for the management of chemotherapy-induced alopecia: a randomized, controlled trial (HAIRLASER trial)",
+      "year": 2023,
+      "n": 32,
+      "inReviews": [
+       "39404126"
+      ]
+     },
+     {
+      "pmid": "38211777",
+      "title": "Comparative efficacy of 2% minoxidil alone against combination of 2% minoxidil and low-level laser therapy in female pattern hair loss-A randomized controlled trial in Chinese females",
+      "year": 2024,
+      "inReviews": [
+       "39404126"
+      ]
+     },
+     {
+      "pmid": "33998004",
+      "title": "Efficacy of Minoxidil Combined With Photobiomodulation for the Treatment of Male Androgenetic Alopecia. A Double-Blind Half-Head Controlled Trial",
+      "year": 2021,
+      "inReviews": [
+       "39404126"
+      ]
+     },
+     {
+      "pmid": "32702878",
+      "title": "Low-level light therapy using a helmet-type device for the treatment of androgenetic alopecia: A 16-week, multicenter, randomized, double-blind, sham device-controlled trial",
+      "year": 2020,
+      "inReviews": [
+       "39404126"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 5,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "30706177",
+     "39404126"
+    ],
+    "citedNotChosen": [
+     "31746251",
+     "24078483",
+     "25124964",
+     "33088809"
+    ],
+    "citedNotEligible": [
+     "24078483",
+     "25124964",
+     "33088809"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42339398",
+      "doi": "10.1159/000551411",
+      "title": "Lasers and Energy-Based Devices in the Treatment of Androgenetic Alopecia: A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "firstAuthor": "Alahmadi M",
+      "journal": "Skin appendage disorders",
+      "citedBy": 0,
+      "n": 3298,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "35510860",
+      "doi": "10.1097/dss.0000000000003472",
+      "title": "Photobiomodulation Therapy With Different Wavebands for Hair Loss: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "firstAuthor": "Zhang Y",
+      "journal": "Dermatologic surgery : official publication for American Society for Dermatologic Surgery [et al.]",
+      "citedBy": 10,
+      "n": 966,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Men and women with pattern hair loss (androgenetic alopecia)",
+     "intervention": "Red or near-infrared light (low-level laser or LED: combs, caps, helmets)",
+     "comparison": "A sham device or no treatment",
+     "outcome": "Hair density or hair count"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 10,
+     "partly": 5,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40826200",
+      "title": "Comparative efficacy and safety of low-level laser therapy and topical Minoxidil combination vs. topical Minoxidil monotherapy in androgenetic alopecia management: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Laser plus minoxidil versus minoxidil alone measures the add-on effect, not light versus sham or no treatment."
+     },
+     {
+      "pmid": "39828269",
+      "title": "Comparative efficacy of minoxidil alone versus minoxidil combined with low-level laser therapy in the treatment of androgenic alopecia: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares minoxidil plus laser with minoxidil alone for hair counts, so the comparison is not sham or no treatment."
+     },
+     {
+      "pmid": "40968340",
+      "title": "Full-Spectrum phototherapy in hair loss management: a systematic review of wavelength-dependent mechanisms, clinical efficacy, and future directions",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Broad review of all wavelengths, including UV, across alopecia types; no sham comparison or hair count outcome stated."
+     },
+     {
+      "pmid": "39530506",
+      "title": "Commentary on \"Low-Level Laser and LED Therapy in Alopecia: A Systematic Review and Meta-Analysis\"",
+      "year": 2025,
+      "fits": "no",
+      "reason": "A commentary on another review, with no abstract and no systematic review of its own."
+     },
+     {
+      "pmid": "34606676",
+      "title": "A systematic review on the treatment of pediatric severe alopecia areata by topical immunotherapy or Anthralin (contact sensitization) or low-level light/laser therapy (LLLT): focus on efficacy, safety, treatment duration, recurrence, and follow-up based on clinical studies",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Covers children with severe alopecia areata, not pattern hair loss."
+     },
+     {
+      "pmid": "32790116",
+      "title": "Factors influencing the effect of photobiomodulation in the treatment of androgenetic alopecia: A systematic review and analyses of summary-level data",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Reviews laser trials on hair density in androgenetic alopecia but analyses device and dose factors, not light versus sham."
+     },
+     {
+      "pmid": "29227728",
+      "title": "Use of low-level laser therapy in treatment of the androgenic alopecia, the first systematic review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Reviews laser therapy for androgenetic alopecia, but the abstract states no sham comparison or hair count outcome."
+     }
+    ]
+   }
+  },
+  {
+   "id": "mucositis",
+   "label": "Mouth sores in cancer care",
+   "finding": "Preventing painful mouth sores (oral mucositis) during cancer treatment",
+   "counts": {
+    "all": 382,
+    "reviews": 36,
+    "trialReviews": 36,
+    "trials": 48,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42098536",
+     "doi": "10.1007/s00520-026-10729-4",
+     "title": "Photobiomodulation for the treatment and prevention of chemotherapy- and/or radiotherapy-induced oral mucositis in cancer patients: a systematic review and meta-analysis of randomized clinical trials published in the last six years",
+     "year": 2026,
+     "firstAuthor": "G R",
+     "journal": "Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer",
+     "citedBy": 0,
+     "n": 329,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "37629703",
+     "doi": "10.3390/medicina59081413",
+     "title": "Low-Level Laser Therapy for the Treatment of Oral Mucositis Induced by Hematopoietic Stem Cell Transplantation: A Systematic Review with Meta-Analysis",
+     "year": 2023,
+     "firstAuthor": "Franco R",
+     "journal": "Medicina (Kaunas, Lithuania)",
+     "citedBy": 12,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "37853254",
+     "doi": "10.1007/s00520-023-08105-7",
+     "title": "Efficacy of photobiomodulation in the treatment of oral mucositis in patients undergoing antineoplastic therapy: systematic review and meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Cruz AR",
+     "journal": "Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer",
+     "citedBy": 12,
+     "n": 299,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "21660670",
+     "doi": "10.1007/s00520-011-1202-0",
+     "title": "A systematic review with meta-analysis of the effect of low-level laser therapy (LLLT) in cancer therapy-induced oral mucositis",
+     "year": 2011,
+     "firstAuthor": "Bjordal JM",
+     "journal": "Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer",
+     "citedBy": 159,
+     "n": 415,
+     "why": "The most comprehensive review on this finding (11 trials, 2011); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.041666666666666664,
+    "trials": 16,
+    "inclusions": 18,
+    "reviews": [
+     {
+      "pmid": "42098536",
+      "trials": 5
+     },
+     {
+      "pmid": "37629703",
+      "trials": 4
+     },
+     {
+      "pmid": "37853254",
+      "trials": 4
+     },
+     {
+      "pmid": "21660670",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "19125084",
+      "title": "Low-level infrared laser therapy in chemotherapy-induced oral mucositis: a randomized placebo-controlled trial in children",
+      "year": 2009,
+      "n": 12,
+      "inReviews": [
+       "37629703",
+       "21660670"
+      ]
+     },
+     {
+      "pmid": "17393191",
+      "title": "A phase III randomized double-blind placebo-controlled clinical trial to determine the efficacy of low level laser therapy for the prevention of oral mucositis in patients undergoing hematopoietic cell transplantation",
+      "year": 2007,
+      "inReviews": [
+       "37629703",
+       "21660670"
+      ]
+     },
+     {
+      "pmid": "27272517",
+      "title": "Low-level laser therapy for treatment of chemotherapy-induced oral mucositis in childhood: a randomized double-blind controlled study",
+      "year": 2016,
+      "n": 123,
+      "inReviews": [
+       "37853254"
+      ]
+     },
+     {
+      "pmid": "28688677",
+      "title": "Long-term survival of a randomized phase III trial of head and neck cancer patients receiving concurrent chemoradiation therapy with or without low-level laser therapy (LLLT) to prevent oral mucositis",
+      "year": 2017,
+      "n": 94,
+      "inReviews": [
+       "37853254"
+      ]
+     },
+     {
+      "pmid": "39910516",
+      "title": "Photobiomodulation preconditioning for oral mucositis prevention and quality of life improvement in chemotherapy patients: a randomized clinical trial",
+      "year": 2025,
+      "n": 45,
+      "inReviews": [
+       "42098536"
+      ]
+     },
+     {
+      "pmid": "20969443",
+      "title": "The prevention of induced oral mucositis with low-level laser therapy in bone marrow transplantation patients: a randomized clinical trial",
+      "year": 2011,
+      "n": 42,
+      "inReviews": [
+       "37629703"
+      ]
+     },
+     {
+      "pmid": "39889324",
+      "title": "Effectiveness of Photobiomodulation (low-level laser therapy) on treatment of oral mucositis (OM) induced by chemoradiotherapy in head and neck cancer patients",
+      "year": 2025,
+      "n": 36,
+      "inReviews": [
+       "42098536"
+      ]
+     },
+     {
+      "pmid": "32544269",
+      "title": "Evaluation of preventive laser photobiomodulation in patients with head and neck cancer undergoing radiochemotherapy: Laser in patients with head and neck cancer",
+      "year": 2020,
+      "n": 30,
+      "inReviews": [
+       "42098536"
+      ]
+     },
+     {
+      "pmid": "30591391",
+      "title": "Photobiomodulation with low-level laser therapy reduces oral mucositis caused by head and neck radio-chemotherapy: prospective randomized controlled trial",
+      "year": 2019,
+      "n": 26,
+      "inReviews": [
+       "37853254"
+      ]
+     },
+     {
+      "pmid": "32621262",
+      "title": "Cost-effectiveness randomized clinical trial on the effect of photobiomodulation therapy for prevention of radiotherapy-induced severe oral mucositis in a Brazilian cancer hospital setting",
+      "year": 2021,
+      "n": 25,
+      "inReviews": [
+       "42098536"
+      ]
+     },
+     {
+      "pmid": "17159259",
+      "title": "Effect of low level helium-neon (He-Ne) laser therapy in the prevention & treatment of radiation induced mucositis in head & neck cancer patients",
+      "year": 2006,
+      "n": 25,
+      "inReviews": [
+       "21660670"
+      ]
+     },
+     {
+      "pmid": "34708311",
+      "title": "Extraoral photobiomodulation for prevention of oral and oropharyngeal mucositis in head and neck cancer patients: interim analysis of a randomized, double-blind, clinical trial",
+      "year": 2022,
+      "inReviews": [
+       "42098536"
+      ]
+     },
+     {
+      "pmid": "21725826",
+      "title": "Amelioration of oral mucositis pain by NASA near-infrared light-emitting diodes in bone marrow transplant patients",
+      "year": 2012,
+      "inReviews": [
+       "37629703"
+      ]
+     },
+     {
+      "pmid": "29727048",
+      "title": "Multicenter randomized, double-blind controlled trial to evaluate the efficacy of laser therapy for the treatment of severe oral mucositis induced by chemotherapy in children: laMPO RCT",
+      "year": 2018,
+      "inReviews": [
+       "37853254"
+      ]
+     },
+     {
+      "pmid": "20436237",
+      "title": "Effects of low-level laser therapy (LLLT) in the development of exercise-induced skeletal muscle fatigue and changes in biochemical markers related to postexercise recovery",
+      "year": 2010,
+      "inReviews": [
+       "21660670"
+      ]
+     },
+     {
+      "pmid": "18754720",
+      "title": "Low-level laser therapy in the prevention and treatment of chemotherapy-induced oral mucositis in young patients",
+      "year": 2008,
+      "inReviews": [
+       "21660670"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 6,
+     "trials": 8
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "31286228",
+     "26984240"
+    ],
+    "citedNotEligible": [
+     "26984240"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42098536",
+      "doi": "10.1007/s00520-026-10729-4",
+      "title": "Photobiomodulation for the treatment and prevention of chemotherapy- and/or radiotherapy-induced oral mucositis in cancer patients: a systematic review and meta-analysis of randomized clinical trials published in the last six years",
+      "year": 2026,
+      "firstAuthor": "G R",
+      "journal": "Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer",
+      "citedBy": 0,
+      "n": 329,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "37629703",
+      "doi": "10.3390/medicina59081413",
+      "title": "Low-Level Laser Therapy for the Treatment of Oral Mucositis Induced by Hematopoietic Stem Cell Transplantation: A Systematic Review with Meta-Analysis",
+      "year": 2023,
+      "firstAuthor": "Franco R",
+      "journal": "Medicina (Kaunas, Lithuania)",
+      "citedBy": 12,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     },
+     {
+      "pmid": "37853254",
+      "doi": "10.1007/s00520-023-08105-7",
+      "title": "Efficacy of photobiomodulation in the treatment of oral mucositis in patients undergoing antineoplastic therapy: systematic review and meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Cruz AR",
+      "journal": "Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer",
+      "citedBy": 12,
+      "n": 299,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     },
+     {
+      "pmid": "21660670",
+      "doi": "10.1007/s00520-011-1202-0",
+      "title": "A systematic review with meta-analysis of the effect of low-level laser therapy (LLLT) in cancer therapy-induced oral mucositis",
+      "year": 2011,
+      "firstAuthor": "Bjordal JM",
+      "journal": "Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer",
+      "citedBy": 159,
+      "n": 415,
+      "why": "The most comprehensive review on this finding (11 trials, 2011); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People having cancer treatment (chemotherapy, radiotherapy or a stem cell transplant)",
+     "intervention": "Red or near-infrared light to the mouth (photobiomodulation, low-level laser)",
+     "comparison": "Sham light or no treatment",
+     "outcome": "Oral mucositis: how often, how severe, or pain"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 18,
+     "partly": 17,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41880047",
+      "title": "Effects of photobiomodulation on oral mucositis, oral pain, xerostomia, salivary flow rate, and quality of life in patients with head and neck cancer: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "PBM RCTs on oral mucositis risk and pain, but only in head and neck cancer patients, a narrower group."
+     },
+     {
+      "pmid": "41760795",
+      "title": "Is photobiomodulation an effective preventive strategy for oral mucositis in patients with hematologic diseases undergoing chemotherapy?: A systematic review of randomized controlled trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "PBM for oral mucositis frequency and pain, but only in blood disease patients on chemo, and compared with other non-laser therapies."
+     },
+     {
+      "pmid": "40889543",
+      "title": "Photobiomodulation as a preventive strategy for oral mucositis in pediatric oncology: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "PBM (laser and LED) for oral mucositis incidence and severity in RCTs, but only in children with blood cancers on chemotherapy, a narrower group."
+     },
+     {
+      "pmid": "40172371",
+      "title": "Mechanisms of photobiomodulation therapy in treating and preventing antineoplastic-induced oral mucositis: a systematic review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "PBM in cancer therapy patients, but the review focuses on biological mechanisms rather than mucositis incidence, severity or pain."
+     },
+     {
+      "pmid": "41410110",
+      "title": "Laser therapy for the management of oral mucositis: An umbrella review - official recommendations of the Polish Society for Laser Dentistry",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Umbrella review of other reviews, not primary studies, and it also includes laser plus photodynamic therapy."
+     },
+     {
+      "pmid": "40824766",
+      "title": "Can Photobiomodulation Therapy Reduce Salivary Nitrite in Oral Mucositis? A Systematic Review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Outcome is salivary nitrite, a biomarker, not oral mucositis incidence, severity or pain."
+     },
+     {
+      "pmid": "38265122",
+      "title": "Efficacy of photobiomodulation therapy in the management of oral mucositis in patients with head and neck cancer: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "PBM RCTs on oral mucositis incidence, severity and pain, but only in head and neck cancer, a narrower group."
+     },
+     {
+      "pmid": "39523254",
+      "title": "Photobiomodulation for oral mucositis management in pediatric patients: a systematic review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "PBM for oral mucositis incidence, severity and pain, but only in children, a narrower group."
+     },
+     {
+      "pmid": "38792366",
+      "title": "Effect of Photobiomodulation on Salivary Cytokines in Head and Neck Cancer Patients with Oral Mucositis: A Systematic Review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Photobiomodulation in head and neck cancer patients matches, but the main outcome is salivary cytokines rather than mucositis itself."
+     },
+     {
+      "pmid": "39457676",
+      "title": "Assessing the Cost-Effectiveness of Photobiomodulation for Oral Mucositis Prevention and Treatment: A Systematic Review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Reviews RCTs of PBM vs placebo in head and neck cancer, but the main outcome is cost-effectiveness, with severe mucositis only secondary."
+     },
+     {
+      "pmid": "37799759",
+      "title": "Therapeutic Outcomes of Photobiomodulation in Cancer Treatment-induced Oral Mucositis: A Systematic Review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "PBM vs placebo for oral mucositis grade and pain, but only in head and neck cancer patients, a narrower group."
+     },
+     {
+      "pmid": "38057605",
+      "title": "Impact of photobiomodulation for prevention of oral mucositis on the quality of life of patients with head and neck cancer: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "PBM vs control in head and neck radiotherapy patients matches, but the main outcome is quality of life rather than mucositis."
+     },
+     {
+      "pmid": "34230010",
+      "title": "Low-level laser therapy for oral mucositis in children with cancer",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Low-level laser vs sham or control for oral mucositis severity and pain, but only in children with cancer, a narrower group."
+     },
+     {
+      "pmid": "32666214",
+      "title": "Photobiomodulation in oral mucositis in patients with head and neck cancer: a systematic review and meta-analysis followed by a cost-effectiveness analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Laser vs placebo for oral mucositis and pain, but only in head and neck cancer patients, a narrower group."
+     },
+     {
+      "pmid": "32062592",
+      "title": "Effectiveness of low-level laser therapy for oral mucositis prevention in patients undergoing chemoradiotherapy for the treatment of head and neck cancer: A systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Low-level laser vs placebo for oral mucositis incidence and pain, but only in head and neck cancer on chemoradiotherapy."
+     },
+     {
+      "pmid": "31092370",
+      "title": "Low-level laser therapy dosimetry most used for oral mucositis due to radiotherapy for head and neck cancer: a systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "LLLT for radiotherapy oral mucositis matches, but the review compares laser doses with each other rather than with sham or no treatment."
+     },
+     {
+      "pmid": "29128883",
+      "title": "A systematic review and meta-analysis of the effect of low-level laser therapy (LLLT) on chemotherapy-induced oral mucositis in pediatric and young patients",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "LLLT vs placebo or routine care for chemotherapy oral mucositis matches, but only children and young people are included."
+     },
+     {
+      "pmid": "22486724",
+      "title": "Efficacy of low-level laser therapy (LLLT) in oral mucositis: what have we learned from randomized studies and meta-analyses?",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "The title matches LLLT for oral mucositis, but with no abstract the population, comparison and review methods can't be confirmed."
+     }
+    ]
+   }
+  },
+  {
+   "id": "knee",
+   "label": "Knee osteoarthritis",
+   "finding": "Knee osteoarthritis pain and disability",
+   "counts": {
+    "all": 239,
+    "reviews": 19,
+    "trialReviews": 19,
+    "trials": 35,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38775202",
+     "doi": "10.1093/ptj/pzae073",
+     "title": "Effectiveness of Photobiomodulation in Reducing Pain and Disability in Patients With Knee Osteoarthritis: A Systematic Review With Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Oliveira S",
+     "journal": "Physical therapy",
+     "citedBy": 9,
+     "n": 542,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39367994",
+     "doi": "10.1007/s40520-024-02853-0",
+     "title": "A systematic review and network meta-analysis on the optimal wavelength of low-level light therapy (LLLT) in treating knee osteoarthritis symptoms",
+     "year": 2024,
+     "firstAuthor": "Fan T",
+     "journal": "Aging clinical and experimental research",
+     "citedBy": 8,
+     "n": 673,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39193110",
+     "doi": "10.34172/jlms.2024.34",
+     "title": "Efficacy of High-Intensity and Low-Level Laser Therapy Combined With Exercise Therapy on Pain and Function in Knee Osteoarthritis: A Systematic Review and Network Meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Khalilizad M",
+     "journal": "Journal of lasers in medical sciences",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "36576096",
+     "doi": "10.1080/08990220.2022.2157387",
+     "title": "Effect of low-level laser therapy plus exercise therapy on pain, range of motion, muscle strength, and function in knee osteoarthritis - a systematic review and meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Malik S",
+     "journal": "Somatosensory & motor research",
+     "citedBy": 10,
+     "n": 820,
+     "why": "The most comprehensive review on this finding (14 trials, 2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.22916666666666666,
+    "trials": 16,
+    "inclusions": 27,
+    "reviews": [
+     {
+      "pmid": "38775202",
+      "trials": 2
+     },
+     {
+      "pmid": "39367994",
+      "trials": 9
+     },
+     {
+      "pmid": "39193110",
+      "trials": 6
+     },
+     {
+      "pmid": "36576096",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "32157582",
+      "title": "Level of pain, muscle strength and posture: effects of PBM on an exercise program in women with knee osteoarthritis - a randomized controlled trial",
+      "year": 2020,
+      "n": 17,
+      "inReviews": [
+       "38775202",
+       "39367994",
+       "39193110",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "23912778",
+      "title": "Effect of low-level laser therapy in patients with chronic knee osteoarthritis: a single-blinded randomized clinical study",
+      "year": 2014,
+      "n": 20,
+      "inReviews": [
+       "39367994",
+       "39193110",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "24418801",
+      "title": "Efficacy of low-level laser therapy applied at acupuncture points in knee osteoarthritis: a randomised double-blind comparative trial",
+      "year": 2014,
+      "n": 26,
+      "inReviews": [
+       "39367994",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "36286574",
+      "title": "Customized Photobiomodulation Modulates Pain and Alters Thermography Pattern in Patients with Knee Osteoarthritis: A Randomized Double-Blind Pilot Study",
+      "year": 2022,
+      "inReviews": [
+       "38775202",
+       "39367994"
+      ]
+     },
+     {
+      "pmid": "30324827",
+      "title": "The effect of low-level laser therapy and physical exercise on pain, stiffness, function, and spatiotemporal gait variables in subjects with bilateral knee osteoarthritis: a blind randomized clinical trial",
+      "year": 2019,
+      "inReviews": [
+       "39367994",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "28776408",
+      "title": "Long-term results of a randomized, controlled, double-blind study of low-level laser therapy before exercises in knee osteoarthritis: laser and exercises in knee osteoarthritis",
+      "year": 2018,
+      "inReviews": [
+       "39193110",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "22169831",
+      "title": "Efficacy of low level laser therapy associated with exercises in knee osteoarthritis: a randomized double-blind study",
+      "year": 2012,
+      "inReviews": [
+       "39193110",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "29733117",
+      "title": "Incorporation of photobiomodulation therapy into a therapeutic exercise program for knee osteoarthritis: A placebo-controlled, randomized, clinical trial",
+      "year": 2018,
+      "inReviews": [
+       "39193110",
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "33896234",
+      "title": "Interferential current and photobiomodulation in knee osteoarthritis: A randomized, placebo-controlled, double-blind clinical trial",
+      "year": 2021,
+      "n": 184,
+      "inReviews": [
+       "39367994"
+      ]
+     },
+     {
+      "pmid": "24487957",
+      "title": "High-intensity versus low-level laser therapy in the treatment of patients with knee osteoarthritis: a randomized controlled trial",
+      "year": 2014,
+      "n": 53,
+      "inReviews": [
+       "39193110"
+      ]
+     },
+     {
+      "pmid": "36599881",
+      "title": "The effects of low-level laser therapy on muscle strength and functional outcomes in individuals with knee osteoarthritis: a double-blinded randomized controlled trial",
+      "year": 2023,
+      "n": 47,
+      "inReviews": [
+       "39367994"
+      ]
+     },
+     {
+      "pmid": "15704096",
+      "title": "Randomized controlled trial on low level laser therapy (LLLT) in the treatment of osteoarthritis (OA) of the hand",
+      "year": 2005,
+      "n": 46,
+      "inReviews": [
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "27913970",
+      "title": "Radiological and biochemical effects (CTX-II, MMP-3, 8, and 13) of low-level laser therapy (LLLT) in chronic osteoarthritis in Al-Kharj, Saudi Arabia",
+      "year": 2017,
+      "n": 34,
+      "inReviews": [
+       "39367994"
+      ]
+     },
+     {
+      "pmid": "15243853",
+      "title": "Low power laser treatment in patients with knee osteoarthritis",
+      "year": 2004,
+      "inReviews": [
+       "39367994"
+      ]
+     },
+     {
+      "pmid": "27250715",
+      "title": "Low level laser therapy associated with a strength training program on muscle performance in elderly women: a randomized double blind control study",
+      "year": 2016,
+      "inReviews": [
+       "36576096"
+      ]
+     },
+     {
+      "pmid": "31144070",
+      "title": "Photobiomodulation via a cluster device associated with a physical exercise program in the level of pain and muscle strength in middle-aged and older women with knee osteoarthritis: a randomized placebo-controlled trial",
+      "year": 2020,
+      "inReviews": [
+       "36576096"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "36576096"
+    ],
+    "citedNotChosen": [
+     "31662383",
+     "25914044"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "38775202",
+      "doi": "10.1093/ptj/pzae073",
+      "title": "Effectiveness of Photobiomodulation in Reducing Pain and Disability in Patients With Knee Osteoarthritis: A Systematic Review With Meta-Analysis",
+      "year": 2024,
+      "firstAuthor": "Oliveira S",
+      "journal": "Physical therapy",
+      "citedBy": 9,
+      "n": 542,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39367994",
+      "doi": "10.1007/s40520-024-02853-0",
+      "title": "A systematic review and network meta-analysis on the optimal wavelength of low-level light therapy (LLLT) in treating knee osteoarthritis symptoms",
+      "year": 2024,
+      "firstAuthor": "Fan T",
+      "journal": "Aging clinical and experimental research",
+      "citedBy": 8,
+      "n": 673,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39193110",
+      "doi": "10.34172/jlms.2024.34",
+      "title": "Efficacy of High-Intensity and Low-Level Laser Therapy Combined With Exercise Therapy on Pain and Function in Knee Osteoarthritis: A Systematic Review and Network Meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Khalilizad M",
+      "journal": "Journal of lasers in medical sciences",
+      "citedBy": 4,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with knee osteoarthritis",
+     "intervention": "Low-level laser or other photobiomodulation, alone or with exercise",
+     "comparison": "Sham (placebo) laser, or exercise alone",
+     "outcome": "Pain or disability"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 9,
+     "partly": 7,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37419235",
+      "title": "The Effects of Photobiomodulation on Knee Function, Pain, and Exercise Tolerance in Older Adults: A Meta-analysis of Randomized Controlled Trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Photobiomodulation plus exercise for pain and function, but the population is adults 60 and over rather than people defined by knee OA."
+     },
+     {
+      "pmid": "32621270",
+      "title": "Low Level Laser Therapy in Knee Osteoarthritis: A Narrative Review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Narrative overview of systematic reviews of LLLT for knee OA pain and function. It does not review trials directly and names no comparison."
+     },
+     {
+      "pmid": "31845042",
+      "title": "Laser photobiomodulation for cartilage defect in animal models of knee osteoarthritis: a systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Review of animal models looking at cartilage outcomes, not adults' pain or disability."
+     },
+     {
+      "pmid": "27816573",
+      "title": "Methodological flaws in meta-analysis of low-level laser therapy in knee osteoarthritis: A letter to the editor",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Letter to the editor, not a systematic review."
+     },
+     {
+      "pmid": "27816574",
+      "title": "Reply to Stausholm et al.'s letter to the editor regarding our published study entitled, \"Effectiveness of low-level laser therapy in patients with knee osteoarthritis: a systematic review and meta-analysis\"",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Reply letter to the editor, not a systematic review."
+     },
+     {
+      "pmid": "17636694",
+      "title": "WITHDRAWN: Low level laser therapy (Classes III) for treating osteoarthritis",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Class III LLLT compared with placebo laser for pain, but in osteoarthritis generally, not only the knee. The review was withdrawn."
+     },
+     {
+      "pmid": "15266461",
+      "title": "Low level laser therapy (Classes I, II and III) for treating osteoarthritis",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "LLLT compared with placebo laser for pain, but in osteoarthritis at any joint, not knee OA specifically."
+     },
+     {
+      "pmid": "12804422",
+      "title": "Low level laser therapy (Classes I, II and III) for treating osteoarthritis",
+      "year": 2003,
+      "fits": "partly",
+      "reason": "LLLT compared with placebo laser for pain, but in osteoarthritis at any joint, not knee OA specifically."
+     },
+     {
+      "pmid": "10955339",
+      "title": "Low level laser therapy for osteoarthritis and rheumatoid arthritis: a metaanalysis",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "LLLT compared with placebo for pain, but in osteoarthritis and rheumatoid arthritis generally, not knee OA specifically."
+     },
+     {
+      "pmid": "10796460",
+      "title": "Low level laser therapy (classes I, II and III) for the treatment of osteoarthritis",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "LLLT compared with placebo laser for pain, but in osteoarthritis at any joint, not knee OA specifically."
+     }
+    ]
+   }
+  },
+  {
+   "id": "exercise",
+   "label": "Exercise and recovery",
+   "finding": "Exercise performance and muscle recovery",
+   "counts": {
+    "all": 660,
+    "reviews": 31,
+    "trialReviews": 31,
+    "trials": 122,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42757739",
+     "doi": "10.1177/27683605261488795",
+     "title": "Effects of Photobiomodulation Therapy on Muscle Strength and Muscle Endurance: A Systematic Review and Meta-Analysis",
+     "year": 2026,
+     "firstAuthor": "Zhai H",
+     "journal": "Journal of integrative and complementary medicine",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "40995827",
+     "doi": "10.1177/19417381251372977",
+     "title": "The Effect of Photobiomodulation Therapy on Muscle Performance in Volleyball and Football Players: A Meta-Analysis of Randomized Controlled Trials",
+     "year": 2026,
+     "firstAuthor": "Qiu D",
+     "journal": "Sports health",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "40205065",
+     "doi": "10.1007/s10103-025-04441-8",
+     "title": "A systematic review and meta-analysis of the acute effects of photobiomodulation therapy on the maximum number of repetitions in resistance exercise in young adults",
+     "year": 2025,
+     "firstAuthor": "Aguirra P",
+     "journal": "Lasers in medical science",
+     "citedBy": 1,
+     "n": 346,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "29090398",
+     "doi": "10.1007/s10103-017-2368-6",
+     "title": "Photobiomodulation therapy for the improvement of muscular performance and reduction of muscular fatigue associated with exercise in healthy people: a systematic review and meta-analysis",
+     "year": 2018,
+     "firstAuthor": "Vanin AA",
+     "journal": "Lasers in medical science",
+     "citedBy": 129,
+     "n": 861,
+     "why": "The most comprehensive review on this finding (39 trials, 2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2222222222222222,
+    "trials": 36,
+    "inclusions": 52,
+    "reviews": [
+     {
+      "pmid": "40995827",
+      "trials": 13
+     },
+     {
+      "pmid": "40205065",
+      "trials": 8
+     },
+     {
+      "pmid": "29090398",
+      "trials": 31
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "42757739"
+    ],
+    "shared": [
+     {
+      "pmid": "24456143",
+      "title": "Effects of pre- or post-exercise low-level laser therapy (830 nm) on skeletal muscle fatigue and biochemical markers of recovery in humans: double-blind placebo-controlled trial",
+      "year": 2014,
+      "n": 27,
+      "inReviews": [
+       "40995827",
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "20436237",
+      "title": "Effects of low-level laser therapy (LLLT) in the development of exercise-induced skeletal muscle fatigue and changes in biochemical markers related to postexercise recovery",
+      "year": 2010,
+      "inReviews": [
+       "40995827",
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "18649044",
+      "title": "Effect of 830 nm low-level laser therapy in exercise-induced skeletal muscle fatigue in humans",
+      "year": 2009,
+      "inReviews": [
+       "40995827",
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "18817474",
+      "title": "Effect of 655-nm low-level laser therapy on exercise-induced skeletal muscle fatigue in humans",
+      "year": 2008,
+      "inReviews": [
+       "40995827",
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "19731300",
+      "title": "Effect of cluster multi-diode light emitting diode therapy (LEDT) on exercise-induced skeletal muscle fatigue and skeletal muscle recovery in humans",
+      "year": 2009,
+      "inReviews": [
+       "40995827",
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "27575834",
+      "title": "Pre-Exercise Infrared Low-Level Laser Therapy (810 nm) in Skeletal Muscle Performance and Postexercise Recovery in Humans, What Is the Optimal Dose? A Randomized, Double-Blind, Placebo-Controlled Clinical Trial",
+      "year": 2016,
+      "inReviews": [
+       "40995827",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "19302015",
+      "title": "Comparison between single-diode low-level laser therapy (LLLT) and LED multi-diode (cluster) therapy (LEDT) applications before high-intensity exercise",
+      "year": 2009,
+      "inReviews": [
+       "40995827",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "19057981",
+      "title": "Effect of 830 nm low-level laser therapy applied before high-intensity exercises on skeletal muscle recovery in athletes",
+      "year": 2009,
+      "inReviews": [
+       "40995827",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "25722067",
+      "title": "Light-emitting diode therapy (LEDT) before matches prevents increase in creatine kinase with a light dose response in volleyball players",
+      "year": 2015,
+      "inReviews": [
+       "40995827",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "24320801",
+      "title": "Effects of low-level laser therapy on biceps braquialis muscle fatigue in young women",
+      "year": 2013,
+      "inReviews": [
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "25496083",
+      "title": "Use of low-level laser therapy (808 nm) to muscle fatigue resistance: a randomized double-blind crossover trial",
+      "year": 2014,
+      "inReviews": [
+       "40205065",
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "21870127",
+      "title": "Effects of low-level laser therapy (808 nm) on isokinetic muscle performance of young women submitted to endurance training: a randomized controlled clinical trial",
+      "year": 2012,
+      "n": 45,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "24942380",
+      "title": "Phototherapy in skeletal muscle performance and recovery after exercise: effect of combination of super-pulsed laser and light-emitting diodes",
+      "year": 2014,
+      "n": 40,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "21086010",
+      "title": "Effects of low level laser therapy (808 nm) on physical strength training in humans",
+      "year": 2011,
+      "n": 36,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "27655326",
+      "title": "Effects of low-level laser therapy applied before or after plyometric exercise on muscle damage markers: randomized, double-blind, placebo-controlled trial",
+      "year": 2016,
+      "n": 24,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "21739259",
+      "title": "Low-level laser therapy (LLLT) in human progressive-intensity running: effects on exercise performance, skeletal muscle status, and oxidative stress",
+      "year": 2012,
+      "n": 22,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "24925070",
+      "title": "Acute effects of low-level laser therapy on physiologic and electromyographic responses to the cardiopulmonary exercise testing in healthy untrained adults",
+      "year": 2014,
+      "n": 18,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "20602109",
+      "title": "Low level laser therapy before eccentric exercise reduces muscle damage markers in humans",
+      "year": 2010,
+      "n": 18,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "29099680",
+      "title": "Pre-Exercise Infrared Photobiomodulation Therapy (810 nm) in Skeletal Muscle Performance and Postexercise Recovery in Humans: What Is the Optimal Power Output?",
+      "year": 2017,
+      "inReviews": [
+       "40995827"
+      ]
+     },
+     {
+      "pmid": "30607719",
+      "title": "Photobiomodulation therapy as a tool to prevent hamstring strain injuries by reducing soccer-induced fatigue on hamstring muscles",
+      "year": 2019,
+      "inReviews": [
+       "40995827"
+      ]
+     },
+     {
+      "pmid": "31827687",
+      "title": "Infrared Low-Level Laser Therapy (Photobiomodulation Therapy) before Intense Progressive Running Test of High-Level Soccer Players: Effects on Functional, Muscle Damage, Inflammatory, and Oxidative Stress Markers-A Randomized Controlled Trial",
+      "year": 2019,
+      "inReviews": [
+       "40995827"
+      ]
+     },
+     {
+      "pmid": "30264178",
+      "title": "Photobiomodulation therapy before futsal matches improves the staying time of athletes in the court and accelerates post-exercise recovery",
+      "year": 2019,
+      "inReviews": [
+       "40995827"
+      ]
+     },
+     {
+      "pmid": "39663094",
+      "title": "Acute dose-response effect of photobiomodulation therapy on muscle performance in female futsal players: A randomized, double-blind, placebo-controlled, crossover study",
+      "year": 2025,
+      "inReviews": [
+       "40205065"
+      ]
+     },
+     {
+      "pmid": "27638148",
+      "title": "Low-level laser therapy reduces the fatigue index in the ankle plantar flexors of healthy subjects",
+      "year": 2016,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "25417170",
+      "title": "Effect of low-level laser therapy on muscle adaptation to knee extensor eccentric training",
+      "year": 2015,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "23664040",
+      "title": "The effects of light emitting diode therapy following high intensity exercise",
+      "year": 2013,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "28054262",
+      "title": "Does photobiomodulation therapy is better than cryotherapy in muscle recovery after a high-intensity exercise? A randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2017,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "24005882",
+      "title": "Effect of low-level laser therapy (808 nm) on markers of muscle damage: a randomized double-blind placebo-controlled trial",
+      "year": 2014,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "21088862",
+      "title": "Comparison between cold water immersion therapy (CWIT) and light emitting diode therapy (LEDT) in short-term skeletal muscle recovery after high-intensity exercise in athletes--preliminary results",
+      "year": 2011,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "18922091",
+      "title": "The effect of low-level laser therapy on electrically induced muscle fatigue: a pilot study",
+      "year": 2008,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "24258312",
+      "title": "Light-emitting diode phototherapy improves muscle recovery after a damaging exercise",
+      "year": 2014,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "27371449",
+      "title": "What is the best moment to apply phototherapy when associated to a strength training program? A randomized, double-blinded, placebo-controlled trial : Phototherapy in association to strength training",
+      "year": 2016,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "26873498",
+      "title": "Effects of low-level laser therapy on performance, inflammatory markers, and muscle damage in young water polo athletes: a double-blind, randomized, placebo-controlled study",
+      "year": 2016,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "27050245",
+      "title": "Photobiomodulation Therapy Improves Performance and Accelerates Recovery of High-Level Rugby Players in Field Test: A Randomized, Crossover, Double-Blind, Placebo-Controlled Clinical Study",
+      "year": 2016,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "21814736",
+      "title": "Red (660 nm) and infrared (830 nm) low-level laser therapy in skeletal muscle fatigue in humans: what is better?",
+      "year": 2012,
+      "inReviews": [
+       "29090398"
+      ]
+     },
+     {
+      "pmid": "27624781",
+      "title": "Photobiomodulation therapy (PBMT) and/or cryotherapy in skeletal muscle restitution, what is better? A randomized, double-blinded, placebo-controlled clinical trial",
+      "year": 2016,
+      "inReviews": [
+       "29090398"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 11
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 7
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 12
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 9
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2022,
+     "reviews": 7,
+     "trials": 10
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 7
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 7
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "35802348",
+     "38758297"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "42757739",
+      "doi": "10.1177/27683605261488795",
+      "title": "Effects of Photobiomodulation Therapy on Muscle Strength and Muscle Endurance: A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "firstAuthor": "Zhai H",
+      "journal": "Journal of integrative and complementary medicine",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "40995827",
+      "doi": "10.1177/19417381251372977",
+      "title": "The Effect of Photobiomodulation Therapy on Muscle Performance in Volleyball and Football Players: A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "firstAuthor": "Qiu D",
+      "journal": "Sports health",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "40205065",
+      "doi": "10.1007/s10103-025-04441-8",
+      "title": "A systematic review and meta-analysis of the acute effects of photobiomodulation therapy on the maximum number of repetitions in resistance exercise in young adults",
+      "year": 2025,
+      "firstAuthor": "Aguirra P",
+      "journal": "Lasers in medical science",
+      "citedBy": 1,
+      "n": 346,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "29090398",
+      "doi": "10.1007/s10103-017-2368-6",
+      "title": "Photobiomodulation therapy for the improvement of muscular performance and reduction of muscular fatigue associated with exercise in healthy people: a systematic review and meta-analysis",
+      "year": 2018,
+      "firstAuthor": "Vanin AA",
+      "journal": "Lasers in medical science",
+      "citedBy": 129,
+      "n": 861,
+      "why": "The most comprehensive review on this finding (39 trials, 2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Healthy adults, from inactive people to athletes",
+     "intervention": "Red or near-infrared light on the muscles before or after exercise",
+     "comparison": "Placebo (sham) light",
+     "outcome": "Exercise performance, muscle fatigue or recovery"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 13,
+     "partly": 4,
+     "no": 14,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42332459",
+      "title": "Effectiveness of manual therapy, exercise, low-level laser therapy, ultrasound, and transcutaneous electrical nerve stimulation in reducing pain and improving mouth opening in temporomandibular joint disorders: A network meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The review covers jaw joint (TMJ) disorder patients, with pain and mouth opening outcomes."
+     },
+     {
+      "pmid": "42643493",
+      "title": "Efficacy of photobiomodulation associated with exercise in patients with fibromyalgia: A systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The review covers fibromyalgia patients, with pain, function, depression and quality-of-life outcomes."
+     },
+     {
+      "pmid": "40365684",
+      "title": "Photobiomodulation associated with physical exercise in shoulder impingement syndrome. Systematic review with meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The review covers shoulder impingement patients, with pain and range-of-motion outcomes."
+     },
+     {
+      "pmid": "39883205",
+      "title": "A systematic review on whole-body photobiomodulation for exercise performance and recovery",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Active people and performance/recovery outcomes match, but the light was whole-body rather than aimed at the muscles."
+     },
+     {
+      "pmid": "37419235",
+      "title": "The Effects of Photobiomodulation on Knee Function, Pain, and Exercise Tolerance in Older Adults: A Meta-analysis of Randomized Controlled Trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Light is combined with an exercise programme in older adults, often with knee problems, but outcomes include muscle strength and walking tests."
+     },
+     {
+      "pmid": "39193110",
+      "title": "Efficacy of High-Intensity and Low-Level Laser Therapy Combined With Exercise Therapy on Pain and Function in Knee Osteoarthritis: A Systematic Review and Network Meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "The review covers knee osteoarthritis patients getting laser plus exercise therapy, with pain and function as outcomes, not exercise performance in healthy adults."
+     },
+     {
+      "pmid": "38781474",
+      "title": "Effects of Photobiomodulation on Pain and Return to Play of Injured Athletes: A Systematic Review and Meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "The review covers injured athletes, with pain and return-to-play outcomes, not exercise performance or recovery."
+     },
+     {
+      "pmid": "39280939",
+      "title": "Adjunctive Approach to Therapeutic Laser and Exercise Therapies in Alleviating Pain and Disability in Patients with Low Back Pain: A Systematic Review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "The review covers low back pain patients, with pain and disability outcomes."
+     },
+     {
+      "pmid": "36576096",
+      "title": "Effect of low-level laser therapy plus exercise therapy on pain, range of motion, muscle strength, and function in knee osteoarthritis - a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "The review covers knee osteoarthritis patients in rehabilitation, with mostly clinical outcomes, not healthy adults' exercise performance or recovery."
+     },
+     {
+      "pmid": "34266911",
+      "title": "Cancer related fatigue-light therapy: updated meta-analysis of randomised controlled trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Bright white light for fatigue in cancer patients, not light on muscles around exercise."
+     },
+     {
+      "pmid": "34669081",
+      "title": "Comparison between cryotherapy and photobiomodulation in muscle recovery: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Healthy adults and muscle recovery match, but light therapy was compared with cryotherapy, not placebo."
+     },
+     {
+      "pmid": "36139746",
+      "title": "Can Photobiomodulation Therapy (PBMT) Minimize Exercise-Induced Oxidative Stress? A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Healthy people, light before or after exercise versus placebo, but the outcome is only oxidative stress markers."
+     },
+     {
+      "pmid": "34654554",
+      "title": "Effects of low-level and high-intensity laser therapy as adjunctive to rehabilitation exercise on pain, stiffness and function in knee osteoarthritis: a systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "The review covers knee osteoarthritis patients, with pain, stiffness and function outcomes, not healthy adults' exercise performance."
+     },
+     {
+      "pmid": "36219747",
+      "title": "Effectiveness of Photobiomodulation Therapy in the Treatment of Myofascial Pain Syndrome of the Upper Trapezius Muscle: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Treats patients with myofascial pain syndrome and measures pain, not exercise performance in healthy adults."
+     },
+     {
+      "pmid": "34767117",
+      "title": "Association of photobiomodulation therapy and therapeutic exercises in relation to pain intensity and neck disability in individuals with chronic neck pain: a systematic review of randomized trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Light therapy plus exercise for chronic neck pain patients, measuring pain and disability."
+     },
+     {
+      "pmid": "33392780",
+      "title": "Association of photobiomodulation therapy (PBMT) and exercises programs in pain and functional capacity of patients with knee osteoarthritis (KOA): a systematic review of randomized trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "The review covers knee osteoarthritis patients, with pain and functional capacity outcomes, not healthy adults' exercise performance."
+     },
+     {
+      "pmid": "32100715",
+      "title": "Does Low-level Laser Therapy Provide Additional Benefits to Exercise in Patients with Shoulder Musculoskeletal Disorders? A Meta-analysis of Randomised Controlled Trials",
+      "year": 2019,
+      "fits": "no",
+      "reason": "The review covers shoulder disorder patients, with pain and function outcomes."
+     },
+     {
+      "pmid": "25925768",
+      "title": "Low-level laser therapy and exercise for patients with shoulder disorders in physiotherapy practice (a systematic review protocol)",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Protocol for a review of laser therapy plus exercise in patients with shoulder disorders."
+     }
+    ]
+   }
+  },
+  {
+   "id": "foot-ulcers",
+   "label": "Diabetic foot ulcers",
+   "finding": "Healing of diabetic foot ulcers",
+   "counts": {
+    "all": 1237,
+    "reviews": 32,
+    "trialReviews": 32,
+    "trials": 48,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32394760",
+     "doi": "10.1177/1534734620914439",
+     "title": "A Systematic Review and Meta-Analysis of the Effects of Low-Level Laser Therapy in the Treatment of Diabetic Foot Ulcers",
+     "year": 2021,
+     "firstAuthor": "Santos CMD",
+     "journal": "The international journal of lower extremity wounds",
+     "citedBy": 32,
+     "n": 361,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "33751853",
+     "doi": "10.1111/iwj.13577",
+     "title": "The effect of low-level laser therapy on diabetic foot ulcers: A meta-analysis of randomised controlled trials",
+     "year": 2021,
+     "firstAuthor": "Huang J",
+     "journal": "International wound journal",
+     "citedBy": 25,
+     "n": 413,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "33078478",
+     "doi": "10.1111/wrr.12871",
+     "title": "Efficacy of low-level light therapy for improving healing of diabetic foot ulcers: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2021,
+     "firstAuthor": "Zhou Y",
+     "journal": "Wound repair and regeneration : official publication of the Wound Healing Society [and] the European Tissue Repair Society",
+     "citedBy": 18,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.8333333333333334,
+    "trials": 6,
+    "inclusions": 16,
+    "reviews": [
+     {
+      "pmid": "32394760",
+      "trials": 6
+     },
+     {
+      "pmid": "33751853",
+      "trials": 6
+     },
+     {
+      "pmid": "33078478",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "27896528",
+      "title": "Low-level laser therapy as an adjunct to conventional therapy in the treatment of diabetic foot ulcers",
+      "year": 2017,
+      "n": 30,
+      "inReviews": [
+       "32394760",
+       "33751853",
+       "33078478"
+      ]
+     },
+     {
+      "pmid": "29882738",
+      "title": "Effects of Low-Power Light Therapy on the Tissue Repair Process of Chronic Wounds in Diabetic Feet",
+      "year": 2018,
+      "n": 18,
+      "inReviews": [
+       "32394760",
+       "33751853",
+       "33078478"
+      ]
+     },
+     {
+      "pmid": "19588536",
+      "title": "Phototherapy promotes healing of chronic diabetic leg ulcers that failed to respond to other therapies",
+      "year": 2009,
+      "n": 14,
+      "inReviews": [
+       "32394760",
+       "33751853",
+       "33078478"
+      ]
+     },
+     {
+      "pmid": "21214368",
+      "title": "A randomized clinical trial on the effect of low-level laser therapy on chronic diabetic foot wound healing: a preliminary report",
+      "year": 2011,
+      "n": 13,
+      "inReviews": [
+       "32394760",
+       "33751853",
+       "33078478"
+      ]
+     },
+     {
+      "pmid": "27680049",
+      "title": "Low-level laser therapy and Calendula officinalis in repairing diabetic foot ulcers",
+      "year": 2016,
+      "n": 32,
+      "inReviews": [
+       "32394760",
+       "33751853"
+      ]
+     },
+     {
+      "pmid": "26735058",
+      "title": "Effects of the Low-Level Laser Therapy (LLLT) in the process of healing diabetic foot ulcers",
+      "year": 2015,
+      "inReviews": [
+       "32394760",
+       "33751853"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 7,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 4,
+     "trials": 6
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 6,
+     "trials": 6
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "33751853"
+    ],
+    "citedNotChosen": [
+     "40186874"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "32394760",
+      "doi": "10.1177/1534734620914439",
+      "title": "A Systematic Review and Meta-Analysis of the Effects of Low-Level Laser Therapy in the Treatment of Diabetic Foot Ulcers",
+      "year": 2021,
+      "firstAuthor": "Santos CMD",
+      "journal": "The international journal of lower extremity wounds",
+      "citedBy": 32,
+      "n": 361,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     },
+     {
+      "pmid": "33078478",
+      "doi": "10.1111/wrr.12871",
+      "title": "Efficacy of low-level light therapy for improving healing of diabetic foot ulcers: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "firstAuthor": "Zhou Y",
+      "journal": "Wound repair and regeneration : official publication of the Wound Healing Society [and] the European Tissue Repair Society",
+      "citedBy": 18,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People with diabetic foot ulcers",
+     "intervention": "Low-level laser or other photobiomodulation added to usual wound care",
+     "comparison": "Usual wound care, or sham light",
+     "outcome": "Ulcer healing (healed or smaller)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 9,
+     "no": 17,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42315692",
+      "title": "Clinical dosimetry and efficacy of LED photobiomodulation for chronic lower-limb wound healing: a systematic review of randomized trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Reviews trials of LED light for chronic leg wounds, including diabetic foot ulcers, but the group is broader than the question."
+     },
+     {
+      "pmid": "41540806",
+      "title": "Qualitative Comparison of LED and LASER Effects on Cutaneous Wound Healing: A Systematic Review of Experimental Studies",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Compares LED with laser in animal and lab studies of skin wounds, not light added to usual care in people with diabetic foot ulcers."
+     },
+     {
+      "pmid": "42456438",
+      "title": "Effectiveness of photobiomodulation for pain management and wound healing in the immediate postoperative period after cesarean section: A systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews laser for pain and healing after caesarean section, a different group of people and type of wound."
+     },
+     {
+      "pmid": "41605843",
+      "title": "Effects of Near Infrared Light on Surgical Wound Healing: A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews near-infrared light for surgical wounds, not diabetic foot ulcers."
+     },
+     {
+      "pmid": "41682644",
+      "title": "The Effectiveness of Photobiomodulation Therapy on Perineal Pain and Wound Healing After Episiotomy-A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews light therapy for pain and healing after episiotomy, a different group and type of wound."
+     },
+     {
+      "pmid": "41410039",
+      "title": "Photobiomodulation-assisted surgical wound healing at palatal donor site area: a systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews light therapy for palate wounds after gum graft surgery, a different group and type of wound."
+     },
+     {
+      "pmid": "40186874",
+      "title": "Intervention effects of low-level laser therapy (LLLT) on grade I-II ulcers in diabetic foot patients: A meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pools low-level laser against control for healing of diabetic foot ulcers, but only grade I–II ulcers, a narrower group."
+     },
+     {
+      "pmid": "39610644",
+      "title": "The Effects of Low-Level Laser Therapy on Wound Healing and Pain Management in Skin Wounds: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools trials of low-level laser against no laser for healing of skin wounds in general, not diabetic foot ulcers in particular."
+     },
+     {
+      "pmid": "38956862",
+      "title": "The role of light emitting diode in wound healing: A systematic review of experimental studies",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews lab and animal studies of LED on wound healing, not people with diabetic foot ulcers."
+     },
+     {
+      "pmid": "39493098",
+      "title": "The Efficacy of Low-Level Laser Therapy on the Healing of Oral Wounds: A Systematic Review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews low-level laser for mouth wounds, a different group and type of wound."
+     },
+     {
+      "pmid": "39031566",
+      "title": "Modulation of gene expression in skin wound healing by photobiomodulation therapy: A systematic review in vivo studies",
+      "year": 2024,
+      "fits": "no",
+      "reason": "It reviews in vivo studies of gene expression in skin wounds, not ulcer healing in people with diabetic foot ulcers."
+     },
+     {
+      "pmid": "37585961",
+      "title": "LED phototherapy in tissue repair of chronic wounds in people with diabetes: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews LED light for chronic wounds in people with diabetes, with smaller wounds as an outcome, but the group is not limited to foot ulcers."
+     },
+     {
+      "pmid": "38028869",
+      "title": "Unveiling Therapeutic Potential: A Systematic Review of Photobiomodulation Therapy and Biological Dressings for Diabetic Foot Ulcers",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Covers light therapy and platelet gel for diabetic foot ulcers, but pools only the gel, and light therapy against usual care is described loosely."
+     },
+     {
+      "pmid": "37583501",
+      "title": "Efficacy of Low-Level Laser Therapy in Wound Healing and Pain Reduction After Gingivectomy: A Systematic Review and Meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews low-level laser after gum surgery, a different group and type of wound."
+     },
+     {
+      "pmid": "37622461",
+      "title": "Effectiveness of Photobiomodulation Therapy on Neuropathic Pain, Nerve Conduction and Plantar Pressure Distribution in Diabetic Peripheral Neuropathy - A Systematic Review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "It covers diabetic neuropathy pain, nerve conduction and plantar pressure, not healing of existing foot ulcers."
+     },
+     {
+      "pmid": "33370535",
+      "title": "Effect of photobiomodulation therapy on inflammatory cytokines in healing dynamics of diabetic wounds: a systematic review of preclinical studies",
+      "year": 2023,
+      "fits": "no",
+      "reason": "It reviews preclinical studies of inflammatory cytokines in diabetic wounds, not ulcer healing in people with diabetic foot ulcers."
+     },
+     {
+      "pmid": "34697696",
+      "title": "Effectiveness of preconditioned adipose-derived mesenchymal stem cells with photobiomodulation for the treatment of diabetic foot ulcers: a systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "It covers diabetic foot ulcers, but the treatment is stem cells preconditioned with light, so light added to wound care is not analysed alone."
+     },
+     {
+      "pmid": "35635648",
+      "title": "Impact of photobiomodulation on macrophages and their polarization during diabetic wound healing: a systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Reviews mostly animal studies of light therapy effects on immune cells (macrophages) in diabetic wounds, not ulcer healing in people."
+     },
+     {
+      "pmid": "33190161",
+      "title": "Photobiomodulation: systematic review and meta-analysis of the most used parameters in the resolution diabetic foot ulcers",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Reviews light therapy trials in diabetic foot ulcers, but looks mainly at device settings rather than healing compared with control."
+     },
+     {
+      "pmid": "32613416",
+      "title": "The effect of low-level laser therapy as an adjunct to periodontal surgery in the management of postoperative pain and wound healing: a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Reviews low-level laser after gum surgery, a different group and type of wound."
+     },
+     {
+      "pmid": "34183590",
+      "title": "Effectiveness of low-level laser therapy compared with other conventional therapies on wound healing and pain reduction in patients with median sternotomy: a systematic review protocol",
+      "year": 2021,
+      "fits": "no",
+      "reason": "This is a protocol about median sternotomy surgical wounds and pain, not diabetic foot ulcers."
+     },
+     {
+      "pmid": "33985492",
+      "title": "Effect of photobiomodulation in secondary intention gingival wound healing-a systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "It is about gingival wounds after periodontal surgery, not diabetic foot ulcers."
+     },
+     {
+      "pmid": "31550398",
+      "title": "Effect of Photobiomodulation on Repairing Pressure Ulcers in Adult and Elderly Patients: A Systematic Review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "It compares light therapy with standard care for ulcer healing, but in pressure ulcers rather than diabetic foot ulcers."
+     },
+     {
+      "pmid": "28345122",
+      "title": "Effect of laser on pain relief and wound healing of recurrent aphthous stomatitis: a systematic review",
+      "year": 2017,
+      "fits": "no",
+      "reason": "It is about laser treatment for recurrent mouth ulcers (aphthous stomatitis), not diabetic foot ulcers."
+     },
+     {
+      "pmid": "15315732",
+      "title": "The efficacy of laser therapy in wound repair: a meta-analysis of the literature",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Pools laser therapy studies on wounds in general, mostly in animals, with a human subgroup, but does not focus on diabetic foot ulcers."
+     },
+     {
+      "pmid": "12143832",
+      "title": "Wound healing in cell studies and animal model experiments by Low Level Laser Therapy; were clinical studies justified? a systematic review",
+      "year": 2002,
+      "fits": "no",
+      "reason": "It reviews cell and animal studies of laser wound healing, not people with diabetic foot ulcers."
+     }
+    ]
+   }
+  }
+ ]
+}

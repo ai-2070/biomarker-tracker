@@ -1,0 +1,99 @@
+{
+ "topic": "lifestyle-sauna",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with heart risk factors",
+    "intervention": "Sauna bathing, or other passive heat (single sessions or weeks of it)",
+    "comparison": "No sauna or heat",
+    "outcome": "Blood pressure, or new high blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41049507",
+     "fits": "yes",
+     "reason": "Pooled RCTs of passive heating, including sauna, of at least one week in adults versus control, with systolic blood pressure outcomes and a subgroup for people with coronary risk."
+    },
+    {
+     "pmid": "36343372",
+     "fits": "partly",
+     "reason": "Passive heating and sauna in healthy adults match, but outcomes are autonomic measures such as blood pressure variability and baroreflex rather than blood pressure levels."
+    },
+    {
+     "pmid": "33866630",
+     "fits": "yes",
+     "reason": "Pooled studies of repeated heat therapy versus control in healthy and clinical adults, with systolic, diastolic and mean arterial blood pressure outcomes."
+    },
+    {
+     "pmid": "32814462",
+     "fits": "partly",
+     "reason": "Pooled acute and short-term sauna studies, but outcomes are general cardiovascular function with blood pressure not clearly reported, and the population includes cardiac patients."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "Sauna bathing, or other passive heat (hot baths, heat therapy)",
+    "comparison": "Less or no sauna use",
+    "outcome": "Sudden cardiac death, deaths from heart disease, or death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41049507",
+     "fits": "no",
+     "reason": "Passive heating in adults matches, but outcomes are cardiometabolic and vascular markers, not sudden cardiac, cardiovascular or all-cause death."
+    },
+    {
+     "pmid": "36343372",
+     "fits": "no",
+     "reason": "Passive heating in healthy adults matches, but the outcome is cardiovascular autonomic control (HRV, baroreflex), not death."
+    },
+    {
+     "pmid": "32814462",
+     "fits": "no",
+     "reason": "Sauna exposure matches, but outcomes are acute and short-term cardiovascular function measures, not death, and many participants were patients."
+    },
+    {
+     "pmid": "34329397",
+     "fits": "no",
+     "reason": "This is an author reply to a letter, not a systematic review, and there is no abstract reporting mortality outcomes."
+    },
+    {
+     "pmid": "34329398",
+     "fits": "no",
+     "reason": "This is a letter about a meta-analysis, not a systematic review, and there is no abstract reporting mortality outcomes."
+    }
+   ]
+  },
+  "heart-failure": {
+   "question": {
+    "population": "People with chronic heart failure",
+    "intervention": "Waon therapy (a mild far-infrared sauna) or other repeated heat therapy",
+    "comparison": "Usual heart failure care without it",
+    "outcome": "Symptoms, exercise capacity or heart function"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "30239008",
+     "fits": "yes",
+     "reason": "Meta-analysis of infrared sauna vs no sauna in heart failure patients, reporting heart function outcomes such as LVEF, BNP and cardiothoracic ratio."
+    },
+    {
+     "pmid": "32017138",
+     "fits": "yes",
+     "reason": "Meta-analysis of mild thermal therapy in heart failure patients, reporting NYHA class (symptoms) and LVEF (heart function)."
+    },
+    {
+     "pmid": "29409954",
+     "fits": "yes",
+     "reason": "Title says it is a systematic review of Waon therapy in heart failure; there is no abstract, so the comparison and outcomes can't be confirmed."
+    }
+   ]
+  }
+ }
+}

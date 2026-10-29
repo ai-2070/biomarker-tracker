@@ -182,6 +182,11 @@ describe("maps of claims about foods", () => {
     const cohort = classify(rec3({ pmid: "c", title: "Fish intake and mortality: meta-analysis of cohort studies", abstract: "We pooled 20 prospective cohort studies.", matched: ["fish"] }), [{ id: "fish" }]);
     expect(eligibleReviews([cohort], "fish").map((r) => r.pmid)).toEqual([]);
     expect(eligibleReviews([cohort], "fish", undefined, undefined, "food").map((r) => r.pmid)).toEqual(["c"]);
+    // Lifestyle maps count reviews of any design too, and ask about a habit.
+    expect(eligibleReviews([cohort], "fish", undefined, undefined, "lifestyle").map((r) => r.pmid)).toEqual(["c"]);
+    const habit = screeningPrompt({ population: "Adults", intervention: "Sauna bathing", comparison: "No sauna", outcome: "Death" }, [{ pmid: "c", title: "T", year: 2020, abstract: "A" }], "lifestyle");
+    expect(habit).toContain("Habit or exposure: Sauna bathing");
+    expect(habit).toContain("whether the habit works");
     const prompt = screeningPrompt({ population: "People", intervention: "Eating fish", comparison: "Less fish", outcome: "Death" }, [{ pmid: "c", title: "T", year: 2020, abstract: "A" }], "food");
     expect(prompt).toContain("Food or exposure: Eating fish");
     expect(prompt).toContain("studies of any design");

@@ -1,0 +1,762 @@
+{
+ "topic": "lifestyle-red_light",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "skin": {
+   "question": {
+    "population": "Adults with wrinkles or ageing skin",
+    "intervention": "Red or near-infrared light (photobiomodulation, LED or low-level laser)",
+    "comparison": "A sham device or no treatment",
+    "outcome": "Wrinkles, skin roughness, collagen or skin appearance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42875609",
+     "fits": "yes",
+     "reason": "Reviews trials, including RCTs, of at-home red/near-infrared LED in adults with facial ageing, reporting wrinkles, texture and elasticity; control types are not specified."
+    },
+    {
+     "pmid": "36722207",
+     "fits": "no",
+     "reason": "Light therapy for skin rejuvenation, but the outcome is cancer safety rather than wrinkles or skin appearance, and much of the evidence is preclinical."
+    },
+    {
+     "pmid": "32431001",
+     "fits": "no",
+     "reason": "Reviews which light-sensing proteins (opsins) are found in animal and human skin; it does not assess light treatment for wrinkles against a control."
+    }
+   ]
+  },
+  "hair": {
+   "question": {
+    "population": "Men and women with pattern hair loss (androgenetic alopecia)",
+    "intervention": "Red or near-infrared light (low-level laser or LED: combs, caps, helmets)",
+    "comparison": "A sham device or no treatment",
+    "outcome": "Hair density or hair count"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42339398",
+     "fits": "yes",
+     "reason": "Pools low-level laser therapy versus sham for hair density in androgenetic alopecia, alongside other laser analyses."
+    },
+    {
+     "pmid": "40826200",
+     "fits": "partly",
+     "reason": "Laser plus minoxidil versus minoxidil alone measures the add-on effect, not light versus sham or no treatment."
+    },
+    {
+     "pmid": "39828269",
+     "fits": "partly",
+     "reason": "Compares minoxidil plus laser with minoxidil alone for hair counts, so the comparison is not sham or no treatment."
+    },
+    {
+     "pmid": "39404126",
+     "fits": "yes",
+     "reason": "Meta-analysis of laser/LED versus placebo on hair density, with a separate androgenetic alopecia analysis."
+    },
+    {
+     "pmid": "40968340",
+     "fits": "partly",
+     "reason": "Broad review of all wavelengths, including UV, across alopecia types; no sham comparison or hair count outcome stated."
+    },
+    {
+     "pmid": "39530506",
+     "fits": "no",
+     "reason": "A commentary on another review, with no abstract and no systematic review of its own."
+    },
+    {
+     "pmid": "35510860",
+     "fits": "yes",
+     "reason": "Separate meta-analyses of red and infrared light versus control for androgenetic alopecia."
+    },
+    {
+     "pmid": "30706177",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of laser versus sham devices on hair density in adults with androgenetic alopecia."
+    },
+    {
+     "pmid": "32790116",
+     "fits": "partly",
+     "reason": "Reviews laser trials on hair density in androgenetic alopecia but analyses device and dose factors, not light versus sham."
+    },
+    {
+     "pmid": "29286826",
+     "fits": "yes",
+     "reason": "Meta-analysis of double-blind trials of laser versus sham for hair growth in adult androgenetic alopecia."
+    },
+    {
+     "pmid": "29227728",
+     "fits": "partly",
+     "reason": "Reviews laser therapy for androgenetic alopecia, but the abstract states no sham comparison or hair count outcome."
+    },
+    {
+     "pmid": "29270707",
+     "fits": "yes",
+     "reason": "Systematic search of laser trials in androgenetic alopecia reporting hair counts against controls or baseline."
+    },
+    {
+     "pmid": "34980962",
+     "fits": "yes",
+     "reason": "Meta-analysis of home-use laser devices versus sham on hair density in pattern hair loss."
+    },
+    {
+     "pmid": "31746251",
+     "fits": "yes",
+     "reason": "Meta-analysis of laser/LED versus control on hair density in androgenetic alopecia."
+    },
+    {
+     "pmid": "27114071",
+     "fits": "yes",
+     "reason": "Systematic review of laser studies in men and women with androgenetic alopecia reporting hair count or density."
+    },
+    {
+     "pmid": "34546105",
+     "fits": "yes",
+     "reason": "Systematic review of randomised trials of laser versus any control in male and female pattern hair loss."
+    },
+    {
+     "pmid": "34606676",
+     "fits": "no",
+     "reason": "Covers children with severe alopecia areata, not pattern hair loss."
+    }
+   ]
+  },
+  "exercise": {
+   "question": {
+    "population": "Healthy adults, from inactive people to athletes",
+    "intervention": "Red or near-infrared light on the muscles before or after exercise",
+    "comparison": "Placebo (sham) light",
+    "outcome": "Exercise performance, muscle fatigue or recovery"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39193110",
+     "fits": "no",
+     "reason": "The review covers knee osteoarthritis patients getting laser plus exercise therapy, with pain and function as outcomes, not exercise performance in healthy adults."
+    },
+    {
+     "pmid": "36576096",
+     "fits": "no",
+     "reason": "The review covers knee osteoarthritis patients in rehabilitation, with mostly clinical outcomes, not healthy adults' exercise performance or recovery."
+    },
+    {
+     "pmid": "34654554",
+     "fits": "no",
+     "reason": "The review covers knee osteoarthritis patients, with pain, stiffness and function outcomes, not healthy adults' exercise performance."
+    },
+    {
+     "pmid": "33392780",
+     "fits": "no",
+     "reason": "The review covers knee osteoarthritis patients, with pain and functional capacity outcomes, not healthy adults' exercise performance."
+    },
+    {
+     "pmid": "37419235",
+     "fits": "partly",
+     "reason": "Light is combined with an exercise programme in older adults, often with knee problems, but outcomes include muscle strength and walking tests."
+    },
+    {
+     "pmid": "42332459",
+     "fits": "no",
+     "reason": "The review covers jaw joint (TMJ) disorder patients, with pain and mouth opening outcomes."
+    },
+    {
+     "pmid": "40954632",
+     "fits": "yes",
+     "reason": "Healthy adults received light therapy, with muscle soreness, recovery and performance outcomes in randomised trials."
+    },
+    {
+     "pmid": "42757739",
+     "fits": "yes",
+     "reason": "Trials in healthy people compared light therapy with placebo, with muscle strength and endurance outcomes."
+    },
+    {
+     "pmid": "40995827",
+     "fits": "yes",
+     "reason": "Trials in volleyball and football players tested light therapy, with muscle performance, fatigue and muscle-damage (CK) outcomes."
+    },
+    {
+     "pmid": "42643493",
+     "fits": "no",
+     "reason": "The review covers fibromyalgia patients, with pain, function, depression and quality-of-life outcomes."
+    },
+    {
+     "pmid": "40365684",
+     "fits": "no",
+     "reason": "The review covers shoulder impingement patients, with pain and range-of-motion outcomes."
+    },
+    {
+     "pmid": "38781474",
+     "fits": "no",
+     "reason": "The review covers injured athletes, with pain and return-to-play outcomes, not exercise performance or recovery."
+    },
+    {
+     "pmid": "40205065",
+     "fits": "yes",
+     "reason": "Healthy young adults received light therapy versus placebo, with maximum repetitions (muscle endurance) as the outcome."
+    },
+    {
+     "pmid": "39280939",
+     "fits": "no",
+     "reason": "The review covers low back pain patients, with pain and disability outcomes."
+    },
+    {
+     "pmid": "34428975",
+     "fits": "yes",
+     "reason": "Trials in athletes tested laser before exercise, with muscle performance and soreness recovery outcomes."
+    },
+    {
+     "pmid": "39883205",
+     "fits": "partly",
+     "reason": "Active people and performance/recovery outcomes match, but the light was whole-body rather than aimed at the muscles."
+    },
+    {
+     "pmid": "35802348",
+     "fits": "yes",
+     "reason": "Placebo-controlled trials in healthy young adults tested light before exercise, with exercise performance outcomes."
+    },
+    {
+     "pmid": "34669081",
+     "fits": "partly",
+     "reason": "Healthy adults and muscle recovery match, but light therapy was compared with cryotherapy, not placebo."
+    },
+    {
+     "pmid": "29933277",
+     "fits": "yes",
+     "reason": "Healthy people received light before or after exercise versus placebo or control, with muscle-damage (CK) recovery outcomes."
+    },
+    {
+     "pmid": "32100715",
+     "fits": "no",
+     "reason": "The review covers shoulder disorder patients, with pain and function outcomes."
+    },
+    {
+     "pmid": "38758297",
+     "fits": "yes",
+     "reason": "RCTs of photobiomodulation before exercise in healthy inactive people and athletes, with endurance, strength recovery and CK as outcomes."
+    },
+    {
+     "pmid": "24249354",
+     "fits": "yes",
+     "reason": "RCTs of laser or LED light before, during or after exercise compared with placebo, measuring performance and muscle damage markers."
+    },
+    {
+     "pmid": "36219747",
+     "fits": "no",
+     "reason": "Treats patients with myofascial pain syndrome and measures pain, not exercise performance in healthy adults."
+    },
+    {
+     "pmid": "36139746",
+     "fits": "partly",
+     "reason": "Healthy people, light before or after exercise versus placebo, but the outcome is only oxidative stress markers."
+    },
+    {
+     "pmid": "29090398",
+     "fits": "yes",
+     "reason": "Healthy people, 655–950 nm light versus placebo, measuring muscle performance and fatigue."
+    },
+    {
+     "pmid": "34266911",
+     "fits": "no",
+     "reason": "Bright white light for fatigue in cancer patients, not light on muscles around exercise."
+    },
+    {
+     "pmid": "27272746",
+     "fits": "yes",
+     "reason": "Laser or LED light before exercise versus placebo, measuring exercise capacity and muscle performance."
+    },
+    {
+     "pmid": "34767117",
+     "fits": "no",
+     "reason": "Light therapy plus exercise for chronic neck pain patients, measuring pain and disability."
+    },
+    {
+     "pmid": "25925768",
+     "fits": "no",
+     "reason": "Protocol for a review of laser therapy plus exercise in patients with shoulder disorders."
+    },
+    {
+     "pmid": "26563953",
+     "fits": "yes",
+     "reason": "Light before or after an exercise protocol versus placebo, measuring muscle soreness, damage and strength recovery."
+    },
+    {
+     "pmid": "23672326",
+     "fits": "yes",
+     "reason": "Laser or LED light before exercise versus sham, measuring fatigue, performance and recovery after exercise."
+    }
+   ]
+  },
+  "knee": {
+   "question": {
+    "population": "Adults with knee osteoarthritis",
+    "intervention": "Low-level laser or other photobiomodulation, alone or with exercise",
+    "comparison": "Sham (placebo) laser, or exercise alone",
+    "outcome": "Pain or disability"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39193110",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in knee OA comparing LLLT plus exercise with placebo plus exercise for pain and function."
+    },
+    {
+     "pmid": "39367994",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing LLLT with sham LLLT in knee OA for pain, function and stiffness."
+    },
+    {
+     "pmid": "38775202",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of photobiomodulation in knee OA for pain and disability."
+    },
+    {
+     "pmid": "36576096",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in knee OA comparing LLLT plus exercise with placebo LLLT plus exercise for pain and function."
+    },
+    {
+     "pmid": "31662383",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of LLLT in knee OA for pain and disability."
+    },
+    {
+     "pmid": "32621270",
+     "fits": "partly",
+     "reason": "Narrative overview of systematic reviews of LLLT for knee OA pain and function. It does not review trials directly and names no comparison."
+    },
+    {
+     "pmid": "29071029",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing LLLT with placebo in knee OA for pain and WOMAC function."
+    },
+    {
+     "pmid": "34654554",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in knee OA comparing LLLT plus exercise with exercise alone or placebo laser, for pain and function."
+    },
+    {
+     "pmid": "33392780",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs in knee OA on the added effect of photobiomodulation on exercise, for pain and functional capacity."
+    },
+    {
+     "pmid": "27816573",
+     "fits": "no",
+     "reason": "Letter to the editor, not a systematic review."
+    },
+    {
+     "pmid": "31845042",
+     "fits": "no",
+     "reason": "Review of animal models looking at cartilage outcomes, not adults' pain or disability."
+    },
+    {
+     "pmid": "27816574",
+     "fits": "no",
+     "reason": "Reply letter to the editor, not a systematic review."
+    },
+    {
+     "pmid": "25914044",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing LLLT with sham laser in knee OA for VAS and WOMAC pain and function."
+    },
+    {
+     "pmid": "37419235",
+     "fits": "partly",
+     "reason": "Photobiomodulation plus exercise for pain and function, but the population is adults 60 and over rather than people defined by knee OA."
+    },
+    {
+     "pmid": "12804422",
+     "fits": "partly",
+     "reason": "LLLT compared with placebo laser for pain, but in osteoarthritis at any joint, not knee OA specifically."
+    },
+    {
+     "pmid": "17636694",
+     "fits": "partly",
+     "reason": "Class III LLLT compared with placebo laser for pain, but in osteoarthritis generally, not only the knee. The review was withdrawn."
+    },
+    {
+     "pmid": "15266461",
+     "fits": "partly",
+     "reason": "LLLT compared with placebo laser for pain, but in osteoarthritis at any joint, not knee OA specifically."
+    },
+    {
+     "pmid": "10955339",
+     "fits": "partly",
+     "reason": "LLLT compared with placebo for pain, but in osteoarthritis and rheumatoid arthritis generally, not knee OA specifically."
+    },
+    {
+     "pmid": "10796460",
+     "fits": "partly",
+     "reason": "LLLT compared with placebo laser for pain, but in osteoarthritis at any joint, not knee OA specifically."
+    }
+   ]
+  },
+  "foot-ulcers": {
+   "question": {
+    "population": "People with diabetic foot ulcers",
+    "intervention": "Low-level laser or other photobiomodulation added to usual wound care",
+    "comparison": "Usual wound care, or sham light",
+    "outcome": "Ulcer healing (healed or smaller)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41540806",
+     "fits": "no",
+     "reason": "Compares LED with laser in animal and lab studies of skin wounds, not light added to usual care in people with diabetic foot ulcers."
+    },
+    {
+     "pmid": "38956862",
+     "fits": "no",
+     "reason": "Reviews lab and animal studies of LED on wound healing, not people with diabetic foot ulcers."
+    },
+    {
+     "pmid": "37585961",
+     "fits": "partly",
+     "reason": "Reviews LED light for chronic wounds in people with diabetes, with smaller wounds as an outcome, but the group is not limited to foot ulcers."
+    },
+    {
+     "pmid": "15315732",
+     "fits": "partly",
+     "reason": "Pools laser therapy studies on wounds in general, mostly in animals, with a human subgroup, but does not focus on diabetic foot ulcers."
+    },
+    {
+     "pmid": "42456438",
+     "fits": "no",
+     "reason": "Reviews laser for pain and healing after caesarean section, a different group of people and type of wound."
+    },
+    {
+     "pmid": "40186874",
+     "fits": "partly",
+     "reason": "Pools low-level laser against control for healing of diabetic foot ulcers, but only grade I–II ulcers, a narrower group."
+    },
+    {
+     "pmid": "42315692",
+     "fits": "partly",
+     "reason": "Reviews trials of LED light for chronic leg wounds, including diabetic foot ulcers, but the group is broader than the question."
+    },
+    {
+     "pmid": "39982518",
+     "fits": "yes",
+     "reason": "Reviews systematic reviews of low-level laser against sham or usual care for healing of diabetic foot ulcers."
+    },
+    {
+     "pmid": "41605843",
+     "fits": "no",
+     "reason": "Reviews near-infrared light for surgical wounds, not diabetic foot ulcers."
+    },
+    {
+     "pmid": "39610644",
+     "fits": "partly",
+     "reason": "Pools trials of low-level laser against no laser for healing of skin wounds in general, not diabetic foot ulcers in particular."
+    },
+    {
+     "pmid": "39493098",
+     "fits": "no",
+     "reason": "Reviews low-level laser for mouth wounds, a different group and type of wound."
+    },
+    {
+     "pmid": "41682644",
+     "fits": "no",
+     "reason": "Reviews light therapy for pain and healing after episiotomy, a different group and type of wound."
+    },
+    {
+     "pmid": "37583501",
+     "fits": "no",
+     "reason": "Reviews low-level laser after gum surgery, a different group and type of wound."
+    },
+    {
+     "pmid": "33751853",
+     "fits": "yes",
+     "reason": "Pools trials of low-level laser against control for full healing and smaller ulcer area in diabetic foot ulcers."
+    },
+    {
+     "pmid": "41410039",
+     "fits": "no",
+     "reason": "Reviews light therapy for palate wounds after gum graft surgery, a different group and type of wound."
+    },
+    {
+     "pmid": "33190161",
+     "fits": "partly",
+     "reason": "Reviews light therapy trials in diabetic foot ulcers, but looks mainly at device settings rather than healing compared with control."
+    },
+    {
+     "pmid": "35635648",
+     "fits": "no",
+     "reason": "Reviews mostly animal studies of light therapy effects on immune cells (macrophages) in diabetic wounds, not ulcer healing in people."
+    },
+    {
+     "pmid": "32394760",
+     "fits": "yes",
+     "reason": "Pools trials of low-level laser against control for smaller ulcers in diabetic foot ulcers."
+    },
+    {
+     "pmid": "38028869",
+     "fits": "partly",
+     "reason": "Covers light therapy and platelet gel for diabetic foot ulcers, but pools only the gel, and light therapy against usual care is described loosely."
+    },
+    {
+     "pmid": "32613416",
+     "fits": "no",
+     "reason": "Reviews low-level laser after gum surgery, a different group and type of wound."
+    },
+    {
+     "pmid": "34183590",
+     "fits": "no",
+     "reason": "This is a protocol about median sternotomy surgical wounds and pain, not diabetic foot ulcers."
+    },
+    {
+     "pmid": "39031566",
+     "fits": "no",
+     "reason": "It reviews in vivo studies of gene expression in skin wounds, not ulcer healing in people with diabetic foot ulcers."
+    },
+    {
+     "pmid": "33078478",
+     "fits": "yes",
+     "reason": "It meta-analyses RCTs of low-level light therapy versus control in diabetic foot ulcers, reporting ulcer area reduction and complete healing."
+    },
+    {
+     "pmid": "37622461",
+     "fits": "no",
+     "reason": "It covers diabetic neuropathy pain, nerve conduction and plantar pressure, not healing of existing foot ulcers."
+    },
+    {
+     "pmid": "30009935",
+     "fits": "yes",
+     "reason": "It meta-analyses RCTs of low-level light therapy for diabetic foot ulcers, with ulcer area reduction and healing as outcomes."
+    },
+    {
+     "pmid": "33985492",
+     "fits": "no",
+     "reason": "It is about gingival wounds after periodontal surgery, not diabetic foot ulcers."
+    },
+    {
+     "pmid": "34697696",
+     "fits": "partly",
+     "reason": "It covers diabetic foot ulcers, but the treatment is stem cells preconditioned with light, so light added to wound care is not analysed alone."
+    },
+    {
+     "pmid": "26748691",
+     "fits": "yes",
+     "reason": "It reviews RCTs of low-level light therapy versus sham or control for diabetic foot ulcers, with ulcer size and complete healing outcomes."
+    },
+    {
+     "pmid": "33370535",
+     "fits": "no",
+     "reason": "It reviews preclinical studies of inflammatory cytokines in diabetic wounds, not ulcer healing in people with diabetic foot ulcers."
+    },
+    {
+     "pmid": "28345122",
+     "fits": "no",
+     "reason": "It is about laser treatment for recurrent mouth ulcers (aphthous stomatitis), not diabetic foot ulcers."
+    },
+    {
+     "pmid": "31550398",
+     "fits": "partly",
+     "reason": "It compares light therapy with standard care for ulcer healing, but in pressure ulcers rather than diabetic foot ulcers."
+    },
+    {
+     "pmid": "12143832",
+     "fits": "no",
+     "reason": "It reviews cell and animal studies of laser wound healing, not people with diabetic foot ulcers."
+    }
+   ]
+  },
+  "mucositis": {
+   "question": {
+    "population": "People having cancer treatment (chemotherapy, radiotherapy or a stem cell transplant)",
+    "intervention": "Red or near-infrared light to the mouth (photobiomodulation, low-level laser)",
+    "comparison": "Sham light or no treatment",
+    "outcome": "Oral mucositis: how often, how severe, or pain"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40889543",
+     "fits": "partly",
+     "reason": "PBM (laser and LED) for oral mucositis incidence and severity in RCTs, but only in children with blood cancers on chemotherapy, a narrower group."
+    },
+    {
+     "pmid": "41880047",
+     "fits": "partly",
+     "reason": "PBM RCTs on oral mucositis risk and pain, but only in head and neck cancer patients, a narrower group."
+    },
+    {
+     "pmid": "42098536",
+     "fits": "yes",
+     "reason": "RCTs of PBM for oral mucositis incidence and severity in cancer patients on chemotherapy and/or radiotherapy."
+    },
+    {
+     "pmid": "41760795",
+     "fits": "partly",
+     "reason": "PBM for oral mucositis frequency and pain, but only in blood disease patients on chemo, and compared with other non-laser therapies."
+    },
+    {
+     "pmid": "40414733",
+     "fits": "yes",
+     "reason": "LED light therapy vs standard care or sham for oral mucositis severity and pain in cancer patients."
+    },
+    {
+     "pmid": "37629703",
+     "fits": "yes",
+     "reason": "Low-level laser vs placebo for oral mucositis severity in stem cell transplant patients, one of the named treatments."
+    },
+    {
+     "pmid": "37853254",
+     "fits": "yes",
+     "reason": "PBM vs no PBM for oral mucositis severity, duration and pain in patients on cancer therapy."
+    },
+    {
+     "pmid": "42319507",
+     "fits": "yes",
+     "reason": "RCTs of PBM vs sham for oral mucositis incidence, severity and pain in adult cancer patients."
+    },
+    {
+     "pmid": "40824766",
+     "fits": "no",
+     "reason": "Outcome is salivary nitrite, a biomarker, not oral mucositis incidence, severity or pain."
+    },
+    {
+     "pmid": "32624448",
+     "fits": "yes",
+     "reason": "Low-level laser vs placebo or no therapy for severe oral mucositis in patients on chemotherapy or radiotherapy."
+    },
+    {
+     "pmid": "38265122",
+     "fits": "partly",
+     "reason": "PBM RCTs on oral mucositis incidence, severity and pain, but only in head and neck cancer, a narrower group."
+    },
+    {
+     "pmid": "40172371",
+     "fits": "partly",
+     "reason": "PBM in cancer therapy patients, but the review focuses on biological mechanisms rather than mucositis incidence, severity or pain."
+    },
+    {
+     "pmid": "37799759",
+     "fits": "partly",
+     "reason": "PBM vs placebo for oral mucositis grade and pain, but only in head and neck cancer patients, a narrower group."
+    },
+    {
+     "pmid": "34230010",
+     "fits": "partly",
+     "reason": "Low-level laser vs sham or control for oral mucositis severity and pain, but only in children with cancer, a narrower group."
+    },
+    {
+     "pmid": "40002682",
+     "fits": "yes",
+     "reason": "RCTs of preventive PBM vs control for oral mucositis incidence and severity in chemotherapy patients."
+    },
+    {
+     "pmid": "41410110",
+     "fits": "partly",
+     "reason": "Umbrella review of other reviews, not primary studies, and it also includes laser plus photodynamic therapy."
+    },
+    {
+     "pmid": "33716203",
+     "fits": "yes",
+     "reason": "Network meta-analysis that includes low-level laser alone vs usual care for oral mucositis severity in cancer patients."
+    },
+    {
+     "pmid": "39523254",
+     "fits": "partly",
+     "reason": "PBM for oral mucositis incidence, severity and pain, but only in children, a narrower group."
+    },
+    {
+     "pmid": "32666214",
+     "fits": "partly",
+     "reason": "Laser vs placebo for oral mucositis and pain, but only in head and neck cancer patients, a narrower group."
+    },
+    {
+     "pmid": "32062592",
+     "fits": "partly",
+     "reason": "Low-level laser vs placebo for oral mucositis incidence and pain, but only in head and neck cancer on chemoradiotherapy."
+    },
+    {
+     "pmid": "29128883",
+     "fits": "partly",
+     "reason": "LLLT vs placebo or routine care for chemotherapy oral mucositis matches, but only children and young people are included."
+    },
+    {
+     "pmid": "38792366",
+     "fits": "partly",
+     "reason": "Photobiomodulation in head and neck cancer patients matches, but the main outcome is salivary cytokines rather than mucositis itself."
+    },
+    {
+     "pmid": "37976239",
+     "fits": "yes",
+     "reason": "Reviews trials of photobiomodulation (630-830 nm) to prevent oral mucositis in people having chemotherapy."
+    },
+    {
+     "pmid": "30729351",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of LLLT for oral mucositis severity and healing time in people having chemotherapy or radiotherapy."
+    },
+    {
+     "pmid": "31092370",
+     "fits": "partly",
+     "reason": "LLLT for radiotherapy oral mucositis matches, but the review compares laser doses with each other rather than with sham or no treatment."
+    },
+    {
+     "pmid": "39457676",
+     "fits": "partly",
+     "reason": "Reviews RCTs of PBM vs placebo in head and neck cancer, but the main outcome is cost-effectiveness, with severe mucositis only secondary."
+    },
+    {
+     "pmid": "35013780",
+     "fits": "yes",
+     "reason": "Meta-analysis of PBM vs no PBM for oral mucositis severity in stem cell transplant patients."
+    },
+    {
+     "pmid": "38057605",
+     "fits": "partly",
+     "reason": "PBM vs control in head and neck radiotherapy patients matches, but the main outcome is quality of life rather than mucositis."
+    },
+    {
+     "pmid": "34299869",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of PBM vs sham for chemotherapy oral mucositis severity, pain and duration."
+    },
+    {
+     "pmid": "25198431",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of prophylactic LLLT vs placebo or no therapy for severe mucositis and pain in cancer and stem cell transplant patients."
+    },
+    {
+     "pmid": "22450151",
+     "fits": "yes",
+     "reason": "Meta-analysis of red and infrared LLLT for cancer therapy oral mucositis risk, severity, duration and pain."
+    },
+    {
+     "pmid": "21660670",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of LLLT for oral mucositis incidence, severity and pain during chemotherapy or radiotherapy."
+    },
+    {
+     "pmid": "22486724",
+     "fits": "partly",
+     "reason": "The title matches LLLT for oral mucositis, but with no abstract the population, comparison and review methods can't be confirmed."
+    },
+    {
+     "pmid": "32764305",
+     "fits": "yes",
+     "reason": "Systematic review of PBM for oral mucositis incidence, severity and pain in chemotherapy and head and neck radiotherapy."
+    },
+    {
+     "pmid": "31286228",
+     "fits": "yes",
+     "reason": "MASCC/ISOO systematic review of PBM to prevent and treat oral mucositis and related pain in stem cell transplant, radiotherapy and chemotherapy."
+    },
+    {
+     "pmid": "23001179",
+     "fits": "yes",
+     "reason": "MASCC/ISOO systematic review of low-level laser and other light therapies for oral mucositis across cancer treatment settings."
+    }
+   ]
+  }
+ }
+}

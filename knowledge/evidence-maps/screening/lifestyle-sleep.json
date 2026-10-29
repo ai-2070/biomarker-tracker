@@ -1,0 +1,1482 @@
+{
+ "topic": "lifestyle-sleep",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "insulin": {
+   "question": {
+    "population": "Adults, mostly healthy",
+    "intervention": "Shortened, broken-up or mistimed sleep (in trials), or short sleep",
+    "comparison": "Normal sleep",
+    "outcome": "Insulin sensitivity or glucose tolerance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42769672",
+     "fits": "no",
+     "reason": "Looks mainly at obstructive sleep apnoea in people with type 2 diabetes, not short or disrupted sleep in mostly healthy adults."
+    },
+    {
+     "pmid": "42424773",
+     "fits": "no",
+     "reason": "The outcome is cognition and brain function in insulin-resistant people, not insulin sensitivity or glucose tolerance."
+    },
+    {
+     "pmid": "42634055",
+     "fits": "partly",
+     "reason": "Sleep restriction and insulin sensitivity or glucose regulation match, but it covers only adults with overweight or obesity."
+    },
+    {
+     "pmid": "35189549",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of sleep restriction, broken-up sleep and mistimed sleep versus normal sleep, measuring insulin sensitivity."
+    },
+    {
+     "pmid": "40280326",
+     "fits": "partly",
+     "reason": "Covers sleep loss in trials and glucose and insulin markers, but the main question is whether exercise offsets sleep loss, not sleep loss versus normal sleep."
+    },
+    {
+     "pmid": "35494895",
+     "fits": "yes",
+     "reason": "Systematic review of short sleep and insulin resistance in adults, compared with adequate sleep."
+    },
+    {
+     "pmid": "26944909",
+     "fits": "partly",
+     "reason": "Compares short with normal sleep, but only in people with type 2 diabetes and measures HbA1c, not insulin sensitivity or glucose tolerance."
+    },
+    {
+     "pmid": "30870662",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of sleep restriction versus normal sleep in healthy adults, with insulin sensitivity as an outcome."
+    },
+    {
+     "pmid": "34970158",
+     "fits": "no",
+     "reason": "Narrative review of sleep apnoea, sex differences and metabolic disease, not short or disrupted sleep and insulin sensitivity."
+    },
+    {
+     "pmid": "22832862",
+     "fits": "no",
+     "reason": "A genetic study of a lipid gene and sleep length, not a systematic review of sleep and insulin sensitivity."
+    }
+   ]
+  },
+  "regularity": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "Regular sleep (going to sleep and waking at similar times)",
+    "comparison": "Irregular sleep",
+    "outcome": "Death, heart disease or cardiometabolic health"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41259946",
+     "fits": "yes",
+     "reason": "Reviews sleep regularity versus irregular timing in adults, with cardiometabolic, cardiovascular and all-cause mortality outcomes."
+    },
+    {
+     "pmid": "36081237",
+     "fits": "yes",
+     "reason": "Reviews sleep variability versus regularity against cardiometabolic outcomes; the population is not limited to one illness, though no age range is stated."
+    },
+    {
+     "pmid": "41101484",
+     "fits": "no",
+     "reason": "The exposure (sleep variability) matches, but the outcome is cognitive function, not death or cardiometabolic health."
+    },
+    {
+     "pmid": "33054339",
+     "fits": "yes",
+     "reason": "Reviews sleep consistency and regularity in adults across 14 health outcomes; the abstract does not list them but says they include adverse health outcomes."
+    },
+    {
+     "pmid": "35481337",
+     "fits": "no",
+     "reason": "Covers children and adolescents and looks at sleep timing rather than regularity, mostly with non-cardiometabolic outcomes."
+    },
+    {
+     "pmid": "31387413",
+     "fits": "no",
+     "reason": "Covers young people and social jetlag, with mental health outcomes rather than death or cardiometabolic health."
+    }
+   ]
+  },
+  "intake-weight": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Shortened sleep (in trials), or short usual sleep",
+    "comparison": "Normal sleep",
+    "outcome": "How much people eat (energy intake), appetite or body weight"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39079836",
+     "fits": "yes",
+     "reason": "Cohort studies of men and women link self-reported short sleep with new obesity, which matches the exposure and body weight outcome."
+    },
+    {
+     "pmid": "42634055",
+     "fits": "no",
+     "reason": "The outcome is glucose metabolism in adults with overweight, not energy intake, appetite or body weight."
+    },
+    {
+     "pmid": "28818457",
+     "fits": "partly",
+     "reason": "Short sleep and obesity match, but the population is children, not adults."
+    },
+    {
+     "pmid": "40843663",
+     "fits": "partly",
+     "reason": "Sleep restriction in healthy adults matches, but the outcome is appetite-regulating hormones rather than intake, appetite or weight."
+    },
+    {
+     "pmid": "42659532",
+     "fits": "partly",
+     "reason": "Short sleep and obesity match, but the population is children and adolescents."
+    },
+    {
+     "pmid": "39469806",
+     "fits": "yes",
+     "reason": "Pooled studies of older adults compare short sleep with obesity, which fits the adults, exposure and body weight outcome."
+    },
+    {
+     "pmid": "42670398",
+     "fits": "partly",
+     "reason": "Sleep duration and adiposity in adults match, but only Middle Eastern adults are covered and the studies are mostly cross-sectional."
+    },
+    {
+     "pmid": "34620371",
+     "fits": "yes",
+     "reason": "Sleep restriction trials (mostly in adults) report energy intake, appetite and body weight compared with normal sleep."
+    },
+    {
+     "pmid": "38835720",
+     "fits": "yes",
+     "reason": "Adult cohort studies link short versus normal sleep with central obesity, a body weight outcome."
+    },
+    {
+     "pmid": "37673709",
+     "fits": "no",
+     "reason": "This review is about bariatric surgery for sleep apnoea, which is a different question."
+    },
+    {
+     "pmid": "34508648",
+     "fits": "yes",
+     "reason": "Adult cohort studies compare self-reported short sleep with regular sleep for developing obesity."
+    },
+    {
+     "pmid": "30977011",
+     "fits": "yes",
+     "reason": "Experimental sleep restriction in adults is pooled for body weight and body fat."
+    },
+    {
+     "pmid": "41462718",
+     "fits": "partly",
+     "reason": "Sleep duration and obesity risk match, but the population is children aged 0 to 18."
+    },
+    {
+     "pmid": "32537891",
+     "fits": "partly",
+     "reason": "Short sleep versus recommended sleep matches, but the outcome is appetite hormones, not intake, appetite or weight."
+    },
+    {
+     "pmid": "32960623",
+     "fits": "yes",
+     "reason": "Partial sleep deprivation versus habitual sleep in healthy people is pooled for total energy intake."
+    },
+    {
+     "pmid": "33487495",
+     "fits": "partly",
+     "reason": "Short sleep and overweight match, but the population is Chinese children and adolescents."
+    },
+    {
+     "pmid": "32527625",
+     "fits": "yes",
+     "reason": "In adults, short sleep duration is pooled as a predictor of future obesity."
+    },
+    {
+     "pmid": "27804960",
+     "fits": "yes",
+     "reason": "Partial sleep deprivation versus a control condition is pooled for energy intake."
+    },
+    {
+     "pmid": "33001515",
+     "fits": "yes",
+     "reason": "Sleep restriction trials in adults are pooled for energy intake compared with control."
+    },
+    {
+     "pmid": "26098388",
+     "fits": "yes",
+     "reason": "Randomised trials of reduced sleep report body weight and food intake."
+    },
+    {
+     "pmid": "33237635",
+     "fits": "partly",
+     "reason": "Short sleep and obesity or weight gain match, but the population is preschool children, not adults."
+    },
+    {
+     "pmid": "33450724",
+     "fits": "partly",
+     "reason": "Short sleep and obesity match, but the population is children and adolescents, not adults."
+    },
+    {
+     "pmid": "31911659",
+     "fits": "no",
+     "reason": "Asks whether weight loss programmes improve sleep apnoea and sleep in youth, which is a different question."
+    },
+    {
+     "pmid": "30941582",
+     "fits": "yes",
+     "reason": "Prospective cohorts pooling short sleep against 7-8 hours and obesity risk; the population is not limited to children."
+    },
+    {
+     "pmid": "28073179",
+     "fits": "partly",
+     "reason": "Short sleep and obesity or BMI match, but the population is children, not adults."
+    },
+    {
+     "pmid": "27269366",
+     "fits": "partly",
+     "reason": "Short sleep and obesity match, but the population is children and adolescents, not adults."
+    },
+    {
+     "pmid": "29401314",
+     "fits": "partly",
+     "reason": "Short sleep and obesity or BMI change match, but the population is infants, children and adolescents."
+    },
+    {
+     "pmid": "25589359",
+     "fits": "partly",
+     "reason": "Short sleep and later overweight match, but the population is children and adolescents, not adults."
+    },
+    {
+     "pmid": "26080646",
+     "fits": "yes",
+     "reason": "Adult prospective cohorts pooling short against normal sleep for weight gain and obesity."
+    },
+    {
+     "pmid": "30741778",
+     "fits": "no",
+     "reason": "Young children only, and it looks at combined sleep and diet effects rather than short sleep on its own."
+    },
+    {
+     "pmid": "25450058",
+     "fits": "yes",
+     "reason": "Adult prospective studies pooling short against normal sleep duration for later obesity."
+    },
+    {
+     "pmid": "18239586",
+     "fits": "yes",
+     "reason": "Systematically reviews short sleep and weight in adults and children, including adult longitudinal studies."
+    },
+    {
+     "pmid": "21784678",
+     "fits": "yes",
+     "reason": "Systematically reviews longitudinal studies of sleep duration and later weight gain, including 13 adult studies."
+    },
+    {
+     "pmid": "18517032",
+     "fits": "yes",
+     "reason": "Pools short sleep and obesity or BMI separately for adults and children."
+    }
+   ]
+  },
+  "cbt-i": {
+   "question": {
+    "population": "Adults with chronic insomnia (reviews limited to one other illness, such as cancer, count as partly)",
+    "intervention": "Cognitive behavioural therapy for insomnia (CBT-I), face to face or digital",
+    "comparison": "Waiting list, sleep advice, sham treatment or usual care",
+    "outcome": "Time to fall asleep, time awake in the night, sleep efficiency or insomnia severity"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42439579",
+     "fits": "partly",
+     "reason": "CBT-I against usual care with sleep onset, efficiency and insomnia severity outcomes, but the population is adolescents, not adults."
+    },
+    {
+     "pmid": "42670890",
+     "fits": "partly",
+     "reason": "CBT-I delivery modes against usual care with all the named sleep outcomes, but limited to adults with cancer."
+    },
+    {
+     "pmid": "42681083",
+     "fits": "partly",
+     "reason": "Digital CBT-I against control conditions for insomnia severity, but limited to a narrower group: adults aged 60 and over."
+    },
+    {
+     "pmid": "42435604",
+     "fits": "no",
+     "reason": "CBT-I in adults with insomnia, but the outcome is depressive symptoms, not sleep onset, wake time, efficiency or insomnia severity."
+    },
+    {
+     "pmid": "42751933",
+     "fits": "partly",
+     "reason": "CBT-I during hypnotic tapering in chronic insomnia; insomnia severity is pooled but the main focus and comparisons are drug discontinuation."
+    },
+    {
+     "pmid": "42119336",
+     "fits": "partly",
+     "reason": "Digital CBT-I against minimal-contact controls for insomnia severity, but limited to armed forces and veterans."
+    },
+    {
+     "pmid": "42240717",
+     "fits": "yes",
+     "reason": "Pooled trials of fully automated digital CBT-I in adults with insomnia, reporting insomnia severity, sleep initiation and sleep efficiency."
+    },
+    {
+     "pmid": "42547685",
+     "fits": "no",
+     "reason": "Reviews acceptance and commitment therapy, not CBT-I against waitlist, advice, sham or usual care."
+    },
+    {
+     "pmid": "41601519",
+     "fits": "partly",
+     "reason": "Unguided digital CBT-I with insomnia outcomes, but limited to adults with insomnia and depression together."
+    },
+    {
+     "pmid": "41439834",
+     "fits": "yes",
+     "reason": "Digital CBT-I against waitlist or minimal control in adults with insomnia, pooling sleep onset, wake time and sleep efficiency."
+    },
+    {
+     "pmid": "42421223",
+     "fits": "no",
+     "reason": "CBT-I components are assessed for work productivity, not sleep onset, wake time, efficiency or insomnia severity."
+    },
+    {
+     "pmid": "41843996",
+     "fits": "no",
+     "reason": "Reviews how acceptable digital CBT-I is, not its effect on sleep outcomes against a control."
+    },
+    {
+     "pmid": "39924148",
+     "fits": "partly",
+     "reason": "Digital CBT-I with insomnia, sleep onset and wake time outcomes, but the population is adolescents, mostly in within-subject studies."
+    },
+    {
+     "pmid": "42841437",
+     "fits": "yes",
+     "reason": "SHUTi digital CBT-I against online sleep education, pooling insomnia severity, time to fall asleep and time awake at night."
+    },
+    {
+     "pmid": "42621510",
+     "fits": "no",
+     "reason": "A bibliometric analysis of CBT-I research, not a synthesis of effects on sleep outcomes."
+    },
+    {
+     "pmid": "40982264",
+     "fits": "partly",
+     "reason": "CBT-I with insomnia severity, sleep efficiency and sleep onset outcomes, but limited to adults with chronic disease."
+    },
+    {
+     "pmid": "41259947",
+     "fits": "partly",
+     "reason": "CBT-I delivery formats against control in insomnia, but the outcome is remission or response rather than the named sleep measures."
+    },
+    {
+     "pmid": "42248986",
+     "fits": "no",
+     "reason": "Reviews internet-based acceptance and commitment therapy, not CBT-I."
+    },
+    {
+     "pmid": "41934053",
+     "fits": "no",
+     "reason": "Brief behavioural therapy for insomnia assessed for depression, anxiety and fatigue, not the named sleep outcomes."
+    },
+    {
+     "pmid": "41061442",
+     "fits": "partly",
+     "reason": "CBT-I against usual care for insomnia severity, but limited to adults with schizophrenia."
+    },
+    {
+     "pmid": "41531400",
+     "fits": "partly",
+     "reason": "CBT-I with insomnia severity outcomes, but limited to menopausal women, a narrower population."
+    },
+    {
+     "pmid": "42247852",
+     "fits": "partly",
+     "reason": "Menopausal women with chronic insomnia; CBT-I is pooled with other non-drug treatments rather than analysed on its own."
+    },
+    {
+     "pmid": "42317719",
+     "fits": "partly",
+     "reason": "CBT-I for clinically relevant insomnia, but limited to cancer patients and survivors."
+    },
+    {
+     "pmid": "41723407",
+     "fits": "no",
+     "reason": "Studies vestibular nerve stimulation versus sham, not CBT-I."
+    },
+    {
+     "pmid": "40075149",
+     "fits": "yes",
+     "reason": "Fully automated digital CBT-I versus control groups in insomnia, with insomnia severity pooled."
+    },
+    {
+     "pmid": "42813493",
+     "fits": "partly",
+     "reason": "Face-to-face CBT-I improved sleep efficiency and time awake at night, but only in older adults."
+    },
+    {
+     "pmid": "42856849",
+     "fits": "no",
+     "reason": "Network meta-analysis of traditional Chinese medicine strategies; CBT-I is only a comparison node."
+    },
+    {
+     "pmid": "40114473",
+     "fits": "partly",
+     "reason": "CBT-I versus control on insomnia severity, but limited to patients with cardiovascular disease."
+    },
+    {
+     "pmid": "40668370",
+     "fits": "no",
+     "reason": "School-based CBT-I in adolescents, analysed within groups without control comparisons."
+    },
+    {
+     "pmid": "42727109",
+     "fits": "no",
+     "reason": "Studies stand-alone wearable digital devices, not CBT-I."
+    },
+    {
+     "pmid": "42107468",
+     "fits": "no",
+     "reason": "CBT-I combined with PAP for insomnia with sleep apnea, compared with PAP alone, not waitlist or usual care."
+    },
+    {
+     "pmid": "40449065",
+     "fits": "yes",
+     "reason": "Includes CBT-I versus sleep hygiene education comparisons in adults with insomnia, with insomnia severity pooled."
+    },
+    {
+     "pmid": "41121501",
+     "fits": "partly",
+     "reason": "Mainly brief behavioural therapy versus usual care on sleep outcomes; full CBT-I is only a network comparator."
+    },
+    {
+     "pmid": "38226714",
+     "fits": "partly",
+     "reason": "Digital CBT-I versus controls on insomnia severity, but limited to people with comorbid depression."
+    },
+    {
+     "pmid": "41798736",
+     "fits": "yes",
+     "reason": "Fully automated digital CBT-I versus control in adults diagnosed with insomnia, with insomnia severity pooled."
+    },
+    {
+     "pmid": "41798544",
+     "fits": "partly",
+     "reason": "CBT-I in perinatal women with insomnia severity outcomes; narrower population and comparators include any intervention."
+    },
+    {
+     "pmid": "40369457",
+     "fits": "partly",
+     "reason": "CBT-I versus usual care, waitlist or sleep hygiene on insomnia severity, but limited to cancer survivors."
+    },
+    {
+     "pmid": "41861511",
+     "fits": "no",
+     "reason": "Reviews predictors and moderators of CBT-I response, not effects versus a control."
+    },
+    {
+     "pmid": "39864131",
+     "fits": "partly",
+     "reason": "CBT-I versus control on insomnia severity, but limited to adults with alcohol use disorder."
+    },
+    {
+     "pmid": "39571405",
+     "fits": "no",
+     "reason": "Digital CBT-I outcomes are work-related (presenteeism, rumination), not sleep or insomnia severity."
+    },
+    {
+     "pmid": "39504928",
+     "fits": "partly",
+     "reason": "Adults with insomnia and insomnia severity match, but it analyses separate CBT-I components using pre-post effects rather than whole CBT-I versus control."
+    },
+    {
+     "pmid": "40525767",
+     "fits": "yes",
+     "reason": "Randomised trials of digital CBT-I in adults with insomnia, pooling effects on insomnia symptoms against controls."
+    },
+    {
+     "pmid": "41278217",
+     "fits": "no",
+     "reason": "A protocol whose outcomes are suicidal ideation, behaviour and deaths, not sleep outcomes."
+    },
+    {
+     "pmid": "39680961",
+     "fits": "partly",
+     "reason": "CBT-I and insomnia symptom outcomes match, but the population is adolescents aged 10-19, not adults."
+    },
+    {
+     "pmid": "41540418",
+     "fits": "yes",
+     "reason": "Randomised trials of nurse-led CBT-I in adults with insomnia, pooling insomnia severity and sleep efficiency."
+    },
+    {
+     "pmid": "40100466",
+     "fits": "partly",
+     "reason": "CBT-I versus standard care on insomnia severity and sleep efficiency, but limited to people with cancer."
+    },
+    {
+     "pmid": "39628800",
+     "fits": "partly",
+     "reason": "CBT-I with insomnia, sleep onset and sleep efficiency outcomes, but the population is adolescents, not adults."
+    },
+    {
+     "pmid": "38795362",
+     "fits": "partly",
+     "reason": "CBT-I versus no treatment, sleep hygiene or usual care in adults, but the focus is cost-effectiveness with unspecified efficacy outcomes."
+    },
+    {
+     "pmid": "39111059",
+     "fits": "partly",
+     "reason": "CBT-I versus control on insomnia, but limited to people with chronic musculoskeletal pain."
+    },
+    {
+     "pmid": "39242039",
+     "fits": "partly",
+     "reason": "CBT-I versus control in adults with depression and insomnia; the main outcome is depression, with insomnia remission as secondary."
+    },
+    {
+     "pmid": "39520969",
+     "fits": "no",
+     "reason": "Looks at CBT-I for preventing psychiatric disorders, with depression and suicide outcomes rather than sleep outcomes."
+    },
+    {
+     "pmid": "42165712",
+     "fits": "no",
+     "reason": "Outcomes are inflammatory biomarkers, not sleep onset, wake time, sleep efficiency or insomnia severity."
+    },
+    {
+     "pmid": "41830655",
+     "fits": "yes",
+     "reason": "Randomised trials of digital CBT-I versus control, pooling Insomnia Severity Index outcomes."
+    },
+    {
+     "pmid": "39181023",
+     "fits": "partly",
+     "reason": "CBT-I versus no CBT-I on insomnia severity and sleep latency, but the population has acute rather than chronic insomnia."
+    },
+    {
+     "pmid": "40180888",
+     "fits": "partly",
+     "reason": "CBT-I for insomnia, but limited to people with neurodevelopmental conditions, including children, and mostly before-after studies."
+    },
+    {
+     "pmid": "41694129",
+     "fits": "partly",
+     "reason": "Chronic insomnia and CBT-I match, but it summarises guidelines and reviews on sleep quality with no defined comparison."
+    },
+    {
+     "pmid": "40956569",
+     "fits": "no",
+     "reason": "A review of economic evaluations across many sleep treatments; the outcomes are costs, not sleep measures."
+    },
+    {
+     "pmid": "39186370",
+     "fits": "no",
+     "reason": "Compares digital CBT-I head to head with face-to-face CBT-I, not with waiting list, advice, sham or usual care."
+    },
+    {
+     "pmid": "37927792",
+     "fits": "partly",
+     "reason": "Digital CBT-I trials on insomnia severity, but limited to adults with both insomnia and depression."
+    },
+    {
+     "pmid": "41389384",
+     "fits": "no",
+     "reason": "Reviews which comparators internet CBT-I trials used and research ethics, not treatment effects on sleep."
+    },
+    {
+     "pmid": "38749363",
+     "fits": "no",
+     "reason": "Reviews physical exercise for insomnia, not CBT-I."
+    },
+    {
+     "pmid": "41262391",
+     "fits": "partly",
+     "reason": "CBT-I for insomnia severity, but limited to adults with Alzheimer's, MCI or Parkinson's, with mixed comparators."
+    },
+    {
+     "pmid": "40765616",
+     "fits": "partly",
+     "reason": "Includes digital CBT-I RCTs vs waitlist or minimal care on ISI, but analyses sponsorship bias rather than the treatment effect."
+    },
+    {
+     "pmid": "39188094",
+     "fits": "partly",
+     "reason": "Adults with chronic insomnia and CBT-I, but compared with drugs or combination, not waitlist, advice, sham or usual care."
+    },
+    {
+     "pmid": "38781520",
+     "fits": "partly",
+     "reason": "CBT-I vs controls on insomnia severity, but limited to cancer patients and survivors."
+    },
+    {
+     "pmid": "41170811",
+     "fits": "partly",
+     "reason": "CBT-I RCTs on insomnia severity and sleep diary outcomes, but limited to people with cancer."
+    },
+    {
+     "pmid": "38850594",
+     "fits": "yes",
+     "reason": "Pooled CBT-I RCTs vs control groups on post-treatment insomnia severity, with subgroups by setting and control type."
+    },
+    {
+     "pmid": "40452498",
+     "fits": "no",
+     "reason": "Outcome is suicidality, not sleep onset, waking, sleep efficiency or insomnia severity."
+    },
+    {
+     "pmid": "40369158",
+     "fits": "no",
+     "reason": "Author correction notice with no abstract, not a review."
+    },
+    {
+     "pmid": "37657127",
+     "fits": "partly",
+     "reason": "CBT-I vs control on ISI, sleep onset, waking and sleep efficiency, but limited to workers."
+    },
+    {
+     "pmid": "37952481",
+     "fits": "partly",
+     "reason": "CBT-I RCTs on insomnia severity, but limited to pregnant women."
+    },
+    {
+     "pmid": "36872072",
+     "fits": "partly",
+     "reason": "CBT-I on insomnia severity, but limited to people with comorbid sleep apnoea and not limited to controlled comparisons."
+    },
+    {
+     "pmid": "39372699",
+     "fits": "partly",
+     "reason": "Network meta-analysis includes CBT-I vs control on ISI, but limited to cancer-related insomnia."
+    },
+    {
+     "pmid": "36459948",
+     "fits": "partly",
+     "reason": "CBT-I on insomnia severity, but limited to shift workers and pools pre-post changes, not control comparisons."
+    },
+    {
+     "pmid": "37828853",
+     "fits": "partly",
+     "reason": "CBT-I for insomnia, but compares telehealth with face-to-face delivery, not with waitlist or usual care."
+    },
+    {
+     "pmid": "34902820",
+     "fits": "yes",
+     "reason": "Digital CBT-I vs usual care in adults with insomnia on sleep onset latency, WASO, sleep efficiency and insomnia symptoms."
+    },
+    {
+     "pmid": "39908628",
+     "fits": "no",
+     "reason": "Commentary on a meta-analysis, not a systematic review."
+    },
+    {
+     "pmid": "38231522",
+     "fits": "yes",
+     "reason": "CBT-I vs control in adults with chronic insomnia, with remission, sleep efficiency, wake time and sleep latency outcomes."
+    },
+    {
+     "pmid": "36543054",
+     "fits": "partly",
+     "reason": "CBT-I in insomnia disorder, but compares response between short and normal sleep phenotypes, not against a control."
+    },
+    {
+     "pmid": "37586843",
+     "fits": "partly",
+     "reason": "Adults with insomnia vs controls, but analyses stimulus control alone, a single CBT-I component."
+    },
+    {
+     "pmid": "36529887",
+     "fits": "partly",
+     "reason": "Pools trials of CBT-I against control on insomnia severity, sleep onset latency and sleep efficiency, but only in pregnant women, a narrower group."
+    },
+    {
+     "pmid": "36732610",
+     "fits": "yes",
+     "reason": "Pools trials in adults with insomnia disorder comparing face-to-face and digital CBT-I with waiting list on insomnia severity."
+    },
+    {
+     "pmid": "39965279",
+     "fits": "no",
+     "reason": "This is a corrigendum with no abstract, not a review of studies, so it cannot be judged as one."
+    },
+    {
+     "pmid": "36410076",
+     "fits": "partly",
+     "reason": "Pools trials of CBT-I against control on sleep, but only in people with insomnia and chronic pain together, one other illness."
+    },
+    {
+     "pmid": "39577024",
+     "fits": "no",
+     "reason": "This is a corrigendum with no abstract, not a review of studies, so it cannot be judged as one."
+    },
+    {
+     "pmid": "37271575",
+     "fits": "partly",
+     "reason": "Adults with chronic insomnia and insomnia severity match, but it tests mindfulness added to CBT-I against active controls, not CBT-I itself."
+    },
+    {
+     "pmid": "36966184",
+     "fits": "yes",
+     "reason": "Pools trials of digital CBT-I in adults with insomnia and reports a pooled effect on sleep outcomes alongside depression and anxiety."
+    },
+    {
+     "pmid": "37726877",
+     "fits": "partly",
+     "reason": "Reviews CBT-I for insomnia, but only in psychiatric inpatients, and most included studies had no comparison group."
+    },
+    {
+     "pmid": "35968818",
+     "fits": "partly",
+     "reason": "Pools studies of CBT-I on sleep efficiency and other sleep measures, but only in older adults, a narrower group."
+    },
+    {
+     "pmid": "37499485",
+     "fits": "yes",
+     "reason": "Network meta-analysis of trials in adults with insomnia that includes CBT-I against placebo and no-treatment controls on insomnia severity."
+    },
+    {
+     "pmid": "36461882",
+     "fits": "partly",
+     "reason": "Pools trials of CBT-I in people with chronic insomnia, but the outcome is total sleep time, which is not one of the named outcomes."
+    },
+    {
+     "pmid": "41347621",
+     "fits": "no",
+     "reason": "Reviews acupuncture, not CBT-I, for insomnia in people with cancer."
+    },
+    {
+     "pmid": "38524162",
+     "fits": "partly",
+     "reason": "Pools trials of CBT-I on insomnia severity, but only in perinatal women, a narrower group."
+    },
+    {
+     "pmid": "35330480",
+     "fits": "partly",
+     "reason": "Pools trials of digital CBT-I on sleep outcomes, but in adolescents and college students rather than adults generally."
+    },
+    {
+     "pmid": "35303692",
+     "fits": "partly",
+     "reason": "Pools studies of CBT-I on insomnia severity, sleep efficiency, time awake and time to fall asleep, but only in cancer survivors."
+    },
+    {
+     "pmid": "37610075",
+     "fits": "no",
+     "reason": "Reviews how professionals are trained to deliver CBT-I, not CBT-I's effect on patients against a comparison."
+    },
+    {
+     "pmid": "38095732",
+     "fits": "no",
+     "reason": "Reviews how well racial and ethnic groups are represented in cancer CBT-I trials, not sleep outcomes against a comparison."
+    },
+    {
+     "pmid": "35996803",
+     "fits": "partly",
+     "reason": "Pools trials of CBT-I against inactive controls on insomnia severity, sleep efficiency, time to fall asleep and time awake, but only in cancer patients."
+    },
+    {
+     "pmid": "37862834",
+     "fits": "no",
+     "reason": "Reviews how changes in sleep beliefs relate to CBT-I outcomes, not CBT-I against a comparison."
+    },
+    {
+     "pmid": "35653951",
+     "fits": "partly",
+     "reason": "Pools trials of face-to-face and digital CBT-I against controls, but the outcome is quality of life, not the named sleep outcomes."
+    },
+    {
+     "pmid": "35240417",
+     "fits": "partly",
+     "reason": "CBT-I vs placebo, waitlist or usual care on insomnia severity, but limited to adults with comorbid mental disorders."
+    },
+    {
+     "pmid": "36332409",
+     "fits": "no",
+     "reason": "A reply letter with no abstract, about CBT-I and quality of life rather than the named sleep outcomes."
+    },
+    {
+     "pmid": "36827635",
+     "fits": "no",
+     "reason": "Children and adolescents, with anxiety and depression outcomes rather than insomnia measures."
+    },
+    {
+     "pmid": "37861514",
+     "fits": "no",
+     "reason": "Reviews acupuncture or moxibustion in older adults, not CBT-I against the named comparisons."
+    },
+    {
+     "pmid": "35759820",
+     "fits": "yes",
+     "reason": "Adults with insomnia; CBT-I formats vs usual care and waitlist; pooled sleep onset, time awake, sleep efficiency and severity."
+    },
+    {
+     "pmid": "37570447",
+     "fits": "yes",
+     "reason": "Adults with chronic insomnia; CBT-I vs control in randomised trials; pooled long-term sleep improvement."
+    },
+    {
+     "pmid": "33887655",
+     "fits": "no",
+     "reason": "Reviews mediators of change in CBT-I, not its effect against waitlist, advice, sham or usual care."
+    },
+    {
+     "pmid": "33610967",
+     "fits": "partly",
+     "reason": "CBT-I randomised trials on sleep outcomes, but limited to people with comorbid chronic pain."
+    },
+    {
+     "pmid": "37398584",
+     "fits": "partly",
+     "reason": "Includes CBT-I for residual insomnia, but limited to major depression and covers many treatments without the named comparisons."
+    },
+    {
+     "pmid": "32950013",
+     "fits": "yes",
+     "reason": "Adults with insomnia; digital CBT-I vs waitlist, usual care or online education; pooled insomnia severity."
+    },
+    {
+     "pmid": "35938209",
+     "fits": "yes",
+     "reason": "Adults with chronic insomnia; digital and face-to-face CBT-I vs placebo; pooled insomnia severity, time awake and sleep onset."
+    },
+    {
+     "pmid": "35151065",
+     "fits": "partly",
+     "reason": "Covers telemedicine for insomnia broadly, including diagnosis, with CBT-I vs no intervention pooled from only two studies."
+    },
+    {
+     "pmid": "32987319",
+     "fits": "partly",
+     "reason": "CBT-I trials on insomnia and sleep quality, but limited to people with breast cancer."
+    },
+    {
+     "pmid": "40176550",
+     "fits": "partly",
+     "reason": "Pools three trials of digital CBT-I vs controls on insomnia, but only adults aged 65+ and not a systematic search."
+    },
+    {
+     "pmid": "36476211",
+     "fits": "no",
+     "reason": "Outcomes are cardiometabolic biomarkers, not sleep onset, time awake, sleep efficiency or insomnia severity."
+    },
+    {
+     "pmid": "34297651",
+     "fits": "partly",
+     "reason": "CBT-I on sleep efficiency, but limited to fibromyalgia and compared with other non-drug treatments."
+    },
+    {
+     "pmid": "32992228",
+     "fits": "no",
+     "reason": "Outcome is repetitive negative thinking and worry, not the named sleep outcomes."
+    },
+    {
+     "pmid": "36027795",
+     "fits": "partly",
+     "reason": "Adults with insomnia and CBT-I on the named sleep outcomes, but compared with drug treatment rather than the named comparisons."
+    },
+    {
+     "pmid": "36787999",
+     "fits": "no",
+     "reason": "Outcomes are brain imaging findings, not sleep onset, time awake, sleep efficiency or insomnia severity."
+    },
+    {
+     "pmid": "37527850",
+     "fits": "no",
+     "reason": "Umbrella review of alternative treatments such as acupuncture and melatonin, not CBT-I."
+    },
+    {
+     "pmid": "36802110",
+     "fits": "partly",
+     "reason": "Older adults with insomnia only, and it tests the behavioural parts (sleep restriction, stimulus control) rather than full CBT-I, mostly in pre-post studies."
+    },
+    {
+     "pmid": "31816582",
+     "fits": "no",
+     "reason": "CBT-I trials against controls, but the outcome is dysfunctional beliefs about sleep, not sleep onset, waking, efficiency or severity."
+    },
+    {
+     "pmid": "31377503",
+     "fits": "yes",
+     "reason": "Pools CBT-I studies in people with insomnia for time to fall asleep and time awake, measured objectively and by diary."
+    },
+    {
+     "pmid": "35700174",
+     "fits": "partly",
+     "reason": "A protocol with no results yet, limited to people recovering from COVID-19 who have insomnia and receive internet CBT."
+    },
+    {
+     "pmid": "32090753",
+     "fits": "yes",
+     "reason": "Self-help CBT-I against waiting list, routine care or no treatment, with insomnia symptoms pooled alongside depression."
+    },
+    {
+     "pmid": "31648145",
+     "fits": "partly",
+     "reason": "Narrower group: chronic insomnia patients stopping benzodiazepines; CBT-I plus tapering against tapering alone, with insomnia symptoms."
+    },
+    {
+     "pmid": "35398650",
+     "fits": "no",
+     "reason": "Looks at how adherence to CBT-I is measured and what predicts it, not at CBT-I against a control."
+    },
+    {
+     "pmid": "32115395",
+     "fits": "partly",
+     "reason": "CBT-I in insomnia with sleep outcomes, but compared with active treatments rather than waiting list, advice, sham or usual care."
+    },
+    {
+     "pmid": "32860556",
+     "fits": "partly",
+     "reason": "Limited to patients with medical or psychiatric conditions, and compares CBT-I with active treatments."
+    },
+    {
+     "pmid": "31491656",
+     "fits": "yes",
+     "reason": "CBT-I against non-active controls, pooling insomnia severity, time to fall asleep and sleep efficiency."
+    },
+    {
+     "pmid": "33360841",
+     "fits": "partly",
+     "reason": "Limited to adults with tinnitus, and the CBT-based programmes may not be CBT-I; insomnia severity is pooled."
+    },
+    {
+     "pmid": "37654128",
+     "fits": "no",
+     "reason": "Looks at links between personality and insomnia, not CBT-I against a control."
+    },
+    {
+     "pmid": "29791593",
+     "fits": "partly",
+     "reason": "CBT-I with sleep onset and efficiency outcomes, but in children and adolescents rather than adults."
+    },
+    {
+     "pmid": "29194467",
+     "fits": "yes",
+     "reason": "Most included studies compare CBT-I with sleep hygiene education (sleep advice) and report sleep efficiency."
+    },
+    {
+     "pmid": "33692609",
+     "fits": "partly",
+     "reason": "Reviews earlier meta-analyses of CBT-I for insomnia outcomes rather than primary studies, and no comparator is named."
+    },
+    {
+     "pmid": "32739824",
+     "fits": "no",
+     "reason": "Economic evaluations of CBT-I, so the outcome is cost-effectiveness rather than sleep."
+    },
+    {
+     "pmid": "37202368",
+     "fits": "no",
+     "reason": "Tests brain stimulation for insomnia, not CBT-I."
+    },
+    {
+     "pmid": "33164741",
+     "fits": "yes",
+     "reason": "Trials of CBT-I and other behavioural treatments for chronic insomnia in adults, analysed for key outcomes."
+    },
+    {
+     "pmid": "35492706",
+     "fits": "no",
+     "reason": "Tests acupuncture for insomnia linked to depression, not CBT-I."
+    },
+    {
+     "pmid": "32777632",
+     "fits": "no",
+     "reason": "CBT-I in insomnia, but the outcomes are daytime symptoms, not sleep onset, waking, efficiency or severity."
+    },
+    {
+     "pmid": "36355585",
+     "fits": "no",
+     "reason": "Appraises clinical practice guidelines, mainly on drug treatment, and does not review CBT-I trials against a control on sleep outcomes."
+    },
+    {
+     "pmid": "32481348",
+     "fits": "no",
+     "reason": "This is a protocol only, so no studies have been reviewed or pooled yet, although the planned PICO is close."
+    },
+    {
+     "pmid": "26615572",
+     "fits": "yes",
+     "reason": "Pools RCTs of internet CBT-I in insomnia on insomnia severity, sleep efficiency, wake after sleep onset and sleep onset latency."
+    },
+    {
+     "pmid": "32733587",
+     "fits": "partly",
+     "reason": "Pools CBT-I vs no treatment on insomnia scales, but only in people whose insomnia comes with depression."
+    },
+    {
+     "pmid": "28619248",
+     "fits": "no",
+     "reason": "Looks at CBT-I effects on depression and fatigue symptoms, not on sleep onset, wake time, efficiency or insomnia severity."
+    },
+    {
+     "pmid": "31725474",
+     "fits": "yes",
+     "reason": "Network meta-analysis of placebo-controlled RCTs in primary insomnia that includes CBT-I with sleep efficiency as an outcome."
+    },
+    {
+     "pmid": "31358494",
+     "fits": "yes",
+     "reason": "Systematically reviews CBT-I for chronic insomnia in primary care, reporting sleep diary outcomes and the Insomnia Severity Index."
+    },
+    {
+     "pmid": "29782076",
+     "fits": "no",
+     "reason": "Looks at insomnia treatments in people with depression, with depression as the outcome rather than sleep."
+    },
+    {
+     "pmid": "30612061",
+     "fits": "yes",
+     "reason": "Reviews CBT-I programmes in primary care and community settings, pooling insomnia severity, sleep efficiency, sleep onset latency and wake time."
+    },
+    {
+     "pmid": "29455893",
+     "fits": "no",
+     "reason": "Reviews CBT-I as a treatment for depression, with depression outcomes rather than sleep outcomes."
+    },
+    {
+     "pmid": "28918315",
+     "fits": "no",
+     "reason": "Looks at CBT-I effects on cognitive performance, not on sleep onset, wake time, efficiency or insomnia severity."
+    },
+    {
+     "pmid": "26054060",
+     "fits": "yes",
+     "reason": "Pools RCTs of face-to-face CBT-I vs inactive controls in adults with chronic insomnia on sleep onset, wake time and efficiency."
+    },
+    {
+     "pmid": "31699744",
+     "fits": "no",
+     "reason": "Protocol for a review of CBT-I costs, with no sleep outcomes and no studies reviewed yet."
+    },
+    {
+     "pmid": "33984745",
+     "fits": "partly",
+     "reason": "Pools RCTs vs minimal or no control on insomnia severity and sleep outcomes, but tests sleep restriction alone rather than full CBT-I."
+    },
+    {
+     "pmid": "35419652",
+     "fits": "partly",
+     "reason": "Systematic and narrative review of insomnia treatment including CBT-I, but only in women around pregnancy and birth, with no clear comparator."
+    },
+    {
+     "pmid": "30529432",
+     "fits": "no",
+     "reason": "Looks at the link between insomnia and death, not at CBT-I treatment."
+    },
+    {
+     "pmid": "26147487",
+     "fits": "yes",
+     "reason": "Pools RCTs of CBT-I vs control in adults with insomnia and various other conditions on remission, efficiency, sleep onset and wake time."
+    },
+    {
+     "pmid": "24931811",
+     "fits": "yes",
+     "reason": "Pools RCTs of group CBT-I vs control in insomnia on sleep onset latency, sleep efficiency and wake after sleep onset."
+    },
+    {
+     "pmid": "31927422",
+     "fits": "partly",
+     "reason": "Reviews non-drug insomnia treatments including CBT, but only in adults after brain injury or stroke."
+    },
+    {
+     "pmid": "26867139",
+     "fits": "yes",
+     "reason": "Pools RCTs of internet CBT-I in adults with insomnia on sleep efficiency, insomnia severity and other sleep measures."
+    },
+    {
+     "pmid": "37029781",
+     "fits": "no",
+     "reason": "The review looks at CBT-I for preventing depression onset, not at sleep outcomes."
+    },
+    {
+     "pmid": "27903557",
+     "fits": "yes",
+     "reason": "It pooled RCTs of internet CBT-I versus waiting list in adults with insomnia, reporting SOL, WASO, SE and ISI."
+    },
+    {
+     "pmid": "26581107",
+     "fits": "no",
+     "reason": "The outcomes are anxiety and depression, not sleep onset, wake time, sleep efficiency or insomnia severity."
+    },
+    {
+     "pmid": "32580450",
+     "fits": "partly",
+     "reason": "The network meta-analysis is about melatonin, light, exercise and CAM, with CBT-I only as a reference treatment."
+    },
+    {
+     "pmid": "25645130",
+     "fits": "yes",
+     "reason": "It pooled RCTs of CBT-I in adults with insomnia plus various medical or psychiatric conditions, reporting SOL, WASO, SE and ISI."
+    },
+    {
+     "pmid": "28392168",
+     "fits": "yes",
+     "reason": "It pooled RCTs of CBT-I or its components versus untreated controls, reporting ISI, SE, WASO and SOL."
+    },
+    {
+     "pmid": "30135762",
+     "fits": "partly",
+     "reason": "Digital CBT-I with sleep outcomes, but the population is young people and adolescents, not adults."
+    },
+    {
+     "pmid": "23602124",
+     "fits": "no",
+     "reason": "The review covers adherence to CBT-I, not its effect against a control on sleep outcomes."
+    },
+    {
+     "pmid": "26434673",
+     "fits": "partly",
+     "reason": "RCTs of CBT-I versus control with SE, SOL, WASO and ISI, but limited to people with cancer."
+    },
+    {
+     "pmid": "24892895",
+     "fits": "partly",
+     "reason": "CBT-I reviewed only in psychiatric comorbid groups; comparators and specific sleep outcomes are not stated."
+    },
+    {
+     "pmid": "30420826",
+     "fits": "partly",
+     "reason": "Limited to insomnia with sleep apnea, and CBT-I is mostly combined with PAP therapy."
+    },
+    {
+     "pmid": "29887256",
+     "fits": "partly",
+     "reason": "It reviews only the cognitive components of CBT-I, not the full programme, and comparators are not stated."
+    },
+    {
+     "pmid": "22585048",
+     "fits": "yes",
+     "reason": "It pooled RCTs of computerised CBT-I, reporting sleep efficiency, sleep onset latency, WASO and ISI."
+    },
+    {
+     "pmid": "24971014",
+     "fits": "partly",
+     "reason": "CBT-I with subjective sleep outcomes, including controlled studies, but limited to people with cancer."
+    },
+    {
+     "pmid": "22631616",
+     "fits": "no",
+     "reason": "CBT-I is compared with medication, not with waiting list, sleep advice, sham or usual care."
+    },
+    {
+     "pmid": "25104471",
+     "fits": "yes",
+     "reason": "It pooled RCTs of self-help CBT-I versus waiting list, routine care or no treatment, reporting SE, SOL and WASO."
+    },
+    {
+     "pmid": "31208061",
+     "fits": "partly",
+     "reason": "Technology-delivered CBT-I in older adults only, with outcomes like disability and quality of life, not sleep measures."
+    },
+    {
+     "pmid": "25343044",
+     "fits": "no",
+     "reason": "The intervention is yoga, not CBT-I."
+    },
+    {
+     "pmid": "21482322",
+     "fits": "no",
+     "reason": "The outcome is anxiety, not sleep onset, wake time, sleep efficiency or insomnia severity."
+    },
+    {
+     "pmid": "19506825",
+     "fits": "no",
+     "reason": "This is a narrative overview of drug and psychological treatments, not a systematic review of CBT-I versus control."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "Short or long usual sleep",
+    "comparison": "About 7 hours a night (or another middle amount)",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40072785",
+     "fits": "yes",
+     "reason": "Pooled cohorts of adults comparing short (<7 h) and long (≥9 h) sleep with 7-8 h for all-cause mortality."
+    },
+    {
+     "pmid": "40072786",
+     "fits": "partly",
+     "reason": "Adults with short or long sleep, but the outcome is stroke incidence and stroke mortality, not death from any cause."
+    },
+    {
+     "pmid": "40735026",
+     "fits": "no",
+     "reason": "Looks at sleep quality and duration for breast cancer incidence, progression and cancer-specific death, partly in patients."
+    },
+    {
+     "pmid": "40217556",
+     "fits": "partly",
+     "reason": "All-cause mortality in adults, but sleep is pooled only in combination with physical activity levels, not on its own."
+    },
+    {
+     "pmid": "35245890",
+     "fits": "partly",
+     "reason": "Short and long sleep in cohorts, but the outcomes are stroke incidence and stroke mortality only."
+    },
+    {
+     "pmid": "30903483",
+     "fits": "partly",
+     "reason": "Short and long sleep vs recommended, but in cancer survivors, with mainly cancer-specific mortality."
+    },
+    {
+     "pmid": "33567861",
+     "fits": "partly",
+     "reason": "Short and long sleep vs 7-8 h for all-cause mortality, but only in employed adults aged 18-64, a narrower group."
+    },
+    {
+     "pmid": "41424529",
+     "fits": "partly",
+     "reason": "Protocol only, no results; it targets several sleep dimensions beyond duration for all-cause mortality and MACE."
+    },
+    {
+     "pmid": "32723316",
+     "fits": "partly",
+     "reason": "Short and long sleep and all-cause mortality, but only in older people, a narrower group."
+    },
+    {
+     "pmid": "26422535",
+     "fits": "partly",
+     "reason": "Short and long vs normal sleep, but the outcome is coronary artery disease illness and death, not all-cause death."
+    },
+    {
+     "pmid": "34755597",
+     "fits": "no",
+     "reason": "Exposure is obstructive sleep apnea and low night-time oxygen, and the outcome is cancer, not sleep duration and all-cause death."
+    },
+    {
+     "pmid": "26888725",
+     "fits": "partly",
+     "reason": "Short and long sleep vs reference for all-cause mortality, but only in adults aged 60 and over."
+    },
+    {
+     "pmid": "30058510",
+     "fits": "yes",
+     "reason": "Cohorts of adults comparing long and short sleep with 7-9 h for all-cause mortality."
+    },
+    {
+     "pmid": "30371228",
+     "fits": "yes",
+     "reason": "Prospective cohorts relating self-reported short and long sleep vs 7-8 h to all-cause mortality."
+    },
+    {
+     "pmid": "27938917",
+     "fits": "partly",
+     "reason": "Short and long vs about 7 h of sleep, but the outcome is total cancer mortality only."
+    },
+    {
+     "pmid": "19645960",
+     "fits": "yes",
+     "reason": "Adults with short and long sleep vs medium sleep, pooled for all-cause mortality."
+    },
+    {
+     "pmid": "28889101",
+     "fits": "yes",
+     "reason": "Generally healthy populations, sleep duration vs about 7 h, dose-response pooling for all-cause mortality."
+    },
+    {
+     "pmid": "35616624",
+     "fits": "partly",
+     "reason": "Pools six Japanese cohorts (not a systematic search), comparing sleep with 7 h for cancer incidence and cancer death only."
+    },
+    {
+     "pmid": "27584562",
+     "fits": "partly",
+     "reason": "Sleep duration vs 7 h, but the results cover only stroke events and stroke mortality."
+    },
+    {
+     "pmid": "31182327",
+     "fits": "partly",
+     "reason": "General population, short and long vs about 7 h of sleep, but the outcome is all-cancer mortality only."
+    },
+    {
+     "pmid": "20469800",
+     "fits": "yes",
+     "reason": "Pools prospective population cohorts of adults on short and long habitual sleep and all-cause mortality, implicitly against a middle sleep duration."
+    },
+    {
+     "pmid": "26900147",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of adult cohorts comparing short and long night and 24-hour sleep with 7 hours/day for all-cause mortality."
+    },
+    {
+     "pmid": "27067616",
+     "fits": "yes",
+     "reason": "Meta-regression of 40 adult cohorts comparing shorter and longer sleep with 7 hours for all-cause mortality."
+    },
+    {
+     "pmid": "19645959",
+     "fits": "no",
+     "reason": "No abstract, and the title suggests a commentary on a meta-analysis rather than a systematic review that pools studies itself."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+    "intervention": "Short or long usual sleep",
+    "comparison": "About 7 hours a night (or another middle amount)",
+    "outcome": "Heart disease or stroke (new cases or deaths)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40072786",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing short and long sleep in adults, with stroke incidence and mortality as outcomes."
+    },
+    {
+     "pmid": "41079009",
+     "fits": "partly",
+     "reason": "Sleep duration and ischaemic heart disease match, but it pools Mendelian randomisation studies instead of trials or cohorts, with no 7-hour comparison."
+    },
+    {
+     "pmid": "36035915",
+     "fits": "yes",
+     "reason": "Meta-review of observational and MR studies of short and long sleep with coronary disease, stroke and cardiovascular mortality."
+    },
+    {
+     "pmid": "36889030",
+     "fits": "partly",
+     "reason": "Only stroke survivors were studied, which is an illness-defined group, and only one included study looked at sleep duration."
+    },
+    {
+     "pmid": "40217556",
+     "fits": "partly",
+     "reason": "Sleep duration is analysed only in combination with physical activity, not alone, though cardiovascular outcomes are included."
+    },
+    {
+     "pmid": "35245890",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies comparing short and long sleep, with stroke incidence and mortality."
+    },
+    {
+     "pmid": "41424529",
+     "fits": "partly",
+     "reason": "Protocol only, with no results yet; it centres on several sleep dimensions beyond duration, with MACE and mortality as outcomes."
+    },
+    {
+     "pmid": "26422535",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies comparing short and long sleep against normal sleep, with coronary disease morbidity and mortality."
+    },
+    {
+     "pmid": "29206050",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohorts comparing short and long sleep, with cardiovascular disease mortality as the outcome."
+    },
+    {
+     "pmid": "30371228",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of prospective cohorts on sleep duration around 7 to 8 hours, with stroke, CHD and CVD outcomes."
+    },
+    {
+     "pmid": "28889101",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis in generally healthy adults with about 7 hours as reference, covering CHD, stroke and CVD."
+    },
+    {
+     "pmid": "27584562",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts comparing short and long sleep with 7 hours, with stroke events and stroke mortality."
+    },
+    {
+     "pmid": "27840384",
+     "fits": "partly",
+     "reason": "Sleep duration matches, but outcomes are subclinical markers such as artery calcium and wall thickness, not heart disease or stroke events."
+    },
+    {
+     "pmid": "21300732",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies comparing short and long sleep, with CHD, stroke and CVD incidence and mortality."
+    },
+    {
+     "pmid": "39981486",
+     "fits": "yes",
+     "reason": "Systematic review of long sleep duration and cardiovascular outcomes, including coronary disease, stroke and heart attack."
+    },
+    {
+     "pmid": "40201790",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of observational studies on sleep duration and coronary heart disease risk, by gender."
+    },
+    {
+     "pmid": "39137553",
+     "fits": "yes",
+     "reason": "Umbrella review of meta-analyses and MR studies of short and long sleep, including stroke and coronary heart disease."
+    },
+    {
+     "pmid": "35178257",
+     "fits": "yes",
+     "reason": "Systematic review of prospective studies on short and long sleep, with heart attack, coronary disease and CVD outcomes."
+    },
+    {
+     "pmid": "39082631",
+     "fits": "no",
+     "reason": "This is an expression of concern notice with no abstract, not a review that can be screened."
+    },
+    {
+     "pmid": "28366344",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of prospective cohorts using 7 hours as reference, with fatal and nonfatal stroke incidence."
+    },
+    {
+     "pmid": "32619932",
+     "fits": "no",
+     "reason": "Covers children and adolescents, not adults, and looks at heart risk factors like blood pressure rather than heart disease or stroke events."
+    },
+    {
+     "pmid": "27336192",
+     "fits": "yes",
+     "reason": "Pools cohort studies of adults on short and long sleep compared with 7 hours, with new or fatal coronary heart disease as the outcome."
+    },
+    {
+     "pmid": "32384904",
+     "fits": "no",
+     "reason": "This is a single genetic (Mendelian randomisation) analysis, not a review of studies, and it does not compare short or long sleep with about 7 hours."
+    },
+    {
+     "pmid": "25366107",
+     "fits": "yes",
+     "reason": "Pools cohort studies linking short and long sleep with stroke risk in general populations, compared with normal sleep."
+    },
+    {
+     "pmid": "25716357",
+     "fits": "yes",
+     "reason": "Its meta-analysis of prospective studies pools stroke risk for short and long sleep compared with average sleep."
+    },
+    {
+     "pmid": "24282622",
+     "fits": "no",
+     "reason": "The meta-analysis covers only new diabetes; heart disease was looked at in a single cohort study, not pooled across studies."
+    },
+    {
+     "pmid": "30954762",
+     "fits": "partly",
+     "reason": "Reviews long sleep as a risk for ischaemic stroke, but this is only one type of stroke and it is mixed in with sleep disorders and effects after stroke."
+    },
+    {
+     "pmid": "29717377",
+     "fits": "no",
+     "reason": "Covers children and adolescents and looks at heart risk factors like blood pressure and obesity, not heart disease or stroke events."
+    }
+   ]
+  }
+ }
+}

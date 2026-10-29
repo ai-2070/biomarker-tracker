@@ -84,7 +84,7 @@ let counts: Record<string, number>;
 let records: { reviews: Rec[]; trials: Rec[]; guidelines: Rec[] };
 let outcomeCounts: Record<string, number> | undefined;
 
-if (topic.kind === "food") {
+if (topic.kind === "food" || topic.kind === "lifestyle") {
   // A search per claim; each record remembers which claims' searches found it.
   const per = topic.outcomes.map((o) => ({ id: o.id, q: byType(`(${o.query}) AND SRC:MED`) }));
   queries = Object.fromEntries(per.map((p) => [p.id, p.q.all]));

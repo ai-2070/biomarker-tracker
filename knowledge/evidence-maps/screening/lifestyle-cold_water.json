@@ -1,0 +1,377 @@
+{
+ "topic": "lifestyle-cold_water",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "sickness": {
+   "question": {
+    "population": "Healthy adults",
+    "intervention": "Cold showers, cold-water immersion or winter swimming",
+    "comparison": "Warm showers or no cold exposure",
+    "outcome": "Sickness absence, days of illness or infections"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39879231",
+     "fits": "yes",
+     "reason": "Reviews randomised trials of cold showers or immersion in healthy adults and reports sickness absence (29% reduction with cold showers) in its narrative synthesis."
+    }
+   ]
+  },
+  "cold-shock": {
+   "question": {
+    "population": "Adults suddenly immersed in cold water, healthy or winter swimmers",
+    "intervention": "Cold-water immersion",
+    "comparison": "Before immersion, or warm water",
+    "outcome": "Heart rate, blood pressure, heart rhythm, breathing, or how these change with repeated immersion"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39918163",
+     "fits": "partly",
+     "reason": "Reviews cold-water immersion and heart rate variability, but only in athletes recovering after exercise, not sudden immersion in healthy adults."
+    },
+    {
+     "pmid": "38211547",
+     "fits": "yes",
+     "reason": "Meta-analysis of repeated cold-water immersion in people, pooling heart rate and breathing changes as the cold shock response habituates."
+    },
+    {
+     "pmid": "38663342",
+     "fits": "partly",
+     "reason": "Healthy adults with heart rate, blood pressure and HRV outcomes, but cold-water immersion is pooled with cryostimulation and not clearly analysed alone."
+    },
+    {
+     "pmid": "41797970",
+     "fits": "no",
+     "reason": "Reviews L-citrulline supplements for blood pressure in cold environments, not the effects of cold-water immersion."
+    }
+   ]
+  },
+  "mood": {
+   "question": {
+    "population": "Adults, healthy or with low mood",
+    "intervention": "Cold showers, cold-water immersion or winter swimming",
+    "comparison": "No cold exposure, or warm water",
+    "outcome": "Mood, stress, wellbeing, depression, anxiety or sleep"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39879231",
+     "fits": "yes",
+     "reason": "Pools randomised trials of cold showers or cold-water immersion in healthy adults, measuring sleep, stress, mood, wellbeing, depression and anxiety."
+    },
+    {
+     "pmid": "42819812",
+     "fits": "yes",
+     "reason": "Pools studies, including controlled ones, of cold showers, immersion or winter swimming in adults, measuring mood, stress, depression, anxiety, wellbeing and sleep."
+    },
+    {
+     "pmid": "40530059",
+     "fits": "no",
+     "reason": "This is only a protocol for a planned review, so it reports no pooled or reviewed results yet, although its question matches."
+    },
+    {
+     "pmid": "34655758",
+     "fits": "partly",
+     "reason": "It covers whole-body cryotherapy (cold air), not cold water, used as an add-on treatment in people with mental health problems; outcomes include depression."
+    },
+    {
+     "pmid": "37170821",
+     "fits": "no",
+     "reason": "This is about cold stress in maize leaves, not people."
+    },
+    {
+     "pmid": "34205729",
+     "fits": "partly",
+     "reason": "It covers whole-body cryotherapy (cold air) and hyperbaric oxygen for depression, not cold-water exposure, in patients rather than healthy adults or people with low mood."
+    },
+    {
+     "pmid": "34544140",
+     "fits": "no",
+     "reason": "This is about cold acclimation in plant cell membranes, not human cold exposure or mood."
+    }
+   ]
+  },
+  "training": {
+   "question": {
+    "population": "Adults doing strength (resistance) training",
+    "intervention": "Regular cold-water immersion after training sessions",
+    "comparison": "The same training without cold water",
+    "outcome": "Gains in muscle size or strength"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "34669081",
+     "fits": "no",
+     "reason": "Compares cryotherapy with photobiomodulation for short-term muscle recovery, not regular cold water versus none for strength or size gains."
+    },
+    {
+     "pmid": "42473449",
+     "fits": "no",
+     "reason": "Looks at one cold-water bath and short-term strength recovery, not regular use alongside strength training for long-term gains."
+    },
+    {
+     "pmid": "42816732",
+     "fits": "yes",
+     "reason": "Umbrella review that includes how regular post-exercise cold water affects resistance training adaptations, reporting on both strength and muscle growth."
+    },
+    {
+     "pmid": "41716304",
+     "fits": "no",
+     "reason": "Looks at one cold-water bath and recovery from muscle damage, not regular use during strength training for strength or size gains."
+    },
+    {
+     "pmid": "39294614",
+     "fits": "no",
+     "reason": "Compares water and cold therapies for short-term recovery from muscle damage, not training-induced gains in muscle size or strength."
+    },
+    {
+     "pmid": "41845491",
+     "fits": "no",
+     "reason": "Resistance-training group matches, but it compares cold-water protocols for short-term recovery after sessions, not long-term strength or size gains."
+    },
+    {
+     "pmid": "33146851",
+     "fits": "yes",
+     "reason": "Pools controlled studies of regular cold water during resistance training versus none, with training-induced strength changes analysed separately."
+    },
+    {
+     "pmid": "35068365",
+     "fits": "yes",
+     "reason": "Meta-analysis of cold water after resistance training sessions versus control on strength gains."
+    },
+    {
+     "pmid": "32507142",
+     "fits": "no",
+     "reason": "Reviews the short-term effects of cryotherapy on athletes' strength, flexibility and control, not regular use alongside strength training for gains."
+    }
+   ]
+  },
+  "metabolism": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Repeated cold exposure (cold air, cold water or winter swimming)",
+    "comparison": "No cold exposure",
+    "outcome": "Brown fat activity, energy expenditure, insulin sensitivity or blood sugar"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40804739",
+     "fits": "partly",
+     "reason": "Looks at habitual cold and brown fat activity, but only in Arctic residents, mostly from observational studies with no clear no-cold comparison group."
+    },
+    {
+     "pmid": "38540150",
+     "fits": "yes",
+     "reason": "Pools trials of cold exposure versus thermoneutral conditions in healthy adults, with glucose and insulin as outcomes."
+    },
+    {
+     "pmid": "36568070",
+     "fits": "yes",
+     "reason": "Systematically reviews trials in adults that include cold exposure as one intervention, with energy expenditure and brown fat activation as outcomes."
+    },
+    {
+     "pmid": "37762355",
+     "fits": "no",
+     "reason": "Looks at seasonal air temperature and FT3 thyroid hormone levels, not deliberate repeated cold exposure or the named outcomes."
+    },
+    {
+     "pmid": "35837014",
+     "fits": "partly",
+     "reason": "Pools trials of cold versus room temperature on energy expenditure and brown fat, but the exposure is acute rather than repeated."
+    },
+    {
+     "pmid": "28085671",
+     "fits": "no",
+     "reason": "Reviews exercise training and UCP1 in brown fat in animals, not cold exposure in adults."
+    },
+    {
+     "pmid": "30624591",
+     "fits": "no",
+     "reason": "Reviews dietary compounds such as capsinoids and catechins for activating brown fat, not cold exposure."
+    }
+   ]
+  },
+  "soreness": {
+   "question": {
+    "population": "Adults after hard or unaccustomed exercise, mostly young and active",
+    "intervention": "Cold-water immersion (or other cooling) after exercise",
+    "comparison": "Rest or no cooling",
+    "outcome": "Muscle soreness, or recovery of strength and performance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42491492",
+     "fits": "yes",
+     "reason": "Trials in athletes or active people compared cold-water immersion with control and measured soreness and performance recovery."
+    },
+    {
+     "pmid": "39918163",
+     "fits": "partly",
+     "reason": "Cold-water immersion after exercise in athletes, but recovery was measured only by heart rate variability, not soreness or performance."
+    },
+    {
+     "pmid": "34669081",
+     "fits": "partly",
+     "reason": "Cryotherapy after exercise was compared with light therapy, not with rest or no cooling."
+    },
+    {
+     "pmid": "19945970",
+     "fits": "no",
+     "reason": "Looked at the body's physiological response to brief cold immersion, mostly in resting people, not at soreness or performance after exercise."
+    },
+    {
+     "pmid": "26383887",
+     "fits": "yes",
+     "reason": "Whole-body cryotherapy, a form of cooling, was compared with rest or control for muscle soreness in young active adults after exercise."
+    },
+    {
+     "pmid": "42870311",
+     "fits": "yes",
+     "reason": "Pooled 52 studies of single-session cold-water immersion after exercise for muscle soreness (DOMS) and muscle damage markers."
+    },
+    {
+     "pmid": "41578562",
+     "fits": "partly",
+     "reason": "Compared cold-water immersion with body cryotherapy head to head; no comparison with rest or no cooling."
+    },
+    {
+     "pmid": "41490103",
+     "fits": "yes",
+     "reason": "Cold-water immersion vs control after matches in trained soccer players, measuring strength, jump, sprint and soreness."
+    },
+    {
+     "pmid": "42909756",
+     "fits": "yes",
+     "reason": "Umbrella review of reviews on cold-water immersion after exercise vs comparators, covering soreness and performance outcomes."
+    },
+    {
+     "pmid": "42088589",
+     "fits": "yes",
+     "reason": "Network meta-analysis of cold-water immersion and other cryotherapy vs control after exercise, covering soreness and jump performance."
+    },
+    {
+     "pmid": "42873185",
+     "fits": "no",
+     "reason": "A single randomised crossover trial, not a systematic review."
+    },
+    {
+     "pmid": "42473449",
+     "fits": "yes",
+     "reason": "RCTs of a single cold-water immersion vs passive recovery after exercise, covering strength, power and soreness."
+    },
+    {
+     "pmid": "40868853",
+     "fits": "yes",
+     "reason": "Pooled cold-water immersion alone after exercise, analysed separately from combined therapy, for soreness and jump performance."
+    },
+    {
+     "pmid": "40078372",
+     "fits": "yes",
+     "reason": "Network meta-analysis of cold-water immersion doses vs control after muscle-damaging exercise, for soreness and jump performance."
+    },
+    {
+     "pmid": "42816732",
+     "fits": "yes",
+     "reason": "Umbrella review of meta-analyses on cold-water immersion vs passive rest after exercise, for performance and soreness."
+    },
+    {
+     "pmid": "41716304",
+     "fits": "yes",
+     "reason": "RCTs of cold-water immersion vs seated passive rest after exercise, measuring soreness, strength and jump."
+    },
+    {
+     "pmid": "39294614",
+     "fits": "yes",
+     "reason": "Network meta-analysis of cold-water immersion and cryotherapy after muscle-damaging exercise, for soreness and jump ability."
+    },
+    {
+     "pmid": "36744038",
+     "fits": "yes",
+     "reason": "Meta-analysis of cold-water immersion after hard exercise, for soreness, perceived effort and jump performance."
+    },
+    {
+     "pmid": "34636405",
+     "fits": "yes",
+     "reason": "Network meta-analysis of cold and heat therapies, including passive recovery, for soreness after exercise."
+    },
+    {
+     "pmid": "36399666",
+     "fits": "yes",
+     "reason": "RCTs of cold-water immersion vs control for muscle soreness after exercise in athletes and non-athletes."
+    },
+    {
+     "pmid": "36862831",
+     "fits": "yes",
+     "reason": "Meta-analysis of cold-water immersion after exercise, measuring recovery of strength, jump, sprint and endurance performance plus muscle soreness."
+    },
+    {
+     "pmid": "36527593",
+     "fits": "partly",
+     "reason": "Physically active adults and the right outcomes, but cold-water immersion is compared with other recovery methods, not with rest or no cooling."
+    },
+    {
+     "pmid": "33493991",
+     "fits": "yes",
+     "reason": "Pools trials of cold therapy, with cold-water immersion analysed on its own, given within 1 h after exercise for muscle soreness (DOMS)."
+    },
+    {
+     "pmid": "35157264",
+     "fits": "yes",
+     "reason": "Cold-water immersion compared with passive recovery after hard exercise in active people, measuring performance and muscle soreness."
+    },
+    {
+     "pmid": "35956058",
+     "fits": "partly",
+     "reason": "Cooling after muscle-damaging exercise, but it compares whole-body with partial-body cryotherapy instead of with rest or no cooling."
+    },
+    {
+     "pmid": "27398915",
+     "fits": "yes",
+     "reason": "Cold-water immersion after team sport, pooled for jump, sprint, fatigue and muscle soreness outcomes in athletes."
+    },
+    {
+     "pmid": "26413718",
+     "fits": "yes",
+     "reason": "Cooling (mainly cold-water immersion) compared with passive non-cooling recovery after exhausting exercise, with muscle soreness pooled."
+    },
+    {
+     "pmid": "26581833",
+     "fits": "yes",
+     "reason": "Randomised trials of cold-water immersion compared with passive recovery after exercise, measuring muscle soreness."
+    },
+    {
+     "pmid": "26464795",
+     "fits": "partly",
+     "reason": "Cold applications for recovery and muscle soreness, but the population is adolescent athletes, not adults."
+    },
+    {
+     "pmid": "21947816",
+     "fits": "yes",
+     "reason": "No abstract; the title says it is a meta-analysis of cold-water immersion for recovery from strenuous exercise."
+    },
+    {
+     "pmid": "23624400",
+     "fits": "yes",
+     "reason": "No abstract; the title says it is a meta-analysis of cold-water immersion to improve recovery after exercise."
+    },
+    {
+     "pmid": "29283744",
+     "fits": "no",
+     "reason": "Cold-water immersion compared with control, but the outcome is core body temperature, not muscle soreness or performance recovery."
+    },
+    {
+     "pmid": "23434565",
+     "fits": "yes",
+     "reason": "Randomised trials of cooling after exercise in trained athletes, measuring recovery of sprint, endurance, jump and strength performance."
+    }
+   ]
+  }
+ }
+}

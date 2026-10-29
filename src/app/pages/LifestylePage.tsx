@@ -9,6 +9,7 @@ import { Findings } from "../components/findings";
 import { StudyLink } from "../components/evidence";
 import { anchorId, jump } from "../components/glance";
 import { SearchIcon } from "../components/icons";
+import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { LifestyleFigure } from "../components/LifestyleVisuals";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -262,6 +263,16 @@ export function LifestyleItemPage({ id }: { id: string }) {
             </ul>
           </Card>
 
+          {hasEvidenceMap(`lifestyle-${l.id}`) && (
+            <Card id="evidence-map" className="flex scroll-mt-6 flex-col gap-4">
+              <H2>How the evidence was found</H2>
+              <EvidenceMap
+                mapId={`lifestyle-${l.id}`}
+                citedTitles={Object.fromEntries(l.findings.flatMap((f) => f.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))}
+              />
+            </Card>
+          )}
+
           {watch && l.asHabit !== false && (
             <Card className="flex flex-col gap-3">
               <H2>Test it on yourself</H2>
@@ -311,6 +322,7 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
     ["findings", "What studies found"],
     ...((l.whoShouldBeCareful.length > 0 || l.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ["unknowns", "What isn't known yet"],
+    ...((hasEvidenceMap(`lifestyle-${l.id}`) ? [["evidence-map", "How the evidence was found"]] : []) as [string, string][]),
     ["research", "Search research"],
   ];
   return (
