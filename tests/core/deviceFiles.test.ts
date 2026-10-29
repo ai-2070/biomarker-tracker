@@ -7,6 +7,7 @@ import {
   findDateColumn,
   guessColumn,
   parseCsv,
+  readTable,
   safeCut,
   tableOf,
   toIsoDate,
@@ -64,7 +65,7 @@ describe("recognising columns", () => {
     expect(g("HRV SDNN")).toMatchObject({ field: null });
     expect(g("Average Oxygen Saturation")?.field).toBe("spo2");
     expect(g("Workout average heart rate")?.field).toBe("exercise_hr");
-    expect(g("Move Minutes count")).toBeUndefined();
+    expect(g("Move Minutes count")).toMatchObject({ field: null, reason: expect.stringMatching(/light activity/) });
     expect(g("Lean body mass")).toBeUndefined();
   });
   it("finds the date column", () => {
@@ -125,6 +126,7 @@ describe("Apple Health", () => {
     expect(r.map((x) => [x.field, x.date, x.value, x.unit])).toEqual([
       ["heart_rate", "2026-03-01", 71, "bpm"],
       ["spo2", "2026-03-01", 96, "%"],
+      ["steps", "2026-03-01", 120, "steps"],
       ["exercise_hr", "2026-03-01", 142, "bpm"],
     ]);
     expect([...skipped.keys()]).toEqual(["HeartRateVariabilitySDNN"]);
@@ -147,5 +149,66 @@ describe("daily tally for big files", () => {
       { date: "2026-03-02", value: 60, readings: 1 },
     ]);
     expect(s!.dropped).toBe(1);
+  });
+});
+
+describe("steps and active minutes", () => {
+  const g = (h: string, family = "") => guessColumn(h, 0, family);
+  it("recognises step columns and skips goals, cadence and averages", () => {
+    expect(g("Steps")).toMatchObject({ field: "steps", unit: "steps" });
+    expect(g("totalSteps")).toMatchObject({ field: "steps" });
+    expect(g("Step count")).toMatchObject({ field: "steps" });
+    expect(g("value", "steps")).toMatchObject({ field: "steps" });
+    expect(g("Step goal")).toBeUndefined();
+    expect(g("Steps per minute")).toBeUndefined();
+    expect(g("Average steps")).toBeUndefined();
+  });
+  it("recognises active minutes, and skips light activity and move minutes", () => {
+    expect(g("Active minutes")).toMatchObject({ field: "active_minutes", unit: "min" });
+    expect(g("Intensity Minutes")).toMatchObject({ field: "active_minutes" });
+    expect(g("Exercise time (min)")).toMatchObject({ field: "active_minutes", unit: "min" });
+    expect(g("Active Zone Minutes")).toMatchObject({ field: "active_minutes" });
+    expect(g("Minutes Lightly Active")).toMatchObject({ field: null });
+    expect(g("Minutes Sedentary")).toMatchObject({ field: null });
+    expect(g("Exercise heart rate")?.field).toBe("exercise_hr");
+    expect(g("Activity calories")).toBeUndefined();
+  });
+  it("adds up Fitbit's fairly and very active minutes, with steps from the same file", () => {
+    const csv = "Date,Steps,Minutes Sedentary,Minutes Lightly Active,Minutes Fairly Active,Minutes Very Active\n2026-03-01,8412,600,180,20,15\n2026-03-02,10240,580,200,10,40";
+    const r = readTable("Fitbit/activities.csv", tableOf(parseCsv(csv))!);
+    const by = (f: string) => r.columns.find((c) => c.field === f)!;
+    expect(by("steps").readings.map((x) => x.value)).toEqual([8412, 10240]);
+    expect(by("active_minutes")).toMatchObject({ unit: "min" });
+    expect(by("active_minutes").readings.map((x) => x.value)).toEqual([35, 50]);
+  });
+  it("counts Garmin's vigorous minutes twice, as Garmin and the WHO do", () => {
+    const csv = "Date,Steps,Moderate Intensity Minutes,Vigorous Intensity Minutes\n2026-03-01,7000,20,10";
+    const r = readTable("Garmin/daily.csv", tableOf(parseCsv(csv))!);
+    expect(r.columns.find((c) => c.field === "active_minutes")!.readings[0]!.value).toBe(40);
+  });
+  it("reads Oura's activity time in seconds", () => {
+    const csv = "day,steps,high_activity_time,medium_activity_time,low_activity_time\n2026-03-01,9100,600,1800,9000\n2026-03-02,7400,0,1500,8000";
+    const r = readTable("oura/daily_activity.csv", tableOf(parseCsv(csv))!);
+    const active = r.columns.find((c) => c.field === "active_minutes")!;
+    expect(active.unit).toBe("s");
+    expect(active.readings.map((x) => x.value)).toEqual([2400, 1500]);
+  });
+  it("adds a day's step counts per device, so a phone and a watch aren't counted twice", () => {
+    const xml = `<HealthData>
+ <Record type="HKQuantityTypeIdentifierStepCount" sourceName="iPhone" unit="count" startDate="2026-03-01 09:00:00 +0100" value="1200"/>
+ <Record type="HKQuantityTypeIdentifierStepCount" sourceName="iPhone" unit="count" startDate="2026-03-01 17:00:00 +0100" value="3000"/>
+ <Record type="HKQuantityTypeIdentifierStepCount" sourceName="Apple Watch" unit="count" startDate="2026-03-01 09:00:00 +0100" value="1300"/>
+ <Record type="HKQuantityTypeIdentifierAppleExerciseTime" sourceName="Apple Watch" unit="min" startDate="2026-03-01 18:00:00 +0100" value="25"/>
+ <Record type="HKQuantityTypeIdentifierAppleExerciseTime" sourceName="Apple Watch" unit="min" startDate="2026-03-01 19:00:00 +0100" value="8"/>
+</HealthData>`;
+    const tally = new DailyTally();
+    for (const x of appleRecords(xml, new Map())) tally.add(x.key, x.field, x.unit, x.date, x.value, (v) => v);
+    const series = Object.fromEntries(tally.series().map((s) => [s.from, s.days.map((d) => d.value)]));
+    expect(series).toEqual({ "Steps (iPhone)": [4200], "Steps (Apple Watch)": [1300], "Exercise minutes (Apple Watch)": [33] });
+  });
+  it("leaves out days with no steps at all (the device wasn't worn)", () => {
+    const s = dailyAverages("steps", "steps", "Steps", [{ date: "2026-03-01", value: 0 }, { date: "2026-03-02", value: 6500 }], (v) => v);
+    expect(s.days.map((d) => d.date)).toEqual(["2026-03-02"]);
+    expect(s.dropped).toBe(1);
   });
 });

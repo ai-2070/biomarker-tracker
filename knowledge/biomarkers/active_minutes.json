@@ -1,0 +1,41 @@
+{
+  "id": "active_minutes",
+  "name": "Active time",
+  "category": "Body",
+  "aliases": ["Active minutes", "Active time", "Exercise minutes", "Exercise time", "Intensity minutes", "Active zone minutes", "Aktive Minuten", "Aktív percek"],
+  "canonicalUnit": "min",
+  "conversions": {
+    "min": 1,
+    "h": 60,
+    "s": 0.016666666666666666
+  },
+  "defaultRanges": [{ "low": 150, "ageFrom": 18 }],
+  "judgeSumOfDays": 7,
+  "rangeNote": "The WHO advises adults to do 150–300 minutes of moderate activity a week (brisk walking, cycling), or 75–150 minutes of vigorous activity, or a mix; some is better than none, and more is better. The check uses the total of the last 7 days, never one day. Devices count differently: Apple counts brisk exercise minutes, Garmin's intensity minutes count vigorous minutes twice (as the WHO does), Fitbit's active zone minutes count by heart rate. Google Fit's move minutes include light activity, so they aren't imported. Regular muscle-strengthening activity is advised too and isn't counted here.",
+  "summary": "Minutes of at least moderate activity in a day (brisk walking or harder), from a watch, phone or ring. Shown as a weekly total, because the advice is per week.",
+  "high": {
+    "meaning": "More active time is linked with better health: the WHO says some activity is better than none, and more is better. Build up gradually after a long break or an illness.",
+    "commonCauses": ["Sport or training", "Walking or cycling to work", "An active job"]
+  },
+  "low": {
+    "meaning": "Less than 150 minutes a week is below the WHO advice for adults. Any extra activity helps; if illness or pain makes moving hard, it's worth talking to a doctor or physiotherapist.",
+    "commonCauses": ["Desk work", "Illness or injury", "Watch not worn", "Activity a device doesn't count (strength training, swimming without the watch)"]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "33239350",
+      "doi": "10.1136/bjsports-2020-102955",
+      "title": "World Health Organization 2020 guidelines on physical activity and sedentary behaviour",
+      "year": 2020,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "32897239",
+      "doi": "10.2196/18694",
+      "title": "Reliability and Validity of Commercially Available Wearable Devices for Measuring Steps, Energy Expenditure, and Heart Rate: Systematic Review",
+      "year": 2020,
+      "studyType": "review"
+    }
+  ]
+}

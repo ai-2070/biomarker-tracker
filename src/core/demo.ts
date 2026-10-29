@@ -55,6 +55,8 @@ export const DEMO_UNITS: Record<string, string> = {
   sleep_deep: "h",
   sleep_rem: "h",
   vo2max: "mL/kg/min",
+  steps: "steps",
+  active_minutes: "min",
   pushups: "reps",
   grip_strength: "kg",
   sit_to_stand_5x: "s",
@@ -79,7 +81,7 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
+export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
 /** Days of nightly watch data (sleep, HRV) before today. */
 const NIGHTLY_DAYS = 70;
@@ -110,6 +112,7 @@ export function demoProfile(today: string): DemoData {
 
   // Ten blood tests, about six months apart, the last one a month ago.
   const draws = Array.from({ length: 10 }, (_, i) => addDays(today, -30 - (9 - i) * 182));
+  const walkStart = addDays(draws[1]!, 40);
   const measurements: Measurement[] = [];
   let n = 0;
   const add = (date: string, biomarkerId: string, value: number, extra: Partial<Measurement> = {}) => {
@@ -203,6 +206,10 @@ export function demoProfile(today: string): DemoData {
     if (!nightly) body("sleep_duration", wobble(6.9 + t * 0.4, 0.05, 0.1));
     body("sleep_deep", wobble(1.1, 0.12, 0.1));
     body("sleep_rem", wobble(1.5, 0.1, 0.1));
+    // Steps (a monthly sample day; a synced phone or watch gives every day): up once the walking habit
+    // starts. Active minutes only come from the watch below: a week's total needs every day.
+    const walking = date >= walkStart;
+    if (!nightly) body("steps", wobble(walking ? 8300 : 5200, 0.12, 1));
     // VO2max from the watch: a little higher as the walking habit continues.
     body("vo2max", wobble(34 + t * 2.5, 0.02, 0.1));
     // Fitness tests at home every 8 months: a little stronger and steadier with the walking habit.
@@ -229,12 +236,15 @@ export function demoProfile(today: string): DemoData {
     night("sleep_duration", wobble(7.3, 0.08, 0.05));
     night("hrv", Math.round(wobble(39, 0.25, 1)));
     night("hrv_resting", Math.round(wobble(48, 0.2, 1)));
+    // Steps and active minutes every day: about 210 active minutes a week, above the WHO's 150.
+    night("steps", wobble(8400, 0.25, 1));
+    night("active_minutes", wobble(30, 0.45, 1));
   }
 
   const protocols: ProtocolEntry[] = [
     { id: "example-log-iron", label: "Iron bisglycinate 25 mg every other day", category: "supplement", start: addDays(draws[3]!, 9), end: addDays(draws[5]!, 20) },
     { id: "example-log-d3", label: "Vitamin D3 1000 IU daily", category: "supplement", start: d3Start },
-    { id: "example-log-walk", label: "Walking 30 minutes a day", category: "lifestyle", start: addDays(draws[1]!, 40) },
+    { id: "example-log-walk", label: "Walking 30 minutes a day", category: "lifestyle", start: walkStart },
     { id: "example-log-fibre", label: "Oats and beans every day (more fibre)", category: "diet", start: expStart, end: addDays(expStart, 100) },
   ];
   const experiments: Experiment[] = [

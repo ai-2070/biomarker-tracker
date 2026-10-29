@@ -84,6 +84,8 @@ export function validateBiomarkerDef(v: unknown): string[] {
   }
   if (v.criticalRange !== undefined && !isObj(v.criticalRange)) errs.push("criticalRange must be an object");
   if (v.judgeAverageOfDays !== undefined && !(isNum(v.judgeAverageOfDays) && v.judgeAverageOfDays >= 2)) errs.push("judgeAverageOfDays must be a number of days (2 or more)");
+  if (v.judgeSumOfDays !== undefined && !(isNum(v.judgeSumOfDays) && v.judgeSumOfDays >= 2)) errs.push("judgeSumOfDays must be a number of days (2 or more)");
+  if (v.judgeSumOfDays !== undefined && v.judgeAverageOfDays !== undefined) errs.push("a marker is judged on an average or on a total, not both");
   if (v.personalRange !== undefined && typeof v.personalRange !== "boolean") errs.push("personalRange must be true or false");
   if (v.personalRange === true && v.defaultRanges !== undefined) errs.push("a marker with a personal range has no population range");
 

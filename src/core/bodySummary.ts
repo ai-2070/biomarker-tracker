@@ -3,7 +3,7 @@ import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData } from "./heartAge";
 import { fitnessAge, vo2maxForAge } from "./fitnessAge";
 import { ageAt } from "./phenoageDraws";
 import { personalRange } from "./personalRange";
-import { flagLatest, resolveRange, sortByDate } from "./trends";
+import { flagLatest, recentTotal, resolveRange, sortByDate } from "./trends";
 import { fitnessSummary, type FitnessTestDef } from "./fitnessTests";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
 
@@ -91,6 +91,21 @@ export function bodySummary(
     ...opt("deepSleepHours", latestOf("sleep_deep")),
     ...opt("remSleepHours", latestOf("sleep_rem")),
     ...opt("vo2maxMlKgMin", latestOf("vo2max")),
+    ...opt("dailySteps", (() => {
+      const s = latestOf("steps");
+      return s && { ...s, note: "No official target, so no range. In studies, the risk of dying fell with more steps up to about 6,000-8,000 a day at 60 and over and 8,000-10,000 under 60 (associations in groups, not a goal)." };
+    })()),
+    ...opt("activeMinutes", (() => {
+      const s = latestOf("active_minutes");
+      const total = recentTotal(series("active_minutes"));
+      return (
+        s && {
+          ...s,
+          ...(total ? { last7DaysTotal: Math.round(total.value), last7DaysWithReadings: total.days } : {}),
+          note: "Minutes of moderate or harder activity per day. The WHO advises adults 150-300 minutes of moderate (or 75-150 of vigorous) activity a week; the range is checked against the last 7 days' total, never one day.",
+        }
+      );
+    })()),
     ...fitness(profile, measurements, today),
     ...(tests?.length
       ? (() => {

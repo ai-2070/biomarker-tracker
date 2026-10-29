@@ -386,7 +386,7 @@ export function BloodPressureFigure({ ms, profile, className }: { ms: Measuremen
   );
 }
 
-const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
+const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes"]);
 const UNIT_WORDS: Record<string, string> = { bpm: "beats a minute" };
 
 /** The latest reading of one body measurement, with its change over about 3 months. */
@@ -538,6 +538,8 @@ const FIELD_LABEL: Record<BodyField, string> = {
   sleep_deep: "Deep sleep",
   sleep_rem: "REM sleep",
   vo2max: "VO₂max",
+  steps: "Steps that day",
+  active_minutes: "Active minutes (moderate or harder)",
   pushups: "Push-ups",
   grip_strength: "Grip strength",
   sit_to_stand_5x: "Five chair rises",
@@ -639,7 +641,7 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
         <p className="text-sm text-ink-2">Sit quietly for 5 minutes first. Many monitors also show your pulse: that's your resting heart rate.</p>
       </fieldset>
       <details className="group rounded-xl border border-line p-3 open:pb-4">
-        <summary className="min-h-10 cursor-pointer content-center font-medium">Heart rate, HRV, blood oxygen and sleep (usually from a watch or ring)</summary>
+        <summary className="min-h-10 cursor-pointer content-center font-medium">Heart rate, HRV, blood oxygen, sleep and activity (usually from a watch or ring)</summary>
         <div className="mt-3 grid gap-4 sm:grid-cols-3">
           {field("heart_rate", { suffix: "bpm" })}
           {field("exercise_hr", { suffix: "bpm" })}
@@ -654,6 +656,12 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
           {field("sleep_deep", { unitPick: true })}
           {field("sleep_rem", { unitPick: true })}
         </div>
+        <p className="mt-4 mb-1 font-medium">Activity</p>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {field("steps", { suffix: "steps" })}
+          {field("active_minutes", { suffix: "minutes" })}
+        </div>
+        <p className="mt-3 text-sm text-ink-2">For a whole day that's over. Active minutes are brisk walking or harder; light activity doesn't count.</p>
         <p className="mt-3 text-sm text-ink-2">HRV here is RMSSD, as most rings and Android watches show it. Apple Watch shows SDNN, a different measure.</p>
       </details>
       <details className="group rounded-xl border border-line p-3 open:pb-4">

@@ -1,4 +1,4 @@
-import { PLAUSIBLE, SLEEP_FIELDS, type BodyField } from "../body";
+import { DAILY_TOTAL_FIELDS, PLAUSIBLE, SLEEP_FIELDS, type BodyField } from "../body";
 import { isIsoDate } from "../dates";
 
 /**
@@ -6,8 +6,8 @@ import { isIsoDate } from "../dates";
  * Oura, Garmin reports, Apple Health). Everything here is pure: the page reads the file and shows a
  * review screen; nothing is saved without the person confirming.
  *
- * Values become one reading per day and measurement (the average of that day's readings), which is
- * what the charts and habit comparisons work with.
+ * Values become one reading per day and measurement (the average of that day's readings, or for
+ * sleep, steps and active minutes their total), which is what the charts and habit comparisons work with.
  */
 
 // ---- CSV ------------------------------------------------------------------------------------------
@@ -190,6 +190,8 @@ export function guessColumn(header: string, index: number, family = ""): ColumnG
     if (/percent|rank|age|category|level|status|range|precise|classification|error|confidence/.test(h)) return undefined;
     return { ...base, field: "vo2max", unit: "mL/kg/min" };
   }
+  const activity = activityColumn(h, f, base);
+  if (activity !== "not activity") return activity;
   if (/\b(seven|weekly|week|monthly|month|baseline|last \d+ days?)\b/.test(h) && health.test(h)) return skip("An average over several days, not one day's value.");
   if (/\b(max|maximum|min|minimum|peak|lowest|highest|zone|zones|count|calories|kcal|steps|distance|duration|seconds|minutes|confidence|error|lower bound|upper bound)\b/.test(h) && (health.test(h) || health.test(f)))
     return skip("Not a daily average (a minimum, maximum, zone or count).");
@@ -224,6 +226,85 @@ export function guessColumn(header: string, index: number, family = ""): ColumnG
   if (/glucose|blood sugar/.test(h)) return { ...base, field: "glucose_home", unit: /mg/.test(h) ? "mg/dL" : "mmol/L" };
   if (/weight|body ?mass|gewicht|súly/.test(h) && !/lean|muscle|bone|water|skeletal/.test(h)) return { ...base, field: "weight", unit: /\blbs?\b|pound/.test(h) ? "lb" : "kg" };
   return undefined;
+}
+
+// ---- Steps and active minutes --------------------------------------------------------------------
+
+/** The unit an activity column's header names: minutes unless it says hours or seconds ("auto" when unsure). */
+function activityUnitOf(h: string): string {
+  if (/\(s\)|\bsecs?\b|\bseconds\b/.test(h)) return "s";
+  if (/\(h\)|\bhrs?\b|\bhours?\b/.test(h)) return "h";
+  if (/\(min\)|\bmins?\b|\bminutes\b/.test(h)) return "min";
+  return "auto";
+}
+
+/** Minutes or seconds of activity from the size of the numbers (Oura writes seconds). */
+export function activityUnit(values: readonly number[]): "min" | "s" {
+  const sorted = [...values].sort((a, b) => a - b);
+  return (sorted[Math.floor(sorted.length / 2)] ?? 0) > 400 ? "s" : "min";
+}
+
+/**
+ * Parts of active time that a file writes in separate columns, added up by withActiveTotal: Fitbit's
+ * fairly and very active minutes, Garmin's moderate and vigorous intensity minutes (vigorous counts
+ * twice, as Garmin and the WHO count it), Oura's medium and high activity time.
+ */
+const ACTIVE_PARTS: readonly { re: RegExp; group: string; weight: number }[] = [
+  { re: /fairly active|moderately active/, group: "fitbit", weight: 1 },
+  { re: /very active/, group: "fitbit", weight: 1 },
+  { re: /moderate( intensity)? minutes|moderate intensity|minutes moderate/, group: "garmin", weight: 1 },
+  { re: /vigorous( intensity)? minutes|vigorous intensity|minutes vigorous/, group: "garmin", weight: 2 },
+  { re: /medium activity time|medium activity/, group: "oura", weight: 1 },
+  { re: /high activity time|high activity/, group: "oura", weight: 1 },
+];
+const PART_REASON = "Part of active time: added up with the file's other active minutes into one total.";
+
+/**
+ * Steps and minutes of moderate-to-vigorous activity. Light activity, sedentary time and Google Fit's
+ * move minutes (which include light activity) aren't active time in the WHO's sense, so they're
+ * skipped with a reason. "not activity" lets other rules look at the column.
+ */
+function activityColumn(h: string, f: string, base: { index: number; header: string }): ColumnGuess | undefined | "not activity" {
+  const skip = (reason: string): ColumnGuess => ({ ...base, field: null, unit: "", reason });
+  if (/\bsteps?\b|step ?count|schritte/.test(h) || (/^(value|count|total|daily value)$/.test(h) && /\bsteps?\b|step/.test(f))) {
+    if (/goal|target|cadence|per min|\/ ?min|\bspm\b|floor|distance|calorie|speed|length|stride|rate|max|min\b|average|avg|mean|weekly|week|month/.test(h)) return undefined;
+    return { ...base, field: "steps", unit: "steps" };
+  }
+  if (!/activ|exercise|intensity|vigorous|moderate|sedentary|move minutes|\bazm\b|zone minutes|mvpa/.test(h) && !(/^(value|minutes|total minutes)$/.test(h) && /active|exercise|intensity|zone minutes/.test(f))) return "not activity";
+  if (/heart|\bhr\b|calorie|kcal|energy|score|goal|target|distance|steps|met\b|mets|inactiv|alert|reminder|level|type|name|count of|percent|%/.test(h)) return "not activity";
+  // The total withActiveTotal adds (its name lists the parts it came from).
+  if (/^active minutes \(added up from/.test(h)) return { ...base, field: "active_minutes", unit: /\((min|s|h)\)$/.exec(h)?.[1] ?? "auto" };
+  if (/move minutes/.test(h)) return skip("Move minutes include light activity, not only moderate or vigorous activity.");
+  if (/light(ly)? active|low activity|light activity|sedentary|resting time|non ?wear/.test(h)) return skip("Light activity and sitting time aren't counted as active time (moderate or harder).");
+  const part = ACTIVE_PARTS.find((x) => x.re.test(h));
+  if (part) return { ...base, field: null, unit: activityUnitOf(h), reason: PART_REASON };
+  if (/active (zone )?minutes|active time|activity (minutes|time)|exercise (minutes|time|min)|intensity minutes|\bazm\b|zone minutes|mvpa|moderate to vigorous|aktive minuten|^value$|^minutes$|^total minutes$/.test(h)) {
+    return { ...base, field: "active_minutes", unit: activityUnitOf(h) };
+  }
+  return undefined;
+}
+
+/**
+ * Files with active time in parts but no total (Fitbit, Garmin, Oura) get one, added per row with each
+ * part's weight. Returned as an extra column so it goes through the same steps as the others.
+ */
+export function withActiveTotal(t: { headers: string[]; data: string[][] }, family: string): { headers: string[]; data: string[][] } {
+  const guesses = t.headers.map((h, i) => guessColumn(h, i, family));
+  if (guesses.some((g) => g?.field === "active_minutes")) return t;
+  const parts = t.headers
+    .map((h, i) => ({ i, h: normalizeHeader(h).toLowerCase(), g: guesses[i] }))
+    .filter((x) => x.g?.reason === PART_REASON)
+    .map((x) => ({ ...x, part: ACTIVE_PARTS.find((p) => p.re.test(x.h))! }));
+  const group = parts[0]?.part.group;
+  const same = parts.filter((x) => x.part.group === group);
+  if (same.length < 2) return t;
+  const unit = same[0]!.g!.unit;
+  const header = `Active minutes (added up from ${same.map((x) => x.h).join(" and ")})${unit === "auto" ? "" : ` (${unit})`}`;
+  const data = t.data.map((r) => {
+    const nums = same.map((x) => toNumber(r[x.i] ?? ""));
+    return [...r, nums.every((n) => n !== undefined) ? String(same.reduce((s, x, k) => s + nums[k]! * x.part.weight, 0)) : ""];
+  });
+  return { headers: [...t.headers, header], data };
 }
 
 // ---- Sleep ----------------------------------------------------------------------------------------
@@ -338,8 +419,9 @@ export interface DailySeries {
 }
 
 /**
- * One value per day: the average of that day's readings, or for sleep the sum (a night recorded in
- * pieces, plus naps). Readings, or for sleep whole nights, that can't be real are dropped and counted.
+ * One value per day: the average of that day's readings, or for sleep, steps and active minutes the sum
+ * (a night recorded in pieces, plus naps; steps counted in bursts). Readings, or for those whole days,
+ * that can't be real are dropped and counted.
  */
 export function dailyAverages(field: BodyField, unit: string, from: string, readings: Iterable<{ date: string; value: number }>, toCanonical: (v: number) => number): DailySeries {
   const tally = new DailyTally();
@@ -378,7 +460,7 @@ export interface TableColumn {
  */
 export function readTable(path: string, table: { headers: string[]; data: string[][] }, monthFirst = false): { columns: TableColumn[]; other: string[]; dated: boolean } {
   const family = fileFamily(path);
-  const t = withSleepTotal(table, family);
+  const t = withActiveTotal(withSleepTotal(table, family), family);
   const dateCol = findDateColumn(t.headers, t.data, monthFirst);
   if (dateCol === -1) return { columns: [], other: [], dated: false };
   const sleepCol = sleepDateColumn(t.headers, t.data, monthFirst);
@@ -390,7 +472,8 @@ export function readTable(path: string, table: { headers: string[]; data: string
     if (!g) return void other.push(h);
     if (!g.field) return void columns.push({ header: h, field: null, unit: "", ...(g.reason ? { reason: g.reason } : {}), readings: [] });
     const readings = columnReadings(t.data, SLEEP_FIELDS.has(g.field) && sleepCol !== -1 ? sleepCol : dateCol, g, monthFirst);
-    columns.push({ header: h, field: g.field, unit: g.unit === "auto" ? sleepUnit(readings.map((r) => r.value)) : g.unit, readings });
+    const auto = (values: number[]) => (SLEEP_FIELDS.has(g.field!) ? sleepUnit(values) : activityUnit(values));
+    columns.push({ header: h, field: g.field, unit: g.unit === "auto" ? auto(readings.map((r) => r.value)) : g.unit, readings });
   });
   return { columns, other, dated: true };
 }
@@ -409,10 +492,13 @@ export const APPLE_TYPES: Record<string, { field: BodyField; scale?: number } | 
   HKQuantityTypeIdentifierBloodPressureDiastolic: { field: "bp_diastolic" },
   HKQuantityTypeIdentifierBloodGlucose: { field: "glucose_home" },
   HKQuantityTypeIdentifierVO2Max: { field: "vo2max" },
+  // Counted by the iPhone and the Watch alike: kept apart per device (see appleRecords).
+  HKQuantityTypeIdentifierStepCount: { field: "steps" },
+  HKQuantityTypeIdentifierAppleExerciseTime: { field: "active_minutes" },
   HKQuantityTypeIdentifierHeartRateVariabilitySDNN: { skip: "Apple measures HRV as SDNN, not RMSSD like this app; the two can't be mixed." },
 };
 
-const APPLE_UNITS: Record<string, string> = { "count/min": "bpm", "%": "%", kg: "kg", lb: "lb", cm: "cm", in: "in", mmHg: "mmHg", "mg/dL": "mg/dL", "mmol<180.1558800000541>/L": "mmol/L", "mmol/L": "mmol/L", "mL/min·kg": "mL/kg/min", "ml/(kg*min)": "mL/kg/min" };
+const APPLE_UNITS: Record<string, string> = { count: "steps", min: "min", "count/min": "bpm", "%": "%", kg: "kg", lb: "lb", cm: "cm", in: "in", mmHg: "mmHg", "mg/dL": "mg/dL", "mmol<180.1558800000541>/L": "mmol/L", "mmol/L": "mmol/L", "mL/min·kg": "mL/kg/min", "ml/(kg*min)": "mL/kg/min" };
 
 const attr = (tag: string, name: string) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
 
@@ -448,7 +534,10 @@ export function appleRecords(xml: string, skipped: Map<string, string>): AppleRe
     const value = Number(attr(tag, "value"));
     const unit = APPLE_UNITS[attr(tag, "unit") ?? ""] ?? attr(tag, "unit") ?? "";
     if (!date || !Number.isFinite(value)) continue;
-    out.push({ key: type, field: known.field, unit: known.scale ? "%" : unit, date, value: value * (known.scale ?? 1) });
+    // Day totals (steps, exercise minutes) are recorded by the phone and the watch at once: each device
+    // is its own series, so the same steps aren't counted twice (the review shows where they overlap).
+    const key = DAILY_TOTAL_FIELDS.has(known.field) ? `${known.field === "steps" ? "Steps" : "Exercise minutes"} (${attr(tag, "sourceName") ?? "Apple Health"})` : type;
+    out.push({ key, field: known.field, unit: known.scale ? "%" : unit, date, value: value * (known.scale ?? 1) });
   }
   for (const m of xml.matchAll(/<WorkoutStatistics\s[^>]*?type="HKQuantityTypeIdentifierHeartRate"[^>]*?\/?>/g)) {
     const date = toIsoDate(attr(m[0], "startDate") ?? "");
@@ -508,8 +597,8 @@ export class DailyTally {
     }
     const c = toCanonical(value);
     const p = PLAUSIBLE[field];
-    // Sleep pieces are checked as a whole night (in series()); other readings one by one.
-    const bad = SLEEP_FIELDS.has(field) ? !Number.isFinite(c) || c < 0 || c > p.max : !Number.isFinite(c) || c < p.min || c > p.max;
+    // Day totals (sleep pieces, steps, minutes) are checked as a whole day (in series()); other readings one by one.
+    const bad = DAILY_TOTAL_FIELDS.has(field) ? !Number.isFinite(c) || c < 0 || c > p.max : !Number.isFinite(c) || c < p.min || c > p.max;
     if (bad) {
       s.dropped++;
       return;
@@ -522,7 +611,7 @@ export class DailyTally {
 
   series(): DailySeries[] {
     return [...this.bySource.entries()].map(([from, s]) => {
-      const sum = SLEEP_FIELDS.has(s.field);
+      const sum = DAILY_TOTAL_FIELDS.has(s.field);
       const p = PLAUSIBLE[s.field];
       let dropped = s.dropped;
       const days: DailySeries["days"] = [];

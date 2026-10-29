@@ -14,7 +14,7 @@ const body = buildDashboard({ ...demo, measurements: demo.measurements.filter((m
 describe("body dashboard", () => {
   it("has every body measurement: monthly for two years, and every night for the last 10 weeks", () => {
     // Including the fitness tests, done every 8 months.
-    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["body_fat", "bp_diastolic", "bp_systolic", "chair_stand_30s", "exercise_hr", "gait_speed", "glucose_home", "grip_strength", "heart_rate", "hrv", "hrv_resting", "one_leg_stand", "pushups", "resting_hr", "sit_to_stand_5x", "sitting_rising", "sleep_deep", "sleep_duration", "sleep_rem", "spo2", "vo2max", "waist", "weight"]);
+    expect(body.markers.map((m) => m.def.id).sort()).toEqual(["active_minutes", "body_fat", "bp_diastolic", "bp_systolic", "chair_stand_30s", "exercise_hr", "gait_speed", "glucose_home", "grip_strength", "heart_rate", "hrv", "hrv_resting", "one_leg_stand", "pushups", "resting_hr", "sit_to_stand_5x", "sitting_rising", "sleep_deep", "sleep_duration", "sleep_rem", "spo2", "steps", "vo2max", "waist", "weight"]);
     // 24 monthly days (3 of them in the last 10 weeks) and 70 nights from the watch.
     expect(body.draws).toHaveLength(24 - 3 + 70);
     expect(body.critical).toHaveLength(0);

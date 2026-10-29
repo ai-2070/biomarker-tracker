@@ -44,3 +44,11 @@ describe("chart series", () => {
     expect(pointsForWindow(pts, "2025-01-01", "2026-12-31")).toHaveLength(5);
   });
 });
+
+describe("weekly totals", () => {
+  it("adds up a week's daily totals instead of averaging them", () => {
+    const days = ["2026-03-02", "2026-03-03", "2026-03-04"].map((date) => ({ date, value: 30 }));
+    expect(groupReadings(days, "week", "total")).toMatchObject([{ value: 90, count: 3 }]);
+    expect(groupReadings(days, "week")).toMatchObject([{ value: 30, count: 3 }]);
+  });
+});

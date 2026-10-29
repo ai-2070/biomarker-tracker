@@ -34,7 +34,7 @@ function bucketOf(date: string, by: "week" | "month"): string {
 }
 
 /** Readings as chart points, one per reading or averaged per week or month. Oldest first. */
-export function groupReadings(readings: readonly Reading[], by: Grouping): ChartPoint[] {
+export function groupReadings(readings: readonly Reading[], by: Grouping, how: "average" | "total" = "average"): ChartPoint[] {
   const sorted = [...readings].sort((a, b) => a.date.localeCompare(b.date));
   if (by === "each") return sorted.map((r) => ({ date: r.date, value: r.value, count: 1, from: r.date, to: r.date }));
   const buckets = new Map<string, Reading[]>();
@@ -46,7 +46,8 @@ export function groupReadings(readings: readonly Reading[], by: Grouping): Chart
   }
   return [...buckets.values()].map((rs) => ({
     date: isoOfDay(rs.reduce((s, r) => s + dayNumber(r.date), 0) / rs.length),
-    value: rs.reduce((s, r) => s + r.value, 0) / rs.length,
+    // Daily totals (active minutes) add up to a week's total; everything else is averaged.
+    value: rs.reduce((s, r) => s + r.value, 0) / (how === "total" ? 1 : rs.length),
     count: rs.length,
     from: rs[0]!.date,
     to: rs.at(-1)!.date,

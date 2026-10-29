@@ -10,6 +10,7 @@ import {
   isOutOfRange,
   latestByBiomarker,
   paddedDomain,
+  recentTotal,
   resolveRange,
   slope,
   sortByDate,
@@ -220,5 +221,23 @@ describe("helpers", () => {
     ]);
     expect(g.get("a")?.length).toBe(2);
     expect(g.get("b")?.length).toBe(1);
+  });
+});
+
+describe("active minutes: judged on a week's total", () => {
+  const active = def("active_minutes");
+  const day = (date: string, value: number) => measurement({ biomarkerId: "active_minutes", date, value, originalUnit: "min" });
+  const week = (perDay: number, days = 7) => Array.from({ length: days }, (_, i) => day(`2026-03-${String(10 + i).padStart(2, "0")}`, perDay));
+  it("adds up the last 7 days, and needs readings on at least 4 of them", () => {
+    expect(recentTotal(week(30))).toMatchObject({ value: 210, days: 7, from: "2026-03-10", to: "2026-03-16" });
+    expect(recentTotal(week(30, 3))).toBeUndefined();
+    // Only the 7 days up to the latest count.
+    expect(recentTotal([day("2026-03-01", 500), ...week(20)])!.value).toBe(140);
+  });
+  it("flags a week below the WHO's 150 minutes, never a single day", () => {
+    expect(flagLatest(active, week(30), { birthMonth: "1980-05" })).toBe("normal");
+    expect(flagLatest(active, week(15), { birthMonth: "1980-05" })).toBe("low");
+    expect(flagMeasurement(active, day("2026-03-10", 5), { birthMonth: "1980-05" })).toBe("unknown");
+    expect(flagLatest(active, week(15, 3), { birthMonth: "1980-05" })).toBe("unknown");
   });
 });
