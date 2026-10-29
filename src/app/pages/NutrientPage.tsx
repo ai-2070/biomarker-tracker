@@ -60,7 +60,13 @@ export function NutrientPage({ id }: { id: string }) {
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
           {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
         </div>
-        <AddToProtocol label={n.name} />
+        <div className="flex flex-wrap gap-2">
+          {/* A habit with the nutrient's blood test picked to watch, when the app has one. */}
+          <LinkButton variant="secondary" href={href({ name: "habits", add: n.name, ...(n.status.biomarkerIds[0] ? { marker: n.status.biomarkerIds[0] } : {}) })}>
+            Start as a habit
+          </LinkButton>
+          <AddToProtocol label={n.name} />
+        </div>
       </div>
 
       {/* Wide screens: the cards at a readable width, key facts and jump links in a side column. Phones: cards only. */}
