@@ -840,3 +840,172 @@ This pass adds ten distinct findings after checking the previous 82 entries and 
 | Cumulative | 14 | 74 | 4 | 92 |
 
 Round 4 adds no new P1 finding. Its material defects concern incomplete-data disclosure, schedule/variant fidelity, unsupported quantitative comparisons, lost edits and failure-state reporting; each entry states exactly which parts were executed versus source-confirmed.
+
+## Round 5 — import identity, screening provenance and state boundaries
+
+This pass adds nine distinct findings, excluding the previous 92 entries and their root-cause variants. Reviewed device/lab imports and their review/save paths, research retrieval and evidence screening, chart state/statistics, and selected clinical-input and attachment boundaries. Earlier findings are historical review receipts, not a claim that the repository has remained unchanged between rounds.
+
+### R5-001 — P1: Short full names remain in document text sent to the model
+
+- **Location:** `src/app/brain/logic.ts:41–49`; outbound use at `src/app/brain/store.ts:272–275`; privacy promise at `src/app/components/ProfileForm.tsx:44–52`.
+- **Trigger:** A supported profile name is `Li Wu` or `吴敏`, and an attached ordinary document contains that name.
+- **Defect/impact:** The redactor drops every name part shorter than three characters, then returns the original text when none remain. It never separately matches the full name, despite the full-name redaction contract. Identifying text therefore remains associated with the health document in the selected model's prompt.
+- **Verification — executed, no external model:** Passed `Patient: Li Wu. Follow-up note: fatigue improved.` through actual `redactName()` and `questionWithFiles()` using neutral filename `note.txt`. The text remained unchanged and `nameStillInPrompt` was true. The two-character Chinese name also remained; the control name Anna Kovacs was redacted. The application's call to these helpers before transport was source-confirmed; no real provider received the document.
+- **Fix direction:** Always redact the normalized full profile name, independently of the minimum-length policy for individual parts; retain appropriate boundaries and escaping.
+- **Distinctness:** R1-029 concerns filenames never being redacted. This finding uses a nonidentifying filename and a failure inside the document-body redactor itself.
+
+### R5-002 — P2: Explicitly negated profile conditions increase calculated cardiovascular risk
+
+- **Location:** `src/core/heartAge.ts:89–91`.
+- **Trigger:** Enter `No diabetes. No hypertension treatment.` in the free-text conditions field.
+- **Defect/impact:** Both positive-keyword regexes treat the denied conditions as affirmative. Framingham then uses the diabetes and treated-blood-pressure coefficients, presenting a materially different numerical risk/heart age rather than the facts the person entered. This is not merely a conservative suggestion filter: it changes the model's factual inputs.
+- **Verification — executed actual input collection and calculations:** For the same synthetic woman born `1976-10`, 170 cm, 70 kg, never smoking, with 125/80 on `2026-10-29`, empty conditions produced `diabetes:false`, `treatedBp:false`, risk `0.044352803487486825`, heart age `50.73487411994447`. The explicit negative text produced both flags true, risk `0.1291386737088267`, heart age `76.41491044460243`.
+- **Fix direction:** Do not infer affirmative diagnoses/treatment from negated history. Prefer explicitly confirmed inputs for these numerical-model variables, and expose ambiguity rather than silently treating it as yes.
+
+### R5-003 — P2: A supported device-series remapping can crash the entire review
+
+- **Location:** `src/app/pages/DeviceImportPage.tsx:380–381,415–424`.
+- **Trigger:** Import CSV `Date,Weight (kg)` / `2026-10-01,80`, then change “Import as” from Body weight to Body fat.
+- **Defect/impact:** Recalculation correctly drops the now-impossible 80% body-fat value and returns an empty series. `SeriesRow` still dereferences its first/last dates unconditionally. The app unmounts to a blank page instead of retaining the mapping controls so the person can correct the selection; the in-progress review is lost.
+- **Verification — executed in the actual production browser UI:** Uploaded the synthetic CSV, observed the accepted weight review, selected Body fat, and captured `TypeError: Cannot read properties of undefined (reading 'date')`. The resulting screenshot showed a blank app. The filtering helper independently returned `dropped:1, days:[]`.
+- **Fix direction:** Support an empty remapped-series state, keep its controls available, and exclude it from saving without dereferencing absent endpoints.
+
+### R5-004 — P2: Spaced ASCII inclusive comparators disappear during lab parsing
+
+- **Location:** `src/core/importers/labText.ts:89–94`.
+- **Trigger:** A supported lab row prints `C-reactive protein <= 0.3 mg/L` or `>= 0.3 mg/L`.
+- **Defect/impact:** Tokenization joins a comparator to the following number only when there is no `=` between them. It discards the separate comparator token and parses `0.3` as exact. The row has no review problems, and normal save validation preserves the falsely exact result.
+- **Verification — executed parsing through save validation:** Actual `parseLabNumber("<= 0.3")` returned qualifier `<`, but `parseLabText()` produced `value:"0.3", problems:[]`; actual `validateManualEntry(..., "pdf")` saved it without a qualifier. `>= 0.3` lost `>` the same way. Controls `< 0.3` and `≤ 0.3` retained `<`.
+- **Fix direction:** Join the complete supported comparator, including optional `=`, before splitting tokens.
+- **Distinctness:** R1-020/R1-055 concern consumers mishandling a qualifier that exists. This parser removes it before storage.
+
+### R5-005 — P2: Lab deduplication discards exact and censored results as if they were identical
+
+- **Location:** `src/core/trends.ts:199–202`; discard path at `src/app/components/LabReview.tsx:124–129`.
+- **Trigger:** Store CRP `<0.3 mg/L` and import a report with exact `0.3 mg/L` on the same date, or import in the reverse order.
+- **Defect/impact:** `isAlreadySaved()` compares marker/date/numeric value but omits the qualifier. Lab review therefore skips a genuinely different observation as already saved. The person cannot retain the new exact-versus-bound information through that Save action.
+- **Verification — executed actual parsers, validation and duplicate predicate:** Both rows parsed with no problems and validated successfully. The existing result retained `qualifier:"<"` and the candidate had none, yet actual `isAlreadySaved()` returned true. The UI's unconditional skip for that result was source-confirmed, not clicked in a full lab import.
+- **Fix direction:** Include the normalized qualifier in measurement identity while retaining canonical-unit equivalence.
+- **Distinctness:** R1-049 is a failure to remove duplicate rows within one pending batch. This is the opposite failure: discarding non-equivalent observations against existing storage.
+
+### R5-006 — P2: Refreshed titles/abstracts cannot invalidate cached evidence-screening decisions
+
+- **Location:** `tools/evidence/screen.ts:53–55`; selection consumption at `tools/evidence/build.ts:49–52`.
+- **Trigger:** Screening rejected a review because its abstract was unavailable; a later fetch supplies the abstract without changing the outcome question or PMID.
+- **Defect/impact:** Reuse is keyed only by question and PMID, not the text actually screened. The review is never reconsidered and the builder continues excluding it. Changed abstracts can likewise retain obsolete approvals. Published selection no longer necessarily reflects the current source records.
+- **Verification — executed runner logic with mocked process/filesystem boundaries:** Seeded PMID 100 with a cached rejection stating no abstract was available, supplied its now-complete abstract plus new PMID 200, and ran the actual `screen.ts` body after TypeScript transpilation. Only the new record was sent to the mocked screening process. Actual `splitByScreening()`/`chooseFrom()` still selected only `["200"]`.
+- **Fix direction:** Store and compare a fingerprint of the actual screening inputs, including title, abstract, question and screening mode; rescreen changed inputs.
+- **Distinctness:** R2-003 changes the question and takes an unscreened builder fallback. Here the question is unchanged, matching screening exists, and a stale decision is actively reused.
+
+### R5-007 — P2: Reused evidence decisions are attributed to a model that never screened them
+
+- **Location:** `tools/evidence/screen.ts:43–47,65–66`; published attribution at `tools/evidence/build.ts:93–98`.
+- **Trigger:** Retain decisions from Opus, rerun the supported screening command with `sonnet`, and encounter at least one new eligible review.
+- **Defect/impact:** The runner overwrites the file-wide `by` field immediately while keeping old decisions unchanged. When a new batch saves, all decisions—including those never sent to Sonnet—are attributed to Sonnet. The builder publishes this incorrect provenance for the retained outcomes.
+- **Verification — executed in the same isolated runner probe:** Captured persisted `reportedModel:"Claude Code (sonnet), titles and abstracts only"` alongside the unchanged old decision previously recorded under Opus; the mocked process handled only the new review. The builder's copying of global attribution was inspected. Full map publication/browser rendering was not run.
+- **Fix direction:** Preserve per-decision/batch attribution and describe mixed provenance accurately, or explicitly rescreen when changing the model.
+- **Distinctness:** This remains incorrect even when titles, abstracts and questions have not changed; it is separate from screening-input invalidation and the prior unscreened fallback.
+
+### R5-008 — P2: Attached document text is silently cut after the client says it fits
+
+- **Location:** `src/app/brain/logic.ts:53–61`; unconditional transport truncation at `server/http.ts:297–302`.
+- **Trigger:** Send an 8,000-character question with one document shorter than the client's 14,000-character attachment-text allowance.
+- **Defect/impact:** The attachment budget ignores the question and wrapper lengths. The prepared message exceeds the server's 20,000-character limit, so the server silently slices away the document tail instead of reporting input truncation. The helper inserts no shortening notice because the document itself fits its allowance; the model can answer an incomplete document while the turn appears successful.
+- **Verification — executed actual HTTP route, settings and SDK request construction with mocked model transport:** Actual `questionWithFiles()` prepared 22,017 characters with no shortening notice. Posted it to an isolated `/api/assistant`; the captured provider-bound user message was exactly 20,000 characters and omitted `END_OF_DOCUMENT_SENTINEL`. The route returned HTTP 200 and `ok:true, truncated:false`. No external service was called, and temporary settings were removed.
+- **Fix direction:** Budget the complete message—including question, filenames, wrappers and notices—before sending. Surface any input shortening explicitly; do not silently slice an otherwise accepted document.
+
+### R5-009 — P3: Deleting a chart endpoint leaves its viewport outside the remaining data
+
+- **Location:** `src/app/components/timeControls.tsx:79–85`; changing data bounds at `src/app/components/TrendChart.tsx:110–125`.
+- **Trigger:** With ferritin results in 2010 and 2026, select 1M and delete the 2026 result from the same marker page.
+- **Defect/impact:** The explicit view survives a change to `full` without being clamped/reset. The chart remains in 2026 with zero visible results even though the remaining measurement is in 2010. Because zoom state compares spans rather than viewport containment, Zoom out is disabled and the overview strip disappears.
+- **Verification — executed in the actual production browser UI:** Used synthetic ferritin 45 on `2010-10-29` and 50 on `2026-10-29`, chose 1M, and confirmed deletion through the normal controls. The chart's accessible description said `0 results from Oct 3, 2026 to Nov 2, 2026`; Zoom out was disabled. The screenshot showed an empty chart. Pressing All recovered `1 results from Oct 22, 2010 to Nov 5, 2010`, confirming no data loss.
+- **Fix direction:** Reconcile an explicit viewport/selection with the new full domain when measurements change, and keep navigation state consistent with containment.
+
+### Round 5 verification and exclusions
+
+- `bun run test`: **57 files / 778 tests passed**, exit 0. The AI SDK image-part deprecation warning remained.
+- `bun run build`: **passed**, including both TypeScript projects and production bundling, exit 0. The large-chunk warning remained.
+- Browser checks used an isolated static-preview origin, synthetic IndexedDB records and a synthetic CSV; they exercised real remapping, deletion, confirmation and chart-reset interactions. Review records and the CSV were removed, and the preview was stopped.
+- Executed helper probes for document redaction, heart-risk inputs/calculations, lab tokenization/validation/deduplication, and empty-series filtering. The screening runner used in-memory filesystem/process boundaries and actual classification/selection functions; no real screening model ran.
+- The assistant HTTP probe used a temporary data directory, disabled MCP servers and a mocked local-model HTTP transport; actual route parsing and provider request generation ran. No patient data, external provider or installed agent was used.
+- Do not interpret the passing baseline as disproving these uncovered paths. No permanent tests or application fixes were added. Existing application/configuration/knowledge changes were left untouched.
+- Did not recount tied fitness bounds, duplicate-day coverage, prior screenshot/date/unit bugs, or another consumer of an already reported root cause. Speculative same-day blood-draw identity and current-profile historical assumptions were not promoted to findings without a stronger supported contract/reproduction.
+
+### Cumulative triage after Round 5
+
+| Scope | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Rounds 1–4 | 14 | 74 | 4 | 92 |
+| Round 5 additions | 1 | 7 | 1 | 9 |
+| Cumulative | 15 | 81 | 5 | 101 |
+
+The new high-priority item is document-body identity disclosure for short names (**R5-001**). Other additions concern incorrect risk inputs, import crashes and identity loss, stale/misattributed evidence, silent input truncation and a recoverable chart-state defect.
+
+## Round 6 — restore identity, linked writes and connection settings
+
+This pass adds five distinct findings after excluding the previous 101 entries and their root-cause variants. Reviewed archive/filesystem and attachment boundaries; linked protocol/habit/watch mutations; assistant bridge, tool and citation handling; and connection-settings state. No application fixes were made.
+
+### R6-001 — P2: Duplicate IDs inside a restored archive silently erase observations when the profile opens
+
+- **Location:** `src/core/backup.ts:139–175`; archive acceptance at `server/profiles.ts:341–349`; browser ingestion at `src/app/profiles.ts:88–96`.
+- **Trigger:** Restore a ZIP whose results contain two otherwise valid measurements with the same `id`, but different dates or values.
+- **Defect/impact:** Import validation checks the records independently without enforcing per-table ID uniqueness. The folder and restored summary retain/count both. Opening the profile then `bulkPut()`s them into an ID-keyed IndexedDB table, silently replacing the first with the second. An ordinary subsequent save writes that reduced set back to disk. The same identity constraint applies to the other ID-keyed imported tables.
+- **Verification — executed the actual restore/load/save chain:** Created a synthetic ZIP with ferritin 20 on `2026-01-01` and 40 on `2026-02-01`, both ID `same-id`. Used actual `writeZip()`, `restoreZip()`, `loadIntoBrowser()`, `browserData()` and `saveProfileData()` with temporary profile storage, fake IndexedDB and a mocked profile-data GET. Observed `summaryRows:2, folderRowsBefore:2, browserRows:1, folderRowsAfterSave:1`. A separate JSON restore probe likewise accepted two rows and stored one.
+- **Fix direction:** Reject duplicate IDs within each imported table before publishing a restored profile. Preserve intended merge behavior when an incoming ID replaces an existing destination record; that is different from duplicate identities inside one input.
+- **Distinctness:** Earlier restore findings concern omitted files/entities, size/name limits, partial publication or mixed file generations. This is an unchecked identity invariant at the folder-to-browser boundary.
+
+### R6-002 — P2: A failed initial watch leaves a saved habit that is duplicated on retry
+
+- **Location:** `src/app/pages/HabitsPage.tsx:437–447`; separate watch transaction at `src/db/db.ts:168–173`.
+- **Trigger:** Create a new habit with “Watch what changes” enabled and encounter an experiment-store write failure after the habit write commits, such as insufficient storage.
+- **Defect/impact:** `addProtocol()` commits independently before `watchHabit()` starts its transaction. Failure leaves the habit without the requested watch; `onDone()` is skipped and the form becomes usable again. Retrying the same form creates another habit rather than completing the first operation.
+- **Verification — executed actual mutations with fault injection:** Used a uniquely named fake-IndexedDB database and an experiment-creation hook throwing `QuotaExceededError`. The form's actual mutation sequence rejected and left `habits:1, watches:0`. Removing the fault and repeating it produced `habits:2, watches:1`. The React form's retry/control flow was inspected; real browser storage exhaustion was not attempted.
+- **Fix direction:** Persist the habit and its initial watch in one transaction, following the existing atomic experiment-creation pattern; report failures without publishing half the requested operation.
+- **Distinctness:** This is not the previously reported double-start race. One normal submission fails between two independently committed entity writes, and its retry duplicates the partially created habit.
+
+### R6-003 — P2: Unicode basename truncation can make the Files view fail during URL construction
+
+- **Location:** `server/profiles.ts:256–264,277–280`; `src/app/profiles.ts:283–284`; rendering at `src/app/pages/DataPage.tsx:143–154`.
+- **Trigger:** Keep a PDF named `"A" + "\u{10400}".repeat(40) + ".pdf"` (85 UTF-16 code units). These supplementary-plane letters pass the sanitizer; the original name is below the metadata-length limit.
+- **Defect/impact:** `.slice(0, 80)` splits a surrogate pair in the sanitized basename. The file and index entry are created, but the stored name contains a lone high surrogate. `fileUrl()` throws when encoding it, so rendering the Files list fails instead of providing open/download/delete controls.
+- **Verification — executed filesystem and actual URL helper:** In temporary profile storage, actual `addFile()` succeeded and `listFiles()` returned the attachment with its original name intact. The stored basename ended in code unit `d801`; actual `fileUrl()` threw `URIError: String contained an illegal UTF-16 sequence.` The complete Files-page browser crash was source-confirmed from its render-time helper calls, not exercised.
+- **Fix direction:** Truncate on Unicode code-point boundaries while retaining the current extension and collision handling.
+- **Distinctness:** R1-009 truncates an original filename's extension during metadata handling. Here both original metadata and extension are intact; the stored basename itself is invalid Unicode.
+
+### R6-004 — P2: Test remains enabled for unsaved connection changes and validates the old configuration
+
+- **Location:** `src/app/components/settings/ModelsSettings.tsx:153,294–314`; saved-only test endpoint at `server/http.ts:135–147`.
+- **Trigger:** Start with a saved, usable Ollama configuration, change its Address without changing provider/model/effort, then press Test before Save. An entered replacement API key has the same dirty-state omission.
+- **Defect/impact:** `saved` compares only provider/model/effort, ignoring the configuration draft and key. The page still presents the selection as ready/in use and enables Test, but its POST contains no draft and the server tests persisted settings. A successful result is therefore not evidence that the address/key currently shown works.
+- **Verification — executed browser behavior plus a separate actual endpoint probe:** With mocked settings/test HTTP boundaries, changed the visible address from port 11434 to 21434. Test remained enabled; clicking it sent `POST /api/settings/test` with no body and no preceding provider PUT. Separately, the actual endpoint with temporary saved settings and mocked model transport returned success while issuing its SDK request to `http://127.0.0.1:11434/v1/chat/completions`. No external model or real secret was used.
+- **Fix direction:** Include configuration and pending key changes in dirty-state detection and disable Test until they are saved, or explicitly test the visible draft without implying it is already the active configuration.
+
+### R6-005 — P3: Saving a new local endpoint leaves its model list cached from the old endpoint
+
+- **Location:** `src/app/components/settings/ModelsSettings.tsx:42–52,108–116`.
+- **Trigger:** Load Ollama's models, change Address to another local server/port with a different model list, then Save.
+- **Defect/impact:** Discovery is cached only by provider ID. The post-save settings refresh does not invalidate that cache, and `useLoadedList()` refuses another lookup while that provider has an entry. The model chooser continues offering the previous server's models (or its cached error) rather than the newly saved endpoint's list.
+- **Verification — executed in the actual browser UI with mocked HTTP:** Initial discovery returned `Old endpoint model`. Saved Address `http://127.0.0.1:21434/v1`; the mock would return `New endpoint model` for a lookup after that save. Captured only one discovery request across the whole scenario, followed by both save PUTs and the settings GET. The reopened dropdown still offered `Old endpoint model` and `Other model…`; the screenshot confirmed the new address and stale choices together.
+- **Fix direction:** Invalidate/reload a provider's discovery result when its persisted discovery inputs change. Manual model entry remains a workaround.
+- **Distinctness:** R4-010 rejects an otherwise eligible IPv6 address in the server's loopback policy. R3-009 concerns cached Brain readiness consuming a pending question. This cache has a different key, lifecycle and consequence.
+
+### Round 6 verification and exclusions
+
+- `bun run test`: **57 files / 778 tests passed**, exit 0; the AI SDK image-part deprecation warning remained.
+- `bun run build`: **passed**, including both TypeScript projects and production bundling, exit 0; the large-chunk warning remained.
+- Exercised actual archive creation/restoration, filesystem attachment storage, profile-to-IndexedDB loading and subsequent folder saving using synthetic data. All temporary directories and fake databases were deleted.
+- Exercised watched-habit creation with an injected experiment-write failure and a retry; no real profile or browser quota was modified.
+- Browser settings checks used an isolated static-preview origin and mocked local API boundaries. The separate Test-endpoint probe used real HTTP routing and SDK request generation with a mocked provider response. No real provider, installed agent or external research server ran.
+- Browser records were cleared, the review tab closed and the preview stopped. No application source, permanent tests, configuration, knowledge data or dependencies were edited.
+- Did not promote intentionally retained habits on protocol deletion, explicitly wait-only Stop semantics, or another consumer of a previously reported root cause. Citation history already unions retrieved IDs across conversation turns, and `read_skill` explicitly checks enablement; those suspected issues were rejected after tracing the consumers. No additional archive traversal, symlink or cross-origin disclosure defect was established.
+
+### Cumulative triage after Round 6
+
+| Scope | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Rounds 1–5 | 15 | 81 | 5 | 101 |
+| Round 6 additions | 0 | 4 | 1 | 5 |
+| Cumulative | 15 | 85 | 6 | 106 |
+
+Round 6 adds no new P1 finding. The new defects concern restore identity loss, partial linked writes, invalid attachment names and connection-settings feedback/discovery.
