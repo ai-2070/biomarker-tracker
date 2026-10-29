@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import { ask, studyIdsIn, systemPrompt } from "../../server/assistant";
 import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, type HealthSnapshot } from "../../server/healthTools";
 import { findMarker } from "../../server/knowledge";
+import { toolStep } from "../../server/steps";
 import type { Measurement } from "../../src/core/types";
 
 const m = (id: string, biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
@@ -72,6 +73,27 @@ describe("health tools", () => {
     expect(out.studies.length).toBe(3);
     expect(urls[0]).toMatch(/^https:\/\/www\.ebi\.ac\.uk\//);
     expect(decodeURIComponent(urls[0]!)).not.toMatch(/1984|Warfarin/);
+  });
+});
+
+describe("habit suggestions", () => {
+  const call = (snap: HealthSnapshot, input: unknown) => healthTools(snap).propose_habit!.execute!(input as never, { toolCallId: "t", messages: [] } as never) as Promise<Record<string, unknown>>;
+  const calm: HealthSnapshot = { ...snapshot, measurements: snapshot.measurements.filter((x) => x.biomarkerId !== "potassium") };
+
+  it("shows a card for a habit the person asked for, without saving anything", async () => {
+    const r = await call(calm, { label: "Oats for breakfast", category: "diet", watchMarkers: ["LDL-C"], reason: "You asked to track this." });
+    expect(r.shownToPerson).toMatchObject({ label: "Oats for breakfast", markerIds: ["ldl"] });
+    expect(String(r.note)).toMatch(/Nothing is saved/);
+  });
+  it("refuses medicines, doses, and anything next to a critical result", async () => {
+    expect((await call(calm, { label: "Statin", category: "medication", reason: "x" })).error).toMatch(/Medicines/);
+    expect((await call(calm, { label: "Vitamin D 4000 IU", category: "supplement", reason: "x" })).error).toMatch(/amounts/);
+    expect((await call(snapshot, { label: "Walk after dinner", category: "lifestyle", reason: "x" })).error).toMatch(/critical/);
+  });
+  it("keeps the whole suggestion in the step, so the page can build the card", () => {
+    const long = { label: "Walk after dinner", category: "lifestyle", reason: "r".repeat(280) };
+    expect(JSON.parse(toolStep("propose_habit", long).input)).toEqual(long);
+    expect(toolStep("get_marker", { marker: "x".repeat(300) }).input.length).toBe(200);
   });
 });
 

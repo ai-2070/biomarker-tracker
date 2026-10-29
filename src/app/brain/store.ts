@@ -4,12 +4,14 @@ import { assistantProfile } from "../../core/profile";
 import type { Measurement } from "../../core/types";
 import { db, getProfile } from "../../db/db";
 import { api } from "../api";
-import { BLOOD_MARKERS } from "../knowledge";
+import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
 import { shrinkPhoto } from "./photo";
 import { parseHealthScreenshot } from "../../core/importers/screenshot";
 import { todayIso } from "../../core/dates";
+import { parseHabitProposal, type HabitProposal } from "../../core/habitProposal";
+import { flagLatest, groupByBiomarker, isCritical } from "../../core/trends";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
 
@@ -24,6 +26,8 @@ export type Turn =
   | { id: string; role: "assistant"; content: string; model: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { id: string; role: "error"; content: string }
   | { id: string; role: "stopped" }
+  /** A habit Brain suggested: a card the person edits and confirms (nothing is saved before). */
+  | { id: string; role: "habit"; proposal: HabitProposal; state: "open" | "saved" | "dismissed" }
   | {
       id: string;
       role: "review";
@@ -117,6 +121,34 @@ export const removeAttachment = (id: string) => set((s) => ({ attachments: s.att
 export const setSendPhoto = (id: string, on: boolean) => set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, sendPhoto: on } : a)) }));
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
+export const setHabitState = (id: string, state: "saved" | "dismissed") =>
+  set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "habit" ? { ...t, state } : t)) }));
+
+/**
+ * Habit cards from Brain's propose_habit calls, checked again here (the same rules as the server) and
+ * never while a result is critical: then the person should contact a doctor first.
+ */
+export function habitTurns(steps: readonly Step[], measurements: readonly Measurement[], today: string): Turn[] {
+  const critical = [...groupByBiomarker(measurements)].some(([id, ms]) => {
+    const def = BIOMARKER_MAP.get(id);
+    return !!def && isCritical(flagLatest(def, ms));
+  });
+  if (critical) return [];
+  const seen = new Set<string>();
+  return steps.flatMap((st) => {
+    if (st.server || st.tool !== "propose_habit") return [];
+    let input: unknown;
+    try {
+      input = JSON.parse(st.input);
+    } catch {
+      return [];
+    }
+    const r = parseHabitProposal(input, BIOMARKER_MAP, today);
+    if (!r.ok || seen.has(r.proposal.label.toLowerCase())) return [];
+    seen.add(r.proposal.label.toLowerCase());
+    return [{ id: newId(), role: "habit" as const, proposal: r.proposal, state: "open" as const }];
+  });
+}
 
 export function newConversation(): void {
   controller?.abort();
@@ -238,9 +270,12 @@ export async function send(model: string, text?: string): Promise<void> {
     set((s) => ({
       turns: [
         ...s.turns,
-        r.ok
-          ? { id: newId(), role: "assistant", content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) }
-          : { id: newId(), role: "error", content: r.error },
+        ...(r.ok
+          ? [
+              { id: newId(), role: "assistant" as const, content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) },
+              ...habitTurns(r.steps, snap.measurements, todayIso()),
+            ]
+          : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],
     }));
   } catch (e) {

@@ -36,7 +36,7 @@ export function dataPack(snapshot: HealthSnapshot): string {
     {
       results: resultsOverview(snapshot),
       biologicalAge: biologicalAge(snapshot),
-      log: snapshot.protocols.map((p) => ({ entry: p.label, kind: p.category, start: p.start, end: p.end ?? "ongoing" })),
+      habits: snapshot.protocols.map((p) => ({ entry: p.label, kind: p.category, start: p.start, end: p.end ?? "ongoing" })),
       experiments: experimentResults(snapshot),
     },
     null,
@@ -53,6 +53,8 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     "- For research, use search_research or the connected research tools, and cite only studies that a tool returned in this conversation, with the ID in square brackets exactly as returned, e.g. [PMID:12345678]. Never invent studies, authors or IDs.",
     "- Say how strong the evidence is. If the evidence you found doesn't answer the question, say so.",
     "- To read or summarize a specific study the user names, look it up with get_study using its ID, and cite it by that ID.",
+    "- The person's supplements, diet changes, medicines and lifestyle changes are their Habits (get_log); what changed for habits that watch markers comes from compare_before_after. Say \"habits\", not \"log\" or \"experiments\".",
+    "- When the person asks to log, track or try something, or agrees when you offer, you may call propose_habit: it shows a card they confirm. Never propose a medicine or an amount, never propose a supplement on your own initiative, and not next to a critical result.",
     "- For questions about a vitamin, mineral or a supplement of one, read get_nutrient first. Keep supplement findings and food findings apart. EFSA reference intakes and upper limits are population values: never turn them into a dose for this person.",
     "- When a task matches a skill below, call read_skill first and follow it.",
     "- Never put the user's personal details into a search.",
@@ -70,7 +72,7 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     );
   }
   if (opts.cautious) {
-    lines.push("- The user's log has a blood thinner, diabetes medicine, pregnancy or kidney disease. Don't suggest increasing any nutrient, food or supplement; say changes should be discussed with their doctor.");
+    lines.push("- The person's habits or profile have a blood thinner, diabetes medicine, pregnancy or kidney disease. Don't suggest increasing any nutrient, food or supplement; say changes should be discussed with their doctor.");
   }
   if (opts.skills) lines.push("", "Skills (load one with read_skill):", opts.skills);
   if (opts.mcpServers.length) {
