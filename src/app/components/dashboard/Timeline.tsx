@@ -1,13 +1,13 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
 import type { Dashboard, DrawSummary } from "../../../core/dashboard";
 import { dayNumber } from "../../../core/dates";
 import { ageAt } from "../../../core/phenoageDraws";
-import { panWindow, presetWindow, timeTicks, zoomWindow, type TimeWindow } from "../../../core/timeWindow";
+import { timeTicks } from "../../../core/timeWindow";
 import type { ProtocolEntry } from "../../../core/types";
 import { formatDate, formatYears } from "../../format";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
-import { MinusIcon, PlusIcon } from "../icons";
+import { TimeControls, useTimeView, useWidth } from "../timeControls";
 import { cx } from "../ui";
 
 /** Left gutter for the age tick labels. */
@@ -25,31 +25,9 @@ const MAX_LANES = 6;
 const CLUSTER_PX = 16;
 const CHAR_PX = 6.4;
 
-const PRESETS: { label: string; days: number | "all" }[] = [
-  { label: "6M", days: 183 },
-  { label: "1Y", days: 365 },
-  { label: "2Y", days: 730 },
-  { label: "5Y", days: 1826 },
-  { label: "All", days: "all" },
-];
-
 const monthFmt = new Intl.DateTimeFormat(undefined, { month: "short" });
 const monthYearFmt = new Intl.DateTimeFormat(undefined, { month: "short", year: "numeric" });
-const fromDay = (day: number) => new Date(Math.round(day) * 86_400_000);
-
-/** Width of an element, kept up to date. */
-function useWidth() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([e]) => setWidth(Math.round(e!.contentRect.width)));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-  return [ref, width] as const;
-}
+const dayFmt = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short" });
 
 /** Packs log entries into rows so bars never overlap. */
 function lanes(protocols: readonly ProtocolEntry[], today: string): { p: ProtocolEntry; row: number }[] {
@@ -86,14 +64,11 @@ export function Timeline({
   /** Days with body measurements, as squares on their own row. No second scale: only when, and whether something was off. */
   body?: readonly DrawSummary[];
 }) {
-  const [ref, width] = useWidth();
+  const ref = useRef<HTMLDivElement>(null);
+  const width = useWidth(ref);
   const clipId = `tl-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const [hover, setHover] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
-  const [view, setView] = useState<TimeWindow | null>(null);
-  const [preset, setPreset] = useState<string>("All");
-  const drag = useRef<{ x: number; w: TimeWindow; moved: boolean } | null>(null);
-  const suppressClick = useRef(false);
   const active = hover ?? pinned;
   const span = d.span!;
   const packed = useMemo(() => lanes(protocols, today), [protocols, today]);
@@ -104,42 +79,21 @@ export function Timeline({
   const d1 = Math.max(dayNumber(span.to), d0 + 30);
   const lead = (d1 - d0) * 0.02;
   const full = useMemo(() => ({ from: d0 - lead, to: d1 + lead }), [d0, d1, lead]);
-  const v = view ?? full;
   const right = Math.max(width, 1) - PAD_R;
   const plotW = Math.max(right - PAD_L, 1);
+  // Moving or zooming closes any open test details (their positions moved).
+  const t = useTimeView(full, { left: PAD_L, width: plotW }, {
+    ref,
+    onChange: () => {
+      setHover(null);
+      setPinned(null);
+    },
+  });
+  const v = t.v;
   const xDay = (day: number) => PAD_L + ((day - v.from) / (v.to - v.from)) * plotW;
   const x = (date: string) => xDay(dayNumber(date));
   const inView = (date: string) => x(date) >= PAD_L - 1 && x(date) <= right + 1;
-  const zoomed = v.to - v.from < full.to - full.from - 1;
-
-  /** Changes the window and closes any open test details (their positions moved). */
-  const show = (w: TimeWindow | null, label: string | null = null) => {
-    setView(w);
-    setPreset(label ?? "");
-    setHover(null);
-    setPinned(null);
-  };
-
-  // Ctrl + wheel zooms around the pointer; a sideways wheel or trackpad swipe moves. A plain wheel scrolls the page.
-  const latest = useRef({ v, full, plotW });
-  latest.current = { v, full, plotW };
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      const { v: cur, full: all, plotW: pw } = latest.current;
-      const anchor = Math.min(Math.max((e.clientX - el.getBoundingClientRect().left - PAD_L) / pw, 0), 1);
-      if (e.ctrlKey) {
-        e.preventDefault();
-        show(zoomWindow(cur, e.deltaY > 0 ? 1.25 : 0.8, anchor, all));
-      } else if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        e.preventDefault();
-        show(panWindow(cur, (e.deltaX * (cur.to - cur.from)) / pw, all));
-      }
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [ref]);
+  const zoomed = t.zoomed;
 
   const ageTop = 14;
   const testsTop = hasAge ? AGE_H : 0;
@@ -208,99 +162,28 @@ export function Timeline({
   const shortened = width > 0 ? placed.filter((l) => l.label.text !== l.p.label).map((l) => l.p) : [];
 
   const ticks = timeTicks(v);
-  const tickLabel = (t: { date: string; kind: "year" | "month" }) => {
-    const dt = new Date(`${t.date}T12:00:00`);
-    return t.kind === "year" ? String(dt.getFullYear()) : v.to - v.from > 400 ? monthYearFmt.format(dt) : monthFmt.format(dt);
+  const tickLabel = (k: { date: string; kind: "year" | "month" | "day" }) => {
+    const dt = new Date(`${k.date}T12:00:00`);
+    return k.kind === "year" ? String(dt.getFullYear()) : k.kind === "day" ? dayFmt.format(dt) : v.to - v.from > 400 ? monthYearFmt.format(dt) : monthFmt.format(dt);
   };
 
   const c = active === null ? undefined : clusters[active];
   const cOut = c ? names(c.draws.flatMap((t) => t.outOfRange)) : [];
   const cCrit = c ? c.draws.some((t) => t.critical.length > 0) : false;
   const cAge = c ? d.bioAge.filter((p) => c.draws.some((t) => t.date === p.date)) : [];
-  const fullSpanDays = full.to - full.from;
-
-  function onKey(e: React.KeyboardEvent) {
-    const step = (v.to - v.from) * 0.15;
-    if (e.key === "ArrowLeft") show(panWindow(v, -step, full));
-    else if (e.key === "ArrowRight") show(panWindow(v, step, full));
-    else if (e.key === "+" || e.key === "=") show(zoomWindow(v, 0.7, 0.5, full));
-    else if (e.key === "-" || e.key === "_") show(zoomWindow(v, 1 / 0.7, 0.5, full));
-    else if (e.key === "0") show(null, "All");
-    else return;
-    e.preventDefault();
-  }
-
-  const segBtn = "flex h-11 min-w-11 items-center justify-center rounded-md px-2.5 text-sm transition-colors duration-150 sm:h-8 sm:min-w-9";
 
   return (
     <div className="flex flex-col gap-3">
       {/* Looking around: what is shown, quick ranges, zoom */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm text-ink-2 tabular-nums" aria-live="polite">
-          {monthYearFmt.format(fromDay(v.from))} – {monthYearFmt.format(fromDay(v.to))}
-        </p>
-        <div className="flex flex-wrap items-center gap-2">
-          <div role="group" aria-label="Time range" className="flex rounded-lg border border-line bg-sunken p-0.5">
-            {PRESETS.filter((p) => p.days === "all" || p.days < fullSpanDays).map((p) => (
-              <button
-                key={p.label}
-                type="button"
-                aria-pressed={preset === p.label}
-                onClick={() => show(p.days === "all" ? null : presetWindow(p.days, full), p.label)}
-                className={cx(segBtn, preset === p.label ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-              >
-                {p.label}
-              </button>
-            ))}
-          </div>
-          <div role="group" aria-label="Zoom" className="flex rounded-lg border border-line bg-sunken p-0.5">
-            <button type="button" aria-label="Zoom out" disabled={!zoomed} onClick={() => show(zoomWindow(v, 1 / 0.7, 0.5, full))} className={cx(segBtn, "text-ink-2 hover:text-ink disabled:opacity-40")}>
-              <MinusIcon width={16} height={16} />
-            </button>
-            <button type="button" aria-label="Zoom in" disabled={v.to - v.from <= 46} onClick={() => show(zoomWindow(v, 0.7, 0.5, full))} className={cx(segBtn, "text-ink-2 hover:text-ink disabled:opacity-40")}>
-              <PlusIcon width={16} height={16} />
-            </button>
-          </div>
-        </div>
-      </div>
+      <TimeControls t={t} />
 
       <div
-        ref={ref}
+        {...t.bind}
         role="group"
-        tabIndex={0}
         aria-label="Timeline. Arrow keys move through time, plus and minus zoom, 0 shows everything."
-        onKeyDown={onKey}
         className={cx("relative w-full rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent", zoomed ? "cursor-grab active:cursor-grabbing" : "")}
-        style={{ height, touchAction: "pan-y" }}
+        style={{ ...t.bind.style, height }}
         onMouseLeave={() => setHover(null)}
-        onPointerDown={(e) => {
-          if (e.button !== 0) return;
-          drag.current = { x: e.clientX, w: v, moved: false };
-        }}
-        onPointerMove={(e) => {
-          const g = drag.current;
-          if (!g) return;
-          const dx = e.clientX - g.x;
-          if (!g.moved && Math.abs(dx) < 5) return;
-          if (!g.moved) {
-            g.moved = true;
-            e.currentTarget.setPointerCapture(e.pointerId);
-          }
-          show(panWindow(g.w, (-dx * (g.w.to - g.w.from)) / plotW, full));
-        }}
-        onPointerUp={() => {
-          if (drag.current?.moved) suppressClick.current = true;
-          drag.current = null;
-        }}
-        onPointerCancel={() => (drag.current = null)}
-        onClickCapture={(e) => {
-          // The end of a drag is not a click on a test.
-          if (suppressClick.current) {
-            suppressClick.current = false;
-            e.stopPropagation();
-            e.preventDefault();
-          }
-        }}
       >
         {width > 0 && (
           <svg width={width} height={height} className="block overflow-visible" aria-hidden="true">
@@ -430,7 +313,7 @@ export function Timeline({
               type="button"
               aria-label={`Blood test ${k.draws.map((t) => formatDate(t.date)).join(" and ")}: ${new Set(k.draws.flatMap((t) => t.outOfRange)).size} out of range`}
               aria-pressed={pinned === i}
-              onMouseEnter={() => !drag.current && setHover(i)}
+              onMouseEnter={() => !t.isDragging() && setHover(i)}
               onFocus={() => setHover(i)}
               onBlur={() => setHover(null)}
               onClick={() => setPinned(pinned === i ? null : i)}

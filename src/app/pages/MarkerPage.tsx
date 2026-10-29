@@ -86,7 +86,7 @@ export function MarkerPage({ id }: { id: string }) {
                     {usual.recent.position === "within" ? "Within your usual range" : usual.recent.position === "below" ? "Lower than usual" : "Higher than usual"}
                   </span>
                 ) : (
-                  <FlagBadge flag={latestFlag} className="text-base" />
+                  latestFlag !== "unknown" && <FlagBadge flag={latestFlag} className="text-base" />
                 )}
               </div>
               {def.judgeAverageOfDays && (
@@ -113,7 +113,7 @@ export function MarkerPage({ id }: { id: string }) {
                     : "One result outside the range is common and often harmless. It is still worth discussing with your doctor, especially if it is new, keeps changing, or you have symptoms."}
                 </Notice>
               )}
-              <TrendChart def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
+              <TrendChart key={def.id} def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
             </Card>
 
             <MeasurementList def={def} measurements={measurements} unit={unit} profile={profile} protocols={protocols} />
@@ -218,7 +218,8 @@ function MeasurementList({
                 )}
               </div>
               <div className="flex items-center gap-2">
-                <FlagBadge flag={flag} />
+                {/* "No range" on every row says nothing: the About section explains it once. */}
+                {flag !== "unknown" && <FlagBadge flag={flag} />}
                 <ConfirmDialog
                   trigger={<span>Delete</span>}
                   triggerVariant="quiet"

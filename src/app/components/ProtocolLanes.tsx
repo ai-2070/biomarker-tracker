@@ -11,17 +11,24 @@ const PLOT_INSET = {
   right: CHART_LAYOUT.marginRight + CHART_LAYOUT.padX,
 };
 
-/** Log entries drawn as bars on the same time axis as the chart above. */
+/**
+ * Log entries drawn as bars on the same time axis as the chart above. With `onSelect`, each one is a
+ * button that shades its period on the chart (pressed again: off).
+ */
 export function ProtocolLanes({
   protocols,
   from,
   to,
   today,
+  selected,
+  onSelect,
 }: {
   protocols: ProtocolEntry[];
   from: string;
   to: string;
   today: string;
+  selected?: string | null;
+  onSelect?: (id: string | null) => void;
 }) {
   const lanes = sortProtocols(protocols)
     .map((p) => ({ p, lane: laneFor(p, from, to, today) }))
@@ -36,24 +43,44 @@ export function ProtocolLanes({
           Edit habits
         </a>
       </p>
-      <ul className="flex flex-col gap-2">
-        {lanes.map(({ p, lane }) => (
-          <li key={p.id}>
-            <p className="truncate text-sm">
-              {p.label}{" "}
-              <span className="text-ink-2">
-                · {CATEGORY_LABEL[p.category]}, {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
+      {onSelect && <p className="mb-2 text-sm text-ink-2">Choose one to shade its period on the chart.</p>}
+      <ul className="flex flex-col gap-1">
+        {lanes.map(({ p, lane }) => {
+          const on = selected === p.id;
+          const body = (
+            <>
+              <span className="block truncate text-sm">
+                {p.label}{" "}
+                <span className="text-ink-2">
+                  · {CATEGORY_LABEL[p.category]}, {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
+                </span>
               </span>
-            </p>
-            <div className="relative h-2" style={{ marginLeft: PLOT_INSET.left, marginRight: PLOT_INSET.right }} aria-hidden="true">
-              <div className="absolute inset-y-0 w-full rounded-full bg-sunken" />
-              <div
-                className={cx("absolute inset-y-0 bg-ink-2/60", lane.cutStart ? "rounded-l-none" : "rounded-l-full", lane.cutEnd ? "rounded-r-none" : "rounded-r-full")}
-                style={{ left: `${lane.leftPct}%`, width: `${lane.widthPct}%` }}
-              />
-            </div>
-          </li>
-        ))}
+              <span className="relative mt-1 block h-2" style={{ marginLeft: PLOT_INSET.left - 8, marginRight: PLOT_INSET.right - 8 }} aria-hidden="true">
+                <span className="absolute inset-y-0 w-full rounded-full bg-sunken" />
+                <span
+                  className={cx("absolute inset-y-0", on ? "bg-ink" : "bg-ink-2/60", lane.cutStart ? "rounded-l-none" : "rounded-l-full", lane.cutEnd ? "rounded-r-none" : "rounded-r-full")}
+                  style={{ left: `${lane.leftPct}%`, width: `${lane.widthPct}%` }}
+                />
+              </span>
+            </>
+          );
+          return (
+            <li key={p.id}>
+              {onSelect ? (
+                <button
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => onSelect(on ? null : p.id)}
+                  className={cx("block w-full rounded-md px-2 py-1.5 text-left transition-colors duration-150", on ? "bg-sunken" : "hover:bg-sunken/60")}
+                >
+                  {body}
+                </button>
+              ) : (
+                <div className="px-2 py-1.5">{body}</div>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

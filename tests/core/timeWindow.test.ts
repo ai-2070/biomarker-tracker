@@ -22,6 +22,17 @@ describe("time window", () => {
     expect(zoomWindow(full, 2, 0.5, full)).toEqual(full);
   });
 
+  it("can allow a narrower window (marker charts with daily readings)", () => {
+    const w = zoomWindow({ from: full.to - 30, to: full.to }, 0.1, 1, full, 14);
+    expect(w).toEqual({ from: full.to - 14, to: full.to });
+    expect(clampWindow({ from: full.to - 5, to: full.to }, full, 14)).toEqual({ from: full.to - 14, to: full.to });
+  });
+
+  it("marks Mondays when the window is under 7 weeks", () => {
+    const weeks = timeTicks({ from: dayNumber("2026-10-01"), to: dayNumber("2026-10-31") });
+    expect(weeks.map((t) => [t.date, t.kind])).toEqual([["2026-10-05", "day"], ["2026-10-12", "day"], ["2026-10-19", "day"], ["2026-10-26", "day"]]);
+  });
+
   it("moves and stops at the ends", () => {
     const w = presetWindow(365, full);
     expect(w).toEqual({ from: full.to - 365, to: full.to });

@@ -12,10 +12,10 @@ export interface TimeWindow {
 /** Never zoom in further than this many days. */
 export const MIN_SPAN_DAYS = 45;
 
-/** Keeps a window inside the full range and at least MIN_SPAN_DAYS wide (or the full range, if shorter). */
-export function clampWindow(w: TimeWindow, full: TimeWindow): TimeWindow {
+/** Keeps a window inside the full range and at least `minSpan` days wide (or the full range, if shorter). */
+export function clampWindow(w: TimeWindow, full: TimeWindow, minSpan = MIN_SPAN_DAYS): TimeWindow {
   const fullSpan = full.to - full.from;
-  const span = Math.min(Math.max(w.to - w.from, Math.min(MIN_SPAN_DAYS, fullSpan)), fullSpan);
+  const span = Math.min(Math.max(w.to - w.from, Math.min(minSpan, fullSpan)), fullSpan);
   let from = w.from;
   if (from < full.from) from = full.from;
   if (from + span > full.to) from = full.to - span;
@@ -23,34 +23,42 @@ export function clampWindow(w: TimeWindow, full: TimeWindow): TimeWindow {
 }
 
 /** Zooms by `factor` (< 1 zooms in) keeping the day under `anchor` (0 = left edge, 1 = right edge) in place. */
-export function zoomWindow(w: TimeWindow, factor: number, anchor: number, full: TimeWindow): TimeWindow {
+export function zoomWindow(w: TimeWindow, factor: number, anchor: number, full: TimeWindow, minSpan = MIN_SPAN_DAYS): TimeWindow {
   const span = w.to - w.from;
   const at = w.from + span * anchor;
-  const next = span * factor;
-  return clampWindow({ from: at - next * anchor, to: at - next * anchor + next }, full);
+  const next = Math.max(span * factor, Math.min(minSpan, full.to - full.from));
+  return clampWindow({ from: at - next * anchor, to: at - next * anchor + next }, full, minSpan);
 }
 
 /** Moves the window by a number of days (negative: back in time). */
-export function panWindow(w: TimeWindow, days: number, full: TimeWindow): TimeWindow {
-  return clampWindow({ from: w.from + days, to: w.to + days }, full);
+export function panWindow(w: TimeWindow, days: number, full: TimeWindow, minSpan = MIN_SPAN_DAYS): TimeWindow {
+  return clampWindow({ from: w.from + days, to: w.to + days }, full, minSpan);
 }
 
 /** The last `days` days of the full range, or the whole range. */
-export function presetWindow(days: number | "all", full: TimeWindow): TimeWindow {
-  return days === "all" ? full : clampWindow({ from: full.to - days, to: full.to }, full);
+export function presetWindow(days: number | "all", full: TimeWindow, minSpan = MIN_SPAN_DAYS): TimeWindow {
+  return days === "all" ? full : clampWindow({ from: full.to - days, to: full.to }, full, minSpan);
 }
 
 export interface Tick {
   /** ISO date of the tick (first of a month). */
   date: string;
   day: number;
-  /** "year": label with the year; "month": label with the month. */
-  kind: "year" | "month";
+  /** "year": label with the year; "month": label with the month; "day": a Monday, labelled with day and month. */
+  kind: "year" | "month" | "day";
 }
 
-/** Axis ticks for a window: years when wide, half-years in between, months when narrow. */
+/** Axis ticks for a window: years when wide, half-years in between, months when narrow, weeks (Mondays) under 7 weeks. */
 export function timeTicks(w: TimeWindow): Tick[] {
   const span = w.to - w.from;
+  if (span < 50) {
+    const ticks: Tick[] = [];
+    // Day 0 (1970-01-01) was a Thursday, so Mondays are days ≡ 4 (mod 7).
+    for (let day = Math.ceil(w.from) + ((4 - (Math.ceil(w.from) % 7) + 7) % 7); day <= w.to; day += 7) {
+      ticks.push({ date: new Date(day * 86_400_000).toISOString().slice(0, 10), day, kind: "day" });
+    }
+    return ticks;
+  }
   const step = span > 1100 ? 12 : span > 400 ? 6 : span > 150 ? 2 : 1;
   const start = new Date(w.from * 86_400_000);
   let y = start.getUTCFullYear();
