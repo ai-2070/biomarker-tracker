@@ -11,6 +11,8 @@ describe("router", () => {
     expect(parseHash("#/add")).toEqual({ name: "add" });
     expect(parseHash("#/add?marker=ferritin")).toEqual({ name: "add", marker: "ferritin" });
     expect(parseHash("#/marker/crp_hs")).toEqual({ name: "marker", id: "crp_hs" });
+    expect(parseHash("#/marker/waist?section=waist-to-height")).toEqual({ name: "marker", id: "waist", section: "waist-to-height" });
+    expect(parseHash("#/marker/waist?section=<x>")).toEqual({ name: "marker", id: "waist" });
     expect(parseHash("#/data")).toEqual({ name: "data" });
     expect(parseHash("#/settings?tab=mcp")).toEqual({ name: "data", tab: "mcp" });
     expect(parseHash("#/settings?tab=nope")).toEqual({ name: "data" });
@@ -52,7 +54,7 @@ describe("router", () => {
     expect(parseHash("#/marker/a/b")).toEqual({ name: "not-found" });
   });
   it("round-trips href and parseHash", () => {
-    const routes: Route[] = [{ name: "overview" }, { name: "overview", show: "out" }, { name: "overview", show: "in" }, { name: "add" }, { name: "add", marker: "b12" }, { name: "marker", id: "vitamin_d" }, { name: "data" }, { name: "phenoage" }, { name: "import" }, { name: "habits" }, { name: "habits", add: "Oats for breakfast" }, { name: "habits", add: "" },
+    const routes: Route[] = [{ name: "overview" }, { name: "overview", show: "out" }, { name: "overview", show: "in" }, { name: "add" }, { name: "add", marker: "b12" }, { name: "marker", id: "vitamin_d" }, { name: "marker", id: "waist", section: "waist-to-height" }, { name: "data" }, { name: "phenoage" }, { name: "import" }, { name: "habits" }, { name: "habits", add: "Oats for breakfast" }, { name: "habits", add: "" },
       { name: "habits", add: "Kiwis & oats", marker: "ferritin" },
       { name: "experiment", id: "abc-123" },
       { name: "data", tab: "models" },

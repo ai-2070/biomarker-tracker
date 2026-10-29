@@ -135,7 +135,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <AddResult key={`${route.kind ?? ""}|${route.marker ?? ""}`} initialMarker={route.marker} initialKind={route.kind} />;
     case "marker":
       // Keyed so switching markers never shows the previous marker's results while loading.
-      return <MarkerPage key={route.id} id={route.id} />;
+      return <MarkerPage key={route.id} id={route.id} section={route.section} />;
     case "data":
       return <SettingsPage tab={route.tab} />;
     case "assistant":

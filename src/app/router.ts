@@ -21,7 +21,7 @@ export type Route =
   | { name: "overview"; show?: ResultsFilter }
   | { name: "soon"; section: SoonSection }
   | { name: "add"; marker?: string; kind?: "body" }
-  | { name: "marker"; id: string }
+  | { name: "marker"; id: string; section?: string }
   | { name: "data"; tab?: SettingsTab }
   | { name: "assistant"; ask?: string }
   | { name: "phenoage" }
@@ -58,7 +58,10 @@ export function parseHash(hash: string): Route {
     if (params.get("type") === "body") return { name: "add", kind: "body" };
     return marker ? { name: "add", marker } : { name: "add" };
   }
-  if (parts[0] === "marker" && parts[1] && parts.length === 2) return { name: "marker", id: parts[1] };
+  if (parts[0] === "marker" && parts[1] && parts.length === 2) {
+    const section = params.get("section");
+    return section && /^[a-z-]{1,40}$/.test(section) ? { name: "marker", id: parts[1], section } : { name: "marker", id: parts[1] };
+  }
   if ((parts[0] === "data" || parts[0] === "settings") && parts.length === 1) {
     const tab = params.get("tab");
     return tab && (TABS as readonly string[]).includes(tab) ? { name: "data", tab: tab as SettingsTab } : { name: "data" };
@@ -116,7 +119,7 @@ export function href(route: Route): string {
     case "add":
       return route.kind === "body" ? "#/add?type=body" : route.marker ? `#/add?marker=${encodeURIComponent(route.marker)}` : "#/add";
     case "marker":
-      return `#/marker/${encodeURIComponent(route.id)}`;
+      return `#/marker/${encodeURIComponent(route.id)}${route.section ? `?section=${route.section}` : ""}`;
     case "data":
       return route.tab ? `#/settings?tab=${route.tab}` : "#/settings";
     case "assistant":

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } from "recharts";
 import { WHTR_YEARS_LOST_RATIOS, waistToHeight, waistToHeightBand, waistToHeightYearsLost, type WaistToHeightBand } from "../../../core/body";
 import { ageAt } from "../../../core/phenoageDraws";
@@ -49,7 +49,7 @@ export function WaistToHeightFigure({ ms, profile, className }: { ms: Measuremen
   return (
     <Figure
       label="Waist-to-height"
-      href={href({ name: "marker", id: "waist" })}
+      href={href({ name: "marker", id: "waist", section: "waist-to-height" })}
       className={className}
       foot={!profile.heightCm ? "Add your height in Settings → Your data." : !last ? "Measure your waist to see it." : `Waist ÷ height, ${formatDate(last.date)}. The usual guide is below 0.5.`}
     >
@@ -66,12 +66,23 @@ export function WaistToHeightFigure({ ms, profile, className }: { ms: Measuremen
 }
 
 /** On the waist page: your ratio over time on the ranges, and the study's years of life lost. */
-export function WaistToHeightPanel({ ms, profile }: { ms: Measurement[]; profile: Profile }) {
+export function WaistToHeightPanel({ ms, profile, scrollTo = false }: { ms: Measurement[]; profile: Profile; scrollTo?: boolean }) {
   const series = ratios(ms, profile.heightCm);
+  // Opened from the Waist-to-height figure: bring this panel into view once it's drawn.
+  const ref = useRef<HTMLElement>(null);
+  const shown = series.length > 0 || !profile.heightCm;
+  useEffect(() => {
+    if (!scrollTo || !shown) return;
+    const t = window.setTimeout(() => {
+      ref.current?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      ref.current?.focus({ preventScroll: true });
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, [scrollTo, shown]);
   const last = series.at(-1);
   if (!profile.heightCm) {
     return (
-      <Card>
+      <Card ref={ref} tabIndex={-1} aria-label="Waist-to-height ratio" className="scroll-mt-6 outline-none">
         <h2 className="font-serif text-2xl font-normal">Waist-to-height ratio</h2>
         <p className="mt-1 text-ink-2">
           Your waist divided by your height. <a href={href({ name: "data", tab: "data" })}>Add your height</a> to see it.
@@ -84,7 +95,7 @@ export function WaistToHeightPanel({ ms, profile }: { ms: Measurement[]; profile
   const age = profile.birthMonth ? ageAt(profile.birthMonth, last.date) : undefined;
   const lost = waistToHeightYearsLost(last.ratio, { sex: profile.sex, age });
   return (
-    <Card className="flex flex-col gap-5">
+    <Card ref={ref} tabIndex={-1} aria-label="Waist-to-height ratio" className="flex scroll-mt-6 flex-col gap-5 outline-none">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="max-w-3xl">
           <h2 className="font-serif text-2xl font-normal">Waist-to-height ratio</h2>
