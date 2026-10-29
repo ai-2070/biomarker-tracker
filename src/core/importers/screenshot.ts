@@ -22,6 +22,9 @@ const LABELS: readonly { re: RegExp; field: BodyField | "bp" }[] = [
   { re: /rem sleep|^rem$/, field: "sleep_rem" },
   { re: /time asleep|total sleep|sleep duration|^sleep$|^asleep$|^actual sleep/, field: "sleep_duration" },
   { re: /glucose|blood sugar|vércukor|blutzucker/, field: "glucose_home" },
+  { re: /^steps?$|\bsteps\b|step count|schritte|lépés/, field: "steps" },
+  // Moderate-to-vigorous minutes; "move minutes" (Google Fit) count light activity too, so they're not read.
+  { re: /exercise minutes|exercise time|^exercise$|active minutes|active zone minutes|intensity minutes|aktive minuten|aktív perc/, field: "active_minutes" },
   { re: /heart rate|^hr$|avg hr|average hr|^pulse$|^puls$/, field: "heart_rate" },
 ];
 
@@ -30,7 +33,7 @@ const NOT_A_VALUE = /goal|target|score|zone|\b(max|min)\b.*(heart|hr|rate|pulse)
 
 /** A line under a label counts only when it's just the value: "58 bpm", "128/82 mmHg", "7 h 12 min". */
 const ONLY_VALUE =
-  /^[<>~≈]?\s*\d{1,3}(?:[.,]\d{1,2})?\s*(?:\/\s*\d{2,3})?\s*(?:bpm|\/\s*min|ms|%|kg|lbs?|mmhg|mmol\/l|mg\/dl|cm|in|ml\/kg\/min)?\.?\s*$|^\s*\d{1,2}\s*(?:h|hr|hrs|hours?|ó|óra|std)\.?\s*(?:\d{1,2}\s*(?:m|min|mins|minutes?|p|perc)\.?)?\s*$|^\s*\d{1,3}\s*(?:m|min|mins|minutes?)\s*$|^\s*\d{1,2}:[0-5]\d\s*$/i;
+  /^\s*\d{1,3}(?:[,.\s]\d{3})+\s*(?:steps?)?\s*$|^\s*\d{1,6}\s*steps?\s*$|^[<>~≈]?\s*\d{1,3}(?:[.,]\d{1,2})?\s*(?:\/\s*\d{2,3})?\s*(?:bpm|\/\s*min|ms|%|kg|lbs?|mmhg|mmol\/l|mg\/dl|cm|in|ml\/kg\/min)?\.?\s*$|^\s*\d{1,2}\s*(?:h|hr|hrs|hours?|ó|óra|std)\.?\s*(?:\d{1,2}\s*(?:m|min|mins|minutes?|p|perc)\.?)?\s*$|^\s*\d{1,3}\s*(?:m|min|mins|minutes?)\s*$|^\s*\d{1,2}:[0-5]\d\s*$/i;
 
 const UNITS: Partial<Record<BodyField, readonly [RegExp, string][]>> = {
   resting_hr: [[/bpm|\/min/, "bpm"]],
@@ -48,6 +51,7 @@ const UNITS: Partial<Record<BodyField, readonly [RegExp, string][]>> = {
 const DEFAULT_UNIT: Record<BodyField, string> = {
   weight: "kg", waist: "cm", body_fat: "%", bp_systolic: "mmHg", bp_diastolic: "mmHg", resting_hr: "bpm", heart_rate: "bpm", exercise_hr: "bpm",
   hrv: "ms", hrv_resting: "ms", spo2: "%", glucose_home: "mmol/L", sleep_duration: "h", sleep_deep: "h", sleep_rem: "h", vo2max: "mL/kg/min",
+  steps: "steps", active_minutes: "min",
   pushups: "reps", grip_strength: "kg", sit_to_stand_5x: "s", chair_stand_30s: "reps", one_leg_stand: "s", gait_speed: "m/s", sitting_rising: "points",
 };
 
@@ -74,6 +78,16 @@ function valueIn(field: BodyField | "bp", s: string): { value: number; unit: str
   if (field === "sleep_duration" || field === "sleep_deep" || field === "sleep_rem") {
     const h = durationHours(t);
     return h === undefined ? undefined : { value: Math.round(h * 100) / 100, unit: "h" };
+  }
+  // Steps: whole numbers, often with a thousands separator ("8,120", "8 120").
+  if (field === "steps") {
+    const m = /(?<![\d:/])(\d{1,3}(?:[,.\s]\d{3})+|\d{1,6})(?![\d:/])/.exec(t);
+    return m ? { value: Number(m[1]!.replace(/[,.\s]/g, "")), unit: "steps" } : undefined;
+  }
+  // Active time: minutes, or hours and minutes ("1 h 5 min").
+  if (field === "active_minutes") {
+    const h = durationHours(t);
+    return h === undefined ? undefined : { value: Math.round(h * 60), unit: "min" };
   }
   // A number, not part of a time (07:30) or a date (12/03).
   const m = /(?<![\d:/.,])(\d{1,3}(?:[.,]\d{1,2})?)(?![\d:/])\s*([^\d\s]{0,12}(?:\s?\/\s?\w{2,3})?)/.exec(t);

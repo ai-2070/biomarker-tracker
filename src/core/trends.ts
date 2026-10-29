@@ -74,7 +74,7 @@ export function flagValue(
  * flagged when it's critical: use `flagLatest` for the marker as a whole.
  */
 export function flagMeasurement(def: BiomarkerDef, m: Measurement, profile: Profile = {}): Flag {
-  if (def.judgeAverageOfDays) return flagValue(m.value, undefined, def.criticalRange);
+  if (def.judgeAverageOfDays || def.judgeSumOfDays) return flagValue(m.value, undefined, def.criticalRange);
   return flagValue(m.value, resolveRange(def, m, profile), def.criticalRange);
 }
 
@@ -93,14 +93,36 @@ export function recentAverage(series: readonly Measurement[], days = 7, min = 3)
 }
 
 /**
+ * Total of the daily readings in the `days` days up to the latest one (e.g. a week of active minutes),
+ * when at least `min` of those days have a reading; otherwise undefined. Days without a reading count
+ * as nothing, so a week with gaps (the watch not worn) is reported with how many days it covers.
+ */
+export function recentTotal(series: readonly Measurement[], days = 7, min = 4): { value: number; days: number; from: string; to: string } | undefined {
+  const sorted = sortByDate(series);
+  const last = sorted.at(-1);
+  if (!last) return undefined;
+  const from = new Date(Date.parse(last.date) - (days - 1) * 86_400_000).toISOString().slice(0, 10);
+  const recent = sorted.filter((m) => m.date >= from);
+  const covered = new Set(recent.map((m) => m.date)).size;
+  if (covered < min) return undefined;
+  return { value: recent.reduce((s, m) => s + m.value, 0), days: covered, from, to: last.date };
+}
+
+/**
  * The flag of a marker as it stands now: its latest reading, or for markers judged on an average
- * (sleep) the average of the last days, when there are enough readings for one.
+ * (sleep) the average of the last days, or on a total (active minutes) the last week's total, when
+ * there are enough readings for one.
  */
 export function flagLatest(def: BiomarkerDef, series: readonly Measurement[], profile: Profile = {}): Flag {
   const last = sortByDate(series).at(-1);
   if (!last) return "unknown";
   const single = flagMeasurement(def, last, profile);
-  if (!def.judgeAverageOfDays || isCritical(single)) return single;
+  if (isCritical(single)) return single;
+  if (def.judgeSumOfDays) {
+    const total = recentTotal(series, def.judgeSumOfDays);
+    return total ? flagValue(total.value, resolveRange(def, last, profile)) : "unknown";
+  }
+  if (!def.judgeAverageOfDays) return single;
   const avg = recentAverage(series, def.judgeAverageOfDays);
   return avg ? flagValue(avg.value, resolveRange(def, last, profile)) : "unknown";
 }

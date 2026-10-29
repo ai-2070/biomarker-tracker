@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { personalRange } from "../../core/personalRange";
 import { markerTerms } from "../../research/papers";
-import { computeTrend, flagLatest, flagMeasurement, isCritical, isOutOfRange, recentAverage, resolveRange, sortByDate } from "../../core/trends";
+import { computeTrend, flagLatest, flagMeasurement, isCritical, isOutOfRange, recentAverage, recentTotal, resolveRange, sortByDate } from "../../core/trends";
 import { formatValue, listUnits } from "../../core/units";
 import type { BiomarkerDef, Citation, Measurement, Profile } from "../../core/types";
 import { deleteMeasurement } from "../../db/db";
@@ -46,6 +46,8 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
       : resolveRange(def, {}, profile);
   // Sleep: the range is checked against the last week's average, not one night.
   const week = def.judgeAverageOfDays && measurements ? recentAverage(measurements, def.judgeAverageOfDays) : undefined;
+  // Active minutes: the advice is per week, so the last 7 days' total is checked.
+  const total = def.judgeSumOfDays && measurements ? recentTotal(measurements, def.judgeSumOfDays) : undefined;
   const fmt = (v: number) => (unit === "h" ? formatHours(v) : `${showValue(def, v, unit)} ${unit}`);
 
   return (
@@ -103,6 +105,13 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
                     : `The range is checked against the average of the last ${def.judgeAverageOfDays} days, which needs at least 3 readings.`}
                 </p>
               )}
+              {def.judgeSumOfDays && (
+                <p className="text-ink-2">
+                  {total
+                    ? `Total of the last ${def.judgeSumOfDays} days: ${Math.round(total.value)} ${unit} (${total.days} days with readings). The advice is checked against this, not one day.`
+                    : `The advice is checked against the total of the last ${def.judgeSumOfDays} days, which needs readings on at least 4 of them.`}
+                </p>
+              )}
               {usual && (
                 <p className="text-ink-2">
                   Your usual range: {showValue(def, usual.low, unit)}–{showValue(def, usual.high, unit)} {unit}, from your own {usual.baseline.count} readings between{" "}
@@ -115,7 +124,9 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
               <TrendSummary def={def} trend={trend} unit={unit} />
               {isOutOfRange(latestFlag) && !isCritical(latestFlag) && (
                 <Notice tone="warn" title="Outside the reference range">
-                  {def.judgeAverageOfDays
+                  {def.judgeSumOfDays
+                    ? "Your total for the last week is below the WHO advice. Any extra activity helps. If illness, pain or breathlessness makes moving hard, it's worth talking to your doctor."
+                    : def.judgeAverageOfDays
                     ? "Your average over the last week is outside the range. A week like this now and then is common. If it keeps happening, or you feel unwell, it's worth discussing with your doctor."
                     : "One result outside the range is common and often harmless. It is still worth discussing with your doctor, especially if it is new, keeps changing, or you have symptoms."}
                 </Notice>
@@ -316,7 +327,7 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
               ? "there is no useful range for everyone. Once you have 2 weeks of readings, your own usual range is shown: the middle two-thirds of your readings over the previous 60 days."
               : defaultRange
                 ? def.category === "Body"
-                  ? `the usual adult range used here is ${showRange(def, defaultRange, unit)}.`
+                  ? `the usual adult range used here is ${showRange(def, defaultRange, unit)}${def.judgeSumOfDays ? ` over ${def.judgeSumOfDays} days` : ""}.`
                   : `a typical adult range of ${showRange(def, defaultRange, unit)} is used when your lab's range isn't entered.`
                 : "no typical range is available for this marker."}
           {sexNote}

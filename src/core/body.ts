@@ -26,6 +26,9 @@ export type BodyField =
   | "sleep_deep"
   | "sleep_rem"
   | "vo2max"
+  // Activity from a phone, watch or ring: a total per day.
+  | "steps"
+  | "active_minutes"
   // Fitness tests (/knowledge/fitness): compared with norms for age and sex, not with a range.
   | "pushups"
   | "grip_strength"
@@ -34,7 +37,7 @@ export type BodyField =
   | "one_leg_stand"
   | "gait_speed"
   | "sitting_rising";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
+export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
 
 /** The fitness tests among the body fields, in the order they're shown. */
 export const FITNESS_FIELDS: readonly BodyField[] = ["pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
@@ -42,11 +45,18 @@ export const FITNESS_FIELDS: readonly BodyField[] = ["pushups", "grip_strength",
 /** Sleep is counted per night (dated by the morning you woke up): readings on one day add up, naps included. */
 export const SLEEP_FIELDS: ReadonlySet<BodyField> = new Set(["sleep_duration", "sleep_deep", "sleep_rem"]);
 
+/**
+ * Measurements that are a day's total: a device's readings on one day add up (sleep pieces and naps,
+ * steps counted in bursts, minutes of activity), rather than being averaged.
+ */
+export const DAILY_TOTAL_FIELDS: ReadonlySet<BodyField> = new Set([...SLEEP_FIELDS, "steps", "active_minutes"]);
+
 /** Body measurements in groups, for the Body dashboard and the entry form. */
-export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "sugar" | "fitness"; title: string; fields: readonly BodyField[] }[] = [
+export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "activity" | "sugar" | "fitness"; title: string; fields: readonly BodyField[] }[] = [
   { id: "size", title: "Size and composition", fields: ["weight", "waist", "body_fat"] },
   { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "vo2max"] },
   { id: "sleep", title: "Sleep", fields: ["sleep_duration", "sleep_deep", "sleep_rem"] },
+  { id: "activity", title: "Activity", fields: ["steps", "active_minutes"] },
   { id: "sugar", title: "Blood sugar", fields: ["glucose_home"] },
   { id: "fitness", title: "Strength, balance and walking", fields: FITNESS_FIELDS },
 ];
@@ -70,6 +80,9 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   sleep_deep: { min: 0.05, max: 8 },
   sleep_rem: { min: 0.05, max: 8 },
   vo2max: { min: 8, max: 95 },
+  // A day with no steps at all usually means the device wasn't worn, so it's left out rather than saved.
+  steps: { min: 1, max: 100_000 },
+  active_minutes: { min: 0, max: 1_000 },
   pushups: { min: 0, max: 200 },
   grip_strength: { min: 2, max: 100 },
   sit_to_stand_5x: { min: 2, max: 90 },

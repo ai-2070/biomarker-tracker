@@ -55,12 +55,22 @@ VO2 max
     expect(p.dateNote).toMatch(/date/);
   });
   it("ignores times and text without values", () => {
-    expect(values("Heart rate\nLast 24 hours\nSteps 8,412")).toEqual({});
+    expect(values("Heart rate\nLast 24 hours")).toEqual({});
   });
   it("turns durations into hours", () => {
     expect(durationHours("7 h 30 min")).toBe(7.5);
     expect(durationHours("6h")).toBe(6);
     expect(durationHours("95 min")).toBeCloseTo(1.583, 3);
     expect(durationHours("1:30")).toBe(1.5);
+  });
+});
+
+describe("steps and active minutes in screenshots", () => {
+  it("reads steps with a thousands separator, and active minutes", () => {
+    expect(values("Steps\n8,412")).toEqual({ steps: ["8412", "steps"] });
+    expect(values("Steps 12 045")).toEqual({ steps: ["12045", "steps"] });
+    expect(values("Exercise minutes\n42 min")).toEqual({ active_minutes: ["42", "min"] });
+    expect(values("Active minutes 1 h 5 min")).toEqual({ active_minutes: ["65", "min"] });
+    expect(values("Step goal 10,000")).toEqual({});
   });
 });

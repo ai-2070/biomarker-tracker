@@ -76,7 +76,9 @@ export function TrendChart({
   protocols?: ProtocolEntry[];
   today: string;
 }) {
-  const [prefs, setPrefs] = useChartPrefs<ChartPrefs>(`chart:${def.id}`, DEFAULT_PREFS);
+  // Judged on a week's total (active minutes): weekly totals by default, and the range is for a week.
+  const totals = !!def.judgeSumOfDays;
+  const [prefs, setPrefs] = useChartPrefs<ChartPrefs>(`chart:${def.id}`, { ...DEFAULT_PREFS, group: totals ? "week" : "each" });
   // Habits of the types chosen for this chart ("only diet changes with my weight").
   const habitTypes = useMemo(() => habitTypesIn(protocols), [protocols]);
   const shownHabits = useMemo(() => ofTypes(protocols, prefs.habitTypes), [protocols, prefs.habitTypes]);
@@ -85,9 +87,11 @@ export function TrendChart({
   const conv = (v: number) => fromCanonical(def, v, unit);
   const sorted = useMemo(() => sortByDate(measurements), [measurements]);
   const readings = useMemo(() => sorted.map((m) => ({ date: m.date, value: m.value })), [sorted]);
-  const groupings = useMemo(() => groupingsFor(readings), [readings]);
+  // Totals: days or weeks (a month's total can't be compared with the weekly advice).
+  const groupings = useMemo(() => groupingsFor(readings).filter((g) => !totals || g !== "month"), [readings, totals]);
   const group = groupings.includes(prefs.group) ? prefs.group : "each";
-  const hasRange = !!range && (range.low !== undefined || range.high !== undefined);
+  // A range for a week's total doesn't apply to single days.
+  const hasRange = !!range && (range.low !== undefined || range.high !== undefined) && (!totals || group === "week");
   const band = hasRange && prefs.band;
 
   const points: Point[] =
@@ -96,9 +100,10 @@ export function TrendChart({
           const flag = flagMeasurement(def, m, profile);
           return { t: dayNumber(m.date) * DAY_MS, y: conv(m.value), date: m.date, label: `${m.qualifier ?? ""}${formatValue(conv(m.value))}`, flag, out: isOutOfRange(flag), count: 1, from: m.date, to: m.date };
         })
-      : groupReadings(readings, group).map((p) => {
-          // An average is judged against the range (not the person's usual range, which is never a flag).
-          const flag = range && range.source !== "personal" ? flagValue(p.value, range) : "unknown";
+      : groupReadings(readings, group, totals ? "total" : "average").map((p) => {
+          // An average is judged against the range (not the person's usual range, which is never a flag);
+          // a weekly total only when the week has a reading every day (a week still under way would look low).
+          const flag = range && range.source !== "personal" && (!totals || p.count >= 7) ? flagValue(p.value, range) : "unknown";
           return { t: dayNumber(p.date) * DAY_MS, y: conv(p.value), date: p.date, label: formatValue(conv(p.value)), flag, out: isOutOfRange(flag) && !isCritical(flag), count: p.count, from: p.from, to: p.to };
         });
 
@@ -168,8 +173,8 @@ export function TrendChart({
                 onClick={() => setPrefs({ group: g })}
                 className={cx(segBtn, group === g ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
               >
-                <span className="sm:hidden">{GROUP_LABEL[g][0]}</span>
-                <span className="hidden sm:inline">{GROUP_LABEL[g][1]}</span>
+                <span className="sm:hidden">{totals && g === "week" ? "Weekly" : GROUP_LABEL[g][0]}</span>
+                <span className="hidden sm:inline">{totals && g === "week" ? "Weekly total" : totals && g === "each" ? "Each day" : GROUP_LABEL[g][1]}</span>
               </button>
             ))}
           </div>
@@ -347,7 +352,7 @@ export function TrendChart({
               <span aria-hidden="true" className="inline-block h-3 w-5 rounded-sm bg-chart-band/15" />
               {range?.source === "personal"
                 ? "Your usual range (from your own readings)"
-                : `Reference range (${range?.source === "lab" ? "from your lab" : def.judgeAverageOfDays ? `checked against the ${def.judgeAverageOfDays}-day average` : "typical adult"})`}
+                : `Reference range (${range?.source === "lab" ? "from your lab" : def.judgeAverageOfDays ? `checked against the ${def.judgeAverageOfDays}-day average` : totals ? "advice for a week's total" : "typical adult"})`}
             </span>
           )}
           {showOutKey && (

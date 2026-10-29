@@ -102,6 +102,11 @@ export interface BiomarkerDef {
    * isn't a problem). Single readings are then only flagged when critical.
    */
   judgeAverageOfDays?: number;
+  /**
+   * Judge the range on the total of this many days (active minutes: the WHO advice is per week). Values
+   * are stored per day; the range is for the total, so single days are only flagged when critical.
+   */
+  judgeSumOfDays?: number;
   /** No population range: the person's own usual range is shown instead (HRV). See `personalRange.ts`. */
   personalRange?: boolean;
   summary: string;

@@ -17,9 +17,10 @@ import { formatDate, lowerFirst } from "../format";
 import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
+import { ActiveTimeFigure, StepsFigure } from "../components/dashboard/activity";
 
 /** Shown as a figure on this page, so not repeated as a tile. */
-const FIGURED = new Set([...FITNESS_FIELDS, "weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
+const FIGURED = new Set([...FITNESS_FIELDS, "weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
 export function BodyPage() {
@@ -117,6 +118,12 @@ export function BodyPage() {
                       <LatestFigure ms={body} id="sleep_duration" label="Sleep" profile={profile} className="col-span-2" chart />
                       <LatestFigure ms={body} id="sleep_deep" label="Deep sleep" profile={profile} />
                       <LatestFigure ms={body} id="sleep_rem" label="REM sleep" profile={profile} />
+                    </>
+                  )}
+                  {g.id === "activity" && (
+                    <>
+                      <StepsFigure ms={body} className="col-span-2" />
+                      <ActiveTimeFigure ms={body} profile={profile} className="col-span-2" />
                     </>
                   )}
                   {g.id === "sugar" && <GlucoseFigure ms={body} profile={profile} className="col-span-2" />}
