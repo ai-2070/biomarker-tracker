@@ -221,11 +221,11 @@ export function biologicalAge(s: HealthSnapshot) {
           about: "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
         }
       : "No DunedinPACE result recorded (it needs a DNA methylation test, not a routine blood test).",
-    bestBefore: bestBeforeFor(s, sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined).map((d) => ({ date: d.date, age: d.age!, phenoAge: d.phenoAge! }))),
+    expirationDate: bestBeforeFor(s, sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined).map((d) => ({ date: d.date, age: d.age!, phenoAge: d.phenoAge! }))),
   };
 }
 
-/** The app's "Best before" figures (Biological age page), computed the same way, so the model reports these instead of guessing. */
+/** The app's "Expiration date" figures (Biological age page), computed the same way, so the model reports these instead of guessing. */
 function bestBeforeFor(s: HealthSnapshot, draws: { date: string; age: number; phenoAge: number }[]) {
   const p = s.profile;
   if (!p.birthMonth) return "Needs the person's month and year of birth.";
