@@ -1,0 +1,272 @@
+{
+ "topic": "food-absorption",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "absorption-deficiency-in-practice": {
+   "question": {
+    "population": "Adults or children",
+    "intervention": "A vegetarian or vegan diet",
+    "comparison": "Diets that include meat",
+    "outcome": "Iron or zinc status, deficiency or anaemia"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "27880062",
+     "fits": "yes",
+     "reason": "Pooled studies comparing serum ferritin (iron status) of adult vegetarians with non-vegetarian controls."
+    },
+    {
+     "pmid": "23595983",
+     "fits": "yes",
+     "reason": "Meta-analysed zinc intake and serum zinc in people on vegetarian diets versus non-vegetarians, with vegan subgroups."
+    },
+    {
+     "pmid": "26056918",
+     "fits": "partly",
+     "reason": "Compares vegetarian and non-vegetarian zinc intake and status, but only in pregnant women, a narrower group."
+    }
+   ]
+  },
+  "absorption-phytate": {
+   "question": {
+    "population": "People (adults or children)",
+    "intervention": "Phytate (phytic acid) in grains, beans, nuts and seeds, including foods treated to reduce it",
+    "comparison": "Less or no phytate",
+    "outcome": "Iron or zinc absorption, or iron and zinc status"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42163962",
+     "fits": "yes",
+     "reason": "Reviews human studies comparing low- vs high-phytate breads (fermentation, phytase) on iron absorption and iron status, which matches every part of the question."
+    },
+    {
+     "pmid": "26108545",
+     "fits": "yes",
+     "reason": "Pools isotope absorption studies in young children, relating the amount of phytate in the diet to zinc absorption; children are within the population."
+    }
+   ]
+  },
+  "absorption-fibre-minerals": {
+   "question": {
+    "population": "People (adults or children)",
+    "intervention": "Dietary fibre (apart from the phytate that often comes with it, where the review separates them)",
+    "comparison": "Less fibre",
+    "outcome": "Absorption or status of iron, zinc, calcium or magnesium"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42365652",
+     "fits": "partly",
+     "reason": "Covers fibre-rich foods and prebiotics with iron and zinc outcomes, but only in people with celiac disease, and the comparison is not clearly less fibre."
+    },
+    {
+     "pmid": "35403512",
+     "fits": "yes",
+     "reason": "Reviews clinical studies of dietary fibre types and their effect on iron absorption and iron status biomarkers in people."
+    },
+    {
+     "pmid": "39920867",
+     "fits": "partly",
+     "reason": "Measures iron absorption and status, but uses prebiotic supplements or fortificants, often mixed with probiotics, in women and children only."
+    },
+    {
+     "pmid": "39716076",
+     "fits": "partly",
+     "reason": "Measures iron status, but uses probiotic, prebiotic or synbiotic supplements, and only in people with anaemia."
+    },
+    {
+     "pmid": "34555168",
+     "fits": "partly",
+     "reason": "Reports calcium and magnesium absorption, but uses inulin-type fructan supplements in healthy adults, and minerals are only one of many outcomes."
+    },
+    {
+     "pmid": "38907826",
+     "fits": "partly",
+     "reason": "Reports calcium and magnesium absorption, but uses probiotic, prebiotic or synbiotic supplements in older adults and also includes animal studies."
+    }
+   ]
+  },
+  "absorption-haem-iron": {
+   "question": {
+    "population": "People (adults or children)",
+    "intervention": "Iron from meat and fish (haem iron)",
+    "comparison": "Iron from plant foods or supplements (non-haem iron)",
+    "outcome": "How much iron is absorbed"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42163962",
+     "fits": "no",
+     "reason": "Looks only at how bread fermentation and phytate reduction affect non-haem iron absorption; haem iron from meat or fish is never compared."
+    },
+    {
+     "pmid": "39708071",
+     "fits": "partly",
+     "reason": "Compares haem with non-haem iron, but given as supplements rather than meat or fish, and it measures iron status rather than absorption."
+    },
+    {
+     "pmid": "33758936",
+     "fits": "no",
+     "reason": "The exposure is calcium intake and its effect on iron absorption, not haem iron compared with non-haem iron."
+    },
+    {
+     "pmid": "27880062",
+     "fits": "partly",
+     "reason": "Compares diets with and without meat, but the outcome is serum ferritin (iron stores), not how much iron is absorbed."
+    },
+    {
+     "pmid": "17415954",
+     "fits": "partly",
+     "reason": "Pools absorption studies to predict non-haem iron absorption from the food groups in a meal, but does not compare it with haem iron absorption."
+    },
+    {
+     "pmid": "23719560",
+     "fits": "partly",
+     "reason": "Reviews iron absorption from whole diets, including enhancers, but reports only non-haem absorption with no haem comparison stated."
+    }
+   ]
+  },
+  "absorption-protein-quality": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Plant protein (soy, pea, other plant sources or mixed plant foods)",
+    "comparison": "Animal protein (whey, milk, meat, egg)",
+    "outcome": "Protein quality scores, muscle protein synthesis, lean mass or strength"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42862730",
+     "fits": "yes",
+     "reason": "Network meta-analysis in healthy adults comparing plant proteins (pea, mycoprotein) with animal proteins (whey, egg) on muscle protein synthesis."
+    },
+    {
+     "pmid": "42617803",
+     "fits": "yes",
+     "reason": "RCTs in adults aged 50 and over directly comparing plant with animal protein; pooled outcomes include lean mass and handgrip strength."
+    },
+    {
+     "pmid": "41454445",
+     "fits": "yes",
+     "reason": "Young adults doing resistance training given soy or whey protein; outcomes are lean body mass, strength and plasma amino acids."
+    },
+    {
+     "pmid": "42541706",
+     "fits": "partly",
+     "reason": "Compares soy with animal protein on body composition, but only in pre- and postmenopausal women, with a focus on adiposity."
+    },
+    {
+     "pmid": "39813010",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing plant with animal protein on muscle mass, strength and physical performance."
+    },
+    {
+     "pmid": "39203884",
+     "fits": "yes",
+     "reason": "Healthy people given plant protein vs other proteins (whey, beef, milk); outcomes include strength and muscle protein synthesis."
+    },
+    {
+     "pmid": "41994089",
+     "fits": "yes",
+     "reason": "Adults given plant vs animal protein for at least 6 months; outcomes include lean body mass and muscle strength."
+    },
+    {
+     "pmid": "40806155",
+     "fits": "partly",
+     "reason": "Compares plant proteins with whey in young adults, but the main focus is recovery from muscle damage; MPS is only one of the outcomes."
+    },
+    {
+     "pmid": "37764843",
+     "fits": "partly",
+     "reason": "Older adults given soy protein, compared mainly with placebo or exercise; animal protein is only one of several control types."
+    },
+    {
+     "pmid": "33670701",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing animal with plant protein on lean mass and muscle strength in adults."
+    },
+    {
+     "pmid": "37603200",
+     "fits": "partly",
+     "reason": "Soy supplementation in athletes and active people aged 14 to 39; the comparison with whey on lean mass is only one part of the review."
+    },
+    {
+     "pmid": "29722584",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing soy with animal protein (whey, beef, milk, dairy) on lean body mass and strength during resistance training."
+    },
+    {
+     "pmid": "35706399",
+     "fits": "no",
+     "reason": "Compares whey and soy protein, but the outcome is inflammatory cytokines, not muscle or protein quality."
+    },
+    {
+     "pmid": "29474360",
+     "fits": "no",
+     "reason": "Compares animal with soy protein, but the outcomes are bone mineral density and bone markers, not muscle."
+    }
+   ]
+  },
+  "absorption-meal-partners": {
+   "question": {
+    "population": "People (adults or children)",
+    "intervention": "Meat, vitamin C, tea, coffee or calcium eaten with meals that contain plant iron",
+    "comparison": "The same meals without them",
+    "outcome": "Iron absorption, or iron status over weeks or months"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "33758936",
+     "fits": "yes",
+     "reason": "Pools trials and crossover studies of dietary and supplemental calcium against lower calcium, with non-heme iron absorption and ferritin as outcomes."
+    },
+    {
+     "pmid": "27880062",
+     "fits": "partly",
+     "reason": "Compares the iron status of vegetarians and non-vegetarians across whole diets, not meat added to plant-iron meals; most studies are cross-sectional."
+    },
+    {
+     "pmid": "17415954",
+     "fits": "yes",
+     "reason": "Meta-analysis of meal absorption studies that models how food groups such as tea and cheese change non-heme iron absorption."
+    },
+    {
+     "pmid": "42349680",
+     "fits": "partly",
+     "reason": "Vitamin C-rich fruits eaten with meals, with iron absorption and status as outcomes, but only in females and children, not all people."
+    },
+    {
+     "pmid": "40063701",
+     "fits": "partly",
+     "reason": "Looks at eating more red meat and iron status over weeks in adults, not specifically meat eaten with plant-iron meals."
+    },
+    {
+     "pmid": "37739692",
+     "fits": "partly",
+     "reason": "Vitamin C supplements given with iron supplements to people with anemia, not foods eaten with plant-iron meals."
+    },
+    {
+     "pmid": "39599621",
+     "fits": "partly",
+     "reason": "Covers enhancers such as ascorbic acid and cow's milk with measured iron absorption, but only in children under 2 years."
+    },
+    {
+     "pmid": "33871598",
+     "fits": "partly",
+     "reason": "Polyphenol supplements and iron status, rather than tea or coffee drunk with plant-iron meals."
+    },
+    {
+     "pmid": "27087396",
+     "fits": "no",
+     "reason": "Compares iron supplements against placebo in menstruating women, which is not the effect of foods eaten with plant-iron meals."
+    }
+   ]
+  }
+ }
+}

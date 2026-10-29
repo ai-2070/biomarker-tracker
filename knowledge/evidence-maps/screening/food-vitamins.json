@@ -1,0 +1,539 @@
+{
+ "topic": "food-vitamins",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "vitamins-folate-plants": {
+   "question": {
+    "population": "People",
+    "intervention": "Vegetables, legumes, fruit or plant-based diets",
+    "comparison": "Other foods or diets, or folic acid",
+    "outcome": "Folate intake, status or how well it is absorbed"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "11840835",
+     "fits": "no",
+     "reason": "Estimates inadequate folate intake in Spanish children and teens, but doesn't compare intake of vegetables, fruit or legumes with other foods for folate."
+    }
+   ]
+  },
+  "vitamins-vitamin-a-retinol": {
+   "question": {
+    "population": "People",
+    "intervention": "Beta-carotene from plant foods",
+    "comparison": "Ready-made vitamin A (retinol) from animal foods or supplements",
+    "outcome": "How much is turned into vitamin A, or vitamin A status"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41470877",
+     "fits": "no",
+     "reason": "Compares vitamin levels by diet adherence in phenylketonuria; it does not look at converting plant beta-carotene versus retinol."
+    },
+    {
+     "pmid": "37634852",
+     "fits": "partly",
+     "reason": "Reviews provitamin A foods and vitamin A status, but only in women and young children, and with no clear comparison to preformed retinol."
+    },
+    {
+     "pmid": "20927743",
+     "fits": "partly",
+     "reason": "Covers beta-carotene and retinol supplements and vitamin A status, but uses supplements not foods, only postpartum women, mostly against placebo."
+    }
+   ]
+  },
+  "vitamins-b12-animal-only": {
+   "question": {
+    "population": "People",
+    "intervention": "Vegetarian or vegan diets, or plant foods (algae, seaweed, fermented foods) as sources of B12",
+    "comparison": "Diets that include animal foods, or animal foods as sources",
+    "outcome": "B12 content of the foods, or B12 status in people"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41487531",
+     "fits": "no",
+     "reason": "Compares routes of B12 supplementation (oral, sublingual, injection), not plant-based versus animal-food diets or food sources."
+    },
+    {
+     "pmid": "39136672",
+     "fits": "partly",
+     "reason": "Compares serum B12 in vegetarian or vegan and omnivore groups, but only in Seventh-day Adventists, a narrower group of people."
+    },
+    {
+     "pmid": "36413044",
+     "fits": "partly",
+     "reason": "Compares B12 levels on plant-based and omnivorous diets, but only in children and adolescents aged 5 to 18, a narrower group."
+    },
+    {
+     "pmid": "39047712",
+     "fits": "no",
+     "reason": "Case studies of hallucinations in B12 deficiency; it does not compare diets or food sources of B12."
+    },
+    {
+     "pmid": "39373282",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing B12 status biomarkers in adult vegans with omnivores and vegetarians."
+    },
+    {
+     "pmid": "35343314",
+     "fits": "partly",
+     "reason": "Reviews B12 content of seaweeds, mushrooms and fermented foods, but does not compare them with animal food sources."
+    }
+   ]
+  },
+  "vitamins-vitamin-c-fruit": {
+   "question": {
+    "population": "People",
+    "intervention": "Eating fruit and vegetables",
+    "comparison": "Eating fewer, or other diets",
+    "outcome": "Vitamin C intake or blood levels"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42349680",
+     "fits": "no",
+     "reason": "Ascorbate-rich fruits are the exposure, but the outcomes are iron absorption and iron status, not vitamin C intake or blood levels."
+    },
+    {
+     "pmid": "28347371",
+     "fits": "partly",
+     "reason": "Discusses plasma vitamin C as a marker of fruit and vegetable intake, but it is a narrative review with no pooled comparison."
+    },
+    {
+     "pmid": "26349405",
+     "fits": "yes",
+     "reason": "Pooled RCTs giving more vs less fruit and vegetables; the groups given more had higher blood vitamin C."
+    },
+    {
+     "pmid": "33919894",
+     "fits": "no",
+     "reason": "Plant extracts and vitamin C supplements for H. pylori eradication, not fruit and vegetable intake vs vitamin C levels."
+    },
+    {
+     "pmid": "17997863",
+     "fits": "partly",
+     "reason": "Outcome is plasma vitamin C, but the exposure is measured dietary vitamin C intake, not fruit and vegetable eating as such."
+    },
+    {
+     "pmid": "26091353",
+     "fits": "partly",
+     "reason": "Narrower: 100% fruit juice in children only, with vitamin C intake as one of several nutrient outcomes."
+    },
+    {
+     "pmid": "21888531",
+     "fits": "yes",
+     "reason": "Systematically reviewed fruit and vegetable intervention studies; vitamin C was one of the biomarkers that responded most consistently."
+    },
+    {
+     "pmid": "27153845",
+     "fits": "no",
+     "reason": "Citrus fruit intake vs oesophageal and gastric cancer risk, not vitamin C intake or blood levels."
+    },
+    {
+     "pmid": "10738129",
+     "fits": "no",
+     "reason": "Fruit, vegetable and vitamin C intake vs breast cancer risk; vitamin C is an exposure here, not an outcome."
+    },
+    {
+     "pmid": "9725654",
+     "fits": "no",
+     "reason": "Fruit and vegetable markers vs ischaemic heart disease risk; serum vitamin C is used as an exposure marker, not an outcome."
+    }
+   ]
+  },
+  "vitamins-vitamin-d-food": {
+   "question": {
+    "population": "People",
+    "intervention": "A vegetarian or vegan diet",
+    "comparison": "Diets that include animal foods",
+    "outcome": "Vitamin D intake or blood levels"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41382333",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing vegetarian and vegan children with omnivores; reports lower vitamin D intake and lower 25(OH)D levels."
+    },
+    {
+     "pmid": "37892416",
+     "fits": "yes",
+     "reason": "Systematic review of vitamin D intake and status in children on vegetarian or vegan diets compared with meat-eating children."
+    },
+    {
+     "pmid": "35010904",
+     "fits": "yes",
+     "reason": "Systematic review of vitamin D intake and status in adults on vegetarian or vegan diets compared with meat-eaters."
+    },
+    {
+     "pmid": "40647286",
+     "fits": "yes",
+     "reason": "Systematic review comparing nutrient intake, including lower vitamin D intake, in vegetarian and omnivorous children."
+    },
+    {
+     "pmid": "37654090",
+     "fits": "no",
+     "reason": "Looks at diet and supplements for treating neuropathic pain, not vitamin D in vegetarians compared with omnivores."
+    },
+    {
+     "pmid": "39428613",
+     "fits": "yes",
+     "reason": "Systematic search comparing vitamin D intake and 25(OH)D levels in vegetarian, vegan and omnivorous children."
+    },
+    {
+     "pmid": "38692645",
+     "fits": "no",
+     "reason": "Looks at diet after diagnosis and colorectal cancer survival, not vitamin D levels by vegetarian or omnivorous diet."
+    },
+    {
+     "pmid": "41030267",
+     "fits": "no",
+     "reason": "Looks at diets and supplements for disease activity in arthritis, not vitamin D intake or levels by diet type."
+    },
+    {
+     "pmid": "39332772",
+     "fits": "partly",
+     "reason": "Compares serum vitamin D in children drinking plant-based milk with those drinking cow milk; a single food, not a whole vegetarian diet."
+    },
+    {
+     "pmid": "34959845",
+     "fits": "no",
+     "reason": "Looks at diet and cancer death in the EPIC study, not vitamin D levels in vegetarians compared with meat-eaters."
+    },
+    {
+     "pmid": "32585000",
+     "fits": "no",
+     "reason": "Looks at dietary treatments for rheumatoid arthritis outcomes, not vitamin D intake or levels by diet type."
+    },
+    {
+     "pmid": "32903693",
+     "fits": "no",
+     "reason": "Looks at diet and seasonal affective disorder, not vitamin D levels in vegetarians compared with omnivores."
+    },
+    {
+     "pmid": "28299420",
+     "fits": "yes",
+     "reason": "Systematic review of nutrient status in vegetarian children against controls, including low vitamin D status."
+    }
+   ]
+  },
+  "vitamins-vitamin-k2": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Vitamin K2 (menaquinones) from foods such as cheese, meat and natto, or as supplements",
+    "comparison": "Vitamin K1 from leafy greens, or less vitamin K2",
+    "outcome": "Heart disease, artery calcification, bone density or fractures"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41268154",
+     "fits": "partly",
+     "reason": "Vitamin K2 supplements, but only in postmenopausal women with osteoporosis, and outcomes are bone turnover markers, not bone density or fractures."
+    },
+    {
+     "pmid": "41599883",
+     "fits": "no",
+     "reason": "Outcomes are blood sugar and insulin measures in prediabetes and diabetes, not heart disease, artery calcification, bone density or fractures."
+    },
+    {
+     "pmid": "41393956",
+     "fits": "yes",
+     "reason": "Compares habitual natto (vitamin K2) eaters with low or non-eaters and pools bone density results in adults."
+    },
+    {
+     "pmid": "38282652",
+     "fits": "partly",
+     "reason": "Vitamin K supplements with a K2 vs K1 subgroup, but outcomes are heart risk factors like lipids and insulin resistance, not heart disease or calcification."
+    },
+    {
+     "pmid": "40428819",
+     "fits": "no",
+     "reason": "Outcome is depression, not heart disease, artery calcification, bone density or fractures."
+    },
+    {
+     "pmid": "35711002",
+     "fits": "partly",
+     "reason": "Vitamin K2 supplements on bone density and fractures, but only in postmenopausal women with osteoporosis, a narrower group."
+    },
+    {
+     "pmid": "39657786",
+     "fits": "partly",
+     "reason": "Vitamin K supplements and bone density in middle-aged and older adults, but K2 is not shown separately from K1."
+    },
+    {
+     "pmid": "36033779",
+     "fits": "partly",
+     "reason": "Vitamin K2 supplements on bone density and fractures, but only in postmenopausal women, a narrower group."
+    },
+    {
+     "pmid": "28403946",
+     "fits": "partly",
+     "reason": "Reviews vitamin K intake, levels and supplements on bone density and fractures, but does not separate K2 from K1."
+    },
+    {
+     "pmid": "34649591",
+     "fits": "partly",
+     "reason": "Bone density with a K2 vs K1 subgroup, but vitamin K is always given together with calcium."
+    },
+    {
+     "pmid": "32219282",
+     "fits": "partly",
+     "reason": "Bone density with a K2 subgroup, but vitamin K is always given together with vitamin D."
+    },
+    {
+     "pmid": "31119401",
+     "fits": "yes",
+     "reason": "Pools adult cohort studies of dietary menaquinone (K2) and phylloquinone (K1) intake against coronary heart disease."
+    },
+    {
+     "pmid": "20850029",
+     "fits": "yes",
+     "reason": "Reviews adult studies of vitamin K2 and K1 intake against coronary heart disease and other heart outcomes."
+    },
+    {
+     "pmid": "18830045",
+     "fits": "partly",
+     "reason": "Covers K2 treatment of osteoporosis for bone density and fractures, but it is a short narrative overview limited to osteoporosis patients."
+    },
+    {
+     "pmid": "26389791",
+     "fits": "yes",
+     "reason": "Reviews trials of vitamin K supplements vs placebo for preventing heart disease in adults; the only trial found used K2."
+    },
+    {
+     "pmid": "19818211",
+     "fits": "partly",
+     "reason": "Vitamin K1 and K2 trials on fracture prevention, but only in postmenopausal women with osteoporosis or osteopenia."
+    },
+    {
+     "pmid": "25516361",
+     "fits": "partly",
+     "reason": "Vitamin K2 trials on bone density and fractures, but only in postmenopausal women, a narrower group."
+    },
+    {
+     "pmid": "16801507",
+     "fits": "yes",
+     "reason": "Pools adult trials of menaquinone (K2) and phytonadione (K1) supplements on bone loss and fractures."
+    }
+   ]
+  },
+  "vitamins-omega-3": {
+   "question": {
+    "population": "People",
+    "intervention": "Plant omega-3 (ALA from flax, walnuts, rapeseed) or algal oil",
+    "comparison": "Fish or fish oil (EPA and DHA)",
+    "outcome": "Conversion to EPA and DHA, blood levels, or heart disease and death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41493572",
+     "fits": "partly",
+     "reason": "Compares ALA with EPA/DHA in a subgroup, but only in people with CVD and for vascular function markers, not conversion, blood levels or heart events."
+    },
+    {
+     "pmid": "41482231",
+     "fits": "no",
+     "reason": "Looks at omega-3 intake and age-related macular degeneration, not conversion, blood levels or heart disease."
+    },
+    {
+     "pmid": "40958088",
+     "fits": "yes",
+     "reason": "Reviews vegetarian diets high in ALA against fish-eating diets for blood EPA/DHA, and algal oil for raising DHA status."
+    },
+    {
+     "pmid": "24261532",
+     "fits": "yes",
+     "reason": "Reviews feeding studies of flax, walnut and algal oil for conversion to EPA/DHA and blood levels, with fish oil as the reference source."
+    },
+    {
+     "pmid": "32039806",
+     "fits": "no",
+     "reason": "Looks at omega-3 supplements for preeclampsia in pregnancy, a different outcome."
+    },
+    {
+     "pmid": "31847055",
+     "fits": "no",
+     "reason": "Looks at omega-3 and omega-6 supplements for dry eye disease, a different outcome."
+    },
+    {
+     "pmid": "34749130",
+     "fits": "no",
+     "reason": "Looks at omega-3 and fish intake and macular degeneration, not conversion, blood levels or heart disease."
+    },
+    {
+     "pmid": "30521670",
+     "fits": "yes",
+     "reason": "Pools trials separately for plant ALA and fish-based EPA/DHA on death and cardiovascular events."
+    },
+    {
+     "pmid": "30019766",
+     "fits": "yes",
+     "reason": "Pools trials separately for plant ALA and fish-based EPA/DHA on death and cardiovascular events."
+    },
+    {
+     "pmid": "25787237",
+     "fits": "no",
+     "reason": "Looks at individual omega-3s and prostate cancer risk, a different outcome."
+    },
+    {
+     "pmid": "32114706",
+     "fits": "yes",
+     "reason": "Pools trials separately for plant ALA and fish-based EPA/DHA on death and cardiovascular events."
+    },
+    {
+     "pmid": "30594823",
+     "fits": "no",
+     "reason": "Looks at omega-3 supplements for ADHD symptoms in children, a different question."
+    },
+    {
+     "pmid": "30307735",
+     "fits": "no",
+     "reason": "Covers algal DHA and fish oil in pregnancy and infancy for birth and child outcomes, not conversion or heart disease."
+    },
+    {
+     "pmid": "22113870",
+     "fits": "partly",
+     "reason": "Algal oil DHA trials, but the outcome is blood lipids and there is no fish oil comparison."
+    },
+    {
+     "pmid": "22591895",
+     "fits": "no",
+     "reason": "Looks at ALA and EPA/DHA and type 2 diabetes risk, a different outcome."
+    },
+    {
+     "pmid": "25687496",
+     "fits": "partly",
+     "reason": "Reviews whether dietary ALA changes EPA/DHA status, but has no fish or fish oil comparison."
+    },
+    {
+     "pmid": "18951003",
+     "fits": "no",
+     "reason": "Looks at omega-3 intake or blood levels and prostate cancer, a different outcome."
+    },
+    {
+     "pmid": "16825676",
+     "fits": "yes",
+     "reason": "Reviews fish and fish oil against ALA for cardiovascular events and death."
+    },
+    {
+     "pmid": "23741290",
+     "fits": "partly",
+     "reason": "Pools blood ALA and EPA-DHA levels against fatal heart disease, but measures blood levels rather than food or oil intake."
+    },
+    {
+     "pmid": "19328262",
+     "fits": "no",
+     "reason": "A broad review of n-3 fats across health and disease, with no focused ALA or algal oil versus fish oil comparison."
+    },
+    {
+     "pmid": "15825825",
+     "fits": "partly",
+     "reason": "Reports ALA effects on infant blood DHA levels, but only in formula-fed infants, and compares against standard formula rather than fish oil (EPA/DHA)."
+    }
+   ]
+  },
+  "vitamins-fewer-b-vitamins": {
+   "question": {
+    "population": "People",
+    "intervention": "A vegetarian or vegan diet",
+    "comparison": "Diets that include animal foods",
+    "outcome": "Intake or status of B vitamins (B1, B2, B3, B6, folate, B12)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41382333",
+     "fits": "partly",
+     "reason": "Compares vegetarian/vegan with omnivorous diets for B12 and folate intake and B12 deficiency, but only in children."
+    },
+    {
+     "pmid": "37892416",
+     "fits": "partly",
+     "reason": "Compares B12 and folate intake and status between plant-based and meat-eating diets, but only in children and adolescents."
+    },
+    {
+     "pmid": "40819279",
+     "fits": "partly",
+     "reason": "Compares vegan with omnivorous diets for nutritional adequacy and biomarkers, including B12, but only in children."
+    },
+    {
+     "pmid": "35010904",
+     "fits": "yes",
+     "reason": "Compares B12 and folate intake and status between vegetarian/vegan diets and meat-eaters in adults."
+    },
+    {
+     "pmid": "39408296",
+     "fits": "partly",
+     "reason": "Compares vegan with omnivorous diets for micronutrients and B12 levels, but only in pregnant women."
+    },
+    {
+     "pmid": "37811643",
+     "fits": "partly",
+     "reason": "Pools B2, folate and B12 data for vegan versus omnivorous diets, but only in children and adolescents."
+    },
+    {
+     "pmid": "40647286",
+     "fits": "partly",
+     "reason": "Compares folate and B12 intake between vegetarian and omnivorous diets, but only in children."
+    },
+    {
+     "pmid": "39332772",
+     "fits": "no",
+     "reason": "Exposure is plant-based milk rather than a vegetarian diet, and B vitamin outcomes are not reported."
+    },
+    {
+     "pmid": "28299420",
+     "fits": "partly",
+     "reason": "Covers folate intake and B12 status in vegetarian diets compared with controls, but only in children."
+    },
+    {
+     "pmid": "41275510",
+     "fits": "no",
+     "reason": "Outcome is hip fracture risk, not B vitamin intake or status."
+    },
+    {
+     "pmid": "38657969",
+     "fits": "partly",
+     "reason": "Compares the nutrients in novel plant-based foods with animal foods, but does not cover whole diets and names no B vitamins."
+    },
+    {
+     "pmid": "38054787",
+     "fits": "no",
+     "reason": "Outcome is calcium intake, not B vitamins."
+    },
+    {
+     "pmid": "36079848",
+     "fits": "partly",
+     "reason": "Covers micronutrient adequacy of vegetarian diets in infants only, with no B vitamins named."
+    },
+    {
+     "pmid": "37178356",
+     "fits": "no",
+     "reason": "Outcome is blood pressure, not B vitamin intake or status."
+    },
+    {
+     "pmid": "33341313",
+     "fits": "partly",
+     "reason": "Reports vegan intake of B1, B2, B3, B6, folate and B12, but compares it with WHO recommendations rather than diets with animal foods."
+    },
+    {
+     "pmid": "23595983",
+     "fits": "no",
+     "reason": "Outcome is zinc intake and status, not B vitamins."
+    },
+    {
+     "pmid": "30571724",
+     "fits": "no",
+     "reason": "Outcomes are cardiometabolic risk factors, not B vitamin intake or status."
+    }
+   ]
+  }
+ }
+}

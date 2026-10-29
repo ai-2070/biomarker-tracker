@@ -1,0 +1,3336 @@
+{
+ "topic": "food-matrix",
+ "kind": "food",
+ "comparisonId": "matrix",
+ "name": "the animal matrix",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "animal-matrix-complete": "((TITLE_ABS:\"animal protein\" OR TITLE_ABS:\"animal-based protein\" OR TITLE_ABS:\"animal source\" OR TITLE_ABS:\"animal-source\" OR TITLE_ABS:\"animal foods\") AND (TITLE_ABS:\"plant protein\" OR TITLE_ABS:\"plant-based protein\" OR TITLE_ABS:\"plant source\" OR TITLE_ABS:\"plant foods\") AND (TITLE_ABS:muscle OR TITLE_ABS:\"lean mass\" OR TITLE_ABS:digestibility OR TITLE_ABS:\"protein synthesis\" OR TITLE_ABS:bioavailability)) AND SRC:MED",
+  "dairy-matrix-cheese": "((TITLE_ABS:cheese) AND (TITLE_ABS:cholesterol OR TITLE_ABS:LDL OR TITLE_ABS:lipid* OR TITLE_ABS:lipoprotein*)) AND SRC:MED",
+  "fibre-whole-foods": "((TITLE_ABS:\"dietary fibre\" OR TITLE_ABS:\"dietary fiber\" OR TITLE_ABS:\"cereal fibre\" OR TITLE_ABS:\"cereal fiber\" OR TITLE_ABS:\"whole grain\" OR TITLE_ABS:\"whole grains\" OR TITLE_ABS:wholegrain) AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:\"type 2 diabetes\" OR TITLE_ABS:\"colorectal cancer\" OR TITLE_ABS:mortality OR TITLE_ABS:stroke)) AND SRC:MED",
+  "fibre-unnecessary": "((TITLE_ABS:\"dietary fibre\" OR TITLE_ABS:\"dietary fiber\" OR TITLE_ABS:psyllium OR TITLE_ABS:bran OR TITLE_ABS:\"low-fibre\" OR TITLE_ABS:\"low-fiber\" OR TITLE_ABS:\"fibre supplement*\" OR TITLE_ABS:\"fiber supplement*\") AND (TITLE_ABS:constipation OR TITLE_ABS:\"irritable bowel\" OR TITLE_ABS:IBS OR TITLE_ABS:bloating OR TITLE_ABS:\"gastrointestinal symptoms\")) AND SRC:MED",
+  "fruit-veg-mortality": "((TITLE_ABS:\"fruit and vegetable\" OR TITLE_ABS:\"fruits and vegetables\" OR TITLE_ABS:\"fruit and vegetables\") AND (TITLE_ABS:mortality OR TITLE_ABS:cardiovascular OR TITLE_ABS:\"coronary heart disease\" OR TITLE_ABS:stroke)) AND SRC:MED",
+  "nutrient-pill-equals-food": "((TITLE_ABS:\"beta-carotene\" OR TITLE_ABS:carotenoid* OR TITLE_ABS:antioxidant*) AND (TITLE_ABS:supplement*) AND (TITLE_ABS:\"dietary intake\" OR TITLE_ABS:diet OR TITLE_ABS:food*) AND (TITLE_ABS:cancer OR TITLE_ABS:mortality)) AND SRC:MED",
+  "nutrient-list-tells-all": "((TITLE_ABS:\"food matrix\" OR TITLE_ABS:\"food structure\" OR TITLE_ABS:\"whole food\" OR TITLE_ABS:\"whole foods\" OR TITLE_ABS:\"food metabolome\" OR TITLE_ABS:\"nutritional dark matter\" OR TITLE_ABS:\"metabolizable energy\") AND (TITLE_ABS:nutrient* OR TITLE_ABS:bioavailability OR TITLE_ABS:health OR TITLE_ABS:energy)) AND SRC:MED",
+  "red-processed-meat-cancer": "((TITLE_ABS:\"red meat\" OR TITLE_ABS:\"processed meat\") AND (TITLE_ABS:colorectal OR TITLE_ABS:\"bowel cancer\" OR TITLE_ABS:\"colon cancer\")) AND SRC:MED"
+ },
+ "rules": [
+  "Each claim has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 16625,
+  "retrieved": 1822,
+  "animal": 291,
+  "retracted": 0,
+  "reviews": 550,
+  "trials": 960,
+  "guidelines": 20
+ },
+ "guidelines": [
+  {
+   "pmid": "39140906",
+   "doi": "10.1053/j.gastro.2024.06.014",
+   "title": "AGA Clinical Practice Update on Pregnancy-Related Gastrointestinal and Liver Disease: Expert Review",
+   "year": 2024,
+   "journal": "Gastroenterology",
+   "citedBy": 41,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "35727271",
+   "doi": "10.1001/jama.2022.8970",
+   "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
+   "year": 2022,
+   "journal": "JAMA",
+   "citedBy": 116,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "27509350",
+   "doi": "10.1055/s-0042-101899",
+   "title": "[Constipation in Patients with Incurable Cancer - Recommendations of the German S3 Guideline 'Palliative Medicine']",
+   "year": 2016,
+   "journal": "Deutsche medizinische Wochenschrift (1946)",
+   "citedBy": 1,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "27272325",
+   "doi": "10.1111/jhn.12385",
+   "title": "British Dietetic Association systematic review and evidence-based practice guidelines for the dietary management of irritable bowel syndrome in adults (2016 update)",
+   "year": 2016,
+   "journal": "Journal of human nutrition and dietetics : the official journal of the British Dietetic Association",
+   "citedBy": 254,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "26150027",
+   "doi": "10.4081/aiua.2015.2.105",
+   "title": "Dietary treatment of urinary risk factors for renal stone formation. A review of CLU Working Group",
+   "year": 2015,
+   "journal": "Archivio italiano di urologia, andrologia : organo ufficiale [di] Societa italiana di ecografia urologica e nefrologica",
+   "citedBy": 119,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "23992210",
+   "doi": "10.3928/00904481-20130823-10",
+   "title": "The most important meal of the day: why children skip breakfast and what can be done about it",
+   "year": 2013,
+   "journal": "Pediatric annals",
+   "citedBy": 12,
+   "why": "One of the newest guidelines the claims' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "animal-matrix-complete",
+   "label": "The animal matrix",
+   "finding": "animal-matrix-complete",
+   "counts": {
+    "all": 145,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39813010",
+     "doi": "10.1093/nutrit/nuae200",
+     "title": "Effect of Plant Versus Animal Protein on Muscle Mass, Strength, Physical Performance, and Sarcopenia: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+     "year": 2025,
+     "firstAuthor": "Reid-McCann RJ",
+     "journal": "Nutrition reviews",
+     "citedBy": 15,
+     "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+    },
+    {
+     "pmid": "33670701",
+     "doi": "10.3390/nu13020661",
+     "title": "Animal Protein versus Plant Protein in Supporting Lean Mass and Muscle Strength: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2021,
+     "firstAuthor": "Lim MT",
+     "journal": "Nutrients",
+     "citedBy": 110,
+     "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+    },
+    {
+     "pmid": "41994089",
+     "doi": "10.3389/fnut.2026.1813846",
+     "title": "Long-term effects of plant vs. animal protein supplementation on body composition, muscle strength, physical performance, and cardiometabolic risk factors in adults:a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2026,
+     "firstAuthor": "Yimam MA",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 0,
+     "n": 1893,
+     "why": "One of the newest systematic reviews on this claim (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "33851213",
+     "28978542",
+     "29722584",
+     "33599941"
+    ],
+    "citedNotEligible": [
+     "33851213",
+     "28978542",
+     "29722584",
+     "33599941"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39813010",
+      "doi": "10.1093/nutrit/nuae200",
+      "title": "Effect of Plant Versus Animal Protein on Muscle Mass, Strength, Physical Performance, and Sarcopenia: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "firstAuthor": "Reid-McCann RJ",
+      "journal": "Nutrition reviews",
+      "citedBy": 15,
+      "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+     },
+     {
+      "pmid": "33670701",
+      "doi": "10.3390/nu13020661",
+      "title": "Animal Protein versus Plant Protein in Supporting Lean Mass and Muscle Strength: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "firstAuthor": "Lim MT",
+      "journal": "Nutrients",
+      "citedBy": 110,
+      "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+     },
+     {
+      "pmid": "41994089",
+      "doi": "10.3389/fnut.2026.1813846",
+      "title": "Long-term effects of plant vs. animal protein supplementation on body composition, muscle strength, physical performance, and cardiometabolic risk factors in adults:a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "firstAuthor": "Yimam MA",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 0,
+      "n": 1893,
+      "why": "One of the newest systematic reviews on this claim (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Animal foods or animal protein",
+     "comparison": "Plant foods or plant protein",
+     "outcome": "Muscle protein synthesis, lean mass, strength, or how well nutrients are digested and absorbed"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42617803",
+      "title": "Plant-versus animal-derived protein and nutritional, cardiometabolic, and inflammatory outcomes in middle-aged and older adults: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares plant and animal protein on lean mass and handgrip strength, but only in adults aged 50 and over, a narrower group."
+     },
+     {
+      "pmid": "42541706",
+      "title": "Dietary Intake of Animal and Plant-Based Protein on Adiposity Measurements and Body Composition in Pre- and Postmenopausal Women: A Systematic Review of Randomized Clinical Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Looks at animal and plant protein for lean mass and body composition, but only in pre- and postmenopausal women and mostly not head to head."
+     }
+    ]
+   }
+  },
+  {
+   "id": "dairy-matrix-cheese",
+   "label": "Cheese and cholesterol",
+   "finding": "dairy-matrix-cheese",
+   "counts": {
+    "all": 927,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 46,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37717700",
+     "doi": "10.1016/j.advnut.2023.09.003",
+     "title": "Effect of Isoenergetic Substitution of Cheese with Other Dairy Products on Blood Lipid Markers in the Fasted and Postprandial State: An Updated and Extended Systematic Review and Meta-Analysis of Randomized Controlled Trials in Adults",
+     "year": 2023,
+     "firstAuthor": "Pradeilles R",
+     "journal": "Advances in nutrition (Bethesda, Md.)",
+     "citedBy": 18,
+     "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+    },
+    {
+     "pmid": "26011901",
+     "doi": "10.1093/nutrit/nuu060",
+     "title": "Effect of cheese consumption on blood lipids: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2015,
+     "firstAuthor": "de Goede J",
+     "journal": "Nutrition reviews",
+     "citedBy": 94,
+     "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.29411764705882354,
+    "trials": 17,
+    "inclusions": 22,
+    "reviews": [
+     {
+      "pmid": "37717700",
+      "trials": 13
+     },
+     {
+      "pmid": "26011901",
+      "trials": 9
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "22030228",
+      "title": "Cheese intake in large amounts lowers LDL-cholesterol concentrations compared with butter intake of equal fat content",
+      "year": 2011,
+      "n": 49,
+      "inReviews": [
+       "37717700",
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "16015270",
+      "title": "Dairy fat in cheese raises LDL cholesterol less than that in butter in mildly hypercholesterolaemic subjects",
+      "year": 2005,
+      "n": 14,
+      "inReviews": [
+       "37717700",
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "15047684",
+      "title": "Does fat in milk, butter and cheese affect blood lipids and cholesterol differently?",
+      "year": 2004,
+      "n": 14,
+      "inReviews": [
+       "37717700",
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "24622806",
+      "title": "Effect of dairy calcium from cheese and milk on fecal fat excretion, blood lipids, and appetite in young men",
+      "year": 2014,
+      "inReviews": [
+       "37717700",
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "15533268",
+      "title": "A comparison of the effects of cheese and butter on serum lipids, haemostatic variables and homocysteine",
+      "year": 2004,
+      "inReviews": [
+       "37717700",
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "27557654",
+      "title": "High intake of regular-fat cheese compared with reduced-fat cheese does not affect LDL cholesterol or risk markers of the metabolic syndrome: a randomized controlled trial",
+      "year": 2016,
+      "n": 164,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "30107488",
+      "title": "Dairy matrix effects: response to consumption of dairy fat differs when eaten within the cheese matrix-a randomized controlled trial",
+      "year": 2018,
+      "n": 164,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "28251937",
+      "title": "Comparison of the impact of SFAs from cheese and butter on cardiometabolic risk factors: a randomized controlled trial",
+      "year": 2017,
+      "n": 92,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "28535777",
+      "title": "Plasma phospholipid fatty acid profile confirms compliance to a novel saturated fat-reduced, monounsaturated fat-enriched dairy product intervention in adults at moderate cardiovascular risk: a randomized controlled trial",
+      "year": 2017,
+      "n": 54,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "30759235",
+      "title": "Meals with Similar Fat Content from Different Dairy Products Induce Different Postprandial Triglyceride Responses in Healthy Adults: A Randomized Controlled Cross-Over Trial",
+      "year": 2019,
+      "n": 47,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "29659963",
+      "title": "Saturated Fats from Butter but Not from Cheese Increase HDL-Mediated Cholesterol Efflux Capacity from J774 Macrophages in Men and Women with Abdominal Obesity",
+      "year": 2018,
+      "n": 46,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "12428175",
+      "title": "The effect of vegetable oil-based cheese on serum total and lipoprotein lipids",
+      "year": 2002,
+      "n": 31,
+      "inReviews": [
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "21591986",
+      "title": "Differential effect of cheese fatty acid composition on blood lipid profile and redox status in normolipidemic volunteers: a pilot study",
+      "year": 2011,
+      "n": 30,
+      "inReviews": [
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "8363165",
+      "title": "A linoleate-enriched cheese product reduces low-density lipoprotein in moderately hypercholesterolemic adults",
+      "year": 1993,
+      "n": 17,
+      "inReviews": [
+       "26011901"
+      ]
+     },
+     {
+      "pmid": "28978543",
+      "title": "Differential impact of the cheese matrix on the postprandial lipid response: a randomized, crossover, controlled trial",
+      "year": 2017,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "34477812",
+      "title": "Matrix structure of dairy products results in different postprandial lipid responses: a randomized crossover trial",
+      "year": 2021,
+      "inReviews": [
+       "37717700"
+      ]
+     },
+     {
+      "pmid": "22849318",
+      "title": "Fatty acid content of serum lipid fractions and blood lipids in normolipidaemic volunteers fed two types of cheese having different fat compositions: a pilot study",
+      "year": 2013,
+      "inReviews": [
+       "26011901"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "21613553",
+     "title": "Association between yogurt, milk, and cheese consumption and common carotid artery intima-media thickness and cardiovascular disease risk factors in elderly women",
+     "year": 2011,
+     "n": 1080
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "26011901"
+    ],
+    "citedNotChosen": [
+     "30107488",
+     "28374228",
+     "28404576"
+    ],
+    "citedNotEligible": [
+     "30107488",
+     "28374228",
+     "28404576"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "37717700",
+      "doi": "10.1016/j.advnut.2023.09.003",
+      "title": "Effect of Isoenergetic Substitution of Cheese with Other Dairy Products on Blood Lipid Markers in the Fasted and Postprandial State: An Updated and Extended Systematic Review and Meta-Analysis of Randomized Controlled Trials in Adults",
+      "year": 2023,
+      "firstAuthor": "Pradeilles R",
+      "journal": "Advances in nutrition (Bethesda, Md.)",
+      "citedBy": 18,
+      "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Eating cheese",
+     "comparison": "Butter or other foods with similar saturated fat, or less cheese",
+     "outcome": "LDL cholesterol or other blood fats"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37655445",
+      "title": "Supplementation with antioxidants and phenolic compounds in ruminant feeding and its effect on dairy products: a systematic review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Looks at how animal feed supplements change milk and cheese composition, not human blood lipids from eating cheese."
+     },
+     {
+      "pmid": "29672133",
+      "title": "Meat, eggs, full-fat dairy, and nutritional boogeymen: Does the way in which animals are raised affect health differently in humans?",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Compares the same foods, including cheese, from animals raised differently on human lipids; the comparison is not butter or less cheese."
+     },
+     {
+      "pmid": "30303968",
+      "title": "Fatty acid biomarkers of dairy fat consumption and incidence of type 2 diabetes: A pooled analysis of prospective cohort studies",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at dairy fat biomarkers and type 2 diabetes risk, not cheese intake and blood lipids."
+     }
+    ]
+   }
+  },
+  {
+   "id": "fibre-whole-foods",
+   "label": "Fibre and disease",
+   "finding": "fibre-whole-foods",
+   "counts": {
+    "all": 3907,
+    "reviews": 60,
+    "trialReviews": 60,
+    "trials": 62,
+    "largeTrials": 12
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38011755",
+     "doi": "10.1016/j.clnu.2023.11.005",
+     "title": "Dietary fiber intake and all-cause and cause-specific mortality: An updated systematic review and meta-analysis of prospective cohort studies",
+     "year": 2024,
+     "firstAuthor": "Ramezani F",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 43,
+     "n": 3512828,
+     "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+    },
+    {
+     "pmid": "36789934",
+     "doi": "10.1016/j.ajcnut.2022.10.010",
+     "title": "Consumption of whole grains and refined grains and associated risk of cardiovascular disease events and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies",
+     "year": 2023,
+     "firstAuthor": "Hu H",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 48,
+     "n": 1624407,
+     "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+    },
+    {
+     "pmid": "37196565",
+     "doi": "10.1016/j.jstrokecerebrovasdis.2023.107144",
+     "title": "The relationship between dietary fibre and stroke: A meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Li DB",
+     "journal": "Journal of stroke and cerebrovascular diseases : the official journal of National Stroke Association",
+     "citedBy": 14,
+     "n": 855671,
+     "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "40684909",
+     "doi": "10.1016/j.jand.2025.07.003",
+     "title": "Dietary Fiber Intake and Prostate Cancer Outcomes and All-Cause Mortality: Findings From a Secondary Analysis of the Prostate, Lung, Colorectal, and Ovarian Cancer Screening Study",
+     "year": 2025,
+     "firstAuthor": "Yang Y",
+     "journal": "Journal of the Academy of Nutrition and Dietetics",
+     "citedBy": 1,
+     "n": 49476,
+     "why": "A large trial (about 49,476 people) from 2025, as new as the newest review or newer"
+    },
+    {
+     "pmid": "42738932",
+     "doi": "10.3390/nu18172758",
+     "title": "Whole-Grain Staple Replacement and Cardiometabolic Phenotypes in Adults at High Risk of Type 2 Diabetes: An Extended Randomized-Trial Analysis with NHANES and Country-Level Context",
+     "year": 2026,
+     "firstAuthor": "Dong W",
+     "journal": "Nutrients",
+     "citedBy": 0,
+     "n": 30769,
+     "why": "A large trial (about 30,769 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0,
+    "trials": 5,
+    "inclusions": 5,
+    "reviews": [
+     {
+      "pmid": "38011755",
+      "trials": 3
+     },
+     {
+      "pmid": "37196565",
+      "trials": 2
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "36789934"
+    ],
+    "shared": [
+     {
+      "pmid": "8941095",
+      "title": "Intake of dietary fiber and risk of coronary heart disease in a cohort of Finnish men. The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
+      "year": 1996,
+      "n": 21930,
+      "inReviews": [
+       "38011755"
+      ]
+     },
+     {
+      "pmid": "10188715",
+      "title": "Dietary fiber and plant foods in relation to colorectal cancer mortality: the Seven Countries Study",
+      "year": 1999,
+      "n": 12763,
+      "inReviews": [
+       "38011755"
+      ]
+     },
+     {
+      "pmid": "24170762",
+      "title": "Intakes of dietary fiber, vegetables, and fruits and incidence of cardiovascular disease in Japanese patients with type 2 diabetes",
+      "year": 2013,
+      "n": 1414,
+      "inReviews": [
+       "37196565"
+      ]
+     },
+     {
+      "pmid": "17353499",
+      "title": "Effect of a high-fiber diet vs a fiber-supplemented diet on C-reactive protein level",
+      "year": 2007,
+      "n": 35,
+      "inReviews": [
+       "38011755"
+      ]
+     },
+     {
+      "pmid": "10805824",
+      "title": "Beneficial effects of high dietary fiber intake in patients with type 2 diabetes mellitus",
+      "year": 2000,
+      "n": 13,
+      "inReviews": [
+       "37196565"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 6,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 10,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 7,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "2571009",
+     "title": "Effects of changes in fat, fish, and fibre intakes on death and myocardial reinfarction: diet and reinfarction trial (DART)",
+     "year": 1989,
+     "n": 2033
+    },
+    {
+     "pmid": "8398218",
+     "title": "Dietary fiber and coronary heart disease in middle-aged hypercholesterolemic men",
+     "year": 1993,
+     "n": 1801
+    },
+    {
+     "pmid": "8941095",
+     "title": "Intake of dietary fiber and risk of coronary heart disease in a cohort of Finnish men. The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
+     "year": 1996,
+     "n": 21930
+    },
+    {
+     "pmid": "10188715",
+     "title": "Dietary fiber and plant foods in relation to colorectal cancer mortality: the Seven Countries Study",
+     "year": 1999,
+     "n": 12763
+    },
+    {
+     "pmid": "10770980",
+     "title": "Lack of effect of a high-fiber cereal supplement on the recurrence of colorectal adenomas. Phoenix Colon Cancer Prevention Physicians' Network",
+     "year": 2000,
+     "n": 1429
+    },
+    {
+     "pmid": "12737857",
+     "title": "Dietary fibre and colorectal adenoma in a colorectal cancer early detection programme",
+     "year": 2003,
+     "n": 33971
+    },
+    {
+     "pmid": "16332650",
+     "title": "Dietary fiber intake and risk factors for cardiovascular disease in French adults",
+     "year": 2005,
+     "n": 3429
+    },
+    {
+     "pmid": "24170762",
+     "title": "Intakes of dietary fiber, vegetables, and fruits and incidence of cardiovascular disease in Japanese patients with type 2 diabetes",
+     "year": 2013,
+     "n": 1414
+    },
+    {
+     "pmid": "28954840",
+     "title": "A High-Carbohydrate, High-Fiber, Low-Fat Diet Results in Weight Loss among Adults at High Risk of Type 2 Diabetes",
+     "year": 2017,
+     "n": 3234
+    },
+    {
+     "pmid": "32369545",
+     "title": "Associations between consumption of dietary fibers and the risk of cardiovascular diseases, cancers, type 2 diabetes, and mortality in the prospective NutriNet-Santé cohort",
+     "year": 2020,
+     "n": 107377
+    },
+    {
+     "pmid": "40684909",
+     "title": "Dietary Fiber Intake and Prostate Cancer Outcomes and All-Cause Mortality: Findings From a Secondary Analysis of the Prostate, Lung, Colorectal, and Ovarian Cancer Screening Study",
+     "year": 2025,
+     "n": 49476
+    },
+    {
+     "pmid": "42738932",
+     "title": "Whole-Grain Staple Replacement and Cardiometabolic Phenotypes in Adults at High Risk of Type 2 Diabetes: An Extended Randomized-Trial Analysis with NHANES and Country-Level Context",
+     "year": 2026,
+     "n": 30769
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "30638909",
+     "22074852"
+    ],
+    "citedNotEligible": [
+     "30638909"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "38011755",
+      "doi": "10.1016/j.clnu.2023.11.005",
+      "title": "Dietary fiber intake and all-cause and cause-specific mortality: An updated systematic review and meta-analysis of prospective cohort studies",
+      "year": 2024,
+      "firstAuthor": "Ramezani F",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 43,
+      "n": 3512828,
+      "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+     },
+     {
+      "pmid": "36789934",
+      "doi": "10.1016/j.ajcnut.2022.10.010",
+      "title": "Consumption of whole grains and refined grains and associated risk of cardiovascular disease events and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies",
+      "year": 2023,
+      "firstAuthor": "Hu H",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 48,
+      "n": 1624407,
+      "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+     },
+     {
+      "pmid": "37196565",
+      "doi": "10.1016/j.jstrokecerebrovasdis.2023.107144",
+      "title": "The relationship between dietary fibre and stroke: A meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Li DB",
+      "journal": "Journal of stroke and cerebrovascular diseases : the official journal of National Stroke Association",
+      "citedBy": 14,
+      "n": 855671,
+      "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+     },
+     {
+      "pmid": "40684909",
+      "doi": "10.1016/j.jand.2025.07.003",
+      "title": "Dietary Fiber Intake and Prostate Cancer Outcomes and All-Cause Mortality: Findings From a Secondary Analysis of the Prostate, Lung, Colorectal, and Ovarian Cancer Screening Study",
+      "year": 2025,
+      "firstAuthor": "Yang Y",
+      "journal": "Journal of the Academy of Nutrition and Dietetics",
+      "citedBy": 1,
+      "n": 49476,
+      "why": "A large trial (about 49,476 people) from 2025, as new as the newest review or newer"
+     },
+     {
+      "pmid": "42738932",
+      "doi": "10.3390/nu18172758",
+      "title": "Whole-Grain Staple Replacement and Cardiometabolic Phenotypes in Adults at High Risk of Type 2 Diabetes: An Extended Randomized-Trial Analysis with NHANES and Country-Level Context",
+      "year": 2026,
+      "firstAuthor": "Dong W",
+      "journal": "Nutrients",
+      "citedBy": 0,
+      "n": 30769,
+      "why": "A large trial (about 30,769 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in the general population",
+     "intervention": "More fibre or whole grains from food",
+     "comparison": "Less fibre or fewer whole grains",
+     "outcome": "Heart disease, stroke, type 2 diabetes, bowel cancer or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 37,
+     "partly": 14,
+     "no": 9,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "39473074",
+      "title": "The effect of high-fibre diets on glycaemic control in women with diabetes in pregnancy: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Covers pregnant women who already have diabetes, with blood sugar control as the outcome rather than disease or death."
+     },
+     {
+      "pmid": "39295498",
+      "title": "Higher fiber higher carbohydrate diets better than lower carbohydrate lower fiber diets for diabetes management: Rapid review with meta-analyses",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Covers diabetes management in people who already have diabetes, with HbA1c and lipids as outcomes rather than disease or death."
+     },
+     {
+      "pmid": "38165561",
+      "title": "Relationship between dietary fiber and all-cause mortality, cardiovascular mortality, and cardiovascular disease in patients with chronic kidney disease: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Fibre intake and death or CVD match, but the population is limited to people with chronic kidney disease."
+     },
+     {
+      "pmid": "36811560",
+      "title": "Galactomannans are the most effective soluble dietary fibers in type 2 diabetes: a systematic review and network meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Covers fibre supplements in people with type 2 diabetes, with blood sugar and lipid outcomes."
+     },
+     {
+      "pmid": "37720378",
+      "title": "Effect of viscous soluble dietary fiber on glucose and lipid metabolism in patients with type 2 diabetes mellitus: a systematic review and meta-analysis on randomized clinical trials",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Covers viscous fibre supplements in type 2 diabetes patients, with blood sugar and lipid outcomes."
+     },
+     {
+      "pmid": "35449060",
+      "title": "Dietary fibre in hypertension and cardiovascular disease management: systematic review and meta-analyses",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Fibre intake and death match, but the population is people who already have CVD or hypertension."
+     },
+     {
+      "pmid": "36172520",
+      "title": "Associations between dietary fiber intake and cardiovascular risk factors: An umbrella review of meta-analyses of randomized controlled trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Higher fibre intake matches, but outcomes are risk factors (glucose, lipids, BP, inflammation), not disease or death, and supplements are included."
+     },
+     {
+      "pmid": "34073366",
+      "title": "The Effect of Dietary Fibre on Gut Microbiota, Lipid Profile, and Inflammatory Markers in Patients with Type 2 Diabetes: A Systematic Review and Meta-Analysis of Randomised Controlled Trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Covers type 2 diabetes patients, with gut microbiota, lipid and inflammation outcomes."
+     },
+     {
+      "pmid": "33162192",
+      "title": "Effects of soluble fiber supplementation on glycemic control in adults with type 2 diabetes mellitus: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Covers soluble fibre supplements in adults with type 2 diabetes, with blood sugar control outcomes."
+     },
+     {
+      "pmid": "32933853",
+      "title": "The Effect of Replacing Refined Grains with Whole Grains on Cardiovascular Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials with GRADE Clinical Recommendation",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Trials of whole grains versus refined grains in adults, but the outcomes are CVD risk factors, not disease events or death."
+     },
+     {
+      "pmid": "32142510",
+      "title": "Dietary fibre and whole grains in diabetes management: Systematic review and meta-analyses",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Fibre intake and mortality match, but the population is limited to adults with prediabetes or diabetes."
+     },
+     {
+      "pmid": "32070285",
+      "title": "Whole grain food diet slightly reduces cardiovascular risks in obese/overweight adults: a systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Whole grain diet RCTs, but only in obese or overweight adults, and outcomes are weight and CVD risk factors, not disease."
+     },
+     {
+      "pmid": "33113929",
+      "title": "The Role of Dietary Fibre in Modulating Gut Microbiota Dysbiosis in Patients with Type 2 Diabetes: A Systematic Review and Meta-Analysis of Randomised Controlled Trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Covers type 2 diabetes patients, with gut microbiota and blood sugar outcomes rather than disease or death."
+     },
+     {
+      "pmid": "31110080",
+      "title": "Association of industry ties with outcomes of studies examining the effect of wholegrain foods on cardiovascular disease and mortality: systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Pooled whole grain and CVD studies, but the main question is whether industry ties affect results, not the effect itself."
+     },
+     {
+      "pmid": "30617143",
+      "title": "Should Viscous Fiber Supplements Be Considered in Diabetes Control? Results From a Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Viscous fibre supplements for glycaemic markers in people who already have type 2 diabetes, not food fibre and disease risk."
+     },
+     {
+      "pmid": "28836672",
+      "title": "Whole grain cereals for the primary or secondary prevention of cardiovascular disease",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Whole grain diet RCTs sought mortality and CV events but found none; results cover only risk factors, and some participants had CVD."
+     },
+     {
+      "pmid": "28064440",
+      "title": "Dietary fibre for the prevention of recurrent colorectal adenomas and carcinomas",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Fibre trials include colorectal cancer as an outcome, but only in people with past adenomas, and some use fibre supplements."
+     },
+     {
+      "pmid": "26758499",
+      "title": "Dietary fibre for the primary prevention of cardiovascular disease",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Fibre trials in general or at-risk adults aimed at CVD prevention, but no trial reported heart events or deaths, only risk factors."
+     },
+     {
+      "pmid": "24216326",
+      "title": "Dietary fiber intake reduces risk for colorectal adenoma: a meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Pools studies of dietary fibre, but the outcome is colorectal adenoma, a precancerous growth, not bowel cancer itself."
+     },
+     {
+      "pmid": "22218620",
+      "title": "Dietary fiber for the treatment of type 2 diabetes mellitus: a meta-analysis",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Looks at people who already have type 2 diabetes, often given fibre supplements, and measures blood sugar control, not disease or death."
+     },
+     {
+      "pmid": "20407088",
+      "title": "Dietary fiber and colorectal cancer risk: a nested case-control study using food diaries",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Fibre and colorectal cancer match, but this is one nested case-control study within UK cohorts, not a systematic review."
+     },
+     {
+      "pmid": "17443567",
+      "title": "Wholegrain cereals for coronary heart disease",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Whole grain trials only in people with heart disease or its risk factors, and none reported heart events or deaths, only cholesterol."
+     },
+     {
+      "pmid": "12076480",
+      "title": "Dietary fibre for the prevention of colorectal adenomas and carcinomas",
+      "year": 2002,
+      "fits": "partly",
+      "reason": "Fibre trials include colorectal cancer as an outcome, but only in people with past adenomas, and some use fibre supplements."
+     }
+    ]
+   }
+  },
+  {
+   "id": "fibre-unnecessary",
+   "label": "Is fibre unnecessary?",
+   "finding": "fibre-unnecessary",
+   "counts": {
+    "all": 1066,
+    "reviews": 14,
+    "trialReviews": 14,
+    "trials": 81,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42317046",
+     "doi": "10.1039/d6fo00286b",
+     "title": "Efficacy of different dietary fibers for chronic idiopathic constipation: a systematic review and network meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Mou J",
+     "journal": "Food & function",
+     "citedBy": 0,
+     "n": 1423,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "39784686",
+     "doi": "10.17235/reed.2024.10306/2024",
+     "title": "Novel insights into carbohydrate-to-fiber ratio and constipation: NHANES findings suggest a turning point",
+     "year": 2026,
+     "firstAuthor": "Chen Y",
+     "journal": "Revista espanola de enfermedades digestivas",
+     "citedBy": 0,
+     "n": 7752,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "35816465",
+     "doi": "10.1093/ajcn/nqac184",
+     "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2022,
+     "firstAuthor": "van der Schoot A",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 79,
+     "n": 1251,
+     "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.11904761904761904,
+    "trials": 21,
+    "inclusions": 26,
+    "reviews": [
+     {
+      "pmid": "42317046",
+      "trials": 17
+     },
+     {
+      "pmid": "39784686",
+      "trials": 2
+     },
+     {
+      "pmid": "35816465",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "37078654",
+      "title": "Effects of dietary fibers or probiotics on functional constipation symptoms and roles of gut microbiota: a double-blinded randomized placebo trial",
+      "year": 2023,
+      "n": 250,
+      "inReviews": [
+       "42317046",
+       "39784686"
+      ]
+     },
+     {
+      "pmid": "37630717",
+      "title": "The Effects of Agave Fructans in a Functional Food Consumed by Patients with Irritable Bowel Syndrome with Constipation: A Randomized, Double-Blind, Placebo-Controlled Trial",
+      "year": 2023,
+      "n": 50,
+      "inReviews": [
+       "42317046",
+       "39784686"
+      ]
+     },
+     {
+      "pmid": "34081625",
+      "title": "The effects of psyllium husk on gut microbiota composition and function in chronically constipated women of reproductive age using 16S rRNA gene sequencing analysis",
+      "year": 2021,
+      "n": 29,
+      "inReviews": [
+       "42317046",
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "8824651",
+      "title": "Effects of psyllium therapy on stool characteristics, colon transit and anorectal function in chronic idiopathic constipation",
+      "year": 1995,
+      "n": 22,
+      "inReviews": [
+       "42317046",
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "27492975",
+      "title": "Effect of consumption of chicory inulin on bowel function in healthy subjects with constipation: a randomized, double-blind, placebo-controlled trial",
+      "year": 2017,
+      "inReviews": [
+       "42317046",
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "25623312",
+      "title": "[Clinical benefits after soluble dietary fiber supplementation: a randomized clinical trial in adults with slow-transit constipation]",
+      "year": 2014,
+      "n": 80,
+      "inReviews": [
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "18425236",
+      "title": "[Effect of partially hidrolized guar-gum in the treatment of functional constipation among hospitalized patients]",
+      "year": 2008,
+      "n": 64,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "27117853",
+      "title": "Effects of Resistant Glucan Mixture on Bowel Movement in Female Volunteers",
+      "year": 2016,
+      "n": 60,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "16251881",
+      "title": "A combination of fibre-rich rye bread and yoghurt containing Lactobacillus GG improves bowel function in women with self-reported constipation",
+      "year": 2006,
+      "n": 59,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "32885419",
+      "title": "Intake of okara soup for 2 weeks for breakfast improved defecation habits in young Japanese women with self-reported constipation: A randomized, double-blind, placebo-controlled, intervention study",
+      "year": 2020,
+      "n": 52,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "17299467",
+      "title": "Yoghurt containing galacto-oligosaccharides, prunes and linseed reduces the severity of mild constipation in elderly subjects",
+      "year": 2007,
+      "n": 43,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "7851201",
+      "title": "Effect of wheat bran in treatment of chronic nonorganic constipation. A double-blind controlled trial",
+      "year": 1995,
+      "n": 24,
+      "inReviews": [
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "36394933",
+      "title": "[Efficacy of newly developed kombucha-based specialized food product for treatment of constipation-predominant irritable bowel syndrome]",
+      "year": 2022,
+      "n": 20,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "30062794",
+      "title": "Demonstration of differences in colonic volumes, transit, chyme consistency, and response to psyllium between healthy and constipated subjects using magnetic resonance imaging",
+      "year": 2018,
+      "n": 20,
+      "inReviews": [
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "1520545",
+      "title": "[The efficacy of Plantago ovata as a regulator of intestinal transit. A double-blind study compared to placebo]",
+      "year": 1992,
+      "n": 20,
+      "inReviews": [
+       "35816465"
+      ]
+     },
+     {
+      "pmid": "29378102",
+      "title": "[Dry jelly concentrate with vitamins and dietary fiber in patients with IBS with constipation: a comparative controlled study]",
+      "year": 2015,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "10769331",
+      "title": "Chronic constipation management for institutionalized older adults",
+      "year": 2000,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "18382081",
+      "title": "Intervention with dietary fiber to treat constipation and reduce laxative use in residents of nursing homes",
+      "year": 2008,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "35297467",
+      "title": "Effectiveness of Partially Hydrolyzed Guar Gum in Reducing Constipation in Long Term Care Facility Residents: A Randomized Single-Blinded Placebo-Controlled Trial",
+      "year": 2022,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "37389917",
+      "title": "Agave tequilana Fructans Versus Psyllium plantago for Functional Constipation : Randomized Double-blind Clinical Trial",
+      "year": 2024,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "27125883",
+      "title": "Randomised clinical trial: mixed soluble/insoluble fibre vs. psyllium for chronic constipation",
+      "year": 2016,
+      "inReviews": [
+       "42317046"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1976,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1977,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1987,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "22969234",
+     "25070054",
+     "30638909"
+    ],
+    "citedNotEligible": [
+     "22969234",
+     "30638909"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42317046",
+      "doi": "10.1039/d6fo00286b",
+      "title": "Efficacy of different dietary fibers for chronic idiopathic constipation: a systematic review and network meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Mou J",
+      "journal": "Food & function",
+      "citedBy": 0,
+      "n": 1423,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "39784686",
+      "doi": "10.17235/reed.2024.10306/2024",
+      "title": "Novel insights into carbohydrate-to-fiber ratio and constipation: NHANES findings suggest a turning point",
+      "year": 2026,
+      "firstAuthor": "Chen Y",
+      "journal": "Revista espanola de enfermedades digestivas",
+      "citedBy": 0,
+      "n": 7752,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "35816465",
+      "doi": "10.1093/ajcn/nqac184",
+      "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2022,
+      "firstAuthor": "van der Schoot A",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 79,
+      "n": 1251,
+      "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or without gut problems (constipation, irritable bowel syndrome)",
+     "intervention": "More fibre, or fibre supplements such as psyllium or bran",
+     "comparison": "Less or no fibre, or placebo",
+     "outcome": "Gut symptoms such as constipation, pain or bloating"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 11,
+     "partly": 3,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "38829940",
+      "title": "Clinical effects of chemical drugs, fecal microbiota transplantation, probiotics, dietary fiber, and acupuncture in the treatment of chronic functional constipation: a systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Chronic constipation is covered, but dietary fibre is only one of many treatments in the network, and no fibre-specific result is reported in the abstract."
+     },
+     {
+      "pmid": "33127328",
+      "title": "The Efficacy of Dietary Fiber in Managing Gastrointestinal Toxicity Symptoms in Patients with Gynecologic Cancers undergoing Pelvic Radiotherapy: A Systematic Review",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Fibre against standard care or placebo for gut symptoms, but the population is limited to gynecologic cancer patients having pelvic radiotherapy."
+     },
+     {
+      "pmid": "30400292",
+      "title": "The Role of Fiber in the Treatment of Functional Gastrointestinal Disorders in Children",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Fibre against placebo or laxatives for constipation and IBS, but the population is children, not adults."
+     }
+    ]
+   }
+  },
+  {
+   "id": "fruit-veg-mortality",
+   "label": "Fruit, vegetables and death",
+   "finding": "fruit-veg-mortality",
+   "counts": {
+    "all": 3111,
+    "reviews": 17,
+    "trialReviews": 17,
+    "trials": 12,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33641343",
+     "doi": "10.1161/circulationaha.120.048996",
+     "title": "Fruit and Vegetable Intake and Mortality: Results From 2 Prospective Cohort Studies of US Men and Women and a Meta-Analysis of 26 Cohort Studies",
+     "year": 2021,
+     "firstAuthor": "Wang DD",
+     "journal": "Circulation",
+     "citedBy": 302,
+     "n": 66719,
+     "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+    },
+    {
+     "pmid": "33000670",
+     "doi": "10.1161/jaha.120.017728",
+     "title": "Relation of Different Fruit and Vegetable Sources With Incident Cardiovascular Outcomes: A Systematic Review and Meta-Analysis of Prospective Cohort Studies",
+     "year": 2020,
+     "firstAuthor": "Zurbau A",
+     "journal": "Journal of the American Heart Association",
+     "citedBy": 126,
+     "n": 4031896,
+     "why": "One of the newest meta-analyses on this claim (2020); screened as answering the question"
+    },
+    {
+     "pmid": "28338764",
+     "doi": "10.1093/ije/dyw319",
+     "title": "Fruit and vegetable intake and the risk of cardiovascular disease, total cancer and all-cause mortality-a systematic review and dose-response meta-analysis of prospective studies",
+     "year": 2017,
+     "firstAuthor": "Aune D",
+     "journal": "International journal of epidemiology",
+     "citedBy": 1440,
+     "n": 15,
+     "why": "One of the newest meta-analyses on this claim (2017); screened as answering the question"
+    },
+    {
+     "pmid": "23736950",
+     "doi": "10.1002/14651858.cd009874.pub2",
+     "title": "Increased consumption of fruit and vegetables for the primary prevention of cardiovascular diseases",
+     "year": 2013,
+     "firstAuthor": "Hartley L",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 131,
+     "n": 1730,
+     "why": "The most comprehensive review on this claim (10 trials, 2013); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2,
+    "trials": 10,
+    "inclusions": 14,
+    "reviews": [
+     {
+      "pmid": "33000670",
+      "trials": 3
+     },
+     {
+      "pmid": "28338764",
+      "trials": 4
+     },
+     {
+      "pmid": "23736950",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "33641343"
+    ],
+    "shared": [
+     {
+      "pmid": "11171873",
+      "title": "Intake of vegetables rich in carotenoids and risk of coronary heart disease in men: The Physicians' Health Study",
+      "year": 2001,
+      "n": 15220,
+      "inReviews": [
+       "33000670",
+       "28338764",
+       "23736950"
+      ]
+     },
+     {
+      "pmid": "11010932",
+      "title": "Fruit and vegetable intake and risk of cardiovascular disease: the Women's Health Study",
+      "year": 2000,
+      "inReviews": [
+       "33000670",
+       "28338764",
+       "23736950"
+      ]
+     },
+     {
+      "pmid": "8941095",
+      "title": "Intake of dietary fiber and risk of coronary heart disease in a cohort of Finnish men. The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
+      "year": 1996,
+      "n": 21930,
+      "inReviews": [
+       "28338764"
+      ]
+     },
+     {
+      "pmid": "24170762",
+      "title": "Intakes of dietary fiber, vegetables, and fruits and incidence of cardiovascular disease in Japanese patients with type 2 diabetes",
+      "year": 2013,
+      "n": 1414,
+      "inReviews": [
+       "33000670"
+      ]
+     },
+     {
+      "pmid": "12076551",
+      "title": "Effects of fruit and vegetable consumption on plasma antioxidant concentrations and blood pressure: a randomised controlled trial",
+      "year": 2002,
+      "n": 690,
+      "inReviews": [
+       "23736950"
+      ]
+     },
+     {
+      "pmid": "22492370",
+      "title": "Effect of a tomato-rich diet on markers of cardiovascular disease risk in moderately overweight, disease-free, middle-aged adults: a randomized controlled trial",
+      "year": 2012,
+      "n": 225,
+      "inReviews": [
+       "23736950"
+      ]
+     },
+     {
+      "pmid": "24452238",
+      "title": "Flavonoid-rich fruit and vegetables improve microvascular reactivity and inflammatory status in men at risk of cardiovascular disease--FLAVURS: a randomized controlled trial",
+      "year": 2014,
+      "n": 174,
+      "inReviews": [
+       "28338764"
+      ]
+     },
+     {
+      "pmid": "16766775",
+      "title": "Effects of high fruit-vegetable and/or low-fat intervention on plasma micronutrient levels",
+      "year": 2006,
+      "n": 122,
+      "inReviews": [
+       "23736950"
+      ]
+     },
+     {
+      "pmid": "10952952",
+      "title": "Effect of dietary patterns on serum homocysteine: results of a randomized, controlled feeding study",
+      "year": 2000,
+      "n": 118,
+      "inReviews": [
+       "23736950"
+      ]
+     },
+     {
+      "pmid": "24130354",
+      "title": "Dose-response effect of fruit and vegetables on insulin resistance in people at high risk of cardiovascular disease: a randomized controlled trial",
+      "year": 2013,
+      "n": 105,
+      "inReviews": [
+       "23736950"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "21126970",
+     "title": "Lifetime fruit and vegetable consumption and arterial pulse wave velocity in adulthood: the Cardiovascular Risk in Young Finns Study",
+     "year": 2010,
+     "n": 1622
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "28338764"
+    ],
+    "citedNotChosen": [
+     "23990623"
+    ],
+    "citedNotEligible": [
+     "23990623"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "33641343",
+      "doi": "10.1161/circulationaha.120.048996",
+      "title": "Fruit and Vegetable Intake and Mortality: Results From 2 Prospective Cohort Studies of US Men and Women and a Meta-Analysis of 26 Cohort Studies",
+      "year": 2021,
+      "firstAuthor": "Wang DD",
+      "journal": "Circulation",
+      "citedBy": 302,
+      "n": 66719,
+      "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+     },
+     {
+      "pmid": "33000670",
+      "doi": "10.1161/jaha.120.017728",
+      "title": "Relation of Different Fruit and Vegetable Sources With Incident Cardiovascular Outcomes: A Systematic Review and Meta-Analysis of Prospective Cohort Studies",
+      "year": 2020,
+      "firstAuthor": "Zurbau A",
+      "journal": "Journal of the American Heart Association",
+      "citedBy": 126,
+      "n": 4031896,
+      "why": "One of the newest meta-analyses on this claim (2020); screened as answering the question"
+     },
+     {
+      "pmid": "23736950",
+      "doi": "10.1002/14651858.cd009874.pub2",
+      "title": "Increased consumption of fruit and vegetables for the primary prevention of cardiovascular diseases",
+      "year": 2013,
+      "firstAuthor": "Hartley L",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 131,
+      "n": 1730,
+      "why": "The most comprehensive review on this claim (10 trials, 2013); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in the general population",
+     "intervention": "Eating more fruit and vegetables",
+     "comparison": "Eating less",
+     "outcome": "Heart disease, stroke or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 13,
+     "partly": 2,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40105674",
+      "title": "Fruit and Vegetable Consumption and Risk of All-Cause and Cause-Specific Mortality in Individuals With Type 2 Diabetes: A Systematic Review and Dose-Response Meta-analysis of Prospective Cohort Studies",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Fruit and vegetable intake and death from any cause or heart disease match, but the review only included people with type 2 diabetes."
+     },
+     {
+      "pmid": "39217534",
+      "title": "Examining Food Security, Fruit and Vegetable Intake, and Cardiovascular Disease Risk Outcomes of Produce Prescription (PPR) Programs: A Systematic Review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at produce prescription programs and food security or heart risk factors, not heart disease, stroke or death."
+     },
+     {
+      "pmid": "31889199",
+      "title": "Incorporating healthy dietary changes in addition to an increase in fruit and vegetable intake further improves the status of cardiovascular disease risk factors: A systematic review, meta-regression, and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Trials of eating more fruit and vegetables, but outcomes are heart risk factors such as blood fats and blood pressure, not heart disease events or death."
+     },
+     {
+      "pmid": "28475799",
+      "title": "Role of fruits and vegetables in adolescent cardiovascular health: a systematic review",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Covers adolescents, not adults, and measures heart risk factors such as blood pressure instead of heart disease, stroke or death."
+     }
+    ]
+   }
+  },
+  {
+   "id": "nutrient-pill-equals-food",
+   "label": "Pill vs food",
+   "finding": "nutrient-pill-equals-food",
+   "counts": {
+    "all": 1701,
+    "reviews": 11,
+    "trialReviews": 11,
+    "trials": 16,
+    "largeTrials": 10
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35405977",
+     "doi": "10.3390/nu14071361",
+     "title": "Role of Beta-Carotene in Lung Cancer Primary Chemoprevention: A Systematic Review with Meta-Analysis and Meta-Regression",
+     "year": 2022,
+     "firstAuthor": "Kordiak J",
+     "journal": "Nutrients",
+     "citedBy": 52,
+     "n": 167141,
+     "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+    },
+    {
+     "pmid": "24040282",
+     "doi": "10.1371/journal.pone.0074558",
+     "title": "Meta-regression analyses, meta-analyses, and trial sequential analyses of the effects of supplementation with beta-carotene, vitamin A, and vitamin E singly or in different combinations on all-cause mortality: do we have evidence for lack of harm?",
+     "year": 2013,
+     "firstAuthor": "Bjelakovic G",
+     "journal": "PloS one",
+     "citedBy": 108,
+     "n": 241883,
+     "why": "One of the newest meta-analyses on this claim (2013); screened as answering the question"
+    },
+    {
+     "pmid": "18689373",
+     "doi": "10.1093/ajcn/88.2.372",
+     "title": "Carotenoids and the risk of developing lung cancer: a systematic review",
+     "year": 2008,
+     "firstAuthor": "Gallicchio L",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 121,
+     "why": "One of the newest meta-analyses on this claim (2008); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.041666666666666664,
+    "trials": 12,
+    "inclusions": 13,
+    "reviews": [
+     {
+      "pmid": "35405977",
+      "trials": 3
+     },
+     {
+      "pmid": "24040282",
+      "trials": 6
+     },
+     {
+      "pmid": "18689373",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "10601381",
+      "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
+      "year": 1999,
+      "n": 39876,
+      "inReviews": [
+       "35405977",
+       "18689373"
+      ]
+     },
+     {
+      "pmid": "8360931",
+      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+      "year": 1993,
+      "n": 29584,
+      "inReviews": [
+       "24040282"
+      ]
+     },
+     {
+      "pmid": "8901854",
+      "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
+      "year": 1996,
+      "n": 29133,
+      "inReviews": [
+       "18689373"
+      ]
+     },
+     {
+      "pmid": "8901853",
+      "title": "Risk factors for lung cancer and for intervention effects in CARET, the Beta-Carotene and Retinol Efficacy Trial",
+      "year": 1996,
+      "n": 18314,
+      "inReviews": [
+       "18689373"
+      ]
+     },
+     {
+      "pmid": "12692110",
+      "title": "Fruits and vegetables are associated with lower lung cancer risk only in the placebo arm of the beta-carotene and retinol efficacy trial (CARET)",
+      "year": 2003,
+      "n": 14120,
+      "inReviews": [
+       "18689373"
+      ]
+     },
+     {
+      "pmid": "19116389",
+      "title": "Vitamins C and E and beta carotene supplementation and cancer risk: a randomized controlled trial",
+      "year": 2009,
+      "n": 8171,
+      "inReviews": [
+       "35405977"
+      ]
+     },
+     {
+      "pmid": "8360932",
+      "title": "Nutrition intervention trials in Linxian, China: multiple vitamin/mineral supplementation, cancer incidence, and disease-specific mortality among adults with esophageal dysplasia",
+      "year": 1993,
+      "n": 3318,
+      "inReviews": [
+       "24040282"
+      ]
+     },
+     {
+      "pmid": "17227997",
+      "title": "Chemoprevention of precancerous gastric lesions with antioxidant vitamin supplementation: a randomized trial in a high-risk population",
+      "year": 2007,
+      "n": 1980,
+      "inReviews": [
+       "24040282"
+      ]
+     },
+     {
+      "pmid": "8602179",
+      "title": "Lack of effect of long-term supplementation with beta carotene on the incidence of malignant neoplasms and cardiovascular disease",
+      "year": 1996,
+      "n": 1273,
+      "inReviews": [
+       "24040282"
+      ]
+     },
+     {
+      "pmid": "8008027",
+      "title": "A clinical trial of antioxidant vitamins to prevent colorectal adenoma. Polyp Prevention Study Group",
+      "year": 1994,
+      "n": 864,
+      "inReviews": [
+       "24040282"
+      ]
+     },
+     {
+      "pmid": "7473832",
+      "title": "Randomized trial of intake of fat, fiber, and beta carotene to prevent colorectal adenomas",
+      "year": 1995,
+      "n": 424,
+      "inReviews": [
+       "24040282"
+      ]
+     },
+     {
+      "pmid": "8127329",
+      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
+      "year": 1994,
+      "inReviews": [
+       "35405977"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "8360931",
+     "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
+     "year": 1993,
+     "n": 29584
+    },
+    {
+     "pmid": "8941095",
+     "title": "Intake of dietary fiber and risk of coronary heart disease in a cohort of Finnish men. The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
+     "year": 1996,
+     "n": 21930
+    },
+    {
+     "pmid": "8901854",
+     "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
+     "year": 1996,
+     "n": 29133
+    },
+    {
+     "pmid": "9548624",
+     "title": "Gastric cancer and premalignant lesions in atrophic gastritis: a controlled trial on the effect of supplementation with alpha-tocopherol and beta-carotene. The Helsinki Gastritis Study Group",
+     "year": 1998,
+     "n": 2132
+    },
+    {
+     "pmid": "10329064",
+     "title": "MRC/BHF Heart Protection Study of cholesterol-lowering therapy and of antioxidant vitamin supplementation in a wide range of patients at increased risk of coronary heart disease death: early safety and efficacy experience",
+     "year": 1999,
+     "n": 15454
+    },
+    {
+     "pmid": "12692110",
+     "title": "Fruits and vegetables are associated with lower lung cancer risk only in the placebo arm of the beta-carotene and retinol efficacy trial (CARET)",
+     "year": 2003,
+     "n": 14120
+    },
+    {
+     "pmid": "14594788",
+     "title": "Antioxidant vitamins and mortality in older persons: findings from the nutrition add-on study to the Medical Research Council Trial of Assessment and Management of Older People in the Community",
+     "year": 2003,
+     "n": 1214
+    },
+    {
+     "pmid": "17519926",
+     "title": "Fruit, vegetable, vitamin A intakes, and prostate cancer risk",
+     "year": 2008,
+     "n": 1985
+    },
+    {
+     "pmid": "19116389",
+     "title": "Vitamins C and E and beta carotene supplementation and cancer risk: a randomized controlled trial",
+     "year": 2009,
+     "n": 8171
+    },
+    {
+     "pmid": "26864363",
+     "title": "Prospective association between the Dietary Inflammatory Index and mortality: modulation by antioxidant supplementation in the SU.VI.MAX randomized controlled trial",
+     "year": 2016,
+     "n": 8089
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "18689373"
+    ],
+    "citedNotChosen": [
+     "8127329",
+     "8602180",
+     "19876916",
+     "22419320"
+    ],
+    "citedNotEligible": [
+     "8127329",
+     "8602180",
+     "19876916",
+     "22419320"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "35405977",
+      "doi": "10.3390/nu14071361",
+      "title": "Role of Beta-Carotene in Lung Cancer Primary Chemoprevention: A Systematic Review with Meta-Analysis and Meta-Regression",
+      "year": 2022,
+      "firstAuthor": "Kordiak J",
+      "journal": "Nutrients",
+      "citedBy": 52,
+      "n": 167141,
+      "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+     },
+     {
+      "pmid": "24040282",
+      "doi": "10.1371/journal.pone.0074558",
+      "title": "Meta-regression analyses, meta-analyses, and trial sequential analyses of the effects of supplementation with beta-carotene, vitamin A, and vitamin E singly or in different combinations on all-cause mortality: do we have evidence for lack of harm?",
+      "year": 2013,
+      "firstAuthor": "Bjelakovic G",
+      "journal": "PloS one",
+      "citedBy": 108,
+      "n": 241883,
+      "why": "One of the newest meta-analyses on this claim (2013); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "A nutrient (such as beta-carotene or other antioxidant vitamins) taken as a supplement",
+     "comparison": "The same nutrient eaten in foods, or placebo",
+     "outcome": "Cancer or death, ideally compared between supplement trials and diet studies"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 7,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42123930",
+      "title": "Impact of Nutritional Supplements and Antioxidants in the Treatment of Breast Cancer: A Systematic Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Covers antioxidant supplements with recurrence and mortality, but only in breast cancer patients during treatment."
+     },
+     {
+      "pmid": "35294044",
+      "title": "Vitamin A supplementation for preventing morbidity and mortality in children from six months to five years of age",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+     },
+     {
+      "pmid": "36388168",
+      "title": "Dietary Vitamin A Intake and Circulating Vitamin A Concentrations and the Risk of Three Common Cancers in Women: A Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Vitamin A from diet or supplements and cancer, but women only, and supplements are pooled with diet rather than compared."
+     },
+     {
+      "pmid": "30475962",
+      "title": "Dietary intake and blood concentrations of antioxidants and the risk of cardiovascular disease, total cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective studies",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Adults with cancer and mortality outcomes, but the exposure is antioxidant intake from diet or blood levels, not supplements."
+     },
+     {
+      "pmid": "28282701",
+      "title": "Vitamin A supplementation for preventing morbidity and mortality in children from six months to five years of age",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+     },
+     {
+      "pmid": "21154399",
+      "title": "Vitamin A supplementation for preventing morbidity and mortality in children from 6 months to 5 years of age",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+     },
+     {
+      "pmid": "19083131",
+      "title": "Antioxidant vitamins and the risk of endometrial cancer: a dose-response meta-analysis",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Antioxidant vitamins and endometrial cancer, but only intake from food was analysed; supplements were excluded."
+     }
+    ]
+   }
+  },
+  {
+   "id": "nutrient-list-tells-all",
+   "label": "Is the nutrient list everything?",
+   "finding": "nutrient-list-tells-all",
+   "counts": {
+    "all": 5302,
+    "reviews": 7,
+    "trialReviews": 7,
+    "trials": 32,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36796437",
+     "doi": "10.1016/j.advnut.2023.01.002",
+     "title": "Efficacy of Dietary Polyphenols from Whole Foods and Purified Food Polyphenol Extracts in Optimizing Cardiometabolic Health: A Meta-Analysis of Randomized Controlled Trials",
+     "year": 2023,
+     "firstAuthor": "Kiyimba T",
+     "journal": "Advances in nutrition (Bethesda, Md.)",
+     "citedBy": 51,
+     "n": 2494,
+     "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+    },
+    {
+     "pmid": "36934832",
+     "doi": "10.1016/j.advnut.2023.03.006",
+     "title": "The Metabolizable Energy and Lipid Bioaccessibility of Tree Nuts and Peanuts: A Systematic Review with Narrative Synthesis of Human and In Vitro Studies",
+     "year": 2023,
+     "firstAuthor": "Nikodijevic CJ",
+     "journal": "Advances in nutrition (Bethesda, Md.)",
+     "citedBy": 9,
+     "why": "One of the newest systematic reviews on this claim (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "41202663",
+     "doi": "10.1016/j.clnu.2025.10.017",
+     "title": "The effects of dietary fructose on blood pressure are modified by the food matrix",
+     "year": 2025,
+     "firstAuthor": "van Oeteren MAJ",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 0,
+     "n": 5426,
+     "why": "A large trial (about 5,426 people) from 2025, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0,
+    "trials": 8,
+    "inclusions": 8,
+    "reviews": [
+     {
+      "pmid": "36796437",
+      "trials": 2
+     },
+     {
+      "pmid": "36934832",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "22336903",
+      "title": "Effects of anthocyanins on cardiovascular risk factors and inflammation in pre-hypertensive men: a double-blind randomized placebo-controlled crossover study",
+      "year": 2013,
+      "n": 31,
+      "inReviews": [
+       "36796437"
+      ]
+     },
+     {
+      "pmid": "26581681",
+      "title": "Walnuts Consumed by Healthy Adults Provide Less Available Energy than Predicted by the Atwater Factors",
+      "year": 2016,
+      "n": 18,
+      "inReviews": [
+       "36934832"
+      ]
+     },
+     {
+      "pmid": "27713968",
+      "title": "Food processing and structure impact the metabolizable energy of almonds",
+      "year": 2016,
+      "n": 18,
+      "inReviews": [
+       "36934832"
+      ]
+     },
+     {
+      "pmid": "25527747",
+      "title": "Effect of mastication on lipid bioaccessibility of almonds in a randomized human study and its implications for digestion kinetics, metabolizable energy, and postprandial lipemia",
+      "year": 2015,
+      "n": 17,
+      "inReviews": [
+       "36934832"
+      ]
+     },
+     {
+      "pmid": "9109608",
+      "title": "Dietary fiber decreases the metabolizable energy content and nutrient digestibility of mixed diets fed to humans",
+      "year": 1997,
+      "n": 17,
+      "inReviews": [
+       "36934832"
+      ]
+     },
+     {
+      "pmid": "22492368",
+      "title": "Effects of red orange juice intake on endothelial function and inflammatory markers in adult subjects with increased cardiovascular risk",
+      "year": 2012,
+      "inReviews": [
+       "36796437"
+      ]
+     },
+     {
+      "pmid": "22760558",
+      "title": "Discrepancy between the Atwater factor predicted and empirically measured energy values of almonds in human diets",
+      "year": 2012,
+      "inReviews": [
+       "36934832"
+      ]
+     },
+     {
+      "pmid": "30586843",
+      "title": "Metabolizable Energy from Cashew Nuts is Less than that Predicted by Atwater Factors",
+      "year": 2018,
+      "inReviews": [
+       "36934832"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "41202663",
+     "title": "The effects of dietary fructose on blood pressure are modified by the food matrix",
+     "year": 2025,
+     "n": 5426
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "15321799",
+     "22760558",
+     "30040431"
+    ],
+    "citedNotEligible": [
+     "15321799",
+     "22760558",
+     "30040431"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "36796437",
+      "doi": "10.1016/j.advnut.2023.01.002",
+      "title": "Efficacy of Dietary Polyphenols from Whole Foods and Purified Food Polyphenol Extracts in Optimizing Cardiometabolic Health: A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2023,
+      "firstAuthor": "Kiyimba T",
+      "journal": "Advances in nutrition (Bethesda, Md.)",
+      "citedBy": 51,
+      "n": 2494,
+      "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+     },
+     {
+      "pmid": "36934832",
+      "doi": "10.1016/j.advnut.2023.03.006",
+      "title": "The Metabolizable Energy and Lipid Bioaccessibility of Tree Nuts and Peanuts: A Systematic Review with Narrative Synthesis of Human and In Vitro Studies",
+      "year": 2023,
+      "firstAuthor": "Nikodijevic CJ",
+      "journal": "Advances in nutrition (Bethesda, Md.)",
+      "citedBy": 9,
+      "why": "One of the newest systematic reviews on this claim (2023); screened as answering the question"
+     },
+     {
+      "pmid": "41202663",
+      "doi": "10.1016/j.clnu.2025.10.017",
+      "title": "The effects of dietary fructose on blood pressure are modified by the food matrix",
+      "year": 2025,
+      "firstAuthor": "van Oeteren MAJ",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 0,
+      "n": 5426,
+      "why": "A large trial (about 5,426 people) from 2025, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Whole foods, with their structure and compounds that food tables don't measure",
+     "comparison": "What the food's nutrient list predicts, or the isolated nutrients",
+     "outcome": "Energy or nutrients absorbed, or effects on health"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 3,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41655947",
+      "title": "Digestible and Metabolizable Energy Intake in Humans: a Systematic Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Measures energy absorbed by bomb calorimetry and finds nuts and high-fiber diets lower it, but does not compare against nutrient-table predictions."
+     },
+     {
+      "pmid": "42909331",
+      "title": "Global research landscape and emerging frontiers of ultra-processed food intake and cardiometabolic health: a bibliometric and knowledge-mapping analysis (2015-2025)",
+      "year": 2026,
+      "fits": "no",
+      "reason": "A bibliometric mapping of publications on ultra-processed food, not a systematic review of study findings."
+     },
+     {
+      "pmid": "40803102",
+      "title": "Effects of isolated single fibers, fiber mixtures, and fiber-rich whole foods on glucose homeostasis in individuals with overweight and obesity: A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Subgroups compare fiber-rich whole foods with isolated fibers on glucose outcomes, but each is tested against placebo and only in overweight/obese adults."
+     },
+     {
+      "pmid": "35322333",
+      "title": "Ultra-processed foods and obesity and adiposity parameters among children and adolescents: a systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Examines ultra-processed food intake and obesity in children, with no comparison to nutrient content or isolated nutrients."
+     },
+     {
+      "pmid": "32731580",
+      "title": "Myoprotective Whole Foods, Muscle Health and Sarcopenia: A Systematic Review of Observational and Intervention Studies in Older Adults",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Reviews whole foods and muscle health in older adults, but does not compare them with isolated nutrients or nutrient-based predictions."
+     }
+    ]
+   }
+  },
+  {
+   "id": "red-processed-meat-cancer",
+   "label": "Red meat and bowel cancer",
+   "finding": "red-processed-meat-cancer",
+   "counts": {
+    "all": 1130,
+    "reviews": 33,
+    "trialReviews": 33,
+    "trials": 12,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41461573",
+     "doi": "10.1111/jgh.70210",
+     "title": "Beyond the Plate: Unveiling the Association Between Meat Consumption and Colorectal Cancer Risk",
+     "year": 2026,
+     "firstAuthor": "Wu S",
+     "journal": "Journal of gastroenterology and hepatology",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "40210826",
+     "doi": "10.1007/s11357-025-01646-1",
+     "title": "Association between red and processed meat consumption and colorectal cancer risk: a comprehensive meta-analysis of prospective studies",
+     "year": 2025,
+     "firstAuthor": "Ungvari Z",
+     "journal": "GeroScience",
+     "citedBy": 29,
+     "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+    },
+    {
+     "pmid": "40773080",
+     "doi": "10.1007/s12029-025-01247-3",
+     "title": "Systematic Analysis of the Differential Effects of Red Meat on Colorectal Cancer Risks: A Meta-Analytic Approach",
+     "year": 2025,
+     "firstAuthor": "Woon JY",
+     "journal": "Journal of gastrointestinal cancer",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+    },
+    {
+     "pmid": "31569236",
+     "doi": "10.7326/m19-0622",
+     "title": "Effect of Lower Versus Higher Red Meat Intake on Cardiometabolic and Cancer Outcomes: A Systematic Review of Randomized Trials",
+     "year": 2019,
+     "firstAuthor": "Zeraatkar D",
+     "journal": "Annals of internal medicine",
+     "citedBy": 80,
+     "n": 48835,
+     "why": "The most comprehensive review on this claim (12 trials, 2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 3,
+    "inclusions": 3,
+    "reviews": [
+     {
+      "pmid": "41461573",
+      "trials": 1
+     },
+     {
+      "pmid": "40210826",
+      "trials": 2
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "40773080",
+     "31569236"
+    ],
+    "shared": [
+     {
+      "pmid": "29873077",
+      "title": "Anatomical subsite can modify the association between meat and meat compounds and risk of colorectal adenocarcinoma: Findings from three large US cohorts",
+      "year": 2018,
+      "n": 407270,
+      "inReviews": [
+       "40210826"
+      ]
+     },
+     {
+      "pmid": "28913916",
+      "title": "Red and processed meat intake and cancer risk: Results from the prospective NutriNet-Santé cohort study",
+      "year": 2018,
+      "n": 61476,
+      "inReviews": [
+       "40210826"
+      ]
+     },
+     {
+      "pmid": "12750250",
+      "title": "Haem, not protein or inorganic iron, is responsible for endogenous intestinal N-nitrosation arising from red meat",
+      "year": 2003,
+      "n": 21,
+      "inReviews": [
+       "41461573"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2002,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "15167213",
+     "title": "Meat intake and the recurrence of colorectal adenomas",
+     "year": 2004,
+     "n": 1905
+    },
+    {
+     "pmid": "20232386",
+     "title": "No effect of meat, meat cooking preferences, meat mutagens or heme iron on lung cancer risk in the prostate, lung, colorectal and ovarian cancer screening trial",
+     "year": 2011,
+     "n": 99579
+    },
+    {
+     "pmid": "28913916",
+     "title": "Red and processed meat intake and cancer risk: Results from the prospective NutriNet-Santé cohort study",
+     "year": 2018,
+     "n": 61476
+    },
+    {
+     "pmid": "29873077",
+     "title": "Anatomical subsite can modify the association between meat and meat compounds and risk of colorectal adenocarcinoma: Findings from three large US cohorts",
+     "year": 2018,
+     "n": 407270
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "26514947",
+     "21674008",
+     "31569214",
+     "31569213",
+     "31569235"
+    ],
+    "citedNotEligible": [
+     "26514947",
+     "31569213",
+     "31569235"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41461573",
+      "doi": "10.1111/jgh.70210",
+      "title": "Beyond the Plate: Unveiling the Association Between Meat Consumption and Colorectal Cancer Risk",
+      "year": 2026,
+      "firstAuthor": "Wu S",
+      "journal": "Journal of gastroenterology and hepatology",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "40210826",
+      "doi": "10.1007/s11357-025-01646-1",
+      "title": "Association between red and processed meat consumption and colorectal cancer risk: a comprehensive meta-analysis of prospective studies",
+      "year": 2025,
+      "firstAuthor": "Ungvari Z",
+      "journal": "GeroScience",
+      "citedBy": 29,
+      "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+     },
+     {
+      "pmid": "40773080",
+      "doi": "10.1007/s12029-025-01247-3",
+      "title": "Systematic Analysis of the Differential Effects of Red Meat on Colorectal Cancer Risks: A Meta-Analytic Approach",
+      "year": 2025,
+      "firstAuthor": "Woon JY",
+      "journal": "Journal of gastrointestinal cancer",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+     },
+     {
+      "pmid": "31569236",
+      "doi": "10.7326/m19-0622",
+      "title": "Effect of Lower Versus Higher Red Meat Intake on Cardiometabolic and Cancer Outcomes: A Systematic Review of Randomized Trials",
+      "year": 2019,
+      "firstAuthor": "Zeraatkar D",
+      "journal": "Annals of internal medicine",
+      "citedBy": 80,
+      "n": 48835,
+      "why": "The most comprehensive review on this claim (12 trials, 2019); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in the general population",
+     "intervention": "Eating red or processed meat",
+     "comparison": "Eating less or none",
+     "outcome": "Colorectal (bowel) cancer"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 20,
+     "partly": 10,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40795254",
+      "title": "Association Between the Consumption of Meat Subtypes and Precancerous Lesions of Colorectal Cancer: A Meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Red/processed meat intake matches, but the outcome is precancerous lesions (adenomas, polyps), not colorectal cancer itself."
+     },
+     {
+      "pmid": "40552180",
+      "title": "Associations between the consumption of red meat and processed meat and the incidence of colorectal cancer in Asia: a meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Red/processed meat intake and colorectal cancer match, but it covers only Asian populations, a narrower group."
+     },
+     {
+      "pmid": "38337709",
+      "title": "Genetic Variability Impacts Genotoxic and Transcriptome Responses in the Human Colon after the Consumption of Processed Red Meat Products and Those with Added Phytochemical Extracts",
+      "year": 2024,
+      "fits": "no",
+      "reason": "This is a single feeding study of genetic effects on colon genotoxicity markers, not a review with colorectal cancer as the outcome."
+     },
+     {
+      "pmid": "37774211",
+      "title": "Association of Red Meat Intake and Colorectal Cancer among East-Asians: A Systematic Review and Meta-analysis of Observational Studies Performed between 2011-2021",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Red meat intake and colorectal cancer match, but it covers only East Asian populations, a narrower group."
+     },
+     {
+      "pmid": "37904117",
+      "title": "The current and future costs of colorectal cancer attributable to red and processed meat consumption in Brazil",
+      "year": 2023,
+      "fits": "no",
+      "reason": "This is a healthcare cost model for colorectal cancer attributable to meat in Brazil, not a review of studies of the link."
+     },
+     {
+      "pmid": "36014940",
+      "title": "Role of Dairy Foods, Fish, White Meat, and Eggs in the Prevention of Colorectal Cancer: A Systematic Review of Observational Studies in 2018-2022",
+      "year": 2022,
+      "fits": "no",
+      "reason": "It reviews dairy, fish, white meat and eggs, not red or processed meat, in relation to colorectal cancer."
+     },
+     {
+      "pmid": "28205448",
+      "title": "Association between red meat consumption and colon cancer: A systematic review of experimental results",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Red/processed meat and colon cancer match, but it reviewed animal and cell-culture studies, not adults in the general population."
+     },
+     {
+      "pmid": "26305323",
+      "title": "Processed and Unprocessed Red Meat and Risk of Colorectal Cancer: Analysis by Tumor Location and Modification by Time",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Processed/red meat and colorectal cancer match, but it pools only two cohorts of US health professionals, not a systematic review."
+     },
+     {
+      "pmid": "26683305",
+      "title": "Interaction between Red Meat Intake and NAT2 Genotype in Increasing the Risk of Colorectal Cancer in Japanese and African Americans",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pools red/processed meat and colorectal cancer studies, but only in Japanese and African Americans, focused on NAT2 genotype interaction."
+     },
+     {
+      "pmid": "24842864",
+      "title": "Meat consumption and colorectal cancer risk: an evaluation based on a systematic review of epidemiologic evidence among the Japanese population",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Red/processed meat intake and colorectal cancer match, but it covers only the Japanese population, a narrower group."
+     },
+     {
+      "pmid": "23380943",
+      "title": "Red and processed meat intake and risk of colorectal adenomas: a systematic review and meta-analysis of epidemiological studies",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Red and processed meat intake in general population, but outcome is colorectal adenomas rather than colorectal cancer."
+     },
+     {
+      "pmid": "21209396",
+      "title": "Heme iron from meat and risk of colorectal cancer: a meta-analysis and a review of the mechanisms involved",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Pools cohort studies of heme iron, a meat component, rather than red or processed meat itself, and colon cancer."
+     },
+     {
+      "pmid": "10954254",
+      "title": "Systematic review of epidemiological studies on meat, dairy products and egg consumption and risk of colorectal adenomas",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "Reviews meat (including beef/red meat) intake, but outcome is colorectal adenomas/polyps rather than colorectal cancer."
+     }
+    ]
+   }
+  }
+ ]
+}

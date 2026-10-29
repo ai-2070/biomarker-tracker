@@ -67,20 +67,55 @@ async function all(query: string) {
   return out;
 }
 
-const base = `(${topic.terms.map((t) => `TITLE_ABS:"${t}"`).join(" OR ")})${topic.context ? ` AND (${topic.context})` : ""} AND SRC:MED`;
-const queries = {
+const byType = (base: string) => ({
   all: base,
   reviews: `${base} AND (PUB_TYPE:"meta-analysis" OR PUB_TYPE:"systematic review")`,
   trials: `${base} AND PUB_TYPE:"randomized controlled trial"`,
   guidelines: `${base} AND PUB_TYPE:"practice guideline"`,
   retracted: `${base} AND PUB_TYPE:"retracted publication"`,
-};
+});
+type Rec = ReturnType<typeof trim> & { matched?: string[] };
+const download = async (q: ReturnType<typeof byType>) => ({ reviews: (await all(q.reviews)) as Rec[], trials: (await all(q.trials)) as Rec[], guidelines: (await all(q.guidelines)) as Rec[] });
+const countAll = async (q: Record<string, string>) => Object.fromEntries(await Promise.all(Object.entries(q).map(async ([k, v]) => [k, await count(v)] as const)));
 
-const counts = Object.fromEntries(await Promise.all(Object.entries(queries).map(async ([k, q]) => [k, await count(q)] as const)));
-console.log("counts", counts);
-const records = { reviews: await all(queries.reviews), trials: await all(queries.trials), guidelines: await all(queries.guidelines) };
+let queries: Record<string, string>;
+let counts: Record<string, number>;
+let records: { reviews: Rec[]; trials: Rec[]; guidelines: Rec[] };
+let outcomeCounts: Record<string, number> | undefined;
+
+if (topic.kind === "food") {
+  // A search per claim; each record remembers which claims' searches found it.
+  const per = topic.outcomes.map((o) => ({ id: o.id, q: byType(`(${o.query}) AND SRC:MED`) }));
+  queries = Object.fromEntries(per.map((p) => [p.id, p.q.all]));
+  counts = await countAll(byType(`(${topic.outcomes.map((o) => `(${o.query})`).join(" OR ")}) AND SRC:MED`));
+  outcomeCounts = Object.fromEntries(await Promise.all(per.map(async (p) => [p.id, await count(p.q.all)] as const)));
+  console.log("counts", counts, outcomeCounts);
+  records = { reviews: [], trials: [], guidelines: [] };
+  const index = new Map<string, Rec>();
+  for (const p of per) {
+    console.log(p.id);
+    const got = await download(p.q);
+    for (const kind of ["reviews", "trials", "guidelines"] as const)
+      for (const r of got[kind]) {
+        const key = r.pmid ?? r.doi ?? r.title;
+        const seen = index.get(key);
+        if (seen) seen.matched = [...new Set([...(seen.matched ?? []), p.id])];
+        else {
+          const rec = { ...r, matched: [p.id] };
+          index.set(key, rec);
+          records[kind].push(rec);
+        }
+      }
+  }
+} else {
+  const q = byType(`(${topic.terms.map((t) => `TITLE_ABS:"${t}"`).join(" OR ")})${topic.context ? ` AND (${topic.context})` : ""} AND SRC:MED`);
+  queries = q;
+  counts = await countAll(q);
+  console.log("counts", counts);
+  records = await download(q);
+}
 
 const dir = join(import.meta.dirname, "cache");
 mkdirSync(dir, { recursive: true });
-writeFileSync(join(dir, `${topic.id}.json`), JSON.stringify({ topic: topic.id, fetchedAt: new Date().toISOString().slice(0, 10), queries, counts, records }));
+writeFileSync(join(dir, `${topic.id}.json`), JSON.stringify({ topic: topic.id, fetchedAt: new Date().toISOString().slice(0, 10), queries, counts, ...(outcomeCounts ? { outcomeCounts } : {}), records }));
 console.log(`saved ${records.reviews.length + records.trials.length + records.guidelines.length} records`);

@@ -1,0 +1,3153 @@
+{
+ "topic": "food-safety",
+ "kind": "food",
+ "comparisonId": "safety",
+ "name": "food safety",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "heavy-metals-plant-foods": "((TITLE_ABS:cadmium OR TITLE_ABS:arsenic OR TITLE_ABS:\"dietary lead\" OR TITLE_ABS:\"lead exposure\" OR TITLE_ABS:\"heavy metal\" OR TITLE_ABS:\"heavy metals\" OR TITLE_ABS:\"toxic metals\") AND (TITLE_ABS:rice OR TITLE_ABS:cereal* OR TITLE_ABS:vegetable* OR TITLE_ABS:\"dietary exposure\" OR TITLE_ABS:seaweed OR TITLE_ABS:seafood OR TITLE_ABS:diet)) AND SRC:MED",
+  "mercury-in-fish": "((TITLE_ABS:mercury OR TITLE_ABS:methylmercury) AND (TITLE_ABS:fish OR TITLE_ABS:seafood)) AND SRC:MED",
+  "antinutrients-harmful": "((TITLE_ABS:antinutrient* OR TITLE_ABS:\"anti-nutrient*\" OR TITLE_ABS:antinutritional OR TITLE_ABS:lectin* OR TITLE_ABS:saponin* OR TITLE_ABS:goitrogen* OR TITLE_ABS:tannin*) AND (TITLE_ABS:health OR TITLE_ABS:human* OR TITLE_ABS:diet* OR TITLE_ABS:mineral* OR TITLE_ABS:absorption)) AND SRC:MED",
+  "oxalate-kidney-stones": "((TITLE_ABS:oxalate) AND (TITLE_ABS:\"kidney stone\" OR TITLE_ABS:\"kidney stones\" OR TITLE_ABS:nephrolithiasis OR TITLE_ABS:urolithiasis OR TITLE_ABS:\"calcium oxalate stones\") AND (TITLE_ABS:diet* OR TITLE_ABS:intake OR TITLE_ABS:food*)) AND SRC:MED",
+  "plant-compounds-destroy-antioxidants": "((TITLE_ABS:polyphenol* OR TITLE_ABS:flavonoid* OR TITLE_ABS:phytochemical*) AND (TITLE_ABS:\"oxidative stress\" OR TITLE_ABS:antioxidant* OR TITLE_ABS:\"pro-oxidant\" OR TITLE_ABS:prooxidant) AND (TITLE_ABS:human* OR TITLE_ABS:trial* OR TITLE_ABS:bioavailability)) AND SRC:MED",
+  "pesticide-residues": "((TITLE_ABS:pesticide*) AND (TITLE_ABS:fruit* OR TITLE_ABS:vegetable* OR TITLE_ABS:organic OR TITLE_ABS:\"dietary exposure\" OR TITLE_ABS:residue*)) AND SRC:MED",
+  "germs-and-cooking-by-products": "((TITLE_ABS:foodborne OR TITLE_ABS:\"food-borne\" OR TITLE_ABS:outbreak* OR TITLE_ABS:\"heterocyclic amine*\" OR TITLE_ABS:acrylamide OR TITLE_ABS:\"polycyclic aromatic hydrocarbon*\") AND (TITLE_ABS:meat OR TITLE_ABS:produce OR TITLE_ABS:vegetable* OR TITLE_ABS:\"food source*\" OR TITLE_ABS:attribution OR TITLE_ABS:dietary)) AND SRC:MED"
+ },
+ "rules": [
+  "Each claim has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 99055,
+  "retrieved": 1601,
+  "animal": 231,
+  "retracted": 2,
+  "reviews": 696,
+  "trials": 659,
+  "guidelines": 10
+ },
+ "guidelines": [
+  {
+   "pmid": "40583613",
+   "doi": "10.4081/aiua.2025.14085",
+   "title": "Management of urinary stones by experts in stone disease (ESD 2025)",
+   "year": 2025,
+   "journal": "Archivio italiano di urologia, andrologia : organo ufficiale [di] Societa italiana di ecografia urologica e nefrologica",
+   "citedBy": 14,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "40018799",
+   "doi": "10.1111/all.16502",
+   "title": "EAACI Guidelines on Environmental Science for Allergy and Asthma-Recommendations on the Impact of Indoor Air Pollutants on the Risk of New-Onset Asthma and on Asthma-Related Outcomes",
+   "year": 2025,
+   "journal": "Allergy",
+   "citedBy": 20,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "39917790",
+   "doi": "10.1684/ndt.2024.102",
+   "title": "Management of patients with kidney stones",
+   "year": 2024,
+   "journal": "Nephrologie & therapeutique",
+   "citedBy": 0,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "32195699",
+   "doi": "10.1097/aln.0000000000003301",
+   "title": "Perioperative Management of Patients Infected with the Novel Coronavirus: Recommendation from the Joint Task Force of the Chinese Society of Anesthesiology and the Chinese Association of Anesthesiologists",
+   "year": 2020,
+   "journal": "Anesthesiology",
+   "citedBy": 138,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "30358658",
+   "doi": "10.1097/jom.0000000000001485",
+   "title": "Arsenic Exposure, Assessment, Toxicity, Diagnosis, and Management: Guidance for Occupational and Environmental Physicians",
+   "year": 2018,
+   "journal": "Journal of occupational and environmental medicine",
+   "citedBy": 60,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "28947608",
+   "doi": "10.1542/peds.2017-2477",
+   "title": "Infectious Diseases Associated With Organized Sports and Outbreak Control",
+   "year": 2017,
+   "journal": "Pediatrics",
+   "citedBy": 11,
+   "why": "One of the newest guidelines the claims' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "heavy-metals-plant-foods",
+   "label": "Heavy metals",
+   "finding": "heavy-metals-plant-foods",
+   "counts": {
+    "all": 12153,
+    "reviews": 43,
+    "trialReviews": 43,
+    "trials": 9,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36181805",
+     "doi": "10.1016/j.scitotenv.2022.159118",
+     "title": "Assessment of cause-specific mortality and disability-adjusted life years (DALYs) induced by exposure to inorganic arsenic through drinking water and foodstuffs in Iran",
+     "year": 2023,
+     "firstAuthor": "Abtahi M",
+     "journal": "The Science of the total environment",
+     "citedBy": 19,
+     "n": 100000,
+     "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+    },
+    {
+     "pmid": "36520940",
+     "doi": "10.1371/journal.pone.0278686",
+     "title": "The lead and cadmium content in rice and risk to human health in China: A systematic review and meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Huang X",
+     "journal": "PloS one",
+     "citedBy": 16,
+     "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+    },
+    {
+     "pmid": "30580115",
+     "doi": "10.1016/j.jenvman.2018.12.034",
+     "title": "Geographical variation of arsenic distribution in paddy soil, rice and rice-based products: A meta-analytic approach and implications to human health",
+     "year": 2019,
+     "firstAuthor": "Majumder S",
+     "journal": "Journal of environmental management",
+     "citedBy": 52,
+     "why": "One of the newest meta-analyses on this claim (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 8,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "33537067",
+     "38239496"
+    ],
+    "citedNotEligible": [
+     "33537067",
+     "38239496"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "36181805",
+      "doi": "10.1016/j.scitotenv.2022.159118",
+      "title": "Assessment of cause-specific mortality and disability-adjusted life years (DALYs) induced by exposure to inorganic arsenic through drinking water and foodstuffs in Iran",
+      "year": 2023,
+      "firstAuthor": "Abtahi M",
+      "journal": "The Science of the total environment",
+      "citedBy": 19,
+      "n": 100000,
+      "why": "One of the newest meta-analyses on this claim (2023); screened as answering the question"
+     },
+     {
+      "pmid": "36520940",
+      "doi": "10.1371/journal.pone.0278686",
+      "title": "The lead and cadmium content in rice and risk to human health in China: A systematic review and meta-analysis",
+      "year": 2022,
+      "firstAuthor": "Huang X",
+      "journal": "PloS one",
+      "citedBy": 16,
+      "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+     },
+     {
+      "pmid": "30580115",
+      "doi": "10.1016/j.jenvman.2018.12.034",
+      "title": "Geographical variation of arsenic distribution in paddy soil, rice and rice-based products: A meta-analytic approach and implications to human health",
+      "year": 2019,
+      "firstAuthor": "Majumder S",
+      "journal": "Journal of environmental management",
+      "citedBy": 52,
+      "why": "One of the newest meta-analyses on this claim (2019); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People, including young children",
+     "intervention": "Foods such as rice, grains, vegetables, seaweed and seafood",
+     "comparison": "Other foods",
+     "outcome": "Dietary exposure to cadmium, arsenic or lead, or health effects of that exposure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 11,
+     "partly": 21,
+     "no": 11,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42467164",
+      "title": "From Salt Deposits to the Dinner Table: A Systematic Review of Heavy Metal Contamination in Edible Salt; Sources, Limitations of Conventional Purification, Human Exposure, and Regulatory Gaps",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Reviews dietary Pb and Cd exposure and health risk, but from edible salt rather than rice, grains, vegetables, seaweed or seafood."
+     },
+     {
+      "pmid": "42680423",
+      "title": "Optimizing water management for cadmium mitigation in rice production: A global meta-analysis and application effectiveness assessment",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Agronomic meta-analysis of rice Cd under water management, with a modelled dietary Cd hazard quotient and cancer risk."
+     },
+     {
+      "pmid": "42296580",
+      "title": "Apoplastic retention over vacuolar sequestration: a potential more efficient strategy limiting root-to-shoot cadmium translocation in leafy vegetable crops",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Meta-analysis of plant physiology of Cd translocation in leafy vegetables, with no human dietary exposure or health outcome."
+     },
+     {
+      "pmid": "41914905",
+      "title": "Rice Arsenic Accumulation Mitigated by Agricultural Sulfur Applications: Insights from Two-Year Mesocosm Experiments and a Meta-Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Agronomic meta-analysis of sulfur fertiliser effects on rice grain As, not human dietary exposure or health effects."
+     },
+     {
+      "pmid": "40533037",
+      "title": "Soil heavy metal pollution trends for intensive vegetable production system in Beijing-Tianjin-Hebei region, China (2000-2024) and human health implications",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Meta-analysis of heavy metals in vegetable-growing soils with health risk for children, but measures soil rather than food."
+     },
+     {
+      "pmid": "40205266",
+      "title": "Quantitative study on reducing arsenic concentration in rice by sulfur fertilizer based on meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Agronomic meta-analysis of sulfur fertiliser reducing rice As, not human dietary exposure or health effects."
+     },
+     {
+      "pmid": "36794359",
+      "title": "The association between toxic metals (As, Pb and Cd) exposure and rice cooking methods: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools As, Pb and Cd levels in rice and dietary exposure, but compares cooking methods rather than other foods."
+     },
+     {
+      "pmid": "38311087",
+      "title": "Silicon reduces toxicity and accumulation of arsenic and cadmium in cereal crops: A meta-analysis, mechanism, and perspective study",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Agronomic meta-analysis of silicon reducing As and Cd in cereal grains, including estimated human health risk from grains."
+     },
+     {
+      "pmid": "37758140",
+      "title": "Association of cadmium environmental exposure with chronic kidney disease: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools Cd exposure and kidney disease in adults with a dietary subgroup, but does not examine specific foods."
+     },
+     {
+      "pmid": "38941835",
+      "title": "Exogenous selenium promotes cadmium reduction and selenium enrichment in rice: Evidence, mechanisms, and perspectives",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Agronomic meta-analysis of selenium reducing rice grain Cd, with a note on mitigated health hazard but no dietary exposure focus."
+     },
+     {
+      "pmid": "39226972",
+      "title": "Assessing impact of elevated CO2 on heavy metal accumulation in crops: meta-analysis and implications for food security",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Meta-analysis of elevated CO2 effects on metal levels in crops, without human dietary exposure or health outcomes."
+     },
+     {
+      "pmid": "39490837",
+      "title": "Reducing cadmium and arsenic accumulation in rice grains: The coupled effect of sulfur's biomass dilution and soil immobilization analyzed using meta-analysis and machine learning",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Agronomic meta-analysis of sulfur effects on Cd and As in rice grains, not human dietary exposure or health effects."
+     },
+     {
+      "pmid": "38489905",
+      "title": "Biochar impacts on carbon dioxide, methane emission, and cadmium accumulation in rice from Cd-contaminated soils; A meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Meta-analysis of biochar effects on greenhouse gases and Cd in rice, with no human dietary exposure or health outcome."
+     },
+     {
+      "pmid": "38101648",
+      "title": "How Fe-bearing materials affect soil arsenic bioavailability to rice: A meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Meta-analysis of Fe-bearing soil amendments on rice As bioavailability, not human dietary exposure or health effects."
+     },
+     {
+      "pmid": "36997784",
+      "title": "Meta-analyses of arsenic accumulation in Indica and Japonica rice grains",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pools As concentrations in rice and discusses dietary uptake, but compares rice varieties rather than other foods."
+     },
+     {
+      "pmid": "36563983",
+      "title": "Cadmium exposure and risk of breast cancer: A meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pools Cd exposure and breast cancer with a dietary Cd subgroup, but only in women and not by specific foods."
+     },
+     {
+      "pmid": "37640100",
+      "title": "Reassessment of the cadmium toxicological reference value for use in human health assessments of foods",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Derives a safe dietary cadmium intake from a review of health effects, but does not look at specific foods."
+     },
+     {
+      "pmid": "37553055",
+      "title": "The role of arbuscular mycorrhizal fungi in the alleviation of cadmium stress in cereals: A multilevel meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Looks at how soil fungi relieve cadmium stress in cereal crops, which concerns plant health, not human exposure."
+     },
+     {
+      "pmid": "36370388",
+      "title": "Interventions to reduce cadmium exposure in low- and middle-income countries during pregnancy and childhood: A systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Reviews ways to cut cadmium exposure in pregnancy and childhood, including rice, but tests interventions, not food comparisons."
+     },
+     {
+      "pmid": "34592522",
+      "title": "Urinary cadmium in relation to bone damage: Cadmium exposure threshold dose and health-based guidance value estimation",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools urinary cadmium and bone damage studies to derive a dietary limit, but does not look at specific foods such as rice or seafood."
+     },
+     {
+      "pmid": "34030275",
+      "title": "Factors influencing the effectiveness of liming on cadmium reduction in rice: A meta-analysis and decision tree analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pools how liming reduces cadmium in rice grain, a farming question with no human exposure or health outcome."
+     },
+     {
+      "pmid": "33905760",
+      "title": "Essential concepts for interpreting the dose-response of low-level arsenic exposure in epidemiological studies",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Discusses methods for judging low-level arsenic dose-response, mainly drinking water and bladder cancer, not foods."
+     },
+     {
+      "pmid": "33075355",
+      "title": "Toenails as a biomarker of exposure to arsenic: A review",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Assesses toenails as a marker of arsenic exposure, mainly from water or work, not exposure from foods."
+     },
+     {
+      "pmid": "32599354",
+      "title": "Cadmium exposure and risk of breast cancer: A dose-response meta-analysis of cohort studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pools dietary cadmium and breast cancer studies, but covers only women and does not look at specific foods."
+     },
+     {
+      "pmid": "32388299",
+      "title": "Cadmium uptake from soil and transport by leafy vegetables: A meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pools cadmium uptake by leafy vegetables from soil, but measures plant uptake rather than human exposure or health."
+     },
+     {
+      "pmid": "29505519",
+      "title": "Association between cadmium exposure and urolithiasis risk: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Pools cadmium exposure and kidney stone risk with a dietary subgroup, but does not look at specific foods."
+     },
+     {
+      "pmid": "30873793",
+      "title": "Potential Co-exposure to Arsenic and Fluoride and Biomonitoring Equivalents for Mexican Children",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Reviews arsenic exposure in Mexican children, but the source is drinking water, not foods."
+     },
+     {
+      "pmid": "26479829",
+      "title": "Dietary exposure to cadmium and risk of breast cancer in postmenopausal women: A systematic review and meta-analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Pools dietary cadmium and breast cancer studies, but covers only postmenopausal women and no specific foods."
+     },
+     {
+      "pmid": "26896853",
+      "title": "Systematic review of differential inorganic arsenic exposure in minority, low-income, and indigenous populations in the United States",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Reviews inorganic arsenic exposure from sources including rice and fish, but focuses on US minority and low-income groups and mixes in water and soil."
+     },
+     {
+      "pmid": "27828001",
+      "title": "Arsenic Exposure and Predicted 10-Year Atherosclerotic Cardiovascular Risk Using the Pooled Cohort Equations in U.S. Hypertensive Adults",
+      "year": 2016,
+      "fits": "no",
+      "reason": "A single survey analysis of urine arsenic and heart risk in adults with high blood pressure, not a review of foods."
+     },
+     {
+      "pmid": "25771535",
+      "title": "Association between dietary cadmium exposure and breast cancer risk: an updated meta-analysis of observational studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pools dietary cadmium exposure and breast cancer risk, but looks only at women and one outcome, and does not compare specific foods."
+     },
+     {
+      "pmid": "24069382",
+      "title": "Dietary cadmium intake and the risk of cancer: a meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools dietary cadmium intake and cancer risk, but looks at total dietary intake rather than comparing specific foods like rice or seafood."
+     }
+    ]
+   }
+  },
+  {
+   "id": "mercury-in-fish",
+   "label": "Mercury in fish",
+   "finding": "mercury-in-fish",
+   "counts": {
+    "all": 5952,
+    "reviews": 15,
+    "trialReviews": 15,
+    "trials": 7,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "24700993",
+     "doi": "10.2471/blt.12.116152",
+     "title": "Global methylmercury exposure from seafood consumption and risk of developmental neurotoxicity: a systematic review",
+     "year": 2014,
+     "firstAuthor": "Sheehan MC",
+     "journal": "Bulletin of the World Health Organization",
+     "citedBy": 161,
+     "n": 164,
+     "why": "One of the newest systematic reviews on this claim (2014); screened as answering the question"
+    },
+    {
+     "pmid": "19865003",
+     "doi": "10.1097/ftd.0b013e3181bb0ea1",
+     "title": "Defining a lowest observable adverse effect hair concentrations of mercury for neurodevelopmental effects of prenatal methylmercury exposure through maternal fish consumption: a systematic review",
+     "year": 2009,
+     "firstAuthor": "Schoeman K",
+     "journal": "Therapeutic drug monitoring",
+     "citedBy": 45,
+     "why": "One of the newest systematic reviews on this claim (2009); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "28056794",
+     "doi": "10.1186/s12872-016-0435-8",
+     "title": "Mercury exposure and risk of cardiovascular disease: a nested case-control study in the PREDIMED (PREvention with MEDiterranean Diet) study",
+     "year": 2017,
+     "firstAuthor": "Downer MK",
+     "journal": "BMC cardiovascular disorders",
+     "citedBy": 32,
+     "n": 7477,
+     "why": "A large trial (about 7,477 people) from 2017, as new as the newest review or newer"
+    }
+   ],
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "28056794",
+     "title": "Mercury exposure and risk of cardiovascular disease: a nested case-control study in the PREDIMED (PREvention with MEDiterranean Diet) study",
+     "year": 2017,
+     "n": 7477
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "17047219"
+    ],
+    "citedNotEligible": [
+     "17047219"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "24700993",
+      "doi": "10.2471/blt.12.116152",
+      "title": "Global methylmercury exposure from seafood consumption and risk of developmental neurotoxicity: a systematic review",
+      "year": 2014,
+      "firstAuthor": "Sheehan MC",
+      "journal": "Bulletin of the World Health Organization",
+      "citedBy": 161,
+      "n": 164,
+      "why": "One of the newest systematic reviews on this claim (2014); screened as answering the question"
+     },
+     {
+      "pmid": "19865003",
+      "doi": "10.1097/ftd.0b013e3181bb0ea1",
+      "title": "Defining a lowest observable adverse effect hair concentrations of mercury for neurodevelopmental effects of prenatal methylmercury exposure through maternal fish consumption: a systematic review",
+      "year": 2009,
+      "firstAuthor": "Schoeman K",
+      "journal": "Therapeutic drug monitoring",
+      "citedBy": 45,
+      "why": "One of the newest systematic reviews on this claim (2009); screened as answering the question"
+     },
+     {
+      "pmid": "28056794",
+      "doi": "10.1186/s12872-016-0435-8",
+      "title": "Mercury exposure and risk of cardiovascular disease: a nested case-control study in the PREDIMED (PREvention with MEDiterranean Diet) study",
+      "year": 2017,
+      "firstAuthor": "Downer MK",
+      "journal": "BMC cardiovascular disorders",
+      "citedBy": 32,
+      "n": 7477,
+      "why": "A large trial (about 7,477 people) from 2017, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People, including pregnant women and children",
+     "intervention": "Eating fish or seafood, with the mercury it contains",
+     "comparison": "Eating less or no fish",
+     "outcome": "Mercury exposure, children's development, heart disease, or the balance of benefits and risks"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 9,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "39986421",
+      "title": "Mercury exposure and childhood outcomes: An overview of systematic reviews",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Reviews mercury from any source in pregnancy and childhood and child outcomes; seafood is only one source, and seafood-specific evidence was limited."
+     },
+     {
+      "pmid": "40419821",
+      "title": "Mercury contamination endangers Indigenous Amazonian communities: a systematic review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Covers mercury levels in Indigenous Amazonian people and the fish they eat, but the group is narrow, the source is mining pollution and there is no comparison."
+     },
+     {
+      "pmid": "38830454",
+      "title": "Mercury, natural fertility and outcomes of assisted reproduction: A systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at mercury biomarkers and fertility or assisted reproduction, which is not a target outcome, and does not focus on eating fish."
+     },
+     {
+      "pmid": "36509349",
+      "title": "Mercury in oceanic upper trophic level sharks and bony fishes - A systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Analyses mercury in predatory fish and discusses the risk of eating them, but has no human outcomes and no comparison with eating less fish."
+     },
+     {
+      "pmid": "36580940",
+      "title": "Maternal Mercury Exposure and Hypertensive Disorders of Pregnancy: A Systematic Review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pregnant women with mercury exposure, mainly from fish, but the outcome is high blood pressure in pregnancy rather than a target outcome."
+     },
+     {
+      "pmid": "35627826",
+      "title": "Mercury Pollution from Artisanal and Small-Scale Gold Mining in Myanmar and Other Southeast Asian Countries",
+      "year": 2022,
+      "fits": "no",
+      "reason": "About mercury pollution from small-scale gold mining in Southeast Asia, not about eating fish versus eating less."
+     },
+     {
+      "pmid": "31284912",
+      "title": "Mercury in aquatic fauna contamination: A systematic review on its dynamics and potential health risks",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Mainly about how mercury moves through water and aquatic animals; covers seafood as a source of human mercury but has no comparison."
+     },
+     {
+      "pmid": "30057028",
+      "title": "Prenatal mercury exposure and child neurodevelopment outcomes at 18 months: Results from the Mediterranean PHIME cohort",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Prenatal mercury and child development, but it is one multi-country cohort study, not a systematic review, and exposure is mercury levels."
+     },
+     {
+      "pmid": "30758455",
+      "title": "Human exposure to mercury and its hematological effects: a systematic review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at mercury exposure from any source and blood effects, which is not a target outcome."
+     },
+     {
+      "pmid": "27666813",
+      "title": "Mercury as an environmental stimulus in the development of autoimmunity - A systematic review",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Looks at mercury forms and autoimmune disease, which is not a target outcome."
+     },
+     {
+      "pmid": "26874048",
+      "title": "Country-specific estimates of the incidence of intellectual disability associated with prenatal exposure to methylmercury",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Reviews hair mercury in women to estimate intellectual disability in children; exposure is a mercury biomarker, not fish intake directly."
+     },
+     {
+      "pmid": "17250511",
+      "title": "Low-level chronic mercury exposure in children and adolescents: meta-analysis",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Children with low-level mercury from any source; touches on fish and development but focuses on diagnosis and autism."
+     },
+     {
+      "pmid": "16242602",
+      "title": "A quantitative analysis of prenatal methyl mercury exposure and cognitive development",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Pools three prospective studies of prenatal methylmercury and IQ for a fish risk-benefit analysis, but covers only the mercury harm side."
+     }
+    ]
+   }
+  },
+  {
+   "id": "antinutrients-harmful",
+   "label": "Antinutrients",
+   "finding": "antinutrients-harmful",
+   "counts": {
+    "all": 28755,
+    "reviews": 28,
+    "trialReviews": 28,
+    "trials": 42,
+    "largeTrials": 1
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 6,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "37338907",
+     "title": "Efficacy and Safety of Panax notoginseng Saponins in the Treatment of Adults With Ischemic Stroke in China: A Randomized Clinical Trial",
+     "year": 2023,
+     "n": 3072
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "39895386",
+     "2249712",
+     "26946249",
+     "30850697",
+     "24898241"
+    ],
+    "citedNotEligible": [
+     "39895386",
+     "2249712",
+     "26946249",
+     "30850697",
+     "24898241"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Plant foods rich in antinutrients (legumes, grains, raw beans), or the compounds themselves",
+     "comparison": "Less of them, or the foods cooked or processed",
+     "outcome": "Harm to health: symptoms, mineral status, disease or death"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 3,
+     "no": 25,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41173082",
+      "title": "Panax notoginseng saponins against ischemic stroke: From molecule to clinic",
+      "year": 2026,
+      "fits": "no",
+      "reason": "A ginseng saponin extract as a stroke treatment, not antinutrient-rich plant foods causing harm."
+     },
+     {
+      "pmid": "41392866",
+      "title": "Emerging Non-Thermal Technologies for Reducing Anti-Nutritional Factors in Food Systems: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Covers antinutrients in foods and processing to reduce them, but the outcome is antinutrient levels in food, not harm to human health."
+     },
+     {
+      "pmid": "41288460",
+      "title": "Dietary Saponins as Antiaging Agents: A Systematic Review of Molecular Mechanisms, Nutritional Intervention, and Product Development",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at anti-aging benefits of dietary saponins, not harms from antinutrients."
+     },
+     {
+      "pmid": "40093323",
+      "title": "The efficacy and safety of panax quinquefolius saponin for heart failure: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "A saponin drug as a treatment for heart failure, not antinutrient foods and harm."
+     },
+     {
+      "pmid": "38767625",
+      "title": "Efficacy of substances containing 3 types of active ingredients-saponins, flavones, and alkaloids in regulation of cytokines in autoimmune diseases a systematic review and Meta-analysis based on animal studies",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Animal studies of saponins as a therapy for autoimmune disease, not harm in people."
+     },
+     {
+      "pmid": "38898926",
+      "title": "The use of Panax notoginseng saponins injections after intravenous thrombolysis in acute ischemic stroke: a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "A saponin injection drug after stroke thrombolysis, not dietary antinutrients."
+     },
+     {
+      "pmid": "35808920",
+      "title": "Reasons for using indoor tanning devices: A systematic review of qualitative evidence",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reasons people use sunbeds; unrelated."
+     },
+     {
+      "pmid": "31381131",
+      "title": "Indoor tanning prevalence after the International Agency for Research on Cancer statement on carcinogenicity of artificial tanning devices: systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "no",
+      "reason": "About how common indoor tanning is; unrelated to antinutrients."
+     },
+     {
+      "pmid": "32746927",
+      "title": "Association between polymorphisms in mannose-binding lectin 2 gene with pulmonary tuberculosis susceptibility",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Mannose-binding lectin gene variants and tuberculosis, not dietary lectins."
+     },
+     {
+      "pmid": "32019742",
+      "title": "Association between financial links to indoor tanning industry and conclusions of published studies on indoor tanning: systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Tanning industry funding and study conclusions; unrelated."
+     },
+     {
+      "pmid": "30639817",
+      "title": "Indoor tanning and skin cancer in Canada: A meta-analysis and attributable burden estimation",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Indoor tanning and skin cancer burden; unrelated."
+     },
+     {
+      "pmid": "30446921",
+      "title": "The relationship between indoor tanning and body mass index, physical activity, or dietary practices: a systematic review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Indoor tanning and diet or activity behaviours; unrelated."
+     },
+     {
+      "pmid": "26479307",
+      "title": "Phaseolus vulgaris lectins: A systematic review of characteristics and health implications",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Reviews bean lectins as antinutrients causing gut disorders and the effect of heating, but it is broad, covers benefits too, and doesn't focus on people."
+     },
+     {
+      "pmid": "30285702",
+      "title": "A systematic review of compliance with indoor tanning legislation",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Compliance with indoor tanning laws; unrelated."
+     },
+     {
+      "pmid": "29864785",
+      "title": "The Lectin Pathway in Thrombotic Conditions-A Systematic Review",
+      "year": 2018,
+      "fits": "no",
+      "reason": "The lectin pathway of the immune complement system and thrombosis, not dietary lectins."
+     },
+     {
+      "pmid": "28867504",
+      "title": "College tanning behaviors, attitudes, beliefs, and intentions: A systematic review of the literature",
+      "year": 2017,
+      "fits": "no",
+      "reason": "College students' tanning behaviours; unrelated."
+     },
+     {
+      "pmid": "27671490",
+      "title": "Cardioprotector Activity of an Esteroidal Saponin: A Scientific and Technological Prospection",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Diosgenin saponin as a heart treatment, not harm from antinutrients."
+     },
+     {
+      "pmid": "27637409",
+      "title": "Sex and MC1R variants in human pigmentation: Differences in tanning ability and sensitivity to sunlight between sexes",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Skin pigmentation genetics; unrelated."
+     },
+     {
+      "pmid": "25561098",
+      "title": "[Hydrolyzable tannins; biochemistry, nutritional & analytical aspects and health effects]",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Reviews tannins' health effects, including enzyme inhibition, but mostly benefits, and not antinutrient-rich legumes or grains compared with processed versions."
+     },
+     {
+      "pmid": "24629998",
+      "title": "The association of indoor tanning and melanoma in adults: systematic review and meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Indoor tanning and melanoma; unrelated."
+     },
+     {
+      "pmid": "25143944",
+      "title": "Mannose-binding lectin codon 54 gene polymorphism and vulvovaginal candidiasis: a systematic review and meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Studies the body's own mannose-binding lectin gene and vaginal yeast infection, not dietary antinutrients from plant foods."
+     },
+     {
+      "pmid": "25108743",
+      "title": "Saponins in the genus Panax L. (Araliaceae): a systematic review of their chemical diversity",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Catalogues the chemical structures of saponins in ginseng species; it does not assess harm to health from eating them."
+     },
+     {
+      "pmid": "24477278",
+      "title": "International prevalence of indoor tanning: a systematic review and meta-analysis",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Estimates how common indoor tanning is and the skin cancer it causes, with no plant foods or antinutrients involved."
+     },
+     {
+      "pmid": "24512597",
+      "title": "A systematic review of visual image theory, assessment, and use in skin cancer and tanning research",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Reviews how visual images are used in skin cancer and tanning communication research, unrelated to antinutrients."
+     },
+     {
+      "pmid": "23601612",
+      "title": "Correlates of intentional tanning among adolescents in the United States: a systematic review of the literature",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Looks at factors linked to intentional tanning in adolescents, with no plant foods or antinutrients involved."
+     },
+     {
+      "pmid": "23033409",
+      "title": "Indoor tanning and non-melanoma skin cancer: systematic review and meta-analysis",
+      "year": 2012,
+      "fits": "no",
+      "reason": "Pools studies of indoor tanning and non-melanoma skin cancer, with no plant foods or antinutrients involved."
+     },
+     {
+      "pmid": "20636396",
+      "title": "Mannose-binding lectin and susceptibility to tuberculosis: a meta-analysis",
+      "year": 2010,
+      "fits": "no",
+      "reason": "Studies the body's own mannose-binding lectin genes and blood levels in tuberculosis, not dietary lectins from food."
+     },
+     {
+      "pmid": "16310065",
+      "title": "The indoor UV tanning industry: a review of skin cancer risk, health benefit claims, and regulation",
+      "year": 2005,
+      "fits": "no",
+      "reason": "Narrative review of indoor tanning risks and regulation, unrelated to antinutrients in plant foods."
+     }
+    ]
+   }
+  },
+  {
+   "id": "oxalate-kidney-stones",
+   "label": "Oxalate and kidney stones",
+   "finding": "oxalate-kidney-stones",
+   "counts": {
+    "all": 1169,
+    "reviews": 13,
+    "trialReviews": 13,
+    "trials": 44,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40936162",
+     "doi": "10.1017/s0954422425100188",
+     "title": "Dietary interventions on nutritional management of population with urolithiasis: a systematic review of clinical evidence",
+     "year": 2025,
+     "firstAuthor": "Pacheco-Hernández B",
+     "journal": "Nutrition research reviews",
+     "citedBy": 1,
+     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1980,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "11135080",
+     "17538185",
+     "19679672",
+     "11784873",
+     "24857648"
+    ],
+    "citedNotEligible": [
+     "11135080",
+     "17538185",
+     "19679672",
+     "11784873",
+     "24857648"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "40936162",
+      "doi": "10.1017/s0954422425100188",
+      "title": "Dietary interventions on nutritional management of population with urolithiasis: a systematic review of clinical evidence",
+      "year": 2025,
+      "firstAuthor": "Pacheco-Hernández B",
+      "journal": "Nutrition research reviews",
+      "citedBy": 1,
+      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, including people prone to kidney stones",
+     "intervention": "Oxalate from food (spinach and other high-oxalate plant foods)",
+     "comparison": "Less dietary oxalate",
+     "outcome": "Kidney stones, or oxalate in urine"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 5,
+     "no": 7,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41871357",
+      "title": "Prevention of Recurrent Nephrolithiasis in Adults and Children : A Systematic Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Reviews diets to prevent repeat stones in adults, but the abstract reports calcium, protein and sodium diets and does not mention dietary oxalate."
+     },
+     {
+      "pmid": "42064216",
+      "title": "The gut-kidney microbiome-oxalate axis in calcium oxalate nephrolithiasis: mechanisms and microbiome-based interventions",
+      "year": 2026,
+      "fits": "no",
+      "reason": "A narrative review of how gut and urinary microbes affect oxalate handling and stones; it does not systematically compare high- and low-oxalate diets."
+     },
+     {
+      "pmid": "42060186",
+      "title": "Where does endogenous oxalate come from? - a systematic review of endogenous sources of urinary oxalate",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at oxalate the body makes itself (from vitamin C and amino acids), not oxalate from food."
+     },
+     {
+      "pmid": "37208622",
+      "title": "Gut microbiota in patients with kidney stones: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Compares gut bacteria in people with and without kidney stones; dietary oxalate is not the exposure."
+     },
+     {
+      "pmid": "34959822",
+      "title": "The Relationship between Modern Fad Diets and Kidney Stone Disease: A Systematic Review of Literature",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Reviews popular diets, including vegan diets, against stone risk and urine oxalate, but the exposure is whole diet patterns, not oxalate intake."
+     },
+     {
+      "pmid": "33458786",
+      "title": "Tea and coffee consumption and the risk of urinary stones-a systematic review of the epidemiological data",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Reviews tea and coffee and stone risk, including the oxalate in tea, but covers only these drinks, not high-oxalate foods in general."
+     },
+     {
+      "pmid": "33484322",
+      "title": "Antiurolithic effects of medicinal plants: results of in vivo studies in rat models of calcium oxalate nephrolithiasis-a systematic review",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Reviews plant-extract remedies in rats with chemically induced stones, not dietary oxalate in adults."
+     },
+     {
+      "pmid": "29856171",
+      "title": "Obesity and kidney stone disease: a systematic review",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Looks at obesity as a risk factor for stones, not oxalate from food."
+     },
+     {
+      "pmid": "26088584",
+      "title": "[Urinary stones and bowel diseases: Systematic review]",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Looks at bowel diseases that raise urine oxalate and cause stones, not oxalate from food."
+     },
+     {
+      "pmid": "25454613",
+      "title": "Metabolic evaluation and recurrence prevention for urinary stone patients: EAU guidelines",
+      "year": 2015,
+      "fits": "no",
+      "reason": "A clinical guideline on testing and treating stone formers; it does not review dietary oxalate."
+     },
+     {
+      "pmid": "24519664",
+      "title": "Dietary interventions for preventing complications in idiopathic hypercalciuria",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Reviews diet changes to prevent stones, but only in idiopathic hypercalciuria (high urine calcium), and the abstract doesn't say oxalate was studied."
+     },
+     {
+      "pmid": "19321253",
+      "title": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Reviews diet trials in adults with past stones, but reports that no trial tested lowering oxalate on its own."
+     }
+    ]
+   }
+  },
+  {
+   "id": "plant-compounds-destroy-antioxidants",
+   "label": "Plant compounds and antioxidants",
+   "finding": "plant-compounds-destroy-antioxidants",
+   "counts": {
+    "all": 15452,
+    "reviews": 20,
+    "trialReviews": 20,
+    "trials": 92,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33712024",
+     "doi": "10.1186/s12937-021-00686-5",
+     "title": "The effect of grape products containing polyphenols on oxidative stress: a systematic review and meta-analysis of randomized clinical trials",
+     "year": 2021,
+     "firstAuthor": "Sarkhosh-Khorasani S",
+     "journal": "Nutrition journal",
+     "citedBy": 15,
+     "n": 633,
+     "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 7
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "18284912",
+     "17157175",
+     "18543123",
+     "22419320"
+    ],
+    "citedNotEligible": [
+     "18284912",
+     "17157175",
+     "18543123",
+     "22419320"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "33712024",
+      "doi": "10.1186/s12937-021-00686-5",
+      "title": "The effect of grape products containing polyphenols on oxidative stress: a systematic review and meta-analysis of randomized clinical trials",
+      "year": 2021,
+      "firstAuthor": "Sarkhosh-Khorasani S",
+      "journal": "Nutrition journal",
+      "citedBy": 15,
+      "n": 633,
+      "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Plant compounds (polyphenols, flavonoids) from food or extracts",
+     "comparison": "Less or none of them",
+     "outcome": "Antioxidant or pro-oxidant effects in the body (markers of oxidative stress or antioxidant status)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 12,
+     "no": 7,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42415907",
+      "title": "Efficacy of antioxidants as a therapy for Alzheimer's disease: a meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools oxidative stress markers, but only in Alzheimer's patients, and the antioxidants mix vitamins and other agents with polyphenols."
+     },
+     {
+      "pmid": "42735826",
+      "title": "Exogenous antioxidant and antigenotoxic agents against asbestos-induced toxicity: A systematic review with implications for post-earthquake exposure scenarios",
+      "year": 2026,
+      "fits": "no",
+      "reason": "About asbestos toxicity using mixed agents, mostly in lab and animal studies; human trials looked at disease outcomes, not polyphenol oxidative markers."
+     },
+     {
+      "pmid": "42123930",
+      "title": "Impact of Nutritional Supplements and Antioxidants in the Treatment of Breast Cancer: A Systematic Review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Breast cancer treatment outcomes and side effects from mixed antioxidants, not oxidative stress markers."
+     },
+     {
+      "pmid": "40806053",
+      "title": "Effect of Polyphenol-Rich Interventions on Gut Microbiota and Inflammatory or Oxidative Stress Markers in Adults Who Are Overweight or Obese: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Polyphenol-rich interventions and oxidative stress markers match, but only in overweight or obese adults, and studies also had to report gut microbiota."
+     },
+     {
+      "pmid": "40822453",
+      "title": "Exploring the phytochemical profile, antioxidant and anti-inflammatory potential of Bidens pilosa: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Antioxidant effects of a plant extract, but almost all studies were lab or animal work; only 4% were in people."
+     },
+     {
+      "pmid": "39682053",
+      "title": "Efficacy and safety of dietary polyphenol administration as assessed by hormonal, glycolipid metabolism, inflammation and oxidative stress parameters in patients with PCOS: a meta-analysis and systematic review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Dietary polyphenols and oxidative markers (MDA, TAC) match, but only in women with PCOS."
+     },
+     {
+      "pmid": "40509268",
+      "title": "Use of Naringinase to Modify the Sensory Quality of Foods and Increase the Bioavailability of Flavonoids: A Systematic Review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "About an enzyme used in food processing and flavonoid bioavailability, not oxidative stress markers in people."
+     },
+     {
+      "pmid": "39683599",
+      "title": "The Effect of Antioxidant Polyphenol Supplementation on Cardiometabolic Risk Factors: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Polyphenol supplements, but the outcomes are blood pressure, lipids and glucose, not oxidative stress markers."
+     },
+     {
+      "pmid": "36876681",
+      "title": "The effect of antioxidants supplementation on oxidative stress and proinflammatory biomarkers in patients with chronic kidney disease: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CKD patients only, and mixed antioxidant supplements, with curcumin as the only polyphenol; it reports MDA."
+     },
+     {
+      "pmid": "37522129",
+      "title": "Effects of dietary polyphenol curcumin supplementation on metabolic, inflammatory, and oxidative stress indices in patients with metabolic syndrome: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Curcumin supplements (a single polyphenol) and MDA, but only in people with metabolic syndrome."
+     },
+     {
+      "pmid": "36204366",
+      "title": "Botanical aspects, phytochemicals, and toxicity of Tamarindus indica leaf and a systematic review of antioxidant capacities of T. indica leaf extracts",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Plant leaf polyphenols, but it reviews antioxidant capacity in lab tests, not effects in the body."
+     },
+     {
+      "pmid": "35595310",
+      "title": "Effects of dietary polyphenols in the glycemic, renal, inflammatory, and oxidative stress biomarkers in diabetic nephropathy: a systematic review with meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Dietary polyphenols from foods or supplements, with pooled MDA, but only in adults with diabetic kidney disease."
+     },
+     {
+      "pmid": "35263378",
+      "title": "Culture matters: A systematic review of antioxidant potential of tree legumes in the semiarid region of Brazil and local processing techniques as a driver of bioaccessibility",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Phenolics in tree legume foods, but it covers antioxidant potential in lab tests, not markers in the body."
+     },
+     {
+      "pmid": "35697003",
+      "title": "Antioxidants for Treatment of Duchenne Muscular Dystrophy: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Mixed antioxidants in Duchenne muscular dystrophy, with outcomes of muscle strength and lung function, not oxidative markers."
+     },
+     {
+      "pmid": "33329102",
+      "title": "Nrf2 Activators as Dietary Phytochemicals Against Oxidative Stress, Inflammation, and Mitochondrial Dysfunction in Autism Spectrum Disorders: A Systematic Review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Dietary phytochemicals and oxidative stress, but in autism and mostly from preclinical studies."
+     },
+     {
+      "pmid": "32428778",
+      "title": "A systemic review on the antioxidant and anti-inflammatory effects of resveratrol, curcumin, and dietary nitric oxide supplementation on human cardiovascular health",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Resveratrol and curcumin supplements, with antioxidant effects covered, but focused on heart health and mixed with nitric oxide; not clearly systematic."
+     },
+     {
+      "pmid": "26503419",
+      "title": "Efficacy and Interaction of Antioxidant Supplements as Adjuvant Therapy in Cancer Treatment: A Systematic Review",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Mixed antioxidant supplements during cancer therapy, with treatment outcomes and side effects, not oxidative stress markers."
+     },
+     {
+      "pmid": "23881465",
+      "title": "Dietary antioxidants, cognitive function and dementia--a systematic review",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Dietary antioxidants including flavonoids, but the outcomes are cognition and dementia, not oxidative stress markers."
+     },
+     {
+      "pmid": "22153059",
+      "title": "Tree nut phytochemicals: composition, antioxidant capacity, bioactivity, impact factors. A systematic review of almonds, Brazils, cashews, hazelnuts, macadamias, pecans, pine nuts, pistachios and walnuts",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Tree nut polyphenol content and antioxidant capacity, mostly food analyses; few human studies of oxidative markers."
+     }
+    ]
+   }
+  },
+  {
+   "id": "pesticide-residues",
+   "label": "Pesticide residues",
+   "finding": "pesticide-residues",
+   "counts": {
+    "all": 24282,
+    "reviews": 64,
+    "trialReviews": 64,
+    "trials": 14,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40010662",
+     "doi": "10.1016/j.fct.2025.115344",
+     "title": "Assessment of health risk and burden of disease associated with dietary exposure to pesticide residues through foodstuffs in Iran",
+     "year": 2025,
+     "firstAuthor": "Abtahi M",
+     "journal": "Food and chemical toxicology : an international journal published for the British Industrial Biological Research Association",
+     "citedBy": 1,
+     "n": 100000,
+     "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+    },
+    {
+     "pmid": "37930102",
+     "doi": "10.1093/nutrit/nuad124",
+     "title": "The effects of organic food on human health: a systematic review and meta-analysis of population-based studies",
+     "year": 2024,
+     "firstAuthor": "Jiang B",
+     "journal": "Nutrition reviews",
+     "citedBy": 12,
+     "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39261657",
+     "doi": "10.1038/s41430-024-01505-w",
+     "title": "Impact of organic foods on chronic diseases and health perception: a systematic review of the evidence",
+     "year": 2025,
+     "firstAuthor": "Poulia KA",
+     "journal": "European journal of clinical nutrition",
+     "citedBy": 11,
+     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3,
+    "trials": 10,
+    "inclusions": 13,
+    "reviews": [
+     {
+      "pmid": "37930102",
+      "trials": 10
+     },
+     {
+      "pmid": "39261657",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "40010662"
+    ],
+    "shared": [
+     {
+      "pmid": "31324402",
+      "title": "Effect of a 24-week randomized trial of an organic produce intervention on pyrethroid and organophosphate pesticide exposure among pregnant women",
+      "year": 2019,
+      "n": 20,
+      "inReviews": [
+       "37930102",
+       "39261657"
+      ]
+     },
+     {
+      "pmid": "34718382",
+      "title": "Diet and food type affect urinary pesticide residue excretion profiles in healthy individuals: results of a randomized controlled dietary intervention trial",
+      "year": 2022,
+      "n": 14,
+      "inReviews": [
+       "37930102",
+       "39261657"
+      ]
+     },
+     {
+      "pmid": "24769399",
+      "title": "Reduction in urinary organophosphate pesticide metabolites in adults after a week-long organic diet",
+      "year": 2014,
+      "inReviews": [
+       "37930102",
+       "39261657"
+      ]
+     },
+     {
+      "pmid": "36367505",
+      "title": "The effect of an organic food intervention treatment on biomarkers of exposure to lead and cadmium in primary school children of Cyprus: A cluster-randomized crossover trial",
+      "year": 2023,
+      "n": 149,
+      "inReviews": [
+       "37930102"
+      ]
+     },
+     {
+      "pmid": "27440535",
+      "title": "Acute consumption of organic and conventional tropical grape juices (Vitis labrusca L.) increases antioxidants in plasma and erythrocytes, but not glucose and uric acid levels, in healthy individuals",
+      "year": 2016,
+      "n": 24,
+      "inReviews": [
+       "37930102"
+      ]
+     },
+     {
+      "pmid": "12952417",
+      "title": "Effect of diets based on foods from conventional versus organic production on intake and excretion of flavonoids and markers of antioxidative defense in humans",
+      "year": 2003,
+      "n": 16,
+      "inReviews": [
+       "37930102"
+      ]
+     },
+     {
+      "pmid": "36041176",
+      "title": "Diet, but not food type, significantly affects micronutrient and toxic metal profiles in urine and/or plasma; a randomized, controlled intervention trial",
+      "year": 2022,
+      "n": 14,
+      "inReviews": [
+       "37930102"
+      ]
+     },
+     {
+      "pmid": "19021920",
+      "title": "Bioavailability and nutritional effects of carotenoids from organically and conventionally produced carrots in healthy men",
+      "year": 2009,
+      "inReviews": [
+       "37930102"
+      ]
+     },
+     {
+      "pmid": "20033417",
+      "title": "No effect of the farming system (organic/conventional) on the bioavailability of apple (Malus domestica Bork., cultivar Golden Delicious) polyphenols in healthy men: a comparative study",
+      "year": 2010,
+      "inReviews": [
+       "37930102"
+      ]
+     },
+     {
+      "pmid": "17696483",
+      "title": "Effect of consumption of organically and conventionally produced apples on antioxidant activity and DNA damage in humans",
+      "year": 2007,
+      "inReviews": [
+       "37930102"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 4,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 7,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 6,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 9,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 12,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 8,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "40371318",
+     "28802169",
+     "29084307",
+     "30422212"
+    ],
+    "citedNotEligible": [
+     "40371318",
+     "28802169",
+     "29084307",
+     "30422212"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "40010662",
+      "doi": "10.1016/j.fct.2025.115344",
+      "title": "Assessment of health risk and burden of disease associated with dietary exposure to pesticide residues through foodstuffs in Iran",
+      "year": 2025,
+      "firstAuthor": "Abtahi M",
+      "journal": "Food and chemical toxicology : an international journal published for the British Industrial Biological Research Association",
+      "citedBy": 1,
+      "n": 100000,
+      "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+     },
+     {
+      "pmid": "37930102",
+      "doi": "10.1093/nutrit/nuad124",
+      "title": "The effects of organic food on human health: a systematic review and meta-analysis of population-based studies",
+      "year": 2024,
+      "firstAuthor": "Jiang B",
+      "journal": "Nutrition reviews",
+      "citedBy": 12,
+      "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39261657",
+      "doi": "10.1038/s41430-024-01505-w",
+      "title": "Impact of organic foods on chronic diseases and health perception: a systematic review of the evidence",
+      "year": 2025,
+      "firstAuthor": "Poulia KA",
+      "journal": "European journal of clinical nutrition",
+      "citedBy": 11,
+      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Pesticide residues in fruit and vegetables, or conventional compared with organic produce",
+     "comparison": "Lower residues, or organic produce",
+     "outcome": "Health effects, or exposure above safety limits"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 17,
+     "no": 40,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42526759",
+      "title": "Antimicrobial and Pesticide Residues in Animal-Source Foods in Bangladesh: A Meta-Analysis with Probabilistic Dietary Exposure and Health-Risk Assessment",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Assesses dietary pesticide residue exposure against safety limits in people, but in animal-source foods rather than fruit and vegetables."
+     },
+     {
+      "pmid": "42314861",
+      "title": "Pesticide residue and mycotoxin occurrence in apples and their impact on human health in Morocco",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools pesticide residues in apples only, and the abstract mainly reports occurrence rather than health effects or exceedance of safety limits."
+     },
+     {
+      "pmid": "42320655",
+      "title": "Pesticide contamination in infant formula: A Systematic review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Reviews pesticide residues against legal thresholds, but in infant formula and for infants rather than fruit and vegetables."
+     },
+     {
+      "pmid": "41706108",
+      "title": "Environmental Risks of Pesticide Residues in the Lake Tana Sub-basin, Ethiopia: A Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Mainly ecological risk; human health risk is assessed only for pesticides in fish, not fruit and vegetables."
+     },
+     {
+      "pmid": "41864411",
+      "title": "Associations between pre-disease biomarkers of persistent organic pollutants and amyotrophic lateral sclerosis risk in four European cohorts",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Links plasma persistent organic pollutants to ALS risk; it does not study residues in produce or organic versus conventional food."
+     },
+     {
+      "pmid": "42813519",
+      "title": "Electrochemical detection of organophosphorus pesticides using screen-printed electrodes: a systematic literature review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews electrochemical sensors for pesticide detection; it has no human health or exposure outcome."
+     },
+     {
+      "pmid": "42269473",
+      "title": "Determination of fluorinated pesticides in food products: Current advancements and prospective challenges",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews analytical methods for fluorinated pesticides in food; it has no health or safety-limit exposure outcome."
+     },
+     {
+      "pmid": "40957347",
+      "title": "Global patterns of pesticide residues in seaweeds: A systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at pesticide residues in wild seaweeds and contamination patterns, not fruit and vegetables, human health or safety-limit exceedance."
+     },
+     {
+      "pmid": "39466439",
+      "title": "Investigating the role of food pollutants in autism spectrum disorder: a comprehensive analysis of heavy metals, pesticides, and mycotoxins",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Links food pollutants, including pesticides, to autism and mentions organic food, but covers food pollutants broadly rather than fruit and vegetable residues."
+     },
+     {
+      "pmid": "40976336",
+      "title": "Effect of pesticide formulation on initial residue levels in crops: a meta-analysis approach",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Compares pesticide formulations on crop residue levels; it has no human health or safety-limit exposure outcome."
+     },
+     {
+      "pmid": "40262872",
+      "title": "Organic amendments restore soil biological properties under pesticides application",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Studies organic soil amendments and soil biology under pesticide use; it has no human or food outcome."
+     },
+     {
+      "pmid": "41056727",
+      "title": "Occurrence, distribution, and ecological risks of organic pollutants in global mangrove sediments",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews organic pollutants in mangrove sediments and ecological risk; it does not cover food or human health."
+     },
+     {
+      "pmid": "41311520",
+      "title": "Soil contamination in Europe unveiled: A review of pesticides and metabolites to watch",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews pesticide contamination of European soils; it does not cover food residues or human health."
+     },
+     {
+      "pmid": "39692841",
+      "title": "Impact of irrigation, fertilizer, and pesticide management practices on groundwater and soil health in the rice-wheat cropping system-a comparison of conventional, resource conservation technologies and conservation agriculture",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews farm input practices and their effects on groundwater and soil health; it has no dietary human health outcome."
+     },
+     {
+      "pmid": "40878513",
+      "title": "Recent advances in nanozymes for organophosphorus pesticide detection in food",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews nanozyme sensors for detecting organophosphorus pesticides; it has no human health or exposure outcome."
+     },
+     {
+      "pmid": "40099567",
+      "title": "Pesticide runoff from conventional tillage, minimum tillage, and no-tillage cropping systems: Meta-analysis of published North American data",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Covers pesticide runoff from farm tillage systems, an environmental question unrelated to residues in produce or human health."
+     },
+     {
+      "pmid": "39929639",
+      "title": "Micro and nanobubbles enhanced ozonation technology: A synergistic approach for pesticides removal",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews ozonation methods that break down residues on produce, not health effects or exposure above safety limits."
+     },
+     {
+      "pmid": "37272608",
+      "title": "Residues of carcinogenic pesticides in food: a systematic review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Reviews carcinogenic pesticide residues in food, some above permitted levels, but covers all foods (mostly animal origin), not fruit and vegetables."
+     },
+     {
+      "pmid": "39541786",
+      "title": "Global meta-analysis and machine learning reveal the critical role of soil properties in influencing biochar-pesticide interactions",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Studies biochar and pesticide interactions in soil; it is not about people, produce residues or health."
+     },
+     {
+      "pmid": "38307287",
+      "title": "A meta-analysis highlighting the increasing relevance of the hair matrix in exposure assessment to organic pollutants",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews hair as a biomonitoring matrix for pollutants; it does not link exposure to produce residues or organic food."
+     },
+     {
+      "pmid": "39180029",
+      "title": "Pesticide safety practice and its public health risk in African regions: systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Pools occupational pesticide safety practices in Africa, not dietary residues in produce or organic food."
+     },
+     {
+      "pmid": "38522300",
+      "title": "Recent and emerging trends of metal-organic frameworks (MOFs)-based sensors for detecting food contaminants: A critical and comprehensive review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews sensor technology for detecting food contaminants, not health effects or residue levels against safety limits."
+     },
+     {
+      "pmid": "38325285",
+      "title": "Removal of organic micropollutants in biologically active filters: A systematic quantitative review of key influencing factors",
+      "year": 2024,
+      "fits": "no",
+      "reason": "About removing micropollutants from water with biofilters, not pesticide residues in produce or health effects."
+     },
+     {
+      "pmid": "38853643",
+      "title": "Nanobiosensors based on on-site detection approaches for rapid pesticide sensing in the agricultural arena: A systematic review of the current status and perspectives",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews nanobiosensors for detecting pesticides on site, not health effects or residues above safety limits."
+     },
+     {
+      "pmid": "38056610",
+      "title": "Per- and polyfluoroalkyl substances, polychlorinated biphenyls, organochlorine pesticides, and polybrominated diphenyl ethers and dysregulation of MicroRNA expression in humans and animals-A systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Links persistent pollutants to microRNA changes in humans and animals, not dietary residues from fruit and vegetables."
+     },
+     {
+      "pmid": "37907942",
+      "title": "Dietary pesticide exposure and non-communicable diseases and mortality: a systematic review of prospective studies among adults",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews dietary pesticide exposure and chronic disease, but in adults only and for diet overall rather than fruit and vegetables or organic produce."
+     },
+     {
+      "pmid": "34908509",
+      "title": "Multiclass Pesticide Residues in Fruits and Vegetables from Brazil: A Systematic Review of Sample Preparation Until Post-Harvest",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Mainly reviews sample preparation methods, but also summarises residue monitoring in Brazilian fruit and vegetables, including residues above limits."
+     },
+     {
+      "pmid": "37813138",
+      "title": "Associations of per- and polyfluoroalkyl substances, polychlorinated biphenyls, organochlorine pesticides, and polybrominated diphenyl ethers with oxidative stress markers: A systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Links body levels of persistent pollutants, including organochlorine pesticides, to oxidative stress, not residues from fruit and vegetables."
+     },
+     {
+      "pmid": "37385197",
+      "title": "When biochar is involved in rhizosphere dissipation and plant absorption of pesticides: A meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Meta-analysis of biochar effects on pesticide breakdown in soil and uptake by plants, not human exposure or health."
+     },
+     {
+      "pmid": "36981806",
+      "title": "Organic Pollutants Associated with Plastic Debris in Marine Environment: A Systematic Review of Analytical Methods, Occurrence, and Characteristics",
+      "year": 2023,
+      "fits": "no",
+      "reason": "About organic pollutants carried on marine plastic debris, not pesticide residues in produce."
+     },
+     {
+      "pmid": "36257464",
+      "title": "A systematic review of mechanistic studies on the relationship between pesticide exposure and cancer induction",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Reviews pesticide exposure and cancer in people, but the exposure is general pesticide exposure, not residues in fruit and vegetables or organic produce."
+     },
+     {
+      "pmid": "36289056",
+      "title": "Exposure to pesticides and pediatric Wilms' tumor. A meta-analysis on pre-conception and pregnancy parental exposure with an IARC/WHO commentary",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Looks at parental occupational and residential pesticide exposure and Wilms' tumor, not dietary residues from fruit and vegetables."
+     },
+     {
+      "pmid": "36004968",
+      "title": "Recent Advances in Nanomaterial-Based Biosensors for Pesticide Detection in Foods",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Reviews biosensors for detecting pesticides in foods, an analytical-methods question rather than health or exposure."
+     },
+     {
+      "pmid": "35914637",
+      "title": "The SH-SY5Y human neuroblastoma cell line, a relevant in vitro cell model for investigating neurotoxicology in human: Focus on organic pollutants",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Reviews an in vitro neuronal cell model used for pollutant neurotoxicity, not dietary residues in people."
+     },
+     {
+      "pmid": "33483934",
+      "title": "Monitoring and risk assessment of pesticide residue in plant-soil-groundwater systxem about medlar planting in Golmud",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Assesses pesticide residues in fruit against MRLs and health risk, but covers a single planting site and has no organic or lower-residue comparison."
+     },
+     {
+      "pmid": "34029839",
+      "title": "Association between pesticide exposure and colorectal cancer risk and incidence: A systematic review",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Reviews pesticide exposure and colorectal cancer in people, including food residue consumers, but the exposure is mostly occupational or general."
+     },
+     {
+      "pmid": "32871314",
+      "title": "Comparing straw, compost, and biochar regarding their suitability as agricultural soil amendments to affect soil structure, nutrient leaching, microbial communities, and the fate of pesticides",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Compares soil amendments for affecting the fate of pesticides in soil, an agricultural question, not human exposure."
+     },
+     {
+      "pmid": "33280875",
+      "title": "Determinants of non-dietary exposure to agricultural pesticides in populations living close to fields: A systematic review",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Covers non-dietary (drift) determinants of pesticide exposure in residents near fields, not produce residues or health effects."
+     },
+     {
+      "pmid": "34517099",
+      "title": "Associations between human internal chemical exposure to Persistent Organic Pollutants (POPs) and In Vitro Fertilization (IVF) outcomes: Systematic review and evidence map of human epidemiological evidence",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Reviews internal POP levels (mostly PCBs) and IVF outcomes, not pesticide residues in produce or organic food."
+     },
+     {
+      "pmid": "33483929",
+      "title": "A comprehensive systematic review of photocatalytic degradation of pesticides using nano TiO2",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Reviews photocatalytic degradation of pesticides with TiO2, with no human health or produce exposure outcome."
+     },
+     {
+      "pmid": "33147335",
+      "title": "Persistent organic pollutants and couple fecundability: a systematic review",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Reviews POP classes and time to pregnancy, not pesticide residues in fruit and vegetables or organic produce."
+     },
+     {
+      "pmid": "32668538",
+      "title": "Influence of polychlorinated biphenyls and organochlorine pesticides on the inflammatory milieu. A systematic review of in vitro, in vivo and epidemiological studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Reviews organochlorine pesticide exposure and inflammation, mostly in vitro and animal work, not dietary residues in produce."
+     },
+     {
+      "pmid": "32818891",
+      "title": "Occupational exposure to pesticides: Genetic danger to farmworkers and manufacturing workers - A meta-analytical review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Meta-analysis of genetic damage from occupational pesticide exposure in workers, not residues in food."
+     },
+     {
+      "pmid": "31984396",
+      "title": "Distribution of pesticides in agricultural and urban soils of Brazil: a critical review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Reviews pesticide residues in Brazilian soils, not residues in produce or human health effects."
+     },
+     {
+      "pmid": "30362975",
+      "title": "Persistent organic pollutants, pesticides, and the risk of thyroid cancer: systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Pools pesticide exposure and thyroid cancer risk in people, but the exposure is general or agricultural, not residues in produce."
+     },
+     {
+      "pmid": "31298532",
+      "title": "Snow Amplification of Persistent Organic Pollutants at Coastal Antarctica",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Environmental study of POP amplification by snow in Antarctica, with no human, produce or health component."
+     },
+     {
+      "pmid": "31547196",
+      "title": "How Safe is Chicken Litter for Land Application as an Organic Fertilizer? A Review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Reviews contaminants in chicken litter used as fertilizer, not pesticide residues in produce and human health."
+     },
+     {
+      "pmid": "29057488",
+      "title": "Meta-analysis of pesticide sorption in subsoil",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Meta-analysis of pesticide sorption in subsoil for leaching models, with no human or produce outcome."
+     },
+     {
+      "pmid": "27144960",
+      "title": "Organic Contaminants in Chinese Sewage Sludge: A Meta-Analysis of the Literature of the Past 30 Years",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Meta-analysis of organic contaminants in Chinese sewage sludge, not produce residues or human health."
+     },
+     {
+      "pmid": "25545233",
+      "title": "Association of persistent organic pollutants and non-persistent pesticides with diabetes and diabetes-related health outcomes in Asia: A systematic review",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Reviews pesticide and POP exposure and diabetes in Asian people, but the exposure is serum levels, not residues in produce."
+     },
+     {
+      "pmid": "24968103",
+      "title": "Higher antioxidant and lower cadmium concentrations and lower incidence of pesticide residues in organically grown crops: a systematic literature review and meta-analyses",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Compares pesticide residue incidence in organic and conventional crops, but reports composition rather than health effects or exceeding limits."
+     },
+     {
+      "pmid": "25005864",
+      "title": "Meta-analysis of food processing on pesticide residues in fruits",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Meta-analyses how processing lowers pesticide residues in fruit, but reports residue levels rather than health effects or exceeding limits."
+     },
+     {
+      "pmid": "23521068",
+      "title": "Variability of pesticide dissipation half-lives in plants",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Reviews pesticide dissipation half-lives in plants, without human health effects or safety-limit exceedance."
+     },
+     {
+      "pmid": "21712575",
+      "title": "Pesticide risk mitigation by vegetated treatment systems: a meta-analysis",
+      "year": 2011,
+      "fits": "no",
+      "reason": "Looks at pesticide removal from agricultural surface water to protect aquatic life, not residues in produce or effects on people."
+     },
+     {
+      "pmid": "19879312",
+      "title": "Effects of food processing on pesticide residues in fruits and vegetables: a meta-analysis approach",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Pools how processing changes pesticide residues in fruit and vegetables, but reports residue levels, not health effects or safety-limit breaches."
+     },
+     {
+      "pmid": "19095305",
+      "title": "Persistent organic pollutant residues in the sediments and mollusks from the Bohai Sea coastal areas, North China: an overview",
+      "year": 2009,
+      "fits": "no",
+      "reason": "Reviews persistent pollutants in marine sediments and mollusks, not pesticide residues in fruit and vegetables or human health."
+     },
+     {
+      "pmid": "17765971",
+      "title": "Pesticides exposure in Pakistan: a review",
+      "year": 2007,
+      "fits": "no",
+      "reason": "Broad review of environmental and occupational pesticide exposure in Pakistan, not residues in produce or organic vs conventional food."
+     }
+    ]
+   }
+  },
+  {
+   "id": "germs-and-cooking-by-products",
+   "label": "Germs and cooking by-products",
+   "finding": "germs-and-cooking-by-products",
+   "counts": {
+    "all": 13030,
+    "reviews": 58,
+    "trialReviews": 58,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41478681",
+     "doi": "10.1016/j.fm.2025.105004",
+     "title": "Prevalence of Escherichia coli, Campylobacter spp. and Salmonella spp. in the East African Community: a systematic literature review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Kuboka M",
+     "journal": "Food microbiology",
+     "citedBy": 1,
+     "n": 22,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "40782328",
+     "doi": "10.1080/10408398.2025.2539402",
+     "title": "Prevalence of CAMPYLOBACTER in specific food and food products: a systematic literature review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Mwangi A",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "40589406",
+     "doi": "10.1017/s095026882510023x",
+     "title": "Transmission pathways and risk factors for sporadic salmonellosis and campylobacteriosis: a source attribution meta-analysis of European case-control studies",
+     "year": 2025,
+     "firstAuthor": "Mughini-Gras L",
+     "journal": "Epidemiology and infection",
+     "citedBy": 1,
+     "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 7,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 6,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 8,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "41377167",
+     "23622497",
+     "19838915"
+    ],
+    "citedNotEligible": [
+     "41377167",
+     "23622497",
+     "19838915"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41478681",
+      "doi": "10.1016/j.fm.2025.105004",
+      "title": "Prevalence of Escherichia coli, Campylobacter spp. and Salmonella spp. in the East African Community: a systematic literature review and meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Kuboka M",
+      "journal": "Food microbiology",
+      "citedBy": 1,
+      "n": 22,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "40782328",
+      "doi": "10.1080/10408398.2025.2539402",
+      "title": "Prevalence of CAMPYLOBACTER in specific food and food products: a systematic literature review and meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Mwangi A",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "40589406",
+      "doi": "10.1017/s095026882510023x",
+      "title": "Transmission pathways and risk factors for sporadic salmonellosis and campylobacteriosis: a source attribution meta-analysis of European case-control studies",
+      "year": 2025,
+      "firstAuthor": "Mughini-Gras L",
+      "journal": "Epidemiology and infection",
+      "citedBy": 1,
+      "why": "One of the newest meta-analyses on this claim (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People",
+     "intervention": "Animal foods (meat, eggs, dairy, seafood): germs and cooking by-products",
+     "comparison": "Plant foods (vegetables, fruit, starchy foods)",
+     "outcome": "Foodborne illness, or exposure to cooking by-products and its health effects"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 8,
+     "partly": 38,
+     "no": 12,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42774413",
+      "title": "Orally transmitted Chagas disease outbreaks in Latin America: a comprehensive systematic review and public health implications",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Reviews foodborne illness outbreaks, but the foods involved were mainly plant foods (açaí, fruit drinks), with no animal foods to compare."
+     },
+     {
+      "pmid": "42515588",
+      "title": "Beyond the Meat of the Matter: A Systematic Review and Meta-Analysis of the Hepatitis E Seroprevalence and Food-Borne Transmission Potential in the Balkans",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Links national pork intake to hepatitis E infection rates only at country level, with no comparison against plant foods."
+     },
+     {
+      "pmid": "42914440",
+      "title": "Thermal inactivation kinetics of foodborne viruses across food matrices: a Bayesian meta-analysis and predictive framework",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares how well heat kills viruses in shellfish and dairy versus berries and vegetables, but does not measure illness in people."
+     },
+     {
+      "pmid": "42705767",
+      "title": "Global prevalence of tigecycline-resistant foodborne Enterobacterales along the food chain: A meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools antibiotic-resistant bacteria in farm animals, foods, fruits and vegetables, but the outcome is resistance rather than illness."
+     },
+     {
+      "pmid": "42148770",
+      "title": "Post-processing dynamics of acrylamide in food: a comprehensive review on the influence of storage conditions",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Covers acrylamide, a cooking by-product, during storage of mostly plant-based foods, without comparing animal foods or health effects."
+     },
+     {
+      "pmid": "42597149",
+      "title": "Bacteriophages as post-harvest biocontrol agents against Campylobacter in food matrices: a systematic review of efficacy, taxonomic diversity, and regulatory perspectives",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Asks how well phage treatments reduce Campylobacter in foods, not which foods cause illness compared with plant foods."
+     },
+     {
+      "pmid": "40534785",
+      "title": "Foodborne and neglected parasitic zoonoses in Ethiopian red meat animals: insights from a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Measures meat-borne parasites in live ruminants, not in people, and has no plant food comparison."
+     },
+     {
+      "pmid": "41606854",
+      "title": "Machine learning-based predictive modeling of foodborne pathogens and antimicrobial resistance in food microbiomes using omics techniques: A systematic review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews machine-learning methods for detecting pathogens, not which foods cause illness."
+     },
+     {
+      "pmid": "39770307",
+      "title": "Systematic Review of the Occurrence and Antimicrobial Resistance Profile of Foodborne Pathogens from Enterobacteriaceae in Wild Ungulates Within the European Countries",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Reviews foodborne bacteria in wild game animals only, with no comparison against plant foods."
+     },
+     {
+      "pmid": "38241191",
+      "title": "Dietary Polycyclic Aromatic Hydrocarbon (PAH) Consumption and Risk of Adverse Birth Outcomes: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Looks at health effects of dietary PAHs, a cooking by-product, on birth outcomes, but does not compare animal and plant foods."
+     },
+     {
+      "pmid": "38840177",
+      "title": "The impact of immunosuppression on the mortality and hospitalization of Monkeypox: a systematic review and meta-analysis of the 2022 outbreak",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at immunosuppression and Mpox severity, not foodborne illness or cooking by-products from animal versus plant foods."
+     },
+     {
+      "pmid": "38582433",
+      "title": "Exploring the association of weather variability on Campylobacter - A systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at weather as the exposure for Campylobacter infection, not animal versus plant foods."
+     },
+     {
+      "pmid": "38873302",
+      "title": "Resilience of mental health services amidst Ebola disease outbreaks in Africa",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Covers mental health services during Ebola outbreaks, unrelated to food."
+     },
+     {
+      "pmid": "37165317",
+      "title": "Campylobacter prevalence from food, animals, human and environmental samples in Iran: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pools Campylobacter in meats, eggs, animals and humans, but has no plant food comparison."
+     },
+     {
+      "pmid": "37458885",
+      "title": "A systematic review: on the mercaptoacid metabolites of acrylamide, N-acetyl-S-(2-carbamoylethyl)-L-cysteine",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews a urine marker of acrylamide exposure and related diseases, without comparing animal and plant food sources."
+     },
+     {
+      "pmid": "36996513",
+      "title": "A systematic review and meta-analysis of the sources of Salmonella in poultry production (pre-harvest) and their relative contributions to the microbial risk of poultry meat",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews Salmonella sources on poultry farms before slaughter, with no human illness outcome or plant food comparison."
+     },
+     {
+      "pmid": "37406596",
+      "title": "A review of the global emergence of multidrug-resistant Salmonella enterica subsp. enterica Serovar Infantis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Covers multidrug-resistant Salmonella mainly from chicken meat, but has no plant-food comparison."
+     },
+     {
+      "pmid": "35946073",
+      "title": "Effect of COVID-19 outbreak on the diet, body weight and food security status of students of higher education: a systematic review",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Covers COVID-19 effects on students' diet and food security, not foodborne illness or cooking by-products."
+     },
+     {
+      "pmid": "35548558",
+      "title": "Dietary Acrylamide Exposure and Risk of Site-Specific Cancer: A Systematic Review and Dose-Response Meta-Analysis of Epidemiological Studies",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Looks at cancer risk from dietary acrylamide, a cooking by-product, but does not compare animal and plant foods."
+     },
+     {
+      "pmid": "35724727",
+      "title": "Maternal acrylamide exposure during pregnancy and fetal growth: A systematic review and dose-response meta-analysis of epidemiological studies",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Covers acrylamide, a cooking by-product, and fetal growth, but exposure is not tied to animal foods and there is no plant-food comparison."
+     },
+     {
+      "pmid": "33413725",
+      "title": "Dietary acrylamide intake and risk of women's cancers: a systematic review and meta-analysis of prospective cohort studies",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Looks at women's cancer risk from dietary acrylamide, but does not compare animal and plant food sources."
+     },
+     {
+      "pmid": "33232452",
+      "title": "ComBase Models Are Valid for Predicting Fate of Listeria monocytogenes on 10 Whole Intact Raw Fruits and Vegetables",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Lab study of Listeria growth on fruits and vegetables only, with no animal foods and not a review of human studies."
+     },
+     {
+      "pmid": "34081717",
+      "title": "The epidemiology of Mayaro virus in the Americas: A systematic review and key parameter estimates for outbreak modelling",
+      "year": 2021,
+      "fits": "no",
+      "reason": "About a mosquito-borne virus, not food or foodborne illness."
+     },
+     {
+      "pmid": "32442652",
+      "title": "A systematic review of chlorine-based surface disinfection efficacy to inform recommendations for low-resource outbreak settings",
+      "year": 2021,
+      "fits": "no",
+      "reason": "About chlorine disinfection of surfaces, not food sources of illness."
+     },
+     {
+      "pmid": "32077494",
+      "title": "No association between dietary acrylamide and renal cell carcinoma: an updated meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Covers dietary acrylamide and kidney cancer, but exposure is not tied to animal foods and there is no plant-food comparison."
+     },
+     {
+      "pmid": "32334111",
+      "title": "Insight about methods used for polycyclic aromatic hydrocarbons reduction in smoked or grilled fishery and meat products for future re-engineering: A systematic review",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Covers PAHs in grilled or smoked meat and fish, but only reduction methods, with no health outcomes or plant-food comparison."
+     },
+     {
+      "pmid": "32297107",
+      "title": "Sarcocystosis in Ruminants of Iran, as Neglected Food-Borne Disease: A Systematic Review and Meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Covers a foodborne parasite in meat animals, but reports prevalence in animals only, with no human illness or plant-food comparison."
+     },
+     {
+      "pmid": "32169997",
+      "title": "Dietary Intake of Acrylamide and Risk of Breast, Endometrial, and Ovarian Cancers: A Systematic Review and Dose-Response Meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Covers dietary acrylamide and cancers in women, but exposure is not tied to animal foods and there is no plant-food comparison."
+     },
+     {
+      "pmid": "31710971",
+      "title": "Prevalence of Campylobacter and Salmonella in African food animals and meat: A systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pools Campylobacter and Salmonella prevalence in African food animals and meat, but has no plant-food comparison."
+     },
+     {
+      "pmid": "32349855",
+      "title": "Relationship between gestational acrylamide exposure and offspring's growth: a systematic review and meta-analysis of cohort studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Covers gestational acrylamide and offspring growth, but exposure is not tied to animal foods and there is no plant-food comparison."
+     },
+     {
+      "pmid": "33150970",
+      "title": "Interventions to support the resilience and mental health of frontline health and social care professionals during and after a disease outbreak, epidemic or pandemic: a mixed methods systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "About mental health support for health workers during outbreaks, not foods or foodborne illness."
+     },
+     {
+      "pmid": "30275115",
+      "title": "Dietary Heterocyclic Amine Intake and Colorectal Adenoma Risk: A Systematic Review and Meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Links meat cooking by-products (HCAs, BaP) to colorectal adenoma, but has no plant-food comparison."
+     },
+     {
+      "pmid": "30794462",
+      "title": "Overview of Leafy Greens-Related Food Safety Incidents with a California Link: 1996 to 2016",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Covers foodborne illness incidents from leafy greens only, the plant side, with no animal-food exposure."
+     },
+     {
+      "pmid": "31421760",
+      "title": "Salmonella spp. and Escherichia coli O157:H7 prevalence and levels on lettuce: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Pools Salmonella and E. coli O157 on lettuce only, the plant side, with no animal-food exposure."
+     },
+     {
+      "pmid": "29957085",
+      "title": "A Systematic Review of Bacterial Foodborne Outbreaks Related to Red Meat and Meat Products",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Reviews bacterial foodborne outbreaks from red meat, but has no plant-food comparison."
+     },
+     {
+      "pmid": "29485236",
+      "title": "Viral outbreaks linked to fresh produce consumption: a systematic review",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Covers foodborne viral outbreaks, but only from fresh produce, with no animal food comparison."
+     },
+     {
+      "pmid": "27842895",
+      "title": "Transmission pathways for sporadic Shiga-toxin producing E. coli infections: A systematic review and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pools STEC risk from undercooked or raw meat, but compares it with other transmission routes rather than plant foods."
+     },
+     {
+      "pmid": "27602884",
+      "title": "Effects of antimicrobial use in agricultural animals on drug-resistant foodborne salmonellosis in humans: A systematic literature review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Covers meat- and dairy-borne salmonellosis, but the exposure is farm antibiotic use and there is no plant food comparison."
+     },
+     {
+      "pmid": "26689289",
+      "title": "A review and meta-analysis of prospective studies of red and processed meat, meat cooking methods, heme iron, heterocyclic amines and prostate cancer",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Covers meat cooking methods and HCAs in relation to prostate cancer, but has no plant-food comparison."
+     },
+     {
+      "pmid": "25403648",
+      "title": "Dietary acrylamide and cancer risk: an updated meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pools cooking by-product (acrylamide) intake and cancer risk, but does not single out animal foods or compare them with plant foods."
+     },
+     {
+      "pmid": "25516180",
+      "title": "Dietary acrylamide intake and risk of endometrial cancer in prospective cohort studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Cooking by-product (acrylamide) and cancer, but only women and endometrial cancer, with no animal vs plant food comparison."
+     },
+     {
+      "pmid": "26603222",
+      "title": "HUMAN TOXOPLASMOSIS OUTBREAKS AND THE AGENT INFECTING FORM. FINDINGS FROM A SYSTEMATIC REVIEW",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Compares toxoplasmosis outbreaks from meat with those from water and soil, not from plant foods."
+     },
+     {
+      "pmid": "25710165",
+      "title": "Preventing and controlling foodborne disease in commercial and institutional food service settings: a systematic review of published intervention studies",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Evaluates food safety interventions in food service settings, not animal versus plant foods."
+     },
+     {
+      "pmid": "24875401",
+      "title": "Dietary acrylamide and human cancer: a systematic review of literature",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Reviews acrylamide from cooked foods and cancer, but it forms from sugars and is not tied to animal foods or compared with plant foods."
+     },
+     {
+      "pmid": "24679786",
+      "title": "Risks of dietary acrylamide exposure: a systematic review",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Reviews acrylamide exposure and health, but the source is carbohydrate-rich foods, not animal foods, and there is no comparison."
+     },
+     {
+      "pmid": "24373292",
+      "title": "Influenza outbreak control practices and the effectiveness of interventions in long-term care facilities: a systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "About influenza control in care homes, not food or foodborne illness."
+     },
+     {
+      "pmid": "23305174",
+      "title": "What is the incubation period for listeriosis?",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Covers foodborne listeriosis, but only estimates incubation period and does not compare animal and plant foods."
+     },
+     {
+      "pmid": "22152439",
+      "title": "Source attribution of human salmonellosis using a meta-analysis of case-control studies of sporadic infections",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Pools salmonellosis risk factors including raw eggs, but the abstract does not show a comparison with plant foods."
+     },
+     {
+      "pmid": "22214729",
+      "title": "Source attribution of human campylobacteriosis using a meta-analysis of case-control studies of sporadic infections",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Pools campylobacteriosis risk factors including undercooked chicken, but the abstract shows no plant food comparison."
+     },
+     {
+      "pmid": "15680675",
+      "title": "Human exposure and internal dose assessments of acrylamide in food",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Reviews acrylamide levels in food and exposure, but does not focus on animal foods or compare them with plant foods."
+     }
+    ]
+   }
+  }
+ ]
+}

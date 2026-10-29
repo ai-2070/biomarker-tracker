@@ -1,0 +1,1933 @@
+{
+ "topic": "food-absorption",
+ "kind": "food",
+ "comparisonId": "absorption",
+ "name": "absorption",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "absorption-haem-iron": "((TITLE_ABS:\"heme iron\" OR TITLE_ABS:\"haem iron\" OR TITLE_ABS:\"nonheme iron\" OR TITLE_ABS:\"non-heme iron\" OR TITLE_ABS:\"non-haem iron\") AND (TITLE_ABS:absorption OR TITLE_ABS:bioavailability)) AND SRC:MED",
+  "absorption-phytate": "((TITLE_ABS:phytate OR TITLE_ABS:\"phytic acid\") AND (TITLE_ABS:iron OR TITLE_ABS:zinc)) AND SRC:MED",
+  "absorption-oxalate-calcium": "((TITLE_ABS:calcium) AND (TITLE_ABS:oxalate OR TITLE_ABS:spinach OR TITLE_ABS:kale OR TITLE_ABS:vegetables OR TITLE_ABS:vegetable OR TITLE_ABS:\"plant foods\") AND (TITLE_ABS:absorption OR TITLE_ABS:bioavailability)) AND SRC:MED",
+  "absorption-meal-partners": "((TITLE_ABS:\"iron absorption\" OR TITLE_ABS:\"iron bioavailability\" OR TITLE_ABS:\"iron status\") AND (TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:\"vitamin C\" OR TITLE_ABS:tea OR TITLE_ABS:coffee OR TITLE_ABS:polyphenol* OR TITLE_ABS:calcium OR TITLE_ABS:meat)) AND SRC:MED",
+  "absorption-fibre-minerals": "((TITLE_ABS:\"dietary fibre\" OR TITLE_ABS:\"dietary fiber\" OR TITLE_ABS:inulin OR TITLE_ABS:pectin OR TITLE_ABS:bran OR TITLE_ABS:prebiotic*) AND (TITLE_ABS:iron OR TITLE_ABS:zinc OR TITLE_ABS:calcium OR TITLE_ABS:magnesium OR TITLE_ABS:mineral*) AND (TITLE_ABS:absorption OR TITLE_ABS:bioavailability)) AND SRC:MED",
+  "absorption-protein-quality": "((TITLE_ABS:\"plant protein\" OR TITLE_ABS:\"plant-based protein\" OR TITLE_ABS:\"vegetable protein\" OR TITLE_ABS:\"soy protein\" OR TITLE_ABS:\"pea protein\") AND (TITLE_ABS:\"animal protein\" OR TITLE_ABS:whey OR TITLE_ABS:\"milk protein\" OR TITLE_ABS:\"meat protein\" OR TITLE_ABS:\"egg protein\") AND (TITLE_ABS:muscle OR TITLE_ABS:\"lean mass\" OR TITLE_ABS:strength OR TITLE_ABS:digestibility OR TITLE_ABS:DIAAS OR TITLE_ABS:PDCAAS OR TITLE_ABS:\"protein quality\" OR TITLE_ABS:\"protein synthesis\")) AND SRC:MED",
+  "absorption-deficiency-in-practice": "((TITLE_ABS:vegetarian* OR TITLE_ABS:vegan* OR TITLE_ABS:\"plant-based\") AND (TITLE_ABS:iron OR TITLE_ABS:ferritin OR TITLE_ABS:zinc OR TITLE_ABS:anaemia OR TITLE_ABS:anemia)) AND SRC:MED"
+ },
+ "rules": [
+  "Each claim has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 6547,
+  "retrieved": 489,
+  "animal": 17,
+  "retracted": 0,
+  "reviews": 80,
+  "trials": 382,
+  "guidelines": 10
+ },
+ "guidelines": [
+  {
+   "pmid": "39324694",
+   "doi": "10.5664/jcsm.11390",
+   "title": "Treatment of restless legs syndrome and periodic limb movement disorder: an American Academy of Sleep Medicine clinical practice guideline",
+   "year": 2025,
+   "journal": "Journal of clinical sleep medicine : JCSM : official publication of the American Academy of Sleep Medicine",
+   "citedBy": 116,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "38864796",
+   "doi": "10.1016/j.cgh.2024.03.046",
+   "title": "AGA Clinical Practice Update on Management of Iron Deficiency Anemia: Expert Review",
+   "year": 2024,
+   "journal": "Clinical gastroenterology and hepatology : the official clinical practice journal of the American Gastroenterological Association",
+   "citedBy": 34,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "38276922",
+   "doi": "10.1053/j.gastro.2023.11.303",
+   "title": "AGA Clinical Practice Update on Diet and Nutritional Therapies in Patients With Inflammatory Bowel Disease: Expert Review",
+   "year": 2024,
+   "journal": "Gastroenterology",
+   "citedBy": 210,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "31866234",
+   "doi": "10.1016/j.anpedi.2019.10.013",
+   "title": "[Position paper on vegetarian diets in infants and children. Committee on Nutrition and Breastfeeding of the Spanish Paediatric Association]",
+   "year": 2020,
+   "journal": "Anales de pediatria",
+   "citedBy": 34,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "31615715",
+   "doi": "10.1016/j.arcped.2019.09.001",
+   "title": "Vegan diet in children and adolescents. Recommendations from the French-speaking Pediatric Hepatology, Gastroenterology and Nutrition Group (GFHGNP)",
+   "year": 2019,
+   "journal": "Archives de pediatrie : organe officiel de la Societe francaise de pediatrie",
+   "citedBy": 58,
+   "why": "One of the newest guidelines the claims' searches found"
+  },
+  {
+   "pmid": "29174030",
+   "doi": "10.1016/j.numecd.2017.10.020",
+   "title": "Position paper on vegetarian diets from the working group of the Italian Society of Human Nutrition",
+   "year": 2017,
+   "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+   "citedBy": 169,
+   "why": "One of the newest guidelines the claims' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "absorption-haem-iron",
+   "label": "Haem vs plant iron",
+   "finding": "absorption-haem-iron",
+   "counts": {
+    "all": 1196,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 48,
+    "largeTrials": 1
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1979,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "18469253",
+     "title": "Relationship between iron status and dietary fruit and vegetables based on their vitamin C and fiber content",
+     "year": 2008,
+     "n": 4358
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "20200263",
+     "12145016",
+     "10617952",
+     "11010941"
+    ],
+    "citedNotEligible": [
+     "20200263",
+     "12145016",
+     "10617952",
+     "11010941"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People (adults or children)",
+     "intervention": "Iron from meat and fish (haem iron)",
+     "comparison": "Iron from plant foods or supplements (non-haem iron)",
+     "outcome": "How much iron is absorbed"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 0,
+     "partly": 4,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42163962",
+      "title": "Effects of sourdough- or regular-bread fermentation, and phytate reduction on iron bioavailability, absorption, and iron status in humans: a systematic review of intervention studies",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks only at how bread fermentation and phytate reduction affect non-haem iron absorption; haem iron from meat or fish is never compared."
+     },
+     {
+      "pmid": "39708071",
+      "title": "A comparative analysis of heme vs non-heme iron administration: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Compares haem with non-haem iron, but given as supplements rather than meat or fish, and it measures iron status rather than absorption."
+     },
+     {
+      "pmid": "33758936",
+      "title": "Calcium Intake and Iron Status in Human Studies: A Systematic Review and Dose-Response Meta-Analysis of Randomized Trials and Crossover Studies",
+      "year": 2021,
+      "fits": "no",
+      "reason": "The exposure is calcium intake and its effect on iron absorption, not haem iron compared with non-haem iron."
+     },
+     {
+      "pmid": "27880062",
+      "title": "The effect of vegetarian diets on iron status in adults: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Compares diets with and without meat, but the outcome is serum ferritin (iron stores), not how much iron is absorbed."
+     },
+     {
+      "pmid": "23719560",
+      "title": "The absorption of iron from whole diets: a systematic review",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Reviews iron absorption from whole diets, including enhancers, but reports only non-haem absorption with no haem comparison stated."
+     },
+     {
+      "pmid": "17415954",
+      "title": "A food-group based algorithm to predict non-heme iron absorption",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Pools absorption studies to predict non-haem iron absorption from the food groups in a meal, but does not compare it with haem iron absorption."
+     }
+    ]
+   }
+  },
+  {
+   "id": "absorption-phytate",
+   "label": "Phytate",
+   "finding": "absorption-phytate",
+   "counts": {
+    "all": 1401,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 30,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "26108545",
+     "doi": "10.3945/jn.115.213074",
+     "title": "Zinc Absorption Is Not Related to Dietary Phytate Intake in Infants and Young Children Based on Modeling Combined Data from Multiple Studies",
+     "year": 2015,
+     "firstAuthor": "Miller LV",
+     "journal": "The Journal of nutrition",
+     "citedBy": 37,
+     "n": 236,
+     "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+    },
+    {
+     "pmid": "42163962",
+     "doi": "10.3389/fnut.2026.1778997",
+     "title": "Effects of sourdough- or regular-bread fermentation, and phytate reduction on iron bioavailability, absorption, and iron status in humans: a systematic review of intervention studies",
+     "year": 2026,
+     "firstAuthor": "Nikolaou A",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 2,
+     "why": "One of the newest systematic reviews on this claim (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 9,
+    "inclusions": 9,
+    "reviews": [
+     {
+      "pmid": "26108545",
+      "trials": 7
+     },
+     {
+      "pmid": "42163962",
+      "trials": 2
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "20335626",
+      "title": "Neither a zinc supplement nor phytate-reduced maize nor their combination enhance growth of 6- to 12-month-old Guatemalan infants",
+      "year": 2010,
+      "n": 412,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "12816787",
+      "title": "Effects of weaning cereals with different phytate contents on hemoglobin, iron stores, and serum zinc: a randomized intervention in infants from 6 to 12 mo of age",
+      "year": 2003,
+      "n": 300,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "18469257",
+      "title": "Adaptation in human zinc absorption as influenced by dietary zinc and bioavailability",
+      "year": 2008,
+      "n": 109,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "23843474",
+      "title": "Biofortification of pearl millet with iron and zinc in a randomized controlled trial increases absorption of these minerals above physiologic requirements in young children",
+      "year": 2013,
+      "n": 40,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "19321589",
+      "title": "Meals and dephytinization affect calcium and zinc absorption in Nigerian children with rickets",
+      "year": 2009,
+      "n": 15,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "11110854",
+      "title": "Dietary phytate reduction improves zinc absorption in Malawian children recovering from tuberculosis but not in well children",
+      "year": 2000,
+      "n": 14,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "16400050",
+      "title": "Zinc absorption in Guatemalan schoolchildren fed normal or low-phytate maize",
+      "year": 2006,
+      "inReviews": [
+       "26108545"
+      ]
+     },
+     {
+      "pmid": "32986748",
+      "title": "Efficacy of processed amaranth-containing bread compared to maize bread on hemoglobin, anemia and iron deficiency anemia prevalence among two-to-five year-old anemic children in Southern Ethiopia: A cluster randomized controlled trial",
+      "year": 2020,
+      "inReviews": [
+       "42163962"
+      ]
+     },
+     {
+      "pmid": "29796932",
+      "title": "Low-phytate wholegrain bread instead of high-phytate wholegrain bread in a total diet context did not improve iron status of healthy Swedish females: a 12-week, randomized, parallel-design intervention study",
+      "year": 2019,
+      "inReviews": [
+       "42163962"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "2911999",
+     "42087959",
+     "30010865",
+     "17374686"
+    ],
+    "citedNotEligible": [
+     "2911999",
+     "42087959",
+     "30010865",
+     "17374686"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "26108545",
+      "doi": "10.3945/jn.115.213074",
+      "title": "Zinc Absorption Is Not Related to Dietary Phytate Intake in Infants and Young Children Based on Modeling Combined Data from Multiple Studies",
+      "year": 2015,
+      "firstAuthor": "Miller LV",
+      "journal": "The Journal of nutrition",
+      "citedBy": 37,
+      "n": 236,
+      "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+     },
+     {
+      "pmid": "42163962",
+      "doi": "10.3389/fnut.2026.1778997",
+      "title": "Effects of sourdough- or regular-bread fermentation, and phytate reduction on iron bioavailability, absorption, and iron status in humans: a systematic review of intervention studies",
+      "year": 2026,
+      "firstAuthor": "Nikolaou A",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 2,
+      "why": "One of the newest systematic reviews on this claim (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People (adults or children)",
+     "intervention": "Phytate (phytic acid) in grains, beans, nuts and seeds, including foods treated to reduce it",
+     "comparison": "Less or no phytate",
+     "outcome": "Iron or zinc absorption, or iron and zinc status"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "absorption-oxalate-calcium",
+   "label": "Calcium from greens",
+   "finding": "absorption-oxalate-calcium",
+   "counts": {
+    "all": 758,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 11,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "3354496",
+     "2321572",
+     "10479229"
+    ],
+    "citedNotEligible": [
+     "3354496",
+     "2321572",
+     "10479229"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "absorption-meal-partners",
+   "label": "Meal partners",
+   "finding": "absorption-meal-partners",
+   "counts": {
+    "all": 1218,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 120,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33758936",
+     "doi": "10.1093/jn/nxaa437",
+     "title": "Calcium Intake and Iron Status in Human Studies: A Systematic Review and Dose-Response Meta-Analysis of Randomized Trials and Crossover Studies",
+     "year": 2021,
+     "firstAuthor": "Abioye AI",
+     "journal": "The Journal of nutrition",
+     "citedBy": 26,
+     "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+    },
+    {
+     "pmid": "17415954",
+     "doi": "10.1080/09637480601121250",
+     "title": "A food-group based algorithm to predict non-heme iron absorption",
+     "year": 2007,
+     "firstAuthor": "Conway RE",
+     "journal": "International journal of food sciences and nutrition",
+     "citedBy": 13,
+     "why": "One of the newest meta-analyses on this claim (2007); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "42067065",
+     "doi": "10.1016/j.ajcnut.2026.101338",
+     "title": "Effect of calcium supplementation in pregnancy on maternal anemia and iron status: secondary analyses of two randomized trials in India and Tanzania",
+     "year": 2026,
+     "firstAuthor": "Ali NB",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 0,
+     "n": 11000,
+     "why": "A large trial (about 11,000 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "timeline": [
+    {
+     "year": 1966,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1974,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 7
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 4
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "9683388",
+     "title": "Determining factors in the iron status of adult women in the SU.VI.MAX study. SUpplementation en VItamines et Minéraux AntioXydants",
+     "year": 1998,
+     "n": 6648
+    },
+    {
+     "pmid": "18469253",
+     "title": "Relationship between iron status and dietary fruit and vegetables based on their vitamin C and fiber content",
+     "year": 2008,
+     "n": 4358
+    },
+    {
+     "pmid": "31559434",
+     "title": "Changing from a Western to a Mediterranean-style diet does not affect iron or selenium status: results of the New Dietary Strategies Addressing the Specific Needs of the Elderly Population for Healthy Aging in Europe (NU-AGE) 1-year randomized clinical trial in elderly Europeans",
+     "year": 2020,
+     "n": 1294
+    },
+    {
+     "pmid": "42067065",
+     "title": "Effect of calcium supplementation in pregnancy on maternal anemia and iron status: secondary analyses of two randomized trials in India and Tanzania",
+     "year": 2026,
+     "n": 11000
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "941868",
+     "12499338",
+     "35956338",
+     "10999016",
+     "1984335",
+     "11124756",
+     "9665102",
+     "21462112"
+    ],
+    "citedNotEligible": [
+     "941868",
+     "12499338",
+     "35956338",
+     "10999016",
+     "1984335",
+     "11124756",
+     "9665102",
+     "21462112"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "33758936",
+      "doi": "10.1093/jn/nxaa437",
+      "title": "Calcium Intake and Iron Status in Human Studies: A Systematic Review and Dose-Response Meta-Analysis of Randomized Trials and Crossover Studies",
+      "year": 2021,
+      "firstAuthor": "Abioye AI",
+      "journal": "The Journal of nutrition",
+      "citedBy": 26,
+      "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+     },
+     {
+      "pmid": "17415954",
+      "doi": "10.1080/09637480601121250",
+      "title": "A food-group based algorithm to predict non-heme iron absorption",
+      "year": 2007,
+      "firstAuthor": "Conway RE",
+      "journal": "International journal of food sciences and nutrition",
+      "citedBy": 13,
+      "why": "One of the newest meta-analyses on this claim (2007); screened as answering the question"
+     },
+     {
+      "pmid": "42067065",
+      "doi": "10.1016/j.ajcnut.2026.101338",
+      "title": "Effect of calcium supplementation in pregnancy on maternal anemia and iron status: secondary analyses of two randomized trials in India and Tanzania",
+      "year": 2026,
+      "firstAuthor": "Ali NB",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 0,
+      "n": 11000,
+      "why": "A large trial (about 11,000 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People (adults or children)",
+     "intervention": "Meat, vitamin C, tea, coffee or calcium eaten with meals that contain plant iron",
+     "comparison": "The same meals without them",
+     "outcome": "Iron absorption, or iron status over weeks or months"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 6,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42349680",
+      "title": "Does consuming ascorbate-rich fruits and fruit juices with meals improve iron bioavailability? A systematic review and meta-analysis of interventions",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Vitamin C-rich fruits eaten with meals, with iron absorption and status as outcomes, but only in females and children, not all people."
+     },
+     {
+      "pmid": "40063701",
+      "title": "Effect of Increasing Red Meat Intake on Iron Status in Adults with Normal and Suboptimal Iron Status: A Systematic Literature Review and Meta-Analysis of Intervention Studies",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Looks at eating more red meat and iron status over weeks in adults, not specifically meat eaten with plant-iron meals."
+     },
+     {
+      "pmid": "39599621",
+      "title": "A Systematic Review of Isotopically Measured Iron Absorption in Infants and Children Under 2 Years",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Covers enhancers such as ascorbic acid and cow's milk with measured iron absorption, but only in children under 2 years."
+     },
+     {
+      "pmid": "37739692",
+      "title": "Treatment efficacy of vitamin C or ascorbate given as co-intervention with iron for anemia - A systematic review and meta-analysis of experimental studies",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Vitamin C supplements given with iron supplements to people with anemia, not foods eaten with plant-iron meals."
+     },
+     {
+      "pmid": "33871598",
+      "title": "Effects of dietary polyphenol supplementation on iron status and erythropoiesis: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Polyphenol supplements and iron status, rather than tea or coffee drunk with plant-iron meals."
+     },
+     {
+      "pmid": "27880062",
+      "title": "The effect of vegetarian diets on iron status in adults: A systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Compares the iron status of vegetarians and non-vegetarians across whole diets, not meat added to plant-iron meals; most studies are cross-sectional."
+     },
+     {
+      "pmid": "27087396",
+      "title": "Daily iron supplementation for improving anaemia, iron status and health in menstruating women",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Compares iron supplements against placebo in menstruating women, which is not the effect of foods eaten with plant-iron meals."
+     }
+    ]
+   }
+  },
+  {
+   "id": "absorption-fibre-minerals",
+   "label": "Fibre and minerals",
+   "finding": "absorption-fibre-minerals",
+   "counts": {
+    "all": 925,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 44,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35403512",
+     "doi": "10.1080/10408398.2022.2060933",
+     "title": "Effects of dietary fiber on intestinal iron absorption, and physiological status: a systematic review of in vivo and clinical studies",
+     "year": 2023,
+     "firstAuthor": "Agrizzi Verediano T",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 12,
+     "n": 21,
+     "why": "One of the newest systematic reviews on this claim (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1978,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1979,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1996,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "35403512"
+    ],
+    "citedNotChosen": [
+     "3034044"
+    ],
+    "citedNotEligible": [
+     "3034044"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "People (adults or children)",
+     "intervention": "Dietary fibre (apart from the phytate that often comes with it, where the review separates them)",
+     "comparison": "Less fibre",
+     "outcome": "Absorption or status of iron, zinc, calcium or magnesium"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 5,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42365652",
+      "title": "Prebiotic Supplementation in Celiac Disease: A Systematic Review of Clinical Efficacy, Safety, and Nutritional Outcomes",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Covers fibre-rich foods and prebiotics with iron and zinc outcomes, but only in people with celiac disease, and the comparison is not clearly less fibre."
+     },
+     {
+      "pmid": "39920867",
+      "title": "Effect of probiotic and prebiotics supplementation on hemoglobin levels and iron absorption among women of reproductive age and children: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Measures iron absorption and status, but uses prebiotic supplements or fortificants, often mixed with probiotics, in women and children only."
+     },
+     {
+      "pmid": "38907826",
+      "title": "Evaluating the Role of Probiotics, Prebiotics, and Synbiotics Supplementation in Age-related Musculoskeletal Disorders in Older Adults: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Reports calcium and magnesium absorption, but uses probiotic, prebiotic or synbiotic supplements in older adults and also includes animal studies."
+     },
+     {
+      "pmid": "39716076",
+      "title": "Efficacy of probiotic, prebiotic, and synbiotics supplements in individuals with anemia: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Measures iron status, but uses probiotic, prebiotic or synbiotic supplements, and only in people with anaemia."
+     },
+     {
+      "pmid": "34555168",
+      "title": "The Prebiotic Potential of Inulin-Type Fructans: A Systematic Review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Reports calcium and magnesium absorption, but uses inulin-type fructan supplements in healthy adults, and minerals are only one of many outcomes."
+     }
+    ]
+   }
+  },
+  {
+   "id": "absorption-protein-quality",
+   "label": "Protein quality",
+   "finding": "absorption-protein-quality",
+   "counts": {
+    "all": 340,
+    "reviews": 14,
+    "trialReviews": 14,
+    "trials": 42,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42862730",
+     "doi": "10.1080/15502783.2026.2740224",
+     "title": "Impact of different protein sources on acute muscle protein synthesis following resistance training: a systematic review with standard and dose-response network meta-analyses",
+     "year": 2026,
+     "firstAuthor": "Bischof K",
+     "journal": "Journal of the International Society of Sports Nutrition",
+     "citedBy": 0,
+     "n": 51,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "42617803",
+     "doi": "10.1016/j.clnesp.2026.105027",
+     "title": "Plant-versus animal-derived protein and nutritional, cardiometabolic, and inflammatory outcomes in middle-aged and older adults: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2026,
+     "firstAuthor": "Foscolou A",
+     "journal": "Clinical nutrition ESPEN",
+     "citedBy": 0,
+     "n": 2363,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "41454445",
+     "doi": "10.1080/19390211.2025.2604679",
+     "title": "The Impact of Whey and Soy Protein Supplementation on Resistance Training in Young Adults: A Systematic Review and Meta-Analysis",
+     "year": 2026,
+     "firstAuthor": "Davis BE",
+     "journal": "Journal of dietary supplements",
+     "citedBy": 0,
+     "n": 261,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
+    {
+     "pmid": "41994089",
+     "doi": "10.3389/fnut.2026.1813846",
+     "title": "Long-term effects of plant vs. animal protein supplementation on body composition, muscle strength, physical performance, and cardiometabolic risk factors in adults:a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2026,
+     "firstAuthor": "Yimam MA",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 0,
+     "n": 1893,
+     "why": "The most comprehensive review on this claim (18 trials, 2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2,
+    "trials": 5,
+    "inclusions": 6,
+    "reviews": [
+     {
+      "pmid": "41454445",
+      "trials": 3
+     },
+     {
+      "pmid": "41994089",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "42862730",
+     "42617803"
+    ],
+    "shared": [
+     {
+      "pmid": "24015719",
+      "title": "Whey protein supplementation during resistance training augments lean body mass",
+      "year": 2013,
+      "n": 22,
+      "inReviews": [
+       "41454445",
+       "41994089"
+      ]
+     },
+     {
+      "pmid": "16186072",
+      "title": "Soy isoflavones, body composition, and physical performance",
+      "year": 2005,
+      "n": 202,
+      "inReviews": [
+       "41994089"
+      ]
+     },
+     {
+      "pmid": "12851515",
+      "title": "Isoflavone-rich soy protein prevents loss of hip lean mass but does not prevent the shift in regional fat distribution in perimenopausal women",
+      "year": 2003,
+      "n": 69,
+      "inReviews": [
+       "41994089"
+      ]
+     },
+     {
+      "pmid": "28869573",
+      "title": "Effects of Whey, Soy or Leucine Supplementation with 12 Weeks of Resistance Training on Strength, Body Composition, and Skeletal Muscle and Adipose Tissue Histological Attributes in College-Aged Males",
+      "year": 2017,
+      "n": 17,
+      "inReviews": [
+       "41454445"
+      ]
+     },
+     {
+      "pmid": "16948480",
+      "title": "Effect of whey and soy protein supplementation combined with resistance training in young adults",
+      "year": 2006,
+      "inReviews": [
+       "41454445"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 7
+    },
+    {
+     "year": 2026,
+     "reviews": 5,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28382889",
+     "30167963",
+     "8172124",
+     "31690027",
+     "33670701"
+    ],
+    "citedNotEligible": [
+     "28382889",
+     "30167963",
+     "8172124",
+     "31690027"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42862730",
+      "doi": "10.1080/15502783.2026.2740224",
+      "title": "Impact of different protein sources on acute muscle protein synthesis following resistance training: a systematic review with standard and dose-response network meta-analyses",
+      "year": 2026,
+      "firstAuthor": "Bischof K",
+      "journal": "Journal of the International Society of Sports Nutrition",
+      "citedBy": 0,
+      "n": 51,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "42617803",
+      "doi": "10.1016/j.clnesp.2026.105027",
+      "title": "Plant-versus animal-derived protein and nutritional, cardiometabolic, and inflammatory outcomes in middle-aged and older adults: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "firstAuthor": "Foscolou A",
+      "journal": "Clinical nutrition ESPEN",
+      "citedBy": 0,
+      "n": 2363,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "41454445",
+      "doi": "10.1080/19390211.2025.2604679",
+      "title": "The Impact of Whey and Soy Protein Supplementation on Resistance Training in Young Adults: A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "firstAuthor": "Davis BE",
+      "journal": "Journal of dietary supplements",
+      "citedBy": 0,
+      "n": 261,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
+      "pmid": "41994089",
+      "doi": "10.3389/fnut.2026.1813846",
+      "title": "Long-term effects of plant vs. animal protein supplementation on body composition, muscle strength, physical performance, and cardiometabolic risk factors in adults:a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "firstAuthor": "Yimam MA",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 0,
+      "n": 1893,
+      "why": "The most comprehensive review on this claim (18 trials, 2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Plant protein (soy, pea, other plant sources or mixed plant foods)",
+     "comparison": "Animal protein (whey, milk, meat, egg)",
+     "outcome": "Protein quality scores, muscle protein synthesis, lean mass or strength"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 8,
+     "partly": 4,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42541706",
+      "title": "Dietary Intake of Animal and Plant-Based Protein on Adiposity Measurements and Body Composition in Pre- and Postmenopausal Women: A Systematic Review of Randomized Clinical Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares soy with animal protein on body composition, but only in pre- and postmenopausal women, with a focus on adiposity."
+     },
+     {
+      "pmid": "40806155",
+      "title": "Effect of Plant-Based Proteins on Recovery from Resistance Exercise-Induced Muscle Damage in Healthy Young Adults-A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares plant proteins with whey in young adults, but the main focus is recovery from muscle damage; MPS is only one of the outcomes."
+     },
+     {
+      "pmid": "37764843",
+      "title": "Effects of Plant-Based Protein Interventions, with and without an Exercise Component, on Body Composition, Strength and Physical Function in Older Adults: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Older adults given soy protein, compared mainly with placebo or exercise; animal protein is only one of several control types."
+     },
+     {
+      "pmid": "37603200",
+      "title": "Effect of Soy Protein Supplementation on Muscle Adaptations, Metabolic and Antioxidant Status, Hormonal Response, and Exercise Performance of Active Individuals and Athletes: A Systematic Review of Randomised Controlled Trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Soy supplementation in athletes and active people aged 14 to 39; the comparison with whey on lean mass is only one part of the review."
+     },
+     {
+      "pmid": "35706399",
+      "title": "Effects of whey and soy protein supplementation on inflammatory cytokines in older adults: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Compares whey and soy protein, but the outcome is inflammatory cytokines, not muscle or protein quality."
+     },
+     {
+      "pmid": "29474360",
+      "title": "Animal versus plant protein and adult bone health: A systematic review and meta-analysis from the National Osteoporosis Foundation",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Compares animal with soy protein, but the outcomes are bone mineral density and bone markers, not muscle."
+     }
+    ]
+   }
+  },
+  {
+   "id": "absorption-deficiency-in-practice",
+   "label": "Iron and zinc in vegetarians",
+   "finding": "absorption-deficiency-in-practice",
+   "counts": {
+    "all": 1448,
+    "reviews": 3,
+    "trialReviews": 3,
+    "trials": 8,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "27880062",
+     "doi": "10.1080/10408398.2016.1259210",
+     "title": "The effect of vegetarian diets on iron status in adults: A systematic review and meta-analysis",
+     "year": 2018,
+     "firstAuthor": "Haider LM",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 138,
+     "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+    },
+    {
+     "pmid": "23595983",
+     "doi": "10.1002/jsfa.6179",
+     "title": "Effect of vegetarian diets on zinc status: a systematic review and meta-analysis of studies in humans",
+     "year": 2013,
+     "firstAuthor": "Foster M",
+     "journal": "Journal of the science of food and agriculture",
+     "citedBy": 48,
+     "why": "One of the newest meta-analyses on this claim (2013); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.1111111111111111,
+    "trials": 9,
+    "inclusions": 10,
+    "reviews": [
+     {
+      "pmid": "27880062",
+      "trials": 2
+     },
+     {
+      "pmid": "23595983",
+      "trials": 8
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12728219",
+      "title": "Comparisons of vegetarian and beef-containing diets on hematological indexes and iron stores during a period of resistive training in older men",
+      "year": 2003,
+      "n": 10,
+      "inReviews": [
+       "27880062",
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "17982706",
+      "title": "The impact of a meat- versus a vegetable-based diet on iron status in women of childbearing age with small iron stores",
+      "year": 2007,
+      "n": 57,
+      "inReviews": [
+       "27880062"
+      ]
+     },
+     {
+      "pmid": "8269890",
+      "title": "Effect of a strict vegan diet on energy and nutrient intakes by Finnish rheumatoid patients",
+      "year": 1993,
+      "n": 43,
+      "inReviews": [
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "8467614",
+      "title": "The influence of fast and vegetarian diet on parameters of nutritional status in patients with rheumatoid arthritis",
+      "year": 1993,
+      "n": 34,
+      "inReviews": [
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "9497185",
+      "title": "Zinc absorption, mineral balance, and blood lipids in women consuming controlled lactoovovegetarian and omnivorous diets for 8 wk",
+      "year": 1998,
+      "n": 21,
+      "inReviews": [
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "1333500",
+      "title": "Zinc and iron utilization in young women consuming a beef-based diet",
+      "year": 1992,
+      "inReviews": [
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "16611387",
+      "title": "Total zinc absorption in young women, but not fractional zinc absorption, differs between vegetarian and meat-based diets with equal phytic acid content",
+      "year": 2006,
+      "inReviews": [
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "1390616",
+      "title": "Bioavailability of energy, nitrogen, fat, zinc, iron and calcium from rural and urban Mexican diets",
+      "year": 1992,
+      "inReviews": [
+       "23595983"
+      ]
+     },
+     {
+      "pmid": "15325679",
+      "title": "Effects of a low-fat vegan diet and a Step II diet on macro- and micronutrient intakes in overweight postmenopausal women",
+      "year": 2004,
+      "inReviews": [
+       "23595983"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "27880062",
+     "23595983"
+    ],
+    "citedNotChosen": [
+     "26502280",
+     "33161940",
+     "33222682"
+    ],
+    "citedNotEligible": [
+     "26502280",
+     "33161940",
+     "33222682"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults or children",
+     "intervention": "A vegetarian or vegan diet",
+     "comparison": "Diets that include meat",
+     "outcome": "Iron or zinc status, deficiency or anaemia"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "26056918",
+      "title": "Zinc Status of Vegetarians during Pregnancy: A Systematic Review of Observational Studies and Meta-Analysis of Zinc Intake",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Compares vegetarian and non-vegetarian zinc intake and status, but only in pregnant women, a narrower group."
+     }
+    ]
+   }
+  }
+ ]
+}

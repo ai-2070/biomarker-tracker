@@ -1,0 +1,1288 @@
+{
+ "topic": "food-safety",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "oxalate-kidney-stones": {
+   "question": {
+    "population": "Adults, including people prone to kidney stones",
+    "intervention": "Oxalate from food (spinach and other high-oxalate plant foods)",
+    "comparison": "Less dietary oxalate",
+    "outcome": "Kidney stones, or oxalate in urine"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42064216",
+     "fits": "no",
+     "reason": "A narrative review of how gut and urinary microbes affect oxalate handling and stones; it does not systematically compare high- and low-oxalate diets."
+    },
+    {
+     "pmid": "41871357",
+     "fits": "partly",
+     "reason": "Reviews diets to prevent repeat stones in adults, but the abstract reports calcium, protein and sodium diets and does not mention dietary oxalate."
+    },
+    {
+     "pmid": "42060186",
+     "fits": "no",
+     "reason": "Looks at oxalate the body makes itself (from vitamin C and amino acids), not oxalate from food."
+    },
+    {
+     "pmid": "40936162",
+     "fits": "yes",
+     "reason": "Systematically reviews diet changes, including limiting oxalate, in people with stones, with stone-related urine measures as outcomes."
+    },
+    {
+     "pmid": "37208622",
+     "fits": "no",
+     "reason": "Compares gut bacteria in people with and without kidney stones; dietary oxalate is not the exposure."
+    },
+    {
+     "pmid": "33484322",
+     "fits": "no",
+     "reason": "Reviews plant-extract remedies in rats with chemically induced stones, not dietary oxalate in adults."
+    },
+    {
+     "pmid": "29856171",
+     "fits": "no",
+     "reason": "Looks at obesity as a risk factor for stones, not oxalate from food."
+    },
+    {
+     "pmid": "34959822",
+     "fits": "partly",
+     "reason": "Reviews popular diets, including vegan diets, against stone risk and urine oxalate, but the exposure is whole diet patterns, not oxalate intake."
+    },
+    {
+     "pmid": "26088584",
+     "fits": "no",
+     "reason": "Looks at bowel diseases that raise urine oxalate and cause stones, not oxalate from food."
+    },
+    {
+     "pmid": "33458786",
+     "fits": "partly",
+     "reason": "Reviews tea and coffee and stone risk, including the oxalate in tea, but covers only these drinks, not high-oxalate foods in general."
+    },
+    {
+     "pmid": "25454613",
+     "fits": "no",
+     "reason": "A clinical guideline on testing and treating stone formers; it does not review dietary oxalate."
+    },
+    {
+     "pmid": "24519664",
+     "fits": "partly",
+     "reason": "Reviews diet changes to prevent stones, but only in idiopathic hypercalciuria (high urine calcium), and the abstract doesn't say oxalate was studied."
+    },
+    {
+     "pmid": "19321253",
+     "fits": "partly",
+     "reason": "Reviews diet trials in adults with past stones, but reports that no trial tested lowering oxalate on its own."
+    }
+   ]
+  },
+  "pesticide-residues": {
+   "question": {
+    "population": "People",
+    "intervention": "Pesticide residues in fruit and vegetables, or conventional compared with organic produce",
+    "comparison": "Lower residues, or organic produce",
+    "outcome": "Health effects, or exposure above safety limits"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42526759",
+     "fits": "partly",
+     "reason": "Assesses dietary pesticide residue exposure against safety limits in people, but in animal-source foods rather than fruit and vegetables."
+    },
+    {
+     "pmid": "40010662",
+     "fits": "yes",
+     "reason": "Meta-analysis of pesticide residues in foods including fruit and vegetables, with MRL exceedances, health risk and disease burden in people."
+    },
+    {
+     "pmid": "41864411",
+     "fits": "no",
+     "reason": "Links plasma persistent organic pollutants to ALS risk; it does not study residues in produce or organic versus conventional food."
+    },
+    {
+     "pmid": "40976336",
+     "fits": "no",
+     "reason": "Compares pesticide formulations on crop residue levels; it has no human health or safety-limit exposure outcome."
+    },
+    {
+     "pmid": "42314861",
+     "fits": "partly",
+     "reason": "Pools pesticide residues in apples only, and the abstract mainly reports occurrence rather than health effects or exceedance of safety limits."
+    },
+    {
+     "pmid": "37930102",
+     "fits": "yes",
+     "reason": "Reviews organic food intake and human health outcomes, including pesticide exposure biomarkers and disease, using population studies."
+    },
+    {
+     "pmid": "42813519",
+     "fits": "no",
+     "reason": "Reviews electrochemical sensors for pesticide detection; it has no human health or exposure outcome."
+    },
+    {
+     "pmid": "39101594",
+     "fits": "yes",
+     "reason": "Systematically reviews human studies comparing diets rich in organic versus conventional fruit and vegetables on health outcomes."
+    },
+    {
+     "pmid": "39541786",
+     "fits": "no",
+     "reason": "Studies biochar and pesticide interactions in soil; it is not about people, produce residues or health."
+    },
+    {
+     "pmid": "40262872",
+     "fits": "no",
+     "reason": "Studies organic soil amendments and soil biology under pesticide use; it has no human or food outcome."
+    },
+    {
+     "pmid": "42320655",
+     "fits": "partly",
+     "reason": "Reviews pesticide residues against legal thresholds, but in infant formula and for infants rather than fruit and vegetables."
+    },
+    {
+     "pmid": "41056727",
+     "fits": "no",
+     "reason": "Reviews organic pollutants in mangrove sediments and ecological risk; it does not cover food or human health."
+    },
+    {
+     "pmid": "38307287",
+     "fits": "no",
+     "reason": "Reviews hair as a biomonitoring matrix for pollutants; it does not link exposure to produce residues or organic food."
+    },
+    {
+     "pmid": "42269473",
+     "fits": "no",
+     "reason": "Reviews analytical methods for fluorinated pesticides in food; it has no health or safety-limit exposure outcome."
+    },
+    {
+     "pmid": "41311520",
+     "fits": "no",
+     "reason": "Reviews pesticide contamination of European soils; it does not cover food residues or human health."
+    },
+    {
+     "pmid": "39261657",
+     "fits": "yes",
+     "reason": "Reviews adults eating organic versus conventional foods, with outcomes for chronic disease and pesticide exposure."
+    },
+    {
+     "pmid": "39180029",
+     "fits": "no",
+     "reason": "Pools occupational pesticide safety practices in Africa, not dietary residues in produce or organic food."
+    },
+    {
+     "pmid": "41706108",
+     "fits": "partly",
+     "reason": "Mainly ecological risk; human health risk is assessed only for pesticides in fish, not fruit and vegetables."
+    },
+    {
+     "pmid": "39692841",
+     "fits": "no",
+     "reason": "Reviews farm input practices and their effects on groundwater and soil health; it has no dietary human health outcome."
+    },
+    {
+     "pmid": "40878513",
+     "fits": "no",
+     "reason": "Reviews nanozyme sensors for detecting organophosphorus pesticides; it has no human health or exposure outcome."
+    },
+    {
+     "pmid": "40957347",
+     "fits": "no",
+     "reason": "Looks at pesticide residues in wild seaweeds and contamination patterns, not fruit and vegetables, human health or safety-limit exceedance."
+    },
+    {
+     "pmid": "38522300",
+     "fits": "no",
+     "reason": "Reviews sensor technology for detecting food contaminants, not health effects or residue levels against safety limits."
+    },
+    {
+     "pmid": "40099567",
+     "fits": "no",
+     "reason": "Covers pesticide runoff from farm tillage systems, an environmental question unrelated to residues in produce or human health."
+    },
+    {
+     "pmid": "39466439",
+     "fits": "partly",
+     "reason": "Links food pollutants, including pesticides, to autism and mentions organic food, but covers food pollutants broadly rather than fruit and vegetable residues."
+    },
+    {
+     "pmid": "38325285",
+     "fits": "no",
+     "reason": "About removing micropollutants from water with biofilters, not pesticide residues in produce or health effects."
+    },
+    {
+     "pmid": "36289056",
+     "fits": "no",
+     "reason": "Looks at parental occupational and residential pesticide exposure and Wilms' tumor, not dietary residues from fruit and vegetables."
+    },
+    {
+     "pmid": "39929639",
+     "fits": "no",
+     "reason": "Reviews ozonation methods that break down residues on produce, not health effects or exposure above safety limits."
+    },
+    {
+     "pmid": "37813138",
+     "fits": "no",
+     "reason": "Links body levels of persistent pollutants, including organochlorine pesticides, to oxidative stress, not residues from fruit and vegetables."
+    },
+    {
+     "pmid": "36841459",
+     "fits": "yes",
+     "reason": "Systematically reviews pesticide residues in Brazilian fruit and vegetables, with residues above maximum limits and health risks for children and adults."
+    },
+    {
+     "pmid": "38853643",
+     "fits": "no",
+     "reason": "Reviews nanobiosensors for detecting pesticides on site, not health effects or residues above safety limits."
+    },
+    {
+     "pmid": "37385197",
+     "fits": "no",
+     "reason": "Meta-analysis of biochar effects on pesticide breakdown in soil and uptake by plants, not human exposure or health."
+    },
+    {
+     "pmid": "37907942",
+     "fits": "partly",
+     "reason": "Reviews dietary pesticide exposure and chronic disease, but in adults only and for diet overall rather than fruit and vegetables or organic produce."
+    },
+    {
+     "pmid": "36004968",
+     "fits": "no",
+     "reason": "Reviews biosensors for detecting pesticides in foods, an analytical-methods question rather than health or exposure."
+    },
+    {
+     "pmid": "36981806",
+     "fits": "no",
+     "reason": "About organic pollutants carried on marine plastic debris, not pesticide residues in produce."
+    },
+    {
+     "pmid": "34908509",
+     "fits": "partly",
+     "reason": "Mainly reviews sample preparation methods, but also summarises residue monitoring in Brazilian fruit and vegetables, including residues above limits."
+    },
+    {
+     "pmid": "38056610",
+     "fits": "no",
+     "reason": "Links persistent pollutants to microRNA changes in humans and animals, not dietary residues from fruit and vegetables."
+    },
+    {
+     "pmid": "32871314",
+     "fits": "no",
+     "reason": "Compares soil amendments for affecting the fate of pesticides in soil, an agricultural question, not human exposure."
+    },
+    {
+     "pmid": "37272608",
+     "fits": "partly",
+     "reason": "Reviews carcinogenic pesticide residues in food, some above permitted levels, but covers all foods (mostly animal origin), not fruit and vegetables."
+    },
+    {
+     "pmid": "35914637",
+     "fits": "no",
+     "reason": "Reviews an in vitro neuronal cell model used for pollutant neurotoxicity, not dietary residues in people."
+    },
+    {
+     "pmid": "32818891",
+     "fits": "no",
+     "reason": "Meta-analysis of genetic damage from occupational pesticide exposure in workers, not residues in food."
+    },
+    {
+     "pmid": "36257464",
+     "fits": "partly",
+     "reason": "Reviews pesticide exposure and cancer in people, but the exposure is general pesticide exposure, not residues in fruit and vegetables or organic produce."
+    },
+    {
+     "pmid": "30362975",
+     "fits": "partly",
+     "reason": "Pools pesticide exposure and thyroid cancer risk in people, but the exposure is general or agricultural, not residues in produce."
+    },
+    {
+     "pmid": "33280875",
+     "fits": "no",
+     "reason": "Covers non-dietary (drift) determinants of pesticide exposure in residents near fields, not produce residues or health effects."
+    },
+    {
+     "pmid": "31298532",
+     "fits": "no",
+     "reason": "Environmental study of POP amplification by snow in Antarctica, with no human, produce or health component."
+    },
+    {
+     "pmid": "31861431",
+     "fits": "yes",
+     "reason": "Systematically reviews human health outcomes and pesticide exposure for organic compared with conventional diets."
+    },
+    {
+     "pmid": "33483934",
+     "fits": "partly",
+     "reason": "Assesses pesticide residues in fruit against MRLs and health risk, but covers a single planting site and has no organic or lower-residue comparison."
+    },
+    {
+     "pmid": "34517099",
+     "fits": "no",
+     "reason": "Reviews internal POP levels (mostly PCBs) and IVF outcomes, not pesticide residues in produce or organic food."
+    },
+    {
+     "pmid": "31547196",
+     "fits": "no",
+     "reason": "Reviews contaminants in chicken litter used as fertilizer, not pesticide residues in produce and human health."
+    },
+    {
+     "pmid": "33483929",
+     "fits": "no",
+     "reason": "Reviews photocatalytic degradation of pesticides with TiO2, with no human health or produce exposure outcome."
+    },
+    {
+     "pmid": "24968103",
+     "fits": "partly",
+     "reason": "Compares pesticide residue incidence in organic and conventional crops, but reports composition rather than health effects or exceeding limits."
+    },
+    {
+     "pmid": "27144960",
+     "fits": "no",
+     "reason": "Meta-analysis of organic contaminants in Chinese sewage sludge, not produce residues or human health."
+    },
+    {
+     "pmid": "34029839",
+     "fits": "partly",
+     "reason": "Reviews pesticide exposure and colorectal cancer in people, including food residue consumers, but the exposure is mostly occupational or general."
+    },
+    {
+     "pmid": "33147335",
+     "fits": "no",
+     "reason": "Reviews POP classes and time to pregnancy, not pesticide residues in fruit and vegetables or organic produce."
+    },
+    {
+     "pmid": "29057488",
+     "fits": "no",
+     "reason": "Meta-analysis of pesticide sorption in subsoil for leaching models, with no human or produce outcome."
+    },
+    {
+     "pmid": "31984396",
+     "fits": "no",
+     "reason": "Reviews pesticide residues in Brazilian soils, not residues in produce or human health effects."
+    },
+    {
+     "pmid": "32668538",
+     "fits": "partly",
+     "reason": "Reviews organochlorine pesticide exposure and inflammation, mostly in vitro and animal work, not dietary residues in produce."
+    },
+    {
+     "pmid": "23521068",
+     "fits": "no",
+     "reason": "Reviews pesticide dissipation half-lives in plants, without human health effects or safety-limit exceedance."
+    },
+    {
+     "pmid": "25545233",
+     "fits": "partly",
+     "reason": "Reviews pesticide and POP exposure and diabetes in Asian people, but the exposure is serum levels, not residues in produce."
+    },
+    {
+     "pmid": "22944875",
+     "fits": "yes",
+     "reason": "Compares organic and conventional foods for health outcomes, urinary pesticides, residues and risk of exceeding maximum limits."
+    },
+    {
+     "pmid": "25005864",
+     "fits": "partly",
+     "reason": "Meta-analyses how processing lowers pesticide residues in fruit, but reports residue levels rather than health effects or exceeding limits."
+    },
+    {
+     "pmid": "21712575",
+     "fits": "no",
+     "reason": "Looks at pesticide removal from agricultural surface water to protect aquatic life, not residues in produce or effects on people."
+    },
+    {
+     "pmid": "19095305",
+     "fits": "no",
+     "reason": "Reviews persistent pollutants in marine sediments and mollusks, not pesticide residues in fruit and vegetables or human health."
+    },
+    {
+     "pmid": "19879312",
+     "fits": "partly",
+     "reason": "Pools how processing changes pesticide residues in fruit and vegetables, but reports residue levels, not health effects or safety-limit breaches."
+    },
+    {
+     "pmid": "17765971",
+     "fits": "no",
+     "reason": "Broad review of environmental and occupational pesticide exposure in Pakistan, not residues in produce or organic vs conventional food."
+    }
+   ]
+  },
+  "heavy-metals-plant-foods": {
+   "question": {
+    "population": "People, including young children",
+    "intervention": "Foods such as rice, grains, vegetables, seaweed and seafood",
+    "comparison": "Other foods",
+    "outcome": "Dietary exposure to cadmium, arsenic or lead, or health effects of that exposure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41733739",
+     "fits": "yes",
+     "reason": "Reviews Cd, Pb and As in vegetables worldwide with dietary intake and health risk estimates, including for children."
+    },
+    {
+     "pmid": "42467164",
+     "fits": "partly",
+     "reason": "Reviews dietary Pb and Cd exposure and health risk, but from edible salt rather than rice, grains, vegetables, seaweed or seafood."
+    },
+    {
+     "pmid": "42296580",
+     "fits": "no",
+     "reason": "Meta-analysis of plant physiology of Cd translocation in leafy vegetables, with no human dietary exposure or health outcome."
+    },
+    {
+     "pmid": "36794359",
+     "fits": "partly",
+     "reason": "Pools As, Pb and Cd levels in rice and dietary exposure, but compares cooking methods rather than other foods."
+    },
+    {
+     "pmid": "41914905",
+     "fits": "no",
+     "reason": "Agronomic meta-analysis of sulfur fertiliser effects on rice grain As, not human dietary exposure or health effects."
+    },
+    {
+     "pmid": "42680423",
+     "fits": "partly",
+     "reason": "Agronomic meta-analysis of rice Cd under water management, with a modelled dietary Cd hazard quotient and cancer risk."
+    },
+    {
+     "pmid": "39226972",
+     "fits": "no",
+     "reason": "Meta-analysis of elevated CO2 effects on metal levels in crops, without human dietary exposure or health outcomes."
+    },
+    {
+     "pmid": "40533037",
+     "fits": "partly",
+     "reason": "Meta-analysis of heavy metals in vegetable-growing soils with health risk for children, but measures soil rather than food."
+    },
+    {
+     "pmid": "39490837",
+     "fits": "no",
+     "reason": "Agronomic meta-analysis of sulfur effects on Cd and As in rice grains, not human dietary exposure or health effects."
+    },
+    {
+     "pmid": "40205266",
+     "fits": "no",
+     "reason": "Agronomic meta-analysis of sulfur fertiliser reducing rice As, not human dietary exposure or health effects."
+    },
+    {
+     "pmid": "38489905",
+     "fits": "no",
+     "reason": "Meta-analysis of biochar effects on greenhouse gases and Cd in rice, with no human dietary exposure or health outcome."
+    },
+    {
+     "pmid": "38311087",
+     "fits": "partly",
+     "reason": "Agronomic meta-analysis of silicon reducing As and Cd in cereal grains, including estimated human health risk from grains."
+    },
+    {
+     "pmid": "37758140",
+     "fits": "partly",
+     "reason": "Pools Cd exposure and kidney disease in adults with a dietary subgroup, but does not examine specific foods."
+    },
+    {
+     "pmid": "36181805",
+     "fits": "yes",
+     "reason": "Reviews inorganic As in 15 food groups and water in Iran, with dietary exposure and disease burden; rice and cereals contribute most."
+    },
+    {
+     "pmid": "39848336",
+     "fits": "yes",
+     "reason": "Reviews maternal seafood intake, Pb exposure and child neurodevelopment, comparing levels of seafood and Pb exposure."
+    },
+    {
+     "pmid": "38101648",
+     "fits": "no",
+     "reason": "Meta-analysis of Fe-bearing soil amendments on rice As bioavailability, not human dietary exposure or health effects."
+    },
+    {
+     "pmid": "38941835",
+     "fits": "partly",
+     "reason": "Agronomic meta-analysis of selenium reducing rice grain Cd, with a note on mitigated health hazard but no dietary exposure focus."
+    },
+    {
+     "pmid": "36997784",
+     "fits": "partly",
+     "reason": "Pools As concentrations in rice and discusses dietary uptake, but compares rice varieties rather than other foods."
+    },
+    {
+     "pmid": "36563983",
+     "fits": "partly",
+     "reason": "Pools Cd exposure and breast cancer with a dietary Cd subgroup, but only in women and not by specific foods."
+    },
+    {
+     "pmid": "30921698",
+     "fits": "yes",
+     "reason": "Reviews As, Pb and Cd in domestic and imported rice in Iran with dietary health risk assessment."
+    },
+    {
+     "pmid": "34592522",
+     "fits": "partly",
+     "reason": "Pools urinary cadmium and bone damage studies to derive a dietary limit, but does not look at specific foods such as rice or seafood."
+    },
+    {
+     "pmid": "36520940",
+     "fits": "yes",
+     "reason": "Pools lead and cadmium levels in rice in China and estimates health risk for adults and children."
+    },
+    {
+     "pmid": "29341878",
+     "fits": "yes",
+     "reason": "Pools arsenic and lead levels in Iranian rice and estimates cancer risk across consumer age groups."
+    },
+    {
+     "pmid": "37640100",
+     "fits": "partly",
+     "reason": "Derives a safe dietary cadmium intake from a review of health effects, but does not look at specific foods."
+    },
+    {
+     "pmid": "34789222",
+     "fits": "yes",
+     "reason": "Reviews cadmium, lead and arsenic in vegetables, cereals, meat and water in Ethiopia and their public health effects."
+    },
+    {
+     "pmid": "32599354",
+     "fits": "partly",
+     "reason": "Pools dietary cadmium and breast cancer studies, but covers only women and does not look at specific foods."
+    },
+    {
+     "pmid": "32388299",
+     "fits": "partly",
+     "reason": "Pools cadmium uptake by leafy vegetables from soil, but measures plant uptake rather than human exposure or health."
+    },
+    {
+     "pmid": "34030275",
+     "fits": "partly",
+     "reason": "Pools how liming reduces cadmium in rice grain, a farming question with no human exposure or health outcome."
+    },
+    {
+     "pmid": "37553055",
+     "fits": "no",
+     "reason": "Looks at how soil fungi relieve cadmium stress in cereal crops, which concerns plant health, not human exposure."
+    },
+    {
+     "pmid": "36370388",
+     "fits": "partly",
+     "reason": "Reviews ways to cut cadmium exposure in pregnancy and childhood, including rice, but tests interventions, not food comparisons."
+    },
+    {
+     "pmid": "30580115",
+     "fits": "yes",
+     "reason": "Pools arsenic in rice and rice-based infant products by region and assesses health risk from eating them."
+    },
+    {
+     "pmid": "29505519",
+     "fits": "partly",
+     "reason": "Pools cadmium exposure and kidney stone risk with a dietary subgroup, but does not look at specific foods."
+    },
+    {
+     "pmid": "33905760",
+     "fits": "no",
+     "reason": "Discusses methods for judging low-level arsenic dose-response, mainly drinking water and bladder cancer, not foods."
+    },
+    {
+     "pmid": "29260468",
+     "fits": "yes",
+     "reason": "Reviews cadmium in Iranian rice, cereals, tuna, vegetables and blood samples to assess population exposure."
+    },
+    {
+     "pmid": "30654099",
+     "fits": "yes",
+     "reason": "Reviews arsenic in seafood and estimates intake and cancer risk, including for children aged 3 to 6."
+    },
+    {
+     "pmid": "33075355",
+     "fits": "no",
+     "reason": "Assesses toenails as a marker of arsenic exposure, mainly from water or work, not exposure from foods."
+    },
+    {
+     "pmid": "27828001",
+     "fits": "no",
+     "reason": "A single survey analysis of urine arsenic and heart risk in adults with high blood pressure, not a review of foods."
+    },
+    {
+     "pmid": "26479829",
+     "fits": "partly",
+     "reason": "Pools dietary cadmium and breast cancer studies, but covers only postmenopausal women and no specific foods."
+    },
+    {
+     "pmid": "30873793",
+     "fits": "partly",
+     "reason": "Reviews arsenic exposure in Mexican children, but the source is drinking water, not foods."
+    },
+    {
+     "pmid": "25146625",
+     "fits": "yes",
+     "reason": "Reviews lead levels in grains, fish, vegetables and other foods in China and estimates dietary lead intake."
+    },
+    {
+     "pmid": "26896853",
+     "fits": "partly",
+     "reason": "Reviews inorganic arsenic exposure from sources including rice and fish, but focuses on US minority and low-income groups and mixes in water and soil."
+    },
+    {
+     "pmid": "25771535",
+     "fits": "partly",
+     "reason": "Pools dietary cadmium exposure and breast cancer risk, but looks only at women and one outcome, and does not compare specific foods."
+    },
+    {
+     "pmid": "24069382",
+     "fits": "partly",
+     "reason": "Pools dietary cadmium intake and cancer risk, but looks at total dietary intake rather than comparing specific foods like rice or seafood."
+    }
+   ]
+  },
+  "germs-and-cooking-by-products": {
+   "question": {
+    "population": "People",
+    "intervention": "Animal foods (meat, eggs, dairy, seafood): germs and cooking by-products",
+    "comparison": "Plant foods (vegetables, fruit, starchy foods)",
+    "outcome": "Foodborne illness, or exposure to cooking by-products and its health effects"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42774413",
+     "fits": "partly",
+     "reason": "Reviews foodborne illness outbreaks, but the foods involved were mainly plant foods (açaí, fruit drinks), with no animal foods to compare."
+    },
+    {
+     "pmid": "42515588",
+     "fits": "partly",
+     "reason": "Links national pork intake to hepatitis E infection rates only at country level, with no comparison against plant foods."
+    },
+    {
+     "pmid": "40589406",
+     "fits": "yes",
+     "reason": "Pools European case-control studies that trace human Salmonella and Campylobacter cases to poultry, eggs and pork compared with other sources."
+    },
+    {
+     "pmid": "42914440",
+     "fits": "partly",
+     "reason": "Compares how well heat kills viruses in shellfish and dairy versus berries and vegetables, but does not measure illness in people."
+    },
+    {
+     "pmid": "40534785",
+     "fits": "partly",
+     "reason": "Measures meat-borne parasites in live ruminants, not in people, and has no plant food comparison."
+    },
+    {
+     "pmid": "42597149",
+     "fits": "no",
+     "reason": "Asks how well phage treatments reduce Campylobacter in foods, not which foods cause illness compared with plant foods."
+    },
+    {
+     "pmid": "42705767",
+     "fits": "partly",
+     "reason": "Pools antibiotic-resistant bacteria in farm animals, foods, fruits and vegetables, but the outcome is resistance rather than illness."
+    },
+    {
+     "pmid": "41478681",
+     "fits": "yes",
+     "reason": "Pools pathogen contamination by food type and finds meat, especially poultry, most contaminated compared with other foods."
+    },
+    {
+     "pmid": "39770307",
+     "fits": "partly",
+     "reason": "Reviews foodborne bacteria in wild game animals only, with no comparison against plant foods."
+    },
+    {
+     "pmid": "42148770",
+     "fits": "partly",
+     "reason": "Covers acrylamide, a cooking by-product, during storage of mostly plant-based foods, without comparing animal foods or health effects."
+    },
+    {
+     "pmid": "40581764",
+     "fits": "yes",
+     "reason": "Pools foodborne outbreaks by the food involved: processed meats and seafood compared with cereals and vegetables."
+    },
+    {
+     "pmid": "41606854",
+     "fits": "no",
+     "reason": "Reviews machine-learning methods for detecting pathogens, not which foods cause illness."
+    },
+    {
+     "pmid": "38241191",
+     "fits": "partly",
+     "reason": "Looks at health effects of dietary PAHs, a cooking by-product, on birth outcomes, but does not compare animal and plant foods."
+    },
+    {
+     "pmid": "40782328",
+     "fits": "yes",
+     "reason": "Pools Campylobacter prevalence in poultry products compared with vegetable products and ready-to-eat foods."
+    },
+    {
+     "pmid": "38430686",
+     "fits": "yes",
+     "reason": "Pools Listeria prevalence across nine food categories and finds meat, especially chicken, highest."
+    },
+    {
+     "pmid": "37165317",
+     "fits": "partly",
+     "reason": "Pools Campylobacter in meats, eggs, animals and humans, but has no plant food comparison."
+    },
+    {
+     "pmid": "37458885",
+     "fits": "partly",
+     "reason": "Reviews a urine marker of acrylamide exposure and related diseases, without comparing animal and plant food sources."
+    },
+    {
+     "pmid": "35548558",
+     "fits": "partly",
+     "reason": "Looks at cancer risk from dietary acrylamide, a cooking by-product, but does not compare animal and plant foods."
+    },
+    {
+     "pmid": "33413725",
+     "fits": "partly",
+     "reason": "Looks at women's cancer risk from dietary acrylamide, but does not compare animal and plant food sources."
+    },
+    {
+     "pmid": "36996513",
+     "fits": "partly",
+     "reason": "Reviews Salmonella sources on poultry farms before slaughter, with no human illness outcome or plant food comparison."
+    },
+    {
+     "pmid": "38840177",
+     "fits": "no",
+     "reason": "Looks at immunosuppression and Mpox severity, not foodborne illness or cooking by-products from animal versus plant foods."
+    },
+    {
+     "pmid": "35724727",
+     "fits": "partly",
+     "reason": "Covers acrylamide, a cooking by-product, and fetal growth, but exposure is not tied to animal foods and there is no plant-food comparison."
+    },
+    {
+     "pmid": "32077494",
+     "fits": "partly",
+     "reason": "Covers dietary acrylamide and kidney cancer, but exposure is not tied to animal foods and there is no plant-food comparison."
+    },
+    {
+     "pmid": "32334111",
+     "fits": "partly",
+     "reason": "Covers PAHs in grilled or smoked meat and fish, but only reduction methods, with no health outcomes or plant-food comparison."
+    },
+    {
+     "pmid": "32297107",
+     "fits": "partly",
+     "reason": "Covers a foodborne parasite in meat animals, but reports prevalence in animals only, with no human illness or plant-food comparison."
+    },
+    {
+     "pmid": "30275115",
+     "fits": "partly",
+     "reason": "Links meat cooking by-products (HCAs, BaP) to colorectal adenoma, but has no plant-food comparison."
+    },
+    {
+     "pmid": "37406596",
+     "fits": "partly",
+     "reason": "Covers multidrug-resistant Salmonella mainly from chicken meat, but has no plant-food comparison."
+    },
+    {
+     "pmid": "32169997",
+     "fits": "partly",
+     "reason": "Covers dietary acrylamide and cancers in women, but exposure is not tied to animal foods and there is no plant-food comparison."
+    },
+    {
+     "pmid": "33232452",
+     "fits": "no",
+     "reason": "Lab study of Listeria growth on fruits and vegetables only, with no animal foods and not a review of human studies."
+    },
+    {
+     "pmid": "31710971",
+     "fits": "partly",
+     "reason": "Pools Campylobacter and Salmonella prevalence in African food animals and meat, but has no plant-food comparison."
+    },
+    {
+     "pmid": "32349855",
+     "fits": "partly",
+     "reason": "Covers gestational acrylamide and offspring growth, but exposure is not tied to animal foods and there is no plant-food comparison."
+    },
+    {
+     "pmid": "38582433",
+     "fits": "no",
+     "reason": "Looks at weather as the exposure for Campylobacter infection, not animal versus plant foods."
+    },
+    {
+     "pmid": "38873302",
+     "fits": "no",
+     "reason": "Covers mental health services during Ebola outbreaks, unrelated to food."
+    },
+    {
+     "pmid": "29957085",
+     "fits": "partly",
+     "reason": "Reviews bacterial foodborne outbreaks from red meat, but has no plant-food comparison."
+    },
+    {
+     "pmid": "35946073",
+     "fits": "no",
+     "reason": "Covers COVID-19 effects on students' diet and food security, not foodborne illness or cooking by-products."
+    },
+    {
+     "pmid": "30688537",
+     "fits": "yes",
+     "reason": "Pools Listeria prevalence in deli meat and soft cheese alongside packaged salad, giving an animal versus plant food comparison."
+    },
+    {
+     "pmid": "30794462",
+     "fits": "partly",
+     "reason": "Covers foodborne illness incidents from leafy greens only, the plant side, with no animal-food exposure."
+    },
+    {
+     "pmid": "27842895",
+     "fits": "partly",
+     "reason": "Pools STEC risk from undercooked or raw meat, but compares it with other transmission routes rather than plant foods."
+    },
+    {
+     "pmid": "31421760",
+     "fits": "partly",
+     "reason": "Pools Salmonella and E. coli O157 on lettuce only, the plant side, with no animal-food exposure."
+    },
+    {
+     "pmid": "26689289",
+     "fits": "partly",
+     "reason": "Covers meat cooking methods and HCAs in relation to prostate cancer, but has no plant-food comparison."
+    },
+    {
+     "pmid": "25403648",
+     "fits": "partly",
+     "reason": "Pools cooking by-product (acrylamide) intake and cancer risk, but does not single out animal foods or compare them with plant foods."
+    },
+    {
+     "pmid": "31742524",
+     "fits": "yes",
+     "reason": "Reviews toxoplasmosis outbreak sources, comparing meat and milk with raw fruits and vegetables as causes of foodborne illness."
+    },
+    {
+     "pmid": "25516180",
+     "fits": "partly",
+     "reason": "Cooking by-product (acrylamide) and cancer, but only women and endometrial cancer, with no animal vs plant food comparison."
+    },
+    {
+     "pmid": "29652195",
+     "fits": "yes",
+     "reason": "Pools foodborne pathogen prevalence across food categories, including aquatic products versus vegetables."
+    },
+    {
+     "pmid": "33150970",
+     "fits": "no",
+     "reason": "About mental health support for health workers during outbreaks, not foods or foodborne illness."
+    },
+    {
+     "pmid": "24875401",
+     "fits": "partly",
+     "reason": "Reviews acrylamide from cooked foods and cancer, but it forms from sugars and is not tied to animal foods or compared with plant foods."
+    },
+    {
+     "pmid": "24679786",
+     "fits": "partly",
+     "reason": "Reviews acrylamide exposure and health, but the source is carbohydrate-rich foods, not animal foods, and there is no comparison."
+    },
+    {
+     "pmid": "23305174",
+     "fits": "partly",
+     "reason": "Covers foodborne listeriosis, but only estimates incubation period and does not compare animal and plant foods."
+    },
+    {
+     "pmid": "27602884",
+     "fits": "partly",
+     "reason": "Covers meat- and dairy-borne salmonellosis, but the exposure is farm antibiotic use and there is no plant food comparison."
+    },
+    {
+     "pmid": "29485236",
+     "fits": "partly",
+     "reason": "Covers foodborne viral outbreaks, but only from fresh produce, with no animal food comparison."
+    },
+    {
+     "pmid": "25710165",
+     "fits": "no",
+     "reason": "Evaluates food safety interventions in food service settings, not animal versus plant foods."
+    },
+    {
+     "pmid": "22152439",
+     "fits": "partly",
+     "reason": "Pools salmonellosis risk factors including raw eggs, but the abstract does not show a comparison with plant foods."
+    },
+    {
+     "pmid": "34081717",
+     "fits": "no",
+     "reason": "About a mosquito-borne virus, not food or foodborne illness."
+    },
+    {
+     "pmid": "32442652",
+     "fits": "no",
+     "reason": "About chlorine disinfection of surfaces, not food sources of illness."
+    },
+    {
+     "pmid": "22214729",
+     "fits": "partly",
+     "reason": "Pools campylobacteriosis risk factors including undercooked chicken, but the abstract shows no plant food comparison."
+    },
+    {
+     "pmid": "26603222",
+     "fits": "partly",
+     "reason": "Compares toxoplasmosis outbreaks from meat with those from water and soil, not from plant foods."
+    },
+    {
+     "pmid": "15680675",
+     "fits": "partly",
+     "reason": "Reviews acrylamide levels in food and exposure, but does not focus on animal foods or compare them with plant foods."
+    },
+    {
+     "pmid": "24373292",
+     "fits": "no",
+     "reason": "About influenza control in care homes, not food or foodborne illness."
+    }
+   ]
+  },
+  "mercury-in-fish": {
+   "question": {
+    "population": "People, including pregnant women and children",
+    "intervention": "Eating fish or seafood, with the mercury it contains",
+    "comparison": "Eating less or no fish",
+    "outcome": "Mercury exposure, children's development, heart disease, or the balance of benefits and risks"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39986421",
+     "fits": "partly",
+     "reason": "Reviews mercury from any source in pregnancy and childhood and child outcomes; seafood is only one source, and seafood-specific evidence was limited."
+    },
+    {
+     "pmid": "40419821",
+     "fits": "partly",
+     "reason": "Covers mercury levels in Indigenous Amazonian people and the fish they eat, but the group is narrow, the source is mining pollution and there is no comparison."
+    },
+    {
+     "pmid": "38830454",
+     "fits": "no",
+     "reason": "Looks at mercury biomarkers and fertility or assisted reproduction, which is not a target outcome, and does not focus on eating fish."
+    },
+    {
+     "pmid": "36580940",
+     "fits": "partly",
+     "reason": "Pregnant women with mercury exposure, mainly from fish, but the outcome is high blood pressure in pregnancy rather than a target outcome."
+    },
+    {
+     "pmid": "31284912",
+     "fits": "partly",
+     "reason": "Mainly about how mercury moves through water and aquatic animals; covers seafood as a source of human mercury but has no comparison."
+    },
+    {
+     "pmid": "36509349",
+     "fits": "partly",
+     "reason": "Analyses mercury in predatory fish and discusses the risk of eating them, but has no human outcomes and no comparison with eating less fish."
+    },
+    {
+     "pmid": "26874048",
+     "fits": "partly",
+     "reason": "Reviews hair mercury in women to estimate intellectual disability in children; exposure is a mercury biomarker, not fish intake directly."
+    },
+    {
+     "pmid": "35627826",
+     "fits": "no",
+     "reason": "About mercury pollution from small-scale gold mining in Southeast Asia, not about eating fish versus eating less."
+    },
+    {
+     "pmid": "30758455",
+     "fits": "no",
+     "reason": "Looks at mercury exposure from any source and blood effects, which is not a target outcome."
+    },
+    {
+     "pmid": "24700993",
+     "fits": "yes",
+     "reason": "Pools mercury biomarkers in women and infants from seafood-eating groups and estimates the risk to child brain development."
+    },
+    {
+     "pmid": "27666813",
+     "fits": "no",
+     "reason": "Looks at mercury forms and autoimmune disease, which is not a target outcome."
+    },
+    {
+     "pmid": "19865003",
+     "fits": "yes",
+     "reason": "Reviews methylmercury from mothers eating fish during pregnancy and child brain development, using comparison groups."
+    },
+    {
+     "pmid": "17250511",
+     "fits": "partly",
+     "reason": "Children with low-level mercury from any source; touches on fish and development but focuses on diagnosis and autism."
+    },
+    {
+     "pmid": "30057028",
+     "fits": "partly",
+     "reason": "Prenatal mercury and child development, but it is one multi-country cohort study, not a systematic review, and exposure is mercury levels."
+    },
+    {
+     "pmid": "16242602",
+     "fits": "partly",
+     "reason": "Pools three prospective studies of prenatal methylmercury and IQ for a fish risk-benefit analysis, but covers only the mercury harm side."
+    }
+   ]
+  },
+  "plant-compounds-destroy-antioxidants": {
+   "question": {
+    "population": "People",
+    "intervention": "Plant compounds (polyphenols, flavonoids) from food or extracts",
+    "comparison": "Less or none of them",
+    "outcome": "Antioxidant or pro-oxidant effects in the body (markers of oxidative stress or antioxidant status)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42415907",
+     "fits": "partly",
+     "reason": "Pools oxidative stress markers, but only in Alzheimer's patients, and the antioxidants mix vitamins and other agents with polyphenols."
+    },
+    {
+     "pmid": "42735826",
+     "fits": "no",
+     "reason": "About asbestos toxicity using mixed agents, mostly in lab and animal studies; human trials looked at disease outcomes, not polyphenol oxidative markers."
+    },
+    {
+     "pmid": "40806053",
+     "fits": "partly",
+     "reason": "Polyphenol-rich interventions and oxidative stress markers match, but only in overweight or obese adults, and studies also had to report gut microbiota."
+    },
+    {
+     "pmid": "40822453",
+     "fits": "partly",
+     "reason": "Antioxidant effects of a plant extract, but almost all studies were lab or animal work; only 4% were in people."
+    },
+    {
+     "pmid": "39682053",
+     "fits": "partly",
+     "reason": "Dietary polyphenols and oxidative markers (MDA, TAC) match, but only in women with PCOS."
+    },
+    {
+     "pmid": "36204366",
+     "fits": "partly",
+     "reason": "Plant leaf polyphenols, but it reviews antioxidant capacity in lab tests, not effects in the body."
+    },
+    {
+     "pmid": "40509268",
+     "fits": "no",
+     "reason": "About an enzyme used in food processing and flavonoid bioavailability, not oxidative stress markers in people."
+    },
+    {
+     "pmid": "36876681",
+     "fits": "partly",
+     "reason": "CKD patients only, and mixed antioxidant supplements, with curcumin as the only polyphenol; it reports MDA."
+    },
+    {
+     "pmid": "42123930",
+     "fits": "no",
+     "reason": "Breast cancer treatment outcomes and side effects from mixed antioxidants, not oxidative stress markers."
+    },
+    {
+     "pmid": "39683599",
+     "fits": "no",
+     "reason": "Polyphenol supplements, but the outcomes are blood pressure, lipids and glucose, not oxidative stress markers."
+    },
+    {
+     "pmid": "35595310",
+     "fits": "partly",
+     "reason": "Dietary polyphenols from foods or supplements, with pooled MDA, but only in adults with diabetic kidney disease."
+    },
+    {
+     "pmid": "35697003",
+     "fits": "no",
+     "reason": "Mixed antioxidants in Duchenne muscular dystrophy, with outcomes of muscle strength and lung function, not oxidative markers."
+    },
+    {
+     "pmid": "37522129",
+     "fits": "partly",
+     "reason": "Curcumin supplements (a single polyphenol) and MDA, but only in people with metabolic syndrome."
+    },
+    {
+     "pmid": "33712024",
+     "fits": "yes",
+     "reason": "Pools RCTs of polyphenol-rich grape products versus control on oxidative stress markers (TAC, SOD, ORAC), including healthy people."
+    },
+    {
+     "pmid": "33329102",
+     "fits": "partly",
+     "reason": "Dietary phytochemicals and oxidative stress, but in autism and mostly from preclinical studies."
+    },
+    {
+     "pmid": "32428778",
+     "fits": "partly",
+     "reason": "Resveratrol and curcumin supplements, with antioxidant effects covered, but focused on heart health and mixed with nitric oxide; not clearly systematic."
+    },
+    {
+     "pmid": "35263378",
+     "fits": "partly",
+     "reason": "Phenolics in tree legume foods, but it covers antioxidant potential in lab tests, not markers in the body."
+    },
+    {
+     "pmid": "26503419",
+     "fits": "no",
+     "reason": "Mixed antioxidant supplements during cancer therapy, with treatment outcomes and side effects, not oxidative stress markers."
+    },
+    {
+     "pmid": "23881465",
+     "fits": "no",
+     "reason": "Dietary antioxidants including flavonoids, but the outcomes are cognition and dementia, not oxidative stress markers."
+    },
+    {
+     "pmid": "22153059",
+     "fits": "partly",
+     "reason": "Tree nut polyphenol content and antioxidant capacity, mostly food analyses; few human studies of oxidative markers."
+    }
+   ]
+  },
+  "antinutrients-harmful": {
+   "question": {
+    "population": "People",
+    "intervention": "Plant foods rich in antinutrients (legumes, grains, raw beans), or the compounds themselves",
+    "comparison": "Less of them, or the foods cooked or processed",
+    "outcome": "Harm to health: symptoms, mineral status, disease or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41392866",
+     "fits": "partly",
+     "reason": "Covers antinutrients in foods and processing to reduce them, but the outcome is antinutrient levels in food, not harm to human health."
+    },
+    {
+     "pmid": "41173082",
+     "fits": "no",
+     "reason": "A ginseng saponin extract as a stroke treatment, not antinutrient-rich plant foods causing harm."
+    },
+    {
+     "pmid": "41288460",
+     "fits": "no",
+     "reason": "Looks at anti-aging benefits of dietary saponins, not harms from antinutrients."
+    },
+    {
+     "pmid": "38767625",
+     "fits": "no",
+     "reason": "Animal studies of saponins as a therapy for autoimmune disease, not harm in people."
+    },
+    {
+     "pmid": "40093323",
+     "fits": "no",
+     "reason": "A saponin drug as a treatment for heart failure, not antinutrient foods and harm."
+    },
+    {
+     "pmid": "38898926",
+     "fits": "no",
+     "reason": "A saponin injection drug after stroke thrombolysis, not dietary antinutrients."
+    },
+    {
+     "pmid": "31381131",
+     "fits": "no",
+     "reason": "About how common indoor tanning is; unrelated to antinutrients."
+    },
+    {
+     "pmid": "26479307",
+     "fits": "partly",
+     "reason": "Reviews bean lectins as antinutrients causing gut disorders and the effect of heating, but it is broad, covers benefits too, and doesn't focus on people."
+    },
+    {
+     "pmid": "32746927",
+     "fits": "no",
+     "reason": "Mannose-binding lectin gene variants and tuberculosis, not dietary lectins."
+    },
+    {
+     "pmid": "35808920",
+     "fits": "no",
+     "reason": "Reasons people use sunbeds; unrelated."
+    },
+    {
+     "pmid": "27637409",
+     "fits": "no",
+     "reason": "Skin pigmentation genetics; unrelated."
+    },
+    {
+     "pmid": "24629998",
+     "fits": "no",
+     "reason": "Indoor tanning and melanoma; unrelated."
+    },
+    {
+     "pmid": "25561098",
+     "fits": "partly",
+     "reason": "Reviews tannins' health effects, including enzyme inhibition, but mostly benefits, and not antinutrient-rich legumes or grains compared with processed versions."
+    },
+    {
+     "pmid": "30285702",
+     "fits": "no",
+     "reason": "Compliance with indoor tanning laws; unrelated."
+    },
+    {
+     "pmid": "30639817",
+     "fits": "no",
+     "reason": "Indoor tanning and skin cancer burden; unrelated."
+    },
+    {
+     "pmid": "29864785",
+     "fits": "no",
+     "reason": "The lectin pathway of the immune complement system and thrombosis, not dietary lectins."
+    },
+    {
+     "pmid": "30446921",
+     "fits": "no",
+     "reason": "Indoor tanning and diet or activity behaviours; unrelated."
+    },
+    {
+     "pmid": "32019742",
+     "fits": "no",
+     "reason": "Tanning industry funding and study conclusions; unrelated."
+    },
+    {
+     "pmid": "28867504",
+     "fits": "no",
+     "reason": "College students' tanning behaviours; unrelated."
+    },
+    {
+     "pmid": "27671490",
+     "fits": "no",
+     "reason": "Diosgenin saponin as a heart treatment, not harm from antinutrients."
+    },
+    {
+     "pmid": "25143944",
+     "fits": "no",
+     "reason": "Studies the body's own mannose-binding lectin gene and vaginal yeast infection, not dietary antinutrients from plant foods."
+    },
+    {
+     "pmid": "25108743",
+     "fits": "no",
+     "reason": "Catalogues the chemical structures of saponins in ginseng species; it does not assess harm to health from eating them."
+    },
+    {
+     "pmid": "23601612",
+     "fits": "no",
+     "reason": "Looks at factors linked to intentional tanning in adolescents, with no plant foods or antinutrients involved."
+    },
+    {
+     "pmid": "24477278",
+     "fits": "no",
+     "reason": "Estimates how common indoor tanning is and the skin cancer it causes, with no plant foods or antinutrients involved."
+    },
+    {
+     "pmid": "23033409",
+     "fits": "no",
+     "reason": "Pools studies of indoor tanning and non-melanoma skin cancer, with no plant foods or antinutrients involved."
+    },
+    {
+     "pmid": "24512597",
+     "fits": "no",
+     "reason": "Reviews how visual images are used in skin cancer and tanning communication research, unrelated to antinutrients."
+    },
+    {
+     "pmid": "20636396",
+     "fits": "no",
+     "reason": "Studies the body's own mannose-binding lectin genes and blood levels in tuberculosis, not dietary lectins from food."
+    },
+    {
+     "pmid": "16310065",
+     "fits": "no",
+     "reason": "Narrative review of indoor tanning risks and regulation, unrelated to antinutrients in plant foods."
+    }
+   ]
+  }
+ }
+}

@@ -18,6 +18,8 @@ export interface EvidenceRecord {
   pubTypes: string[];
   mesh: string[];
   citedBy: number;
+  /** For maps searched claim by claim (foods): the outcomes whose search found this record. */
+  matched?: string[];
 }
 
 export type Design = "guideline" | "meta-analysis" | "systematic review" | "rct" | "other";
@@ -33,7 +35,8 @@ export function designOf(r: Pick<EvidenceRecord, "pubTypes">): Design {
   return "other";
 }
 
-const ANIMAL_TITLE = /\b(rats?|mice|mouse|murine|rodents?|pigs?|piglets?|swine|dogs?|canine|cats?|feline|cattle|cows?|calves|dairy|sheep|lambs?|goats?|horses?|poultry|chickens?|broilers?|hens?|layers|fish|zebrafish|in vitro|cell lines?)\b/i;
+const ANIMAL_TITLE = /\b(rats?|mice|mouse|murine|rodents?|pigs?|piglets?|swine|dogs?|canine|cats?|feline|cattle|cows?|calves|sheep|lambs?|goats?|horses?|poultry|chickens?|broilers?|hens?|layers|zebrafish|in vitro|cell lines?)\b/i;
+// Not "fish" or "dairy": reviews of people eating fish or dairy foods name them in the title.
 
 /** People, animals, or unclear: from the MeSH tags when the paper has them, otherwise from the title. */
 export function populationOf(r: Pick<EvidenceRecord, "mesh" | "title">): "human" | "animal" | "unclear" {
@@ -87,15 +90,29 @@ export function plainText(s: string): string {
   return decode(decode(s).replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
 }
 
-export function classify(raw: EvidenceRecord, outcomes: readonly { id: string; title: RegExp }[]): Classified {
+/**
+ * An outcome a record can belong to: by words in its title (every pattern must match), and, for maps
+ * searched claim by claim, only when that outcome's own search found it (`matched`).
+ */
+export interface OutcomeMatch {
+  id: string;
+  title?: RegExp | readonly RegExp[];
+}
+
+export function classify(raw: EvidenceRecord, outcomes: readonly OutcomeMatch[]): Classified {
   const r = { ...raw, title: plainText(raw.title), abstract: plainText(raw.abstract) };
   const n = sampleSize(r.abstract);
+  const fits = (o: OutcomeMatch) => {
+    if (raw.matched && !raw.matched.includes(o.id)) return false;
+    if (!o.title) return !!raw.matched;
+    return (Array.isArray(o.title) ? o.title : [o.title as RegExp]).every((t) => t.test(r.title));
+  };
   return {
     ...r,
     design: designOf(r),
     population: populationOf(r),
     retracted: isRetracted(r),
-    outcomes: outcomes.filter((o) => o.title.test(r.title)).map((o) => o.id),
+    outcomes: outcomes.filter(fits).map((o) => o.id),
     ...(n !== undefined ? { n } : {}),
   };
 }
@@ -135,14 +152,15 @@ export const SEVERAL_SUPPLEMENTS = /\b(dietary|nutritional) supplements?\b|\bsup
  * counts when the topic is in its abstract. A review without an abstract can't be checked for trials,
  * so it is kept for screening rather than dropped.
  */
-export function eligibleReviews(records: readonly Classified[], outcome: string, topicInTitle?: RegExp, excludeTitle?: RegExp): Classified[] {
+export function eligibleReviews(records: readonly Classified[], outcome: string, topicInTitle?: RegExp, excludeTitle?: RegExp, kind: MapKind = "supplement"): Classified[] {
   return records.filter(
     (r) =>
       (r.design === "meta-analysis" || r.design === "systematic review") &&
       r.population !== "animal" &&
       !r.retracted &&
       r.outcomes.includes(outcome) &&
-      (isTrialReview(r) || !r.abstract.trim()) &&
+      // Claims about foods rest on cohort, absorption and food-analysis studies too, so any design counts.
+      (kind === "food" || isTrialReview(r) || !r.abstract.trim()) &&
       (!topicInTitle || topicInTitle.test(r.title) || (SEVERAL_SUPPLEMENTS.test(r.title) && topicInTitle.test(r.abstract))) &&
       // A review of a different group of people (sepsis, surgery, pregnancy...) answers a different question.
       (!excludeTitle || !excludeTitle.test(r.title)),
@@ -167,15 +185,15 @@ export function chooseReviews(records: readonly Classified[], outcome: string, n
 }
 
 /** The same choice from a given pool (for example only the reviews screened as answering the question). */
-export function chooseFrom(pool: readonly Classified[], newest = 3): Chosen[] {
+export function chooseFrom(pool: readonly Classified[], newest = 3, about = "of trials on this outcome"): Chosen[] {
   const byNew = (a: Classified, b: Classified) => (b.year ?? 0) - (a.year ?? 0) || b.citedBy - a.citedBy;
   const metas = pool.filter((r) => r.design === "meta-analysis").sort(byNew);
   const others = pool.filter((r) => r.design !== "meta-analysis").sort(byNew);
   const first = [...metas, ...others].slice(0, newest);
-  const out = first.map((r) => pick(r, `${r.design === "meta-analysis" ? "One of the newest meta-analyses" : "One of the newest systematic reviews"} of trials on this outcome (${r.year ?? "year unknown"})`));
+  const out = first.map((r) => pick(r, `${r.design === "meta-analysis" ? "One of the newest meta-analyses" : "One of the newest systematic reviews"} ${about} (${r.year ?? "year unknown"})`));
   const pooled = (r: Classified) => trialsPooled(r.abstract) ?? 0;
   const widest = [...pool].sort((a, b) => pooled(b) - pooled(a) || (b.year ?? 0) - (a.year ?? 0) || b.citedBy - a.citedBy)[0];
-  if (widest && pooled(widest) > 0 && !first.includes(widest)) out.push(pick(widest, `The most comprehensive review of trials on this outcome (${pooled(widest)} trials, ${widest.year ?? "year unknown"})`));
+  if (widest && pooled(widest) > 0 && !first.includes(widest)) out.push(pick(widest, `The most comprehensive review ${about} (${pooled(widest)} trials, ${widest.year ?? "year unknown"})`));
   return out;
 }
 
@@ -234,7 +252,8 @@ export interface EvidenceMapOutcome {
   id: string;
   label: string;
   finding?: string;
-  counts: { reviews: number; trialReviews: number; trials: number; largeTrials: number };
+  /** `all`: records the outcome's own search found (maps searched claim by claim). */
+  counts: { all?: number; reviews: number; trialReviews: number; trials: number; largeTrials: number };
   chosenReviews: Chosen[];
   newerLargeTrials: Chosen[];
   overlap?: {
@@ -261,7 +280,11 @@ export interface EvidenceMapOutcome {
 
 export interface EvidenceMapFile {
   topic: string;
-  nutrientId: string;
+  /** A supplement map (default) or a map of claims about foods. */
+  kind?: MapKind;
+  /** The nutrient page it belongs to, or the food comparison topic (knowledge/food-comparison). */
+  nutrientId?: string;
+  comparisonId?: string;
   /** The nutrient in sentences ("vitamin D"), and how the search was narrowed, if it was. */
   name: string;
   scope?: string;
@@ -280,7 +303,7 @@ export function validateEvidenceMap(v: unknown): string[] {
   if (typeof v !== "object" || v === null) return ["not an object"];
   const m = v as Partial<EvidenceMapFile>;
   const e: string[] = [];
-  if (typeof m.topic !== "string" || typeof m.nutrientId !== "string" || typeof m.name !== "string") e.push("topic and nutrient are missing");
+  if (typeof m.topic !== "string" || typeof m.name !== "string" || (typeof m.nutrientId !== "string") === (typeof m.comparisonId !== "string")) e.push("topic and nutrient are missing");
   if (typeof m.builtAt !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(m.builtAt)) e.push("builtAt must be a date");
   if (!Array.isArray(m.rules) || m.rules.length === 0) e.push("the rules must be written down");
   if (!m.counts || typeof m.counts.retrieved !== "number") e.push("counts are missing");
@@ -328,24 +351,35 @@ export interface Decision {
   reason: string;
 }
 
-export const questionText = (q: Question) =>
-  `Population: ${q.population}\nIntervention: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
+/**
+ * What a map is about: a supplement (reviews of trials of giving it) or a claim about foods (reviews of
+ * any design: trials, cohort studies, absorption studies, food analyses).
+ */
+export type MapKind = "supplement" | "food";
+
+export const questionText = (q: Question, kind: MapKind = "supplement") =>
+  `Population: ${q.population}\n${kind === "food" ? "Food or exposure" : "Intervention"}: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
 
 /** The prompt for one batch of reviews. Abstracts are shortened; the model judges only what it is given. */
-export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], maxAbstract = 2500): string {
+export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], kind: MapKind = "supplement", maxAbstract = 2500): string {
   const list = reviews
     .filter((r) => r.pmid)
     .map((r) => `PMID ${r.pmid} (${r.year ?? "year unknown"})\nTitle: ${r.title}\nAbstract: ${r.abstract.slice(0, maxAbstract) || "(none)"}`)
     .join("\n\n---\n\n");
+  const food = kind === "food";
   return [
     "You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:",
     "",
-    questionText(q),
+    questionText(q, kind),
     "",
-    'fits = "yes": the review pooled randomised trials matching the population, intervention, comparison and outcome (a separate analysis or subgroup that matches counts).',
-    'fits = "partly": close, but one part differs (for example the vitamin is only given together with something else, a narrower or different group of people, treating an illness instead of preventing it, or the outcome is only a blood marker).',
+    food
+      ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (trials, cohort studies, absorption or feeding studies, analyses of foods) that match the population, food or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
+      : 'fits = "yes": the review pooled randomised trials matching the population, intervention, comparison and outcome (a separate analysis or subgroup that matches counts).',
+    food
+      ? 'fits = "partly": close, but one part differs (for example a supplement instead of the food, a narrower or different group of people, or only one part of the claim).'
+      : 'fits = "partly": close, but one part differs (for example the vitamin is only given together with something else, a narrower or different group of people, treating an illness instead of preventing it, or the outcome is only a blood marker).',
     'fits = "no": a different question.',
-    "Judge only from the title and abstract given. Don't judge whether the supplement works, and don't use outside knowledge about the paper.",
+    `Judge only from the title and abstract given. Don't judge whether ${food ? "the claim is true" : "the supplement works"}, and don't use outside knowledge about the paper.`,
     "",
     'Answer with JSON only, no other text: [{"pmid": "...", "fits": "yes" | "partly" | "no", "reason": "one plain sentence, under 200 characters, saying which part matches or differs"}], one entry per review, in the same order.',
     "",

@@ -1,17 +1,21 @@
 /**
  * The written-down searches behind each evidence map: the terms a paper's title or abstract must
- * contain, and the outcomes the map follows (each tied to a finding on the nutrient's page). Changing a
- * search means changing it here, in review, so every map can be re-run and compared.
+ * contain, and the outcomes the map follows (each tied to a finding on the nutrient's page, or to a claim
+ * in the food comparison). Changing a search means changing it here, in review, so every map can be
+ * re-run and compared.
  */
-import type { Question } from "../../src/core/evidenceMap";
+import type { MapKind, Question } from "../../src/core/evidenceMap";
+import { FOOD_TOPICS } from "./foodTopics";
 
 export interface OutcomeDef {
   id: string;
   label: string;
-  /** The finding on the nutrient page this outcome checks (its `outcome` text). */
+  /** What this outcome checks: a finding on the nutrient page (its `outcome` text), or a food comparison claim's id. */
   finding?: string;
-  /** Words that put a paper on this outcome when they appear in its title (any of them). */
-  title: RegExp;
+  /** Words that put a paper on this outcome when they appear in its title (every pattern must match). */
+  title?: RegExp | RegExp[];
+  /** Food maps: this outcome's own Europe PMC search (query syntax, without SRC:MED). */
+  query?: string;
   /** Reviews with these words in the title are about another group of people or another question. */
   excludeTitle?: RegExp;
   /** The finding's question, for screening each eligible review's abstract (tools/evidence/screen.ts). */
@@ -20,7 +24,11 @@ export interface OutcomeDef {
 
 export interface TopicDef {
   id: string;
-  nutrientId: string;
+  /** "supplement" (default): one search for the nutrient, reviews of trials. "food": a search per claim, reviews of any design. */
+  kind?: MapKind;
+  /** The nutrient page (supplement maps) or the food comparison topic (food maps) the map belongs to. */
+  nutrientId?: string;
+  comparisonId?: string;
   /** In sentences: "records mention calcium". */
   name: string;
   /** Searched in titles and abstracts (any of them). */
@@ -309,4 +317,5 @@ export const TOPICS: TopicDef[] = [
       { id: "blood-sugar", label: "Blood sugar", finding: "Blood sugar (fasting glucose, HbA1c)", title: words(GLUCOSE, "metabolic"), excludeTitle: not("gestational", "pregnan\\w*", "polycystic"), question: q("Adults with or without diabetes", "Zinc supplements", "Fasting blood sugar, HbA1c or insulin resistance") },
     ],
   },
+  ...FOOD_TOPICS,
 ];

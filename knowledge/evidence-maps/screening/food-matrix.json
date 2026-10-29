@@ -1,0 +1,854 @@
+{
+ "topic": "food-matrix",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "animal-matrix-complete": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Animal foods or animal protein",
+    "comparison": "Plant foods or plant protein",
+    "outcome": "Muscle protein synthesis, lean mass, strength, or how well nutrients are digested and absorbed"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42617803",
+     "fits": "partly",
+     "reason": "Compares plant and animal protein on lean mass and handgrip strength, but only in adults aged 50 and over, a narrower group."
+    },
+    {
+     "pmid": "42541706",
+     "fits": "partly",
+     "reason": "Looks at animal and plant protein for lean mass and body composition, but only in pre- and postmenopausal women and mostly not head to head."
+    },
+    {
+     "pmid": "41994089",
+     "fits": "yes",
+     "reason": "Pools trials in adults 18 and over comparing plant and animal protein on lean body mass and muscle strength."
+    },
+    {
+     "pmid": "39813010",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials comparing plant and animal protein on muscle mass and strength, with a subgroup for age."
+    },
+    {
+     "pmid": "33670701",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials in adults comparing animal and plant protein on lean mass and muscle strength."
+    }
+   ]
+  },
+  "nutrient-pill-equals-food": {
+   "question": {
+    "population": "Adults",
+    "intervention": "A nutrient (such as beta-carotene or other antioxidant vitamins) taken as a supplement",
+    "comparison": "The same nutrient eaten in foods, or placebo",
+    "outcome": "Cancer or death, ideally compared between supplement trials and diet studies"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "30475962",
+     "fits": "partly",
+     "reason": "Adults with cancer and mortality outcomes, but the exposure is antioxidant intake from diet or blood levels, not supplements."
+    },
+    {
+     "pmid": "42123930",
+     "fits": "partly",
+     "reason": "Covers antioxidant supplements with recurrence and mortality, but only in breast cancer patients during treatment."
+    },
+    {
+     "pmid": "35405977",
+     "fits": "yes",
+     "reason": "Pools RCTs of beta-carotene supplements in adults without lung cancer at the start and reports lung cancer risk."
+    },
+    {
+     "pmid": "35294044",
+     "fits": "partly",
+     "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+    },
+    {
+     "pmid": "36388168",
+     "fits": "partly",
+     "reason": "Vitamin A from diet or supplements and cancer, but women only, and supplements are pooled with diet rather than compared."
+    },
+    {
+     "pmid": "24040282",
+     "fits": "yes",
+     "reason": "Pools adult RCTs of beta-carotene, vitamin A and vitamin E supplements and reports all-cause mortality."
+    },
+    {
+     "pmid": "28282701",
+     "fits": "partly",
+     "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+    },
+    {
+     "pmid": "18689373",
+     "fits": "yes",
+     "reason": "Pools beta-carotene supplement vs placebo trials and carotenoid intake cohort studies for lung cancer in adults."
+    },
+    {
+     "pmid": "23909722",
+     "fits": "yes",
+     "reason": "Systematically reviews antioxidants from diet and from supplements, including beta-carotene, and prostate cancer risk in men."
+    },
+    {
+     "pmid": "21154399",
+     "fits": "partly",
+     "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+    },
+    {
+     "pmid": "19083131",
+     "fits": "partly",
+     "reason": "Antioxidant vitamins and endometrial cancer, but only intake from food was analysed; supplements were excluded."
+    }
+   ]
+  },
+  "dairy-matrix-cheese": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Eating cheese",
+    "comparison": "Butter or other foods with similar saturated fat, or less cheese",
+    "outcome": "LDL cholesterol or other blood fats"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37717700",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in adults comparing cheese with butter and other dairy on LDL-C and other blood lipids."
+    },
+    {
+     "pmid": "26011901",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in healthy adults comparing hard cheese with butter on LDL-C, HDL-C and triglycerides."
+    },
+    {
+     "pmid": "37655445",
+     "fits": "no",
+     "reason": "Looks at how animal feed supplements change milk and cheese composition, not human blood lipids from eating cheese."
+    },
+    {
+     "pmid": "29672133",
+     "fits": "partly",
+     "reason": "Compares the same foods, including cheese, from animals raised differently on human lipids; the comparison is not butter or less cheese."
+    },
+    {
+     "pmid": "30303968",
+     "fits": "no",
+     "reason": "Looks at dairy fat biomarkers and type 2 diabetes risk, not cheese intake and blood lipids."
+    }
+   ]
+  },
+  "fibre-unnecessary": {
+   "question": {
+    "population": "Adults with or without gut problems (constipation, irritable bowel syndrome)",
+    "intervention": "More fibre, or fibre supplements such as psyllium or bran",
+    "comparison": "Less or no fibre, or placebo",
+    "outcome": "Gut symptoms such as constipation, pain or bloating"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42317046",
+     "fits": "yes",
+     "reason": "Adults with chronic idiopathic constipation; dietary fibre types compared with placebo; outcomes are constipation symptoms such as straining and stool consistency."
+    },
+    {
+     "pmid": "39784686",
+     "fits": "yes",
+     "reason": "It includes a meta-analysis of 16 studies on dietary fibre and constipation in adults; the NHANES carbohydrate-to-fibre ratio analysis is extra."
+    },
+    {
+     "pmid": "37764853",
+     "fits": "yes",
+     "reason": "People with IBS; the fibre part of the review reports fibre supplements reducing bloating and improving stool consistency, alongside other dietary components."
+    },
+    {
+     "pmid": "41525871",
+     "fits": "yes",
+     "reason": "Adults with functional bowel disorders; RCTs of fibre supplements, including psyllium, against controls or placebo; outcomes are symptom severity, pain and bloating."
+    },
+    {
+     "pmid": "38829940",
+     "fits": "partly",
+     "reason": "Chronic constipation is covered, but dietary fibre is only one of many treatments in the network, and no fibre-specific result is reported in the abstract."
+    },
+    {
+     "pmid": "35816465",
+     "fits": "yes",
+     "reason": "Adults with chronic constipation; RCTs of fibre supplements such as psyllium against control; outcomes are constipation response and symptoms."
+    },
+    {
+     "pmid": "30400292",
+     "fits": "partly",
+     "reason": "Fibre against placebo or laxatives for constipation and IBS, but the population is children, not adults."
+    },
+    {
+     "pmid": "25903636",
+     "fits": "yes",
+     "reason": "Adults with chronic constipation or IBS; fibre compared with placebo or alternatives; outcomes are constipation and IBS symptoms."
+    },
+    {
+     "pmid": "33127328",
+     "fits": "partly",
+     "reason": "Fibre against standard care or placebo for gut symptoms, but the population is limited to gynecologic cancer patients having pelvic radiotherapy."
+    },
+    {
+     "pmid": "25070054",
+     "fits": "yes",
+     "reason": "Adults with IBS; fibre supplements, including bran, against placebo or usual management; outcome is IBS symptoms."
+    },
+    {
+     "pmid": "21382232",
+     "fits": "yes",
+     "reason": "People with IBS; studies of psyllium supplementation; outcomes are global symptoms, abdominal pain and flatulence."
+    },
+    {
+     "pmid": "23326148",
+     "fits": "yes",
+     "reason": "Patients with constipation; RCTs of dietary fibre against placebo; outcomes are stool frequency, consistency and painful defecation."
+    },
+    {
+     "pmid": "14984370",
+     "fits": "yes",
+     "reason": "IBS patients; RCTs of soluble and insoluble fibre, including bran, against placebo; outcomes are global symptoms, constipation and abdominal pain."
+    },
+    {
+     "pmid": "21332763",
+     "fits": "yes",
+     "reason": "Adults with chronic idiopathic constipation; fibre compared with placebo or no therapy; outcomes are global symptoms, straining, pain and stool consistency."
+    }
+   ]
+  },
+  "nutrient-list-tells-all": {
+   "question": {
+    "population": "People",
+    "intervention": "Whole foods, with their structure and compounds that food tables don't measure",
+    "comparison": "What the food's nutrient list predicts, or the isolated nutrients",
+    "outcome": "Energy or nutrients absorbed, or effects on health"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40803102",
+     "fits": "partly",
+     "reason": "Subgroups compare fiber-rich whole foods with isolated fibers on glucose outcomes, but each is tested against placebo and only in overweight/obese adults."
+    },
+    {
+     "pmid": "41655947",
+     "fits": "partly",
+     "reason": "Measures energy absorbed by bomb calorimetry and finds nuts and high-fiber diets lower it, but does not compare against nutrient-table predictions."
+    },
+    {
+     "pmid": "42909331",
+     "fits": "no",
+     "reason": "A bibliometric mapping of publications on ultra-processed food, not a systematic review of study findings."
+    },
+    {
+     "pmid": "36934832",
+     "fits": "yes",
+     "reason": "Reviews human and in vitro studies showing nut metabolizable energy is lower than Atwater-factor predictions, an energy-absorption outcome."
+    },
+    {
+     "pmid": "36796437",
+     "fits": "yes",
+     "reason": "Pools RCTs comparing whole polyphenol-rich foods with purified polyphenol extracts on cardiometabolic health markers."
+    },
+    {
+     "pmid": "32731580",
+     "fits": "partly",
+     "reason": "Reviews whole foods and muscle health in older adults, but does not compare them with isolated nutrients or nutrient-based predictions."
+    },
+    {
+     "pmid": "35322333",
+     "fits": "no",
+     "reason": "Examines ultra-processed food intake and obesity in children, with no comparison to nutrient content or isolated nutrients."
+    }
+   ]
+  },
+  "fibre-whole-foods": {
+   "question": {
+    "population": "Adults in the general population",
+    "intervention": "More fibre or whole grains from food",
+    "comparison": "Less fibre or fewer whole grains",
+    "outcome": "Heart disease, stroke, type 2 diabetes, bowel cancer or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "36789934",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies in the general population linking whole grain intake to coronary heart disease, stroke, CVD and all-cause death."
+    },
+    {
+     "pmid": "38165561",
+     "fits": "partly",
+     "reason": "Fibre intake and death or CVD match, but the population is limited to people with chronic kidney disease."
+    },
+    {
+     "pmid": "37196565",
+     "fits": "yes",
+     "reason": "Meta-analysis of studies relating higher dietary fibre intake, including cereal fibre, to stroke risk."
+    },
+    {
+     "pmid": "38011755",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies on dietary fibre, including whole grain fibre, and all-cause and CVD death."
+    },
+    {
+     "pmid": "37854351",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies on total and cereal fibre intake and all-cause and CVD death."
+    },
+    {
+     "pmid": "39473074",
+     "fits": "no",
+     "reason": "Covers pregnant women who already have diabetes, with blood sugar control as the outcome rather than disease or death."
+    },
+    {
+     "pmid": "37997693",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies in the general population on total and cereal fibre and all-cause and CVD death."
+    },
+    {
+     "pmid": "39295498",
+     "fits": "no",
+     "reason": "Covers diabetes management in people who already have diabetes, with HbA1c and lipids as outcomes rather than disease or death."
+    },
+    {
+     "pmid": "36811560",
+     "fits": "no",
+     "reason": "Covers fibre supplements in people with type 2 diabetes, with blood sugar and lipid outcomes."
+    },
+    {
+     "pmid": "37720378",
+     "fits": "no",
+     "reason": "Covers viscous fibre supplements in type 2 diabetes patients, with blood sugar and lipid outcomes."
+    },
+    {
+     "pmid": "36780863",
+     "fits": "yes",
+     "reason": "Umbrella review of meta-analyses on whole grain and dietary fibre intake and cardiovascular disease, including stroke."
+    },
+    {
+     "pmid": "34854791",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing highest with lowest dietary fibre intake and colorectal cancer risk."
+    },
+    {
+     "pmid": "32933853",
+     "fits": "partly",
+     "reason": "Trials of whole grains versus refined grains in adults, but the outcomes are CVD risk factors, not disease events or death."
+    },
+    {
+     "pmid": "31495339",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies on cereal and other fibre sources and colorectal cancer."
+    },
+    {
+     "pmid": "35449060",
+     "fits": "partly",
+     "reason": "Fibre intake and death match, but the population is people who already have CVD or hypertension."
+    },
+    {
+     "pmid": "33113929",
+     "fits": "no",
+     "reason": "Covers type 2 diabetes patients, with gut microbiota and blood sugar outcomes rather than disease or death."
+    },
+    {
+     "pmid": "29091078",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies on whole grain intake and all-cause, CVD and cancer death."
+    },
+    {
+     "pmid": "34073366",
+     "fits": "no",
+     "reason": "Covers type 2 diabetes patients, with gut microbiota, lipid and inflammation outcomes."
+    },
+    {
+     "pmid": "28140323",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies on whole grain intake and all-cause and CVD death."
+    },
+    {
+     "pmid": "33162192",
+     "fits": "no",
+     "reason": "Covers soluble fibre supplements in adults with type 2 diabetes, with blood sugar control outcomes."
+    },
+    {
+     "pmid": "36172520",
+     "fits": "partly",
+     "reason": "Higher fibre intake matches, but outcomes are risk factors (glucose, lipids, BP, inflammation), not disease or death, and supplements are included."
+    },
+    {
+     "pmid": "27301975",
+     "fits": "yes",
+     "reason": "Pooled prospective studies of whole grain intake and coronary heart disease, stroke, CVD, cancer and all-cause mortality."
+    },
+    {
+     "pmid": "27193606",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of cereal fibre intake and all-cause, CVD and cancer mortality."
+    },
+    {
+     "pmid": "22074852",
+     "fits": "yes",
+     "reason": "Pooled prospective studies of dietary fibre and whole grain intake and colorectal cancer risk."
+    },
+    {
+     "pmid": "28836672",
+     "fits": "partly",
+     "reason": "Whole grain diet RCTs sought mortality and CV events but found none; results cover only risk factors, and some participants had CVD."
+    },
+    {
+     "pmid": "27537552",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of whole grain intake and all-cause, CVD, CHD, stroke and diabetes mortality."
+    },
+    {
+     "pmid": "32142510",
+     "fits": "partly",
+     "reason": "Fibre intake and mortality match, but the population is limited to adults with prediabetes or diabetes."
+    },
+    {
+     "pmid": "26021487",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts on dietary fibre intake and type 2 diabetes incidence."
+    },
+    {
+     "pmid": "24158434",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of whole grain versus refined grain intake and type 2 diabetes risk."
+    },
+    {
+     "pmid": "24389767",
+     "fits": "yes",
+     "reason": "Pooled prospective studies of dietary fibre intake and type 2 diabetes risk."
+    },
+    {
+     "pmid": "27225432",
+     "fits": "yes",
+     "reason": "Pooled prospective studies of whole grain intake and total, CVD and cancer mortality."
+    },
+    {
+     "pmid": "26098118",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of observational studies of whole grain intake and type 2 diabetes occurrence."
+    },
+    {
+     "pmid": "32070285",
+     "fits": "partly",
+     "reason": "Whole grain diet RCTs, but only in obese or overweight adults, and outcomes are weight and CVD risk factors, not disease."
+    },
+    {
+     "pmid": "27215285",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of whole grain intake and all-cause, CVD and cancer mortality."
+    },
+    {
+     "pmid": "31110080",
+     "fits": "partly",
+     "reason": "Pooled whole grain and CVD studies, but the main question is whether industry ties affect results, not the effect itself."
+    },
+    {
+     "pmid": "30617143",
+     "fits": "no",
+     "reason": "Viscous fibre supplements for glycaemic markers in people who already have type 2 diabetes, not food fibre and disease risk."
+    },
+    {
+     "pmid": "26711548",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of dietary fibre intake and CVD, CHD and cancer mortality."
+    },
+    {
+     "pmid": "24355537",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of dietary fibre intake and cardiovascular and coronary heart disease."
+    },
+    {
+     "pmid": "27566558",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of whole grain intake and all-cause mortality."
+    },
+    {
+     "pmid": "18254091",
+     "fits": "yes",
+     "reason": "Systematically reviewed cohort studies and a trial of whole grain foods or cereal fibre and type 2 diabetes incidence."
+    },
+    {
+     "pmid": "19306224",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies in adults linking whole grain intake to colorectal cancer risk."
+    },
+    {
+     "pmid": "25382817",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing high vs low dietary fibre with all-cause, CVD and CHD mortality."
+    },
+    {
+     "pmid": "22218620",
+     "fits": "no",
+     "reason": "Looks at people who already have type 2 diabetes, often given fibre supplements, and measures blood sugar control, not disease or death."
+    },
+    {
+     "pmid": "28064440",
+     "fits": "partly",
+     "reason": "Fibre trials include colorectal cancer as an outcome, but only in people with past adenomas, and some use fibre supplements."
+    },
+    {
+     "pmid": "26758499",
+     "fits": "partly",
+     "reason": "Fibre trials in general or at-risk adults aimed at CVD prevention, but no trial reported heart events or deaths, only risk factors."
+    },
+    {
+     "pmid": "23430035",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking higher vs lower dietary fibre to stroke risk and stroke death."
+    },
+    {
+     "pmid": "24216326",
+     "fits": "partly",
+     "reason": "Pools studies of dietary fibre, but the outcome is colorectal adenoma, a precancerous growth, not bowel cancer itself."
+    },
+    {
+     "pmid": "27297341",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking whole grain intake to deaths from all causes, CVD and cancer."
+    },
+    {
+     "pmid": "24929874",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking high vs low dietary fibre to coronary heart disease incidence and death."
+    },
+    {
+     "pmid": "25727082",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort and case-control studies linking high vs low whole grain intake to coronary heart disease."
+    },
+    {
+     "pmid": "23539529",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies in healthy people linking dietary fibre intake to first stroke."
+    },
+    {
+     "pmid": "25143474",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking high vs low dietary fibre to death from all causes."
+    },
+    {
+     "pmid": "25552267",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking higher dietary fibre intake to lower death from all causes."
+    },
+    {
+     "pmid": "23073261",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking high vs low dietary fibre to stroke risk."
+    },
+    {
+     "pmid": "17443567",
+     "fits": "partly",
+     "reason": "Whole grain trials only in people with heart disease or its risk factors, and none reported heart events or deaths, only cholesterol."
+    },
+    {
+     "pmid": "20407088",
+     "fits": "partly",
+     "reason": "Fibre and colorectal cancer match, but this is one nested case-control study within UK cohorts, not a systematic review."
+    },
+    {
+     "pmid": "17760498",
+     "fits": "yes",
+     "reason": "Cohort study plus systematic review of cohort studies linking whole grain intake to type 2 diabetes risk."
+    },
+    {
+     "pmid": "10875600",
+     "fits": "yes",
+     "reason": "Systematic review of studies on dietary fibre and whole grain foods and coronary heart disease risk."
+    },
+    {
+     "pmid": "17502538",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies linking fibre intake, including cereal fibre, to type 2 diabetes risk."
+    },
+    {
+     "pmid": "12076480",
+     "fits": "partly",
+     "reason": "Fibre trials include colorectal cancer as an outcome, but only in people with past adenomas, and some use fibre supplements."
+    }
+   ]
+  },
+  "red-processed-meat-cancer": {
+   "question": {
+    "population": "Adults in the general population",
+    "intervention": "Eating red or processed meat",
+    "comparison": "Eating less or none",
+    "outcome": "Colorectal (bowel) cancer"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "28205448",
+     "fits": "partly",
+     "reason": "Red/processed meat and colon cancer match, but it reviewed animal and cell-culture studies, not adults in the general population."
+    },
+    {
+     "pmid": "40552180",
+     "fits": "partly",
+     "reason": "Red/processed meat intake and colorectal cancer match, but it covers only Asian populations, a narrower group."
+    },
+    {
+     "pmid": "41461573",
+     "fits": "yes",
+     "reason": "It pooled cohort and case-control studies of red and processed meat intake and colorectal cancer risk."
+    },
+    {
+     "pmid": "40795254",
+     "fits": "partly",
+     "reason": "Red/processed meat intake matches, but the outcome is precancerous lesions (adenomas, polyps), not colorectal cancer itself."
+    },
+    {
+     "pmid": "40210826",
+     "fits": "yes",
+     "reason": "It pooled 60 prospective studies of red and processed meat intake and colorectal, colon and rectal cancer."
+    },
+    {
+     "pmid": "40773080",
+     "fits": "yes",
+     "reason": "It pooled studies of red meat types (beef, pork, lamb) and colorectal cancer risk in the general population."
+    },
+    {
+     "pmid": "38924054",
+     "fits": "yes",
+     "reason": "It pooled observational studies comparing high and low red/processed meat intake, with colorectal cancer among the outcomes."
+    },
+    {
+     "pmid": "42130892",
+     "fits": "yes",
+     "reason": "This umbrella review of processed meat intake includes colorectal cancer as an outcome."
+    },
+    {
+     "pmid": "34455534",
+     "fits": "yes",
+     "reason": "It pooled prospective studies of red and processed meat intake, with colorectal cancer among the outcomes."
+    },
+    {
+     "pmid": "37612616",
+     "fits": "yes",
+     "reason": "It pooled cohorts of red and processed meat intake and gastrointestinal cancers, including colorectal cancer."
+    },
+    {
+     "pmid": "37774211",
+     "fits": "partly",
+     "reason": "Red meat intake and colorectal cancer match, but it covers only East Asian populations, a narrower group."
+    },
+    {
+     "pmid": "37904117",
+     "fits": "no",
+     "reason": "This is a healthcare cost model for colorectal cancer attributable to meat in Brazil, not a review of studies of the link."
+    },
+    {
+     "pmid": "38337709",
+     "fits": "no",
+     "reason": "This is a single feeding study of genetic effects on colon genotoxicity markers, not a review with colorectal cancer as the outcome."
+    },
+    {
+     "pmid": "33838606",
+     "fits": "yes",
+     "reason": "This umbrella review of red and processed meat intake and cancer outcomes includes colorectal cancer."
+    },
+    {
+     "pmid": "38521239",
+     "fits": "yes",
+     "reason": "It meta-analysed cohort studies of red and processed meat intake and colorectal cancer, including low versus no intake."
+    },
+    {
+     "pmid": "36014940",
+     "fits": "no",
+     "reason": "It reviews dairy, fish, white meat and eggs, not red or processed meat, in relation to colorectal cancer."
+    },
+    {
+     "pmid": "24842864",
+     "fits": "partly",
+     "reason": "Red/processed meat intake and colorectal cancer match, but it covers only the Japanese population, a narrower group."
+    },
+    {
+     "pmid": "32029911",
+     "fits": "yes",
+     "reason": "It pooled prospective cohorts of processed meat intake and colorectal cancer, comparing high and low intake."
+    },
+    {
+     "pmid": "31569214",
+     "fits": "yes",
+     "reason": "It pooled cohorts of adults on reducing red/processed meat intake and cancer, with colorectal cancer among the outcomes."
+    },
+    {
+     "pmid": "26305323",
+     "fits": "partly",
+     "reason": "Processed/red meat and colorectal cancer match, but it pools only two cohorts of US health professionals, not a systematic review."
+    },
+    {
+     "pmid": "31569236",
+     "fits": "yes",
+     "reason": "Trials in adults comparing lower vs higher red meat intake, with colorectal cancer incidence among the reported outcomes."
+    },
+    {
+     "pmid": "26683305",
+     "fits": "partly",
+     "reason": "Pools red/processed meat and colorectal cancer studies, but only in Japanese and African Americans, focused on NAT2 genotype interaction."
+    },
+    {
+     "pmid": "21209396",
+     "fits": "partly",
+     "reason": "Pools cohort studies of heme iron, a meat component, rather than red or processed meat itself, and colon cancer."
+    },
+    {
+     "pmid": "23380943",
+     "fits": "partly",
+     "reason": "Red and processed meat intake in general population, but outcome is colorectal adenomas rather than colorectal cancer."
+    },
+    {
+     "pmid": "16991129",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of red and processed meat intake vs lower intake and colorectal cancer risk."
+    },
+    {
+     "pmid": "25941850",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts on red meat intake and colorectal cancer, high vs low intake and dose-response."
+    },
+    {
+     "pmid": "25583132",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of red meat subtypes (beef, lamb, pork) high vs low intake and colorectal cancer."
+    },
+    {
+     "pmid": "21674008",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of red and processed meat, highest vs lowest intake, and colorectal cancer incidence."
+    },
+    {
+     "pmid": "21540747",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of high vs low red meat intake and colorectal cancer."
+    },
+    {
+     "pmid": "11857415",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of red and processed meat intake, highest vs lowest, and colorectal cancer risk."
+    },
+    {
+     "pmid": "20495462",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of high vs low processed meat intake and colorectal cancer."
+    },
+    {
+     "pmid": "11352852",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts on red, processed and all meat intake and colorectal cancer risk."
+    },
+    {
+     "pmid": "10954254",
+     "fits": "partly",
+     "reason": "Reviews meat (including beef/red meat) intake, but outcome is colorectal adenomas/polyps rather than colorectal cancer."
+    }
+   ]
+  },
+  "fruit-veg-mortality": {
+   "question": {
+    "population": "Adults in the general population",
+    "intervention": "Eating more fruit and vegetables",
+    "comparison": "Eating less",
+    "outcome": "Heart disease, stroke or death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40105674",
+     "fits": "partly",
+     "reason": "Fruit and vegetable intake and death from any cause or heart disease match, but the review only included people with type 2 diabetes."
+    },
+    {
+     "pmid": "33000670",
+     "fits": "yes",
+     "reason": "Pooled cohort studies of adults on fruit and vegetable intake and getting or dying from heart disease, coronary heart disease and stroke."
+    },
+    {
+     "pmid": "33641343",
+     "fits": "yes",
+     "reason": "Meta-analysis of 26 cohort studies of US men and women on fruit and vegetable intake and death from any cause or heart disease."
+    },
+    {
+     "pmid": "28338764",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of prospective studies on fruit and vegetable intake and coronary heart disease, stroke, heart disease and death."
+    },
+    {
+     "pmid": "39217534",
+     "fits": "no",
+     "reason": "Looks at produce prescription programs and food security or heart risk factors, not heart disease, stroke or death."
+    },
+    {
+     "pmid": "28475799",
+     "fits": "no",
+     "reason": "Covers adolescents, not adults, and measures heart risk factors such as blood pressure instead of heart disease, stroke or death."
+    },
+    {
+     "pmid": "25073782",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies on fruit and vegetable intake and death from any cause or heart disease."
+    },
+    {
+     "pmid": "31889199",
+     "fits": "partly",
+     "reason": "Trials of eating more fruit and vegetables, but outcomes are heart risk factors such as blood fats and blood pressure, not heart disease events or death."
+    },
+    {
+     "pmid": "23736950",
+     "fits": "yes",
+     "reason": "Trials of advice or supplying fruit and vegetables in healthy adults, with heart disease events, stroke and death as outcomes."
+    },
+    {
+     "pmid": "26114864",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing high and low fruit and vegetable intake for heart disease risk."
+    },
+    {
+     "pmid": "25662075",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing high and low fruit and vegetable intake for coronary heart disease risk."
+    },
+    {
+     "pmid": "17443205",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing more and fewer daily servings of fruit and vegetables for coronary heart disease risk."
+    },
+    {
+     "pmid": "24811336",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing high and low fruit and vegetable intake for stroke risk."
+    },
+    {
+     "pmid": "16988131",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies on extra daily portions of fruit and vegetables and coronary heart disease or death."
+    },
+    {
+     "pmid": "16247045",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies on extra daily portions of fruit and vegetables and stroke risk."
+    },
+    {
+     "pmid": "16443039",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing more and fewer daily servings of fruit and vegetables for stroke risk."
+    },
+    {
+     "pmid": "9725654",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing high and low fruit and vegetable intake, plus some nutrient markers, for ischaemic heart disease."
+    }
+   ]
+  }
+ }
+}

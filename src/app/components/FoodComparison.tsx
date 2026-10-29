@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { ComparisonClaim, ComparisonTopic, Verdict } from "../../core/foodComparison";
 import { FOOD_COMPARISON } from "../knowledge";
+import { EvidenceMap, hasEvidenceMap } from "./EvidenceMap";
 import { GradeBadge, StudyLink } from "./evidence";
 import { Glance } from "./glance";
 import { segBtn } from "./timeControls";
@@ -28,8 +29,19 @@ const VERDICT: Record<Verdict, { mark: string; className: string }> = {
  */
 export function FoodComparison() {
   const [topic, setTopic] = useState<ComparisonTopic>(FOOD_COMPARISON[0]?.topic ?? "matrix");
+  // The evidence map below the claims: open, and on which claim.
+  const [mapOpen, setMapOpen] = useState(false);
+  const [mapClaim, setMapClaim] = useState<string>();
+  const mapRef = useRef<HTMLDetailsElement>(null);
   if (FOOD_COMPARISON.length === 0) return null;
   const current = FOOD_COMPARISON.find((t) => t.topic === topic) ?? FOOD_COMPARISON[0]!;
+  const mapId = `food-${current.topic}`;
+  const hasMap = hasEvidenceMap(mapId);
+  const showMap = (claimId: string) => {
+    setMapClaim(claimId);
+    setMapOpen(true);
+    requestAnimationFrame(() => mapRef.current?.scrollIntoView({ block: "start" }));
+  };
   return (
     <Card className="flex flex-col gap-4">
       <div>
@@ -48,7 +60,10 @@ export function FoodComparison() {
             role="tab"
             type="button"
             aria-selected={t.topic === current.topic}
-            onClick={() => setTopic(t.topic)}
+            onClick={() => {
+              setTopic(t.topic);
+              setMapClaim(undefined);
+            }}
             className={cx(segBtn, "px-3", t.topic === current.topic ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
           >
             {HEADING[t.topic]}
@@ -76,11 +91,29 @@ export function FoodComparison() {
         <ul className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2">
           {current.claims.map((c) => (
             <li key={c.id}>
-              <Claim c={c} />
+              <Claim c={c} onShowMap={hasMap ? () => showMap(c.id) : undefined} />
             </li>
           ))}
         </ul>
       </div>
+      {hasMap && (
+        <details
+          ref={mapRef}
+          open={mapOpen}
+          onToggle={(e) => setMapOpen(e.currentTarget.open)}
+          className="scroll-mt-6 border-t border-line pt-2"
+        >
+          <summary className="min-h-11 cursor-pointer py-2 font-serif text-xl">How the evidence for these claims was found</summary>
+          {mapOpen && (
+            <EvidenceMap
+              key={`${mapId}-${mapClaim ?? ""}`}
+              mapId={mapId}
+              outcome={mapClaim}
+              citedTitles={Object.fromEntries(current.claims.flatMap((c) => c.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))}
+            />
+          )}
+        </details>
+      )}
       <p className="text-sm text-ink-2">
         Verdicts and grades are a first draft, checked against the cited studies but not reviewed by a clinician. Absorption and lab studies can
         be precise about absorption and still say little about long-term health.
@@ -89,7 +122,7 @@ export function FoodComparison() {
   );
 }
 
-function Claim({ c }: { c: ComparisonClaim }) {
+function Claim({ c, onShowMap }: { c: ComparisonClaim; onShowMap?: () => void }) {
   const v = VERDICT[c.verdict];
   return (
     <article id={`claim-${c.id}`} tabIndex={-1} className="flex scroll-mt-6 flex-col gap-2 rounded-lg border border-line p-3 outline-none">
@@ -125,6 +158,11 @@ function Claim({ c }: { c: ComparisonClaim }) {
             </li>
           ))}
         </ul>
+        {onShowMap && (
+          <button type="button" onClick={onShowMap} className="mt-2 min-h-11 text-sm text-accent">
+            How the evidence for this claim was found
+          </button>
+        )}
       </details>
     </article>
   );
