@@ -235,3 +235,24 @@ export function validateMeal(v: unknown, db?: FoodDb): string[] {
 export function coverage(db: FoodDb): Record<string, number> {
   return Object.fromEntries(db.keys.map((k, i) => [k, db.foods.filter((f) => f[2][i] !== null && f[2][i] !== undefined).length]));
 }
+
+/**
+ * The day's EU reference values for a nutrient, for showing next to a supplement (Protocols): the
+ * intake for this person (or, when it depends on sex and sex is unknown, the men's and women's
+ * values), and the tolerable upper limit. Population values, never a dose.
+ */
+export function dailyReference(n: NutrientDef, person: { sex?: Sex; age?: number }): {
+  intake?: { amount: number; unit: string; type: "PRI" | "AI"; group: string };
+  bySex?: { men: { amount: number; unit: string }; women: { amount: number; unit: string } };
+  upperLimit?: { amount: number; unit: string; note: string };
+} {
+  const intake = adultReference(n, person);
+  let bySex: { men: { amount: number; unit: string }; women: { amount: number; unit: string } } | undefined;
+  if (!intake) {
+    const men = adultReference(n, { ...person, sex: "m" });
+    const women = adultReference(n, { ...person, sex: "f" });
+    if (men && women) bySex = { men: { amount: men.amount, unit: men.unit }, women: { amount: women.amount, unit: women.unit } };
+  }
+  const ul = n.reference.upperLimit;
+  return { ...(intake ? { intake } : {}), ...(bySex ? { bySex } : {}), ...(ul ? { upperLimit: { amount: ul.amount, unit: ul.unit, note: ul.note } } : {}) };
+}

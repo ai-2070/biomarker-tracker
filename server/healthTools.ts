@@ -19,7 +19,7 @@ import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
 import { PLAN_TIMES, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime } from "../src/core/plans";
-import { mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
+import { dailyReference, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
 import { findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
@@ -261,7 +261,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     get_protocols: tool({
       description:
-        "The person's protocols (Protocols page): named sets of supplements, foods, exercise, sleep habits or medicines they follow or plan to, each item with their own amount and time of day, and whether the protocol is running (started as habits). Supplements are linked to the vitamins and minerals knowledge base, with interactions between items. Amounts are the person's own entries: never change them or suggest new ones.",
+        "The person's protocols (Protocols page): named sets of supplements, foods, exercise, sleep habits or medicines they follow or plan to, each item with their own amount and time of day, and whether the protocol is running (started as habits). Supplements are linked to the vitamins and minerals knowledge base, with the EU (EFSA) reference intake and upper limit for this person (population values, from all food; never a dose) and interactions between items. Amounts are the person's own entries: never change them or suggest new ones.",
       inputSchema: z.object({}),
       execute: async () => {
         const { nutrients } = knowledge();
@@ -277,7 +277,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
               type: i.category,
               when: i.when,
               ...(i.note ? { note: i.note } : {}),
-              ...(nutrientFor(i, nutrients) ? { nutrient: nutrientFor(i, nutrients)!.name } : {}),
+              ...(nutrientFor(i, nutrients) ? { nutrient: nutrientFor(i, nutrients)!.name, euReferenceForThisPerson: dailyReference(nutrientFor(i, nutrients)!, { sex: s.profile.sex, age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined }) } : {}),
             })),
             interactionsBetweenItems: pairWarnings(p, nutrients),
           })),
