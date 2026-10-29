@@ -6,7 +6,8 @@ import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
 import { Brain } from "../brain/Brain";
 import { openBrain, useBrain } from "../brain/store";
-import { AgeIcon, BookIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, BodyIcon } from "./icons";
+import { AgeIcon, BookIcon, BrainIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, StarIcon, BodyIcon } from "./icons";
+import { REPO_URL } from "./settings/AboutSettings";
 import { ProfileMenu } from "./ProfileMenu";
 import { buttonStyles, cx } from "./ui";
 
@@ -85,6 +86,26 @@ function NavGroups({ route, onNavigate }: { route: Route; onNavigate?: () => voi
   );
 }
 
+/** The project on GitHub, with a star. A plain link: nothing is fetched (no star count). */
+function GitHubLink() {
+  return (
+    <a
+      href={REPO_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex min-h-11 items-center gap-3 rounded-lg px-3 text-[15px] text-ink-2 no-underline transition-colors duration-150 hover:bg-sunken hover:text-ink"
+    >
+      <GitHubIcon />
+      <span className="flex-1">GitHub</span>
+      <span className="flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-xs font-medium">
+        <StarIcon width={14} height={14} />
+        Star
+      </span>
+      <span className="sr-only">(opens in a new tab)</span>
+    </a>
+  );
+}
+
 function Sidebar({ route }: { route: Route }) {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-line bg-surface lg:flex">
@@ -103,6 +124,7 @@ function Sidebar({ route }: { route: Route }) {
           Add results
         </a>
         <SidebarLink item={SETTINGS} route={route} />
+        <GitHubLink />
       </div>
     </aside>
   );
@@ -162,6 +184,7 @@ function BottomTabs({ route }: { route: Route }) {
             <NavGroups route={route} onNavigate={() => setOpen(false)} />
             <div className="mt-4 flex flex-col gap-1 border-t border-line pt-3">
               <SidebarLink item={SETTINGS} route={route} onNavigate={() => setOpen(false)} />
+              <GitHubLink />
             </div>
           </Dialog.Popup>
         </Dialog.Portal>
