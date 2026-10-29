@@ -104,6 +104,25 @@ export const FOOD_NAMES: readonly [typed: string, table: string][] = [
   ["beet", "beetroot"],
 ];
 
+/**
+ * Where another name leads to a food that isn't quite what people mean by it, a note shown beside it.
+ * The table's "plain chocolate" (the old British name for dark chocolate) is the sweet kind, not a 70–85%
+ * cocoa bar.
+ */
+export const FOOD_NAME_NOTES: readonly { typed: string; food: string; note: string }[] = [
+  {
+    typed: "dark chocolate",
+    food: "Chocolate, plain",
+    note: "The UK name for dark chocolate, but the sweet kind: 62.6 g sugar per 100 g in the table. Bars with 70% cocoa or more have far less sugar and more iron, magnesium and fibre, so for those the label is a better guide.",
+  },
+];
+
+/** The note for a food found by another name, if there is one. */
+export function foodNameNote(query: string, foodName: string): string | undefined {
+  const padded = ` ${norm(query)} `;
+  return FOOD_NAME_NOTES.find((x) => x.food === foodName && padded.includes(` ${x.typed} `))?.note;
+}
+
 const tableWords = (q: string): string[] => {
   const out = [q];
   const padded = ` ${q} `;

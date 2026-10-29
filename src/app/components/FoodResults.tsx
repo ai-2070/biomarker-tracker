@@ -1,4 +1,4 @@
-import { closestFoods, searchFoods, type FoodDb } from "../../core/meals";
+import { closestFoods, foodNameNote, searchFoods, type FoodDb } from "../../core/meals";
 
 /**
  * Food search results (the meal builder and the intake analyzer). When no food has every word, it says the
@@ -25,7 +25,10 @@ export function FoodResults({ db, query, limit, action, onPick }: { db: FoodDb |
           {list.map((f) => (
             <li key={f.id}>
               <button type="button" onClick={() => onPick(f)} className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-sunken">
-                <span>{f.name}</span>
+                <span>
+                  {f.name}
+                  {foodNameNote(query, f.name) && <span className="mt-0.5 block text-sm text-warn">{foodNameNote(query, f.name)}</span>}
+                </span>
                 <span className="shrink-0 text-sm text-accent">{action}</span>
               </button>
             </li>
