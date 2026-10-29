@@ -1,0 +1,603 @@
+{
+ "topic": "creatine",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "depression": {
+   "question": {
+    "population": "Adults with or without depression",
+    "intervention": "Creatine, alone or with an antidepressant",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Depressive symptoms"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41189312",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of creatine versus placebo in people with or without depression, with depressive symptoms as the outcome; all four parts match."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Adults, healthy or with an illness",
+    "intervention": "Creatine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Memory and thinking"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41558805",
+     "fits": "no",
+     "reason": "Looks at psychiatric symptoms of depression and bipolar disorder, mostly with creatine added to other treatment, not at memory or thinking."
+    },
+    {
+     "pmid": "39070254",
+     "fits": "yes",
+     "reason": "Pools RCTs of creatine vs control in healthy and ill adults, with meta-analysed memory, attention and processing speed outcomes."
+    },
+    {
+     "pmid": "35984306",
+     "fits": "yes",
+     "reason": "Pools RCTs of creatine vs placebo on memory in healthy people, with a separate older-adult subgroup that matches."
+    },
+    {
+     "pmid": "29704637",
+     "fits": "yes",
+     "reason": "Reviews RCTs of oral creatine on memory and thinking in healthy people, including adults, though without a meta-analysis."
+    },
+    {
+     "pmid": "42039906",
+     "fits": "no",
+     "reason": "This is a commentary on a review with no abstract, not a systematic review that pooled trials itself."
+    },
+    {
+     "pmid": "36644917",
+     "fits": "no",
+     "reason": "This is a letter criticising the statistics of a creatine memory meta-analysis, not a systematic review itself."
+    },
+    {
+     "pmid": "36644912",
+     "fits": "no",
+     "reason": "This is an author's reply to a letter, with no abstract, not a systematic review that pooled trials."
+    },
+    {
+     "pmid": "34370563",
+     "fits": "partly",
+     "reason": "Creatine vs placebo for cognition is covered, but only in healthy adults, among many supplements, and with no clear pooled analysis."
+    }
+   ]
+  },
+  "body-weight": {
+   "question": {
+    "population": "Healthy adults",
+    "intervention": "Creatine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Body weight, body water or body fat"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40647180",
+     "fits": "no",
+     "reason": "Compares creatine plus β-alanine against either supplement alone, not against placebo, so it asks about the combination rather than creatine itself."
+    },
+    {
+     "pmid": "39042054",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of creatine supplementation pooling body mass, fat-free mass and body fat percentage."
+    },
+    {
+     "pmid": "39441446",
+     "fits": "partly",
+     "reason": "Pools RCTs of creatine versus placebo on body composition, but only in swimmers, a narrower group than healthy adults."
+    },
+    {
+     "pmid": "36000773",
+     "fits": "partly",
+     "reason": "Placebo-controlled RCTs in healthy subjects on body composition, but only alternative creatine forms, not monohydrate, and results not clearly pooled."
+    },
+    {
+     "pmid": "12945830",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised placebo-controlled creatine studies in humans, calculating effect sizes for body mass and lean body mass."
+    },
+    {
+     "pmid": "40536429",
+     "fits": "partly",
+     "reason": "Creatine vs placebo with body weight and fat outcomes, but the participants are cancer patients or survivors, not healthy adults, and results were not pooled."
+    },
+    {
+     "pmid": "33467377",
+     "fits": "partly",
+     "reason": "Pooled trials of creatine vs placebo on fat mass, but only in adults aged 50 or over, and creatine was always given alongside resistance training."
+    }
+   ]
+  },
+  "endurance": {
+   "question": {
+    "population": "Trained adults",
+    "intervention": "Creatine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Endurance performance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41901084",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in trained athletes that includes creatine and reports endurance performance as an outcome."
+    },
+    {
+     "pmid": "42384726",
+     "fits": "partly",
+     "reason": "Creatine vs placebo RCTs in adult athletes, but the endurance outcomes reported are muscular endurance and repeated sprints, not aerobic endurance."
+    },
+    {
+     "pmid": "36877404",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of creatine monohydrate on endurance performance in a trained population, which matches every part of the question."
+    },
+    {
+     "pmid": "41323837",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in training athletes that compares creatine with placebo and includes endurance performance as an outcome."
+    }
+   ]
+  },
+  "strength-older": {
+   "question": {
+    "population": "Adults over about 55",
+    "intervention": "Creatine with resistance training",
+    "comparison": "Placebo with the same training",
+    "outcome": "Muscle strength and lean mass"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42141930",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled RCTs with an RT subgroup and lean mass and strength outcomes, but only in postmenopausal women (mean age about 62)."
+    },
+    {
+     "pmid": "42712402",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults aged 60+ comparing creatine plus RT with RT alone or placebo plus RT, measuring muscle strength and muscle mass."
+    },
+    {
+     "pmid": "41901084",
+     "fits": "no",
+     "reason": "Network meta-analysis in trained athletes comparing protein, creatine and omega-3; not about older adults."
+    },
+    {
+     "pmid": "42027564",
+     "fits": "no",
+     "reason": "Pooled trials in young men aged 18-30, not older adults."
+    },
+    {
+     "pmid": "40944139",
+     "fits": "partly",
+     "reason": "Creatine plus RT vs placebo with an older-adult subgroup, but outcomes are strength and power only, with no lean mass."
+    },
+    {
+     "pmid": "40717998",
+     "fits": "no",
+     "reason": "Network meta-analysis of several supplements in athletes, not older adults."
+    },
+    {
+     "pmid": "40647180",
+     "fits": "no",
+     "reason": "Compares creatine plus beta-alanine with either supplement alone, not with placebo, and not in older adults."
+    },
+    {
+     "pmid": "42666369",
+     "fits": "no",
+     "reason": "Reviews polyphenol supplements for recovery from exercise-induced muscle damage, not creatine."
+    },
+    {
+     "pmid": "41433021",
+     "fits": "no",
+     "reason": "Creatine plus RT, but compares novice and experienced lifters and has no older-adult analysis."
+    },
+    {
+     "pmid": "39042054",
+     "fits": "no",
+     "reason": "Pools creatine trials in general populations for body composition, with no older-adult analysis."
+    },
+    {
+     "pmid": "38417175",
+     "fits": "partly",
+     "reason": "Creatine vs placebo in older adults and people with chronic disease, measuring strength and lean mass, but not restricted to RT."
+    },
+    {
+     "pmid": "39441446",
+     "fits": "no",
+     "reason": "Creatine trials in swimmers, not older adults doing resistance training."
+    },
+    {
+     "pmid": "37432300",
+     "fits": "partly",
+     "reason": "Creatine plus RT vs placebo plus RT with an age moderator, but measures only regional hypertrophy, not strength."
+    },
+    {
+     "pmid": "34472118",
+     "fits": "no",
+     "reason": "Looks at recovery from exercise-induced muscle damage, not long-term strength or lean mass in older adults."
+    },
+    {
+     "pmid": "33631721",
+     "fits": "no",
+     "reason": "Looks at markers of exercise-induced muscle damage in adults aged 20-60, not training adaptations in older adults."
+    },
+    {
+     "pmid": "34836013",
+     "fits": "partly",
+     "reason": "Pooled RCTs of creatine plus RT vs placebo on strength and muscle mass, but only in older women."
+    },
+    {
+     "pmid": "36000773",
+     "fits": "no",
+     "reason": "Reviews alternative forms of creatine in healthy subjects, with no older-adult focus."
+    },
+    {
+     "pmid": "30762623",
+     "fits": "partly",
+     "reason": "RCTs of creatine plus exercise vs exercise alone in older adults, but a narrative review with no pooling, and exercise is not only RT."
+    },
+    {
+     "pmid": "35261309",
+     "fits": "no",
+     "reason": "Reviews vitamins C and E after a single bout of exercise, not creatine."
+    },
+    {
+     "pmid": "27328852",
+     "fits": "no",
+     "reason": "Pools creatine vs placebo for upper-limb strength across all populations, with no older-adult analysis."
+    },
+    {
+     "pmid": "30824459",
+     "fits": "partly",
+     "reason": "Training and an age subgroup match, but creatine is given together with protein in multi-ingredient supplements rather than alone."
+    },
+    {
+     "pmid": "25946994",
+     "fits": "partly",
+     "reason": "Pools creatine vs placebo trials, but in all ages without an older-adult analysis, training isn't required, and only lower-limb strength is reported."
+    },
+    {
+     "pmid": "24576864",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled trials of creatine plus resistance training in older adults, with fat-free mass and strength outcomes."
+    },
+    {
+     "pmid": "29300431",
+     "fits": "partly",
+     "reason": "Covers creatine trials in people aged 60+, but training isn't required, creatine is mixed with other supplements, and results aren't pooled."
+    },
+    {
+     "pmid": "17253521",
+     "fits": "no",
+     "reason": "Creatine for treating hereditary muscle disease in people of all ages, without resistance training: a different question."
+    },
+    {
+     "pmid": "12485548",
+     "fits": "partly",
+     "reason": "Pools creatine vs placebo strength trials, but in healthy adults who were mostly young men, with no separate older-adult analysis."
+    },
+    {
+     "pmid": "12945830",
+     "fits": "partly",
+     "reason": "Pools creatine vs placebo trials on lean mass and performance, but not in older adults and without requiring resistance training."
+    },
+    {
+     "pmid": "41328071",
+     "fits": "partly",
+     "reason": "Creatine vs control on strength in a general population with only a middle-aged/elderly subgroup; lean mass not pooled and training not limited to resistance."
+    },
+    {
+     "pmid": "41062952",
+     "fits": "partly",
+     "reason": "Older adults, creatine plus exercise vs placebo plus exercise with 1RM strength, but training is general exercise and lean mass is not reported."
+    },
+    {
+     "pmid": "39519498",
+     "fits": "no",
+     "reason": "Creatine plus resistance training vs placebo on strength, but limited to adults under 50."
+    },
+    {
+     "pmid": "41388441",
+     "fits": "yes",
+     "reason": "RCTs in older adults pooling creatine plus resistance training vs placebo plus resistance training on strength and lean tissue mass."
+    },
+    {
+     "pmid": "40842757",
+     "fits": "no",
+     "reason": "Pools many nutritional supplements in sarcopenia patients with no separate creatine plus resistance training analysis."
+    },
+    {
+     "pmid": "40536429",
+     "fits": "no",
+     "reason": "Cancer patients, no resistance training specified, body composition only, and narrative review without pooling."
+    },
+    {
+     "pmid": "42952382",
+     "fits": "no",
+     "reason": "Young people during limb immobilisation and rehabilitation, not older adults doing resistance training."
+    },
+    {
+     "pmid": "35218552",
+     "fits": "no",
+     "reason": "Young adults, with muscle damage markers after exercise as outcomes rather than strength or lean mass."
+    },
+    {
+     "pmid": "34199420",
+     "fits": "yes",
+     "reason": "Older adults, creatine vs placebo during resistance training, pooled lean tissue mass and strength outcomes."
+    },
+    {
+     "pmid": "33467377",
+     "fits": "partly",
+     "reason": "Adults 50+, creatine vs placebo during resistance training, but the outcome is fat mass rather than strength or lean mass."
+    },
+    {
+     "pmid": "29740583",
+     "fits": "partly",
+     "reason": "RCTs in adults over 50 with creatine plus resistance training vs training alone, but the outcome is bone mineral density."
+    },
+    {
+     "pmid": "29138605",
+     "fits": "yes",
+     "reason": "RCTs in older adults, creatine vs placebo during resistance training, pooled lean tissue mass and chest and leg press strength."
+    }
+   ]
+  },
+  "performance-young": {
+   "question": {
+    "population": "Healthy adults under 50",
+    "intervention": "Creatine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Strength or repeated short, hard exercise"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42821324",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in healthy active people includes creatine versus placebo for jump and relative peak power."
+    },
+    {
+     "pmid": "42141930",
+     "fits": "partly",
+     "reason": "Creatine versus placebo with strength outcomes, but the population is postmenopausal women with a mean age of about 62, not adults under 50."
+    },
+    {
+     "pmid": "41901084",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in trained athletes reports creatine effects on muscle strength."
+    },
+    {
+     "pmid": "42384726",
+     "fits": "yes",
+     "reason": "RCTs in healthy adult athletes pooled creatine versus placebo for sprint, jump and repeated-sprint ability."
+    },
+    {
+     "pmid": "42158825",
+     "fits": "partly",
+     "reason": "Creatine is pooled with protein and amino acids, always given with exercise, and the women include menopausal stages; there is no separate creatine analysis."
+    },
+    {
+     "pmid": "42407202",
+     "fits": "partly",
+     "reason": "Creatine for patients with chronic musculoskeletal pain, so it treats illness rather than healthy adults, and the trials are not pooled."
+    },
+    {
+     "pmid": "42027564",
+     "fits": "yes",
+     "reason": "Pooled RCTs of creatine in healthy men aged 18-30 for strength, Wingate power and jump."
+    },
+    {
+     "pmid": "40944139",
+     "fits": "yes",
+     "reason": "Pooled RCTs of creatine versus placebo on strength and power in adults, with a younger-adult subgroup."
+    },
+    {
+     "pmid": "39972597",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in soccer players includes creatine versus placebo for jump height."
+    },
+    {
+     "pmid": "41373993",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in volleyball athletes includes creatine versus placebo for vertical jump."
+    },
+    {
+     "pmid": "40717998",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in athletes includes creatine versus placebo for jump and sprint performance."
+    },
+    {
+     "pmid": "39747536",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in combat athletes includes creatine versus placebo for mean and peak power."
+    },
+    {
+     "pmid": "40647180",
+     "fits": "partly",
+     "reason": "The comparison is creatine plus beta-alanine versus either supplement alone, not versus placebo, and results are not pooled."
+    },
+    {
+     "pmid": "42666369",
+     "fits": "no",
+     "reason": "Reviews polyphenol supplements, not creatine."
+    },
+    {
+     "pmid": "41280385",
+     "fits": "partly",
+     "reason": "Acute creatine is pooled with caffeine and carbohydrate rinse alongside a conditioning activity; there is no clear creatine-versus-placebo analysis."
+    },
+    {
+     "pmid": "40401105",
+     "fits": "no",
+     "reason": "COPD patients receiving coenzyme Q10 plus creatine, with lung function and endurance outcomes."
+    },
+    {
+     "pmid": "39861368",
+     "fits": "partly",
+     "reason": "Creatine versus placebo in active females on strength and anaerobic outcomes, but the trials are summarised narratively, not pooled."
+    },
+    {
+     "pmid": "39441446",
+     "fits": "yes",
+     "reason": "Pooled RCTs of creatine versus placebo in swimmers for single sprint and repeated interval performance."
+    },
+    {
+     "pmid": "36041731",
+     "fits": "yes",
+     "reason": "Pooled double-blind placebo-controlled RCTs of creatine in adults aged 18-60 for repeated sprint ability."
+    },
+    {
+     "pmid": "34472118",
+     "fits": "partly",
+     "reason": "Creatine versus placebo after muscle-damaging exercise, but the pooled outcomes are mainly blood markers (CK, LDH)."
+    },
+    {
+     "pmid": "33631721",
+     "fits": "partly",
+     "reason": "Creatine vs a non-creatine comparator in adult RCTs, but the outcome is strength recovery after muscle damage, and ages run up to 60."
+    },
+    {
+     "pmid": "36000773",
+     "fits": "partly",
+     "reason": "Placebo-controlled RCTs in healthy people, but it covers only alternative creatine forms, not monohydrate, and pools no results."
+    },
+    {
+     "pmid": "30935142",
+     "fits": "partly",
+     "reason": "Creatine vs placebo RCTs with pooled strength, sprint and anaerobic outcomes, but only in soccer players, a narrower group."
+    },
+    {
+     "pmid": "30762623",
+     "fits": "partly",
+     "reason": "Creatine plus exercise vs exercise alone for strength, but in older adults rather than adults under 50."
+    },
+    {
+     "pmid": "32349356",
+     "fits": "partly",
+     "reason": "Creatine with strength and Wingate outcomes, but only in vegetarians, a narrower group, and it includes non-randomised studies."
+    },
+    {
+     "pmid": "35261309",
+     "fits": "no",
+     "reason": "The intervention is vitamins C and E, not creatine."
+    },
+    {
+     "pmid": "27328852",
+     "fits": "yes",
+     "reason": "Pooled RCTs of creatine vs placebo on upper-limb strength in short exercise, across population groups."
+    },
+    {
+     "pmid": "30824459",
+     "fits": "partly",
+     "reason": "Strength outcomes in RCTs, but creatine is only given together with protein in multi-ingredient supplements."
+    },
+    {
+     "pmid": "25946994",
+     "fits": "yes",
+     "reason": "Pooled RCTs of creatine vs placebo on lower-limb strength in exercises under 3 minutes."
+    },
+    {
+     "pmid": "19295968",
+     "fits": "no",
+     "reason": "The outcomes are heat tolerance and hydration, not strength or repeated short, hard exercise."
+    },
+    {
+     "pmid": "23889624",
+     "fits": "no",
+     "reason": "Adults over 65 given a range of supplements with exercise; creatine is one of several, so both population and intervention differ."
+    },
+    {
+     "pmid": "12485548",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of creatine on maximal strength and power in healthy adults."
+    },
+    {
+     "pmid": "12945830",
+     "fits": "yes",
+     "reason": "Pooled randomised placebo-controlled trials of creatine on short, high-intensity and repeated-bout exercise performance."
+    },
+    {
+     "pmid": "41328071",
+     "fits": "yes",
+     "reason": "Pooled creatine vs control on muscle strength, with a subgroup comparing young and middle-aged/elderly people, so a younger-adult analysis is included."
+    },
+    {
+     "pmid": "39796467",
+     "fits": "partly",
+     "reason": "Population is swimmers only, and the creatine result reported is for creatine combined with sodium bicarbonate, not creatine alone."
+    },
+    {
+     "pmid": "39519498",
+     "fits": "yes",
+     "reason": "Pooled creatine plus resistance training vs placebo on upper- and lower-body strength in adults under 50."
+    },
+    {
+     "pmid": "36877404",
+     "fits": "no",
+     "reason": "Outcome is endurance performance, not strength or repeated short, hard exercise."
+    },
+    {
+     "pmid": "41323837",
+     "fits": "partly",
+     "reason": "RCTs of creatine vs placebo on peak and mean anaerobic power, but only in athletes, a narrower group than healthy adults."
+    },
+    {
+     "pmid": "42952382",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials in young people, but during limb immobilisation and rehab; results were not pooled."
+    },
+    {
+     "pmid": "37720119",
+     "fits": "partly",
+     "reason": "Pooled RCTs of creatine vs placebo across all ages on 'metabolic performance', with no separate analysis for under-50s or for strength."
+    },
+    {
+     "pmid": "34370563",
+     "fits": "no",
+     "reason": "Outcome is cognitive performance, not strength or exercise."
+    }
+   ]
+  },
+  "kidney": {
+   "question": {
+    "population": "Adults, mostly healthy",
+    "intervention": "Creatine",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Kidney function, or blood creatinine and eGFR"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41199218",
+     "fits": "yes",
+     "reason": "Meta-analysis of creatine versus control on serum creatinine and GFR; the abstract doesn't say whether the studies were randomised or who the participants were."
+    },
+    {
+     "pmid": "42507286",
+     "fits": "partly",
+     "reason": "Pools placebo-controlled RCTs on creatinine and GFR, but mixes healthy people with CKD and hemodialysis patients and reports no healthy-only analysis."
+    },
+    {
+     "pmid": "42035842",
+     "fits": "yes",
+     "reason": "Pools RCTs of creatine on serum creatinine, urea and eGFR, with subgroups by participants' physical status."
+    },
+    {
+     "pmid": "42124755",
+     "fits": "partly",
+     "reason": "Covers creatine and kidney safety, but only in adolescents, includes cohort studies and reports no pooled analysis."
+    }
+   ]
+  }
+ }
+}

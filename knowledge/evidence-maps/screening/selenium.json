@@ -15,6 +15,21 @@
      "pmid": "39138905",
      "fits": "yes",
      "reason": "Meta-analysis of RCTs comparing selenium with placebo in Graves' orbitopathy patients, reporting clinical activity score and GO-QOL outcomes."
+    },
+    {
+     "pmid": "42355878",
+     "fits": "yes",
+     "reason": "Pooled RCTs of selenium vs placebo or no selenium in Graves' orbitopathy, reporting clinical activity score and quality of life."
+    },
+    {
+     "pmid": "39317500",
+     "fits": "no",
+     "reason": "Protocol with no pooled results; studies Graves' hyperthyroidism, not orbitopathy, with only thyroid blood markers as outcomes."
+    },
+    {
+     "pmid": "30356415",
+     "fits": "no",
+     "reason": "Population is Graves' disease, not orbitopathy, and outcomes are thyroid hormones and antibodies, not eye disease or quality of life."
     }
    ]
   },
@@ -71,6 +86,36 @@
      "pmid": "20883174",
      "fits": "yes",
      "reason": "Meta-analysis of randomised placebo-controlled trials of selenium in Hashimoto's patients on LT4, reporting antibodies and mood/well-being."
+    },
+    {
+     "pmid": "42122912",
+     "fits": "no",
+     "reason": "Compares myo-inositol plus selenium with selenium alone, so it tests adding myo-inositol, not selenium versus placebo or no treatment."
+    },
+    {
+     "pmid": "39698034",
+     "fits": "partly",
+     "reason": "Compares selenium with placebo for antibodies and TSH, but only in euthyroid Hashimoto's, and the included studies are called case-control, not clearly randomised."
+    },
+    {
+     "pmid": "39650307",
+     "fits": "no",
+     "reason": "Compares myo-inositol plus selenium with selenium alone and includes observational studies, so it is not selenium versus placebo or no treatment."
+    },
+    {
+     "pmid": "37891878",
+     "fits": "partly",
+     "reason": "Includes selenium trials but also people with hypothyroidism generally, focuses mainly on inflammation and oxidative stress markers, and does not pool results."
+    },
+    {
+     "pmid": "25574167",
+     "fits": "yes",
+     "reason": "Pools randomised trials of selenium versus placebo in autoimmune thyroiditis, reporting thyroid antibodies and mood or well-being."
+    },
+    {
+     "pmid": "24847462",
+     "fits": "yes",
+     "reason": "Cochrane review of randomised trials of selenium versus placebo in Hashimoto's, covering well-being, antibodies and levothyroxine dose."
     }
    ]
   },
@@ -142,6 +187,31 @@
      "pmid": "24858736",
      "fits": "yes",
      "reason": "Pooled RCTs of selenium vs control for the risk of developing type 2 diabetes."
+    },
+    {
+     "pmid": "41533751",
+     "fits": "partly",
+     "reason": "Selenium was pooled against controls for blood sugar (HbA1c), but the people already had type 2 diabetes, so it is treatment rather than prevention."
+    },
+    {
+     "pmid": "39963561",
+     "fits": "no",
+     "reason": "It covers mixed antioxidants for diabetic kidney disease with kidney and oxidative stress outcomes, and does not pool trials for blood sugar."
+    },
+    {
+     "pmid": "31890660",
+     "fits": "yes",
+     "reason": "It pools placebo-controlled trials of selenium on fasting glucose and HbA1c; the abstract doesn't say whether participants had diabetes."
+    },
+    {
+     "pmid": "26910397",
+     "fits": "no",
+     "reason": "This is an erratum notice with no abstract, not a review; the original selenium and type 2 diabetes meta-analysis should be screened instead."
+    },
+    {
+     "pmid": "34178870",
+     "fits": "no",
+     "reason": "It covers supplements for healing diabetic foot ulcers, including animal and observational studies, not selenium and diabetes onset or blood sugar."
     }
    ]
   },
@@ -233,6 +303,21 @@
      "pmid": "16880453",
      "fits": "partly",
      "reason": "Selenium was given only in combination with other vitamins and minerals, with no separate selenium result."
+    },
+    {
+     "pmid": "42909097",
+     "fits": "no",
+     "reason": "The people are cancer patients during treatment, and the outcome is treatment side effects rather than new cancers."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "Selenium vs control for new cancers in healthy adults matches, but this is only a protocol with no pooled results yet."
+    },
+    {
+     "pmid": "24976856",
+     "fits": "partly",
+     "reason": "It covers selenium and preventing prostate cancer, but it is a broad review of diet, not a pooled analysis of randomised trials."
     }
    ]
   },
@@ -314,6 +399,11 @@
      "pmid": "24217421",
      "fits": "partly",
      "reason": "Primary prevention of heart disease in general adults, but selenium is grouped with other single nutrients and no separate pooled result is shown."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "Plans to cover selenium vs control in adult primary prevention with mortality and CVD outcomes, but it is only a protocol with no pooled results yet."
     }
    ]
   }

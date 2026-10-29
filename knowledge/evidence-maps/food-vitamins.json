@@ -27,10 +27,10 @@
  ],
  "counts": {
   "all": 9712,
-  "retrieved": 779,
-  "animal": 43,
-  "retracted": 3,
-  "reviews": 181,
+  "retrieved": 806,
+  "animal": 44,
+  "retracted": 4,
+  "reviews": 206,
   "trials": 542,
   "guidelines": 9
  },
@@ -97,8 +97,8 @@
    "finding": "vitamins-b12-animal-only",
    "counts": {
     "all": 887,
-    "reviews": 6,
-    "trialReviews": 6,
+    "reviews": 9,
+    "trialReviews": 9,
     "trials": 11,
     "largeTrials": 0
    },
@@ -124,7 +124,7 @@
     },
     {
      "year": 2018,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
@@ -134,7 +134,7 @@
     },
     {
      "year": 2020,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
@@ -144,7 +144,7 @@
     },
     {
      "year": 2023,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 0
     },
     {
@@ -207,8 +207,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 1,
-     "partly": 3,
-     "no": 2,
+     "partly": 4,
+     "no": 4,
      "unscreened": 0
     },
     "left": [
@@ -246,6 +246,27 @@
       "year": 2023,
       "fits": "partly",
       "reason": "Reviews B12 content of seaweeds, mushrooms and fermented foods, but does not compare them with animal food sources."
+     },
+     {
+      "pmid": "37441514",
+      "title": "Intake of vitamin B12 in relation to vitamin B12 status in groups susceptible to deficiency: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Includes vegans and vegetarians and B12 status, but the exposure is B12 intake from diet and supplements, with no comparison against diets that include animal foods."
+     },
+     {
+      "pmid": "33204422",
+      "title": "Optic neuropathy as a presenting feature of vitamin B-12 deficiency: A systematic review of literature and a case report",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Reviews case reports of optic neuropathy caused by B12 deficiency; it does not compare B12 sources or diets."
+     },
+     {
+      "pmid": "30261596",
+      "title": "Systematic Review and Pragmatic Clinical Approach to Oral and Nasal Vitamin B12 (Cobalamin) Treatment in Patients with Vitamin B12 Deficiency Related to Gastrointestinal Disorders",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Reviews oral versus intramuscular B12 treatment for deficiency in gastrointestinal disorders, not B12 from plant foods or plant-based diets."
      }
     ]
    }
@@ -474,8 +495,8 @@
    "finding": "vitamins-vitamin-d-food",
    "counts": {
     "all": 524,
-    "reviews": 13,
-    "trialReviews": 13,
+    "reviews": 14,
+    "trialReviews": 14,
     "trials": 7,
     "largeTrials": 0
    },
@@ -571,7 +592,7 @@
     },
     {
      "year": 2026,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 2
     }
    ],
@@ -637,11 +658,18 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 6,
-     "partly": 1,
+     "partly": 2,
      "no": 6,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "42030471",
+      "title": "Partially Replacing Animal-Based Protein Foods With Plant-Based Protein Foods: A Systematic Review of Randomized Controlled Trials in Healthy Adults",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "RCTs in healthy adults report vitamin D status, but the exposure is partly swapping animal protein for plant protein, not a full vegetarian or vegan diet."
+     },
      {
       "pmid": "41030267",
       "title": "Nutrition and diet in rheumatoid arthritis, axial spondyloarthritis, and psoriatic arthritis: a systematic review",
@@ -671,18 +699,18 @@
       "reason": "Looks at diet after diagnosis and colorectal cancer survival, not vitamin D levels by vegetarian or omnivorous diet."
      },
      {
-      "pmid": "34959845",
-      "title": "The Role of Diet, Alcohol, BMI, and Physical Activity in Cancer Mortality: Summary Findings of the EPIC Study",
-      "year": 2021,
-      "fits": "no",
-      "reason": "Looks at diet and cancer death in the EPIC study, not vitamin D levels in vegetarians compared with meat-eaters."
-     },
-     {
       "pmid": "32585000",
       "title": "Rheumatoid arthritis and dietary interventions: systematic review of clinical trials",
       "year": 2021,
       "fits": "no",
       "reason": "Looks at dietary treatments for rheumatoid arthritis outcomes, not vitamin D intake or levels by diet type."
+     },
+     {
+      "pmid": "34959845",
+      "title": "The Role of Diet, Alcohol, BMI, and Physical Activity in Cancer Mortality: Summary Findings of the EPIC Study",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Looks at diet and cancer death in the EPIC study, not vitamin D levels in vegetarians compared with meat-eaters."
      },
      {
       "pmid": "32903693",
@@ -700,8 +728,8 @@
    "finding": "vitamins-vitamin-k2",
    "counts": {
     "all": 993,
-    "reviews": 18,
-    "trialReviews": 18,
+    "reviews": 20,
+    "trialReviews": 20,
     "trials": 65,
     "largeTrials": 2
    },
@@ -918,7 +946,7 @@
     },
     {
      "year": 2017,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -943,7 +971,7 @@
     },
     {
      "year": 2023,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 3
     },
     {
@@ -1038,8 +1066,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 5,
-     "partly": 11,
-     "no": 2,
+     "partly": 12,
+     "no": 3,
      "unscreened": 0
     },
     "left": [
@@ -1079,6 +1107,13 @@
       "reason": "Vitamin K supplements and bone density in middle-aged and older adults, but K2 is not shown separately from K1."
      },
      {
+      "pmid": "38046003",
+      "title": "Vitamin K supplementation impact in dialysis patients: a systematic review and meta-analysis of randomized trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Compares vitamin K1 and K2 supplements on calcification and mortality, but only in dialysis patients, including some children, not adults in general."
+     },
+     {
       "pmid": "35711002",
       "title": "Efficacy and safety of vitamin K2 for postmenopausal women with osteoporosis at a long-term follow-up: meta-analysis and systematic review",
       "year": 2022,
@@ -1114,6 +1149,13 @@
       "reason": "Reviews vitamin K intake, levels and supplements on bone density and fractures, but does not separate K2 from K1."
      },
      {
+      "pmid": "28496349",
+      "title": "Effect of vitamin K supplementation on insulin sensitivity: a meta-analysis",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Looks at vitamin K supplements and insulin sensitivity, not heart disease, artery calcification, bone density or fractures."
+     },
+     {
       "pmid": "25516361",
       "title": "Does vitamin K2 play a role in the prevention and treatment of osteoporosis for postmenopausal women: a meta-analysis of randomized controlled trials",
       "year": 2015,
@@ -1143,8 +1185,8 @@
    "finding": "vitamins-omega-3",
    "counts": {
     "all": 2221,
-    "reviews": 21,
-    "trialReviews": 21,
+    "reviews": 25,
+    "trialReviews": 25,
     "trials": 97,
     "largeTrials": 8
    },
@@ -1380,7 +1422,7 @@
     },
     {
      "year": 2012,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 3
     },
     {
@@ -1410,7 +1452,7 @@
     },
     {
      "year": 2018,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 1
     },
     {
@@ -1430,13 +1472,18 @@
     },
     {
      "year": 2022,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 4
     },
     {
      "year": 2023,
      "reviews": 0,
      "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
     },
     {
      "year": 2026,
@@ -1546,8 +1593,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 6,
-     "partly": 5,
-     "no": 10,
+     "partly": 6,
+     "no": 13,
      "unscreened": 0
     },
     "left": [
@@ -1566,6 +1613,20 @@
       "reason": "Looks at omega-3 intake and age-related macular degeneration, not conversion, blood levels or heart disease."
      },
      {
+      "pmid": "38628754",
+      "title": "Effect of omega-3 supplements or diets on fertility in women: A meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Looks at omega-3 intake and women's fertility, not plant or algal versus fish omega-3 for conversion, blood levels or heart disease."
+     },
+     {
+      "pmid": "36381743",
+      "title": "Effects of Omega-3 Polyunsaturated Fatty Acids on Brain Functions: A Systematic Review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Looks at omega-3 versus placebo for brain function, with no plant or algal versus fish comparison and no conversion, blood level or heart outcomes."
+     },
+     {
       "pmid": "34749130",
       "title": "Dietary omega-3 polyunsaturated fatty acids and fish intake and risk of age-related macular degeneration",
       "year": 2021,
@@ -1580,6 +1641,13 @@
       "reason": "Looks at omega-3 supplements for preeclampsia in pregnancy, a different outcome."
      },
      {
+      "pmid": "30594823",
+      "title": "The effectiveness of omega-3 supplementation in reducing ADHD associated symptoms in children as measured by the Conners' rating scales: A systematic review of randomized controlled trials",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Looks at omega-3 supplements for ADHD symptoms in children, a different question."
+     },
+     {
       "pmid": "31847055",
       "title": "Omega-3 and omega-6 polyunsaturated fatty acids for dry eye disease",
       "year": 2019,
@@ -1587,11 +1655,11 @@
       "reason": "Looks at omega-3 and omega-6 supplements for dry eye disease, a different outcome."
      },
      {
-      "pmid": "30594823",
-      "title": "The effectiveness of omega-3 supplementation in reducing ADHD associated symptoms in children as measured by the Conners' rating scales: A systematic review of randomized controlled trials",
-      "year": 2019,
+      "pmid": "29721237",
+      "title": "Association of Omega-3 Fatty Acid and Epileptic Seizure in Epileptic Patients: A Systematic Review",
+      "year": 2018,
       "fits": "no",
-      "reason": "Looks at omega-3 supplements for ADHD symptoms in children, a different question."
+      "reason": "Looks at omega-3 supplements for epileptic seizures, with no plant versus fish comparison and no conversion, blood level or heart outcomes."
      },
      {
       "pmid": "30307735",
@@ -1627,6 +1695,13 @@
       "year": 2012,
       "fits": "partly",
       "reason": "Algal oil DHA trials, but the outcome is blood lipids and there is no fish oil comparison."
+     },
+     {
+      "pmid": "23193480",
+      "title": "Relationship of dietary intake of omega-3 and omega-6 Fatty acids with risk of prostate cancer development: a meta-analysis of prospective studies and review of literature",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Analyses ALA and fish EPA/DHA intake separately in cohort studies, but the outcome is prostate cancer, not conversion, blood levels or heart disease."
      },
      {
       "pmid": "22591895",
@@ -1665,8 +1740,8 @@
    "finding": "vitamins-fewer-b-vitamins",
    "counts": {
     "all": 1244,
-    "reviews": 17,
-    "trialReviews": 17,
+    "reviews": 20,
+    "trialReviews": 20,
     "trials": 23,
     "largeTrials": 0
    },
@@ -1771,7 +1846,7 @@
     },
     {
      "year": 2026,
-     "reviews": 2,
+     "reviews": 5,
      "trials": 3
     }
    ],
@@ -1803,8 +1878,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 1,
-     "partly": 10,
-     "no": 6,
+     "partly": 12,
+     "no": 7,
      "unscreened": 0
     },
     "left": [
@@ -1816,6 +1891,20 @@
       "reason": "Compares vegetarian/vegan with omnivorous diets for B12 and folate intake and B12 deficiency, but only in children."
      },
      {
+      "pmid": "42030471",
+      "title": "Partially Replacing Animal-Based Protein Foods With Plant-Based Protein Foods: A Systematic Review of Randomized Controlled Trials in Healthy Adults",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Reports B12 and folate status, but the exposure is partly replacing animal protein with plant protein, not a full vegetarian or vegan diet."
+     },
+     {
+      "pmid": "42179288",
+      "title": "Impact of Plant-Based Diets on Children's Growth, Nutritional Biomarkers, and Health Outcomes and Risks: A Systematic Review",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares vegan and vegetarian diets with diets including animal foods and reports B12 status, but covers only children aged 6 months to 11 years."
+     },
+     {
       "pmid": "41275510",
       "title": "Vegetarian and Vegan Diets and the Risk of Hip Fracture in Adults: A Systematic Review and Meta-analysis",
       "year": 2026,
@@ -1823,11 +1912,11 @@
       "reason": "Outcome is hip fracture risk, not B vitamin intake or status."
      },
      {
-      "pmid": "40819279",
-      "title": "Vegan diet and nutritional status in infants, children and adolescents: A position paper based on a systematic search by the ESPGHAN Nutrition Committee",
-      "year": 2025,
-      "fits": "partly",
-      "reason": "Compares vegan with omnivorous diets for nutritional adequacy and biomarkers, including B12, but only in children."
+      "pmid": "42511108",
+      "title": "How Nutritionally Sound Is Commercially Available Vegan Pet Food Relative to Meat-Based Pet Food? A Systematic Review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Reviews the nutrient content of vegan versus meat-based dog and cat food, not diets eaten by people."
      },
      {
       "pmid": "40647286",
@@ -1835,6 +1924,13 @@
       "year": 2025,
       "fits": "partly",
       "reason": "Compares folate and B12 intake between vegetarian and omnivorous diets, but only in children."
+     },
+     {
+      "pmid": "40819279",
+      "title": "Vegan diet and nutritional status in infants, children and adolescents: A position paper based on a systematic search by the ESPGHAN Nutrition Committee",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares vegan with omnivorous diets for nutritional adequacy and biomarkers, including B12, but only in children."
      },
      {
       "pmid": "38657969",
@@ -1929,8 +2025,8 @@
    "finding": "vitamins-vitamin-c-fruit",
    "counts": {
     "all": 2811,
-    "reviews": 10,
-    "trialReviews": 10,
+    "reviews": 12,
+    "trialReviews": 12,
     "trials": 73,
     "largeTrials": 4
    },
@@ -2305,7 +2401,7 @@
     },
     {
      "year": 2015,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
@@ -2337,6 +2433,11 @@
      "year": 2021,
      "reviews": 1,
      "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
     },
     {
      "year": 2025,
@@ -2423,7 +2524,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 2,
-     "partly": 3,
+     "partly": 5,
      "no": 5,
      "unscreened": 0
     },
@@ -2434,6 +2535,13 @@
       "year": 2026,
       "fits": "no",
       "reason": "Ascorbate-rich fruits are the exposure, but the outcomes are iron absorption and iron status, not vitamin C intake or blood levels."
+     },
+     {
+      "pmid": "35208201",
+      "title": "Assessment of Fruit and Vegetables Intake with Biomarkers in Children and Adolescents and Their Level of Validation: A Systematic Review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Reviews blood vitamin C as a biomarker of fruit and vegetable intake, but only in children and adolescents, and vitamin C is one of many biomarkers."
      },
      {
       "pmid": "33919894",
@@ -2462,6 +2570,13 @@
       "year": 2016,
       "fits": "no",
       "reason": "Citrus fruit intake vs oesophageal and gastric cancer risk, not vitamin C intake or blood levels."
+     },
+     {
+      "pmid": "26078867",
+      "title": "Does the consumption of fruits and vegetables differ between Eastern and Western European populations? Systematic review of cross-national studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Reports vitamin C intake and tissue levels, but compares Eastern and Western European populations rather than people eating more or less fruit and vegetables."
      },
      {
       "pmid": "17997863",

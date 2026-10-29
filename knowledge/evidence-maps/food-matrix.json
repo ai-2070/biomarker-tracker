@@ -27,10 +27,10 @@
  ],
  "counts": {
   "all": 16625,
-  "retrieved": 1822,
-  "animal": 291,
+  "retrieved": 1924,
+  "animal": 298,
   "retracted": 0,
-  "reviews": 550,
+  "reviews": 646,
   "trials": 960,
   "guidelines": 20
  },
@@ -97,8 +97,8 @@
    "finding": "animal-matrix-complete",
    "counts": {
     "all": 145,
-    "reviews": 5,
-    "trialReviews": 5,
+    "reviews": 6,
+    "trialReviews": 6,
     "trials": 4,
     "largeTrials": 0
    },
@@ -139,6 +139,11 @@
    "timeline": [
     {
      "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
      "reviews": 1,
      "trials": 0
     },
@@ -218,7 +223,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 3,
-     "partly": 2,
+     "partly": 3,
      "no": 0,
      "unscreened": 0
     },
@@ -236,6 +241,13 @@
       "year": 2026,
       "fits": "partly",
       "reason": "Looks at animal and plant protein for lean mass and body composition, but only in pre- and postmenopausal women and mostly not head to head."
+     },
+     {
+      "pmid": "35418173",
+      "title": "The effect of animal versus plant protein on muscle mass, muscle strength, physical performance and sarcopenia in adults: protocol for a systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Population, animal vs plant protein, and muscle mass and strength outcomes all match, but this is a protocol, so no studies have been reviewed or pooled yet."
      }
     ]
    }
@@ -628,8 +640,8 @@
    "finding": "fibre-whole-foods",
    "counts": {
     "all": 3907,
-    "reviews": 60,
-    "trialReviews": 60,
+    "reviews": 72,
+    "trialReviews": 72,
     "trials": 62,
     "largeTrials": 12
    },
@@ -825,7 +837,7 @@
     },
     {
      "year": 2008,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 3
     },
     {
@@ -850,7 +862,7 @@
     },
     {
      "year": 2013,
-     "reviews": 5,
+     "reviews": 7,
      "trials": 2
     },
     {
@@ -860,12 +872,12 @@
     },
     {
      "year": 2015,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 4
     },
     {
      "year": 2016,
-     "reviews": 10,
+     "reviews": 11,
      "trials": 3
     },
     {
@@ -880,7 +892,7 @@
     },
     {
      "year": 2019,
-     "reviews": 3,
+     "reviews": 5,
      "trials": 1
     },
     {
@@ -895,7 +907,7 @@
     },
     {
      "year": 2022,
-     "reviews": 3,
+     "reviews": 5,
      "trials": 3
     },
     {
@@ -905,7 +917,7 @@
     },
     {
      "year": 2024,
-     "reviews": 2,
+     "reviews": 4,
      "trials": 0
     },
     {
@@ -915,7 +927,7 @@
     },
     {
      "year": 2026,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 2
     }
    ],
@@ -1070,12 +1082,19 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 37,
-     "partly": 14,
-     "no": 9,
+     "yes": 41,
+     "partly": 17,
+     "no": 14,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "41788957",
+      "title": "Impact of dietary fiber intake on insulin resistance in type 2 diabetes: A systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Covers people who already have type 2 diabetes and measures insulin resistance, not the risk of developing disease or death."
+     },
      {
       "pmid": "39473074",
       "title": "The effect of high-fibre diets on glycaemic control in women with diabetes in pregnancy: A systematic review and meta-analysis",
@@ -1098,6 +1117,20 @@
       "reason": "Fibre intake and death or CVD match, but the population is limited to people with chronic kidney disease."
      },
      {
+      "pmid": "39314563",
+      "title": "Effectiveness of High-Fiber, Plant-Based Diets in Reducing Cardiovascular Risk Factors Among Middle-Aged and Older Adults: A Systematic Review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Covers high-fibre plant-based diets in middle-aged and older adults, but the outcomes are risk factors (blood pressure, cholesterol), not disease or death."
+     },
+     {
+      "pmid": "38766430",
+      "title": "Increasing dietary fiber intake for type 2 diabetes mellitus management: A systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Covers fibre diets and supplements for managing existing type 2 diabetes, with blood sugar and weight outcomes, not disease or death risk."
+     },
+     {
       "pmid": "36811560",
       "title": "Galactomannans are the most effective soluble dietary fibers in type 2 diabetes: a systematic review and network meta-analysis",
       "year": 2023,
@@ -1110,6 +1143,13 @@
       "year": 2023,
       "fits": "no",
       "reason": "Covers viscous fibre supplements in type 2 diabetes patients, with blood sugar and lipid outcomes."
+     },
+     {
+      "pmid": "35954465",
+      "title": "Association between Dietary Fiber Intake and Mortality among Colorectal Cancer Survivors: Results from the Newfoundland Familial Colorectal Cancer Cohort Study and a Meta-Analysis of Prospective Studies",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pools studies of fibre intake and death, but only in people who already have colorectal cancer, not the general population."
      },
      {
       "pmid": "35449060",
@@ -1147,18 +1187,18 @@
       "reason": "Trials of whole grains versus refined grains in adults, but the outcomes are CVD risk factors, not disease events or death."
      },
      {
-      "pmid": "32142510",
-      "title": "Dietary fibre and whole grains in diabetes management: Systematic review and meta-analyses",
-      "year": 2020,
-      "fits": "partly",
-      "reason": "Fibre intake and mortality match, but the population is limited to adults with prediabetes or diabetes."
-     },
-     {
       "pmid": "32070285",
       "title": "Whole grain food diet slightly reduces cardiovascular risks in obese/overweight adults: a systematic review and meta-analysis",
       "year": 2020,
       "fits": "partly",
       "reason": "Whole grain diet RCTs, but only in obese or overweight adults, and outcomes are weight and CVD risk factors, not disease."
+     },
+     {
+      "pmid": "32142510",
+      "title": "Dietary fibre and whole grains in diabetes management: Systematic review and meta-analyses",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Fibre intake and mortality match, but the population is limited to adults with prediabetes or diabetes."
      },
      {
       "pmid": "33113929",
@@ -1173,6 +1213,13 @@
       "year": 2019,
       "fits": "partly",
       "reason": "Pooled whole grain and CVD studies, but the main question is whether industry ties affect results, not the effect itself."
+     },
+     {
+      "pmid": "31210830",
+      "title": "Dietary Fibre Protective against Colorectal Cancer Patients in Asia: A Meta-Analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Pools studies of dietary fibre and colorectal cancer risk, but only in Asian populations, which is a narrower group."
      },
      {
       "pmid": "30617143",
@@ -1203,11 +1250,32 @@
       "reason": "Fibre trials in general or at-risk adults aimed at CVD prevention, but no trial reported heart events or deaths, only risk factors."
      },
      {
+      "pmid": "27523188",
+      "title": "Whole-grain consumption and the risk of all-cause, CVD and cancer mortality: a meta-analysis of prospective cohort studies - CORRIGENDUM",
+      "year": 2016,
+      "fits": "no",
+      "reason": "A correction notice for a whole grain and mortality meta-analysis, not a systematic review itself."
+     },
+     {
       "pmid": "24216326",
       "title": "Dietary fiber intake reduces risk for colorectal adenoma: a meta-analysis",
       "year": 2014,
       "fits": "partly",
       "reason": "Pools studies of dietary fibre, but the outcome is colorectal adenoma, a precancerous growth, not bowel cancer itself."
+     },
+     {
+      "pmid": "23847247",
+      "title": "Response to letter regarding article, \"dietary fiber intake and risk of first stroke: a systematic review and meta-analysis\"",
+      "year": 2013,
+      "fits": "no",
+      "reason": "A reply to a letter about a fibre and stroke meta-analysis, not a systematic review itself."
+     },
+     {
+      "pmid": "23847250",
+      "title": "Letter by Tikhonoff et al regarding article, \"dietary fiber intake and risk of first stroke: a systematic review and meta-analysis\"",
+      "year": 2013,
+      "fits": "no",
+      "reason": "A letter commenting on a fibre and stroke meta-analysis, not a systematic review itself."
      },
      {
       "pmid": "22218620",
@@ -1246,12 +1314,23 @@
    "finding": "fibre-unnecessary",
    "counts": {
     "all": 1066,
-    "reviews": 14,
-    "trialReviews": 14,
+    "reviews": 20,
+    "trialReviews": 20,
     "trials": 81,
     "largeTrials": 0
    },
    "chosenReviews": [
+    {
+     "pmid": "42600900",
+     "doi": "10.1053/j.gastro.2026.07.027",
+     "title": "Fiber Supplementation in Irritable Bowel Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2026,
+     "firstAuthor": "Staudacher HM",
+     "journal": "Gastroenterology",
+     "citedBy": 0,
+     "n": 1904,
+     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+    },
     {
      "pmid": "42317046",
      "doi": "10.1039/d6fo00286b",
@@ -1264,105 +1343,89 @@
      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
     },
     {
-     "pmid": "39784686",
-     "doi": "10.17235/reed.2024.10306/2024",
-     "title": "Novel insights into carbohydrate-to-fiber ratio and constipation: NHANES findings suggest a turning point",
+     "pmid": "42831875",
+     "doi": "10.14309/ctg.0000000000001114",
+     "title": "The Impact of Dietary Fiber Supplementation on Gut-Brain Axis Biomarkers and Symptoms in Functional Constipation: A Meta-Analysis of Randomized Controlled Trials",
      "year": 2026,
-     "firstAuthor": "Chen Y",
-     "journal": "Revista espanola de enfermedades digestivas",
+     "firstAuthor": "Wang Y",
+     "journal": "Clinical and translational gastroenterology",
      "citedBy": 0,
-     "n": 7752,
+     "n": 1284,
      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
     },
     {
-     "pmid": "35816465",
-     "doi": "10.1093/ajcn/nqac184",
-     "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
-     "year": 2022,
-     "firstAuthor": "van der Schoot A",
-     "journal": "The American journal of clinical nutrition",
-     "citedBy": 79,
-     "n": 1251,
-     "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+     "pmid": "41264751",
+     "title": "Fiber Intake and Laxation in People With Normal Bowel Function: Systematic Review",
+     "year": 2025,
+     "firstAuthor": "Balk EM",
+     "citedBy": 0,
+     "why": "The most comprehensive review on this claim (118 trials, 2025); screened as answering the question"
     }
    ],
    "newerLargeTrials": [],
    "overlap": {
-    "cca": 0.11904761904761904,
-    "trials": 21,
-    "inclusions": 26,
+    "cca": 0.03571428571428571,
+    "trials": 28,
+    "inclusions": 29,
     "reviews": [
+     {
+      "pmid": "42600900",
+      "trials": 12
+     },
      {
       "pmid": "42317046",
       "trials": 17
-     },
-     {
-      "pmid": "39784686",
-      "trials": 2
-     },
-     {
-      "pmid": "35816465",
-      "trials": 7
      }
     ],
-    "reviewsWithoutReferences": [],
+    "reviewsWithoutReferences": [
+     "42831875",
+     "41264751"
+    ],
     "shared": [
-     {
-      "pmid": "37078654",
-      "title": "Effects of dietary fibers or probiotics on functional constipation symptoms and roles of gut microbiota: a double-blinded randomized placebo trial",
-      "year": 2023,
-      "n": 250,
-      "inReviews": [
-       "42317046",
-       "39784686"
-      ]
-     },
      {
       "pmid": "37630717",
       "title": "The Effects of Agave Fructans in a Functional Food Consumed by Patients with Irritable Bowel Syndrome with Constipation: A Randomized, Double-Blind, Placebo-Controlled Trial",
       "year": 2023,
       "n": 50,
       "inReviews": [
-       "42317046",
-       "39784686"
+       "42600900",
+       "42317046"
       ]
      },
      {
-      "pmid": "34081625",
-      "title": "The effects of psyllium husk on gut microbiota composition and function in chronically constipated women of reproductive age using 16S rRNA gene sequencing analysis",
-      "year": 2021,
-      "n": 29,
+      "pmid": "19713235",
+      "title": "Soluble or insoluble fibre in irritable bowel syndrome in primary care? Randomised placebo controlled trial",
+      "year": 2009,
+      "n": 275,
       "inReviews": [
-       "42317046",
-       "35816465"
+       "42600900"
       ]
      },
      {
-      "pmid": "8824651",
-      "title": "Effects of psyllium therapy on stool characteristics, colon transit and anorectal function in chronic idiopathic constipation",
-      "year": 1995,
-      "n": 22,
+      "pmid": "37078654",
+      "title": "Effects of dietary fibers or probiotics on functional constipation symptoms and roles of gut microbiota: a double-blinded randomized placebo trial",
+      "year": 2023,
+      "n": 250,
       "inReviews": [
-       "42317046",
-       "35816465"
+       "42317046"
       ]
      },
      {
-      "pmid": "27492975",
-      "title": "Effect of consumption of chicory inulin on bowel function in healthy subjects with constipation: a randomized, double-blind, placebo-controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "42317046",
-       "35816465"
-      ]
-     },
-     {
-      "pmid": "25623312",
-      "title": "[Clinical benefits after soluble dietary fiber supplementation: a randomized clinical trial in adults with slow-transit constipation]",
-      "year": 2014,
+      "pmid": "7865643",
+      "title": "Bran supplementation in the treatment of irritable bowel syndrome",
+      "year": 1994,
       "n": 80,
       "inReviews": [
-       "35816465"
+       "42600900"
+      ]
+     },
+     {
+      "pmid": "7018336",
+      "title": "Psyllium therapy in the irritable bowel syndrome. A double-blind trial",
+      "year": 1981,
+      "n": 77,
+      "inReviews": [
+       "42600900"
       ]
      },
      {
@@ -1372,6 +1435,15 @@
       "n": 64,
       "inReviews": [
        "42317046"
+      ]
+     },
+     {
+      "pmid": "32935904",
+      "title": "Nopal fiber (Opuntia ficus-indica) improves symptoms in irritable bowel syndrome in the short term: a randomized controlled trial",
+      "year": 2021,
+      "n": 60,
+      "inReviews": [
+       "42600900"
       ]
      },
      {
@@ -1411,12 +1483,39 @@
       ]
      },
      {
-      "pmid": "7851201",
-      "title": "Effect of wheat bran in treatment of chronic nonorganic constipation. A double-blind controlled trial",
-      "year": 1995,
-      "n": 24,
+      "pmid": "34081625",
+      "title": "The effects of psyllium husk on gut microbiota composition and function in chronically constipated women of reproductive age using 16S rRNA gene sequencing analysis",
+      "year": 2021,
+      "n": 29,
       "inReviews": [
-       "35816465"
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "3030904",
+      "title": "Is bran efficacious in irritable bowel syndrome? A double blind placebo controlled crossover study",
+      "year": 1987,
+      "n": 28,
+      "inReviews": [
+       "42600900"
+      ]
+     },
+     {
+      "pmid": "8824651",
+      "title": "Effects of psyllium therapy on stool characteristics, colon transit and anorectal function in chronic idiopathic constipation",
+      "year": 1995,
+      "n": 22,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "2988107",
+      "title": "The effect of coarse wheat bran in the irritable bowel syndrome. A double-blind cross-over study",
+      "year": 1985,
+      "n": 20,
+      "inReviews": [
+       "42600900"
       ]
      },
      {
@@ -1429,21 +1528,45 @@
       ]
      },
      {
-      "pmid": "30062794",
-      "title": "Demonstration of differences in colonic volumes, transit, chyme consistency, and response to psyllium between healthy and constipated subjects using magnetic resonance imaging",
-      "year": 2018,
-      "n": 20,
+      "pmid": "3033815",
+      "title": "Short-chain fatty acids and the irritable bowel syndrome: the effect of wheat bran",
+      "year": 1987,
+      "n": 18,
       "inReviews": [
-       "35816465"
+       "42600900"
       ]
      },
      {
-      "pmid": "1520545",
-      "title": "[The efficacy of Plantago ovata as a regulator of intestinal transit. A double-blind study compared to placebo]",
-      "year": 1992,
-      "n": 20,
+      "pmid": "40891151",
+      "title": "Safety, tolerability, and preliminary effects of cricket chitin for adults with IBS: a double-blind randomized crossover pilot trial",
+      "year": 2025,
+      "n": 18,
       "inReviews": [
-       "35816465"
+       "42600900"
+      ]
+     },
+     {
+      "pmid": "2152777",
+      "title": "Effect of dietary fiber on symptoms and rectosigmoid motility in patients with irritable bowel syndrome. A controlled, crossover study",
+      "year": 1990,
+      "inReviews": [
+       "42600900"
+      ]
+     },
+     {
+      "pmid": "15712850",
+      "title": "Randomised-controlled trial of a fibre supplement on the symptoms of irritable bowel syndrome",
+      "year": 2005,
+      "inReviews": [
+       "42600900"
+      ]
+     },
+     {
+      "pmid": "55586",
+      "title": "A double-blind trial of the effect of wheat bran on symptoms of irritable bowel syndrome",
+      "year": 1976,
+      "inReviews": [
+       "42600900"
       ]
      },
      {
@@ -1458,6 +1581,14 @@
       "pmid": "10769331",
       "title": "Chronic constipation management for institutionalized older adults",
       "year": 2000,
+      "inReviews": [
+       "42317046"
+      ]
+     },
+     {
+      "pmid": "27492975",
+      "title": "Effect of consumption of chicory inulin on bowel function in healthy subjects with constipation: a randomized, double-blind, placebo-controlled trial",
+      "year": 2017,
       "inReviews": [
        "42317046"
       ]
@@ -1539,7 +1670,7 @@
     },
     {
      "year": 1988,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
@@ -1669,7 +1800,7 @@
     },
     {
      "year": 2023,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 3
     },
     {
@@ -1678,8 +1809,13 @@
      "trials": 2
     },
     {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
      "year": 2026,
-     "reviews": 3,
+     "reviews": 5,
      "trials": 1
     }
    ],
@@ -1697,6 +1833,17 @@
     ],
     "chosenNotCited": [
      {
+      "pmid": "42600900",
+      "doi": "10.1053/j.gastro.2026.07.027",
+      "title": "Fiber Supplementation in Irritable Bowel Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "firstAuthor": "Staudacher HM",
+      "journal": "Gastroenterology",
+      "citedBy": 0,
+      "n": 1904,
+      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     },
+     {
       "pmid": "42317046",
       "doi": "10.1039/d6fo00286b",
       "title": "Efficacy of different dietary fibers for chronic idiopathic constipation: a systematic review and network meta-analysis",
@@ -1708,26 +1855,23 @@
       "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
      },
      {
-      "pmid": "39784686",
-      "doi": "10.17235/reed.2024.10306/2024",
-      "title": "Novel insights into carbohydrate-to-fiber ratio and constipation: NHANES findings suggest a turning point",
+      "pmid": "42831875",
+      "doi": "10.14309/ctg.0000000000001114",
+      "title": "The Impact of Dietary Fiber Supplementation on Gut-Brain Axis Biomarkers and Symptoms in Functional Constipation: A Meta-Analysis of Randomized Controlled Trials",
       "year": 2026,
-      "firstAuthor": "Chen Y",
-      "journal": "Revista espanola de enfermedades digestivas",
+      "firstAuthor": "Wang Y",
+      "journal": "Clinical and translational gastroenterology",
       "citedBy": 0,
-      "n": 7752,
+      "n": 1284,
       "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
      },
      {
-      "pmid": "35816465",
-      "doi": "10.1093/ajcn/nqac184",
-      "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
-      "year": 2022,
-      "firstAuthor": "van der Schoot A",
-      "journal": "The American journal of clinical nutrition",
-      "citedBy": 79,
-      "n": 1251,
-      "why": "One of the newest meta-analyses on this claim (2022); screened as answering the question"
+      "pmid": "41264751",
+      "title": "Fiber Intake and Laxation in People With Normal Bowel Function: Systematic Review",
+      "year": 2025,
+      "firstAuthor": "Balk EM",
+      "citedBy": 0,
+      "why": "The most comprehensive review on this claim (118 trials, 2025); screened as answering the question"
      }
     ]
    },
@@ -1741,18 +1885,32 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 11,
-     "partly": 3,
+     "yes": 14,
+     "partly": 6,
      "no": 0,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "40647069",
+      "title": "Effects of Dietary Fiber Supplementation on Chronic Constipation in the Elderly: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Fibre supplements for chronic constipation, but only in elderly people, a narrower group than adults generally."
+     },
      {
       "pmid": "38829940",
       "title": "Clinical effects of chemical drugs, fecal microbiota transplantation, probiotics, dietary fiber, and acupuncture in the treatment of chronic functional constipation: a systematic review and network meta-analysis",
       "year": 2024,
       "fits": "partly",
       "reason": "Chronic constipation is covered, but dietary fibre is only one of many treatments in the network, and no fibre-specific result is reported in the abstract."
+     },
+     {
+      "pmid": "37050923",
+      "title": "Dietary fiber and growth, iron status and bowel function in children 0-5 years old: a systematic review",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Higher fibre intake and bowel function or constipation, but in children aged 0-5 rather than adults."
      },
      {
       "pmid": "33127328",
@@ -1767,6 +1925,13 @@
       "year": 2018,
       "fits": "partly",
       "reason": "Fibre against placebo or laxatives for constipation and IBS, but the population is children, not adults."
+     },
+     {
+      "pmid": "2832033",
+      "title": "Effect of wheat bran on weight of stool and gastrointestinal transit time: a meta analysis",
+      "year": 1988,
+      "fits": "partly",
+      "reason": "Wheat bran in healthy, IBS and constipated people, but outcomes are stool weight and transit time rather than symptoms."
      }
     ]
    }
@@ -1777,8 +1942,8 @@
    "finding": "fruit-veg-mortality",
    "counts": {
     "all": 3111,
-    "reviews": 17,
-    "trialReviews": 17,
+    "reviews": 19,
+    "trialReviews": 19,
     "trials": 12,
     "largeTrials": 1
    },
@@ -2019,7 +2184,7 @@
     },
     {
      "year": 2019,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
@@ -2029,7 +2194,7 @@
     },
     {
      "year": 2021,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
@@ -2108,7 +2273,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 13,
-     "partly": 2,
+     "partly": 4,
      "no": 2,
      "unscreened": 0
     },
@@ -2128,11 +2293,25 @@
       "reason": "Looks at produce prescription programs and food security or heart risk factors, not heart disease, stroke or death."
      },
      {
+      "pmid": "34476486",
+      "title": "Corrigendum to: \"Incorporating healthy dietary changes in addition to an increase in fruit and vegetable intake further improves the status of cardiovascular disease risk factors: A systematic review, meta-regression, and meta-analysis of randomized controlled trials.\" Nutrition Reviews, Volume 78, Issue 7, July 2020, Pages 532-545, https://doi.org/10.1093/nutrit/nuz104",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Corrigendum for a meta-analysis of trials that increased fruit and vegetable intake, but it measured heart disease risk factors, not heart disease, stroke or death."
+     },
+     {
       "pmid": "31889199",
       "title": "Incorporating healthy dietary changes in addition to an increase in fruit and vegetable intake further improves the status of cardiovascular disease risk factors: A systematic review, meta-regression, and meta-analysis of randomized controlled trials",
       "year": 2020,
       "fits": "partly",
       "reason": "Trials of eating more fruit and vegetables, but outcomes are heart risk factors such as blood fats and blood pressure, not heart disease events or death."
+     },
+     {
+      "pmid": "31717327",
+      "title": "Fruit and Vegetable Concentrate Supplementation and Cardiovascular Health: A Systematic Review from a Public Health Perspective",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Reviews fruit and vegetable concentrate supplements instead of the foods, and measures risk factors like cholesterol and blood pressure instead of disease or death."
      },
      {
       "pmid": "28475799",
@@ -2150,12 +2329,22 @@
    "finding": "nutrient-pill-equals-food",
    "counts": {
     "all": 1701,
-    "reviews": 11,
-    "trialReviews": 11,
+    "reviews": 14,
+    "trialReviews": 14,
     "trials": 16,
     "largeTrials": 10
    },
    "chosenReviews": [
+    {
+     "pmid": "38731692",
+     "doi": "10.3390/foods13091321",
+     "title": "The Efficacy of Dietary Intake, Supplementation, and Blood Concentrations of Carotenoids in Cancer Prevention: Insights from an Umbrella Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Sui J",
+     "journal": "Foods (Basel, Switzerland)",
+     "citedBy": 17,
+     "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+    },
     {
      "pmid": "35405977",
      "doi": "10.3390/nu14071361",
@@ -2177,24 +2366,18 @@
      "citedBy": 108,
      "n": 241883,
      "why": "One of the newest meta-analyses on this claim (2013); screened as answering the question"
-    },
-    {
-     "pmid": "18689373",
-     "doi": "10.1093/ajcn/88.2.372",
-     "title": "Carotenoids and the risk of developing lung cancer: a systematic review",
-     "year": 2008,
-     "firstAuthor": "Gallicchio L",
-     "journal": "The American journal of clinical nutrition",
-     "citedBy": 121,
-     "why": "One of the newest meta-analyses on this claim (2008); screened as answering the question"
     }
    ],
    "newerLargeTrials": [],
    "overlap": {
-    "cca": 0.041666666666666664,
-    "trials": 12,
-    "inclusions": 13,
+    "cca": 0.05,
+    "trials": 10,
+    "inclusions": 11,
     "reviews": [
+     {
+      "pmid": "38731692",
+      "trials": 2
+     },
      {
       "pmid": "35405977",
       "trials": 3
@@ -2202,22 +2385,26 @@
      {
       "pmid": "24040282",
       "trials": 6
-     },
-     {
-      "pmid": "18689373",
-      "trials": 4
      }
     ],
     "reviewsWithoutReferences": [],
     "shared": [
+     {
+      "pmid": "8127329",
+      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
+      "year": 1994,
+      "inReviews": [
+       "38731692",
+       "35405977"
+      ]
+     },
      {
       "pmid": "10601381",
       "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
       "year": 1999,
       "n": 39876,
       "inReviews": [
-       "35405977",
-       "18689373"
+       "35405977"
       ]
      },
      {
@@ -2230,30 +2417,12 @@
       ]
      },
      {
-      "pmid": "8901854",
-      "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
-      "year": 1996,
-      "n": 29133,
-      "inReviews": [
-       "18689373"
-      ]
-     },
-     {
       "pmid": "8901853",
       "title": "Risk factors for lung cancer and for intervention effects in CARET, the Beta-Carotene and Retinol Efficacy Trial",
       "year": 1996,
       "n": 18314,
       "inReviews": [
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "12692110",
-      "title": "Fruits and vegetables are associated with lower lung cancer risk only in the placebo arm of the beta-carotene and retinol efficacy trial (CARET)",
-      "year": 2003,
-      "n": 14120,
-      "inReviews": [
-       "18689373"
+       "38731692"
       ]
      },
      {
@@ -2308,14 +2477,6 @@
       "n": 424,
       "inReviews": [
        "24040282"
-      ]
-     },
-     {
-      "pmid": "8127329",
-      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
-      "year": 1994,
-      "inReviews": [
-       "35405977"
       ]
      }
     ]
@@ -2412,6 +2573,16 @@
      "trials": 0
     },
     {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
      "year": 2026,
      "reviews": 1,
      "trials": 0
@@ -2480,10 +2651,9 @@
     }
    ],
    "page": {
-    "alsoChosen": [
-     "18689373"
-    ],
+    "alsoChosen": [],
     "citedNotChosen": [
+     "18689373",
      "8127329",
      "8602180",
      "19876916",
@@ -2496,6 +2666,16 @@
      "22419320"
     ],
     "chosenNotCited": [
+     {
+      "pmid": "38731692",
+      "doi": "10.3390/foods13091321",
+      "title": "The Efficacy of Dietary Intake, Supplementation, and Blood Concentrations of Carotenoids in Cancer Prevention: Insights from an Umbrella Meta-Analysis",
+      "year": 2024,
+      "firstAuthor": "Sui J",
+      "journal": "Foods (Basel, Switzerland)",
+      "citedBy": 17,
+      "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+     },
      {
       "pmid": "35405977",
       "doi": "10.3390/nu14071361",
@@ -2530,8 +2710,8 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 4,
-     "partly": 7,
+     "yes": 6,
+     "partly": 8,
      "no": 0,
      "unscreened": 0
     },
@@ -2544,11 +2724,11 @@
       "reason": "Covers antioxidant supplements with recurrence and mortality, but only in breast cancer patients during treatment."
      },
      {
-      "pmid": "35294044",
-      "title": "Vitamin A supplementation for preventing morbidity and mortality in children from six months to five years of age",
-      "year": 2022,
+      "pmid": "37760056",
+      "title": "Antioxidant Use after Diagnosis of Head and Neck Squamous Cell Carcinoma (HNSCC): A Systematic Review of Application during Radiotherapy and in Second Primary Cancer Prevention",
+      "year": 2023,
       "fits": "partly",
-      "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
+      "reason": "Reviews antioxidant supplements and second primary cancers, but only in head and neck cancer patients, and does not systematically compare with dietary intake."
      },
      {
       "pmid": "36388168",
@@ -2556,6 +2736,13 @@
       "year": 2022,
       "fits": "partly",
       "reason": "Vitamin A from diet or supplements and cancer, but women only, and supplements are pooled with diet rather than compared."
+     },
+     {
+      "pmid": "35294044",
+      "title": "Vitamin A supplementation for preventing morbidity and mortality in children from six months to five years of age",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Vitamin A supplement trials with mortality outcomes, but in children aged 6 months to 5 years, not adults."
      },
      {
       "pmid": "30475962",
@@ -2594,8 +2781,8 @@
    "finding": "nutrient-list-tells-all",
    "counts": {
     "all": 5302,
-    "reviews": 7,
-    "trialReviews": 7,
+    "reviews": 9,
+    "trialReviews": 9,
     "trials": 32,
     "largeTrials": 1
    },
@@ -2815,7 +3002,7 @@
     },
     {
      "year": 2026,
-     "reviews": 2,
+     "reviews": 4,
      "trials": 4
     }
    ],
@@ -2885,17 +3072,31 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 2,
-     "partly": 3,
+     "partly": 5,
      "no": 2,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "41897448",
+      "title": "Impact of Antioxidant-Rich Whole Foods or Supplements on Skin Health: A Systematic Review and Meta-Analysis of Preclinical and Clinical Studies",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Covers antioxidant-rich whole foods and skin health in people, but pools them with supplements and does not compare whole foods with isolated nutrients."
+     },
      {
       "pmid": "41655947",
       "title": "Digestible and Metabolizable Energy Intake in Humans: a Systematic Review",
       "year": 2026,
       "fits": "partly",
       "reason": "Measures energy absorbed by bomb calorimetry and finds nuts and high-fiber diets lower it, but does not compare against nutrient-table predictions."
+     },
+     {
+      "pmid": "41812148",
+      "title": "Effects of Polyphenols on Gut Health and Inflammation in Overweight and Obese Populations: A Systematic Review and Meta-analysis of Dose, Duration, and Food Matrix",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Compares whole polyphenol-rich foods with purified extracts for inflammation outcomes, but only in overweight and obese people, a narrower group."
      },
      {
       "pmid": "42909331",
@@ -2934,8 +3135,8 @@
    "finding": "red-processed-meat-cancer",
    "counts": {
     "all": 1130,
-    "reviews": 33,
-    "trialReviews": 33,
+    "reviews": 36,
+    "trialReviews": 36,
     "trials": 12,
     "largeTrials": 4
    },
@@ -3059,7 +3260,7 @@
     },
     {
      "year": 2010,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
@@ -3089,12 +3290,12 @@
     },
     {
      "year": 2017,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
      "year": 2018,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 3
     },
     {
@@ -3232,8 +3433,8 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 20,
-     "partly": 10,
+     "yes": 22,
+     "partly": 11,
      "no": 3,
      "unscreened": 0
     },
@@ -3279,6 +3480,13 @@
       "year": 2022,
       "fits": "no",
       "reason": "It reviews dairy, fish, white meat and eggs, not red or processed meat, in relation to colorectal cancer."
+     },
+     {
+      "pmid": "30190793",
+      "title": "Association between red and processed meat intake and colorectal adenoma incidence and recurrence: a systematic review and meta-analysis",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Exposure matches (red and processed meat), but the outcome is colorectal adenoma, a precancerous growth, not colorectal cancer."
      },
      {
       "pmid": "28205448",

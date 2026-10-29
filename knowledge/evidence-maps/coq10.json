@@ -1,0 +1,3007 @@
+{
+ "topic": "coq10",
+ "nutrientId": "coq10",
+ "name": "CoQ10",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"coenzyme Q10\" OR TITLE_ABS:\"CoQ10\" OR TITLE_ABS:\"ubiquinone\" OR TITLE_ABS:\"ubiquinol\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"coenzyme Q10\" OR TITLE_ABS:\"CoQ10\" OR TITLE_ABS:\"ubiquinone\" OR TITLE_ABS:\"ubiquinol\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"coenzyme Q10\" OR TITLE_ABS:\"CoQ10\" OR TITLE_ABS:\"ubiquinone\" OR TITLE_ABS:\"ubiquinol\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"coenzyme Q10\" OR TITLE_ABS:\"CoQ10\" OR TITLE_ABS:\"ubiquinone\" OR TITLE_ABS:\"ubiquinol\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"coenzyme Q10\" OR TITLE_ABS:\"CoQ10\" OR TITLE_ABS:\"ubiquinone\" OR TITLE_ABS:\"ubiquinol\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with CoQ10 (coenzyme Q10, CoQ10, ubiquinone, ubiquinol) in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving CoQ10, with CoQ10 in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded CoQ10 trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 15477,
+  "retrieved": 706,
+  "animal": 16,
+  "retracted": 5,
+  "reviews": 241,
+  "trials": 442,
+  "guidelines": 2
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "heart-failure",
+   "label": "Heart failure",
+   "finding": "Heart failure: deaths and hospital stays",
+   "counts": {
+    "reviews": 16,
+    "trialReviews": 10,
+    "trials": 28,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39462324",
+     "doi": "10.1186/s12872-024-04232-z",
+     "title": "Efficacy and safety of coenzyme Q10 in heart failure: a meta-analysis of randomized controlled trials",
+     "year": 2024,
+     "firstAuthor": "Xu J",
+     "journal": "BMC cardiovascular disorders",
+     "citedBy": 13,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "35608922",
+     "doi": "10.1002/14651858.cd008684.pub3",
+     "title": "Coenzyme Q10 for heart failure",
+     "year": 2021,
+     "firstAuthor": "Al Saadi T",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 40,
+     "n": 1573,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    },
+    {
+     "pmid": "24049047",
+     "doi": "10.1002/14651858.cd008684.pub2",
+     "title": "Coenzyme Q10 for heart failure",
+     "year": 2014,
+     "firstAuthor": "Madmani ME",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 48,
+     "n": 914,
+     "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+    },
+    {
+     "pmid": "34173307",
+     "doi": "10.1002/ejhf.2278",
+     "title": "Dietary interventions and nutritional supplements for heart failure: a systematic appraisal and evidence map",
+     "year": 2021,
+     "firstAuthor": "Khan MS",
+     "journal": "European journal of heart failure",
+     "citedBy": 50,
+     "n": 176097,
+     "why": "The most comprehensive review of trials on this outcome (122 trials, 2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2948717948717949,
+    "trials": 26,
+    "inclusions": 49,
+    "reviews": [
+     {
+      "pmid": "39462324",
+      "trials": 11
+     },
+     {
+      "pmid": "35608922",
+      "trials": 24
+     },
+     {
+      "pmid": "24049047",
+      "trials": 13
+     },
+     {
+      "pmid": "34173307",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "25282031",
+      "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial",
+      "year": 2014,
+      "n": 420,
+      "inReviews": [
+       "39462324",
+       "35608922",
+       "34173307"
+      ]
+     },
+     {
+      "pmid": "10766682",
+      "title": "The effect of coenzyme Q10 in patients with congestive heart failure",
+      "year": 2000,
+      "n": 55,
+      "inReviews": [
+       "39462324",
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "1464342",
+      "title": "Ubiquinone (coenzyme Q10) in the long-term treatment of idiopathic dilated cardiomyopathy",
+      "year": 1992,
+      "n": 25,
+      "inReviews": [
+       "39462324",
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "9420639",
+      "title": "Coenzyme Q10 as an adjunctive in the treatment of chronic congestive heart failure. The Q10 Study Group",
+      "year": 1995,
+      "n": 10,
+      "inReviews": [
+       "39462324",
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "7752827",
+      "title": "Noninvasive evaluation of cardiac hemodynamics during exercise in patients with chronic heart failure: effects of short-term coenzyme Q10 treatment",
+      "year": 1994,
+      "inReviews": [
+       "39462324",
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "8241697",
+      "title": "Effect of coenzyme Q10 therapy in patients with congestive heart failure: a long-term multicenter randomized study",
+      "year": 1993,
+      "n": 322,
+      "inReviews": [
+       "39462324",
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "18487480",
+      "title": "Hemodynamic effects of fenofibrate and coenzyme Q10 in type 2 diabetic subjects with left ventricular diastolic dysfunction",
+      "year": 2008,
+      "n": 74,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "19703336",
+      "title": "Coenzyme Q10 improves diastolic function in children with idiopathic dilated cardiomyopathy",
+      "year": 2009,
+      "n": 38,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "17824295",
+      "title": "Effect of carni Q-gel (ubiquinol and carnitine) on cytokines in patients with heart failure in the Tishcon study",
+      "year": 2007,
+      "n": 31,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "25919281",
+      "title": "Effect of coenzyme Q10 on the incidence of atrial fibrillation in patients with heart failure",
+      "year": 2015,
+      "n": 30,
+      "inReviews": [
+       "39462324",
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "30880321",
+      "title": "Effects of coenzyme Q10 supplementation on diastolic function in patients with heart failure with preserved ejection fraction",
+      "year": 2019,
+      "n": 30,
+      "inReviews": [
+       "39462324",
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "16873938",
+      "title": "Coenzyme Q10 improves contractility of dysfunctional myocardium in chronic heart failure",
+      "year": 2005,
+      "n": 21,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "31713723",
+      "title": "Ubiquinol Improves Endothelial Function in Patients with Heart Failure with Reduced Ejection Fraction: A Single-Center, Randomized Double-Blind Placebo-Controlled Crossover Pilot Study",
+      "year": 2020,
+      "n": 14,
+      "inReviews": [
+       "39462324",
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "15188947",
+      "title": "Coenzyme Q10 in patients with end-stage heart failure awaiting cardiac transplantation: a randomized, placebo-controlled study",
+      "year": 2004,
+      "n": 10,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "16872244",
+      "title": "Effect of ezetimibe and/or simvastatin on coenzyme Q10 levels in plasma: a randomised trial",
+      "year": 2006,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "16081469",
+      "title": "The effect of micronutrient supplementation on quality-of-life and left ventricular function in elderly patients with chronic heart failure",
+      "year": 2005,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "10204818",
+      "title": "Effect of hydrosoluble coenzyme Q10 on blood pressures and insulin resistance in hypertensive patients with coronary artery disease",
+      "year": 1999,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "9266515",
+      "title": "Dose-related decrease of serum coenzyme Q10 during treatment with HMG-CoA reductase inhibitors",
+      "year": 1997,
+      "inReviews": [
+       "35608922",
+       "24049047"
+      ]
+     },
+     {
+      "pmid": "26482687",
+      "title": "Improved Health-Related Quality of Life, and More Days out of Hospital with Supplementation with Selenium and Coenzyme Q10 Combined. Results from a Double Blind, Placebo-Controlled Prospective Study",
+      "year": 2015,
+      "n": 443,
+      "inReviews": [
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "23895165",
+      "title": "Effect of selenium and Q10 on the cardiac biomarker NT-proBNP",
+      "year": 2013,
+      "n": 443,
+      "inReviews": [
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "27927588",
+      "title": "Effect of Coenzyme Q10 on Biomarkers of Oxidative Stress and Cardiac Function in Hemodialysis Patients: The CoQ10 Biomarker Trial",
+      "year": 2017,
+      "n": 80,
+      "inReviews": [
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "34826125",
+      "title": "Coenzyme Q10 in the Treatment of Heart Failure with Preserved Ejection Fraction: A Prospective, Randomized, Double-Blind, Placebo-Controlled Trial",
+      "year": 2022,
+      "n": 39,
+      "inReviews": [
+       "39462324"
+      ]
+     },
+     {
+      "pmid": "9868087",
+      "title": "[The changes of PRA, ATII, ald, ET and ANP in patients with left ventricular diastolic heart failure and intervention with enalapril]",
+      "year": 1997,
+      "n": 35,
+      "inReviews": [
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "30835327",
+      "title": "Effect of coenzyme Q10 in Europeans with chronic heart failure: A sub-group analysis of the Q-SYMBIO randomized double-blind trial",
+      "year": 2019,
+      "n": 33,
+      "inReviews": [
+       "35608922"
+      ]
+     },
+     {
+      "pmid": "16882678",
+      "title": "Coenzyme Q10 and exercise training in chronic heart failure",
+      "year": 2006,
+      "n": 23,
+      "inReviews": [
+       "39462324"
+      ]
+     },
+     {
+      "pmid": "23360359",
+      "title": "Coenzyme Q10 supplementation and diastolic heart functions in hemodialysis patients: a randomized double-blind placebo-controlled trial",
+      "year": 2013,
+      "n": 22,
+      "inReviews": [
+       "35608922"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "20883926",
+     "title": "Coenzyme Q10, rosuvastatin, and clinical outcomes in heart failure: a pre-specified substudy of CORONA (controlled rosuvastatin multinational study in heart failure)",
+     "year": 2010,
+     "n": 1191
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "35608922"
+    ],
+    "citedNotChosen": [
+     "25282031"
+    ],
+    "citedNotEligible": [
+     "25282031"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "39462324",
+      "doi": "10.1186/s12872-024-04232-z",
+      "title": "Efficacy and safety of coenzyme Q10 in heart failure: a meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "firstAuthor": "Xu J",
+      "journal": "BMC cardiovascular disorders",
+      "citedBy": 13,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     },
+     {
+      "pmid": "24049047",
+      "doi": "10.1002/14651858.cd008684.pub2",
+      "title": "Coenzyme Q10 for heart failure",
+      "year": 2014,
+      "firstAuthor": "Madmani ME",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 48,
+      "n": 914,
+      "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+     },
+     {
+      "pmid": "34173307",
+      "doi": "10.1002/ejhf.2278",
+      "title": "Dietary interventions and nutritional supplements for heart failure: a systematic appraisal and evidence map",
+      "year": 2021,
+      "firstAuthor": "Khan MS",
+      "journal": "European journal of heart failure",
+      "citedBy": 50,
+      "n": 176097,
+      "why": "The most comprehensive review of trials on this outcome (122 trials, 2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with heart failure on standard treatment",
+     "intervention": "CoQ10 added to treatment",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Deaths, hospital stays or heart function"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 7,
+     "partly": 3,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42869600",
+      "title": "Effectiveness and safety of coenzyme Q10 in people with heart failure with preserved ejection fraction (HFpEF): a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CoQ10 in heart failure matches, but the review covers only people with preserved ejection fraction (HFpEF), a narrower group; no abstract to confirm comparison or outcomes."
+     },
+     {
+      "pmid": "39464682",
+      "title": "Dietary strategies and nutritional supplements in the management of heart failure: a systematic review",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Covers ubiquinol and ejection fraction in heart failure RCTs, but it is a broad review of many supplements with no pooled CoQ10 analysis described."
+     },
+     {
+      "pmid": "35076012",
+      "title": "Coenzyme Q10 to manage chronic heart failure with a reduced ejection fraction: a systematic review and economic evaluation",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pooled RCTs of CoQ10 plus standard care versus standard care with mortality data, but only in heart failure with reduced ejection fraction, a narrower group."
+     }
+    ]
+   }
+  },
+  {
+   "id": "migraine",
+   "label": "Migraine",
+   "finding": "Migraine attacks",
+   "counts": {
+    "reviews": 6,
+    "trialReviews": 5,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39404918",
+     "doi": "10.1007/s10072-024-07794-0",
+     "title": "Effects of selected dietary supplements on migraine prophylaxis: A systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2025,
+     "firstAuthor": "Talandashti MK",
+     "journal": "Neurological sciences : official journal of the Italian Neurological Society and of the Italian Society of Clinical Neurophysiology",
+     "citedBy": 13,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "33402403",
+     "doi": "10.1136/bmjopen-2020-039358",
+     "title": "Coenzyme Q10 supplementation for prophylaxis in adult patients with migraine-a meta-analysis",
+     "year": 2021,
+     "firstAuthor": "Sazali S",
+     "journal": "BMJ open",
+     "citedBy": 34,
+     "n": 371,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    },
+    {
+     "pmid": "30727862",
+     "doi": "10.1080/1028415x.2019.1572940",
+     "title": "Effect of coenzyme Q10 supplementation on clinical features of migraine: a systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Parohan M",
+     "journal": "Nutritional neuroscience",
+     "citedBy": 32,
+     "n": 221,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3888888888888889,
+    "trials": 9,
+    "inclusions": 16,
+    "reviews": [
+     {
+      "pmid": "39404918",
+      "trials": 4
+     },
+     {
+      "pmid": "33402403",
+      "trials": 5
+     },
+     {
+      "pmid": "30727862",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "24621064",
+      "title": "Coenzyme Q10 supplementation ameliorates inflammatory markers in patients with multiple sclerosis: a double blind, placebo, controlled randomized clinical trial",
+      "year": 2015,
+      "n": 48,
+      "inReviews": [
+       "39404918",
+       "33402403",
+       "30727862"
+      ]
+     },
+     {
+      "pmid": "29298622",
+      "title": "Oral coenzyme Q10 supplementation in patients with migraine: Effects on clinical features and inflammatory markers",
+      "year": 2019,
+      "n": 45,
+      "inReviews": [
+       "39404918",
+       "33402403",
+       "30727862"
+      ]
+     },
+     {
+      "pmid": "15728298",
+      "title": "Efficacy of coenzyme Q10 in migraine prophylaxis: a randomized controlled trial",
+      "year": 2005,
+      "n": 42,
+      "inReviews": [
+       "39404918",
+       "33402403",
+       "30727862"
+      ]
+     },
+     {
+      "pmid": "21586650",
+      "title": "A randomized, double-blinded, placebo-controlled, crossover, add-on study of CoEnzyme Q10 in the prevention of pediatric and adolescent migraine",
+      "year": 2011,
+      "n": 76,
+      "inReviews": [
+       "33402403",
+       "30727862"
+      ]
+     },
+     {
+      "pmid": "31241007",
+      "title": "The synergistic effects of nano-curcumin and coenzyme Q10 supplementation in migraine prophylaxis: a randomized, placebo-controlled, double-blind trial",
+      "year": 2021,
+      "n": 100,
+      "inReviews": [
+       "39404918"
+      ]
+     },
+     {
+      "pmid": "30612463",
+      "title": "The effects of concurrent Coenzyme Q10, L-carnitine supplementation in migraine prophylaxis: A randomized, placebo-controlled, double-blind trial",
+      "year": 2019,
+      "n": 56,
+      "inReviews": [
+       "33402403"
+      ]
+     },
+     {
+      "pmid": "24192015",
+      "title": "Effects of coenzyme Q10 supplementation (300 mg/day) on antioxidation and anti-inflammation in coronary artery disease patients during statins therapy: a randomized, placebo-controlled trial",
+      "year": 2013,
+      "n": 51,
+      "inReviews": [
+       "30727862"
+      ]
+     },
+     {
+      "pmid": "27716246",
+      "title": "Effects of coenzyme Q10 supplementation on antioxidant capacity and inflammation in hepatocellular carcinoma patients after surgery: a randomized, placebo-controlled trial",
+      "year": 2016,
+      "n": 41,
+      "inReviews": [
+       "30727862"
+      ]
+     },
+     {
+      "pmid": "21827677",
+      "title": "Coenzyme Q10 levels are low and may be associated with the inflammatory cascade in septic shock",
+      "year": 2011,
+      "n": 14,
+      "inReviews": [
+       "30727862"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "33402403",
+     "30727862"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "39404918",
+      "doi": "10.1007/s10072-024-07794-0",
+      "title": "Effects of selected dietary supplements on migraine prophylaxis: A systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "firstAuthor": "Talandashti MK",
+      "journal": "Neurological sciences : official journal of the Italian Neurological Society and of the Italian Society of Clinical Neurophysiology",
+      "citedBy": 13,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with migraine",
+     "intervention": "CoQ10 to prevent attacks",
+     "comparison": "Placebo or no treatment",
+     "outcome": "How often attacks happen and how bad they are"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "30428123",
+      "title": "Efficacy of CoQ10 as supplementation for migraine: A meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "CoQ10 vs placebo for migraine attacks and severity matches, but the pooled trials mix children and adults with no separate adult-only analysis."
+     }
+    ]
+   }
+  },
+  {
+   "id": "statin-muscle",
+   "label": "Statin muscle aches",
+   "finding": "Muscle aches from statins",
+   "counts": {
+    "reviews": 14,
+    "trialReviews": 13,
+    "trials": 31,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41158831",
+     "doi": "10.1017/jns.2025.10043",
+     "title": "Effects of coenzyme Q10 supplementation on myopathy in statin-treated patients: a systematic review and meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Kovacic S",
+     "journal": "Journal of nutritional science",
+     "citedBy": 3,
+     "n": 389,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "33999383",
+     "doi": "10.1007/s11845-021-02651-x",
+     "title": "Effects of coenzyme Q10 supplementation on statin-induced myopathy: a meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Wei H",
+     "journal": "Irish journal of medical science",
+     "citedBy": 16,
+     "n": 472,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
+    {
+     "pmid": "32179207",
+     "doi": "10.1016/j.atherosclerosis.2020.03.006",
+     "title": "Effect of Coenzyme Q10 on statin-associated myalgia and adherence to statin therapy: A systematic review and meta-analysis",
+     "year": 2020,
+     "firstAuthor": "Kennedy C",
+     "journal": "Atherosclerosis",
+     "citedBy": 42,
+     "n": 321,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4666666666666667,
+    "trials": 15,
+    "inclusions": 29,
+    "reviews": [
+     {
+      "pmid": "41158831",
+      "trials": 12
+     },
+     {
+      "pmid": "33999383",
+      "trials": 10
+     },
+     {
+      "pmid": "32179207",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "25545331",
+      "title": "A randomized trial of coenzyme Q10 in patients with confirmed statin myopathy",
+      "year": 2015,
+      "n": 120,
+      "inReviews": [
+       "41158831",
+       "33999383",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "22608359",
+      "title": "Effect of coenzyme Q10 supplementation on statin-induced myalgias",
+      "year": 2012,
+      "n": 76,
+      "inReviews": [
+       "41158831",
+       "33999383",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "25375075",
+      "title": "Coenzyme Q10 supplementation decreases statin-related mild-to-moderate muscle symptoms: a randomized clinical study",
+      "year": 2014,
+      "n": 25,
+      "inReviews": [
+       "41158831",
+       "33999383",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "17493470",
+      "title": "Effect of coenzyme q10 on myopathic symptoms in patients treated with statins",
+      "year": 2007,
+      "n": 18,
+      "inReviews": [
+       "41158831",
+       "33999383",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "23458201",
+      "title": "Coenzyme Q(10) and selenium in statin-associated myopathy treatment",
+      "year": 2013,
+      "inReviews": [
+       "41158831",
+       "33999383",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "28541926",
+      "title": "Addition of omega-3 fatty acid and coenzyme Q10 to statin therapy in patients with combined dyslipidemia",
+      "year": 2017,
+      "n": 105,
+      "inReviews": [
+       "41158831",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "31695332",
+      "title": "Coenzyme q10 liquid supplementation in dyslipidemic subjects with statin-related clinical symptoms: a double-blind, randomized, placebo-controlled study",
+      "year": 2019,
+      "n": 60,
+      "inReviews": [
+       "41158831",
+       "33999383"
+      ]
+     },
+     {
+      "pmid": "23301875",
+      "title": "No effect of combined coenzyme Q10 and selenium supplementation on atorvastatin-induced myopathy",
+      "year": 2013,
+      "n": 43,
+      "inReviews": [
+       "41158831",
+       "32179207"
+      ]
+     },
+     {
+      "pmid": "26429200",
+      "title": "MicroRNAs as biomarkers of hepatotoxicity in a randomized placebo-controlled study of simvastatin and ubiquinol supplementation",
+      "year": 2016,
+      "inReviews": [
+       "41158831",
+       "33999383"
+      ]
+     },
+     {
+      "pmid": "16003294",
+      "title": "High-dose statins and skeletal muscle metabolism in humans: a randomized, controlled trial",
+      "year": 2005,
+      "n": 33,
+      "inReviews": [
+       "41158831"
+      ]
+     },
+     {
+      "pmid": "21388622",
+      "title": "Reversal of mitochondrial dysfunction by coenzyme Q10 supplement improves endothelial function in patients with ischaemic left ventricular systolic dysfunction: a randomized controlled trial",
+      "year": 2011,
+      "n": 28,
+      "inReviews": [
+       "41158831"
+      ]
+     },
+     {
+      "pmid": "17681347",
+      "title": "Effects of CoQ10 supplementation on plasma lipoprotein lipid, CoQ10 and liver and muscle enzyme levels in hypercholesterolemic patients treated with atorvastatin: a randomized double-blind study",
+      "year": 2007,
+      "n": 25,
+      "inReviews": [
+       "33999383"
+      ]
+     },
+     {
+      "pmid": "23306418",
+      "title": "Impact of coenzyme Q-10 on parameters of cardiorespiratory fitness and muscle performance in older athletes taking statins",
+      "year": 2012,
+      "inReviews": [
+       "41158831"
+      ]
+     },
+     {
+      "pmid": "7752830",
+      "title": "Exogenous CoQ10 supplementation prevents plasma ubiquinone reduction induced by HMG-CoA reductase inhibitors",
+      "year": 1994,
+      "inReviews": [
+       "33999383"
+      ]
+     },
+     {
+      "pmid": "9266515",
+      "title": "Dose-related decrease of serum coenzyme Q10 during treatment with HMG-CoA reductase inhibitors",
+      "year": 1997,
+      "inReviews": [
+       "33999383"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "32179207",
+     "41158831"
+    ],
+    "citedNotChosen": [
+     "30371340",
+     "25440725"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "33999383",
+      "doi": "10.1007/s11845-021-02651-x",
+      "title": "Effects of coenzyme Q10 supplementation on statin-induced myopathy: a meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "firstAuthor": "Wei H",
+      "journal": "Irish journal of medical science",
+      "citedBy": 16,
+      "n": 472,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults taking statins, most with muscle symptoms",
+     "intervention": "CoQ10",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Muscle pain or aches"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 6,
+     "partly": 1,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41657017",
+      "title": "Effects of coenzyme Q10 analogs on oxidative stress, muscle, and metabolism after exercise: A meta-analysis and systematic review",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at CoQ10 for exercise-induced muscle damage and oxidative stress, not in people taking statins."
+     },
+     {
+      "pmid": "42939793",
+      "title": "Effects of Coenzyme Q10 Supplementation on Muscle Health and Physical Capacity in Middle-Aged and Older Adults: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Studies CoQ10 for physical capacity and muscle function in middle-aged and older adults, not muscle pain in people taking statins."
+     },
+     {
+      "pmid": "40367843",
+      "title": "Can coenzyme Q10 supplementation reduce exercise-induced muscle damage and oxidative stress in athletes? A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Looks at athletes and exercise-related blood markers, not adults on statins with muscle pain."
+     },
+     {
+      "pmid": "38479900",
+      "title": "The effects of coenzyme Q10 supplementation on biomarkers of exercise-induced muscle damage, physical performance, and oxidative stress: A GRADE-assessed systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Covers exercise-induced muscle damage markers and physical performance in adults generally, not statin users."
+     },
+     {
+      "pmid": "30414615",
+      "title": "The effect of statin treatment on circulating coenzyme Q10 concentrations: an updated meta-analysis of randomized controlled trials",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Measures how statins affect blood CoQ10 levels; it does not test CoQ10 supplements for muscle pain."
+     },
+     {
+      "pmid": "26192349",
+      "title": "Statin therapy and plasma coenzyme Q10 concentrations--A systematic review and meta-analysis of placebo-controlled trials",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Measures how statins affect plasma CoQ10 levels; it does not test CoQ10 supplements for muscle pain."
+     },
+     {
+      "pmid": "17560286",
+      "title": "The role of coenzyme Q10 in statin-associated myopathy: a systematic review",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Covers statin users and CoQ10 but mostly looks at blood CoQ10 levels in a broad literature search, with little trial data on muscle symptoms."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "reviews": 8,
+    "trialReviews": 8,
+    "trials": 11,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "26935713",
+     "doi": "10.1002/14651858.cd007435.pub3",
+     "title": "Blood pressure lowering efficacy of coenzyme Q10 for primary hypertension",
+     "year": 2016,
+     "firstAuthor": "Ho MJ",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 16,
+     "n": 50,
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+    },
+    {
+     "pmid": "19821418",
+     "doi": "10.1002/14651858.cd007435.pub2",
+     "title": "Blood pressure lowering efficacy of coenzyme Q10 for primary hypertension",
+     "year": 2009,
+     "firstAuthor": "Ho MJ",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 27,
+     "n": 96,
+     "why": "One of the newest meta-analyses of trials on this outcome (2009); screened as answering the question"
+    },
+    {
+     "pmid": "17287847",
+     "doi": "10.1038/sj.jhh.1002138",
+     "title": "Coenzyme Q10 in the treatment of hypertension: a meta-analysis of the clinical trials",
+     "year": 2007,
+     "firstAuthor": "Rosenfeldt FL",
+     "journal": "Journal of human hypertension",
+     "citedBy": 120,
+     "n": 362,
+     "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.7,
+    "trials": 5,
+    "inclusions": 12,
+    "reviews": [
+     {
+      "pmid": "26935713",
+      "trials": 5
+     },
+     {
+      "pmid": "19821418",
+      "trials": 4
+     },
+     {
+      "pmid": "17287847",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "11780680",
+      "title": "Randomized, double-blind, placebo-controlled trial of coenzyme Q10 in isolated systolic hypertension",
+      "year": 2001,
+      "n": 50,
+      "inReviews": [
+       "26935713",
+       "19821418",
+       "17287847"
+      ]
+     },
+     {
+      "pmid": "12428181",
+      "title": "Coenzyme Q10 improves blood pressure and glycaemic control: a controlled trial in subjects with type 2 diabetes",
+      "year": 2002,
+      "inReviews": [
+       "26935713",
+       "19821418",
+       "17287847"
+      ]
+     },
+     {
+      "pmid": "10204818",
+      "title": "Effect of hydrosoluble coenzyme Q10 on blood pressures and insulin resistance in hypertensive patients with coronary artery disease",
+      "year": 1999,
+      "inReviews": [
+       "26935713",
+       "19821418",
+       "17287847"
+      ]
+     },
+     {
+      "pmid": "17341532",
+      "title": "Electrocardiographic and hemodynamic effects of coenzyme Q10 in healthy individuals: a double-blind, randomized controlled trial",
+      "year": 2007,
+      "n": 26,
+      "inReviews": [
+       "26935713",
+       "19821418"
+      ]
+     },
+     {
+      "pmid": "22113168",
+      "title": "A randomized, double-blind, placebo-controlled crossover study of coenzyme Q10 therapy in hypertensive patients with the metabolic syndrome",
+      "year": 2012,
+      "n": 130,
+      "inReviews": [
+       "26935713"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "26935713"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "19821418",
+      "doi": "10.1002/14651858.cd007435.pub2",
+      "title": "Blood pressure lowering efficacy of coenzyme Q10 for primary hypertension",
+      "year": 2009,
+      "firstAuthor": "Ho MJ",
+      "journal": "The Cochrane database of systematic reviews",
+      "citedBy": 27,
+      "n": 96,
+      "why": "One of the newest meta-analyses of trials on this outcome (2009); screened as answering the question"
+     },
+     {
+      "pmid": "17287847",
+      "doi": "10.1038/sj.jhh.1002138",
+      "title": "Coenzyme Q10 in the treatment of hypertension: a meta-analysis of the clinical trials",
+      "year": 2007,
+      "firstAuthor": "Rosenfeldt FL",
+      "journal": "Journal of human hypertension",
+      "citedBy": 120,
+      "n": 362,
+      "why": "One of the newest meta-analyses of trials on this outcome (2007); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with high blood pressure",
+     "intervention": "CoQ10",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 5,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40495903",
+      "title": "Effects of coenzyme Q10 administration on blood pressure and heart rate in adults: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Pools RCTs of CoQ10 on blood pressure, but in adults in general; the abstract reports no separate analysis of people with high blood pressure."
+     },
+     {
+      "pmid": "36130103",
+      "title": "Dose-Response Effect of Coenzyme Q10 Supplementation on Blood Pressure among Patients with Cardiometabolic Disorders: A Grading of Recommendations Assessment, Development, and Evaluation (GRADE)-Assessed Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pooled RCTs of CoQ10 vs control on blood pressure, but in people with cardiometabolic disorders in general rather than specifically hypertension."
+     },
+     {
+      "pmid": "35348726",
+      "title": "Coenzyme Q10 as Adjunctive Therapy for Cardiovascular Disease and Hypertension: A Systematic Review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Included RCTs of CoQ10 in older adults with hypertension or CVD, but added to usual therapy, mixed population, and results were not pooled."
+     },
+     {
+      "pmid": "26852373",
+      "title": "Nutraceuticals with a clinically detectable blood pressure-lowering effect: a review of available randomized clinical trials and their meta-analyses",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Broad narrative review of many nutraceuticals for blood pressure; CoQ10 is mentioned but not pooled in its own analysis."
+     },
+     {
+      "pmid": "14695924",
+      "title": "Systematic review of effect of coenzyme Q10 in physical exercise, hypertension and heart failure",
+      "year": 2003,
+      "fits": "partly",
+      "reason": "Summarised eight CoQ10 trials in hypertension, but the abstract does not say they were randomised or placebo-controlled."
+     }
+    ]
+   }
+  },
+  {
+   "id": "metabolic",
+   "label": "Blood sugar and fats",
+   "finding": "Blood sugar and blood fats (HbA1c, cholesterol, triglycerides)",
+   "counts": {
+    "reviews": 34,
+    "trialReviews": 29,
+    "trials": 73,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42192187",
+     "doi": "10.1155/jdr/5587445",
+     "title": "Effects of Coenzyme Q10 on Lipid, Glycemic, and Inflammatory Markers in Metabolic Disorders: A Systematic Review and Meta-Analysis",
+     "year": 2026,
+     "firstAuthor": "Zhang Z",
+     "journal": "Journal of diabetes research",
+     "citedBy": 1,
+     "n": 3422,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "41630501",
+     "doi": "10.1080/10408398.2026.2624477",
+     "title": "The effects of coenzyme Q10 supplementation on glycemic control in diabetic and non-diabetic individuals: a systematic review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Collares LDN",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "42642774",
+     "doi": "10.1186/s40360-025-01002-1",
+     "title": "The effect of CoQ10 supplementation on cardiovascular risk factors in patients with prediabetes and type 2 diabetes mellitus: a grade-assessed systematic review and dose-response meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Rezagholizadeh F",
+     "journal": "BMC pharmacology & toxicology",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "35304727",
+     "doi": "10.1007/s12272-022-01374-6",
+     "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
+     "year": 2022,
+     "firstAuthor": "Kim Y",
+     "journal": "Archives of pharmacal research",
+     "citedBy": 11,
+     "why": "The most comprehensive review of trials on this outcome (119 trials, 2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3018867924528302,
+    "trials": 53,
+    "inclusions": 101,
+    "reviews": [
+     {
+      "pmid": "42192187",
+      "trials": 45
+     },
+     {
+      "pmid": "41630501",
+      "trials": 31
+     },
+     {
+      "pmid": "42642774",
+      "trials": 15
+     },
+     {
+      "pmid": "35304727",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "18487480",
+      "title": "Hemodynamic effects of fenofibrate and coenzyme Q10 in type 2 diabetic subjects with left ventricular diastolic dysfunction",
+      "year": 2008,
+      "n": 74,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "26255546",
+      "title": "Effect of Coenzyme Q10 on Oxidative Stress, Glycemic Control and Inflammation in Diabetic Neuropathy: A Double Blind Randomized Clinical Trial",
+      "year": 2014,
+      "n": 70,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "25976576",
+      "title": "Effect of coenzyme Q10 on glycaemic control, oxidative stress and adiponectin in type 2 diabetes",
+      "year": 2015,
+      "n": 52,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "29365333",
+      "title": "Effects of Coenzyme Q10 Supplementation on Serum Values of Gamma-glutamyl transferase, Pseudocholinesterase, Bilirubin, Ferritin, and High-Sensitivity C-Reactive Protein in Women with Type 2 Diabetes",
+      "year": 2019,
+      "n": 44,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "12428181",
+      "title": "Coenzyme Q10 improves blood pressure and glycaemic control: a controlled trial in subjects with type 2 diabetes",
+      "year": 2002,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "10416046",
+      "title": "The effect of coenzyme Q10 administration on metabolic control in patients with type 2 diabetes mellitus",
+      "year": 1999,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "27657997",
+      "title": "The Effect of Coenzyme Q10 Supplementation on Circulating Levels of Novel Adipokine Adipolin/CTRP12 in Overweight and Obese Patients with Type 2 Diabetes",
+      "year": 2017,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "12732401",
+      "title": "Combined effect of coenzyme Q10 and fenofibrate on forearm microcirculatory function in type 2 diabetes",
+      "year": 2003,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "30151373",
+      "title": "Effect of Coenzyme Q10 on Insulin Resistance in Korean Patients with Prediabetes: A Pilot Single-Center, Randomized, Double-Blind, Placebo-Controlled Study",
+      "year": 2018,
+      "n": 80,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774"
+      ]
+     },
+     {
+      "pmid": "29933718",
+      "title": "Effects of coenzyme Q10 supplementation on serum values of adiponectin, leptin, 8-isoprostane and malondialdehyde in women with type 2 diabetes",
+      "year": 2018,
+      "n": 34,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774"
+      ]
+     },
+     {
+      "pmid": "26321469",
+      "title": "The effect of ubiquinone and combined antioxidant therapy on oxidative stress markers in non-proliferative diabetic retinopathy: A phase IIa, randomized, double-blind, and placebo-controlled study",
+      "year": 2016,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774"
+      ]
+     },
+     {
+      "pmid": "22595020",
+      "title": "The effect of ubiquinone in diabetic polyneuropathy: a randomized double-blind placebo-controlled study",
+      "year": 2012,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774"
+      ]
+     },
+     {
+      "pmid": "29936921",
+      "title": "Effect of liquid ubiquinol supplementation on glucose, lipids and antioxidant capacity in type 2 diabetes patients: a double-blind, randomised, placebo-controlled trial",
+      "year": 2018,
+      "inReviews": [
+       "42192187",
+       "41630501",
+       "42642774"
+      ]
+     },
+     {
+      "pmid": "19228872",
+      "title": "Coenzyme Q10 improves endothelial dysfunction in statin-treated type 2 diabetic patients",
+      "year": 2009,
+      "inReviews": [
+       "42192187",
+       "42642774",
+       "35304727"
+      ]
+     },
+     {
+      "pmid": "29454678",
+      "title": "Treatment of coenzyme Q10 for 24 weeks improves lipid and glycemic profile in dyslipidemic individuals",
+      "year": 2018,
+      "n": 101,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "36192751",
+      "title": "Effects of curcumin and/or coenzyme Q10 supplementation on metabolic control in subjects with metabolic syndrome: a randomized clinical trial",
+      "year": 2022,
+      "n": 88,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "30202998",
+      "title": "Hormonal and Metabolic Effects of Coenzyme Q10 and/or Vitamin E in Patients With Polycystic Ovary Syndrome",
+      "year": 2019,
+      "n": 86,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "24192015",
+      "title": "Effects of coenzyme Q10 supplementation (300 mg/day) on antioxidation and anti-inflammation in coronary artery disease patients during statins therapy: a randomized, placebo-controlled trial",
+      "year": 2013,
+      "n": 51,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "25450583",
+      "title": "Oral coenzyme Q10 supplementation in patients with nonalcoholic fatty liver disease: effects on serum vaspin, chemerin, pentraxin 3, insulin resistance and oxidative stress",
+      "year": 2014,
+      "n": 44,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "10220205",
+      "title": "Impact of ubiquinone (coenzyme Q10) treatment on glycaemic control, insulin requirement and well-being in patients with Type 1 diabetes mellitus",
+      "year": 1999,
+      "n": 34,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "21388622",
+      "title": "Reversal of mitochondrial dysfunction by coenzyme Q10 supplement improves endothelial function in patients with ischaemic left ventricular systolic dysfunction: a randomized controlled trial",
+      "year": 2011,
+      "n": 28,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "10077397",
+      "title": "Serum concentration of lipoprotein(a) decreases on treatment with hydrosoluble coenzyme Q10 in patients with coronary artery disease: discovery of a new role",
+      "year": 1999,
+      "n": 25,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "9266541",
+      "title": "The effect of coenzyme Q10 on blood glucose and insulin requirement in patients with insulin dependent diabetes mellitus",
+      "year": 1997,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "18164307",
+      "title": "The effect of coenzyme Q10 on microcirculatory endothelial function of subjects with type 2 diabetes mellitus",
+      "year": 2008,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "26140473",
+      "title": "Reduction in asymmetric dimethylarginine plasma levels by coenzyme Q10 supplementation in patients with type 2 diabetes mellitus",
+      "year": 2015,
+      "inReviews": [
+       "42192187",
+       "42642774"
+      ]
+     },
+     {
+      "pmid": "10204818",
+      "title": "Effect of hydrosoluble coenzyme Q10 on blood pressures and insulin resistance in hypertensive patients with coronary artery disease",
+      "year": 1999,
+      "inReviews": [
+       "42192187",
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "25545331",
+      "title": "A randomized trial of coenzyme Q10 in patients with confirmed statin myopathy",
+      "year": 2015,
+      "n": 120,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "28541926",
+      "title": "Addition of omega-3 fatty acid and coenzyme Q10 to statin therapy in patients with combined dyslipidemia",
+      "year": 2017,
+      "n": 105,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "31349945",
+      "title": "Independent and Additive Effects of Coenzyme Q10 and Vitamin E on Cardiometabolic Outcomes and Visceral Adiposity in Women With Polycystic Ovary Syndrome",
+      "year": 2019,
+      "n": 86,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "31695332",
+      "title": "Coenzyme q10 liquid supplementation in dyslipidemic subjects with statin-related clinical symptoms: a double-blind, randomized, placebo-controlled study",
+      "year": 2019,
+      "n": 60,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "30251010",
+      "title": "Clinical trial of the effects of coenzyme Q10 supplementation on glycemic control and markers of lipid profiles in diabetic hemodialysis patients",
+      "year": 2018,
+      "n": 60,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "38431600",
+      "title": "Coenzyme Q10 supplementation in burn patients: a double-blind placebo-controlled randomized clinical trial",
+      "year": 2024,
+      "n": 60,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "34664527",
+      "title": "The effects of coenzyme Q10 supplementation on metabolic profiles and parameters of mental health in women with polycystic ovary syndrome",
+      "year": 2022,
+      "n": 55,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "22342390",
+      "title": "Effects of coenzyme Q10 supplementation on inflammatory markers (high-sensitivity C-reactive protein, interleukin-6, and homocysteine) in patients with coronary artery disease",
+      "year": 2012,
+      "n": 51,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "21370966",
+      "title": "Effects of coenzyme Q10 on arterial stiffness, metabolic parameters, and fatigue in obese subjects: a double-blind randomized controlled study",
+      "year": 2011,
+      "n": 51,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "29111905",
+      "title": "The Effects of Coenzyme Q10 Supplementation on Glucose Metabolism, Lipid Profiles, Inflammation, and Oxidative Stress in Patients With Diabetic Nephropathy: A Randomized, Double-Blind, Placebo-Controlled Trial",
+      "year": 2018,
+      "n": 50,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "10993487",
+      "title": "Antioxidative efficacy of parallel and combined supplementation with coenzyme Q10 and d-alpha-tocopherol in mildly hypercholesterolemic subjects: a randomized placebo-controlled clinical study",
+      "year": 2000,
+      "n": 40,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "30389229",
+      "title": "Inflammatory biomarkers in patients in Simvastatin treatment: No effect of co-enzyme Q10 supplementation",
+      "year": 2019,
+      "n": 35,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "26385228",
+      "title": "The effects of coenzyme Q10 administration on glucose homeostasis parameters, lipid profiles, biomarkers of inflammation and oxidative stress in patients with metabolic syndrome",
+      "year": 2016,
+      "n": 30,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "21368390",
+      "title": "Effects of carnitine and coenzyme Q10 on lipid profile and serum levels of lipoprotein(a) in maintenance hemodialysis patients on statin therapy",
+      "year": 2011,
+      "n": 27,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "25375075",
+      "title": "Coenzyme Q10 supplementation decreases statin-related mild-to-moderate muscle symptoms: a randomized clinical study",
+      "year": 2014,
+      "n": 25,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "17681347",
+      "title": "Effects of CoQ10 supplementation on plasma lipoprotein lipid, CoQ10 and liver and muscle enzyme levels in hypercholesterolemic patients treated with atorvastatin: a randomized double-blind study",
+      "year": 2007,
+      "n": 25,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "16882678",
+      "title": "Coenzyme Q10 and exercise training in chronic heart failure",
+      "year": 2006,
+      "n": 23,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "32544011",
+      "title": "The effect of coenzyme Q10 supplementation on inflammatory and endothelial dysfunction markers in overweight/obese polycystic ovary syndrome patients",
+      "year": 2021,
+      "n": 22,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "16431002",
+      "title": "Safety assessment of coenzyme Q10 (Kaneka Q10) in healthy subjects: a double-blind, randomized, placebo-controlled trial",
+      "year": 2006,
+      "n": 20,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "34891216",
+      "title": "The effect of 8 weeks of physical training on muscle performance and maximal fat oxidation rates in patients treated with simvastatin and coenzyme Q10 supplementation",
+      "year": 2022,
+      "n": 10,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "30273493",
+      "title": "Coenzyme Q10 does not improve peripheral insulin sensitivity in statin-treated men and women: the LIFESTAT study",
+      "year": 2019,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "26429200",
+      "title": "MicroRNAs as biomarkers of hepatotoxicity in a randomized placebo-controlled study of simvastatin and ubiquinol supplementation",
+      "year": 2016,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "7752830",
+      "title": "Exogenous CoQ10 supplementation prevents plasma ubiquinone reduction induced by HMG-CoA reductase inhibitors",
+      "year": 1994,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "9684746",
+      "title": "Ubiquinone supplementation during lovastatin treatment: effect on LDL oxidation ex vivo",
+      "year": 1998,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "26156412",
+      "title": "Functions of Coenzyme Q10 Supplementation on Liver Enzymes, Markers of Systemic Inflammation, and Adipokines in Patients Affected by Nonalcoholic Fatty Liver Disease: A Double-Blind, Placebo-Controlled, Randomized Clinical Trial",
+      "year": 2016,
+      "inReviews": [
+       "42192187"
+      ]
+     },
+     {
+      "pmid": "19705518",
+      "title": "The effects of [omega]3 fatty acids and coenzyme Q10 on blood pressure and heart rate in chronic kidney disease: a randomized controlled trial",
+      "year": 2009,
+      "inReviews": [
+       "41630501"
+      ]
+     },
+     {
+      "pmid": "23831913",
+      "title": "The effect of coenzyme Q10 supplementation on metabolic status of type 2 diabetic patients",
+      "year": 2013,
+      "inReviews": [
+       "35304727"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 2,
+     "trials": 5
+    },
+    {
+     "year": 2018,
+     "reviews": 6,
+     "trials": 10
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 5
+    },
+    {
+     "year": 2023,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 4,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "35958521",
+     "36337001"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "42192187",
+      "doi": "10.1155/jdr/5587445",
+      "title": "Effects of Coenzyme Q10 on Lipid, Glycemic, and Inflammatory Markers in Metabolic Disorders: A Systematic Review and Meta-Analysis",
+      "year": 2026,
+      "firstAuthor": "Zhang Z",
+      "journal": "Journal of diabetes research",
+      "citedBy": 1,
+      "n": 3422,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "41630501",
+      "doi": "10.1080/10408398.2026.2624477",
+      "title": "The effects of coenzyme Q10 supplementation on glycemic control in diabetic and non-diabetic individuals: a systematic review and meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Collares LDN",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "42642774",
+      "doi": "10.1186/s40360-025-01002-1",
+      "title": "The effect of CoQ10 supplementation on cardiovascular risk factors in patients with prediabetes and type 2 diabetes mellitus: a grade-assessed systematic review and dose-response meta-analysis",
+      "year": 2026,
+      "firstAuthor": "Rezagholizadeh F",
+      "journal": "BMC pharmacology & toxicology",
+      "citedBy": 0,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "35304727",
+      "doi": "10.1007/s12272-022-01374-6",
+      "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
+      "year": 2022,
+      "firstAuthor": "Kim Y",
+      "journal": "Archives of pharmacal research",
+      "citedBy": 11,
+      "why": "The most comprehensive review of trials on this outcome (119 trials, 2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, often with diabetes or other metabolic conditions",
+     "intervention": "CoQ10",
+     "comparison": "Placebo or no treatment",
+     "outcome": "HbA1c, blood sugar, cholesterol or triglycerides"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 15,
+     "partly": 8,
+     "no": 6,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41859772",
+      "title": "Effects of Coenzyme Q10 Supplementation on Glycemic Control Biomarkers: An Umbrella Review of Meta-Analyses of Randomised Controlled Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "CoQ10 and glucose/HbA1c outcomes match, but this umbrella review pooled earlier meta-analyses rather than the randomised trials themselves."
+     },
+     {
+      "pmid": "38025704",
+      "title": "Comparison of nutritional supplements in improving glycolipid metabolism and endocrine function in polycystic ovary syndrome: a systematic review and network meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "CoQ10 vs placebo on lipids, but in a narrower group (women with PCOS) within a network meta-analysis of supplements."
+     },
+     {
+      "pmid": "36866570",
+      "title": "Letter to the Editor From Modarressi and Derakhshan: \"Effects of Coenzyme Q10 Supplementation on Lipid Profiles in Adults: A Meta-analysis of Randomized Controlled Trials\"",
+      "year": 2023,
+      "fits": "no",
+      "reason": "This is a letter to the editor, not a systematic review that pools trials."
+     },
+     {
+      "pmid": "36866654",
+      "title": "Response to Letter to the Editor from Modarressi and Derakhshan: \"Effects of Coenzyme Q10 Supplementation on Lipid Profiles in Adults: A Meta-analysis of Randomized Controlled Trials\"",
+      "year": 2023,
+      "fits": "no",
+      "reason": "This is a reply to a letter to the editor, not a systematic review that pools trials."
+     },
+     {
+      "pmid": "33988478",
+      "title": "The effectiveness of coenzyme Q10, vitamin E, inositols, and vitamin D in improving the endocrine and metabolic profiles in women with polycystic ovary syndrome: a network Meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "CoQ10 vs placebo on glucose and lipids, but only in women with PCOS, within a network meta-analysis."
+     },
+     {
+      "pmid": "33866314",
+      "title": "Diabetes, Age, and Duration of Supplementation Subgroup Analysis for the Effect of Coenzyme Q10 on Oxidative Stress: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "fits": "no",
+      "reason": "Outcomes are oxidative stress markers, not blood sugar, HbA1c or blood lipids."
+     },
+     {
+      "pmid": "32375340",
+      "title": "Coenzyme Q10 Supplementation Improves Adipokine Levels and Alleviates Inflammation and Lipid Peroxidation in Conditions of Metabolic Syndrome: A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "CoQ10 vs placebo in metabolic syndrome, but main outcomes are adipokines and inflammation; glucose control only mentioned in passing."
+     },
+     {
+      "pmid": "31192915",
+      "title": "Effects of coenzyme Q10 intervention on diabetic kidney disease: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Narrower group (diabetic kidney disease), CoQ10 given with other medicines, and only 4 RCTs mixed with experimental studies."
+     },
+     {
+      "pmid": "31890694",
+      "title": "Dietary antioxidative supplements and diabetic retinopathy; a systematic review",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Covers mixed antioxidants for diabetic retinopathy with no pooling, and its outcomes are eye disease and oxidative markers."
+     },
+     {
+      "pmid": "30296936",
+      "title": "The effects of coenzyme Q10 supplementation on lipid profiles among patients with coronary artery disease: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "CoQ10 vs placebo on lipids, but the people had coronary artery disease rather than diabetes or metabolic conditions."
+     },
+     {
+      "pmid": "30417782",
+      "title": "The Effects of Coenzyme Q10 Supplementation on Metabolic Profiles of Patients with Chronic Kidney Disease: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "CoQ10 RCTs reporting lipids and fasting glucose, but in a different group: people with chronic kidney disease."
+     },
+     {
+      "pmid": "29330704",
+      "title": "The Effects of Coenzyme Q10 Supplementation on Blood Pressures Among Patients with Metabolic Diseases: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Outcome is blood pressure only, not blood sugar, HbA1c or lipids."
+     },
+     {
+      "pmid": "29352426",
+      "title": "Commentary to: \"The Effects of Coenzyme Q10 Supplementation on Blood Pressures Among Patients with Metabolic Diseases: A Systematic Review and Meta-analysis of Randomized Controlled Trials\"",
+      "year": 2018,
+      "fits": "no",
+      "reason": "This is a commentary on a review about blood pressure, not a pooled review of glucose or lipid outcomes."
+     },
+     {
+      "pmid": "27157250",
+      "title": "The effects of a nutraceutical combination on plasma lipids and glucose: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Pooled RCTs on lipids and glucose, but CoQ10 was only given within a combination with red yeast rice, berberine, policosanol and other ingredients."
+     }
+    ]
+   }
+  },
+  {
+   "id": "fatigue",
+   "label": "Tiredness",
+   "finding": "Tiredness (fatigue)",
+   "counts": {
+    "reviews": 6,
+    "trialReviews": 2,
+    "trials": 18,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36091835",
+     "doi": "10.3389/fphar.2022.883251",
+     "title": "Effectiveness of Coenzyme Q10 Supplementation for Reducing Fatigue: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2022,
+     "firstAuthor": "Tsai IC",
+     "journal": "Frontiers in pharmacology",
+     "citedBy": 24,
+     "n": 1126,
+     "why": "One of the newest systematic reviews of trials on this outcome (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "36091835"
+    ],
+    "citedNotChosen": [
+     "41457257"
+    ],
+    "citedNotEligible": [
+     "41457257"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with an illness",
+     "intervention": "CoQ10",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Tiredness (fatigue)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41294251",
+      "title": "Effects of Coenzyme Q10 Supplementation on Depressive Symptoms and Fatigue: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools RCTs of CoQ10 versus placebo or standard treatment with fatigue as an outcome, but only in people with depression, a narrower group."
+     }
+    ]
+   }
+  },
+  {
+   "id": "exercise",
+   "label": "Exercise",
+   "finding": "Exercise performance",
+   "counts": {
+    "reviews": 12,
+    "trialReviews": 6,
+    "trials": 37,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41657017",
+     "doi": "10.1177/03000605251411151",
+     "title": "Effects of coenzyme Q10 analogs on oxidative stress, muscle, and metabolism after exercise: A meta-analysis and systematic review",
+     "year": 2026,
+     "firstAuthor": "Zhang Y",
+     "journal": "The Journal of international medical research",
+     "citedBy": 0,
+     "n": 433,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "41457257",
+     "doi": "10.1017/s0007114525106211",
+     "title": "Coenzyme Q10 supplementation increases blood concentrations but shows limited and inconsistent effects on exercise performance: a systematic review and meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Deng H",
+     "journal": "The British journal of nutrition",
+     "citedBy": 2,
+     "n": 10,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "38479900",
+     "doi": "10.1016/j.clnesp.2024.01.015",
+     "title": "The effects of coenzyme Q10 supplementation on biomarkers of exercise-induced muscle damage, physical performance, and oxidative stress: A GRADE-assessed systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2024,
+     "firstAuthor": "Talebi S",
+     "journal": "Clinical nutrition ESPEN",
+     "citedBy": 16,
+     "n": 830,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.23809523809523808,
+    "trials": 21,
+    "inclusions": 31,
+    "reviews": [
+     {
+      "pmid": "41657017",
+      "trials": 10
+     },
+     {
+      "pmid": "41457257",
+      "trials": 13
+     },
+     {
+      "pmid": "38479900",
+      "trials": 8
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "22079391",
+      "title": "Coenzyme Q10 supplementation and exercise-induced oxidative stress in humans",
+      "year": 2012,
+      "n": 12,
+      "inReviews": [
+       "41657017",
+       "41457257",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "22966414",
+      "title": "Impact of oral ubiquinol on blood oxidative stress and exercise performance",
+      "year": 2012,
+      "n": 10,
+      "inReviews": [
+       "41657017",
+       "41457257",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "8789577",
+      "title": "Ubiquinone supplementation and exercise capacity in trained young and older men",
+      "year": 1995,
+      "inReviews": [
+       "41657017",
+       "41457257",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "18272335",
+      "title": "Antifatigue effects of coenzyme Q10 during physical fatigue",
+      "year": 2008,
+      "n": 17,
+      "inReviews": [
+       "41457257",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "18284711",
+      "title": "Reducing exercise-induced muscular injury in kendo athletes with supplementation of coenzyme Q10",
+      "year": 2008,
+      "inReviews": [
+       "41657017",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "19644406",
+      "title": "The effects of coenzyme Q10 supplementation on performance during repeated bouts of supramaximal exercise in sedentary men",
+      "year": 2010,
+      "inReviews": [
+       "41457257",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "29734881",
+      "title": "Effect of ubiquinol supplementation on biochemical and oxidative stress indexes after intense exercise in young athletes",
+      "year": 2018,
+      "inReviews": [
+       "41457257",
+       "38479900"
+      ]
+     },
+     {
+      "pmid": "27193497",
+      "title": "Short-term ubiquinol supplementation reduces oxidative stress associated with strenuous exercise in healthy adults: A randomized trial",
+      "year": 2016,
+      "n": 100,
+      "inReviews": [
+       "41657017"
+      ]
+     },
+     {
+      "pmid": "26844861",
+      "title": "Effects of Coenzyme Q10 Supplementation on Exercise Performance and Markers of Oxidative Stress in Hemodialysis Patients: A Double-Blind Placebo-Controlled Crossover Trial",
+      "year": 2016,
+      "n": 23,
+      "inReviews": [
+       "41657017"
+      ]
+     },
+     {
+      "pmid": "10822909",
+      "title": "Effect of ubidecarenone oral treatment on aerobic power in middle-aged trained subjects",
+      "year": 2000,
+      "n": 23,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "32188111",
+      "title": "Comparative Bioavailability of Different Coenzyme Q10 Formulations in Healthy Elderly Individuals",
+      "year": 2020,
+      "n": 21,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "30302465",
+      "title": "Ubiquinol is superior to ubiquinone to enhance Coenzyme Q10 status in older men",
+      "year": 2018,
+      "n": 10,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "28229572",
+      "title": "Coenzyme Q10 does not prevent exercise-induced muscle damage and oxidative stress in sedentary men",
+      "year": 2018,
+      "inReviews": [
+       "41657017"
+      ]
+     },
+     {
+      "pmid": "30058646",
+      "title": "Effect of oral CoQ10 supplementation along with precooling strategy on cellular response to oxidative stress in elite swimmers",
+      "year": 2018,
+      "inReviews": [
+       "41657017"
+      ]
+     },
+     {
+      "pmid": "21681167",
+      "title": "Oxidative stress and antioxidant defense in plasma after repeated bouts of supramaximal exercise: the effect of coenzyme Q10",
+      "year": 2011,
+      "inReviews": [
+       "41657017"
+      ]
+     },
+     {
+      "pmid": "34419082",
+      "title": "Mitochondria-targeted antioxidant supplementation improves 8 km time trial performance in middle-aged trained male cyclists",
+      "year": 2021,
+      "inReviews": [
+       "41657017"
+      ]
+     },
+     {
+      "pmid": "9266538",
+      "title": "The effect of coenzyme Q10 on the exercise performance of cross-country skiers",
+      "year": 1997,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "9286743",
+      "title": "Does exogenous coenzyme Q10 affect aerobic capacity in endurance athletes?",
+      "year": 1997,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "16230985",
+      "title": "Muscle and plasma coenzyme Q10 concentration, aerobic power and exercise economy of healthy men in response to four weeks of supplementation",
+      "year": 2005,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "23306418",
+      "title": "Impact of coenzyme Q-10 on parameters of cardiorespiratory fitness and muscle performance in older athletes taking statins",
+      "year": 2012,
+      "inReviews": [
+       "41457257"
+      ]
+     },
+     {
+      "pmid": "29498347",
+      "title": "The effect of short-term coenzyme Q10 supplementation and pre-cooling strategy on cardiac damage markers in elite swimmers",
+      "year": 2018,
+      "inReviews": [
+       "38479900"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "41457257"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41657017",
+      "doi": "10.1177/03000605251411151",
+      "title": "Effects of coenzyme Q10 analogs on oxidative stress, muscle, and metabolism after exercise: A meta-analysis and systematic review",
+      "year": 2026,
+      "firstAuthor": "Zhang Y",
+      "journal": "The Journal of international medical research",
+      "citedBy": 0,
+      "n": 433,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
+     {
+      "pmid": "38479900",
+      "doi": "10.1016/j.clnesp.2024.01.015",
+      "title": "The effects of coenzyme Q10 supplementation on biomarkers of exercise-induced muscle damage, physical performance, and oxidative stress: A GRADE-assessed systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "firstAuthor": "Talebi S",
+      "journal": "Clinical nutrition ESPEN",
+      "citedBy": 16,
+      "n": 830,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Healthy adults, including athletes",
+     "intervention": "CoQ10",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Exercise performance"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 2,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42798689",
+      "title": "The effects of coenzyme Q10 supplementation on exercise-induced oxidative stress and related physiological outcomes in athletes: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools randomised trials of oral CoQ10 in athletes only, a narrower group; mainly oxidative stress markers, with VO2max as the only performance outcome; comparator not stated."
+     },
+     {
+      "pmid": "40367843",
+      "title": "Can coenzyme Q10 supplementation reduce exercise-induced muscle damage and oxidative stress in athletes? A systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "CoQ10 trials in athletes, but outcomes were only blood markers of oxidative stress and muscle damage, not exercise performance."
+     },
+     {
+      "pmid": "40401105",
+      "title": "Comparative Efficacy of Nutritional Supplements in Modulating Lung Function and Exercise Capacity in COPD Patients: A Network Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Population was COPD patients, and CoQ10 was mainly tested combined with creatine; this is a different question from healthy adults."
+     }
+    ]
+   }
+  }
+ ]
+}

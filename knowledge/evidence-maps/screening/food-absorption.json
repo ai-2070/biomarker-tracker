@@ -25,6 +25,21 @@
      "pmid": "26056918",
      "fits": "partly",
      "reason": "Compares vegetarian and non-vegetarian zinc intake and status, but only in pregnant women, a narrower group."
+    },
+    {
+     "pmid": "42582747",
+     "fits": "no",
+     "reason": "This is about plant-derived extracts used to treat sickle cell anaemia, not vegetarian or vegan diets compared with diets that include meat."
+    },
+    {
+     "pmid": "40842789",
+     "fits": "yes",
+     "reason": "Systematically reviews vegan and vegetarian diets and iron deficiency or anaemia risk; the abstract implies, but never states, a comparison with diets that include meat."
+    },
+    {
+     "pmid": "41281788",
+     "fits": "no",
+     "reason": "This is about plant antioxidant supplements given with iron chelators for iron overload in thalassemia, not vegetarian diets or iron deficiency."
     }
    ]
   },
@@ -209,6 +224,11 @@
      "pmid": "29474360",
      "fits": "no",
      "reason": "Compares animal with soy protein, but the outcomes are bone mineral density and bone markers, not muscle."
+    },
+    {
+     "pmid": "35418173",
+     "fits": "partly",
+     "reason": "Matches adults, plant vs animal protein and muscle mass/strength, but it is only a protocol with no pooled or reviewed results yet."
     }
    ]
   },
@@ -265,6 +285,11 @@
      "pmid": "27087396",
      "fits": "no",
      "reason": "Compares iron supplements against placebo in menstruating women, which is not the effect of foods eaten with plant-iron meals."
+    },
+    {
+     "pmid": "31673228",
+     "fits": "partly",
+     "reason": "Looks at polyphenols, including catechin drinks and supplements, on iron status over weeks, but not tea or coffee with plant-iron meals specifically."
     }
    ]
   }

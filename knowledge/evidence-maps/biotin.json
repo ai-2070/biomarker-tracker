@@ -1,0 +1,394 @@
+{
+ "topic": "biotin",
+ "nutrientId": "biotin",
+ "name": "biotin",
+ "scope": "in papers about supplements, intake, diet, deficiency, high doses or lab test interference",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"biotin\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:interference OR TITLE_ABS:megadose* OR TITLE_ABS:\"high-dose biotin\" OR TITLE_ABS:deficien*) AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"biotin\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:interference OR TITLE_ABS:megadose* OR TITLE_ABS:\"high-dose biotin\" OR TITLE_ABS:deficien*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"biotin\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:interference OR TITLE_ABS:megadose* OR TITLE_ABS:\"high-dose biotin\" OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"biotin\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:interference OR TITLE_ABS:megadose* OR TITLE_ABS:\"high-dose biotin\" OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"biotin\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:interference OR TITLE_ABS:megadose* OR TITLE_ABS:\"high-dose biotin\" OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with biotin (biotin) in its title or abstract, in papers about supplements, intake, diet, deficiency, high doses or lab test interference; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving biotin, with biotin in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "For wrong lab results, hair, nails, status in pregnancy, reviews of any study design count, because that evidence comes from lab or observational studies rather than trials.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded biotin trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 3757,
+  "retrieved": 66,
+  "animal": 24,
+  "retracted": 0,
+  "reviews": 10,
+  "trials": 30,
+  "guidelines": 2
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "lab-interference",
+   "label": "Wrong lab results",
+   "finding": "Wrong results on blood tests that use biotin (immunoassays), including thyroid and heart tests",
+   "counts": {
+    "reviews": 2,
+    "trialReviews": 1,
+    "trials": 0,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "27362288",
+     "doi": "10.1210/jc.2016-1971",
+     "title": "Factitious Graves' Disease Due to Biotin Immunoassay Interference-A Case and Review of the Literature",
+     "year": 2016,
+     "firstAuthor": "Elston MS",
+     "journal": "The Journal of clinical endocrinology and metabolism",
+     "citedBy": 75,
+     "why": "One of the newest systematic reviews of trials on this outcome (2016); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28973622",
+     "27043844",
+     "30715102",
+     "30036510"
+    ],
+    "citedNotEligible": [
+     "28973622",
+     "27043844",
+     "30715102",
+     "30036510"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "27362288",
+      "doi": "10.1210/jc.2016-1971",
+      "title": "Factitious Graves' Disease Due to Biotin Immunoassay Interference-A Case and Review of the Literature",
+      "year": 2016,
+      "firstAuthor": "Elston MS",
+      "journal": "The Journal of clinical endocrinology and metabolism",
+      "citedBy": 75,
+      "why": "One of the newest systematic reviews of trials on this outcome (2016); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People taking biotin supplements",
+     "intervention": "Biotin, especially high doses",
+     "comparison": "No biotin",
+     "outcome": "Results of immunoassay blood tests (thyroid, troponin, hormones): falsely high or low"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "multiple-sclerosis",
+   "label": "Multiple sclerosis",
+   "finding": "Disability and walking in progressive multiple sclerosis",
+   "counts": {
+    "reviews": 2,
+    "trialReviews": 1,
+    "trials": 2,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "34332461",
+     "doi": "10.1016/j.msard.2021.103159",
+     "title": "High-dose biotin for multiple sclerosis: A systematic review and meta-analyses of randomized controlled trials",
+     "year": 2021,
+     "firstAuthor": "Espiritu AI",
+     "journal": "Multiple sclerosis and related disorders",
+     "citedBy": 16,
+     "n": 889,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "27589059",
+     "title": "MD1003 (high-dose biotin) for the treatment of progressive multiple sclerosis: A randomised, double-blind, placebo-controlled study",
+     "year": 2016,
+     "n": 1003
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "34332461"
+    ],
+    "citedNotChosen": [
+     "33222767",
+     "27589059"
+    ],
+    "citedNotEligible": [
+     "33222767",
+     "27589059"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with progressive multiple sclerosis",
+     "intervention": "Very high-dose biotin",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Disability and walking"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "hair",
+   "label": "Hair",
+   "finding": "Hair growth and hair loss",
+   "counts": {
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 0,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28879195",
+     "39148962"
+    ],
+    "citedNotEligible": [
+     "28879195",
+     "39148962"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "nails",
+   "label": "Nails",
+   "finding": "Brittle nails",
+   "counts": {
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 0,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "29057689"
+    ],
+    "citedNotEligible": [
+     "29057689"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Blood sugar and fats",
+   "finding": "Blood sugar and blood fats",
+   "counts": {
+    "reviews": 3,
+    "trialReviews": 2,
+    "trials": 6,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36386951",
+     "doi": "10.3389/fnut.2022.1046800",
+     "title": "Influence of biotin intervention on glycemic control and lipid profile in patients with type 2 diabetes mellitus: A systematic review and meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Zhang Y",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 15,
+     "n": 445,
+     "why": "One of the newest systematic reviews of trials on this outcome (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "36386951"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with type 2 diabetes",
+     "intervention": "Biotin supplements",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Blood sugar, HbA1c or blood fats"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "39828265",
+      "title": "Effects of water-soluble vitamins on glycemic control and insulin resistance in adult type 2 diabetes: an umbrella review of meta-analyses",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Covers biotin for glycemic control in adult type 2 diabetes, but summarises earlier meta-analyses instead of pooling trials and does not cover blood fats."
+     }
+    ]
+   }
+  },
+  {
+   "id": "pregnancy",
+   "label": "Status in pregnancy",
+   "finding": "A urine sign of low biotin status (3-hydroxyisovaleric acid, 3-HIA) in pregnancy",
+   "counts": {
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "11815321"
+    ],
+    "citedNotEligible": [
+     "11815321"
+    ],
+    "chosenNotCited": []
+   }
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "topic": "biotin",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "lab-interference": {
+   "question": {
+    "population": "People taking biotin supplements",
+    "intervention": "Biotin, especially high doses",
+    "comparison": "No biotin",
+    "outcome": "Results of immunoassay blood tests (thyroid, troponin, hormones): falsely high or low"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "27362288",
+     "fits": "yes",
+     "reason": "Systematic literature review of biotin intake causing falsely high or low thyroid and other immunoassay results, alongside a case report."
+    }
+   ]
+  },
+  "multiple-sclerosis": {
+   "question": {
+    "population": "Adults with progressive multiple sclerosis",
+    "intervention": "Very high-dose biotin",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Disability and walking"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "34332461",
+     "fits": "yes",
+     "reason": "Pooled RCTs of high-dose biotin vs placebo with separate analyses for progressive MS on disability (EDSS) and 25-foot walk outcomes."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults with type 2 diabetes",
+    "intervention": "Biotin supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Blood sugar, HbA1c or blood fats"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "36386951",
+     "fits": "yes",
+     "reason": "Pooled five RCTs of biotin supplements in adults with type 2 diabetes, reporting fasting glucose, HbA1c and blood lipids."
+    },
+    {
+     "pmid": "39828265",
+     "fits": "partly",
+     "reason": "Covers biotin for glycemic control in adult type 2 diabetes, but summarises earlier meta-analyses instead of pooling trials and does not cover blood fats."
+    }
+   ]
+  }
+ }
+}

@@ -8,7 +8,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"vitamin K\" OR TITLE_ABS:\"phylloquinone\" OR TITLE_ABS:\"phytonadione\" OR TITLE_ABS:\"menaquinone\" OR TITLE_ABS:\"menatetrenone\" OR TITLE_ABS:\"vitamin K2\" OR TITLE_ABS:\"vitamin K1\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -24,10 +24,10 @@
  ],
  "counts": {
   "all": 3217,
-  "retrieved": 316,
+  "retrieved": 328,
   "animal": 4,
   "retracted": 1,
-  "reviews": 88,
+  "reviews": 99,
   "trials": 203,
   "guidelines": 20
  },
@@ -93,7 +93,7 @@
    "label": "Status markers",
    "finding": "Blood markers of vitamin K status (inactive osteocalcin and matrix Gla protein)",
    "counts": {
-    "reviews": 8,
+    "reviews": 9,
     "trialReviews": 0,
     "trials": 42,
     "largeTrials": 0
@@ -218,7 +218,7 @@
     },
     {
      "year": 2025,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 2
     },
     {
@@ -246,12 +246,22 @@
    "label": "Fractures",
    "finding": "Bone fractures",
    "counts": {
-    "reviews": 5,
-    "trialReviews": 3,
+    "reviews": 6,
+    "trialReviews": 4,
     "trials": 4,
     "largeTrials": 1
    },
    "chosenReviews": [
+    {
+     "pmid": "35625785",
+     "doi": "10.3390/biomedicines10051048",
+     "title": "Effect of Vitamin K on Bone Mineral Density and Fracture Risk in Adults: Systematic Review and Meta-Analysis",
+     "year": 2022,
+     "firstAuthor": "Salma",
+     "journal": "Biomedicines",
+     "citedBy": 29,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    },
     {
      "pmid": "31076817",
      "doi": "10.1007/s00198-019-04949-0",
@@ -264,6 +274,216 @@
     }
    ],
    "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.38095238095238093,
+    "trials": 21,
+    "inclusions": 29,
+    "reviews": [
+     {
+      "pmid": "35625785",
+      "trials": 9
+     },
+     {
+      "pmid": "31076817",
+      "trials": 20
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "18922041",
+      "title": "Vitamin K supplementation in postmenopausal women with osteopenia (ECKO trial): a randomized controlled trial",
+      "year": 2008,
+      "n": 440,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "17287908",
+      "title": "Vitamin K2 supplementation improves hip bone geometry and bone strength indices in postmenopausal women",
+      "year": 2007,
+      "n": 325,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "17243866",
+      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
+      "year": 2007,
+      "n": 244,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "14506950",
+      "title": "Vitamin K1 supplementation retards bone loss in postmenopausal women between 50 and 60 years of age",
+      "year": 2003,
+      "n": 181,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "21860562",
+      "title": "Vitamin K supplement along with vitamin D and calcium reduced serum concentration of undercarboxylated osteocalcin while increasing bone mineral density in Korean postmenopausal women over sixty-years-old",
+      "year": 2011,
+      "n": 45,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "18470667",
+      "title": "Response of serum carboxylated and undercarboxylated osteocalcin to alendronate monotherapy and combined therapy with vitamin K2 in postmenopausal women",
+      "year": 2008,
+      "n": 44,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "19083462",
+      "title": "Vitamin K supplementation does not significantly impact bone mineral density and biochemical markers of bone in pre- and perimenopausal women",
+      "year": 2008,
+      "n": 14,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "19937427",
+      "title": "Vitamin K2 supplementation does not influence bone loss in early menopausal women: a randomised double-blind placebo-controlled trial",
+      "year": 2010,
+      "inReviews": [
+       "35625785",
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "19082528",
+      "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
+      "year": 2009,
+      "n": 2986,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "18252784",
+      "title": "Effect of vitamin K supplementation on bone loss in elderly men and women",
+      "year": 2008,
+      "n": 452,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "18689371",
+      "title": "Vitamin K, circulating cytokines, and bone mineral density in older men and women",
+      "year": 2008,
+      "n": 379,
+      "inReviews": [
+       "35625785"
+      ]
+     },
+     {
+      "pmid": "23525894",
+      "title": "Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women",
+      "year": 2013,
+      "n": 244,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "11886767",
+      "title": "Effect of continuous combined therapy with vitamin K(2) and vitamin D(3) on bone mineral density and coagulofibrinolysis function in postmenopausal women",
+      "year": 2002,
+      "n": 172,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "27625301",
+      "title": "Vitamin K2 (menaquinone-7) prevents age-related deterioration of trabecular bone microarchitecture at the tibia in postmenopausal women",
+      "year": 2016,
+      "n": 148,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "21455716",
+      "title": "Possible site-specific effect of an intervention combining nutrition and lifestyle counselling with consumption of fortified dairy products on bone mass: the Postmenopausal Health Study II",
+      "year": 2011,
+      "n": 115,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "26892582",
+      "title": "Effect of Vitamin K on Vascular Health and Physical Function in Older People with Vascular Disease--A Randomised Controlled Trial",
+      "year": 2016,
+      "n": 80,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "23702931",
+      "title": "Low-dose vitamin K2 (MK-4) supplementation for 12 months improves bone metabolism and prevents forearm bone loss in postmenopausal Japanese women",
+      "year": 2014,
+      "n": 24,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "20190467",
+      "title": "Response of serum carboxylated and undercarboxylated osteocalcin to risedronate monotherapy and combined therapy with vitamin K(2) in corticosteroid-treated patients: a pilot study",
+      "year": 2010,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "25181575",
+      "title": "Effect of phylloquinone (vitamin K1) supplementation for 12 months on the indices of vitamin K status and bone health in adult patients with Crohn's disease",
+      "year": 2014,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "14623654",
+      "title": "Factors affecting bone loss in female endurance athletes: a two-year follow-up study",
+      "year": 2003,
+      "inReviews": [
+       "31076817"
+      ]
+     },
+     {
+      "pmid": "20177349",
+      "title": "Dietary vitamin K2 supplement improves bone status after lung and heart transplantation",
+      "year": 2010,
+      "inReviews": [
+       "31076817"
+      ]
+     }
+    ]
+   },
    "timeline": [
     {
      "year": 2004,
@@ -289,6 +509,11 @@
      "year": 2019,
      "reviews": 1,
      "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
     },
     {
      "year": 2023,
@@ -320,7 +545,18 @@
     "citedNotEligible": [
      "19082528"
     ],
-    "chosenNotCited": []
+    "chosenNotCited": [
+     {
+      "pmid": "35625785",
+      "doi": "10.3390/biomedicines10051048",
+      "title": "Effect of Vitamin K on Bone Mineral Density and Fracture Risk in Adults: Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "firstAuthor": "Salma",
+      "journal": "Biomedicines",
+      "citedBy": 29,
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     }
+    ]
    },
    "screening": {
     "question": {
@@ -332,7 +568,7 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 1,
+     "yes": 2,
      "partly": 2,
      "no": 0,
      "unscreened": 0
@@ -360,8 +596,8 @@
    "label": "Bone density",
    "finding": "Bone mineral density",
    "counts": {
-    "reviews": 10,
-    "trialReviews": 6,
+    "reviews": 12,
+    "trialReviews": 7,
     "trials": 29,
     "largeTrials": 1
    },
@@ -686,7 +922,7 @@
     },
     {
      "year": 2012,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     },
     {
@@ -721,7 +957,7 @@
     },
     {
      "year": 2022,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 0
     },
     {
@@ -796,7 +1032,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 3,
-     "partly": 3,
+     "partly": 4,
      "no": 0,
      "unscreened": 0
     },
@@ -807,6 +1043,13 @@
       "year": 2025,
       "fits": "partly",
       "reason": "Vitamin K2 in postmenopausal osteoporosis matches, but the review only measured blood bone turnover markers, not bone mineral density."
+     },
+     {
+      "pmid": "35625785",
+      "title": "Effect of Vitamin K on Bone Mineral Density and Fracture Risk in Adults: Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Pooled RCTs of oral vitamin K vs control on femoral BMD, but in adults generally; the abstract shows no separate BMD analysis for postmenopausal or low-BMD people."
      },
      {
       "pmid": "34649591",
@@ -1178,7 +1421,7 @@
    "label": "Warfarin stability",
    "finding": "Stability of warfarin treatment in people whose INR swings a lot",
    "counts": {
-    "reviews": 16,
+    "reviews": 18,
     "trialReviews": 4,
     "trials": 21,
     "largeTrials": 2
@@ -1253,7 +1496,7 @@
     },
     {
      "year": 2017,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {
@@ -1268,7 +1511,7 @@
     },
     {
      "year": 2021,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     },
     {

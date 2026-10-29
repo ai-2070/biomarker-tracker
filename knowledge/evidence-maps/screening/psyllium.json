@@ -1,0 +1,192 @@
+{
+ "topic": "psyllium",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, with or without high blood pressure",
+    "intervention": "Psyllium or other fibre supplements (with results for psyllium apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "32066221",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of psyllium supplementation on blood pressure in adults (hypertensive), matching population, intervention and outcome."
+    },
+    {
+     "pmid": "29153856",
+     "fits": "yes",
+     "reason": "Pooled RCTs of viscous fibre supplements including psyllium on blood pressure and set out to quantify the effect of individual fibres."
+    }
+   ]
+  },
+  "ibs": {
+   "question": {
+    "population": "Adults with irritable bowel syndrome",
+    "intervention": "Psyllium or other soluble fibre",
+    "comparison": "Placebo or no treatment",
+    "outcome": "IBS symptoms"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "31859183",
+     "fits": "yes",
+     "reason": "Pools RCTs comparing soluble fibre such as ispaghula with placebo in adults with IBS, measuring improvement in global IBS symptoms or abdominal pain."
+    },
+    {
+     "pmid": "19008265",
+     "fits": "yes",
+     "reason": "Pools RCTs of fibre versus placebo or no treatment in adults with IBS, with a separate result for ispaghula (soluble fibre) on persistent symptoms."
+    },
+    {
+     "pmid": "14984370",
+     "fits": "yes",
+     "reason": "Pools RCTs of fibre in IBS, with a separate analysis of soluble fibre (psyllium, ispaghula) against placebo on global IBS symptom relief."
+    },
+    {
+     "pmid": "42600900",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs in adults with IBS, with a separate psyllium analysis reporting clinical response of IBS symptoms."
+    }
+   ]
+  },
+  "constipation": {
+   "question": {
+    "population": "Adults with chronic constipation",
+    "intervention": "Psyllium or other fibre supplements (with results for psyllium apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Constipation (stool frequency, symptoms)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "35816465",
+     "fits": "yes",
+     "reason": "Pooled RCTs of fibre supplements vs control in adults with chronic constipation, reporting psyllium separately, with stool frequency and symptom outcomes."
+    },
+    {
+     "pmid": "23326148",
+     "fits": "partly",
+     "reason": "Pooled RCTs of dietary fibre vs placebo for stool frequency in constipation, but no separate psyllium results and the population isn't stated as adults with chronic constipation."
+    }
+   ]
+  },
+  "weight": {
+   "question": {
+    "population": "Adults",
+    "intervention": "Psyllium",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Body weight, body mass index or waist size"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "37778464",
+     "fits": "partly",
+     "reason": "Pooled RCTs of psyllium vs placebo on body weight, but only in adults with overweight or obesity, a narrower group than all adults."
+    },
+    {
+     "pmid": "30880409",
+     "fits": "yes",
+     "reason": "Pooled RCTs of psyllium supplementation in adults on body weight, BMI and waist circumference."
+    },
+    {
+     "pmid": "31919936",
+     "fits": "partly",
+     "reason": "Pooled RCTs of psyllium on weight and BMI, but only in diabetic patients, a narrower group than adults generally."
+    },
+    {
+     "pmid": "15836459",
+     "fits": "no",
+     "reason": "Reviews adverse events of herbal weight-loss supplements, not psyllium's effect on body weight, BMI or waist size."
+    },
+    {
+     "pmid": "15051593",
+     "fits": "partly",
+     "reason": "Includes double-blind RCTs of psyllium for body weight, but it is a narrative review of many supplements with no pooled psyllium analysis."
+    }
+   ]
+  },
+  "glucose": {
+   "question": {
+    "population": "Adults with type 2 diabetes, at risk of it, or with normal blood sugar",
+    "intervention": "Psyllium",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Fasting glucose or HbA1c"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "36811560",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in adults with type 2 diabetes that includes psyllium versus no fiber, with HbA1c and fasting glucose as outcomes."
+    },
+    {
+     "pmid": "31919936",
+     "fits": "yes",
+     "reason": "Pooled RCTs of psyllium in adults with diabetes and reported fasting blood sugar and HbA1c."
+    },
+    {
+     "pmid": "26561625",
+     "fits": "yes",
+     "reason": "Pooled RCTs of psyllium in people with normal blood sugar, at risk of type 2 diabetes or with it, and reported fasting blood glucose."
+    }
+   ]
+  },
+  "ldl": {
+   "question": {
+    "population": "Adults with or without high cholesterol",
+    "intervention": "Psyllium (or a fibre supplement with results for psyllium apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "LDL cholesterol"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "30239559",
+     "fits": "yes",
+     "reason": "Pooled RCTs of psyllium vs control on LDL cholesterol in adults with or without hypercholesterolemia; matches all parts."
+    },
+    {
+     "pmid": "38688104",
+     "fits": "yes",
+     "reason": "Pooled RCTs of Plantago vs control in adults on LDL-C, with a separate subgroup result for psyllium/Plantago husk."
+    },
+    {
+     "pmid": "31919936",
+     "fits": "partly",
+     "reason": "Psyllium RCTs reporting LDL, but only in diabetic patients, which is a narrower, different population."
+    },
+    {
+     "pmid": "30078477",
+     "fits": "partly",
+     "reason": "Psyllium RCTs on LDL, but only in people already on statins, comparing psyllium plus statin with statin alone."
+    },
+    {
+     "pmid": "18985059",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled randomised trials of psyllium on LDL cholesterol in adults with mild-to-moderate hypercholesterolemia."
+    },
+    {
+     "pmid": "10648260",
+     "fits": "yes",
+     "reason": "Pooled controlled trials of psyllium vs cellulose placebo on LDL cholesterol in adults with hypercholesterolemia on a low-fat diet."
+    },
+    {
+     "pmid": "9925120",
+     "fits": "partly",
+     "reason": "Regression across soluble fibres in controlled trials; psyllium is compared with other fibres, but no separate psyllium-vs-placebo LDL estimate is reported."
+    },
+    {
+     "pmid": "41366295",
+     "fits": "yes",
+     "reason": "Pooled RCTs of psyllium supplementation in adults, reporting LDL cholesterol; the control is not named but is implied by the randomised design."
+    }
+   ]
+  }
+ }
+}

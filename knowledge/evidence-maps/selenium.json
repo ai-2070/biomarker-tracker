@@ -7,7 +7,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"selenium\" OR TITLE_ABS:\"selenomethionine\" OR TITLE_ABS:\"selenite\" OR TITLE_ABS:\"selenate\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -23,10 +23,10 @@
  ],
  "counts": {
   "all": 46287,
-  "retrieved": 1601,
-  "animal": 229,
+  "retrieved": 1698,
+  "animal": 236,
   "retracted": 1,
-  "reviews": 529,
+  "reviews": 620,
   "trials": 830,
   "guidelines": 9
  },
@@ -37,8 +37,8 @@
    "label": "Cancer",
    "finding": "Cancer (overall and by type)",
    "counts": {
-    "reviews": 88,
-    "trialReviews": 16,
+    "reviews": 94,
+    "trialReviews": 19,
     "trials": 119,
     "largeTrials": 44
    },
@@ -855,12 +855,12 @@
     },
     {
      "year": 2014,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 6
     },
     {
      "year": 2015,
-     "reviews": 4,
+     "reviews": 6,
      "trials": 3
     },
     {
@@ -905,7 +905,7 @@
     },
     {
      "year": 2024,
-     "reviews": 5,
+     "reviews": 7,
      "trials": 1
     },
     {
@@ -915,7 +915,7 @@
     },
     {
      "year": 2026,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 3
     }
    ],
@@ -1263,11 +1263,32 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 9,
-     "partly": 6,
-     "no": 1,
+     "partly": 8,
+     "no": 2,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "42909097",
+      "title": "Selenium supplementation for preventing cancer therapy-related toxicities: a systematic review and meta-analysis of clinical trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The people are cancer patients during treatment, and the outcome is treatment side effects rather than new cancers."
+     },
+     {
+      "pmid": "25875487",
+      "title": "Dietary supplements and risk of cause-specific death, cardiovascular disease, and cancer: a protocol for a systematic review and network meta-analysis of primary prevention trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Selenium vs control for new cancers in healthy adults matches, but this is only a protocol with no pooled results yet."
+     },
+     {
+      "pmid": "24976856",
+      "title": "Prostate cancer and the influence of dietary factors and supplements: a systematic review",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "It covers selenium and preventing prostate cancer, but it is a broad review of diet, not a pooled analysis of randomised trials."
+     },
      {
       "pmid": "24217421",
       "title": "Vitamin and mineral supplements in the primary prevention of cardiovascular disease and cancer: An updated systematic evidence review for the U.S. Preventive Services Task Force",
@@ -1276,18 +1297,18 @@
       "reason": "Selenium is among single-nutrient trials in adults, but the evidence is described as heterogeneous with no clear selenium-specific pooled result."
      },
      {
-      "pmid": "21563143",
-      "title": "Selenium for preventing cancer",
-      "year": 2011,
-      "fits": "partly",
-      "reason": "Selenium vs placebo RCTs in adults for cancer, but the RCTs were summarised narratively rather than pooled."
-     },
-     {
       "pmid": "22073154",
       "title": "Selenium and lung cancer: a systematic review and meta analysis",
       "year": 2011,
       "fits": "partly",
       "reason": "Selenium and lung cancer with RCTs, but the abstract shows no pooled RCT estimate and mixes in observational and treatment evidence."
+     },
+     {
+      "pmid": "21563143",
+      "title": "Selenium for preventing cancer",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Selenium vs placebo RCTs in adults for cancer, but the RCTs were summarised narratively rather than pooled."
      },
      {
       "pmid": "19145725",
@@ -1325,12 +1346,23 @@
    "label": "Type 2 diabetes",
    "finding": "Type 2 diabetes",
    "counts": {
-    "reviews": 32,
-    "trialReviews": 12,
+    "reviews": 42,
+    "trialReviews": 17,
     "trials": 42,
     "largeTrials": 5
    },
    "chosenReviews": [
+    {
+     "pmid": "31890660",
+     "doi": "10.1007/s40200-019-00419-w",
+     "title": "Effect of selenium supplementation on glycemic indices: a meta-analysis of randomized controlled trials",
+     "year": 2019,
+     "firstAuthor": "Mahdavi Gorabi A",
+     "journal": "Journal of diabetes and metabolic disorders",
+     "citedBy": 16,
+     "n": 757,
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+    },
     {
      "pmid": "29974401",
      "doi": "10.1007/s10654-018-0422-8",
@@ -1353,24 +1385,16 @@
      "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
     }
    ],
-   "newerLargeTrials": [
-    {
-     "pmid": "29924331",
-     "doi": "10.1093/jn/nxy099",
-     "title": "Higher Plasma Selenium Concentrations Are Associated with Increased Odds of Prevalent Type 2 Diabetes",
-     "year": 2018,
-     "firstAuthor": "Kohler LN",
-     "journal": "The Journal of nutrition",
-     "citedBy": 44,
-     "n": 1727,
-     "why": "A large trial (about 1,727 people) from 2018, as new as the newest review or newer"
-    }
-   ],
+   "newerLargeTrials": [],
    "overlap": {
-    "cca": 0.2727272727272727,
-    "trials": 11,
-    "inclusions": 14,
+    "cca": 0.16666666666666666,
+    "trials": 21,
+    "inclusions": 28,
     "reviews": [
+     {
+      "pmid": "31890660",
+      "trials": 14
+     },
      {
       "pmid": "29974401",
       "trials": 8
@@ -1382,6 +1406,27 @@
     ],
     "reviewsWithoutReferences": [],
     "shared": [
+     {
+      "pmid": "17620655",
+      "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
+      "year": 2007,
+      "n": 1202,
+      "inReviews": [
+       "31890660",
+       "29974401",
+       "24858736"
+      ]
+     },
+     {
+      "pmid": "19066370",
+      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2009,
+      "n": 35533,
+      "inReviews": [
+       "31890660",
+       "29974401"
+      ]
+     },
      {
       "pmid": "21990298",
       "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
@@ -1403,22 +1448,23 @@
       ]
      },
      {
-      "pmid": "17620655",
-      "title": "Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial",
-      "year": 2007,
-      "n": 1202,
+      "pmid": "23028897",
+      "title": "A randomized trial of selenium supplementation and risk of type-2 diabetes, as assessed by plasma adiponectin",
+      "year": 2012,
+      "n": 473,
       "inReviews": [
-       "29974401",
+       "31890660",
        "24858736"
       ]
      },
      {
-      "pmid": "19066370",
-      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-      "year": 2009,
-      "n": 35533,
+      "pmid": "20670733",
+      "title": "No effect of selenium supplementation on serum glucose levels in men with prostate cancer",
+      "year": 2010,
+      "n": 47,
       "inReviews": [
-       "29974401"
+       "31890660",
+       "24858736"
       ]
      },
      {
@@ -1458,21 +1504,93 @@
       ]
      },
      {
-      "pmid": "23028897",
-      "title": "A randomized trial of selenium supplementation and risk of type-2 diabetes, as assessed by plasma adiponectin",
-      "year": 2012,
-      "n": 473,
+      "pmid": "26481811",
+      "title": "No effect of modest selenium supplementation on insulin resistance in UK pregnant women, as assessed by plasma adiponectin concentration",
+      "year": 2016,
+      "n": 230,
       "inReviews": [
-       "24858736"
+       "31890660"
       ]
      },
      {
-      "pmid": "20670733",
-      "title": "No effect of selenium supplementation on serum glucose levels in men with prostate cancer",
-      "year": 2010,
-      "n": 47,
+      "pmid": "22517293",
+      "title": "Effect of L-arginine and selenium added to a hypocaloric diet enriched with legumes on cardiovascular disease risk factors in women with central obesity: a randomized, double-blind, placebo-controlled trial",
+      "year": 2012,
+      "n": 84,
       "inReviews": [
-       "24858736"
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "25510442",
+      "title": "Metabolic response to selenium supplementation in women with polycystic ovary syndrome: a randomized, double-blind, placebo-controlled trial",
+      "year": 2015,
+      "n": 70,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "26250486",
+      "title": "Effects of selenium supplementation on glucose homeostasis, inflammation, and oxidative stress in gestational diabetes: Randomized, double-blind, placebo-controlled trial",
+      "year": 2015,
+      "n": 70,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "26686847",
+      "title": "Effect of Selenium Supplementation on Glycemic Control and Lipid Profiles in Patients with Diabetic Nephropathy",
+      "year": 2016,
+      "n": 60,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "23633679",
+      "title": "A randomized, placebo-controlled trial of selenium supplementation in patients with type 2 diabetes: effects on glucose homeostasis, oxidative stress, and lipid profile",
+      "year": 2014,
+      "n": 60,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "26743526",
+      "title": "Selenium Supplementation Affects Insulin Resistance and Serum hs-CRP in Patients with Type 2 Diabetes and Coronary Heart Disease",
+      "year": 2016,
+      "n": 60,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "26854246",
+      "title": "Effects of selenium supplementation on glucose homeostasis and free androgen index in women with polycystic ovary syndrome: A randomized, double blinded, placebo controlled clinical trial",
+      "year": 2016,
+      "n": 53,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "24353344",
+      "title": "Antioxidant supplements reduced oxidative stress and stabilized liver function tests but did not reduce inflammation in a randomized controlled trial in obese children and adolescents",
+      "year": 2014,
+      "n": 44,
+      "inReviews": [
+       "31890660"
+      ]
+     },
+     {
+      "pmid": "15255784",
+      "title": "Selenium supplementation decreases nuclear factor-kappa B activity in peripheral blood mononuclear cells from type 2 diabetic patients",
+      "year": 2004,
+      "n": 10,
+      "inReviews": [
+       "31890660"
       ]
      },
      {
@@ -1558,7 +1676,7 @@
     },
     {
      "year": 2016,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 6
     },
     {
@@ -1573,7 +1691,7 @@
     },
     {
      "year": 2019,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 2
     },
     {
@@ -1583,12 +1701,12 @@
     },
     {
      "year": 2021,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 1
     },
     {
      "year": 2022,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 3
     },
     {
@@ -1603,12 +1721,12 @@
     },
     {
      "year": 2025,
-     "reviews": 4,
+     "reviews": 8,
      "trials": 1
     },
     {
      "year": 2026,
-     "reviews": 2,
+     "reviews": 4,
      "trials": 3
     }
    ],
@@ -1658,6 +1776,17 @@
     ],
     "chosenNotCited": [
      {
+      "pmid": "31890660",
+      "doi": "10.1007/s40200-019-00419-w",
+      "title": "Effect of selenium supplementation on glycemic indices: a meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "firstAuthor": "Mahdavi Gorabi A",
+      "journal": "Journal of diabetes and metabolic disorders",
+      "citedBy": 16,
+      "n": 757,
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     },
+     {
       "pmid": "29974401",
       "doi": "10.1007/s10654-018-0422-8",
       "title": "Selenium exposure and the risk of type 2 diabetes: a systematic review and meta-analysis",
@@ -1677,17 +1806,6 @@
       "citedBy": 24,
       "n": 20294,
       "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
-     },
-     {
-      "pmid": "29924331",
-      "doi": "10.1093/jn/nxy099",
-      "title": "Higher Plasma Selenium Concentrations Are Associated with Increased Odds of Prevalent Type 2 Diabetes",
-      "year": 2018,
-      "firstAuthor": "Kohler LN",
-      "journal": "The Journal of nutrition",
-      "citedBy": 44,
-      "n": 1727,
-      "why": "A large trial (about 1,727 people) from 2018, as new as the newest review or newer"
      }
     ]
    },
@@ -1701,12 +1819,26 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 2,
-     "partly": 7,
-     "no": 3,
+     "yes": 3,
+     "partly": 8,
+     "no": 6,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "41533751",
+      "title": "Effects of Food Bioactive Compounds on Oxidative Stress and the Antioxidant Defense System in Type 2 Diabetes: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Selenium was pooled against controls for blood sugar (HbA1c), but the people already had type 2 diabetes, so it is treatment rather than prevention."
+     },
+     {
+      "pmid": "39963561",
+      "title": "The effectiveness of antioxidant agents in delaying progression of diabetic nephropathy: A systematic review of randomized controlled trials",
+      "year": 2025,
+      "fits": "no",
+      "reason": "It covers mixed antioxidants for diabetic kidney disease with kidney and oxidative stress outcomes, and does not pool trials for blood sugar."
+     },
      {
       "pmid": "37574154",
       "title": "Selenium supplementation effect on glycemic control: A GRADE-assessed systematic review and dose-response meta-analysis of randomized controlled trials",
@@ -1736,13 +1868,6 @@
       "reason": "Pooled selenium RCTs on glucose markers, but only in patients with cardiometabolic diseases, so this is treatment rather than prevention."
      },
      {
-      "pmid": "35304727",
-      "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
-      "year": 2022,
-      "fits": "partly",
-      "reason": "Selenium is one of the add-on supplements studied, but the population is people who already have type 2 diabetes."
-     },
-     {
       "pmid": "35963372",
       "title": "Comparison of nutritional supplements for glycemic control in type 2 diabetes: A systematic review and network meta-analysis of randomized trials",
       "year": 2022,
@@ -1750,11 +1875,25 @@
       "reason": "Network meta-analysis includes selenium for glycemic markers, but only in adults who already have type 2 diabetes."
      },
      {
+      "pmid": "35304727",
+      "title": "Could nutrient supplements provide additional glycemic control in diabetes management? A systematic review and meta-analysis of randomized controlled trials of as an add-on nutritional supplementation therapy",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Selenium is one of the add-on supplements studied, but the population is people who already have type 2 diabetes."
+     },
+     {
       "pmid": "33895112",
       "title": "A systematic review and dose-response meta-analysis of exposure to environmental selenium and the risk of type 2 diabetes in nonexperimental studies",
       "year": 2021,
       "fits": "no",
       "reason": "Pools only observational studies of selenium exposure, not randomised trials of supplements."
+     },
+     {
+      "pmid": "34178870",
+      "title": "The effects of dietary/herbal supplements and the serum levels of micronutrients on the healing of diabetic foot ulcers in animal and human models: a systematic review",
+      "year": 2021,
+      "fits": "no",
+      "reason": "It covers supplements for healing diabetic foot ulcers, including animal and observational studies, not selenium and diabetes onset or blood sugar."
      },
      {
       "pmid": "31148299",
@@ -1776,6 +1915,13 @@
       "year": 2017,
       "fits": "no",
       "reason": "Antioxidants for diabetic kidney disease, with kidney outcomes rather than diabetes incidence or blood sugar."
+     },
+     {
+      "pmid": "26910397",
+      "title": "Erratum to: Selenium supplementation and the risk of type 2 diabetes mellitus: a meta-analysis of randomized controlled trials",
+      "year": 2016,
+      "fits": "no",
+      "reason": "This is an erratum notice with no abstract, not a review; the original selenium and type 2 diabetes meta-analysis should be screened instead."
      }
     ]
    }
@@ -1785,8 +1931,8 @@
    "label": "Heart disease and death",
    "finding": "Heart and blood vessel disease, and death from any cause",
    "counts": {
-    "reviews": 34,
-    "trialReviews": 14,
+    "reviews": 43,
+    "trialReviews": 15,
     "trials": 67,
     "largeTrials": 14
    },
@@ -2353,7 +2499,7 @@
     },
     {
      "year": 2008,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 2
     },
     {
@@ -2383,7 +2529,7 @@
     },
     {
      "year": 2015,
-     "reviews": 1,
+     "reviews": 3,
      "trials": 3
     },
     {
@@ -2418,7 +2564,7 @@
     },
     {
      "year": 2022,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 6
     },
     {
@@ -2428,17 +2574,17 @@
     },
     {
      "year": 2024,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 4
     },
     {
      "year": 2025,
-     "reviews": 4,
+     "reviews": 7,
      "trials": 0
     },
     {
      "year": 2026,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 3
     }
    ],
@@ -2613,7 +2759,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 7,
-     "partly": 4,
+     "partly": 5,
      "no": 3,
      "unscreened": 0
     },
@@ -2638,6 +2784,13 @@
       "year": 2017,
       "fits": "no",
       "reason": "Review of experimental and lab studies on selenium and metabolic risk factors, with no pooled trials on heart disease or death."
+     },
+     {
+      "pmid": "25875487",
+      "title": "Dietary supplements and risk of cause-specific death, cardiovascular disease, and cancer: a protocol for a systematic review and network meta-analysis of primary prevention trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Plans to cover selenium vs control in adult primary prevention with mortality and CVD outcomes, but it is only a protocol with no pooled results yet."
      },
      {
       "pmid": "24217421",
@@ -2675,12 +2828,23 @@
    "label": "Thyroid eye disease",
    "finding": "Mild thyroid eye disease (Graves' orbitopathy)",
    "counts": {
-    "reviews": 3,
-    "trialReviews": 1,
+    "reviews": 7,
+    "trialReviews": 4,
     "trials": 15,
     "largeTrials": 0
    },
    "chosenReviews": [
+    {
+     "pmid": "42355878",
+     "doi": "10.3390/jcm15124710",
+     "title": "Efficacy of Selenium Supplementation in Graves' Orbitopathy: A Systematic Review and Meta-Analysis of Randomized Controlled Trials with Trial Sequential Analysis",
+     "year": 2026,
+     "firstAuthor": "Kostadinov N",
+     "journal": "Journal of clinical medicine",
+     "citedBy": 1,
+     "n": 303,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
     {
      "pmid": "39138905",
      "doi": "10.1111/cen.15128",
@@ -2693,6 +2857,73 @@
     }
    ],
    "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.8,
+    "trials": 5,
+    "inclusions": 9,
+    "reviews": [
+     {
+      "pmid": "42355878",
+      "trials": 5
+     },
+     {
+      "pmid": "39138905",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "21591944",
+      "title": "Selenium and the course of mild Graves' orbitopathy",
+      "year": 2011,
+      "n": 159,
+      "inReviews": [
+       "42355878",
+       "39138905"
+      ]
+     },
+     {
+      "pmid": "38200401",
+      "title": "Selenium in the treatment of mild-to-moderate Graves' orbitopathy: a 5-year prospective controlled cohort study",
+      "year": 2024,
+      "n": 74,
+      "inReviews": [
+       "42355878",
+       "39138905"
+      ]
+     },
+     {
+      "pmid": "33863564",
+      "title": "Oral selenium improved the disease activity in patients with mild Graves' orbitopathy",
+      "year": 2021,
+      "n": 30,
+      "inReviews": [
+       "42355878",
+       "39138905"
+      ]
+     },
+     {
+      "pmid": "38374579",
+      "title": "Selenium supplementation in inactive moderate to severe Graves' orbitopathy patients: a randomized controlled trial",
+      "year": 2024,
+      "n": 25,
+      "inReviews": [
+       "42355878",
+       "39138905"
+      ]
+     },
+     {
+      "pmid": "41384622",
+      "title": "Selenium supplementation in individuals with newly diagnosed Graves' hyperthyroidism: a double-blind, multi-centre RCT",
+      "year": 2026,
+      "n": 430,
+      "inReviews": [
+       "42355878"
+      ]
+     }
+    ]
+   },
    "timeline": [
     {
      "year": 2004,
@@ -2725,6 +2956,11 @@
      "trials": 2
     },
     {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
      "year": 2019,
      "reviews": 0,
      "trials": 1
@@ -2741,12 +2977,12 @@
     },
     {
      "year": 2022,
-     "reviews": 0,
+     "reviews": 1,
      "trials": 1
     },
     {
      "year": 2024,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 2
     },
     {
@@ -2756,7 +2992,7 @@
     },
     {
      "year": 2026,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 1
     }
    ],
@@ -2770,6 +3006,17 @@
      "21591944"
     ],
     "chosenNotCited": [
+     {
+      "pmid": "42355878",
+      "doi": "10.3390/jcm15124710",
+      "title": "Efficacy of Selenium Supplementation in Graves' Orbitopathy: A Systematic Review and Meta-Analysis of Randomized Controlled Trials with Trial Sequential Analysis",
+      "year": 2026,
+      "firstAuthor": "Kostadinov N",
+      "journal": "Journal of clinical medicine",
+      "citedBy": 1,
+      "n": 303,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     },
      {
       "pmid": "39138905",
       "doi": "10.1111/cen.15128",
@@ -2792,12 +3039,27 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 1,
+     "yes": 2,
      "partly": 0,
-     "no": 0,
+     "no": 2,
      "unscreened": 0
     },
-    "left": []
+    "left": [
+     {
+      "pmid": "39317500",
+      "title": "Efficacy of selenium supplementation for patients with Graves' hyperthyroidism during methimazole treatment: protocol for a systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Protocol with no pooled results; studies Graves' hyperthyroidism, not orbitopathy, with only thyroid blood markers as outcomes."
+     },
+     {
+      "pmid": "30356415",
+      "title": "Effects of Selenium Supplementation on Graves' Disease: A Systematic Review and Meta-Analysis",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Population is Graves' disease, not orbitopathy, and outcomes are thyroid hormones and antibodies, not eye disease or quality of life."
+     }
+    ]
    }
   },
   {
@@ -2805,8 +3067,8 @@
    "label": "Hashimoto's thyroiditis",
    "finding": "Hashimoto's thyroiditis (autoimmune underactive thyroid)",
    "counts": {
-    "reviews": 17,
-    "trialReviews": 9,
+    "reviews": 24,
+    "trialReviews": 15,
     "trials": 21,
     "largeTrials": 1
    },
@@ -3147,7 +3409,7 @@
     },
     {
      "year": 2014,
-     "reviews": 0,
+     "reviews": 2,
      "trials": 2
     },
     {
@@ -3182,22 +3444,22 @@
     },
     {
      "year": 2023,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 0
     },
     {
      "year": 2024,
-     "reviews": 3,
+     "reviews": 5,
      "trials": 0
     },
     {
      "year": 2025,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 1
     },
     {
      "year": 2026,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 0
     }
    ],
@@ -3260,18 +3522,46 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 5,
-     "partly": 4,
-     "no": 0,
+     "yes": 7,
+     "partly": 6,
+     "no": 2,
      "unscreened": 0
     },
     "left": [
+     {
+      "pmid": "42122912",
+      "title": "Myo-Inositol Plus Selenium vs. Selenium Alone in Hashimoto's Thyroiditis with Subclinical Hypothyroidism: A Systematic Review and Updated Meta-Analysis with Trial Sequential Analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Compares myo-inositol plus selenium with selenium alone, so it tests adding myo-inositol, not selenium versus placebo or no treatment."
+     },
+     {
+      "pmid": "39698034",
+      "title": "Effects of different supplements on Hashimoto's thyroiditis: a systematic review and network meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Compares selenium with placebo for antibodies and TSH, but only in euthyroid Hashimoto's, and the included studies are called case-control, not clearly randomised."
+     },
+     {
+      "pmid": "39650307",
+      "title": "Role of Supplementation with Selenium and Myo-Inositol Versus Selenium Alone in Patients of Autoimmune Thyroiditis: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Compares myo-inositol plus selenium with selenium alone and includes observational studies, so it is not selenium versus placebo or no treatment."
+     },
      {
       "pmid": "37335715",
       "title": "Clinical efficacy of selenium supplementation in patients with Hashimoto thyroiditis: A systematic review and meta-analysis",
       "year": 2023,
       "fits": "partly",
       "reason": "Selenium in Hashimoto's thyroiditis with antibody outcomes, but it pooled 'controlled trials' that are not clearly all randomised."
+     },
+     {
+      "pmid": "37891878",
+      "title": "Do Dietary Supplements Affect Inflammation, Oxidative Stress, and Antioxidant Status in Adults with Hypothyroidism or Hashimoto's Disease?-A Systematic Review of Controlled Trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Includes selenium trials but also people with hypothyroidism generally, focuses mainly on inflammation and oxidative stress markers, and does not pool results."
      },
      {
       "pmid": "33894732",

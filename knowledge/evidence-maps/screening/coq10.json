@@ -1,0 +1,448 @@
+{
+ "topic": "coq10",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "fatigue": {
+   "question": {
+    "population": "Adults, healthy or with an illness",
+    "intervention": "CoQ10",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Tiredness (fatigue)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41294251",
+     "fits": "partly",
+     "reason": "Pools RCTs of CoQ10 versus placebo or standard treatment with fatigue as an outcome, but only in people with depression, a narrower group."
+    },
+    {
+     "pmid": "36091835",
+     "fits": "yes",
+     "reason": "Pools 13 RCTs of CoQ10 versus placebo for fatigue in healthy and ill participants, with a separate CoQ10-only subgroup."
+    }
+   ]
+  },
+  "statin-muscle": {
+   "question": {
+    "population": "Adults taking statins, most with muscle symptoms",
+    "intervention": "CoQ10",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Muscle pain or aches"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41158831",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 versus a control group in adults on statins, with muscle pain intensity as the outcome."
+    },
+    {
+     "pmid": "41657017",
+     "fits": "no",
+     "reason": "Looks at CoQ10 for exercise-induced muscle damage and oxidative stress, not in people taking statins."
+    },
+    {
+     "pmid": "40367843",
+     "fits": "no",
+     "reason": "Looks at athletes and exercise-related blood markers, not adults on statins with muscle pain."
+    },
+    {
+     "pmid": "38479900",
+     "fits": "no",
+     "reason": "Covers exercise-induced muscle damage markers and physical performance in adults generally, not statin users."
+    },
+    {
+     "pmid": "33999383",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral CoQ10 versus placebo in patients with statin-induced myopathy, with a muscle pain analysis."
+    },
+    {
+     "pmid": "32179207",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral CoQ10 versus placebo in adults with statin-associated myalgia, with muscle pain as the outcome."
+    },
+    {
+     "pmid": "30371340",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 versus placebo in statin-induced myopathy, reporting muscle pain and other muscle symptoms."
+    },
+    {
+     "pmid": "30414615",
+     "fits": "no",
+     "reason": "Measures how statins affect blood CoQ10 levels; it does not test CoQ10 supplements for muscle pain."
+    },
+    {
+     "pmid": "26192349",
+     "fits": "no",
+     "reason": "Measures how statins affect plasma CoQ10 levels; it does not test CoQ10 supplements for muscle pain."
+    },
+    {
+     "pmid": "25440725",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 versus control in statin-treated patients, with a muscle pain analysis."
+    },
+    {
+     "pmid": "42939793",
+     "fits": "no",
+     "reason": "Studies CoQ10 for physical capacity and muscle function in middle-aged and older adults, not muscle pain in people taking statins."
+    },
+    {
+     "pmid": "39350827",
+     "fits": "yes",
+     "reason": "Includes RCTs of oral CoQ10 versus placebo in adults with statin-associated myalgia, with statin muscle symptoms as the outcome."
+    },
+    {
+     "pmid": "17560286",
+     "fits": "partly",
+     "reason": "Covers statin users and CoQ10 but mostly looks at blood CoQ10 levels in a broad literature search, with little trial data on muscle symptoms."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults with high blood pressure",
+    "intervention": "CoQ10",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "36130103",
+     "fits": "partly",
+     "reason": "Pooled RCTs of CoQ10 vs control on blood pressure, but in people with cardiometabolic disorders in general rather than specifically hypertension."
+    },
+    {
+     "pmid": "35348726",
+     "fits": "partly",
+     "reason": "Included RCTs of CoQ10 in older adults with hypertension or CVD, but added to usual therapy, mixed population, and results were not pooled."
+    },
+    {
+     "pmid": "26935713",
+     "fits": "yes",
+     "reason": "Pooled double-blind placebo-controlled RCTs of CoQ10 on blood pressure in adults with primary hypertension."
+    },
+    {
+     "pmid": "19821418",
+     "fits": "yes",
+     "reason": "Pooled double-blind placebo-controlled RCTs of CoQ10 on blood pressure in patients with primary hypertension."
+    },
+    {
+     "pmid": "14695924",
+     "fits": "partly",
+     "reason": "Summarised eight CoQ10 trials in hypertension, but the abstract does not say they were randomised or placebo-controlled."
+    },
+    {
+     "pmid": "26852373",
+     "fits": "partly",
+     "reason": "Broad narrative review of many nutraceuticals for blood pressure; CoQ10 is mentioned but not pooled in its own analysis."
+    },
+    {
+     "pmid": "17287847",
+     "fits": "yes",
+     "reason": "Separate analysis of randomised placebo-controlled trials of CoQ10 on blood pressure in hypertensive patients."
+    },
+    {
+     "pmid": "40495903",
+     "fits": "partly",
+     "reason": "Pools RCTs of CoQ10 on blood pressure, but in adults in general; the abstract reports no separate analysis of people with high blood pressure."
+    }
+   ]
+  },
+  "exercise": {
+   "question": {
+    "population": "Healthy adults, including athletes",
+    "intervention": "CoQ10",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Exercise performance"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41657017",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral CoQ10 around exercise and included maximal oxygen uptake, a performance outcome, alongside blood markers."
+    },
+    {
+     "pmid": "40367843",
+     "fits": "partly",
+     "reason": "CoQ10 trials in athletes, but outcomes were only blood markers of oxidative stress and muscle damage, not exercise performance."
+    },
+    {
+     "pmid": "38479900",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 in adults with physical performance as an outcome, alongside muscle damage and oxidative stress markers."
+    },
+    {
+     "pmid": "40401105",
+     "fits": "no",
+     "reason": "Population was COPD patients, and CoQ10 was mainly tested combined with creatine; this is a different question from healthy adults."
+    },
+    {
+     "pmid": "42798689",
+     "fits": "partly",
+     "reason": "Pools randomised trials of oral CoQ10 in athletes only, a narrower group; mainly oxidative stress markers, with VO2max as the only performance outcome; comparator not stated."
+    },
+    {
+     "pmid": "41457257",
+     "fits": "yes",
+     "reason": "Pools randomised trials comparing CoQ10 with placebo in healthy adults, with exercise performance as an outcome."
+    }
+   ]
+  },
+  "migraine": {
+   "question": {
+    "population": "Adults with migraine",
+    "intervention": "CoQ10 to prevent attacks",
+    "comparison": "Placebo or no treatment",
+    "outcome": "How often attacks happen and how bad they are"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42707444",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in adult migraineurs that gives a CoQ10 vs placebo estimate for attack frequency and severity."
+    },
+    {
+     "pmid": "33402403",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 vs placebo for prophylaxis in adults with migraine, reporting attack frequency and severity; combined-supplement use was analysed as a subgroup."
+    },
+    {
+     "pmid": "39404918",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of RCTs that reports a separate CoQ10 vs control analysis for migraine prevention, with frequency and severity outcomes and adult comparisons."
+    },
+    {
+     "pmid": "30727862",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 for migraine, reporting attack frequency and severity; the abstract does not say whether patients were adults or what the comparator was."
+    },
+    {
+     "pmid": "30428123",
+     "fits": "partly",
+     "reason": "CoQ10 vs placebo for migraine attacks and severity matches, but the pooled trials mix children and adults with no separate adult-only analysis."
+    }
+   ]
+  },
+  "heart-failure": {
+   "question": {
+    "population": "Adults with heart failure on standard treatment",
+    "intervention": "CoQ10 added to treatment",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Deaths, hospital stays or heart function"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "39462324",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 added to heart failure treatment, reporting all-cause mortality, heart failure hospitalisation and ejection fraction."
+    },
+    {
+     "pmid": "35608922",
+     "fits": "yes",
+     "reason": "Cochrane meta-analysis of RCTs comparing CoQ10 with placebo or conventional therapy in people with heart failure, assessing efficacy and safety."
+    },
+    {
+     "pmid": "35076012",
+     "fits": "partly",
+     "reason": "Pooled RCTs of CoQ10 plus standard care versus standard care with mortality data, but only in heart failure with reduced ejection fraction, a narrower group."
+    },
+    {
+     "pmid": "39464682",
+     "fits": "partly",
+     "reason": "Covers ubiquinol and ejection fraction in heart failure RCTs, but it is a broad review of many supplements with no pooled CoQ10 analysis described."
+    },
+    {
+     "pmid": "34173307",
+     "fits": "yes",
+     "reason": "Evidence map that pooled RCTs of CoQ10 in heart failure patients and reports a risk ratio for all-cause mortality."
+    },
+    {
+     "pmid": "24049047",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of CoQ10 in heart failure patients, with meta-analysis of beneficial and harmful effects where data allowed."
+    },
+    {
+     "pmid": "16911914",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of CoQ10 in chronic heart failure, measuring ejection fraction and cardiac output (heart function)."
+    },
+    {
+     "pmid": "14695924",
+     "fits": "yes",
+     "reason": "Includes a separate meta-analysis of RCTs of CoQ10 in heart failure that looked at ejection fraction and mortality."
+    },
+    {
+     "pmid": "9266518",
+     "fits": "yes",
+     "reason": "Meta-analyses of placebo-controlled RCTs of add-on CoQ10 in congestive heart failure, measuring ejection fraction and cardiac output."
+    },
+    {
+     "pmid": "42869600",
+     "fits": "partly",
+     "reason": "CoQ10 in heart failure matches, but the review covers only people with preserved ejection fraction (HFpEF), a narrower group; no abstract to confirm comparison or outcomes."
+    }
+   ]
+  },
+  "metabolic": {
+   "question": {
+    "population": "Adults, often with diabetes or other metabolic conditions",
+    "intervention": "CoQ10",
+    "comparison": "Placebo or no treatment",
+    "outcome": "HbA1c, blood sugar, cholesterol or triglycerides"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41859772",
+     "fits": "partly",
+     "reason": "CoQ10 and glucose/HbA1c outcomes match, but this umbrella review pooled earlier meta-analyses rather than the randomised trials themselves."
+    },
+    {
+     "pmid": "41630501",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral CoQ10 vs placebo in adults with and without T2DM, reporting fasting glucose and HbA1c."
+    },
+    {
+     "pmid": "42642774",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 in people with prediabetes and T2DM, reporting triglycerides, fasting blood sugar and lipid profile."
+    },
+    {
+     "pmid": "42192187",
+     "fits": "yes",
+     "reason": "Pooled 64 RCTs of CoQ10 in metabolic disorders, reporting triglycerides, cholesterol, HbA1c and fasting glucose."
+    },
+    {
+     "pmid": "39904656",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 in adults with type 2 diabetes, reporting cholesterol and triglycerides."
+    },
+    {
+     "pmid": "36337001",
+     "fits": "yes",
+     "reason": "Pooled 50 RCTs of CoQ10 in adults, reporting total cholesterol, LDL, HDL and triglycerides."
+    },
+    {
+     "pmid": "33866314",
+     "fits": "no",
+     "reason": "Outcomes are oxidative stress markers, not blood sugar, HbA1c or blood lipids."
+    },
+    {
+     "pmid": "35304727",
+     "fits": "yes",
+     "reason": "Pooled RCTs in T2DM with a separate CoQ10 analysis (as an add-on to diabetes drugs) for HbA1c and fasting glucose."
+    },
+    {
+     "pmid": "31192915",
+     "fits": "partly",
+     "reason": "Narrower group (diabetic kidney disease), CoQ10 given with other medicines, and only 4 RCTs mixed with experimental studies."
+    },
+    {
+     "pmid": "38025704",
+     "fits": "partly",
+     "reason": "CoQ10 vs placebo on lipids, but in a narrower group (women with PCOS) within a network meta-analysis of supplements."
+    },
+    {
+     "pmid": "33988478",
+     "fits": "partly",
+     "reason": "CoQ10 vs placebo on glucose and lipids, but only in women with PCOS, within a network meta-analysis."
+    },
+    {
+     "pmid": "29330704",
+     "fits": "no",
+     "reason": "Outcome is blood pressure only, not blood sugar, HbA1c or lipids."
+    },
+    {
+     "pmid": "29623830",
+     "fits": "yes",
+     "reason": "Pooled controlled trials of CoQ10 in metabolic diseases, reporting triglycerides and cholesterol."
+    },
+    {
+     "pmid": "30296936",
+     "fits": "partly",
+     "reason": "CoQ10 vs placebo on lipids, but the people had coronary artery disease rather than diabetes or metabolic conditions."
+    },
+    {
+     "pmid": "30417782",
+     "fits": "partly",
+     "reason": "CoQ10 RCTs reporting lipids and fasting glucose, but in a different group: people with chronic kidney disease."
+    },
+    {
+     "pmid": "26836888",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 vs control; main outcome Lp(a), but total cholesterol and triglycerides were also pooled."
+    },
+    {
+     "pmid": "28381349",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of CoQ10, reporting blood glucose and HbA1c in people with and without high glucose."
+    },
+    {
+     "pmid": "25913756",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of CoQ10 in diabetes, with a CoQ10-alone analysis of glucose control and lipids."
+    },
+    {
+     "pmid": "32375340",
+     "fits": "partly",
+     "reason": "CoQ10 vs placebo in metabolic syndrome, but main outcomes are adipokines and inflammation; glucose control only mentioned in passing."
+    },
+    {
+     "pmid": "27544369",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 vs control, reporting fasting blood glucose and HbA1c."
+    },
+    {
+     "pmid": "27157250",
+     "fits": "partly",
+     "reason": "Pooled RCTs on lipids and glucose, but CoQ10 was only given within a combination with red yeast rice, berberine, policosanol and other ingredients."
+    },
+    {
+     "pmid": "37324909",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 in adults with NAFLD, a metabolic condition, and reported cholesterol and triglyceride outcomes."
+    },
+    {
+     "pmid": "35958521",
+     "fits": "yes",
+     "reason": "Pooled 40 RCTs of CoQ10 and reported fasting glucose and HbA1c, with greater effects shown in people with diabetes."
+    },
+    {
+     "pmid": "36866570",
+     "fits": "no",
+     "reason": "This is a letter to the editor, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "36866654",
+     "fits": "no",
+     "reason": "This is a reply to a letter to the editor, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "32318636",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 against placebo in people with diabetes or metabolic syndrome, reporting cholesterol and metabolic markers."
+    },
+    {
+     "pmid": "30305810",
+     "fits": "yes",
+     "reason": "Pooled RCTs of CoQ10 against placebo or other drugs in type 2 diabetes, reporting HbA1c, fasting glucose, TG and HDL."
+    },
+    {
+     "pmid": "29352426",
+     "fits": "no",
+     "reason": "This is a commentary on a review about blood pressure, not a pooled review of glucose or lipid outcomes."
+    },
+    {
+     "pmid": "31890694",
+     "fits": "no",
+     "reason": "Covers mixed antioxidants for diabetic retinopathy with no pooling, and its outcomes are eye disease and oxidative markers."
+    }
+   ]
+  }
+ }
+}

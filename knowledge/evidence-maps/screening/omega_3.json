@@ -1,0 +1,1233 @@
+{
+ "topic": "omega_3",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "blood-pressure": {
+   "question": {
+    "population": "Adults with or without high blood pressure",
+    "intervention": "Omega-3 supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41687665",
+     "fits": "partly",
+     "reason": "Omega-3 and blood pressure match, but the review is a narrative synthesis that did not pool trials and also included cohort studies."
+    },
+    {
+     "pmid": "29993265",
+     "fits": "yes",
+     "reason": "Pooled RCTs of EPA and DHA supplements in adults, with systolic and diastolic blood pressure as outcomes."
+    },
+    {
+     "pmid": "22345681",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of fish-oil supplements in adults with and without high blood pressure, measuring blood pressure."
+    },
+    {
+     "pmid": "8339414",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled trials of omega-3 fish oil, with blood pressure as the outcome."
+    },
+    {
+     "pmid": "12172309",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled randomized trials of fish oil without co-interventions, with blood pressure as the outcome."
+    },
+    {
+     "pmid": "38380006",
+     "fits": "partly",
+     "reason": "Pools RCTs of DHA+EPA vs placebo on blood pressure, but only in adults over 65, a narrower group than all adults."
+    },
+    {
+     "pmid": "36832799",
+     "fits": "partly",
+     "reason": "Pools RCTs of omega-3 supplements on blood pressure, but only in patients with metabolic syndrome, a narrower group."
+    },
+    {
+     "pmid": "8141868",
+     "fits": "yes",
+     "reason": "Pools controlled trials of omega-3 supplements vs control on blood pressure in normotensive and hypertensive adults."
+    }
+   ]
+  },
+  "bleeding": {
+   "question": {
+    "population": "Adults, including people taking antiplatelet medicines",
+    "intervention": "Omega-3 supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Bleeding events"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "38742535",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 vs control in adults reporting bleeding events, with an analysis by background antiplatelet use."
+    },
+    {
+     "pmid": "28552094",
+     "fits": "partly",
+     "reason": "Bleeding was assessed only in surgical patients; in healthy subjects the outcome was platelet aggregation, a blood marker."
+    }
+   ]
+  },
+  "depression": {
+   "question": {
+    "population": "Adults with depression, or without it (prevention)",
+    "intervention": "Omega-3 supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Depressive symptoms or new depression"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42520986",
+     "fits": "partly",
+     "reason": "Pools RCTs of omega-3 supplements, but the outcome is only blood SPM precursor levels in mixed populations, not depressive symptoms."
+    },
+    {
+     "pmid": "42680855",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs in adults with MDD includes EPA versus placebo on depressive symptoms."
+    },
+    {
+     "pmid": "39912390",
+     "fits": "partly",
+     "reason": "Systematically searched omega-3 RCTs in clinical depression, but reports a narrative summary with no pooled analysis."
+    },
+    {
+     "pmid": "38979505",
+     "fits": "partly",
+     "reason": "Pools omega-3 RCTs on depression scores, but only in coronary artery disease patients, and some arms add sertraline."
+    },
+    {
+     "pmid": "37028202",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of omega-3 PUFAs on depression severity in adults."
+    },
+    {
+     "pmid": "31383846",
+     "fits": "yes",
+     "reason": "Meta-analysis of double-blind placebo-controlled RCTs of omega-3 PUFAs on depressive symptoms."
+    },
+    {
+     "pmid": "37836515",
+     "fits": "partly",
+     "reason": "Reviews omega-3 RCTs reporting depression outcomes, but only in postmenopausal women and without a clear pooled estimate."
+    },
+    {
+     "pmid": "35565800",
+     "fits": "partly",
+     "reason": "Reviews omega-3 versus placebo RCTs on depression scores, but only in adults with cardiometabolic disease and without pooling."
+    },
+    {
+     "pmid": "31647041",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of long-chain omega-3 in adults with or without depression, on depression risk and severity."
+    },
+    {
+     "pmid": "27103682",
+     "fits": "yes",
+     "reason": "Meta-analysis of double-blind placebo-controlled RCTs of omega-3 for diagnosed depression and for prevention in undiagnosed groups."
+    },
+    {
+     "pmid": "25373095",
+     "fits": "no",
+     "reason": "Narrative review of military diets and fatty acids, not a pooled analysis of omega-3 supplement trials."
+    },
+    {
+     "pmid": "33806078",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of n-3 PUFAs versus placebo on depressive symptoms in people with or without depression."
+    },
+    {
+     "pmid": "29540267",
+     "fits": "partly",
+     "reason": "Pools placebo-controlled omega-3 RCTs on depressed mood, but only in adults over 65."
+    },
+    {
+     "pmid": "33348198",
+     "fits": "partly",
+     "reason": "Pools RCTs in adults with depression, but omega-3 is only given as an add-on to ongoing sertraline therapy."
+    },
+    {
+     "pmid": "26978738",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of omega-3 PUFAs on depressive symptoms in adults with MDD."
+    },
+    {
+     "pmid": "35311615",
+     "fits": "no",
+     "reason": "Clinical guideline built on meta-reviews across many nutraceuticals and disorders, not a pooled analysis of omega-3 trials."
+    },
+    {
+     "pmid": "24805797",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled omega-3 RCTs in patients with MDD or with depressive symptoms."
+    },
+    {
+     "pmid": "21931319",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomized placebo-controlled trials of omega-3 for major depressive disorder."
+    },
+    {
+     "pmid": "31278982",
+     "fits": "no",
+     "reason": "Narrative review of brain EPA metabolism, not a pooled analysis of supplement trials."
+    },
+    {
+     "pmid": "34817851",
+     "fits": "yes",
+     "reason": "Cochrane review pooling RCTs of omega-3 versus placebo on depressive symptoms in adults with MDD."
+    },
+    {
+     "pmid": "28988944",
+     "fits": "partly",
+     "reason": "Adults with MDD and depressive outcomes match, but omega-3 is only tested as an add-on to antidepressants and non-randomised studies were included."
+    },
+    {
+     "pmid": "30138808",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs pooled for depressive symptoms, but limited to older adults aged 60 and above, a narrower group."
+    },
+    {
+     "pmid": "21939614",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of omega-3 supplements in people with primary depression, with depression rating scale outcomes."
+    },
+    {
+     "pmid": "20586692",
+     "fits": "partly",
+     "reason": "Topic matches, but it includes only 4 RCTs mixed with observational studies and pools no trial data."
+    },
+    {
+     "pmid": "24158923",
+     "fits": "partly",
+     "reason": "Prevention of depression with supplements vs placebo, but limited to perinatal women, covers many supplements, and the abstract shows no omega-3 results."
+    },
+    {
+     "pmid": "26537796",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 vs placebo in adults with MDD, measuring depressive symptoms."
+    },
+    {
+     "pmid": "20439549",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs of omega-3 on depressive symptoms, covering both treatment and prevention trials."
+    },
+    {
+     "pmid": "32434488",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 vs placebo in adults with MDD, measuring early depressive symptom scores."
+    },
+    {
+     "pmid": "19752840",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of omega-3 in mood disorders, with a separate meta-analysis of depressed mood outcomes."
+    },
+    {
+     "pmid": "17575808",
+     "fits": "no",
+     "reason": "Narrative overview of omega-3 and depression with no systematic search or pooled trial data."
+    },
+    {
+     "pmid": "40314175",
+     "fits": "yes",
+     "reason": "A network meta-analysis of trials in adults with depressive disorder that includes EPA+DHA as a single treatment, with placebo in the network, and measures depressive symptoms."
+    },
+    {
+     "pmid": "38470647",
+     "fits": "partly",
+     "reason": "Omega-3 versus control for depressive symptoms, but only in older adults with dementia or mild cognitive impairment, a narrower group."
+    },
+    {
+     "pmid": "34493705",
+     "fits": "no",
+     "reason": "This is a correction notice with no abstract, not a review that pools trials."
+    },
+    {
+     "pmid": "31230010",
+     "fits": "partly",
+     "reason": "It matches omega-3 for mood in healthy adults (prevention), but it is only a protocol with no pooled results and it also includes observational studies."
+    },
+    {
+     "pmid": "26300645",
+     "fits": "partly",
+     "reason": "It pools trials of EPA+DHA versus placebo for depressive symptoms, but only in women, a narrower group."
+    },
+    {
+     "pmid": "27113121",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo for depressive symptoms, but only as an add-on to antidepressants in people already taking them."
+    },
+    {
+     "pmid": "22488258",
+     "fits": "yes",
+     "reason": "Going by the title alone, this is an updated meta-analysis of omega-3 (EPA) trials for depressive symptoms in adults with major depressive disorder."
+    },
+    {
+     "pmid": "27940200",
+     "fits": "no",
+     "reason": "A non-pooled review of mostly observational studies on omega-3 levels and suicide risk, not trials of supplements for depression."
+    }
+   ]
+  },
+  "atrial-fibrillation": {
+   "question": {
+    "population": "Adults (not after heart surgery)",
+    "intervention": "Omega-3 supplements",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New atrial fibrillation"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42517224",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 (EPA/DHA ≥500 mg/d) in adults aged 50 or over without AF at baseline, with new-onset AF as the primary outcome."
+    },
+    {
+     "pmid": "42144851",
+     "fits": "partly",
+     "reason": "Pooled RCTs of EPA+DHA on AF, but only in people with established heart disease or around surgery, and AF was pooled together with post-operative AF."
+    },
+    {
+     "pmid": "41314109",
+     "fits": "no",
+     "reason": "Looks at existing meta-analyses and theory to ask about intravenous fish oil in critically ill patients; it does not pool trials of supplements against placebo."
+    },
+    {
+     "pmid": "39617283",
+     "fits": "no",
+     "reason": "A narrative review that reports earlier meta-analyses and vagal-tone mechanisms; it did not pool trials itself."
+    },
+    {
+     "pmid": "33798016",
+     "fits": "yes",
+     "reason": "Title describes a meta-analysis of RCTs of omega-3 fatty acids with AF risk as the outcome. There is no abstract, so details are unconfirmed."
+    },
+    {
+     "pmid": "33910233",
+     "fits": "yes",
+     "reason": "Title describes a meta-analysis of RCTs of omega-3 supplements and AF risk. There is no abstract, so details are unconfirmed."
+    },
+    {
+     "pmid": "34057665",
+     "fits": "yes",
+     "reason": "Pooled 8 large RCTs of omega-3 treatment, followed for at least 1 year, with AF risk as the outcome, plus subgroups by dose."
+    },
+    {
+     "pmid": "23890916",
+     "fits": "partly",
+     "reason": "Meta-analysis of fish oil, but the outcome is recurrent AF (treating existing AF), not new AF."
+    },
+    {
+     "pmid": "19106137",
+     "fits": "no",
+     "reason": "Pooled RCTs of fish oil, but the outcomes are defibrillator shocks, sudden cardiac death and mortality, not AF."
+    },
+    {
+     "pmid": "23714269",
+     "fits": "no",
+     "reason": "Pooled RCTs of omega-3 against placebo, but the outcomes are sudden cardiac death and ventricular arrhythmias, not AF."
+    },
+    {
+     "pmid": "21478384",
+     "fits": "yes",
+     "reason": "Pooled 10 RCTs of omega-3 for preventing AF. The abstract does not say who the patients were or exclude surgical patients."
+    },
+    {
+     "pmid": "29464094",
+     "fits": "partly",
+     "reason": "Pooled RCTs of omega-3 vs placebo/control, but in people who already had AF, measuring recurrence rather than new AF, sometimes alongside antiarrhythmic drugs."
+    }
+   ]
+  },
+  "preterm": {
+   "question": {
+    "population": "Pregnant women",
+    "intervention": "Omega-3 supplements, or foods with added omega-3, during pregnancy",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Preterm birth"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42494300",
+     "fits": "partly",
+     "reason": "Prenatal DHA RCTs versus control match, but the abstract reports gestational age rather than preterm birth as an outcome."
+    },
+    {
+     "pmid": "41058996",
+     "fits": "partly",
+     "reason": "Omega-3 versus control in pregnant women matches, but the outcomes are only metabolic, inflammatory and oxidative blood markers."
+    },
+    {
+     "pmid": "40233974",
+     "fits": "no",
+     "reason": "DHA is given to preterm infants after birth, not to pregnant women, and preterm birth is not an outcome."
+    },
+    {
+     "pmid": "39067112",
+     "fits": "yes",
+     "reason": "Pooled RCTs of prenatal DHA versus placebo/control in pregnant women, with preterm birth analysed as an outcome."
+    },
+    {
+     "pmid": "32918470",
+     "fits": "no",
+     "reason": "Outcomes are child cognition and birth weight, not preterm birth, and the review also includes breastfeeding women."
+    },
+    {
+     "pmid": "40180500",
+     "fits": "no",
+     "reason": "DHA is given to very preterm infants after birth to study lung disease, not given in pregnancy to prevent preterm birth."
+    },
+    {
+     "pmid": "35348829",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 versus placebo or no supplement in pregnant women, with preterm and early preterm birth as outcomes."
+    },
+    {
+     "pmid": "40431450",
+     "fits": "no",
+     "reason": "Supplements are given to infertile men and the outcomes are fertility and sperm, not pregnancy supplementation or preterm birth."
+    },
+    {
+     "pmid": "36913875",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo in pregnancy, but only women with gestational diabetes and the outcomes are only blood glucose and lipid markers."
+    },
+    {
+     "pmid": "32942938",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 versus placebo or no treatment in pregnancy, with preterm delivery as the main outcome."
+    },
+    {
+     "pmid": "36943265",
+     "fits": "no",
+     "reason": "High-dose DHA is given to preterm infants after birth, with lung disease (BPD) as the outcome."
+    },
+    {
+     "pmid": "32456494",
+     "fits": "no",
+     "reason": "DHA is given to preterm infants after birth for lung disease (BPD), not to pregnant women to prevent preterm birth."
+    },
+    {
+     "pmid": "35104631",
+     "fits": "yes",
+     "reason": "Umbrella review that recalculated pooled RCT effects of omega-3 in pregnant women, including preterm delivery."
+    },
+    {
+     "pmid": "30253674",
+     "fits": "no",
+     "reason": "Omega-3 in pregnancy matches, but the outcome is childhood wheeze and asthma, not preterm birth."
+    },
+    {
+     "pmid": "30231792",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo with preterm delivery pooled, but only in women being treated for gestational diabetes."
+    },
+    {
+     "pmid": "32145487",
+     "fits": "no",
+     "reason": "Omega-3 is given only with vitamin E or D, only to women with gestational diabetes, and the outcomes are metabolic markers."
+    },
+    {
+     "pmid": "34209454",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo in pregnancy, but only women with gestational diabetes and the outcomes are only oxidative stress markers."
+    },
+    {
+     "pmid": "34383914",
+     "fits": "no",
+     "reason": "Narrative review of child neurodevelopment outcomes, with no preterm birth outcome and no pooled analysis."
+    },
+    {
+     "pmid": "26033362",
+     "fits": "no",
+     "reason": "Only women with a previous growth-restricted pregnancy, and the outcome is growth restriction, not preterm birth."
+    },
+    {
+     "pmid": "30480773",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 supplements or foods versus placebo or no omega-3 in pregnancy, with preterm birth as an outcome."
+    },
+    {
+     "pmid": "25730231",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 vs placebo or no treatment in asymptomatic pregnant women, with preterm birth before 37 weeks as the outcome."
+    },
+    {
+     "pmid": "37322309",
+     "fits": "no",
+     "reason": "Outcome is perinatal mental health, and the review mixes dietary intake and observational studies without pooling trials on preterm birth."
+    },
+    {
+     "pmid": "25757636",
+     "fits": "partly",
+     "reason": "Pooled RCTs of omega-3 vs placebo or no treatment for preterm birth, but only in women with a previous preterm birth (narrower group)."
+    },
+    {
+     "pmid": "26382010",
+     "fits": "yes",
+     "reason": "Reviewed RCTs of omega-3 vs placebo or no treatment in pregnancy, with preterm birth as one of the separately analysed outcomes."
+    },
+    {
+     "pmid": "27012494",
+     "fits": "yes",
+     "reason": "Pooled RCTs of fish oil vs control in pregnant women and reported risk of preterm and early preterm delivery."
+    },
+    {
+     "pmid": "26773247",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of omega-3 vs controls in pregnant women, with early and any preterm delivery as outcomes."
+    },
+    {
+     "pmid": "28830700",
+     "fits": "no",
+     "reason": "Outcome is offspring body composition, and supplementation could be in pregnancy or lactation; preterm birth is not assessed."
+    },
+    {
+     "pmid": "26256041",
+     "fits": "no",
+     "reason": "Outcomes are gestational diabetes, pregnancy-induced hypertension and pre-eclampsia, not preterm birth."
+    },
+    {
+     "pmid": "27318249",
+     "fits": "no",
+     "reason": "Supplementation was given to preterm infants during lactation, and the outcome is neurodevelopment, not preterm birth."
+    },
+    {
+     "pmid": "23363970",
+     "fits": "no",
+     "reason": "The only outcome is newborn head circumference, not preterm birth."
+    },
+    {
+     "pmid": "29546296",
+     "fits": "no",
+     "reason": "Includes mothers and infants, and outcomes are child cognitive and visual development, not preterm birth."
+    },
+    {
+     "pmid": "23364006",
+     "fits": "no",
+     "reason": "Outcomes are offspring cognitive and visual development, not preterm birth."
+    },
+    {
+     "pmid": "26675770",
+     "fits": "no",
+     "reason": "Outcomes are allergic disease in the offspring, not preterm birth."
+    },
+    {
+     "pmid": "24913791",
+     "fits": "no",
+     "reason": "Population is extremely preterm infants given omega-3, and outcomes are neonatal illnesses, not preterm birth."
+    },
+    {
+     "pmid": "27995607",
+     "fits": "no",
+     "reason": "Population is preterm infants given supplemented formula, and outcomes are vision, development and growth."
+    },
+    {
+     "pmid": "29558816",
+     "fits": "no",
+     "reason": "Focus is several prenatal nutrients and mental illness; premature birth is only mentioned and no trials are pooled for it."
+    },
+    {
+     "pmid": "10835071",
+     "fits": "no",
+     "reason": "Population is preterm infants on formula, and the outcome is visual acuity, not preterm birth."
+    },
+    {
+     "pmid": "20685946",
+     "fits": "no",
+     "reason": "Outcome is child body composition, and supplementation could be in pregnancy or lactation; preterm birth is not assessed."
+    },
+    {
+     "pmid": "41773213",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 supplements versus control in pregnant women, and it reports preterm birth risk."
+    },
+    {
+     "pmid": "42158688",
+     "fits": "no",
+     "reason": "The population is preterm infants given DHA after birth, not pregnant women, and the outcomes are retinopathy and cognition."
+    },
+    {
+     "pmid": "42715778",
+     "fits": "partly",
+     "reason": "Pregnant women and omega-3 match, but the review focuses on oxylipin blood markers, mixes in observational studies, and pools no trials."
+    },
+    {
+     "pmid": "32039806",
+     "fits": "no",
+     "reason": "Omega-3 in pregnancy matches, but the outcomes are preeclampsia and pregnancy-induced hypertension, not preterm birth."
+    },
+    {
+     "pmid": "40895181",
+     "fits": "no",
+     "reason": "The population is extremely preterm infants given DHA after birth, and the outcome is neurodevelopment."
+    },
+    {
+     "pmid": "40245394",
+     "fits": "no",
+     "reason": "This is a protocol with no pooled results, and its outcome is child intelligence, not preterm birth."
+    },
+    {
+     "pmid": "36340915",
+     "fits": "no",
+     "reason": "Omega-3 in pregnancy matches, but the outcomes are childhood asthma and atopic disease, not preterm birth."
+    },
+    {
+     "pmid": "40340755",
+     "fits": "no",
+     "reason": "This is a retraction notice about omega-3 plus vitamin for gestational diabetes, not preterm birth."
+    },
+    {
+     "pmid": "36253040",
+     "fits": "no",
+     "reason": "This is a protocol on preterm infants given DHA after birth, and the outcome is bronchopulmonary dysplasia."
+    },
+    {
+     "pmid": "29552068",
+     "fits": "no",
+     "reason": "It looks at omega-3 for treating depression in pregnant women, with depression scores as the outcome, not preterm birth."
+    },
+    {
+     "pmid": "34032751",
+     "fits": "no",
+     "reason": "This is a protocol on vitamin plus omega-3 for blood glucose in gestational diabetes, not preterm birth."
+    },
+    {
+     "pmid": "37518076",
+     "fits": "no",
+     "reason": "This is a protocol on preterm infants given DHA after birth, and the outcome is bronchopulmonary dysplasia."
+    },
+    {
+     "pmid": "33520859",
+     "fits": "no",
+     "reason": "Omega-3 in pregnancy matches, but the outcomes are metabolic and inflammatory blood markers, not preterm birth."
+    },
+    {
+     "pmid": "28191333",
+     "fits": "no",
+     "reason": "Fish oil in pregnancy matches, but the outcome is gestational diabetes, not preterm birth."
+    },
+    {
+     "pmid": "35503790",
+     "fits": "no",
+     "reason": "This is a protocol comparing several supplements on glucose and lipids in gestational diabetes, not preterm birth."
+    },
+    {
+     "pmid": "35289988",
+     "fits": "no",
+     "reason": "Omega-3 in pregnancy matches, but the outcome is child neurocognitive development, not preterm birth."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Omega-3 supplements (fish oil, EPA and/or DHA; prescription icosapent ethyl only with results apart)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, strokes, cardiovascular death or death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42070013",
+     "fits": "partly",
+     "reason": "High-dose EPA trials with MI, stroke and CV death outcomes, but only in adults with established CVD or high risk, not general adults."
+    },
+    {
+     "pmid": "42144851",
+     "fits": "partly",
+     "reason": "EPA+DHA versus control for MACE, but only in patients with established CVD or perioperative settings (secondary prevention)."
+    },
+    {
+     "pmid": "41687665",
+     "fits": "no",
+     "reason": "Narrative review of blood pressure and mechanisms with no pooled analysis of heart attack, stroke or death outcomes."
+    },
+    {
+     "pmid": "40795199",
+     "fits": "no",
+     "reason": "Coronary plaque volume in statin-treated coronary disease patients; neither the outcome nor the population matches."
+    },
+    {
+     "pmid": "42115081",
+     "fits": "no",
+     "reason": "Blood lipid outcomes only, in patients with ischemic heart disease; both outcome and population differ."
+    },
+    {
+     "pmid": "38869144",
+     "fits": "yes",
+     "reason": "RCTs of EPA or EPA+DHA versus control in primary and secondary prevention, pooling MI, stroke and cardiovascular death."
+    },
+    {
+     "pmid": "41494879",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs versus control, but outcomes are only metabolic and blood markers, not clinical events."
+    },
+    {
+     "pmid": "38039646",
+     "fits": "partly",
+     "reason": "Krill oil RCTs, but outcomes are only lipids and other risk-factor markers, not cardiovascular events or death."
+    },
+    {
+     "pmid": "38224465",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs pooling all-cause and CVD mortality, but only in patients with atherosclerotic cardiovascular disease."
+    },
+    {
+     "pmid": "37121469",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs on cardiovascular outcomes, but only in people with diabetes, a group defined by one illness."
+    },
+    {
+     "pmid": "38979505",
+     "fits": "no",
+     "reason": "Depression and anxiety outcomes in coronary artery disease patients, not cardiovascular events or death."
+    },
+    {
+     "pmid": "35914996",
+     "fits": "yes",
+     "reason": "Network meta-analysis of EPA and EPA+DHA versus placebo oils or controls for CV death, MI, stroke and all-cause death."
+    },
+    {
+     "pmid": "37222574",
+     "fits": "no",
+     "reason": "Lipid, blood pressure and inflammatory markers in metabolic syndrome or CVD patients; outcome and population differ."
+    },
+    {
+     "pmid": "35290840",
+     "fits": "yes",
+     "reason": "Double-blind RCTs of omega-3 supplements pooling all-cause mortality, cardiac death, MI and stroke by dose."
+    },
+    {
+     "pmid": "39639295",
+     "fits": "yes",
+     "reason": "RCTs of prescription omega-3 versus placebo or control for cardiac death, MI and stroke, with subgroups by PUFA component."
+    },
+    {
+     "pmid": "32820013",
+     "fits": "yes",
+     "reason": "Double-blind RCTs of omega-3 supplements pooling all-cause mortality, cardiac death, MI and stroke."
+    },
+    {
+     "pmid": "35905212",
+     "fits": "yes",
+     "reason": "RCTs of omega-3 versus control in primary and secondary prevention, pooling all-cause mortality, MI, stroke and cardiac death."
+    },
+    {
+     "pmid": "36103100",
+     "fits": "yes",
+     "reason": "RCTs of omega-3 versus control pooling MI, stroke, CV death and all-cause death, with EPA ethyl ester subgroups."
+    },
+    {
+     "pmid": "39076869",
+     "fits": "yes",
+     "reason": "RCTs of omega-3 supplements pooling MI, stroke, CV mortality and all-cause mortality."
+    },
+    {
+     "pmid": "34101063",
+     "fits": "partly",
+     "reason": "There is no abstract; the title suggests a meta-analysis of EPA trials on MI, but the population and comparator can't be confirmed."
+    },
+    {
+     "pmid": "40026502",
+     "fits": "no",
+     "reason": "Limited to people with type 2 diabetes, and outcomes are only lipids, glucose, blood pressure and inflammatory markers, not clinical events or death."
+    },
+    {
+     "pmid": "35916137",
+     "fits": "yes",
+     "reason": "Pooled 18 RCTs of omega-3 vs control and reported stroke and vascular death outcomes."
+    },
+    {
+     "pmid": "34237964",
+     "fits": "no",
+     "reason": "Limited to women with polycystic ovary syndrome, and outcomes are only blood markers such as insulin and lipids."
+    },
+    {
+     "pmid": "28818347",
+     "fits": "yes",
+     "reason": "Pooled 14 RCTs of EPA/DHA supplements vs control with cardiac death as the outcome."
+    },
+    {
+     "pmid": "35187035",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 vs control for all-cause death, cardiovascular death, heart attack and stroke across prevention stages."
+    },
+    {
+     "pmid": "22113870",
+     "fits": "partly",
+     "reason": "Algal DHA vs control in healthy adults, but outcomes are only blood lipids, not clinical events or death."
+    },
+    {
+     "pmid": "36283229",
+     "fits": "partly",
+     "reason": "Reports survival with omega-3, but only in people with cancer cachexia, a group defined by one illness."
+    },
+    {
+     "pmid": "32114706",
+     "fits": "yes",
+     "reason": "Pooled RCTs of long-chain omega-3 vs placebo or usual intake in adults for all-cause and cardiovascular death and stroke."
+    },
+    {
+     "pmid": "29284786",
+     "fits": "partly",
+     "reason": "Omega-3 vs placebo RCTs, but the only outcome is heart rate, a physiological marker rather than clinical events."
+    },
+    {
+     "pmid": "22493407",
+     "fits": "partly",
+     "reason": "Placebo-controlled EPA/DHA RCTs with matching outcomes, but only in patients with existing cardiovascular disease."
+    },
+    {
+     "pmid": "32722395",
+     "fits": "yes",
+     "reason": "Includes pairwise meta-analysis of omega-3 vs control RCTs for heart attack, stroke and cardiovascular events."
+    },
+    {
+     "pmid": "36501174",
+     "fits": "no",
+     "reason": "A narrative update review of omega-3 and cardiovascular health, not a pooled analysis of trials."
+    },
+    {
+     "pmid": "30521670",
+     "fits": "yes",
+     "reason": "Pooled RCTs of long-chain omega-3 vs placebo or usual intake in adults for all-cause and cardiovascular death and stroke."
+    },
+    {
+     "pmid": "28675488",
+     "fits": "partly",
+     "reason": "Placebo-controlled EPA/DHA RCTs, but outcomes are only risk factors such as lipids, blood pressure and CRP."
+    },
+    {
+     "pmid": "30019766",
+     "fits": "yes",
+     "reason": "Pooled RCTs of long-chain omega-3 vs placebo or usual intake in adults for all-cause and cardiovascular death and stroke."
+    },
+    {
+     "pmid": "36480969",
+     "fits": "yes",
+     "reason": "Pooled RCTs including n-3 fatty acid supplements vs control, with separate results for cardiovascular death and heart attack."
+    },
+    {
+     "pmid": "33660821",
+     "fits": "partly",
+     "reason": "Matching omega-3 question and outcomes, but it is an umbrella review of meta-analyses that mixes RCTs and cohorts."
+    },
+    {
+     "pmid": "16825676",
+     "fits": "partly",
+     "reason": "Covers fish oil and clinical outcomes, but mixes diet and cohort studies and summarises the trials without pooling them."
+    },
+    {
+     "pmid": "33092130",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 vs placebo for all-cause mortality and cardiovascular death."
+    },
+    {
+     "pmid": "32107906",
+     "fits": "no",
+     "reason": "A protocol for a planned network meta-analysis with no pooled results yet."
+    },
+    {
+     "pmid": "29387889",
+     "fits": "yes",
+     "reason": "Pools 10 large RCTs of omega-3 supplements in high-risk adults for coronary death, nonfatal MI, stroke and all-cause mortality."
+    },
+    {
+     "pmid": "34057665",
+     "fits": "yes",
+     "reason": "Pools large omega-3 RCTs with stroke as an assessed outcome alongside the main atrial fibrillation outcome."
+    },
+    {
+     "pmid": "35766825",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo, but only in people with stroke or TIA, mainly for functional outcomes; vascular death and recurrence are secondary."
+    },
+    {
+     "pmid": "32634581",
+     "fits": "yes",
+     "reason": "Pools omega-3 RCTs for mortality, cardiac death, MI and stroke, with EPA-alone results reported separately."
+    },
+    {
+     "pmid": "34049675",
+     "fits": "partly",
+     "reason": "Omega-3 added to statins, with coronary plaque imaging and blood markers as outcomes instead of clinical events."
+    },
+    {
+     "pmid": "19609891",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled EPA/DHA supplement RCTs for cardiovascular death and all-cause mortality across risk levels."
+    },
+    {
+     "pmid": "31567003",
+     "fits": "yes",
+     "reason": "Pools 13 omega-3 RCTs for MI, stroke and CVD death, with results shown with and without REDUCE-IT."
+    },
+    {
+     "pmid": "31284304",
+     "fits": "yes",
+     "reason": "Umbrella review in adults including pooled RCT estimates of omega-3 supplements on MI, stroke and mortality."
+    },
+    {
+     "pmid": "28432658",
+     "fits": "partly",
+     "reason": "Covers omega-3 RCTs on mortality, MI and stroke, but appears to be a narrative summary without pooling."
+    },
+    {
+     "pmid": "28062061",
+     "fits": "partly",
+     "reason": "Pooled RCTs give EPA+DHA from foods or supplements, and the outcome is composite CHD including angina."
+    },
+    {
+     "pmid": "22968891",
+     "fits": "yes",
+     "reason": "Pools omega-3 supplement RCTs for all-cause mortality, cardiac death, MI and stroke."
+    },
+    {
+     "pmid": "19106137",
+     "fits": "yes",
+     "reason": "Pools fish oil supplement RCTs for all-cause mortality and cardiac death."
+    },
+    {
+     "pmid": "31242320",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo, but only in people with stroke or TIA, mainly for functional outcomes."
+    },
+    {
+     "pmid": "32951855",
+     "fits": "yes",
+     "reason": "Pools EPA/DHA supplement RCTs for MI, fatal MI and CHD mortality."
+    },
+    {
+     "pmid": "23714269",
+     "fits": "partly",
+     "reason": "Omega-3 versus placebo, but the outcome combines sudden cardiac death with ventricular arrhythmias or ICD events."
+    },
+    {
+     "pmid": "24568238",
+     "fits": "yes",
+     "reason": "Pools omega-3 RCTs versus placebo for total mortality."
+    },
+    {
+     "pmid": "24885361",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs for cardiovascular events, but only in adults with peripheral arterial disease."
+    },
+    {
+     "pmid": "30307737",
+     "fits": "yes",
+     "reason": "RCTs of marine oils versus no or lower intake in adults, for all-cause death, stroke, MI and CVD death."
+    },
+    {
+     "pmid": "30484282",
+     "fits": "partly",
+     "reason": "Intervention is total PUFA, including omega-6 and dietary changes, rather than omega-3 supplements specifically."
+    },
+    {
+     "pmid": "16084516",
+     "fits": "partly",
+     "reason": "Fish oil versus placebo, but outcomes are restenosis, intima-media thickness and exercise capacity, not clinical events."
+    },
+    {
+     "pmid": "28800093",
+     "fits": "yes",
+     "reason": "Reviews RCTs of marine oil supplements in adults with CVD events as an outcome, though the summary also covers observational data and blood markers."
+    },
+    {
+     "pmid": "23742929",
+     "fits": "no",
+     "reason": "Fish oil in older adults, but the outcome is adverse events rather than heart attacks, strokes or deaths."
+    },
+    {
+     "pmid": "19133409",
+     "fits": "no",
+     "reason": "Only people with type 2 diabetes, and the outcomes are only blood lipid, glucose and clotting markers, not clinical events."
+    },
+    {
+     "pmid": "23958480",
+     "fits": "partly",
+     "reason": "Placebo-controlled omega-3 trials with matching outcomes, but only in patients with existing cardiovascular disease (secondary prevention)."
+    },
+    {
+     "pmid": "21626218",
+     "fits": "partly",
+     "reason": "Omega-3 trials reporting cardiac and all-cause death, but only in patients with existing cardiovascular disease."
+    },
+    {
+     "pmid": "24472636",
+     "fits": "partly",
+     "reason": "Omega-3 trials with cardiovascular events and mortality, but only in patients with coronary heart disease."
+    },
+    {
+     "pmid": "30019767",
+     "fits": "partly",
+     "reason": "Adults with or without CVD and matching outcomes, but the intervention is total PUFA (omega-3 and omega-6, diet and foods), not just fish oil."
+    },
+    {
+     "pmid": "19148838",
+     "fits": "partly",
+     "reason": "Omega-3 vs placebo or control diet with death outcomes, but only in coronary heart disease patients, and dietary intake is mixed in."
+    },
+    {
+     "pmid": "20525225",
+     "fits": "partly",
+     "reason": "Omega-3 vs placebo or usual diet with all-cause mortality, but only in high-risk cardiovascular patients."
+    },
+    {
+     "pmid": "15116076",
+     "fits": "no",
+     "reason": "Narrative review of B-vitamins combined with omega-3 and mechanisms, with no pooled trials of omega-3 vs placebo on clinical events."
+    },
+    {
+     "pmid": "16172267",
+     "fits": "partly",
+     "reason": "Placebo-controlled fish oil trials in humans, but the outcome is only heart rate, not clinical cardiovascular events or death."
+    },
+    {
+     "pmid": "8323422",
+     "fits": "no",
+     "reason": "Fish oil after coronary angioplasty, with restenosis as the outcome rather than heart attacks, strokes or death."
+    },
+    {
+     "pmid": "22651380",
+     "fits": "no",
+     "reason": "Supplements added to cardiovascular drugs in patients on those drugs, with mostly intermediate outcomes and insufficient mortality data."
+    },
+    {
+     "pmid": "1385968",
+     "fits": "no",
+     "reason": "Fish oil after coronary angioplasty, with restenosis as the outcome rather than heart attacks, strokes or death."
+    },
+    {
+     "pmid": "38836663",
+     "fits": "no",
+     "reason": "Two parts differ: it covers only people with chronic heart disease and measures only inflammation markers and endothelial function, not clinical events."
+    },
+    {
+     "pmid": "42209142",
+     "fits": "partly",
+     "reason": "Pools omega-3 RCTs against placebo or standard care on mortality, but only in hospitalized or medically ill patients, not general adults."
+    },
+    {
+     "pmid": "40463990",
+     "fits": "no",
+     "reason": "Two parts differ: it covers only coronary heart disease patients and measures only lipids and plaque volume, not clinical events."
+    },
+    {
+     "pmid": "36845767",
+     "fits": "no",
+     "reason": "This is a letter about another meta-analysis, not a systematic review, and it has no abstract."
+    },
+    {
+     "pmid": "34505026",
+     "fits": "yes",
+     "reason": "Pools 38 omega-3 RCTs on cardiovascular death and heart attacks, with EPA-only results reported separately."
+    },
+    {
+     "pmid": "37709371",
+     "fits": "no",
+     "reason": "This is a corrigendum notice, not a systematic review."
+    },
+    {
+     "pmid": "37063314",
+     "fits": "no",
+     "reason": "A network meta-analysis of several supplements in overweight or obese patients that measures only glucose and lipid markers."
+    },
+    {
+     "pmid": "38161115",
+     "fits": "partly",
+     "reason": "Pools omega-3 RCTs on death and cardiovascular outcomes, but only in patients with established coronary artery disease."
+    },
+    {
+     "pmid": "35140109",
+     "fits": "no",
+     "reason": "This is correspondence about a meta-analysis, not a systematic review."
+    },
+    {
+     "pmid": "35140107",
+     "fits": "no",
+     "reason": "This is an authors' reply to correspondence, not a systematic review."
+    },
+    {
+     "pmid": "35780067",
+     "fits": "no",
+     "reason": "This is a comment on a meta-analysis, not a systematic review."
+    },
+    {
+     "pmid": "36460522",
+     "fits": "no",
+     "reason": "This is a corrigendum notice, not a systematic review."
+    },
+    {
+     "pmid": "29171335",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled omega-3 trials on cardiac death for indiscriminate supplementation in the general population."
+    },
+    {
+     "pmid": "34539977",
+     "fits": "yes",
+     "reason": "Pools 14 large omega-3 RCTs in adults at cardiovascular risk on major cardiovascular events, cardiovascular death and all-cause death."
+    },
+    {
+     "pmid": "29859508",
+     "fits": "no",
+     "reason": "This is a rebuttal letter about a meta-analysis, not a systematic review."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "no",
+     "reason": "This is a protocol only, with no pooled results reported yet."
+    },
+    {
+     "pmid": "16736698",
+     "fits": "no",
+     "reason": "This is an interview news piece, not a systematic review."
+    }
+   ]
+  },
+  "triglycerides": {
+   "question": {
+    "population": "Adults with normal or high triglycerides",
+    "intervention": "Omega-3 supplements (fish oil, EPA and/or DHA)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Triglycerides"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42115081",
+     "fits": "partly",
+     "reason": "Omega-3 vs placebo with triglycerides as an outcome, but only in adults with ischemic heart disease, a narrower group."
+    },
+    {
+     "pmid": "32073633",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs of fish oil and krill oil (EPA/DHA) against control supplements, with triglycerides as an outcome."
+    },
+    {
+     "pmid": "38922552",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs with triglycerides as an outcome, but only in rheumatoid arthritis patients, a narrower disease group."
+    },
+    {
+     "pmid": "37264945",
+     "fits": "yes",
+     "reason": "Pooled 90 RCTs of EPA/DHA intake and blood lipid changes, including triglycerides, in the general population."
+    },
+    {
+     "pmid": "38317191",
+     "fits": "yes",
+     "reason": "RCTs of fish oil against corn oil control, which works as a placebo, with triglycerides pooled."
+    },
+    {
+     "pmid": "36641259",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs with triglycerides pooled, but only in postmenopausal women, a narrower group."
+    },
+    {
+     "pmid": "36913875",
+     "fits": "partly",
+     "reason": "Omega-3 vs placebo with triglycerides as an outcome, but only in pregnant women with gestational diabetes."
+    },
+    {
+     "pmid": "22113870",
+     "fits": "yes",
+     "reason": "Pooled RCTs of algal DHA supplements in healthy adults without heart disease, with triglycerides as an outcome."
+    },
+    {
+     "pmid": "28371906",
+     "fits": "yes",
+     "reason": "Pooled RCTs of krill oil (EPA/DHA) against control, with plasma triglycerides as an outcome."
+    },
+    {
+     "pmid": "31405672",
+     "fits": "partly",
+     "reason": "Omega-3 is only given together with vitamin E, and only to overweight patients with metabolic syndrome."
+    },
+    {
+     "pmid": "31336536",
+     "fits": "partly",
+     "reason": "Omega-3 is only given together with vitamin E, so the effect of omega-3 alone on triglycerides isn't separated."
+    },
+    {
+     "pmid": "33123975",
+     "fits": "partly",
+     "reason": "Looks at low n-6/n-3 ratio interventions, including plant ALA; only a subgroup covers EPA/DHA effects on triglycerides."
+    },
+    {
+     "pmid": "32384902",
+     "fits": "partly",
+     "reason": "Fish oil vs placebo with triglycerides as an outcome, but only in patients with type 2 diabetes."
+    },
+    {
+     "pmid": "21975919",
+     "fits": "yes",
+     "reason": "Placebo-controlled RCTs of EPA or DHA alone, with triglycerides pooled."
+    },
+    {
+     "pmid": "36313109",
+     "fits": "yes",
+     "reason": "Pooled RCTs of omega-3 alone vs placebo in adults with high triglycerides, with triglycerides as an outcome."
+    },
+    {
+     "pmid": "26431431",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs with triglycerides pooled, but only in patients with type 2 diabetes."
+    },
+    {
+     "pmid": "28008943",
+     "fits": "partly",
+     "reason": "Omega-3 RCTs with triglycerides pooled, but only in patients with end-stage renal disease."
+    },
+    {
+     "pmid": "15495692",
+     "fits": "partly",
+     "reason": "RCTs of omega-3 for high triglycerides, but it treats an illness and gives simple averages rather than a pooled placebo comparison."
+    },
+    {
+     "pmid": "42497400",
+     "fits": "partly",
+     "reason": "Pooled RCTs of omega-3 vs control on triglycerides, but only in people with type 1 diabetes, a narrower population."
+    },
+    {
+     "pmid": "40463990",
+     "fits": "partly",
+     "reason": "Pooled RCTs of omega-3 on triglycerides, but only in patients with coronary heart disease, a narrower population."
+    },
+    {
+     "pmid": "41878258",
+     "fits": "partly",
+     "reason": "Pooled RCTs of omega-3 on triglycerides, but only in patients with MASLD (fatty liver disease), a narrower population."
+    },
+    {
+     "pmid": "38254166",
+     "fits": "partly",
+     "reason": "Network meta-analysis of fish oil on triglycerides, but only in type 2 diabetes and focused on comparison with probiotics."
+    },
+    {
+     "pmid": "36832799",
+     "fits": "partly",
+     "reason": "Pooled RCTs of omega-3 on triglycerides, but only in patients with metabolic syndrome, a narrower population."
+    },
+    {
+     "pmid": "36460522",
+     "fits": "no",
+     "reason": "A correction notice for a review of cardiovascular events, with no abstract and no triglyceride analysis reported."
+    },
+    {
+     "pmid": "35503790",
+     "fits": "no",
+     "reason": "Protocol with no pooled results, covering many supplements in pregnant women with gestational diabetes."
+    }
+   ]
+  }
+ }
+}

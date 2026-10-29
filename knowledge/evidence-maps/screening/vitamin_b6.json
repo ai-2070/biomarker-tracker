@@ -83,6 +83,11 @@
      "pmid": "16625530",
      "fits": "yes",
      "reason": "Pooled randomised trials of vitamin B6 versus placebo or no supplement in pregnancy or labour, reporting pre-eclampsia, birthweight and Apgar scores."
+    },
+    {
+     "pmid": "10796172",
+     "fits": "yes",
+     "reason": "Randomised trials of B6 vs control in pregnant women, aiming at pregnancy and labour outcomes; only one trial was found, and it reported only maternal dental decay."
     }
    ]
   },
@@ -139,6 +144,16 @@
      "pmid": "18803866",
      "fits": "partly",
      "reason": "B-vitamin trials (B6 with folic acid and B12) were pooled, but the outcomes are artery thickness and blood vessel function, not clinical events."
+    },
+    {
+     "pmid": "32846865",
+     "fits": "no",
+     "reason": "This is a protocol about a cantharidinate/B6 cancer injection for liver cancer patients, not B vitamins to prevent heart attacks, strokes or death."
+    },
+    {
+     "pmid": "34123655",
+     "fits": "partly",
+     "reason": "Pooled placebo-controlled trials of B6, folic acid and B12 for stroke, heart attack and vascular death, but only in people who already had a stroke."
     }
    ]
   },

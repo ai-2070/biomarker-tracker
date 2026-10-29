@@ -8,7 +8,7 @@
  "source": "Europe PMC (PubMed records)",
  "queries": {
   "all": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED",
-  "reviews": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\")",
+  "reviews": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
   "trials": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
   "guidelines": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
   "retracted": "(TITLE_ABS:\"iodine\" OR TITLE_ABS:\"iodide\" OR TITLE_ABS:\"iodised salt\" OR TITLE_ABS:\"iodized salt\" OR TITLE_ABS:\"iodate\") AND (TITLE_ABS:supplement* OR TITLE_ABS:fortif* OR TITLE_ABS:intake OR TITLE_ABS:diet* OR TITLE_ABS:iodised OR TITLE_ABS:iodized OR TITLE_ABS:deficien*) AND SRC:MED AND PUB_TYPE:\"retracted publication\""
@@ -24,10 +24,10 @@
  ],
  "counts": {
   "all": 14253,
-  "retrieved": 590,
-  "animal": 39,
+  "retrieved": 621,
+  "animal": 40,
   "retracted": 0,
-  "reviews": 212,
+  "reviews": 242,
   "trials": 312,
   "guidelines": 27
  },
@@ -91,12 +91,22 @@
    "label": "Child development (pregnancy)",
    "finding": "Child development after iodine supplements in pregnancy",
    "counts": {
-    "reviews": 85,
-    "trialReviews": 20,
+    "reviews": 97,
+    "trialReviews": 26,
     "trials": 103,
     "largeTrials": 16
    },
    "chosenReviews": [
+    {
+     "pmid": "33112293",
+     "doi": "10.1530/eje-20-0927",
+     "title": "Effects of iodine supplementation during pregnancy on pregnant women and their offspring: a systematic review and meta-analysis of trials over the past 3 decades",
+     "year": 2021,
+     "firstAuthor": "Nazeri P",
+     "journal": "European journal of endocrinology",
+     "citedBy": 28,
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+    },
     {
      "pmid": "32320029",
      "doi": "10.1093/ajcn/nqaa071",
@@ -152,17 +162,6 @@
      "citedBy": 8,
      "n": 1729,
      "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
-    },
-    {
-     "pmid": "31912649",
-     "doi": "10.1111/mcn.12943",
-     "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
-     "year": 2020,
-     "firstAuthor": "Mohammed H",
-     "journal": "Maternal & child nutrition",
-     "citedBy": 10,
-     "n": 1220,
-     "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
     }
    ],
    "overlap": {
@@ -179,7 +178,9 @@
       "trials": 18
      }
     ],
-    "reviewsWithoutReferences": [],
+    "reviewsWithoutReferences": [
+     "33112293"
+    ],
     "shared": [
      {
       "pmid": "23375074",
@@ -483,7 +484,7 @@
     },
     {
      "year": 2015,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 4
     },
     {
@@ -498,27 +499,27 @@
     },
     {
      "year": 2018,
-     "reviews": 2,
+     "reviews": 3,
      "trials": 6
     },
     {
      "year": 2019,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 5
     },
     {
      "year": 2020,
-     "reviews": 7,
+     "reviews": 8,
      "trials": 7
     },
     {
      "year": 2021,
-     "reviews": 7,
+     "reviews": 10,
      "trials": 8
     },
     {
      "year": 2022,
-     "reviews": 6,
+     "reviews": 8,
      "trials": 4
     },
     {
@@ -528,17 +529,17 @@
     },
     {
      "year": 2024,
-     "reviews": 8,
+     "reviews": 9,
      "trials": 2
     },
     {
      "year": 2025,
-     "reviews": 7,
+     "reviews": 8,
      "trials": 4
     },
     {
      "year": 2026,
-     "reviews": 8,
+     "reviews": 9,
      "trials": 2
     }
    ],
@@ -642,15 +643,14 @@
    ],
    "page": {
     "alsoChosen": [
-     "32320029"
+     "32320029",
+     "33112293"
     ],
     "citedNotChosen": [
-     "29030199",
-     "33112293"
+     "29030199"
     ],
     "citedNotEligible": [
-     "29030199",
-     "33112293"
+     "29030199"
     ],
     "chosenNotCited": [
      {
@@ -696,17 +696,6 @@
       "citedBy": 8,
       "n": 1729,
       "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
-     },
-     {
-      "pmid": "31912649",
-      "doi": "10.1111/mcn.12943",
-      "title": "Pre-pregnancy iodized salt improved children's cognitive development in randomized trial in Ethiopia",
-      "year": 2020,
-      "firstAuthor": "Mohammed H",
-      "journal": "Maternal & child nutrition",
-      "citedBy": 10,
-      "n": 1220,
-      "why": "A large trial (about 1,220 people) from 2020, as new as the newest review or newer"
      }
     ]
    },
@@ -720,9 +709,9 @@
     "by": "Claude Code (opus), titles and abstracts only",
     "at": "2026-10-29",
     "counts": {
-     "yes": 2,
-     "partly": 12,
-     "no": 6,
+     "yes": 3,
+     "partly": 13,
+     "no": 10,
      "unscreened": 0
     },
     "left": [
@@ -755,6 +744,13 @@
       "reason": "Assesses breast milk iodine as a biomarker of iodine status, not supplementation effects on child development."
      },
      {
+      "pmid": "32187267",
+      "title": "Insufficient iodine intake in pregnant women in different regions of the world: a systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Looks at how much iodine pregnant women get, not at the effect of supplements on child development."
+     },
+     {
       "pmid": "30802939",
       "title": "Iodine supplementation for the prevention of mortality and adverse neurodevelopmental outcomes in preterm infants",
       "year": 2019,
@@ -783,6 +779,13 @@
       "reason": "Withdrawn review of iodine supplements given directly to children, not pregnant women; cognitive outcomes were summarised narratively, not pooled."
      },
      {
+      "pmid": "30101325",
+      "title": "Erratum for Farebrother J et al. Effects of iodized salt and iodine supplements on prenatal and postnatal growth: a systematic review. Adv Nutr 2018;9(3):219-37",
+      "year": 2018,
+      "fits": "no",
+      "reason": "An erratum with no abstract, for a review on growth rather than child development."
+     },
+     {
       "pmid": "27395329",
       "title": "Feeding the brain - The effects of micronutrient interventions on cognitive performance among school-aged children: A systematic review of randomized controlled trials",
       "year": 2017,
@@ -795,6 +798,13 @@
       "year": 2017,
       "fits": "no",
       "reason": "Broad narrative overview of many micronutrients and nutrition interventions, with no specific pooled analysis for this question."
+     },
+     {
+      "pmid": "25908676",
+      "title": "Systematic review of the effects of iodised salt and iodine supplements on prenatal and postnatal growth: study protocol",
+      "year": 2015,
+      "fits": "no",
+      "reason": "A protocol with no results, and its outcome is physical growth rather than cognitive or motor development."
      },
      {
       "pmid": "26420192",
@@ -839,11 +849,25 @@
       "reason": "Iodine supplements for preterm infants, not pregnant women; the single included trial did not assess neurodevelopment."
      },
      {
+      "pmid": "15734706",
+      "title": "The effects of iodine on intelligence in children: a meta-analysis of studies conducted in China",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Pregnancy iodine and child IQ match, but it covers severely deficient areas and pools non-randomised Chinese studies."
+     },
+     {
       "pmid": "15106221",
       "title": "Iodine supplementation for preventing iodine deficiency disorders in children",
       "year": 2004,
       "fits": "partly",
       "reason": "Iodine supplements given directly to children, not pregnant women; cognitive outcomes were summarised narratively, not pooled."
+     },
+     {
+      "pmid": "12411065",
+      "title": "[Meta-analysis on the relationship between children's intelligence and factors as iodine deficiency, supplement iodine and excessive iodine]",
+      "year": 2002,
+      "fits": "no",
+      "reason": "Compares children in areas before and after iodine correction, mostly severe deficiency, not supplements given in pregnancy in trials."
      },
      {
       "pmid": "10796152",
@@ -860,8 +884,8 @@
    "label": "Mother's thyroid",
    "finding": "Mother's thyroid during and after pregnancy",
    "counts": {
-    "reviews": 92,
-    "trialReviews": 11,
+    "reviews": 105,
+    "trialReviews": 16,
     "trials": 101,
     "largeTrials": 11
    },
@@ -1266,7 +1290,7 @@
     },
     {
      "year": 2015,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 2
     },
     {
@@ -1281,47 +1305,47 @@
     },
     {
      "year": 2018,
-     "reviews": 3,
+     "reviews": 5,
      "trials": 4
     },
     {
      "year": 2019,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 5
     },
     {
      "year": 2020,
-     "reviews": 7,
+     "reviews": 8,
      "trials": 7
     },
     {
      "year": 2021,
-     "reviews": 9,
+     "reviews": 11,
      "trials": 8
     },
     {
      "year": 2022,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 2
     },
     {
      "year": 2023,
-     "reviews": 10,
+     "reviews": 11,
      "trials": 3
     },
     {
      "year": 2024,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 2
     },
     {
      "year": 2025,
-     "reviews": 8,
+     "reviews": 10,
      "trials": 4
     },
     {
      "year": 2026,
-     "reviews": 6,
+     "reviews": 7,
      "trials": 0
     }
    ],
@@ -1468,8 +1492,8 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 3,
-     "partly": 0,
-     "no": 8,
+     "partly": 1,
+     "no": 12,
      "unscreened": 0
     },
     "left": [
@@ -1481,6 +1505,20 @@
       "reason": "Narrative update on the right topic, but it summarises individual studies and does not systematically review or pool randomised trials."
      },
      {
+      "pmid": "33112293",
+      "title": "Effects of iodine supplementation during pregnancy on pregnant women and their offspring: a systematic review and meta-analysis of trials over the past 3 decades",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Trials of iodine supplements in pregnancy reported maternal thyroid outcomes, but these were only narratively synthesised; pooling covered infant outcomes only."
+     },
+     {
+      "pmid": "32187267",
+      "title": "Insufficient iodine intake in pregnant women in different regions of the world: a systematic review",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Review of how common insufficient iodine intake is among pregnant women, not trials of iodine supplements versus placebo."
+     },
+     {
       "pmid": "30920622",
       "title": "Association of Maternal Iodine Status With Child IQ: A Meta-Analysis of Individual Participant Data",
       "year": 2019,
@@ -1488,11 +1526,25 @@
       "reason": "Observational cohort meta-analysis of maternal iodine status and child IQ, with no supplement trials and no maternal thyroid outcome."
      },
      {
+      "pmid": "30101325",
+      "title": "Erratum for Farebrother J et al. Effects of iodized salt and iodine supplements on prenatal and postnatal growth: a systematic review. Adv Nutr 2018;9(3):219-37",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Erratum to a review of iodised salt and iodine supplements on prenatal and postnatal growth, not maternal thyroid function."
+     },
+     {
       "pmid": "29767700",
       "title": "Effects of Iodized Salt and Iodine Supplements on Prenatal and Postnatal Growth: A Systematic Review",
       "year": 2018,
       "fits": "no",
       "reason": "Iodine in pregnant women and children, but outcomes are prenatal and postnatal growth, not the mother's thyroid function."
+     },
+     {
+      "pmid": "29505547",
+      "title": "A PRISMA-compliant systematic review and meta-analysis of the relationship between thyroid disease and different levels of iodine intake in mainland China: Erratum",
+      "year": 2018,
+      "fits": "no",
+      "reason": "Erratum to a review of iodine intake levels and thyroid disease in China, not iodine supplementation trials in pregnant women."
      },
      {
       "pmid": "29596650",
@@ -1507,6 +1559,13 @@
       "year": 2017,
       "fits": "no",
       "reason": "Looks at excess iodine intake and thyroid disease in general populations, mostly observational, not supplements in pregnancy."
+     },
+     {
+      "pmid": "25908676",
+      "title": "Systematic review of the effects of iodised salt and iodine supplements on prenatal and postnatal growth: study protocol",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Protocol for a review of iodine effects on child somatic growth, not maternal thyroid function, and it reports no pooled results."
      },
      {
       "pmid": "26091836",
@@ -1537,8 +1596,8 @@
    "label": "Schoolchildren's thinking",
    "finding": "Thinking skills in schoolchildren",
    "counts": {
-    "reviews": 35,
-    "trialReviews": 8,
+    "reviews": 39,
+    "trialReviews": 10,
     "trials": 61,
     "largeTrials": 8
    },
@@ -1679,12 +1738,12 @@
     },
     {
      "year": 2021,
-     "reviews": 1,
+     "reviews": 2,
      "trials": 3
     },
     {
      "year": 2022,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 1
     },
     {
@@ -1694,7 +1753,7 @@
     },
     {
      "year": 2024,
-     "reviews": 4,
+     "reviews": 5,
      "trials": 1
     },
     {
@@ -1704,7 +1763,7 @@
     },
     {
      "year": 2026,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 2
     }
    ],
@@ -1793,7 +1852,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 1,
-     "partly": 4,
+     "partly": 6,
      "no": 3,
      "unscreened": 0
     },
@@ -1841,11 +1900,25 @@
       "reason": "Iodine and mental development, but in children aged 5 and under; the RCTs supplemented mothers and most other studies were observational."
      },
      {
+      "pmid": "15734706",
+      "title": "The effects of iodine on intelligence in children: a meta-analysis of studies conducted in China",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Iodine and child IQ match, but it pools non-randomised area and before/after comparisons in severe deficiency, mostly prenatal iodine, not RCTs in schoolchildren."
+     },
+     {
       "pmid": "15106221",
       "title": "Iodine supplementation for preventing iodine deficiency disorders in children",
       "year": 2004,
       "fits": "partly",
       "reason": "Iodine supplements for children in iodine-deficient areas with cognitive outcomes, but it mixed in non-randomised trials and pooled nothing (narrative only)."
+     },
+     {
+      "pmid": "12411065",
+      "title": "[Meta-analysis on the relationship between children's intelligence and factors as iodine deficiency, supplement iodine and excessive iodine]",
+      "year": 2002,
+      "fits": "partly",
+      "reason": "Iodine and IQ in 5-15 year olds match, but it pools non-randomised before/after comparisons, mostly in severe deficiency areas, not placebo-controlled RCTs."
      }
     ]
    }
@@ -1855,8 +1928,8 @@
    "label": "Young children's development",
    "finding": "Mental development of young children in iodine-deficient areas",
    "counts": {
-    "reviews": 51,
-    "trialReviews": 13,
+    "reviews": 58,
+    "trialReviews": 15,
     "trials": 67,
     "largeTrials": 8
    },
@@ -2154,17 +2227,17 @@
     },
     {
      "year": 2020,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 4
     },
     {
      "year": 2021,
-     "reviews": 4,
+     "reviews": 6,
      "trials": 5
     },
     {
      "year": 2022,
-     "reviews": 3,
+     "reviews": 4,
      "trials": 2
     },
     {
@@ -2174,7 +2247,7 @@
     },
     {
      "year": 2024,
-     "reviews": 5,
+     "reviews": 6,
      "trials": 1
     },
     {
@@ -2184,7 +2257,7 @@
     },
     {
      "year": 2026,
-     "reviews": 6,
+     "reviews": 8,
      "trials": 2
     }
    ],
@@ -2323,7 +2396,7 @@
     "at": "2026-10-29",
     "counts": {
      "yes": 2,
-     "partly": 8,
+     "partly": 10,
      "no": 3,
      "unscreened": 0
     },
@@ -2399,11 +2472,25 @@
       "reason": "An iodine RCT in preterm infants, a different group, and the included trial did not measure neurodevelopment."
      },
      {
+      "pmid": "15734706",
+      "title": "The effects of iodine on intelligence in children: a meta-analysis of studies conducted in China",
+      "year": 2005,
+      "fits": "partly",
+      "reason": "Iodine in pregnancy vs ongoing deficiency with child IQ matches, but it pooled non-randomised Chinese comparison studies of children under 16, not RCTs."
+     },
+     {
       "pmid": "15106221",
       "title": "Iodine supplementation for preventing iodine deficiency disorders in children",
       "year": 2004,
       "fits": "partly",
       "reason": "Iodine for children in iodine-deficient areas with cognitive outcomes, but it mixes non-randomised trials, covers all ages and did no pooling."
+     },
+     {
+      "pmid": "12411065",
+      "title": "[Meta-analysis on the relationship between children's intelligence and factors as iodine deficiency, supplement iodine and excessive iodine]",
+      "year": 2002,
+      "fits": "partly",
+      "reason": "Iodine correction vs none with IQ in deficient areas matches, but it pooled non-randomised studies of children aged 5-15, not RCTs."
      }
     ]
    }

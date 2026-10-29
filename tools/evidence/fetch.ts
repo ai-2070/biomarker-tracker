@@ -69,7 +69,8 @@ async function all(query: string) {
 
 const byType = (base: string) => ({
   all: base,
-  reviews: `${base} AND (PUB_TYPE:"meta-analysis" OR PUB_TYPE:"systematic review")`,
+  // Also by title: the newest reviews aren't tagged with a publication type yet.
+  reviews: `${base} AND (PUB_TYPE:"meta-analysis" OR PUB_TYPE:"systematic review" OR TITLE:"meta-analysis" OR TITLE:"meta analysis" OR TITLE:"systematic review")`,
   trials: `${base} AND PUB_TYPE:"randomized controlled trial"`,
   guidelines: `${base} AND PUB_TYPE:"practice guideline"`,
   retracted: `${base} AND PUB_TYPE:"retracted publication"`,

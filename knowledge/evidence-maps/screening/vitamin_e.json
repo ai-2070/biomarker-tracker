@@ -56,6 +56,21 @@
      "pmid": "15711645",
      "fits": "partly",
      "reason": "Pooled RCTs of vitamin E for heart disease and stroke, but the abstract gives no separate ischaemic or haemorrhagic stroke results."
+    },
+    {
+     "pmid": "42368195",
+     "fits": "no",
+     "reason": "This is a comment on a neonatal review with no abstract, not a systematic review of trials in adults reporting stroke."
+    },
+    {
+     "pmid": "41383946",
+     "fits": "no",
+     "reason": "Placebo-controlled vitamin E trials, but the population is preterm neonates and the outcome is intraventricular haemorrhage, not stroke in adults."
+    },
+    {
+     "pmid": "22473179",
+     "fits": "partly",
+     "reason": "Pools RCTs of vitamin E for preventing stroke, but the abstract gives no separate ischaemic and haemorrhagic stroke results and no stroke results at all."
     }
    ]
   },
@@ -178,6 +193,31 @@
      "pmid": "15537682",
      "fits": "yes",
      "reason": "Pools RCTs of vitamin E, alone or combined, vs control on all-cause mortality in adults, including people with chronic diseases."
+    },
+    {
+     "pmid": "25078376",
+     "fits": "yes",
+     "reason": "Pooled 33 randomised trials of vitamin E versus control in adults for all-cause mortality, with a separate result for vitamin E alone."
+    },
+    {
+     "pmid": "19254931",
+     "fits": "yes",
+     "reason": "Bayesian meta-analysis of randomised trials comparing vitamin E with placebo or control in adults, with all-cause mortality as the outcome."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "Protocol only with no pooled results yet; vitamin E is one of many supplements and it covers primary prevention trials only."
+    },
+    {
+     "pmid": "19254932",
+     "fits": "no",
+     "reason": "Commentary criticising a meta-analysis method, with no abstract; it is not a systematic review that pools trials."
+    },
+    {
+     "pmid": "22254063",
+     "fits": "no",
+     "reason": "Re-examines trials' primary outcomes with a decision analysis of mixed antioxidants; it does not pool all-cause mortality for vitamin E."
     }
    ]
   },
@@ -234,6 +274,36 @@
      "pmid": "26059365",
      "fits": "yes",
      "reason": "Pools RCTs of vitamin E vs control in NAFLD/NASH, with an adult NASH subgroup for enzymes, inflammation and fibrosis."
+    },
+    {
+     "pmid": "42374454",
+     "fits": "yes",
+     "reason": "Pools 16 RCTs of vitamin E in MASLD (formerly NAFLD) patients and reports liver enzymes; the comparator is implied rather than named."
+    },
+    {
+     "pmid": "40895855",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin E versus placebo in adults with MASH (formerly NASH), reporting ALT, AST and fibrosis on biopsy."
+    },
+    {
+     "pmid": "39610563",
+     "fits": "partly",
+     "reason": "Matches the population, vitamin E and outcomes, but it is a narrative review that also includes observational studies, with no pooled RCT analysis."
+    },
+    {
+     "pmid": "33335561",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in NAFLD with adult results for ALT, AST, activity score and fibrosis, though it includes vitamin E alone or combined."
+    },
+    {
+     "pmid": "37719477",
+     "fits": "partly",
+     "reason": "Compares vitamin E, pioglitazone and the two combined against other treatments, mixing study designs without pooling RCTs against placebo."
+    },
+    {
+     "pmid": "32775098",
+     "fits": "partly",
+     "reason": "A systematic review of RCTs in adults with NAFLD covering liver enzymes and biopsy findings, but it describes results without a pooled meta-analysis."
     }
    ]
   },
@@ -355,6 +425,21 @@
      "pmid": "11982737",
      "fits": "partly",
      "reason": "Reviews antioxidant vitamin trials for heart attack and stroke, but the abstract gives no separate vitamin E results and no clear pooling."
+    },
+    {
+     "pmid": "29731659",
+     "fits": "partly",
+     "reason": "Vitamin E and cardiovascular events match, but the vitamin E analysis covers only diabetic patients with the Hp 2-2 genotype, a narrower group."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "Vitamin E and heart outcomes are planned in primary prevention trials, but this is a protocol with no pooled results and includes adults from age 18."
+    },
+    {
+     "pmid": "22473179",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin E supplements reporting cardiovascular deaths and heart attacks in adults, including those with heart disease."
     }
    ]
   }

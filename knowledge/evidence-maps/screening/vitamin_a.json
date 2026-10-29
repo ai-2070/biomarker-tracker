@@ -76,6 +76,21 @@
      "pmid": "12522272",
      "fits": "no",
      "reason": "A narrative critical review of Indian trials in children with no pooled analysis; both the population and the method differ."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "Protocol for adult primary-prevention trials of supplements incl. beta-carotene/vitamin A vs control on all-cause mortality, but no pooled results yet."
+    },
+    {
+     "pmid": "22254063",
+     "fits": "partly",
+     "reason": "Re-examines antioxidant trials (beta-carotene, vitamin A, E) in adults, but tallies trials' primary outcomes rather than pooling all-cause mortality."
+    },
+    {
+     "pmid": "20864442",
+     "fits": "no",
+     "reason": "A comment on a review of maternal postpartum vitamin A for infant mortality, so the population and outcome differ."
     }
    ]
   },
@@ -162,6 +177,11 @@
      "pmid": "16880453",
      "fits": "partly",
      "reason": "In general adults, beta-carotene was given only with minerals such as selenium and zinc, and the trials were summarised without pooling."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "partly",
+     "reason": "Plans to pool primary-prevention trials in adults that include beta-carotene, with cancer incidence as an outcome, but this is only a protocol with no pooled results yet."
     }
    ]
   },
@@ -228,6 +248,11 @@
      "pmid": "22742601",
      "fits": "partly",
      "reason": "Pooled trials of vitamin A or beta-carotene in pregnancy, but the abstract reports birthweight, fetal loss and mortality, not birth defects."
+    },
+    {
+     "pmid": "20864442",
+     "fits": "no",
+     "reason": "This is a comment on a review of postpartum vitamin A for infant death and illness, not early-pregnancy supplements and birth defects."
     }
    ]
   },
@@ -449,6 +474,26 @@
      "pmid": "11405993",
      "fits": "partly",
      "reason": "Vitamin A vs placebo in children with death and complications as outcomes, but it treats diagnosed measles rather than preventing illness."
+    },
+    {
+     "pmid": "41502896",
+     "fits": "partly",
+     "reason": "Vitamin A trials in children aged 0-5 in low- and middle-income countries match, but the outcome is growth, not death or illness."
+    },
+    {
+     "pmid": "25875487",
+     "fits": "no",
+     "reason": "This is a protocol covering many supplements in adults, with chronic disease and death outcomes, not young children."
+    },
+    {
+     "pmid": "22254063",
+     "fits": "no",
+     "reason": "Re-examines antioxidant trials in mixed, mostly adult groups by primary outcome, rather than vitamin A in young children."
+    },
+    {
+     "pmid": "20864442",
+     "fits": "no",
+     "reason": "A comment on a review of vitamin A given to mothers after birth, not to children aged 6 months to 5 years."
     }
    ]
   }

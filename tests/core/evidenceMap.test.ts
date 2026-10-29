@@ -193,3 +193,15 @@ describe("maps of claims about foods", () => {
     expect(classify(rec3({ title: "Zebrafish models of iron uptake", mesh: [] }), []).population).toBe("animal");
   });
 });
+
+describe("the newest reviews", () => {
+  it("reads a review's design from its title when PubMed hasn't tagged it yet", () => {
+    expect(designOf({ pubTypes: ["Journal Article"], title: "Effect of creatine on kidney function: a systematic review and meta-analysis" })).toBe("meta-analysis");
+    expect(designOf({ pubTypes: ["Review", "Journal Article"], title: "Impact of creatine on kidney health: a systematic review" })).toBe("systematic review");
+    expect(designOf({ pubTypes: ["Journal Article"], title: "Creatine and memory in older adults" })).toBe("other");
+    expect(designOf({ pubTypes: ["Randomized Controlled Trial"], title: "A trial of creatine" })).toBe("rct");
+  });
+  it("counts a review of controlled studies as a review of trials", () => {
+    expect(isTrialReview({ title: "Creatine and kidney function: a meta-analysis", abstract: "12 studies (177 in the creatine group and 263 in control) of creatine supplementation." })).toBe(true);
+  });
+});

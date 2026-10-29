@@ -106,6 +106,26 @@
      "pmid": "34083034",
      "fits": "no",
      "reason": "Lifestyle and diet interventions in various chronic diseases, with micronucleus frequency as the outcome; a different question."
+    },
+    {
+     "pmid": "41885832",
+     "fits": "partly",
+     "reason": "Pooled RCTs of folate-based supplements vs placebo for kidney, heart and death outcomes, but in kidney disease generally, not specifically diabetic kidney disease."
+    },
+    {
+     "pmid": "22727498",
+     "fits": "no",
+     "reason": "Folic acid alone in type 2 diabetes without kidney disease, with only homocysteine and HbA1c blood markers as outcomes."
+    },
+    {
+     "pmid": "33007784",
+     "fits": "no",
+     "reason": "Correction notice for a review of folate and diabetes blood markers in metabolic diseases, not kidney, heart or death outcomes."
+    },
+    {
+     "pmid": "30949668",
+     "fits": "no",
+     "reason": "Looks at folate's effect on insulin sensitivity and type 2 diabetes, not kidney disease or kidney, heart or death outcomes."
     }
    ]
   },
@@ -197,6 +217,31 @@
      "pmid": "18803866",
      "fits": "no",
      "reason": "Outcomes are artery wall thickness and blood-vessel function (vascular markers), not stroke."
+    },
+    {
+     "pmid": "39265295",
+     "fits": "no",
+     "reason": "This is a letter commenting on a meta-analysis, not a systematic review itself, and has no abstract with pooled data."
+    },
+    {
+     "pmid": "39357083",
+     "fits": "no",
+     "reason": "This is a reply letter about a meta-analysis, not a systematic review that pools trials itself."
+    },
+    {
+     "pmid": "29402063",
+     "fits": "partly",
+     "reason": "Pools RCTs of folic acid (alone or with B12) vs control on stroke, but only in countries without mandatory folic acid fortification."
+    },
+    {
+     "pmid": "23541460",
+     "fits": "no",
+     "reason": "This is a comment on a meta-analysis, not a systematic review itself, and has no abstract with pooled data."
+    },
+    {
+     "pmid": "20797992",
+     "fits": "partly",
+     "reason": "Title describes a meta-analysis of folic acid alone or with B6/B12 on stroke, but there is no abstract to confirm RCTs, comparator or that it is a review."
     }
    ]
   },
@@ -403,6 +448,51 @@
      "pmid": "18803866",
      "fits": "partly",
      "reason": "Pooled B-vitamin trials, but outcomes are vascular markers (CIMT, FMD) rather than cardiovascular events."
+    },
+    {
+     "pmid": "39265295",
+     "fits": "no",
+     "reason": "This is a comment letter on a stroke meta-analysis, not a systematic review that pools trials itself."
+    },
+    {
+     "pmid": "39357083",
+     "fits": "no",
+     "reason": "This is a reply letter to a comment, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "35284077",
+     "fits": "no",
+     "reason": "It studies pregnant mothers and congenital heart defects in their children, which is a different population and outcome."
+    },
+    {
+     "pmid": "26420127",
+     "fits": "yes",
+     "reason": "It pools randomised trials of folic acid with B6 and B12 against placebo and reports cardiovascular disease risk."
+    },
+    {
+     "pmid": "29402063",
+     "fits": "yes",
+     "reason": "It pools randomised trials of folic acid, alone or with B12, against control, with stroke as the cardiovascular outcome."
+    },
+    {
+     "pmid": "24940394",
+     "fits": "partly",
+     "reason": "Folic acid is compared with placebo in coronary artery disease, but the outcomes are only endothelial function and homocysteine."
+    },
+    {
+     "pmid": "24814647",
+     "fits": "partly",
+     "reason": "Folic acid is compared with placebo in coronary disease, but the only outcome is flow-mediated dilation, a vascular marker."
+    },
+    {
+     "pmid": "23541460",
+     "fits": "no",
+     "reason": "This is a comment letter on a meta-analysis, not a systematic review that pools trials."
+    },
+    {
+     "pmid": "20797992",
+     "fits": "partly",
+     "reason": "It summarises a meta-analysis of folic acid and stroke risk, but it is a commentary with no abstract, not the review itself."
     }
    ]
   },
@@ -469,6 +559,16 @@
      "pmid": "16880453",
      "fits": "partly",
      "reason": "Adults and cancer prevention, but the supplements are multivitamin/mineral combinations, not folic acid or B vitamins specifically."
+    },
+    {
+     "pmid": "41437765",
+     "fits": "no",
+     "reason": "Pools only cohort and case-control studies of folate intake and breast cancer in women, not randomised trials of supplements versus placebo."
+    },
+    {
+     "pmid": "22240654",
+     "fits": "yes",
+     "reason": "Pools 10 randomised trials of oral folic acid supplements versus placebo or control, reporting overall cancer incidence in general human populations."
     }
    ]
   },
@@ -575,6 +675,16 @@
      "pmid": "19570123",
      "fits": "no",
      "reason": "Narrative review of how homocysteine, folate and B12 levels relate to cognition; no pooled trials."
+    },
+    {
+     "pmid": "36940509",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled trials of folic acid and B-vitamin supplements in older adults with or without impaired cognition, with cognitive decline as an outcome."
+    },
+    {
+     "pmid": "34791275",
+     "fits": "partly",
+     "reason": "Folic acid vs placebo with MMSE and cognition outcomes, but the population is narrower: patients with vascular cognitive impairment, so it is treatment rather than prevention."
     }
    ]
   },
@@ -656,6 +766,26 @@
      "pmid": "8605127",
      "fits": "no",
      "reason": "Compares blood folate and B12 levels between NTD and unaffected pregnancies; it does not evaluate the effect of supplementation."
+    },
+    {
+     "pmid": "40573151",
+     "fits": "no",
+     "reason": "This review compares maternal blood vitamin B12 levels in NTD and control pregnancies; it does not test folic acid supplements against a control."
+    },
+    {
+     "pmid": "35284077",
+     "fits": "no",
+     "reason": "The intervention matches (periconceptional folic acid), but the outcome is congenital heart defects, not neural tube defects."
+    },
+    {
+     "pmid": "37552787",
+     "fits": "partly",
+     "reason": "Population, intervention and NTD outcome match, but the NTD evidence comes only from observational studies, not pooled randomised trials."
+    },
+    {
+     "pmid": "28876756",
+     "fits": "partly",
+     "reason": "The outcome is NTDs, but the intervention is folic acid fortification of flour for the whole population, not supplements for women around conception."
     }
    ]
   }

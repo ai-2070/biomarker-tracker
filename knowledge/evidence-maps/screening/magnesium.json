@@ -30,6 +30,16 @@
      "pmid": "33441476",
      "fits": "partly",
      "reason": "Meta-analysis of supplement RCTs on sleep quality, but magnesium trials were only discussed and not pooled because data were inadequate."
+    },
+    {
+     "pmid": "39702257",
+     "fits": "yes",
+     "reason": "Title matches a meta-analysis of oral magnesium for insomnia in older adults, but this record is only a correction notice with no abstract; link it to the original review."
+    },
+    {
+     "pmid": "38817505",
+     "fits": "partly",
+     "reason": "Covers magnesium and sleep quality, but it is a narrative review of mixed trials, some with extra ingredients and no stated placebo control, not a pooled analysis."
     }
    ]
   },
@@ -138,6 +148,16 @@
      "pmid": "10796220",
      "fits": "yes",
      "reason": "Pooled RCTs of oral magnesium versus placebo in pregnancy, reporting preterm birth, low birthweight and SGA."
+    },
+    {
+     "pmid": "42163418",
+     "fits": "partly",
+     "reason": "Protocol with no pooled results yet; it mainly studies magnesium levels, though a separate stream of supplementation RCTs will cover birth outcomes."
+    },
+    {
+     "pmid": "36249983",
+     "fits": "no",
+     "reason": "RCTs of magnesium in women with gestational diabetes, but outcomes are glycaemic and metabolic blood markers, not pre-eclampsia, growth or preterm birth."
     }
    ]
   },
@@ -209,6 +229,16 @@
      "pmid": "12160191",
      "fits": "yes",
      "reason": "Pooled randomised trials of magnesium supplements on blood pressure in people with and without high blood pressure."
+    },
+    {
+     "pmid": "37836507",
+     "fits": "yes",
+     "reason": "Separate pairwise meta-analysis of oral magnesium vs placebo on SBP and DBP in adults without high blood pressure, which the population covers."
+    },
+    {
+     "pmid": "39280209",
+     "fits": "partly",
+     "reason": "Magnesium supplements and blood pressure match, but this umbrella review pools effect sizes from 10 meta-analyses rather than pooling the randomised trials directly."
     }
    ]
   },
@@ -310,6 +340,41 @@
      "pmid": "16978367",
      "fits": "yes",
      "reason": "Pooled double-blind RCTs of oral magnesium vs placebo in type 2 diabetes, reporting HbA1c and fasting glucose."
+    },
+    {
+     "pmid": "41641401",
+     "fits": "yes",
+     "reason": "Pooled RCTs of oral magnesium versus placebo in prediabetic (high-risk) adults, reporting fasting glucose, HbA1c and HOMA-IR."
+    },
+    {
+     "pmid": "35559000",
+     "fits": "no",
+     "reason": "Population is type 2 diabetes, but outcomes are serum magnesium and calcium, not fasting glucose, HbA1c or insulin resistance."
+    },
+    {
+     "pmid": "32300004",
+     "fits": "no",
+     "reason": "A correction notice for a review of magnesium intake and diabetes or stroke risk, not supplement trials on glycemic outcomes."
+    },
+    {
+     "pmid": "27924111",
+     "fits": "yes",
+     "reason": "Title describes a meta-analysis of double-blind RCTs of magnesium supplements on glucose metabolism in people with or at risk of diabetes."
+    },
+    {
+     "pmid": "33442083",
+     "fits": "yes",
+     "reason": "Pooled RCTs of magnesium versus placebo or other comparator in type 2 diabetes, measuring fasting blood sugar and HbA1c."
+    },
+    {
+     "pmid": "34178870",
+     "fits": "no",
+     "reason": "Looks at various supplements for diabetic foot ulcer healing, including animal and observational studies, not glycemic outcomes."
+    },
+    {
+     "pmid": "31890694",
+     "fits": "no",
+     "reason": "Looks at antioxidant supplements and diabetic retinopathy, without pooled magnesium trials on glycemic outcomes."
     }
    ]
   }

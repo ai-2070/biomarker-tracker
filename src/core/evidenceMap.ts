@@ -25,12 +25,15 @@ export interface EvidenceRecord {
 export type Design = "guideline" | "meta-analysis" | "systematic review" | "rct" | "other";
 
 /** Study design from the publication types (the most informative type wins). */
-export function designOf(r: Pick<EvidenceRecord, "pubTypes">): Design {
+export function designOf(r: Pick<EvidenceRecord, "pubTypes"> & { title?: string }): Design {
   const t = r.pubTypes.map((x) => x.toLowerCase());
   const has = (s: string) => t.some((x) => x.includes(s));
   if (has("guideline")) return "guideline";
   if (has("meta-analysis")) return "meta-analysis";
   if (has("systematic review")) return "systematic review";
+  // The newest reviews aren't tagged yet (PubMed indexes publication types weeks or months later): their title says what they are.
+  if (/\bmeta-? ?analy[sz](is|es)\b/i.test(r.title ?? "")) return "meta-analysis";
+  if (/\bsystematic (literature )?review\b/i.test(r.title ?? "")) return "systematic review";
   if (has("randomized controlled trial") || has("randomised controlled trial")) return "rct";
   return "other";
 }
@@ -54,7 +57,7 @@ export function isRetracted(r: Pick<EvidenceRecord, "pubTypes" | "title">): bool
 /** A review of trials of giving the nutrient (not of blood levels in observational studies). */
 export function isTrialReview(r: Pick<EvidenceRecord, "title" | "abstract">): boolean {
   const text = `${r.title} ${r.abstract}`;
-  return /\brandomi[sz]ed\b|\bRCTs?\b|\bcontrolled trials?\b|\bintervention (studies|trials)\b/i.test(text) && /\bsupplement\w*|\bintervention\w*|\btreatment\b|\badministration\b|\bgiven\b/i.test(text);
+  return /\brandomi[sz]ed\b|\bRCTs?\b|\bcontrolled trials?\b|\bintervention (studies|trials)\b|\bplacebo\b|\bcontrol (group|arm)s?\b|\bin (the )?control\b/i.test(text) && /\bsupplement\w*|\bintervention\w*|\btreatment\b|\badministration\b|\bgiven\b/i.test(text);
 }
 
 const PEOPLE = "participants|patients|adults|women|men|subjects|individuals|people|persons|children|infants|volunteers|residents|participants";

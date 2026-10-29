@@ -1,0 +1,2001 @@
+{
+ "topic": "psyllium",
+ "nutrientId": "psyllium",
+ "name": "psyllium",
+ "builtAt": "2026-10-29",
+ "fetchedAt": "2026-10-29",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "all": "(TITLE_ABS:\"psyllium\" OR TITLE_ABS:\"ispaghula\" OR TITLE_ABS:\"Plantago ovata\") AND SRC:MED",
+  "reviews": "(TITLE_ABS:\"psyllium\" OR TITLE_ABS:\"ispaghula\" OR TITLE_ABS:\"Plantago ovata\") AND SRC:MED AND (PUB_TYPE:\"meta-analysis\" OR PUB_TYPE:\"systematic review\" OR TITLE:\"meta-analysis\" OR TITLE:\"meta analysis\" OR TITLE:\"systematic review\")",
+  "trials": "(TITLE_ABS:\"psyllium\" OR TITLE_ABS:\"ispaghula\" OR TITLE_ABS:\"Plantago ovata\") AND SRC:MED AND PUB_TYPE:\"randomized controlled trial\"",
+  "guidelines": "(TITLE_ABS:\"psyllium\" OR TITLE_ABS:\"ispaghula\" OR TITLE_ABS:\"Plantago ovata\") AND SRC:MED AND PUB_TYPE:\"practice guideline\"",
+  "retracted": "(TITLE_ABS:\"psyllium\" OR TITLE_ABS:\"ispaghula\" OR TITLE_ABS:\"Plantago ovata\") AND SRC:MED AND PUB_TYPE:\"retracted publication\""
+ },
+ "rules": [
+  "Searched every PubMed record in Europe PMC with psyllium (psyllium, ispaghula, Plantago ovata) in its title or abstract; downloaded all reviews, randomised trials and guidelines.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "An outcome counts when its words are in the title.",
+  "Reviews: meta-analyses or systematic reviews of randomised trials of giving psyllium, with psyllium in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded psyllium trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+ ],
+ "counts": {
+  "all": 1369,
+  "retrieved": 283,
+  "animal": 11,
+  "retracted": 0,
+  "reviews": 71,
+  "trials": 198,
+  "guidelines": 3
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "ldl",
+   "label": "LDL cholesterol",
+   "finding": "LDL cholesterol",
+   "counts": {
+    "reviews": 10,
+    "trialReviews": 8,
+    "trials": 41,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41366295",
+     "doi": "10.1186/s12263-025-00786-5",
+     "title": "Psyllium supplementation and lipid profiles: systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2025,
+     "firstAuthor": "Gholami Z",
+     "journal": "Genes & nutrition",
+     "citedBy": 1,
+     "n": 2049,
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+    },
+    {
+     "pmid": "38688104",
+     "doi": "10.1016/j.nutres.2024.03.013",
+     "title": "Plantago consumption significantly reduces total cholesterol and low-density lipoprotein cholesterol in adults: A systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Zhu R",
+     "journal": "Nutrition research (New York, N.Y.)",
+     "citedBy": 1,
+     "n": 2769,
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+    },
+    {
+     "pmid": "30239559",
+     "doi": "10.1093/ajcn/nqy115",
+     "title": "Effect of psyllium (Plantago ovata) fiber on LDL cholesterol and alternative lipid targets, non-HDL cholesterol and apolipoprotein B: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2018,
+     "firstAuthor": "Jovanovski E",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 48,
+     "n": 1924,
+     "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.42105263157894735,
+    "trials": 38,
+    "inclusions": 70,
+    "reviews": [
+     {
+      "pmid": "41366295",
+      "trials": 25
+     },
+     {
+      "pmid": "38688104",
+      "trials": 22
+     },
+     {
+      "pmid": "30239559",
+      "trials": 23
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "20413122",
+      "title": "Soluble fibre (Plantago ovata husk) reduces plasma low-density lipoprotein (LDL) cholesterol, triglycerides, insulin, oxidised LDL and systolic blood pressure in hypercholesterolaemic patients: A randomised trial",
+      "year": 2010,
+      "n": 128,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "8363164",
+      "title": "Efficacy of psyllium in reducing serum cholesterol levels in hypercholesterolemic patients on high- or low-fat diets",
+      "year": 1993,
+      "n": 81,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "1319110",
+      "title": "Cholesterol-lowering effects of psyllium-enriched cereal as an adjunct to a prudent diet in the treatment of mild to moderate hypercholesterolemia",
+      "year": 1992,
+      "n": 44,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "9129487",
+      "title": "Effect of psyllium in hypercholesterolemia at two monounsaturated fatty acid intakes",
+      "year": 1997,
+      "n": 32,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "2218650",
+      "title": "Synergistic effects of psyllium in the dietary treatment of hypercholesterolemia",
+      "year": 1990,
+      "n": 30,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "3277558",
+      "title": "Cholesterol-lowering effects of psyllium hydrophilic mucilloid for hypercholesterolemic men",
+      "year": 1988,
+      "n": 26,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "11566640",
+      "title": "Sex and hormonal status influence plasma lipid responses to psyllium",
+      "year": 2001,
+      "n": 24,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "1431597",
+      "title": "Effects of psyllium hydrophilic mucilloid on LDL-cholesterol and bile acid synthesis in hypercholesterolemic men",
+      "year": 1992,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "10837282",
+      "title": "Long-term cholesterol-lowering effects of psyllium as an adjunct to diet therapy in the treatment of hypercholesterolemia",
+      "year": 2000,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "9747644",
+      "title": "Lipid- and glucose-lowering efficacy of Plantago Psyllium in type II diabetes",
+      "year": 1998,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "2724486",
+      "title": "Cholesterol-lowering effects of psyllium hydrophilic mucilloid. Adjunct therapy to a prudent diet for patients with mild to moderate hypercholesterolemia",
+      "year": 1989,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "16154305",
+      "title": "Psyllium decreased serum glucose and glycosylated hemoglobin significantly in diabetic outpatients",
+      "year": 2005,
+      "inReviews": [
+       "41366295",
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "9497178",
+      "title": "Long-term effects of consuming foods containing psyllium seed husk on serum lipids in subjects with hypercholesterolemia",
+      "year": 1998,
+      "n": 286,
+      "inReviews": [
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "7661492",
+      "title": "Combination therapy with colestipol and psyllium mucilloid in patients with hyperlipidemia",
+      "year": 1995,
+      "n": 121,
+      "inReviews": [
+       "41366295",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "30661699",
+      "title": "Effect of flaxseed or psyllium vs. placebo on management of constipation, weight, glycemia, and lipids: A randomized trial in constipated patients with type 2 diabetes",
+      "year": 2019,
+      "n": 77,
+      "inReviews": [
+       "41366295",
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "30219432",
+      "title": "Effects of psyllium vs. placebo on constipation, weight, glycemia, and lipids: A randomized trial in patients with type 2 diabetes and chronic constipation",
+      "year": 2018,
+      "n": 51,
+      "inReviews": [
+       "41366295",
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "9853540",
+      "title": "Cookies enriched with psyllium or oat bran lower plasma LDL cholesterol in normal and hypercholesterolemic men from Northern Mexico",
+      "year": 1998,
+      "n": 30,
+      "inReviews": [
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "7804477",
+      "title": "Psyllium for the reduction of cholestyramine-associated gastrointestinal symptoms in the treatment of primary hypercholesterolemia",
+      "year": 1994,
+      "n": 22,
+      "inReviews": [
+       "41366295",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "17729055",
+      "title": "Different effect of psyllium and guar dietary supplementation on blood pressure control in hypertensive overweight patients: a six-month, randomized clinical trial",
+      "year": 2007,
+      "inReviews": [
+       "41366295",
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "21736815",
+      "title": "Viscosity rather than quantity of dietary fibre predicts cholesterol-lowering effect in healthy individuals",
+      "year": 2011,
+      "inReviews": [
+       "38688104",
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "10201553",
+      "title": "Ispaghula husk in the treatment of hypercholesterolaemia: a double-blind controlled study",
+      "year": 1998,
+      "n": 340,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "33861390",
+      "title": "Reduction of small dense LDL and Il-6 after intervention with Plantago psyllium in adolescents with obesity: a parallel, double blind, randomized clinical trial",
+      "year": 2021,
+      "n": 113,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "2173390",
+      "title": "Cholesterol-lowering effects of soluble-fiber cereals as part of a prudent diet for patients with mild to moderate hypercholesterolemia",
+      "year": 1990,
+      "n": 58,
+      "inReviews": [
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "8160720",
+      "title": "Psyllium reduces blood lipids in men and women with hyperlipidemia",
+      "year": 1994,
+      "n": 42,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "19623196",
+      "title": "The effects of psyllium on lipoproteins in type II diabetic patients",
+      "year": 2009,
+      "n": 40,
+      "inReviews": [
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "17413119",
+      "title": "Effects of soluble fiber (Plantago ovata husk) on plasma lipids, lipoproteins, and apolipoproteins in men with ischemic heart disease",
+      "year": 2007,
+      "n": 28,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "11930385",
+      "title": "Hypercholesterolemia: a look at low-cost treatment and treatment adherence",
+      "year": 2000,
+      "n": 28,
+      "inReviews": [
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "8604676",
+      "title": "A psyllium-enriched cereal for the treatment of hypercholesterolemia in children: a controlled, double-blind, crossover study",
+      "year": 1996,
+      "n": 25,
+      "inReviews": [
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "8391569",
+      "title": "Randomized, double-blind, placebo-controlled, two-period crossover clinical trial of psyllium fiber in children with hypercholesterolemia",
+      "year": 1993,
+      "n": 20,
+      "inReviews": [
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "8172091",
+      "title": "Method of administration influences the serum cholesterol-lowering effect of psyllium",
+      "year": 1994,
+      "n": 18,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "25112783",
+      "title": "A randomised clinical trial to evaluate the effects of Plantago ovata husk in Parkinson patients: changes in levodopa pharmacokinetics and biochemical parameters",
+      "year": 2014,
+      "n": 18,
+      "inReviews": [
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "8586774",
+      "title": "Soluble fiber enhances the hypocholesterolemic effect of the step I diet in childhood",
+      "year": 1995,
+      "n": 11,
+      "inReviews": [
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "16988115",
+      "title": "A combination therapy including psyllium and plant sterols lowers LDL cholesterol by modifying lipoprotein metabolism in hypercholesterolemic individuals",
+      "year": 2006,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "8833174",
+      "title": "Psyllium husk fiber supplementation to the diets rich in soybean or coconut oil: hypocholesterolemic effect in healthy humans",
+      "year": 1996,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "7830631",
+      "title": "The cholesterol-lowering effect of a breakfast cereal containing psyllium fibre",
+      "year": 1994,
+      "inReviews": [
+       "41366295"
+      ]
+     },
+     {
+      "pmid": "7957006",
+      "title": "Psyllium husk fibre supplementation to soybean and coconut oil diets of humans: effect on fat digestibility and faecal fatty acid excretion",
+      "year": 1994,
+      "inReviews": [
+       "38688104"
+      ]
+     },
+     {
+      "pmid": "28146065",
+      "title": "Effect on Insulin, Glucose and Lipids in Overweight/Obese Australian Adults of 12 Months Consumption of Two Different Fibre Supplements in a Randomised Trial",
+      "year": 2017,
+      "inReviews": [
+       "30239559"
+      ]
+     },
+     {
+      "pmid": "25391814",
+      "title": "Effects of psyllium on LDL-cholesterol concentrations in Brazilian children and adolescents: a randomised, placebo-controlled, parallel clinical trial",
+      "year": 2015,
+      "inReviews": [
+       "30239559"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1999,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "30239559"
+    ],
+    "citedNotChosen": [
+     "30078477"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41366295",
+      "doi": "10.1186/s12263-025-00786-5",
+      "title": "Psyllium supplementation and lipid profiles: systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "firstAuthor": "Gholami Z",
+      "journal": "Genes & nutrition",
+      "citedBy": 1,
+      "n": 2049,
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     },
+     {
+      "pmid": "38688104",
+      "doi": "10.1016/j.nutres.2024.03.013",
+      "title": "Plantago consumption significantly reduces total cholesterol and low-density lipoprotein cholesterol in adults: A systematic review and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Zhu R",
+      "journal": "Nutrition research (New York, N.Y.)",
+      "citedBy": 1,
+      "n": 2769,
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with or without high cholesterol",
+     "intervention": "Psyllium (or a fibre supplement with results for psyllium apart)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "LDL cholesterol"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 5,
+     "partly": 3,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "31919936",
+      "title": "The effect of psyllium consumption on weight, body mass index, lipid profile, and glucose metabolism in diabetic patients: A systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Psyllium RCTs reporting LDL, but only in diabetic patients, which is a narrower, different population."
+     },
+     {
+      "pmid": "30078477",
+      "title": "Meta-Analysis of Usefulness of Psyllium Fiber as Adjuvant Antilipid Therapy to Enhance Cholesterol Lowering Efficacy of Statins",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Psyllium RCTs on LDL, but only in people already on statins, comparing psyllium plus statin with statin alone."
+     },
+     {
+      "pmid": "9925120",
+      "title": "Cholesterol-lowering effects of dietary fiber: a meta-analysis",
+      "year": 1999,
+      "fits": "partly",
+      "reason": "Regression across soluble fibres in controlled trials; psyllium is compared with other fibres, but no separate psyllium-vs-placebo LDL estimate is reported."
+     }
+    ]
+   }
+  },
+  {
+   "id": "glucose",
+   "label": "Blood sugar",
+   "finding": "Blood sugar (fasting glucose and HbA1c)",
+   "counts": {
+    "reviews": 9,
+    "trialReviews": 3,
+    "trials": 26,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36811560",
+     "doi": "10.1016/j.ajcnut.2022.12.015",
+     "title": "Galactomannans are the most effective soluble dietary fibers in type 2 diabetes: a systematic review and network meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Juhász AE",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 30,
+     "n": 2685,
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+    },
+    {
+     "pmid": "31919936",
+     "doi": "10.1002/ptr.6609",
+     "title": "The effect of psyllium consumption on weight, body mass index, lipid profile, and glucose metabolism in diabetic patients: A systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Xiao Z",
+     "journal": "Phytotherapy research : PTR",
+     "citedBy": 25,
+     "n": 395,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "26561625",
+     "doi": "10.3945/ajcn.115.106989",
+     "title": "Psyllium fiber improves glycemic control proportional to loss of glycemic control: a meta-analysis of data in euglycemic subjects, patients at risk of type 2 diabetes mellitus, and patients being treated for type 2 diabetes mellitus",
+     "year": 2015,
+     "firstAuthor": "Gibb RD",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 77,
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.19230769230769232,
+    "trials": 26,
+    "inclusions": 36,
+    "reviews": [
+     {
+      "pmid": "36811560",
+      "trials": 7
+     },
+     {
+      "pmid": "31919936",
+      "trials": 13
+     },
+     {
+      "pmid": "26561625",
+      "trials": 16
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "10500014",
+      "title": "Effects of psyllium on glucose and serum lipid responses in men with type 2 diabetes and hypercholesterolemia",
+      "year": 1999,
+      "n": 34,
+      "inReviews": [
+       "36811560",
+       "31919936",
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "9747644",
+      "title": "Lipid- and glucose-lowering efficacy of Plantago Psyllium in type II diabetes",
+      "year": 1998,
+      "inReviews": [
+       "36811560",
+       "31919936",
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "16154305",
+      "title": "Psyllium decreased serum glucose and glycosylated hemoglobin significantly in diabetic outpatients",
+      "year": 2005,
+      "inReviews": [
+       "36811560",
+       "31919936",
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "30661699",
+      "title": "Effect of flaxseed or psyllium vs. placebo on management of constipation, weight, glycemia, and lipids: A randomized trial in constipated patients with type 2 diabetes",
+      "year": 2019,
+      "n": 77,
+      "inReviews": [
+       "36811560",
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "30219432",
+      "title": "Effects of psyllium vs. placebo on constipation, weight, glycemia, and lipids: A randomized trial in patients with type 2 diabetes and chronic constipation",
+      "year": 2018,
+      "n": 51,
+      "inReviews": [
+       "36811560",
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "19623196",
+      "title": "The effects of psyllium on lipoproteins in type II diabetic patients",
+      "year": 2009,
+      "n": 40,
+      "inReviews": [
+       "36811560",
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "27733151",
+      "title": "Soluble fibers from psyllium improve glycemic response and body weight among diabetes type 2 patients (randomized control trial)",
+      "year": 2016,
+      "n": 20,
+      "inReviews": [
+       "36811560",
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "8054323",
+      "title": "Involvement of small intestinal motility in blood glucose response to dietary fibre in man",
+      "year": 1994,
+      "n": 180,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "8363164",
+      "title": "Efficacy of psyllium in reducing serum cholesterol levels in hypercholesterolemic patients on high- or low-fat diets",
+      "year": 1993,
+      "n": 81,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "15453909",
+      "title": "Effect of time of administration on cholesterol-lowering by psyllium: a randomized cross-over study in normocholesterolemic or slightly hypercholesterolemic subjects",
+      "year": 2004,
+      "n": 47,
+      "inReviews": [
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "22848584",
+      "title": "Psyllium supplementation in adolescents improves fat distribution & lipid profile: a randomized, participant-blinded, placebo-controlled, crossover trial",
+      "year": 2012,
+      "n": 45,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "28956658",
+      "title": "Short-Term Supplementation of a Moderate Carbohydrate Diet with Psyllium Reduces Fasting Plasma Insulin and Tumor Necrosis Factor-α in Patients with Type 2 Diabetes Mellitus",
+      "year": 2018,
+      "n": 37,
+      "inReviews": [
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "2218650",
+      "title": "Synergistic effects of psyllium in the dietary treatment of hypercholesterolemia",
+      "year": 1990,
+      "n": 30,
+      "inReviews": [
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "3277558",
+      "title": "Cholesterol-lowering effects of psyllium hydrophilic mucilloid for hypercholesterolemic men",
+      "year": 1988,
+      "n": 26,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "1852093",
+      "title": "Psyllium fiber reduces rise in postprandial glucose and insulin concentrations in patients with non-insulin-dependent diabetes",
+      "year": 1991,
+      "n": 18,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "30669509",
+      "title": "The Effect of Psyllium Husk on Intestinal Microbiota in Constipated Patients and Healthy Controls",
+      "year": 2019,
+      "n": 16,
+      "inReviews": [
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "9578335",
+      "title": "Effect of psyllium on gastric emptying, hunger feeling and food intake in normal volunteers: a double blind study",
+      "year": 1998,
+      "n": 14,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "1431597",
+      "title": "Effects of psyllium hydrophilic mucilloid on LDL-cholesterol and bile acid synthesis in hypercholesterolemic men",
+      "year": 1992,
+      "inReviews": [
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "21787454",
+      "title": "The effects of 12-week psyllium fibre supplementation or healthy diet on blood pressure and arterial stiffness in overweight and obese individuals",
+      "year": 2012,
+      "inReviews": [
+       "31919936"
+      ]
+     },
+     {
+      "pmid": "9650328",
+      "title": "Lowering glycemic index of food by acarbose and Plantago psyllium mucilage",
+      "year": 1998,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "2724486",
+      "title": "Cholesterol-lowering effects of psyllium hydrophilic mucilloid. Adjunct therapy to a prudent diet for patients with mild to moderate hypercholesterolemia",
+      "year": 1989,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "11360127",
+      "title": "Effects of ispaghula husk and guar gum on postprandial glucose and insulin concentrations in healthy subjects",
+      "year": 2001,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "12571662",
+      "title": "The effects of fiber enrichment of pasta and fat content on gastric emptying, GLP-1, glucose, and insulin responses to a meal",
+      "year": 2003,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "20147463",
+      "title": "A psyllium fiber-enriched meal strongly attenuates postprandial gastrointestinal peptide release in healthy young adults",
+      "year": 2010,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "10837282",
+      "title": "Long-term cholesterol-lowering effects of psyllium as an adjunct to diet therapy in the treatment of hypercholesterolemia",
+      "year": 2000,
+      "inReviews": [
+       "26561625"
+      ]
+     },
+     {
+      "pmid": "21736815",
+      "title": "Viscosity rather than quantity of dietary fibre predicts cholesterol-lowering effect in healthy individuals",
+      "year": 2011,
+      "inReviews": [
+       "26561625"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1985,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1994,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "26561625",
+     "31919936"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "36811560",
+      "doi": "10.1016/j.ajcnut.2022.12.015",
+      "title": "Galactomannans are the most effective soluble dietary fibers in type 2 diabetes: a systematic review and network meta-analysis",
+      "year": 2023,
+      "firstAuthor": "Juhász AE",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 30,
+      "n": 2685,
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with type 2 diabetes, at risk of it, or with normal blood sugar",
+     "intervention": "Psyllium",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Fasting glucose or HbA1c"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 3,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "constipation",
+   "label": "Constipation",
+   "finding": "Long-lasting constipation",
+   "counts": {
+    "reviews": 21,
+    "trialReviews": 2,
+    "trials": 27,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35816465",
+     "doi": "10.1093/ajcn/nqac184",
+     "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2022,
+     "firstAuthor": "van der Schoot A",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 79,
+     "n": 1251,
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1988,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "35816465"
+    ],
+    "citedNotChosen": [
+     "27170558"
+    ],
+    "citedNotEligible": [
+     "27170558"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with chronic constipation",
+     "intervention": "Psyllium or other fibre supplements (with results for psyllium apart)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Constipation (stool frequency, symptoms)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "23326148",
+      "title": "Effect of dietary fiber on constipation: a meta analysis",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Pooled RCTs of dietary fibre vs placebo for stool frequency in constipation, but no separate psyllium results and the population isn't stated as adults with chronic constipation."
+     }
+    ]
+   }
+  },
+  {
+   "id": "ibs",
+   "label": "IBS",
+   "finding": "Irritable bowel syndrome (IBS) symptoms",
+   "counts": {
+    "reviews": 6,
+    "trialReviews": 4,
+    "trials": 14,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42600900",
+     "doi": "10.1053/j.gastro.2026.07.027",
+     "title": "Fiber Supplementation in Irritable Bowel Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2026,
+     "firstAuthor": "Staudacher HM",
+     "journal": "Gastroenterology",
+     "citedBy": 0,
+     "n": 1904,
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+    },
+    {
+     "pmid": "31859183",
+     "doi": "10.1016/s2468-1253(19)30324-3",
+     "title": "Efficacy of soluble fibre, antispasmodic drugs, and gut-brain neuromodulators in irritable bowel syndrome: a systematic review and network meta-analysis",
+     "year": 2020,
+     "firstAuthor": "Black CJ",
+     "journal": "The lancet. Gastroenterology & hepatology",
+     "citedBy": 121,
+     "n": 4644,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "19008265",
+     "doi": "10.1136/bmj.a2313",
+     "title": "Effect of fibre, antispasmodics, and peppermint oil in the treatment of irritable bowel syndrome: systematic review and meta-analysis",
+     "year": 2008,
+     "firstAuthor": "Ford AC",
+     "journal": "BMJ (Clinical research ed.)",
+     "citedBy": 316,
+     "n": 1778,
+     "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.8,
+    "trials": 5,
+    "inclusions": 9,
+    "reviews": [
+     {
+      "pmid": "42600900",
+      "trials": 5
+     },
+     {
+      "pmid": "31859183",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "19008265"
+    ],
+    "shared": [
+     {
+      "pmid": "19713235",
+      "title": "Soluble or insoluble fibre in irritable bowel syndrome in primary care? Randomised placebo controlled trial",
+      "year": 2009,
+      "n": 275,
+      "inReviews": [
+       "42600900",
+       "31859183"
+      ]
+     },
+     {
+      "pmid": "7018336",
+      "title": "Psyllium therapy in the irritable bowel syndrome. A double-blind trial",
+      "year": 1981,
+      "n": 77,
+      "inReviews": [
+       "42600900",
+       "31859183"
+      ]
+     },
+     {
+      "pmid": "2129822",
+      "title": "Ispaghula therapy in irritable bowel syndrome: improvement in overall well-being is related to reduction in bowel dissatisfaction",
+      "year": 1990,
+      "n": 20,
+      "inReviews": [
+       "42600900",
+       "31859183"
+      ]
+     },
+     {
+      "pmid": "32949",
+      "title": "Treatment of irritable bowel syndrome with lorazepam, hyoscine butylbromide, and ispaghula husk",
+      "year": 1979,
+      "n": 12,
+      "inReviews": [
+       "42600900",
+       "31859183"
+      ]
+     },
+     {
+      "pmid": "6302072",
+      "title": "Role of ispaghula husk in the management of irritable bowel syndrome (a randomized double-blind crossover study)",
+      "year": 1982,
+      "inReviews": [
+       "42600900"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1979,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1980,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1982,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1989,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "19008265",
+     "31859183"
+    ],
+    "citedNotChosen": [
+     "25070054",
+     "19713235"
+    ],
+    "citedNotEligible": [
+     "25070054",
+     "19713235"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42600900",
+      "doi": "10.1053/j.gastro.2026.07.027",
+      "title": "Fiber Supplementation in Irritable Bowel Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2026,
+      "firstAuthor": "Staudacher HM",
+      "journal": "Gastroenterology",
+      "citedBy": 0,
+      "n": 1904,
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with irritable bowel syndrome",
+     "intervention": "Psyllium or other soluble fibre",
+     "comparison": "Placebo or no treatment",
+     "outcome": "IBS symptoms"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 4,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "weight",
+   "label": "Body weight",
+   "finding": "Body weight and waist size",
+   "counts": {
+    "reviews": 7,
+    "trialReviews": 5,
+    "trials": 14,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "30880409",
+     "doi": "10.1080/10408398.2018.1553140",
+     "title": "The effects of psyllium supplementation on body weight, body mass index and waist circumference in adults: A systematic review and dose-response meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Darooghegi Mofrad M",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 19,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1983,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "30880409"
+    ],
+    "citedNotChosen": [
+     "37163454"
+    ],
+    "citedNotEligible": [
+     "37163454"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults",
+     "intervention": "Psyllium",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Body weight, body mass index or waist size"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 1,
+     "partly": 3,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37778464",
+      "title": "Comparative effects of nutraceuticals on body weight in adults with overweight or obesity: A systematic review and network meta-analysis of 111 randomized clinical trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Pooled RCTs of psyllium vs placebo on body weight, but only in adults with overweight or obesity, a narrower group than all adults."
+     },
+     {
+      "pmid": "31919936",
+      "title": "The effect of psyllium consumption on weight, body mass index, lipid profile, and glucose metabolism in diabetic patients: A systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Pooled RCTs of psyllium on weight and BMI, but only in diabetic patients, a narrower group than adults generally."
+     },
+     {
+      "pmid": "15836459",
+      "title": "Adverse events of herbal food supplements for body weight reduction: systematic review",
+      "year": 2005,
+      "fits": "no",
+      "reason": "Reviews adverse events of herbal weight-loss supplements, not psyllium's effect on body weight, BMI or waist size."
+     },
+     {
+      "pmid": "15051593",
+      "title": "Dietary supplements for body-weight reduction: a systematic review",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Includes double-blind RCTs of psyllium for body weight, but it is a narrative review of many supplements with no pooled psyllium analysis."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "reviews": 3,
+    "trialReviews": 2,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32066221",
+     "doi": "10.3904/kjim.2019.049",
+     "title": "The effect of psyllium supplementation on blood pressure: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Clark CCT",
+     "journal": "The Korean journal of internal medicine",
+     "citedBy": 17,
+     "n": 592,
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+    },
+    {
+     "pmid": "29153856",
+     "doi": "10.1016/j.numecd.2017.09.007",
+     "title": "The effect of viscous soluble fiber on blood pressure: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2018,
+     "firstAuthor": "Khan K",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 86,
+     "n": 1430,
+     "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3333333333333333,
+    "trials": 9,
+    "inclusions": 12,
+    "reviews": [
+     {
+      "pmid": "32066221",
+      "trials": 7
+     },
+     {
+      "pmid": "29153856",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "11641293",
+      "title": "Dietary protein and soluble fiber reduce ambulatory blood pressure in treated hypertensives",
+      "year": 2001,
+      "n": 41,
+      "inReviews": [
+       "32066221",
+       "29153856"
+      ]
+     },
+     {
+      "pmid": "19623196",
+      "title": "The effects of psyllium on lipoproteins in type II diabetic patients",
+      "year": 2009,
+      "n": 40,
+      "inReviews": [
+       "32066221",
+       "29153856"
+      ]
+     },
+     {
+      "pmid": "17729055",
+      "title": "Different effect of psyllium and guar dietary supplementation on blood pressure control in hypertensive overweight patients: a six-month, randomized clinical trial",
+      "year": 2007,
+      "inReviews": [
+       "32066221",
+       "29153856"
+      ]
+     },
+     {
+      "pmid": "20413122",
+      "title": "Soluble fibre (Plantago ovata husk) reduces plasma low-density lipoprotein (LDL) cholesterol, triglycerides, insulin, oxidised LDL and systolic blood pressure in hypercholesterolaemic patients: A randomised trial",
+      "year": 2010,
+      "n": 128,
+      "inReviews": [
+       "29153856"
+      ]
+     },
+     {
+      "pmid": "2173390",
+      "title": "Cholesterol-lowering effects of soluble-fiber cereals as part of a prudent diet for patients with mild to moderate hypercholesterolemia",
+      "year": 1990,
+      "n": 58,
+      "inReviews": [
+       "29153856"
+      ]
+     },
+     {
+      "pmid": "9129487",
+      "title": "Effect of psyllium in hypercholesterolemia at two monounsaturated fatty acid intakes",
+      "year": 1997,
+      "n": 32,
+      "inReviews": [
+       "32066221"
+      ]
+     },
+     {
+      "pmid": "3277558",
+      "title": "Cholesterol-lowering effects of psyllium hydrophilic mucilloid for hypercholesterolemic men",
+      "year": 1988,
+      "n": 26,
+      "inReviews": [
+       "32066221"
+      ]
+     },
+     {
+      "pmid": "8391569",
+      "title": "Randomized, double-blind, placebo-controlled, two-period crossover clinical trial of psyllium fiber in children with hypercholesterolemia",
+      "year": 1993,
+      "n": 20,
+      "inReviews": [
+       "32066221"
+      ]
+     },
+     {
+      "pmid": "2724486",
+      "title": "Cholesterol-lowering effects of psyllium hydrophilic mucilloid. Adjunct therapy to a prudent diet for patients with mild to moderate hypercholesterolemia",
+      "year": 1989,
+      "inReviews": [
+       "32066221"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "32066221"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "29153856",
+      "doi": "10.1016/j.numecd.2017.09.007",
+      "title": "The effect of viscous soluble fiber on blood pressure: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2018,
+      "firstAuthor": "Khan K",
+      "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+      "citedBy": 86,
+      "n": 1430,
+      "why": "One of the newest meta-analyses of trials on this outcome (2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, with or without high blood pressure",
+     "intervention": "Psyllium or other fibre supplements (with results for psyllium apart)",
+     "comparison": "Placebo or no treatment",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-29",
+    "counts": {
+     "yes": 2,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  }
+ ]
+}
