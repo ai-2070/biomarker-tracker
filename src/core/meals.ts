@@ -72,27 +72,94 @@ export const saltFromSodium = (sodiumMg: number) => (sodiumMg * 2.5) / 1000;
 const norm = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 
 /**
- * Foods whose name contains every word of the query (any order), best first: names starting with the
- * query, then whole-word matches, then shorter names ("Apples, eating, raw" before "Apple crumble").
+ * Other names for foods, as people type them, and the words the UK food table uses: "dark chocolate" is
+ * "Chocolate, plain" there, "zucchini" is "Courgette". Each is tried alongside the words typed.
+ */
+export const FOOD_NAMES: readonly [typed: string, table: string][] = [
+  ["dark chocolate", "chocolate plain"],
+  ["chickpeas", "chick peas"],
+  ["chickpea", "chick peas"],
+  ["garbanzo", "chick peas"],
+  ["zucchini", "courgette"],
+  ["eggplant", "aubergine"],
+  ["cilantro", "coriander"],
+  ["arugula", "rocket"],
+  ["scallions", "spring onions"],
+  ["scallion", "spring onions"],
+  ["green onion", "spring onions"],
+  ["bell pepper", "pepper capsicum"],
+  ["ground beef", "beef mince"],
+  ["oatmeal", "porridge"],
+  ["rolled oats", "porridge oats"],
+  ["french fries", "chips"],
+  ["fries", "chips"],
+  ["potato chips", "crisps"],
+  ["yoghurt", "yogurt"],
+  ["skim milk", "milk skimmed"],
+  ["whole milk", "milk whole"],
+  ["snow peas", "mange tout"],
+  ["rutabaga", "swede"],
+  ["candy", "sweets"],
+  ["granola", "crunchy muesli"],
+  ["beet", "beetroot"],
+];
+
+const tableWords = (q: string): string[] => {
+  const out = [q];
+  const padded = ` ${q} `;
+  for (const [typed, table] of FOOD_NAMES) if (padded.includes(` ${typed} `)) out.push(padded.replace(` ${typed} `, ` ${table} `).trim());
+  return [...new Set(out)];
+};
+
+/**
+ * Foods whose name contains every word of the query (any order), or of the query with another name for
+ * the food swapped in (FOOD_NAMES), best first: names starting with the query, then whole-word matches,
+ * then shorter names ("Apples, eating, raw" before "Apple crumble").
  */
 export function searchFoods(db: FoodDb, query: string, limit = 20): { id: string; name: string }[] {
-  const q = norm(query);
-  if (q.length < 2) return [];
-  const words = q.split(" ");
-  const scored: { id: string; name: string; score: number }[] = [];
-  for (const [id, name] of db.foods) {
-    const n = norm(name);
-    if (!words.every((w) => n.includes(w))) continue;
-    const padded = ` ${n} `;
-    let score = n.length;
-    if (n.startsWith(q)) score -= 1000;
-    if (n.startsWith(words[0]!)) score -= 500;
-    score -= words.filter((w) => padded.includes(` ${w} `)).length * 100;
-    if (/\braw\b/.test(n)) score -= 10;
-    scored.push({ id, name, score });
+  const q0 = norm(query);
+  if (q0.length < 2) return [];
+  const best = new Map<string, { id: string; name: string; score: number }>();
+  for (const q of tableWords(q0)) {
+    const words = q.split(" ");
+    for (const [id, name] of db.foods) {
+      const n = norm(name);
+      if (!words.every((w) => n.includes(w))) continue;
+      const padded = ` ${n} `;
+      let score = n.length;
+      if (n.startsWith(q)) score -= 1000;
+      if (n.startsWith(words[0]!)) score -= 500;
+      score -= words.filter((w) => padded.includes(` ${w} `)).length * 100;
+      if (/\braw\b/.test(n)) score -= 10;
+      const seen = best.get(id);
+      if (!seen || score < seen.score) best.set(id, { id, name, score });
+    }
   }
-  return scored
+  return [...best.values()]
     .sort((a, b) => a.score - b.score)
+    .slice(0, limit)
+    .map(({ id, name }) => ({ id, name }));
+}
+
+/** Words too common to tell foods apart. */
+const FILLER = new Set(["and", "with", "of", "in", "the", "a", "or", "raw", "fresh", "food", "foods"]);
+
+/**
+ * When no food has every word: the foods sharing the most telling words with the query, for "not in the
+ * table; closest". A word counts more the fewer foods have it ("beet" in 4 foods says more than "juice"
+ * in 42), so "blood orange juice" gives orange juice and "beet juice" gives beetroot. Never a match:
+ * the page says the food itself isn't in the table.
+ */
+export function closestFoods(db: FoodDb, query: string, limit = 6): { id: string; name: string }[] {
+  const words = tableWords(norm(query)).flatMap((q) => q.split(" ")).filter((w) => w.length >= 3 && !FILLER.has(w));
+  const unique = [...new Set(words)];
+  if (!unique.length) return [];
+  const names = db.foods.map(([id, name]) => ({ id, name, n: norm(name) }));
+  const weight = new Map(unique.map((w) => [w, Math.log(names.length / (1 + names.filter((x) => x.n.includes(w)).length))]));
+  return names
+    .map((x) => ({ ...x, score: unique.reduce((sum, w) => sum + (x.n.includes(w) ? weight.get(w)! : 0), 0) - x.n.length / 1000 }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map(({ id, name }) => ({ id, name }));
 }

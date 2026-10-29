@@ -27,7 +27,7 @@ import {
   type NutrientRow,
   type PortionFood,
 } from "../../core/intake";
-import { foodById, mealTotals, saltFromSodium, searchFoods, type FoodDb, type Meal, type Total } from "../../core/meals";
+import { foodById, mealTotals, saltFromSodium, type FoodDb, type Meal, type Total } from "../../core/meals";
 import { MAX_ITEMS, nutrientFor } from "../../core/plans";
 import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
@@ -44,6 +44,7 @@ import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
 import { setIntakeList, useAllMeasurements, useDisplayUnits, useIntakeList, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, FOODS, NUTRIENTS } from "../knowledge";
 import { href } from "../router";
+import { FoodResults } from "../components/FoodResults";
 
 /**
  * Daily intake: the meals and foods eaten on a day, added up, and compared with EU (EFSA) reference
@@ -120,7 +121,6 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
   const [portions, setPortions] = useState("1");
   const [query, setQuery] = useState("");
   const [grams, setGrams] = useState("100");
-  const results = db && query.trim().length >= 2 ? searchFoods(db, query, 10) : [];
   const kcalOf = (it: IntakeItem): number | undefined => {
     if (!db || it.kind === "supplement") return undefined;
     if (it.kind === "food") return mealTotals([{ foodId: it.foodId, grams: it.grams }], db).energyKcal?.amount;
@@ -251,27 +251,18 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
                 <input type="number" inputMode="decimal" min={1} max={2000} value={grams} onChange={(e) => setGrams(e.target.value)} className={inputStyles} />
               </label>
             </div>
-            {results.length > 0 && (
-              <ul className="flex max-h-64 flex-col overflow-y-auto rounded-lg border border-line">
-                {results.map((f) => (
-                  <li key={f.id}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const g = Number(grams);
-                        if (!(g >= 1 && g <= 2000)) return;
-                        save([...items, { id: newId(), kind: "food", foodId: f.id, grams: g }]);
-                        setQuery("");
-                      }}
-                      className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-sunken"
-                    >
-                      <span>{f.name}</span>
-                      <span className="shrink-0 text-sm text-accent">Add {grams} g</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <FoodResults
+              db={db}
+              query={query}
+              limit={10}
+              action={`Add ${grams} g`}
+              onPick={(f) => {
+                const g = Number(grams);
+                if (!(g >= 1 && g <= 2000)) return;
+                save([...items, { id: newId(), kind: "food", foodId: f.id, grams: g }]);
+                setQuery("");
+              }}
+            />
           </div>
         )}
       </div>
