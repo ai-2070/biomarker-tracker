@@ -14,10 +14,7 @@ Track your lab results and body measurements for years, see your biological age,
 ![No telemetry](https://img.shields.io/badge/telemetry-none-0f766e)
 ![Tests](https://img.shields.io/badge/tests-690%2B-0f766e)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/dashboard-dark.png">
-  <img src="docs/screenshots/dashboard.png" alt="Biomarker Tracker dashboard: biological age 38.3 years against a calendar age of 47.6, one marker to watch, blood pressure, weight, and a timeline of blood tests, body measurements and habits" width="100%">
-</picture>
+<img src="docs/screenshots/dashboard.png" alt="Biomarker Tracker dashboard: biological age 38.3 years against a calendar age of 47.6, one marker to watch, blood pressure, weight, a timeline of blood tests, body measurements and habits with one blood test's details open, and cards for blood tests, body and habits" width="100%">
 
 <sub>Screenshots use the built-in example profile. Every result in them is made up.</sub>
 
@@ -69,6 +66,8 @@ Weight, waist, body fat, blood pressure, resting heart rate, heart rate variabil
 ### Habits and self-experiments
 
 Log supplements, diet changes, medicines and routines, then watch chosen markers. "What changed" compares before and after against that marker's normal test-to-test variation, using data from the EFLM Biological Variation Database. That way, a real change can be told apart from noise. Results are framed as what happened in you, never as evidence for others.
+
+<img src="docs/screenshots/habit-experiment.png" alt="A habit, oats and beans every day for more fibre, with LDL cholesterol falling 18 % and total cholesterol 12 %, both beyond the shaded band of normal test-to-test variation" width="100%">
 
 ### Protocols, meals and the intake analyzer
 
