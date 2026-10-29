@@ -11,6 +11,8 @@ import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
 import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "./timeControls";
 import { cx } from "./ui";
 import { FLAG_LABEL, formatDate, showRange } from "../format";
+import { habitTypesIn, ofTypes, type ProtocolCategory } from "../../core/protocols";
+import { HabitTypes, Toggle, useChartPrefs } from "./chartHabits";
 
 interface Point {
   t: number;
@@ -43,49 +45,11 @@ interface ChartPrefs {
   band: boolean;
   fit: boolean;
   habits: boolean;
+  /** Which types of habit to show; null = every type. */
+  habitTypes: ProtocolCategory[] | null;
 }
 // Habits under the chart are off until asked for: the chart stays light.
-const DEFAULT_PREFS: ChartPrefs = { group: "each", band: true, fit: false, habits: false };
-
-/** Chart choices are remembered per marker in this browser (a convenience; nothing depends on it). */
-function usePrefs(id: string): [ChartPrefs, (p: Partial<ChartPrefs>) => void] {
-  const key = `chart:${id}`;
-  const [prefs, setPrefs] = useState<ChartPrefs>(() => {
-    try {
-      return { ...DEFAULT_PREFS, ...(JSON.parse(localStorage.getItem(key) ?? "{}") as Partial<ChartPrefs>) };
-    } catch {
-      return DEFAULT_PREFS;
-    }
-  });
-  const update = (p: Partial<ChartPrefs>) =>
-    setPrefs((cur) => {
-      const next = { ...cur, ...p };
-      try {
-        localStorage.setItem(key, JSON.stringify(next));
-      } catch {
-        /* storage blocked: the choice lasts until reload */
-      }
-      return next;
-    });
-  return [prefs, update];
-}
-
-function Toggle({ on, onChange, children }: { on: boolean; onChange: (on: boolean) => void; children: string }) {
-  return (
-    <button
-      type="button"
-      aria-pressed={on}
-      onClick={() => onChange(!on)}
-      className={cx(
-        "flex h-11 items-center gap-1.5 rounded-full border px-3 text-sm transition-colors duration-150 sm:h-8",
-        on ? "border-accent/40 bg-accent-soft text-ink" : "border-line text-ink-2 hover:text-ink",
-      )}
-    >
-      <span aria-hidden="true" className={cx("size-2 rounded-full", on ? "bg-accent" : "bg-line-strong")} />
-      {children}
-    </button>
-  );
-}
+const DEFAULT_PREFS: ChartPrefs = { group: "each", band: true, fit: false, habits: false, habitTypes: null };
 
 /**
  * One marker over time. The shaded band is the reference range (or the person's usual range); points
@@ -112,7 +76,10 @@ export function TrendChart({
   protocols?: ProtocolEntry[];
   today: string;
 }) {
-  const [prefs, setPrefs] = usePrefs(def.id);
+  const [prefs, setPrefs] = useChartPrefs<ChartPrefs>(`chart:${def.id}`, DEFAULT_PREFS);
+  // Habits of the types chosen for this chart ("only diet changes with my weight").
+  const habitTypes = useMemo(() => habitTypesIn(protocols), [protocols]);
+  const shownHabits = useMemo(() => ofTypes(protocols, prefs.habitTypes), [protocols, prefs.habitTypes]);
   const [habit, setHabit] = useState<string | null>(null);
   const [moved, setMoved] = useState(false);
   const conv = (v: number) => fromCanonical(def, v, unit);
@@ -180,7 +147,7 @@ export function TrendChart({
   const stats = statsBetween(readings, fromIso, toIso);
   const sel = t.selection;
   const selStats = sel ? statsBetween(readings, isoOfDay(sel.from), isoOfDay(sel.to)) : undefined;
-  const shaded = habit ? protocols.find((p) => p.id === habit) : undefined;
+  const shaded = habit && prefs.habits ? shownHabits.find((p) => p.id === habit) : undefined;
   const showOutKey = hasRange && band && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
   const summary = `Chart of ${def.name} in ${unit}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} averages`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Reference range"} ${rangeText}` : ""}.`;
   const withUnit = (x: number) => `${formatValue(conv(x))} ${unit}`;
@@ -397,7 +364,8 @@ export function TrendChart({
           )}
         </div>
       </figcaption>
-      {prefs.habits && <ProtocolLanes protocols={protocols} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} />}
+      {prefs.habits && habitTypes.length > 1 && <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />}
+      {prefs.habits && <ProtocolLanes protocols={shownHabits} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} />}
     </figure>
   );
 }

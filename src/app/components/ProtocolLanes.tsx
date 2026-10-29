@@ -22,6 +22,7 @@ export function ProtocolLanes({
   today,
   selected,
   onSelect,
+  inset = PLOT_INSET,
 }: {
   protocols: ProtocolEntry[];
   from: string;
@@ -29,6 +30,8 @@ export function ProtocolLanes({
   today: string;
   selected?: string | null;
   onSelect?: (id: string | null) => void;
+  /** Where the chart above starts and ends horizontally, in pixels, so the bars line up with it. */
+  inset?: { left: number; right: number };
 }) {
   const lanes = sortProtocols(protocols)
     .map((p) => ({ p, lane: laneFor(p, from, to, today) }))
@@ -55,7 +58,7 @@ export function ProtocolLanes({
                   · {CATEGORY_LABEL[p.category]}, {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
                 </span>
               </span>
-              <span className="relative mt-1 block h-2" style={{ marginLeft: PLOT_INSET.left - 8, marginRight: PLOT_INSET.right - 8 }} aria-hidden="true">
+              <span className="relative mt-1 block h-2" style={{ marginLeft: inset.left - 8, marginRight: inset.right - 8 }} aria-hidden="true">
                 <span className="absolute inset-y-0 w-full rounded-full bg-sunken" />
                 <span
                   className={cx("absolute inset-y-0", on ? "bg-ink" : "bg-ink-2/60", lane.cutStart ? "rounded-l-none" : "rounded-l-full", lane.cutEnd ? "rounded-r-none" : "rounded-r-full")}

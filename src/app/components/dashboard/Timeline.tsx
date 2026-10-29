@@ -2,11 +2,13 @@ import { useId, useMemo, useRef, useState } from "react";
 import type { Dashboard, DrawSummary } from "../../../core/dashboard";
 import { dayNumber } from "../../../core/dates";
 import { ageAt } from "../../../core/phenoageDraws";
+import { habitTypesIn, ofTypes, type ProtocolCategory } from "../../../core/protocols";
 import { timeTicks } from "../../../core/timeWindow";
 import type { ProtocolEntry } from "../../../core/types";
 import { formatDate, formatYears } from "../../format";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
+import { HabitTypes, useChartPrefs } from "../chartHabits";
 import { TimeControls, useTimeView, useWidth } from "../timeControls";
 import { cx } from "../ui";
 
@@ -71,7 +73,11 @@ export function Timeline({
   const [pinned, setPinned] = useState<number | null>(null);
   const active = hover ?? pinned;
   const span = d.span!;
-  const packed = useMemo(() => lanes(protocols, today), [protocols, today]);
+  // Which types of habit the timeline shows (remembered in this browser); every type until chosen.
+  const [prefs, setPrefs] = useChartPrefs<{ habitTypes: ProtocolCategory[] | null }>("chart:timeline", { habitTypes: null });
+  const habitTypes = useMemo(() => habitTypesIn(protocols), [protocols]);
+  const shownHabits = useMemo(() => ofTypes(protocols, prefs.habitTypes), [protocols, prefs.habitTypes]);
+  const packed = useMemo(() => lanes(shownHabits, today), [shownHabits, today]);
   const laneCount = packed.reduce((n, l) => Math.max(n, l.row + 1), 0);
   const hasAge = d.bioAge.length > 0 && !!birthMonth;
 
@@ -381,6 +387,7 @@ export function Timeline({
           </li>
         )}
       </ul>
+      <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />
 
       {shortened.length > 0 && (
         <ul className="flex flex-col gap-1 border-t border-line pt-3 text-xs text-ink-2">

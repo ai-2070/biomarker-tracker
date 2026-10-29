@@ -156,3 +156,14 @@ export function safetyNotes(labels: readonly string[]): SafetyNote[] {
 export function safetyLabels(protocols: readonly ProtocolEntry[], profile: { conditions?: string } = {}): string[] {
   return [...protocols.filter((p) => !p.end).map((p) => p.label), ...(profile.conditions ? profile.conditions.split(/[,;\n]+/).map((c) => c.trim()).filter(Boolean) : [])];
 }
+
+/** The types of habit present, in the usual order (supplements, diet, medicines, lifestyle). */
+export function habitTypesIn(ps: readonly Pick<ProtocolEntry, "category">[]): ProtocolCategory[] {
+  const present = new Set(ps.map((p) => p.category));
+  return PROTOCOL_CATEGORIES.filter((c) => present.has(c));
+}
+
+/** Only habits of the chosen types; `null` means every type. */
+export function ofTypes<T extends Pick<ProtocolEntry, "category">>(ps: readonly T[], types: readonly ProtocolCategory[] | null): T[] {
+  return types === null ? [...ps] : ps.filter((p) => types.includes(p.category));
+}
