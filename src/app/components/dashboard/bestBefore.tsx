@@ -36,7 +36,7 @@ const pct = (v: number) => `${(v * 100).toFixed(v < 0.1 ? 1 : 0)} %`;
 const yrs = (v: number) => v.toFixed(1);
 
 /**
- * "Best before": the moment by which half of the people like you have died, from Eurostat's life table
+ * "Expiration date": the moment by which half of the people like you have died, from Eurostat's life table
  * for your country and sex, read at your PhenoAge when your blood tests allow (people like you by your
  * blood tests), otherwise at your age. Shown to the second, with what it is, the range around it, and
  * everything it leaves out. Never a prediction of one person's death.
@@ -58,7 +58,7 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
   if (!profile.birthMonth) {
     return (
       <Card className="flex flex-col gap-2">
-        <p className={label}>Best before</p>
+        <p className={label}>Expiration date</p>
         <p className="text-ink-2">Add your month and year of birth (Settings → Your data) to see it.</p>
       </Card>
     );
@@ -68,8 +68,8 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
   if (!found) {
     return (
       <Card className="flex flex-col gap-3">
-        <p className={label}>Best before</p>
-        <p className="max-w-3xl text-ink-2">It uses the official life table of the country you live in. Choose it to see your best-before date (it's saved in your profile, on this computer).</p>
+        <p className={label}>Expiration date</p>
+        <p className="max-w-3xl text-ink-2">It uses the official life table of the country you live in. Choose it to see your expiration date (it's saved in your profile, on this computer).</p>
         <SimpleSelect
           label="Country you live in"
           options={[
@@ -107,7 +107,7 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
   return (
     <Card className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <p className={label}>Best before</p>
+        <p className={label}>Expiration date</p>
         <p className="font-serif text-3xl leading-tight tabular-nums sm:text-5xl">{exact.format(new Date(head.medianAt))}</p>
         <p className="text-sm text-ink-2">Time zone: {zone}</p>
         <p className="max-w-3xl">
