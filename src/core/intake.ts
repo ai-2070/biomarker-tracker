@@ -1,7 +1,7 @@
 import { SAFETY_LIMITS } from "./foods";
 import { MAX_GRAMS, NUTRIENT_OF_KEY, adultReference, mealSafetyBlock, mealTotals, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "./meals";
 import { interactionsFor, type NutrientDef } from "./nutrients";
-import type { PlanItem } from "./plans";
+import { nutrientFor, type PlanItem } from "./plans";
 import { MAX_LABEL } from "./protocols";
 import type { SafetyId, Sex } from "./types";
 
@@ -445,4 +445,85 @@ export function parseLabelAmount(text: string | undefined, unit: "mg" | "µg"): 
   // "1,000" or "1.000" with three digits after the mark is a thousands mark; otherwise a decimal one.
   const value = /^\d{1,3}([.,]\d{3})+$/.test(raw) ? Number(raw.replace(/[.,]/g, "")) : Number(raw.replace(",", "."));
   return value > 0 && value <= MAX_SUPPLEMENT_AMOUNT ? value : undefined;
+}
+
+/** The analyzer's supplement key for a nutrient entry (vitamin_d → vitaminD; omega_3 → epaDha). */
+export const SUPPLEMENT_KEY_OF_NUTRIENT: Readonly<Record<string, string>> = {
+  ...Object.fromEntries(Object.entries(NUTRIENT_OF_KEY).filter(([k]) => SUPPLEMENT_KEYS.has(k)).map(([k, id]) => [id, k])),
+  omega_3: "epaDha",
+};
+
+/** A supplement in a protocol the analyzer can count, but whose amount isn't written in the nutrient's unit. */
+export interface NeedsAmount {
+  planId: string;
+  itemId: string;
+  label: string;
+  key: string;
+  unit: "mg" | "µg";
+  /** What the protocol says now ("2000 IU", "1 capsule"), if anything. */
+  written?: string;
+}
+
+/**
+ * A protocol as analyzer items: saved meals (portions when written as "2 portions", otherwise 1), foods
+ * from the table (when the item is a table food in grams, as the analyzer itself writes them), and
+ * supplements of a nutrient the analyzer adds up, when the amount is written plainly in its unit. Other
+ * supplements of such a nutrient come back as needing an amount (never converted or guessed); everything
+ * else is left out with the reason.
+ */
+export function protocolToIntake(
+  plan: { id: string; items: readonly PlanItem[] },
+  meals: readonly Pick<Meal, "id" | "name">[],
+  db: FoodDb,
+  nutrients: readonly NutrientDef[],
+  newId: () => string,
+): { items: IntakeItem[]; needsAmount: NeedsAmount[]; skipped: { label: string; reason: string }[] } {
+  const items: IntakeItem[] = [];
+  const needsAmount: NeedsAmount[] = [];
+  const skipped: { label: string; reason: string }[] = [];
+  const byName = new Map(db.foods.map((f) => [f[1].toLowerCase(), f[0]]));
+  for (const it of plan.items) {
+    if (it.category === "medication" || it.category === "lifestyle") {
+      skipped.push({ label: it.label, reason: it.category === "medication" ? "a medicine, not food" : "not food or a supplement" });
+      continue;
+    }
+    if (it.mealId) {
+      if (!meals.some((m) => m.id === it.mealId)) {
+        skipped.push({ label: it.label, reason: "its meal was deleted" });
+        continue;
+      }
+      const n = /^\s*(\d+(?:[.,]\d+)?)\s*portions?\s*$/i.exec(it.amount ?? "");
+      const portions = n ? Number(n[1]!.replace(",", ".")) : 1;
+      items.push({ id: newId(), kind: "meal", mealId: it.mealId, portions: portions >= 0.25 && portions <= 10 ? portions : 1 });
+      continue;
+    }
+    const food = byName.get(it.label.trim().toLowerCase());
+    const g = /^\s*(\d+(?:[.,]\d+)?)\s*g\s*$/i.exec(it.amount ?? "");
+    if (food && g) {
+      const grams = Number(g[1]!.replace(",", "."));
+      if (grams >= 1 && grams <= MAX_GRAMS) {
+        items.push({ id: newId(), kind: "food", foodId: food, grams });
+        continue;
+      }
+    }
+    const nutrient = it.category === "supplement" ? nutrientFor(it, nutrients) : undefined;
+    const key = nutrient ? SUPPLEMENT_KEY_OF_NUTRIENT[nutrient.id] : undefined;
+    const def = key ? SUPPLEMENT_NUTRIENTS.find((x) => x.key === key) : undefined;
+    if (def) {
+      const amount = parseLabelAmount(it.amount, def.unit);
+      if (amount !== undefined) items.push({ id: newId(), kind: "supplement", nutrient: def.key, amount, name: clip(it.label, 80) });
+      else needsAmount.push({ planId: plan.id, itemId: it.id, label: it.label, key: def.key, unit: def.unit, ...(it.amount?.trim() ? { written: it.amount.trim() } : {}) });
+      continue;
+    }
+    skipped.push({
+      label: it.label,
+      reason:
+        it.category !== "supplement"
+          ? "not a saved meal or a food from the table"
+          : /\bmulti/i.test(it.label)
+            ? "a mix of nutrients: add each one from its label in the Supplements tab"
+            : "not one of the vitamins, minerals or omega-3 the analyzer adds up",
+    });
+  }
+  return { items, needsAmount, skipped };
 }
