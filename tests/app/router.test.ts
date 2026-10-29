@@ -39,6 +39,12 @@ describe("router", () => {
     expect(parseHash("#/protocols/abc")).toEqual({ name: "plan", id: "abc" });
     expect(href({ name: "plan", id: "abc" })).toBe("#/protocols/abc");
   });
+  it("opens Meals, a meal and an example meal", () => {
+    expect(parseHash("#/meals")).toEqual({ name: "meals" });
+    expect(parseHash("#/meals/abc")).toEqual({ name: "meal", id: "abc" });
+    expect(parseHash("#/meals/example/porridge")).toEqual({ name: "example-meal", id: "porridge" });
+    expect(href({ name: "example-meal", id: "porridge" })).toBe("#/meals/example/porridge");
+  });
   it("treats anything else as not found", () => {
     expect(parseHash("#main")).toEqual({ name: "not-found" });
     expect(parseHash("#/marker")).toEqual({ name: "not-found" });

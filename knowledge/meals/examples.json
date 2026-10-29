@@ -1,0 +1,88 @@
+{
+  "about": "Example meals that bring together foods from the evidence levers. Amounts are added up by the app from CoFID 2021. They are examples of how a meal can contain a nutrient, never the best meal for anyone, and never a diet plan.",
+  "meals": [
+    {
+      "id": "lentil-pepper-orange-salad",
+      "name": "Lentil salad with red pepper and orange",
+      "description": "Plant iron from lentils, with vitamin C from pepper and orange in the same meal, which helps the body absorb that kind of iron.",
+      "claimIds": ["vitamin-c-with-meals-iron"],
+      "items": [
+        { "foodId": "13-661", "grams": 150 },
+        { "foodId": "13-524", "grams": 80 },
+        { "foodId": "14-327", "grams": 130 },
+        { "foodId": "17-038", "grams": 10 }
+      ]
+    },
+    {
+      "id": "steak-broccoli-rice",
+      "name": "Rump steak with broccoli, red pepper and rice",
+      "description": "Haem iron from red meat, which the body absorbs more easily than plant iron, with vegetables rich in vitamin C.",
+      "claimIds": ["haem-iron-foods"],
+      "items": [
+        { "foodId": "18-474", "grams": 120 },
+        { "foodId": "13-503", "grams": 80 },
+        { "foodId": "13-524", "grams": 60 },
+        { "foodId": "11-862", "grams": 150 }
+      ]
+    },
+    {
+      "id": "mackerel-potatoes-spinach",
+      "name": "Grilled mackerel with new potatoes and spinach",
+      "description": "Oily fish is one of the few foods with a useful amount of vitamin D, and it brings the omega-3 fats EPA and DHA.",
+      "claimIds": ["vitamin-d-foods", "oily-fish-tg"],
+      "items": [
+        { "foodId": "16-394", "grams": 140 },
+        { "foodId": "13-495", "grams": 175 },
+        { "foodId": "13-573", "grams": 80 }
+      ]
+    },
+    {
+      "id": "sardines-toast-tomatoes",
+      "name": "Sardines on wholemeal toast with tomatoes",
+      "description": "Tinned sardines bring vitamin B12 and vitamin D, and their soft bones add calcium.",
+      "claimIds": ["b12-foods", "vitamin-d-foods"],
+      "items": [
+        { "foodId": "16-424", "grams": 90 },
+        { "foodId": "11-982", "grams": 70 },
+        { "foodId": "13-530", "grams": 100 }
+      ]
+    },
+    {
+      "id": "eggs-toast-milk",
+      "name": "Boiled eggs, wholemeal toast and a glass of milk",
+      "description": "Eggs and milk are common sources of vitamin B12 for people who eat animal foods but not much meat.",
+      "claimIds": ["b12-foods"],
+      "items": [
+        { "foodId": "12-940", "grams": 100 },
+        { "foodId": "11-982", "grams": 50 },
+        { "foodId": "12-313", "grams": 200 }
+      ]
+    },
+    {
+      "id": "bean-spinach-stew",
+      "name": "Kidney bean, chickpea and spinach stew",
+      "description": "Beans, chickpeas and leafy greens are among the richest food sources of folate.",
+      "claimIds": ["folate-foods"],
+      "items": [
+        { "foodId": "13-660", "grams": 100 },
+        { "foodId": "13-670", "grams": 80 },
+        { "foodId": "13-530", "grams": 200 },
+        { "foodId": "13-573", "grams": 80 },
+        { "foodId": "13-499", "grams": 60 },
+        { "foodId": "17-038", "grams": 10 }
+      ]
+    },
+    {
+      "id": "porridge-blueberries-walnuts",
+      "name": "Porridge with blueberries and walnuts",
+      "description": "Oats bring beta-glucan, the soluble fibre shown to lower LDL cholesterol when eaten regularly.",
+      "claimIds": ["oat-beta-glucan-ldl"],
+      "items": [
+        { "foodId": "11-788", "grams": 50 },
+        { "foodId": "12-313", "grams": 200 },
+        { "foodId": "14-325", "grams": 80 },
+        { "foodId": "14-879", "grams": 15 }
+      ]
+    }
+  ]
+}

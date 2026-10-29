@@ -4,6 +4,7 @@ import path from "node:path";
 import { validateEvidenceClaim } from "../src/core/evidence";
 import { validateBiomarkerDef } from "../src/core/knowledge";
 import { validateNutrientDef, type NutrientDef } from "../src/core/nutrients";
+import type { FoodDb } from "../src/core/meals";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
 import { ROOT } from "./store";
 
@@ -28,6 +29,13 @@ export function knowledge() {
     cache = { defs, evidence, foods, nutrients };
   }
   return cache;
+}
+
+let foodDb: FoodDb | undefined;
+/** The full food table (every CoFID 2021 food), read on first use. */
+export function foods(): FoodDb {
+  foodDb ??= JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "foods", "cofid-all.json"), "utf8")) as FoodDb;
+  return foodDb;
 }
 
 /** Find a vitamin or mineral by id, name or other name (case-insensitive; "vitamin d", "cobalamin"). */

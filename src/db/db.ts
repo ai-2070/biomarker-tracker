@@ -2,6 +2,7 @@ import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
 import { syncWatch, watchFor } from "../core/habits";
 import { habitsForPlan, type Plan } from "../core/plans";
+import type { Meal } from "../core/meals";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 
 interface Setting {
@@ -16,6 +17,8 @@ export class TrackerDB extends Dexie {
   experiments!: EntityTable<Experiment, "id">;
   /** Protocols the person wrote (Protocols page); "protocols" above is the Habits log. */
   plans!: EntityTable<Plan, "id">;
+  /** Meals the person built (foods and grams). */
+  meals!: EntityTable<Meal, "id">;
 
   constructor(name = "biomarker-tracker") {
     super(name);
@@ -28,6 +31,8 @@ export class TrackerDB extends Dexie {
     this.version(2).stores({ experiments: "id, start" });
     // v3: protocols (sets of supplements, foods, exercise… the person follows).
     this.version(3).stores({ plans: "id" });
+    // v4: meals.
+    this.version(4).stores({ meals: "id" });
   }
 }
 
@@ -77,6 +82,16 @@ export async function stopPlan(p: Plan, today: string, database = db): Promise<v
     const { active: _a, ...rest } = p;
     await database.plans.put(rest);
   });
+}
+
+// Meals
+
+export async function saveMeal(m: Meal, database = db): Promise<void> {
+  await database.meals.put(m);
+}
+
+export async function deleteMeal(id: string, database = db): Promise<void> {
+  await database.meals.delete(id);
 }
 
 // Measurements
@@ -251,11 +266,12 @@ export async function importBackup(backup: Backup, mode: ImportMode, database = 
 }
 
 export async function deleteEverything(database = db): Promise<void> {
-  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.settings], async () => {
+  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings], async () => {
     await database.measurements.clear();
     await database.protocols.clear();
     await database.experiments.clear();
     await database.plans.clear();
+    await database.meals.clear();
     await database.settings.clear();
   });
 }

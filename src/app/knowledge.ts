@@ -1,3 +1,4 @@
+import { TOPICS, validateComparisonTopic, type ComparisonTopicFile } from "../core/foodComparison";
 import { validateNutrientDef, type NutrientDef } from "../core/nutrients";
 import { validateEvidenceClaim } from "../core/evidence";
 import { validateBiomarkerDef } from "../core/knowledge";
@@ -102,3 +103,17 @@ function loadNutrients(): NutrientDef[] {
 
 export const NUTRIENTS: readonly NutrientDef[] = loadNutrients();
 export const NUTRIENT_MAP: ReadonlyMap<string, NutrientDef> = new Map(NUTRIENTS.map((n) => [n.id, n]));
+
+// Animal foods, fruit and plants compared (Meals page), one file per topic.
+const comparisonModules = import.meta.glob<unknown>("../../knowledge/food-comparison/*.json", { eager: true, import: "default" });
+
+export const FOOD_COMPARISON: readonly ComparisonTopicFile[] = Object.entries(comparisonModules)
+  .flatMap(([path, json]) => {
+    const errors = validateComparisonTopic(json);
+    if (errors.length) {
+      console.error(`Invalid knowledge file ${path}:`, errors);
+      return [];
+    }
+    return [json as ComparisonTopicFile];
+  })
+  .sort((a, b) => TOPICS.indexOf(a.topic) - TOPICS.indexOf(b.topic));

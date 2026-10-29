@@ -109,6 +109,26 @@ describe("protocols", () => {
   });
 });
 
+describe("meals", () => {
+  const calm: HealthSnapshot = { ...snapshot, measurements: snapshot.measurements.filter((x) => x.biomarkerId !== "potassium") };
+  const run = (snap: HealthSnapshot, tool: string, x: unknown) => healthTools(snap)[tool]!.execute!(x as never, { toolCallId: "t", messages: [] } as never) as Promise<Record<string, unknown>>;
+
+  it("finds foods, writes down a meal with the app's own totals, and reads saved meals", async () => {
+    const found = (await run(calm, "find_foods", { query: "porridge oats" })) as { foods: { id: string; name: string }[] };
+    expect(found.foods[0]!.name).toMatch(/Porridge oats/);
+    const r = await run(calm, "propose_meal", { name: "Porridge", items: [{ foodId: found.foods[0]!.id, grams: 50 }] });
+    expect(r.shownToPerson).toEqual({ name: "Porridge", foods: 1 });
+    expect((r.appTotals as Record<string, number>).energyKcal).toBeGreaterThan(100);
+    expect((await run(calm, "propose_meal", { name: "X", items: [{ foodId: "nope", grams: 50 }] })).error).toMatch(/find_foods/);
+    const parsed = parseSnapshot({ ...calm, meals: [{ id: "m", name: "Porridge", items: [{ foodId: found.foods[0]!.id, grams: 50 }], createdAt: "2026-10-29" }] });
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    const meals = (await run(parsed.snapshot, "get_meals", {})) as { meals: { foods: string[]; totals: Record<string, string> }[]; note: string };
+    expect(meals.meals[0]!.foods[0]).toMatch(/Porridge oats.*50 g/);
+    expect(meals.note).toMatch(/dark matter/);
+  });
+});
+
 describe("habit suggestions", () => {
   const call = (snap: HealthSnapshot, input: unknown) => healthTools(snap).propose_habit!.execute!(input as never, { toolCallId: "t", messages: [] } as never) as Promise<Record<string, unknown>>;
   const calm: HealthSnapshot = { ...snapshot, measurements: snapshot.measurements.filter((x) => x.biomarkerId !== "potassium") };

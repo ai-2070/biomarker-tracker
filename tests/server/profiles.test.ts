@@ -77,6 +77,11 @@ describe("profiles: one folder per person", () => {
     const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
     expect(profiles.getProfileData(restored.id).plans).toEqual([plan]);
     expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, plans: [{ ...plan, name: "" }] })).toThrow(/protocol is damaged/);
+    const meal = { id: "m1", name: "Porridge", items: [{ foodId: "11-788", grams: 50 }], createdAt: "2026-10-29T00:00:00.000Z" };
+    profiles.saveProfileData(p.id, { person: { name: "Eva" }, plans: [plan], meals: [meal] });
+    expect(JSON.parse(fs.readFileSync(path.join(p.folder, "meals.json"), "utf8"))).toEqual([meal]);
+    expect(profiles.getProfileData(profiles.restoreZip(profiles.backupZip(p.id).data).id).meals).toEqual([meal]);
+    expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, meals: [{ ...meal, items: [{ foodId: "11-788", grams: 0 }] }] })).toThrow(/meal is damaged/);
   });
 
   it("backs up to a zip and restores it as a new profile, with files", () => {
