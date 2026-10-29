@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { cutoffsMet, describePlace, normRow, placeInRow, placeResult, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
+import { cutoffsMet, describePlace, normRow, placeInRow, placeResult, rowSpan, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
 
 const source = { title: "Made-up norms", year: 2020, studyType: "observational" as const };
 
@@ -50,7 +50,7 @@ const test: FitnessTestDef = {
   norms: [bands, percentiles, meanSd],
   cutoffs: [
     { label: "Low (men)", sex: "m", below: 27, source },
-    { label: "Slow from 65", atMost: 0.8, ageFrom: 65, source },
+    { label: "Slow from 65", atOrBelow: 0.8, ageFrom: 65, source },
   ],
   evidence: [],
   limits: [],
@@ -117,5 +117,33 @@ describe("fitness test norms", () => {
     expect(describePlace({ kind: "percentile", above: 90 })).toBe("Above the 90th percentile");
     expect(describePlace({ kind: "mean_sd", mean: 1, sd: 0.2, z: 0.4 })).toBe("About average");
     expect(describePlace({ kind: "mean_sd", mean: 1, sd: 0.2, z: -1.2 })).toBe("Below average");
+  });
+
+  it("uses the nearest row when a table gives values at exact ages", () => {
+    const atAges: NormSet = {
+      source,
+      verifiedFrom: "test",
+      population: "test",
+      kind: "percentiles",
+      rows: [20, 25, 30, 90].map((a) => ({ sex: "f" as const, ageFrom: a, ageTo: a, p50: a })),
+    };
+    expect(rowSpan(atAges.rows, atAges.rows[1]!)).toEqual([22.5, 27.5]);
+    expect(rowSpan(atAges.rows, atAges.rows[0]!)).toEqual([17.5, 22.5]);
+    expect(normRow(atAges, "f", 22.4)?.ageFrom).toBe(20);
+    expect(normRow(atAges, "f", 22.5)?.ageFrom).toBe(25);
+    expect(normRow(atAges, "f", 17)).toBeUndefined();
+    // A big gap: each side takes half of it.
+    expect(normRow(atAges, "f", 59)?.ageFrom).toBe(30);
+    expect(normRow(atAges, "f", 61)?.ageFrom).toBe(90);
+    expect(normRow(atAges, "f", 95)?.ageFrom).toBe(90);
+    expect(normRow(atAges, "f", 120)).toBeUndefined();
+  });
+
+  it("compares only with norms for the test's usual way of doing it", () => {
+    const pure: NormSet = { ...percentiles, variant: "dominant hand" };
+    const dodds: NormSet = { ...percentiles, variant: "best of either hand" };
+    const grip = { ...test, defaultVariant: "best of either hand", norms: [pure, dodds] };
+    expect(placeResult(grip, 50, { sex: "m", age: 42 }).map((r) => r.set.variant)).toEqual(["best of either hand"]);
+    expect(placeResult(grip, 50, { sex: "m", age: 42 }, "dominant hand").map((r) => r.set.variant)).toEqual(["dominant hand"]);
   });
 });

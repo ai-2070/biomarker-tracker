@@ -68,14 +68,28 @@ export function bmi(weightKg: number, heightCm: number | undefined): number | un
 }
 
 /**
- * Basal metabolic rate (kcal a day): the energy the body uses at complete rest, estimated with the
- * Mifflin–St Jeor equation (Mifflin 1990, PMID 2305711), the most accurate of the common equations in
- * a systematic review (Frankenfield 2005, PMID 15883556; within 10 % for most adults). Only for adults
+ * Resting metabolic rate (kcal a day; often called basal metabolic rate): the energy the body uses at
+ * rest, estimated with the Mifflin–St Jeor equation in the paper's own simplified form by sex (Mifflin
+ * 1990, PMID 2305711: 10 × kg + 6.25 × cm − 5 × years, + 5 for men, − 161 for women; made from 498 people
+ * aged 19–78 whose resting energy use was measured), the most accurate of the common equations in a
+ * systematic review (Frankenfield 2005, PMID 15883556; within 10 % for most adults). Only for adults
  * with weight, height, age and sex known. An estimate, never a target.
  */
 export function bmrMifflin(weightKg: number, heightCm: number | undefined, ageYears: number | undefined, sex: "m" | "f" | undefined): number | undefined {
   if (!(weightKg > 0) || !heightCm || heightCm < 100 || heightCm > 250 || ageYears === undefined || ageYears < 18 || !sex) return undefined;
   return 10 * weightKg + 6.25 * heightCm - 5 * ageYears + (sex === "m" ? 5 : -161);
+}
+
+/** The Mifflin–St Jeor sum term by term, to show how the estimate was made; undefined when it can't be. */
+export function bmrMifflinTerms(
+  weightKg: number,
+  heightCm: number | undefined,
+  ageYears: number | undefined,
+  sex: "m" | "f" | undefined,
+): { weight: number; height: number; age: number; sex: number; total: number; outsideStudyAges: boolean } | undefined {
+  const total = bmrMifflin(weightKg, heightCm, ageYears, sex);
+  if (total === undefined) return undefined;
+  return { weight: 10 * weightKg, height: 6.25 * heightCm!, age: -5 * ageYears!, sex: sex === "m" ? 5 : -161, total, outsideStudyAges: ageYears! < 19 || ageYears! >= 79 };
 }
 
 /** Waist ÷ height. Below 0.5 is the usual guide for adults (Ashwell 2012, PMID 22106927). */

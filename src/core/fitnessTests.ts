@@ -20,6 +20,7 @@ export const PERCENTILES: readonly Percentile[] = ["p5", "p10", "p20", "p25", "p
 
 export interface NormRow extends Partial<Record<Percentile, number>> {
   sex: Sex | "any";
+  /** A row with `ageFrom` equal to `ageTo` gives values at that exact age (from the source's fitted curves). */
   ageFrom: number;
   /** Inclusive; missing means "and over". */
   ageTo?: number;
@@ -35,7 +36,7 @@ export interface NormSet {
   /** Who was measured: country, number of people, years. */
   population: string;
   kind: "bands" | "percentiles" | "mean_sd";
-  /** "standard", "knee", "eyes open": norms for one way of doing the test. */
+  /** "standard", "knee", "eyes open", "best of either hand": norms for one way of doing the test. */
   variant?: string;
   /** Band labels, lowest to highest result. */
   labels?: string[];
@@ -48,9 +49,9 @@ export interface FitnessCutoff {
   sex?: Sex;
   ageFrom?: number;
   ageTo?: number;
-  /** The result counts when it is below this (or at or below `atMost`, above `above`). */
+  /** The result counts when it is below this (or at or below `atOrBelow`, above `above`). */
   below?: number;
-  atMost?: number;
+  atOrBelow?: number;
   above?: number;
   source: Citation;
 }
@@ -68,6 +69,8 @@ export interface FitnessTestDef {
   name: string;
   unit: string;
   higherIsBetter: boolean;
+  /** The way of doing the test the how-to describes; results are compared only with norms for it. */
+  defaultVariant?: string;
   summary: string;
   howTo: string[];
   safety: string[];
@@ -92,9 +95,28 @@ export interface NormResult {
   place: NormPlace;
 }
 
+/**
+ * The ages a row stands for, as [from, to). An age range covers its whole last year. A row at one exact
+ * age stands for the ages nearer to it than to the next tabulated age (half the gap each way, the end
+ * rows as wide as their neighbour's half gap).
+ */
+export function rowSpan(rows: readonly NormRow[], r: NormRow): [number, number] {
+  if (r.ageTo === undefined) return [r.ageFrom, r.ageFrom + 10];
+  if (r.ageTo !== r.ageFrom) return [r.ageFrom, r.ageTo + 1];
+  const points = [...new Set(rows.filter((x) => x.sex === r.sex && x.ageTo === x.ageFrom).map((x) => x.ageFrom))].sort((a, b) => a - b);
+  const i = points.indexOf(r.ageFrom);
+  const before = i > 0 ? (r.ageFrom - points[i - 1]!) / 2 : undefined;
+  const after = i < points.length - 1 ? (points[i + 1]! - r.ageFrom) / 2 : undefined;
+  const half = (before ?? after ?? 0.5);
+  return [r.ageFrom - (before ?? after ?? half), r.ageFrom + (after ?? before ?? half)];
+}
+
 /** The table row for a sex and age, or undefined when the table doesn't cover them. */
 export function normRow(set: NormSet, sex: Sex | undefined, age: number): NormRow | undefined {
-  const fits = (r: NormRow) => age >= r.ageFrom && (r.ageTo === undefined || age < r.ageTo + 1);
+  const fits = (r: NormRow) => {
+    const [from, to] = rowSpan(set.rows, r);
+    return r.ageTo === undefined ? age >= r.ageFrom : age >= from && age < to;
+  };
   return set.rows.find((r) => r.sex === sex && fits(r)) ?? set.rows.find((r) => r.sex === "any" && fits(r));
 }
 
@@ -133,7 +155,7 @@ export function placeInRow(set: NormSet, row: NormRow, value: number): NormPlace
 }
 
 /** A result against every norm table of a test that covers the person's sex and age (and the variant, if given). */
-export function placeResult(test: FitnessTestDef, value: number, person: { sex?: Sex; age?: number }, variant?: string): NormResult[] {
+export function placeResult(test: FitnessTestDef, value: number, person: { sex?: Sex; age?: number }, variant = test.defaultVariant): NormResult[] {
   if (person.age === undefined) return [];
   const out: NormResult[] = [];
   for (const set of test.norms) {
@@ -153,7 +175,7 @@ export function cutoffsMet(test: FitnessTestDef, value: number, person: { sex?: 
     if ((c.ageFrom !== undefined || c.ageTo !== undefined) && person.age === undefined) return false;
     if (c.ageFrom !== undefined && person.age! < c.ageFrom) return false;
     if (c.ageTo !== undefined && person.age! >= c.ageTo + 1) return false;
-    return (c.below !== undefined && value < c.below) || (c.atMost !== undefined && value <= c.atMost) || (c.above !== undefined && value > c.above);
+    return (c.below !== undefined && value < c.below) || (c.atOrBelow !== undefined && value <= c.atOrBelow) || (c.above !== undefined && value > c.above);
   });
 }
 
