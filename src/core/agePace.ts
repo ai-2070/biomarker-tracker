@@ -82,3 +82,37 @@ export function phenoAgePace(points: readonly PacePoint[], windowYears = 3, minT
     verdict: high < 0 ? "falling" : high < 1 ? "slower" : low > 1 ? "faster" : "unclear",
   };
 }
+
+// ---- DunedinPACE: your results by the Rejuvenation Olympics rule, and your plain average --------------
+
+export interface DunedinSummary {
+  /** Tests in the 2 years up to the latest test (each under 4 years old). */
+  window: { from: string; to: string; tests: number };
+  /** The plain average of those tests. */
+  average: number;
+  /**
+   * The leaderboard rule ("average pace from best 3 tests over 2 years", at least 3 tests, each under 4
+   * years old; rejuvenationolympics.com): the 3 lowest tests averaged. Undefined with fewer than 3.
+   */
+  bestThree?: { value: number; dates: string[] };
+}
+
+/**
+ * Your DunedinPACE results summed up two ways. Taking only the best 3 tests picks the lucky ones, so the
+ * leaderboard number is always at or below your plain average; both are shown.
+ */
+export function dunedinSummary(results: readonly { date: string; value: number }[], today: string): DunedinSummary | undefined {
+  const fourYears = new Date(Date.parse(today) - 4 * YEAR * 86_400_000).toISOString().slice(0, 10);
+  const recent = [...results].filter((r) => r.date >= fourYears && r.date <= today).sort((a, b) => a.date.localeCompare(b.date));
+  const last = recent.at(-1);
+  if (!last) return undefined;
+  const twoYears = new Date(Date.parse(last.date) - 2 * YEAR * 86_400_000).toISOString().slice(0, 10);
+  const used = recent.filter((r) => r.date >= twoYears);
+  const average = used.reduce((s, r) => s + r.value, 0) / used.length;
+  const best = [...used].sort((a, b) => a.value - b.value || a.date.localeCompare(b.date)).slice(0, 3);
+  return {
+    window: { from: used[0]!.date, to: last.date, tests: used.length },
+    average,
+    ...(best.length === 3 ? { bestThree: { value: best.reduce((s, r) => s + r.value, 0) / 3, dates: best.map((r) => r.date).sort() } } : {}),
+  };
+}
