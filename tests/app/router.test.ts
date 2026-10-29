@@ -34,6 +34,11 @@ describe("router", () => {
     expect(parseHash("#/supplements/vitamin_d")).toEqual({ name: "nutrient", id: "vitamin_d" });
     expect(href({ name: "nutrient", id: "iron" })).toBe("#/supplements/iron");
   });
+  it("opens Protocols and one protocol", () => {
+    expect(parseHash("#/protocols")).toEqual({ name: "plans" });
+    expect(parseHash("#/protocols/abc")).toEqual({ name: "plan", id: "abc" });
+    expect(href({ name: "plan", id: "abc" })).toBe("#/protocols/abc");
+  });
   it("treats anything else as not found", () => {
     expect(parseHash("#main")).toEqual({ name: "not-found" });
     expect(parseHash("#/marker")).toEqual({ name: "not-found" });

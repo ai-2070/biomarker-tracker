@@ -31,6 +31,8 @@ export type Route =
   | { name: "experiment"; id: string }
   | { name: "supplements"; kind?: "vitamin" | "mineral" }
   | { name: "nutrient"; id: string }
+  | { name: "plans" }
+  | { name: "plan"; id: string }
   | { name: "setup" }
   | { name: "profiles" }
   | { name: "not-found" };
@@ -81,6 +83,8 @@ export function parseHash(hash: string): Route {
     return kind === "vitamin" || kind === "mineral" ? { name: "supplements", kind } : { name: "supplements" };
   }
   if (parts[0] === "supplements" && parts[1] && parts.length === 2) return { name: "nutrient", id: parts[1] };
+  if (parts[0] === "protocols" && parts.length === 1) return { name: "plans" };
+  if (parts[0] === "protocols" && parts[1] && parts.length === 2) return { name: "plan", id: parts[1] };
   return { name: "not-found" };
 }
 
@@ -127,6 +131,10 @@ export function href(route: Route): string {
       return route.kind ? `#/supplements?kind=${route.kind}` : "#/supplements";
     case "nutrient":
       return `#/supplements/${encodeURIComponent(route.id)}`;
+    case "plans":
+      return "#/protocols";
+    case "plan":
+      return `#/protocols/${encodeURIComponent(route.id)}`;
     case "not-found":
       return "#/";
   }

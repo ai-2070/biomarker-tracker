@@ -1,3 +1,4 @@
+import type { Plan } from "../core/plans";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, getProfile, measurementsFor } from "../db/db";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
@@ -43,4 +44,9 @@ export async function setDisplayUnit(biomarkerId: string, unit: string): Promise
     const current = (row?.value as Record<string, string> | undefined) ?? {};
     await db.settings.put({ key: DISPLAY_UNITS_KEY, value: { ...current, [biomarkerId]: unit } });
   });
+}
+
+/** The person's protocols (Protocols page), newest first. */
+export function usePlans(): Plan[] | undefined {
+  return useLiveQuery(async () => (await db.plans.toArray()).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), []);
 }

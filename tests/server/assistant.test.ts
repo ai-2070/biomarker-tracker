@@ -76,6 +76,27 @@ describe("health tools", () => {
   });
 });
 
+describe("protocols", () => {
+  it("gives Brain the person's protocols, linked to nutrients, with interactions between items", async () => {
+    const plan = {
+      id: "pl",
+      name: "Stack",
+      createdAt: "2026-10-01T00:00:00.000Z",
+      items: [
+        { id: "a", label: "Iron bisglycinate", amount: "25 mg", category: "supplement" as const, when: "with meals" as const },
+        { id: "b", label: "Calcium", category: "supplement" as const, when: "with meals" as const },
+      ],
+    };
+    const parsed = parseSnapshot({ ...snapshot, plans: [plan] });
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    const out = (await healthTools(parsed.snapshot).get_protocols!.execute!({}, { toolCallId: "t", messages: [] } as never)) as { protocols: { items: { nutrient?: string; amountTheyWrote?: string }[]; interactionsBetweenItems: unknown[] }[] };
+    expect(out.protocols[0]!.items[0]).toMatchObject({ nutrient: "Iron", amountTheyWrote: "25 mg" });
+    expect(out.protocols[0]!.interactionsBetweenItems.length).toBeGreaterThan(0);
+    expect(parseSnapshot({ ...snapshot, plans: [{ ...plan, name: "" }] }).ok).toBe(false);
+  });
+});
+
 describe("habit suggestions", () => {
   const call = (snap: HealthSnapshot, input: unknown) => healthTools(snap).propose_habit!.execute!(input as never, { toolCallId: "t", messages: [] } as never) as Promise<Record<string, unknown>>;
   const calm: HealthSnapshot = { ...snapshot, measurements: snapshot.measurements.filter((x) => x.biomarkerId !== "potassium") };
