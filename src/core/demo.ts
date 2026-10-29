@@ -167,6 +167,7 @@ export function demoProfile(today: string): DemoData {
   // Two DunedinPACE results from a DNA methylation test of the same blood samples, sent to another lab:
   // the app records them, it doesn't calculate them.
   add(draws[5]!, "dunedinpace", 0.94, { lab: "Example DNA lab" });
+  add(draws[7]!, "dunedinpace", 0.91, { lab: "Example DNA lab" });
   add(draws[9]!, "dunedinpace", 0.88, { lab: "Example DNA lab" });
 
   // The diet experiment: start two weeks after test 7. Two lipid tests before and two after, as the

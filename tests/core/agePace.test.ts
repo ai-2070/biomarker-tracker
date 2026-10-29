@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { phenoAgePace } from "../../src/core/agePace";
+import { dunedinSummary, phenoAgePace } from "../../src/core/agePace";
 
 /** A test every 6 months, PhenoAge rising `rate` years per calendar year from 40, with an optional wobble. */
 const series = (rate: number, n: number, wobble: number[] = []) =>
@@ -36,5 +36,26 @@ describe("pace of PhenoAge", () => {
   it("counts approximate results", () => {
     const pts = series(0.6, 4).map((p, i) => ({ ...p, approximate: i === 1 }));
     expect(phenoAgePace(pts)!.approximate).toBe(1);
+  });
+});
+
+describe("DunedinPACE by the leaderboard rule", () => {
+  const r = (date: string, value: number) => ({ date, value });
+  it("averages the best 3 tests within 2 years of the latest, beside the plain average", () => {
+    const s = dunedinSummary([r("2023-01-10", 0.7), r("2025-01-10", 0.9), r("2025-06-10", 0.8), r("2025-12-10", 0.85), r("2026-06-10", 0.95)], "2026-10-29")!;
+    // 2023 is more than 2 years before the latest test: left out.
+    expect(s.window).toEqual({ from: "2025-01-10", to: "2026-06-10", tests: 4 });
+    expect(s.average).toBeCloseTo((0.9 + 0.8 + 0.85 + 0.95) / 4, 9);
+    expect(s.bestThree!.value).toBeCloseTo((0.8 + 0.85 + 0.9) / 3, 9);
+    expect(s.bestThree!.dates).toEqual(["2025-01-10", "2025-06-10", "2025-12-10"]);
+    // The best 3 can never be above the plain average.
+    expect(s.bestThree!.value).toBeLessThanOrEqual(s.average);
+  });
+  it("needs 3 tests for the leaderboard number, and leaves out tests 4 or more years old", () => {
+    const s = dunedinSummary([r("2025-01-10", 0.9), r("2026-01-10", 0.8)], "2026-10-29")!;
+    expect(s.bestThree).toBeUndefined();
+    expect(s.window.tests).toBe(2);
+    expect(dunedinSummary([r("2021-01-10", 0.9)], "2026-10-29")).toBeUndefined();
+    expect(dunedinSummary([], "2026-10-29")).toBeUndefined();
   });
 });
