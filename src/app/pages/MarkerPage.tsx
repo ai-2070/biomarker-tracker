@@ -22,6 +22,7 @@ import { BIOMARKER_MAP, FITNESS_MAP, fullName, nameInSentence } from "../knowled
 import { href } from "../router";
 import { FitnessPanel } from "../components/dashboard/fitness";
 import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
+import { DunedinScores } from "../components/dashboard/agePace";
 import { NotFound } from "./NotFound";
 
 export function MarkerPage({ id, section }: { id: string; section?: string }) {
@@ -135,6 +136,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
               <TrendChart key={def.id} def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
             </Card>
             {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} scrollTo={section === "waist-to-height"} />}
+            {def.id === "dunedinpace" && <DunedinScores results={measurements} />}
           </>
         )}
         {/* Fitness tests: where you stand for your age, how to do the test (shown before any result too). */}

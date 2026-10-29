@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { ageHistory } from "../../../core/ageHistory";
-import { phenoAgePace } from "../../../core/agePace";
+import { dunedinSummary, phenoAgePace } from "../../../core/agePace";
+import { todayIso } from "../../../core/dates";
 import { sortByDate } from "../../../core/trends";
 import type { Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { formatDate } from "../../format";
@@ -81,6 +82,7 @@ export function PaceOfAging({ measurements, profile, protocols }: { measurements
                   {dunedin.length} results; the first was {two(dunedin[0]!.value)} on {formatDate(dunedin[0]!.date)}.
                 </p>
               )}
+              <DunedinScores results={dunedin} />
               <a href={href({ name: "marker", id: "dunedinpace" })} className="text-sm text-accent">
                 See all results and what it means
               </a>
@@ -112,5 +114,46 @@ export function PaceOfAging({ measurements, profile, protocols }: { measurements
         </section>
       </div>
     </Card>
+  );
+}
+
+const RO_URL = "https://www.rejuvenationolympics.com/dunedin-pace";
+
+/**
+ * DunedinPACE summed up two ways: the plain average of the tests in the 2 years up to the latest, and the
+ * Rejuvenation Olympics leaderboard rule (the best 3 of them), so people can see where they'd stand
+ * without the leaderboard number being taken for their true pace.
+ */
+export function DunedinScores({ results }: { results: readonly { date: string; value: number }[] }) {
+  const s = dunedinSummary(results, todayIso());
+  if (!s) return null;
+  return (
+    <div className="flex flex-col gap-1.5 rounded-lg bg-sunken p-3 text-sm">
+      <p>
+        <span className="font-medium">Your average:</span> {two(s.average)} ({s.window.tests === 1 ? "1 test" : `${s.window.tests} tests`}
+        {s.window.tests > 1 ? `, ${formatDate(s.window.from)} to ${formatDate(s.window.to)}` : ""}).
+      </p>
+      {s.bestThree ? (
+        <p>
+          <span className="font-medium">Leaderboard score:</span> {two(s.bestThree.value)}, the average of your best 3 of those tests, as the{" "}
+          <a href={RO_URL} target="_blank" rel="noopener noreferrer" className="text-accent">
+            Rejuvenation Olympics
+          </a>{" "}
+          ranks people (lower is better; its leaders average about 0.50).
+        </p>
+      ) : (
+        <p className="text-ink-2">
+          A leaderboard score (the{" "}
+          <a href={RO_URL} target="_blank" rel="noopener noreferrer" className="text-accent">
+            Rejuvenation Olympics
+          </a>{" "}
+          rule: the best 3 tests within 2 years) needs 3 tests in 2 years.
+        </p>
+      )}
+      <p className="text-ink-2">
+        Picking the best 3 keeps the lucky results, so the leaderboard score is always at or below your average. Your average is the better guide to
+        your pace. The leaderboard's own reading of "2 years" isn't spelled out; here it's the 2 years up to your latest test, with tests under 4 years old.
+      </p>
+    </div>
   );
 }
