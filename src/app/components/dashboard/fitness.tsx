@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FITNESS_FIELDS } from "../../../core/body";
-import { cutoffsMet, describePlace, normRow, placeResult, rowWho, type FitnessTestDef, type NormResult, type NormSet } from "../../../core/fitnessTests";
+import { ageMatch, cutoffsMet, describePlace, normRow, placeAmongYoungest, placeResult, rowWho, type AgeMatch, type FitnessTestDef, type NormResult, type NormSet } from "../../../core/fitnessTests";
 import { ageAt } from "../../../core/phenoageDraws";
 import { sortByDate } from "../../../core/trends";
 import type { Measurement, Profile } from "../../../core/types";
@@ -31,6 +31,29 @@ function personAt(profile: Profile, date: string) {
   return { ...(profile.sex ? { sex: profile.sex } : {}), ...(profile.birthMonth ? { age: ageAt(profile.birthMonth, date) } : {}) };
 }
 
+/** "typical of women about 43", "as good as women at their best (around 35)", "typical of women 70 and over, or below". */
+export function describeAgeMatch(m: AgeMatch, sex: "m" | "f"): string {
+  const who = sex === "m" ? "men" : "women";
+  if (m.kind === "best") return `as good as ${who} at their best age (around ${m.age})`;
+  if (m.kind === "youngest") return `as good as typical ${who} ${m.ageTo !== undefined ? `aged ${m.ageFrom}–${m.ageTo}` : `aged ${m.ageFrom}`}, the youngest in the table, or better`;
+  if (m.kind === "oldest") return `typical of ${who} ${m.age} and over, or below`;
+  return `typical of ${who} about ${m.age}`;
+}
+
+const capital = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+
+/** The first norm table that gives a "typical of" age for this result. */
+function firstAgeMatch(test: FitnessTestDef, value: number, sex: "m" | "f" | undefined): { m: AgeMatch; label: string } | undefined {
+  if (!sex) return undefined;
+  // The table that reaches youngest says the most about age.
+  const youngest = (s: NormSet) => Math.min(...s.rows.filter((r) => r.sex === sex || r.sex === "any").map((r) => r.ageFrom));
+  for (const set of [...test.norms].sort((a, b) => youngest(a) - youngest(b))) {
+    const m = ageMatch(set, sex, value, test.higherIsBetter);
+    if (m) return { m, label: set.label };
+  }
+  return undefined;
+}
+
 function placeFor(test: FitnessTestDef, m: Measurement, profile: Profile): NormResult[] {
   return placeResult(test, m.value, personAt(profile, m.date));
 }
@@ -42,9 +65,12 @@ export function FitnessFigure({ ms, id, profile, className }: { ms: Measurement[
   const last = latestOf(ms, id);
   const places = last ? placeFor(test, last, profile) : [];
   const first = places[0];
+  const typical = last ? firstAgeMatch(test, last.value, profile.sex) : undefined;
   const foot = !last
     ? "Not done yet. How to do it →"
-    : first
+    : typical
+      ? `${capital(describeAgeMatch(typical.m, profile.sex!))} · ${formatDate(last.date)}`
+      : first
       ? `${formatDate(last.date)} · compared with ${first.set.label}`
       : !profile.sex || !profile.birthMonth
         ? `${formatDate(last.date)} · add your sex and birth month to compare`
@@ -125,6 +151,8 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
         </p>
       )}
 
+      {last && sex && <YoungerComparison test={test} value={last.value} sex={sex} own={places} />}
+
       {met.map((c) => (
         <Notice key={c.label} tone="warn" title={c.label}>
           A threshold doctors use, not a diagnosis on its own. It's worth mentioning to your doctor, especially if it's new or getting worse.
@@ -201,6 +229,43 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
 }
 
 
+/** Bryan Johnson-style comparisons, kept honest: the age whose typical result matches yours, and your place among the youngest people in each table. */
+function YoungerComparison({ test, value, sex, own }: { test: FitnessTestDef; value: number; sex: "m" | "f"; own: NormResult[] }) {
+  const ages = test.norms.flatMap((set) => {
+    const m = ageMatch(set, sex, value, test.higherIsBetter);
+    return m ? [{ set, m }] : [];
+  });
+  // The youngest group, unless it's the person's own group (already shown above).
+  const young = placeAmongYoungest(test, value, sex).filter((r) => !own.some((o) => o.set === r.set && o.row === r.row));
+  if (ages.length === 0 && young.length === 0) return null;
+  return (
+    <section className="flex flex-col gap-2">
+      <h3 className="font-serif text-xl font-normal">Compared with other ages</h3>
+      <ul className="flex flex-col gap-1.5">
+        {ages.map(({ set, m }) => (
+          <li key={`age-${set.label}`} className="flex flex-wrap items-baseline gap-x-2">
+            <span className="font-medium">{capital(describeAgeMatch(m, sex))}</span>
+            <span className="text-sm text-ink-2">{set.label}</span>
+          </li>
+        ))}
+        {young.map((r) => (
+          <li key={`young-${r.set.label}`} className="flex flex-wrap items-baseline gap-x-2">
+            <span className="font-medium">
+              {describePlace(r.place, test.higherIsBetter)} among {rowWho(r.row)}
+            </span>
+            <span className="text-sm text-ink-2">{r.set.label}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="max-w-3xl text-sm text-ink-2">
+        Typical means the middle result (median, or average) of each age group in the table, with the ages in between joined by straight
+        lines. These tables measured different people at different ages, not the same people growing older, and most stop at the 90th or 95th
+        percentile, so nothing finer than that can be said. A comparison, not a body age.
+      </p>
+    </section>
+  );
+}
+
 function placeDetail(r: NormResult, test: FitnessTestDef, value: number): string {
   const u = test.unit === "reps" ? "" : ` ${test.unit}`;
   const capped = r.set.ceiling !== undefined && value > r.set.ceiling ? ` (counted as ${r.set.ceiling} s, the study's limit)` : "";
@@ -272,18 +337,24 @@ export function FitnessForYourAge({ ms, profile }: { ms: Measurement[]; profile:
           if (!test) return null;
           const last = latestOf(ms, id);
           const place = last ? placeFor(test, last, profile)[0] : undefined;
+          const typical = last ? firstAgeMatch(test, last.value, profile.sex) : undefined;
+          // Tables of named bands have no middle value: say how it compares with the youngest group instead.
+          const young = last && profile.sex && !typical ? placeAmongYoungest(test, last.value, profile.sex)[0] : undefined;
           return (
             <li key={id}>
               <a
                 href={href({ name: "marker", id, section: "for-your-age" })}
-                className="grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-2 text-ink no-underline hover:bg-sunken sm:grid-cols-[minmax(0,14rem)_6rem_minmax(0,1fr)]"
+                className="grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-0.5 py-2 text-ink no-underline hover:bg-sunken sm:grid-cols-[minmax(0,14rem)_6rem_minmax(0,1fr)_minmax(0,1fr)]"
               >
                 <span className="font-medium">{test.name}</span>
                 <span className="text-right tabular-nums sm:text-left">
                   {last ? `${formatValue(last.value)}${unitWord(test) ? ` ${unitWord(test)}` : ""}` : <span className="text-ink-2">Not done</span>}
                 </span>
                 <span className="col-span-2 text-sm text-ink-2 sm:col-span-1">
-                  {place ? `${describePlace(place.place, test.higherIsBetter)} (${place.set.label})` : last ? "No norms for your age" : "How to do it →"}
+                  {place ? `${describePlace(place.place, test.higherIsBetter)} for your age` : last ? "No norms for your age" : "How to do it →"}
+                </span>
+                <span className="col-span-2 text-sm text-ink-2 sm:col-span-1">
+                  {typical ? capital(describeAgeMatch(typical.m, profile.sex!)) : young ? `${describePlace(young.place, test.higherIsBetter)} among ${rowWho(young.row)}` : ""}
                 </span>
               </a>
             </li>

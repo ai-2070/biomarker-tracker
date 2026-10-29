@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { cutoffsMet, describePlace, normRow, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
+import { ageMatch, cutoffsMet, describePlace, normRow, placeAmongYoungest, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
 
 const source = { title: "Made-up norms", year: 2020, studyType: "observational" as const };
 
@@ -168,5 +168,51 @@ describe("fitness test norms", () => {
     expect(validateFitnessTest({})).not.toEqual([]);
     const broken = { ...percentiles, rows: [{ sex: "m", ageFrom: 40, ageTo: 44, p10: 50, p50: 40 }] };
     expect(validateFitnessTest({ ...test, howTo: ["x"], safety: ["x"], limits: ["x"], norms: [broken], evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }] }).join()).toMatch(/must not go down/);
+  });
+
+  it("finds the age whose typical result matches yours, after the best age, without guessing past the table", () => {
+    // Grip-like: rises to a peak at 35, then falls.
+    const grip: NormSet = {
+      label: "Grip",
+      source,
+      verifiedFrom: "test",
+      population: "test",
+      kind: "percentiles",
+      rows: [20, 35, 50, 65, 80].map((a, i) => ({ sex: "f" as const, ageFrom: a, ageTo: a, p25: 0, p50: [28, 31, 29, 24, 18][i]!, p75: 99 })),
+    };
+    expect(ageMatch(grip, "f", 33, true)).toEqual({ kind: "best", age: 35 });
+    expect(ageMatch(grip, "f", 31, true)).toEqual({ kind: "best", age: 35 });
+    // 30 is halfway between 31 (35) and 29 (50): about 42.5 → 43. The rising side (20–35) isn't used.
+    expect(ageMatch(grip, "f", 30, true)).toEqual({ kind: "age", age: 43 });
+    expect(ageMatch(grip, "f", 18, true)).toEqual({ kind: "age", age: 80 });
+    expect(ageMatch(grip, "f", 10, true)).toEqual({ kind: "oldest", age: 80 });
+    expect(ageMatch(grip, "m", 30, true)).toBeUndefined();
+    // A timed test (lower is better), age bands, and an open "70 and over" group at the end.
+    const timed: NormSet = {
+      label: "Timed",
+      source,
+      verifiedFrom: "test",
+      population: "test",
+      kind: "mean_sd",
+      rows: [
+        { sex: "any", ageFrom: 20, ageTo: 29, mean: 6, sd: 1 },
+        { sex: "any", ageFrom: 40, ageTo: 49, mean: 8, sd: 1 },
+        { sex: "any", ageFrom: 70, mean: 12, sd: 2 },
+      ],
+    };
+    // Best in its youngest group: nothing younger was measured, so it says so.
+    expect(ageMatch(timed, "m", 5.5, false)).toEqual({ kind: "youngest", ageFrom: 20, ageTo: 29 });
+    expect(ageMatch(timed, "m", 7, false)).toEqual({ kind: "age", age: 35 });
+    expect(ageMatch(timed, "m", 10, false)).toEqual({ kind: "oldest", age: 70 });
+    expect(ageMatch(bands, "m", 30, true)).toBeUndefined();
+  });
+
+  it("places a result among the youngest people in each table", () => {
+    const r = placeAmongYoungest(test, 30, "m");
+    expect(r.map((x) => [x.set.label, x.row.ageFrom, x.place.kind])).toEqual([
+      ["Bands", 20, "band"],
+      ["Percentiles", 40, "percentile"],
+    ]);
+    expect(placeAmongYoungest(test, 30, "f").map((x) => x.set.label)).toEqual(["Bands", "Percentiles", "Mean"]);
   });
 });
