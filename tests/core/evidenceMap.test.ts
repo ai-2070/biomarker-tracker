@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chooseReviews, classify, plainText, trialsPooled, compareWithPage, coveredArea, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "../../src/core/evidenceMap";
+import { chooseFrom, chooseReviews, classify, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, coveredArea, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "../../src/core/evidenceMap";
 
 const OUT = [{ id: "fractures", title: /\bfractur\w*/i }];
 const rec = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: [], mesh: ["Humans"], citedBy: 0, ...o });
@@ -90,5 +90,67 @@ describe("evidence maps", () => {
     expect(trialsPooled("Serum levels.")).toBeUndefined();
     const sepsis = classify(rec({ pmid: "s", year: 2026, title: "Vitamin D supplementation and mortality in sepsis: meta-analysis of randomized trials", pubTypes: ["Meta-Analysis"] }), [{ id: "mortality", title: /mortality/i }]);
     expect(chooseReviews([sepsis], "mortality", 3, /vitamin D/i, /\bsepsis\b/i)).toEqual([]);
+  });
+
+  describe("screening against the finding's question", () => {
+    const q = { population: "Adults with prediabetes", intervention: "Vitamin D", comparison: "Placebo", outcome: "New type 2 diabetes" };
+    it("asks about every review, with the question and the three answers", () => {
+      const prompt = screeningPrompt(q, [
+        { pmid: "1", title: "A", year: 2020, abstract: "x".repeat(5000) },
+        { pmid: "2", title: "B", year: 2021, abstract: "" },
+      ]);
+      expect(prompt).toContain("Population: Adults with prediabetes");
+      expect(prompt).toContain("PMID 1 (2020)");
+      expect(prompt).toContain("PMID 2 (2021)");
+      expect(prompt).toContain("(none)");
+      expect(prompt).not.toContain("x".repeat(2501));
+      for (const f of ['"yes"', '"partly"', '"no"']) expect(prompt).toContain(f);
+    });
+    it("keeps only well-formed answers about the reviews asked", () => {
+      const text = 'Here you go: [{"pmid":"1","fits":"yes","reason":"Matches."},{"pmid":2,"fits":"partly","reason":"Only with calcium."},{"pmid":"9","fits":"yes","reason":"Not asked."},{"pmid":"1","fits":"no","reason":"Duplicate."},{"pmid":"3","fits":"maybe","reason":"Bad."},{"pmid":"4","fits":"no","reason":" "}]';
+      expect(parseScreening(text, ["1", "2", "3", "4"])).toEqual([
+        { pmid: "1", fits: "yes", reason: "Matches." },
+        { pmid: "2", fits: "partly", reason: "Only with calcium." },
+      ]);
+      expect(parseScreening("no json here", ["1"])).toEqual([]);
+      expect(parseScreening("[not json]", ["1"])).toEqual([]);
+    });
+    it("splits by the decisions, never counting an unscreened review as fitting, and chooses from the fitting ones", () => {
+      const r = (pmid: string, year: number) =>
+        classify(rec({ pmid, year, title: `Vitamin D and diabetes: meta-analysis of randomized trials ${pmid}`, pubTypes: ["Meta-Analysis"] }), [{ id: "diabetes", title: /diabetes/i }]);
+      const pool = [r("a", 2025), r("b", 2024), r("c", 2023)];
+      const split = splitByScreening(pool, [
+        { pmid: "a", fits: "no", reason: "Glycemic control in people with diabetes." },
+        { pmid: "b", fits: "yes", reason: "Prevention in prediabetes." },
+      ]);
+      expect(split.yes.map((x) => x.pmid)).toEqual(["b"]);
+      expect(split.no.map((x) => x.pmid)).toEqual(["a"]);
+      expect(split.unscreened.map((x) => x.pmid)).toEqual(["c"]);
+      expect(chooseFrom(split.yes).map((c) => c.pmid)).toEqual(["b"]);
+    });
+  });
+
+  it("rejects a map that chose a review the screening left out, or left one out without a reason", () => {
+    const outcome = {
+      id: "diabetes",
+      label: "Type 2 diabetes",
+      counts: { reviews: 2, trialReviews: 2, trials: 0, largeTrials: 0 },
+      chosenReviews: [{ pmid: "a", title: "A", citedBy: 0, why: "Newest" }],
+      newerLargeTrials: [],
+      timeline: [],
+      largeTrials: [],
+      page: { alsoChosen: [], citedNotChosen: [], citedNotEligible: [], chosenNotCited: [] },
+      screening: {
+        question: { population: "P", intervention: "I", comparison: "C", outcome: "O" },
+        by: "a model",
+        at: "2026-10-29",
+        counts: { yes: 1, partly: 0, no: 1, unscreened: 0 },
+        left: [{ pmid: "b", title: "B", fits: "no" as const, reason: "Other people." }],
+      },
+    };
+    const map = { topic: "t", nutrientId: "t", builtAt: "2026-10-29", fetchedAt: "", source: "", queries: {}, rules: ["r"], counts: { all: 1, retrieved: 1, animal: 0, retracted: 0, reviews: 2, trials: 0, guidelines: 0 }, guidelines: [], outcomes: [outcome] };
+    expect(validateEvidenceMap(map)).toEqual([]);
+    expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, chosenReviews: [{ pmid: "b", title: "B", citedBy: 0, why: "Newest" }] }] })).toContain("diabetes: a chosen review was screened out");
+    expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, screening: { ...outcome.screening, left: [{ ...outcome.screening.left[0]!, reason: "" }] } }] })).toContain("diabetes: a review left out has no reason");
   });
 });

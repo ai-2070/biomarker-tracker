@@ -1,0 +1,1072 @@
+{
+ "topic": "vitamin_d",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "respiratory": {
+   "question": {
+    "population": "Children or adults (any age; not people already ill with COVID-19 or in hospital)",
+    "intervention": "Vitamin D (D3, D2 or calcifediol) to prevent infection",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Acute respiratory infections (colds, flu, chest infections, pneumonia)"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42037591",
+     "fits": "partly",
+     "reason": "Randomised trials of vitamin D vs placebo to prevent ARIs, but only in pregnancy and children up to five years, a narrower group than any age."
+    },
+    {
+     "pmid": "39993397",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin D vs placebo to prevent acute respiratory infections in people of all ages."
+    },
+    {
+     "pmid": "41387808",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D vs placebo or no treatment for ARI, but only in children, and it mixes prevention with treatment."
+    },
+    {
+     "pmid": "38787821",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D to prevent ARIs, but only in older adults, a narrower group than any age."
+    },
+    {
+     "pmid": "39465641",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D for ARI prevention, but only in dark-skinned or ethnic minority people, and it also includes observational studies."
+    },
+    {
+     "pmid": "39143549",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin D supplementation to prevent acute respiratory infections in general populations."
+    },
+    {
+     "pmid": "37408991",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D vs placebo to prevent ARIs, but only in healthy children aged 0 to 18, a narrower group."
+    },
+    {
+     "pmid": "35182989",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin D with an overall analysis of respiratory infection incidence; it also covers treatment and asthma/COPD."
+    },
+    {
+     "pmid": "33798465",
+     "fits": "yes",
+     "reason": "Pooled double-blind trials of vitamin D vs placebo to prevent acute respiratory infections in people aged 0 to 95 years."
+    },
+    {
+     "pmid": "36633175",
+     "fits": "partly",
+     "reason": "Vitamin D vs placebo, but as treatment for children already in hospital with pneumonia, not prevention."
+    },
+    {
+     "pmid": "27631625",
+     "fits": "yes",
+     "reason": "Pooled trials of vitamin D3 vs placebo or no treatment to prevent respiratory infections in healthy adults and children."
+    },
+    {
+     "pmid": "35334804",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D for acute respiratory infections, but as treatment of the infection, not prevention."
+    },
+    {
+     "pmid": "35071300",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of vitamin D supplementation to prevent influenza infection."
+    },
+    {
+     "pmid": "28202713",
+     "fits": "yes",
+     "reason": "Individual participant data meta-analysis of placebo-controlled vitamin D trials to prevent ARIs in people aged 0 to 95."
+    },
+    {
+     "pmid": "30675873",
+     "fits": "yes",
+     "reason": "Individual participant data meta-analysis of placebo-controlled vitamin D trials to prevent ARIs in people of all ages."
+    },
+    {
+     "pmid": "35215468",
+     "fits": "yes",
+     "reason": "Pooled 30 randomised trials of vitamin D supplements to prevent acute respiratory infections."
+    },
+    {
+     "pmid": "33037694",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D, but as an add-on treatment for people who already have pneumonia, not prevention."
+    },
+    {
+     "pmid": "30024634",
+     "fits": "partly",
+     "reason": "Vitamin D vs control, but as treatment for children in hospital with pneumonia, not prevention."
+    },
+    {
+     "pmid": "27639938",
+     "fits": "no",
+     "reason": "Meta-analysis of observational birth cohorts linking blood vitamin D levels in pregnancy to outcomes, not supplementation trials."
+    },
+    {
+     "pmid": "32051078",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D, but as an add-on treatment for childhood pneumonia, not prevention."
+    },
+    {
+     "pmid": "27178217",
+     "fits": "no",
+     "reason": "Pools observational studies linking vitamin D levels to LRTI in children; no randomised trials of supplementation versus placebo."
+    },
+    {
+     "pmid": "23815596",
+     "fits": "yes",
+     "reason": "Pools 7 RCTs of vitamin D supplementation versus control to prevent respiratory tract infections in healthy populations."
+    },
+    {
+     "pmid": "23220552",
+     "fits": "partly",
+     "reason": "Population, intervention and outcome match, but the 14 trials are described alongside observational studies and the abstract reports no pooled estimate."
+    },
+    {
+     "pmid": "26310436",
+     "fits": "yes",
+     "reason": "Pools 7 RCTs of vitamin D versus placebo or no treatment to prevent acute respiratory infections in children."
+    },
+    {
+     "pmid": "23840373",
+     "fits": "yes",
+     "reason": "Pools 11 placebo-controlled RCTs of vitamin D to prevent respiratory tract infections."
+    }
+   ]
+  },
+  "cancer": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Vitamin D (D3, D2 or calcifediol)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New cancers or deaths from cancer"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42764013",
+     "fits": "no",
+     "reason": "This review covers diet and vitamin D in pituitary tumour patients and looks at metabolic and bone outcomes, not cancer incidence or cancer deaths."
+    },
+    {
+     "pmid": "42578384",
+     "fits": "partly",
+     "reason": "Vitamin D is given to breast cancer patients during chemotherapy to treat the illness, and some arms add synbiotics. It is not prevention in general adults."
+    },
+    {
+     "pmid": "37004841",
+     "fits": "yes",
+     "reason": "It pools placebo-controlled RCTs of vitamin D3 and reports cancer mortality in the general population."
+    },
+    {
+     "pmid": "39178988",
+     "fits": "yes",
+     "reason": "This umbrella review includes RCT meta-analyses of vitamin D3 in healthy people and reports cancer incidence and total cancer mortality."
+    },
+    {
+     "pmid": "35279360",
+     "fits": "no",
+     "reason": "The population is cancer patients and the outcome is treatment-related pain, not new cancers or cancer deaths."
+    },
+    {
+     "pmid": "40732958",
+     "fits": "partly",
+     "reason": "The outcomes are cancer incidence and mortality, but it is a narrative synthesis focused on serum 25(OH)D levels and does not clearly pool placebo-controlled RCTs."
+    },
+    {
+     "pmid": "38612957",
+     "fits": "no",
+     "reason": "This is a post hoc analysis of one trial in digestive tract cancer patients, not a systematic review of prevention in general adults."
+    },
+    {
+     "pmid": "37244755",
+     "fits": "no",
+     "reason": "The population is patients with cancer or precancerous lesions and the outcomes are inflammatory blood markers only."
+    },
+    {
+     "pmid": "29635490",
+     "fits": "yes",
+     "reason": "It pools RCTs of vitamin D alone in older adults and reports cancer incidence and cancer deaths."
+    },
+    {
+     "pmid": "35352965",
+     "fits": "yes",
+     "reason": "It pools RCTs of vitamin D versus placebo and reports total cancer incidence and total cancer mortality."
+    },
+    {
+     "pmid": "32495112",
+     "fits": "partly",
+     "reason": "It reviews vitamin D to improve survival in people who already have cancer, so it is treatment rather than prevention in general adults."
+    },
+    {
+     "pmid": "35926664",
+     "fits": "yes",
+     "reason": "It pools placebo-controlled RCTs of vitamin D and reports colorectal cancer incidence."
+    },
+    {
+     "pmid": "31038028",
+     "fits": "partly",
+     "reason": "It covers prostate cancer patients, mostly given calcitriol, and looks at PSA and survival, so it is treatment rather than prevention."
+    },
+    {
+     "pmid": "30011816",
+     "fits": "no",
+     "reason": "It meta-analyses observational links between blood 25(OH)D and survival in colorectal cancer patients, with no supplementation trials."
+    },
+    {
+     "pmid": "36014928",
+     "fits": "partly",
+     "reason": "It looks at vitamin D taken after diagnosis by cancer patients and mixes cohort studies with trials, so it is not prevention in general adults."
+    },
+    {
+     "pmid": "35807892",
+     "fits": "no",
+     "reason": "It covers vitamin D levels and bone outcomes in gastric cancer patients after gastrectomy, not new cancers or cancer deaths."
+    },
+    {
+     "pmid": "33869269",
+     "fits": "yes",
+     "reason": "It pools placebo-controlled RCTs of vitamin D in women and reports breast cancer incidence."
+    },
+    {
+     "pmid": "30522147",
+     "fits": "partly",
+     "reason": "Vitamin D is given to treat prostate cancer patients, and mortality is reported against placebo. It is not prevention in general adults."
+    },
+    {
+     "pmid": "32405914",
+     "fits": "yes",
+     "reason": "It pools RCTs and includes a separate analysis of vitamin D alone on breast cancer risk."
+    },
+    {
+     "pmid": "35676320",
+     "fits": "yes",
+     "reason": "It pools RCTs of vitamin D supplementation versus control and reports total cancer incidence and mortality."
+    },
+    {
+     "pmid": "32929196",
+     "fits": "partly",
+     "reason": "Pools vitamin D RCTs, but the outcome is survival in colorectal cancer, mostly in people who already have the cancer, not new cancers in general adults."
+    },
+    {
+     "pmid": "31696224",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D versus placebo in adults, reporting both cancer incidence and cancer mortality."
+    },
+    {
+     "pmid": "30904218",
+     "fits": "no",
+     "reason": "Pools only observational studies of vitamin D levels or intake and breast cancer, not randomised trials."
+    },
+    {
+     "pmid": "24582912",
+     "fits": "no",
+     "reason": "Pools prospective cohorts of blood vitamin D levels and survival in cancer patients, with no supplementation trials."
+    },
+    {
+     "pmid": "24953955",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin D (mostly D3 or D2) versus placebo or no treatment in adults, with cancer occurrence as an outcome."
+    },
+    {
+     "pmid": "30796437",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D supplementation, reporting total cancer incidence and total cancer mortality."
+    },
+    {
+     "pmid": "23094928",
+     "fits": "no",
+     "reason": "Reviews prospective observational studies of blood vitamin D levels and cancer mortality, not randomised trials."
+    },
+    {
+     "pmid": "22526608",
+     "fits": "no",
+     "reason": "Looks at observational links between blood vitamin D levels and type 2 diabetes, not cancer or supplementation trials."
+    },
+    {
+     "pmid": "22184690",
+     "fits": "partly",
+     "reason": "Vitamin D is given with or without calcium; cancer data come from only 3 RCTs that the abstract doesn't clearly pool, alongside observational studies."
+    },
+    {
+     "pmid": "24918818",
+     "fits": "yes",
+     "reason": "Meta-analyses vitamin D supplementation RCTs, reporting total cancer incidence and mortality."
+    },
+    {
+     "pmid": "23894438",
+     "fits": "partly",
+     "reason": "Pools vitamin D versus placebo or no-treatment RCTs, but only in postmenopausal women and only for breast cancer."
+    },
+    {
+     "pmid": "24703049",
+     "fits": "partly",
+     "reason": "Pools vitamin D RCTs for cancer, but trials of vitamin D with calcium are mixed into the estimate."
+    },
+    {
+     "pmid": "21835895",
+     "fits": "partly",
+     "reason": "Pooled RCTs give vitamin D as treatment to men with advanced prostate cancer, and the outcome is survival rather than new cancers."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults without diabetes at the start, with prediabetes or at risk of type 2 diabetes",
+    "intervention": "Vitamin D (D3, D2 or calcifediol)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "New type 2 diabetes"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "40199888",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of vitamin D3 vs placebo in adults without diabetes at the start, with new type 2 diabetes as the outcome."
+    },
+    {
+     "pmid": "41572980",
+     "fits": "no",
+     "reason": "Treats people who already have type 2 diabetes and looks at blood sugar markers, not new diabetes."
+    },
+    {
+     "pmid": "40616487",
+     "fits": "no",
+     "reason": "Network meta-analysis in adults who already have type 2 diabetes, looking at blood sugar markers rather than new diabetes."
+    },
+    {
+     "pmid": "36745886",
+     "fits": "yes",
+     "reason": "Pools randomised trials of oral vitamin D vs placebo in adults with prediabetes, with new-onset diabetes as the main outcome."
+    },
+    {
+     "pmid": "41805244",
+     "fits": "partly",
+     "reason": "Includes some people with prediabetes, but most have type 2 diabetes, outcomes are only blood sugar markers and nothing was pooled."
+    },
+    {
+     "pmid": "41280391",
+     "fits": "no",
+     "reason": "Compares high and low vitamin D doses in people who already have diabetes and looks at HbA1c and cholesterol."
+    },
+    {
+     "pmid": "40806075",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are blood sugar, insulin and inflammation markers."
+    },
+    {
+     "pmid": "37467897",
+     "fits": "no",
+     "reason": "People with type 2 diabetes or prediabetes, but outcomes are heart disease and death, not new diabetes."
+    },
+    {
+     "pmid": "37901991",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; looks at vitamin D and quitting smoking for blood sugar markers and BMI."
+    },
+    {
+     "pmid": "39290798",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are blood sugar and heart risk markers."
+    },
+    {
+     "pmid": "39355942",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are blood sugar and insulin markers."
+    },
+    {
+     "pmid": "38903615",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are blood fat levels."
+    },
+    {
+     "pmid": "37403328",
+     "fits": "no",
+     "reason": "Mostly observational studies on thinking and memory in people who already have type 2 diabetes."
+    },
+    {
+     "pmid": "36624711",
+     "fits": "no",
+     "reason": "Depression symptoms in people who already have type 2 diabetes."
+    },
+    {
+     "pmid": "36647067",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are blood sugar markers."
+    },
+    {
+     "pmid": "38613075",
+     "fits": "no",
+     "reason": "Children and people with type 1 diabetes; outcomes are insulin-cell preservation and blood sugar control."
+    },
+    {
+     "pmid": "37524765",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are insulin resistance markers, mixed with observational studies."
+    },
+    {
+     "pmid": "29868916",
+     "fits": "partly",
+     "reason": "Pools randomised trials of vitamin D3, but outcomes are only blood markers such as HbA1c and glucose, not new diabetes."
+    },
+    {
+     "pmid": "34960022",
+     "fits": "partly",
+     "reason": "Pools randomised trials of vitamin D in people with prediabetes, but outcomes are only blood sugar markers, not new diabetes."
+    },
+    {
+     "pmid": "28732572",
+     "fits": "no",
+     "reason": "People who already have type 2 diabetes; outcomes are HbA1c and fasting glucose."
+    },
+    {
+     "pmid": "36839340",
+     "fits": "partly",
+     "reason": "RCTs of vitamin D in prediabetes with diabetes development as an outcome, but the trials were summarised narratively rather than pooled."
+    },
+    {
+     "pmid": "26308752",
+     "fits": "partly",
+     "reason": "RCTs of vitamin D in prediabetes were pooled, but the outcomes are only blood markers (HOMA-IR, glucose, HbA1c), not new diabetes."
+    },
+    {
+     "pmid": "27484453",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcomes are glycaemic control markers, not new diabetes."
+    },
+    {
+     "pmid": "33487311",
+     "fits": "yes",
+     "reason": "The meta-analysis of prevention includes pooled RCTs of vitamin D on type 2 diabetes risk, alongside cross-sectional studies."
+    },
+    {
+     "pmid": "32491181",
+     "fits": "yes",
+     "reason": "RCTs of vitamin D versus placebo for at least 1 year were pooled for T2DM incidence, with a prediabetes subgroup."
+    },
+    {
+     "pmid": "33534730",
+     "fits": "yes",
+     "reason": "RCTs of vitamin D versus placebo in people with prediabetes were pooled for new-onset type 2 diabetes."
+    },
+    {
+     "pmid": "27932304",
+     "fits": "no",
+     "reason": "A narrative review of mechanisms and trials, with no systematic pooling of RCTs on new diabetes."
+    },
+    {
+     "pmid": "34959910",
+     "fits": "no",
+     "reason": "Observational studies of vitamin D levels and insulin resistance, not RCTs of supplementation for new diabetes."
+    },
+    {
+     "pmid": "30946322",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcomes are glycaemic control markers."
+    },
+    {
+     "pmid": "30154381",
+     "fits": "no",
+     "reason": "Observational studies of vitamin D levels and BMI, not supplementation trials for new diabetes."
+    },
+    {
+     "pmid": "29945132",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcomes are inflammatory biomarkers."
+    },
+    {
+     "pmid": "25062463",
+     "fits": "yes",
+     "reason": "RCTs of vitamin D3 versus placebo in adults including normal glucose tolerance and prediabetes were pooled for incident diabetes."
+    },
+    {
+     "pmid": "31038034",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcome is blood pressure."
+    },
+    {
+     "pmid": "28483335",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcomes are HbA1c and fasting glucose."
+    },
+    {
+     "pmid": "29490085",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcomes are inflammatory markers."
+    },
+    {
+     "pmid": "27020528",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcomes are blood lipids."
+    },
+    {
+     "pmid": "22526608",
+     "fits": "no",
+     "reason": "Observational cohort studies of blood vitamin D levels and diabetes risk, not supplementation trials."
+    },
+    {
+     "pmid": "21731035",
+     "fits": "partly",
+     "reason": "Includes RCTs of vitamin D supplementation, but those trials report only glycaemic markers; new diabetes comes from observational cohorts."
+    },
+    {
+     "pmid": "26902507",
+     "fits": "no",
+     "reason": "The people already have type 2 diabetes and the outcome is blood pressure."
+    },
+    {
+     "pmid": "24025505",
+     "fits": "no",
+     "reason": "Vitamin D used to treat existing type 2 diabetes, with glycaemic markers as outcomes."
+    },
+    {
+     "pmid": "22486204",
+     "fits": "partly",
+     "reason": "Placebo-controlled vitamin D RCTs, but pooled outcomes are glucose markers; new diabetes is only described from two trials, not pooled."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Vitamin D (D3, D2 or calcifediol)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42823826",
+     "fits": "yes",
+     "reason": "Reanalysed double-blind, placebo-controlled trials of vitamin D alone in older people, with death from any cause as the main outcome."
+    },
+    {
+     "pmid": "38615341",
+     "fits": "yes",
+     "reason": "Pooled trials of intermittent high-dose oral D3 in older people and reported death from any cause; only one dosing pattern was studied."
+    },
+    {
+     "pmid": "38494682",
+     "fits": "partly",
+     "reason": "Vitamin D was only given with calcium, and the group was narrower: older people with osteoporosis."
+    },
+    {
+     "pmid": "37004841",
+     "fits": "partly",
+     "reason": "Placebo-controlled D3 trials in the general population, but the main outcome was cancer death; death from any cause was reported only for cancer patients."
+    },
+    {
+     "pmid": "37467897",
+     "fits": "partly",
+     "reason": "Included vitamin D trials reporting death from any cause, but only in people with type 2 diabetes or prediabetes."
+    },
+    {
+     "pmid": "40732958",
+     "fits": "no",
+     "reason": "A narrative review of vitamin D and cancer, mostly from observational studies, with no pooled trials on death from any cause."
+    },
+    {
+     "pmid": "37111028",
+     "fits": "yes",
+     "reason": "Pooled trials of vitamin D against placebo or no treatment in adults, with death from any cause as a main outcome."
+    },
+    {
+     "pmid": "35352965",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D against placebo, but the outcome was cancer incidence and cancer death, not death from any cause."
+    },
+    {
+     "pmid": "24690623",
+     "fits": "yes",
+     "reason": "Pooled trials of vitamin D alone against placebo or no treatment in adults, giving death from any cause separately for D3 and D2."
+    },
+    {
+     "pmid": "37426183",
+     "fits": "yes",
+     "reason": "Umbrella review pooling vitamin D trials on death from any cause, with a separate result for the general-health group."
+    },
+    {
+     "pmid": "32495112",
+     "fits": "no",
+     "reason": "A narrative review of survival in cancer patients: a group defined by one illness, with the vitamin used as treatment."
+    },
+    {
+     "pmid": "24414552",
+     "fits": "yes",
+     "reason": "Cochrane review pooling trials of vitamin D against placebo or no treatment in healthy or stable adults, with death as the outcome."
+    },
+    {
+     "pmid": "35793346",
+     "fits": "no",
+     "reason": "COVID-19 patients, mostly from observational studies; a different group and question."
+    },
+    {
+     "pmid": "35676320",
+     "fits": "partly",
+     "reason": "Pooled vitamin D trials, but the outcome was cancer incidence and cancer death, not death from any cause."
+    },
+    {
+     "pmid": "32929196",
+     "fits": "no",
+     "reason": "Colorectal cancer patients and cancer-specific survival; a different group and outcome."
+    },
+    {
+     "pmid": "31405892",
+     "fits": "yes",
+     "reason": "Pooled trials of vitamin D against placebo or no treatment in adults, with death from any cause as the main outcome."
+    },
+    {
+     "pmid": "31696224",
+     "fits": "partly",
+     "reason": "Pooled trials of vitamin D against placebo, but the outcome was cancer incidence and cancer death, not death from any cause."
+    },
+    {
+     "pmid": "24349197",
+     "fits": "yes",
+     "reason": "Pooled vitamin D trials on death from any cause, with vitamin D alone and vitamin D with calcium analysed separately."
+    },
+    {
+     "pmid": "33491043",
+     "fits": "yes",
+     "reason": "Pooled reviews and trials of vitamin D (alone or combined) in community-dwelling adults, reporting death from any cause."
+    },
+    {
+     "pmid": "21735411",
+     "fits": "yes",
+     "reason": "Cochrane review pooling trials of vitamin D against placebo or no intervention in adults, with separate D3 and D2 results for death."
+    },
+    {
+     "pmid": "17846391",
+     "fits": "yes",
+     "reason": "Pools randomised trials of vitamin D2 or D3 supplements versus control in trial participants, with death from any cause as the outcome."
+    },
+    {
+     "pmid": "30796437",
+     "fits": "partly",
+     "reason": "Pools randomised trials of vitamin D supplements, but the outcomes are cancer incidence and cancer death, not death from any cause."
+    },
+    {
+     "pmid": "21636193",
+     "fits": "no",
+     "reason": "Observational studies of vitamin D blood levels in people with chronic kidney disease, not randomised trials of supplements."
+    },
+    {
+     "pmid": "23094928",
+     "fits": "no",
+     "reason": "Observational studies of vitamin D blood levels and cancer death, not randomised trials of supplements."
+    },
+    {
+     "pmid": "22343489",
+     "fits": "no",
+     "reason": "Cohort studies of vitamin D blood levels and all-cause death, not randomised trials of supplements."
+    },
+    {
+     "pmid": "23883271",
+     "fits": "no",
+     "reason": "Observational studies of vitamin D levels and all-cause death, not randomised trials of supplements."
+    },
+    {
+     "pmid": "24918818",
+     "fits": "partly",
+     "reason": "Pools randomised trials of vitamin D supplements, but the outcomes are cancer incidence and cancer death, not death from any cause."
+    },
+    {
+     "pmid": "24938302",
+     "fits": "no",
+     "reason": "Pools individual data from cohort studies of vitamin D blood levels and death, not randomised trials of supplements."
+    },
+    {
+     "pmid": "22605432",
+     "fits": "yes",
+     "reason": "Pools randomised trials in older adults with a separate vitamin D alone analysis for death from any cause, alongside vitamin D with calcium."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
+    "intervention": "Vitamin D (D3, D2 or calcifediol)",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Heart attacks, strokes, other cardiovascular events or cardiovascular death"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "42521227",
+     "fits": "partly",
+     "reason": "Adults, vitamin D versus placebo in RCTs, but the outcomes are only risk markers (lipids, blood pressure, glucose), not cardiovascular events."
+    },
+    {
+     "pmid": "41183312",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs in adults for cardiovascular events, cardiovascular death and heart attack."
+    },
+    {
+     "pmid": "36062009",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D versus placebo for stroke risk in adult trial populations."
+    },
+    {
+     "pmid": "40685646",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D versus control for MACE, heart attack, stroke and cardiovascular death in the general population."
+    },
+    {
+     "pmid": "37467897",
+     "fits": "partly",
+     "reason": "Pooled vitamin D trials for cardiovascular outcomes, but only in people with type 2 diabetes or prediabetes."
+    },
+    {
+     "pmid": "39290798",
+     "fits": "no",
+     "reason": "Limited to people with type 2 diabetes, and the outcomes are only blood sugar, lipid and blood pressure markers."
+    },
+    {
+     "pmid": "38315909",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D versus placebo for cardiovascular disease incidence and cardiovascular death."
+    },
+    {
+     "pmid": "37111028",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults of vitamin D versus placebo or no treatment for cardiovascular death, heart attack, stroke and MACE."
+    },
+    {
+     "pmid": "35956336",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D versus no supplementation for stroke, heart attack, cardiovascular events and cardiovascular death."
+    },
+    {
+     "pmid": "31519560",
+     "fits": "partly",
+     "reason": "On the right question, but a narrative update that summarises earlier meta-analyses rather than pooling trials itself."
+    },
+    {
+     "pmid": "29868916",
+     "fits": "partly",
+     "reason": "Pooled vitamin D3 RCTs, but the outcomes are only blood pressure, lipids and glucose markers."
+    },
+    {
+     "pmid": "35090975",
+     "fits": "partly",
+     "reason": "Vitamin D RCTs in postmenopausal women, but the outcome is only lipid levels, not cardiovascular events."
+    },
+    {
+     "pmid": "37166229",
+     "fits": "no",
+     "reason": "Vitamin D given to stroke survivors for functional recovery, not to prevent cardiovascular events."
+    },
+    {
+     "pmid": "31215980",
+     "fits": "yes",
+     "reason": "Pooled placebo-controlled RCTs in adults for MACE, heart attack, stroke and cardiovascular death."
+    },
+    {
+     "pmid": "32737345",
+     "fits": "no",
+     "reason": "Limited to patients with coronary artery disease, and the outcomes are mostly blood pressure, lipid and inflammation markers."
+    },
+    {
+     "pmid": "25057156",
+     "fits": "yes",
+     "reason": "Pooled RCTs in older adults of vitamin D versus placebo or control for heart attack, stroke and heart failure."
+    },
+    {
+     "pmid": "30854952",
+     "fits": "no",
+     "reason": "Limited to patients with cardiovascular disease, and the outcomes are only glucose, lipid and CRP markers."
+    },
+    {
+     "pmid": "33491043",
+     "fits": "yes",
+     "reason": "Pooled vitamin D (alone or with calcium) in community-dwelling adults for cardiovascular death, heart attack and MACE."
+    },
+    {
+     "pmid": "21418036",
+     "fits": "no",
+     "reason": "A non-pooled review mainly about lipids, calcification and observational data, not trials of cardiovascular events."
+    },
+    {
+     "pmid": "20194238",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults of vitamin D versus placebo for cardiovascular disease events."
+    },
+    {
+     "pmid": "21505219",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials with cardiovascular outcomes in community-dwelling women, but vitamin D is only given together with calcium, never alone."
+    }
+   ]
+  },
+  "fractures-falls": {
+   "question": {
+    "population": "Adults living at home or in care homes, mostly older adults (not a group defined by one illness)",
+    "intervention": "Vitamin D (D3, D2 or calcifediol) on its own; a review that also analyses vitamin D without calcium separately counts",
+    "comparison": "Placebo or no treatment",
+    "outcome": "Fractures or falls"
+   },
+   "at": "2026-10-29",
+   "decisions": [
+    {
+     "pmid": "41063100",
+     "fits": "partly",
+     "reason": "Vitamin D is only given with calcium, and the population is narrowed to postmenopausal women with osteoporosis."
+    },
+    {
+     "pmid": "42161415",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D alone vs placebo or no treatment in adults, mostly community dwelling, for fractures and falls."
+    },
+    {
+     "pmid": "38615341",
+     "fits": "yes",
+     "reason": "Pools RCTs of intermittent high-dose oral vitamin D3 in elderly people, reporting falls and fractures."
+    },
+    {
+     "pmid": "38698349",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs comparing vitamin D alone with placebo or no treatment for falls in older adults."
+    },
+    {
+     "pmid": "38494682",
+     "fits": "partly",
+     "reason": "Vitamin D is only given with calcium, in older people with osteoporosis."
+    },
+    {
+     "pmid": "37544189",
+     "fits": "partly",
+     "reason": "Narrower group (postmenopausal women without osteoporosis), mostly bone-marker outcomes, and no pooled analysis is reported."
+    },
+    {
+     "pmid": "35842938",
+     "fits": "partly",
+     "reason": "Vitamin D3 is only given with calcium; the population (over 65) and the outcome (hip fracture) match."
+    },
+    {
+     "pmid": "37120684",
+     "fits": "yes",
+     "reason": "Pools RCTs of intermittent or single high-dose vitamin D in adults for falls and fractures."
+    },
+    {
+     "pmid": "37602580",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D alone, calcium alone or both vs placebo or no treatment in people over 60, for fractures."
+    },
+    {
+     "pmid": "38997531",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D vs placebo in healthy people aged 60 or over, for fractures and falls."
+    },
+    {
+     "pmid": "38362274",
+     "fits": "partly",
+     "reason": "The intervention is active vitamin D analogues (calcitriol, alfacalcidol, eldecalcitol), not D3, D2 or calcifediol; the outcome is falls."
+    },
+    {
+     "pmid": "35504603",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D supplementation by dose and dosing interval for fractures and falls."
+    },
+    {
+     "pmid": "34656949",
+     "fits": "yes",
+     "reason": "Separately pools RCTs of vitamin D alone vs placebo or no treatment for falls in older adults."
+    },
+    {
+     "pmid": "32846760",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D, with a subgroup analysis without calcium, for falls and fractures in mostly older women."
+    },
+    {
+     "pmid": "28718008",
+     "fits": "yes",
+     "reason": "Pools double-blind RCTs in elderly people and analyses vitamin D2 or D3 alone separately, for falls."
+    },
+    {
+     "pmid": "36034418",
+     "fits": "partly",
+     "reason": "Pools vitamin D with or without calcium vs placebo for falls in adults over 50; the abstract shows no separate vitamin D-only analysis."
+    },
+    {
+     "pmid": "37654099",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D supplementation in older adults for falls and fractures."
+    },
+    {
+     "pmid": "31860103",
+     "fits": "yes",
+     "reason": "Separately pools RCTs of vitamin D alone vs control for any fracture and hip fracture."
+    },
+    {
+     "pmid": "33043722",
+     "fits": "yes",
+     "reason": "Pairwise and network meta-analysis of RCTs of oral vitamin D, alone or with calcium, for osteoporotic fractures."
+    },
+    {
+     "pmid": "29279934",
+     "fits": "yes",
+     "reason": "Pools RCTs of vitamin D alone vs placebo or no treatment in community-dwelling adults over 50, for fractures."
+    },
+    {
+     "pmid": "20540727",
+     "fits": "yes",
+     "reason": "Pooled RCTs of cholecalciferol or ergocalciferol versus placebo or control, with hip fracture as the outcome."
+    },
+    {
+     "pmid": "19797342",
+     "fits": "partly",
+     "reason": "Pooled RCTs on falls in older people, but vitamin D was given with or without calcium and no separate vitamin D-only analysis is reported."
+    },
+    {
+     "pmid": "34687206",
+     "fits": "partly",
+     "reason": "Covers vitamin D alone versus placebo for fractures, but it is an umbrella review of meta-analyses, not a pooling of trials."
+    },
+    {
+     "pmid": "31619412",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs comparing vitamin D, calcium or both with placebo for fractures in community-dwelling older adults."
+    },
+    {
+     "pmid": "15886381",
+     "fits": "partly",
+     "reason": "Fracture RCTs in older people, but vitamin D was given with or without calcium against calcium or placebo, with no separate vitamin D-only analysis."
+    },
+    {
+     "pmid": "30049963",
+     "fits": "no",
+     "reason": "Describes design features of vitamin D falls trials and does not pool their effects."
+    },
+    {
+     "pmid": "20302551",
+     "fits": "partly",
+     "reason": "Vitamin D3 versus placebo for fractures, but limited to postmenopausal or elderly women."
+    },
+    {
+     "pmid": "26429406",
+     "fits": "no",
+     "reason": "Patients with acute fractures; outcomes are serum 25(OH)D and fracture healing, not fracture prevention."
+    },
+    {
+     "pmid": "29677308",
+     "fits": "yes",
+     "reason": "Analyses vitamin D alone versus placebo separately for fractures in community-dwelling adults aged 50 and over."
+    },
+    {
+     "pmid": "22762317",
+     "fits": "partly",
+     "reason": "Pooled trial data for fractures in people 65 and over, but vitamin D was given with or without calcium against placebo or calcium."
+    },
+    {
+     "pmid": "24729336",
+     "fits": "yes",
+     "reason": "Cochrane review with a separate pooled analysis of vitamin D alone versus placebo for fractures in older men and women."
+    },
+    {
+     "pmid": "24768505",
+     "fits": "yes",
+     "reason": "Pooled RCTs on falls, with a separate subgroup for vitamin D supplementation without calcium."
+    },
+    {
+     "pmid": "15113819",
+     "fits": "partly",
+     "reason": "Falls RCTs in older people, but active vitamin D forms are pooled in and the comparator is calcium or placebo."
+    },
+    {
+     "pmid": "25964289",
+     "fits": "no",
+     "reason": "Narrative review of vitamin D and fracture healing in the foot and ankle, plus a proposed study design."
+    },
+    {
+     "pmid": "22184690",
+     "fits": "partly",
+     "reason": "Fracture RCTs in older adults, but the reported pooled fracture result is for vitamin D combined with calcium."
+    },
+    {
+     "pmid": "20579169",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D versus calcium or placebo for falls in adults aged 60 and over."
+    },
+    {
+     "pmid": "19307517",
+     "fits": "partly",
+     "reason": "Fracture RCTs in people 65 and over, but vitamin D was given with or without calcium against calcium or placebo."
+    },
+    {
+     "pmid": "26510847",
+     "fits": "partly",
+     "reason": "Fracture RCTs, but the intervention is calcium plus vitamin D only."
+    },
+    {
+     "pmid": "19370554",
+     "fits": "yes",
+     "reason": "Cochrane review that pools vitamin D alone versus placebo for hip and any fracture in older people."
+    },
+    {
+     "pmid": "25551377",
+     "fits": "no",
+     "reason": "Methods study of why overlapping meta-analyses on vitamin D and fracture disagree; it does not pool trials."
+    },
+    {
+     "pmid": "21795448",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D on falls in mostly elderly people, with a separate analysis of trials without calcium coadministration."
+    },
+    {
+     "pmid": "16034849",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D alone vs placebo or no treatment on hip, vertebral and any fractures in older people."
+    },
+    {
+     "pmid": "18239843",
+     "fits": "yes",
+     "reason": "Pooled RCTs of native vitamin D vs placebo on falls, analysed separately from analogs; the abstract does not describe the population."
+    },
+    {
+     "pmid": "17349055",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D on fractures in institutionalised and general older populations, with a subgroup by concurrent calcium use."
+    },
+    {
+     "pmid": "21060990",
+     "fits": "partly",
+     "reason": "Trials gave calcium with or without vitamin D, so no vitamin D-only arm, and the focus is how BMD change relates to fracture risk."
+    },
+    {
+     "pmid": "11279685",
+     "fits": "yes",
+     "reason": "Analysed vitamin D3 alone without calcium vs control on hip and non-vertebral fractures in elderly people with involutional osteoporosis."
+    },
+    {
+     "pmid": "17264183",
+     "fits": "yes",
+     "reason": "Pooled 4 RCTs of oral vitamin D alone vs placebo or no treatment on hip fracture in older men and postmenopausal women."
+    },
+    {
+     "pmid": "15692726",
+     "fits": "partly",
+     "reason": "Native vitamin D vs placebo on fractures, but the population is people with primary or corticosteroid-induced osteoporosis."
+    },
+    {
+     "pmid": "17720017",
+     "fits": "partly",
+     "reason": "Fractures in people aged 50+, but vitamin D was only given together with calcium; there is no vitamin D-alone analysis."
+    },
+    {
+     "pmid": "10796331",
+     "fits": "partly",
+     "reason": "Only one trial of vitamin D alone, so no pooled vitamin D-only analysis; the population is elderly people with osteoporosis."
+    },
+    {
+     "pmid": "12919233",
+     "fits": "yes",
+     "reason": "Pooled RCTs of vitamin D vs control on falls in older people (RR 0.99), with combined calcium trials discussed separately."
+    }
+   ]
+  }
+ }
+}

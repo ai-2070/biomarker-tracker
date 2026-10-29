@@ -158,7 +158,11 @@ export function trialsPooled(abstract: string): number | undefined {
  * Citations are shown but don't choose: older reviews collect more of them whatever their quality.
  */
 export function chooseReviews(records: readonly Classified[], outcome: string, newest = 3, topicInTitle?: RegExp, excludeTitle?: RegExp): Chosen[] {
-  const pool = eligibleReviews(records, outcome, topicInTitle, excludeTitle);
+  return chooseFrom(eligibleReviews(records, outcome, topicInTitle, excludeTitle), newest);
+}
+
+/** The same choice from a given pool (for example only the reviews screened as answering the question). */
+export function chooseFrom(pool: readonly Classified[], newest = 3): Chosen[] {
   const byNew = (a: Classified, b: Classified) => (b.year ?? 0) - (a.year ?? 0) || b.citedBy - a.citedBy;
   const metas = pool.filter((r) => r.design === "meta-analysis").sort(byNew);
   const others = pool.filter((r) => r.design !== "meta-analysis").sort(byNew);
@@ -239,6 +243,15 @@ export interface EvidenceMapOutcome {
   timeline: { year: number; reviews: number; trials: number }[];
   largeTrials: { pmid?: string; title: string; year: number; n: number }[];
   page: { alsoChosen: string[]; citedNotChosen: string[]; citedNotEligible: string[]; chosenNotCited: Chosen[] };
+  /** When the eligible reviews were screened against the finding's question. */
+  screening?: {
+    question: Question;
+    by: string;
+    at: string;
+    counts: { yes: number; partly: number; no: number; unscreened: number };
+    /** Reviews that don't fit (or only partly), with the reason, newest first. */
+    left: { pmid: string; title: string; year?: number; fits: "partly" | "no"; reason: string }[];
+  };
 }
 
 export interface EvidenceMapFile {
@@ -272,6 +285,101 @@ export function validateEvidenceMap(v: unknown): string[] {
         if (!c.pmid && !c.doi) e.push(`${o.id}: a chosen study has no PMID or DOI`);
       }
       if (o.overlap && !(o.overlap.cca >= 0 && o.overlap.cca <= 1)) e.push(`${o.id}: overlap must be between 0 and 1`);
+      if (o.screening) {
+        const sc = o.screening;
+        if (!sc.question?.population || !sc.question.intervention || !sc.question.comparison || !sc.question.outcome) e.push(`${o.id}: the screening question is incomplete`);
+        if (!sc.by) e.push(`${o.id}: who screened is missing`);
+        if (sc.left.length !== sc.counts.partly + sc.counts.no) e.push(`${o.id}: every review left out must be listed`);
+        if (sc.left.some((r) => !r.reason)) e.push(`${o.id}: a review left out has no reason`);
+        // Only reviews that answer the question can be chosen.
+        const left = new Set(sc.left.map((r) => r.pmid));
+        if (o.chosenReviews.some((c) => c.pmid && left.has(c.pmid))) e.push(`${o.id}: a chosen review was screened out`);
+      }
     }
   return [...new Set(e)];
+}
+
+// ---- Screening: does a review answer the finding's question? ------------------------------------
+// Rules can't judge this from title words (a review of blood-sugar control in people who have diabetes
+// isn't about preventing it), so a model reads each eligible review's title and abstract against the
+// question, and every decision is kept with its reason for people to check.
+
+/** The question a finding answers, in plain words (who, what was given, compared with what, what was measured). */
+export interface Question {
+  population: string;
+  intervention: string;
+  comparison: string;
+  outcome: string;
+}
+
+export type Fit = "yes" | "partly" | "no";
+export interface Decision {
+  pmid: string;
+  fits: Fit;
+  /** One plain sentence: which part matches or differs. */
+  reason: string;
+}
+
+export const questionText = (q: Question) =>
+  `Population: ${q.population}\nIntervention: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
+
+/** The prompt for one batch of reviews. Abstracts are shortened; the model judges only what it is given. */
+export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], maxAbstract = 2500): string {
+  const list = reviews
+    .filter((r) => r.pmid)
+    .map((r) => `PMID ${r.pmid} (${r.year ?? "year unknown"})\nTitle: ${r.title}\nAbstract: ${r.abstract.slice(0, maxAbstract) || "(none)"}`)
+    .join("\n\n---\n\n");
+  return [
+    "You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:",
+    "",
+    questionText(q),
+    "",
+    'fits = "yes": the review pooled randomised trials matching the population, intervention, comparison and outcome (a separate analysis or subgroup that matches counts).',
+    'fits = "partly": close, but one part differs (for example the vitamin is only given together with something else, a narrower or different group of people, treating an illness instead of preventing it, or the outcome is only a blood marker).',
+    'fits = "no": a different question.',
+    "Judge only from the title and abstract given. Don't judge whether the supplement works, and don't use outside knowledge about the paper.",
+    "",
+    'Answer with JSON only, no other text: [{"pmid": "...", "fits": "yes" | "partly" | "no", "reason": "one plain sentence, under 200 characters, saying which part matches or differs"}], one entry per review, in the same order.',
+    "",
+    "Reviews:",
+    "",
+    list,
+  ].join("\n");
+}
+
+/** The model's answer, checked: only the PMIDs asked about, a known `fits`, a short reason. Anything else is dropped (left unscreened). */
+export function parseScreening(text: string, asked: readonly string[]): Decision[] {
+  const start = text.indexOf("[");
+  const end = text.lastIndexOf("]");
+  if (start < 0 || end <= start) return [];
+  let raw: unknown;
+  try {
+    raw = JSON.parse(text.slice(start, end + 1));
+  } catch {
+    return [];
+  }
+  if (!Array.isArray(raw)) return [];
+  const want = new Set(asked);
+  const out = new Map<string, Decision>();
+  for (const d of raw) {
+    if (typeof d !== "object" || d === null) continue;
+    const { pmid, fits, reason } = d as Record<string, unknown>;
+    const id = typeof pmid === "number" ? String(pmid) : pmid;
+    if (typeof id !== "string" || !want.has(id) || out.has(id)) continue;
+    if (fits !== "yes" && fits !== "partly" && fits !== "no") continue;
+    if (typeof reason !== "string" || !reason.trim()) continue;
+    out.set(id, { pmid: id, fits, reason: reason.trim().slice(0, 300) });
+  }
+  return [...out.values()];
+}
+
+/** Eligible reviews split by the screening decisions. Reviews without a decision are `unscreened`, never counted as fitting. */
+export function splitByScreening<T extends Pick<Classified, "pmid">>(eligible: readonly T[], decisions: readonly Decision[]) {
+  const by = new Map(decisions.map((d) => [d.pmid, d]));
+  const out = { yes: [] as T[], partly: [] as T[], no: [] as T[], unscreened: [] as T[] };
+  for (const r of eligible) {
+    const d = r.pmid ? by.get(r.pmid) : undefined;
+    out[d ? d.fits : "unscreened"].push(r);
+  }
+  return out;
 }
