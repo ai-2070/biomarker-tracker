@@ -11,7 +11,7 @@ import { EGG_ODDS } from "../../easterEggs";
 import { formatDate } from "../../format";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
-import { Card } from "../ui";
+import { Card, cx } from "../ui";
 import { SimpleSelect } from "../UnitSelect";
 
 const LIU_2018: Citation = {
@@ -112,7 +112,7 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
     <Card className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
         <p className={label}>Expiration date</p>
-        <p className="font-serif text-3xl leading-tight tabular-nums sm:text-5xl">{exact.format(new Date(egg ?? head.medianAt))}</p>
+        <p className={cx("font-serif text-3xl leading-tight tabular-nums sm:text-5xl", egg !== undefined && "text-danger")}>{exact.format(new Date(egg ?? head.medianAt))}</p>
         {egg !== undefined && (
           <Popover.Root>
             <Popover.Trigger openOnHover delay={150} className="cursor-help self-start font-medium underline decoration-dotted underline-offset-4">
