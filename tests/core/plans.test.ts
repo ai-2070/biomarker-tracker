@@ -55,6 +55,17 @@ describe("protocols", () => {
     expect(pairWarnings({ ...plan, items: [plan.items[0]!, plan.items[3]!] }, nutrients)).toEqual([]);
   });
 
+  it("keeps a link to one of the person's meals, but not in a shared file", () => {
+    const withMeal = { ...plan, items: [...plan.items, { id: "m", label: "Lentil soup", category: "diet" as const, when: "midday" as const, mealId: "meal-1" }] };
+    expect(validatePlan(withMeal)).toEqual([]);
+    expect(validatePlan({ ...withMeal, items: [{ ...withMeal.items.at(-1)!, mealId: 5 }] })).not.toEqual([]);
+    const file = planToFile(withMeal);
+    expect(file).toContain("Lentil soup");
+    expect(file).not.toContain("meal-1");
+    const r = planFromFile(file.replace('"Lentil soup"', '"Lentil soup", "mealId": "someone-else"'), id, "2026-10-30T00:00:00.000Z");
+    expect(r.ok && r.plan.items.some((i) => "mealId" in i)).toBe(false);
+  });
+
   it("shares as a file without ids or habits, and loads back with new ids", () => {
     const file = planToFile({ ...plan, active: { since: "2026-10-01", habitIds: ["h1"] } });
     expect(file).not.toMatch(/"id"|habitIds|createdAt/);

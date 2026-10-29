@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "../../core/dates";
 import { findingCounts, interactionsFor } from "../../core/nutrients";
-import { dailyReference } from "../../core/meals";
+import { dailyReference, mealNote } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { formatValue } from "../../core/units";
 import { PLAN_TIMES, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "../../core/plans";
@@ -15,7 +15,7 @@ import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate } from "../format";
-import { usePlans, useProfile, useProtocols } from "../hooks";
+import { useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { NUTRIENTS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
@@ -71,7 +71,9 @@ export function PlanPage({ id }: { id: string }) {
         </div>
       )}
 
-      <div className="flex flex-col gap-5">
+      {/* Wide screens: the day on the left; start, checks and sharing beside it. Phones: one column in this order. */}
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem] lg:grid-rows-[auto_1fr] lg:gap-x-8">
+        <div className="flex flex-col gap-5 lg:col-start-2 lg:row-start-1">
         <StartStop plan={plan} />
 
         {(notes.length > 0 || withYou.length > 0 || pairs.length > 0) && (
@@ -100,8 +102,9 @@ export function PlanPage({ id }: { id: string }) {
             )}
           </Card>
         )}
+        </div>
 
-        <Card className="flex flex-col gap-4">
+        <Card className="flex flex-col gap-4 self-start lg:col-start-1 lg:row-span-2 lg:row-start-1">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="font-serif text-2xl font-normal">The day</h2>
             {editing !== "new" && (
@@ -153,12 +156,14 @@ export function PlanPage({ id }: { id: string }) {
           )}
         </Card>
 
+        <div className="flex flex-col gap-5 lg:col-start-2 lg:row-start-2">
         <Share plan={plan} />
 
         <p className="text-sm text-ink-2">
           Amounts are your own; the app never suggests what or how much to take. EU intakes and upper limits (EFSA) describe groups of healthy
           adults from all food, not a dose for you. Talk to your doctor or pharmacist before starting supplements, especially with medicines.
         </p>
+        </div>
       </div>
     </>
   );
@@ -168,7 +173,9 @@ const num = (v: number) => formatValue(v);
 
 function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   const profile = useProfile();
-  const n = nutrientFor(item, NUTRIENTS);
+  const meals = useMeals();
+  const meal = item.mealId ? meals?.find((m) => m.id === item.mealId) : undefined;
+  const n = meal ? undefined : nutrientFor(item, NUTRIENTS);
   const counts = n ? findingCounts(n) : undefined;
   // The day's EU reference values for this nutrient, next to the person's own amount.
   const ref = n ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined }) : undefined;
@@ -206,6 +213,11 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
             )}
           </p>
         )}
+        {meal && (
+          <a href={href({ name: "meal", id: meal.id })} className="mt-1 inline-block text-sm text-ink underline underline-offset-2">
+            Open the meal
+          </a>
+        )}
       </div>
       <Button variant="quiet" className="min-h-10 text-sm" onClick={onEdit} aria-label={`Edit ${item.label}`}>
         Edit
@@ -220,7 +232,21 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
   const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? "supplement");
   const [when, setWhen] = useState<PlanTime>(initial?.when ?? "morning");
   const [note, setNote] = useState(initial?.note ?? "");
+  const [mealId, setMealId] = useState(initial?.mealId ?? "");
   const [error, setError] = useState<string>();
+  const meals = useMeals() ?? [];
+
+  // Picking one of your meals fills the item in as that meal (a diet item at a meal time).
+  function pickMeal(id: string) {
+    setMealId(id);
+    const meal = meals.find((m) => m.id === id);
+    if (!meal) return;
+    setLabel(meal.name.slice(0, 80));
+    setCategory("diet");
+    setNote(mealNote(meal));
+    if (when !== "midday" && when !== "evening" && when !== "with meals") setWhen("midday");
+    setError(undefined);
+  }
 
   function submit(e: FormEvent) {
     e.preventDefault();
@@ -232,11 +258,26 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
       category,
       when,
       ...(note.trim() ? { note: note.trim() } : {}),
+      ...(mealId && meals.some((m) => m.id === mealId) ? { mealId } : {}),
     });
   }
 
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-4 rounded-lg bg-sunken p-3">
+      {meals.length > 0 && (
+        <label className="flex flex-col gap-1.5">
+          <span className={labelStyles}>One of your meals (optional)</span>
+          <select value={mealId} onChange={(e) => pickMeal(e.target.value)} className={cx(inputStyles, "sm:max-w-md")}>
+            <option value="">Not a meal</option>
+            {meals.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+          <span className={helpStyles}>Fills in the item from a meal you built in Meals.</span>
+        </label>
+      )}
       <div className="grid gap-4 sm:grid-cols-[2fr_1fr]">
         <Field.Root invalid={!!error} className="flex flex-col gap-1.5">
           <Field.Label className={labelStyles}>Item</Field.Label>

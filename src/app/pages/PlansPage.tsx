@@ -79,7 +79,7 @@ export function PlansPage() {
           </Card>
         )
       ) : (
-        <ul className="stagger grid gap-3 sm:grid-cols-2">
+        <ul className="stagger grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {plans.map((p) => (
             <li key={p.id}>
               <PlanCard p={p} />

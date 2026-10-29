@@ -1,5 +1,6 @@
 import type { Meal } from "../core/meals";
 import type { Plan } from "../core/plans";
+import { useSyncExternalStore } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, getProfile, measurementsFor } from "../db/db";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
@@ -55,4 +56,17 @@ export function usePlans(): Plan[] | undefined {
 /** The person's meals, newest first. */
 export function useMeals(): Meal[] | undefined {
   return useLiveQuery(async () => (await db.meals.toArray()).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), []);
+}
+
+/** Whether a CSS media query matches, updating when it changes (e.g. the window is resized). */
+export function useMediaQuery(query: string): boolean {
+  return useSyncExternalStore(
+    (onChange) => {
+      const m = window.matchMedia(query);
+      m.addEventListener("change", onChange);
+      return () => m.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia(query).matches,
+    () => false,
+  );
 }

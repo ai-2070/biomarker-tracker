@@ -35,7 +35,7 @@ export function PageTitle({ children, sub }: { children: ReactNode; sub?: ReactN
   return (
     <div className="mb-5">
       <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{children}</h1>
-      {sub && <p className="mt-1 text-ink-2">{sub}</p>}
+      {sub && <p className="mt-1 max-w-3xl text-ink-2">{sub}</p>}
     </div>
   );
 }

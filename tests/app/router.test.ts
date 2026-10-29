@@ -25,7 +25,8 @@ describe("router", () => {
   });
   it("opens Body from its old Soon address", () => {
     expect(parseHash("#/soon/body")).toEqual({ name: "body" });
-    expect(parseHash("#/body?add=1")).toEqual({ name: "body", add: true });
+    expect(parseHash("#/body?add=1")).toEqual({ name: "add", kind: "body" });
+    expect(parseHash("#/add?type=body")).toEqual({ name: "add", kind: "body" });
   });
   it("opens Supplementation and a nutrient", () => {
     expect(parseHash("#/supplements")).toEqual({ name: "supplements" });
@@ -59,7 +60,7 @@ describe("router", () => {
       { name: "soon", section: "devices" },
       { name: "blood" },
       { name: "body" },
-      { name: "body", add: true },
+      { name: "add", kind: "body" },
       { name: "device-import" },
       { name: "data", tab: "about" },
       { name: "setup" },

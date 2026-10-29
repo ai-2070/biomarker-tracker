@@ -35,7 +35,7 @@ export function FoodComparison() {
       <div>
         <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Whole foods</p>
         <h2 className="font-serif text-2xl font-normal">Animal foods, fruit and plants: what research says</h2>
-        <p className="mt-1 text-ink-2">
+        <p className="mt-1 max-w-3xl text-ink-2">
           Claims people make about animal and plant foods, one by one, with what the studies show, how strong that evidence is, and the other
           side where there is one. No diet is recommended here.
         </p>
@@ -56,11 +56,13 @@ export function FoodComparison() {
         ))}
       </div>
 
-      <div role="tabpanel" className="flex flex-col gap-3">
-        <div>
+      {/* Wide screens: the claim cards at a readable width, the at-a-glance table beside them. */}
+      <div role="tabpanel" className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-x-8">
+        <div className="lg:col-span-2">
           <h3 className="font-serif text-xl font-normal">{current.title}</h3>
-          <p className="text-ink-2">{current.intro}</p>
+          <p className="max-w-3xl text-ink-2">{current.intro}</p>
         </div>
+        <div className="lg:sticky lg:top-6 lg:col-start-2 lg:row-start-2 lg:self-start">
         <Glance
           caption={current.title}
           rows={current.claims.map((c) => ({
@@ -70,7 +72,8 @@ export function FoodComparison() {
             grade: c.grade,
           }))}
         />
-        <ul className="flex flex-col gap-3">
+        </div>
+        <ul className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2">
           {current.claims.map((c) => (
             <li key={c.id}>
               <Claim c={c} />

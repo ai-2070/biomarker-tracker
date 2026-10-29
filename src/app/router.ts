@@ -15,12 +15,12 @@ export type Route =
   /** The blood tests dashboard. */
   | { name: "blood" }
   /** Body measurements; `add` opens the entry form. */
-  | { name: "body"; add?: boolean }
+  | { name: "body" }
   /** Reading export files from watches, rings and phone apps. */
   | { name: "device-import" }
   | { name: "overview"; show?: ResultsFilter }
   | { name: "soon"; section: SoonSection }
-  | { name: "add"; marker?: string }
+  | { name: "add"; marker?: string; kind?: "body" }
   | { name: "marker"; id: string }
   | { name: "data"; tab?: SettingsTab }
   | { name: "assistant"; ask?: string }
@@ -52,9 +52,10 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "soon" && parts[1] === "devices" && parts.length === 2) return { name: "soon", section: "devices" };
   if (parts[0] === "blood" && parts.length === 1) return { name: "blood" };
   if (parts[0] === "body" && parts[1] === "import" && parts.length === 2) return { name: "device-import" };
-  if ((parts[0] === "body" && parts.length === 1) || (parts[0] === "soon" && parts[1] === "body" && parts.length === 2)) return params.has("add") ? { name: "body", add: true } : { name: "body" };
+  if ((parts[0] === "body" && parts.length === 1) || (parts[0] === "soon" && parts[1] === "body" && parts.length === 2)) return params.has("add") ? { name: "add", kind: "body" } : { name: "body" };
   if (parts[0] === "add" && parts.length === 1) {
     const marker = params.get("marker");
+    if (params.get("type") === "body") return { name: "add", kind: "body" };
     return marker ? { name: "add", marker } : { name: "add" };
   }
   if (parts[0] === "marker" && parts[1] && parts.length === 2) return { name: "marker", id: parts[1] };
@@ -109,11 +110,11 @@ export function href(route: Route): string {
     case "blood":
       return "#/blood";
     case "body":
-      return route.add ? "#/body?add=1" : "#/body";
+      return "#/body";
     case "device-import":
       return "#/body/import";
     case "add":
-      return route.marker ? `#/add?marker=${encodeURIComponent(route.marker)}` : "#/add";
+      return route.kind === "body" ? "#/add?type=body" : route.marker ? `#/add?marker=${encodeURIComponent(route.marker)}` : "#/add";
     case "marker":
       return `#/marker/${encodeURIComponent(route.id)}`;
     case "data":
