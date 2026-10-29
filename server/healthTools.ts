@@ -20,7 +20,7 @@ import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
 import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "../src/core/plans";
 import { dailyReference, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
-import { findMarker, findNutrient, foods, knowledge } from "./knowledge";
+import { findLifestyle, findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 import { phenoAgePace } from "../src/core/agePace";
 import { bestBeforeMoments, bestBeforeWithShift, phenoAgeShift, tableFor } from "../src/core/lifeTable";
@@ -445,6 +445,23 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
           ...(n.foodFindings ? { foodFindings: n.foodFindings.map(finding) } : {}),
           sources: n.sources.map(cite),
           safetyNotesFromLog: safetyOf(s).filter((id) => n.interactions.some((x) => x.safetyId === id)),
+        };
+      },
+    }),
+    get_lifestyle: tool({
+      description:
+        "The app's research-based entry for a lifestyle habit (walking and steps, sleep, sauna, cold water, red light therapy…): how it's thought to work, what the studies had people do, graded findings with study IDs, the numbers behind the page's charts, who should be careful, and what isn't known. Use it for any question about one of these. Never turn what studies did into a plan or amount for this person.",
+      inputSchema: z.object({ topic: z.string().describe("Name or id, e.g. sauna, walking, cold shower, red light") }),
+      execute: async ({ topic }) => {
+        const l = findLifestyle(topic);
+        if (!l) return { error: `No entry for "${topic}". Entries: ${knowledge().lifestyle.map((x) => x.name).join(", ")}.` };
+        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType });
+        return {
+          ...l,
+          findings: l.findings.map((f) => ({ outcome: f.outcome, studiedIn: f.population, effect: f.effect, grade: f.grade, whyThisGrade: f.whyThisGrade, summary: f.summary, studies: f.studies.map(cite) })),
+          visuals: l.visuals.map((v) => ({ ...v, sources: v.sources.map(cite) })),
+          sources: l.sources.map(cite),
+          safetyNotesFromLog: safetyOf(s).filter((id) => l.whoShouldBeCareful.some((x) => x.safetyId === id)),
         };
       },
     }),

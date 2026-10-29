@@ -27,7 +27,9 @@ export type Route =
   | { name: "phenoage" }
   | { name: "import" }
   /** Supplements, food, medicines and routines. `add` opens the form (with this name); `marker` is pre-ticked to watch. */
-  | { name: "habits"; add?: string; marker?: string; meal?: string }
+  | { name: "habits"; add?: string; marker?: string; meal?: string; type?: "supplement" | "diet" | "medication" | "lifestyle" }
+  | { name: "lifestyle" }
+  | { name: "lifestyle-item"; id: string }
   | { name: "experiment"; id: string }
   | { name: "supplements"; kind?: "vitamin" | "mineral" | "supplement" }
   | { name: "nutrient"; id: string }
@@ -80,13 +82,17 @@ export function parseHash(hash: string): Route {
     const add = params.get("add");
     const marker = params.get("marker");
     const meal = params.get("meal");
-    return { name: "habits", ...(add !== null ? { add } : {}), ...(marker ? { marker } : {}), ...(meal ? { meal } : {}) };
+    const type = params.get("type");
+    const known = type === "supplement" || type === "diet" || type === "medication" || type === "lifestyle" ? type : undefined;
+    return { name: "habits", ...(add !== null ? { add } : {}), ...(marker ? { marker } : {}), ...(meal ? { meal } : {}), ...(known ? { type: known } : {}) };
   }
   if (parts[0] === "experiments" && parts[1] === "new" && parts.length === 2) {
     const marker = params.get("marker");
     return { name: "habits", add: params.get("change") ?? "", ...(marker ? { marker } : {}) };
   }
   if (parts[0] === "experiment" && parts[1] && parts.length === 2) return { name: "experiment", id: parts[1] };
+  if (parts[0] === "lifestyle" && parts.length === 1) return { name: "lifestyle" };
+  if (parts[0] === "lifestyle" && parts[1] && parts.length === 2) return { name: "lifestyle-item", id: parts[1] };
   if (parts[0] === "supplements" && parts.length === 1) {
     const kind = params.get("kind");
     return kind === "vitamin" || kind === "mineral" || kind === "supplement" ? { name: "supplements", kind } : { name: "supplements" };
@@ -139,6 +145,7 @@ export function href(route: Route): string {
       if (route.add !== undefined) q.set("add", route.add);
       if (route.marker) q.set("marker", route.marker);
       if (route.meal) q.set("meal", route.meal);
+      if (route.type) q.set("type", route.type);
       const qs = q.toString();
       return qs ? `#/habits?${qs}` : "#/habits";
     }
@@ -148,6 +155,10 @@ export function href(route: Route): string {
       return route.kind ? `#/supplements?kind=${route.kind}` : "#/supplements";
     case "nutrient":
       return `#/supplements/${encodeURIComponent(route.id)}`;
+    case "lifestyle":
+      return "#/lifestyle";
+    case "lifestyle-item":
+      return `#/lifestyle/${encodeURIComponent(route.id)}`;
     case "plans":
       return "#/protocols";
     case "plan":

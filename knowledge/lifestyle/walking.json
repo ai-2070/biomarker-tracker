@@ -1,0 +1,493 @@
+{
+  "id": "walking",
+  "name": "Walking",
+  "category": "movement",
+  "otherNames": [
+    "Daily steps",
+    "Brisk walking",
+    "Walking pace",
+    "Walking groups",
+    "Step count"
+  ],
+  "summary": "Walking needs no equipment, and most people can do it. In large studies, adults who took more steps a day died less often and had less heart disease, type 2 diabetes, dementia and depression, with most of the difference reached by around 5,000 to 7,000 steps a day. In trials, inactive adults who started walking became fitter and their blood pressure fell a little.",
+  "howItWorks": [
+    "Walking works the large leg muscles and raises the heart rate. In trials of inactive adults, weeks of regular walking raised fitness (VO₂max, the most oxygen the body can use) and lowered blood pressure, weight and waist size a little.",
+    "In people with type 2 diabetes, walking trials lowered HbA1c (average blood sugar over about 3 months), so part of the link with diabetes may run through blood sugar.",
+    "Blood fats (cholesterol and triglycerides) did not clearly change in walking trials, so not every risk factor moves.",
+    "How much of the lower risk of disease comes from these measured changes, and how much from things that aren't measured, isn't known.",
+    "The step studies follow people over years rather than assigning them to walk. People who walk more may also be healthier in other ways, and illness can make people walk less, so part of the link may not be caused by walking."
+  ],
+  "whatStudiesDid": "The step studies measured adults' daily steps with a device (a step counter, activity monitor or similar), then followed them for years (a median of 7.1 years in the 2022 meta-analysis of 15 cohorts) and counted deaths and new illnesses. The walking trials took inactive adults and compared a walking-only programme lasting at least 4 weeks with no exercise; the diabetes trials lasted at least 8 weeks. Walking group studies looked at adults walking together outdoors. The walking-pace studies asked people how fast they usually walk, or measured their stepping rate with a device.",
+  "markers": [
+    "steps",
+    "active_minutes",
+    "vo2max",
+    "gait_speed",
+    "bp_systolic",
+    "bp_diastolic",
+    "resting_hr",
+    "weight",
+    "waist",
+    "hba1c"
+  ],
+  "findings": [
+    {
+      "outcome": "Death from any cause",
+      "population": "Adults wearing step counters, followed for several years, in cohort studies across several countries",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Large cohorts with steps measured by a device, not remembered by people",
+        "Two meta-analyses agree; the 2025 review rated its certainty moderate",
+        "Observational: people who walk more may differ in other ways, and the authors name residual confounding as a limit"
+      ],
+      "summary": "A 2022 meta-analysis pooled 15 cohorts with 47,471 adults followed for a median of 7.1 years, with 3,013 deaths. Compared with the quarter who walked least (a median of 3,553 steps a day), the risk of dying was lower in the other quarters: hazard ratio 0.60 at a median of 5,801 steps, 0.55 at 7,842 and 0.47 at 10,901. The risk kept falling with more steps up to about 6,000 to 8,000 steps a day in adults aged 60 and over, and 8,000 to 10,000 in younger adults. A 2025 meta-analysis of 57 studies found that 7,000 steps a day, compared with 2,000, was linked with a 47% lower risk of death (14 studies, moderate certainty), with most of the drop by around 5,000 to 7,000 steps. These studies show links in groups of people, not proof that walking more causes the lower risk.",
+      "bottomLine": "Adults who took more steps a day died less often over about 7 years: 7,000 steps compared with 2,000 was linked with a 47% lower risk, with most of the drop by 5,000 to 7,000 steps. These are links in cohort studies, not proof of cause.",
+      "studies": [
+        {
+          "pmid": "35247352",
+          "doi": "10.1016/S2468-2667(21)00302-9",
+          "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 47471
+        },
+        {
+          "pmid": "40713949",
+          "doi": "10.1016/S2468-2667(25)00164-1",
+          "title": "Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart disease and stroke (cardiovascular disease)",
+      "population": "Adults wearing step counters, followed for several years",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Moderate certainty for new cardiovascular disease, from six studies",
+        "Low certainty for deaths from cardiovascular disease: only three studies, with results that varied a lot",
+        "Observational, so other differences between people may explain part of the link"
+      ],
+      "summary": "In the 2025 meta-analysis, 7,000 steps a day compared with 2,000 was linked with a 25% lower risk of developing cardiovascular disease (hazard ratio 0.75, six studies, moderate certainty) and a 47% lower risk of dying from it (0.53, three studies, low certainty). For new cardiovascular disease the risk fell most steeply up to around 5,000 to 7,000 steps a day; for cardiovascular deaths it kept falling in a straight line. The studies were few, and the authors list residual confounding as a limit.",
+      "bottomLine": "Compared with 2,000 steps a day, 7,000 was linked with a 25% lower risk of developing heart disease or stroke (moderate certainty) and a 47% lower risk of dying from it (low certainty, only three studies).",
+      "studies": [
+        {
+          "pmid": "40713949",
+          "doi": "10.1016/S2468-2667(25)00164-1",
+          "title": "Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure, fitness, weight and waist",
+      "population": "Inactive adults in walking trials lasting 4 weeks or more, and adults in outdoor walking groups",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised trials comparing walking with no exercise, pooled in a meta-analysis",
+        "A separate review of walking groups found changes of similar size",
+        "The changes are small, and the walking-group review included studies that only compared before with after"
+      ],
+      "summary": "A 2015 meta-analysis of randomised trials (32 articles) in inactive adults compared walking-only programmes of at least 4 weeks with no exercise. Walking raised fitness (VO₂max by 3.04 mL/kg/min) and lowered systolic blood pressure by 3.58 mmHg and diastolic by 1.54 mmHg, waist size by 1.51 cm, weight by 1.37 kg and body fat by 1.22 percentage points. Blood fats did not change. A 2015 review of 42 studies of outdoor walking groups (1,843 people) found systolic blood pressure 3.72 mmHg lower, diastolic 3.14 mmHg lower, resting heart rate 2.88 beats a minute lower and VO₂max 2.66 mL/kg/min higher by the end, with no notable side effects reported. These are average changes; they are small, and they don't say how one person will respond.",
+      "bottomLine": "In trials of inactive adults, walking programmes of at least 4 weeks raised fitness and lowered blood pressure by about 3.6/1.5 mmHg, weight by about 1.4 kg and waist by about 1.5 cm. Blood fats did not change. The changes are small averages.",
+      "studies": [
+        {
+          "pmid": "25579505",
+          "doi": "10.1016/j.ypmed.2014.12.041",
+          "title": "The effect of walking on risk factors for cardiovascular disease: an updated systematic review and meta-analysis of randomised control trials",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "25601182",
+          "doi": "10.1136/bjsports-2014-094157",
+          "title": "Is there evidence that walking groups have health benefits? A systematic review and meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 1843
+        }
+      ]
+    },
+    {
+      "outcome": "Type 2 diabetes: new cases, and blood sugar in people who have it",
+      "population": "Adults wearing step counters (new cases); adults with type 2 diabetes in walking trials of 8 weeks or more (HbA1c)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The 2025 step review rated its certainty for new diabetes moderate, from four studies",
+        "The HbA1c result comes from 20 randomised trials, but they were small (866 people in all)",
+        "Walking without supervision lowered HbA1c only when it came with motivational strategies"
+      ],
+      "summary": "In the 2025 meta-analysis, 7,000 steps a day compared with 2,000 was linked with a 14% lower risk of developing type 2 diabetes (hazard ratio 0.86, 95% CI 0.74 to 0.99, four studies, moderate certainty). In people who already had type 2 diabetes, a 2014 meta-analysis of 20 randomised trials (866 people) found that walking for 8 weeks or more lowered HbA1c by 0.50 percentage points. Supervised walking lowered it by 0.58; walking without supervision did not clearly lower it, unless motivational strategies were used. Walking also lowered BMI and diastolic blood pressure in these trials, but systolic blood pressure and cholesterol did not clearly change.",
+      "bottomLine": "More steps were linked with a 14% lower risk of type 2 diabetes. In people who had it, walking trials of 8 weeks or more lowered HbA1c by about 0.5 percentage points, mainly when walking was supervised or came with motivational support.",
+      "studies": [
+        {
+          "pmid": "40713949",
+          "doi": "10.1016/S2468-2667(25)00164-1",
+          "title": "Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "25329391",
+          "doi": "10.1371/journal.pone.0109767",
+          "title": "Impact of walking on glycemic control and other cardiovascular risk factors in type 2 diabetes: a meta-analysis",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 866
+        }
+      ]
+    },
+    {
+      "outcome": "Depression and depressive symptoms",
+      "population": "Adults with major depression in exercise trials; adults wearing step counters, followed over time",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many trials, but only one of 218 met the Cochrane criteria for low risk of bias; confidence for walking or jogging was rated low",
+        "People in exercise trials know what they are doing, so expectations can play a part",
+        "The step studies are observational (three studies for depressive symptoms)"
+      ],
+      "summary": "A 2024 network meta-analysis of 218 randomised trials (14,170 people with major depression) found that walking or jogging reduced depression moderately compared with control conditions such as usual care (effect size −0.62), among the largest effects of the exercise types studied. Confidence in this result was low, because only one study had a low risk of bias, and walking and jogging were combined. In the 2025 step meta-analysis, 7,000 steps a day compared with 2,000 was linked with a 22% lower risk of depressive symptoms (three studies, moderate certainty). A 2015 review of walking groups also found lower depression scores.",
+      "bottomLine": "In trials of people with major depression, walking or jogging reduced depression moderately compared with usual care, but confidence was low because most trials had a risk of bias. More daily steps were linked with fewer depressive symptoms.",
+      "studies": [
+        {
+          "pmid": "38355154",
+          "doi": "10.1136/bmj-2023-075847",
+          "title": "Effect of exercise for depression: systematic review and network meta-analysis of randomised controlled trials",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 14170
+        },
+        {
+          "pmid": "40713949",
+          "doi": "10.1016/S2468-2667(25)00164-1",
+          "title": "Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "25601182",
+          "doi": "10.1136/bjsports-2014-094157",
+          "title": "Is there evidence that walking groups have health benefits? A systematic review and meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 1843
+        }
+      ]
+    },
+    {
+      "outcome": "Walking pace",
+      "population": "Adults in cohort studies who reported how fast they usually walk, or whose stepping rate was measured",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only observational studies, mainly at high risk of bias",
+        "Certainty for diabetes rated low to moderate depending on the pace compared",
+        "For death, one measure of pace was linked with lower risk after counting steps, and another was not",
+        "People who walk fast may be fitter and healthier to begin with"
+      ],
+      "summary": "A 2024 meta-analysis of 10 cohort studies compared usual walking speeds with easy walking (under 3.2 km/h). The risk of type 2 diabetes was 15% lower at average speed (3.2 to 4.8 km/h, relative risk 0.85, low certainty), 24% lower at fairly brisk speed (4.8 to 6.4 km/h, 0.76, low certainty) and 39% lower at brisk speed (over 6.4 km/h, 0.61, moderate certainty), and the link was similar whether or not studies adjusted for total activity or time spent walking. In the 2022 step meta-analysis, after accounting for total steps, people with the highest stepping rate over their best 30 minutes of the day had a lower risk of death (hazard ratio 0.67), but time spent walking at 100 steps a minute or faster was not clearly linked with it (0.86, 95% CI 0.58 to 1.28). Whether walking faster itself adds to the benefit of walking more isn't settled.",
+      "bottomLine": "People who usually walked faster had less type 2 diabetes in cohort studies, up to 39% less at a brisk pace. For death the results were mixed after counting total steps. Fast walkers may simply be fitter, so whether pace itself matters isn't settled.",
+      "studies": [
+        {
+          "pmid": "38050034",
+          "doi": "10.1136/bjsports-2023-107336",
+          "title": "Walking speed and the risk of type 2 diabetes: a systematic review and meta-analysis",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35247352",
+          "doi": "10.1016/S2468-2667(21)00302-9",
+          "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 47471
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Daily steps and the risk of dying",
+      "caption": "15 cohorts, 47,471 adults followed for a median of 7.1 years. Each bar is a quarter of the people, from fewest to most steps a day, with the median steps in that quarter. The risk of dying is compared with the quarter who walked least (1 = no difference); lines show the 95% confidence interval. These are links in groups of people, adjusted for other factors, not proof that steps caused the difference.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Fewest steps (median 3,553 a day)"
+      },
+      "items": [
+        {
+          "label": "3,553 steps a day (fewest)",
+          "value": 1,
+          "note": "The comparison group"
+        },
+        {
+          "label": "5,801 steps a day",
+          "value": 0.6,
+          "low": 0.51,
+          "high": 0.71
+        },
+        {
+          "label": "7,842 steps a day",
+          "value": 0.55,
+          "low": 0.49,
+          "high": 0.62
+        },
+        {
+          "label": "10,901 steps a day (most)",
+          "value": 0.47,
+          "low": 0.39,
+          "high": 0.57
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "35247352",
+          "doi": "10.1016/S2468-2667(21)00302-9",
+          "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 47471
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "7,000 steps compared with 2,000 a day",
+      "caption": "Hazard ratios from a 2025 meta-analysis of cohort studies: below 1 means a lower risk at 7,000 steps a day than at 2,000; lines show the 95% confidence interval. Most outcomes rest on two to six studies (14 for death from any cause), and the certainty of each is in its note. Cancer incidence was not clearly lower: its interval crosses 1.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "2,000 steps a day"
+      },
+      "items": [
+        {
+          "label": "Death from any cause",
+          "value": 0.53,
+          "low": 0.46,
+          "high": 0.6,
+          "note": "14 studies, moderate certainty"
+        },
+        {
+          "label": "Death from heart disease or stroke",
+          "value": 0.53,
+          "low": 0.37,
+          "high": 0.77,
+          "note": "3 studies, low certainty"
+        },
+        {
+          "label": "Getting heart disease or stroke",
+          "value": 0.75,
+          "low": 0.67,
+          "high": 0.85,
+          "note": "6 studies, moderate certainty"
+        },
+        {
+          "label": "Death from cancer",
+          "value": 0.63,
+          "low": 0.55,
+          "high": 0.72,
+          "note": "3 studies, moderate certainty"
+        },
+        {
+          "label": "Getting cancer",
+          "value": 0.94,
+          "low": 0.87,
+          "high": 1.01,
+          "note": "2 studies, low certainty; not a clear difference"
+        },
+        {
+          "label": "Type 2 diabetes",
+          "value": 0.86,
+          "low": 0.74,
+          "high": 0.99,
+          "note": "4 studies, moderate certainty"
+        },
+        {
+          "label": "Dementia",
+          "value": 0.62,
+          "low": 0.53,
+          "high": 0.73,
+          "note": "2 studies, moderate certainty"
+        },
+        {
+          "label": "Depressive symptoms",
+          "value": 0.78,
+          "low": 0.73,
+          "high": 0.83,
+          "note": "3 studies, moderate certainty"
+        },
+        {
+          "label": "Falls",
+          "value": 0.72,
+          "low": 0.65,
+          "high": 0.81,
+          "note": "4 studies, very low certainty"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "40713949",
+          "doi": "10.1016/S2468-2667(25)00164-1",
+          "title": "Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "What changed in walking trials",
+      "caption": "Average changes in randomised trials of inactive adults who walked for at least 4 weeks, compared with people who didn't exercise. They are averages across trials, not a timeline for one person, and they are small.",
+      "steps": [
+        {
+          "label": "Inactive adults start walking",
+          "text": "Walking-only programmes of 4 weeks or more, compared with no exercise."
+        },
+        {
+          "label": "Fitness rises",
+          "text": "VO₂max, the most oxygen the body can use, went up by 3.04 mL/kg/min on average."
+        },
+        {
+          "label": "Blood pressure falls a little",
+          "text": "Systolic (top number) down 3.58 mmHg, diastolic (bottom number) down 1.54 mmHg."
+        },
+        {
+          "label": "Weight and waist fall a little",
+          "text": "Weight down 1.37 kg, waist down 1.51 cm, body fat down 1.22 percentage points."
+        },
+        {
+          "label": "Blood fats: no clear change",
+          "text": "Cholesterol and other blood fats did not change in these trials."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "25579505",
+          "doi": "10.1016/j.ypmed.2014.12.041",
+          "title": "The effect of walking on risk factors for cardiovascular disease: an updated systematic review and meta-analysis of randomised control trials",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Chest pain, tightness or unusual breathlessness when walking",
+      "note": "These can be signs of a heart or lung problem. It's worth seeing a doctor before walking more or faster, and straight away if they come on at rest."
+    },
+    {
+      "with": "A recent heart attack, heart surgery or stroke",
+      "note": "Walking is often part of rehabilitation, but how much and how fast is usually planned with the care team."
+    },
+    {
+      "with": "Diabetes treated with insulin or tablets that can cause low blood sugar",
+      "note": "Activity can lower blood sugar. A doctor or diabetes nurse can say how to handle medicines and food around longer walks. Foot problems from diabetes need checking too.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Balance problems, dizziness or past falls",
+      "note": "A doctor or physiotherapist can suggest safe routes, walking aids or balance exercises. In trials, exercise that challenged balance prevented falls in older people living at home."
+    },
+    {
+      "with": "Heart or lung disease, on busy roads",
+      "note": "In a London trial of adults aged 60 and over, walking for 2 hours along a busy, polluted street gave smaller lung and artery benefits than the same walk in a park, and people with COPD (a long-term lung disease) had more cough and wheeze."
+    }
+  ],
+  "cautions": [
+    "Pain in the calves that comes on when walking and eases with rest can be a sign of narrowed leg arteries, and is worth mentioning to a doctor.",
+    "Joint pain that gets worse with walking, or lasts into the next day, is worth checking with a doctor or physiotherapist.",
+    "Heat and ice add risks of their own, which the studies here didn't measure.",
+    "Step counts from phones and watches differ between devices; compare your own weeks with each other rather than with someone else's count."
+  ],
+  "unknowns": [
+    "Almost all the evidence on steps and long-term health comes from cohort studies that observe people. They can't prove that walking more causes the lower risk: people who walk more may be healthier in other ways, and illness makes people walk less.",
+    "Steps were measured at the start and people were followed for years; how their walking changed over that time isn't known.",
+    "The popular 10,000-step goal had little evidence behind it, as the 2022 meta-analysis noted.",
+    "Whether walking faster adds anything beyond walking more isn't settled: the results differ by measure, and fast walkers may simply be fitter.",
+    "The step reviews had few studies for most outcomes and no analysis by age group in the 2025 review, so it isn't known whether the same step counts mean the same thing at 30 and at 80.",
+    "There is no proven best number of steps. The levelling off around 5,000 to 8,000 steps is an average across groups, not a threshold for one person.",
+    "The walking trials measured risk factors such as blood pressure and fitness, not heart attacks or deaths.",
+    "Whether walking prevents falls isn't clear: the step studies' falls result had very low certainty, and fall-prevention trials found the clearest effects from exercise that challenges balance."
+  ],
+  "sources": [
+    {
+      "pmid": "35247352",
+      "doi": "10.1016/S2468-2667(21)00302-9",
+      "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 47471
+    },
+    {
+      "pmid": "40713949",
+      "doi": "10.1016/S2468-2667(25)00164-1",
+      "title": "Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "25579505",
+      "doi": "10.1016/j.ypmed.2014.12.041",
+      "title": "The effect of walking on risk factors for cardiovascular disease: an updated systematic review and meta-analysis of randomised control trials",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "25601182",
+      "doi": "10.1136/bjsports-2014-094157",
+      "title": "Is there evidence that walking groups have health benefits? A systematic review and meta-analysis",
+      "year": 2015,
+      "studyType": "meta-analysis",
+      "n": 1843
+    },
+    {
+      "pmid": "25329391",
+      "doi": "10.1371/journal.pone.0109767",
+      "title": "Impact of walking on glycemic control and other cardiovascular risk factors in type 2 diabetes: a meta-analysis",
+      "year": 2014,
+      "studyType": "meta-analysis",
+      "n": 866
+    },
+    {
+      "pmid": "38355154",
+      "doi": "10.1136/bmj-2023-075847",
+      "title": "Effect of exercise for depression: systematic review and network meta-analysis of randomised controlled trials",
+      "year": 2024,
+      "studyType": "meta-analysis",
+      "n": 14170
+    },
+    {
+      "pmid": "38050034",
+      "doi": "10.1136/bjsports-2023-107336",
+      "title": "Walking speed and the risk of type 2 diabetes: a systematic review and meta-analysis",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "27707740",
+      "doi": "10.1136/bjsports-2016-096547",
+      "title": "Exercise to prevent falls in older adults: an updated systematic review and meta-analysis",
+      "year": 2017,
+      "studyType": "meta-analysis",
+      "n": 19478
+    },
+    {
+      "pmid": "29221643",
+      "doi": "10.1016/S0140-6736(17)32643-0",
+      "title": "Respiratory and cardiovascular responses to walking down a traffic-polluted road compared with walking in a traffic-free area in participants aged 60 years and older with chronic lung or heart disease and age-matched healthy controls: a randomised, crossover study",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 119
+    }
+  ]
+}

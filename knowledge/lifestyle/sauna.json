@@ -1,0 +1,487 @@
+{
+  "id": "sauna",
+  "name": "Sauna",
+  "category": "heat and cold",
+  "otherNames": ["Sauna bathing", "Finnish sauna", "Dry sauna", "Infrared sauna", "Far-infrared sauna", "Waon therapy", "Heat therapy"],
+  "summary": "Sitting in a hot room for a while: a traditional Finnish sauna, or an infrared one that heats the body more directly. In one large Finnish study, people who used a sauna more often died less often of heart disease and had fewer strokes and less dementia, but that study shows a link, not proof that sauna is the cause. Small trials show that blood pressure is lower for a while after a session.",
+  "howItWorks": [
+    "Heat makes the body work to cool down: blood vessels in the skin widen, the heart beats faster and you sweat. In this the strain on the heart resembles moderate exercise.",
+    "Right after a session, blood pressure is usually lower than before and arteries are less stiff for a while. Whether this adds up to lasting changes is not known.",
+    "Researchers have suggested that regular sauna use may help the inner lining of blood vessels, reduce artery stiffness, change how the nervous system controls the heart, and lower blood pressure. These are proposed explanations, mostly from short studies, not proven mechanisms.",
+    "Heat also makes cells produce heat shock proteins, which help protect other proteins. This is shown mainly for hot-water baths; what it means for health in people is not known."
+  ],
+  "whatStudiesDid": "Most of the evidence comes from one Finnish study (the Kuopio Ischaemic Heart Disease Risk Factor Study, KIHD). Between 1984 and 1989, men aged 42 to 60 filled in a questionnaire on how often and how long they used a sauna, and were followed for about 20 years or more; a later group of men and women aged 53 to 74 was followed for about 15 years. They were compared in three groups: once a week, 2 to 3 times a week and 4 to 7 times a week. Short studies measured people during and after one session (for example 30 minutes at 73 °C) or over 8 weeks of 15-minute sessions after exercise. Heart failure trials used Waon therapy in hospital: a far-infrared dry sauna at 60 °C for 15 minutes, then 30 minutes of rest under a blanket, daily or five times a week, for 10 days to 4 weeks.",
+  "markers": ["bp_systolic", "bp_diastolic", "heart_rate", "crp_hs"],
+  "findings": [
+    {
+      "outcome": "Sudden cardiac death, death from heart and blood vessel disease, and death from any cause",
+      "population": "Finnish men aged 42 to 60 followed for about 20 years, and a later group of Finnish men and women aged 53 to 74 followed for 15 years (the same KIHD study)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people were not assigned to use a sauna, so other differences between them may explain the link",
+        "Almost all of it comes from one Finnish study, mostly in men",
+        "Sauna use was asked once, at the start, and may have changed over 20 years",
+        "In favour: the link is strong, grows with more frequent use, and held after adjusting for known heart risk factors"
+      ],
+      "summary": "In 2,315 Finnish men aged 42 to 60, followed for a median of 20.7 years, those who used a sauna 4 to 7 times a week had fewer sudden cardiac deaths than those who used it once a week (hazard ratio 0.37, 95% confidence interval 0.18 to 0.75, after adjusting for heart risk factors). For 2 to 3 times a week the ratio was 0.78 (0.57 to 1.07), which could be chance. Death from any cause also fell with more frequent use: 49.1% of the once-a-week group died during follow-up, 37.8% of the 2 to 3 times group and 30.8% of the 4 to 7 times group (counts before adjusting). In a later group of 1,688 men and women aged 53 to 74 (51.4% women), 4 to 7 sessions a week went with fewer deaths from heart and blood vessel disease (hazard ratio 0.23, 0.08 to 0.65), also after adjusting for physical activity and social and economic position. Over 27.8 years in 2,575 men, 3 to 7 sessions a week went with fewer deaths from any cause than 2 or fewer (0.86, 0.76 to 0.97). These are associations from one study in Finland, where sauna use is part of everyday life; they do not show that sauna itself prevents death.",
+      "bottomLine": "In one Finnish study, men who used a sauna 4 to 7 times a week had fewer sudden cardiac deaths and fewer deaths overall than men who used it once a week, and a later group of men and women showed the same for heart deaths. This is a link from one study, not proof that sauna is the cause.",
+      "studies": [
+        {
+          "pmid": "25705824",
+          "doi": "10.1001/jamainternmed.2014.8187",
+          "title": "Association between sauna bathing and fatal cardiovascular and all-cause mortality events.",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 2315
+        },
+        {
+          "pmid": "30486813",
+          "doi": "10.1186/s12916-018-1198-0",
+          "title": "Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 1688
+        },
+        {
+          "pmid": "36255556",
+          "doi": "10.1007/s10654-022-00926-w",
+          "title": "Inflammation, sauna bathing, and all-cause mortality in middle-aged and older Finnish men: a cohort study.",
+          "year": 2022,
+          "studyType": "observational",
+          "n": 2575
+        }
+      ]
+    },
+    {
+      "outcome": "Stroke",
+      "population": "Finnish men and women aged 53 to 74 without a stroke before, followed for about 15 years (KIHD study)",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "One observational study with 155 strokes; the confidence interval is wide",
+        "People who use a sauna more often may be healthier in other ways",
+        "Too few bleeding strokes to say anything about them"
+      ],
+      "summary": "In 1,628 Finnish men and women aged 53 to 74 (average 62.7) without a previous stroke, 155 strokes happened over a median of 14.9 years. Compared with once a week, people who used a sauna 4 to 7 times a week had fewer strokes: hazard ratio 0.39 (95% confidence interval 0.18 to 0.84) after adjusting for heart risk factors, and 0.38 (0.18 to 0.81) after also adjusting for physical activity and social and economic position. The link was similar for strokes caused by a blocked artery (ischaemic) and weaker for bleeding strokes (haemorrhagic), of which there were only 34. It was similar in men and women and at different ages. This is one observational study, so it cannot show that sauna prevents strokes.",
+      "bottomLine": "In one Finnish study of men and women aged 53 to 74, those who used a sauna 4 to 7 times a week had fewer strokes over 15 years than those who used it once a week. It is a single observational study with wide uncertainty, so it shows a link, not a cause.",
+      "studies": [
+        {
+          "pmid": "29720543",
+          "doi": "10.1212/wnl.0000000000005606",
+          "title": "Sauna bathing reduces the risk of stroke in Finnish men and women: A prospective cohort study.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 1628
+        }
+      ]
+    },
+    {
+      "outcome": "Dementia and Alzheimer's disease",
+      "population": "Finnish men aged 42 to 60 at the start, followed for about 20 years (KIHD study)",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "One observational study, in men only",
+        "Wide confidence intervals; the 2 to 3 times a week group did not differ clearly from once a week",
+        "People who stay healthy may keep using a sauna, which can make the link look stronger than it is"
+      ],
+      "summary": "In 2,315 Finnish men aged 42 to 60, 204 developed dementia and 123 Alzheimer's disease over a median of 20.7 years. After adjusting for age, alcohol, body mass index, blood pressure, smoking, diabetes, previous heart attack, resting heart rate and LDL cholesterol, men who used a sauna 4 to 7 times a week had a lower risk of dementia than men who used it once a week (hazard ratio 0.34, 95% confidence interval 0.16 to 0.71) and of Alzheimer's disease (0.35, 0.14 to 0.90). For 2 to 3 times a week the ratios were 0.78 (0.57 to 1.06) and 0.80 (0.53 to 1.20), which could be chance. The authors say more studies are needed; no trial has tested sauna for memory.",
+      "bottomLine": "In one Finnish study of middle-aged men, those who used a sauna 4 to 7 times a week were less likely to develop dementia or Alzheimer's disease over 20 years than those who used it once a week. It is one observational study in men only; no trial has tested it.",
+      "studies": [
+        {
+          "pmid": "27932366",
+          "doi": "10.1093/ageing/afw212",
+          "title": "Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 2315
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults with at least one heart risk factor (single sessions and an 8-week trial), pooled small studies, and Finnish men without high blood pressure at the start (KIHD study)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Most studies measured blood pressure only minutes after one session",
+        "The only randomised trial of regular use was small (47 people), lasted 8 weeks and combined sauna with exercise",
+        "Most of the work comes from one research group",
+        "During the session itself blood pressure can rise, not fall"
+      ],
+      "summary": "In 102 adults with at least one heart risk factor, average blood pressure fell from 137/82 to 130/75 mmHg right after one 30-minute session at 73 °C, and systolic pressure was still lower after 30 minutes' rest. A 2020 meta-analysis of 16 studies found systolic pressure 5.55 mmHg and diastolic 6.50 mmHg lower in the 30 minutes after a session, and lower by 5.26 and 4.14 mmHg after 2 to 4 weeks of regular sessions (in studies that included people with heart failure). In an 8-week randomised trial in 47 inactive adults aged about 49, exercise plus a 15-minute sauna afterwards lowered systolic pressure by 8.0 mmHg (95% confidence interval 1.4 to 14.6) more than exercise alone. In 1,621 Finnish men followed for 24.7 years, those who used a sauna 4 to 7 times a week were less often diagnosed with high blood pressure than those who used it once a week (hazard ratio 0.53, 0.28 to 0.98, fully adjusted). During a session, one study at 93 °C found blood pressure rising steadily, then falling below the starting level afterwards. Whether regular sauna lowers blood pressure for years is not known.",
+      "bottomLine": "Blood pressure is usually lower for a while after a sauna, and one small 8-week trial found exercise plus sauna lowered it more than exercise alone. During the session it can rise. Whether regular sauna lowers blood pressure for years is not known.",
+      "studies": [
+        {
+          "pmid": "29269746",
+          "doi": "10.1038/s41371-017-0008-z",
+          "title": "Acute effects of sauna bathing on cardiovascular function.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 102
+        },
+        {
+          "pmid": "32814462",
+          "doi": "10.1177/1474515120944584",
+          "title": "Acute and short-term efficacy of sauna treatment on cardiovascular function: A meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35785965",
+          "doi": "10.1152/ajpregu.00076.2022",
+          "title": "Effects of regular sauna bathing in conjunction with exercise on cardiovascular function: a multi-arm, randomized controlled trial.",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 47
+        },
+        {
+          "pmid": "28633297",
+          "doi": "10.1093/ajh/hpx102",
+          "title": "Sauna Bathing and Incident Hypertension: A Prospective Cohort Study.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 1621
+        },
+        {
+          "pmid": "31126559",
+          "doi": "10.1016/j.ctim.2019.05.002",
+          "title": "The blood pressure and heart rate during sauna bath correspond to cardiac responses during submaximal dynamic exercise.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 19
+        }
+      ]
+    },
+    {
+      "outcome": "Inflammation (C-reactive protein, CRP)",
+      "population": "Finnish men aged 42 to 60 without acute or long-term inflammation (one measurement), and 27 slightly prehypertensive men measured around single sessions",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The link with lower CRP comes from a single measurement in one group: it can't show which came first",
+        "The only before-and-after measurements found no change in CRP after a session",
+        "No randomised trial has measured CRP over weeks of regular sauna use"
+      ],
+      "summary": "In 2,084 Finnish men aged 42 to 60 without acute or long-term inflammation, average CRP was highest in those who used a sauna once a week and lowest in those who used it 4 to 7 times a week. The link remained after adjusting for age, body mass index, blood pressure, smoking, diabetes, previous heart attack, LDL cholesterol, alcohol and physical activity. But in 27 men measured before, right after, 30 minutes after and 24 hours after a sauna (alone or after exercise), high-sensitivity CRP did not change at any point. In the same Finnish study, men with high CRP (above 3 mg/L) who used a sauna 3 to 7 times a week did not have the higher death rate seen in men with high CRP who used it less often. Whether regular sauna lowers CRP is not known.",
+      "bottomLine": "Finnish men who used a sauna more often had lower CRP, a blood marker of inflammation, at a single measurement. In a small study CRP did not change after sessions. Whether regular sauna lowers CRP is not known.",
+      "studies": [
+        {
+          "pmid": "29209938",
+          "doi": "10.1007/s10654-017-0335-y",
+          "title": "Sauna bathing and systemic inflammation.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 2084
+        },
+        {
+          "pmid": "32599642",
+          "doi": "10.1055/a-1186-1716",
+          "title": "Acute Hemodynamic Responses to Combined Exercise and Sauna.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 27
+        },
+        {
+          "pmid": "36255556",
+          "doi": "10.1007/s10654-022-00926-w",
+          "title": "Inflammation, sauna bathing, and all-cause mortality in middle-aged and older Finnish men: a cohort study.",
+          "year": 2022,
+          "studyType": "observational",
+          "n": 2575
+        }
+      ]
+    },
+    {
+      "outcome": "Heart failure symptoms and heart function (Waon therapy, in hospital)",
+      "population": "Patients with chronic heart failure, mostly in hospital and on standard heart failure treatment, under medical care",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Randomised trials, but small and short (10 days to 4 weeks)",
+        "They measured blood markers, heart size and walking distance, not deaths or hospital stays",
+        "A 2018 review rated the strength of evidence from moderate to insufficient",
+        "Only far-infrared sauna at 60 °C under medical supervision was tested, not a hot Finnish sauna"
+      ],
+      "summary": "In a trial in 19 hospitals, 149 patients with advanced heart failure (average age 66) were randomised to Waon therapy (a far-infrared dry sauna at 60 °C for 15 minutes, then 30 minutes' rest under a blanket, daily for 10 days) or usual care. Symptom class, 6-minute walking distance and heart size on X-ray improved only with Waon therapy; the change in the heart failure blood marker BNP was not clearly different. No serious side effects were seen in either group. In an earlier trial of 188 patients over 2 weeks, ejection fraction (how much blood the heart pumps out with each beat) rose from 31.6% to 34.6% with Waon therapy and did not change in the control group. A 2018 meta-analysis of 7 studies found lower BNP, smaller heart size and better ejection fraction over 2 to 4 weeks, but no clear change in blood pressure. These patients were treated under medical care; long-term effects are not known.",
+      "bottomLine": "In small trials of people with heart failure treated in hospital, short courses of a mild far-infrared sauna improved symptoms, walking distance and some measures of heart function over 2 to 4 weeks. These patients were under medical care, and long-term effects are not known.",
+      "studies": [
+        {
+          "pmid": "27001189",
+          "doi": "10.1253/circj.cj-16-0051",
+          "title": "Waon Therapy for Managing Chronic Heart Failure　- Results From a Multicenter Prospective Randomized WAON-CHF Study.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 149
+        },
+        {
+          "pmid": "18922381",
+          "doi": "10.1016/j.jjcc.2008.07.009",
+          "title": "Beneficial effects of Waon therapy on patients with chronic heart failure: results of a prospective multicenter study.",
+          "year": 2008,
+          "studyType": "rct",
+          "n": 188
+        },
+        {
+          "pmid": "30239008",
+          "doi": "10.1002/clc.23077",
+          "title": "Effects of sauna bath on heart failure: A systematic review and meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Heart deaths by how often people used a sauna",
+      "caption": "Hazard ratios with 95% confidence intervals from the Finnish KIHD study, compared with people who used a sauna once a week, after adjusting for known heart risk factors. Below 1 means fewer deaths in that group. An interval that crosses 1 could be chance. These are links from one observational study: people who use a sauna more often may differ in other ways.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "Once a week (comparison group)" },
+      "items": [
+        { "label": "Sudden cardiac death, 2–3 times a week", "value": 0.78, "low": 0.57, "high": 1.07, "note": "2,315 men aged 42–60, followed 20.7 years (2015)" },
+        { "label": "Sudden cardiac death, 4–7 times a week", "value": 0.37, "low": 0.18, "high": 0.75, "note": "2,315 men aged 42–60, followed 20.7 years (2015)" },
+        { "label": "Death from heart and blood vessel disease, 2–3 times a week", "value": 0.75, "low": 0.52, "high": 1.08, "note": "1,688 men and women aged 53–74, followed 15.0 years; also adjusted for physical activity (2018)" },
+        { "label": "Death from heart and blood vessel disease, 4–7 times a week", "value": 0.23, "low": 0.08, "high": 0.65, "note": "1,688 men and women aged 53–74, followed 15.0 years; also adjusted for physical activity (2018)" }
+      ],
+      "sources": [
+        {
+          "pmid": "25705824",
+          "doi": "10.1001/jamainternmed.2014.8187",
+          "title": "Association between sauna bathing and fatal cardiovascular and all-cause mortality events.",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 2315
+        },
+        {
+          "pmid": "30486813",
+          "doi": "10.1186/s12916-018-1198-0",
+          "title": "Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 1688
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Other illnesses: 4–7 times a week compared with once a week",
+      "caption": "Hazard ratios with 95% confidence intervals from separate analyses of the same Finnish KIHD study, each adjusted for its own set of risk factors. Below 1 means fewer cases among people who used a sauna 4 to 7 times a week. Wide intervals mean the true size of the link is uncertain, and these links don't show that sauna is the cause.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "Once a week (comparison group)" },
+      "items": [
+        { "label": "Dementia", "value": 0.34, "low": 0.16, "high": 0.71, "note": "2,315 men aged 42–60, followed 20.7 years (2017)" },
+        { "label": "Alzheimer's disease", "value": 0.35, "low": 0.14, "high": 0.9, "note": "2,315 men aged 42–60, followed 20.7 years (2017)" },
+        { "label": "Stroke", "value": 0.38, "low": 0.18, "high": 0.81, "note": "1,628 men and women aged 53–74, followed 14.9 years; also adjusted for physical activity (2018)" },
+        { "label": "High blood pressure (new diagnosis)", "value": 0.53, "low": 0.28, "high": 0.98, "note": "1,621 men aged 42–60, followed 24.7 years; fully adjusted (2017)" }
+      ],
+      "sources": [
+        {
+          "pmid": "27932366",
+          "doi": "10.1093/ageing/afw212",
+          "title": "Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 2315
+        },
+        {
+          "pmid": "29720543",
+          "doi": "10.1212/wnl.0000000000005606",
+          "title": "Sauna bathing reduces the risk of stroke in Finnish men and women: A prospective cohort study.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 1628
+        },
+        {
+          "pmid": "28633297",
+          "doi": "10.1093/ajh/hpx102",
+          "title": "Sauna Bathing and Incident Hypertension: A Prospective Cohort Study.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 1621
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "What happens in the body during and after a session",
+      "caption": "Short-term changes measured in small groups during and after one session. Numbers come from different studies with different sauna types and temperatures. They show how the body responds to heat, not that sauna improves long-term health.",
+      "steps": [
+        { "label": "The skin heats up first", "text": "In a far-infrared sauna at 65 °C, skin temperature rose by 7.4 °C within 5 minutes. Core temperature rose more slowly, by 1.4 °C over 45 minutes (12 healthy adults)." },
+        { "label": "Blood vessels in the skin widen", "text": "More blood flows through the skin to carry heat away; this was measured in 6 men in a sauna at about 69 °C." },
+        { "label": "Sweating", "text": "In the 65 °C study people sweated about 1.4 litres an hour, and the liquid part of the blood (plasma) shrank by 11.6%." },
+        { "label": "The heart beats faster", "text": "Heart rate rose throughout the session: from 74 to 153 beats a minute on average in the 65 °C study." },
+        { "label": "Blood pressure during the session", "text": "In 19 adults in a sauna at 93 °C, blood pressure rose steadily during the session. The load on the heart was similar to moderate exercise on a bike (60 to 100 watts)." },
+        { "label": "Afterwards: pressure falls for a while", "text": "Right after a 30-minute session at 73 °C, average blood pressure in 102 adults fell from 137/82 to 130/75 mmHg and arteries were less stiff. Systolic pressure was still lower after 30 minutes' rest." }
+      ],
+      "sources": [
+        {
+          "pmid": "42533687",
+          "doi": "10.1113/ep094028",
+          "title": "Far-infrared sauna exposure at 65°C elevates core temperature.",
+          "year": 2026,
+          "studyType": "observational",
+          "n": 12
+        },
+        {
+          "pmid": "2933255",
+          "doi": "10.1007/bf02337180",
+          "title": "Laser-Doppler and plethysmographic skin blood flow during exercise and during acute heat stress in the sauna.",
+          "year": 1985,
+          "studyType": "observational",
+          "n": 6
+        },
+        {
+          "pmid": "31126559",
+          "doi": "10.1016/j.ctim.2019.05.002",
+          "title": "The blood pressure and heart rate during sauna bath correspond to cardiac responses during submaximal dynamic exercise.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 19
+        },
+        {
+          "pmid": "29269746",
+          "doi": "10.1038/s41371-017-0008-z",
+          "title": "Acute effects of sauna bathing on cardiovascular function.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 102
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "A recent heart attack, unstable angina or severe aortic stenosis",
+      "note": "A review of sauna research lists these as reasons not to use a sauna. People with stable heart disease who are on treatment seemed to tolerate it in studies, but talk to your doctor first."
+    },
+    {
+      "with": "Heart failure",
+      "note": "The heart failure trials used a mild far-infrared sauna at 60 °C in hospital, under medical care. That is not the same as a hot Finnish sauna. Talk to your doctor or heart specialist."
+    },
+    {
+      "with": "Blood pressure medicines or low blood pressure",
+      "note": "Blood pressure falls for a while after a sauna. A review found that blood pressure medicines may make people feel faint when standing up after a session. Talk to your doctor if this applies to you."
+    },
+    {
+      "with": "Alcohol",
+      "note": "Drinking alcohol during sauna use raises the risk of low blood pressure, an irregular heartbeat and sudden death, according to a review. Sudden deaths in saunas are rare, and alcohol is often involved."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "Two reviews of Finnish research found no harm from sauna in healthy, uncomplicated pregnancies, except with toxaemia (pre-eclampsia). But a meta-analysis found that a raised body temperature in early pregnancy, from any cause, was linked to more neural tube defects (odds ratio 1.92). Talk to your midwife or doctor.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Medicine skin patches",
+      "note": "Heat can increase how much medicine the body takes up from a skin patch. A case report describes a fatal overdose from a fentanyl pain patch in a sauna. Ask your doctor or pharmacist about heat if you use a patch."
+    }
+  ],
+  "cautions": [
+    "Most of the long-term evidence comes from one Finnish study. It shows links, not that sauna causes the benefits.",
+    "During a session the heart works harder and blood pressure can rise, similar to moderate exercise.",
+    "Case reports describe a death from heat stroke after more than 30 minutes at 80 °C, and a death from burns in very humid air.",
+    "Sweating loses water: in one study plasma volume fell by 11.6% during a session.",
+    "One small study (10 men) found that regular sauna use disrupted sperm production; it recovered after they stopped.",
+    "Anything clearly out of range in your blood pressure or heart rate is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "Almost all the long-term evidence comes from one study (KIHD) in eastern Finland, mostly in middle-aged men. It is not known whether the links hold in other countries, in women, or for other kinds of sauna.",
+    "These studies are observational. People who use a sauna more often may be healthier, wealthier, fitter or less stressed, and adjusting for known factors can't rule out everything.",
+    "Sauna use was asked about once, at the start of follow-up that lasted a median of 14.9 to 27.8 years.",
+    "There are no randomised trials of sauna and deaths, heart attacks, strokes or dementia. The trials that exist are small, short, and measure blood pressure or blood markers.",
+    "Most blood pressure studies measured only minutes after a session. Whether regular sauna lowers blood pressure over years is not known.",
+    "An 8-week randomised trial found that adding sauna after exercise did not improve heart rate variability (HRV) more than exercise alone.",
+    "It is not known which temperature, length or number of sessions matters, or whether infrared and Finnish saunas differ in effect."
+  ],
+  "sources": [
+    {
+      "pmid": "30077204",
+      "doi": "10.1016/j.mayocp.2018.04.008",
+      "title": "Cardiovascular and Other Health Benefits of Sauna Bathing: A Review of the Evidence.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29351426",
+      "doi": "10.1152/ajpregu.00115.2017",
+      "title": "Effects of heat and cold on health, with special reference to Finnish sauna bathing.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41899724",
+      "doi": "10.3390/ijerph23030347",
+      "title": "Effects of Bathtub Bathing and Sauna Practices on Cardiovascular and Systemic Health: A Narrative Review.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29849692",
+      "doi": "10.1155/2018/1857413",
+      "title": "Clinical Effects of Regular Dry Sauna Bathing: A Systematic Review.",
+      "year": 2018,
+      "studyType": "review",
+      "n": 3855
+    },
+    {
+      "pmid": "11165553",
+      "doi": "10.1016/s0002-9343(00)00671-9",
+      "title": "Benefits and risks of sauna bathing.",
+      "year": 2001,
+      "studyType": "review"
+    },
+    {
+      "pmid": "16871826",
+      "doi": "10.3402/ijch.v65i3.18102",
+      "title": "Health effects and risks of sauna bathing.",
+      "year": 2006,
+      "studyType": "review"
+    },
+    {
+      "pmid": "15703536",
+      "doi": "10.1097/01.ede.0000152903.55579.15",
+      "title": "Maternal hyperthermia and the risk for neural tube defects in offspring: systematic review and meta-analysis.",
+      "year": 2005,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32740103",
+      "doi": "10.1097/paf.0000000000000565",
+      "title": "Death in Sauna Associated With a Transdermal Fentanyl Patch.",
+      "year": 2020,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "26566054",
+      "doi": "10.1097/paf.0000000000000208",
+      "title": "Sudden Death in Sauna Due to Fatal Burns: A Case Report.",
+      "year": 2016,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "39660118",
+      "doi": "10.3389/fcvm.2024.1476962",
+      "title": "Death after sauna-case report of a heat stroke associated subarachnoid hemorrhage.",
+      "year": 2024,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "40611569",
+      "doi": "10.14814/phy2.70449",
+      "title": "Regular postexercise sauna bathing does not improve heart rate variability: A multi-arm randomized controlled trial.",
+      "year": 2025,
+      "studyType": "rct",
+      "n": 38
+    },
+    {
+      "pmid": "31102597",
+      "doi": "10.1016/j.pcad.2019.05.001",
+      "title": "Is sauna bathing protective of sudden cardiac death? A review of the evidence.",
+      "year": 2019,
+      "studyType": "review"
+    }
+  ]
+}

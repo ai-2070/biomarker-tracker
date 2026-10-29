@@ -18,7 +18,7 @@ import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useMediaQuery, use
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
 import type { ProtocolEntry } from "../../core/types";
-import { BIOMARKER_MAP, FITNESS_MAP, fullName, nameInSentence } from "../knowledge";
+import { BIOMARKER_MAP, FITNESS_MAP, LIFESTYLE, fullName, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { FitnessPanel } from "../components/dashboard/fitness";
 import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
@@ -137,6 +137,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
             </Card>
             {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} scrollTo={section === "waist-to-height"} />}
             {def.id === "dunedinpace" && <DunedinScores results={measurements} />}
+            <LifestyleLinks markerId={def.id} />
           </>
         )}
         {/* Fitness tests: where you stand for your age, how to do the test (shown before any result too). */}
@@ -400,5 +401,24 @@ function SourceLink({ source: s }: { source: Citation }) {
       </a>{" "}
       ({s.year}, {STUDY_LABEL[s.studyType]})
     </>
+  );
+}
+
+/** Lifestyle research that mentions this marker (Sleep for sleep, Walking and Sauna for blood pressure…). */
+function LifestyleLinks({ markerId }: { markerId: string }) {
+  const topics = LIFESTYLE.filter((l) => l.markers.includes(markerId));
+  if (!topics.length) return null;
+  return (
+    <p className="text-sm text-ink-2">
+      What research says about habits that can change it:{" "}
+      {topics.map((l, i) => (
+        <span key={l.id}>
+          {i > 0 && " · "}
+          <a href={href({ name: "lifestyle-item", id: l.id })} className="font-medium text-accent">
+            {l.name}
+          </a>
+        </span>
+      ))}
+    </p>
   );
 }
