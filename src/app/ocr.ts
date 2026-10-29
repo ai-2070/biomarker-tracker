@@ -74,9 +74,12 @@ export async function imageToCanvas(file: Blob): Promise<HTMLCanvasElement> {
   return canvas;
 }
 
-/** Reads a photo of a lab report. */
-export async function readImageText(file: File, progress?: OcrProgress): Promise<string> {
+/** Reads a photo of a lab report. With `allowNoText` (Brain, where any photo may be sent), a photo without text gives "". */
+export async function readImageText(file: File, progress?: OcrProgress, allowNoText = false): Promise<string> {
   const text = await recognize(await imageToCanvas(file), progress);
-  if (text.replace(/\s/g, "").length < 20) throw new Error("No text was recognised in this photo. Try a sharper, well-lit photo taken straight from above.");
+  if (text.replace(/\s/g, "").length < 20) {
+    if (allowNoText) return "";
+    throw new Error("No text was recognised in this photo. Try a sharper, well-lit photo taken straight from above.");
+  }
   return text;
 }

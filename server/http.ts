@@ -278,15 +278,33 @@ function readRaw(req: http.IncomingMessage, max: number): Promise<Buffer> {
 
 // Assistant
 
+/** Up to 4 photos per question: JPEG, PNG or WebP as base64, each under 8 MB. Anything else is dropped. */
+function photos(v: unknown): NonNullable<ChatMessage["images"]> {
+  if (!Array.isArray(v)) return [];
+  const out: NonNullable<ChatMessage["images"]> = [];
+  for (const i of v.slice(0, 4)) {
+    if (typeof i !== "object" || i === null) continue;
+    const { mediaType, data } = i as Record<string, unknown>;
+    if ((mediaType === "image/jpeg" || mediaType === "image/png" || mediaType === "image/webp") && typeof data === "string" && data.length < 8_000_000 && /^[A-Za-z0-9+/=]+$/.test(data)) out.push({ mediaType, data });
+  }
+  return out;
+}
+
 route("POST", "/api/assistant", async (_p, body) => {
   const snap = parseSnapshot(body.snapshot);
   if (!snap.ok) throw new HttpError(400, snap.error);
   const raw = Array.isArray(body.messages) ? body.messages : [];
   const messages: ChatMessage[] = raw
     .filter((m): m is Json => typeof m === "object" && m !== null)
-    .map((m) => ({ role: m.role === "assistant" ? ("assistant" as const) : ("user" as const), content: str(m.content, 20_000) ?? "" }))
-    .filter((m) => m.content.trim())
+    .map((m): ChatMessage => {
+      const role = m.role === "assistant" ? ("assistant" as const) : ("user" as const);
+      const images = role === "user" ? photos(m.images) : [];
+      return { role, content: str(m.content, 20_000) ?? "", ...(images.length ? { images } : {}) };
+    })
+    .filter((m) => m.content.trim() || m.images?.length)
     .slice(-30);
+  // Photos only with the newest question; earlier ones aren't sent again.
+  for (const m of messages.slice(0, -1)) delete m.images;
   if (messages.length === 0 || messages[messages.length - 1]!.role !== "user") throw new HttpError(400, "Ask a question.");
   return ask(messages, snap.snapshot);
 });

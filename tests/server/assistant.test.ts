@@ -115,6 +115,25 @@ describe("assistant", () => {
     expect(r.studyIds).toContain("PMID:33285139");
   });
 
+  it("sends a photo to the model as an image, with the rules for photos", async () => {
+    const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
+    let prompt: unknown;
+    const model = new MockLanguageModelV4({
+      doGenerate: async (opts) => {
+        prompt = opts.prompt;
+        return { content: [{ type: "text", text: "I can see a person standing." }], finishReason: { unified: "stop", raw: undefined }, usage, warnings: [] };
+      },
+    });
+    const r = await ask([{ role: "user", content: "What do you see?", images: [{ mediaType: "image/jpeg", data: "AAAA" }] }], snapshot, {
+      ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } },
+    });
+    expect(r.ok).toBe(true);
+    const msgs = prompt as { role: string; content: unknown }[];
+    expect(JSON.stringify(msgs.find((m) => m.role === "system"))).toMatch(/Never estimate weight, body fat/);
+    const user = msgs.find((m) => m.role === "user") as { content: { type: string }[] };
+    expect(user.content.map((p) => p.type)).toEqual(["text", "file"]);
+  });
+
   it("explains model errors without leaking keys", async () => {
     const model = new MockLanguageModelV4({
       doGenerate: async () => {

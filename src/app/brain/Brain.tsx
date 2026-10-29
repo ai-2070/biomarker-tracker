@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
+import { Checkbox } from "@base-ui/react/checkbox";
 import { providerInfo } from "../../core/aiProviders";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "../../core/trends";
 import type { Measurement } from "../../core/types";
@@ -6,7 +7,7 @@ import { CitedAnswer } from "../components/CitedAnswer";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { BrainIcon, CloseIcon, FileIcon, NewChatIcon, PaperclipIcon, SendIcon, StopIcon } from "../components/icons";
 import { Review } from "../components/LabReview";
-import { Button, FlagBadge, cx } from "../components/ui";
+import { Button, CheckIcon, FlagBadge, cx } from "../components/ui";
 import { formatDate, showMeasurement } from "../format";
 import { useAllMeasurements, useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
@@ -21,6 +22,7 @@ import {
   openBrain,
   removeAttachment,
   send,
+  setSendPhoto,
   takePending,
   setDraft,
   stop,
@@ -332,7 +334,8 @@ function Welcome({ settings }: { settings: BrainSettings | undefined }) {
       <p className="text-xs leading-relaxed text-ink-2">
         When you ask, your results, log and experiments (with your age, not your name or birth month) go to {info?.label ?? "your model"}
         {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Research searches send search terms only. Documents you attach are
-        sent as text with your name taken out; lab reports are read here and only the values you confirm are saved.
+        sent as text with your name taken out; lab reports and health app screenshots are read here and only the values you confirm are saved. A
+        photo itself is sent only when you switch that on for it.
       </p>
     </div>
   );
@@ -375,6 +378,11 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
               {f}
             </span>
           ))}
+          {t.photos ? (
+            <span className="rounded-lg bg-warn-soft px-2 py-1 text-xs text-ink">
+              {t.photos} {t.photos === 1 ? "photo" : "photos"} sent to the model
+            </span>
+          ) : null}
         </div>
       );
     case "assistant":
@@ -523,26 +531,67 @@ function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>
   );
 }
 
-function AttachmentChip({ a }: { a: Attachment }) {
+/** Where a photo would go: API and local models can take one; agent programs can't. */
+interface PhotoTarget {
+  allowed: boolean;
+  label: string;
+}
+
+function AttachmentChip({ a, photoTarget }: { a: Attachment; photoTarget: PhotoTarget }) {
+  const hasText = !!(a.text ?? "").trim();
+  const status =
+    a.status === "reading"
+      ? `${a.stage ?? "Reading"}${a.fraction ? ` ${Math.round(a.fraction * 100)}%` : "…"}`
+      : a.status === "error"
+        ? a.error
+        : a.sendPhoto
+          ? "The photo itself is sent"
+          : hasText
+            ? "Its text is sent with your question"
+            : "No text in this picture";
   return (
     <span
       className={cx(
-        "flex max-w-64 items-center gap-2 rounded-lg border px-2 py-1 text-xs",
-        a.status === "error" ? "border-danger/40 bg-danger-soft" : "border-line bg-surface",
+        "flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm",
+        a.status === "error" ? "border-danger/40 bg-danger-soft" : a.sendPhoto ? "border-warn/40 bg-warn-soft" : "border-line bg-surface",
       )}
-      title={a.status === "ready" ? "Its text is sent with your question, with your name taken out." : undefined}
+      title={a.status === "ready" && !a.sendPhoto && hasText ? "Its text is sent with your question, with your name taken out." : undefined}
     >
-      <FileIcon className="size-4 shrink-0 text-ink-2" />
-      <span className="flex min-w-0 flex-col">
-        <span className="truncate font-medium text-ink">{a.name}</span>
-        <span className={cx("truncate", a.status === "error" ? "text-danger" : "text-ink-2")}>
-          {a.status === "reading" ? `${a.stage ?? "Reading"}${a.fraction ? ` ${Math.round(a.fraction * 100)}%` : "…"}` : a.status === "error" ? a.error : "Sent as text with your question"}
+      <span className="flex items-center gap-2">
+        <FileIcon className="size-4 shrink-0 text-ink-2" />
+        <span className="flex min-w-0 flex-1 flex-col">
+          <span className="truncate font-medium text-ink">{a.name}</span>
+          <span className={cx("truncate", a.status === "error" ? "text-danger" : "text-ink-2")}>{status}</span>
         </span>
+        {a.status !== "reading" && (
+          <button type="button" onClick={() => removeAttachment(a.id)} aria-label={`Remove ${a.name}`} className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink">
+            <CloseIcon className="size-3.5" />
+          </button>
+        )}
       </span>
-      {a.status !== "reading" && (
-        <button type="button" onClick={() => removeAttachment(a.id)} aria-label={`Remove ${a.name}`} className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink">
-          <CloseIcon className="size-3.5" />
-        </button>
+      {a.status === "ready" && a.photo && (
+        <span className="flex flex-col gap-1 border-t border-line/70 pt-1.5">
+          <label className={cx("flex items-start gap-2", photoTarget.allowed ? "cursor-pointer" : "cursor-not-allowed opacity-70")}>
+            <Checkbox.Root
+              checked={!!a.sendPhoto}
+              disabled={!photoTarget.allowed}
+              onCheckedChange={(on) => setSendPhoto(a.id, on)}
+              className="mt-px flex size-4 shrink-0 items-center justify-center rounded border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
+            >
+              <Checkbox.Indicator className="flex data-unchecked:hidden">
+                <CheckIcon className="size-3" />
+              </Checkbox.Indicator>
+            </Checkbox.Root>
+            <span className="text-ink">Send the photo itself{photoTarget.allowed ? ` to ${photoTarget.label}` : ""}</span>
+          </label>
+          {!photoTarget.allowed && <span className="text-ink-2">Only to models used with an API key or running on this computer, not to agent programs.</span>}
+          {a.sendPhoto && (
+            <span className="text-ink">
+              The photo leaves this computer (shrunk, location data removed). Brain describes what it sees; it won't estimate weight, body fat or age from a photo, or
+              judge skin, moles or wounds.
+            </span>
+          )}
+        </span>
       )}
     </span>
   );
@@ -553,7 +602,9 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
   const textRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const reading = brain.attachments.some((a) => a.status === "reading");
-  const hasDocs = brain.attachments.some((a) => a.status === "ready");
+  const hasDocs = brain.attachments.some((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim()));
+  const info = settings ? providerInfo(settings.assistant.provider) : undefined;
+  const photoTarget: PhotoTarget = { allowed: !!info && info.group !== "agent", label: info?.label ?? "the model" };
   const canSend = !brain.busy && !reading && (brain.draft.trim() !== "" || hasDocs);
 
   useEffect(() => {
@@ -579,7 +630,7 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
       {brain.attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1.5">
           {brain.attachments.map((a) => (
-            <AttachmentChip key={a.id} a={a} />
+            <AttachmentChip key={a.id} a={a} photoTarget={photoTarget} />
           ))}
         </div>
       )}
