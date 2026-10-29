@@ -232,7 +232,7 @@ One assistant, no teams or multi-agent setups. Model choice, Skills and MCP sett
 - **Add to a protocol** from any supplement page (`components/AddToProtocol.tsx`: protocol or a new one, name, own amount, when), next to **Start as a habit** (Habits with the name, type supplement and the nutrient's status marker picked to watch).
 - **Share**: `planToFile` (items only: no ids, dates, habits or results) and `planFromFile` (new ids, validated). No built-in named protocols (they would mean suggesting doses).
 - Brain: `get_protocols` (with linked nutrients and interactions between items; amounts are the person's own, never changed or suggested); OpenClaw's data summary lists them. `propose_protocol` writes down a protocol from the person's own text (a pasted routine) as a chat card they create (`planFromProposal`, checked on the server and again in the page; items, times, amounts and conditions copied exactly, nothing added; not next to a critical result); it opens on the protocol's page.
-- The example profile has two: "My daily routine" and "Standard Routine" (a larger supplement routine the user gave, no amounts, some items only if deficient), which shows the interaction warnings.
+- The example profile has two: "My daily routine" and "Standard Routine" (the user's routine, updated 2026-10-29: 27 items, no amounts, midday items with a meal "or with extra virgin olive oil", some only if deficient, workout and low-calorie/vegan items at any time with a note; D3 and K2 written "Vitamin D3"/"Vitamin K2" so they link to Supplementation), which shows the interaction warnings.
 
 ## Meals
 
