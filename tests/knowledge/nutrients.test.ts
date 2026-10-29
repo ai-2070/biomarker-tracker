@@ -42,6 +42,10 @@ describe("knowledge base: vitamins and minerals", () => {
     }
   });
 
+  it("gives every finding a bottom line, shown first on the page", () => {
+    for (const n of nutrients) for (const f of [...n.findings, ...(n.foodFindings ?? [])]) expect(f.bottomLine, `${n.id}: ${f.outcome}`).toBeTruthy();
+  });
+
   it("has unique ids", () => {
     expect(new Set(nutrients.map((n) => n.id)).size).toBe(nutrients.length);
   });

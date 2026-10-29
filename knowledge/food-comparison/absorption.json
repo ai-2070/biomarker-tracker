@@ -10,6 +10,7 @@
       "grade": "moderate",
       "favours": "animal foods",
       "summary": "Meat and fish contain haem iron, which the gut takes up in a different way from the non-haem iron in plants, eggs and dairy. In one study of the same meal, about 15% of haem iron was absorbed against 7% of non-haem iron. Whole-diet estimates for people with empty iron stores are 14–18% for mixed diets and 5–12% for vegetarian diets. The other side: the body adapts. When iron stores are low it absorbs more non-haem iron, and in a 10-week study the gap between a high- and a low-absorption diet shrank from about 8-fold to 4-fold. Even in a meat-containing study diet, only 1.8 of about 16 mg of iron a day was haem iron, so the rest of the meal matters too.",
+      "bottomLine": "Supported. Haem iron from meat and fish was absorbed better than plant iron: about 15 % against 7 % from the same meal. The gap narrows as the body adapts when iron stores are low, and most iron even in a meat-containing diet is non-haem.",
       "whyThisGrade": [
         "Consistent results from isotope studies that measure absorption directly",
         "Short-term absorption studies overestimate the difference between diets, because absorption adapts over weeks",
@@ -56,6 +57,7 @@
       "grade": "moderate",
       "favours": "animal foods",
       "summary": "Phytate (phytic acid and its salts) binds iron and zinc in the gut. In a classic study, adding phytate to bread lowered iron absorption by 18% at the smallest amount and by 82% at the largest. Vitamin C in the same meal partly undid this. EFSA (the European Food Safety Authority) sets higher zinc reference intakes for diets with more phytate: for adult women the average requirement rises from 6.2 to 10.2 mg a day as phytate intake rises from 300 to 1,200 mg a day. The other side: soaking, sprouting (germination), fermenting (including the rising of bread dough) and some cooking reduce phytate or break it down into forms that no longer block absorption, so how a food is prepared changes a lot. Animal foods contain no phytate. This claim is about absorption only, not about other effects of phytate-rich foods.",
+      "bottomLine": "Supported. Phytate added to bread cut iron absorption by 18 % to 82 % depending on the amount, and the European Food Safety Authority sets higher zinc intakes for high-phytate diets. Soaking, sprouting, fermenting and some cooking reduce phytate, so preparation changes a lot.",
       "whyThisGrade": [
         "Clear dose-response in controlled absorption studies",
         "Effects measured in single meals are larger than across a whole, varied diet",
@@ -99,6 +101,7 @@
       "grade": "moderate",
       "favours": "depends",
       "summary": "True for high-oxalate greens, not for greens in general. Oxalate binds calcium in the gut. The spinach in one crossover study had slightly more oxalate than needed to bind all its calcium, and only 5.1% of its calcium was absorbed, against 27.6% from milk. Kale is low in oxalate, and 40.9% of its calcium was absorbed against 32.1% from milk in the same people. Other greens weren't tested in these studies. The other side: low-oxalate greens such as kale absorb well, but a review noted that the amounts of vegetables needed to reach usual calcium intakes are large, which is why fortified foods are common in plant-based diets.",
+      "bottomLine": "True for spinach, not for greens in general. Only 5.1 % of spinach calcium was absorbed against 27.6 % from milk, while low-oxalate kale did better than milk (40.9 % against 32.1 %). Reaching usual calcium intakes from vegetables alone takes large amounts, though.",
       "whyThisGrade": [
         "Direct isotope studies comparing each food with milk in the same people",
         "Small studies (11 and 13 people), but the results fit the known chemistry of oxalate",
@@ -137,6 +140,7 @@
       "grade": "moderate",
       "favours": "depends",
       "summary": "In single-meal studies all of these effects are real. Beef, lamb, pork, liver, fish and chicken raised non-haem iron absorption 2- to 4-fold compared with egg white, while milk, cheese and egg did not (the 'meat factor', whose cause is still unclear). Adding 50 g of pork to a high-phytate meal raised absorption by 44%. A meal with beef protein gave 4.2 times the non-haem iron absorption of one with fava bean protein. Tea cut absorption by 79–94%, and 165 mg of calcium from milk or cheese by 50–60%. The other side: over a whole diet the effects shrink. Varying vitamin C intake over 5 days barely changed iron absorption from the diet, cheese did not lower absorption from a high-absorption meal, and 6 months of calcium supplements with meals did not lower ferritin (iron stores).",
+      "bottomLine": "True in single meals: meat raised plant iron absorption 2- to 4-fold, and tea cut it by 79–94 %. Over a whole diet the effects shrink; in one study 6 months of calcium supplements with meals did not lower ferritin (iron stores).",
       "whyThisGrade": [
         "Large, repeated effects in controlled single-meal absorption studies",
         "Much smaller effects across whole diets, where enhancers and inhibitors mix",
@@ -212,6 +216,7 @@
       "grade": "low",
       "favours": "neither",
       "summary": "For iron, the blocking effect usually blamed on fibre comes mainly from phytate, which sits alongside fibre in bran and whole grains. When phytate was washed out of bran or broken down, most of bran's effect on iron absorption disappeared, and adding phytate back restored it. A systematic review of fibres such as inulin, pectin and guar gum found no clear link with iron absorption or iron status. The limits: most of those studies were in animals, the human studies were few and short, and less is known about zinc and calcium.",
+      "bottomLine": "Not supported for iron. The effect blamed on fibre came mainly from phytate, found alongside it in bran and whole grains; fibres such as inulin and pectin showed no clear link with iron status. Most studies were in animals, and zinc and calcium are less studied.",
       "whyThisGrade": [
         "One well-designed human absorption study separating fibre from phytate",
         "The systematic review included only 9 human studies; most were in animals",
@@ -241,6 +246,7 @@
       "grade": "moderate",
       "favours": "depends",
       "summary": "On protein scores, yes. Scores such as DIAAS (digestible indispensable amino acid score) and the older PDCAAS (protein digestibility-corrected amino acid score) rate how digestible a protein is and whether it has enough of each essential amino acid. Milk proteins score higher than soya, pea or wheat. Essential amino acids made up 21–22% of oat, lupin and wheat protein against 32–43% of egg and milk proteins. Plant proteins are usually lower in lysine (cereals especially) and methionine (legumes especially). The other side: mixing plant proteins, such as grains with legumes, fills these gaps, and reviews found that diets with legumes, nuts and seeds meet adult protein needs. In a meta-analysis of 16 trials, animal and plant protein gave similar gains in lean mass and strength; animal protein did slightly better on percent lean mass and in adults under 50. Reviews note that the question is more complex in older adults.",
+      "bottomLine": "Right on protein scores: egg and milk proteins have more essential amino acids than most plant proteins. In practice, mixing grains with legumes fills the gaps, and in 16 trials plant and animal protein gave similar gains in lean mass and strength.",
       "whyThisGrade": [
         "Amino acid content and digestibility are measured directly and consistently",
         "Digestibility data come partly from animal models (pigs, rats)",
@@ -291,6 +297,7 @@
       "grade": "low",
       "favours": "depends",
       "summary": "Stores are lower on average, but deficiency is not the rule. A meta-analysis of 24 studies found ferritin (iron stores) about 30 µg/L lower in vegetarians, with a larger gap in men (about 62 µg/L) than in women (about 14–18 µg/L). Another meta-analysis found zinc intake about 0.9 mg a day lower and blood zinc slightly lower, more so in vegans and women. The other side: in a Swiss study iron deficiency was about as common in omnivores, vegetarians and vegans, though zinc deficiency was most common in vegans (47%); a German study found iron deficiency in 4 of 36 vegans and 3 of 36 meat-eaters. Very high iron stores are not a goal either. Calcium is a separate story: in the EPIC-Oxford cohort vegans had more hip fractures than meat-eaters (about 15 more per 1,000 people over 10 years), only partly explained by calcium and protein intake.",
+      "bottomLine": "Stores are lower on average, but deficiency isn't the rule. Vegetarians had ferritin (iron stores) about 30 µg/L lower, yet in a Swiss study iron deficiency was about as common in every diet group. Zinc deficiency there was most common in vegans (47 %).",
       "whyThisGrade": [
         "Mostly cross-sectional studies, which can't show cause and effect",
         "Definitions of vegetarian diets, and use of supplements, differ between studies",

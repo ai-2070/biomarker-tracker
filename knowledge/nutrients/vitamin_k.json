@@ -102,6 +102,7 @@
         "These are lab markers, not health outcomes"
       ],
       "summary": "Vitamin K supplements reliably lower the share of inactive vitamin K-dependent proteins in the blood (by about 45% for dp-ucMGP in one meta-analysis). This shows the vitamin is being used, but changing a marker is not the same as a health benefit: the trials below show what happened to bones and blood vessels.",
+      "bottomLine": "In adult trials, vitamin K supplements reliably lowered the share of inactive vitamin K-dependent proteins in the blood, by about 45% for one marker in a meta-analysis. This shows the vitamin is used, but a marker change is not a health benefit.",
       "studies": [
         {
           "pmid": "30514729",
@@ -133,6 +134,7 @@
         "Very high, medicine-level amounts in many trials"
       ],
       "summary": "An early meta-analysis of seven Japanese MK-4 trials, at medicine-level amounts, found far fewer fractures. A 2019 update found about 28% lower odds of clinical fractures, but this shrank and became uncertain when only low-risk-of-bias trials were counted, and there was no effect on vertebral fractures. The largest single trial found no effect on vertebral fractures. The evidence is not enough to confirm a benefit.",
+      "bottomLine": "In mostly Japanese trials in women after menopause and people with osteoporosis, vitamin K seemed to cut fractures, but the effect shrank and became uncertain in the best-quality trials. The evidence is not enough to confirm a benefit.",
       "studies": [
         {
           "pmid": "31076817",
@@ -169,6 +171,7 @@
         "A well-run 2 to 4 year trial of K1 found no difference"
       ],
       "summary": "In the 2019 meta-analysis, vitamin K did not clearly change bone density in women after menopause. The ECKO trial (5 mg K1 a day for 2 to 4 years) found no effect on bone density. One 3-year trial of MK-7 (180 µg a day) reported slower bone loss at some sites, but this has not been confirmed across trials.",
+      "bottomLine": "In women after menopause, vitamin K did not clearly change bone density, in a 2019 meta-analysis and in a 2 to 4 year trial. One 3-year trial reported slower bone loss at some sites, but this has not been confirmed.",
       "studies": [
         {
           "pmid": "31076817",
@@ -206,6 +209,7 @@
         "Calcification scores are stand-in measures; no trial has shown fewer heart attacks or strokes"
       ],
       "summary": "Meta-analyses found vitamin K slightly slowed the build-up of calcium in arteries, with no clear effect on artery stiffness. But a trial of MK-7 (720 µg a day) with vitamin D for 2 years in men with heart valve calcification found no slowing, and a trial in people with chronic kidney disease (400 µg K2 a day for a year) found no change in artery stiffness. Whether vitamin K protects the heart is unknown.",
+      "bottomLine": "In adults with or at risk of calcium build-up in blood vessels, including people with kidney disease, meta-analyses found vitamin K slightly slowed it. But two trials found no benefit, so whether vitamin K protects the heart is unknown.",
       "studies": [
         {
           "pmid": "30514729",
@@ -252,6 +256,7 @@
         "Done with close INR monitoring and warfarin adjustments by the clinic"
       ],
       "summary": "In people with unstable warfarin control, a small steady daily amount of vitamin K (150 µg) kept the INR in the target range more of the time than placebo, probably by evening out day-to-day swings in vitamin K from food. This was done under close supervision; changing vitamin K intake while on warfarin is a decision for the anticoagulation clinic, never a do-it-yourself step.",
+      "bottomLine": "In people on warfarin with unstable control, a small steady daily amount of vitamin K kept the clotting test result (INR) in the target range more of the time than placebo. This was done under close clinic supervision, never as a do-it-yourself step.",
       "studies": [
         {
           "pmid": "17110451",

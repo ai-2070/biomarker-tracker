@@ -151,6 +151,7 @@
         "Only 10 trials were at low risk of bias; many reported their methods poorly"
       ],
       "summary": "Daily iron supplements raised haemoglobin and iron stores and made anaemia and iron deficiency less common. Exercise performance improved and tiredness seemed to fall. The benefit is clearest in women who were low to begin with: raising iron in someone whose levels are already normal is not shown to help. Low iron also has causes, such as blood loss, that need checking by a doctor.",
+      "bottomLine": "In women with periods, many already low in iron, daily iron supplements raised haemoglobin and iron stores and made anaemia less common. The benefit is clearest in women who started low; raising iron that is already normal is not shown to help.",
       "studies": [
         {
           "pmid": "27087396",
@@ -173,6 +174,7 @@
         "Most other outcomes (for mother and baby) were uncertain or showed little difference"
       ],
       "summary": "Daily iron in pregnancy may lower the chance of anaemia and of iron deficiency at the end of pregnancy, and probably lowers iron-deficiency anaemia. For most other outcomes, such as the mother's death or the baby's health, there was little or no difference, or the evidence was too uncertain to tell. Iron in pregnancy is part of antenatal care, and is decided with a midwife or doctor.",
+      "bottomLine": "In pregnant women, daily iron may lower the chance of anaemia and iron deficiency at the end of pregnancy. For most other outcomes, such as the baby's health, there was little or no difference, or the evidence was too uncertain to tell.",
       "studies": [
         {
           "pmid": "39145520",
@@ -195,6 +197,7 @@
         "Objective measures, such as maximal oxygen uptake, did not improve"
       ],
       "summary": "In trials of non-anaemic people with low ferritin, iron lowered self-reported tiredness by a small to moderate amount compared with placebo. In one French trial of 198 women with ferritin below 50 µg/L, tiredness scores fell by 48 % with iron and by 29 % with placebo; quality of life, mood and anxiety did not differ. Measured fitness did not change. Tiredness has many causes, so low iron is only one possibility to discuss with a doctor.",
+      "bottomLine": "In adults, mostly women, with low iron stores (ferritin) but no anaemia, iron lowered self-reported tiredness by a small to moderate amount compared with placebo. Measured fitness did not change, and tiredness has many causes.",
       "studies": [
         {
           "pmid": "29626044",
@@ -232,6 +235,7 @@
         "Side effects were reported in different ways from trial to trial"
       ],
       "summary": "Iron tablets clearly increase gut side effects: constipation, diarrhoea, nausea and stomach pain. Compared with placebo, the odds of gut side effects were about twice as high; the meta-analysis found no clear link with the amount of iron. Black stools are expected with iron and are harmless. Side effects are a common reason people give up on iron, which is one reason doctors try different products or schedules.",
+      "bottomLine": "In trials of adults, the odds of gut side effects such as constipation, nausea and stomach pain were about twice as high with iron tablets as with placebo. Black stools are expected and harmless. Side effects are a common reason people give up on iron.",
       "studies": [
         {
           "pmid": "25700159",
@@ -262,6 +266,7 @@
         "A 2025 meta-analysis (11 trials, about 1,000 people) rated most outcomes very low certainty"
       ],
       "summary": "Each iron dose raises hepcidin, a hormone that blocks absorption of the next dose. In iron-depleted women, the same doses given on alternate days were absorbed better per dose than on consecutive days, and splitting a dose in two did not help. In a 6-month trial in 150 women, the same total amount of iron given on alternate days gave the same ferritin, less iron deficiency at the end and fewer gut side effects. But in trials of people with anaemia, haemoglobin rose about as much, or slightly more, with daily iron. So alternate days may be gentler on the gut and absorb better per dose, but it isn't shown to correct anaemia faster.",
+      "bottomLine": "In women with low iron, the same doses given on alternate days were absorbed better per dose, with fewer gut side effects. But in people with anaemia, haemoglobin rose about as much, or slightly more, with daily iron, so alternate days isn't shown to correct anaemia faster.",
       "studies": [
         {
           "pmid": "29032957",
@@ -308,6 +313,7 @@
         "Only 4 trials in men and non-pregnant women, too few to pool"
       ],
       "summary": "In pregnant women, ferrous bisglycinate raised haemoglobin a little more and caused fewer gut side effects than other iron supplements over 4–20 weeks. For other adults there are too few trials to say whether it works better. Trials often compared different amounts of iron, which makes a fair comparison harder.",
+      "bottomLine": "In pregnant women, ferrous bisglycinate raised haemoglobin a little more and caused fewer gut side effects than other iron supplements. For other adults there are too few trials to say, and trials often compared different amounts of iron.",
       "studies": [
         {
           "pmid": "36728680",

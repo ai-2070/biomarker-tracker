@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { ComparisonClaim, ComparisonTopic, Verdict } from "../../core/foodComparison";
 import { FOOD_COMPARISON } from "../knowledge";
 import { GradeBadge, StudyLink } from "./evidence";
+import { Glance } from "./glance";
 import { segBtn } from "./timeControls";
 import { Card, cx } from "./ui";
 
@@ -60,6 +61,15 @@ export function FoodComparison() {
           <h3 className="font-serif text-xl font-normal">{current.title}</h3>
           <p className="text-ink-2">{current.intro}</p>
         </div>
+        <Glance
+          caption={current.title}
+          rows={current.claims.map((c) => ({
+            id: `claim-${c.id}`,
+            label: c.claim,
+            result: <span className={cx("rounded-full px-2 py-0.5 text-xs font-medium", VERDICT[c.verdict].className)}>{c.verdict[0]!.toUpperCase() + c.verdict.slice(1)}</span>,
+            grade: c.grade,
+          }))}
+        />
         <ul className="flex flex-col gap-3">
           {current.claims.map((c) => (
             <li key={c.id}>
@@ -79,7 +89,7 @@ export function FoodComparison() {
 function Claim({ c }: { c: ComparisonClaim }) {
   const v = VERDICT[c.verdict];
   return (
-    <article className="flex flex-col gap-2 rounded-lg border border-line p-3">
+    <article id={`claim-${c.id}`} tabIndex={-1} className="flex scroll-mt-6 flex-col gap-2 rounded-lg border border-line p-3 outline-none">
       <p className="font-medium">“{c.claim}”</p>
       <div className="flex flex-wrap items-center gap-2 text-sm">
         <span className={cx("rounded-full px-2 py-0.5 font-medium", v.className)}>
@@ -95,9 +105,11 @@ function Claim({ c }: { c: ComparisonClaim }) {
           <span className="rounded-full bg-sunken px-2 py-0.5 text-ink-2">Depends on the food</span>
         ) : null}
       </div>
-      <p>{c.summary}</p>
+      <p>{c.bottomLine ?? c.summary}</p>
       <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Why this grade, and sources</summary>
+        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">{c.bottomLine ? "Read the full summary, why this grade, and sources" : "Why this grade, and sources"}</summary>
+        {c.bottomLine && <p className="mb-3">{c.summary}</p>}
+        <p className="mb-1 text-sm font-medium">Why this grade</p>
         <ul className="list-disc pl-5 text-sm text-ink-2">
           {c.whyThisGrade.map((w) => (
             <li key={w}>{w}</li>

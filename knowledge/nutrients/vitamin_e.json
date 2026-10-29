@@ -113,6 +113,7 @@
         "An earlier trial in smokers at a lower dose (ATBC) found fewer prostate cancers, so the results aren't consistent"
       ],
       "summary": "In SELECT, 35,533 men were given 400 IU a day of synthetic vitamin E, selenium, both, or placebo. With extended follow-up, the vitamin E group had 17% more prostate cancer than placebo, about 1.6 extra cases for every 1,000 men each year. Men given vitamin E with selenium had no clear increase. In ATBC (50 mg a day in male smokers) fewer prostate cancers were diagnosed, a result SELECT was partly designed to test and didn't confirm.",
+      "bottomLine": "In SELECT, 35,533 healthy men given 400 IU a day of synthetic vitamin E had 17% more prostate cancer than with placebo, about 1.6 extra cases per 1,000 men a year. Men given it with selenium had no clear increase.",
       "studies": [
         {
           "pmid": "21990298",
@@ -150,6 +151,7 @@
         "Pooled in an independent review for the US Preventive Services Task Force (USPSTF)"
       ],
       "summary": "In the Physicians' Health Study II (14,641 men, 8 years), vitamin E didn't change major heart and stroke events. In the Women's Health Study (39,876 women, 10 years) there was no overall benefit; there were fewer cardiovascular deaths, a secondary result. In HOPE-TOO (people with vascular disease or diabetes, 7 years) there was no benefit and more heart failure. The USPSTF review found no effect on cardiovascular events, and the USPSTF advises against vitamin E supplements for preventing heart disease or cancer.",
+      "bottomLine": "In large trials of healthy adults and of people with vascular disease or diabetes, vitamin E did not lower heart attacks or strokes overall. One trial saw more heart failure; another saw fewer heart and blood vessel deaths, but only as a secondary result.",
       "studies": [
         {
           "pmid": "18997197",
@@ -203,6 +205,7 @@
         "Stroke type wasn't the main outcome in most trials"
       ],
       "summary": "Vitamin E didn't change the total number of strokes. But bleeding strokes (haemorrhagic) were 22% more common, about one extra for every 1,250 people taking it, while strokes from a blocked artery (ischaemic) were 10% less common, about one fewer for every 476. Bleeding strokes are usually more severe. Two large trials, PHS II and ATBC, each also saw more bleeding strokes with vitamin E.",
+      "bottomLine": "In nine trials, vitamin E did not change the total number of strokes, but bleeding strokes were 22% more common and strokes from a blocked artery 10% less common. Bleeding strokes are usually the more severe kind.",
       "studies": [
         {
           "pmid": "21051774",
@@ -233,6 +236,7 @@
         "The independent USPSTF review found no clear difference"
       ],
       "summary": "No analysis found that vitamin E helped people live longer. A Cochrane review found about 3% more deaths with vitamin E in trials at low risk of bias, at the edge of statistical significance. An earlier meta-analysis found more deaths in trials using 400 IU a day or more (about 39 extra deaths per 10,000 people) and none with lower doses. The USPSTF review, limited to healthy adults, found no clear difference. A small harm at high doses is possible but not certain.",
+      "bottomLine": "In trials of adults, healthy or ill, vitamin E did not help people live longer. Two analyses found slightly more deaths, one of them only at 400 IU a day or more, so a small harm at high doses is possible but not certain.",
       "studies": [
         {
           "pmid": "22419320",
@@ -271,6 +275,7 @@
         "It tests a combination (vitamins C and E, beta-carotene and zinc), so vitamin E's own share is unknown"
       ],
       "summary": "In AREDS (3,640 people, about 6 years), a combination containing vitamin E slowed progression to late AMD, mainly in people with intermediate AMD; for people with early AMD the absolute benefit was very small. A single trial of vitamin E alone was too small to show anything (very low certainty). Because beta-carotene in the formula raised lung cancer in former smokers, AREDS2 replaced it with lutein and zeaxanthin. This is a treatment for a diagnosed eye condition, chosen with an eye doctor, not a general prevention.",
+      "bottomLine": "In AREDS (3,640 people with age-related macular degeneration, about 6 years), a combination containing vitamin E slowed progression to the late stage, mainly in people with intermediate disease. It is a treatment for a diagnosed eye condition, not general prevention.",
       "studies": [
         {
           "pmid": "37702300",
@@ -309,6 +314,7 @@
         "Only people without diabetes were studied"
       ],
       "summary": "In the PIVENS trial, 800 IU a day of vitamin E for 96 weeks improved liver biopsy findings more often than placebo (43% compared with 19%), and liver enzymes fell. It isn't known whether this prevents cirrhosis or lengthens life, and the long-term risks found in other vitamin E trials still apply. This is a treatment for a diagnosed liver disease under a doctor's care.",
+      "bottomLine": "In a trial of adults without diabetes whose fatty liver inflammation was confirmed by biopsy, 800 IU a day of vitamin E for 96 weeks improved liver findings more often than placebo (43% against 19%). Whether it prevents cirrhosis or lengthens life is unknown.",
       "studies": [
         {
           "pmid": "20427778",
