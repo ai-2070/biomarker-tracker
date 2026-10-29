@@ -6,6 +6,7 @@ import { mortalityFromPhenoAge } from "../../../core/phenoage";
 import { summarizePhenoAge } from "../../../core/phenoageDraws";
 import type { Citation, Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { setProfile } from "../../../db/db";
+import { EGG_ODDS, easterEggsOn } from "../../easterEggs";
 import { formatDate } from "../../format";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
@@ -42,6 +43,9 @@ const yrs = (v: number) => v.toFixed(1);
  */
 export function BestBefore({ measurements, profile, protocols }: { measurements: readonly Measurement[]; profile: Profile; protocols: readonly ProtocolEntry[] }) {
   const [file, setFile] = useState<LifeTableFile>();
+  // Easter egg, about once in 50 views (unless turned off): tomorrow, a car crash. Always labelled as a joke,
+  // with the real date right under it.
+  const [egg] = useState(() => (easterEggsOn() && Math.random() < 1 / EGG_ODDS ? Date.now() + 86_400_000 + Math.floor(Math.random() * 86_400) * 1000 - (Date.now() % 1000) : undefined));
   useEffect(() => {
     void import("../../../../knowledge/lifetables/eurostat.json").then((m) => setFile(m.default as LifeTableFile));
   }, []);
@@ -107,6 +111,13 @@ export function BestBefore({ measurements, profile, protocols }: { measurements:
     <Card className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
         <p className={label}>Expiration date</p>
+        {egg !== undefined && (
+          <div className="mb-3 flex flex-col gap-1 border-b border-line pb-4">
+            <p className="font-serif text-3xl leading-tight tabular-nums text-danger sm:text-5xl">{exact.format(new Date(egg))}</p>
+            <p className="font-medium">Cause: car crash.</p>
+            <p className="text-sm text-ink-2">Easter egg (1 in {EGG_ODDS}). Not real: nothing in your data says this. Your actual date is below. Turn jokes off in Settings → Appearance.</p>
+          </div>
+        )}
         <p className="font-serif text-3xl leading-tight tabular-nums sm:text-5xl">{exact.format(new Date(head.medianAt))}</p>
         <p className="max-w-3xl">
           {mine && shift ? (
