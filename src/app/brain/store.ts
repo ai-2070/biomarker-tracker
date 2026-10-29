@@ -11,6 +11,7 @@ import { shrinkPhoto } from "./photo";
 import { parseHealthScreenshot } from "../../core/importers/screenshot";
 import { todayIso } from "../../core/dates";
 import { parseHabitProposal, type HabitProposal } from "../../core/habitProposal";
+import { planFromProposal, type Plan } from "../../core/plans";
 import { flagLatest, groupByBiomarker, isCritical } from "../../core/trends";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
@@ -28,6 +29,8 @@ export type Turn =
   | { id: string; role: "stopped" }
   /** A habit Brain suggested: a card the person edits and confirms (nothing is saved before). */
   | { id: string; role: "habit"; proposal: HabitProposal; state: "open" | "saved" | "dismissed" }
+  /** A protocol Brain wrote down from the person's text: a card they check and create. */
+  | { id: string; role: "protocol"; plan: Plan; state: "open" | "saved" | "dismissed" }
   | {
       id: string;
       role: "review";
@@ -122,7 +125,7 @@ export const setSendPhoto = (id: string, on: boolean) => set((s) => ({ attachmen
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
 export const setHabitState = (id: string, state: "saved" | "dismissed") =>
-  set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "habit" ? { ...t, state } : t)) }));
+  set((s) => ({ turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol") ? { ...t, state } : t)) }));
 
 /**
  * Habit cards from Brain's propose_habit calls, checked again here (the same rules as the server) and
@@ -135,7 +138,16 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
   });
   if (critical) return [];
   const seen = new Set<string>();
-  return steps.flatMap((st) => {
+  return steps.flatMap((st): Turn[] => {
+    if (!st.server && st.tool === "propose_protocol") {
+      try {
+        // Real ids: the protocol is saved in the profile, unlike chat turns.
+        const r = planFromProposal(JSON.parse(st.input), () => crypto.randomUUID(), new Date().toISOString());
+        return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, state: "open" }] : [];
+      } catch {
+        return [];
+      }
+    }
     if (st.server || st.tool !== "propose_habit") return [];
     let input: unknown;
     try {

@@ -175,3 +175,36 @@ export function habitsForPlan(p: Plan, start: string): Omit<ProtocolEntry, "id">
     return { label: label.length > MAX_LABEL ? `${label.slice(0, MAX_LABEL - 1).trimEnd()}…` : label, category: i.category, start };
   });
 }
+
+// ---- From Brain: a protocol the person described in text --------------------------------------
+
+/**
+ * A protocol Brain wrote down from the person's own text (a pasted routine, a list): shown as a card
+ * they check and create. Same rules as a file: validated, fresh ids, never running.
+ */
+export function planFromProposal(input: unknown, newId: () => string, now: string): { ok: true; plan: Plan } | { ok: false; error: string } {
+  if (!isObj(input)) return { ok: false, error: "No protocol was given." };
+  if (!Array.isArray(input.items) || input.items.length === 0) return { ok: false, error: "List the items from the person's text." };
+  const items = input.items.map((i) => {
+    if (!isObj(i)) return i;
+    const { label, amount, category, when, note } = i;
+    return {
+      id: newId(),
+      label: typeof label === "string" ? label.trim() : label,
+      ...(typeof amount === "string" && amount.trim() ? { amount: amount.trim() } : {}),
+      category,
+      when,
+      ...(typeof note === "string" && note.trim() ? { note: note.trim() } : {}),
+    };
+  });
+  const plan = {
+    id: newId(),
+    name: typeof input.name === "string" ? input.name.trim() : input.name,
+    ...(typeof input.description === "string" && input.description.trim() ? { description: input.description.trim() } : {}),
+    ...(typeof input.source === "string" && input.source.trim() ? { source: input.source.trim() } : {}),
+    items,
+    createdAt: now,
+  };
+  const errs = validatePlan(plan);
+  return errs.length ? { ok: false, error: `The protocol isn't valid: ${errs[0]}.` } : { ok: true, plan: plan as Plan };
+}

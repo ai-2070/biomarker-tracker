@@ -18,7 +18,7 @@ import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, Saf
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
-import { nutrientFor, pairWarnings, validatePlan, type Plan } from "../src/core/plans";
+import { PLAN_TIMES, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime } from "../src/core/plans";
 import { findMarker, findNutrient, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 
@@ -276,6 +276,38 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
             })),
             interactionsBetweenItems: pairWarnings(p, nutrients),
           })),
+        };
+      },
+    }),
+    propose_protocol: tool({
+      description:
+        "Set up a protocol from text the person gave you (a pasted routine, a list of what they take or do). It shows a card in the chat that they check and create; nothing is saved until they do. Copy their items, times and amounts exactly as written: never add items, amounts or advice of your own, and leave amount empty when they gave none. Conditions such as 'only if deficient' go in the item's note. Use 'any time' when no time fits, with the timing in the note (e.g. 'Before a workout').",
+      inputSchema: z.object({
+        name: z.string().describe("The person's name for it, or a short one from their text"),
+        description: z.string().optional(),
+        source: z.string().optional().describe("Where it comes from, if they said"),
+        items: z
+          .array(
+            z.object({
+              label: z.string().describe("Item as they wrote it, e.g. 'Vitamin D3 + K2'"),
+              amount: z.string().optional().describe("Only if they wrote one, e.g. '2000 IU'"),
+              category: z.enum(["supplement", "diet", "medication", "lifestyle"]),
+              when: z.enum(PLAN_TIMES as unknown as [PlanTime, ...PlanTime[]]),
+              note: z.string().optional(),
+            }),
+          )
+          .min(1)
+          .max(60),
+      }),
+      execute: async (input) => {
+        if (resultsOverview(s).critical.length > 0) return { error: "Not while a result is critical: the person should contact a doctor first." };
+        const r = planFromProposal(input, () => crypto.randomUUID(), new Date().toISOString());
+        if (!r.ok) return { error: r.error };
+        const { nutrients } = knowledge();
+        return {
+          shownToPerson: { name: r.plan.name, items: r.plan.items.length },
+          interactionsBetweenItems: pairWarnings(r.plan, nutrients),
+          note: "A card is shown in the chat. Nothing is saved until the person creates it; they can edit it afterwards on the Protocols page.",
         };
       },
     }),
