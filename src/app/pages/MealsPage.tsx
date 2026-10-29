@@ -7,8 +7,7 @@ import type { SafetyId } from "../../core/types";
 import { newId, saveMeal } from "../../db/db";
 import { openBrain } from "../brain/store";
 import { DarkMatterExplainer } from "../components/DarkMatter";
-import { COMPARISON_CLAIMS, FoodComparison } from "../components/FoodComparison";
-import { Fold, FoldGroup } from "../components/disclosure";
+import { FoodComparison } from "../components/FoodComparison";
 import { BrainIcon, PlusIcon } from "../components/icons";
 import { Button, Card, PageTitle } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
@@ -129,14 +128,9 @@ export function MealsPage() {
           )}
         </section>
 
-        <FoldGroup>
-          <Fold title="What food tables can't tell you" summary="They measure about 30 nutrients; food holds more than 26,000 chemicals. What this means for the numbers here.">
-            <DarkMatterExplainer db={db} />
-          </Fold>
-          <Fold title="Animal foods, fruit and plants: what research says" summary={`${COMPARISON_CLAIMS} common claims about absorption, vitamins, the food matrix and safety, each with a verdict and sources.`}>
-            <FoodComparison />
-          </Fold>
-        </FoldGroup>
+        {/* The background reading sits at the end, after the person's own meals and the examples. */}
+        <DarkMatterExplainer db={db} />
+        <FoodComparison />
       </div>
     </>
   );

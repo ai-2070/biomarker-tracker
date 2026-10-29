@@ -4,7 +4,6 @@ import { findingCounts, interactionsFor, type NutrientDef, type NutrientKind } f
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { Measurement, Profile, SafetyId } from "../../core/types";
-import { Chip, Fold, FoldGroup } from "../components/disclosure";
 import { Card, FlagBadge, PageTitle, cx } from "../components/ui";
 import { displayUnitFor, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
@@ -32,28 +31,27 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
 
   return (
     <>
-      <PageTitle sub="What research says about 15 vitamins and minerals: what they do, who runs low, food sources and what supplement trials found. General information, not a dose for you.">
+      <PageTitle sub="What research says about vitamins and minerals: what they do, who tends to run low, where they come from in food, and what trials of supplements actually found. General information, not a dose for you.">
         Supplementation
       </PageTitle>
 
-      <FoldGroup className="mb-6 max-w-3xl">
-        <Fold title="Before you look at supplements" summary="They help most when you're low. With medicines, pregnancy or kidney disease, ask a doctor or pharmacist first.">
-          <ul className="flex list-disc flex-col gap-2 pl-5 text-ink-2">
-            <li>
-              <span className="text-ink">Supplements help most when you're low.</span> In people who aren't, many large trials found no benefit, and a few found
-              harm. A blood test shows your status for some of them.
-            </li>
-            <li>
-              <span className="text-ink">Food and a supplement are different things.</span> A food brings thousands of other compounds, so their findings are
-              graded separately here.
-            </li>
-            <li>
-              <span className="text-ink">Talk to a doctor or pharmacist first</span> if you take medicines, are pregnant, or have kidney or liver disease. Some
-              supplements interact with medicines or build up in the body.
-            </li>
-          </ul>
-        </Fold>
-      </FoldGroup>
+      <Card className="mb-5 flex flex-col gap-3">
+        <h2 className="font-serif text-2xl font-normal">Before you look at supplements</h2>
+        <ol className="flex list-decimal flex-col gap-2 pl-5 text-ink-2">
+          <li>
+            <span className="text-ink">Supplements help most when you're low.</span> In people who aren't, many large trials found no benefit, and
+            a few found harm. A blood test shows your status for some of them.
+          </li>
+          <li>
+            <span className="text-ink">Food and a supplement are different things.</span> A food brings thousands of other compounds; the findings
+            for one don't carry over to the other, so they're graded separately here.
+          </li>
+          <li>
+            <span className="text-ink">Talk to a doctor or pharmacist first</span> if you take medicines, are pregnant, or have kidney or liver
+            disease. Some supplements interact with medicines or build up in the body.
+          </li>
+        </ol>
+      </Card>
 
       <ToggleGroup
         aria-label="Show"
@@ -119,11 +117,14 @@ function NutrientCard({ n, byMarker, safety, profile }: { n: NutrientDef; byMark
       className="flex h-full flex-col gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
     >
       <div className="flex items-start justify-between gap-2">
-        <h2 className="font-serif text-2xl font-normal">{n.name}</h2>
-        {warn.length > 0 && <Chip tone="warn">Check interactions</Chip>}
+        <div>
+          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind}</p>
+          <h2 className="font-serif text-2xl font-normal">{n.name}</h2>
+        </div>
+        {warn.length > 0 && <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-sm font-medium text-warn">Check interactions</span>}
       </div>
-      <p className="line-clamp-2 text-ink-2">{n.summary}</p>
-      <div className="mt-auto flex flex-col gap-2 pt-1 text-sm">
+      <p className="line-clamp-3 text-ink-2">{n.summary}</p>
+      <div className="mt-auto flex flex-col gap-2 border-t border-line pt-3 text-sm">
         {def && latest && flag ? (
           <p className="flex flex-wrap items-center gap-2">
             <span className="text-ink-2">Your {nameInSentence(def)}:</span>
@@ -135,11 +136,16 @@ function NutrientCard({ n, byMarker, safety, profile }: { n: NutrientDef; byMark
         ) : (
           <p className="text-ink-2">{n.status.biomarkerIds.length ? "No status result yet" : "No routine blood test for it in the app"}</p>
         )}
-        <p className="flex flex-wrap items-center gap-1">
-          <span className="mr-1 text-ink-2">Trials:</span>
-          {counts.helps > 0 && <Chip tone="ok">{counts.helps} helped</Chip>}
-          {counts["no clear effect"] + counts.mixed > 0 && <Chip>{counts["no clear effect"] + counts.mixed} unclear</Chip>}
-          {counts.harms > 0 && <Chip tone="danger">{counts.harms} harmed</Chip>}
+        <p className="text-ink-2">
+          What supplement trials found:{" "}
+          {[
+            counts.helps && `${counts.helps} ${counts.helps === 1 ? "benefit" : "benefits"}`,
+            counts["no clear effect"] && `${counts["no clear effect"]} no clear effect`,
+            counts.mixed && `${counts.mixed} mixed`,
+            counts.harms && `${counts.harms} ${counts.harms === 1 ? "harm" : "harms"}`,
+          ]
+            .filter(Boolean)
+            .join(" · ")}
         </p>
       </div>
     </a>
