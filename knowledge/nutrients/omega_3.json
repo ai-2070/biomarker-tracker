@@ -1,0 +1,490 @@
+{
+  "id": "omega_3",
+  "name": "Omega-3 (EPA and DHA)",
+  "kind": "supplement",
+  "otherNames": [
+    "Omega-3",
+    "fish oil",
+    "omega-3 fatty acids",
+    "n-3 fatty acids",
+    "EPA (eicosapentaenoic acid)",
+    "DHA (docosahexaenoic acid)",
+    "long-chain omega-3 fats",
+    "algal oil",
+    "krill oil",
+    "cod liver oil"
+  ],
+  "summary": "EPA and DHA are long-chain omega-3 fats found mainly in oily fish and other seafood. The body makes only small amounts of them from ALA, the omega-3 fat in plants. Supplements lower triglycerides (a blood fat), but large trials found little or no effect on heart attacks, strokes or deaths in most people, and the risk of atrial fibrillation (an irregular heartbeat) was higher in trials, more so above 1 g a day.",
+  "roles": [
+    "Building blocks of cell membranes, especially in the brain and the retina of the eye (DHA)",
+    "Raw material for signalling molecules involved in inflammation and blood clotting",
+    "A baby's brain and eye development during pregnancy and breastfeeding (DHA)",
+    "Lowering triglycerides (a blood fat) at higher intakes"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no omega-3 marker, and there is no routine blood test for omega-3 status. Some labs offer the omega-3 index: EPA and DHA as a share of the fats in red blood cells, which reflects intake over the past months. It was proposed in 2004 as a risk marker for death from coronary heart disease (an index of 8 % or more went with the lowest risk, 4 % or less with the highest), but it is not a standard test and there is no agreed target. Triglycerides fall with higher omega-3 intakes, but they are not a measure of omega-3 status: many other things affect them."
+  },
+  "low": {
+    "signs": [
+      "No clear signs in everyday life: a low intake of EPA and DHA doesn't cause symptoms that adults would notice",
+      "A low intake shows up only in tests such as a low omega-3 index"
+    ],
+    "atRisk": [
+      "People who rarely or never eat fish or seafood",
+      "Vegetarians and vegans, who get only ALA from plants unless they use algal oil: the body turns ALA into some EPA but very little DHA",
+      "Pregnancy and breastfeeding, when the need for DHA rises (EFSA adds 100–200 mg of DHA a day)"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Fishy aftertaste, burps and mild stomach upset",
+      "Atrial fibrillation (an irregular heartbeat): more common in trials of omega-3 supplements, more so above 1 g a day",
+      "A small rise in LDL cholesterol (about 3 %) at 2–6 g a day of EPA and DHA together",
+      "A small rise in bleeding with high-dose purified EPA, a prescription medicine"
+    ],
+    "note": "Eating fish doesn't cause problems from omega-3. EFSA (the European Food Safety Authority) found too little data to set an upper limit, and judged that long-term supplement intakes up to about 5 g a day of EPA and DHA together did not appear to increase spontaneous bleeding or bleeding complications, or affect blood sugar control, the immune system or fat oxidation in the body, provided the oil itself was not oxidised. Separately, trials found more atrial fibrillation with omega-3 supplements, more so above 1 g a day."
+  },
+  "foodSources": {
+    "examples": [
+      "Oily fish such as salmon, mackerel, herring, sardines, trout and anchovies",
+      "Other fish and seafood, in smaller amounts",
+      "Plant foods with ALA (not EPA or DHA): flaxseed (linseed) and its oil, chia seeds, walnuts, rapeseed oil"
+    ],
+    "cofidNutrient": "epaDha",
+    "note": "EPA and DHA come almost only from fish and seafood (and from algae, which fish get them from). Plant foods provide ALA, which the body turns into EPA only to a limited extent and into DHA very little; women convert more than men. EFSA set a separate adequate intake for ALA (0.5 % of energy). National food agencies give advice on which fish to limit during pregnancy."
+  },
+  "forms": [
+    {
+      "name": "Fish oil (natural triglyceride form)",
+      "note": "Oil from fish bodies, with EPA and DHA in the same form as in fish. Labels can be confusing: what matters is the amount of EPA and DHA, not the weight of fish oil. In the VITAL trial, 1 g of fish oil contained 465 mg of EPA and 375 mg of DHA."
+    },
+    {
+      "name": "Concentrated fish oil: ethyl esters and re-esterified triglycerides",
+      "note": "Concentrates hold more EPA and DHA per capsule. In a 2-week study of 72 volunteers given about 3.3 g of EPA and DHA a day, re-esterified triglycerides raised blood levels more than natural fish oil (124 %), and ethyl esters less (73 %). Ethyl esters are also the form in some prescription medicines."
+    },
+    {
+      "name": "Algal oil",
+      "note": "Made from microalgae, so suitable for vegetarians and vegans. Often mostly DHA; check the label for the amounts of EPA and DHA."
+    },
+    {
+      "name": "Krill oil",
+      "note": "From krill, small sea crustaceans; part of the omega-3 is bound in phospholipids. It is sold as better absorbed; there are few independent studies comparing it with fish oil. Relevant for people with shellfish allergy."
+    },
+    {
+      "name": "Cod liver oil",
+      "note": "Contains EPA and DHA but also preformed vitamin A (retinol) and vitamin D. Too much preformed vitamin A early in pregnancy is linked to birth defects (see the vitamin A page), so the vitamin A content matters, especially in pregnancy and when combined with other supplements."
+    },
+    {
+      "name": "Plant ALA (flaxseed oil, chia, walnuts)",
+      "note": "Not a source of EPA or DHA itself. Tracer studies found that the body turns ALA into EPA only to a limited extent, and into DHA very little."
+    },
+    {
+      "name": "Prescription omega-3 medicines (purified EPA such as icosapent ethyl, or EPA+DHA)",
+      "note": "Medicines, not supplements: used at about 4 g a day under a doctor's care, mainly for high triglycerides. Results from these medicines can't be applied to ordinary fish oil capsules."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults (EPA and DHA together)", "amount": 250, "unit": "mg", "type": "AI" }
+    ],
+    "noUpperLimit": "EFSA (2012) found the data insufficient to set an upper limit for EPA, DHA or DPA (another long-chain omega-3), alone or together, for any group. At observed intakes, omega-3 from food was not linked with harm in healthy children or adults. EFSA judged that supplement intakes of up to about 5 g a day of EPA and DHA together, up to 1.8 g a day of EPA alone and up to about 1 g a day of DHA alone do not raise safety concerns for adults, provided the oil is not oxidised. At 2–6 g a day of EPA and DHA, LDL cholesterol rose by about 3 %. The adequate intake (AI) of 250 mg a day for adults was set in 2010 from heart-health considerations; EFSA adds 100–200 mg of DHA a day in pregnancy and breastfeeding. These are guides for groups of people, not personal targets.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2010.1461",
+        "title": "Scientific Opinion on Dietary Reference Values for fats, including saturated fatty acids, polyunsaturated fatty acids, monounsaturated fatty acids, trans fatty acids, and cholesterol",
+        "year": 2010,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/j.efsa.2012.2815",
+        "title": "Scientific Opinion on the Tolerable Upper Intake Level of eicosapentaenoic acid (EPA), docosahexaenoic acid (DHA) and docosapentaenoic acid (DPA)",
+        "year": 2012,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Triglycerides (a blood fat)",
+      "population": "Adults in many randomised trials, with normal or high triglycerides",
+      "effect": "helps",
+      "grade": "high",
+      "whyThisGrade": [
+        "Many randomised trials: a Cochrane review rated the evidence high certainty",
+        "Clear link between the amount taken and the fall",
+        "Measured directly in the trials; the largest falls were with medicine-level amounts"
+      ],
+      "summary": "EPA and DHA lower triglycerides, and more omega-3 lowers them more. In a Cochrane review of trials lasting at least a year, triglycerides fell by about 15 %, depending on the amount. A dose-response analysis of 90 trials found an almost straight-line relation, clearest in people with high blood fats or overweight given more than 2 g a day. In people with very high triglycerides, prescription omega-3 at 4 g a day lowered them by 30 % or more; EPA+DHA medicines also raised LDL cholesterol in that group, while EPA alone did not. A lower triglyceride number is not the same as fewer heart attacks: see the next finding.",
+      "bottomLine": "In adults, EPA and DHA lowered triglycerides by about 15 % on average, and more omega-3 lowered them more. Medicine-level amounts (4 g a day) lowered very high levels by 30 % or more. A lower number is not the same as fewer heart attacks.",
+      "studies": [
+        {
+          "pmid": "32114706",
+          "doi": "10.1002/14651858.cd003177.pub5",
+          "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 162796
+        },
+        {
+          "pmid": "37264945",
+          "doi": "10.1161/jaha.123.029512",
+          "title": "Association Between Omega-3 Fatty Acid Intake and Dyslipidemia: A Continuous Dose-Response Meta-Analysis of Randomized Controlled Trials",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 72598
+        },
+        {
+          "pmid": "31422671",
+          "doi": "10.1161/cir.0000000000000709",
+          "title": "Omega-3 Fatty Acids for the Management of Hypertriglyceridemia: A Science Advisory From the American Heart Association",
+          "year": 2019,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks, strokes and deaths",
+      "population": "Adults at low to high risk of heart disease, in trials of mostly 0.5–5 g a day for 1 to 7 years",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "86 randomised trials with about 163,000 people; high certainty for deaths and cardiovascular events",
+        "Large, well-run trials (VITAL, ASCEND) agree",
+        "A small benefit for coronary heart disease is low certainty"
+      ],
+      "summary": "In the Cochrane review (86 trials, 162,796 people), more EPA and DHA made little or no difference to death from any cause or to cardiovascular events (high certainty), stroke, or heart rhythm problems. It may slightly reduce coronary heart disease events: about 1 fewer for every 167 people treated (low certainty). In VITAL, 25,871 US adults over 50 taking 1 g a day for about 5 years had no fewer major cardiovascular events or cancers; heart attacks were lower, but that was not the trial's main question. In ASCEND, 15,480 people with diabetes had serious vascular events at about the same rate (8.9 % with omega-3, 9.2 % with placebo). REDUCE-IT, funded by the maker, found fewer cardiovascular events (17.2 % against 22.0 %) with 4 g a day of purified EPA in people with high triglycerides on statins; that is a prescription medicine, and its results don't apply to fish oil supplements.",
+      "bottomLine": "In 86 trials with about 163,000 adults, omega-3 supplements made little or no difference to deaths or cardiovascular events, with perhaps a slight fall in coronary heart disease events (about 1 in 167 people). Large trials such as VITAL and ASCEND found no clear benefit.",
+      "studies": [
+        {
+          "pmid": "32114706",
+          "doi": "10.1002/14651858.cd003177.pub5",
+          "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 162796
+        },
+        {
+          "pmid": "30415637",
+          "doi": "10.1056/nejmoa1811403",
+          "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 25871
+        },
+        {
+          "pmid": "30146932",
+          "doi": "10.1056/nejmoa1804989",
+          "title": "Effects of n-3 Fatty Acid Supplements in Diabetes Mellitus",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 15480
+        },
+        {
+          "pmid": "30415628",
+          "doi": "10.1056/nejmoa1812792",
+          "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 8179
+        }
+      ]
+    },
+    {
+      "outcome": "Atrial fibrillation (an irregular heartbeat)",
+      "population": "Adults, average age 65, in large heart-outcome trials of omega-3 supplements lasting at least a year",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "7 large randomised trials with 81,210 people, followed for about 5 years",
+        "Clear link with the amount: higher risk above 1 g a day",
+        "Atrial fibrillation was not the main question of most trials, and was recorded in different ways"
+      ],
+      "summary": "In a meta-analysis of 7 large trials, people taking omega-3 supplements were about 25 % more likely to develop atrial fibrillation than those taking placebo. The extra risk was larger in trials using more than 1 g a day (about 49 % higher) than in trials using 1 g a day or less (about 12 % higher). In REDUCE-IT, the prescription EPA medicine also led to more hospital stays for atrial fibrillation or flutter (3.1 % against 2.1 %). Atrial fibrillation raises the risk of stroke, and anyone with palpitations would discuss it with a doctor.",
+      "bottomLine": "In 7 large trials with 81,210 adults, omega-3 supplements raised the risk of atrial fibrillation by about 25 %: about 12 % at 1 g a day or less and about 49 % above 1 g a day.",
+      "studies": [
+        {
+          "pmid": "34612056",
+          "doi": "10.1161/circulationaha.121.055654",
+          "title": "Effect of Long-Term Marine ɷ-3 Fatty Acids Supplementation on the Risk of Atrial Fibrillation in Randomized Controlled Trials of Cardiovascular Outcomes: A Systematic Review and Meta-Analysis",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 81210
+        },
+        {
+          "pmid": "30415628",
+          "doi": "10.1056/nejmoa1812792",
+          "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 8179
+        }
+      ]
+    },
+    {
+      "outcome": "Bleeding",
+      "population": "Adults in large randomised trials of omega-3, many also taking antiplatelet medicines such as aspirin",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "11 randomised trials with 120,643 people",
+        "Consistent with VITAL and with EFSA's safety review",
+        "Bleeding was a safety outcome, not the main question, and the high-dose finding comes from a prescription medicine"
+      ],
+      "summary": "Across 11 trials, bleeding was not clearly more common with omega-3 than without (about 9 % more, which could be chance), and neither were bleeding strokes, bleeding in the brain or bleeding in the gut. Bleeding risk did not depend on whether people also took antiplatelet medicines. High-dose purified EPA, a prescription medicine, raised the relative risk of bleeding by about half, but the absolute rise was small (0.6 %). In VITAL (1 g a day) there was no extra bleeding. These trials did not look specifically at people on anticoagulants such as warfarin.",
+      "bottomLine": "In 11 trials with 120,643 adults, bleeding was not clearly more common with omega-3. High-dose purified EPA, a prescription medicine, raised bleeding by about half in relative terms, but only 0.6 % in absolute terms.",
+      "studies": [
+        {
+          "pmid": "38742535",
+          "doi": "10.1161/jaha.123.032390",
+          "title": "Bleeding Risk in Patients Receiving Omega-3 Polyunsaturated Fatty Acids: A Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 120643
+        },
+        {
+          "pmid": "30415637",
+          "doi": "10.1056/nejmoa1811403",
+          "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 25871
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults with and without high blood pressure",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "71 mostly small and short trials with 4,973 people found a small fall",
+        "The Cochrane review of trials lasting at least a year found little or no effect",
+        "Differences in amounts, people and trial length"
+      ],
+      "summary": "A dose-response analysis of 71 trials found blood pressure fell a little with EPA and DHA: at 2–3 g a day, about 2.6 mmHg for the top number (systolic) and about 1.6–1.8 mmHg for the bottom number (diastolic). The fall was larger in people with high blood pressure or high blood fats and in older people. The Cochrane review, which only included trials lasting at least a year, found little or no effect on blood pressure. Any effect is small compared with blood pressure medicines.",
+      "bottomLine": "In 71 trials, blood pressure fell a little with EPA and DHA (about 2.6 mmHg systolic at 2–3 g a day), more in people with high blood pressure. A Cochrane review of longer trials found little or no effect.",
+      "studies": [
+        {
+          "pmid": "35647665",
+          "doi": "10.1161/jaha.121.025071",
+          "title": "Omega-3 Polyunsaturated Fatty Acids Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 4973
+        },
+        {
+          "pmid": "32114706",
+          "doi": "10.1002/14651858.cd003177.pub5",
+          "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 162796
+        }
+      ]
+    },
+    {
+      "outcome": "Depression",
+      "population": "Adults with major depression (treatment trials), and adults over 50 without depression (one large prevention trial)",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Treatment: 34 small trials with 1,924 people, very different from each other and probably biased towards a positive result (Cochrane: very low certainty)",
+        "Prevention: one large, well-run trial (VITAL-DEP, 18,353 people, about 5 years)",
+        "Results point in different directions"
+      ],
+      "summary": "In a Cochrane review of people with major depression, omega-3 lowered symptom scores by about 2.5 points on a common rating scale compared with placebo, less than the 3 points that patients would notice. The evidence was very low certainty and likely overstates the effect; remission and response rates did not differ. In VITAL-DEP, adults over 50 without depression who took 1 g of fish oil a day for about 5 years had slightly more depression or clinically relevant symptoms (13.9 against 12.3 per 1,000 people a year), with no difference in mood scores. Depression is treated by a doctor; this evidence doesn't support omega-3 as a replacement for treatment.",
+      "bottomLine": "In people with major depression, omega-3 lowered symptom scores by less than patients would notice (very low certainty). In a large prevention trial of adults over 50, depression was slightly more common with omega-3, with no difference in mood scores.",
+      "studies": [
+        {
+          "pmid": "34817851",
+          "doi": "10.1002/14651858.cd004692.pub5",
+          "title": "Omega-3 fatty acids for depression in adults",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1964
+        },
+        {
+          "pmid": "34932079",
+          "doi": "10.1001/jama.2021.21187",
+          "title": "Effect of Long-term Supplementation With Marine Omega-3 Fatty Acids vs Placebo on Risk of Depression or Clinically Relevant Depressive Symptoms and on Change in Mood Scores: A Randomized Clinical Trial",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 18353
+        }
+      ]
+    },
+    {
+      "outcome": "Preterm birth (baby born before 37 weeks)",
+      "population": "Pregnant women, in 70 trials of supplements or foods with added omega-3, and one large later trial in Australia",
+      "effect": "mixed",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The Cochrane review (70 trials, 19,927 women) rated the preterm birth results high quality",
+        "A large, well-run trial published after the review (ORIP, 5,517 women) found no fall in early preterm birth",
+        "Trials differed in amounts, timing and in the women's risk"
+      ],
+      "summary": "In the Cochrane review, preterm birth before 37 weeks fell from 13.4 % to 11.9 % with omega-3, and early preterm birth before 34 weeks from 4.6 % to 2.7 %. Low birthweight was a little less common, but pregnancies lasting beyond 42 weeks were probably more common (2.6 % against 1.6 %). The later ORIP trial, giving 900 mg a day of omega-3 from fish oil from before 20 weeks, found no fall in early preterm birth (2.2 % against 2.0 %), and more babies were very large for their age. Supplements in pregnancy are a question for a midwife or doctor.",
+      "bottomLine": "In 70 trials, preterm birth fell from 13.4 % to 11.9 % with omega-3 in pregnancy, but a large later trial found no fall in early preterm birth (2.2 % against 2.0 %). Pregnancies lasting beyond 42 weeks were probably more common.",
+      "studies": [
+        {
+          "pmid": "30480773",
+          "doi": "10.1002/14651858.cd003402.pub3",
+          "title": "Omega-3 fatty acid addition during pregnancy",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 19927
+        },
+        {
+          "pmid": "31509674",
+          "doi": "10.1056/nejmoa1816832",
+          "title": "A Randomized Trial of Prenatal n-3 Fatty Acid Supplementation and Preterm Delivery",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 5517
+        }
+      ]
+    }
+  ],
+  "foodFindings": [
+    {
+      "outcome": "Triglycerides and HDL cholesterol",
+      "population": "Adults in 14 trials where people ate more oily fish",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of 14 randomised trials with 1,378 people",
+        "Small average effect",
+        "Fish contains many nutrients, so the effect can't be put down to omega-3 alone"
+      ],
+      "summary": "Eating oily fish lowered triglycerides slightly (about 0.11 mmol/L on average) and raised HDL cholesterol a little (about 0.06 mmol/L). Other risk markers did not clearly change. This is the effect of the whole food, and it is much smaller than that of medicine-level omega-3 supplements.",
+      "bottomLine": "In 14 trials with 1,378 adults, eating oily fish lowered triglycerides slightly (about 0.11 mmol/L) and raised HDL cholesterol a little. Fish contains many nutrients, so this can't be put down to omega-3 alone.",
+      "studies": [
+        {
+          "pmid": "28992469",
+          "doi": "10.1016/j.atherosclerosis.2017.09.028",
+          "title": "Consumption of fish and vascular risk factors: A systematic review and meta-analysis of intervention studies",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 1378
+        }
+      ]
+    },
+    {
+      "outcome": "Heart disease and death",
+      "population": "191,558 adults in 58 countries followed for years (cohort studies, not trials), with and without existing heart or vascular disease",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational studies: people who eat fish may differ in other ways",
+        "Fish intake was measured with food questionnaires",
+        "Results differed between people with and without vascular disease; the Cochrane review found little trial evidence on eating fish"
+      ],
+      "summary": "In a pooled analysis of 4 cohort studies, eating 350 g of fish a week or more was not linked with less heart disease or fewer deaths in the general population, compared with little or no fish. In people who already had vascular disease, eating at least 175 g a week (about 2 portions) went with lower risk of major cardiovascular events and death, with no further fall at higher amounts; in one cohort, fish richer in omega-3 went with lower risk. These are links, not proof of cause. The Cochrane review found little trial evidence on the effects of eating fish.",
+      "bottomLine": "In 191,558 adults, eating fish was not linked with less heart disease or death in the general population. In people who already had vascular disease, about 2 portions a week went with lower risk. These are links, not proof of cause.",
+      "studies": [
+        {
+          "pmid": "33683310",
+          "doi": "10.1001/jamainternmed.2021.0036",
+          "title": "Associations of Fish Consumption With Risk of Cardiovascular Disease and Mortality Among Individuals With or Without Vascular Disease From 58 Countries",
+          "year": 2021,
+          "studyType": "observational",
+          "n": 191558
+        },
+        {
+          "pmid": "32114706",
+          "doi": "10.1002/14651858.cd003177.pub5",
+          "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 162796
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Blood thinners (anticoagulants such as warfarin, apixaban or rivaroxaban) and antiplatelet medicines (such as aspirin or clopidogrel)",
+      "note": "Omega-3 affects blood clotting. In large trials bleeding was not clearly more common overall, and the risk didn't depend on antiplatelet use; high-dose purified EPA (a prescription medicine) raised bleeding a little. Those trials didn't look specifically at people on anticoagulants. Talk to your doctor before using omega-3 supplements with a blood thinner, especially at higher amounts.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Pregnancy and breastfeeding",
+      "note": "EFSA adds 100–200 mg of DHA a day to the adult value. Trial results on preterm birth are mixed. Cod liver oil also contains preformed vitamin A, which is harmful in large amounts early in pregnancy, and national food agencies advise which fish to limit. What fits you is a question for your midwife or doctor.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Atrial fibrillation or other heart rhythm problems",
+      "note": "Trials found more atrial fibrillation with omega-3 supplements, more so above 1 g a day. Anyone with a heart rhythm problem, or palpitations, would discuss omega-3 with their doctor."
+    },
+    {
+      "with": "Prescription omega-3 medicines",
+      "note": "Purified EPA (icosapent ethyl) and EPA+DHA medicines contain the same fats as supplements at about 4 g a day. Supplements taken on top add to that amount; ask the doctor or pharmacist."
+    },
+    {
+      "with": "Blood pressure medicines",
+      "note": "Omega-3 may lower blood pressure a little at higher amounts, which adds to the effect of these medicines. The effect in trials was small."
+    },
+    {
+      "with": "Fish or shellfish allergy",
+      "note": "Fish oil comes from fish, and krill oil from crustaceans. Algal oil is made from algae. Ask a doctor or pharmacist which products are suitable."
+    }
+  ],
+  "cautions": [
+    "Fishy aftertaste, burps and mild stomach upset are the most common side effects.",
+    "Atrial fibrillation (an irregular heartbeat) was more common in trials of omega-3 supplements, more so above 1 g a day.",
+    "Cod liver oil also contains preformed vitamin A and vitamin D; count them together with other supplements, especially in pregnancy.",
+    "Check the amounts of EPA and DHA on the label, not the weight of oil: a 1 g fish oil capsule may contain well under 1 g of EPA and DHA.",
+    "Quality varies: in a study of 32 fish oil supplements sold in New Zealand, only 3 contained at least the EPA and DHA on the label, and most were more oxidised than recommended. EFSA's safety judgement assumes the oil is not oxidised.",
+    "Prescription omega-3 medicines are not interchangeable with supplements, and their trial results don't apply to fish oil capsules."
+  ],
+  "evidenceClaims": [
+    "omega-3-supplements-tg",
+    "oily-fish-tg"
+  ],
+  "sources": [
+    {
+      "pmid": "32114706",
+      "doi": "10.1002/14651858.cd003177.pub5",
+      "title": "Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 162796
+    },
+    {
+      "pmid": "16188209",
+      "doi": "10.1051/rnd:2005047",
+      "title": "Conversion of alpha-linolenic acid to longer-chain polyunsaturated fatty acids in human adults",
+      "year": 2005,
+      "studyType": "review"
+    },
+    {
+      "pmid": "20638827",
+      "doi": "10.1016/j.plefa.2010.06.007",
+      "title": "Bioavailability of marine n-3 fatty acid formulations",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 72
+    },
+    {
+      "pmid": "25604397",
+      "doi": "10.1038/srep07928",
+      "title": "Fish oil supplements in New Zealand are highly oxidised and do not meet label content of n-3 PUFA",
+      "year": 2015,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "15208005",
+      "doi": "10.1016/j.ypmed.2004.02.030",
+      "title": "The Omega-3 Index: a new risk factor for death from coronary heart disease?",
+      "year": 2004,
+      "studyType": "observational"
+    }
+  ]
+}

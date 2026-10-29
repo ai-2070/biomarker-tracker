@@ -191,6 +191,8 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
             {intake && (
               <span title={ref?.intake ? `${ref.intake.type === "PRI" ? "Population reference intake" : "Adequate intake"}, from all food` : undefined}>
                 EU intake <span className="text-ink tabular-nums">{intake}</span>
+                {/* What the value is for, when the entry says (psyllium: dietary fibre from all sources). */}
+                {ref?.intake?.group.match(/\(([^)]+)\)/)?.[1] && <> ({ref.intake.group.match(/\(([^)]+)\)/)![1]})</>}
               </span>
             )}
             {ref?.upperLimit && (

@@ -1,0 +1,468 @@
+{
+  "id": "creatine",
+  "name": "Creatine",
+  "kind": "supplement",
+  "otherNames": [
+    "creatine monohydrate",
+    "creatine hydrochloride (HCl)",
+    "creatine ethyl ester",
+    "buffered creatine",
+    "phosphocreatine (the form stored in muscle)"
+  ],
+  "summary": "Creatine is a compound that muscles use to store quick energy for short, hard efforts. The body makes part of what it needs, mainly in the liver and kidneys, and the rest comes from meat and fish; about 95 % of it is stored in muscle. It is not an essential nutrient, but vegetarians, whose food contains almost none, have lower muscle stores.",
+  "roles": [
+    "Stores quick energy in muscle as phosphocreatine, used in short bursts of hard effort",
+    "Carries energy from where cells make it to where they use it",
+    "Small amounts in the brain, which uses a lot of energy"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "There is no routine blood test for the body's creatine, and this app has no creatine marker. Research measures creatine in muscle from a small muscle sample (biopsy). Important for your results: about 1 to 2 % of the creatine in muscle turns into creatinine each day, and creatine supplements raise blood creatinine. The creatinine and eGFR (estimated glomerular filtration rate: kidney function worked out from creatinine) results in this app are based on that number. So a higher creatinine or a lower eGFR after starting creatine may not mean the kidneys are worse. It is worth telling the doctor about creatine before a kidney blood test."
+  },
+  "low": {
+    "signs": [
+      "No clear signs in healthy people: the body makes its own creatine, and food adds the rest",
+      "Lower creatine stores in muscle with a diet that contains almost none (vegetarian or vegan)",
+      "Severe problems with the brain and nerves, and very low brain creatine, in rare inherited disorders of making or moving creatine"
+    ],
+    "atRisk": [
+      "Vegetarians and vegans: their food contains almost no creatine, and switching to a vegetarian diet lowered muscle creatine within 3 weeks to 3 months in trials",
+      "Children born with rare inherited disorders of creatine production or transport"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Weight gain of around a kilogram, mostly water, especially after high 'loading' amounts",
+      "Diarrhoea and stomach upset, more often with a large single amount",
+      "Higher blood creatinine and lower eGFR on kidney blood tests, without kidney damage in trials"
+    ],
+    "note": "Weight gain is the only side effect consistently reported in creatine research. In one trial in footballers, 10 g in one go caused diarrhoea more often (56 %) than the same amount as 5 g twice a day (29 %) or placebo (35 %). The International Society of Sports Nutrition reports that amounts up to 30 g a day for up to 5 years were safe and well tolerated in healthy people; several of its authors work with, or have received grants from, companies that sell creatine."
+  },
+  "foodSources": {
+    "examples": [
+      "Red meat, such as beef",
+      "Fish and seafood, such as salmon"
+    ],
+    "note": "Plant foods contain almost no creatine. About half of the creatine the body needs each day normally comes from food, and the rest is made in the body. A pound of raw beef or salmon contains about 1 to 2 g (International Society of Sports Nutrition)."
+  },
+  "forms": [
+    {
+      "name": "Creatine monohydrate",
+      "note": "The form used in almost all research, including every trial in a 2024 meta-analysis on memory. It raises the creatine stored in muscle by about 15 to 40 %, and nearly all of it is either taken up by muscle or passes out in urine. Dry powder is stable; once mixed into a drink it slowly turns into creatinine, faster in acidic and warm drinks."
+    },
+    {
+      "name": "Creatine hydrochloride (HCl), buffered creatine and other newer forms",
+      "note": "Sold as better absorbed or gentler on the stomach. Reviews in 2011 and 2022 found little or no evidence that any of them works better or is safer than monohydrate, which is the only form with substantial evidence for absorption, effect and safety."
+    },
+    {
+      "name": "Creatine ethyl ester",
+      "note": "One of the newer forms. In a 2014 case report it raised blood creatinine to levels that looked like kidney failure in a person whose kidneys were normal; the results went back to normal after the supplement was stopped."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "Creatine is not an essential nutrient: the body makes its own and also gets it from meat and fish. So EFSA (the European Food Safety Authority) has set no reference intake and no tolerable upper intake level for it. In 2004 EFSA assessed creatine monohydrate for use in foods for particular nutritional uses (such as sports foods); a 2022 review summarises that opinion as finding that up to 3 g a day of highly pure creatine, similar to the body's normal daily turnover, was unlikely to pose any risk. That is an amount judged safe, not a limit above which harm was seen. EFSA's later opinions are about health claims: in 2016 it accepted that creatine with regular resistance training improves muscle strength in adults over 55, and in 2024 it found that a link with better thinking has not been established.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2004.36",
+        "title": "Opinion of the Scientific Panel on food additives, flavourings, processing aids and materials in contact with food (AFC) on a request from the Commission related to creatine monohydrate for use in foods for particular nutritional uses",
+        "year": 2004,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/j.efsa.2011.2303",
+        "title": "Scientific Opinion on the substantiation of health claims related to creatine and increase in physical performance during short-term, high intensity, repeated exercise bouts (ID 739, 1520, 1521, 1522, 1523, 1525, 1526, 1531, 1532, 1533, 1534, 1922, 1923, 1924), increase in endurance capacity (ID 1527, 1535), and increase in endurance performance (ID 1521, 1963) pursuant to Article 13(1) of Regulation (EC) No 1924/2006",
+        "year": 2011,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "42016888",
+        "doi": "10.2903/j.efsa.2016.4400",
+        "title": "Creatine in combination with resistance training and improvement in muscle strength: evaluation of a health claim pursuant to Article 13(5) of Regulation (EC) No 1924/2006",
+        "year": 2016,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "39564533",
+        "doi": "10.2903/j.efsa.2024.9100",
+        "title": "Creatine and improvement in cognitive function: Evaluation of a health claim pursuant to article 13(5) of regulation (EC) No 1924/2006",
+        "year": 2024,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "35268011",
+        "doi": "10.3390/nu14051035",
+        "title": "Bioavailability, Efficacy, Safety, and Regulatory Status of Creatine and Related Compounds: A Critical Review",
+        "year": 2022,
+        "studyType": "review"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Muscle strength and lean mass, with resistance training",
+      "population": "Adults over about 55 doing resistance (weight) training 2 to 3 times a week, compared with the same training plus placebo",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Several meta-analyses agree on a small extra gain in strength",
+        "A 2026 review rated the strength evidence moderate, the muscle mass evidence low and the everyday function evidence very low",
+        "Mostly small trials lasting weeks to months, in healthy older adults"
+      ],
+      "summary": "A 2017 meta-analysis of 22 trials (721 people, average age 57 to 70) found that adding creatine to resistance training 2 to 3 days a week for 7 to 52 weeks gave about 1.4 kg more lean tissue mass and slightly larger gains in chest press and leg press strength than training with placebo. A 2026 meta-analysis of 11 trials in people aged 60 and over confirmed a small extra gain in strength (moderate certainty), but the extra gain in muscle mass and in everyday physical function was not clear. In 2016 EFSA concluded that creatine together with regular resistance training improves muscle strength in adults over 55. The benefit comes with the training: these trials compared training plus creatine with training alone. The 2026 review warns against applying the results to frail older adults or those with marked muscle loss (sarcopenia). Whole-body bone density did not change in a 2025 meta-analysis.",
+      "bottomLine": "In older adults doing resistance training, adding creatine gave a small extra gain in strength, and in one review about 1.4 kg more lean mass, compared with training alone. The extra muscle mass and everyday function are less certain, and the results may not apply to frail older adults.",
+      "studies": [
+        {
+          "pmid": "42712402",
+          "doi": "10.3389/fnut.2026.1919884",
+          "title": "Effects of resistance training combined with creatine supplementation on muscle strength, physical function, and muscle mass in older adults: a systematic review and three-level meta-analysis",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "29138605",
+          "doi": "10.2147/oajsm.s123529",
+          "title": "Effect of creatine supplementation during resistance training on lean tissue mass and muscular strength in older adults: a meta-analysis",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 721
+        },
+        {
+          "pmid": "24576864",
+          "doi": "10.1249/mss.0000000000000220",
+          "title": "Creatine supplementation during resistance training in older adults-a meta-analysis",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 357
+        },
+        {
+          "pmid": "41062952",
+          "doi": "10.1186/s11556-025-00384-9",
+          "title": "Impact of creatine supplementation and exercise training in older adults: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 1093
+        }
+      ]
+    },
+    {
+      "outcome": "Strength and short, repeated bursts of hard exercise",
+      "population": "Healthy adults under 50, mostly young men, many of them training",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Many placebo-controlled trials, and meta-analyses that agree",
+        "Mostly small trials in young men; few in women",
+        "Results differ between tests (in sprint tests, peak power and fatigue did not change)"
+      ],
+      "summary": "A 2024 meta-analysis of 23 trials in adults under 50 found that creatine plus resistance training increased upper-body strength by about 4.4 kg and lower-body strength by about 11.4 kg more than training with placebo. Most participants were men; the few trials in women showed no clear gain. A 2022 meta-analysis of 14 trials found that about 20 g a day for 3 to 7 days raised average power over repeated short sprints, but not peak power or fatigue. An older 2003 meta-analysis of 100 studies found the effects were small, largest in repeated short efforts of 30 seconds or less in the laboratory, and not seen for running and swimming. Based on EFSA's 2011 opinion, the EU allows the claim that creatine increases physical performance in repeated bursts of short, high-intensity exercise.",
+      "bottomLine": "In younger adults, mostly men, creatine with resistance training gave larger strength gains than training alone, and it raised average power over repeated short sprints. The effects were small, few women were studied, and running and swimming did not improve.",
+      "studies": [
+        {
+          "pmid": "39519498",
+          "doi": "10.3390/nu16213665",
+          "title": "Effects of Creatine Supplementation and Resistance Training on Muscle Strength Gains in Adults <50 Years of Age: A Systematic Review and Meta-Analysis",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "36041731",
+          "doi": "10.1123/ijsnem.2022-0072",
+          "title": "Short-Term Creatine Supplementation and Repeated Sprint Ability-A Systematic Review and Meta-Analysis",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "12945830",
+          "doi": "10.1123/ijsnem.13.2.198",
+          "title": "Effect of creatine supplementation on body composition and performance: a meta-analysis",
+          "year": 2003,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Endurance performance",
+      "population": "Trained people doing endurance exercise",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "13 small studies with different endurance tests",
+        "Results were consistent, with an effect close to zero",
+        "Study quality varied"
+      ],
+      "summary": "A 2023 meta-analysis of 13 placebo-controlled studies in trained people found no change in endurance performance with creatine monohydrate; the effect was close to zero and slightly negative. An earlier 2003 meta-analysis also found no benefit for running and swimming. The evidence for creatine is about short bursts of hard effort, not long steady exercise.",
+      "bottomLine": "Across 13 placebo-controlled studies in trained people, creatine did not improve endurance performance; the effect was close to zero. An older review also found no benefit for running and swimming.",
+      "studies": [
+        {
+          "pmid": "36877404",
+          "doi": "10.1007/s40279-023-01823-2",
+          "title": "Effects of Creatine Monohydrate on Endurance Performance in a Trained Population: A Systematic Review and Meta-analysis",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "12945830",
+          "doi": "10.1123/ijsnem.13.2.198",
+          "title": "Effect of creatine supplementation on body composition and performance: a meta-analysis",
+          "year": 2003,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Memory and thinking",
+      "population": "Adults, healthy or with an illness, in trials lasting from days to months",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials (492 people across 16 trials in the largest review)",
+        "Many different tests of thinking, and results that vary between trials",
+        "In 2024 EFSA found that a cause-and-effect relationship has not been established"
+      ],
+      "summary": "A 2024 meta-analysis of 16 small trials (492 adults aged about 21 to 76, healthy or with an illness) found small improvements in memory tests, attention time and processing speed with creatine monohydrate, but no change in overall thinking ability or in executive function (planning and self-control). The authors rated the memory evidence moderate and the rest low. A 2023 meta-analysis of 8 trials in healthy people found a small gain in memory that was seen in older adults (66 to 76) but not in younger people. In 2024 EFSA reviewed the trials and concluded that a cause-and-effect relationship between creatine and better thinking has not been established: an effect on working memory was seen only at 20 g a day for 5 to 7 days, and not at lower amounts or with longer use.",
+      "bottomLine": "Small trials found slightly better memory test scores with creatine, mostly in older adults, but no change in overall thinking ability. In 2024 EFSA concluded that a cause-and-effect link between creatine and better thinking has not been established.",
+      "studies": [
+        {
+          "pmid": "39070254",
+          "doi": "10.3389/fnut.2024.1424972",
+          "title": "The effects of creatine supplementation on cognitive function in adults: a systematic review and meta-analysis",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 492
+        },
+        {
+          "pmid": "35984306",
+          "doi": "10.1093/nutrit/nuac064",
+          "title": "Effects of creatine supplementation on memory in healthy individuals: a systematic review and meta-analysis of randomized controlled trials",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "39564533",
+          "doi": "10.2903/j.efsa.2024.9100",
+          "title": "Creatine and improvement in cognitive function: Evaluation of a health claim pursuant to article 13(5) of regulation (EC) No 1924/2006",
+          "year": 2024,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "outcome": "Symptoms of depression",
+      "population": "Adults with or without depression; in some trials alongside an antidepressant",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The 2025 review rated the evidence very low quality",
+        "Results differed a lot between trials",
+        "Signs of bias favouring creatine"
+      ],
+      "summary": "A 2025 meta-analysis of 11 trials (1,093 people) found that depression scores fell slightly more with creatine than with placebo, equal to about 2.2 points on the Hamilton Depression Rating Scale, below the 3 points thought to make a real difference to patients. The evidence was rated very low quality, and there were signs of bias favouring creatine, so the true effect may be trivial or none. In a 2012 trial of 52 women with major depression who were given the antidepressant escitalopram, adding creatine (5 g a day in the trial) improved scores more than placebo, from week 2 to week 8. These trials do not show that creatine can replace depression treatment; changes to treatment belong with a doctor.",
+      "bottomLine": "Across 11 trials, depression scores fell slightly more with creatine than with placebo, but the average change was below what makes a real difference to patients and the evidence was very low quality. One small trial found extra benefit alongside an antidepressant.",
+      "studies": [
+        {
+          "pmid": "41189312",
+          "doi": "10.1017/s0007114525105588",
+          "title": "Creatine supplementation for treating symptoms of depression: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 1093
+        },
+        {
+          "pmid": "22864465",
+          "doi": "10.1176/appi.ajp.2012.12010009",
+          "title": "A randomized, double-blind placebo-controlled trial of oral creatine monohydrate augmentation for enhanced response to a selective serotonin reuptake inhibitor in women with major depressive disorder",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 52
+        }
+      ]
+    },
+    {
+      "outcome": "Kidney function, and the blood creatinine test",
+      "population": "Mostly healthy adults; a few trials in people with chronic kidney disease or on dialysis",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many trials, but most were short; the reviews call for trials longer than a year",
+        "Kidney filtration measured directly was a secondary outcome",
+        "Creatinine results varied a lot between trials"
+      ],
+      "summary": "Creatine breaks down into creatinine, which is the basis of the most widely used kidney blood test. A 2026 meta-analysis of 26 trials (1,036 people, healthy or with chronic kidney disease) found blood creatinine 0.14 mg/dL higher with creatine, and kidney function estimated from creatinine (eGFR) about 11 mL/min lower. But when filtration was measured directly with a tracer (Cr-EDTA), it did not change, and neither did urea or protein in the urine; the authors think the creatinine rise reflects creatine turning into creatinine, not kidney injury. Another 2026 meta-analysis of 20 trials found a similar creatinine rise (0.13 mg/dL) without a difference in urea or eGFR. Most trials were short, and the reviews call for trials longer than a year.",
+      "bottomLine": "In trials, creatine raised blood creatinine and so made kidney function estimated from creatinine (eGFR) look worse, but kidney filtration measured directly did not change. Most trials were short, so long-term effects are less certain.",
+      "studies": [
+        {
+          "pmid": "42507286",
+          "doi": "10.1007/s11255-026-05287-x",
+          "title": "Impact of creatine supplementation on kidney health: a systematic review and meta-analysis",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 1036
+        },
+        {
+          "pmid": "42035842",
+          "doi": "10.1053/j.jrn.2026.04.010",
+          "title": "The Effect of Creatine Supplementation on Kidney Function: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "41199218",
+          "doi": "10.1186/s12882-025-04558-6",
+          "title": "Effect of creatine supplementation on kidney function: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Body weight, body water and body fat",
+      "population": "Healthy adults, mostly young and physically active",
+      "effect": "mixed",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Weight gain is seen consistently across trials and meta-analyses",
+        "Body water was measured with accurate tracer methods, but in small trials",
+        "Effects on body fat were very small"
+      ],
+      "summary": "Weight gain is the most consistent effect of creatine. In a 2022 meta-analysis of 14 trials, about 20 g a day for 3 to 7 days added about 0.8 kg of body weight compared with placebo. Small trials that measured body water with a tracer (deuterium dilution) found it rises: in 13 young footballers, 7 days of creatine raised body water by about 2.3 litres and weight by about 1 kg. In a 2003 trial in 32 young adults, the share of water inside and outside cells did not change. Body fat did not rise: in a 2023 meta-analysis of 12 trials in adults under 50 doing resistance training, fat mass did not change and body fat percentage fell very slightly. So an early rise of about a kilogram on the scale is common with creatine and is not fat.",
+      "bottomLine": "Creatine adds weight, about 0.8 kg after a few days of high amounts in trials, with more water held in the body, while body fat did not rise. An early jump on the scale is common and is not fat gain.",
+      "studies": [
+        {
+          "pmid": "36041731",
+          "doi": "10.1123/ijsnem.2022-0072",
+          "title": "Short-Term Creatine Supplementation and Repeated Sprint Ability-A Systematic Review and Meta-Analysis",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "26509366",
+          "doi": "10.1055/s-0035-1559690",
+          "title": "Creatine Supplementation Increases Total Body Water in Soccer Players: a Deuterium Oxide Dilution Study",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 13
+        },
+        {
+          "pmid": "12937471",
+          "title": "Creatine Supplementation Increases Total Body Water Without Altering Fluid Distribution",
+          "year": 2003,
+          "studyType": "rct",
+          "n": 32
+        },
+        {
+          "pmid": "37892421",
+          "doi": "10.3390/nu15204343",
+          "title": "Resistance Exercise and Creatine Supplementation on Fat Mass in Adults < 50 Years of Age: A Systematic Review and Meta-Analysis",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 266
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "Most trials were in healthy people. Creatine raises blood creatinine, which makes changes in kidney function harder to judge from the usual blood tests. With kidney disease, talk to your doctor before using creatine.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Kidney blood tests (creatinine and eGFR)",
+      "note": "In trials creatine raised blood creatinine and lowered eGFR, while kidney filtration measured directly did not change. Telling the doctor about creatine helps them read the results; kidney function can also be measured with tests that do not rely on creatinine."
+    },
+    {
+      "with": "Medicines that are checked or dosed using kidney tests",
+      "note": "Doctors use creatinine and eGFR to judge the kidneys when choosing doses of some medicines and when watching medicines that can affect the kidneys. A creatinine raised by creatine could be misread, so it is worth telling the doctor or pharmacist about creatine."
+    },
+    {
+      "with": "Pregnancy and breastfeeding",
+      "note": "The trials summarised here did not study pregnant or breastfeeding women. Talk to your doctor or midwife before using creatine.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "Creatine raises blood creatinine and lowers eGFR on kidney blood tests, without kidney damage in trials. Mention creatine to the doctor when kidney tests are done or read.",
+    "Weight often rises by around a kilogram, mostly as water, especially after high 'loading' amounts. It is not fat gain.",
+    "A large single amount causes diarrhoea more often: in one trial 10 g at once did, while the same amount split in two did not differ from placebo.",
+    "No form has been shown to work better than creatine monohydrate. Labels often promise more than the evidence: in a 2021 study of 167 creatine products sold online, only 25 % of the health claims met the criteria of EU rules and scientific reference documents.",
+    "The muscle benefits were seen together with resistance training: the trials compared training plus creatine with training alone.",
+    "Most trials lasted weeks to months; long-term trials are fewer."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "28615996",
+      "doi": "10.1186/s12970-017-0173-z",
+      "title": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33557850",
+      "doi": "10.1186/s12970-021-00412-w",
+      "title": "Common questions and misconceptions about creatine supplementation: what does the scientific evidence really show?",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17430086",
+      "doi": "10.1146/annurev.nutr.27.061406.093621",
+      "title": "Creatine: endogenous metabolite, dietary, and therapeutic supplement",
+      "year": 2007,
+      "studyType": "review"
+    },
+    {
+      "pmid": "21424716",
+      "doi": "10.1007/s00726-011-0874-6",
+      "title": "Analysis of the efficacy, safety, and regulatory status of novel forms of creatine",
+      "year": 2011,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35268011",
+      "doi": "10.3390/nu14051035",
+      "title": "Bioavailability, Efficacy, Safety, and Regulatory Status of Creatine and Related Compounds: A Critical Review",
+      "year": 2022,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29569535",
+      "doi": "10.1017/s000711451800017x",
+      "title": "Changing to a vegetarian diet reduces the body creatine pool in omnivorous women, but appears not to affect carnitine and carnosine homeostasis: a randomised trial",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 40
+    },
+    {
+      "pmid": "12432177",
+      "doi": "10.1123/ijsnem.12.3.336",
+      "title": "Effect of creatine supplementation and a lacto-ovo-vegetarian diet on muscle creatine concentration",
+      "year": 2002,
+      "studyType": "rct",
+      "n": 32
+    },
+    {
+      "pmid": "18373286",
+      "doi": "10.1080/15438620701693280",
+      "title": "Gastrointestinal distress after creatine supplementation in athletes: are side effects dose dependent?",
+      "year": 2008,
+      "studyType": "rct",
+      "n": 59
+    },
+    {
+      "pmid": "25239988",
+      "doi": "10.1136/bcr-2014-204754",
+      "title": "How the use of creatine supplements can elevate serum creatinine in the absence of underlying kidney pathology",
+      "year": 2014,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "33468268",
+      "doi": "10.1017/s1368980020005121",
+      "title": "Analysis of health claims regarding creatine monohydrate present in commercial communications for a sample of European sports foods supplements",
+      "year": 2021,
+      "studyType": "observational"
+    }
+  ]
+}

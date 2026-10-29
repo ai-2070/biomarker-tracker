@@ -16,10 +16,11 @@ const FILTERS: { value: "all" | NutrientKind; label: string }[] = [
   { value: "all", label: "All" },
   { value: "vitamin", label: "Vitamins" },
   { value: "mineral", label: "Minerals" },
+  { value: "supplement", label: "Other" },
 ];
 
 /**
- * Supplementation: a research-based knowledge base of vitamins and minerals. General information, not
+ * Supplementation: a research-based knowledge base of vitamins, minerals and other supplements. General information, not
  * your data and not advice: kept apart from Health in the menu. Each card shows your latest status
  * result when the app has a marker for it, and a warning when your log or profile has an interaction.
  */
@@ -36,7 +37,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
 
   return (
     <>
-      <PageTitle sub="What research says about vitamins and minerals: what they do, who tends to run low, where they come from in food, and what trials of supplements actually found. General information, not a dose for you.">
+      <PageTitle sub="What research says about vitamins, minerals and other common supplements (omega-3, creatine, fibre and more): what they do, who tends to run low, where they come from in food, and what trials actually found. General information, not a dose for you.">
         Supplementation
       </PageTitle>
 
@@ -50,7 +51,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), setQuery(""))}
           placeholder="Search: a vitamin, a food, a symptom, a medicine"
-          aria-label="Search vitamins and minerals"
+          aria-label="Search vitamins, minerals and other supplements"
           autoComplete="off"
           className={cx(inputStyles, "w-full pl-10")}
         />
@@ -115,13 +116,13 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
 
       {NUTRIENTS.length === 0 ? (
         <Card>
-          <p className="text-ink-2">The vitamins and minerals knowledge base is being written.</p>
+          <p className="text-ink-2">The supplements knowledge base is being written.</p>
         </Card>
       ) : shown.length === 0 ? (
         <Card className="flex flex-col items-start gap-3">
           <p className="text-ink-2">
             Nothing here matches “{query.trim()}”. Try a vitamin or mineral, a food (salmon, spinach), a sign (tiredness), or a medicine
-            (warfarin).{kind && " Or look in all of them, not only " + (kind === "vitamin" ? "vitamins." : "minerals.")}
+            (warfarin).{kind && " Or look in all of them, not only " + (kind === "vitamin" ? "vitamins." : kind === "mineral" ? "minerals." : "other supplements.")}
           </p>
           <Button variant="secondary" onClick={() => setQuery("")}>
             Clear the search
@@ -164,7 +165,7 @@ function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef;
     >
       <div className="flex items-start justify-between gap-2">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind}</p>
+          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
           <h2 className="font-serif text-2xl font-normal">{n.name}</h2>
         </div>
         {warn.length > 0 && <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-sm font-medium text-warn">Check interactions</span>}

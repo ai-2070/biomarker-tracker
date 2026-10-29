@@ -57,7 +57,7 @@ export function NutrientPage({ id }: { id: string }) {
       </a>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind}</p>
+          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
           {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
         </div>

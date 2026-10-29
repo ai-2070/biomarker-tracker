@@ -1,0 +1,407 @@
+{
+  "id": "coq10",
+  "name": "Coenzyme Q10",
+  "kind": "supplement",
+  "otherNames": [
+    "CoQ10",
+    "coenzyme Q",
+    "ubiquinone (oxidised form)",
+    "ubiquinol (reduced form)",
+    "ubidecarenone"
+  ],
+  "summary": "Coenzyme Q10 (CoQ10) is a fat-soluble substance that every cell makes for itself and uses to produce energy. It isn't an essential nutrient, so there is no official intake. Statins lower its level in the blood. Trials of supplements found small or uncertain benefits for most uses, with the clearest signals in heart failure and migraine.",
+  "roles": [
+    "Carries electrons in the mitochondria, the parts of cells that make energy (ATP, the cell's energy currency)",
+    "Antioxidant in cell membranes and in the particles that carry fats in the blood (lipoproteins)"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "There is no routine test. Blood (plasma) CoQ10 can be measured, mostly in research: a review gives 0.40 to 1.91 µmol/L as the range in healthy adults. It is carried in the blood's fat particles (lipoproteins), so it is sometimes read as a ratio to cholesterol. Supplements reliably raise the blood level. This app has no CoQ10 marker."
+  },
+  "low": {
+    "signs": [
+      "No signs of shortage are known in healthy people, because the body makes its own",
+      "Rare inherited conditions that disrupt how the body makes it (primary CoQ10 deficiency) cause serious disease and are treated by specialists"
+    ],
+    "atRisk": [
+      "People with rare inherited defects in making CoQ10",
+      "People taking statins: in placebo-controlled trials, statins lowered blood CoQ10",
+      "Older people: in a study of organs from people aged 1 day to 81 years, CoQ10 in most organs peaked around age 20 and then fell steadily",
+      "People with heart failure: lower CoQ10 in the heart muscle goes with more severe heart failure"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Mild stomach upset or soft stools in some people, though in one trial these were no more common than with placebo"
+    ],
+    "note": "No harmful level has been found. A safety review found low toxicity and no serious side effects in people, and called 1,200 mg a day the highest amount observed to be safe in trials. In a 4-week trial in 88 healthy adults, 300, 600 or 900 mg a day caused no serious adverse events. Extra CoQ10 doesn't seem to switch off the body's own production, and blood levels return to where they were after supplements end."
+  },
+  "foodSources": {
+    "examples": [
+      "Meat (the main source in usual diets)",
+      "Fish",
+      "Nuts",
+      "Some oils",
+      "Much smaller amounts in dairy foods, vegetables, fruit and cereals"
+    ],
+    "note": "Usual diets give about 3 to 6 mg a day, about half of it as ubiquinol. Amounts in the same food can vary a lot between countries. CoQ10 isn't in the app's food table, so meals and the intake analyzer don't count it."
+  },
+  "forms": [
+    {
+      "name": "Ubiquinone (oxidised CoQ10)",
+      "note": "The oxidised form. Like all CoQ10 it dissolves in fat, not water, so it is absorbed slowly and only in part."
+    },
+    {
+      "name": "Ubiquinol (reduced CoQ10)",
+      "note": "Sold as better absorbed. In one small trial of 12 healthy adults, blood CoQ10 rose more with ubiquinol than with ubiquinone in the same capsules. A review warns that some makers' claims about absorption are wrong, and that how the product is made matters as much as the form."
+    },
+    {
+      "name": "Solubilised or dispersed formulations",
+      "note": "Products made to dissolve or disperse better were absorbed better in studies. A review found that CoQ10 crystals that aren't dispersed cut absorption by 75%."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "EFSA (the European Food Safety Authority) has set no reference intake and no tolerable upper intake level for CoQ10: it isn't an essential nutrient, because the body makes it in every cell. In 2010 EFSA assessed health claims for CoQ10 about energy, blood pressure, protection from oxidative damage, thinking, blood cholesterol and endurance, and judged that none was substantiated, so they can't be used on labels in the EU. Safety data come from trials and reviews instead: a review found low toxicity and no serious side effects up to 1,200 mg a day in trials, an observed safe level, not an official limit.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2010.1793",
+        "title": "Scientific Opinion on the substantiation of health claims related to coenzyme Q10 and contribution to normal energy-yielding metabolism (ID 1508, 1512, 1720, 1912, 4668), maintenance of normal blood pressure (ID 1509, 1721, 1911), protection of DNA …",
+        "year": 2010,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "19096117",
+        "doi": "10.1002/biof.5520320124",
+        "title": "Safety assessment of coenzyme Q10 (CoQ10)",
+        "year": 2008,
+        "studyType": "review"
+      },
+      {
+        "pmid": "16431002",
+        "doi": "10.1016/j.yrtph.2005.12.002",
+        "title": "Safety assessment of coenzyme Q10 (Kaneka Q10) in healthy subjects: a double-blind, randomized, placebo-controlled trial",
+        "year": 2006,
+        "studyType": "rct",
+        "n": 88
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Heart failure: deaths and hospital stays",
+      "population": "Adults with heart failure, on standard treatment under medical care",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Cochrane review of 11 trials (1,573 people); all had unclear or high risk of bias in at least one area",
+        "The fall in deaths rests on a single trial of 420 people (Q-SYMBIO)",
+        "The reviewers concluded there is no convincing evidence to support or refute its use"
+      ],
+      "summary": "In Q-SYMBIO, 420 people with moderate to severe heart failure had CoQ10 (100 mg three times a day) or placebo on top of their usual treatment for 2 years. Fewer had a major heart event with CoQ10 (15% compared with 26%), and fewer died (10% compared with 18%). The 16-week measures (symptom class, walking test and a blood marker of heart strain) didn't clearly change. A Cochrane review found CoQ10 probably reduces deaths and hospital stays for heart failure (moderate quality), but the deaths result comes from that one trial, effects on heart pumping and exercise capacity are very uncertain, and the reviewers found no convincing evidence to support or refute its use. It is studied as an add-on to treatment, never instead of it.",
+      "bottomLine": "In one 2-year trial of 420 people with heart failure, fewer died with CoQ10 added to their treatment (10% compared with 18%). A Cochrane review found it probably reduces deaths and hospital stays, but that rests mainly on this one trial and it was studied only as an add-on to treatment.",
+      "studies": [
+        {
+          "pmid": "35608922",
+          "doi": "10.1002/14651858.cd008684.pub3",
+          "title": "Coenzyme Q10 for heart failure",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1573
+        },
+        {
+          "pmid": "25282031",
+          "doi": "10.1016/j.jchf.2014.06.008",
+          "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 420
+        }
+      ]
+    },
+    {
+      "outcome": "Migraine attacks",
+      "population": "Adults with migraine",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Few, small trials: 6 trials with 371 people in the larger pooling",
+        "The two poolings disagree on how long attacks lasted",
+        "Neither found an effect on how severe attacks were"
+      ],
+      "summary": "A pooling of 6 trials (371 people) found fewer and shorter migraine attacks with CoQ10 than with control, but no clear change in how severe they were. Another pooling of 4 trials (221 people) found about 1.87 fewer attacks a month, with no clear effect on severity or on how long attacks lasted. The trials were small and the evidence is limited.",
+      "bottomLine": "In small trials of adults with migraine, CoQ10 was linked to fewer attacks (about 1.87 fewer a month in one pooling of 4 trials), but not to less severe attacks. The trials were few and small, so the evidence is limited.",
+      "studies": [
+        {
+          "pmid": "33402403",
+          "doi": "10.1136/bmjopen-2020-039358",
+          "title": "Coenzyme Q10 supplementation for prophylaxis in adult patients with migraine-a meta-analysis",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 371
+        },
+        {
+          "pmid": "30727862",
+          "doi": "10.1080/1028415x.2019.1572940",
+          "title": "Effect of coenzyme Q10 supplementation on clinical features of migraine: a systematic review and dose-response meta-analysis of randomized controlled trials",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 221
+        }
+      ]
+    },
+    {
+      "outcome": "Muscle aches from statins",
+      "population": "Adults taking statins (cholesterol-lowering medicines), most with muscle symptoms",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analyses of mostly the same small trials (35 to 76 people each) reach opposite conclusions",
+        "Short trials, 30 to 90 days",
+        "Muscle pain is self-reported and varies a lot"
+      ],
+      "summary": "Statins lower blood CoQ10, which led to the idea that supplements could ease statin muscle aches. The pooled trials disagree. One meta-analysis of 12 trials (575 people) and another of 7 trials (389 people) found less muscle pain with CoQ10. Two others, of 6 trials (302 people) and 7 trials (321 people), found no clear benefit, and the second found no difference in how many people stayed on their statin. None found a change in creatine kinase, a blood marker of muscle damage. The trials were small and short.",
+      "bottomLine": "Meta-analyses of small, short trials disagree: two found less muscle pain with CoQ10 in people on statins, two found no clear benefit, and one found no difference in how many people stayed on their statin.",
+      "studies": [
+        {
+          "pmid": "30371340",
+          "doi": "10.1161/jaha.118.009835",
+          "title": "Effects of Coenzyme Q10 on Statin-Induced Myopathy: An Updated Meta-Analysis of Randomized Controlled Trials",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 575
+        },
+        {
+          "pmid": "32179207",
+          "doi": "10.1016/j.atherosclerosis.2020.03.006",
+          "title": "Effect of Coenzyme Q10 on statin-associated myalgia and adherence to statin therapy: A systematic review and meta-analysis",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 321
+        },
+        {
+          "pmid": "25440725",
+          "doi": "10.1016/j.mayocp.2014.08.021",
+          "title": "Effects of coenzyme Q10 on statin-induced myopathy: a meta-analysis of randomized controlled trials",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 302
+        },
+        {
+          "pmid": "41158831",
+          "doi": "10.1017/jns.2025.10043",
+          "title": "Effects of coenzyme Q10 supplementation on myopathy in statin-treated patients: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 389
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults with high blood pressure that has no other medical cause (primary hypertension)",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Cochrane review; only two small trials (50 people) could be pooled",
+        "A third trial was left out for high risk of bias",
+        "The result is imprecise: it can't rule out a small fall"
+      ],
+      "summary": "A Cochrane review pooled two trials with 50 people and found no clear change in blood pressure with CoQ10: the top number fell by 3.68 mmHg on average, but the range of likely values included no change, and the bottom number by 2.03 mmHg, also not clear. The reviewers concluded that CoQ10 doesn't have a clinically meaningful effect on blood pressure, while noting that the trials were few and small.",
+      "bottomLine": "In a Cochrane review of two small trials (50 people with high blood pressure), CoQ10 didn't clearly lower blood pressure, and the reviewers concluded it has no clinically meaningful effect. The trials were few and small.",
+      "studies": [
+        {
+          "pmid": "26935713",
+          "doi": "10.1002/14651858.cd007435.pub3",
+          "title": "Blood pressure lowering efficacy of coenzyme Q10 for primary hypertension",
+          "year": 2016,
+          "studyType": "meta-analysis",
+          "n": 50
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and blood fats (HbA1c, cholesterol, triglycerides)",
+      "population": "Adults in many small trials, often with diabetes or other metabolic conditions",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many trials (40 for blood sugar, 50 for blood fats), but most were small",
+        "Results varied a lot between trials",
+        "The average changes were small"
+      ],
+      "summary": "A pooling of 40 trials (2,424 people) found slightly lower fasting blood sugar, fasting insulin and HbA1c (average blood sugar over about three months) with CoQ10; HbA1c fell by 0.12 percentage points. The effect was larger in people with diabetes, and results varied a lot between trials. A pooling of 50 trials (2,794 people) found small falls in total cholesterol (5.53 mg/dL), LDL cholesterol (3.03 mg/dL) and triglycerides (9.06 mg/dL), and a small rise in HDL cholesterol; mg/dL is the US unit.",
+      "bottomLine": "Poolings of 40 and 50 mostly small trials found slightly lower blood sugar, HbA1c, cholesterol and triglycerides with CoQ10; HbA1c fell by 0.12 percentage points. The changes were small and varied a lot between trials.",
+      "studies": [
+        {
+          "pmid": "35958521",
+          "doi": "10.1016/j.eclinm.2022.101602",
+          "title": "Effects of coenzyme Q10 supplementation on glycemic control: A GRADE-assessed systematic review and dose-response meta-analysis of randomized controlled trials",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 2424
+        },
+        {
+          "pmid": "36337001",
+          "doi": "10.1210/clinem/dgac585",
+          "title": "Effects of Coenzyme Q10 Supplementation on Lipid Profiles in Adults: A Meta-analysis of Randomized Controlled Trials",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 2794
+        }
+      ]
+    },
+    {
+      "outcome": "Tiredness (fatigue)",
+      "population": "Healthy adults and people with various illnesses",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "13 trials (1,126 people) with different groups and fatigue scales",
+        "The benefit was clear for CoQ10 alone but not for combination products",
+        "A later review of healthy adults called the evidence for less tiredness only suggestive"
+      ],
+      "summary": "A pooling of 13 trials (1,126 people) found lower fatigue scores with CoQ10 than with placebo, a small to moderate effect, in both healthy and ill people. The benefit was clear with products containing only CoQ10, not with combination products. Only one stomach-related side effect was reported among 602 people taking CoQ10. A later review in healthy adults found the evidence for less tiredness suggestive, with very low to low certainty overall.",
+      "bottomLine": "In 13 trials (1,126 people), fatigue scores were somewhat lower with CoQ10 than with placebo, in healthy and ill people. The benefit was clear only with CoQ10 alone, and a later review in healthy adults called it suggestive.",
+      "studies": [
+        {
+          "pmid": "36091835",
+          "doi": "10.3389/fphar.2022.883251",
+          "title": "Effectiveness of Coenzyme Q10 Supplementation for Reducing Fatigue: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1126
+        },
+        {
+          "pmid": "41457257",
+          "doi": "10.1017/s0007114525106211",
+          "title": "Coenzyme Q10 supplementation increases blood concentrations but shows limited and inconsistent effects on exercise performance: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Exercise performance",
+      "population": "Healthy adults, including trained athletes",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "24 studies with moderate to high risk of bias",
+        "Results differed a lot between studies",
+        "The small benefit disappeared when unusual results were left out"
+      ],
+      "summary": "A review of 24 studies in healthy adults found that CoQ10 reliably raised its blood level, but effects on exercise performance were small and inconsistent. Longer use showed a small benefit that wasn't stable when unusual results were left out, and single doses showed no benefit. Strength and short, intense exercise barely changed. The reviewers rated certainty very low to low. EFSA also judged a claim about endurance not substantiated.",
+      "bottomLine": "In 24 studies of healthy adults, CoQ10 raised its blood level but effects on exercise performance were small and inconsistent, and the small benefit with longer use wasn't stable. Certainty was very low to low.",
+      "studies": [
+        {
+          "pmid": "41457257",
+          "doi": "10.1017/s0007114525106211",
+          "title": "Coenzyme Q10 supplementation increases blood concentrations but shows limited and inconsistent effects on exercise performance: a systematic review and meta-analysis",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Warfarin and other blood thinners of the same type (vitamin K antagonists)",
+      "note": "Case reports describe warfarin working less well while people used it. A small crossover trial in 24 people on stable warfarin found no change in INR (the clotting test) or warfarin dose over four weeks, but an observational study of 171 warfarin users linked CoQ10 with more self-reported bleeding. Talk to your doctor before starting or changing CoQ10 on a blood thinner; INR checks may be needed.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Statins (cholesterol-lowering medicines)",
+      "note": "In placebo-controlled trials, blood CoQ10 was lower on all four statins studied. Whether supplements ease statin muscle aches is disputed. Muscle aches on a statin are worth raising with the doctor, who can look for other causes and options."
+    },
+    {
+      "with": "Diabetes medicines",
+      "note": "In trials CoQ10 lowered blood sugar and HbA1c slightly, more in people with diabetes. Worth mentioning to the doctor when blood sugar treatment is being adjusted.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Blood pressure medicines",
+      "note": "Trials didn't show a clear fall in blood pressure with CoQ10, and whether it adds to blood pressure medicines hasn't been well studied. Mention it to the doctor treating your blood pressure."
+    }
+  ],
+  "cautions": [
+    "CoQ10 is studied in heart failure only as an add-on to medical treatment, never instead of it.",
+    "Products vary: how CoQ10 is made and dispersed changes how much is absorbed, and some absorption claims on labels are wrong.",
+    "Little is known about safety in pregnancy, breastfeeding and children.",
+    "EU rules don't allow health claims for CoQ10 on labels, because EFSA found none substantiated."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "29459830",
+      "doi": "10.3389/fphys.2018.00044",
+      "title": "Coenzyme Q10 Supplementation in Aging and Disease",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "16551570",
+      "doi": "10.1080/10715760600617843",
+      "title": "Coenzyme Q10: absorption, tissue uptake, metabolism and pharmacokinetics",
+      "year": 2006,
+      "studyType": "review"
+    },
+    {
+      "pmid": "32380795",
+      "doi": "10.3390/antiox9050386",
+      "title": "Bioavailability of Coenzyme Q10: An Overview of the Absorption Process and Subsequent Metabolism",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27128225",
+      "doi": "10.1002/cpdd.73",
+      "title": "Comparison study of plasma coenzyme Q10 levels in healthy subjects supplemented with ubiquinol versus ubiquinone",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 12
+    },
+    {
+      "pmid": "20301015",
+      "doi": "10.1080/10408390902773037",
+      "title": "Coenzyme Q10 contents in foods and fortification strategies",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26192349",
+      "doi": "10.1016/j.phrs.2015.07.008",
+      "title": "Statin therapy and plasma coenzyme Q10 concentrations--A systematic review and meta-analysis of placebo-controlled trials",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "2779364",
+      "doi": "10.1007/bf02535072",
+      "title": "Age-related changes in the lipid compositions of rat and human tissues",
+      "year": 1989,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "12772396",
+      "title": "Effect of Coenzyme Q10 and Ginkgo biloba on warfarin dosage in patients on long-term warfarin treatment. A randomized, double-blind, placebo-controlled cross-over trial",
+      "year": 2003,
+      "studyType": "rct",
+      "n": 24
+    },
+    {
+      "pmid": "17723077",
+      "doi": "10.1592/phco.27.9.1237",
+      "title": "Risk of warfarin-related bleeding events and supratherapeutic international normalized ratios associated with complementary and alternative medicine: a longitudinal analysis",
+      "year": 2007,
+      "studyType": "observational",
+      "n": 171
+    },
+    {
+      "doi": "10.2903/j.efsa.2010.1793",
+      "title": "Scientific Opinion on the substantiation of health claims related to coenzyme Q10 and contribution to normal energy-yielding metabolism (ID 1508, 1512, 1720, 1912, 4668), maintenance of normal blood pressure (ID 1509, 1721, 1911), protection of DNA …",
+      "year": 2010,
+      "studyType": "guideline"
+    }
+  ]
+}

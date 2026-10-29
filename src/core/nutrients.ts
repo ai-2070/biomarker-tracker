@@ -8,7 +8,13 @@ import type { Citation, EvidenceGrade, SafetyId } from "./types";
  * Whole-food evidence and supplement evidence are kept apart (Nutrition rules).
  */
 
-export type NutrientKind = "vitamin" | "mineral";
+/**
+ * Vitamins and minerals, and other supplements (omega-3, creatine, fibre, CoQ10…): those may have no
+ * EFSA reference intake, because they aren't essential nutrients, and then say why (`noUpperLimit`
+ * and the reference sources still explain EFSA's position).
+ */
+export type NutrientKind = "vitamin" | "mineral" | "supplement";
+export const NUTRIENT_KINDS: readonly NutrientKind[] = ["vitamin", "mineral", "supplement"];
 /** What a trial outcome showed for people taking the supplement. */
 export type FindingEffect = "helps" | "no clear effect" | "harms" | "mixed";
 
@@ -126,7 +132,7 @@ export function validateNutrientDef(v: unknown): string[] {
   const errs: string[] = [];
   if (!isStr(v.id) || !/^[a-z0-9_]+$/.test(v.id)) errs.push("id must be lowercase_with_underscores");
   for (const k of ["name", "summary"] as const) if (!isStr(v[k])) errs.push(`${k} is required`);
-  if (v.kind !== "vitamin" && v.kind !== "mineral") errs.push("kind must be vitamin or mineral");
+  if (!NUTRIENT_KINDS.includes(v.kind as NutrientKind)) errs.push("kind must be vitamin, mineral or supplement");
   if (!strList(v.otherNames)) errs.push("otherNames must be a list of strings");
   if (!strList(v.roles, 1)) errs.push("roles needs at least one entry");
   if (!isObj(v.status) || !strList(v.status.biomarkerIds) || !isStr(v.status.note)) errs.push("status needs biomarkerIds and a note");
@@ -137,6 +143,8 @@ export function validateNutrientDef(v: unknown): string[] {
   const r = v.reference;
   if (!isObj(r)) errs.push("reference is required");
   else {
+    // Only other supplements may have no reference intake (they aren't essential nutrients).
+    if (Array.isArray(r.intake) && r.intake.length === 0 && v.kind !== "supplement") errs.push("a vitamin or mineral needs a reference intake");
     if (!Array.isArray(r.intake) || !r.intake.every((x) => isObj(x) && isStr(x.group) && typeof x.amount === "number" && x.amount > 0 && UNITS.has(String(x.unit)) && (x.type === "PRI" || x.type === "AI")))
       errs.push("reference intake needs group, amount, unit (µg, mg, g) and type (PRI or AI)");
     if (r.upperLimit !== undefined && !(isObj(r.upperLimit) && typeof r.upperLimit.amount === "number" && UNITS.has(String(r.upperLimit.unit)) && isStr(r.upperLimit.note))) errs.push("upperLimit needs amount, unit and note");
