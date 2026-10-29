@@ -55,6 +55,13 @@ export const DEMO_UNITS: Record<string, string> = {
   sleep_deep: "h",
   sleep_rem: "h",
   vo2max: "mL/kg/min",
+  pushups: "reps",
+  grip_strength: "kg",
+  sit_to_stand_5x: "s",
+  chair_stand_30s: "reps",
+  one_leg_stand: "s",
+  gait_speed: "m/s",
+  sitting_rising: "points",
 };
 
 /** Small, repeatable random numbers (mulberry32). */
@@ -72,7 +79,7 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"];
+export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
 /** Days of nightly watch data (sleep, HRV) before today. */
 const NIGHTLY_DAYS = 70;
@@ -198,6 +205,17 @@ export function demoProfile(today: string): DemoData {
     body("sleep_rem", wobble(1.5, 0.1, 0.1));
     // VO2max from the watch: a little higher as the walking habit continues.
     body("vo2max", wobble(34 + t * 2.5, 0.02, 0.1));
+    // Fitness tests at home every 8 months: a little stronger and steadier with the walking habit.
+    // Push-ups from the knees (the CSEP norms for women).
+    if (k % 8 === 7) {
+      body("pushups", Math.round(11 + t * 4));
+      body("grip_strength", wobble(27 + t * 2.5, 0.02, 1));
+      body("sit_to_stand_5x", wobble(9.6 - t * 1.2, 0.02, 0.1));
+      body("chair_stand_30s", Math.round(16 + t * 3));
+      body("one_leg_stand", Math.round(38 + t * 16));
+      body("gait_speed", wobble(1.22 + t * 0.1, 0.01, 0.01));
+      body("sitting_rising", k === 23 ? 8.5 : k === 15 ? 8 : 7);
+    }
   }
 
   // The last 10 weeks, every night from the watch: sleep and HRV vary night to night, so the app

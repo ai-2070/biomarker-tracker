@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, SLEEP_FIELDS, bmi, bmrMifflinTerms, latestBloodPressure, rmrCunningham, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
+import { BODY_FIELDS, FITNESS_FIELDS, SLEEP_FIELDS, bmiTerms, bmrMifflinTerms, latestBloodPressure, rmrCunningham, latestBody, validateBodyEntry, waistToHeight, type BodyEntryErrors, type BodyField, type GlucoseContext } from "../../../core/body";
 import { ageAt } from "../../../core/phenoageDraws";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { todayIso } from "../../../core/dates";
@@ -58,18 +58,122 @@ export function WeightFigure({ ms, className }: { ms: Measurement[]; className?:
   );
 }
 
+/** A figure with no chart of its own: the card opens a window explaining how it's worked out. */
+function ExplainFigure({
+  label,
+  value,
+  foot,
+  cta,
+  title,
+  description,
+  className,
+  children,
+}: {
+  label: string;
+  value: React.ReactNode;
+  foot: string;
+  cta?: string;
+  title: string;
+  description: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger
+        className={cx(
+          cardStyles,
+          className,
+          "group flex min-h-40 cursor-pointer flex-col justify-center gap-2 text-left text-ink transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        )}
+      >
+        <span className={figureLabel}>{label}</span>
+        {value}
+        <span className="text-sm text-ink-2">{foot}</span>
+        {cta && <span className="text-sm font-medium text-accent">{cta}</span>}
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] w-[34rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
+          <div>
+            <Dialog.Title className="font-serif text-2xl font-normal">{title}</Dialog.Title>
+            <Dialog.Description className="mt-1 text-ink-2">{description}</Dialog.Description>
+          </div>
+          {children}
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+
+const ASHWELL_2012 = {
+  pmid: "22106927",
+  doi: "10.1111/j.1467-789X.2011.00952.x",
+  title: "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors: systematic review and meta-analysis",
+  year: 2012,
+  studyType: "meta-analysis" as const,
+};
+
+/** Body mass index, with the sum worked through. No range or label (it can't tell muscle from fat). */
 export function BmiFigure({ ms, profile, className }: { ms: Measurement[]; profile: Profile; className?: string }) {
   const w = latestBody(ms).weight;
-  const b = w ? bmi(w.value, profile.heightCm) : undefined;
+  const t = w ? bmiTerms(w.value, profile.heightCm) : undefined;
   return (
-    <Figure
+    <ExplainFigure
       label="BMI"
-      href={href({ name: "marker", id: "weight" })}
       className={className}
-      foot={b === undefined ? (profile.heightCm ? "Add your weight to see it." : "Add your height in Settings → Your data.") : "No range shown: BMI can't tell muscle from fat. Waist and body fat say more."}
+      value={<span className={cx(big, !t && "text-ink-2")}>{t ? t.bmi.toFixed(1) : "–"}</span>}
+      foot={!t ? (profile.heightCm ? "Add your weight to see it." : "Add your height in Settings → Your data.") : "No range shown: BMI can't tell muscle from fat. Waist and body fat say more."}
+      {...(t ? { cta: "How it's worked out" } : {})}
+      title="Body mass index (BMI)"
+      description="Weight divided by height squared. A quick number used to study groups of people, but it can't tell muscle from fat or say where fat sits."
     >
-      <p className={cx(big, b === undefined && "text-ink-2")}>{b === undefined ? "–" : b.toFixed(1)}</p>
-    </Figure>
+      {t && w ? (
+        <div className="rounded-lg bg-sunken p-3">
+          <p className="text-sm text-ink-2">With your numbers</p>
+          <table className="mt-2 w-full text-sm tabular-nums">
+            <tbody>
+              <tr>
+                <td className="py-0.5">Weight ({formatDate(w.date)})</td>
+                <td className="py-0.5 text-right">{formatValue(w.value)} kg</td>
+              </tr>
+              <tr>
+                <td className="py-0.5">Height {formatValue(profile.heightCm!)} cm, in metres, squared</td>
+                <td className="py-0.5 text-right">
+                  {formatValue(t.heightM)} × {formatValue(t.heightM)} = {formatValue(Math.round(t.heightSquared * 1000) / 1000)} m²
+                </td>
+              </tr>
+              <tr className="border-t border-line font-medium">
+                <td className="pt-1.5">BMI = weight ÷ height²</td>
+                <td className="pt-1.5 text-right">{t.bmi.toFixed(1)} kg/m²</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="text-ink-2">Needs your height (Settings → Your data) and a weight.</p>
+      )}
+      <ul className="flex list-disc flex-col gap-1 pl-5 text-sm text-ink-2">
+        <li>No range or label is shown here: muscle weighs more than fat, so strong people can get a "high" BMI, and people with little muscle a "normal" one.</li>
+        <li>Where fat sits matters more. Waist-to-height (your waist divided by your height) predicted heart and metabolic risk better than BMI in a review of studies, and body fat says what share of your weight is fat.</li>
+        <li>Not a target. The app never sets a weight goal.</li>
+      </ul>
+      <div className="text-sm text-ink-2">
+        <p className="font-medium text-ink">Source</p>
+        <p className="mt-1">
+          <StudyLink s={ASHWELL_2012} />
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <a href={href({ name: "marker", id: "waist", section: "waist-to-height" })} className={buttonStyles.secondary}>
+          Waist-to-height
+        </a>
+        <a href={href({ name: "marker", id: "weight" })} className={buttonStyles.secondary}>
+          Weight chart
+        </a>
+        <Dialog.Close className={cx(buttonStyles.quiet, "ml-auto")}>Close</Dialog.Close>
+      </div>
+    </ExplainFigure>
   );
 }
 
@@ -286,7 +390,7 @@ const DEVICE_FIELDS = new Set<BodyField>(["heart_rate", "exercise_hr", "hrv", "h
 const UNIT_WORDS: Record<string, string> = { bpm: "beats a minute" };
 
 /** The latest reading of one body measurement, with its change over about 3 months. */
-export function LatestFigure({ ms, id, label, profile, className }: { ms: Measurement[]; id: BodyField; label: string; profile: Profile; className?: string }) {
+export function LatestFigure({ ms, id, label, profile, className, chart = false }: { ms: Measurement[]; id: BodyField; label: string; profile: Profile; className?: string; chart?: boolean }) {
   const unit = useUnit(id);
   const def = BIOMARKER_MAP.get(id)!;
   const series = sortByDate(ms.filter((m) => m.biomarkerId === id));
@@ -338,6 +442,14 @@ export function LatestFigure({ ms, id, label, profile, className }: { ms: Measur
         </p>
       ) : (
         <p className="font-serif text-4xl text-ink-2">–</p>
+      )}
+      {/* Wide cards have room for the trend, drawn on the range when there is one. */}
+      {chart && series.length > 1 && (
+        <Sparkline
+          series={series.slice(-24)}
+          {...(range && (range.low !== undefined || range.high !== undefined) ? { range } : {})}
+          tone={flag?.startsWith("critical") ? "danger" : !flag || flag === "normal" || flag === "unknown" ? "ok" : "warn"}
+        />
       )}
     </Figure>
   );
@@ -426,6 +538,13 @@ const FIELD_LABEL: Record<BodyField, string> = {
   sleep_deep: "Deep sleep",
   sleep_rem: "REM sleep",
   vo2max: "VO₂max",
+  pushups: "Push-ups",
+  grip_strength: "Grip strength",
+  sit_to_stand_5x: "Five chair rises",
+  chair_stand_30s: "Chair stands in 30 s",
+  one_leg_stand: "One-leg stand (right leg)",
+  gait_speed: "Walking speed",
+  sitting_rising: "Sit-and-rise score",
 };
 
 /** One day's measurements. Every field is optional; empty ones are skipped. */
@@ -536,6 +655,32 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
           {field("sleep_rem", { unitPick: true })}
         </div>
         <p className="mt-3 text-sm text-ink-2">HRV here is RMSSD, as most rings and Android watches show it. Apple Watch shows SDNN, a different measure.</p>
+      </details>
+      <details className="group rounded-xl border border-line p-3 open:pb-4">
+        <summary className="min-h-10 cursor-pointer content-center font-medium">Strength, balance and walking tests</summary>
+        <p className="mt-2 text-sm text-ink-2">
+          Do each test the way its page describes, so your result can be compared with people of your age. Stop if anything hurts, and have
+          someone nearby for the balance tests.
+        </p>
+        <div className="mt-3 grid gap-4 sm:grid-cols-3">
+          {field("pushups", { suffix: "push-ups" })}
+          {field("grip_strength", { unitPick: true })}
+          {field("sit_to_stand_5x", { suffix: "seconds" })}
+          {field("chair_stand_30s", { suffix: "stands" })}
+          {field("one_leg_stand", { suffix: "seconds" })}
+          {field("gait_speed", { suffix: "m/s" })}
+          {field("sitting_rising", { suffix: "of 10" })}
+        </div>
+        <p className="mt-3 text-sm text-ink-2">
+          How to do them:{" "}
+          {FITNESS_FIELDS.map((f, i) => (
+            <span key={f}>
+              {i > 0 && " · "}
+              <a href={href({ name: "marker", id: f, section: "for-your-age" })}>{FIELD_LABEL[f].replace(" (right leg)", "")}</a>
+            </span>
+          ))}
+          . Walking speed: 4 metres divided by the seconds it took.
+        </p>
       </details>
       <fieldset className="flex flex-col gap-3">
         <legend className={cx(formLabel, "mb-1")}>Blood glucose (home meter)</legend>

@@ -48,6 +48,7 @@ const UNITS: Partial<Record<BodyField, readonly [RegExp, string][]>> = {
 const DEFAULT_UNIT: Record<BodyField, string> = {
   weight: "kg", waist: "cm", body_fat: "%", bp_systolic: "mmHg", bp_diastolic: "mmHg", resting_hr: "bpm", heart_rate: "bpm", exercise_hr: "bpm",
   hrv: "ms", hrv_resting: "ms", spo2: "%", glucose_home: "mmol/L", sleep_duration: "h", sleep_deep: "h", sleep_rem: "h", vo2max: "mL/kg/min",
+  pushups: "reps", grip_strength: "kg", sit_to_stand_5x: "s", chair_stand_30s: "reps", one_leg_stand: "s", gait_speed: "m/s", sitting_rising: "points",
 };
 
 /** "7 h 12 min", "7h 12m", "7 hr", "45 min", "1:35" → hours. */

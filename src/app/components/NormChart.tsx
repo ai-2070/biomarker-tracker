@@ -132,7 +132,14 @@ export function NormChart({ set, sex, points, unit, higherIsBetter }: { set: Nor
               if (r.mean !== undefined && r.sd !== undefined) {
                 return (
                   <g key={key}>
-                    <rect x={x1} width={x2 - x1} y={y(r.mean + r.sd)} height={y(r.mean - r.sd) - y(r.mean + r.sd)} fill="var(--color-accent-soft)" />
+                    {/* The spread stops at the study's time limit (nobody could score above it). */}
+                    <rect
+                      x={x1}
+                      width={x2 - x1}
+                      y={y(Math.min(r.mean + r.sd, set.ceiling ?? Infinity))}
+                      height={y(Math.max(r.mean - r.sd, 0)) - y(Math.min(r.mean + r.sd, set.ceiling ?? Infinity))}
+                      fill="var(--color-accent-soft)"
+                    />
                     <line x1={x1} x2={x2} y1={y(r.mean)} y2={y(r.mean)} stroke="var(--color-accent)" strokeWidth={2}>
                       <title>
                         {ageLabel(r)}: average {formatValue(r.mean)} ± {formatValue(r.sd)} {unit}

@@ -255,9 +255,9 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     get_body_summary: tool({
       description:
-        "The app's own calculations from body measurements: BMI, waist-to-height, basal metabolic rate (an estimate, never a target), heart age with 10-year cardiovascular risk (Framingham), and recent averages of blood pressure, resting heart rate, resting HRV, blood oxygen and sleep. Use these numbers; don't calculate them yourself.",
+        "The app's own calculations from body measurements: BMI, waist-to-height, basal metabolic rate (an estimate, never a target), heart age with 10-year cardiovascular risk (Framingham), recent averages of blood pressure, resting heart rate, resting HRV, blood oxygen and sleep, and fitness tests (push-ups, grip strength, chair rises, one-leg stand, walking speed, sit-and-rise) compared with published norms for age and sex. Use these numbers and comparisons; don't calculate them yourself.",
       inputSchema: z.object({}),
-      execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso(), knowledge().defs),
+      execute: async () => bodySummary(s.profile, s.measurements, s.protocols, todayIso(), knowledge().defs, knowledge().fitness),
     }),
     get_protocols: tool({
       description:

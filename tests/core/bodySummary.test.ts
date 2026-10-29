@@ -1,3 +1,6 @@
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import type { FitnessTestDef } from "../../src/core/fitnessTests";
 import { describe, expect, it } from "vitest";
 import { bodySummary } from "../../src/core/bodySummary";
 import { demoProfile } from "../../src/core/demo";
@@ -33,5 +36,18 @@ describe("ranges in the body summary", () => {
     expect(usual.high).toBeGreaterThan(48);
     expect(s.bmi).not.toHaveProperty("band");
     expect(s.bodyFatPercent).toHaveProperty("range");
+  });
+
+  it("gives the fitness tests' comparisons with norms, worked out by the app", () => {
+    const today = "2026-10-29";
+    const demo = demoProfile(today);
+    const dir = join(import.meta.dirname, "..", "..", "knowledge", "fitness");
+    const tests = readdirSync(dir).map((f) => JSON.parse(readFileSync(join(dir, f), "utf8")) as FitnessTestDef);
+    const s = bodySummary(demo.person, demo.measurements, demo.protocols, today, loadDefs(), tests) as unknown as { fitnessTests: { results: { test: string; comparedWith: { place: string }[]; note?: string }[] } };
+    const push = s.fitnessTests.results.find((r) => r.test === "Push-ups")!;
+    expect(push.comparedWith[0]!.place).toBe("Very good");
+    // The example person is 47: the sit-and-rise groups are for 51–80.
+    expect(s.fitnessTests.results.find((r) => r.test === "Sitting-rising test")!.note).toMatch(/No norms/);
+    expect(bodySummary(demo.person, [], [], today, loadDefs(), tests)).not.toHaveProperty("fitnessTests");
   });
 });

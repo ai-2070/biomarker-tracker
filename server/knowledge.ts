@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { validateEvidenceClaim } from "../src/core/evidence";
 import { validateBiomarkerDef } from "../src/core/knowledge";
+import { validateFitnessTest, type FitnessTestDef } from "../src/core/fitnessTests";
 import { validateNutrientDef, type NutrientDef } from "../src/core/nutrients";
 import type { FoodDb } from "../src/core/meals";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
@@ -15,7 +16,7 @@ function readAll(dir: string): unknown[] {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as unknown);
 }
 
-let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[] } | undefined;
+let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[]; fitness: FitnessTestDef[] } | undefined;
 
 export function knowledge() {
   if (!cache) {
@@ -26,7 +27,9 @@ export function knowledge() {
     const foods = JSON.parse(fs.readFileSync(path.join(k, "foods", "cofid-foods.json"), "utf8")) as FoodTable;
     const dir = path.join(k, "nutrients");
     const nutrients = (fs.existsSync(dir) ? readAll(dir) : []).filter((j) => validateNutrientDef(j).length === 0) as NutrientDef[];
-    cache = { defs, evidence, foods, nutrients };
+    const fdir = path.join(k, "fitness");
+    const fitness = (fs.existsSync(fdir) ? readAll(fdir) : []).filter((j) => validateFitnessTest(j).length === 0) as FitnessTestDef[];
+    cache = { defs, evidence, foods, nutrients, fitness };
   }
   return cache;
 }

@@ -4,12 +4,13 @@ import { DEMO_BODY_IDS, demoBodyMeasurements } from "../../core/demo";
 import { addMeasurements } from "../../db/db";
 import { todayIso } from "../../core/dates";
 import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure, LatestFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
-import { BODY_GROUPS } from "../../core/body";
+import { BODY_GROUPS, FITNESS_FIELDS } from "../../core/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
 import { HeartAgeFigure } from "../components/dashboard/heartAge";
 import { FitnessAgeFigure } from "../components/dashboard/fitnessAge";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { WaistToHeightFigure } from "../components/dashboard/waistToHeight";
+import { FitnessFigure } from "../components/dashboard/fitness";
 import { PlusIcon } from "../components/icons";
 import { Button, Card, LinkButton, Notice } from "../components/ui";
 import { formatDate, lowerFirst } from "../format";
@@ -18,7 +19,7 @@ import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
 
 /** Shown as a figure on this page, so not repeated as a tile. */
-const FIGURED = new Set(["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
+const FIGURED = new Set([...FITNESS_FIELDS, "weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
 export function BodyPage() {
@@ -96,7 +97,7 @@ export function BodyPage() {
                       <WaistFigure ms={body} profile={profile} />
                       <WaistToHeightFigure ms={body} profile={profile} />
                       <BmiFigure ms={body} profile={profile} />
-                      <LatestFigure ms={body} id="body_fat" label="Body fat" profile={profile} className="col-span-2" />
+                      <LatestFigure ms={body} id="body_fat" label="Body fat" profile={profile} className="col-span-2" chart />
                       <BmrFigure ms={body} profile={profile} className="col-span-2" />
                     </>
                   )}
@@ -113,12 +114,14 @@ export function BodyPage() {
                   )}
                   {g.id === "sleep" && (
                     <>
-                      <LatestFigure ms={body} id="sleep_duration" label="Sleep" profile={profile} className="col-span-2" />
+                      <LatestFigure ms={body} id="sleep_duration" label="Sleep" profile={profile} className="col-span-2" chart />
                       <LatestFigure ms={body} id="sleep_deep" label="Deep sleep" profile={profile} />
                       <LatestFigure ms={body} id="sleep_rem" label="REM sleep" profile={profile} />
                     </>
                   )}
                   {g.id === "sugar" && <GlucoseFigure ms={body} profile={profile} className="col-span-2" />}
+                  {g.id === "fitness" &&
+                    FITNESS_FIELDS.map((id, i) => <FitnessFigure key={id} ms={body} id={id} profile={profile} {...(i === FITNESS_FIELDS.length - 1 ? { className: "col-span-2" } : {})} />)}
                 </div>
                 {markers.length > 0 && <MarkerGrid markers={markers} title={`${g.title}: more`} hideTitle limit={12} />}
               </section>

@@ -25,18 +25,30 @@ export type BodyField =
   | "sleep_duration"
   | "sleep_deep"
   | "sleep_rem"
-  | "vo2max";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"];
+  | "vo2max"
+  // Fitness tests (/knowledge/fitness): compared with norms for age and sex, not with a range.
+  | "pushups"
+  | "grip_strength"
+  | "sit_to_stand_5x"
+  | "chair_stand_30s"
+  | "one_leg_stand"
+  | "gait_speed"
+  | "sitting_rising";
+export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
+
+/** The fitness tests among the body fields, in the order they're shown. */
+export const FITNESS_FIELDS: readonly BodyField[] = ["pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
 
 /** Sleep is counted per night (dated by the morning you woke up): readings on one day add up, naps included. */
 export const SLEEP_FIELDS: ReadonlySet<BodyField> = new Set(["sleep_duration", "sleep_deep", "sleep_rem"]);
 
 /** Body measurements in groups, for the Body dashboard and the entry form. */
-export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "sugar"; title: string; fields: readonly BodyField[] }[] = [
+export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "sugar" | "fitness"; title: string; fields: readonly BodyField[] }[] = [
   { id: "size", title: "Size and composition", fields: ["weight", "waist", "body_fat"] },
   { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "vo2max"] },
   { id: "sleep", title: "Sleep", fields: ["sleep_duration", "sleep_deep", "sleep_rem"] },
   { id: "sugar", title: "Blood sugar", fields: ["glucose_home"] },
+  { id: "fitness", title: "Strength, balance and walking", fields: FITNESS_FIELDS },
 ];
 
 /** Values outside these (canonical unit) are almost certainly typos, e.g. 1765 for 176.5. */
@@ -58,6 +70,13 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   sleep_deep: { min: 0.05, max: 8 },
   sleep_rem: { min: 0.05, max: 8 },
   vo2max: { min: 8, max: 95 },
+  pushups: { min: 0, max: 200 },
+  grip_strength: { min: 2, max: 100 },
+  sit_to_stand_5x: { min: 2, max: 90 },
+  chair_stand_30s: { min: 0, max: 60 },
+  one_leg_stand: { min: 0, max: 300 },
+  gait_speed: { min: 0.1, max: 3 },
+  sitting_rising: { min: 0, max: 10 },
 };
 
 /** Body mass index, kg/m². Only for adult heights between 100 and 250 cm. */
@@ -65,6 +84,14 @@ export function bmi(weightKg: number, heightCm: number | undefined): number | un
   if (!heightCm || heightCm < 100 || heightCm > 250 || !(weightKg > 0)) return undefined;
   const m = heightCm / 100;
   return weightKg / (m * m);
+}
+
+/** BMI step by step, to show how it was worked out: height in metres, squared, and the result. */
+export function bmiTerms(weightKg: number, heightCm: number | undefined): { heightM: number; heightSquared: number; bmi: number } | undefined {
+  const b = bmi(weightKg, heightCm);
+  if (b === undefined) return undefined;
+  const heightM = heightCm! / 100;
+  return { heightM, heightSquared: heightM * heightM, bmi: b };
 }
 
 /**

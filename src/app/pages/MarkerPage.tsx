@@ -18,8 +18,9 @@ import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useMediaQuery, use
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
 import type { ProtocolEntry } from "../../core/types";
-import { BIOMARKER_MAP, fullName, nameInSentence } from "../knowledge";
+import { BIOMARKER_MAP, FITNESS_MAP, fullName, nameInSentence } from "../knowledge";
 import { href } from "../router";
+import { FitnessPanel } from "../components/dashboard/fitness";
 import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
 import { NotFound } from "./NotFound";
 
@@ -125,6 +126,8 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
             {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} scrollTo={section === "waist-to-height"} />}
           </>
         )}
+        {/* Fitness tests: where you stand for your age, how to do the test (shown before any result too). */}
+        {measurements !== undefined && FITNESS_MAP.has(def.id) && <FitnessPanel id={def.id} ms={measurements} profile={profile} scrollTo={section === "for-your-age"} />}
 
         {/* The explanation and research search start open; levers open by themselves when the result is out of range. */}
         <div className="mt-2 grid items-start gap-x-10 gap-y-0 lg:grid-cols-[minmax(0,1fr)_24rem]">
