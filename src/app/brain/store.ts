@@ -7,6 +7,7 @@ import { api } from "../api";
 import { BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
+import { shrinkPhoto } from "./photo";
 import { parseHealthScreenshot } from "../../core/importers/screenshot";
 import { todayIso } from "../../core/dates";
 
@@ -19,7 +20,7 @@ export interface Step {
 }
 
 export type Turn =
-  | { id: string; role: "user"; content: string; /** what went to the model, with file text */ sent: string; files: string[] }
+  | { id: string; role: "user"; content: string; /** what went to the model, with file text */ sent: string; files: string[]; /** photos sent with it (not kept) */ photos?: number }
   | { id: string; role: "assistant"; content: string; model: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { id: string; role: "error"; content: string }
   | { id: string; role: "stopped" }
@@ -50,6 +51,9 @@ export interface Attachment {
   fraction?: number;
   text?: string;
   error?: string;
+  /** A picture: it can be sent itself to the model, if the person turns this on. */
+  photo?: File;
+  sendPhoto?: boolean;
 }
 
 export interface BrainState {
@@ -110,6 +114,7 @@ export function takePending(ready: boolean, model: string): void {
 export const toggleBrain = () => (state.open ? closeBrain() : openBrain());
 export const setDraft = (draft: string) => set({ draft });
 export const removeAttachment = (id: string) => set((s) => ({ attachments: s.attachments.filter((a) => a.id !== id) }));
+export const setSendPhoto = (id: string, on: boolean) => set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, sendPhoto: on } : a)) }));
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
 
@@ -146,7 +151,8 @@ export async function addFiles(files: File[]): Promise<void> {
         if (file.size > MAX_TEXT_FILE) throw new Error("This file is too big (over 5 MB).");
         text = await file.text();
       } else {
-        const r = await readReportFile(file, progress);
+        // A photo without text (a body photo) is fine here: it can be sent itself.
+        const r = await readReportFile(file, progress, true);
         text = r.text;
         ocr = r.ocr;
       }
@@ -170,8 +176,11 @@ export async function addFiles(files: File[]): Promise<void> {
           continue;
         }
       }
-      if (!text.trim()) throw new Error("No text was found in this file.");
-      set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined } : a)) }));
+      // Any other picture: its text (if any) can go with the question, or the photo itself if the person chooses.
+      if (!text.trim() && !isImage(file)) throw new Error("No text was found in this file.");
+      set((s) => ({
+        attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined, ...(isImage(file) ? { photo: file, sendPhoto: false } : {}) } : a)),
+      }));
     } catch (e) {
       const error = e instanceof Error ? e.message : "This file couldn't be read.";
       set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "error", error } : a)) }));
@@ -189,22 +198,40 @@ async function snapshot() {
 /** Sends the draft (or `text`) with any attached documents. `model` labels the answer. */
 export async function send(model: string, text?: string): Promise<void> {
   const question = (text ?? state.draft).trim();
-  const docs = state.attachments.filter((a) => a.status === "ready");
-  if ((!question && docs.length === 0) || state.busy || state.attachments.some((a) => a.status === "reading")) return;
+  // Ready attachments that give something: text, or the photo itself when chosen.
+  const ready = state.attachments.filter((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim()));
+  const docs = ready.filter((a) => !a.sendPhoto);
+  const photos = ready.filter((a) => a.sendPhoto && a.photo);
+  if ((!question && ready.length === 0) || state.busy || state.attachments.some((a) => a.status === "reading")) return;
   const snap = await snapshot();
+  let images: { mediaType: "image/jpeg"; data: string }[] = [];
+  try {
+    images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
+  } catch (e) {
+    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: e instanceof Error ? e.message : "The photo couldn't be prepared." }] }));
+    return;
+  }
   const sent = questionWithFiles(
-    question,
+    question || (photos.length ? "Please look at the attached photo." : ""),
     docs.map((d) => ({ name: d.name, text: redactName(d.text ?? "", snap.name) })),
   );
-  const user: Turn = { id: newId(), role: "user", content: question, sent, files: docs.map((d) => d.name) };
+  const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
   set((s) => ({ turns: [...s.turns, user], busy: true, ...(text === undefined ? { draft: "" } : {}), attachments: s.attachments.filter((a) => a.status !== "ready") }));
 
   controller = new AbortController();
   const mine = controller;
   try {
-    const messages = state.turns.flatMap((t) =>
-      t.role === "user" ? [{ role: "user", content: t.sent }] : t.role === "assistant" ? [{ role: "assistant", content: t.content }] : [],
+    const messages: { role: string; content: string; images?: typeof images }[] = state.turns.flatMap((t) =>
+      t.role === "user"
+        ? [{ role: "user", content: t.photos && t.id !== user.id ? `${t.sent}
+
+[A photo was sent with this question; it isn't sent again.]` : t.sent }]
+        : t.role === "assistant"
+          ? [{ role: "assistant", content: t.content }]
+          : [],
     );
+    // Photos go only with the question they belong to.
+    if (images.length) messages[messages.length - 1] = { ...messages[messages.length - 1]!, images };
     const { name: _n, ...data } = snap;
     const r = await api<Reply>("POST", "/api/assistant", { messages, snapshot: data }, mine.signal);
     if (mine.signal.aborted) return;

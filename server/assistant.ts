@@ -14,6 +14,8 @@ import { studyIdsFromTool, toolStep, type ToolStep } from "./steps";
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
+  /** Photos the person chose to send with this question (base64, already shrunk on their device). */
+  images?: { mediaType: "image/jpeg" | "image/png" | "image/webp"; data: string }[];
 }
 
 export type { ToolStep } from "./steps";
@@ -59,6 +61,7 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     "- Out-of-range or fast-changing results: suggest discussing them with a doctor.",
     "- No calorie targets or weight-loss plans.",
     "- Keep answers short: under 300 words unless asked for more. Explain medical terms.",
+    "- Photos: if the user sends a photo of their body, describe only what is plainly visible, in neutral general terms. Never estimate weight, body fat, BMI, muscle mass or age from a photo, and never compare bodies or comment on attractiveness. Never assess skin, moles, marks, wounds, rashes or swelling: say a doctor should look at anything like that. If the photo shows a screen or document, read it.",
   ];
   if (opts.critical.length) {
     lines.push(
@@ -101,6 +104,10 @@ export async function ask(
     mcpServers: mcp.servers,
   });
 
+  if (agent && messages.some((m) => m.images?.length)) {
+    return { ok: false, error: "Photos can only be sent to models used with an API key or running on this computer, not to agent programs. Choose one in Settings → AI models, or send the question without the photo." };
+  }
+
   if (agent && isAgent(agent.provider)) {
     const profile = settings.providers[agent.provider]?.profile;
     const a = await runAgent({
@@ -124,7 +131,11 @@ export async function ask(
     const res = await generateText({
       model,
       system,
-      messages: messages.map((m): ModelMessage => ({ role: m.role, content: m.content })),
+      messages: messages.map((m): ModelMessage =>
+        m.role === "user" && m.images?.length
+          ? { role: "user", content: [{ type: "text", text: m.content }, ...m.images.map((i) => ({ type: "image" as const, image: i.data, mediaType: i.mediaType }))] }
+          : { role: m.role, content: m.content },
+      ),
       tools,
       stopWhen: isStepCount(MAX_STEPS),
       maxOutputTokens: 8000,

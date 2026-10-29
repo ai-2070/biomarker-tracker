@@ -24,14 +24,18 @@ export const isPdf = (f: File) => f.type === "application/pdf" || /\.pdf$/i.test
 export const isImage = (f: File) => f.type.startsWith("image/") || /\.(jpe?g|png|webp|heic|heif)$/i.test(f.name);
 
 /** Reads a lab report on this device: the PDF's text, or text recognition for scans and photos. */
-export async function readReportFile(file: File, progress?: (fraction: number, stage: string) => void): Promise<{ text: string; ocr: boolean }> {
+export async function readReportFile(
+  file: File,
+  progress?: (fraction: number, stage: string) => void,
+  allowNoText = false,
+): Promise<{ text: string; ocr: boolean }> {
   if (isPdf(file)) {
     const { readPdfText } = await import("../pdf");
     return readPdfText(file, progress);
   }
   if (isImage(file)) {
     const { readImageText } = await import("../ocr");
-    return { text: await readImageText(file, progress), ocr: true };
+    return { text: await readImageText(file, progress, allowNoText), ocr: true };
   }
   throw new Error("Choose a PDF or a photo (JPG, PNG or WebP).");
 }
