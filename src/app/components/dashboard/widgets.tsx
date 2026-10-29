@@ -27,7 +27,7 @@ export function firstName(p: Profile): string | undefined {
 
 export function Figure({ label, href: to, children, foot, className }: { label: string; href: string; children: React.ReactNode; foot?: React.ReactNode; className?: string }) {
   return (
-    <a href={to} className={cx(cardStyles, className, "group flex min-h-40 flex-col gap-2 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm")}>
+    <a href={to} className={cx(cardStyles, className, "group flex min-h-40 flex-col justify-center gap-2 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm")}>
       <span className={labelStyles}>{label}</span>
       <div>{children}</div>
       {foot && <div className="text-sm text-ink-2">{foot}</div>}

@@ -1,0 +1,70 @@
+{
+  "id": "sit_to_stand_5x",
+  "name": "Five chair rises",
+  "abbreviation": "5×STS",
+  "category": "Body",
+  "aliases": [
+    "Five-times sit-to-stand",
+    "Five times sit to stand",
+    "5xSTS",
+    "Five chair rises",
+    "5x sit to stand"
+  ],
+  "canonicalUnit": "s",
+  "conversions": {
+    "s": 1
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "How many seconds it takes to stand up from a chair five times as fast as you safely can, without using your arms. It reflects leg strength and how easily you get up from a seat. A shorter time is better.",
+  "high": {
+    "meaning": "A slower time (higher number) for your age means less leg strength and power. More than 15 s is a sign of possible muscle loss in older people (EWGSOP2).",
+    "commonCauses": [
+      "Weak legs",
+      "Joint pain",
+      "Poor balance",
+      "A lower chair"
+    ]
+  },
+  "low": {
+    "meaning": "A faster time (lower number) for your age means stronger legs.",
+    "commonCauses": [
+      "Regular exercise",
+      "Strength training"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "40875134",
+      "doi": "10.1007/s11357-025-01863-8",
+      "title": "Reference values for the five-times-sit-to-stand test: a pooled analysis including 45,470 participants from 14 countries",
+      "year": 2026,
+      "studyType": "observational",
+      "n": 45470
+    },
+    {
+      "pmid": "41674016",
+      "doi": "10.1002/jcsm.70216",
+      "title": "Asian Reference Values for Handgrip Strength, Gait Speed, Five-Times-Sit-to-Stand Test, Muscle Mass and Calf Circumference",
+      "year": 2026,
+      "studyType": "observational",
+      "n": 55235
+    },
+    {
+      "pmid": "20829298",
+      "doi": "10.1136/bmj.c4467",
+      "title": "Objectively measured physical capability levels and mortality: systematic review and meta-analysis",
+      "year": 2010,
+      "studyType": "meta-analysis",
+      "n": 28036
+    },
+    {
+      "pmid": "24787359",
+      "doi": "10.1136/bmj.g2219",
+      "title": "Physical capability in mid-life and survival over 13 years of follow-up: British birth cohort study",
+      "year": 2014,
+      "studyType": "observational",
+      "n": 2766
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "one_leg_stand",
+  "name": "One-leg stand",
+  "category": "Body",
+  "aliases": [
+    "One-leg stand",
+    "One leg stand",
+    "Single-leg stance",
+    "Single leg stance",
+    "Unipedal stance",
+    "Einbeinstand",
+    "Egylábon állás"
+  ],
+  "canonicalUnit": "s",
+  "conversions": {
+    "s": 1
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "How many seconds you can stand on one leg without support. It reflects standing balance, which relies on the legs, the inner ear, sight and the nerves that sense where your feet are. It can be done with eyes open, and as a harder version with eyes closed.",
+  "high": {
+    "meaning": "Standing longer on one leg for your age means better balance.",
+    "commonCauses": [
+      "Regular exercise",
+      "Balance training",
+      "Youth"
+    ]
+  },
+  "low": {
+    "meaning": "Not managing 10 seconds on one leg at ages 51–75 was linked to higher death rates in one study. Poor balance can have many causes; a doctor can look into it, especially after a fall.",
+    "commonCauses": [
+      "Ageing",
+      "Weak legs or ankles",
+      "Inner-ear or nerve problems",
+      "Some medicines",
+      "Poor eyesight"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "36045774",
+      "doi": "10.1016/j.amsu.2022.104053",
+      "title": "Normative values of functional reach test, single-leg stance test, and timed \"UP and GO\" with and without dual-task in healthy Iranian adults: A cross-sectional study",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 240
+    },
+    {
+      "pmid": "36699981",
+      "doi": "10.3389/fspor.2022.1066913",
+      "title": "Prognostic accuracy of the one-legged balance test in predicting falls: 15-years of midlife follow-up in a British birth cohort study",
+      "year": 2022,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "35728834",
+      "doi": "10.1136/bjsports-2021-105360",
+      "title": "Successful 10-second one-legged stance performance predicts survival in middle-aged and older individuals",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 1702
+    },
+    {
+      "pmid": "24787359",
+      "doi": "10.1136/bmj.g2219",
+      "title": "Physical capability in mid-life and survival over 13 years of follow-up: British birth cohort study",
+      "year": 2014,
+      "studyType": "observational",
+      "n": 2766
+    }
+  ]
+}

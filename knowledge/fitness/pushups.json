@@ -1,0 +1,409 @@
+{
+  "id": "pushups",
+  "name": "Push-ups",
+  "unit": "reps",
+  "higherIsBetter": true,
+  "summary": "How many push-ups you can do in a row without resting, with good form. It measures the endurance of the chest, shoulder and upper-arm muscles, and depends on body weight, technique and motivation.",
+  "howTo": [
+    "Warm up for a few minutes first.",
+    "Choose one version and keep it every time: from the toes (standard) or from the knees (modified). The norms for the two are different, so record which one you did.",
+    "Hands about shoulder-width apart, directly under the shoulders, fingers pointing forward. Body straight and stiff from head to heels (or head to knees); hips neither sagging nor raised.",
+    "Lower yourself until your chest is about a fist's height from the floor (in the CSEP/ACE protocol the chest touches the tester's fist, a rolled towel or a foam block), without resting your stomach on the floor.",
+    "Push back up until the elbows are straight. That is one push-up.",
+    "Keep going at a steady pace with no rest. Count only complete push-ups with good form.",
+    "Stop when you cannot do another complete push-up, or when your form breaks down on two push-ups in a row (ACE/CSEP rule). Write down the number and the version.",
+    "For later comparisons, test at a similar time of day, rested, and not right after other upper-body exercise."
+  ],
+  "safety": [
+    "Stop at once if you feel chest pain, dizziness, light-headedness or unusual shortness of breath (the stop symptoms used in Yang et al. 2019), and contact a doctor if it happens.",
+    "If you have heart disease, high blood pressure that is not under control, or have been told to avoid strenuous effort, check with your doctor before testing to exhaustion.",
+    "The test may not suit people with shoulder, elbow or wrist problems (ACE contraindications); a doctor or physiotherapist can suggest an alternative.",
+    "A test to exhaustion depends on motivation; a person new to exercise may stop early, and a person pushing too hard may lose form and strain a joint."
+  ],
+  "norms": [
+    {
+      "label": "Canada (CSEP)",
+      "source": {
+        "title": "The Canadian Physical Activity, Fitness & Lifestyle Approach (CPAFLA): CSEP-Health & Fitness Program's Health-Related Appraisal and Counselling Strategy",
+        "year": 2003,
+        "studyType": "guideline",
+        "note": "3rd edition, Canadian Society for Exercise Physiology, Ottawa. Book; not read in the original. The same table is said to be reproduced in ACSM's Guidelines for Exercise Testing and Prescription (Wolters Kluwer); not checked."
+      },
+      "verifiedFrom": "secondary website: American Council on Exercise, 'ACE Group Fitness Instructor Fitness Assessment Protocols', Table 3 'Fitness Categories for the Push-up by Age and Sex', printed as 'Reprinted with permission from Canadian Society for Exercise Physiology (2003)' (https://www.acefitness.org/groupfitnessresources/pdfs/GFI_Assessments.pdf, read 2026-10-29). Cross-checked against https://www.sensai.fit/blog/push-up-test-norms-by-age-sex (same numbers, with >= and <= signs).",
+      "population": "Canadian adults; the sample (size, years, how chosen) is not documented in any source I could read. ACE says only that the table comes from CPAFLA 2003.",
+      "kind": "bands",
+      "labels": [
+        "Needs improvement",
+        "Fair",
+        "Good",
+        "Very good",
+        "Excellent"
+      ],
+      "rows": [
+        {
+          "sex": "m",
+          "ageFrom": 20,
+          "ageTo": 29,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 16
+            },
+            {
+              "label": "Fair",
+              "min": 17,
+              "max": 21
+            },
+            {
+              "label": "Good",
+              "min": 22,
+              "max": 28
+            },
+            {
+              "label": "Very good",
+              "min": 29,
+              "max": 35
+            },
+            {
+              "label": "Excellent",
+              "min": 36
+            }
+          ]
+        },
+        {
+          "sex": "m",
+          "ageFrom": 30,
+          "ageTo": 39,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 11
+            },
+            {
+              "label": "Fair",
+              "min": 12,
+              "max": 16
+            },
+            {
+              "label": "Good",
+              "min": 17,
+              "max": 21
+            },
+            {
+              "label": "Very good",
+              "min": 22,
+              "max": 29
+            },
+            {
+              "label": "Excellent",
+              "min": 30
+            }
+          ]
+        },
+        {
+          "sex": "m",
+          "ageFrom": 40,
+          "ageTo": 49,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 9
+            },
+            {
+              "label": "Fair",
+              "min": 10,
+              "max": 12
+            },
+            {
+              "label": "Good",
+              "min": 13,
+              "max": 16
+            },
+            {
+              "label": "Very good",
+              "min": 17,
+              "max": 24
+            },
+            {
+              "label": "Excellent",
+              "min": 25
+            }
+          ]
+        },
+        {
+          "sex": "m",
+          "ageFrom": 50,
+          "ageTo": 59,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 6
+            },
+            {
+              "label": "Fair",
+              "min": 7,
+              "max": 9
+            },
+            {
+              "label": "Good",
+              "min": 10,
+              "max": 12
+            },
+            {
+              "label": "Very good",
+              "min": 13,
+              "max": 20
+            },
+            {
+              "label": "Excellent",
+              "min": 21
+            }
+          ]
+        },
+        {
+          "sex": "m",
+          "ageFrom": 60,
+          "ageTo": 69,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 4
+            },
+            {
+              "label": "Fair",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "label": "Good",
+              "min": 8,
+              "max": 10
+            },
+            {
+              "label": "Very good",
+              "min": 11,
+              "max": 17
+            },
+            {
+              "label": "Excellent",
+              "min": 18
+            }
+          ]
+        },
+        {
+          "sex": "f",
+          "ageFrom": 20,
+          "ageTo": 29,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 9
+            },
+            {
+              "label": "Fair",
+              "min": 10,
+              "max": 14
+            },
+            {
+              "label": "Good",
+              "min": 15,
+              "max": 20
+            },
+            {
+              "label": "Very good",
+              "min": 21,
+              "max": 29
+            },
+            {
+              "label": "Excellent",
+              "min": 30
+            }
+          ]
+        },
+        {
+          "sex": "f",
+          "ageFrom": 30,
+          "ageTo": 39,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 7
+            },
+            {
+              "label": "Fair",
+              "min": 8,
+              "max": 12
+            },
+            {
+              "label": "Good",
+              "min": 13,
+              "max": 19
+            },
+            {
+              "label": "Very good",
+              "min": 20,
+              "max": 26
+            },
+            {
+              "label": "Excellent",
+              "min": 27
+            }
+          ]
+        },
+        {
+          "sex": "f",
+          "ageFrom": 40,
+          "ageTo": 49,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 4
+            },
+            {
+              "label": "Fair",
+              "min": 5,
+              "max": 10
+            },
+            {
+              "label": "Good",
+              "min": 11,
+              "max": 14
+            },
+            {
+              "label": "Very good",
+              "min": 15,
+              "max": 23
+            },
+            {
+              "label": "Excellent",
+              "min": 24
+            }
+          ]
+        },
+        {
+          "sex": "f",
+          "ageFrom": 50,
+          "ageTo": 59,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "label": "Fair",
+              "min": 2,
+              "max": 6
+            },
+            {
+              "label": "Good",
+              "min": 7,
+              "max": 10
+            },
+            {
+              "label": "Very good",
+              "min": 11,
+              "max": 20
+            },
+            {
+              "label": "Excellent",
+              "min": 21
+            }
+          ]
+        },
+        {
+          "sex": "f",
+          "ageFrom": 60,
+          "ageTo": 69,
+          "bands": [
+            {
+              "label": "Needs improvement",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "label": "Fair",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "label": "Good",
+              "min": 5,
+              "max": 11
+            },
+            {
+              "label": "Very good",
+              "min": 12,
+              "max": 16
+            },
+            {
+              "label": "Excellent",
+              "min": 17
+            }
+          ]
+        }
+      ],
+      "note": "Men: standard push-ups from the toes. Women: modified push-ups from the knees (not comparable with the men's numbers or with women's push-ups from the toes). The ACE PDF prints Excellent and Needs improvement as bare numbers (e.g. '36', '16'); they are read as 'at least' and 'at most' because the bands in between are contiguous and sensai.fit prints them as >=36 and <=16. DISCREPANCY: for women 60-69, ACE prints Excellent as '14', which overlaps its own Very good band 12-16; sensai.fit prints >=17. 17 is used here; check against the CPAFLA or ACSM book before shipping. No 15-19 band was found in any readable source (ACSM's book may have one; not added from memory). No band above 69. The categories are labels from the norm set, not health thresholds; no study ties them to health outcomes. Women aged 60–69, Excellent: one reprint prints 14, which overlaps its own Very good band (12–16); the other prints 17, used here."
+    }
+  ],
+  "cutoffs": [],
+  "evidence": [
+    {
+      "claim": "In male firefighters in Indiana (USA), aged about 21 to 66 (average 40), those who could do more push-ups at a check-up had fewer heart and blood vessel events over the next 10 years. Men who did 41 or more had far fewer events than men who did 10 or fewer.",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Observational: shows a link, not that push-ups prevent heart disease.",
+        "One group of active working men; the authors say it may not apply to women, older or inactive people.",
+        "Few events: 37 in total and 1 in the 41-or-more group, so the estimates are imprecise (IRR 0.04, 95% CI 0.01-0.36).",
+        "The push-up groups also differed in age, weight, blood pressure, cholesterol and smoking; the authors say these may explain much of the difference and that the results do not support push-ups as an independent predictor.",
+        "About a quarter of the firefighters had no push-up result; no correction for multiple comparisons."
+      ],
+      "studies": [
+        {
+          "pmid": "30768197",
+          "doi": "10.1001/jamanetworkopen.2018.8341",
+          "title": "Association Between Push-up Exercise Capacity and Future Cardiovascular Events Among Active Adult Men",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 1104
+        }
+      ]
+    },
+    {
+      "claim": "In a sample of Canadian adults (men and women, 20-69 years) followed for 13 years, push-up scores showed no pattern with the risk of dying once age, smoking, body size and estimated aerobic fitness were taken into account. Sit-ups did.",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational, one national sample measured in 1981.",
+        "238 deaths in 13 years; limited numbers could hide a small link.",
+        "Push-ups were compared in age- and sex-specific quartiles, not by the cut-offs used in norm tables."
+      ],
+      "studies": [
+        {
+          "pmid": "11984288",
+          "doi": "10.1097/00005768-200205000-00002",
+          "title": "Musculoskeletal fitness and risk of mortality",
+          "year": 2002,
+          "studyType": "observational",
+          "n": 8116
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "It measures upper-body muscular endurance only, not heart health, aerobic fitness or overall strength.",
+    "The result depends on how deep each push-up goes, the pace, practice and motivation; numbers done with a different technique are not comparable.",
+    "Heavier people lift more weight with each push-up, so the count partly reflects body size.",
+    "Knee push-ups and toe push-ups use different norms and are not interchangeable; converting one into the other is an estimate, not a measurement.",
+    "The CSEP norm categories come from a Canadian sample that is not described in the sources available, and they are more than 20 years old.",
+    "Evidence linking push-ups to health is limited to one study of male firefighters (a link) and one Canadian population study (no link); there is no outcome evidence for women.",
+    "A low score is not a diagnosis, and a high score does not rule out heart disease."
+  ]
+}

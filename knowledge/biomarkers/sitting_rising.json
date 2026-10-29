@@ -1,0 +1,62 @@
+{
+  "id": "sitting_rising",
+  "name": "Sit-and-rise test",
+  "category": "Body",
+  "aliases": [
+    "Sitting-rising test",
+    "Sit and rise test",
+    "Sit-rise test",
+    "SRT"
+  ],
+  "canonicalUnit": "points",
+  "conversions": {
+    "points": 1
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "Sit down on the floor and stand up again using as little support as you can. It scores, from 0 to 10, the strength, flexibility, balance and coordination needed for an everyday movement.",
+  "high": {
+    "meaning": "A higher score (fewer hands or knees used) means better strength, flexibility and balance together.",
+    "commonCauses": [
+      "Regular exercise",
+      "Flexibility",
+      "Lower body weight"
+    ]
+  },
+  "low": {
+    "meaning": "A lower score was linked to higher death rates in adults aged 51–80 in Brazilian studies. It depends on strength, flexibility, balance and body weight.",
+    "commonCauses": [
+      "Weak legs",
+      "Stiff hips or knees",
+      "Poor balance",
+      "Higher body weight",
+      "Joint pain"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "23242910",
+      "doi": "10.1177/2047487312471759",
+      "title": "Ability to sit and rise from the floor as a predictor of all-cause mortality",
+      "year": 2014,
+      "studyType": "observational",
+      "n": 2002
+    },
+    {
+      "pmid": "40569873",
+      "doi": "10.1093/eurjpc/zwaf325",
+      "title": "Sitting-rising test scores predict natural and cardiovascular causes of deaths in middle-aged and older men and women",
+      "year": 2026,
+      "studyType": "observational",
+      "n": 4282
+    },
+    {
+      "pmid": "39081837",
+      "doi": "10.3389/fspor.2024.1393332",
+      "title": "Factors associated with lower quarter performance-based balance and strength tests: a cross-sectional analysis from the project baseline health study",
+      "year": 2024,
+      "studyType": "observational",
+      "n": 2502
+    }
+  ]
+}

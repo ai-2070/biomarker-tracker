@@ -1,0 +1,637 @@
+{
+  "id": "grip_strength",
+  "name": "Grip strength",
+  "unit": "kg",
+  "higherIsBetter": true,
+  "summary": "How hard you can squeeze a hand dynamometer, in kilograms. It is a quick measure of muscle strength that tracks strength in other parts of the body moderately well.",
+  "howTo": [
+    "Use a calibrated hand dynamometer. The Jamar hydraulic dynamometer is the most widely used and validated one; other brands can give somewhat different numbers.",
+    "Stand or sit with the arm at your side and the elbow bent to 90 degrees (the PURE study's position). Most of the British studies behind the norms measured seated with a Jamar; some measured standing.",
+    "Squeeze as hard as you can for about 3 seconds.",
+    "Do three tries with each hand, at least 30 seconds apart.",
+    "Write down the single highest value from any try with either hand. That is how the British norms (Dodds 2014) and the EWGSOP2 cut-offs were made.",
+    "To compare with the PURE norms instead, use the highest of three tries with your dominant hand, or the average of each hand's best.",
+    "For repeat tests, use the same device, the same position and the same time of day, so the numbers can be compared."
+  ],
+  "safety": [
+    "Don't test a hand that is injured, painful, recently operated on, or in an arthritis flare. Doctors use other strength tests when a hand condition (such as advanced arthritis or a stroke) makes grip testing impossible.",
+    "Breathe out while you squeeze instead of holding your breath.",
+    "Stop if it causes pain."
+  ],
+  "norms": [
+    {
+      "label": "Britain (Dodds 2014)",
+      "source": {
+        "pmid": "25474696",
+        "doi": "10.1371/journal.pone.0113637",
+        "title": "Grip strength across the life course: normative data from twelve British studies",
+        "year": 2014,
+        "studyType": "observational",
+        "n": 49964
+      },
+      "verifiedFrom": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4256164/fullTextXML (Table 2, Normative values for grip strength, stratified by gender)",
+      "population": "12 general-population studies in Great Britain (England, Scotland, Wales), 60,803 observations from 49,964 people (26,687 female), measured 1990–2012. The table covers ages 5–90; rows from age 20 are copied here.",
+      "kind": "percentiles",
+      "rows": [
+        {
+          "sex": "m",
+          "ageFrom": 20,
+          "ageTo": 20,
+          "p10": 30,
+          "p25": 35,
+          "p50": 40,
+          "p75": 46,
+          "p90": 52,
+          "mean": 41.5,
+          "sd": 7.3,
+          "nNear": 354
+        },
+        {
+          "sex": "m",
+          "ageFrom": 25,
+          "ageTo": 25,
+          "p10": 36,
+          "p25": 41,
+          "p50": 48,
+          "p75": 55,
+          "p90": 61,
+          "mean": 48.8,
+          "sd": 8.7,
+          "nNear": 574
+        },
+        {
+          "sex": "m",
+          "ageFrom": 30,
+          "ageTo": 30,
+          "p10": 38,
+          "p25": 44,
+          "p50": 51,
+          "p75": 58,
+          "p90": 64,
+          "mean": 51.6,
+          "sd": 9.6,
+          "nNear": 984
+        },
+        {
+          "sex": "m",
+          "ageFrom": 35,
+          "ageTo": 35,
+          "p10": 39,
+          "p25": 45,
+          "p50": 51,
+          "p75": 58,
+          "p90": 64,
+          "mean": 51.6,
+          "sd": 10.1,
+          "nNear": 1380
+        },
+        {
+          "sex": "m",
+          "ageFrom": 40,
+          "ageTo": 40,
+          "p10": 38,
+          "p25": 44,
+          "p50": 50,
+          "p75": 57,
+          "p90": 63,
+          "mean": 50.3,
+          "sd": 10.3,
+          "nNear": 880
+        },
+        {
+          "sex": "m",
+          "ageFrom": 45,
+          "ageTo": 45,
+          "p10": 36,
+          "p25": 42,
+          "p50": 49,
+          "p75": 56,
+          "p90": 61,
+          "mean": 48.8,
+          "sd": 10.3,
+          "nNear": 798
+        },
+        {
+          "sex": "m",
+          "ageFrom": 50,
+          "ageTo": 50,
+          "p10": 35,
+          "p25": 41,
+          "p50": 48,
+          "p75": 54,
+          "p90": 60,
+          "mean": 47.6,
+          "sd": 10.1,
+          "nNear": 820
+        },
+        {
+          "sex": "m",
+          "ageFrom": 55,
+          "ageTo": 55,
+          "p10": 34,
+          "p25": 40,
+          "p50": 47,
+          "p75": 53,
+          "p90": 59,
+          "mean": 46.2,
+          "sd": 9.8,
+          "nNear": 3743
+        },
+        {
+          "sex": "m",
+          "ageFrom": 60,
+          "ageTo": 60,
+          "p10": 33,
+          "p25": 39,
+          "p50": 45,
+          "p75": 51,
+          "p90": 56,
+          "mean": 44.6,
+          "sd": 9.2,
+          "nNear": 2683
+        },
+        {
+          "sex": "m",
+          "ageFrom": 65,
+          "ageTo": 65,
+          "p10": 31,
+          "p25": 37,
+          "p50": 43,
+          "p75": 48,
+          "p90": 53,
+          "mean": 42.3,
+          "sd": 8.6,
+          "nNear": 3947
+        },
+        {
+          "sex": "m",
+          "ageFrom": 70,
+          "ageTo": 70,
+          "p10": 29,
+          "p25": 34,
+          "p50": 39,
+          "p75": 44,
+          "p90": 49,
+          "mean": 39.1,
+          "sd": 8.1,
+          "nNear": 3286
+        },
+        {
+          "sex": "m",
+          "ageFrom": 75,
+          "ageTo": 75,
+          "p10": 26,
+          "p25": 31,
+          "p50": 35,
+          "p75": 41,
+          "p90": 45,
+          "mean": 35.6,
+          "sd": 7.6,
+          "nNear": 1883
+        },
+        {
+          "sex": "m",
+          "ageFrom": 80,
+          "ageTo": 80,
+          "p10": 23,
+          "p25": 27,
+          "p50": 32,
+          "p75": 37,
+          "p90": 42,
+          "mean": 32.2,
+          "sd": 7.3,
+          "nNear": 1115
+        },
+        {
+          "sex": "m",
+          "ageFrom": 85,
+          "ageTo": 85,
+          "p10": 19,
+          "p25": 24,
+          "p50": 29,
+          "p75": 33,
+          "p90": 38,
+          "mean": 28.5,
+          "sd": 7.0,
+          "nNear": 1134
+        },
+        {
+          "sex": "m",
+          "ageFrom": 90,
+          "ageTo": 90,
+          "p10": 16,
+          "p25": 20,
+          "p50": 25,
+          "p75": 29,
+          "p90": 33,
+          "mean": 24.7,
+          "sd": 6.8,
+          "nNear": 431
+        },
+        {
+          "sex": "f",
+          "ageFrom": 20,
+          "ageTo": 20,
+          "p10": 21,
+          "p25": 24,
+          "p50": 28,
+          "p75": 32,
+          "p90": 36,
+          "mean": 28.4,
+          "sd": 5.1,
+          "nNear": 463
+        },
+        {
+          "sex": "f",
+          "ageFrom": 25,
+          "ageTo": 25,
+          "p10": 23,
+          "p25": 26,
+          "p50": 30,
+          "p75": 35,
+          "p90": 38,
+          "mean": 30.6,
+          "sd": 5.6,
+          "nNear": 870
+        },
+        {
+          "sex": "f",
+          "ageFrom": 30,
+          "ageTo": 30,
+          "p10": 24,
+          "p25": 27,
+          "p50": 31,
+          "p75": 35,
+          "p90": 39,
+          "mean": 31.4,
+          "sd": 6.0,
+          "nNear": 1423
+        },
+        {
+          "sex": "f",
+          "ageFrom": 35,
+          "ageTo": 35,
+          "p10": 23,
+          "p25": 27,
+          "p50": 31,
+          "p75": 35,
+          "p90": 39,
+          "mean": 31.3,
+          "sd": 6.2,
+          "nNear": 1785
+        },
+        {
+          "sex": "f",
+          "ageFrom": 40,
+          "ageTo": 40,
+          "p10": 23,
+          "p25": 27,
+          "p50": 31,
+          "p75": 35,
+          "p90": 39,
+          "mean": 30.7,
+          "sd": 6.3,
+          "nNear": 968
+        },
+        {
+          "sex": "f",
+          "ageFrom": 45,
+          "ageTo": 45,
+          "p10": 22,
+          "p25": 26,
+          "p50": 30,
+          "p75": 34,
+          "p90": 38,
+          "mean": 29.9,
+          "sd": 6.4,
+          "nNear": 952
+        },
+        {
+          "sex": "f",
+          "ageFrom": 50,
+          "ageTo": 50,
+          "p10": 21,
+          "p25": 25,
+          "p50": 29,
+          "p75": 33,
+          "p90": 37,
+          "mean": 28.7,
+          "sd": 6.4,
+          "nNear": 1019
+        },
+        {
+          "sex": "f",
+          "ageFrom": 55,
+          "ageTo": 55,
+          "p10": 19,
+          "p25": 23,
+          "p50": 28,
+          "p75": 32,
+          "p90": 35,
+          "mean": 27.5,
+          "sd": 6.4,
+          "nNear": 4250
+        },
+        {
+          "sex": "f",
+          "ageFrom": 60,
+          "ageTo": 60,
+          "p10": 18,
+          "p25": 22,
+          "p50": 27,
+          "p75": 31,
+          "p90": 34,
+          "mean": 26.5,
+          "sd": 6.2,
+          "nNear": 2943
+        },
+        {
+          "sex": "f",
+          "ageFrom": 65,
+          "ageTo": 65,
+          "p10": 17,
+          "p25": 21,
+          "p50": 25,
+          "p75": 29,
+          "p90": 33,
+          "mean": 25.3,
+          "sd": 6.0,
+          "nNear": 4171
+        },
+        {
+          "sex": "f",
+          "ageFrom": 70,
+          "ageTo": 70,
+          "p10": 16,
+          "p25": 20,
+          "p50": 24,
+          "p75": 27,
+          "p90": 31,
+          "mean": 23.5,
+          "sd": 5.7,
+          "nNear": 3473
+        },
+        {
+          "sex": "f",
+          "ageFrom": 75,
+          "ageTo": 75,
+          "p10": 14,
+          "p25": 18,
+          "p50": 21,
+          "p75": 25,
+          "p90": 28,
+          "mean": 21.4,
+          "sd": 5.4,
+          "nNear": 2135
+        },
+        {
+          "sex": "f",
+          "ageFrom": 80,
+          "ageTo": 80,
+          "p10": 13,
+          "p25": 16,
+          "p50": 19,
+          "p75": 23,
+          "p90": 26,
+          "mean": 19.1,
+          "sd": 5.1,
+          "nNear": 1361
+        },
+        {
+          "sex": "f",
+          "ageFrom": 85,
+          "ageTo": 85,
+          "p10": 11,
+          "p25": 14,
+          "p50": 17,
+          "p75": 20,
+          "p90": 23,
+          "mean": 16.6,
+          "sd": 4.7,
+          "nNear": 1632
+        },
+        {
+          "sex": "f",
+          "ageFrom": 90,
+          "ageTo": 90,
+          "p10": 9,
+          "p25": 11,
+          "p50": 14,
+          "p75": 17,
+          "p90": 20,
+          "mean": 14.2,
+          "sd": 4.4,
+          "nNear": 702
+        }
+      ],
+      "note": "Values are for the exact age shown (ageFrom = ageTo), taken from the authors' GAMLSS centile curves; they are not 5-year bands. 'nNear' is the table's 'Observations' column: people within ±2.5 years of that age. Centiles are whole kg as printed; mean and SD to 0.1 kg. The value is the maximum of all tries with both hands (most studies: six tries, three per hand). Exceptions: ADNFS used the dominant hand in 97.2% of people, and LBC1921 used dominant-hand values. Devices: mostly Jamar (seated); Smedley (mostly standing) in UKHLS and ELSA; Nottingham electronic, Harpenden and Takei digital in some studies. The authors report the centiles held up when they checked for dynamometer type and seated or standing position. Ages 5, 10 and 15 are in the table but not copied here. Under 95+ the paper gives no centiles (too few data). Peak mean (SD) was 51.9 (9.9) kg in men and 31.4 (6.1) kg in women, both at age 32 (text, Results). Values at exact ages from the authors' fitted curves; the app uses the nearest tabulated age."
+    }
+  ],
+  "cutoffs": [
+    {
+      "label": "Low grip strength (EWGSOP2): 'probable sarcopenia' in older people",
+      "sex": "m",
+      "below": 27,
+      "source": {
+        "pmid": "30312372",
+        "doi": "10.1093/ageing/afy169",
+        "title": "Sarcopenia: revised European consensus on definition and diagnosis",
+        "year": 2019,
+        "studyType": "guideline"
+      }
+    },
+    {
+      "label": "Low grip strength (EWGSOP2): 'probable sarcopenia' in older people",
+      "sex": "f",
+      "below": 16,
+      "source": {
+        "pmid": "30312372",
+        "doi": "10.1093/ageing/afy169",
+        "title": "Sarcopenia: revised European consensus on definition and diagnosis",
+        "year": 2019,
+        "studyType": "guideline"
+      }
+    },
+    {
+      "label": "Weak grip, 2 SD below the young-adult peak (Dodds 2014 T-score −2)",
+      "sex": "m",
+      "atOrBelow": 32,
+      "source": {
+        "pmid": "25474696",
+        "doi": "10.1371/journal.pone.0113637",
+        "title": "Grip strength across the life course: normative data from twelve British studies",
+        "year": 2014,
+        "studyType": "observational",
+        "n": 49964
+      }
+    },
+    {
+      "label": "Weak grip, 2 SD below the young-adult peak (Dodds 2014 T-score −2)",
+      "sex": "f",
+      "atOrBelow": 19,
+      "source": {
+        "pmid": "25474696",
+        "doi": "10.1371/journal.pone.0113637",
+        "title": "Grip strength across the life course: normative data from twelve British studies",
+        "year": 2014,
+        "studyType": "observational",
+        "n": 49964
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "On average, people with a weaker grip are more likely to die over the following years than people of the same age and sex with a stronger grip.",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Observational cohorts only: shows a link, not that weakness causes death.",
+        "Very large and consistent: PURE (139,691 people, 17 countries) found 16% higher risk per 5 kg lower grip (HR 1.16, 95% CI 1.13–1.20), similar across rich and poor countries; a meta-analysis of 42 studies found the same per 5 kg (HR 1.16, 1.12–1.20); UK Biobank (502,293 people) found HR 1.20 in women and 1.16 in men per 5 kg lower.",
+        "Risk rises steadily as grip falls (dose-response), not only at a threshold.",
+        "Weakest vs strongest quarter: HR 1.67 (1.45–1.93) across 14 studies, but the studies differed a lot (I² 84%).",
+        "Illness can weaken grip before death (reverse causation). The link was also found in younger people and over follow-up of more than 20 years, which makes this less likely to explain it all."
+      ],
+      "studies": [
+        {
+          "pmid": "25982160",
+          "doi": "10.1016/s0140-6736(14)62000-6",
+          "title": "Prognostic value of grip strength: findings from the Prospective Urban Rural Epidemiology (PURE) study",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 139691
+        },
+        {
+          "pmid": "28549705",
+          "doi": "10.1016/j.jamda.2017.03.011",
+          "title": "Association of Grip Strength With Risk of All-Cause Mortality, Cardiovascular Diseases, and Cancer in Community-Dwelling Populations: A Meta-analysis of Prospective Cohort Studies",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 3002203
+        },
+        {
+          "pmid": "29739772",
+          "doi": "10.1136/bmj.k1651",
+          "title": "Associations of grip strength with cardiovascular, respiratory, and cancer outcomes and all cause mortality: prospective cohort study of half a million UK Biobank participants",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 502293
+        },
+        {
+          "pmid": "20829298",
+          "doi": "10.1136/bmj.c4467",
+          "title": "Objectively measured physical capability levels and mortality: systematic review and meta-analysis",
+          "year": 2010,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "claim": "A weaker grip is linked with more deaths from heart and blood-vessel disease, and slightly more heart attacks and strokes.",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Observational: a link, not a cause.",
+        "PURE, per 5 kg lower grip: cardiovascular death HR 1.17 (1.11–1.24), heart attack 1.07 (1.02–1.11), stroke 1.09 (1.05–1.15). In PURE, grip predicted cardiovascular death better than systolic blood pressure did.",
+        "Meta-analysis: cardiovascular disease HR 1.21 (1.14–1.29) per 5 kg lower; stroke 1.09; coronary heart disease 1.07.",
+        "UK Biobank: cardiovascular death HR 1.19 (women) and 1.22 (men) per 5 kg lower.",
+        "The heart attack and stroke links are small."
+      ],
+      "studies": [
+        {
+          "pmid": "25982160",
+          "doi": "10.1016/s0140-6736(14)62000-6",
+          "title": "Prognostic value of grip strength: findings from the Prospective Urban Rural Epidemiology (PURE) study",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 139691
+        },
+        {
+          "pmid": "28549705",
+          "doi": "10.1016/j.jamda.2017.03.011",
+          "title": "Association of Grip Strength With Risk of All-Cause Mortality, Cardiovascular Diseases, and Cancer in Community-Dwelling Populations: A Meta-analysis of Prospective Cohort Studies",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 3002203
+        },
+        {
+          "pmid": "29739772",
+          "doi": "10.1136/bmj.k1651",
+          "title": "Associations of grip strength with cardiovascular, respiratory, and cancer outcomes and all cause mortality: prospective cohort study of half a million UK Biobank participants",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 502293
+        }
+      ]
+    },
+    {
+      "claim": "Whether grip strength is linked with cancer is unclear: the large studies disagree.",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analysis of 42 studies: no link with cancer (HR 1.01, 0.98–1.05 per 5 kg lower).",
+        "UK Biobank: weaker grip linked with more cancer deaths (HR 1.17 women, 1.10 men per 5 kg lower).",
+        "PURE: in high-income countries, a weaker grip went with slightly less cancer (HR 0.916 per 5 kg lower); this wasn't seen in middle- or low-income countries.",
+        "Observational, with results going in different directions."
+      ],
+      "studies": [
+        {
+          "pmid": "28549705",
+          "doi": "10.1016/j.jamda.2017.03.011",
+          "title": "Association of Grip Strength With Risk of All-Cause Mortality, Cardiovascular Diseases, and Cancer in Community-Dwelling Populations: A Meta-analysis of Prospective Cohort Studies",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 3002203
+        },
+        {
+          "pmid": "29739772",
+          "doi": "10.1136/bmj.k1651",
+          "title": "Associations of grip strength with cardiovascular, respiratory, and cancer outcomes and all cause mortality: prospective cohort study of half a million UK Biobank participants",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 502293
+        },
+        {
+          "pmid": "25982160",
+          "doi": "10.1016/s0140-6736(14)62000-6",
+          "title": "Prognostic value of grip strength: findings from the Prospective Urban Rural Epidemiology (PURE) study",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 139691
+        }
+      ]
+    },
+    {
+      "claim": "It is not known whether making your grip stronger lowers these risks. The studies show who is at higher risk; they don't test what happens when strength improves.",
+      "grade": "very low",
+      "whyThisGrade": [
+        "All the evidence above is observational.",
+        "The PURE authors write that further research is needed to test whether improving strength reduces mortality and cardiovascular disease.",
+        "UK Biobank's authors note that reverse causation and residual confounding can't be ruled out."
+      ],
+      "studies": [
+        {
+          "pmid": "25982160",
+          "doi": "10.1016/s0140-6736(14)62000-6",
+          "title": "Prognostic value of grip strength: findings from the Prospective Urban Rural Epidemiology (PURE) study",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 139691
+        },
+        {
+          "pmid": "29739772",
+          "doi": "10.1136/bmj.k1651",
+          "title": "Associations of grip strength with cardiovascular, respiratory, and cancer outcomes and all cause mortality: prospective cohort study of half a million UK Biobank participants",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 502293
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Results depend on the device, the position, which hand, how many tries and which value is kept (best or average). Compare a result only with norms measured the same way.",
+    "It measures the hand and forearm. It tracks overall strength only moderately well.",
+    "Hand pain, arthritis or an injury lowers the result without saying anything about overall muscle health.",
+    "Taller and heavier people tend to grip harder, and normal values differ a lot between world regions (PURE: highest in Europe/North America, lowest in South Asia, South East Asia and Africa). British norms may not fit people from elsewhere.",
+    "A percentile only says where you sit among the people measured. It is not a diagnosis. Sarcopenia also needs a measure of muscle mass.",
+    "The links with health outcomes come from population studies. They don't show that your grip strength causes or predicts anything for you.",
+    "Other norm sets (PURE, 21 countries) measured grip another way (dominant hand only, or the average of both hands), which gives lower numbers, so they are not used to compare a best-of-either-hand result."
+  ]
+}

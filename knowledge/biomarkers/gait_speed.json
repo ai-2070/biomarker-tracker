@@ -1,0 +1,69 @@
+{
+  "id": "gait_speed",
+  "name": "Walking speed",
+  "category": "Body",
+  "aliases": [
+    "Walking speed",
+    "Gait speed",
+    "Usual gait speed",
+    "Gehgeschwindigkeit",
+    "Járássebesség"
+  ],
+  "canonicalUnit": "m/s",
+  "conversions": {
+    "m/s": 1
+  },
+  "rangeNote": "A fitness test, so there is no lab range: your result is compared with people of your age and sex in published norm tables (shown on this page).",
+  "summary": "How fast you walk at your normal pace over a short, measured distance, in metres per second. It reflects strength, balance and the nervous system working together.",
+  "high": {
+    "meaning": "A faster usual walking speed goes with longer survival in people over 65, on average.",
+    "commonCauses": [
+      "Good fitness and strength",
+      "Good balance"
+    ]
+  },
+  "low": {
+    "meaning": "A slow usual walking speed in older people goes with higher risk of falls, disability and death on average. It can have many causes; a doctor can look into a slowdown.",
+    "commonCauses": [
+      "Pain or joint problems",
+      "Weak legs or poor balance",
+      "Recent illness",
+      "Low mood",
+      "A different way of timing the test"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "30092204",
+      "doi": "10.1016/j.apmr.2018.06.031",
+      "title": "Four-Meter Gait Speed: Normative Values and Reliability Determined for Adults Participating in the NIH Toolbox Study",
+      "year": 2019,
+      "studyType": "observational",
+      "n": 1320
+    },
+    {
+      "pmid": "21205966",
+      "doi": "10.1001/jama.2010.1923",
+      "title": "Gait speed and survival in older adults",
+      "year": 2011,
+      "studyType": "observational",
+      "n": 34485
+    },
+    {
+      "pmid": "30056008",
+      "doi": "10.1016/j.jamda.2018.06.007",
+      "title": "Association Between Gait Speed With Mortality, Cardiovascular Disease and Cancer: A Systematic Review and Meta-analysis of Prospective Cohort Studies",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 101945
+    },
+    {
+      "pmid": "20829298",
+      "doi": "10.1136/bmj.c4467",
+      "title": "Objectively measured physical capability levels and mortality: systematic review and meta-analysis",
+      "year": 2010,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

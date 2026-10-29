@@ -1,0 +1,269 @@
+{
+  "id": "one_leg_stand",
+  "name": "One-leg stand",
+  "unit": "s",
+  "higherIsBetter": true,
+  "summary": "How many seconds you can stand on one leg without support. It reflects standing balance, which relies on the legs, the inner ear, sight and the nerves that sense where your feet are. It can be done with eyes open, and as a harder version with eyes closed.",
+  "howTo": [
+    "Stand barefoot on a firm, flat floor, right next to a wall or kitchen counter you could grab, with someone nearby.",
+    "Put your hands on your hips (Iranian norms) or cross your arms over your chest (British norms); use the same position each time and write it down.",
+    "Look at a fixed point ahead. Lift one foot clear of the floor, bending that knee behind you. Start the clock when the foot leaves the floor.",
+    "Stop the clock when the lifted foot touches the floor or the standing leg, the standing foot moves, your hands leave your hips (or uncross), you touch the wall, or you reach the time limit.",
+    "Time limit: up to 60 s. Write down the limit you used; the British norms stopped at 30 s and the Iranian ones at 60 s, so results above 30 s count as 30 s against the British norms.",
+    "Do two tries per leg and keep the best (Iranian protocol). Enter your right leg's time: the norms here are for the right leg (the left leg's were very similar).",
+    "Eyes closed (harder): only if eyes open is steady for at least 10 s. Same steps, close your eyes once the foot is up, and stop when you open them. Have someone stand right beside you."
+  ],
+  "safety": [
+    "Fall risk: always do it next to a wall or counter you can grab at once, on a non-slip floor, with nothing around you to fall onto. Ideally someone stands beside you.",
+    "Don't do the eyes-closed version alone, or if you have fallen in the last year, feel dizzy, or have problems with your inner ear, feet or eyesight. Ask a doctor or physiotherapist first.",
+    "Stop and sit down if you feel dizzy or unsteady.",
+    "If you can't hold 10 s with eyes open and you are over 50, mention it to your doctor, especially if you have fallen or feel unsteady."
+  ],
+  "norms": [
+    {
+      "label": "Iran (right leg)",
+      "source": {
+        "pmid": "36045774",
+        "doi": "10.1016/j.amsu.2022.104053",
+        "title": "Normative values of functional reach test, single-leg stance test, and timed \"UP and GO\" with and without dual-task in healthy Iranian adults: A cross-sectional study",
+        "year": 2022,
+        "studyType": "observational",
+        "n": 240
+      },
+      "verifiedFrom": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9422043/fullTextXML (Table 3; protocol in Methods)",
+      "population": "240 healthy community-dwelling adults (120 men, 120 women; 40 per age band) recruited by convenience sampling in Tehran, Iran; people with dizziness, vertigo or conditions affecting balance excluded.",
+      "kind": "mean_sd",
+      "ceiling": 60,
+      "rows": [
+        {
+          "sex": "m",
+          "ageFrom": 18,
+          "ageTo": 29,
+          "mean": 56.9,
+          "sd": 7.8
+        },
+        {
+          "sex": "f",
+          "ageFrom": 18,
+          "ageTo": 29,
+          "mean": 55.9,
+          "sd": 9.8
+        },
+        {
+          "sex": "m",
+          "ageFrom": 30,
+          "ageTo": 39,
+          "mean": 43.3,
+          "sd": 16.8
+        },
+        {
+          "sex": "f",
+          "ageFrom": 30,
+          "ageTo": 39,
+          "mean": 50.7,
+          "sd": 15.7
+        },
+        {
+          "sex": "m",
+          "ageFrom": 40,
+          "ageTo": 49,
+          "mean": 50.6,
+          "sd": 16.8
+        },
+        {
+          "sex": "f",
+          "ageFrom": 40,
+          "ageTo": 49,
+          "mean": 49.2,
+          "sd": 17.1
+        },
+        {
+          "sex": "m",
+          "ageFrom": 50,
+          "ageTo": 59,
+          "mean": 57.3,
+          "sd": 6.1
+        },
+        {
+          "sex": "f",
+          "ageFrom": 50,
+          "ageTo": 59,
+          "mean": 42.8,
+          "sd": 21.4
+        },
+        {
+          "sex": "m",
+          "ageFrom": 60,
+          "ageTo": 69,
+          "mean": 45.0,
+          "sd": 19.8
+        },
+        {
+          "sex": "f",
+          "ageFrom": 60,
+          "ageTo": 69,
+          "mean": 25.0,
+          "sd": 19.8
+        },
+        {
+          "sex": "m",
+          "ageFrom": 70,
+          "mean": 22.2,
+          "sd": 19.5
+        },
+        {
+          "sex": "f",
+          "ageFrom": 70,
+          "mean": 6.9,
+          "sd": 9.6
+        }
+      ],
+      "note": "Small: 40 per age band, and the paper doesn't give the men/women split per band (about 20 each if even). Strong ceiling at 60 s in under-60s, so the times are not normally distributed and mean ± SD can't be turned into percentiles. Oldest participant 86 (≥70 band). Sexes combined per band are in Table 2. Right leg; the time limit was 60 s, so many younger people reached it and the spread is lopsided."
+    },
+    {
+      "label": "Britain (1946 birth cohort)",
+      "source": {
+        "pmid": "36699981",
+        "doi": "10.3389/fspor.2022.1066913",
+        "title": "Prognostic accuracy of the one-legged balance test in predicting falls: 15-years of midlife follow-up in a British birth cohort study",
+        "year": 2022,
+        "studyType": "observational"
+      },
+      "verifiedFrom": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9869374/fullTextXML (Results, first paragraph)",
+      "population": "MRC National Survey of Health and Development: a British birth cohort (all born in one week in March 1946), tested by research nurses at home at age 53 (1999) and 60–64; up to 2,508 people in this analysis.",
+      "kind": "percentiles",
+      "ceiling": 30,
+      "rows": [
+        {
+          "sex": "any",
+          "ageFrom": 53,
+          "ageTo": 53,
+          "p25": 28,
+          "p50": 30,
+          "p75": 30
+        },
+        {
+          "sex": "any",
+          "ageFrom": 60,
+          "ageTo": 64,
+          "p25": 12.5,
+          "p50": 30,
+          "p75": 30
+        }
+      ],
+      "note": "Capped at 30 s: 74.0% at 53 and 52.5% at 60–64 reached the cap, so this only separates people at the bottom. Men and women combined. Among the people who did the test (1.6% at 53 and 3.9% at 60–64 couldn't for health reasons). One birth year only, so it says nothing about other ages. Time limit 30 s: a longer time counts as 30 s here. Men and women together."
+    }
+  ],
+  "cutoffs": [
+    {
+      "label": "Could not complete a 10-second one-leg stand (ages 51–75): linked to higher death rates in one Brazilian cohort",
+      "ageFrom": 51,
+      "ageTo": 75,
+      "below": 10,
+      "source": {
+        "pmid": "35728834",
+        "doi": "10.1136/bjsports-2021-105360",
+        "title": "Successful 10-second one-legged stance performance predicts survival in middle-aged and older individuals",
+        "year": 2022,
+        "studyType": "observational",
+        "n": 1702
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Among people aged 51 to 75, those who could not stand on one leg for 10 seconds died at a higher rate over the next 7 years or so than those who could.",
+      "grade": "low",
+      "whyThisGrade": [
+        "One observational cohort, 1,702 people (68% men) assessed 2008–2020, median follow-up 7 years; the authors are at the CLINIMEX exercise medicine clinic in Rio de Janeiro, Brazil (record affiliations), and the abstract doesn't say how people were recruited, so it is probably not a population sample",
+        "Deaths: 17.5% of those who couldn't do it vs 4.6% of those who could; hazard ratio 1.84 (95% CI 1.23 to 2.78) after adjusting for age, sex, BMI and illnesses",
+        "The authors note recent falls and physical activity were not accounted for",
+        "Shows a link, not that training balance lowers risk",
+        "Read from the abstract only"
+      ],
+      "studies": [
+        {
+          "pmid": "35728834",
+          "doi": "10.1136/bjsports-2021-105360",
+          "title": "Successful 10-second one-legged stance performance predicts survival in middle-aged and older individuals",
+          "year": 2022,
+          "studyType": "observational",
+          "n": 1702
+        }
+      ]
+    },
+    {
+      "claim": "At age 53, people with the poorest one-leg balance with eyes closed, and especially those who couldn't do the test, had higher death rates up to age 66.",
+      "grade": "low",
+      "whyThisGrade": [
+        "One British birth cohort, 2,766 people, 177 deaths over 13 years",
+        "Unable to do the test vs best fifth: fully adjusted hazard ratio 9.61 (5.32 to 17.39); lowest fifth vs best fifth: 2.53 (1.48 to 4.33); the middle fifths showed no clear pattern",
+        "Balance predicted death about as well as grip strength and chair rising together (C index 0.70 vs 0.71)",
+        "Observational: illness may cause both poor balance and earlier death"
+      ],
+      "studies": [
+        {
+          "pmid": "24787359",
+          "doi": "10.1136/bmj.g2219",
+          "title": "Physical capability in mid-life and survival over 13 years of follow-up: British birth cohort study",
+          "year": 2014,
+          "studyType": "observational",
+          "n": 2766
+        }
+      ]
+    },
+    {
+      "claim": "Across studies of older people, not being able to do a standing balance test is linked to somewhat higher death rates.",
+      "grade": "low",
+      "whyThisGrade": [
+        "A 2024 meta-analysis of 15 cohort studies: hazard ratio 1.14 (1.07 to 1.21) after adjustment, with very high heterogeneity (I² 88%); the authors rated it moderate (GRADE). Read from the abstract only; it covers static balance tests in general, not only one-leg stands",
+        "A 2010 meta-analysis found that all 5 studies of standing balance pointed toward higher mortality with poorer balance, but they measured balance too differently to be pooled",
+        "Mostly people over 70; observational"
+      ],
+      "studies": [
+        {
+          "pmid": "38336358",
+          "doi": "10.1177/01640275241232392",
+          "title": "Performance in a Balance Test and Prediction of All-Cause Mortality in Community-Dwelling Elderly Ambulatory Individuals: A Systematic Review and Meta-analysis",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "20829298",
+          "doi": "10.1136/bmj.c4467",
+          "title": "Objectively measured physical capability levels and mortality: systematic review and meta-analysis",
+          "year": 2010,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "claim": "In people in their 50s and 60s, one-leg balance time on its own is a poor way to tell who will fall in the coming years. Having fallen before predicts falls better.",
+      "grade": "low",
+      "whyThisGrade": [
+        "One large British birth cohort, balance at 53 and 60–64, falls self-reported up to age 68",
+        "Accuracy was poor (AUC 0.577–0.600 for sex plus balance); the 'best' cut-offs (27–29 s eyes open, 3–5 s eyes closed) gave no useful discrimination",
+        "Long gaps (4–15 years) between test and falls, and self-reported falls, may weaken the link",
+        "Contradicts the common use of fixed one-leg cut-offs as fall screens"
+      ],
+      "studies": [
+        {
+          "pmid": "36699981",
+          "doi": "10.3389/fspor.2022.1066913",
+          "title": "Prognostic accuracy of the one-legged balance test in predicting falls: 15-years of midlife follow-up in a British birth cohort study",
+          "year": 2022,
+          "studyType": "observational"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Studies use different time limits (10, 30, 45, 60 or 120 s), arm positions, numbers of tries and legs. A 'normal' time only means something next to the same protocol, and the time limit caps what can be shown.",
+    "With eyes open, most healthy adults under 60 reach the time limit, so the test mainly picks out people at the low end; it can't rank fit people.",
+    "Open norms are thin: a 240-person Iranian study across ages and a British birth cohort at 53 and 60–64 only. Large norms exist (Springer 2007, ages 18–99; Canadian CLSA 2023, 45–85; Korea, ages 66) but were not open to read, so their numbers aren't here.",
+    "It doesn't tell you why balance is poor (legs, feet, inner ear, eyes, nerves, medicines, fear of falling), and a single try varies from day to day.",
+    "Being linked to higher death rates in groups doesn't make it a prediction for one person, and no study found here shows that improving your time lowers that risk.",
+    "On its own it predicts falls poorly; a history of falls says more.",
+    "Eyes-closed and left-leg norms exist in the same studies but are not used here, to keep one way of doing the test."
+  ]
+}

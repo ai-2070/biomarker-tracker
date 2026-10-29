@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { cutoffsMet, describePlace, normRow, placeInRow, placeResult, rowSpan, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
+import { cutoffsMet, describePlace, normRow, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
 
 const source = { title: "Made-up norms", year: 2020, studyType: "observational" as const };
 
 // Made-up tables in the three shapes sources use.
 const bands: NormSet = {
+  label: "Bands",
   source,
   verifiedFrom: "test",
   population: "test",
@@ -28,6 +29,7 @@ const bands: NormSet = {
   ],
 };
 const percentiles: NormSet = {
+  label: "Percentiles",
   source,
   verifiedFrom: "test",
   population: "test",
@@ -37,7 +39,7 @@ const percentiles: NormSet = {
     { sex: "any", ageFrom: 70, p10: 20, p50: 28, p90: 36 },
   ],
 };
-const meanSd: NormSet = { source, verifiedFrom: "test", population: "test", kind: "mean_sd", rows: [{ sex: "f", ageFrom: 60, ageTo: 69, mean: 1.2, sd: 0.2 }] };
+const meanSd: NormSet = { label: "Mean", source, verifiedFrom: "test", population: "test", kind: "mean_sd", rows: [{ sex: "f", ageFrom: 60, ageTo: 69, mean: 1.2, sd: 0.2 }] };
 
 const test: FitnessTestDef = {
   id: "t",
@@ -121,6 +123,7 @@ describe("fitness test norms", () => {
 
   it("uses the nearest row when a table gives values at exact ages", () => {
     const atAges: NormSet = {
+      label: "At ages",
       source,
       verifiedFrom: "test",
       population: "test",
@@ -145,5 +148,25 @@ describe("fitness test norms", () => {
     const grip = { ...test, defaultVariant: "best of either hand", norms: [pure, dodds] };
     expect(placeResult(grip, 50, { sex: "m", age: 42 }).map((r) => r.set.variant)).toEqual(["best of either hand"]);
     expect(placeResult(grip, 50, { sex: "m", age: 42 }, "dominant hand").map((r) => r.set.variant)).toEqual(["dominant hand"]);
+  });
+
+  it("caps a result at the study's time limit before comparing", () => {
+    const capped: NormSet = { ...percentiles, ceiling: 30, rows: [{ sex: "any", ageFrom: 50, ageTo: 59, p25: 20, p50: 30, p75: 30 }] };
+    expect(placeInRow(capped, capped.rows[0]!, 55)).toEqual({ kind: "percentile", above: 75, median: 30 });
+  });
+
+  it("says percentiles and averages so that higher is better, also for timed tests", () => {
+    // A time between the time's 25th and 50th percentile is between the 50th and 75th for speed.
+    expect(describePlace({ kind: "percentile", above: 25, below: 50 }, false)).toBe("Between the 50th and 75th percentile");
+    expect(describePlace({ kind: "percentile", above: 90 }, false)).toBe("Below the 10th percentile");
+    expect(describePlace({ kind: "percentile", below: 10 }, false)).toBe("Above the 90th percentile");
+    expect(describePlace({ kind: "mean_sd", mean: 8, sd: 1, z: 1.5 }, false)).toBe("Below average");
+  });
+
+  it("validates fitness test files", () => {
+    expect(validateFitnessTest({ ...test, summary: "s", howTo: ["x"], safety: ["x"], limits: ["x"], evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }] })).toEqual([]);
+    expect(validateFitnessTest({})).not.toEqual([]);
+    const broken = { ...percentiles, rows: [{ sex: "m", ageFrom: 40, ageTo: 44, p10: 50, p50: 40 }] };
+    expect(validateFitnessTest({ ...test, howTo: ["x"], safety: ["x"], limits: ["x"], norms: [broken], evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }] }).join()).toMatch(/must not go down/);
   });
 });
