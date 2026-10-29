@@ -2,6 +2,9 @@ import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "../../core/dates";
 import { findingCounts, interactionsFor } from "../../core/nutrients";
+import { dailyReference } from "../../core/meals";
+import { ageAt } from "../../core/phenoageDraws";
+import { formatValue } from "../../core/units";
 import { PLAN_TIMES, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "../../core/plans";
 import { safetyLabels, safetyNotes, type ProtocolCategory } from "../../core/protocols";
 import type { SafetyId } from "../../core/types";
@@ -167,6 +170,10 @@ export function PlanPage({ id }: { id: string }) {
         <Share plan={plan} />
 
         <p className="text-sm text-ink-2">
+          EU reference intakes and upper limits are population values from the European Food Safety Authority (EFSA): what covers most healthy
+          adults from all food, and the most that is unlikely to harm over a long time. They aren't a dose or a target for you.
+        </p>
+        <p className="text-sm text-ink-2">
           The app never suggests what or how much to take: amounts here are your own. Talk to your doctor or pharmacist before starting
           supplements, especially if you take medicines, are pregnant or have a health condition.
         </p>
@@ -175,9 +182,19 @@ export function PlanPage({ id }: { id: string }) {
   );
 }
 
+const num = (v: number) => formatValue(v);
+
 function ItemRow({ item, onEdit, onRemove }: { item: PlanItem; onEdit: () => void; onRemove: () => void }) {
+  const profile = useProfile();
   const n = nutrientFor(item, NUTRIENTS);
   const counts = n ? findingCounts(n) : undefined;
+  // The day's EU reference values for this nutrient, next to the person's own amount.
+  const ref = n ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined }) : undefined;
+  const intake = ref?.intake
+    ? `${num(ref.intake.amount)} ${ref.intake.unit} a day`
+    : ref?.bySex
+      ? `men ${num(ref.bySex.men.amount)} ${ref.bySex.men.unit}, women ${num(ref.bySex.women.amount)} ${ref.bySex.women.unit} a day`
+      : undefined;
   return (
     <li className="flex flex-wrap items-start justify-between gap-3 p-3">
       <div className="min-w-0">
@@ -189,6 +206,25 @@ function ItemRow({ item, onEdit, onRemove }: { item: PlanItem; onEdit: () => voi
           {CATEGORY_LABEL[item.category]}
           {item.note && ` · ${item.note}`}
         </p>
+        {n && (intake || ref?.upperLimit) && (
+          <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+            {intake && (
+              <span>
+                <span className="text-ink-2">EU reference intake: </span>
+                <span className="tabular-nums">{intake}</span>
+                {ref?.intake && <span className="text-ink-2"> ({ref.intake.type === "PRI" ? "reference intake" : "adequate intake"}, from all food)</span>}
+              </span>
+            )}
+            {ref?.upperLimit && (
+              <span title={ref.upperLimit.note}>
+                <span className="text-ink-2">Upper limit: </span>
+                <span className="tabular-nums">
+                  {num(ref.upperLimit.amount)} {ref.upperLimit.unit} a day
+                </span>
+              </span>
+            )}
+          </p>
+        )}
         {n && counts && (
           <a href={href({ name: "nutrient", id: n.id })} className="mt-1 inline-flex min-h-9 items-center gap-1 text-sm text-ink underline underline-offset-2">
             What research says about {lowerFirst(n.name)}

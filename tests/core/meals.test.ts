@@ -109,3 +109,13 @@ describe("coverage of the food table", () => {
     expect(c.fibre).toBeLessThan(c.protein!);
   });
 });
+
+describe("daily reference next to a supplement", () => {
+  it("gives the person's intake, or men's and women's values, and the upper limit", async () => {
+    const { dailyReference } = await import("../../src/core/meals");
+    expect(dailyReference(nutrients.get("vitamin_d")!, {})).toMatchObject({ intake: { amount: 15, unit: "µg" }, upperLimit: { amount: 100, unit: "µg" } });
+    expect(dailyReference(nutrients.get("iron")!, { sex: "f", age: 30 })).toMatchObject({ intake: { amount: 16 } });
+    expect(dailyReference(nutrients.get("iron")!, {})).toMatchObject({ bySex: { men: { amount: 11 }, women: { amount: 16 } } });
+    expect(dailyReference(nutrients.get("vitamin_c")!, { sex: "m" }).upperLimit).toBeUndefined();
+  });
+});
