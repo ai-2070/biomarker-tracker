@@ -202,3 +202,71 @@ export function sortFindings(fs: readonly NutrientFinding[]): NutrientFinding[] 
   const e: FindingEffect[] = ["harms", "helps", "mixed", "no clear effect"];
   return [...fs].sort((a, b) => g.indexOf(a.grade) - g.indexOf(b.grade) || e.indexOf(a.effect) - e.indexOf(b.effect));
 }
+
+// ---- Search ------------------------------------------------------------------------------------
+
+/** Where a search matched, when it wasn't the name: "Food: Oily fish such as herring". */
+export interface NutrientMatch {
+  label: string;
+  text: string;
+}
+
+/** Lower case, no accents, letters and digits split ("B12" → "b 12", "D3" → "d 3"), other marks as spaces. */
+const searchNorm = (s: string) =>
+  ` ${s
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .toLowerCase()
+    .replace(/([a-z])(\d)|(\d)([a-z])/g, "$1$3 $2$4")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()} `;
+
+/** The searchable parts of a nutrient, most telling first. */
+function searchFields(n: NutrientDef): NutrientMatch[] {
+  const f = (label: string, items: readonly string[]) => items.map((text) => ({ label, text }));
+  return [
+    { label: "", text: n.name },
+    ...f("Also called", n.otherNames),
+    ...f("What it does", n.roles),
+    ...f("Food", n.foodSources.examples),
+    ...f("Trial outcome", n.findings.map((x) => x.outcome)),
+    ...f("Food study", (n.foodFindings ?? []).map((x) => x.outcome)),
+    ...f("Interaction", n.interactions.map((x) => x.with)),
+    ...f("Sign of too little", n.low.signs),
+    ...f("Who runs low", n.low.atRisk),
+    ...f("Sign of too much", n.high.signs),
+    ...f("Form", n.forms.map((x) => x.name)),
+    ...f("Caution", n.cautions),
+    { label: "About", text: n.summary },
+  ];
+}
+
+/**
+ * Vitamins and minerals matching a search: every word has to start a word somewhere in the entry
+ * (name, other names, roles, foods, trial outcomes, interactions, signs, forms, cautions, summary).
+ * Name matches come first; otherwise the entry's best-matching part is returned to show why it matched.
+ * An empty search returns everything in its order.
+ */
+export function searchNutrients(nutrients: readonly NutrientDef[], query: string): { n: NutrientDef; match?: NutrientMatch }[] {
+  const q = searchNorm(query).trim();
+  if (!q) return nutrients.map((n) => ({ n }));
+  const words = q.split(" ");
+  const has = (text: string, w: string) => text.includes(` ${w}`);
+  const out: { n: NutrientDef; match?: NutrientMatch; rank: number; order: number }[] = [];
+  nutrients.forEach((n, order) => {
+    const fields = searchFields(n).map((x) => ({ ...x, norm: searchNorm(x.text) }));
+    if (!words.every((w) => fields.some((x) => has(x.norm, w)))) return;
+    // The part that covers the most words; earlier parts win ties.
+    let best = 0;
+    let bestCount = -1;
+    fields.forEach((x, i) => {
+      const count = words.filter((w) => has(x.norm, w)).length;
+      if (count > bestCount) [best, bestCount] = [i, count];
+    });
+    const b = fields[best]!;
+    const all = bestCount === words.length;
+    const rank = (all ? 0 : 1000) + (best === 0 && fields[0]!.norm.startsWith(` ${q}`) ? -1 : best);
+    out.push({ n, ...(best === 0 ? {} : { match: { label: b.label, text: b.text } }), rank, order });
+  });
+  return out.sort((a, b) => a.rank - b.rank || a.order - b.order).map(({ n, match }) => (match ? { n, match } : { n }));
+}

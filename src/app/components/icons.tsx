@@ -197,3 +197,10 @@ export const FileIcon = (p: P) => (
     <path d="M13.5 3.5v5h5" />
   </Icon>
 );
+
+export const SearchIcon = (p: P) => (
+  <Icon {...p}>
+    <circle cx="11" cy="11" r="6.5" />
+    <path d="m16 16 4.5 4.5" />
+  </Icon>
+);
