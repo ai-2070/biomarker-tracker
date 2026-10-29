@@ -1,0 +1,328 @@
+{
+  "id": "iodine",
+  "name": "Iodine",
+  "kind": "mineral",
+  "otherNames": [
+    "I",
+    "iodide",
+    "potassium iodide (KI)",
+    "potassium iodate",
+    "iodised salt",
+    "kelp and seaweed supplements"
+  ],
+  "summary": "Iodine is a mineral the thyroid gland needs to make thyroid hormones, which set the body's energy use and guide growth and brain development before birth and in childhood. Both too little and too much can upset the thyroid.",
+  "roles": [
+    "Building block of the thyroid hormones (T4 and T3)",
+    "Brain and body development of the unborn baby and young child",
+    "Energy use (metabolism) throughout life"
+  ],
+  "status": {
+    "biomarkerIds": ["tsh", "ft4"],
+    "note": "There is no routine test of one person's iodine status. Iodine in urine is used to judge groups: EFSA treats a median urinary iodine of 100 µg/L or more in school-age children as a sign that a population gets enough. One person's urine iodine changes a lot from day to day; one study found about 10 repeated samples were needed for a reliable individual estimate. TSH (thyroid-stimulating hormone) and free T4 (free thyroxine), which this app tracks, show how the thyroid is working, not how much iodine someone eats: they are often normal with mildly low intake and can be abnormal for many other reasons."
+  },
+  "low": {
+    "signs": [
+      "Enlarged thyroid (goitre)",
+      "Signs of an underactive thyroid: tiredness, feeling cold, weight gain, dry skin, constipation",
+      "In pregnancy, a risk to the baby's brain development; severe deficiency can cause serious developmental problems in the child"
+    ],
+    "atRisk": [
+      "Pregnant and breastfeeding women, who need more",
+      "People who eat little or no dairy, fish or eggs, such as vegans, unless they use iodised salt or fortified foods",
+      "People who use non-iodised salts (many sea salts and rock salts)",
+      "People living where soil is low in iodine and salt is not iodised"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Underactive or overactive thyroid",
+      "Enlarged thyroid (goitre)",
+      "With very large single amounts: burning mouth and throat, stomach pain, nausea, diarrhoea"
+    ],
+    "note": "Too much iodine can make the thyroid either underactive or overactive, especially in people with an existing thyroid condition, with nodules in the thyroid, or who lived for a long time with low iodine intake. Seaweed and kelp products are the most common cause of very high intakes, because their iodine content varies widely and can be extremely high. Some medicines (amiodarone) and iodine-containing contrast dyes also deliver large amounts."
+  },
+  "foodSources": {
+    "examples": [
+      "White fish and seafood, such as cod and haddock",
+      "Milk, yoghurt and cheese (in many European countries)",
+      "Eggs",
+      "Iodised salt",
+      "Seaweed, with very variable and sometimes extremely high amounts"
+    ],
+    "note": "The iodine in milk and in plants depends on animal feed and soil, so amounts differ between countries and seasons. Most plant drinks contain little iodine unless the label says they are fortified."
+  },
+  "forms": [
+    {
+      "name": "Potassium iodide and potassium iodate",
+      "note": "The forms used in most supplements, multivitamins, prenatal supplements and iodised salt. They give a known, steady amount."
+    },
+    {
+      "name": "Iodised salt",
+      "note": "The main way countries prevent iodine deficiency. The amount added differs by country. Using iodised salt is about the type of salt, not about eating more salt."
+    },
+    {
+      "name": "Kelp and other seaweed supplements",
+      "note": "Seaweeds differ greatly in iodine, and some, such as kombu (kelp), can give far more than the upper limit. The EU Scientific Committee on Food warned that iodine-rich seaweed products, especially dried ones, can give dangerously high intakes. Seaweed can also contain arsenic, cadmium and lead."
+    },
+    {
+      "name": "Iodine drops and Lugol's solution",
+      "note": "Concentrated solutions that can give very large amounts in a few drops."
+    },
+    {
+      "name": "Potassium iodide tablets for radiation emergencies",
+      "note": "High-dose tablets that block the thyroid from taking up radioactive iodine. They are meant only for a nuclear emergency, when the authorities say so, not as a supplement."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults", "amount": 150, "unit": "µg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 200, "unit": "µg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 200, "unit": "µg", "type": "AI" }
+    ],
+    "upperLimit": {
+      "amount": 600,
+      "unit": "µg",
+      "note": "For iodine from all sources, in adults, including pregnancy and breastfeeding. Set by the EU Scientific Committee on Food (2002) and still listed in EFSA's overview of upper limits (August 2025). It comes from small changes in TSH, without illness, at about 1,700–1,800 µg a day, divided by 3 for safety. It does not apply to people from areas with long-standing iodine deficiency, who are more sensitive, or to treatment with iodine under medical supervision."
+    },
+    "sources": [
+      {
+        "pmid": "42125360",
+        "doi": "10.2903/j.efsa.2014.3660",
+        "title": "Scientific Opinion on Dietary Reference Values for iodine",
+        "year": 2014,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Child development after iodine supplements in pregnancy",
+      "population": "Pregnant women with mild to moderate iodine deficiency, and their children",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only a few trials measured child development, and only one was large enough",
+        "Mild deficiency is hard to define in individuals",
+        "Women may already have had low thyroid iodine stores before pregnancy, which the trials did not measure"
+      ],
+      "summary": "In a trial in India and Thailand (832 women), daily iodine in mildly deficient pregnant women made no difference to the children's IQ or behaviour at age 5–6. Two meta-analyses (2020 and 2021) also found no effect on children's thinking, language or movement skills or on birth size. The 2020 review concluded that there is not enough good evidence to support routine supplements in mild to moderate deficiency. Severe deficiency is different, see below.",
+      "studies": [
+        {
+          "pmid": "29030199",
+          "doi": "10.1016/s2213-8587(17)30332-7",
+          "title": "Effect of iodine supplementation in pregnant women on child neurodevelopment: a randomised, double-blind, placebo-controlled trial",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 832
+        },
+        {
+          "pmid": "32320029",
+          "doi": "10.1093/ajcn/nqaa071",
+          "title": "Systematic review and meta-analysis of the effects of iodine supplementation on thyroid function and child neurodevelopment in mildly-to-moderately iodine-deficient pregnant women",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "33112293",
+          "doi": "10.1530/eje-20-0927",
+          "title": "Effects of iodine supplementation during pregnancy on pregnant women and their offspring: a systematic review and meta-analysis of trials over the past 3 decades",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Mother's thyroid during and after pregnancy",
+      "population": "Pregnant women in areas with mild to moderate iodine deficiency",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials with design limitations",
+        "Wide uncertainty around most results",
+        "The Cochrane review rated the evidence low or very low"
+      ],
+      "summary": "Trials found that iodine prevented the rise in thyroglobulin (a sign of thyroid strain) and, in some, the growth of the thyroid during pregnancy, but most found no change in TSH or free T4. A 2017 Cochrane review found less overactive thyroid after birth with iodine, but more stomach upset during pregnancy in one small trial, and no clear effect on underactive thyroid, preterm birth or birth weight.",
+      "studies": [
+        {
+          "pmid": "28260263",
+          "doi": "10.1002/14651858.cd011761.pub2",
+          "title": "Iodine supplementation for women during the preconception, pregnancy and postpartum period",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32320029",
+          "doi": "10.1093/ajcn/nqaa071",
+          "title": "Systematic review and meta-analysis of the effects of iodine supplementation on thyroid function and child neurodevelopment in mildly-to-moderately iodine-deficient pregnant women",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Thinking skills in schoolchildren",
+      "population": "Children aged 10–13 with mild (New Zealand) or moderate (Albania) iodine deficiency",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Two placebo-controlled trials, both fairly small",
+        "Improvements in some tests but not others",
+        "Short follow-up (about 6 months)"
+      ],
+      "summary": "In New Zealand (184 children, mildly deficient), iodine for 28 weeks improved 2 of 4 thinking tests (perceptual reasoning), and the overall score was slightly higher than with placebo. In Albania (310 children, moderately deficient), iodised oil by mouth improved information processing, fine motor skills and visual problem solving. These results apply to children who were deficient.",
+      "studies": [
+        {
+          "pmid": "19726593",
+          "doi": "10.3945/ajcn.2009.28145",
+          "title": "Iodine supplementation improves cognition in mildly iodine-deficient children",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 184
+        },
+        {
+          "pmid": "16400058",
+          "doi": "10.1093/ajcn/83.1.108",
+          "title": "Iodine supplementation improves cognition in iodine-deficient schoolchildren in Albania: a randomized, controlled, double-blind study",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 310
+        }
+      ]
+    },
+    {
+      "outcome": "Mental development of young children in iodine-deficient areas",
+      "population": "Children aged 5 and under, in studies of mothers or infants in iodine-deficient areas",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only 2 randomised trials; most studies were non-randomised or observational",
+        "Small samples and missing adjustment for other causes",
+        "Consistent direction across study designs"
+      ],
+      "summary": "A 2013 meta-analysis found that iodine-deficient young children scored on average about 7 to 10 IQ points lower than children with enough iodine, and that iodine supplements given to mothers in deficient areas were linked to better development. The authors call for better trials. This is the reason countries prevent deficiency, mainly through iodised salt.",
+      "studies": [
+        {
+          "pmid": "23609774",
+          "doi": "10.3390/nu5041384",
+          "title": "Iodine and mental development of children 5 years old and under: a systematic review and meta-analysis",
+          "year": 2013,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "foodFindings": [
+    {
+      "outcome": "Iodine status and goitre with iodised salt",
+      "population": "Children and adults in areas with iodine deficiency",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only 6 controlled studies, too different to pool",
+        "Mostly measured urine iodine and goitre, not development or health"
+      ],
+      "summary": "A 2002 Cochrane review found that iodised salt improved iodine status and tended to reduce goitre, with no harms reported. The studies could not say whether it improved children's development, and none looked specifically for iodine-induced overactive thyroid.",
+      "studies": [
+        {
+          "pmid": "12137681",
+          "doi": "10.1002/14651858.cd003204",
+          "title": "Iodised salt for preventing iodine deficiency disorders",
+          "year": 2002,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Underactive thyroid and autoimmune thyroid disease with high iodine intake",
+      "population": "Adults in three regions of China with mildly low, more than adequate, or excessive iodine intake",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: regions differ in more than iodine",
+        "Large, 5-year follow-up with measured thyroid tests"
+      ],
+      "summary": "In a 5-year study of 3,018 adults, mild underactive thyroid and autoimmune thyroiditis became more common as regional iodine intake went from mildly low to more than adequate and excessive (median urine iodine 84, 243 and 651 µg/L). Among people who already had thyroid antibodies, a raised TSH became more common with higher intake. The authors conclude that more than adequate or excessive iodine may lead to these conditions.",
+      "studies": [
+        {
+          "pmid": "16807415",
+          "doi": "10.1056/nejmoa054022",
+          "title": "Effect of iodine intake on thyroid diseases in China",
+          "year": 2006,
+          "studyType": "observational",
+          "n": 3018
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Pregnancy and breastfeeding",
+      "note": "Needs are higher, and many prenatal supplements already contain iodine. Seaweed and kelp products are risky because their iodine content is unpredictable. Ask a midwife or doctor before adding iodine.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Thyroid conditions (Hashimoto's, Graves' disease, thyroid nodules or goitre)",
+      "note": "Extra iodine can trigger an overactive or underactive thyroid, especially with nodules or thyroid antibodies. Talk to your doctor before using iodine or seaweed supplements."
+    },
+    {
+      "with": "Thyroid medicines (levothyroxine, carbimazole, methimazole, propylthiouracil)",
+      "note": "Iodine changes how the thyroid works, which can affect the treatment. Large amounts can interfere with medicines for an overactive thyroid."
+    },
+    {
+      "with": "Amiodarone (a heart rhythm medicine)",
+      "note": "Contains a lot of iodine and can itself cause thyroid problems, so extra iodine needs a doctor's view."
+    },
+    {
+      "with": "Lithium",
+      "note": "Lithium can cause an underactive thyroid, and large amounts of iodine may add to that effect."
+    },
+    {
+      "with": "Iodine contrast dye and iodine antiseptics",
+      "note": "X-ray and CT contrast dyes and iodine skin antiseptics can deliver large amounts of iodine. Mention recent scans with contrast when thyroid tests are done."
+    }
+  ],
+  "cautions": [
+    "Kelp and other seaweed products vary widely in iodine and can give far more than the upper limit.",
+    "With a thyroid condition, talk to your doctor before using iodine supplements.",
+    "TSH and free T4 are thyroid tests, not iodine tests.",
+    "Iodised salt is a way to get iodine, not a reason to eat more salt."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "25591468",
+      "doi": "10.1016/s2213-8587(14)70225-6",
+      "title": "Iodine deficiency and thyroid disorders",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "21918061",
+      "doi": "10.3945/jn.111.144071",
+      "title": "Ten repeat collections for urinary iodine from spot samples or 24-hour samples are needed to reliably estimate individual iodine status in women",
+      "year": 2011,
+      "studyType": "observational",
+      "n": 22
+    },
+    {
+      "pmid": "23035804",
+      "doi": "10.1111/j.1753-4887.2012.00528.x",
+      "title": "Assessment of iodine nutrition in populations: past, present, and future",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "36742462",
+      "doi": "10.2903/j.efsa.2023.7798",
+      "title": "Dietary exposure to heavy metals and iodine intake via consumption of seaweeds and halophytes in the European population",
+      "year": 2023,
+      "studyType": "review"
+    }
+  ]
+}

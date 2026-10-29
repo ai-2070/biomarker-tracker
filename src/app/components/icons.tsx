@@ -48,6 +48,14 @@ export const PillIcon = (p: P) => (
   </Icon>
 );
 
+/** An open book: the research knowledge base (Supplementation). */
+export const BookIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 6.5c-1.8-1.3-4.3-2-7.5-2v13c3.2 0 5.7.7 7.5 2 1.8-1.3 4.3-2 7.5-2v-13c-3.2 0-5.7.7-7.5 2Z" />
+    <path d="M12 6.5v13" />
+  </Icon>
+);
+
 export const FlaskIcon = (p: P) => (
   <Icon {...p}>
     <path d="M9.5 3.5h5M10.5 3.5v5.2L5.4 18a1.7 1.7 0 0 0 1.5 2.5h10.2a1.7 1.7 0 0 0 1.5-2.5l-5.1-9.3V3.5" />

@@ -1,0 +1,337 @@
+{
+  "id": "folate",
+  "name": "Folate",
+  "kind": "vitamin",
+  "otherNames": [
+    "vitamin B9",
+    "folic acid (the synthetic form in supplements and fortified foods)",
+    "5-methyltetrahydrofolate (5-MTHF, 'methylfolate')",
+    "L-methylfolate calcium",
+    "folinic acid"
+  ],
+  "summary": "Folate is a B vitamin the body needs to make DNA and new cells, including red blood cells and the cells of a growing baby. 'Folate' is the natural form in food; 'folic acid' is the man-made form in supplements and fortified foods. They are absorbed differently and have been studied separately, so evidence for one doesn't automatically apply to the other.",
+  "roles": [
+    "Making and repairing DNA when cells divide",
+    "Making red blood cells",
+    "Development of a baby's brain and spinal cord in the first weeks of pregnancy",
+    "Working with vitamin B12 to recycle homocysteine, an amino acid in the blood"
+  ],
+  "status": {
+    "biomarkerIds": ["folate", "mcv", "hemoglobin"],
+    "note": "Serum folate is the usual test. It mostly reflects what was eaten in the last few days, so one low result after a few poor days may not mean the body's stores are low. Red cell folate reflects the last few months, but guidelines consider serum folate just as useful for diagnosis. Large red blood cells (a high MCV) and anaemia can be signs of low folate, but low vitamin B12 causes the same picture, which is why the two are usually checked together."
+  },
+  "low": {
+    "signs": [
+      "Tiredness and shortness of breath from anaemia",
+      "Large red blood cells on a blood count (high MCV)",
+      "A sore, red tongue or mouth ulcers",
+      "In early pregnancy, a higher risk of neural tube defects (such as spina bifida) in the baby"
+    ],
+    "atRisk": [
+      "People who could become pregnant, and pregnant or breastfeeding women (needs are higher, and the first weeks matter most)",
+      "People who eat few vegetables, legumes, fruit or fortified foods",
+      "People who drink a lot of alcohol",
+      "People with coeliac disease or other conditions that reduce absorption in the gut",
+      "People taking methotrexate or some epilepsy medicines (such as phenytoin)"
+    ]
+  },
+  "high": {
+    "signs": [],
+    "note": "No harm is known from folate in food. High intakes of folic acid from supplements are different: they can correct the anaemia of vitamin B12 deficiency while the nerve damage from low B12 carries on, so the B12 shortage may be missed. This 'masking' is why EFSA's upper limit exists, and it applies to folic acid and methylfolate supplements, not to food folate. Large trials of folic acid did not show a clear effect on cancer over about 5 years."
+  },
+  "foodSources": {
+    "examples": [
+      "Beans, lentils and chickpeas",
+      "Dark green leafy vegetables such as spinach and kale",
+      "Asparagus, broccoli and Brussels sprouts",
+      "Liver (very rich, but also very high in vitamin A, which is a concern in pregnancy)",
+      "Oranges and other citrus fruit",
+      "Breads and breakfast cereals fortified with folic acid",
+      "Yeast extract"
+    ],
+    "cofidNutrient": "folate",
+    "note": "Cooking, especially boiling, destroys some folate. Some countries, such as the USA and Canada, add folic acid to flour by law; most EU countries don't. Food folate is absorbed less well than folic acid, which is why reference intakes use 'dietary folate equivalents' (DFE): 1 µg DFE is 1 µg of food folate or about 0.6 µg of folic acid taken with food."
+  },
+  "forms": [
+    {
+      "name": "Folic acid",
+      "note": "The man-made form, used in most supplements and in fortified foods. It is stable and well absorbed and must be converted by the body into active folate. The trials showing fewer neural tube defects used folic acid."
+    },
+    {
+      "name": "Methylfolate (5-MTHF, L-methylfolate calcium or glucosamine salts)",
+      "note": "The main form of folate found in blood. Studies found it raises blood folate and lowers homocysteine at least as well as folic acid at the same amount, and it is sometimes suggested for people with the common MTHFR gene variant. It has not been tested in neural tube defect trials the way folic acid has, and the upper limit applies to it too. Whether the MTHFR variant makes methylfolate better in practice hasn't been shown in trials of health outcomes."
+    },
+    {
+      "name": "Folinic acid (calcium folinate)",
+      "note": "A medicine form used by doctors, for example with methotrexate or some cancer treatments. Not a general supplement."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults", "amount": 330, "unit": "µg", "type": "PRI" },
+      { "group": "Pregnancy", "amount": 600, "unit": "µg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 500, "unit": "µg", "type": "PRI" }
+    ],
+    "upperLimit": {
+      "amount": 1000,
+      "unit": "µg",
+      "note": "EFSA's tolerable upper intake level for adults, including pregnancy and breastfeeding, kept in its 2023 review. It covers folic acid and the authorised methylfolate salts in supplements and fortified foods combined, not folate that occurs naturally in food. It is based on the risk of hiding (masking) vitamin B12 deficiency while its nerve damage progresses. Reference intakes are in dietary folate equivalents (DFE); the upper limit is in µg of folic acid itself."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2014.3893",
+        "title": "Scientific Opinion on Dietary Reference Values for folate",
+        "year": 2014,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "37965303",
+        "doi": "10.2903/j.efsa.2023.8353",
+        "title": "Scientific opinion on the tolerable upper intake level for folate",
+        "year": 2023,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Neural tube defects (such as spina bifida) in the baby",
+      "population": "Women taking folic acid before conception and in the first weeks of pregnancy, with or without a previous affected pregnancy",
+      "effect": "helps",
+      "grade": "high",
+      "whyThisGrade": [
+        "Cochrane review of 5 randomised trials with 7391 women, graded high quality",
+        "Large effect: about 70% fewer neural tube defects",
+        "Supported by an independent review for the US Preventive Services Task Force (2023)"
+      ],
+      "summary": "Taking folic acid around conception and in early pregnancy lowered the risk of neural tube defects by about two thirds, both for a first affected pregnancy and for a repeat. The effect was similar at 400 µg a day and at higher amounts in the trials. The neural tube forms in the first weeks of pregnancy, often before a pregnancy is known, which is why health bodies advise folic acid for anyone who could become pregnant. Talk to your doctor or midwife; some people are advised a higher amount.",
+      "studies": [
+        {
+          "pmid": "26662928",
+          "doi": "10.1002/14651858.cd007950.pub3",
+          "title": "Effects and safety of periconceptional oral folate supplementation for preventing birth defects",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 7391
+        },
+        {
+          "pmid": "37526713",
+          "doi": "10.1001/jama.2023.12876",
+          "title": "Folic Acid Supplementation to Prevent Neural Tube Defects: US Preventive Services Task Force Reaffirmation Recommendation Statement",
+          "year": 2023,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks and death",
+      "population": "Adults with or without heart and blood vessel disease, given folic acid (often with B12 and B6) to lower homocysteine",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Cochrane review of 15 randomised trials with 71,422 people; most at low risk of bias",
+        "Consistent results across trials"
+      ],
+      "summary": "High homocysteine goes with more heart disease, and folic acid lowers homocysteine. But in large trials, lowering it did not reduce heart attacks or deaths. This is a clear example of a blood level improving without a health benefit.",
+      "studies": [
+        {
+          "pmid": "28816346",
+          "doi": "10.1002/14651858.cd006612.pub5",
+          "title": "Homocysteine-lowering interventions for preventing cardiovascular events",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 71422
+        }
+      ]
+    },
+    {
+      "outcome": "Stroke",
+      "population": "Adults in homocysteine-lowering trials; the largest was in adults with high blood pressure in China, where food is not fortified",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Cochrane review of 10 trials with 44,224 people found a small reduction",
+        "Much of the effect comes from a large trial in China, where folate intake was low and flour isn't fortified",
+        "Lowered one grade: it may not apply where people already get enough folate"
+      ],
+      "summary": "Across trials, stroke was slightly less common with homocysteine-lowering B vitamins (about 4.3% compared with 5.1%). In the China Stroke Primary Prevention Trial, adults with high blood pressure who got folic acid with their blood pressure medicine had about a fifth fewer first strokes over 4.5 years. The benefit seems to depend on folate status, so it may be small or absent in people who already get enough.",
+      "studies": [
+        {
+          "pmid": "28816346",
+          "doi": "10.1002/14651858.cd006612.pub5",
+          "title": "Homocysteine-lowering interventions for preventing cardiovascular events",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 44224
+        },
+        {
+          "pmid": "25771069",
+          "doi": "10.1001/jama.2015.2274",
+          "title": "Efficacy of folic acid therapy in primary prevention of stroke among adults with hypertension in China: the CSPPT randomized clinical trial",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 20702
+        }
+      ]
+    },
+    {
+      "outcome": "Memory, thinking and dementia",
+      "population": "Older adults, including people with mild memory problems (mild cognitive impairment)",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of 11 trials with about 22,000 people found no effect on cognitive ageing",
+        "A Cochrane review in mild cognitive impairment found probably little or no effect, with low-quality evidence on some outcomes",
+        "One trial hinted at a benefit in people with high homocysteine; not confirmed"
+      ],
+      "summary": "Folic acid with B12 (and sometimes B6) lowered homocysteine by about a quarter but did not slow the decline of memory and thinking with age. In people who already had mild memory problems there was probably little or no effect over 6 to 24 months. No trial reported whether fewer people developed dementia. A possible benefit in people with high homocysteine came from subgroup analyses in one trial and needs testing.",
+      "studies": [
+        {
+          "pmid": "24965307",
+          "doi": "10.3945/ajcn.113.076349",
+          "title": "Effects of homocysteine lowering with B vitamins on cognitive aging: meta-analysis of 11 trials with cognitive data on 22,000 individuals",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 22000
+        },
+        {
+          "pmid": "30383288",
+          "doi": "10.1002/14651858.cd011905.pub2",
+          "title": "Vitamin and mineral supplementation for preventing dementia or delaying cognitive decline in people with mild cognitive impairment",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 879
+        }
+      ]
+    },
+    {
+      "outcome": "Cancer",
+      "population": "Adults in 13 trials of folic acid against placebo, mostly heart disease prevention trials",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Individual data from 49,621 people in 13 randomised trials",
+        "Treatment lasted about 5 years on average; longer-term effects are unknown"
+      ],
+      "summary": "There was a concern that folic acid might speed up cancers. In these trials, folic acid at amounts higher than fortification gives neither raised nor lowered cancer overall, or for bowel, prostate, lung, breast or other sites, over about 5 years. EFSA's 2023 review also found the evidence insufficient to link folate intake with bowel or prostate cancer.",
+      "studies": [
+        {
+          "pmid": "23352552",
+          "doi": "10.1016/s0140-6736(12)62001-7",
+          "title": "Effects of folic acid supplementation on overall and site-specific cancer incidence during the randomised trials: meta-analyses of data on 50,000 individuals",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 49621
+        }
+      ]
+    },
+    {
+      "outcome": "Side effects of methotrexate",
+      "population": "Adults with rheumatoid arthritis taking low-dose methotrexate, given folic or folinic acid by their doctor",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Cochrane review of 6 randomised trials with 624 people, graded moderate quality",
+        "Fewer events for some side effects, such as effects on blood counts, so less certain there"
+      ],
+      "summary": "Folic or folinic acid alongside methotrexate reduced stomach and gut side effects such as nausea, reduced liver test abnormalities, and fewer people stopped methotrexate. It did not seem to make methotrexate less effective for arthritis. This is part of medical treatment and is arranged by the prescribing doctor.",
+      "studies": [
+        {
+          "pmid": "23728635",
+          "doi": "10.1002/14651858.cd000951.pub2",
+          "title": "Folic acid and folinic acid for reducing side effects in patients receiving methotrexate for rheumatoid arthritis",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 624
+        }
+      ]
+    },
+    {
+      "outcome": "Kidney function and heart events in diabetic kidney disease",
+      "population": "People with type 1 or type 2 diabetes and kidney disease",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised trial of 238 people",
+        "High doses of three vitamins combined, so the effect of folic acid alone is unknown"
+      ],
+      "summary": "In the DIVINe trial, a daily tablet of high-dose folic acid (2.5 mg) with B6 and B12 lowered homocysteine, but kidney function fell faster and heart attacks, strokes and deaths were about twice as common as with placebo over 3 years. It is a single small trial, but it is a reason not to assume high-dose B vitamins are harmless in kidney disease.",
+      "studies": [
+        {
+          "pmid": "20424250",
+          "doi": "10.1001/jama.2010.490",
+          "title": "Effect of B-vitamin therapy on progression of diabetic nephropathy: a randomized controlled trial",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 238
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Pregnancy, or planning to become pregnant",
+      "note": "Folic acid before conception and in early pregnancy lowers the risk of neural tube defects. Some people, for example after a previous affected pregnancy, are advised a higher amount. Talk to your doctor or midwife.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Vitamin B12 deficiency",
+      "note": "Folic acid can correct the anaemia of low B12 while nerve damage carries on, so the B12 shortage may be missed. Low B12 should be ruled out before folic acid is used to treat anaemia."
+    },
+    {
+      "with": "Methotrexate",
+      "note": "Methotrexate works by blocking folate. With low-dose methotrexate for arthritis, doctors often prescribe folic or folinic acid alongside it. Only the prescribing doctor should decide on folate with methotrexate."
+    },
+    {
+      "with": "Epilepsy medicines (such as phenytoin)",
+      "note": "Long-term use of some of these medicines can lower folate levels. Folate and epilepsy medicines can affect each other, so talk to your doctor before changing folate intake, especially when planning a pregnancy."
+    },
+    {
+      "with": "Metformin",
+      "note": "In a long trial, metformin slightly lowered folate as well as B12, but the folate effect disappeared after adjusting for weight and smoking. B12 is the bigger concern with metformin."
+    },
+    {
+      "with": "Reduced kidney function",
+      "note": "In one trial in diabetic kidney disease, high-dose folic acid with B6 and B12 was linked with faster loss of kidney function and more heart events. Talk to your doctor before using high-dose B vitamins with kidney disease.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "Folate in food and folic acid in supplements are different interventions; the neural tube defect evidence is for folic acid.",
+    "Supplements with folic acid can hide low vitamin B12. If you have anaemia or nerve symptoms, it's worth checking B12 before or alongside folate.",
+    "Lowering homocysteine with B vitamins has not been shown to prevent heart attacks or dementia.",
+    "Doctors sometimes use much higher amounts of folic acid for specific conditions; these are medical treatments, not general supplements."
+  ],
+  "evidenceClaims": ["folate-foods"],
+  "sources": [
+    {
+      "pmid": "24942828",
+      "doi": "10.1111/bjh.12959",
+      "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+      "year": 2014,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "20608755",
+      "doi": "10.2165/11532990-000000000-00000",
+      "title": "Folic acid and L-5-methyltetrahydrofolate: comparison of clinical pharmacokinetics and pharmacodynamics",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33623072",
+      "doi": "10.1038/s41598-021-83312-y",
+      "title": "To determine the effect of long-term antiepileptic drug on the serum folate and vitamin B12 among epileptic patients",
+      "year": 2021,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "20488910",
+      "doi": "10.1136/bmj.c2181",
+      "title": "Long term treatment with metformin in patients with type 2 diabetes and risk of vitamin B-12 deficiency: randomised placebo controlled trial",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 390
+    }
+  ]
+}

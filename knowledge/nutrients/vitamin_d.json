@@ -1,0 +1,362 @@
+{
+  "id": "vitamin_d",
+  "name": "Vitamin D",
+  "kind": "vitamin",
+  "otherNames": [
+    "calciferol",
+    "cholecalciferol (vitamin D3)",
+    "ergocalciferol (vitamin D2)",
+    "calcifediol or calcidiol (25-hydroxyvitamin D3)",
+    "calcitriol and alfacalcidol (active forms, prescription medicines)"
+  ],
+  "summary": "Vitamin D helps the gut absorb calcium and keeps bones and muscles working. The skin makes it in summer sunlight, and a few foods contain it. Supplements reliably raise the blood level, but large trials in people who were not deficient found few health benefits.",
+  "roles": [
+    "Helps the gut absorb calcium and phosphate",
+    "Needed to build and keep strong bones",
+    "Muscle function",
+    "Part of how the immune system works"
+  ],
+  "status": {
+    "biomarkerIds": ["vitamin_d"],
+    "note": "Vitamin D status is measured with a blood test for 25-hydroxyvitamin D (25-OH vitamin D), which reflects vitamin D from sun, food and supplements together. Experts disagree about the right level: the US Institute of Medicine considered 50 nmol/L (20 ng/mL) enough for bone health in most people, and EFSA (the European Food Safety Authority) used the same 50 nmol/L to set its intake values. Results can differ between labs and test methods. An Endocrine Society guideline (2024) found no trial evidence for testing healthy people routinely, and no clear target level for preventing disease."
+  },
+  "low": {
+    "signs": [
+      "Often no symptoms at all",
+      "Bone pain or tenderness after a long time of low levels",
+      "Muscle weakness, especially in the hips and thighs",
+      "Softening of the bones (osteomalacia in adults, rickets in children)",
+      "In blood tests: raised alkaline phosphatase (ALP) or parathyroid hormone, low calcium or phosphate"
+    ],
+    "atRisk": [
+      "People who get little sun on their skin, especially in autumn and winter at northern latitudes",
+      "People with darker skin living far from the equator",
+      "People who cover most of their skin outdoors",
+      "Older adults, and people living in care homes or who are housebound",
+      "People with a higher body fat percentage",
+      "People with conditions that reduce fat absorption (for example coeliac disease, Crohn's disease, after weight-loss surgery)",
+      "People with kidney or liver disease, which affect how vitamin D is activated"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Too much calcium in the blood (hypercalcaemia): nausea, vomiting, constipation, loss of appetite",
+      "Strong thirst and passing a lot of urine",
+      "Tiredness, confusion",
+      "Kidney stones or kidney damage",
+      "Irregular heart rhythm when calcium is very high"
+    ],
+    "note": "Too much vitamin D almost always comes from supplements: high amounts taken for weeks or months, products with far more than the label says, or prescription active forms. Sunlight does not cause it, because the skin limits how much it makes. EFSA based its upper limit on trials where 250 µg (10,000 IU) a day raised calcium in the urine. People with some conditions (sarcoidosis, some lymphomas, overactive parathyroid glands) can get high calcium at lower intakes."
+  },
+  "foodSources": {
+    "examples": [
+      "Oily fish such as herring, mackerel, salmon, sardines and trout",
+      "Egg yolks",
+      "Liver",
+      "Fortified foods: some breakfast cereals, fat spreads, plant drinks and yoghurts",
+      "Mushrooms grown under UV light (contain vitamin D2)"
+    ],
+    "cofidNutrient": "vitaminD",
+    "note": "Few foods contain much vitamin D, and food alone rarely corrects a low level. In many countries most vitamin D comes from summer sunlight on the skin; in northern Europe the skin makes little or none from about October to March."
+  },
+  "forms": [
+    {
+      "name": "Vitamin D3 (cholecalciferol)",
+      "note": "The form the skin makes and the most common supplement. Usually made from lanolin (sheep's wool); vegan versions exist. A meta-analysis of trials comparing the two forms found D3 raises the blood level more than D2, mainly when given as large, infrequent amounts."
+    },
+    {
+      "name": "Vitamin D2 (ergocalciferol)",
+      "note": "Plant and fungal form, often in vegan products and some prescriptions. With daily intake the difference from D3 was small in trials; with large infrequent amounts D2 raised the blood level less."
+    },
+    {
+      "name": "Calcifediol (25-hydroxyvitamin D3)",
+      "note": "Already one step along the body's activation path, so it raises the blood level faster and more per microgram. For labels EFSA counts calcifediol monohydrate as 2.5 times as strong as vitamin D3."
+    },
+    {
+      "name": "Calcitriol and alfacalcidol (active vitamin D)",
+      "note": "Prescription medicines, mainly for kidney disease and some hormone conditions. They are not ordinary supplements: in the Cochrane review on fractures, high blood calcium was about 4 times as common with calcitriol as with placebo, against about 2 times for all vitamin D forms together."
+    },
+    {
+      "name": "Daily versus large occasional amounts",
+      "note": "Trials have used daily, weekly, monthly and yearly regimens. Possible benefits (for example on respiratory infections and cancer deaths) were seen mainly with daily intake, and one trial of a very large yearly amount found more falls and fractures."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults (men and women)", "amount": 15, "unit": "µg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 15, "unit": "µg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 15, "unit": "µg", "type": "AI" }
+    ],
+    "upperLimit": {
+      "amount": 100,
+      "unit": "µg",
+      "note": "From all sources together (food, fortified foods and supplements), for adults including during pregnancy and breastfeeding. 100 µg is 4,000 IU (international units; 40 IU = 1 µg). EFSA set it in 2023 from raised calcium in the urine seen in trials at 250 µg a day, with a safety margin. The intake value (15 µg) assumes little or no vitamin D made in the skin."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2016.4547",
+        "title": "Dietary reference values for vitamin D",
+        "year": 2016,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "37560437",
+        "doi": "10.2903/j.efsa.2023.8145",
+        "title": "Scientific opinion on the tolerable upper intake level for vitamin D, including the derivation of a conversion factor for calcidiol monohydrate",
+        "year": 2023,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Blood level of 25-OH vitamin D",
+      "population": "Adults in many randomised trials, with and without low levels at the start",
+      "effect": "helps",
+      "grade": "high",
+      "whyThisGrade": [
+        "Many randomised trials with consistent results",
+        "Clear link between the amount taken and the rise in the blood level",
+        "Measured directly in the trials"
+      ],
+      "summary": "Vitamin D supplements reliably raise the blood level. In the D-Health trial of older Australians, the average level was 115 nmol/L with vitamin D and 77 nmol/L with placebo. D3 raised it more than D2, mainly when given in large, infrequent amounts. Raising a blood level is not the same as a health benefit: the findings below show what happened to health outcomes.",
+      "studies": [
+        {
+          "pmid": "22552031",
+          "doi": "10.3945/ajcn.111.031070",
+          "title": "Comparison of vitamin D2 and vitamin D3 supplementation in raising serum 25-hydroxyvitamin D status: a systematic review and meta-analysis",
+          "year": 2012,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35026158",
+          "doi": "10.1016/s2213-8587(21)00345-4",
+          "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 21315
+        }
+      ]
+    },
+    {
+      "outcome": "Bone fractures and falls (vitamin D on its own)",
+      "population": "Mostly older adults living at home, most not deficient",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Many randomised trials and several large meta-analyses agree",
+        "Very large trials (VITAL, over 25,000 people) found no effect",
+        "Higher and lower amounts gave similar results",
+        "Few trials included only people with very low levels, so they are under-represented"
+      ],
+      "summary": "On its own, vitamin D did not prevent fractures or falls, or meaningfully change bone density, in people who were not selected for deficiency. Trials in VITAL used 2000 IU a day for about 5 years. Given together with calcium, the Cochrane review found a small drop in hip fractures, mainly in people living in care homes (about 9 fewer per 1000 people a year there, about 1 fewer per 1000 among people living at home); see the calcium page. People with very low levels or with osteoporosis were not the focus of these trials.",
+      "studies": [
+        {
+          "pmid": "30293909",
+          "doi": "10.1016/s2213-8587(18)30265-1",
+          "title": "Effects of vitamin D supplementation on musculoskeletal health: a systematic review, meta-analysis, and trial sequential analysis",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 53537
+        },
+        {
+          "pmid": "35939577",
+          "doi": "10.1056/nejmoa2202106",
+          "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 25871
+        },
+        {
+          "pmid": "24729336",
+          "doi": "10.1002/14651858.cd000227.pub4",
+          "title": "Vitamin D and vitamin D analogues for preventing fractures in post-menopausal women and older men",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 91791
+        },
+        {
+          "pmid": "33170239",
+          "doi": "10.1001/jama.2020.16909",
+          "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 2157
+        }
+      ]
+    },
+    {
+      "outcome": "Cancer, heart disease and death from any cause",
+      "population": "Generally healthy adults over 50 or 60, most not deficient",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Two very large, long, placebo-controlled trials (VITAL and D-Health) agree",
+        "Meta-analyses of over 50 trials agree for all-cause death",
+        "The signal for fewer cancer deaths is less certain: it came mainly from daily dosing and was not seen in D-Health"
+      ],
+      "summary": "Vitamin D did not lower the number of people who got cancer, heart attacks or strokes, or who died, in VITAL (2000 IU a day, about 5 years), D-Health (60,000 IU once a month, 5 years) or DO-HEALTH. Meta-analyses found about 13 to 16% fewer deaths from cancer, mostly in trials with daily dosing, but D-Health's monthly dosing leaned the other way. Whether vitamin D lowers cancer deaths is still uncertain.",
+      "studies": [
+        {
+          "pmid": "30415629",
+          "doi": "10.1056/nejmoa1809944",
+          "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 25871
+        },
+        {
+          "pmid": "35026158",
+          "doi": "10.1016/s2213-8587(21)00345-4",
+          "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 21315
+        },
+        {
+          "pmid": "31405892",
+          "doi": "10.1136/bmj.l4673",
+          "title": "Association between vitamin D supplementation and mortality: systematic review and meta-analysis",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 75454
+        },
+        {
+          "pmid": "30796437",
+          "doi": "10.1093/annonc/mdz059",
+          "title": "Vitamin D supplementation and total cancer incidence and mortality: a meta-analysis of randomized controlled trials",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Respiratory infections (colds, flu, chest infections)",
+      "population": "Children and adults in 43 trials, from age 0 to 95",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Overall effect is small (61.3% versus 62.3% had at least one infection)",
+        "Results differ a lot between trials",
+        "The benefit was seen mainly with daily amounts (400 to 1000 IU) and in children, which were subgroup findings",
+        "Most trials had a low risk of bias"
+      ],
+      "summary": "Across many trials, slightly fewer people taking vitamin D had a respiratory infection. The difference was small and mostly came from trials with small daily amounts and from trials in children. It is not known whether this applies to COVID-19.",
+      "studies": [
+        {
+          "pmid": "33798465",
+          "doi": "10.1016/s2213-8587(21)00051-6",
+          "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 75541
+        }
+      ]
+    },
+    {
+      "outcome": "Type 2 diabetes in people with prediabetes",
+      "population": "Adults with prediabetes (blood sugar higher than normal but below the diabetes range)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Three randomised trials designed for this question, at low risk of bias, pooled with individual participant data",
+        "Only applies to people with prediabetes, not the general population",
+        "Trials used amounts above the usual intake values (4000 IU a day, 20,000 IU a week, or a prescription analogue)",
+        "The larger benefit at higher blood levels compares groups that were not randomised"
+      ],
+      "summary": "In people with prediabetes, vitamin D lowered the risk of developing type 2 diabetes by about 15% over 3 years (about 3 fewer cases per 100 people). The trials were not powered to detect rare harms such as kidney stones or high calcium. This does not apply to people with normal blood sugar.",
+      "studies": [
+        {
+          "pmid": "36745886",
+          "doi": "10.7326/m22-3018",
+          "title": "Vitamin D and Risk for Type 2 Diabetes in People With Prediabetes : A Systematic Review and Meta-analysis of Individual Participant Data From 3 Randomized Clinical Trials",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Falls and fractures with a very large amount once a year",
+      "population": "Women aged 70 and over living at home, at high risk of fracture",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised, placebo-controlled trial",
+        "Confidence intervals were close to no effect",
+        "The excess of falls was largest in the 3 months after each dose, which fits a real effect"
+      ],
+      "summary": "In a trial of 500,000 IU given once a year, women in the vitamin D group had about 15% more falls and 26% more fractures than with placebo. This is why large occasional amounts are viewed with caution. It does not show the same for daily intake.",
+      "studies": [
+        {
+          "pmid": "20460620",
+          "doi": "10.1001/jama.2010.594",
+          "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 2256
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "The kidneys turn vitamin D into its active form and control calcium. In kidney disease, vitamin D, calcium and phosphate are usually managed by the kidney team, sometimes with prescription active vitamin D, which raises calcium more easily. Talk to your doctor before using vitamin D supplements.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Pregnancy",
+      "note": "EFSA's intake value and upper limit are the same in pregnancy. Some guidelines suggest vitamin D in pregnancy; what fits you is a question for your midwife or doctor.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Thiazide diuretics (water tablets such as bendroflumethiazide, hydrochlorothiazide)",
+      "note": "They lower the calcium lost in urine, so together with high amounts of vitamin D blood calcium can rise."
+    },
+    {
+      "with": "Digoxin",
+      "note": "High blood calcium, for example from too much vitamin D, makes digoxin side effects on the heart more likely."
+    },
+    {
+      "with": "Sarcoidosis, tuberculosis, some lymphomas, overactive parathyroid glands",
+      "note": "These conditions can make the body produce extra active vitamin D or calcium, so supplements can raise blood calcium even at ordinary amounts."
+    },
+    {
+      "with": "Medicines that lower vitamin D levels",
+      "note": "Some epilepsy medicines (phenytoin, carbamazepine, phenobarbital), rifampicin, long-term steroid tablets, and medicines that reduce fat absorption (orlistat, colestyramine) can lower vitamin D levels."
+    },
+    {
+      "with": "Calcium",
+      "note": "Vitamin D increases calcium absorption. Many products combine the two; high amounts of both together raise the chance of high blood calcium and kidney stones. See the calcium page."
+    }
+  ],
+  "cautions": [
+    "More is not better: large trials found no benefit from extra vitamin D in people who were not deficient, and very large occasional amounts caused harm in one trial.",
+    "Check the amount per tablet or drop: products range from 10 µg (400 IU) to 100 µg (4000 IU) or more, and units differ between µg and IU.",
+    "A result above 125 nmol/L, or symptoms such as strong thirst, nausea or confusion while using supplements, is worth discussing with a doctor.",
+    "Active vitamin D (calcitriol, alfacalcidol) is a prescription medicine and is not interchangeable with ordinary vitamin D."
+  ],
+  "evidenceClaims": ["vitamin-d-supplements", "vitamin-d-foods"],
+  "sources": [
+    {
+      "pmid": "21118827",
+      "doi": "10.1210/jc.2010-2704",
+      "title": "The 2011 report on dietary reference intakes for calcium and vitamin D from the Institute of Medicine: what clinicians need to know",
+      "year": 2011,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "38828931",
+      "doi": "10.1210/clinem/dgae290",
+      "title": "Vitamin D for the Prevention of Disease: An Endocrine Society Clinical Practice Guideline",
+      "year": 2024,
+      "studyType": "guideline"
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "id": "magnesium",
+  "name": "Magnesium",
+  "kind": "mineral",
+  "otherNames": [
+    "Mg",
+    "magnesium oxide",
+    "magnesium citrate",
+    "magnesium glycinate (bisglycinate)",
+    "magnesium chloride",
+    "magnesium lactate",
+    "magnesium aspartate",
+    "magnesium sulphate (Epsom salt)",
+    "magnesium hydroxide"
+  ],
+  "summary": "Magnesium is a mineral that hundreds of enzymes need, including those that make energy, build protein and keep nerves, muscles and the heart working. Most of the body's magnesium sits in bone and inside cells, so a blood test shows only a small part of it.",
+  "roles": [
+    "Helps enzymes turn food into energy",
+    "Nerve signals and muscle contraction, including the heartbeat",
+    "Building bone, together with calcium and vitamin D",
+    "Making protein and DNA",
+    "Keeping blood calcium and potassium in balance"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no magnesium marker. Labs can measure magnesium in serum (the liquid part of blood), but less than 1 % of the body's magnesium is in the blood, and the body holds the blood level steady by drawing on bone. So a normal serum magnesium does not rule out low body stores, and research uses other tests (urine collections, red blood cell magnesium, loading tests) that are not standard either. A low serum magnesium is a clear finding that a doctor should look at."
+  },
+  "low": {
+    "signs": [
+      "Early: loss of appetite, nausea, tiredness and weakness",
+      "Muscle cramps, twitches, tingling or numbness",
+      "Irregular heartbeat",
+      "Low blood calcium and low blood potassium that are hard to correct",
+      "Seizures, in severe deficiency"
+    ],
+    "atRisk": [
+      "People with gut diseases that reduce absorption (e.g. Crohn's disease, coeliac disease) or long-lasting diarrhoea",
+      "People with type 2 diabetes, who lose more magnesium in urine",
+      "Long-term heavy alcohol use",
+      "Long-term use of acid-reducing proton pump inhibitors (PPIs, e.g. omeprazole) or of some water pills (loop and thiazide diuretics)",
+      "Older adults, who tend to eat and absorb less"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Diarrhoea, nausea and stomach cramps from supplements",
+      "With very large amounts (laxatives, antacids) or kidney failure: low blood pressure, flushing, muscle weakness, drowsiness",
+      "Slow or irregular heartbeat and breathing problems, in severe toxicity"
+    ],
+    "note": "Magnesium from food is not a concern for healthy people, because the kidneys remove the extra. The common problem with supplements is diarrhoea: magnesium salts draw water into the gut, which is why some are used as laxatives. Dangerous magnesium build-up is rare and happens mostly in people with kidney failure, or with very large amounts from laxatives or antacids. With reduced kidney function, magnesium supplements, laxatives and antacids need a doctor's advice first."
+  },
+  "foodSources": {
+    "examples": [
+      "Nuts and seeds, such as pumpkin seeds, almonds and cashews",
+      "Wholegrain foods, such as oats, wholemeal bread and brown rice",
+      "Beans, lentils and chickpeas",
+      "Dark green leafy vegetables, such as spinach",
+      "Cocoa and dark chocolate",
+      "Hard tap water and some mineral waters"
+    ],
+    "note": "Refining grains removes much of their magnesium, so whole grains give more than white flour or white rice."
+  },
+  "forms": [
+    {
+      "name": "Magnesium oxide",
+      "note": "Holds a lot of magnesium per tablet, but in a small 60-day trial it raised blood and urine magnesium less than citrate or an amino-acid chelate did. It is also used as an antacid and laxative, and diarrhoea is common."
+    },
+    {
+      "name": "Magnesium citrate",
+      "note": "Dissolves well and was absorbed better than oxide in small trials. In larger amounts it is a laxative (it is used to empty the bowel before some tests)."
+    },
+    {
+      "name": "Magnesium glycinate (bisglycinate) and other amino-acid chelates",
+      "note": "Magnesium bound to an amino acid. One small trial found better absorption than oxide. Often sold as gentler on the gut; there are few trials comparing it directly."
+    },
+    {
+      "name": "Magnesium chloride, lactate and aspartate",
+      "note": "Salts that dissolve easily. They count towards the EU upper limit for supplemental magnesium, like oxide."
+    },
+    {
+      "name": "Magnesium sulphate (Epsom salt) and magnesium hydroxide (milk of magnesia)",
+      "note": "Mainly used as laxatives or antacids, not as everyday supplements. They can give large amounts of magnesium."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Men", "amount": 350, "unit": "mg", "type": "AI" },
+      { "group": "Women", "amount": 300, "unit": "mg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 300, "unit": "mg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 300, "unit": "mg", "type": "AI" }
+    ],
+    "upperLimit": {
+      "amount": 250,
+      "unit": "mg",
+      "note": "Applies only to magnesium from supplements, from magnesium salts (e.g. chloride, sulphate, aspartate, lactate, oxide) added to water or foods, not to magnesium naturally in food and drinks. Set by the EU Scientific Committee on Food in 2001 and still listed in EFSA's overview of upper limits (August 2025). It is based on mild diarrhoea, the first side effect to appear: no laxative effect was seen in adults, including during pregnancy and breastfeeding, up to 250 mg a day, while mild diarrhoea appeared in a small share of adults at about 360 mg a day. It applies to adults, pregnancy, breastfeeding and children from 4 years."
+    },
+    "sources": [
+      {
+        "pmid": "42109801",
+        "doi": "10.2903/j.efsa.2015.4186",
+        "title": "Scientific Opinion on Dietary Reference Values for magnesium",
+        "year": 2015,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults with and without high blood pressure, in trials lasting about 1 to 6 months",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Many small trials with results that differ from each other",
+        "The average effect is small (about 2 mmHg)",
+        "An earlier Cochrane review judged most trials to be of poor quality and the effect possibly due to bias"
+      ],
+      "summary": "A 2016 meta-analysis of 34 double-blind trials (2,028 people; median 368 mg a day for about 3 months, as research) found blood pressure about 2 mmHg lower for the top number and 1.8 mmHg lower for the bottom number than with placebo. A 2006 Cochrane review of 12 trials in people with high blood pressure found a small fall in the bottom number only and called the evidence weak. The effect is small compared with blood pressure medicines, and no trial showed fewer heart attacks or strokes.",
+      "studies": [
+        {
+          "pmid": "27402922",
+          "doi": "10.1161/hypertensionaha.116.07664",
+          "title": "Effects of Magnesium Supplementation on Blood Pressure: A Meta-Analysis of Randomized Double-Blind Placebo-Controlled Trials",
+          "year": 2016,
+          "studyType": "meta-analysis",
+          "n": 2028
+        },
+        {
+          "pmid": "16856052",
+          "doi": "10.1002/14651858.cd004640.pub2",
+          "title": "Magnesium supplementation for the management of essential hypertension in adults",
+          "year": 2006,
+          "studyType": "meta-analysis",
+          "n": 545
+        }
+      ]
+    },
+    {
+      "outcome": "Night-time leg cramps",
+      "population": "Mostly older adults with cramps that have no known cause",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Several placebo-controlled trials with consistent results",
+        "Small total number of people",
+        "For cramps in pregnancy the trials conflict and most were at high risk of bias"
+      ],
+      "summary": "A 2020 Cochrane review found that magnesium is unlikely to give a meaningful reduction in cramps for older adults with cramps of no known cause: the number of cramps per week was about the same as with placebo. For leg cramps in pregnancy, trial results conflict. Stomach and bowel side effects, such as diarrhoea, were more common with magnesium.",
+      "studies": [
+        {
+          "pmid": "32956536",
+          "doi": "10.1002/14651858.cd009402.pub3",
+          "title": "Magnesium for skeletal muscle cramps",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 735
+        }
+      ]
+    },
+    {
+      "outcome": "Sleep in older adults with insomnia",
+      "population": "Older adults with trouble sleeping",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Only 3 small trials (151 people)",
+        "Trials at moderate to high risk of bias",
+        "The review authors rated the evidence low to very low"
+      ],
+      "summary": "A 2021 meta-analysis of 3 small trials found people fell asleep about 17 minutes sooner with magnesium than with placebo, but total sleep time did not clearly change. The authors judged the evidence too weak for firm conclusions. Claims that magnesium improves sleep in general go beyond what trials have shown.",
+      "studies": [
+        {
+          "pmid": "33865376",
+          "doi": "10.1186/s12906-021-03297-z",
+          "title": "Oral magnesium supplementation for insomnia in older adults: a Systematic Review & Meta-Analysis",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 151
+        },
+        {
+          "pmid": "23853635",
+          "title": "The effect of magnesium supplementation on primary insomnia in elderly: A double-blind placebo-controlled clinical trial",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 46
+        }
+      ]
+    },
+    {
+      "outcome": "Migraine attacks (prevention)",
+      "population": "Adults with migraine",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "About 10 small trials of oral magnesium",
+        "Some trials did not randomise properly",
+        "A US neurology guideline rated magnesium 'probably effective', not 'effective'"
+      ],
+      "summary": "A 2016 meta-analysis found that oral magnesium reduced how often migraines came and how strong they were (10 trials, 789 people). A 2012 American Academy of Neurology and American Headache Society guideline rated magnesium as probably effective for preventing migraine. The trials were small and of mixed quality, so the size of the benefit is uncertain.",
+      "studies": [
+        {
+          "pmid": "26752497",
+          "doi": "10.36076/ppj/2016.19.e97",
+          "title": "Effects of Intravenous and Oral Magnesium on Reducing Migraine: A Meta-analysis of Randomized Controlled Trials",
+          "year": 2016,
+          "studyType": "meta-analysis",
+          "n": 789
+        },
+        {
+          "pmid": "22529203",
+          "doi": "10.1212/wnl.0b013e3182535d0c",
+          "title": "Evidence-based guideline update: NSAIDs and other complementary treatments for episodic migraine prevention in adults: report of the Quality Standards Subcommittee of the American Academy of Neurology and the American Headache Society",
+          "year": 2012,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar",
+      "population": "People with type 2 diabetes or at high risk of it",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "18 small double-blind trials",
+        "Results differ a lot between trials",
+        "Measured blood sugar, not diabetes complications"
+      ],
+      "summary": "A 2016 meta-analysis found slightly lower fasting blood sugar with magnesium than with placebo in people with diabetes, and better blood sugar after a glucose drink in people at high risk. The effects were small and varied between trials, and they show changes in blood tests, not fewer diabetes complications.",
+      "studies": [
+        {
+          "pmid": "27530471",
+          "doi": "10.1038/ejcn.2016.154",
+          "title": "Effect of magnesium supplementation on glucose metabolism in people with or at risk of diabetes: a systematic review and meta-analysis of double-blind randomized controlled trials",
+          "year": 2016,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Pregnancy outcomes (pre-eclampsia, baby's growth, stillbirth)",
+      "population": "Pregnant women",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "10 trials, but many at risk of bias",
+        "Different magnesium forms, amounts and starting times",
+        "The review found not enough high-quality evidence"
+      ],
+      "summary": "A 2014 Cochrane review of 10 trials (9,090 women) found not enough high-quality evidence that magnesium supplements in pregnancy improve outcomes for mother or baby. This is about oral supplements; magnesium given in hospital by drip for severe pre-eclampsia is a separate medical treatment.",
+      "studies": [
+        {
+          "pmid": "24696187",
+          "doi": "10.1002/14651858.cd000937.pub2",
+          "title": "Magnesium supplementation in pregnancy",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 9090
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "Weak kidneys cannot remove extra magnesium, so supplements, magnesium laxatives and antacids can build up to harmful levels. Talk to your doctor before using any of them.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Some antibiotics (tetracyclines such as doxycycline; quinolones such as ciprofloxacin)",
+      "note": "Magnesium binds these antibiotics in the gut, so less of the medicine is absorbed. They are usually taken a few hours apart; a pharmacist can say how far apart for a given medicine."
+    },
+    {
+      "with": "Bisphosphonates for bone (e.g. alendronate)",
+      "note": "Magnesium and other minerals reduce how much of the bone medicine is absorbed if taken at the same time. The medicine's leaflet says how long to wait."
+    },
+    {
+      "with": "Acid-reducing medicines (proton pump inhibitors such as omeprazole)",
+      "note": "Long-term use can lower blood magnesium in some people. Studies disagree on how common this is. Doctors sometimes check magnesium in people on long-term treatment."
+    },
+    {
+      "with": "Water pills (diuretics)",
+      "note": "Loop and thiazide diuretics (e.g. furosemide, hydrochlorothiazide) increase magnesium loss in urine. Potassium-sparing diuretics (e.g. spironolactone) reduce it."
+    },
+    {
+      "with": "Diabetes medicines",
+      "note": "In trials magnesium lowered fasting blood sugar slightly in people with diabetes. Worth mentioning to the doctor when blood sugar is being adjusted.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "The EU upper limit of 250 mg a day is about magnesium from supplements and added magnesium, not about food.",
+    "Diarrhoea is the most common side effect, more so with oxide and citrate.",
+    "With kidney disease, talk to your doctor before using magnesium supplements, laxatives or antacids.",
+    "A normal blood magnesium does not prove that body stores are fine, and a low result is a reason to see a doctor."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "25540137",
+      "doi": "10.1152/physrev.00012.2014",
+      "title": "Magnesium in man: implications for health and disease",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "30200431",
+      "doi": "10.3390/nu10091202",
+      "title": "Challenges in the Diagnosis of Magnesium Status",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "14596323",
+      "title": "Mg citrate found more bioavailable than other Mg preparations in a randomised, double-blind study",
+      "year": 2003,
+      "studyType": "rct",
+      "n": 46
+    },
+    {
+      "pmid": "25394217",
+      "doi": "10.1371/journal.pone.0112558",
+      "title": "The association between the use of proton pump inhibitors and the risk of hypomagnesemia: a systematic review and meta-analysis",
+      "year": 2014,
+      "studyType": "meta-analysis",
+      "n": 115455
+    },
+    {
+      "pmid": "30921222",
+      "doi": "10.1097/md.0000000000015011",
+      "title": "Does the use of proton pump inhibitors increase the risk of hypomagnesemia: An updated systematic review and meta-analysis",
+      "year": 2019,
+      "studyType": "meta-analysis",
+      "n": 129347
+    }
+  ]
+}

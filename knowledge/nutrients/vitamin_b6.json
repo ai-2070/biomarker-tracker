@@ -1,0 +1,345 @@
+{
+  "id": "vitamin_b6",
+  "name": "Vitamin B6",
+  "kind": "vitamin",
+  "otherNames": [
+    "pyridoxine",
+    "pyridoxine hydrochloride",
+    "pyridoxal",
+    "pyridoxamine",
+    "pyridoxal 5'-phosphate (PLP, P5P)"
+  ],
+  "summary": "Vitamin B6 is a group of related compounds that the body turns into pyridoxal 5'-phosphate (PLP), a helper for more than 150 chemical reactions. It is in many everyday foods, and a real shortage is uncommon in people who eat a varied diet. Unlike most water-soluble vitamins, too much B6 from supplements taken for months can damage nerves.",
+  "roles": [
+    "Breaking down and building proteins (amino acids)",
+    "Making brain messengers such as serotonin and dopamine",
+    "Making haemoglobin, the oxygen carrier in red blood cells",
+    "Helping the immune system",
+    "Breaking down homocysteine, an amino acid in the blood"
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no marker for vitamin B6 yet. Labs measure it as plasma pyridoxal 5'-phosphate (PLP), the active form; EFSA uses a level of 30 nmol/L as a sign of adequate status in a population. PLP has real limits: it falls with inflammation, low albumin, high alkaline phosphatase, alcohol, pregnancy and older age, so a low result doesn't always mean a shortage. A very high result in someone with nerve symptoms is worth discussing with a doctor, because supplements are the usual cause of high levels."
+  },
+  "low": {
+    "signs": [
+      "Cracks at the corners of the mouth and a sore tongue",
+      "An itchy, scaly rash (seborrhoeic dermatitis)",
+      "Anaemia with small red blood cells",
+      "Low mood, irritability or confusion",
+      "Tingling in hands or feet",
+      "Fits (seizures), mainly in babies or with severe deficiency"
+    ],
+    "atRisk": [
+      "People who drink a lot of alcohol",
+      "Older adults (blood PLP levels tend to fall with age)",
+      "People with long-term inflammatory conditions, such as rheumatoid arthritis or inflammatory bowel disease",
+      "People taking isoniazid for tuberculosis",
+      "People on long-term levodopa with carbidopa for Parkinson's disease, especially gel infused into the gut",
+      "Pregnant and breastfeeding women (needs are a little higher)"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Tingling, burning or numbness, usually starting in the feet and hands",
+      "Loss of balance and unsteady walking",
+      "Skin sensitive to sunlight (rare)"
+    ],
+    "note": "Nerve damage (peripheral neuropathy) from B6 supplements is well documented. It was first described in people taking very large amounts (2 g or more a day), but later reports found it at much lower amounts taken for months or years: the higher the amount, the sooner symptoms appeared. In 2023 EFSA lowered its upper limit for adults from 25 mg to 12 mg a day. Symptoms usually improved after the supplements were stopped, but recovery can take months or longer. B6 is added to many multivitamins, B-complex products, and energy or 'nutritional' drinks, so amounts can add up without people noticing. It doesn't come from ordinary food."
+  },
+  "foodSources": {
+    "examples": [
+      "Chicken, turkey and other poultry",
+      "Fish such as tuna, salmon and trout",
+      "Liver and other organ meats",
+      "Beef and egg yolks",
+      "Potatoes and other starchy vegetables",
+      "Chickpeas, lentils and other pulses",
+      "Whole grains, nuts and seeds",
+      "Bananas, avocados and other non-citrus fruit",
+      "Fortified breakfast cereals"
+    ],
+    "note": "B6 is spread across many foods, so most people who eat a varied diet get enough. The amounts of B6 in foods aren't in this app's food table yet."
+  },
+  "forms": [
+    {
+      "name": "Pyridoxine hydrochloride",
+      "note": "The usual form in supplements and fortified foods. It is cheap, stable and well absorbed. Most reports of nerve damage involve this form, mainly because it is the most used."
+    },
+    {
+      "name": "Pyridoxal 5'-phosphate (PLP, P5P)",
+      "note": "The active form, sold as a supplement and sometimes marketed as safer or better absorbed. There is no good evidence that it works better for health outcomes, and EFSA's upper limit applies to all forms of B6."
+    },
+    {
+      "name": "B6 combined with doxylamine",
+      "note": "A licensed medicine for nausea and vomiting in pregnancy in some countries, prescribed by a doctor. It is a medicine, not a supplement."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Women", "amount": 1.6, "unit": "mg", "type": "PRI" },
+      { "group": "Men", "amount": 1.7, "unit": "mg", "type": "PRI" },
+      { "group": "Pregnancy", "amount": 1.8, "unit": "mg", "type": "PRI" },
+      { "group": "Breastfeeding", "amount": 1.7, "unit": "mg", "type": "PRI" }
+    ],
+    "upperLimit": {
+      "amount": 12,
+      "unit": "mg",
+      "note": "EFSA's tolerable upper intake level for adults, including pregnancy and breastfeeding, set in 2023 (it was 25 mg before). It covers B6 from all sources and all forms, and is based on the risk of nerve damage from long-term intake. EFSA found it unlikely to be exceeded from food; the people at risk are regular users of supplements with high amounts of B6."
+    },
+    "sources": [
+      {
+        "pmid": "40007837",
+        "doi": "10.2903/j.efsa.2016.4485",
+        "title": "Dietary Reference Values for vitamin B6",
+        "year": 2016,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "37207271",
+        "doi": "10.2903/j.efsa.2023.8006",
+        "title": "Scientific opinion on the tolerable upper intake level for vitamin B6",
+        "year": 2023,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Nausea and vomiting in early pregnancy",
+      "population": "Pregnant women with mild to moderate nausea, up to about 20 weeks",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Cochrane review (41 trials of many treatments) found only limited evidence for B6",
+        "A later meta-analysis of 18 studies found less nausea, but pooled B6 alone with B6 combined with other medicines",
+        "Trials were small, used different scales, and reported little on safety for mother and baby"
+      ],
+      "summary": "B6, alone or combined with the antihistamine doxylamine, seems to ease mild to moderate nausea a little, but the evidence is not strong. Severe vomiting in pregnancy (hyperemesis) was not part of these reviews. Some women take high amounts for weeks; EFSA's upper limit also applies in pregnancy. Talk to your doctor or midwife before using B6 for pregnancy sickness.",
+      "studies": [
+        {
+          "pmid": "26348534",
+          "doi": "10.1002/14651858.cd007575.pub4",
+          "title": "Interventions for nausea and vomiting in early pregnancy",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 5449
+        },
+        {
+          "pmid": "36719452",
+          "doi": "10.1007/s00404-023-06925-w",
+          "title": "The effects of pyridoxine (vitamin B6) supplementation in nausea and vomiting during pregnancy: a systematic review and meta-analysis",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Pregnancy outcomes such as pre-eclampsia, birth weight and Apgar scores",
+      "population": "Pregnant women given B6 during pregnancy or labour",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Cochrane review of 4 trials with 1646 women; methods unclear in all",
+        "Few outcomes reported; preterm birth and low birth weight were not reported"
+      ],
+      "summary": "There is not enough evidence that B6 in pregnancy changes pre-eclampsia, eclampsia, Apgar scores or breast milk production. One trial suggested less tooth decay in the mothers. The trials are old, small and unclear in their methods.",
+      "studies": [
+        {
+          "pmid": "26039815",
+          "doi": "10.1002/14651858.cd000179.pub3",
+          "title": "Pyridoxine (vitamin B6) supplementation during pregnancy or labour for maternal and neonatal outcomes",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 1646
+        }
+      ]
+    },
+    {
+      "outcome": "Premenstrual symptoms (PMS)",
+      "population": "Women with premenstrual syndrome",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Systematic review of 9 trials with 940 women; most trials were of low quality",
+        "The review is from 1999, and the trials used up to 100 mg a day, well above today's upper limit",
+        "Small trials with positive results may be over-represented"
+      ],
+      "summary": "In this review, more women reported improvement in overall and depressive premenstrual symptoms with B6 than with placebo. The authors said conclusions were limited by the low quality of the trials. Several of the reports of nerve damage from B6 came from women taking it long-term for PMS, so the benefit is uncertain and the risk is real.",
+      "studies": [
+        {
+          "pmid": "10334745",
+          "doi": "10.1136/bmj.318.7195.1375",
+          "title": "Efficacy of vitamin B-6 in the treatment of premenstrual syndrome: systematic review",
+          "year": 1999,
+          "studyType": "meta-analysis",
+          "n": 940
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks, strokes and death",
+      "population": "Adults with or without heart disease, including people who had just had a heart attack",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Large randomised trials, combined in a Cochrane review of homocysteine-lowering trials",
+        "B6 was mostly given with folic acid and B12, so its own effect is hard to separate",
+        "In one trial, B6 with folic acid and B12 showed a trend towards harm"
+      ],
+      "summary": "In the NORVIT trial of 3749 people after a heart attack, B6 alone did not lower the risk of another heart attack, stroke or sudden death, and the combination of B6, folic acid and B12 showed a borderline increase in risk. Across homocysteine-lowering trials, heart attacks and deaths did not fall. Lowering homocysteine, a blood level, did not turn into a heart benefit.",
+      "studies": [
+        {
+          "pmid": "16531614",
+          "doi": "10.1056/nejmoa055227",
+          "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 3749
+        },
+        {
+          "pmid": "28816346",
+          "doi": "10.1002/14651858.cd006612.pub5",
+          "title": "Homocysteine-lowering interventions for preventing cardiovascular events",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 71422
+        }
+      ]
+    },
+    {
+      "outcome": "Memory, thinking and mood in older people",
+      "population": "Healthy older adults, and people with mild memory problems given B6 with B12 and folic acid",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "B6 alone: only two small trials with 109 healthy older people",
+        "In mild memory problems, B6 was given with other B vitamins, and Cochrane found probably little or no effect"
+      ],
+      "summary": "Small trials of B6 alone found no clear benefit on memory or mood in healthy older people. Combined B vitamins in people with mild memory problems had probably little or no effect on memory and thinking over 6 to 24 months. There is not enough evidence to say B6 helps the brain in people who are not deficient.",
+      "studies": [
+        {
+          "pmid": "14584010",
+          "doi": "10.1002/14651858.cd004393",
+          "title": "The effect of vitamin B6 on cognition",
+          "year": 2003,
+          "studyType": "meta-analysis",
+          "n": 109
+        },
+        {
+          "pmid": "30383288",
+          "doi": "10.1002/14651858.cd011905.pub2",
+          "title": "Vitamin and mineral supplementation for preventing dementia or delaying cognitive decline in people with mild cognitive impairment",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 879
+        }
+      ]
+    },
+    {
+      "outcome": "Nerve damage (peripheral neuropathy) from long-term high intakes",
+      "population": "People taking B6 supplements for months or years, often for premenstrual symptoms",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Case series, a case-control study and safety reports rather than trials (trials of harm would be unethical)",
+        "Consistent findings, a clear dose–time relationship, and improvement after stopping",
+        "EFSA considers the link well established"
+      ],
+      "summary": "The first case series described seven adults with severe loss of feeling and balance after taking very large amounts of B6; all improved after stopping. Later reports found nerve symptoms at far lower amounts taken for longer. EFSA used these data to lower its upper limit to 12 mg a day for adults. Exactly how low the risk starts is uncertain, which is why the limit includes a safety margin.",
+      "studies": [
+        {
+          "pmid": "6308447",
+          "doi": "10.1056/nejm198308253090801",
+          "title": "Sensory neuropathy from pyridoxine abuse. A new megavitamin syndrome",
+          "year": 1983,
+          "studyType": "observational",
+          "n": 7
+        },
+        {
+          "pmid": "37207271",
+          "doi": "10.2903/j.efsa.2023.8006",
+          "title": "Scientific opinion on the tolerable upper intake level for vitamin B6",
+          "year": 2023,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Levodopa (Parkinson's disease medicine)",
+      "note": "Large amounts of B6 (above about 50 mg a day in reports) can make levodopa work less well. The other way round, long-term levodopa with carbidopa can lower B6 levels, especially when given as a gel into the gut. Talk to the prescriber before using B6 supplements with levodopa."
+    },
+    {
+      "with": "Isoniazid (tuberculosis medicine)",
+      "note": "Isoniazid blocks B6 and can cause nerve damage. Doctors often prescribe B6 alongside it for people at higher risk; this is part of the treatment plan."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "B6 is used for pregnancy sickness, sometimes at high amounts for weeks. EFSA's upper limit of 12 mg a day also applies in pregnancy and breastfeeding. Talk to your doctor or midwife before using B6 supplements in pregnancy.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Other supplements and drinks with added B6",
+      "note": "Multivitamins, B-complex products, and energy or 'nutritional' drinks often contain B6. When several are used together, the total can pass the upper limit without anyone noticing."
+    },
+    {
+      "with": "Reduced kidney function",
+      "note": "In a trial in people with diabetic kidney disease, a high-dose tablet of B6 with folic acid and B12 led to a faster fall in kidney function and more heart and blood vessel events than placebo. Talk to your doctor before using high-dose B vitamins with kidney disease.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "Tingling, burning or numbness in the hands or feet while using B6 supplements should be discussed with a doctor, and the doctor told about every product that contains B6.",
+    "Check labels: B6 is in many combined products, and amounts far above the reference intake are common.",
+    "A real B6 shortage on its own is uncommon; a blood test and a doctor can tell whether it is low and why."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "25974692",
+      "doi": "10.1146/annurev-nutr-071714-034330",
+      "title": "Direct and Functional Biomarkers of Vitamin B6 Status",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27593095",
+      "doi": "10.1016/j.mam.2016.08.001",
+      "title": "Inflammation, vitamin B6 and related pathways",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29311446",
+      "doi": "10.3358/shokueishi.58.268",
+      "title": "[A Systematic Review to Identify Unacceptable Intake Levels of Vitamin B6 among Patients Taking Levodopa]",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "32947426",
+      "doi": "10.1097/wnf.0000000000000408",
+      "title": "Vitamin B6 Deficiency in Patients With Parkinson Disease Treated With Levodopa/Carbidopa",
+      "year": 2020,
+      "studyType": "observational",
+      "n": 24
+    },
+    {
+      "pmid": "6269259",
+      "doi": "10.1016/0041-3879(80)90038-0",
+      "title": "Pyridoxine supplementation during isoniazid therapy",
+      "year": 1980,
+      "studyType": "review"
+    },
+    {
+      "pmid": "20424250",
+      "doi": "10.1001/jama.2010.490",
+      "title": "Effect of B-vitamin therapy on progression of diabetic nephropathy: a randomized controlled trial",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 238
+    }
+  ]
+}

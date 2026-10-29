@@ -1,0 +1,325 @@
+{
+  "id": "potassium",
+  "name": "Potassium",
+  "kind": "mineral",
+  "otherNames": [
+    "K",
+    "potassium chloride",
+    "potassium citrate",
+    "potassium bicarbonate",
+    "potassium gluconate",
+    "potassium-enriched salt substitute (low-sodium salt)"
+  ],
+  "summary": "Potassium is a mineral that lets nerves send signals and muscles, including the heart, contract normally. It also works against the effect of salt (sodium) on blood pressure. The kidneys keep the blood level in a narrow range, so both too little and too much in the blood can be dangerous.",
+  "roles": [
+    "Nerve signals and muscle contraction",
+    "A steady heart rhythm",
+    "Fluid balance inside and outside cells",
+    "Balancing the effect of sodium on blood pressure",
+    "Acid–base balance"
+  ],
+  "status": {
+    "biomarkerIds": ["potassium", "egfr", "creatinine"],
+    "note": "A blood potassium test shows whether the level in the blood is safe, not how much potassium a person eats: healthy kidneys keep the blood level in range across a wide range of intakes. A low or high result usually comes from medicines, vomiting or diarrhoea, or kidney function rather than diet, and a falsely high result is common when the blood sample is damaged. Research estimates intake from potassium in 24-hour urine. eGFR (estimated glomerular filtration rate) and creatinine show how well the kidneys work, which decides whether extra potassium is safe."
+  },
+  "low": {
+    "signs": [
+      "Muscle weakness, tiredness and cramps",
+      "Constipation",
+      "Palpitations or an irregular heartbeat",
+      "Paralysis or dangerous heart rhythms, when very low"
+    ],
+    "atRisk": [
+      "People taking loop or thiazide water pills (diuretics)",
+      "Long-lasting vomiting or diarrhoea, or overuse of laxatives",
+      "Eating disorders",
+      "Heavy alcohol use",
+      "Diets low in fruit and vegetables (low intake is linked to higher blood pressure, but rarely lowers blood potassium on its own)"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Often no symptoms until it is dangerous",
+      "Muscle weakness, tingling or numbness",
+      "Nausea",
+      "Slow or irregular heartbeat, which can stop the heart"
+    ],
+    "note": "High blood potassium (hyperkalaemia) is a medical emergency because it can disturb the heart rhythm. It mostly happens when the kidneys cannot remove potassium: in kidney disease, and with some blood pressure and heart medicines (ACE inhibitors, angiotensin receptor blockers and potassium-sparing water pills such as spironolactone). EFSA notes that in people with reduced kidney function, harm to the heart has been reported with as little as 1 g of extra potassium a day from supplements or low-sodium salts, on top of food. In healthy adults, single very large amounts (5–7 g) from supplements have caused heart problems in case reports. Potassium from ordinary food is considered low risk for healthy people."
+  },
+  "foodSources": {
+    "examples": [
+      "Potatoes, especially with the skin",
+      "Beans, lentils and other pulses",
+      "Fruit such as bananas, oranges and dried apricots",
+      "Vegetables such as spinach, tomatoes and mushrooms",
+      "Milk and yoghurt",
+      "Nuts and seeds",
+      "Fish and meat"
+    ],
+    "cofidNutrient": "potassium",
+    "note": "With kidney disease, a doctor or dietitian may advise limiting high-potassium foods, and this app then hides potassium-rich food suggestions."
+  },
+  "forms": [
+    {
+      "name": "Potassium chloride",
+      "note": "The usual form for treating low blood potassium, often on prescription, as tablets, fizzy tablets or liquid. EFSA notes that some slow-release tablets have irritated or damaged the gut lining; the risk depended more on the tablet type than on the amount."
+    },
+    {
+      "name": "Potassium citrate and potassium bicarbonate",
+      "note": "Alkaline forms. Potassium citrate is used under medical care to prevent some kidney stones. Both have been studied for bone health."
+    },
+    {
+      "name": "Potassium gluconate and other supplement salts",
+      "note": "Found in over-the-counter supplements and multivitamins. The amount of potassium per tablet varies a lot between products and countries."
+    },
+    {
+      "name": "Salt substitutes (low-sodium salt)",
+      "note": "Part of the sodium chloride is replaced with potassium chloride (for example 25 % in the large SSaSS trial). They are an easily overlooked potassium source, which matters with kidney disease or medicines that raise potassium."
+    },
+    {
+      "name": "Potassium iodide",
+      "note": "A source of iodine, not of potassium: it is used in iodised salt and, in radiation emergencies, as tablets that protect the thyroid when authorities advise it. See iodine."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults", "amount": 3500, "unit": "mg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 3500, "unit": "mg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 4000, "unit": "mg", "type": "AI" }
+    ],
+    "noUpperLimit": "EFSA (2005) found the data insufficient to set an upper limit for potassium, and none has been set since. Potassium from food (up to 5–6 g a day in adults) is considered low risk for generally healthy people, and about 3 g a day of extra potassium chloride for a long time caused no harm in healthy adults in studies. But supplements can cause stomach and gut problems, single very large amounts have harmed the heart, and people with reduced kidney function, diabetes, heart medicines that affect potassium, dehydration from hard exercise, or older age are more sensitive. In people with reduced kidney function, harm has been reported with about 1 g a day extra from supplements or low-sodium salts. No upper limit does not mean that any amount from supplements is safe.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2016.4592",
+        "title": "Dietary reference values for potassium",
+        "year": 2016,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/j.efsa.2005.193",
+        "title": "Opinion of the Scientific Panel on Dietetic products, nutrition and allergies [NDA] on a request from the Commission related to the Tolerable Upper Intake Level of Potassium",
+        "year": 2005,
+        "studyType": "guideline"
+      },
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Blood pressure in people with high blood pressure",
+      "population": "Adults with high blood pressure, in trials of potassium supplements lasting at least 4 weeks",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Many placebo-controlled trials pointing the same way",
+        "Most trials were small and short",
+        "Results differ between trials, and an earlier Cochrane review of fewer trials found no clear effect"
+      ],
+      "summary": "A 2017 meta-analysis of 23 placebo-controlled trials (1,213 people) found blood pressure about 4 mmHg lower for the top number and 2.5 mmHg lower for the bottom number with potassium supplements. A 2006 Cochrane review of 6 trials found large but uncertain falls and called the evidence inconclusive. The trials measured blood pressure, not strokes or heart attacks, and excluded people for whom extra potassium is unsafe.",
+      "studies": [
+        {
+          "pmid": "28419159",
+          "doi": "10.1371/journal.pone.0174967",
+          "title": "Oral potassium supplementation for management of essential hypertension: A meta-analysis of randomized controlled trials",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 1213
+        },
+        {
+          "pmid": "16856053",
+          "doi": "10.1002/14651858.cd004641.pub2",
+          "title": "Potassium supplementation for the management of primary hypertension in adults",
+          "year": 2006,
+          "studyType": "meta-analysis",
+          "n": 483
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure in people with normal blood pressure",
+      "population": "Adults without high blood pressure",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Comes from a subgroup analysis by blood pressure, not from trials designed for this question",
+        "The trials were small (22 trials, 1,606 people in all)"
+      ],
+      "summary": "A 2013 meta-analysis for the World Health Organization found that more potassium lowered blood pressure in people with high blood pressure, but not clearly in people without it.",
+      "studies": [
+        {
+          "pmid": "23558164",
+          "doi": "10.1136/bmj.f1378",
+          "title": "Effect of increased potassium intake on cardiovascular risk factors and disease: systematic review and meta-analyses",
+          "year": 2013,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure at large supplement amounts",
+      "population": "Adults in 32 trials of potassium supplements, mostly with high blood pressure",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Few trials tested large amounts",
+        "Based on modelling across trials, not on trials designed to compare amounts"
+      ],
+      "summary": "A 2020 dose-response meta-analysis found a U-shaped pattern: blood pressure fell with moderate extra potassium, the benefit faded at larger extra amounts, and blood pressure rose at the largest amounts in people already treated for high blood pressure. The authors advise caution because few trials tested large amounts, and conclude that excessive supplementation should be avoided, especially in some groups.",
+      "studies": [
+        {
+          "pmid": "32500831",
+          "doi": "10.1161/jaha.119.015719",
+          "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "New kidney stones (potassium citrate, under medical care)",
+      "population": "Adults with calcium-containing kidney stones, mostly calcium oxalate",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "7 small trials (477 people)",
+        "Reporting of moderate to poor quality, with many dropouts in some trials",
+        "More people stopped because of side effects with citrate"
+      ],
+      "summary": "A 2015 Cochrane review found fewer new stones and less stone growth with citrate salts (mostly potassium citrate) than with placebo or no treatment. More people stopped treatment because of stomach side effects. This is a medical treatment for people with stones, not evidence for general use.",
+      "studies": [
+        {
+          "pmid": "26439475",
+          "doi": "10.1002/14651858.cd010057.pub2",
+          "title": "Citrate salts for preventing and treating calcium containing kidney stones in adults",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 477
+        }
+      ]
+    },
+    {
+      "outcome": "Calcium loss in urine and a marker of bone breakdown",
+      "population": "Adults in 14 studies of potassium bicarbonate or potassium citrate",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Measured lab markers, not fractures",
+        "Only 14 studies, with different salts and designs"
+      ],
+      "summary": "A 2015 meta-analysis found that potassium bicarbonate and citrate lowered calcium loss in urine and a urine marker of bone breakdown (NTX). The authors call this a possible benefit for bone; whether it prevents fractures is not known from these studies.",
+      "studies": [
+        {
+          "pmid": "25572045",
+          "doi": "10.1007/s00198-014-3006-9",
+          "title": "The effect of supplementation with alkaline potassium salts on bone metabolism: a meta-analysis",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "foodFindings": [
+    {
+      "outcome": "Stroke, heart events and death when cooking salt is replaced by a potassium salt substitute",
+      "population": "Older adults in rural China with a past stroke or high blood pressure (SSaSS trial), and adults in 26 salt substitute trials",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "One very large randomised trial plus a Cochrane review rated most results moderate certainty",
+        "The benefit comes from less sodium and more potassium together; the two can't be separated",
+        "The trials excluded people for whom extra potassium is unsafe, so the results don't show safety for them"
+      ],
+      "summary": "In the SSaSS trial (20,995 people, about 5 years), villages using a salt substitute of 75 % sodium chloride and 25 % potassium chloride had fewer strokes, heart events and deaths than villages using regular salt. A 2022 Cochrane review found salt substitutes probably lower blood pressure, heart events and heart deaths slightly in adults, and probably raise blood potassium slightly. This is a change in salt, not a potassium supplement. People with kidney disease or on medicines that raise potassium were excluded.",
+      "studies": [
+        {
+          "pmid": "34459569",
+          "doi": "10.1056/nejmoa2105675",
+          "title": "Effect of Salt Substitution on Cardiovascular Events and Death",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 20995
+        },
+        {
+          "pmid": "35944931",
+          "doi": "10.1002/14651858.cd015207",
+          "title": "Replacing salt with low-sodium salt substitutes (LSSS) for cardiovascular health in adults, children and pregnant women",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Stroke",
+      "population": "Adults in 11 cohort studies comparing people with higher and lower potassium intake from their usual diet",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational studies, which can't prove cause",
+        "People who eat more potassium also eat more fruit and vegetables and differ in other ways",
+        "The authors rated this evidence moderate"
+      ],
+      "summary": "A 2013 meta-analysis for the World Health Organization found that people with higher potassium intake had about a 24 % lower risk of stroke. There was no clear link with heart disease overall. These studies show an association with potassium-rich diets, not the effect of supplements.",
+      "studies": [
+        {
+          "pmid": "23558164",
+          "doi": "10.1136/bmj.f1378",
+          "title": "Effect of increased potassium intake on cardiovascular risk factors and disease: systematic review and meta-analyses",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 127038
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "Weak kidneys can't remove extra potassium, so supplements, potassium salt substitutes and sometimes potassium-rich foods can raise blood potassium to dangerous levels. Talk to your doctor before any change.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "ACE inhibitors and angiotensin receptor blockers (e.g. ramipril, lisinopril, losartan, valsartan)",
+      "note": "These blood pressure and heart medicines make the kidneys keep potassium. Adding potassium supplements or salt substitutes can push blood potassium too high. Ask your doctor or pharmacist first."
+    },
+    {
+      "with": "Potassium-sparing water pills (e.g. spironolactone, eplerenone, amiloride, triamterene)",
+      "note": "They raise blood potassium on purpose. Extra potassium from supplements or salt substitutes can be dangerous with them."
+    },
+    {
+      "with": "Other water pills (loop and thiazide diuretics, e.g. furosemide, hydrochlorothiazide)",
+      "note": "They make the body lose potassium, which is why doctors sometimes check potassium and may prescribe it. Not something to correct without a blood test."
+    },
+    {
+      "with": "Diabetes",
+      "note": "EFSA lists people with diabetes among the groups more sensitive to high blood potassium.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "With kidney disease, or with medicines that raise potassium, talk to your doctor before using potassium supplements or salt substitutes.",
+    "Salt substitutes (low-sodium salt) contain potassium, even though the label says salt.",
+    "Blood potassium outside the normal range needs a doctor, not a supplement or a diet change on your own.",
+    "EFSA set no upper limit for potassium, but that does not mean large supplement amounts are safe."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {
+      "pmid": "27756725",
+      "doi": "10.1152/advan.00121.2016",
+      "title": "Physiology and pathophysiology of potassium homeostasis",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23617019",
+      "title": "Guideline: Potassium Intake for Adults and Children",
+      "year": 2012,
+      "studyType": "guideline"
+    }
+  ]
+}

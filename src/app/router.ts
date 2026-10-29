@@ -29,6 +29,8 @@ export type Route =
   /** Supplements, food, medicines and routines. `add` opens the form (with this name); `marker` is pre-ticked to watch. */
   | { name: "habits"; add?: string; marker?: string }
   | { name: "experiment"; id: string }
+  | { name: "supplements"; kind?: "vitamin" | "mineral" }
+  | { name: "nutrient"; id: string }
   | { name: "setup" }
   | { name: "profiles" }
   | { name: "not-found" };
@@ -74,6 +76,11 @@ export function parseHash(hash: string): Route {
     return { name: "habits", add: params.get("change") ?? "", ...(marker ? { marker } : {}) };
   }
   if (parts[0] === "experiment" && parts[1] && parts.length === 2) return { name: "experiment", id: parts[1] };
+  if (parts[0] === "supplements" && parts.length === 1) {
+    const kind = params.get("kind");
+    return kind === "vitamin" || kind === "mineral" ? { name: "supplements", kind } : { name: "supplements" };
+  }
+  if (parts[0] === "supplements" && parts[1] && parts.length === 2) return { name: "nutrient", id: parts[1] };
   return { name: "not-found" };
 }
 
@@ -116,6 +123,10 @@ export function href(route: Route): string {
     }
     case "experiment":
       return `#/experiment/${encodeURIComponent(route.id)}`;
+    case "supplements":
+      return route.kind ? `#/supplements?kind=${route.kind}` : "#/supplements";
+    case "nutrient":
+      return `#/supplements/${encodeURIComponent(route.id)}`;
     case "not-found":
       return "#/";
   }

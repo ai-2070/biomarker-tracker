@@ -1,0 +1,344 @@
+{
+  "id": "vitamin_b12",
+  "name": "Vitamin B12",
+  "kind": "vitamin",
+  "otherNames": [
+    "cobalamin",
+    "cyanocobalamin",
+    "methylcobalamin",
+    "hydroxocobalamin",
+    "adenosylcobalamin"
+  ],
+  "summary": "Vitamin B12 is needed to make healthy red blood cells, to copy DNA and to keep nerves working. It is made by microbes and is found naturally only in animal foods. Most people who run low do so because they eat no animal foods or because their body can't absorb it well.",
+  "roles": [
+    "Making red blood cells",
+    "Copying DNA when cells divide",
+    "Keeping nerves and the brain working",
+    "Working with folate to recycle homocysteine, an amino acid in the blood"
+  ],
+  "status": {
+    "biomarkerIds": ["b12", "mcv", "hemoglobin"],
+    "note": "The usual first test is serum vitamin B12. It is an imperfect test: a low result does not always mean a real shortage, and some people with a real shortage have a normal result. When the result is borderline or doesn't fit the symptoms, doctors can add methylmalonic acid (MMA, which rises when the body lacks B12) or holotranscobalamin (holoTC, sometimes called 'active B12', the part of B12 that cells can take up). Homocysteine also rises, but it is less specific. Large red blood cells (a high MCV, mean corpuscular volume) and anaemia can be signs of low B12, but they often appear late, and taking folic acid can hide them."
+  },
+  "low": {
+    "signs": [
+      "Tiredness and shortness of breath from anaemia",
+      "Large red blood cells on a blood count (high MCV)",
+      "Tingling, numbness or pins and needles in hands or feet",
+      "Problems with balance or walking",
+      "Memory problems, low mood or confusion",
+      "A sore, red tongue or mouth ulcers"
+    ],
+    "atRisk": [
+      "Vegans, and vegetarians who eat few eggs or dairy foods, without fortified foods or supplements",
+      "Older adults (stomach acid falls with age, so less B12 is released from food)",
+      "People with pernicious anaemia (an autoimmune condition that stops B12 being absorbed)",
+      "People who have had stomach or bowel surgery, including weight-loss surgery",
+      "People with Crohn's disease or coeliac disease affecting the gut",
+      "People taking metformin for a long time",
+      "People taking acid-reducing medicines (proton pump inhibitors such as omeprazole, or H2 blockers) for years",
+      "Babies breastfed by mothers who are low in B12"
+    ]
+  },
+  "high": {
+    "signs": [],
+    "note": "No harm has been shown from high intakes of B12 from food or supplements; the body absorbs only a small share of large doses and passes the rest in urine. A high blood level in someone who takes no supplements or injections is a different matter: it can go with liver disease or some blood disorders, so it is worth discussing with a doctor."
+  },
+  "foodSources": {
+    "examples": [
+      "Liver and kidney (very rich)",
+      "Clams, mussels and other shellfish",
+      "Oily fish such as sardines, mackerel and salmon",
+      "Beef, lamb and other meat",
+      "Eggs",
+      "Milk, yoghurt and cheese",
+      "Foods fortified with B12, such as some breakfast cereals, plant milks and yeast extract"
+    ],
+    "cofidNutrient": "vitaminB12",
+    "note": "Plant foods are not a reliable source. Some dried seaweed (nori) contains real B12, but amounts vary, and products made from spirulina and similar algae often contain mostly B12-like compounds that the body can't use. If absorption is the problem (pernicious anaemia, stomach surgery, some medicines), food alone usually won't fix a low level."
+  },
+  "forms": [
+    {
+      "name": "Cyanocobalamin",
+      "note": "The most common and most studied form in tablets and fortified foods; it is stable and cheap. The body converts it to the active forms. Most of the trials of tablets for low B12 used this form."
+    },
+    {
+      "name": "Methylcobalamin and adenosylcobalamin",
+      "note": "The forms the body uses inside cells. They are often marketed as 'better', but reviews have found that all forms are broken down to the same core molecule and rebuilt inside cells, and that for most people they work about equally well. Good trials comparing the forms on health outcomes are lacking."
+    },
+    {
+      "name": "Hydroxocobalamin",
+      "note": "The usual form for injections in the UK and much of Europe. Injections bypass the gut, so they work when absorption is the problem."
+    },
+    {
+      "name": "High-dose tablets compared with injections",
+      "note": "Only about 1% of a large oral dose is absorbed without the stomach's 'intrinsic factor', so high-dose tablets can raise B12 even in some people who absorb it poorly. Small trials found high-dose tablets corrected blood levels about as well as injections. Doctors usually start with injections in pernicious anaemia and when nerves are affected; whether tablets are suitable is a decision for the doctor treating the person."
+    },
+    {
+      "name": "Sublingual tablets (dissolved under the tongue) and sprays",
+      "note": "Small studies found them about as effective as ordinary tablets at raising blood B12. There is no good evidence that they work better."
+    }
+  ],
+  "reference": {
+    "intake": [
+      { "group": "Adults", "amount": 4, "unit": "µg", "type": "AI" },
+      { "group": "Pregnancy", "amount": 4.5, "unit": "µg", "type": "AI" },
+      { "group": "Breastfeeding", "amount": 5, "unit": "µg", "type": "AI" }
+    ],
+    "noUpperLimit": "EFSA has set no tolerable upper intake level for vitamin B12. Its predecessor, the Scientific Committee on Food (2000), found no adverse effects from high intakes in healthy people that could be used to set one, and EFSA's 2015 review of B12 requirements did not change this. EFSA set an adequate intake (AI) rather than a population reference intake because the data were too limited to work out an average requirement.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2015.4150",
+        "pmid": "42109795",
+        "title": "Scientific Opinion on Dietary Reference Values for cobalamin (vitamin B12)",
+        "year": 2015,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "outcome": "Blood B12 levels: high-dose tablets compared with injections",
+      "population": "Adults with diagnosed B12 deficiency",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only three small trials (153 people) in the Cochrane review, followed for 3 to 4 months",
+        "Trials measured blood levels, not symptoms or quality of life",
+        "Doses and schedules differed between trials"
+      ],
+      "summary": "A Cochrane review found that daily high-dose tablets (1000 to 2000 µg in the trials) raised blood B12 about as well as injections, and one trial found tablets raised it more. An earlier trial found blood counts and nerve symptoms improved equally in both groups. The evidence is small and short, and none of the trials reported how people felt, so it can't show whether tablets suit everyone, especially people with nerve damage or pernicious anaemia.",
+      "studies": [
+        {
+          "pmid": "29543316",
+          "doi": "10.1002/14651858.cd004655.pub3",
+          "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 153
+        },
+        {
+          "pmid": "9694707",
+          "doi": "10.1182/blood.v92.4.1191",
+          "title": "Effective treatment of cobalamin deficiency with oral cobalamin",
+          "year": 1998,
+          "studyType": "rct",
+          "n": 38
+        }
+      ]
+    },
+    {
+      "outcome": "Correcting mild deficiency in older people: low compared with high doses",
+      "population": "Older people with mildly low B12 and raised methylmalonic acid",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One trial of 120 people over 16 weeks",
+        "Measured a blood marker (methylmalonic acid), not symptoms"
+      ],
+      "summary": "In this dose-finding trial, small daily amounts close to normal dietary intake barely changed methylmalonic acid. Only much larger daily amounts (about 650 to 1000 µg in the trial) came close to the maximum effect. This helps explain why low-dose multivitamins often don't correct a shortage in older people. It shows changes in a blood marker, not that people felt or functioned better.",
+      "studies": [
+        {
+          "pmid": "15911731",
+          "doi": "10.1001/archinte.165.10.1167",
+          "title": "Oral cyanocobalamin supplementation in older people with vitamin B12 deficiency: a dose-finding trial",
+          "year": 2005,
+          "studyType": "rct",
+          "n": 120
+        }
+      ]
+    },
+    {
+      "outcome": "Memory and thinking, low mood and tiredness",
+      "population": "Adults without a clear B12 deficiency or advanced nerve disease",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of 16 randomised trials with 6276 people",
+        "Consistent results across trials",
+        "Too few trials on tiredness to analyse"
+      ],
+      "summary": "B12 is often taken for memory, mood or energy. In people who were not clearly deficient, B12 alone or with other B vitamins did not improve memory, thinking or depression scores. Only one trial looked at tiredness, so there is not enough evidence on that. People with a real deficiency are a different case: treating it can improve symptoms caused by the deficiency.",
+      "studies": [
+        {
+          "pmid": "33809274",
+          "doi": "10.3390/nu13030923",
+          "title": "Effects of Vitamin B12 Supplementation on Cognitive Function, Depressive Symptoms, and Fatigue: A Systematic Review, Meta-Analysis, and Meta-Regression",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 6276
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks, strokes and death (B12 given together with folic acid, often with B6)",
+      "population": "Adults with or without heart and blood vessel disease, in trials that lowered homocysteine",
+      "effect": "no clear effect",
+      "grade": "high",
+      "whyThisGrade": [
+        "Cochrane review of 15 randomised trials with 71,422 people; most at low risk of bias",
+        "Results for heart attacks and death were consistent across trials",
+        "B12 was almost always given with other B vitamins, so its own effect can't be separated"
+      ],
+      "summary": "High homocysteine in the blood goes with more heart disease, so large trials lowered it with B vitamins. Homocysteine fell, but heart attacks and deaths did not. Stroke was slightly less common (about 4.3% compared with 5.1%), mostly in trials where folic acid was the main ingredient (see folate). Lowering a blood level is not the same as a health benefit.",
+      "studies": [
+        {
+          "pmid": "28816346",
+          "doi": "10.1002/14651858.cd006612.pub5",
+          "title": "Homocysteine-lowering interventions for preventing cardiovascular events",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 71422
+        }
+      ]
+    },
+    {
+      "outcome": "Nerve damage from diabetes (diabetic neuropathy)",
+      "population": "People with type 2 diabetes on metformin for at least 4 years, with nerve damage and B12 in the lower part of the normal range",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One placebo-controlled trial of 90 people over a year",
+        "Several of the measures were questionnaires and pain scores",
+        "Not yet repeated in a larger trial"
+      ],
+      "summary": "In this trial, methylcobalamin tablets raised B12 levels and improved nerve tests, pain and quality of life compared with placebo, while the placebo group got slightly worse. Some measures, such as heart rhythm reflex tests, did not improve. It is a single small trial in people already low-normal on long-term metformin, so it doesn't show that B12 helps nerve damage in people with normal B12.",
+      "studies": [
+        {
+          "pmid": "33513879",
+          "doi": "10.3390/nu13020395",
+          "title": "Vitamin B12 Supplementation in Diabetic Neuropathy: A 1-Year, Randomized, Double-Blind, Placebo-Controlled Trial",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 90
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "with": "Metformin (diabetes medicine)",
+      "note": "Long-term metformin lowers B12 levels. In a 4-year trial, about 7 more people in every 100 on metformin became deficient than on placebo, and the risk grows with years of use. The researchers suggested checking B12 regularly during long-term use; talk to your doctor about testing.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Acid-reducing medicines (proton pump inhibitors such as omeprazole, H2 blockers such as famotidine)",
+      "note": "Stomach acid is needed to release B12 from food. Using these medicines for 2 years or more was linked with more B12 deficiency in a large study. B12 from supplements and fortified foods doesn't need acid to be released."
+    },
+    {
+      "with": "Folic acid",
+      "note": "High intakes of folic acid can correct the anaemia of B12 deficiency while nerve damage carries on, so the shortage may be missed. This is why B12 is usually checked before folic acid is used to treat anaemia."
+    },
+    {
+      "with": "Nitrous oxide ('laughing gas')",
+      "note": "Nitrous oxide damages B12 so that the body can't use it. Recreational use can cause serious nerve damage, and the usual B12 blood test is often normal even then; methylmalonic acid and homocysteine are more often abnormal."
+    },
+    {
+      "with": "Reduced kidney function",
+      "note": "In a trial in people with diabetic kidney disease, a high-dose tablet of B12, folic acid and B6 led to a faster fall in kidney function and more heart and blood vessel events than placebo. Talk to your doctor before using high-dose B vitamins with kidney disease.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "Tiredness, tingling or memory problems have many causes. A blood test, not a supplement, is the way to find out whether B12 is low.",
+    "Supplements taken before a blood test can hide a deficiency and its cause, such as pernicious anaemia. Tell the doctor about any B12 you take.",
+    "Nerve symptoms from low B12 can become permanent if treatment is delayed; they need a doctor, not self-treatment.",
+    "A high B12 result without supplements or injections is worth discussing with a doctor."
+  ],
+  "evidenceClaims": ["b12-foods"],
+  "sources": [
+    {
+      "pmid": "28660890",
+      "doi": "10.1038/nrdp.2017.40",
+      "title": "Vitamin B12 deficiency",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23301732",
+      "doi": "10.1056/nejmcp1113996",
+      "title": "Clinical practice. Vitamin B12 deficiency",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24942828",
+      "doi": "10.1111/bjh.12959",
+      "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+      "year": 2014,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "27446930",
+      "doi": "10.3389/fmolb.2016.00027",
+      "title": "Biomarkers and Algorithms for the Diagnosis of Vitamin B12 Deficiency",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23356638",
+      "doi": "10.1111/nure.12001",
+      "title": "How prevalent is vitamin B(12) deficiency among vegetarians?",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24803097",
+      "doi": "10.3390/nu6051861",
+      "title": "Vitamin B₁₂-containing plant food sources for vegetarians",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "34871525",
+      "doi": "10.1080/16078454.2021.2010877",
+      "title": "Sublingual methylcobalamin treatment is as effective as intramuscular and peroral cyanocobalamin in children age 0-3 years",
+      "year": 2021,
+      "studyType": "observational",
+      "n": 158
+    },
+    {
+      "pmid": "37371921",
+      "doi": "10.3390/antiox12061191",
+      "title": "Vitamin B12 Status in Recreational Users of Nitrous Oxide: A Systematic Review Focusing on the Prevalence of Laboratory Abnormalities",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "28223907",
+      "title": "Comparative Bioavailability and Utilization of Particular Forms of B12 Supplements With Potential to Mitigate B12-related Genetic Polymorphisms",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "20488910",
+      "doi": "10.1136/bmj.c2181",
+      "title": "Long term treatment with metformin in patients with type 2 diabetes and risk of vitamin B-12 deficiency: randomised placebo controlled trial",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 390
+    },
+    {
+      "pmid": "26900641",
+      "doi": "10.1210/jc.2015-3754",
+      "title": "Long-term Metformin Use and Vitamin B12 Deficiency in the Diabetes Prevention Program Outcomes Study",
+      "year": 2016,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "24327038",
+      "doi": "10.1001/jama.2013.280490",
+      "title": "Proton pump inhibitor and histamine 2 receptor antagonist use and vitamin B12 deficiency",
+      "year": 2013,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "20424250",
+      "doi": "10.1001/jama.2010.490",
+      "title": "Effect of B-vitamin therapy on progression of diabetic nephropathy: a randomized controlled trial",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 238
+    }
+  ]
+}

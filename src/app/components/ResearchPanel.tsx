@@ -1,9 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import type { BiomarkerDef } from "../../core/types";
 import { useServerStatus } from "../api";
-import { markerTerms, searchPapers, type Paper, type SearchFilter, type SearchResult } from "../../research/papers";
-import { nameInSentence } from "../knowledge";
+import { searchPapers, type Paper, type SearchFilter, type SearchResult } from "../../research/papers";
 import { askBrain, openBrain } from "../brain/store";
 import { BrainIcon } from "./icons";
 import { ChoiceGroup } from "./ChoiceGroup";
@@ -20,13 +18,29 @@ const KIND_LABEL: Record<Paper["kind"], string> = {
 };
 
 /** Research search for one marker, with a hand-off to the assistant. */
-export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: boolean }) {
+/**
+ * `name` is what the search is about ("Ferritin", "Vitamin D"), `terms` the words searched for it, and
+ * `topic` an optional first narrowing (e.g. "supplementation" on nutrient pages; people can change it),
+ * and `question` what the Ask Brain button under the results starts with.
+ */
+export function ResearchPanel({
+  name,
+  terms,
+  critical,
+  question,
+  topic: initialTopic = "",
+}: {
+  name: string;
+  terms: string[];
+  critical: boolean;
+  question: string;
+  topic?: string;
+}) {
   const [filter, setFilter] = useState<SearchFilter>("reviews");
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState(initialTopic);
   const [state, setState] = useState<{ status: "idle" | "loading" | "error"; error?: string; result?: SearchResult; query?: string }>({
     status: "idle",
   });
-  const terms = markerTerms(def.name, def.abbreviation);
   // Brain needs the local server; and no AI commentary next to a critical result (safety rule).
   const server = useServerStatus();
   const canAsk = !!server && !critical;
@@ -48,7 +62,7 @@ export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: 
       <div>
         <h2 className="font-serif text-2xl font-normal">Research</h2>
         <p className="mt-1 text-ink-2">
-          Search published studies about {def.name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your
+          Search published studies about {name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your
           results are not.
         </p>
       </div>
@@ -102,7 +116,7 @@ export function ResearchPanel({ def, critical }: { def: BiomarkerDef; critical: 
             many studies together.
           </p>
           {papers.length > 0 && (
-            <AskAssistantLink def={def} critical={critical} />
+            <AskAssistantLink question={question} critical={critical} />
           )}
         </div>
       )}
@@ -150,7 +164,7 @@ function PaperItem({ paper: p, canAsk }: { paper: Paper; canAsk: boolean }) {
 }
 
 /** Hand questions about these studies to the assistant (it can search and cite on its own). */
-function AskAssistantLink({ def, critical }: { def: BiomarkerDef; critical: boolean }) {
+function AskAssistantLink({ question, critical }: { question: string; critical: boolean }) {
   const server = useServerStatus();
   // Safety rule: no AI commentary first when the latest value is critical.
   if (critical) {
@@ -166,7 +180,7 @@ function AskAssistantLink({ def, critical }: { def: BiomarkerDef; critical: bool
       <p>Brain can read studies, weigh the evidence and explain it, citing only studies it actually retrieved.</p>
       <div className="mt-3">
         {server ? (
-          <Button variant="secondary" onClick={() => openBrain({ draft: `What does research say about what affects my ${nameInSentence(def)}?` })}>
+          <Button variant="secondary" onClick={() => openBrain({ draft: question })}>
             Ask Brain
           </Button>
         ) : (
