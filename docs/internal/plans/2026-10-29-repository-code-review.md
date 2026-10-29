@@ -1,0 +1,555 @@
+# Repository code review — 2026-10-29
+
+Scope: the current repository, not a change diff. Read-only review; no application fixes made. Findings are appended by review round. The second round targets fresh cross-layer and failure-path issues and excludes duplicates.
+
+Severity: **P1** = high-impact privacy, safety or data-loss defect; **P2** = material correctness or reliability defect; **P3** = lower-impact defect. **Executed** means the implementation was exercised with synthetic inputs; **source-confirmed** means the cited control/data flow was inspected but the complete runtime scenario was not exercised. Mocked HTTP boundaries are identified explicitly. No finding implies that every other path is correct.
+
+## Round 1 — repository-wide subsystem review
+
+### R1-001 — P1: An old tab can overwrite one person's profile folder with another person's data
+
+- **Location:** `src/app/profiles.ts:133–140,151–168`; shared database replacement at `src/app/profiles.ts:86–103`.
+- **Trigger:** Open profile A in one tab, then switch to B in another tab on the same origin. Both tabs share the same IndexedDB database; each tab has its own `syncing.id`.
+- **Defect:** Loading B replaces all shared tables and `loadedProfile`. A's still-running `liveQuery` notices those changes, but `push()` sends `browserData()` to the captured A URL without checking that the working copy still belongs to A.
+- **Impact:** B's complete health snapshot is written into A's folder. This is both destructive cross-profile corruption and a privacy failure.
+- **Verification — executed, fake IndexedDB and mocked fetch:** Started `startSaving("a")`, then called `loadIntoBrowser("b")` while that saver remained subscribed, representing the other tab's database replacement. Observed `[{"path":"/api/profiles/a/data","person":{"name":"B"}}]` after the debounce. The actual profile synchronization functions ran; two real browser tabs were not used.
+- **Fix direction:** Enforce working-copy ownership in the snapshot transaction and before every upload; coordinate tab ownership/switches so an old tab stops saving and cannot keep editing another profile's shared working copy.
+
+### R1-002 — P1: Switching profiles proceeds after the current profile fails to save
+
+- **Location:** `src/app/profiles.ts:141–147,180–184,190–196`.
+- **Trigger:** Edit A, then switch to B while A's save fails, for example because storage is full or the server refuses the update.
+- **Defect:** `push()` catches the error and resolves after marking the snapshot dirty. `flushSaving()` therefore resolves successfully. `switchProfile()` immediately calls `stopSaving()`, which cancels the retry, and `loadIntoBrowser()` clears the only updated working copy.
+- **Impact:** Unsaved measurements and other edits are permanently discarded even though the switch promises to save first. Create/import flows use the same sequence.
+- **Verification — executed, fake IndexedDB and mocked fetch:** Seeded A with one unsaved ferritin result; returned HTTP 500 for A's PUT and a valid empty snapshot for B. `switchProfile("b")` called reload and left `{"remaining":0,"person":{"name":"B"}}`; it did not reject the failed save.
+- **Fix direction:** Have flush reject on failure, retain the current working copy, and prevent replacement until all current/in-flight changes are durably acknowledged.
+
+### R1-003 — P1: A failed profile import/create/switch silently disables future autosave
+
+- **Location:** `src/app/profiles.ts:190–208,247–251,264–271`.
+- **Trigger:** Attempt an invalid ZIP import, or encounter a server error after `stopSaving()` in profile creation/switching.
+- **Defect:** These flows unsubscribe the current saver before the fallible request. No error path restores the subscription. The page remains open on the old profile, with no saver running and no dirty/error status for subsequent edits.
+- **Impact:** Later changes remain only in IndexedDB while the interface continues to present folder-backed persistence. A subsequent profile load can discard them.
+- **Verification — executed, fake IndexedDB and mocked fetch:** Started A's saver, returned HTTP 400 for `restoreProfile(bad.zip)`, caught the UI-facing error, then changed the profile and waited beyond the debounce. Captured requests were only `["/api/profiles/restore"]`; no save PUT occurred.
+- **Fix direction:** Restore the old saver on every failed transition, or suspend it only for the actual atomic working-copy replacement and resume deterministically.
+
+### R1-004 — P1: Reloaded pending edits are treated as already saved and never retried
+
+- **Location:** `src/app/profiles.ts:153–168`; startup at `src/app/App.tsx:60–63`.
+- **Trigger:** Reload/close within the 500 ms debounce, or reload after a save failure. Reopen with the same active and loaded profile ID.
+- **Defect:** Pending/dirty state is only in module memory. Startup keeps the local working copy when IDs match, but `startSaving()` unconditionally skips the initial snapshot as if it had just been fetched from the folder. No reconciliation or initial upload occurs.
+- **Impact:** The newer data looks available in that browser but remains absent from the folder and ZIP backups indefinitely, until some unrelated edit happens. Switching away can then lose it.
+- **Verification — executed, fake IndexedDB and mocked fetch:** Seeded a pending local measurement before starting the saver, then waited 800 ms. Observed `{"localResults":1,"profilePUTs":0}`. Source inspection confirms the same-ID startup branch does not reload or otherwise reconcile it.
+- **Fix direction:** Persist synchronization revision/dirty ownership and reconcile on boot, or explicitly flush the retained local working copy instead of assuming its first emission matches disk.
+
+### R1-005 — P2: “Replace all your data” retains the previous person's meals, protocols and intake list
+
+- **Location:** `src/db/db.ts:250–260`; confirmation contract at `src/app/pages/DataPage.tsx:278–283`.
+- **Trigger:** Restore another person's JSON file using “Replace my data” in a browser that already has saved meals, Protocols-page plans and intake settings.
+- **Defect:** The replacement transaction clears only measurements, the Habits log and experiments, then changes the profile. It neither clears `plans`/`meals` nor resets person-specific settings such as `intakeList`.
+- **Impact:** The newly restored person sees the previous person's private routines/food data; old protocol state can refer to deleted habits. This contradicts the explicit confirmation that everything currently stored is replaced.
+- **Verification — executed with fake IndexedDB:** Seeded one plan, one meal and `intakeList`, restored an empty backup for B in replace mode. Observed `{"profile":{"name":"B"},"plans":1,"meals":1,"intake":true}`.
+- **Fix direction:** Define a complete replacement transaction across all person-owned tables/settings, preserving only explicitly browser-owned and folder-ownership metadata. Keep legacy JSON's narrower export contract explicit rather than silently retaining another person's data.
+
+### R1-006 — P2: Enabling folder profiles can erase a browser-only profile containing no measurements
+
+- **Location:** `src/app/App.tsx:48–61`; first-run migration at `src/app/pages/SetupPage.tsx:39–40`.
+- **Trigger:** A browser-only user has saved meals, plans, intake settings or profile details but no measurements/Habits log, then uses the local server with an existing active profile. A Habits-only browser profile is also missed when the server has no profiles and setup creates its first folder.
+- **Defect:** The existing-server migration gate only checks measurements and the Habits log. The first-folder setup's `fromBrowser` decision checks measurements alone. Data in other person-owned tables/settings is not considered before `loadIntoBrowser()` clears it.
+- **Impact:** Legitimate local-only data is silently replaced instead of being preserved as its own profile, contrary to the profile migration guarantee.
+- **Verification — source-confirmed:** Traced both migration conditions to `createProfile(..., { fromBrowser: false })` / `loadIntoBrowser()` and its clear transaction. The full setup/browser migration scenario was not executed.
+- **Fix direction:** Use one complete person-data presence check for both boot and first-folder setup, including meals, plans, experiments and relevant settings, and preserve that snapshot before replacing the working copy.
+
+### R1-007 — P1: Folder import silently drops saved protocols and meals
+
+- **Location:** `src/core/zipStore.ts:75,81–90`; downstream defaults at `server/profiles.ts:346–347`.
+- **Trigger:** Choose a profile folder containing `protocols.json` and `meals.json` through “Load a profile folder.”
+- **Defect/impact:** The file allowlist omits both files. The browser sends an incomplete ZIP; restore supplies empty arrays for the missing files and reports success. The imported profile loses its saved protocols and meals.
+- **Verification — executed:** `profilesInFolder()` received `profile.json`, `protocols.json`, `meals.json`, and `results.json`; its output contained only `["a/profile.json","a/results.json"]`. The downstream empty-array defaults were source-confirmed.
+- **Fix direction:** Include all supported person-owned profile files and exercise a populated folder round trip, not only a measurements/log fixture.
+
+### R1-008 — P2: The app can generate backups that its restore limits reject
+
+- **Location:** `server/http.ts:24,257–258`; `server/zip.ts:89,116–117`; generator at `server/profiles.ts:307–321`.
+- **Trigger:** A profile accumulates over 200 MiB of compressed contents or over 500 MiB of expanded contents. Individual attachments up to 50 MiB are accepted without an aggregate profile cap.
+- **Defect/impact:** Backup walks the entire profile and downloads it successfully, while restore rejects the resulting archive at different aggregate limits. An apparently valid app-created backup cannot recover the profile.
+- **Verification — source-confirmed:** Compared upload, export and restore limits. Large archives were not allocated or uploaded during review. A reproduction is six approximately 40 MiB incompressible accepted attachments, followed by backup and restore.
+- **Fix direction:** Align supported backup and restore sizes, preferably with bounded streaming. If a limit remains, disclose and enforce it before presenting an unsupported backup as successful.
+
+### R1-009 — P2: Long attachment names make the app's own ZIP backups unrestorable
+
+- **Location:** `server/profiles.ts:268–279,355–357`.
+- **Trigger:** Keep a supported attachment whose original filename exceeds 200 characters, with its extension past character 200.
+- **Defect/impact:** Upload validates the full extension and safely shortens the stored filename, but metadata truncates `originalName` without preserving its extension. Restore passes that truncated metadata name back through extension validation and rejects the complete backup.
+- **Verification — executed in a temporary data folder:** Added `"a".repeat(205) + ".pdf"`, exported it using `backupZip()`, then called `restoreZip()`. Restore failed: `Only PDF, image (PNG, JPG, WebP), text and CSV files can be kept.`
+- **Fix direction:** Preserve the extension when shortening metadata, and ensure accepted attachments round-trip through app-created backups.
+
+### R1-010 — P2: Failed ZIP restoration leaves a selectable partial profile
+
+- **Location:** `server/profiles.ts:341–357`.
+- **Trigger:** Valid profile data is followed by malformed `files.json` or an attachment rejected during restore.
+- **Defect/impact:** `createProfile()` publishes the folder before file-index parsing and attachment validation. A later exception reports failure but leaves the new, incomplete profile behind; repeated attempts add further partial copies.
+- **Verification — executed in a temporary data folder:** Restored a synthetic ZIP with valid `profile.json` and invalid JSON in `files.json`. Observed `files.json in the backup is damaged.` and `profilesAdded 1`.
+- **Fix direction:** Validate first and restore into a staging folder, publishing only a complete profile; otherwise reliably roll back every failed restore.
+
+### R1-011 — P2: Malformed static URL encoding escapes the HTTP error boundary
+
+- **Location:** `server/http.ts:338–340,395`.
+- **Trigger:** Request a non-API URL such as `/%`.
+- **Defect/impact:** `decodeURIComponent()` throws outside the route-level catches in an asynchronous HTTP listener. The request receives no controlled response; process termination depends on runtime rejection handling.
+- **Verification — source-confirmed:** Traced the uncaught call from `createServer()` into `serveStatic()`. Process termination was not exercised or asserted. Reproduction: `curl --path-as-is --max-time 5 http://127.0.0.1:4820/%`.
+- **Fix direction:** Put URL parsing/decoding inside the outer request error boundary and return a controlled 400.
+
+### R1-012 — P2: Sign-in can fail immediately after an agent installation the app detects
+
+- **Location:** `server/http.ts:86–89`; discovery at `server/which.ts`; launcher at `server/terminal.ts`.
+- **Trigger:** On Windows, start the server, install an agent into a directory absent from the server's inherited PATH, then use “Check again” and “Sign in” without restarting the server.
+- **Defect/impact:** Discovery reads current registry PATH/usual install folders, but sign-in launches the bare fixed command in a child PowerShell inheriting the server's stale environment. The UI can show “installed” and then open a sign-in terminal that cannot find the executable.
+- **Verification — source-confirmed:** Compared discovery and launch paths. No software installation or real sign-in was attempted.
+- **Fix direction:** Launch the resolved, correctly quoted executable with the fixed sign-in arguments, or explicitly refresh the child environment.
+
+### R1-013 — P2: Secret replacement files are readable before permissions are restricted
+
+- **Location:** `server/store.ts:20–24,82–89`.
+- **Trigger:** Unix-like installation with umask `022` and a data-directory path traversable by another local user.
+- **Defect/impact:** Generic `writeJSON()` creates the plaintext secrets temporary file with default permissions, commonly `0644`, renames it over the destination, and only then applies `0600`. Keys are readable during those windows; interruption can leave a readable temporary or final file.
+- **Verification — source-confirmed:** Inspected file creation/rename/chmod ordering. This review ran on Windows; Unix permissions and cross-user reads were not exercised.
+- **Fix direction:** Create secret temporary files with `0600` before writing sensitive bytes and retain those permissions through replacement.
+
+### R1-014 — P1: Concurrent Hermes questions share the newest question's health snapshot
+
+- **Location:** `server/bridge.ts:31–40,55–60`; callers at `server/agents.ts:279–294` and `server/http.ts:293–309`.
+- **Trigger:** Two Hermes questions overlap, including from different tabs/profiles or after stopping one question in the page while its agent continues.
+- **Defect/impact:** Opening a run overwrites the one `current["hermes"]` entry. Every request authenticated by Hermes's stable token then uses the newest run's tools, data, citation set and step log. The older agent can receive the newer person's data. Closing the newest run also makes the stable token idle while the older run remains open.
+- **Verification — executed with actual bridge functions and synthetic tools:** Opened A then B; the stable-token lookup selected B and its sentinel tool returned `"B"`. After closing B, lookup returned `"idle"` while A's per-run token still resolved.
+- **Fix direction:** Serialize stable-token Hermes runs server-side, or make each process use a credential bound to exactly one run; never overwrite an active routing slot.
+
+### R1-015 — P2: Echoed input can be laundered into a “verified” research citation
+
+- **Location:** `server/steps.ts:23–39`; echoing tool at `server/healthTools.ts:433–435`.
+- **Trigger:** A tool result contains a study-looking identifier in user-authored text or an error, e.g. unknown nutrient query `PMID:99999999`.
+- **Defect/impact:** The collector scans arbitrary serialized tool output, not successful retrieved study records. The echoed ID enters the trusted set, and the answer renderer marks it checked despite no study retrieval.
+- **Verification — executed:** Passed `{error:"No entry for PMID:99999999"}` through `studyIdsFromTool("get_nutrient", ...)`, then through `checkCitations()`. Result: `verified:["PMID:99999999"]`, `unverified:[]`.
+- **Fix direction:** Derive trusted IDs from explicit successful study/citation result fields; exclude errors, model input and user-authored labels.
+
+### R1-016 — P2: DOI citations bypass verification entirely
+
+- **Location:** `src/ai/citations.ts:18–20,32–55`; trusted-ID collection at `server/steps.ts:23–31`.
+- **Trigger:** The model cites `[DOI:…]`, including a DOI-only source legitimately returned by a built-in knowledge tool.
+- **Defect/impact:** Both collector and answer parser recognize only PMID/PMCID. Fabricated DOI citations receive neither an unverified marker nor a loose-reference warning; legitimate DOI-only citations cannot be checked either.
+- **Verification — executed:** `checkCitations("[DOI:10.1234/nonexistent]", new Set())` returned one ordinary text segment, with empty verified, unverified and loose-reference arrays.
+- **Fix direction:** Normalize/collect DOI IDs consistently, validate them against retrieved sources and render their links through the same checked-citation path.
+
+### R1-017 — P2: A rejected meal proposal can still become a saveable meal card
+
+- **Location:** `server/assistant.ts:156–160`; `src/app/brain/store.ts:154–159`; agent equivalent at `server/bridge.ts:83–87`.
+- **Trigger:** `propose_meal` has structurally valid items but an unknown food ID.
+- **Defect/impact:** Server execution rejects unknown IDs with food-database-aware validation. The reply nevertheless retains the input as a step without its success/failure outcome. The page creates a card from that input using structural-only validation; saving persists the unknown ID, and totals omit that food.
+- **Verification — source-confirmed:** Traced rejection at `server/healthTools.ts:395–397` to input-only step transport, card construction, `saveMeal()`, and `mealTotals()` filtering. No model/provider was called.
+- **Fix direction:** Transport successful, validated proposal results explicitly and build cards only from those results; validate food IDs before enabling Save.
+
+### R1-018 — P2: Valid long protocol proposals are cut into invalid JSON
+
+- **Location:** `server/steps.ts:18–20`; consumer at `src/app/brain/store.ts:145–151`.
+- **Trigger:** A valid 60-item proposal with supported label, amount, note and weekday fields exceeds 30,000 serialized characters.
+- **Defect/impact:** The tool accepts the proposal but `toolStep()` slices its JSON to 30,000 characters. The page's parse fails and silently discards the promised confirmation card.
+- **Verification — executed:** Constructed a proposal accepted by `planFromProposal()` with 60 items, each with 80-character label, 40-character amount, 300-character note and seven weekdays. Original JSON: `33813` characters; transported JSON: `30000`; parsing raised `SyntaxError`.
+- **Fix direction:** Preserve the complete validated application payload. If a size limit is necessary, reject before claiming success rather than truncating JSON.
+
+### R1-019 — P1: Exact blood-pressure emergency thresholds do not activate critical protection
+
+- **Location:** `src/core/trends.ts:64–65`; definitions at `knowledge/biomarkers/bp_systolic.json` and `bp_diastolic.json`.
+- **Trigger:** Systolic pressure exactly 180 mmHg or diastolic exactly 120 mmHg.
+- **Defect/impact:** Strict critical comparisons classify both as ordinary high readings, despite their definitions saying “180 or more” / “120 or more.” The dashboard urgent banner and assistant critical-result/proposal restrictions therefore do not activate at the documented boundary.
+- **Verification — executed against shipped definitions:** `flagValue(180, ...)` and `flagValue(120, ...)` both returned `"high"`.
+- **Fix direction:** Represent inclusive critical boundaries where required, without changing other markers whose thresholds are explicitly strict.
+
+### R1-020 — P1: Range decisions ignore inequality qualifiers
+
+- **Location:** `src/core/trends.ts:76–78`; qualifier preservation at `src/core/importers/manual.ts:111–114`.
+- **Trigger:** Potassium `>6.2 mmol/L`, or female ferritin `<15 µg/L`.
+- **Defect/impact:** `flagMeasurement()` treats the numeric detection/reporting limit as an exact measurement and ignores `<`/`>`. It can assert normality for a definitely low result or omit critical protection for a definitely critical one. The misclassification reaches dashboards, suggestions and AI safety gating.
+- **Verification — executed against shipped definitions:** Potassium `>6.2` returned `"high"`; female ferritin `<15` returned `"normal"`, instead of definite critical-high and low respectively.
+- **Fix direction:** Classify the interval represented by a qualified result, distinguishing definite violations from uncertain boundary-crossing intervals.
+
+### R1-021 — P2: Brain's blood-pressure average includes readings after its stated endpoint
+
+- **Location:** `src/core/bodySummary.ts:33–35`; paired endpoint selection at `src/core/body.ts:212–217`.
+- **Trigger:** A complete 120/80 reading on October 10, then an imported unpaired systolic 180 on October 20.
+- **Defect/impact:** Latest blood pressure selects the latest paired date, but the 30-day averages enforce only a lower bound. The later unpaired reading contaminates the earlier window. Brain receives contradictory provenance for numbers it is told to report as computed facts.
+- **Verification — executed:** `bodySummary()` returned `{"latest":"120/80 mmHg","date":"2026-10-10","last30DaysAverage":"150/80 mmHg (2 readings)"}`.
+- **Fix direction:** Bound both averages through the chosen endpoint, or choose and disclose a different explicit averaging endpoint.
+
+### R1-022 — P2: Heart age excludes almost all people aged 74
+
+- **Location:** `src/core/heartAge.ts:112`; history consumer at `src/core/ageHistory.ts:43–46`.
+- **Trigger:** Chronological age is between exactly 74 and 75 years, while the advertised eligible range is 30–74.
+- **Defect/impact:** `ageAt()` supplies fractional years and the guard rejects `age > 74`, suppressing the result for most of the last eligible year even though the profile still displays age 74.
+- **Verification — executed:** Birth month `1952-06`, evaluation date `2026-10-29`, otherwise valid inputs: computed age `74.3709787816564`, `outOfRange:"old"`.
+- **Fix direction:** Use age 75 as the upper-exclusive bound, or consistently compare completed years to the documented range.
+
+### R1-023 — P2: Long-history chart axes stop generating ticks after 400 months
+
+- **Location:** `src/core/timeWindow.ts:77–84`.
+- **Trigger:** Use All on a history longer than approximately 33 years.
+- **Defect/impact:** Tick generation increments months even when emitting annual ticks, then stops after 400 iterations. Later decades remain without labels on timelines, marker charts and ages charts.
+- **Verification — executed:** `timeTicks()` for `1970-01-01` through `2026-10-29` returned 33 ticks; the last was `{"date":"2003-01-01","day":12053,"kind":"year"}`.
+- **Fix direction:** Iterate aligned tick intervals through the requested endpoint instead of applying a fixed monthly traversal cap.
+
+### R1-024 — P2: Abstract cleanup deletes inequalities and intervening study facts
+
+- **Location:** `src/core/evidenceMap.ts:90–93`.
+- **Trigger:** Abstract text contains encoded `<` and `>` comparisons separated by other prose.
+- **Defect/impact:** `plainText()` decodes entities, then removes arbitrary angle-bracket spans as markup. This can delete participant counts and eligibility information before classification and screening.
+- **Verification — executed:** `plainText("BMI &lt; 30; 1200 adults enrolled; P &gt; 0.05")` returned `"BMI 0.05"`; `sampleSize()` then returned `undefined` instead of 1200.
+- **Fix direction:** Remove actual markup without treating comparison operators and all intervening prose as a tag; preserve supported encoded formatting tags deliberately.
+
+### R1-025 — P2: Evidence overlap presents bibliography citations as pooled-study membership
+
+- **Location:** `tools/evidence/build.ts:55–63`; presentation in `src/app/components/EvidenceMap.tsx` (`Overlap`).
+- **Trigger:** Chosen reviews cite the same background/excluded/off-topic randomized trial but do not include that trial in the relevant analysis.
+- **Defect/impact:** Any downloaded RCT PMID in a review's bibliography is treated as a pooled trial for corrected covered area. The UI calls these “Trials pooled by each chosen review” and uses overlap to discuss independence, overstating actual shared included evidence.
+- **Verification — source-confirmed, shipped artifact inspected:** `knowledge/evidence-maps/creatine.json:1155–1160,1412–1416` includes vitamin-D2 trial PMID `24362707`, arginine trial PMID `19777799`, and young-adult studies in the older-adult overlap. No external literature audit or generator run was performed.
+- **Fix direction:** Calculate pooled-study overlap only from verified included-study membership for that outcome. Without it, label bibliography overlap honestly and do not interpret it as pooled-trial independence.
+
+### R1-026 — P2: Failed reference downloads are cached as complete results
+
+- **Location:** `tools/evidence/build.ts:20–28`.
+- **Trigger:** A reference-list request gets 429/503, either on its first page or during pagination.
+- **Defect/impact:** The loop breaks but still caches accumulated IDs. Later builds accept the empty/truncated cache without retrying; overlap is omitted/miscomputed and the UI can wrongly say that Europe PMC has no reference list.
+- **Verification — source-confirmed:** Traced non-success response, unconditional cache write and immediate cache-return branch. No cached research data was changed or network requests made.
+- **Fix direction:** Publish a cache entry only after successful pagination, and distinguish retrieval failure from a successfully retrieved empty list.
+
+### R1-027 — P2: A weaker publication tag masks a title-declared meta-analysis
+
+- **Location:** `src/core/evidenceMap.ts:32–35`.
+- **Trigger:** PubMed tags a paper `Systematic Review`, while its title explicitly declares a meta-analysis.
+- **Defect/impact:** The early systematic-review return prevents the meta-analysis title fallback. Because selection prioritizes meta-analyses, the paper can be demoted behind older studies or excluded from preferred selections.
+- **Verification — executed:** `designOf({pubTypes:["Systematic Review"],title:"A systematic review and meta-analysis"})` returned `"systematic review"`. The shipped creatine cognition map also classifies PMID `39070254` this way.
+- **Fix direction:** Apply title-declared meta-analysis recognition before the weaker systematic-review return, retaining intended guideline precedence.
+
+### R1-028 — P2: Life-table regeneration publishes incomplete data after a country fetch fails
+
+- **Location:** `tools/lifetables/build.ts:47–50`; consumer at `src/app/components/dashboard/bestBefore.tsx:70–85`.
+- **Trigger:** A supported country's request fails during regeneration.
+- **Defect/impact:** The generator logs/skips the country and still overwrites the shipped artifact successfully. The fixed country selector continues offering that country, but its expiration-date card has no table and repeatedly asks for a country.
+- **Verification — source-confirmed:** Reviewed skip and final-write control flow. The current shipped artifact has all 32 entries; no current missing-country defect or regeneration run is claimed.
+- **Fix direction:** Require completeness before replacing the artifact; retain the existing dataset and fail clearly on incomplete retrieval.
+
+### R1-029 — P1: Attachment filenames disclose the profile name to the model
+
+- **Location:** `src/app/brain/store.ts:271–274`; prompt formatting at `src/app/brain/logic.ts:53–61`.
+- **Trigger:** Profile “Anna Kovacs” attaches a non-lab document named `Anna Kovacs referral.txt` and asks Brain a question.
+- **Defect/impact:** Document text is name-redacted, but its original filename is inserted twice into the transmitted prompt. The person's name reaches the configured provider despite the explicit profile-name privacy promise.
+- **Verification — source-confirmed:** Traced unchanged `d.name` through attachment headings and `/api/assistant` to model/agent messages. No external provider received a review request.
+- **Fix direction:** Redact model-facing filenames as well as document text; retain original filenames only in local UI state.
+
+### R1-030 — P2: An empty height field cannot be filled by ordinary typing
+
+- **Location:** `src/app/components/ProfileForm.tsx:77–81`.
+- **Trigger:** Start with an empty height in setup or Settings and type `170`.
+- **Defect/impact:** Every individual first digit is below 40, so immediate numeric validation replaces it with `undefined` and clears the controlled input. Users must paste a complete valid value to enter height, blocking normal entry needed for several calculations.
+- **Verification — executed in the production browser UI:** Cleared “Height (cm)” and typed `170` through keyboard input. Observed `heightAfterTyping: ""`.
+- **Fix direction:** Keep an editable string draft, allowing intermediate input, and validate/commit at a suitable completion boundary.
+
+### R1-031 — P2: The 61st intake item makes the whole analysis disappear
+
+- **Location:** `src/app/pages/IntakePage.tsx:75–76`; persisted reader at `src/app/hooks.ts:78–82`.
+- **Trigger:** Add a 61st meal, food or supplement to the analyzer.
+- **Defect/impact:** Addition persists the over-limit list without checking the existing 60-item contract. The reader rejects it and substitutes `[]`; adding another item can overwrite the hidden list entirely.
+- **Verification — source-confirmed:** Traced unconditional append into `validateIntakeItems()`'s maximum and the empty-list fallback. The 61-click browser scenario was not executed.
+- **Fix direction:** Prevent over-limit additions with an explanation, and do not present invalid stored data as if the person had an empty list.
+
+### R1-032 — P2: The direct protocol editor can block whole-profile saves
+
+- **Location:** `src/app/pages/PlanPage.tsx:109–113`; validation at `src/core/plans.ts:93–95`.
+- **Trigger:** Add a 61st item to a protocol through its own page.
+- **Defect/impact:** The editor and `savePlan()` persist the item despite the 60-item maximum. Server whole-profile validation and assistant snapshot parsing then reject the entire profile, preventing disk synchronization and Brain requests until the protocol is repaired.
+- **Verification — source-confirmed:** Followed the append into unvalidated IndexedDB storage, then `server/profiles.ts:141–153,225–229` and `server/healthTools.ts:46–47`. The separate Add-to-protocol dialog already enforces the limit.
+- **Fix direction:** Apply the shared item-count and protocol validation before committing direct editor changes.
+
+### R1-033 — P2: The meal editor can likewise create a profile that will not sync
+
+- **Location:** `src/app/pages/MealPage.tsx:150–152`; validation at `src/core/meals.ts:216–218`.
+- **Trigger:** Add a 41st food to a saved meal.
+- **Defect/impact:** The UI and `saveMeal()` accept the object while server profile saves and assistant snapshots reject meals beyond 40 foods. A normal UI operation breaks persistence and assistant use for the whole profile.
+- **Verification — source-confirmed:** Traced unconditional food append and persistence to the server's meal-validation paths. No 41-food UI scenario was executed.
+- **Fix direction:** Enforce `MAX_MEAL_ITEMS` in the editor and validate before persistence, with a clear limit message.
+
+### R1-034 — P2: A stale person editor overwrites restored profile details
+
+- **Location:** `src/app/pages/DataPage.tsx:73–80`.
+- **Trigger:** Stay on Settings → Your data, restore a different JSON profile using Replace, then edit one profile field.
+- **Defect/impact:** The live query supplies the restored profile, but `PersonCard` uses `initial` only once for its local draft. It keeps the old details and writes the entire stale draft on the next edit, overwriting restored birth month, sex, conditions, name and other fields.
+- **Verification — source-confirmed:** Compared the live-query props, one-time state initialization, restore mutation and whole-object `setProfile()` call. Browser restore/edit was not exercised.
+- **Fix direction:** Remount or explicitly reset the person editor on external profile replacement without discarding ordinary in-progress editing.
+
+### R1-035 — P2: Brain's send operation is neither locked nor cancellable during preparation
+
+- **Location:** `src/app/brain/store.ts:262–279`.
+- **Trigger:** Submit twice before IndexedDB/photo preparation completes, or clear the conversation while a selected photo is preparing.
+- **Defect/impact:** `busy` and the abort controller are established only after asynchronous preparation. Multiple submissions pass the guard, and New conversation has nothing to abort during that interval. Captured questions/data/photos can be sent after clearing; overlapping requests also overwrite the one global controller.
+- **Verification — source-confirmed:** Inspected the first-await/lock/controller order and New conversation/Stop consumers. No model calls were made.
+- **Fix direction:** Reserve the operation and its conversation generation before the first await; make preparation cancellable and reject stale completions.
+
+### R1-036 — P2: Cleared attachment reads can reappear in a new conversation
+
+- **Location:** `src/app/brain/store.ts:189–221,225–231`.
+- **Trigger:** Start reading/OCR of a lab report, then press New conversation before it completes.
+- **Defect/impact:** The reset clears current turns/attachments but does not invalidate the pending file batch. Lab/screenshot completions append review cards unconditionally to the new conversation, and later files in the old batch can still be added.
+- **Verification — source-confirmed:** Traced asynchronous completion branches against `newConversation()`; no slow OCR race was executed.
+- **Fix direction:** Bind reads and batches to a conversation generation; cancel or discard all old-generation work after reset.
+
+### R1-037 — P2: Removing a duplicate food can leave the wrong grams displayed and later saved
+
+- **Location:** `src/app/pages/MealPage.tsx:102–112`.
+- **Trigger:** Add the same food twice, edit rows to 125 g and 200 g, then remove the first row.
+- **Defect/impact:** Keys combine food ID and array index while inputs are uncontrolled. React can reuse the first row's 125 g input for the surviving 200 g item, disagreeing with saved data/totals; blurring can then overwrite the surviving amount with the stale value.
+- **Verification — source-confirmed:** Reviewed key construction, `defaultValue`, delete filtering and blur update. The DOM reuse scenario was not exercised.
+- **Fix direction:** Use stable editable-row identity or a controlled grams editor that resets when its represented item changes.
+
+### R1-038 — P1: Nutrient pages omit urgent handling for their displayed critical result
+
+- **Location:** `src/app/pages/NutrientPage.tsx:43–104,201–206`.
+- **Trigger:** Save potassium above 6.2 mmol/L, then open Supplementation → Potassium.
+- **Defect/impact:** The page shows the result as a very-high badge but no urgent critical banner, continues with food/supplement material, and hardcodes `critical={false}` for research. The paper-to-Brain summarization handoff is enabled where the marker page disables it.
+- **Verification — source-confirmed:** Inspected the page, status-marker linkage and research prop. The server's critical prompt is a separate defense, not a replacement for the page warning.
+- **Fix direction:** Derive critical state from status results, show contact-a-doctor handling before explanatory material and pass the real state into research/suggestion controls.
+
+### R1-039 — P2: Dashboard biological-age comparison mixes two different dates
+
+- **Location:** `src/app/components/dashboard/widgets.tsx:52–53`; draw-date difference at `src/core/dashboard.ts:114–117`.
+- **Trigger:** The latest complete blood draw is old enough for chronological age to have changed materially.
+- **Defect/impact:** The card uses PhenoAge and its difference at the blood draw, but labels the comparison against today's calendar age. It can show PhenoAge 44 as “4 older than your age (45)” when the draw happened at age 40.
+- **Verification — source-confirmed:** Traced `last.phenoAge`, draw-date `last.difference` and `ageAt(..., today)` into the same figure.
+- **Fix direction:** Compare and label values at the same draw date; any current projection needs a separately defined calculation and label.
+
+### R1-040 — P2: The combined timeline cannot reach early body history
+
+- **Location:** `src/app/pages/HomePage.tsx:79`; domain at `src/app/components/dashboard/Timeline.tsx:75–87`.
+- **Trigger:** Body measurements predate the first blood draw and any earlier habit.
+- **Defect/impact:** The main dashboard passes the blood-only dashboard span but adds body draws separately. The timeline filters body squares against the narrower span, hiding early body history even under All and preventing panning to it.
+- **Verification — source-confirmed:** Traced blood span selection into navigable domain and body-draw filtering.
+- **Fix direction:** Union body dates into the combined timeline domain while keeping blood-specific plot data separate.
+
+### R1-041 — P2: The UI says five photos were sent while the server silently uses four
+
+- **Location:** `src/app/brain/store.ts:259–276`; receiving cap at `server/http.ts:284–292`.
+- **Trigger:** Attach five ordinary images, enable “Send the photo itself” on each, and submit.
+- **Defect/impact:** The page prepares, counts and removes all five, but the server slices the array to four without reporting the omission. The assistant sees incomplete evidence while the conversation claims five sent photos.
+- **Verification — source-confirmed:** Compared page preparation/counting with server `v.slice(0, 4)`. No images were sent to a provider.
+- **Fix direction:** Enforce the four-photo limit before submission and retain/explain excess attachments instead of silently dropping them.
+
+### R1-042 — P2: Mixed Apple Health units are combined as raw values under the first unit
+
+- **Location:** `src/core/importers/deviceFiles.ts:593–607`; save conversion at `src/app/pages/DeviceImportPage.tsx:229–247`.
+- **Trigger:** One Apple body-mass series contains 70 kg on one day and 154.3 lb on another.
+- **Defect/impact:** The tally stores the first unit/converter but sums later raw values after per-record plausibility conversion. The second value passes plausibility yet emerges and is saved as 154.3 kg.
+- **Verification — executed:** `DailyTally.add()` with those records returned one `"kg"` series with daily values `70` and `154.3`.
+- **Fix direction:** Convert before accumulation or separate units and reconcile explicitly; validation conversion must match stored-value conversion.
+
+### R1-043 — P2: Apple sleep stages ending before midnight are assigned to the wrong night
+
+- **Location:** `src/core/importers/deviceFiles.ts:564–569`.
+- **Trigger:** A continuous night's first asleep stage ends before midnight and later stages end the next morning.
+- **Defect/impact:** Each stage is dated by its own end date, so 23:00–23:30 followed by 23:30–07:00 becomes 0.5 h on the previous day and 7.5 h on the wake-up day rather than one 8 h night. Nightly/weekly sleep assessment is distorted.
+- **Verification — source-confirmed:** Traced stage-level dates into date-only daily tallying. A full streamed XML import was not executed.
+- **Fix direction:** Associate contiguous stages with a sleep session before assigning the wake-up date; retain session state across XML chunks and keep devices separate.
+
+### R1-044 — P2: Low-activity Oura days are inflated from seconds into minutes
+
+- **Location:** `src/core/importers/deviceFiles.ts:300–302,474–476`.
+- **Trigger:** Oura activity fields contain 180 seconds medium activity and 60 seconds high activity.
+- **Defect/impact:** The combined synthetic header loses the brand's seconds semantics and the magnitude heuristic treats the 240 total as minutes. The correct four active minutes become 240, corrupting activity totals and flags.
+- **Verification — executed:** `readTable("oura/daily_activity.csv", ...)` with those fields returned an active-minutes column with `unit:"min"` and `value:240`.
+- **Fix direction:** Preserve the source format's explicit seconds unit through synthetic totals rather than infer it from activity magnitude.
+
+### R1-045 — P2: Screenshot decimal durations are parsed from their fractional suffix
+
+- **Location:** `src/core/importers/screenshot.ts:60–65`.
+- **Trigger:** OCR text says `Total sleep 7.5 h` or exercise `1.5 h`.
+- **Defect/impact:** Unanchored integer-only patterns match the trailing `5 h`, producing a plausible wrong value with no problem flag.
+- **Verification — executed:** `durationHours("7.5 h")` returned `5`; screenshot parsing produced sleep `value:"5"`, `unit:"h"`, `problems:[]`.
+- **Fix direction:** Parse decimal points/commas and enforce numeric boundaries so an unsupported number cannot partially match.
+
+### R1-046 — P2: Screenshot units beside a label are discarded for next-line values
+
+- **Location:** `src/core/importers/screenshot.ts:113–119`.
+- **Trigger:** Screenshot text is `Weight (lb)` followed by `150`.
+- **Defect/impact:** Parsing passes only the numeric line to unit detection, then defaults to kilograms. The resulting 150 kg is plausible and preselected despite representing 150 lb.
+- **Verification — executed:** `parseHealthScreenshot()` returned `value:"150"`, `unit:"kg"`, `problems:[]` for that two-line input.
+- **Fix direction:** Carry label-line unit context into following value lines and flag any conflict instead of silently defaulting.
+
+### R1-047 — P2: ZIP entry streams drain the entire entry without consumer backpressure
+
+- **Location:** `src/core/importers/zipRead.ts:76–84`.
+- **Trigger:** Open a large stored/compressed export entry while its parser consumes slowly, or before attaching a reader.
+- **Defect/impact:** The `async start()` loop reads/enqueues every source chunk without demand checks or cancellation propagation. The advertised bounded-memory path can queue an entire gigabyte-scale export and exhaust browser memory.
+- **Verification — executed with a synthetic stored entry:** Instrumented the underlying Blob stream, opened an 8 MiB entry and attached no consumer. Observed `underlyingBytesReadWithoutConsumer:8388608`, `entryBytes:8388608`, `locked:false`. Gigabyte memory exhaustion itself was not attempted.
+- **Fix direction:** Read on `pull()`/demand or stream the resolved Blob slice directly, and propagate cancellation to the source reader.
+
+### R1-048 — P2: Mixed text/scanned PDFs skip OCR for the scanned result pages
+
+- **Location:** `src/app/pdf.ts:58–65`.
+- **Trigger:** A PDF has a selectable-text cover/header longer than 20 characters but image-only lab-result pages.
+- **Defect/impact:** OCR selection uses whole-document extracted text length. A textual cover prevents OCR altogether, leaving scanned measurements absent from the review.
+- **Verification — source-confirmed:** Reviewed extraction/OCR dispatch and its `readReportFile()` consumer. A synthetic mixed PDF was not generated/imported.
+- **Fix direction:** Assess text adequacy and OCR per page, preserve page order and disclose any OCR page cap.
+
+### R1-049 — P2: Duplicate rows within one lab import are saved twice
+
+- **Location:** `src/app/components/LabReview.tsx:126–129`.
+- **Trigger:** An otherwise empty profile imports two identical `Ferritin 45 µg/L 15 - 150` rows for the same collection date.
+- **Defect/impact:** Deduplication checks only previously stored rows, not rows already accepted into the pending batch. Both receive different IDs and become separate observations, distorting counts and statistical weighting.
+- **Verification — source-confirmed:** Traced the loop's unchanged `existing` set into `addMeasurements()` UUID allocation. A complete review/save interaction was not executed.
+- **Fix direction:** Include pending accepted rows in deduplication, while preserving genuinely distinct readings.
+
+### R1-050 — P2: Device dates that are unambiguous are still rejected by locale
+
+- **Location:** `src/core/importers/deviceFiles.ts:385–386`.
+- **Trigger:** US `12/31/2025` on a day-first browser, or `31/12/2025` on a month-first browser.
+- **Defect/impact:** The parser blindly applies locale even when one component is over 12. It rejects a valid, unambiguous date; affected device rows disappear without a date-format correction control.
+- **Verification — executed:** `toIsoDate("12/31/2025", false)` and `toIsoDate("31/12/2025", true)` both returned `undefined`.
+- **Fix direction:** Resolve unambiguous order first; apply locale only where both interpretations are valid, following the existing lab-date precedent.
+
+### R1-051 — P1: Intake suggestions remain enabled beside a critically high linked blood result
+
+- **Location:** `src/app/pages/IntakePage.tsx:629–635`.
+- **Trigger:** Latest potassium is 6.5 mmol/L, no kidney condition is recorded, and the analyzer list contains only a 100 mg potassium supplement.
+- **Defect/impact:** Gap advice and potassium-rich meal suggestions are generated from intake shortfall before checking the linked blood result; its critical flag only becomes a badge. Nutrient-increase ideas are presented directly beside a critical value.
+- **Verification — source-confirmed:** Traced `gapAdvice()`/`mealsRichIn()` and the subsequent display-only `flagLatest()` call. The full browser scenario was not executed.
+- **Fix direction:** Resolve linked critical status first and replace increase suggestions with urgent doctor-contact handling.
+
+### R1-052 — P2: Meal suggestions bypass remaining upper-limit checks
+
+- **Location:** `src/core/intake.ts:399–406`; caller at `src/app/pages/IntakePage.tsx:629–631`.
+- **Trigger:** A saved 100 g lamb's-liver meal is considered for a B12 gap in a kiwi-only intake list.
+- **Defect/impact:** Individual food ideas receive remaining upper-limit room, but meal ranking receives only condition-specific safety flags. The liver meal contributes 19,700 µg retinol against the stored 3,000 µg upper limit and can be suggested while the equivalent individual-food suggestion is rejected.
+- **Verification — source-confirmed:** Compared both selection contracts and the shipped `18-494` nutrient values. The complete analyzer scenario was not exercised.
+- **Fix direction:** Compare candidate meal totals against remaining upper-limit allowances for all relevant nutrients, not just the nutrient whose gap is being filled.
+
+### R1-053 — P2: Splitting the same food into duplicate meal rows bypasses safety limits
+
+- **Location:** `src/core/meals.ts:197–200`.
+- **Trigger:** A meal has two 10 g rows of cooked spinach `13-573` for a person taking an anticoagulant.
+- **Defect/impact:** Each row contributes 57.5 µg vitamin K1 and passes the 60 µg per-food threshold; together they contribute 115 µg. The equivalent one-row 20 g meal is blocked. Ordinary duplicate additions therefore change the safety decision.
+- **Verification — source-confirmed:** Inspected row-by-row checking, duplicate-permitting validation and the shipped spinach value.
+- **Fix direction:** Aggregate amounts by food ID before applying the existing per-food portion checks.
+
+### R1-054 — P2: Protocol quick picks silently substitute different supplement forms
+
+- **Location:** `src/app/pages/IntakePage.tsx:291–293`.
+- **Trigger:** Quick-pick protocol item `Beta-carotene 5000 µg` or `Vitamin K2 100 µg`.
+- **Defect/impact:** Broad nutrient matching maps beta-carotene to the analyzer's preformed-retinol representation, incorrectly adding it to the retinol upper-limit amount. K2 becomes `vitaminK1` and counts toward a reference the knowledge entry says covers K1 only.
+- **Verification — source-confirmed:** Traced `nutrientFor()` through the inverse food-key mapping and form-specific `intakeTotals()` semantics.
+- **Fix direction:** Preserve form identity; do not auto-import unsupported forms as another form with different reference/safety semantics.
+
+### R1-055 — P2: Qualified experiment results still produce an unjustified exact percentage
+
+- **Location:** `src/core/experiments.ts:127–132`; display in `src/app/pages/ExperimentsPage.tsx` (`ResultCard`).
+- **Trigger:** Baseline CRP is `<0.3`, followed by an eligible exact 0.2 result.
+- **Defect/impact:** Exact means/change are assigned before the qualifier guard. Returning `verdict:"below-limit"` retains a claimed −33% change even though the actual value might have increased; the UI renders defined numeric fields regardless of the verdict.
+- **Verification — executed:** `analyzeMarker()` returned baseline `0.3`, after `0.2`, change `-0.33333333333333326`, verdict `"below-limit"`.
+- **Fix direction:** Detect qualified results before exact aggregation and omit unknowable summary values/change while retaining the source readings.
+
+### R1-056 — P2: Valid zero baselines generate infinite or NaN experiment changes
+
+- **Location:** `src/core/experiments.ts:127–130`.
+- **Trigger:** Watch a marker permitting zero, such as push-ups, with baseline 0 and after 5, or zero on both sides.
+- **Defect/impact:** Geometric/log comparison and division run before checking the positive-value domain. The later missing-variation verdict retains nonfinite fields, which the result page formats as `+Infinity%` or `−NaN%`.
+- **Verification — executed:** Push-ups 0 → 5 returned `beforeValue:0`, `afterValue:5`, `change:Infinity`, verdict `"no-variation-data"`. The rendered percentage was source-confirmed, not browser-observed.
+- **Fix direction:** Guard the logarithmic domain and omit undefined percentage change for a zero baseline; retain legitimate zero input measurements.
+
+### R1-057 — P3: Omega-3 protocol items are missing from supported supplement quick picks
+
+- **Location:** `src/app/pages/IntakePage.tsx:284–293`.
+- **Trigger:** A protocol contains recognized `Fish oil` / omega-3 with an amount in mg.
+- **Defect/impact:** Quick picks invert `NUTRIENT_OF_KEY`, which has no `epaDha → omega_3` entry, even though the analyzer and nutrient lookup support it. The item never appears, and with only that item the entire section is absent.
+- **Verification — source-confirmed:** Compared supported supplement keys, nutrient recognition and quick-pick mapping.
+- **Fix direction:** Include the supported omega-3 mapping while retaining form-specific safeguards described in R1-054.
+
+## Round 2 — independent cross-layer review
+
+Three fresh reviewers retraced persistence/process lifetimes, clinical/AI safety, and ingestion/UI/evidence integrations. Duplicate findings were consolidated into their Round 1 entries rather than counted again. This round added the following five distinct findings.
+
+### R2-001 — P1: Deleting the last profile resurrects its health data under the next person's identity
+
+- **Location:** `src/app/pages/ProfilesPage.tsx:71–74`; startup at `src/app/App.tsx:48–52`; setup migration at `src/app/pages/SetupPage.tsx:40`.
+- **Trigger:** Delete the sole open folder profile, then complete the resulting setup as a different person.
+- **Defect/impact:** Deletion removes the server folder but leaves the IndexedDB working copy and ownership marker. Boot enters first-folder setup and counts those deleted measurements as browser data to migrate. Creating B therefore copies deleted A's measurements, habits, experiments, plans, meals and settings into B's folder. This is separate from ordinary profile-switch corruption: deletion itself fails to remove the recovery source.
+- **Verification — executed end to end in the production browser against temporary server storage:** Opened the bundled example profile, deleted the sole profile through its confirmation dialog, and observed the setup message `972 results are already saved in this browser. They will go into the profile you create now.` The server listed no profiles. Completed setup as `Replacement B`; its actual profile API returned `{"name":"Replacement B","results":972,"plans":2,"habits":4}`. Only synthetic/example health data was used.
+- **Fix direction:** Stop synchronization and clear the deleted profile's working copy/ownership before restarting. Migration must distinguish genuinely unowned browser data from a copy whose owner was deleted.
+
+### R2-002 — P2: Failed MCP tool discovery leaks initialized research-server processes
+
+- **Location:** `server/mcp.ts:48–55,67–70,87–88`.
+- **Trigger:** A stdio MCP server initializes successfully, then errors/times out on `tools/list` while remaining alive.
+- **Defect/impact:** `client.tools()` rejects without closing the created client/transport. The failed promise is removed from `live`, so shutdown skips it; retry overwrites the transport-map entry and loses the old process's cleanup reference. Repeated questions can accumulate orphaned subprocesses.
+- **Verification — source-confirmed:** Traced transport registration, discovery rejection, retry and shutdown; inspected the installed SDK's distinction between initialization cleanup and `tools()` errors. A synthetic failing MCP process was not launched.
+- **Fix direction:** Close client/transport on every post-spawn failure, remove map entries only when they still identify that connection, and include tracked failed-start transports in shutdown.
+
+### R2-003 — P2: Stale screening can be replaced by unscreened selections under a screened provenance claim
+
+- **Location:** `tools/evidence/build.ts:48–52,135–147`; UI fallback at `src/app/components/EvidenceMap.tsx:132–135`.
+- **Trigger:** Change an existing outcome's question and run build before rerunning screening.
+- **Defect/impact:** The builder notices that decisions belong to another question and discards `current`, but then selects from every eligible review. Previously rejected/unreviewed papers can be chosen. Because a screening file still exists, global generated rules continue claiming that only reviews answering the question can be chosen, while this outcome lacks matching decisions.
+- **Verification — source-confirmed:** Compared exact-question matching, `chooseFrom(split ? split.yes : eligible, ...)` and the independent global `screening` condition for provenance text. No screening files or generated maps were changed. This finding concerns stale-question publication/mislabeling, not the separately disclosed ability to build a deliberately unscreened map.
+- **Fix direction:** Require matching-question screening before publishing a screened outcome, or explicitly publish it as unscreened without implying validated question fit; do not silently promote rejected reviews under a screened rule.
+
+### R2-004 — P2: Pace-of-aging confidence intervals are nonfinite at the advertised minimum sample sizes
+
+- **Location:** `src/core/agePace.ts:68–72`; reused t table at `src/core/experiments.ts:43–50`.
+- **Trigger:** Calculate pace from three, four or five eligible tests.
+- **Defect/impact:** Regression requests `t95(n - 2)`, but the shared table starts at four degrees of freedom and returns Infinity for degrees of freedom 1–3. Nonzero residual error yields infinite bounds; an exact line yields `Infinity * 0 = NaN`. The page formats these as the likely range, and JSON turns them into null for Brain.
+- **Verification — executed:** `t95(1)`, `t95(2)` and `t95(3)` all returned `Infinity`. Three constant PhenoAge points spanning a year returned pace `0`, `low:NaN`, `high:NaN`, verdict `"unclear"`. Consumers' formatting/serialization was source-confirmed.
+- **Fix direction:** Supply correct finite two-sided 95% t critical values for degrees of freedom 1, 2 and 3, and preserve finite interval invariants for accepted calculations.
+
+### R2-005 — P2: AI experiment summaries drop the existing post-hoc selection warning
+
+- **Location:** `server/healthTools.ts:255–272`; warning definition at `src/core/habits.ts:44–45`.
+- **Trigger:** Markers are first selected after follow-up results were available.
+- **Defect/impact:** The UI labels the comparison “a hint, not a test,” but `experimentResults()` omits both `chosenOn` and the computed warning. `compare_before_after` and OpenClaw's data summary export the same rise/fall/change facts for prospective and post-hoc selections, so the assistant cannot recover an important evidence limitation.
+- **Verification — executed:** Compared otherwise identical snapshots with selection dates before and after the retest boundary. `pickedAfterResults()` returned `false` and `true`, respectively, while serialized `experimentResults()` outputs were identical.
+- **Fix direction:** Export selection timing and the same computed post-hoc caveat with comparison results; retain relevant multiple-marker caution alongside numerical findings.
+
+## Verification receipts and scope limits
+
+### Repository baseline
+
+- Installed dependencies with `bun install --frozen-lockfile`: completed successfully, 239 packages. Bun reported one blocked postinstall; no blocked script was enabled.
+- `bun run test`: **57 test files passed; 776 tests passed**, exit 0. The AI SDK emitted an image-content-part deprecation warning.
+- `bun run build`: **passed**, including both TypeScript projects and the production Vite build, exit 0. Vite warned about chunks above 500 kB. Those warnings are recorded, not counted as defects without demonstrated consumer impact.
+- No application source, permanent tests, knowledge data, or configuration was changed. The review report is the deliverable; build/dependency outputs are ignored artifacts.
+
+### Exercised behavior
+
+- Ran actual TypeScript helpers with synthetic data for profile synchronization (mocked HTTP/fake IndexedDB), replacement restoration, folder selection, ZIP backup/restore, Hermes run dispatch, citation verification, proposal serialization, clinical boundaries, body summaries, heart-age eligibility, time ticks, abstract processing, evidence-design classification, device/screenshot parsing, ZIP backpressure, experiment comparisons and pace intervals.
+- Ran the built application in Chromium against `createServer()` on an isolated loopback port with a temporary `BT_DATA` folder; did not use the normal entry point's automatic MCP warm-up. Observed example-profile startup/dashboard, Settings, the height-entry defect, and the complete delete-last-profile → new-person data resurrection.
+- Additional executed receipts strengthen **R1-052** and **R1-053**: the lamb's-liver meal's retinol total was `19700` µg and `mealsRichIn("vitaminB12", ...)` returned it; two 10 g spinach rows returned no safety block, while one 20 g row returned the blood-thinner warning. These helper probes did not exercise the entire analyzer UI.
+- No real patient data, cloud models, signed-in agents, research-server packages, agent installers, or external research APIs were used for reproduction. No full OCR run, mixed PDF import, Unix permission exploit, large-backup restoration, or subprocess-leak fixture was executed; findings on those paths remain source-confirmed.
+
+### Coverage
+
+- **Server/security/persistence:** all `server/` implementation modules; HTTP/Host/header boundaries; settings/secrets; filesystem profiles/files; archive restore/export; agent/terminal discovery; bridge/model/MCP/skill lifecycles.
+- **Core/medical calculations:** every `src/core/` module and importer family; documented equations, demographic/date/range handling, same-draw assembly, longitudinal aggregation, fitness placement, nutrition/reference/safety calculations, habits/protocols/experiments, backup validation and demo generation.
+- **Application:** routing/shell, browser working-copy ownership, database schema and mutations, live hooks, profile/setup/settings, Brain attachments/submission/proposals, import review/save, dashboards/charts, marker/nutrient/research, meal/protocol/intake flows. Presentation-heavy components received targeted source inspection; this was not an exhaustive accessibility, responsive-layout or visual-design audit.
+- **Research/generated knowledge:** research client, citation pipeline, evidence fetch/screen/build/selection/overlap, CoFID and life-table generators, knowledge validators and tests. All knowledge areas were considered for code/data contracts; citations, clinical grades and original spreadsheet/table values were not individually revalidated against external publications.
+- **Tests/build/docs:** read related tests and synthetic fixtures as contract evidence, ran the complete existing suite and production build, and checked the documented product constraints. Passing tests do not cover the demonstrated edge/failure paths.
+
+### Consolidation and rejected concerns
+
+- Round 2's filename, mixed Apple-unit, split sleep-night, send-race, photo-count, qualified-result, intake-critical, qualified-experiment and meal-upper-limit findings duplicate Round 1 and are not counted again.
+- The proposed Tesseract production meta-CSP blocker was rejected: OCR explicitly disables Blob workers; the same-origin worker loads/compiles the engine in its own context. No deployed CSP failure was established.
+- Agent-login retention, initial MCP enablement, detection-limit approximate PhenoAge, unknown-sex range policy, supported fitness-age clamping, six-page OCR cap, and stopping the wait while an agent can finish are documented choices, not findings.
+- JSON export is explicitly presented as results/Habits/watch data, not a complete profile-folder backup. Its narrower contents are not counted as a separate export defect; the misleading destructive replacement behavior is R1-005.
+- No finding asserts that arbitrary external clinical claims were independently validated, or that an unexercised source path was runtime-proven.
+
+## Triage
+
+| Round | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Round 1 | 11 | 45 | 1 | 57 |
+| Round 2 | 1 | 4 | 0 | 5 |
+| Total | 12 | 49 | 1 | 62 |
+
+Prioritize cross-person data corruption/disclosure and deletion resurrection (**R1-001, R1-014, R1-029, R2-001**), critical-result safety bypasses (**R1-019, R1-020, R1-038, R1-051**), and data durability/import loss (**R1-002–R1-004, R1-007**). Each finding above includes its own bounded fix direction; no remediation was implemented during this review.
