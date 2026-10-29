@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { SAFETY_LIMITS } from "../../src/core/foods";
-import { adultReference, foodById, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
+import { adultReference, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
 import type { NutrientDef } from "../../src/core/nutrients";
 import type { FoodTable } from "../../src/core/types";
 
@@ -117,5 +117,10 @@ describe("daily reference next to a supplement", () => {
     expect(dailyReference(nutrients.get("iron")!, { sex: "f", age: 30 })).toMatchObject({ intake: { amount: 16 } });
     expect(dailyReference(nutrients.get("iron")!, {})).toMatchObject({ bySex: { men: { amount: 11 }, women: { amount: 16 } } });
     expect(dailyReference(nutrients.get("vitamin_c")!, { sex: "m" }).upperLimit).toBeUndefined();
+  });
+
+  it("describes a meal as a protocol item by its foods and grams", () => {
+    expect(mealNote({ items: [{ foodId: "a", grams: 120.4 }, { foodId: "b", grams: 80 }] })).toBe("Meal: 2 foods, 200 g");
+    expect(mealNote({ items: [{ foodId: "a", grams: 50 }] })).toBe("Meal: 1 food, 50 g");
   });
 });

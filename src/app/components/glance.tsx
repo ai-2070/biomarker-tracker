@@ -42,7 +42,7 @@ export function Glance({ rows, caption }: { rows: { id: string; label: string; r
 }
 
 /** The app routes on the hash, so in-page links scroll by hand instead of changing it. */
-function jump(e: React.MouseEvent, id: string) {
+export function jump(e: React.MouseEvent, id: string) {
   e.preventDefault();
   const el = document.getElementById(id);
   if (!el) return;

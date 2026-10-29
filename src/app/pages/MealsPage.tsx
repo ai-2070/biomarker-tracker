@@ -74,7 +74,7 @@ export function MealsPage() {
               <p className="text-ink-2">No meals yet. Start a new one, ask Brain to turn a recipe into one, or save a copy of an example below.</p>
             </Card>
           ) : (
-            <ul className="grid gap-3 sm:grid-cols-2">
+            <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {meals.map((m) => (
                 <li key={m.id}>
                   <MealCard to={href({ name: "meal", id: m.id })} name={m.name} items={m.items} db={db} />
@@ -90,7 +90,7 @@ export function MealsPage() {
               <h2 className="font-serif text-2xl font-normal">Examples for your results</h2>
               <p className="text-ink-2">Meals with foods that research links to your out-of-range results. Examples, not what you should eat.</p>
             </div>
-            <ul className="grid gap-3 sm:grid-cols-2">
+            <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {mine.map((m) => (
                 <li key={m.id}>
                   <MealCard
@@ -114,7 +114,7 @@ export function MealsPage() {
             <h2 className="font-serif text-2xl font-normal">{mine.length ? "More example meals" : "Example meals"}</h2>
             <p className="text-ink-2">Each one shows foods from an evidence lever on a marker page. Open one to see its numbers, or save a copy to change it.</p>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {rest.map((m) => (
               <li key={m.id}>
                 <MealCard to={href({ name: "example-meal", id: m.id })} name={m.name} items={m.items} db={db} />

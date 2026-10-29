@@ -301,7 +301,7 @@ const FIELD_LABEL: Record<BodyField, string> = {
 };
 
 /** One day's measurements. Every field is optional; empty ones are skipped. */
-export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
+export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: number) => void; cancel?: boolean }) {
   const displayUnits = useDisplayUnits();
   const today = todayIso();
   const [date, setDate] = useState(today);
@@ -446,9 +446,11 @@ export function BodyEntryForm({ onDone }: { onDone: (saved: number) => void }) {
         <Button type="submit" disabled={saving}>
           Save
         </Button>
-        <Button variant="quiet" onClick={() => onDone(0)}>
-          Cancel
-        </Button>
+        {cancel && (
+          <Button variant="quiet" onClick={() => onDone(0)}>
+            Cancel
+          </Button>
+        )}
       </div>
     </form>
   );

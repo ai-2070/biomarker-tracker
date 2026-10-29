@@ -26,6 +26,8 @@ export interface PlanItem {
   category: PlanCategory;
   when: PlanTime;
   note?: string;
+  /** One of the person's saved meals, when the item is that meal. Local only: dropped when shared. */
+  mealId?: string;
 }
 
 export interface Plan {
@@ -55,6 +57,7 @@ export function itemErrors(v: unknown): string[] {
   if (!CATEGORIES.includes(v.category as PlanCategory)) errs.push("item type is invalid");
   if (!PLAN_TIMES.includes(v.when as PlanTime)) errs.push("item time is invalid");
   if (!optStr(v.note, 300)) errs.push("notes must be under 300 characters");
+  if (!optStr(v.mealId, 64)) errs.push("the meal link is damaged");
   return errs;
 }
 
@@ -91,7 +94,8 @@ export function planToFile(p: Plan): string {
       name: p.name,
       ...(p.description ? { description: p.description } : {}),
       ...(p.source ? { source: p.source } : {}),
-      items: p.items.map(({ id: _id, ...rest }) => rest),
+      // Meal links point at this person's own meals, so they stay here.
+      items: p.items.map(({ id: _id, mealId: _meal, ...rest }) => rest),
     },
     null,
     2,
@@ -108,7 +112,13 @@ export function planFromFile(text: string, newId: () => string, now: string): { 
   }
   if (!isObj(json) || json.kind !== FILE_KIND) return { ok: false, error: "This isn't a protocol file from this app." };
   if (typeof json.version !== "number" || json.version > 1) return { ok: false, error: "This protocol file was made by a newer version of the app." };
-  const items = Array.isArray(json.items) ? json.items.map((i) => (isObj(i) ? { ...i, id: newId() } : i)) : json.items;
+  const items = Array.isArray(json.items)
+    ? json.items.map((i) => {
+        if (!isObj(i)) return i;
+        const { mealId: _meal, ...rest } = i;
+        return { ...rest, id: newId() };
+      })
+    : json.items;
   const plan = {
     id: newId(),
     name: typeof json.name === "string" ? json.name.trim() : json.name,

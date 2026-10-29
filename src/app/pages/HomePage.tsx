@@ -168,7 +168,7 @@ function BodySummary({ d }: { d: Dashboard }) {
       {d.markers.length === 0 ? (
         <p className="text-sm text-ink-2">
           Nothing measured yet. Weight, waist, blood pressure and resting heart rate, from home or the doctor's.{" "}
-          <a href={href({ name: "body", add: true })} className="font-medium text-accent">
+          <a href={href({ name: "add", kind: "body" })} className="font-medium text-accent">
             Add measurements
           </a>
         </p>
@@ -177,7 +177,7 @@ function BodySummary({ d }: { d: Dashboard }) {
           <BodySummaryList markers={d.markers} />
           <p className="mt-auto text-sm text-ink-2">
             Last measured {formatDate(d.lastTest!)} ·{" "}
-            <a href={href({ name: "body", add: true })} className="text-accent">
+            <a href={href({ name: "add", kind: "body" })} className="text-accent">
               add measurements
             </a>
           </p>
@@ -204,7 +204,7 @@ function Welcome({ name }: { name?: string }) {
           <span className="font-medium">Type in a blood result</span>
           <span className="text-sm text-ink-2">One value at a time from a paper report.</span>
         </a>
-        <a href={href({ name: "body", add: true })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
+        <a href={href({ name: "add", kind: "body" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
           <span className="font-medium">Add body measurements</span>
           <span className="text-sm text-ink-2">Weight, waist, blood pressure, resting heart rate.</span>
         </a>

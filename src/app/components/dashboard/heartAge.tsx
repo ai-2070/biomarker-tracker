@@ -81,7 +81,7 @@ function HeartAgeBody({ d }: { d: HeartAgeData }) {
           <LinkButton variant="secondary" href={href({ name: "data" })}>
             Settings → Your data
           </LinkButton>
-          <LinkButton variant="secondary" href={href({ name: "body", add: true })}>
+          <LinkButton variant="secondary" href={href({ name: "add", kind: "body" })}>
             Add measurements
           </LinkButton>
         </div>

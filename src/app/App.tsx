@@ -103,7 +103,8 @@ export function App() {
   const ctx: ProfilesState = { mode: b.mode, profiles: b.profiles, active: b.profiles.find((p) => p.id === b.activeId) ?? null, refresh };
   return (
     <ProfilesContext.Provider value={ctx}>
-      <AppShell route={route} wide={route.name === "dashboard" || route.name === "blood" || route.name === "body"}>
+      {/* Every page uses the dashboard width; pages keep text at a readable measure and use the room for side columns. */}
+      <AppShell route={route} wide>
         <Suspense fallback={<p className="text-ink-2">Loading…</p>}>
           {/* Keyed by page, so each page fades in when you go to it. */}
           <div key={pageKey(route)} className="animate-enter">
@@ -122,7 +123,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
     case "blood":
       return <BloodDashboardPage />;
     case "body":
-      return <BodyPage key={route.add ? "add" : ""} add={route.add} />;
+      return <BodyPage />;
     case "device-import":
       return <DeviceImportPage />;
     case "soon":
@@ -131,7 +132,7 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <Overview show={route.show} />;
     case "add":
       // Key resets the form when arriving from a different marker page.
-      return <AddResult key={route.marker ?? ""} initialMarker={route.marker} />;
+      return <AddResult key={`${route.kind ?? ""}|${route.marker ?? ""}`} initialMarker={route.marker} initialKind={route.kind} />;
     case "marker":
       // Keyed so switching markers never shows the previous marker's results while loading.
       return <MarkerPage key={route.id} id={route.id} />;

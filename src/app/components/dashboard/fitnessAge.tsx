@@ -68,7 +68,7 @@ export function FitnessAgeSection({ ms, profile }: { ms: Measurement[]; profile:
             <LinkButton variant="secondary" href={href({ name: "device-import" })}>
               Import from a device
             </LinkButton>
-            <LinkButton variant="secondary" href={href({ name: "body", add: true })}>
+            <LinkButton variant="secondary" href={href({ name: "add", kind: "body" })}>
               Add measurements
             </LinkButton>
           </div>

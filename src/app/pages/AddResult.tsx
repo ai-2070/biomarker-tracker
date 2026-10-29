@@ -9,9 +9,10 @@ import { addMeasurement } from "../../db/db";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { CriticalBanner } from "../components/CriticalBanner";
-import { BodyIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
+import { BodyEntryForm } from "../components/dashboard/body";
+import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, FlagBadge, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { formatDate, showMeasurement } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
@@ -26,11 +27,18 @@ interface Saved {
 
 const WAYS = [
   { title: "Import a lab report", text: "A PDF or a photo of your report: all results at once. Photos are read on this device.", to: { name: "import" } as const, icon: FileIcon },
-  { title: "Body measurements", text: "Weight, waist, blood pressure, heart rate, sleep, blood glucose and more, typed in by day.", to: { name: "body", add: true } as const, icon: BodyIcon },
   { title: "From a device or app", text: "Export files from Apple Health, Garmin, Fitbit, Oura, Samsung, Withings and others.", to: { name: "device-import" } as const, icon: PhoneSyncIcon },
 ];
 
-export function AddResult({ initialMarker }: { initialMarker?: string }) {
+type Kind = "blood" | "body";
+
+const KINDS: { id: Kind; label: string; icon: typeof BodyIcon }[] = [
+  { id: "blood", label: "Blood test result", icon: DropIcon },
+  { id: "body", label: "Body measurements", icon: BodyIcon },
+];
+
+export function AddResult({ initialMarker, initialKind }: { initialMarker?: string; initialKind?: "body" }) {
+  const [kind, setKind] = useState<Kind>(initialKind ?? (initialMarker && BIOMARKER_MAP.get(initialMarker)?.category === "Body" ? "body" : "blood"));
   const profile = useProfile();
   const today = todayIso();
   const startMarker = initialMarker && BIOMARKER_MAP.has(initialMarker) ? initialMarker : null;
@@ -114,12 +122,12 @@ export function AddResult({ initialMarker }: { initialMarker?: string }) {
   return (
     <>
       <CriticalBanner items={critical} />
-      <PageTitle sub="Blood test results, body measurements, or files from a watch or health app. You check everything before it's saved.">
+      <PageTitle sub="Blood test results, body measurements like weight and blood pressure, or files from a watch or health app. You check everything before it's saved.">
         Add data
       </PageTitle>
 
-      {/* The other ways in; typing one blood test result is the form below. */}
-      <ul className="mb-6 grid gap-3 sm:grid-cols-3">
+      {/* Files first: they bring many values at once. Typing values in is below. */}
+      <ul className="mb-8 grid gap-3 sm:grid-cols-2">
         {WAYS.map((w) => (
           <li key={w.title}>
             <a
@@ -138,8 +146,35 @@ export function AddResult({ initialMarker }: { initialMarker?: string }) {
         ))}
       </ul>
 
-      <h2 className="mb-1 font-serif text-2xl font-normal">Type in a blood test result</h2>
-      <p className="mb-4 text-ink-2">Copy one value from your lab report. You can add several results from the same report one after another.</p>
+      <div className="mb-4 flex flex-col items-start gap-3">
+        <h2 className="font-serif text-2xl font-normal">Type it in</h2>
+        <div role="tablist" aria-label="What to add" className="flex flex-wrap gap-1 rounded-xl border border-line bg-sunken p-1">
+          {KINDS.map((k) => (
+            <button
+              key={k.id}
+              id={`add-tab-${k.id}`}
+              role="tab"
+              type="button"
+              aria-selected={kind === k.id}
+              aria-controls={`add-panel-${k.id}`}
+              onClick={() => setKind(k.id)}
+              className={cx(
+                "flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm transition-colors duration-150 sm:min-h-9",
+                kind === k.id ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink",
+              )}
+            >
+              <k.icon width={16} height={16} />
+              {k.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {kind === "body" ? (
+        <BodyPanel />
+      ) : (
+      <div id="add-panel-blood" role="tabpanel" aria-labelledby="add-tab-blood">
+      <p className="mb-4 max-w-3xl text-ink-2">Copy one value from your lab report. You can add several results from the same report one after another.</p>
 
       {/* minmax(0, 1fr) lets long marker names truncate instead of widening the page. */}
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
@@ -311,6 +346,36 @@ export function AddResult({ initialMarker }: { initialMarker?: string }) {
           )}
         </aside>
       </div>
+      </div>
+      )}
     </>
+  );
+}
+
+/** Body measurements for one day: the same form as on the Body page. */
+function BodyPanel() {
+  const [saved, setSaved] = useState(0);
+  const [round, setRound] = useState(0);
+  return (
+    <div id="add-panel-body" role="tabpanel" aria-labelledby="add-tab-body" className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <Card>
+        <p className="mb-4 text-ink-2">Weight, waist, blood pressure, heart rate, sleep, blood glucose and more, for one day.</p>
+        <BodyEntryForm
+          key={round}
+          cancel={false}
+          onDone={(n) => {
+            setSaved((s) => s + n);
+            setRound((r) => r + 1);
+          }}
+        />
+      </Card>
+      <aside aria-live="polite">
+        {saved > 0 && (
+          <Notice role="status" title={`Saved ${saved} ${saved === 1 ? "measurement" : "measurements"}`}>
+            <a href={href({ name: "body" })}>See them on Body</a>, or add another day.
+          </Notice>
+        )}
+      </aside>
+    </div>
   );
 }

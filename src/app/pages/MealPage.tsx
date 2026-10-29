@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { todayIso } from "../../core/dates";
-import { MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealTotals, mealWeight, saltFromSodium, searchFoods, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
+import { MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, searchFoods, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { PLAN_TIMES, type PlanTime } from "../../core/plans";
 import { formatValue } from "../../core/units";
@@ -351,7 +351,7 @@ function Manage({ meal }: { meal: Meal }) {
             disabled={!plan || meal.items.length === 0}
             onClick={() => {
               if (!plan) return;
-              void savePlan({ ...plan, items: [...plan.items, { id: newId(), label: meal.name.slice(0, 80), category: "diet", when, note: `Meal: ${meal.items.length} foods, ${fmt(mealWeight(meal.items))} g` }] }).then(() =>
+              void savePlan({ ...plan, items: [...plan.items, { id: newId(), label: meal.name.slice(0, 80), category: "diet", when, note: mealNote(meal), mealId: meal.id }] }).then(() =>
                 setAdded(plan.id),
               );
             }}

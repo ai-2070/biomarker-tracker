@@ -256,3 +256,9 @@ export function dailyReference(n: NutrientDef, person: { sex?: Sex; age?: number
   const ul = n.reference.upperLimit;
   return { ...(intake ? { intake } : {}), ...(bySex ? { bySex } : {}), ...(ul ? { upperLimit: { amount: ul.amount, unit: ul.unit, note: ul.note } } : {}) };
 }
+
+/** The note a meal gets as a protocol item: how many foods and grams, e.g. "Meal: 4 foods, 350 g". */
+export function mealNote(meal: Pick<Meal, "items">): string {
+  const g = mealWeight(meal.items);
+  return `Meal: ${meal.items.length} ${meal.items.length === 1 ? "food" : "foods"}, ${Math.round(g)} g`;
+}

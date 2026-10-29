@@ -14,7 +14,7 @@ import { Fold, FoldGroup, Row, Rows } from "../components/disclosure";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, LinkButton, Notice } from "../components/ui";
 import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement, showRange, showValue } from "../format";
-import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useProfile, useProtocols } from "../hooks";
+import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useMediaQuery, useProfile, useProtocols } from "../hooks";
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
 import type { ProtocolEntry } from "../../core/types";
@@ -28,6 +28,8 @@ export function MarkerPage({ id }: { id: string }) {
   const profile = useProfile();
   const units = useDisplayUnits();
   const protocols = useProtocols() ?? [];
+  // On wide screens the results list sits open beside the explanation.
+  const wide = useMediaQuery("(min-width: 64rem)");
 
   if (!def) return <NotFound />;
   const unit = displayUnitFor(def, units[def.id]);
@@ -62,7 +64,7 @@ export function MarkerPage({ id }: { id: string }) {
           {listUnits(def).length > 1 && (
             <UnitSelect compact label="Show in" units={listUnits(def)} value={unit} onChange={(u) => void setDisplayUnit(def.id, u)} />
           )}
-          <LinkButton href={href(def.category === "Body" ? { name: "body", add: true } : { name: "add", marker: def.id })}>{def.category === "Body" ? "Add measurements" : "Add result"}</LinkButton>
+          <LinkButton href={href(def.category === "Body" ? { name: "add", kind: "body" } : { name: "add", marker: def.id })}>{def.category === "Body" ? "Add measurements" : "Add result"}</LinkButton>
         </div>
       </div>
 
@@ -91,6 +93,7 @@ export function MarkerPage({ id }: { id: string }) {
                   latestFlag !== "unknown" && <FlagBadge flag={latestFlag} className="text-base" />
                 )}
               </div>
+              <div className="flex max-w-3xl flex-col gap-4 empty:hidden">
               {def.judgeAverageOfDays && (
                 <p className="text-ink-2">
                   {week
@@ -115,6 +118,7 @@ export function MarkerPage({ id }: { id: string }) {
                     : "One result outside the range is common and often harmless. It is still worth discussing with your doctor, especially if it is new, keeps changing, or you have symptoms."}
                 </Notice>
               )}
+              </div>
               <TrendChart key={def.id} def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} />
             </Card>
 
@@ -122,12 +126,20 @@ export function MarkerPage({ id }: { id: string }) {
         )}
 
         {/* Explanation, levers and research one tap away; levers open by themselves when the result is out of range. */}
-        <FoldGroup className="mt-2">
-          {measurements && measurements.length > 0 && (
-            <Fold title="All results" summary={`${measurements.length} ${measurements.length === 1 ? "result" : "results"}, newest first. Open one for its range, lab and what you were doing then.`}>
+        <div className="mt-2 grid items-start gap-x-10 gap-y-0 lg:grid-cols-[minmax(0,1fr)_24rem]">
+        {measurements && measurements.length > 0 && (
+          <FoldGroup className="max-lg:border-b-0 lg:col-start-2 lg:row-start-1">
+            <Fold
+              key={wide ? "wide" : "narrow"}
+              defaultOpen={wide}
+              title="All results"
+              summary={`${measurements.length} ${measurements.length === 1 ? "result" : "results"}, newest first. Open one for its range, lab and what you were doing then.`}
+            >
               <MeasurementList def={def} measurements={measurements} unit={unit} profile={profile} protocols={protocols} />
             </Fold>
-          )}
+          </FoldGroup>
+        )}
+        <FoldGroup className="lg:col-start-1 lg:row-start-1">
           <Fold title={`What is ${def.abbreviation ?? def.name}?`} summary={firstSentence(def.summary)}>
             <About def={def} unit={unit} profile={profile} range={range} />
           </Fold>
@@ -151,6 +163,7 @@ export function MarkerPage({ id }: { id: string }) {
             />
           </Fold>
         </FoldGroup>
+        </div>
       </div>
     </>
   );

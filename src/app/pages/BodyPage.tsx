@@ -20,13 +20,12 @@ import { href } from "../router";
 const FIGURED = new Set(["weight", "waist", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max"]);
 
 /** The body dashboard: weight, BMI, waist, blood pressure and resting heart rate over time. */
-export function BodyPage({ add }: { add?: boolean }) {
+export function BodyPage() {
   const all = useAllMeasurements();
   const protocols = useProtocols();
   const experiments = useExperiments();
   const profile = useProfile();
   const today = todayIso();
-  const [adding, setAdding] = useState(!!add);
   const [saved, setSaved] = useState(0);
   const body = useMemo(() => (all ? bodyOnly(all) : undefined), [all]);
   const d = useMemo(
@@ -40,10 +39,8 @@ export function BodyPage({ add }: { add?: boolean }) {
     <Card className="animate-enter">
       <h2 className="mb-4 font-serif text-2xl font-normal">Add measurements</h2>
       <BodyEntryForm
-        onDone={(n) => {
-          setAdding(false);
-          setSaved(n);
-        }}
+        cancel={false}
+        onDone={(n) => setSaved(n)}
       />
     </Card>
   );
@@ -64,11 +61,11 @@ export function BodyPage({ add }: { add?: boolean }) {
           <LinkButton variant="secondary" href={href({ name: "device-import" })}>
             Import from a device
           </LinkButton>
-          {!adding && !empty && (
-            <Button onClick={() => (setAdding(true), setSaved(0))}>
+          {!empty && (
+            <LinkButton href={href({ name: "add", kind: "body" })}>
               <PlusIcon />
               Add measurements
-            </Button>
+            </LinkButton>
           )}
         </div>
       </header>
@@ -79,7 +76,7 @@ export function BodyPage({ add }: { add?: boolean }) {
         </Notice>
       )}
       {profile.example && <ExampleBodyData have={new Set(body.map((m) => m.biomarkerId))} />}
-      {(adding || empty) && form}
+      {empty && form}
 
       {!empty && (
         <>

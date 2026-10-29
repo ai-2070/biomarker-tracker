@@ -1,11 +1,14 @@
+import { todayIso } from "../../core/dates";
 import { selectFoods } from "../../core/foods";
-import { interactionsFor, sortFindings, type FindingEffect, type NutrientDef, type NutrientFinding } from "../../core/nutrients";
+import { dailyReference } from "../../core/meals";
+import { ageAt } from "../../core/phenoageDraws";
+import { findingCounts, interactionsFor, sortFindings, type FindingEffect, type NutrientDef, type NutrientFinding } from "../../core/nutrients";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
 import { GradeBadge, StudyLink } from "../components/evidence";
-import { Glance, anchorId } from "../components/glance";
+import { Glance, anchorId, jump } from "../components/glance";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Card, FlagBadge, LinkButton, cx } from "../components/ui";
@@ -53,10 +56,13 @@ export function NutrientPage({ id }: { id: string }) {
       <div className="mb-5">
         <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind}</p>
         <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
-        {n.otherNames.length > 0 && <p className="mt-1 text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
+        {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
       </div>
 
-      <div className="flex flex-col gap-5">
+      {/* Wide screens: the cards at a readable width, key facts and jump links in a side column. Phones: cards only. */}
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,48rem)_18rem] lg:gap-10">
+      <Aside n={n} all={all ?? []} hasInteractions={n.interactions.length > 0 || n.cautions.length > 0} />
+      <div className="flex min-w-0 flex-col gap-5 lg:col-start-1 lg:row-start-1">
         {yours.length > 0 && (
           <div role="note" className="flex flex-col gap-2 rounded-xl border-2 border-warn/50 bg-warn-soft p-4">
             <p className="font-semibold">Talk to your doctor or pharmacist about {n.name.toLowerCase()}</p>
@@ -83,8 +89,10 @@ export function NutrientPage({ id }: { id: string }) {
           </div>
         </Card>
 
+        <span id="status" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <Status n={n} all={all ?? []} />
 
+        <span id="low-high" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <Card className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-3">
             <H2>Too little</H2>
@@ -98,6 +106,7 @@ export function NutrientPage({ id }: { id: string }) {
           </div>
         </Card>
 
+        <span id="trials" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <Findings
           prefix="trial"
           title="What trials of supplements found"
@@ -114,10 +123,11 @@ export function NutrientPage({ id }: { id: string }) {
           />
         )}
 
+        <span id="food" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <Foods n={n} safety={safety} />
 
         {n.forms.length > 0 && (
-          <Card className="flex flex-col gap-3">
+          <Card id="forms" className="flex scroll-mt-6 flex-col gap-3">
             <H2>Supplement forms</H2>
             <dl className="flex flex-col gap-3">
               {n.forms.map((f) => (
@@ -130,10 +140,11 @@ export function NutrientPage({ id }: { id: string }) {
           </Card>
         )}
 
+        <span id="reference" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <Reference n={n} />
 
         {(n.interactions.length > 0 || n.cautions.length > 0) && (
-          <Card className="flex flex-col gap-3">
+          <Card id="interactions" className="flex scroll-mt-6 flex-col gap-3">
             <H2>Interactions and cautions</H2>
             <SafetyNotices notes={notes.filter((x) => n.interactions.some((i) => i.safetyId === x.id))} />
             {n.interactions.length > 0 && (
@@ -168,6 +179,7 @@ export function NutrientPage({ id }: { id: string }) {
           </Card>
         )}
 
+        <span id="research" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
         <ResearchPanel
           name={n.name}
           terms={[n.name]}
@@ -191,7 +203,125 @@ export function NutrientPage({ id }: { id: string }) {
           </p>
         </Card>
       </div>
+      </div>
     </>
+  );
+}
+
+/** The side column on wide screens: your result, the EU values for a day, what trials found, and where things are. */
+function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<typeof groupByBiomarker>[0]; hasInteractions: boolean }) {
+  const profile = useProfile();
+  const units = useDisplayUnits();
+  const byMarker = groupByBiomarker(all);
+  const ref = dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
+  const counts = findingCounts(n);
+  const links = [
+    ["status", "How status is measured"],
+    ["low-high", "Too little, too much"],
+    ["trials", "What trials found"],
+    ["food", "Food sources"],
+    n.forms.length > 0 && ["forms", "Supplement forms"],
+    ["reference", "Reference intakes"],
+    hasInteractions && ["interactions", "Interactions and cautions"],
+    ["research", "Search research"],
+  ].filter((x): x is [string, string] => Boolean(x));
+  return (
+    <aside aria-label="Key facts" className="hidden lg:col-start-2 lg:row-start-1 lg:block">
+      <div className="sticky top-6 flex flex-col gap-5 text-sm">
+        {n.status.biomarkerIds.length > 0 && (
+          <section>
+            <h2 className="mb-1.5 text-xs font-medium text-ink-2">Your result</h2>
+            <ul className="flex flex-col gap-1.5">
+              {n.status.biomarkerIds.map((id) => {
+                const def = BIOMARKER_MAP.get(id);
+                if (!def) return null;
+                const ms = byMarker.get(id) ?? [];
+                const latest = ms.length ? computeTrend(ms)?.latest : undefined;
+                const flag = ms.length ? flagLatest(def, ms, profile) : undefined;
+                const unit = displayUnitFor(def, units[def.id]);
+                return (
+                  <li key={id}>
+                    <a href={href({ name: "marker", id })} className="block text-ink no-underline hover:underline">
+                      {def.abbreviation ?? def.name}
+                    </a>
+                    {latest ? (
+                      <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <span className="text-base tabular-nums">
+                          {showMeasurement(def, latest, unit)} {unit}
+                        </span>
+                        {flag && flag !== "unknown" && <FlagBadge flag={flag} />}
+                        <span className="text-ink-2">{formatDate(latest.date)}</span>
+                      </span>
+                    ) : (
+                      <span className="text-ink-2">No results yet</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
+
+        {(ref.intake || ref.bySex || ref.upperLimit || n.reference.noUpperLimit) && (
+          <section>
+            <h2 className="mb-1.5 text-xs font-medium text-ink-2">EU values for a day</h2>
+            <dl className="flex flex-col gap-1.5">
+              {ref.intake && (
+                <div>
+                  <dt className="text-ink-2">{ref.intake.type === "PRI" ? "Reference intake" : "Adequate intake"}, {lowerFirst(ref.intake.group)}</dt>
+                  <dd className="text-base tabular-nums">
+                    {formatValue(ref.intake.amount)} {ref.intake.unit}
+                  </dd>
+                </div>
+              )}
+              {ref.bySex && (
+                <div>
+                  <dt className="text-ink-2">Reference intake</dt>
+                  <dd className="tabular-nums">
+                    Men {formatValue(ref.bySex.men.amount)} {ref.bySex.men.unit}, women {formatValue(ref.bySex.women.amount)} {ref.bySex.women.unit}
+                  </dd>
+                </div>
+              )}
+              <div>
+                <dt className="text-ink-2">Upper limit</dt>
+                <dd className={cx(ref.upperLimit && "text-base tabular-nums")}>
+                  {ref.upperLimit ? `${formatValue(ref.upperLimit.amount)} ${ref.upperLimit.unit}` : "None set"}
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-1.5 text-xs text-ink-2">From food and supplements together. Population values, not a target or a dose for you.</p>
+          </section>
+        )}
+
+        {n.findings.length > 0 && (
+          <section>
+            <h2 className="mb-1.5 text-xs font-medium text-ink-2">Supplement trials, {n.findings.length} outcomes</h2>
+            <ul className="flex flex-wrap gap-1.5">
+              {(Object.keys(EFFECT) as FindingEffect[])
+                .filter((e) => counts[e] > 0)
+                .map((e) => (
+                  <li key={e} className={cx("rounded-full px-2 py-0.5 text-xs font-medium", EFFECT[e].className)}>
+                    {EFFECT[e].label} {counts[e]}
+                  </li>
+                ))}
+            </ul>
+          </section>
+        )}
+
+        <nav aria-label="On this page">
+          <h2 className="mb-1 text-xs font-medium text-ink-2">On this page</h2>
+          <ul className="flex flex-col border-l border-line">
+            {links.map(([id, label]) => (
+              <li key={id}>
+                <a href={`#${id}`} onClick={(e) => jump(e, id)} className="-ml-px block border-l border-transparent py-1 pl-3 text-ink-2 no-underline hover:border-ink hover:text-ink">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </aside>
   );
 }
 
