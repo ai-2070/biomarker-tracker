@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   activeOn,
+  habitTypesIn,
+  ofTypes,
   durationDays,
   isActiveOn,
   laneFor,
@@ -131,5 +133,22 @@ describe("safetyNotes", () => {
   });
   it("stays quiet for ordinary entries", () => {
     expect(safetyNotes(["Creatine 5 g", "Vitamin D 1000 IU", "Running 3x/week", "Mediterranean diet"])).toEqual([]);
+  });
+});
+
+describe("habit types on charts", () => {
+  const ps = [
+    { id: "a", label: "Walking", category: "lifestyle" as const, start: "2025-01-01" },
+    { id: "b", label: "Oats", category: "diet" as const, start: "2025-02-01" },
+    { id: "c", label: "D3", category: "supplement" as const, start: "2025-03-01" },
+  ];
+  it("lists the types present in the usual order", () => {
+    expect(habitTypesIn(ps)).toEqual(["supplement", "diet", "lifestyle"]);
+    expect(habitTypesIn([])).toEqual([]);
+  });
+  it("keeps only the chosen types, or all of them", () => {
+    expect(ofTypes(ps, ["diet"]).map((p) => p.id)).toEqual(["b"]);
+    expect(ofTypes(ps, null).map((p) => p.id)).toEqual(["a", "b", "c"]);
+    expect(ofTypes(ps, [])).toEqual([]);
   });
 });

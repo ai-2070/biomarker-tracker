@@ -1,12 +1,15 @@
 import { useMemo, useRef, useState } from "react";
 import { ageHistory, type AgeHistory, type AgePoint } from "../../../core/ageHistory";
 import { pointsForWindow } from "../../../core/chartSeries";
-import { dayNumber } from "../../../core/dates";
+import { dayNumber, todayIso } from "../../../core/dates";
 import { ageAt } from "../../../core/phenoageDraws";
+import { habitTypesIn, ofTypes, type ProtocolCategory } from "../../../core/protocols";
 import { niceTicks } from "../../../core/scale";
 import { timeTicks } from "../../../core/timeWindow";
 import type { Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { formatDate, formatYears } from "../../format";
+import { HabitTypes, Toggle, useChartPrefs } from "../chartHabits";
+import { ProtocolLanes } from "../ProtocolLanes";
 import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
 import { Card, cx } from "../ui";
 
@@ -81,11 +84,26 @@ export function AgesChart({ measurements, profile, protocols }: { measurements: 
     );
   }
   if (!SERIES.some((s) => history[s.id].length > 0)) return null;
-  return <AgesPlot history={history} birthMonth={profile.birthMonth} />;
+  return <AgesPlot history={history} birthMonth={profile.birthMonth} protocols={protocols} />;
 }
 
+interface HabitPrefs {
+  habits: boolean;
+  /** Which types of habit to show; null = every type. */
+  habitTypes: ProtocolCategory[] | null;
+}
+// Off until asked for, like the marker charts.
+const HABIT_PREFS: HabitPrefs = { habits: false, habitTypes: null };
+
 /** The chart itself: mounted only when there is something to draw, so it can measure its width. */
-function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: string }) {
+function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; birthMonth: string; protocols: readonly ProtocolEntry[] }) {
+  const today = todayIso();
+  // Habits under the chart, by type ("only supplements"), and one habit's period shaded on it.
+  const [prefs, setPrefs] = useChartPrefs<HabitPrefs>("chart:ages", HABIT_PREFS);
+  const [habit, setHabit] = useState<string | null>(null);
+  const habitTypes = useMemo(() => habitTypesIn(protocols), [protocols]);
+  const shownHabits = useMemo(() => ofTypes(protocols, prefs.habitTypes), [protocols, prefs.habitTypes]);
+  const shaded = habit && prefs.habits ? shownHabits.find((p) => p.id === habit) : undefined;
   const [shown, setShown] = useState<Record<SeriesId | "calendar", boolean>>({ blood: true, heart: true, fitness: true, calendar: true });
   const [mode, setMode] = useState<"ages" | "difference">("ages");
   const [hover, setHover] = useState<{ s: SeriesId; p: AgePoint } | null>(null);
@@ -215,6 +233,17 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
           <Key key={s.id} s={s} on={shown[s.id]} onChange={(on) => setShown({ ...shown, [s.id]: on })} />
         ))}
         <Key s={null} on={shown.calendar} onChange={(on) => setShown({ ...shown, calendar: on })} />
+        {protocols.length > 0 && (
+          <Toggle
+            on={prefs.habits}
+            onChange={(on) => {
+              setPrefs({ habits: on });
+              if (!on) setHabit(null);
+            }}
+          >
+            Habits
+          </Toggle>
+        )}
       </div>
 
       <div
@@ -250,6 +279,19 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
             <line x1={PAD_L} x2={PAD_L + plotW} y1={plotBottom} y2={plotBottom} className="stroke-line-strong" strokeWidth={1} />
 
             <g clipPath="url(#ages-plot)">
+              {shaded && (
+                <rect
+                  x={x(Math.max(dayNumber(shaded.start), v.from))}
+                  y={TOP - 6}
+                  width={Math.max(x(Math.min(dayNumber(shaded.end ?? today), v.to)) - x(Math.max(dayNumber(shaded.start), v.from)), 1)}
+                  height={plotBottom - TOP + 6}
+                  fill="var(--color-ink-2)"
+                  fillOpacity={0.08}
+                  stroke="var(--color-ink-2)"
+                  strokeOpacity={0.4}
+                  strokeDasharray="4 4"
+                />
+              )}
               {sel && (
                 <rect
                   x={x(Math.max(sel.from, v.from))}
@@ -327,6 +369,11 @@ function AgesPlot({ history, birthMonth }: { history: AgeHistory; birthMonth: st
       </div>
 
       {t.zoomed && <Overview t={t} lines={visible.map(({ s }) => ({ points: history[s.id].map((p) => ({ day: dayNumber(p.date), value: value(p) })), color: s.color }))} />}
+
+      {prefs.habits && habitTypes.length > 1 && <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />}
+      {prefs.habits && (
+        <ProtocolLanes protocols={shownHabits} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} inset={{ left: PAD_L, right: PAD_R }} />
+      )}
 
       <SelectionBar t={t}>
         {selChanges.length ? (
