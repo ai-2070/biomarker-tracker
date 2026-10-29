@@ -101,3 +101,12 @@ export function phenoAgeFromLogHazard(xb: number): number {
 export function phenoAge(i: PhenoAgeInputs): number {
   return phenoAgeFromLogHazard(phenoAgeLogHazard(i));
 }
+
+/**
+ * The 10-year (120-month) risk of dying that a PhenoAge stands for, from the same Gompertz model: the
+ * inverse of phenoAgeFromLogHazard, then mortalityScore. Used to show a PhenoAge as the model's own risk.
+ */
+export function mortalityFromPhenoAge(phenoAgeYears: number): number {
+  const xb = (phenoAgeYears - AGE_INTERCEPT) * AGE_RATE - Math.log((AGE_SCALE * Math.expm1(120 * GAMMA)) / GAMMA);
+  return mortalityScore(xb);
+}

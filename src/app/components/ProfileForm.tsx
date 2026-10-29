@@ -1,4 +1,5 @@
 import { Field } from "@base-ui/react/field";
+import { LIFE_TABLE_COUNTRIES } from "../../core/lifeTable";
 import type { Diet, Profile, Sex, Smoking } from "../../core/types";
 import { BirthMonthField } from "./BirthMonthField";
 import { ChoiceGroup } from "./ChoiceGroup";
@@ -7,6 +8,16 @@ import { helpStyles, inputStyles, labelStyles } from "./ui";
 
 type SexChoice = Sex | "unset";
 type SmokingChoice = Smoking | "unset";
+
+/** Countries with official life tables (EU and EFTA), for "Best before". */
+const COUNTRIES: { value: string; label: string }[] = [
+  { value: "unset", label: "Prefer not to say" },
+  ...Object.entries(LIFE_TABLE_COUNTRIES)
+    .filter(([code]) => code !== "EU27_2020")
+    .sort((a, b) => a[1].localeCompare(b[1]))
+    .map(([value, label]) => ({ value, label })),
+  { value: "EU27_2020", label: "Somewhere else in the EU (EU average)" },
+];
 
 const DIETS: { value: Diet | "unset"; label: string }[] = [
   { value: "unset", label: "Prefer not to say" },
@@ -74,6 +85,13 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
           className={`${inputStyles} max-w-40`}
         />
       </Field.Root>
+      <SimpleSelect
+        label="Country you live in"
+        options={COUNTRIES}
+        value={value.country ?? "unset"}
+        onChange={(v) => onChange(withField(value, "country", v === "unset" ? undefined : v))}
+        className="sm:max-w-sm"
+      />
       <SimpleSelect label="Diet" options={DIETS} value={value.diet ?? "unset"} onChange={(v) => onChange(withField(value, "diet", v === "unset" ? undefined : (v as Diet)))} className="sm:max-w-sm" />
       <ChoiceGroup<SmokingChoice>
         label="Smoking"

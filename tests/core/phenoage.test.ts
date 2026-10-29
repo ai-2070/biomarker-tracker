@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  mortalityFromPhenoAge,
   mortalityScore,
   phenoAge,
   phenoAgeFromLogHazard,
@@ -112,5 +113,13 @@ describe("phenoAge", () => {
   it("refuses CRP of zero or below", () => {
     expect(() => phenoAge({ ...typical, crp_hs: 0 })).toThrow(RangeError);
     expect(() => phenoAge({ ...typical, crp_hs: -1 })).toThrow(RangeError);
+  });
+});
+
+describe("the 10-year risk a PhenoAge stands for", () => {
+  it("is the model's own mortality score, recovered from the PhenoAge", () => {
+    for (const xb of [-12, -9, -6]) expect(mortalityFromPhenoAge(phenoAgeFromLogHazard(xb))).toBeCloseTo(mortalityScore(xb), 12);
+    // Older PhenoAge, higher risk.
+    expect(mortalityFromPhenoAge(60)).toBeGreaterThan(mortalityFromPhenoAge(40));
   });
 });

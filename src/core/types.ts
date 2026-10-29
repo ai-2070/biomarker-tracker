@@ -223,6 +223,8 @@ export interface Profile {
   /** "YYYY-MM". Used for age (PhenoAge, the assistant). The assistant gets the age, never the month. */
   birthMonth?: string;
   heightCm?: number;
+  /** Where the person lives, as Eurostat writes it ("HU", "DE", "EL"): picks the life table for "Best before". */
+  country?: string;
   diet?: Diet;
   smoking?: Smoking;
   /** Free text, e.g. "type 2 diabetes, hypothyroidism". Also checked by safetyNotes(). */

@@ -23,6 +23,8 @@ import { dailyReference, mealTotals, searchFoods, validateMeal, type Meal } from
 import { findMarker, findNutrient, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 import { phenoAgePace } from "../src/core/agePace";
+import { bestBeforeMoments, bestBeforeWithShift, phenoAgeShift, tableFor } from "../src/core/lifeTable";
+import { lifeTables } from "./knowledge";
 
 export interface HealthSnapshot {
   measurements: Measurement[];
@@ -88,6 +90,7 @@ export function personOf(s: HealthSnapshot) {
     ...(p.birthMonth ? { age: Math.floor(ageAt(p.birthMonth, todayIso())) } : {}),
     ...(p.sex ? { sex: p.sex === "f" ? "female" : "male" } : {}),
     ...(p.heightCm ? { heightCm: p.heightCm } : {}),
+    ...(p.country ? { country: p.country } : {}),
     ...(p.diet ? { diet: p.diet } : {}),
     ...(p.smoking ? { smoking: p.smoking } : {}),
     ...(p.conditions ? { conditions: p.conditions } : {}),
@@ -218,6 +221,32 @@ export function biologicalAge(s: HealthSnapshot) {
           about: "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
         }
       : "No DunedinPACE result recorded (it needs a DNA methylation test, not a routine blood test).",
+    bestBefore: bestBeforeFor(s, sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined).map((d) => ({ date: d.date, age: d.age!, phenoAge: d.phenoAge! }))),
+  };
+}
+
+/** The app's "Best before" figures (Biological age page), computed the same way, so the model reports these instead of guessing. */
+function bestBeforeFor(s: HealthSnapshot, draws: { date: string; age: number; phenoAge: number }[]) {
+  const p = s.profile;
+  if (!p.birthMonth) return "Needs the person's month and year of birth.";
+  const file = lifeTables();
+  const found = file ? tableFor(file, p.country, p.sex) : undefined;
+  if (!found) return "Needs the country the person lives in (Settings → Your data), for its life table.";
+  const today = todayIso();
+  const shift = phenoAgeShift(draws);
+  const plain = bestBeforeMoments(found.table, p.birthMonth, today);
+  const mine = shift ? bestBeforeWithShift(found.table, p.birthMonth, today, shift.shift) : undefined;
+  const head = mine ?? plain;
+  const d = (ms: number) => new Date(ms).toISOString().slice(0, 10);
+  return {
+    medianDate: d(head.medianAt),
+    aQuarterDieBefore: d(head.quarterAt),
+    aQuarterLivePast: d(head.threeQuartersAt),
+    averageRemainingYears: Math.round(head.expectancy * 10) / 10,
+    ...(mine && shift ? { comparedWith: `people aged ${Math.round(mine.comparedAge * 10) / 10} (PhenoAge ${Math.round(shift.shift * 10) / 10} years from age, average of ${shift.tests} tests)`, averagePersonMedianDate: d(plain.medianAt) } : { comparedWith: "people of the same age" }),
+    lifeTable: `Eurostat ${found.name} ${found.year}, ${found.sex === "f" ? "women" : found.sex === "m" ? "men" : "both sexes"}`,
+    about:
+      "A population figure, not a prediction of this person's death: half of the people compared with live past the median date. Read at PhenoAge when blood tests allow (Liu et al. 2018, PMID 30596641: PhenoAge is the age whose average mortality risk matches the person's), assuming the difference stays the same. Period life table. Other risks (smoking, fitness, heart risk) are not added in, because they overlap. Never say it is when they will die.",
   };
 }
 
