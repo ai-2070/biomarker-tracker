@@ -553,3 +553,187 @@ Three fresh reviewers retraced persistence/process lifetimes, clinical/AI safety
 | Total | 12 | 49 | 1 | 62 |
 
 Prioritize cross-person data corruption/disclosure and deletion resurrection (**R1-001, R1-014, R1-029, R2-001**), critical-result safety bypasses (**R1-019, R1-020, R1-038, R1-051**), and data durability/import loss (**R1-002–R1-004, R1-007**). Each finding above includes its own bounded fix direction; no remediation was implemented during this review.
+
+## Round 3 — validation, aggregation and lifecycle boundaries
+
+This pass checks candidates against the first 62 findings and appends only distinct root causes. Earlier verification receipts and triage totals describe their original rounds; the cumulative totals for this pass appear at the end of Round 3. No application fixes are included.
+
+### R3-001 — P2: Backup validation accepts experiment intervals that crash the dashboard after restore
+
+- **Location:** `src/core/backup.ts:83–95`; consumer at `src/core/dashboard.ts:120–123`.
+- **Trigger:** Restore an otherwise valid JSON/ZIP profile containing an active experiment with a finite but out-of-domain `retestAfterDays`, such as `1e308`.
+- **Defect/impact:** Backup validation checks only finiteness, while the ordinary experiment validator requires an integer between 7 and 730. The imported value reaches `retestDate()`, whose `toISOString()` throws for the overflowing date. Every dashboard calls this for active experiments, so an import reported as valid can render the main application unusable instead of rejecting the damaged experiment. Negative/zero intervals also bypass the normal scheduling contract.
+- **Verification — executed:** For the same synthetic experiment, `parseBackup()` returned `ok:true` and `validateExperiment()` returned `ok:false`. Passing the accepted backup's arrays to actual `buildDashboard()` threw `RangeError: Invalid Date`.
+- **Fix direction:** Reuse the existing experiment interval/domain invariants at backup/profile/snapshot boundaries, and reject invalid objects before persisting them.
+
+### R3-002 — P2: Thousands-separated CSV step counts become plausible fractional counts
+
+- **Location:** `src/core/importers/deviceFiles.ts:402–405`; downstream tally rounding at `:627`.
+- **Trigger:** Import a valid quoted CSV cell containing `8,120` daily steps.
+- **Defect/impact:** The CSV reader correctly preserves the quoted cell, but numeric parsing always interprets its single comma as a decimal separator. The value becomes 8.12 and is rounded to 8.1 steps without being marked impossible. The review/save path therefore persists a roughly thousand-fold undercount rather than reading 8,120 or asking about an ambiguous format.
+- **Verification — executed:** `readTable()` on `Date,Steps` plus a quoted `8,120` cell returned `{"field":"steps","unit":"steps","readings":[{"date":"2026-10-01","value":8.12}]}`. `dailyAverages()` retained a daily value of `8.1`, with `dropped:0`.
+- **Fix direction:** Parse grouped numeric formats with field/locale context; integer count fields must not silently interpret a grouping separator as a fractional count. Preserve decimal-comma support for continuous measurements.
+
+### R3-003 — P2: JSON imports discard every field first encountered after record 500
+
+- **Location:** `src/core/importers/deviceFiles.ts:148–149`.
+- **Trigger:** A heterogeneous JSON export contains 500 heart-rate records followed by weight or another measurement using additional keys.
+- **Defect/impact:** All records are flattened, but the header union is derived from only the first 500 rows. Mapping every later row through that restricted schema erases later fields before column recognition. Those measurements do not reach review, even though their names and values are supported.
+- **Verification — executed:** Passed 500 `{date, restingHeartRate}` objects followed by `{date, weight:70}` through `jsonTable()` and `readTable()`. Headers were only `["date","resting Heart Rate"]`; the only recognized field was `"resting_hr"`. The later weight field disappeared.
+- **Fix direction:** Build the union of keys across all flattened records, preferably during the existing flattening pass; do not silently sample away the schema of later record types.
+
+### R3-004 — P2: XML-escaped Apple glucose units are not decoded and all affected readings are dropped
+
+- **Location:** `src/core/importers/deviceFiles.ts:501–503,533–535`.
+- **Trigger:** An Apple-style glucose record uses the explicitly supported special unit `mmol<180.1558800000541>/L`, encoded correctly in XML as `mmol&lt;180.1558800000541&gt;/L`.
+- **Defect/impact:** Attribute extraction returns XML entity text unchanged, while the unit map contains only the decoded spelling. The canonical-unit lookup fails; the tally drops the otherwise valid glucose value as impossible, and the page removes the resulting empty series.
+- **Verification — executed:** Parsed a synthetic, properly entity-encoded XML record for glucose 5.4. `appleRecords()` returned the literal encoded unit; the same unit-matching/tally path used by the page produced `dropped:1`, `days:[]`. A real Apple account export was not used.
+- **Fix direction:** Decode XML attribute entities before unit lookup and source-name handling, or use an XML-aware extraction strategy that preserves streaming.
+
+### R3-005 — P2: Recognized “Active zone minutes” screenshots are rejected by the exclusion filter
+
+- **Location:** `src/core/importers/screenshot.ts:27,32,108–109`.
+- **Trigger:** Import screenshot text such as `Active zone minutes 42 min`.
+- **Defect/impact:** The label matcher explicitly supports active-zone minutes, but the later blanket `zone` exclusion rejects the entire line. A supported activity reading disappears from review.
+- **Verification — executed:** That exact text produced `rows:[]`; otherwise identical `Active minutes 42 min` produced an `active_minutes` row with value 42 and no problems.
+- **Fix direction:** Distinguish heart-rate zones/goals from the supported active-zone-minute metric instead of excluding every occurrence of “zone.”
+
+### R3-006 — P2: Quoted header punctuation makes delimiter detection reject valid CSV measurements
+
+- **Location:** `src/core/importers/deviceFiles.ts:18–20`.
+- **Trigger:** A semicolon-delimited CSV has header `Date;"Weight, kg"` and row `2026-10-01;70`.
+- **Defect/impact:** Delimiter detection counts commas inside quoted header text. A tie incorrectly selects comma, although the real separator is semicolon. The resulting table has no importable weight column, so valid measurements disappear.
+- **Verification — executed:** `parseCsv()` produced `[["Date;Weight, kg"],["2026-10-01;70"]]`; the downstream `readTable()` result had `columns:[]`. Correct quote-aware separation would yield Date and Weight columns.
+- **Fix direction:** Count only separators outside quotes when detecting the dialect, and avoid committing to a delimiter based on quoted punctuation.
+
+### R3-007 — P2: Starting a protocol twice leaves habits that Stop can no longer end
+
+- **Location:** `src/db/db.ts:59–67`; UI action at `src/app/pages/PlanPage.tsx:405–407`.
+- **Trigger:** Invoke Start twice before the first operation completes, including rapid activation of the unguarded button or concurrent tabs.
+- **Defect/impact:** Both calls use the same inactive plan object and create habits without checking current stored active state inside the transaction. The second overwrites `active.habitIds`; stopping the protocol ends only the second set, leaving duplicate habits ongoing in charts and safety inputs.
+- **Verification — executed with fake IndexedDB:** Started a one-item plan twice with `Promise.all()`. Observed `started 2 tracked 1`. After stopping the stored active plan, one Walk habit had end date `2026-10-29`; the other still had no end date.
+- **Fix direction:** Make activation idempotent by checking the persisted plan inside the transaction before creating habits; disable the UI action while it is pending.
+
+### R3-008 — P2: Chart selection and range labels shift a calendar day backward west of UTC
+
+- **Location:** `src/app/components/timeControls.tsx:30–32,279,336`.
+- **Trigger:** Use chart controls in a time zone such as America/New_York and select October 10–12.
+- **Defect/impact:** Day-number endpoints become midnight-UTC instants, but their formatters use the local time zone. The heading says October 9–11 while statistics still cover October 10–12. Month/year labels also shift at boundaries.
+- **Verification — executed against the actual React component:** Set the child process's time zone to America/New_York and server-rendered `SelectionBar` with day-number endpoints for `2026-10-10` and `2026-10-12`. Its heading was `Oct 9, 2026 – Oct 11, 2026`. No browser timezone emulation is claimed.
+- **Fix direction:** Format calendar-day instants explicitly in UTC, or construct local calendar dates consistently without applying an offset.
+
+### R3-009 — P2: Cached model readiness consumes pending research questions before settings refresh
+
+- **Location:** `src/app/brain/Brain.tsx:185–188`; cache at `src/app/brain/menus.tsx:20–35`.
+- **Trigger:** Open Brain before configuring a model, close it, configure a usable model in Settings, then press “Summarize with Brain” on a paper.
+- **Defect/impact:** The new panel initially receives cached not-ready settings and immediately consumes the pending question into an unsent draft. The later refresh cannot trigger the promised automatic send because the pending action is gone. With an old usable provider cached, the reverse ordering can send through the new server-side provider but permanently label the answer with the cached old model.
+- **Verification — source-confirmed:** Traced cache initialization, asynchronous GET, pending-consumption effect and the model label passed into `send()`. No cloud/local model was called.
+- **Fix direction:** Track current-opening freshness separately from cached display state; consume pending actions only after fresh readiness is known, and return actual answering-model attribution from the server.
+
+### R3-010 — P3: Weekly activity totals are labelled as averages in chart tooltips
+
+- **Location:** `src/app/components/TrendChart.tsx:103–107,285`.
+- **Trigger:** View weekly totals for seven days containing 30 active minutes each.
+- **Defect/impact:** The point correctly totals 210 minutes, but the shared grouped tooltip describes it as “Average of 7 readings”; the accessible chart summary likewise uses average wording. The label contradicts the selected aggregation and misstates what the number means.
+- **Verification — source-confirmed:** Compared the explicit `"total"` grouping path with unconditional tooltip wording. A rendered/hovered chart was not exercised this round.
+- **Fix direction:** Use the existing totals mode to label totals versus averages consistently in tooltips and accessible summaries.
+
+### R3-011 — P2: A supplement dose can be reported as a trial's participant count
+
+- **Location:** `src/core/evidenceMap.ts:75–78`; large-trial selection at `:204–208`.
+- **Trigger:** An abstract says `In this randomized trial (n = 60), we assessed vitamin D 2000 IU in adults with fractures.`
+- **Defect/impact:** The participant regex allows arbitrary intervening words such as “IU in” between a number and “adults.” It extracts both 60 and the dose 2000, then chooses the maximum. A 60-person trial is classified/displayed as a 2,000-person large trial and its evidence-map prominence changes.
+- **Verification — executed:** `sampleSize()` returned `2000`; passing the synthetic record through actual `classify()` and `largeTrialsSince()` included it with `n:2000`.
+- **Fix direction:** Restrict participant-descriptor wording, reject intervening dose/unit expressions and prevent dosage values from overriding explicit sample counts.
+
+### R3-012 — P2: Recorded aspirin/clopidogrel cannot activate their shipped vitamin-E precaution
+
+- **Location:** `src/core/protocols.ts:120–121`; tagged interaction at `knowledge/nutrients/vitamin_e.json:331–334`.
+- **Trigger:** A person records `Aspirin 75 mg daily` or `Clopidogrel 75 mg daily`, then views vitamin E or a protocol containing it.
+- **Defect/impact:** The knowledge entry explicitly names those antiplatelet medicines, but personal interaction routing depends on an anticoagulant safety ID whose matcher recognizes neither medicine nor “antiplatelet.” The prominent personalized doctor/pharmacist precaution is omitted despite the app having the relevant medicine and precaution data.
+- **Verification — executed:** Both labels produced `safety:[]` and `interactions:[]` through actual `safetyNotes()` and `interactionsFor(vitaminE, ...)`, despite the explicit tagged entry.
+- **Fix direction:** Represent and route the already-documented antiplatelet precaution. Preserve the distinction from vitamin-K-sensitive anticoagulant therapy; simply treating every antiplatelet as warfarin would introduce incorrect food restrictions.
+
+### R3-013 — P1: UUID order can make an earlier normal result override a newly saved same-day critical result
+
+- **Location:** `src/core/trends.ts:138–140`; storage at `src/db/db.ts:44–45,102–120`; readers at `src/app/hooks.ts:10–15`.
+- **Trigger:** Save potassium 4, then potassium 7, for the same date, with the second result's random UUID sorting before the first.
+- **Defect/impact:** Equal-date sorting preserves input order, but IndexedDB's table and compound-index reads supply primary-key order, not insertion order. “Latest” can therefore select the earlier normal measurement. Dashboard/marker/Brain critical protection and same-date PhenoAge marker selection depend on this unstable ordering.
+- **Verification — executed with fake IndexedDB:** Inserted the normal row first using UUID `ffffffff-ffff-4fff-8fff-ffffffffffff`, then the critical row using `00000000-0000-4000-8000-000000000000`. Both `toArray()` and `measurementsFor("potassium")` returned values `[7,4]`; actual `computeTrend()` chose latest 4 and `flagLatest()` returned `"normal"`.
+- **Fix direction:** Persist explicit measurement/save ordering and use the same deterministic tie-breaker across storage reads, latest-result decisions and draw assembly. UUID lexical order cannot implement the documented insertion-order behavior.
+
+### R3-014 — P2: Historical aggregate chart points use the latest result's reference range
+
+- **Location:** `src/app/components/TrendChart.tsx:103–107`; latest-range input at `src/app/pages/MarkerPage.tsx:42–46`.
+- **Trigger:** A man born in January 1984 has body-fat readings of 21% on October 7–8, 2019 and October 29, 2026; switch to weekly averages.
+- **Defect/impact:** Individual historical readings resolve the age-specific 8–20% range and are high. The grouped path classifies every bucket using the latest 11–22% range, marking the unchanged historical average normal. Lab-range and fasting-state changes can produce the same provenance error.
+- **Verification — executed helper path plus source-confirmed UI dispatch:** With shipped definitions, both 2019 readings returned `"high"`; grouping them and applying the actual latest supplied range returned `"normal"`. The chart's latest-range reuse was inspected; the browser chart was not rendered.
+- **Fix direction:** Resolve aggregate ranges using historical provenance, and do not silently classify mixed incompatible ranges/fasting states with the newest result's range.
+
+### R3-015 — P2: Multiple rows from one day satisfy multi-night sleep and HRV baseline requirements
+
+- **Location:** `src/core/trends.ts:85–92`; related coverage checks at `src/core/personalRange.ts:35–36,45–48`.
+- **Trigger:** Save three sleep readings for one date through ordinary body entry, or accumulate fourteen HRV readings on one baseline date.
+- **Defect/impact:** Coverage minima count rows instead of distinct nights/days. A single night is enough for a medically flagged “last week” sleep average; duplicate dates also overweight it. HRV can claim its two-week baseline from one day. This does not require the previously reported duplicate-lab-import defect.
+- **Verification — executed:** Sleep values 5, 6 and 7 all on `2026-10-29` yielded average 6, `count:3`, and `"low"` from `flagLatest()`. Fourteen baseline HRV rows on `2026-10-01` yielded a personal range with `baseline.count:14`, `baseline.from` and `baseline.to` both `2026-10-01`.
+- **Fix direction:** Establish per-day observations before multi-day aggregation and enforce distinct-date coverage. Preserve documented sleep-piece addition rather than averaging pieces as separate nights.
+
+### R3-016 — P2: Fitness-age comparison drops an open-ended bound and claims a younger age
+
+- **Location:** `src/app/components/dashboard/fitnessAge.tsx:27–31,41,83`.
+- **Trigger:** An approximately 80-year-old woman has VO₂max 20, below the oldest reference group's mean.
+- **Defect/impact:** Core correctly returns age 75 with `bound:"older"` and the headline says “75 or older.” The comparison handles only the younger bound, then subtracts 75 as if exact, claiming roughly five years younger or “About your age” near 75. The available lower bound cannot establish either conclusion.
+- **Verification — source-confirmed:** Traced the shipped oldest female mean, bounded `fitnessAge()` return and unchanged arguments into `comparison()`. The complete fitness-age figure was not rendered.
+- **Fix direction:** Preserve both bound variants in comparison wording; do not report a precise difference or direction that an open-ended bound cannot establish.
+
+### R3-017 — P1: Ambient SDK endpoint overrides send health prompts and saved provider keys to an unselected service
+
+- **Location:** `server/models.ts:47–51`; installed SDK behavior at `node_modules/@ai-sdk/openai/src/openai-provider.ts:220–239` and `node_modules/@ai-sdk/anthropic/src/anthropic-provider.ts:140–146`.
+- **Trigger:** Start the app from a shell with `OPENAI_BASE_URL` or `ANTHROPIC_BASE_URL` set for another tool/gateway, then select the corresponding named cloud provider in the app.
+- **Defect/impact:** Eligibility/ZDR approval is tied to the named provider, but its constructor supplies only the API key and inherits the SDK's ambient endpoint override. Conversation/tool-context health data and the saved provider credential are sent to that other service without the custom-endpoint region/retention selection or disclosure.
+- **Verification — executed against a local HTTP capture server only:** In temporary `BT_DATA`, configured each named provider with ZDR confirmed and a sentinel key, then pointed its environment override at the capture server and called actual `readyModel()` → `generateText()`. Both readiness checks passed. Captured OpenAI `/v1/chat/completions` with `Authorization: Bearer REVIEW_SENTINEL_KEY`, and Anthropic `/v1/messages` with `x-api-key: REVIEW_SENTINEL_KEY`; both request bodies contained the synthetic prompt sentinel. No real credentials, patient data or external provider was used.
+- **Fix direction:** Explicitly pin canonical endpoints for named providers; require any override to go through the configured custom-provider eligibility/disclosure path.
+
+### R3-018 — P2: Removing an MCP server can start and orphan its replacement during shutdown
+
+- **Location:** `server/mcp.ts:276–279`; interleaving at `:79–84,99–107`.
+- **Trigger:** Remove a running MCP server while another tab starts a question during asynchronous process shutdown.
+- **Defect/impact:** Removal first deletes the connection caches and awaits closure, but leaves the configuration enabled until afterward. A question in that interval sees an eligible server with no cached connection and starts another process. Removal then deletes configuration/secrets without closing that replacement; it can retain tools and captured credentials while no longer appearing in Settings.
+- **Verification — source-confirmed:** Traced the eligibility check and cache deletion across the shutdown await. A delayed-exit synthetic MCP fixture was not launched. Unlike R2-002, this path assumes successful initialization/discovery and depends on removal/start concurrency.
+- **Fix direction:** Remove/disable eligibility before awaiting shutdown and fence connection publication against removed configurations, including starts already in flight.
+
+### R3-019 — P2: An interrupted ordinary save exposes a mixed generation of an existing profile
+
+- **Location:** `server/profiles.ts:164–171,225–229`.
+- **Trigger:** A later component write fails after an earlier JSON file was replaced during whole-profile autosave.
+- **Defect/impact:** Per-file atomic rename does not make the profile snapshot atomic. New measurements can coexist with old Habits, experiments and person metadata; normal reads and ZIP backups accept that mixture. Closing before a successful retry leaves broken cross-file provenance as durable state. This is not the already reported incomplete-new-restore publication failure.
+- **Verification — executed in a temporary data folder:** Created generation A, then deterministically blocked the next `log.json` temporary-file write with an owned temporary directory. Saving generation B failed with `EISDIR`. Actual `getProfileData()` returned `{"name":"Generation A","result":20,"habit":"Habit A"}`: B's measurement alongside A's identity/log. Removed the fault fixture and temporary profile afterward. Disk-full/crash scenarios themselves were not executed.
+- **Fix direction:** Publish complete generations atomically, or journal/recover interrupted saves before exposing a profile or backing it up.
+
+### R3-020 — P2: Failure to launch the file manager can terminate the local server
+
+- **Location:** `server/profiles.ts:363–366`.
+- **Trigger:** Press Show folder on Linux/WSL without `xdg-open`, or encounter another asynchronous executable-launch failure.
+- **Defect/impact:** `spawn()` returns before reporting a missing executable through the child's `error` event. No listener handles that event, and the route already returned success. The unhandled EventEmitter error can terminate the local server instead of producing a recoverable error for an optional convenience action.
+- **Verification — source-confirmed:** Inspected the detached child and HTTP caller/error handling. This review ran on Windows; no Linux/WSL process-termination receipt is claimed and no real file-manager window was launched.
+- **Fix direction:** Handle asynchronous spawn errors and await an appropriate launch outcome before returning success; retain the error listener after launch.
+
+### Round 3 verification and exclusions
+
+- Re-ran `bun run test`: **57 test files and 776 tests passed**, exit 0. The existing AI SDK image-part deprecation warning remained.
+- Re-ran `bun run build`: **passed**, including both TypeScript projects and production bundling, exit 0. The existing large-chunk warning remained; no new warning-only finding was added.
+- Runtime probes exercised backup validation through dashboard construction; quoted/grouped CSV cells and delimiter selection; heterogeneous JSON schemas; Apple XML units; active-zone screenshot recognition; concurrent protocol activation/stop; real React selection-bar rendering under America/New_York; evidence-map sample-size selection; medication-to-interaction routing; actual IndexedDB result ordering; sleep/HRV coverage and historical reference helpers; named-provider requests captured on loopback; and an existing profile save under a deterministic filesystem fault.
+- All probe data was synthetic, with fake IndexedDB or temporary filesystem storage where applicable. No application source, permanent tests, configuration, original research data or existing findings were rewritten. No external model/research requests or real patient credentials were used.
+- Third-round reviewers covered server/provider/process lifecycles; clinical/date/range/aggregate consumers; app protocol/habit/research/chart transitions; nutrition/safety contracts; research/data-generation provenance. Parent review covered importer and backup/body-entry boundaries. The round was checked against all prior findings; no duplicate was counted merely because it reached another consumer.
+- Existing/disclosed active-protocol edit/delete behavior, current smoking in historical heart-age charts, unknown-sex range policy, fitness-age clamping itself, partial-week activity coverage, and stopping the wait while an agent finishes were not reclassified as bugs.
+- Source-only entries remain explicitly labelled. This round did not run a delayed-exit MCP fixture, Linux file-manager failure, full OCR, real export/account integration, or exhaustive visual/accessibility audit.
+
+### Cumulative triage after Round 3
+
+| Scope | P1 | P2 | P3 | Distinct findings |
+|---|---:|---:|---:|---:|
+| Rounds 1–2 | 12 | 49 | 1 | 62 |
+| Round 3 additions | 2 | 17 | 1 | 20 |
+| Cumulative | 14 | 66 | 2 | 82 |
+
+New priority items are the unselected provider-endpoint disclosure (**R3-017**) and same-day critical-result precedence (**R3-013**). The remaining additions are independently actionable validation, state-transition, provenance and display defects; their bounded fix directions do not imply remediation has been implemented.
