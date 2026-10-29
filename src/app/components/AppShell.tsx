@@ -288,8 +288,23 @@ export function PlainShell({ children }: { children: ReactNode }) {
     <div className="min-h-dvh">
       <SkipLink />
       <header className="border-b border-line bg-surface">
-        <div className="mx-auto flex max-w-4xl items-center px-4 py-1.5 sm:px-6">
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-1.5 sm:px-6">
           <Logo />
+          {/* Before any profile is open there is no sidebar: the project link sits here. */}
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Star on GitHub (opens in a new tab)"
+            className="flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm text-ink-2 no-underline transition-colors duration-150 hover:bg-sunken hover:text-ink"
+          >
+            <GitHubIcon />
+            <span className="hidden sm:inline">GitHub</span>
+            <span className="flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-xs font-medium">
+              <StarIcon width={14} height={14} />
+              Star
+            </span>
+          </a>
         </div>
       </header>
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-4xl px-4 py-6 outline-none sm:px-6 sm:py-8">
