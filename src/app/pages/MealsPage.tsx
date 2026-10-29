@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { SAFETY_LIMITS } from "../../core/foods";
 import { mealSafetyBlock, mealTotals, mealWeight, type ExampleMeal, type FoodDb, type Meal } from "../../core/meals";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
@@ -20,8 +21,18 @@ import { href } from "../router";
  * what food tables can't tell (nutritional dark matter). Example meals are matched to the person's
  * out-of-range results through the evidence levers, and hidden when they don't suit them.
  */
-export function MealsPage() {
+export function MealsPage({ section }: { section?: string }) {
   const db = useFoodDb();
+  // Opened from a link to one part of the page (e.g. the dark matter explainer): bring it into view.
+  useEffect(() => {
+    if (!section) return;
+    const t = window.setTimeout(() => {
+      const el = document.getElementById(section);
+      el?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      el?.focus({ preventScroll: true });
+    }, 80);
+    return () => window.clearTimeout(t);
+  }, [section]);
   const meals = useMeals();
   const all = useAllMeasurements() ?? [];
   const profile = useProfile();

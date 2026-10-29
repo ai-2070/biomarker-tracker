@@ -44,6 +44,7 @@ describe("router", () => {
   });
   it("opens Meals, a meal and an example meal", () => {
     expect(parseHash("#/meals")).toEqual({ name: "meals" });
+    expect(parseHash("#/meals?section=dark-matter")).toEqual({ name: "meals", section: "dark-matter" });
     expect(parseHash("#/meals/abc")).toEqual({ name: "meal", id: "abc" });
     expect(parseHash("#/meals/example/porridge")).toEqual({ name: "example-meal", id: "porridge" });
     expect(href({ name: "example-meal", id: "porridge" })).toBe("#/meals/example/porridge");
