@@ -72,7 +72,7 @@ export function zipStore(entries: readonly StoreEntry[]): Uint8Array {
 }
 
 /** The files of a chosen folder that make up a profile (path as the browser gives it, e.g. "anna-1a2b/results.json"). */
-const PROFILE_FILE = /^(results|log|experiments|settings|files)\.json$|^README\.txt$/;
+const PROFILE_FILE = /^(results|log|experiments|protocols|meals|settings|files)\.json$|^README\.txt$/;
 
 /**
  * Groups the files of a chosen folder into profiles: every folder with a profile.json is one profile,

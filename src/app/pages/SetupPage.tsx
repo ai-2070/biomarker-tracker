@@ -6,7 +6,7 @@ import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { LoadProfile } from "../components/LoadProfile";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
 import { Button, Card, Notice, cx, helpStyles } from "../components/ui";
-import { createProfile } from "../profiles";
+import { createProfile, hasBrowserData } from "../profiles";
 import { href } from "../router";
 
 type Step = "welcome" | "person" | "details" | "start";
@@ -37,7 +37,7 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
     setError(null);
     try {
       const p = cleanProfile(person);
-      if (mode === "folders") await createProfile(p, { fromBrowser: first && existingResults > 0 });
+      if (mode === "folders") await createProfile(p, { fromBrowser: first && await hasBrowserData() });
       else {
         await setProfile(p);
         await setOnboarded();

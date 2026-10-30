@@ -18,11 +18,12 @@ export function DataSettings() {
   const all = useAllMeasurements();
   // undefined while loading, so the form starts from the saved values.
   const saved = useLiveQuery(() => getProfile(), []);
+  const [replacement, setReplacement] = useState<{ profile: Profile; revision: number } | null>(null);
   const folders = mode === "folders" && !!active;
 
   return (
     <div className="flex flex-col gap-5">
-      {saved && <PersonCard initial={saved} nameRequired={folders} />}
+      {saved && <PersonCard key={replacement?.revision ?? 0} initial={replacement?.profile ?? saved} nameRequired={folders} />}
       {folders && <FilesCard profileId={active.id} />}
       {folders && (
         <Card className="flex flex-col gap-3">
@@ -46,7 +47,7 @@ export function DataSettings() {
       )}
 
       <BackupCard count={all?.length ?? 0} />
-      <RestoreCard />
+      <RestoreCard onReplace={(profile) => setReplacement((old) => ({ profile, revision: (old?.revision ?? 0) + 1 }))} />
       {!folders && <StorageCard />}
 
       {!folders && (
@@ -205,7 +206,7 @@ function BackupCard({ count }: { count: number }) {
         It contains health data, so treat it like a medical document.
       </p>
       <div>
-        <Button onClick={() => void download()} disabled={count === 0}>
+        <Button onClick={() => void download()}>
           Download file
         </Button>
       </div>
@@ -213,7 +214,7 @@ function BackupCard({ count }: { count: number }) {
   );
 }
 
-function RestoreCard() {
+function RestoreCard({ onReplace }: { onReplace: (profile: Profile) => void }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [pending, setPending] = useState<Backup | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -239,6 +240,7 @@ function RestoreCard() {
   async function restore(mode: ImportMode) {
     if (!pending) return;
     await importBackup(pending, mode);
+    if (mode === "replace") onReplace(pending.profile);
     setDone(`Restored ${pending.measurements.length} results.`);
     setPending(null);
     if (fileRef.current) fileRef.current.value = "";
