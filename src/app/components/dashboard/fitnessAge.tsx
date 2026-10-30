@@ -25,7 +25,8 @@ function ageText(f: ReturnType<typeof fitnessAge>): string {
 }
 
 function comparison(fitAge: number, age: number, bound?: "younger" | "older"): string {
-  if (bound === "younger" && age >= 25) return "Fitter than the average healthy 20–29-year-old";
+  if (bound === "younger") return "At or above the average fitness of healthy 20–29-year-olds; no exact age comparison";
+  if (bound === "older") return "At or below the average fitness of healthy people aged 70 and over; no exact age comparison";
   const d = fitAge - age;
   if (Math.abs(d) < 1) return "About your age";
   return `${formatYears(Math.abs(d))} ${d > 0 ? "older" : "younger"} than your age (${formatYears(age)})`;

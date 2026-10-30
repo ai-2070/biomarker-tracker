@@ -81,8 +81,10 @@ export function Timeline({
   const laneCount = packed.reduce((n, l) => Math.max(n, l.row + 1), 0);
   const hasAge = d.bioAge.length > 0 && !!birthMonth;
 
-  const d0 = dayNumber(span.from);
-  const d1 = Math.max(dayNumber(span.to), d0 + 30);
+  // Body points stay separate from the blood plot, but share its navigable domain.
+  const bodyDays = body.map((draw) => dayNumber(draw.date));
+  const d0 = bodyDays.reduce((first, day) => Math.min(first, day), dayNumber(span.from));
+  const d1 = Math.max(bodyDays.reduce((last, day) => Math.max(last, day), dayNumber(span.to)), d0 + 30);
   const lead = (d1 - d0) * 0.02;
   const full = useMemo(() => ({ from: d0 - lead, to: d1 + lead }), [d0, d1, lead]);
   const right = Math.max(width, 1) - PAD_R;

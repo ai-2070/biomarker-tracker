@@ -3,7 +3,7 @@ import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } 
 import { groupReadings, groupingsFor, pointsForWindow, statsBetween, type Grouping } from "../../core/chartSeries";
 import { dayNumber } from "../../core/dates";
 import { timeTicks } from "../../core/timeWindow";
-import { flagMeasurement, flagValue, isCritical, isOutOfRange, paddedDomain, sortByDate, type Flag, type ResolvedRange } from "../../core/trends";
+import { flagMeasurement, isOutOfRange, paddedDomain, sortByDate, type Flag, type ResolvedRange } from "../../core/trends";
 import { niceTicks } from "../../core/scale";
 import { formatValue, fromCanonical } from "../../core/units";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "../../core/types";
@@ -13,6 +13,7 @@ import { cx } from "./ui";
 import { FLAG_LABEL, formatDate, showRange } from "../format";
 import { habitTypesIn, ofTypes, type ProtocolCategory } from "../../core/protocols";
 import { HabitTypes, Toggle, useChartPrefs } from "./chartHabits";
+import { aggregateFlag } from "./chartAggregate";
 
 interface Point {
   t: number;
@@ -101,10 +102,8 @@ export function TrendChart({
           return { t: dayNumber(m.date) * DAY_MS, y: conv(m.value), date: m.date, label: `${m.qualifier ?? ""}${formatValue(conv(m.value))}`, flag, out: isOutOfRange(flag), count: 1, from: m.date, to: m.date };
         })
       : groupReadings(readings, group, totals ? "total" : "average").map((p) => {
-          // An average is judged against the range (not the person's usual range, which is never a flag);
-          // a weekly total only when the week has a reading every day (a week still under way would look low).
-          const flag = range && range.source !== "personal" && (!totals || p.count >= 7) ? flagValue(p.value, range) : "unknown";
-          return { t: dayNumber(p.date) * DAY_MS, y: conv(p.value), date: p.date, label: formatValue(conv(p.value)), flag, out: isOutOfRange(flag) && !isCritical(flag), count: p.count, from: p.from, to: p.to };
+          const flag = aggregateFlag(def, p, sorted, profile, totals);
+          return { t: dayNumber(p.date) * DAY_MS, y: conv(p.value), date: p.date, label: formatValue(conv(p.value)), flag, out: isOutOfRange(flag), count: p.count, from: p.from, to: p.to };
         });
 
   // The whole time span, with a little room at the ends; at least two weeks.
@@ -154,7 +153,7 @@ export function TrendChart({
   const selStats = sel ? statsBetween(readings, isoOfDay(sel.from), isoOfDay(sel.to)) : undefined;
   const shaded = habit && prefs.habits ? shownHabits.find((p) => p.id === habit) : undefined;
   const showOutKey = hasRange && band && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
-  const summary = `Chart of ${def.name} in ${unit}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} averages`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Reference range"} ${rangeText}` : ""}.`;
+  const summary = `Chart of ${def.name} in ${unit}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} ${totals ? "totals" : "averages"}`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Latest reference range"} ${rangeText}` : ""}.`;
   const withUnit = (x: number) => `${formatValue(conv(x))} ${unit}`;
 
   return (
@@ -282,7 +281,7 @@ export function TrendChart({
                     <div className="font-semibold">
                       {p.label} {unit}
                     </div>
-                    {p.count > 1 && <div className="text-ink-2">Average of {p.count} readings</div>}
+                    {p.count > 1 && <div className="text-ink-2">{totals ? "Total" : "Average"} of {p.count} readings</div>}
                     {p.flag !== "unknown" && <div className="text-ink-2">{FLAG_LABEL[p.flag]}</div>}
                   </div>
                 );

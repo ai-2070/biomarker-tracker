@@ -27,8 +27,8 @@ export const PRESETS: Preset[] = [
 /** Shorter ranges for marker charts, where daily readings from a watch are common. */
 export const CHART_PRESETS: Preset[] = [{ label: "1M", days: 30 }, { label: "3M", days: 91 }, ...PRESETS];
 
-const monthYearFmt = new Intl.DateTimeFormat(undefined, { month: "short", year: "numeric" });
-const dayMonthFmt = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric" });
+const monthYearFmt = new Intl.DateTimeFormat(undefined, { month: "short", year: "numeric", timeZone: "UTC" });
+const dayMonthFmt = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 export const fromDay = (day: number) => new Date(Math.round(day) * 86_400_000);
 
 export interface TimeView {
@@ -81,8 +81,14 @@ export function useTimeView(
   const [selection, setSelection] = useState<TimeWindow | null>(null);
   const drag = useRef<{ x: number; w: TimeWindow; moved: boolean; day: number } | null>(null);
   const suppressClick = useRef(false);
-  const v = view ?? full;
+  // Reconcile immediately, including the render before the effect commits new bounds.
+  const v = view ? clampWindow(view, full, minSpan) : full;
   const zoomed = v.to - v.from < full.to - full.from - 1;
+  useEffect(() => {
+    setView((previous) => previous ? clampWindow(previous, full, minSpan) : null);
+    setSelection(null);
+    drag.current = null;
+  }, [full.from, full.to, minSpan]);
   const width = Math.max(plot.width, 1);
 
   const show = (w: TimeWindow | null, label: string | null = null) => {
@@ -319,7 +325,7 @@ export function TimeControls({ t, presets = PRESETS }: { t: TimeView; presets?: 
   );
 }
 
-const selFmt = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric" });
+const selFmt = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 
 /**
  * Under a chart: a hint to drag across it, or, once a period is selected, what happened in it (given
