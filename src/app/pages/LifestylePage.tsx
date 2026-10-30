@@ -194,21 +194,16 @@ export function LifestyleItemPage({ id }: { id: string }) {
             </div>
           )}
 
-          <Card className="flex flex-col gap-4">
-            <p className="text-lg">{l.summary}</p>
-            <div>
-              <h2 className="mb-1 font-semibold">How it's thought to work</h2>
-              <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
-                {l.howItWorks.map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-1 font-semibold">What the studies had people do</h2>
-              <p className="text-ink-2">{l.whatStudiesDid}</p>
-            </div>
-          </Card>
+          {/* The answer first: the summary, then what studies found; the detail behind it follows. */}
+          <p className="max-w-3xl text-lg">{l.summary}</p>
+
+          <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+          <Findings
+            prefix="finding"
+            title="What studies found"
+            intro="Outcome by outcome, strongest evidence first. Many lifestyle studies follow people over years rather than assigning them a habit, so a link isn't always cause and effect: the grades say how sure the evidence is."
+            findings={l.findings}
+          />
 
           <Card className="flex flex-col gap-6">
             <H2 id="pictures">In pictures</H2>
@@ -219,13 +214,18 @@ export function LifestyleItemPage({ id }: { id: string }) {
             ))}
           </Card>
 
-          <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-          <Findings
-            prefix="finding"
-            title="What studies found"
-            intro="Outcome by outcome, strongest evidence first. Many lifestyle studies follow people over years rather than assigning them a habit, so a link isn't always cause and effect: the grades say how sure the evidence is."
-            findings={l.findings}
-          />
+          <Card id="how" className="flex scroll-mt-6 flex-col gap-4">
+            <H2>How it's thought to work</H2>
+            <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
+              {l.howItWorks.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            <div>
+              <h3 className="mb-1 font-semibold">What the studies had people do</h3>
+              <p className="text-ink-2">{l.whatStudiesDid}</p>
+            </div>
+          </Card>
 
           {(l.whoShouldBeCareful.length > 0 || l.cautions.length > 0) && (
             <Card id="careful" className="flex scroll-mt-6 flex-col gap-3">
@@ -318,8 +318,9 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
   const byMarker = groupByBiomarker(all);
   const mine = l.markers.filter((id) => BIOMARKER_MAP.has(id) && byMarker.has(id)).slice(0, 5);
   const links: [string, string][] = [
-    ["pictures", "In pictures"],
     ["findings", "What studies found"],
+    ["pictures", "In pictures"],
+    ["how", "How it's thought to work"],
     ...((l.whoShouldBeCareful.length > 0 || l.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ["unknowns", "What isn't known yet"],
     ...((hasEvidenceMap(`lifestyle-${l.id}`) ? [["evidence-map", "How the evidence was found"]] : []) as [string, string][]),
