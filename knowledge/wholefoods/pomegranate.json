@@ -18,6 +18,186 @@
     "Gut bacteria turn ellagic acid into urolithins, which stay in the body longer. People differ a lot: in intervention trials, 25 to 80% of people made only urolithin A, 10 to 50% also made other urolithins, and 5 to 25% made none that could be detected. In a group of 839 people, age was the main factor linked to which type someone was.",
     "Nobody knows yet which of these compounds, if any, explains the effects seen in trials. A food has thousands of compounds that food tables don't track."
   ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Homeric Hymn to Demeter, about 600 BC)",
+      "belief": "The Greeks told how Hades carried Persephone off to the underworld and, before letting her go home, secretly gave her a pomegranate seed to eat. Because she had tasted food there, she had to go back to him for a third of every year; when she returned to her mother Demeter in spring, the earth bloomed again.",
+      "note": "Here the pomegranate is the food of the dead, the thing that binds Persephone to the underworld; a 2000 history in the BMJ reads it as a symbol of life, renewal and marriage. No ancient text or scholarly source found for this page calls the pomegranate ambrosia (the food that kept the Greek gods immortal) or 'the closest thing to ambrosia'.",
+      "sources": [
+        {
+          "title": "Homeric Hymn 2, To Demeter, lines 370-374, 393-400 and 411-413 (translated by H. G. Evelyn-White)",
+          "author": "Homeric Hymns",
+          "when": "about 600 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0138%3Ahymn%3D2"
+        },
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    },
+    {
+      "who": "Hebrew Bible and Jewish tradition",
+      "belief": "Pomegranates of blue, purple and crimson yarn hung between golden bells on the hem of the high priest's robe, and 200 bronze pomegranates ringed each capital of the pillars of Solomon's Temple. The spies Moses sent into Canaan brought back pomegranates with grapes and figs. The Talmud says that even the emptiest of Israel are as full of good deeds as a pomegranate is of seeds, and that dreaming of pomegranates means business will multiply like their seeds. On the eve of the New Year some eat pomegranates and pray that their merits be as many as its seeds.",
+      "note": "The popular saying that every pomegranate has exactly 613 seeds, one for each commandment of the Torah, is reported in modern writing (the BMJ history says it is 'said to'), but it isn't in these texts.",
+      "sources": [
+        {
+          "title": "Exodus 28:33-34 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Exodus.28.33-34"
+        },
+        {
+          "title": "1 Kings 7:18-20 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/I_Kings.7.18-20"
+        },
+        {
+          "title": "Numbers 13:23 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Numbers.13.23"
+        },
+        {
+          "title": "Babylonian Talmud, Berakhot 57a (William Davidson translation)",
+          "author": "Talmud",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Berakhot.57a"
+        },
+        {
+          "title": "Shulchan Arukh, Orach Chayim 583:1, with the gloss of Moses Isserles (Sefaria Community Translation)",
+          "author": "Joseph Karo and Moses Isserles",
+          "when": "16th century",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.583.1"
+        },
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Persia (Achaemenid kings, 5th century BC; Zoroastrian tradition)",
+      "belief": "The pomegranate was a royal emblem in Persia. Herodotus describes Xerxes' army marching with a thousand spearmen carrying golden pomegranates on their spear shafts and nine thousand with silver ones, and the reliefs at Persepolis show the fruit on the king's parasol. Zoroastrians planted pomegranate trees in the courtyards of fire temples, used its twigs and seeds in rituals, and linked it with Anahita, goddess of water and fertility. A Persian legend tells that the hero Esfandiyar ate a pomegranate and became invincible.",
+      "modern": "not tested",
+      "note": "Nobody has tested whether pomegranate makes people stronger; the nearest trials, on muscle soreness and damage after hard exercise, found no clear effect. A 2023 study of the Persian reliefs links immortality with the haoma drink, the date palm and myrtle, not with the pomegranate.",
+      "sources": [
+        {
+          "title": "Herodotus, Histories, book 7, chapter 41 (translated by A. D. Godley)",
+          "author": "Herodotus",
+          "when": "5th century BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0126%3Abook%3D7%3Achapter%3D41"
+        },
+        {
+          "title": "Plants as Symbols of Power in the Achaemenid Iconography of Ancient Persian Monuments",
+          "author": "Caneva",
+          "when": "2023",
+          "kind": "scholarship",
+          "doi": "10.3390/plants12233991",
+          "pmid": "38068625"
+        },
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    },
+    {
+      "who": "Islam (the Qur'an)",
+      "belief": "The Qur'an names pomegranates, with fruit and date palms, among the riches of the two gardens of Paradise, and on earth among God's gifts with grapevines and olives, 'similar yet varied'. A later legend says every pomegranate holds one seed that came down from Paradise.",
+      "note": "The legend of the seed from Paradise isn't in the Qur'an; the BMJ history reports it as a legend.",
+      "sources": [
+        {
+          "title": "Qur'an 55:68 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/55/68"
+        },
+        {
+          "title": "Qur'an 6:99 and 6:141 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/6/99"
+        },
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    },
+    {
+      "who": "Buddhist legend (India, China and Japan)",
+      "belief": "Hariti was a demoness who devoured children until the Buddha cured her of it, and in the legend he gave her a pomegranate to eat. She is shown holding a child, and in Japan, as Kishimojin, women who could not have children prayed to her. In Buddhist art the pomegranate is one of three blessed fruits, with the citrus and the peach.",
+      "modern": "not tested",
+      "note": "No study found for this page has tested whether eating pomegranate helps people have children.",
+      "sources": [
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    },
+    {
+      "who": "China (Northern Qi court, 6th century; a Daoist legend)",
+      "belief": "At a feast for a newly married prince, the bride's mother set two pomegranates before the emperor. Nobody knew why until the scholar Wei Shou explained: the pomegranate has many seeds in its chambers, and the mother was wishing the couple many children and grandchildren. The emperor, delighted, rewarded him. A Daoist tale tells of Liu Feng, who regularly took a substance called 'stone cassia flower' and pomegranates from the Central Peak, and at nearly 400 years old looked like a boy of 15.",
+      "modern": "not tested",
+      "note": "Both stories are quoted in the Taiping Yulan, an encyclopedia finished in 983, from the History of the Northern Dynasties and the Biographies of Divine Immortals. A picture of a split-open pomegranate became a popular wedding gift in China. Liu Feng's is the only long-life story about pomegranate found for this page, and no study has measured whether eating pomegranate lengthens human life.",
+      "sources": [
+        {
+          "title": "Taiping Yulan, chapter 970, 'Pomegranate', quoting the History of the Northern Dynasties and the Biographies of Divine Immortals (Chinese text)",
+          "author": "Li Fang and others",
+          "when": "983",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E5%A4%AA%E5%B9%B3%E5%BE%A1%E8%A6%BD/0970"
+        },
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    },
+    {
+      "who": "Christian art (Middle Ages and Renaissance)",
+      "belief": "In Christian art the pomegranate stood for the resurrection and eternal life, and it often appears in statues and paintings of the Virgin and Child. In medieval unicorn tapestries the captured unicorn is chained to a pomegranate tree, a sign of Christ's coming, and the red 'wounds' on its white body are pomegranate juice dripping from the fruit.",
+      "note": "The pomegranate was also the badge of Catherine of Aragon, and by the mid-1500s it was in the coat of arms of the Royal College of Physicians of London; the British Medical Association and other colleges still carry it.",
+      "sources": [
+        {
+          "title": "Why a pomegranate?",
+          "author": "Langley",
+          "when": "2000",
+          "kind": "scholarship",
+          "doi": "10.1136/bmj.321.7269.1153",
+          "pmid": "11061746"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Ancient Egypt (Ebers Papyrus, about 1550 BC)",

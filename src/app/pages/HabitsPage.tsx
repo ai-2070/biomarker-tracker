@@ -13,11 +13,12 @@ import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
-import { CATEGORY_LABEL, formatDate, formatDuration, formatPercent, showValue } from "../format";
-import { useAllMeasurements, useExperiments, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
-import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, shortName } from "../knowledge";
+import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue } from "../format";
+import { useAllMeasurements, useExperiments, useWatchMeasurements, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
+import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, WATCH_DEFS, shortName, watchDef } from "../knowledge";
 import { href } from "../router";
 import { MarkerChoice, PhaseBadge } from "./ExperimentsPage";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "../../core/phenoageWatch";
 
 const RETEST_OPTIONS = [
   { value: "28", label: "4 weeks" },
@@ -32,7 +33,8 @@ const RETEST_OPTIONS = [
 export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?: string; meal?: string; type?: ProtocolCategory }) {
   const protocols = useProtocols();
   const experiments = useExperiments();
-  const all = useAllMeasurements();
+  // Results plus the PhenoAge gap at each complete blood test, so the gap can be watched like a marker.
+  const all = useWatchMeasurements(useAllMeasurements());
   const profile = useProfile();
   const [adding, setAdding] = useState(add !== undefined || meal !== undefined);
   const today = todayIso();
@@ -187,7 +189,7 @@ const SHORT_VERDICT: Record<MarkerResult["verdict"], string> = {
 
 /** The watched markers: before → after, the change, and whether it's beyond normal variation. */
 function WhatChanged({ watch, all, today, onChange }: { watch: Experiment; all: Measurement[]; today: string; onChange?: () => void }) {
-  const s = summarizeWatch(watch, BIOMARKER_MAP, all, today);
+  const s = summarizeWatch(watch, WATCH_DEFS, all, today);
   return (
     <div className="flex flex-col gap-2 border-t border-line pt-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -229,19 +231,19 @@ function WhatChanged({ watch, all, today, onChange }: { watch: Experiment; all: 
 }
 
 function ChangeRow({ r }: { r: MarkerResult }) {
-  const def = BIOMARKER_MAP.get(r.biomarkerId)!;
+  const def = watchDef(r.biomarkerId)!;
   const unit = def.canonicalUnit;
   const beyond = r.verdict === "rise" || r.verdict === "fall";
-  const value = (v?: number) => (v === undefined ? "–" : showValue(def, v, unit));
+  const value = (v?: number) => (v === undefined ? "–" : showWatchValue(def, v, unit));
   return (
     <li className="flex flex-wrap items-center gap-x-3 gap-y-0.5 py-2 sm:grid sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_auto]">
-      <a href={href({ name: "marker", id: def.id })} className="min-w-0 font-medium text-ink no-underline hover:underline sm:truncate">
+      <a href={def.id === PHENOAGE_GAP_ID ? href({ name: "phenoage" }) : href({ name: "marker", id: def.id })} className="min-w-0 font-medium text-ink no-underline hover:underline sm:truncate">
         {shortName(def)}
       </a>
       {/* Phones: name and verdict on one line, the numbers below. */}
       <span className="order-last basis-full text-sm text-ink-2 tabular-nums sm:order-none sm:basis-auto">
         {value(r.beforeValue)} → {value(r.afterValue)} {unit}
-        {r.change !== undefined && <span className={cx("ml-2 font-medium", beyond ? "text-ink" : "text-ink-2")}>{formatPercent(r.change)}</span>}
+        {r.change !== undefined && <span className={cx("ml-2 font-medium", beyond ? "text-ink" : "text-ink-2")}>{formatChange(r.change, def)}</span>}
       </span>
       <span
         className={cx(
@@ -326,7 +328,9 @@ function MarkerPicker({
 }) {
   const [showAll, setShowAll] = useState(false);
   const suggested = suggestMarkers(label, (id) => tested.has(id));
-  const pool = BIOMARKERS.filter((d) => showAll || tested.has(d.id) || markerIds.includes(d.id) || suggested.includes(d.id));
+  // The PhenoAge gap is offered once there's a complete PhenoAge blood test.
+  const markers = tested.has(PHENOAGE_GAP_ID) ? [PHENOAGE_GAP_DEF, ...BIOMARKERS] : BIOMARKERS;
+  const pool = markers.filter((d) => showAll || tested.has(d.id) || markerIds.includes(d.id) || suggested.includes(d.id));
   const ordered = [...pool.filter((d) => suggested.includes(d.id)), ...CATEGORY_ORDER.flatMap((c) => pool.filter((d) => d.category === c && !suggested.includes(d.id)))];
   const draft: Experiment = { id: "draft", change: label, category: "diet", markerIds, start, retestAfterDays: 56 };
   const allShown = ordered.length > 0 && ordered.every((d) => markerIds.includes(d.id));

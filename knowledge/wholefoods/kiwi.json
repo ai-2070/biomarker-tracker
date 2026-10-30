@@ -15,6 +15,103 @@
     "Actinidia chinensis"
   ],
   "summary": "Very rich in vitamin C, and one of the best-tested foods for constipation: two kiwifruit a day eased it as well as psyllium fibre, or slightly better. In small trials it also lowered blood pressure a little.",
+  "lore": [
+    {
+      "who": "Zhou-dynasty China (the Book of Songs, Shijing, about 1000–600 BC)",
+      "belief": "In the song 'In the lowlands grows the chang chu', the singer looks at a supple, glossy vine in flower and in fruit and envies it: 'I delight that you know nothing… that you have no family… that you have no household.' The 12th-century scholar Zhu Xi read it as the lament of people worn down by harsh rule and heavy taxes, who wished they were plants, with no knowledge and no worries.",
+      "note": "Commentators named the chang chu as the yangtao, a vine whose fruit is 'also like a peach', and a 2022 review says the kiwifruit's genus, Actinidia, was first recorded in the Book of Songs. That identification was made long after the song, so it isn't certain. The song is about envying a carefree plant, not about eating its fruit.",
+      "sources": [
+        {
+          "title": "Book of Songs, Airs of Kuai: In the lowlands grows the chang chu (Xi you chang chu, in Chinese)",
+          "when": "about 1000–600 BC",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%A9%A9%E7%B6%93/%E9%9A%B0%E6%9C%89%E8%90%87%E6%A5%9A"
+        },
+        {
+          "title": "Shi jizhuan (Collected commentaries on the Book of Songs), chapter 7 (in Chinese)",
+          "author": "Zhu Xi",
+          "when": "12th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%A9%A9%E9%9B%86%E5%82%B3_(%E5%9B%9B%E9%83%A8%E5%8F%A2%E5%88%8A%E6%9C%AC)/%E5%8D%B7%E4%B8%83"
+        },
+        {
+          "title": "The phytochemical properties, pharmacological effects and traditional uses of Actinidia eriantha Benth.: A review",
+          "author": "Wang et al.",
+          "when": "2022",
+          "kind": "scholarship",
+          "doi": "10.3389/fphar.2022.959900",
+          "pmid": "36059997"
+        }
+      ]
+    },
+    {
+      "who": "Tang-dynasty China (the poet Cen Shen, 8th century)",
+      "belief": "Visiting an old farmer by the East Creek below Mount Taibai, known far and near to be a hundred years old, with children and grandchildren already grey-haired, Cen Shen wrote that in the middle of the courtyard, over the railing of the well, grew 'a trellis of mihoutao'. The vine was part of a simple country life that made him say he only now saw how wearing the world was.",
+      "note": "The poem doesn't say the fruit gave the old man his long life. It shows the vine grown beside a farmhouse more than a thousand years before kiwifruit became an orchard crop.",
+      "sources": [
+        {
+          "title": "Written at old Zhang's house by the East Creek below Mount Taibai, sent to my younger brothers and nephews (in Chinese; Complete Tang Poems, chapter 198)",
+          "author": "Cen Shen",
+          "when": "8th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E5%A4%AA%E7%99%BD%E6%9D%B1%E6%BA%AA%E5%BC%B5%E8%80%81%E8%88%8D%E5%8D%B3%E4%BA%8B%E5%AF%84%E8%88%8D%E5%BC%9F%E5%A7%AA%E7%AD%89"
+        }
+      ]
+    },
+    {
+      "who": "China (the herbalists Chen Cangqi, Tang dynasty, and Kou Zongshi, Song dynasty, as quoted by Li Shizhen)",
+      "belief": "Mihoutao was a 'cold' fruit, sour and sweet. Chen Cangqi warned that eating a lot of it chills the spleen and stomach and loosens the bowels. Kou Zongshi said it suited people with 'excess heat', and that too much of it makes the organs cold and brings on diarrhoea.",
+      "modern": "partly",
+      "finding": "Constipation (bowel movements)",
+      "note": "'Cold' and 'heat' belong to Chinese medicine's own theory, which studies don't measure. The part about the bowels fits what trials found: two green kiwifruit a day gave somewhat more bowel movements, with few side effects. No trial has tested eating large amounts.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits part 5: Mihoutao (in Chinese)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        }
+      ]
+    },
+    {
+      "who": "Ming-dynasty China (Li Shizhen, Compendium of Materia Medica, Bencao Gangmu, 1578)",
+      "belief": "Li Shizhen explained the names: the fruit is shaped like a pear and coloured like a peach, and macaques love to eat it, so it was called mihoutao, 'macaque peach', and mihouli, 'macaque pear'; people in Fujian called it yangtao. The older herbalists he quoted said the brown, egg-sized fruit turns sweet only after the frost, and that it was left only on low hills beside the roads, because deep in the mountains the monkeys ate most of it.",
+      "note": "Mihoutao is still the Chinese name generally used for kiwifruit and its relatives (the genus Actinidia).",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits part 5: Mihoutao (in Chinese)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        },
+        {
+          "title": "The nutritional and health attributes of kiwifruit: a review",
+          "author": "Richardson, Ansell and Drummond",
+          "when": "2018",
+          "kind": "scholarship",
+          "doi": "10.1007/s00394-018-1627-z",
+          "pmid": "29470689"
+        }
+      ]
+    },
+    {
+      "who": "New Zealand (the Auckland exporters Turners and Growers, 20th century)",
+      "belief": "The fruit grown from Chinese seed and sold as the 'Chinese gooseberry' was renamed kiwifruit, after the kiwi, the flightless bird found only in New Zealand and taken as its emblem; New Zealand servicemen were also known as 'Kiwis'. By 1969 the name was well established, and a vine from China had become a symbol of New Zealand.",
+      "note": "The review used here names the firm and the bird, but not the year the name was proposed.",
+      "sources": [
+        {
+          "title": "The nutritional and health attributes of kiwifruit: a review",
+          "author": "Richardson, Ansell and Drummond",
+          "when": "2018",
+          "kind": "scholarship",
+          "doi": "10.1007/s00394-018-1627-z",
+          "pmid": "29470689"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Ancient Greece, Rome and medieval Europe",

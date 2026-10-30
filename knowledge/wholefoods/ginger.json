@@ -20,6 +20,87 @@
     "Volatile oils: one analysis of dried Australian ginger found 100 volatile compounds, including 54 terpenoid compounds and 35 related to gingerols, some never reported in ginger before.",
     "The food table (CoFID) lists energy, protein, fat, carbohydrate, fibre, minerals and some vitamins for fresh and ground ginger. It measures none of the compounds above, so the nutrient numbers for ginger say nothing about what ginger is studied for."
   ],
+  "lore": [
+    {
+      "who": "China (Confucius, in the Analects)",
+      "belief": "The Analects record how Confucius ate: rice finely cleaned, nothing spoiled, discoloured or out of season, no meat without its proper sauce, never much at a time. And he was never without ginger when he ate.",
+      "note": "The text doesn't say why he kept ginger at every meal.",
+      "sources": [
+        {
+          "title": "Analects, book 10, chapter 8 (translated by James Legge, The Chinese Classics, volume 1)",
+          "author": "Confucius's students",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/X"
+        }
+      ]
+    },
+    {
+      "who": "Islam (the Qur'an)",
+      "belief": "The Qur'an describes the righteous in Paradise being given a cup to drink whose mixture is of ginger (zanjabil in Arabic), from a spring there named Salsabil.",
+      "sources": [
+        {
+          "title": "Qur'an 76:17–18 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/76/17-18"
+        }
+      ]
+    },
+    {
+      "who": "Jewish tradition (Babylonian Talmud)",
+      "belief": "The rabbis debated whether ginger counts as food. Fresh ginger, or the cooked ginger that came from India, was food, and before eating it one said the blessing 'Who creates the fruit of the ground'. Dry ginger was not: someone who chewed it on Yom Kippur, the day of fasting, was not counted as having eaten.",
+      "sources": [
+        {
+          "title": "Berakhot 36b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Berakhot.36b.14-17"
+        },
+        {
+          "title": "Yoma 81b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Yoma.81b.5-8"
+        }
+      ]
+    },
+    {
+      "who": "Greek, Roman and medieval Arab writers",
+      "belief": "Pliny wrote that many people took ginger for the root of the pepper tree, which he said it was not; he placed it in Arabia and Troglodytica, and noted that it sold in Rome for six denarii a pound. Dioscorides also said it grew mostly in 'Troglodytic Arabia'. Later Arab writers seem to have placed it on the coast of Zinj in East Africa, misled by its Arabic name, zanjabil.",
+      "note": "The Anglo-Indian dictionary Hobson-Jobson (1903), which collects these passages, notes that ginger was grown all over India, the best in Malabar.",
+      "sources": [
+        {
+          "title": "Natural History, book 12, chapter 14",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D12%3Achapter%3D14"
+        },
+        {
+          "title": "Hobson-Jobson, 'Ginger' (quoting Dioscorides, Pliny and Arab geographers)",
+          "author": "Henry Yule and A. C. Burnell, edited by William Crooke",
+          "when": "1903",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Hobson-Jobson/G"
+        }
+      ]
+    },
+    {
+      "who": "South India (the Dipavali festival, described in 1903)",
+      "belief": "On the morning of Dipavali, everyone rose at about four for an oil bath before sunrise, held to be as holy as bathing in the Ganges. After the bath, every Hindu took a little of a special medicine prepared for the day, mostly of ginger powder; then came new clothes, sweets, and visits asking 'Have you had the holy Ganges bath?'",
+      "note": "The book doesn't say what the ginger medicine was meant to do.",
+      "sources": [
+        {
+          "title": "Hindu Feasts, Fasts and Ceremonies, chapter 5: The Dipavali",
+          "author": "S. M. Natesa Sastri",
+          "when": "1903",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Hindu_Feasts,_Fasts_and_Ceremonies/Chapter_5"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Traditional Chinese medicine",
