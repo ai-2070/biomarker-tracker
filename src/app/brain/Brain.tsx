@@ -19,7 +19,7 @@ import { foodById, mealTotals } from "../../core/meals";
 import { formatValue } from "../../core/units";
 import { useFoodDb } from "../foodDb";
 import { itemsByTime, pairWarnings } from "../../core/plans";
-import { formatDate, showMeasurement } from "../format";
+import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useProfile } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENTS, fullName } from "../knowledge";
 import { uploadFile, useProfiles } from "../profiles";
@@ -523,7 +523,7 @@ function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>
                 <span className="min-w-0 truncate">{fullName(def)}</span>
                 <span className="flex shrink-0 items-center gap-2">
                   <span className="tabular-nums">
-                    {showMeasurement(def, m, def.canonicalUnit)} {def.canonicalUnit}
+                    {showMeasurement(def, m, def.canonicalUnit)} {valueUnit(def, def.canonicalUnit)}
                   </span>
                   {flag !== "normal" && <FlagBadge flag={flag} />}
                 </span>

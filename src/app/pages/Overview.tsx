@@ -5,7 +5,7 @@ import { computeTrend, flagLatest, groupByBiomarker, isCritical, isOutOfRange, t
 import type { BiomarkerDef, Measurement, Profile } from "../../core/types";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { Card, FlagBadge, LinkButton, PageTitle, cx } from "../components/ui";
-import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement } from "../format";
+import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { DueExperiments } from "../components/DueExperiments";
@@ -166,7 +166,7 @@ function MarkerRow({ def, ms, flag, unit }: { def: BiomarkerDef; ms: Measurement
       </div>
       <div className="flex shrink-0 flex-col items-end gap-1">
         <div className="text-lg font-semibold whitespace-nowrap text-ink tabular-nums">
-          {showMeasurement(def, trend.latest, unit)} <span className="text-sm font-normal text-ink-2">{unit}</span>
+          {showMeasurement(def, trend.latest, unit)} <span className="text-sm font-normal text-ink-2">{valueUnit(def, unit)}</span>
         </div>
         <FlagBadge flag={flag} />
       </div>

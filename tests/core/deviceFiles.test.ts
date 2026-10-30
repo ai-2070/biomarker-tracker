@@ -68,6 +68,12 @@ describe("recognising columns", () => {
     expect(g("Move Minutes count")).toMatchObject({ field: null, reason: expect.stringMatching(/light activity/) });
     expect(g("Lean body mass")).toBeUndefined();
   });
+  it.each(["body_fat_mass", "bodyFatMass", "Body fat (kg)", "Fat (kg)", "Fat mass (lb)", "Fat mass (kg)"])("does not import %s as a percentage or total body weight", (header) => {
+    const result = readTable("body/weight.csv", tableOf(parseCsv(`date,${header}\n2026-03-01,20\n`))!);
+    expect(result.columns).toEqual([
+      { header: expect.any(String), field: null, unit: "", reason: expect.any(String), readings: [] },
+    ]);
+  });
   it("finds the date column", () => {
     const t = tableOf(parseCsv(takeout))!;
     expect(findDateColumn(t.headers, t.data)).toBe(0);

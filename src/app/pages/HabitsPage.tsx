@@ -13,7 +13,7 @@ import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
-import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue } from "../format";
+import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useExperiments, useWatchMeasurements, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, WATCH_DEFS, shortName, watchDef } from "../knowledge";
 import { href } from "../router";
@@ -242,7 +242,7 @@ function ChangeRow({ r }: { r: MarkerResult }) {
       </a>
       {/* Phones: name and verdict on one line, the numbers below. */}
       <span className="order-last basis-full text-sm text-ink-2 tabular-nums sm:order-none sm:basis-auto">
-        {value(r.beforeValue)} → {value(r.afterValue)} {unit}
+        {value(r.beforeValue)} → {value(r.afterValue)} {valueUnit(def, unit)}
         {r.change !== undefined && <span className={cx("ml-2 font-medium", beyond ? "text-ink" : "text-ink-2")}>{formatChange(r.change, def)}</span>}
       </span>
       <span

@@ -1,3 +1,4 @@
+import { SLEEP_FIELDS, type BodyField } from "../core/body";
 import { deltaFromCanonical, formatValue, fromCanonical, matchUnit } from "../core/units";
 import type { Flag } from "../core/trends";
 import type { BiomarkerDef, Measurement, ProtocolEntry } from "../core/types";
@@ -11,14 +12,21 @@ export function formatDate(iso: string): string {
   return dateFmt.format(new Date(y!, m! - 1, d!));
 }
 
-/** Pick a supported display unit, falling back to canonical. */
+/** Pick a supported display unit; sleep is always presented as hours/minutes from canonical hours. */
 export function displayUnitFor(def: BiomarkerDef, preferred: string | undefined): string {
+  if (SLEEP_FIELDS.has(def.id as BodyField)) return def.canonicalUnit;
   return (preferred && matchUnit(def, preferred)) || def.canonicalUnit;
 }
 
-/** A canonical value shown in the chosen unit, e.g. "5.4". */
+/** A canonical value for reading: hours/minutes for sleep, otherwise the chosen numeric unit. */
 export function showValue(def: BiomarkerDef, canonicalValue: number, unit: string): string {
+  if (SLEEP_FIELDS.has(def.id as BodyField)) return formatHours(canonicalValue);
   return formatValue(fromCanonical(def, canonicalValue, unit));
+}
+
+/** Sleep values include their hours/minutes; other measurements still need a unit suffix. */
+export function valueUnit(def: BiomarkerDef, unit: string): string {
+  return SLEEP_FIELDS.has(def.id as BodyField) ? "" : unit;
 }
 
 /** A measurement shown in the chosen unit, keeping "<" / ">" from the lab. */
@@ -29,14 +37,19 @@ export function showMeasurement(def: BiomarkerDef, m: Measurement, unit: string)
 export function showRange(def: BiomarkerDef, range: { low?: number; high?: number } | undefined, unit: string): string | undefined {
   if (!range) return undefined;
   const { low, high } = range;
-  if (low !== undefined && high !== undefined) return `${showValue(def, low, unit)}–${showValue(def, high, unit)} ${unit}`;
-  if (low !== undefined) return `above ${showValue(def, low, unit)} ${unit}`;
-  if (high !== undefined) return `below ${showValue(def, high, unit)} ${unit}`;
+  const suffix = valueUnit(def, unit);
+  if (low !== undefined && high !== undefined) return `${showValue(def, low, unit)}–${showValue(def, high, unit)} ${suffix}`.trim();
+  if (low !== undefined) return `above ${showValue(def, low, unit)} ${suffix}`.trim();
+  if (high !== undefined) return `below ${showValue(def, high, unit)} ${suffix}`.trim();
   return undefined;
 }
 
 /** A change between two results, e.g. "+4.2" or "−0.3", in the chosen unit. */
 export function showChange(def: BiomarkerDef, canonicalDelta: number, unit: string): string {
+  if (SLEEP_FIELDS.has(def.id as BodyField)) {
+    const text = formatHours(Math.abs(canonicalDelta));
+    return text === "0 min" ? "no change" : `${canonicalDelta > 0 ? "+" : "−"}${text}`;
+  }
   const text = formatValue(Math.abs(deltaFromCanonical(def, canonicalDelta, unit)));
   if (text === "0") return "no change";
   return canonicalDelta > 0 ? `+${text}` : `−${text}`;
@@ -73,7 +86,8 @@ export function formatPercent(fraction: number): string {
 
 /** Sleep as people say it: 7.4 → "7 h 24 min". */
 export function formatHours(hours: number): string {
-  const total = Math.round(hours * 60);
+  // Subtraction of hour values can land a few floating-point bits below a half-minute.
+  const total = Math.round(hours * 60 + 1e-9);
   const h = Math.floor(total / 60);
   const m = total % 60;
   return h === 0 ? `${m} min` : m === 0 ? `${h} h` : `${h} h ${m} min`;

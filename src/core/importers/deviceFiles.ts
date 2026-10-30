@@ -91,8 +91,11 @@ export function fileFamily(path: string): string {
 export function pivotLong(t: { headers: string[]; data: string[][] }): { headers: string[]; data: string[][] } {
   // Also nested: Huawei's "samplePoints key" / "samplePoints value".
   const kindsIn = (col: number) => [...new Set(t.data.map((r) => r[col] ?? "").filter((k) => k && !/^-?[\d.]+$/.test(k)))];
-  // The naming column holds words, not numbers (Huawei also has a numeric "type").
-  const keyCol = t.headers.findIndex((h, i) => /(^|\s)(key|type|name|metric|data ?type|data ?name|data ?key)$/i.test(h) && kindsIn(i).length > 0);
+  // A measurement's name, not the name/type of its app, source or device.
+  const keyCol = t.headers.findIndex((h, i) =>
+    !/(^|\s)(pkg|package|source|device|app|application|provider|file|profile|user) (name|type)$/i.test(h) &&
+    /(^|\s)(key|type|name|metric|data ?type|data ?name|data ?key)$/i.test(h) && kindsIn(i).length > 0,
+  );
   const valCol = t.headers.findIndex((h, i) => i !== keyCol && /(^|\s)(value|values|data ?value)$/i.test(h) && !/value value$/i.test(h));
   if (keyCol === -1 || valCol === -1) return t;
   const kinds = kindsIn(keyCol);
@@ -208,6 +211,10 @@ export function guessColumn(header: string, index: number, family = ""): ColumnG
     if (/weight/.test(f)) return { ...base, field: "weight", unit: "kg" };
     return undefined;
   }
+  // Samsung's body_fat is %, but body_fat_mass is kg. Match mass before the broad body-fat rule.
+  if (/\bfat\b/.test(h) && /\b(mass|kg|kilograms?|g|grams?|lbs?|pounds?)\b/.test(h))
+    return skip("Fat mass is a weight, not body fat percentage. It isn't imported.");
+
   if (/^fat$/.test(h) && /weight|body/.test(f)) return { ...base, field: "body_fat", unit: "%" };
 
   if (/hrv|rmssd|heart rate variability/.test(h)) return { ...base, field: /rest|night|sleep|overnight|nightly|morning/.test(h) || /sleep|night|cycle|recovery|readiness/.test(f) ? "hrv_resting" : "hrv", unit: "ms" };
@@ -452,6 +459,100 @@ export interface TableColumn {
   readings: { date: string; value: number }[];
 }
 
+const SAMSUNG_STEPS_REASON = "Phone and watch step records overlap. Steps are read only from the combined daily totals in com.samsung.shealth.step_daily_trend.csv; choose the full Samsung zip or include that file.";
+const SAMSUNG_ACTIVITY_REASON = "Samsung active time is read from com.samsung.shealth.activity.day_summary.csv in milliseconds. Pedometer, exercise parts and detail bins can overlap and aren't added again; choose the full Samsung zip or include the daily activity summary.";
+const SAMSUNG_RESTING_REASON = "Only Samsung's recorded overnight heart rate (shr_value) and HRV (shrv_value) are imported here. Energy Scores, scales, baselines, previous averages and other scoring inputs aren't measurements for these markers.";
+
+const SAMSUNG_DAILY_FIELDS = {
+  steps: { column: "count", header: "Steps (Samsung combined daily total)", unit: "steps", reason: SAMSUNG_STEPS_REASON },
+  active_minutes: { column: "active time", header: "Active time (Samsung daily total)", unit: "min", reason: SAMSUNG_ACTIVITY_REASON },
+  resting_hr: { column: "shr value", header: "Overnight heart rate (Samsung)", unit: "bpm", reason: SAMSUNG_RESTING_REASON },
+  hrv_resting: { column: "shrv value", header: "Overnight HRV (Samsung)", unit: "ms", reason: SAMSUNG_RESTING_REASON },
+} as const;
+
+/** Samsung daily summaries replace snapshots; only the explicitly mapped measured fields are read. */
+function samsungDailyColumns(table: { headers: string[]; data: string[][] }, field: keyof typeof SAMSUNG_DAILY_FIELDS): TableColumn[] {
+  const headers = table.headers.map((h) => normalizeHeader(h).toLowerCase());
+  const col = (name: string) => headers.findIndex((h) => h === name || h.endsWith(` ${name}`));
+  const steps = field === "steps";
+  const config = SAMSUNG_DAILY_FIELDS[field];
+  const dayCol = col("day time"), sourceCol = col("source type"), countCol = col(config.column), updateCol = col("update time");
+  const skipped: TableColumn = { header: steps ? "Samsung per-device step records" : `${config.header}: unavailable readings`, field: null, unit: "", readings: [], reason: config.reason };
+  if ([dayCol, countCol, ...(steps ? [sourceCol] : [])].includes(-1)) return [skipped];
+  const days = new Map<string, { value: number; updated: number }>();
+  let excluded = false;
+  for (const row of table.data) {
+    if (steps && row[sourceCol] !== "-2") { excluded = true; continue; }
+    // DAY_TIME is a calendar-day label at UTC midnight, not an instant to shift into this computer's zone.
+    const rawDate = row[dayCol] ?? "";
+    const date = /^\d{13}$/.test(rawDate) ? new Date(Number(rawDate)).toISOString().slice(0, 10) : toIsoDate(rawDate);
+    const rawValue = toNumber(row[countCol] ?? "");
+    if (!date || rawValue === undefined || (steps && !Number.isInteger(rawValue)) || rawValue < 0) { excluded = true; continue; }
+    const value = field === "active_minutes" ? rawValue / 60_000 : rawValue;
+    const time = Date.parse(`${(row[updateCol] ?? "").replace(" ", "T")}Z`);
+    const updated = Number.isFinite(time) ? time : 0;
+    const previous = days.get(date);
+    if (!previous || updated > previous.updated) days.set(date, { value, updated });
+  }
+  const columns: TableColumn[] = [{ header: config.header, field, unit: config.unit, readings: [...days].map(([date, { value }]) => ({ date, value })) }];
+  if (excluded || days.size === 0) columns.push(skipped);
+  return columns;
+}
+
+/**
+ * Samsung exports UTC stage timestamps and a local time offset. Keep a session on its final wake-up
+ * day, not each stage's day; light + deep + REM are actual sleep, awake is not.
+ * Stage codes: developer.samsung.com/health/android/data/api-reference/com/samsung/android/sdk/healthdata/HealthConstants.SleepStage.html
+ */
+function samsungSleepColumns(table: { headers: string[]; data: string[][] }): TableColumn[] {
+  const headers = table.headers.map((h) => normalizeHeader(h).toLowerCase());
+  const col = (name: string) => headers.findIndex((h) => h === name || h.endsWith(` ${name}`));
+  const startCol = col("start time"), endCol = col("end time"), idCol = col("sleep id"), stageCol = col("stage"), offsetCol = col("time offset");
+  const skipped: TableColumn = { header: "Samsung sleep stages", field: null, unit: "", readings: [], reason: "Some Samsung sleep sessions have missing or invalid stages, times or time-zone offsets and were left out." };
+  if ([startCol, endCol, idCol, stageCol, offsetCol].includes(-1)) return [skipped];
+  const sessions = new Map<string, { end: number; offset: number; minutes: [number, number, number]; valid: boolean }>();
+  let missingId = false;
+  for (const row of table.data) {
+    const id = row[idCol];
+    if (!id) { missingId = true; continue; }
+    const session = sessions.get(id) ?? { end: -Infinity, offset: 0, minutes: [0, 0, 0], valid: true };
+    sessions.set(id, session);
+    const start = Date.parse(`${(row[startCol] ?? "").replace(" ", "T")}Z`);
+    const end = Date.parse(`${(row[endCol] ?? "").replace(" ", "T")}Z`);
+    const offset = /^UTC([+-])(\d{2}):?(\d{2})$/.exec(row[offsetCol] ?? "");
+    const stage = Number(row[stageCol]);
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start || !offset || Number(offset[2]) > 23 || Number(offset[3]) > 59 || ![40001, 40002, 40003, 40004].includes(stage)) {
+      session.valid = false;
+      continue;
+    }
+    if (end > session.end) {
+      session.end = end;
+      session.offset = (Number(offset[2]) * 60 + Number(offset[3])) * (offset[1] === "-" ? -1 : 1);
+    }
+    if (stage === 40001) continue;
+    const minutes = (end - start) / 60_000;
+    session.minutes[0] += minutes;
+    if (stage === 40003) session.minutes[1] += minutes;
+    if (stage === 40004) session.minutes[2] += minutes;
+  }
+  const columns: TableColumn[] = [
+    { header: "Actual sleep (Samsung stages)", field: "sleep_duration", unit: "min", readings: [] },
+    { header: "Deep sleep (Samsung stages)", field: "sleep_deep", unit: "min", readings: [] },
+    { header: "REM sleep (Samsung stages)", field: "sleep_rem", unit: "min", readings: [] },
+  ];
+  let invalid = missingId;
+  for (const session of sessions.values()) {
+    if (!session.valid) { invalid = true; continue; }
+    if (session.minutes[0] === 0) continue;
+    const date = new Date(session.end + session.offset * 60_000).toISOString().slice(0, 10);
+    session.minutes.forEach((value, i) => {
+      if (value > 0) columns[i]!.readings.push({ date, value });
+    });
+  }
+  if (invalid) columns.push(skipped);
+  return columns;
+}
+
 /**
  * Everything one table gives: its columns with their readings by day. Sleep columns are dated by the
  * morning (when the file says when the night ended), get a total from their stages when the file has
@@ -460,6 +561,17 @@ export interface TableColumn {
  */
 export function readTable(path: string, table: { headers: string[]; data: string[][] }, monthFirst = false): { columns: TableColumn[]; other: string[]; dated: boolean } {
   const family = fileFamily(path);
+  if (/\bcom samsung (health|shealth) step daily trend$/.test(family))
+    return { columns: samsungDailyColumns(table, "steps"), other: [], dated: true };
+  if (/\bcom samsung (health|shealth) activity day summary$/.test(family))
+    return { columns: [...samsungDailyColumns(table, "active_minutes"), { header: "Samsung step total", field: null, unit: "", readings: [], reason: SAMSUNG_STEPS_REASON }], other: [], dated: true };
+  if (/\bcom samsung (health|shealth) sleep stage$/.test(family))
+    return { columns: samsungSleepColumns(table), other: [], dated: true };
+  if (/\bcom samsung (health|shealth) vitality score$/.test(family))
+    return { columns: [...samsungDailyColumns(table, "resting_hr"), ...samsungDailyColumns(table, "hrv_resting"), { header: "Samsung Energy Score and scoring inputs", field: null, unit: "", readings: [], reason: SAMSUNG_RESTING_REASON }], other: [], dated: true };
+  // These repeat sessions or contain time in bed and scoring weights/scales, not actual sleep.
+  if (/\bcom samsung (health|shealth) sleep( combined)?$/.test(family))
+    return { columns: [{ header: "Samsung sleep summary and scores", field: null, unit: "", readings: [], reason: "Actual sleep and its stages are read from com.samsung.health.sleep_stage.csv. Choose the full Samsung zip or include that file; sleep summaries and energy-score inputs aren't imported again." }], other: [], dated: true };
   const t = withActiveTotal(withSleepTotal(table, family), family);
   const dateCol = findDateColumn(t.headers, t.data, monthFirst);
   if (dateCol === -1) return { columns: [], other: [], dated: false };
@@ -471,6 +583,10 @@ export function readTable(path: string, table: { headers: string[]; data: string
     const g = guessColumn(h, i, family);
     if (!g) return void other.push(h);
     if (!g.field) return void columns.push({ header: h, field: null, unit: "", ...(g.reason ? { reason: g.reason } : {}), readings: [] });
+    if (g.field === "steps" && /\bcom samsung (health|shealth)\b/.test(family))
+      return void columns.push({ header: h, field: null, unit: "", readings: [], reason: SAMSUNG_STEPS_REASON });
+    if (g.field === "active_minutes" && /\bcom samsung (health|shealth)\b/.test(family))
+      return void columns.push({ header: h, field: null, unit: "", readings: [], reason: SAMSUNG_ACTIVITY_REASON });
     const readings = columnReadings(t.data, SLEEP_FIELDS.has(g.field) && sleepCol !== -1 ? sleepCol : dateCol, g, monthFirst);
     const auto = (values: number[]) => (SLEEP_FIELDS.has(g.field!) ? sleepUnit(values) : activityUnit(values));
     columns.push({ header: h, field: g.field, unit: g.unit === "auto" ? auto(readings.map((r) => r.value)) : g.unit, readings });

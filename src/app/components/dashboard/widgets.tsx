@@ -5,7 +5,7 @@ import { ageAt } from "../../../core/phenoageDraws";
 import { isCritical } from "../../../core/trends";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { openBrain } from "../../brain/store";
-import { CATEGORY_LABEL, displayUnitFor, formatChange, formatDate, formatYears, showChange, showMeasurement } from "../../format";
+import { CATEGORY_LABEL, displayUnitFor, formatChange, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../../format";
 import { useDisplayUnits, useWatchMeasurements } from "../../hooks";
 import { BIOMARKER_MAP, WATCH_DEFS, fullName, nameInSentence, shortName, watchDef } from "../../knowledge";
 import { href } from "../../router";
@@ -180,7 +180,7 @@ export function MarkerTile({ m }: { m: DashboardMarker }) {
       </div>
       <p className="flex items-baseline gap-1">
         <span className="font-serif text-3xl leading-none tabular-nums">{showMeasurement(m.def, m.latest, unit)}</span>
-        <span className="text-sm text-ink-2">{unit}</span>
+        <span className="text-sm text-ink-2">{valueUnit(m.def, unit)}</span>
       </p>
       <Sparkline series={m.series} {...(m.range ? { range: m.range } : {})} tone={tone} />
       <p className="text-xs text-ink-2">
@@ -199,7 +199,7 @@ export function MarkerRow({ m }: { m: DashboardMarker }) {
       <span className="min-w-0 font-medium">{shortName(m.def)}</span>
       <span className="flex shrink-0 items-center gap-2">
         <span className="tabular-nums">
-          {showMeasurement(m.def, m.latest, unit)} <span className="text-sm text-ink-2">{unit}</span>
+          {showMeasurement(m.def, m.latest, unit)} <span className="text-sm text-ink-2">{valueUnit(m.def, unit)}</span>
         </span>
         {m.flag !== "normal" && m.flag !== "unknown" && <FlagBadge flag={m.flag} />}
       </span>

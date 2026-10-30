@@ -13,7 +13,7 @@ import { BodyEntryForm } from "../components/dashboard/body";
 import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
-import { formatDate, showMeasurement } from "../format";
+import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
@@ -332,7 +332,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
                         <span className="min-w-0">
                           <span className="block truncate font-medium text-ink">{fullName(d)}</span>
                           <span className="text-sm text-ink-2">
-                            {showMeasurement(d, m, d.canonicalUnit)} {d.canonicalUnit} ·{" "}
+                            {showMeasurement(d, m, d.canonicalUnit)} {valueUnit(d, d.canonicalUnit)} ·{" "}
                             {formatDate(m.date)}
                           </span>
                         </span>
