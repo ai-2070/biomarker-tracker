@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
-import { db, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
+import { db, deleteEverything, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
 import { api, type ServerStatus } from "./api";
 import { AppShell, PlainShell } from "./components/AppShell";
 import { Notice } from "./components/ui";
@@ -20,7 +20,7 @@ import { HabitsPage } from "./pages/HabitsPage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 import { SetupPage } from "./pages/SetupPage";
 import { ExperimentPage } from "./pages/ExperimentsPage";
-import { ProfilesContext, createProfile, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, type ProfilesState, type ProfileSummary } from "./profiles";
+import { ProfilesContext, claimWorkingCopy, createProfile, hasBrowserData, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, type ProfilesState, type ProfileSummary } from "./profiles";
 import { href, useRoute, type Route } from "./router";
 
 // The chart library is large; load it only when a marker page is opened.
@@ -45,6 +45,8 @@ type Boot =
 
 /** Works out what to show first: setup, a profile chooser, or the open profile (loaded into this browser). */
 async function boot(): Promise<Boot> {
+  // Static and folder-backed tabs share IndexedDB: both must participate in ownership.
+  if (navigator.locks) await claimWorkingCopy();
   const server = await api<ServerStatus>("GET", "/api/status").then(
     (s) => (s.app === "biomarker-tracker" ? s : null),
     () => null,
@@ -52,11 +54,14 @@ async function boot(): Promise<Boot> {
   const existing = await db.measurements.count();
   if (!server) return (await isOnboarded()) ? { state: "ready", mode: "browser", profiles: [], activeId: null } : { state: "setup", mode: "browser", existing };
 
+  await claimWorkingCopy();
   const { profiles, active, root } = await listProfiles();
-  if (profiles.length === 0) return { state: "setup", mode: "folders", existing, root };
   const loaded = await loadedProfileId();
-  // Results in this browser that belong to no folder yet (e.g. entered before profiles existed): keep them as their own profile.
-  if (!loaded && (existing > 0 || (await db.protocols.count()) > 0)) {
+  // A folder deleted while the app was closed is not an unowned browser profile to migrate.
+  if (loaded && !profiles.some((p) => p.id === loaded)) await deleteEverything();
+  if (profiles.length === 0) return { state: "setup", mode: "folders", existing: await db.measurements.count(), root };
+  // Preserve all unowned person data before replacing this origin's working copy.
+  if (!loaded && await hasBrowserData()) {
     const person = await getProfile();
     await createProfile({ ...person, name: person.name || "Saved from this browser" }, { fromBrowser: true });
     return boot();

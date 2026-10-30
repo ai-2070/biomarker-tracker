@@ -6,12 +6,14 @@ import { liveQuery } from "dexie";
 import type { Plan } from "../core/plans";
 import type { Meal } from "../core/meals";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
-import { createBackup } from "../core/backup";
+import { createBackup, parseBackup } from "../core/backup";
 import { todayIso } from "../core/dates";
 import { demoProfile } from "../core/demo";
 import { profilesInFolder, zipStore } from "../core/zipStore";
-import { db, getProfile, importBackup, setOnboarded } from "../db/db";
+import { db, deleteEverything, getProfile, importBackup, setOnboarded } from "../db/db";
 import { api } from "./api";
+import { validatePlan } from "../core/plans";
+import { validateMeal } from "../core/meals";
 
 export interface ProfileSummary {
   id: string;
@@ -69,22 +71,64 @@ export async function loadedProfileId(): Promise<string | null> {
 }
 
 /** Everything in this browser, as saved to a profile folder. */
-export async function browserData(): Promise<ProfileData> {
-  const [measurements, protocols, experiments, plans, meals, person, settings] = await Promise.all([
-    db.measurements.toArray(),
-    db.protocols.toArray(),
-    db.experiments.toArray(),
-    db.plans.toArray(),
-    db.meals.toArray(),
-    getProfile(),
-    db.settings.toArray(),
-  ]);
-  return { person, measurements, protocols, experiments, plans, meals, settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])) };
+export async function browserData(expectedId?: string): Promise<ProfileData> {
+  return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
+    if (expectedId !== undefined && (await loadedProfileId()) !== expectedId) throw new Error("Another profile owns this browser's working copy. Reload before editing.");
+    const [measurements, protocols, experiments, plans, meals, person, settings] = await Promise.all([
+      db.measurements.toArray(),
+      db.protocols.toArray(),
+      db.experiments.toArray(),
+      db.plans.toArray(),
+      db.meals.toArray(),
+      getProfile(),
+      db.settings.toArray(),
+    ]);
+    return { person, measurements, protocols, experiments, plans, meals, settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])) };
+  });
+}
+
+/** One editable folder-backed working copy per origin, including profile switches in other tabs. */
+let workingCopyLock: Promise<void> | undefined;
+export function claimWorkingCopy(): Promise<void> {
+  if (workingCopyLock) return workingCopyLock;
+  if (!navigator.locks) return Promise.reject(new Error("Folder profiles need a browser with Web Locks support. Use a current browser on localhost."));
+  // The app's ES2023 browser baseline predates Promise.withResolvers.
+  const promise = new Promise<void>((resolve, reject) => {
+    void navigator.locks.request("biomarker-tracker-working-copy", { ifAvailable: true }, async (lock) => {
+      if (!lock) {
+        reject(new Error("This app is already open in another tab. Close that tab, then reload this one to edit profiles."));
+        return;
+      }
+      resolve();
+      // The browser releases this lock when the page closes or reloads.
+      await new Promise<void>(() => {});
+    }).catch(reject);
+  });
+  workingCopyLock = promise;
+  return promise;
+}
+
+/** Include every person-owned table and setting, not just blood results, in migration decisions. */
+export async function hasBrowserData(): Promise<boolean> {
+  const d = await browserData();
+  return d.measurements.length + d.protocols.length + d.experiments.length + d.plans.length + d.meals.length > 0 ||
+    Object.values(d.person).some((v) => v !== undefined && v !== "") || Object.keys(d.settings).length > 0;
 }
 
 /** Replaces this browser's copy with a profile from its folder. */
 export async function loadIntoBrowser(id: string): Promise<void> {
   const d = await api<ProfileData>("GET", `/api/profiles/${id}/data`);
+  const checked = parseBackup(createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()));
+  if (!checked.ok) throw new Error(checked.error);
+  for (const [label, rows, validate] of [["protocols", d.plans ?? [], validatePlan], ["meals", d.meals ?? [], validateMeal]] as const) {
+    if (new Set(rows.map((row) => row.id)).size !== rows.length || rows.some((row) => validate(row).length > 0)) {
+      throw new Error(`The profile's ${label} list is damaged or contains duplicate IDs.`);
+    }
+  }
+  await flushSaving();
+  const previous = syncing?.id;
+  stopSaving();
+  try {
   await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
     await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear()]);
     const keep = (await db.settings.toArray()).filter((s) => s.key === "ai");
@@ -102,6 +146,10 @@ export async function loadIntoBrowser(id: string): Promise<void> {
       { key: LOADED_KEY, value: id },
     ]);
   });
+  } catch (error) {
+    if (previous) startSaving(previous);
+    throw error;
+  }
 }
 
 export async function markLoaded(id: string): Promise<void> {
@@ -128,45 +176,61 @@ export const useSaveStatus = () =>
     () => status,
   );
 
-let syncing: { id: string; timer?: ReturnType<typeof setTimeout>; dirty: boolean; unsubscribe: () => void } | null = null;
+interface Saver {
+  id: string;
+  timer?: ReturnType<typeof setTimeout>;
+  dirty: boolean;
+  inFlight?: Promise<void>;
+  unsubscribe: () => void;
+}
+let syncing: Saver | null = null;
 
+/** Single-flight writes; a flush drains changes made while an earlier write is pending. */
 async function push(): Promise<void> {
   const s = syncing;
-  if (!s || !s.dirty) return;
-  s.dirty = false;
-  setStatus("saving");
-  try {
-    await api("PUT", `/api/profiles/${s.id}/data`, await browserData());
-    if (!s.dirty) setStatus("saved");
-  } catch {
-    s.dirty = true;
-    setStatus("error");
-    // Try again shortly (e.g. the server was restarted).
-    clearTimeout(s.timer);
-    s.timer = setTimeout(() => void push(), 5000);
-  }
+  if (!s) return;
+  if (s.inFlight) return s.inFlight;
+  s.inFlight = (async () => {
+    while (syncing === s && s.dirty) {
+      s.dirty = false;
+      setStatus("saving");
+      await api("PUT", `/api/profiles/${s.id}/data`, await browserData(s.id));
+    }
+    if (syncing === s) setStatus("saved");
+  })().catch((error: unknown) => {
+    if (syncing === s) {
+      s.dirty = true;
+      setStatus("error");
+      clearTimeout(s.timer);
+      s.timer = setTimeout(() => void push().catch(() => {}), 5000);
+    }
+    throw error;
+  }).finally(() => { s.inFlight = undefined; });
+  return s.inFlight;
 }
 
-/** Saves every change in this browser to the profile's folder, half a second after it happens. */
+/** Always reconcile the retained local copy on startup, including edits pending at last reload. */
 export function startSaving(id: string): () => void {
   stopSaving();
-  let first = true;
-  const sub = liveQuery(() => browserData()).subscribe({
+  const s: Saver = { id, dirty: true, unsubscribe: () => {} };
+  syncing = s;
+  const sub = liveQuery(() => browserData(id)).subscribe({
     next: () => {
-      // The first value is what was just loaded; nothing to save yet.
-      if (first) {
-        first = false;
-        return;
-      }
-      if (!syncing) return;
-      syncing.dirty = true;
+      if (syncing !== s) return;
+      s.dirty = true;
       setStatus("saving");
-      clearTimeout(syncing.timer);
-      syncing.timer = setTimeout(() => void push(), 500);
+      clearTimeout(s.timer);
+      s.timer = setTimeout(() => void push().catch(() => {}), 500);
+    },
+    error: () => {
+      if (syncing === s) {
+        stopSaving();
+        setStatus("error");
+      }
     },
   });
-  syncing = { id, dirty: false, unsubscribe: () => sub.unsubscribe() };
-  return stopSaving;
+  s.unsubscribe = () => sub.unsubscribe();
+  return () => { if (syncing === s) stopSaving(); };
 }
 
 function stopSaving(): void {
@@ -180,6 +244,8 @@ function stopSaving(): void {
 export async function flushSaving(): Promise<void> {
   if (syncing) {
     clearTimeout(syncing.timer);
+    // Capture edits even if Dexie's live-query notification has not run yet.
+    syncing.dirty = true;
     await push();
   }
 }
@@ -189,23 +255,45 @@ export async function flushSaving(): Promise<void> {
 /** Opens another profile: saves this one, loads the other, and starts the page fresh. */
 export async function switchProfile(id: string, to = "#/"): Promise<void> {
   await flushSaving();
-  stopSaving();
   await api("PUT", "/api/profiles/active", { id });
   await loadIntoBrowser(id);
+  startSaving(id);
   location.hash = to;
   location.reload();
+}
+
+/** Deletion also removes the recovery copy, so it cannot migrate into another person's profile. */
+export async function deleteProfileFolder(id: string): Promise<{ active: string | null }> {
+  const open = (await loadedProfileId()) === id;
+  if (open) await flushSaving();
+  const result = await api<{ active: string | null }>("DELETE", `/api/profiles/${id}`);
+  if (open) {
+    stopSaving();
+    await deleteEverything();
+  }
+  return result;
 }
 
 /** Creates a profile folder. With `fromBrowser`, the data already in this browser goes into it. */
 export async function createProfile(person: Profile, opts: { fromBrowser?: boolean } = {}): Promise<ProfileSummary> {
   await flushSaving();
-  stopSaving();
   const data = opts.fromBrowser ? { ...(await browserData()), person } : { person };
   const { profile } = await api<{ profile: ProfileSummary }>("POST", "/api/profiles", data);
   if (opts.fromBrowser) {
-    await db.settings.put({ key: "profile", value: person });
-    await markLoaded(profile.id);
+    await flushSaving();
+    const previous = syncing?.id;
+    stopSaving();
+    try {
+      await db.transaction("rw", db.settings, async () => {
+        await db.settings.put({ key: "profile", value: person });
+        await markLoaded(profile.id);
+      });
+    } catch (error) {
+      if (previous) startSaving(previous);
+      throw error;
+    }
   } else await loadIntoBrowser(profile.id);
+  startSaving(profile.id);
   return profile;
 }
 
@@ -218,6 +306,7 @@ async function restoreZip(zip: Blob): Promise<ProfileSummary> {
 
 async function openLoaded(id: string, to: string): Promise<void> {
   await loadIntoBrowser(id);
+  startSaving(id);
   location.hash = to;
   location.reload();
 }
@@ -230,7 +319,6 @@ export async function createExampleProfile(mode: "folders" | "browser", to = "#/
   const d = demoProfile(todayIso());
   if (mode === "folders") {
     await flushSaving();
-    stopSaving();
     const { profile } = await api<{ profile: ProfileSummary }>("POST", "/api/profiles", d);
     await openLoaded(profile.id, to);
     return;
@@ -246,7 +334,6 @@ export async function createExampleProfile(mode: "folders" | "browser", to = "#/
 /** Restores a backup zip as a new profile and opens it. */
 export async function restoreProfile(file: File, to = "#/"): Promise<void> {
   await flushSaving();
-  stopSaving();
   const p = await restoreZip(file);
   await openLoaded(p.id, to);
 }
@@ -262,7 +349,6 @@ export async function loadProfileFolder(list: FileList, to = "#/"): Promise<void
   const total = found.reduce((n, p) => n + p.files.reduce((m, x) => m + x.file.f.size, 0), 0);
   if (total > 190 * 1024 * 1024) throw new Error("That folder is too large to load at once. Load the profiles one at a time.");
   await flushSaving();
-  stopSaving();
   let last: ProfileSummary | null = null;
   for (const p of found) {
     const entries = await Promise.all(p.files.map(async ({ name, file }) => ({ name, data: new Uint8Array(await file.f.arrayBuffer()) })));
