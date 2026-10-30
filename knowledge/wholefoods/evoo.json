@@ -22,6 +22,59 @@
   ],
   "lore": [
     {
+      "who": "Jewish tradition (Babylonian Talmud, Horayot)",
+      "belief": "A teaching in the Talmud lists five things that make a person forget what they have learned, among them eating olives regularly, and five that bring it back, among them eating olive oil regularly. Rabbi Yohanan put it this way: just as eating an olive makes one forget seventy years of study, olive oil restores seventy years of study.",
+      "modern": "partly",
+      "finding": "Memory and thinking, and death with dementia",
+      "note": "Nobody has tested whether olives harm memory. For olive oil, a few small trials in older adults with memory problems found slightly better thinking scores with extra virgin olive oil, and a large US cohort linked olive oil with fewer deaths with dementia; the evidence is low certainty and about decline with age, not about remembering what was learned.",
+      "sources": [
+        {
+          "title": "Horayot 13b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Horayot.13b.2-3"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, AD 77)",
+      "belief": "Pliny wrote that olive oil makes the body supple and gives it vigour and strength, but that it is bad for the stomach and makes ulcers grow. Drunk, it was used against many poisons, often brought back up again; drunk warm, against griping pains in the bowels and worms; and a hemina (about a quarter of a litre) with wine and warm water, to loosen the bowels.",
+      "modern": "not tested",
+      "note": "No study on this page tests olive oil against poisons, worms or griping pains, or looks at harm to the stomach; the trials added olive oil to everyday meals and measured the heart, blood sugar and blood fats. The 1855 English translation heads this chapter 'oil of oenanthe', but in the Latin it opens with the medical uses of olive oil and these lines are about oil in general.",
+      "sources": [
+        {
+          "title": "Natural History, book 23, chapter 40",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D40"
+        },
+        {
+          "title": "Naturalis Historia, book 23, chapter 34 (Latin)",
+          "author": "Pliny the Elder (edited by Karl Mayhoff, 1906)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0138%3Abook%3D23%3Achapter%3D34"
+        }
+      ]
+    },
+    {
+      "who": "England (John Gerard's Herball, 1597, enlarged by Thomas Johnson, 1633)",
+      "belief": "The Herball says that oil of ripe olives softens and eases pain, dissolves swellings, and is good for stiff joints and against cramps, the more so when herbs such as St John's wort, chamomile, dill, lilies or roses are steeped in it. Oil of unripe olives was used to hold back swellings and inflammation at their start and to cool burning sores.",
+      "modern": "not tested",
+      "note": "These oils were rubbed or laid on the body. The findings on this page are about eating olive oil; the one on inflammation measured CRP in the blood, not swelling or joint pain, and no study here tests olive oil on stiff joints or cramps.",
+      "sources": [
+        {
+          "title": "The Herball, or Generall Historie of Plantes, book 3, chapter 56: Of the Olive tree",
+          "author": "John Gerard (enlarged by Thomas Johnson)",
+          "when": "1633",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/herballorgeneral1633gera/page/1394/mode/1up"
+        }
+      ]
+    },
+    {
       "who": "Ancient Greece (Athens)",
       "belief": "The Athenians told that Athena and Poseidon competed for their land. Poseidon struck the Acropolis with his trident and brought up a salt sea; Athena planted an olive tree, and the gods judged the land hers because she had planted first. Her tree was shown on the Acropolis, and when the Persian army burned it, a shoot a cubit long was said to have sprung from the stump the very next day. Oil from the city's sacred olive trees was the prize for winners at the Panathenaic Games, and anyone who dug up or cut down a sacred tree was once tried for his life.",
       "note": "Herodotus gives the regrown shoot as what the Athenians said. The Constitution of the Athenians says that by its time the death penalty for cutting a sacred olive was still law but no longer used.",

@@ -22,6 +22,82 @@
   ],
   "lore": [
     {
+      "who": "China (Shennong Bencao Jing, the Divine Farmer's Materia Medica, about the 1st to 2nd century AD)",
+      "belief": "The oldest Chinese materia medica lists dried ginger as pungent and warm: it treats fullness in the chest and coughs, warms the 'middle' (the digestion), stops bleeding, brings out sweat, and treats diarrhoea with dysentery. Fresh ginger is said to be better still, and used for a long time it removes foul odours and 'opens the way to the spirit's brightness'.",
+      "modern": "not tested",
+      "note": "No study on this page tests ginger for coughs, bleeding or diarrhoea. On bleeding, the evidence here points the other way if anything: in some small trials ginger lowered the clumping of blood platelets (see who should be careful).",
+      "sources": [
+        {
+          "title": "Shennong Bencao Jing (神農本草經), middle class: dried ginger (乾薑)",
+          "author": "Chinese original (Wikisource)",
+          "when": "about the 1st to 2nd century AD",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E7%A5%9E%E8%BE%B2%E6%9C%AC%E8%8D%89%E7%B6%93"
+        }
+      ]
+    },
+    {
+      "who": "China (Sun Simiao, 7th century, quoted in Li Shizhen's Bencao Gangmu, 1578)",
+      "belief": "The Tang physician Sun Simiao warned that if a pregnant woman eats ginger, her child will be born with extra fingers.",
+      "modern": "disagrees",
+      "finding": "Nausea and vomiting in early pregnancy",
+      "note": "In a Norwegian cohort of 68,522 pregnant women, the 1,020 who used ginger had no higher risk of birth defects, stillbirth or preterm birth. The trials of ginger for nausea in pregnancy were small and short, though (see who should be careful).",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (本草綱目), vegetables 1: fresh ginger (生薑)",
+          "author": "Li Shizhen (Chinese original, Wikisource)",
+          "when": "completed 1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E8%8F%9C%E4%B9%8B%E4%B8%80"
+        }
+      ]
+    },
+    {
+      "who": "China (Tao Hongjing, Sun Simiao and Li Shizhen, in Li Shizhen's Bencao Gangmu, 1578)",
+      "belief": "Chinese physicians also warned against too much ginger. Tao Hongjing (about AD 500) said that long use lessens will and wisdom and harms the heart's qi, though a Tang compiler replied that this had no basis. Sun Simiao said that eating much ginger in the eighth and ninth months brings eye illness in spring, shortens life and weakens the sinews. Li Shizhen wrote that eating ginger for long builds up heat that harms the eyes, which he said he had tested many times, and that people with piles who eat much of it with wine soon have a flare-up.",
+      "modern": "not tested",
+      "note": "No study on this page looked at thinking, eyesight or piles with ginger. The trials here mostly lasted from a few days to a few months, so what eating a lot of ginger for years does hasn't been studied.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (本草綱目), vegetables 1: fresh ginger (生薑)",
+          "author": "Li Shizhen (Chinese original, Wikisource)",
+          "when": "completed 1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E8%8F%9C%E4%B9%8B%E4%B8%80"
+        }
+      ]
+    },
+    {
+      "who": "China (Mingyi Bielu, Records of Famous Physicians, about AD 500, quoted in Li Shizhen's Bencao Gangmu, 1578)",
+      "belief": "Fresh ginger was said to reach all five organs, drive out 'wind evil' with chills and fever, and treat 'cold damage' (illness from catching cold) with headache and a blocked nose, coughs with rising breath, vomiting and phlegm. Li Shizhen added that raw ginger disperses, and cooked ginger calms the middle.",
+      "modern": "not tested",
+      "note": "No study on this page tests ginger for colds, headache or a blocked nose. Its use against vomiting, also from Chinese medicine, is checked against the trials on this page.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (本草綱目), vegetables 1: fresh ginger (生薑)",
+          "author": "Li Shizhen (Chinese original, Wikisource)",
+          "when": "completed 1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E8%8F%9C%E4%B9%8B%E4%B8%80"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece and England (Dioscorides, 1st century AD, as given in Gerard's Herball, 1597, enlarged 1633)",
+      "belief": "Gerard's Herball, following Dioscorides, says ginger is right good with meat in sauces or preserves, because it heats and helps digestion, gently loosens the belly, is good for the stomach, and works against all dimness of sight. Candied or green preserved ginger, it adds, 'provokes venery', that is, desire.",
+      "modern": "not tested",
+      "note": "No study on this page tests ginger for digestion, constipation, eyesight or desire; Chinese physicians, by contrast, thought much ginger harmed the eyes. The findings on nausea are the nearest to 'good for the stomach'.",
+      "sources": [
+        {
+          "title": "The Herball, or Generall Historie of Plantes, book 1, chapter 44: Of Ginger",
+          "author": "John Gerard (enlarged by Thomas Johnson)",
+          "when": "1633",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/herballorgeneral1633gera/page/62/mode/1up"
+        }
+      ]
+    },
+    {
       "who": "China (Confucius, in the Analects)",
       "belief": "The Analects record how Confucius ate: rice finely cleaned, nothing spoiled, discoloured or out of season, no meat without its proper sauce, never much at a time. And he was never without ginger when he ate.",
       "note": "The text doesn't say why he kept ginger at every meal.",

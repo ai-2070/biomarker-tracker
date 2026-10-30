@@ -17,6 +17,42 @@
   "summary": "Very rich in vitamin C, and one of the best-tested foods for constipation: two kiwifruit a day eased it as well as psyllium fibre, or slightly better. In small trials it also lowered blood pressure a little.",
   "lore": [
     {
+      "who": "Song-dynasty China (the Kaibao herbal, as quoted by Li Shizhen in the Bencao Gangmu, 1578) and Joseon Korea (Simple Emergency Remedies, Gugeup Ganibang, 1489)",
+      "belief": "The Kaibao herbal said mihoutao brings down 'stony strangury', stones passed with the urine, and Chen Cangqi said the same of the juice from the vine. In Korea, a book of emergency remedies from 1489 listed mihoutao, glossed in Korean as darae, pounded together with its vine and the juice drunk, among its remedies for painful, blocked urination and stones.",
+      "modern": "not tested",
+      "note": "No study on this page tested kiwifruit, its vine or its juice for urinary stones or painful urination. The trials measured bowel movements, blood pressure, blood fats, blood sugar, vitamin C, iron, mood and sleep.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), Fruits 5: Mihoutao (獼猴桃)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        },
+        {
+          "title": "Gugeup Ganibang (救急簡易方), book 3: the several kinds of painful urination (諸淋)",
+          "when": "1489",
+          "kind": "ancient text",
+          "url": "https://ko.wikisource.org/wiki/%EA%B5%AC%EA%B8%89%EA%B0%84%EC%9D%B4%EB%B0%A9/%EA%B6%8C%EC%A7%80%EC%82%BC"
+        }
+      ]
+    },
+    {
+      "who": "China (the Song-dynasty Kaibao herbal and the physician Meng Shen, as quoted by Li Shizhen in the Bencao Gangmu, 1578)",
+      "belief": "The Kaibao herbal also said the fruit stops a sudden, violent thirst and 'presses down' dan shi, 'cinnabar and stones', the mineral drugs of the time. Meng Shen said that for these uses the pulp is best cooked with honey into a thick syrup.",
+      "modern": "not tested",
+      "note": "No study on this page tested kiwifruit for thirst or for poisoning by mineral drugs.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), Fruits 5: Mihoutao (獼猴桃)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        }
+      ]
+    },
+    {
       "who": "Zhou-dynasty China (the Book of Songs, Shijing, about 1000–600 BC)",
       "belief": "In the song 'In the lowlands grows the chang chu', the singer looks at a supple, glossy vine in flower and in fruit and envies it: 'I delight that you know nothing… that you have no family… that you have no household.' The 12th-century scholar Zhu Xi read it as the lament of people worn down by harsh rule and heavy taxes, who wished they were plants, with no knowledge and no worries.",
       "note": "Commentators named the chang chu as the yangtao, a vine whose fruit is 'also like a peach', and a 2022 review says the kiwifruit's genus, Actinidia, was first recorded in the Book of Songs. That identification was made long after the song, so it isn't certain. The song is about envying a carefree plant, not about eating its fruit.",

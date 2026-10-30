@@ -26,6 +26,81 @@
   ],
   "lore": [
     {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny wrote that freshly picked grapes cause wind and upset the stomach and bowels, so they were kept from people with fevers, especially in large amounts, and that they can bring on a heavy head and lethargy. Grapes left hanging in the air for a while, he said, were much less harmful, even good for the stomach, and refreshing for the sick, easing nausea and queasiness.",
+      "modern": "not tested",
+      "note": "No study on this page looked at wind, stomach upsets, nausea or drowsiness after eating grapes, or at people with a fever.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 6 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D6"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Medical writers, Pliny reported, held that grapes kept in rain water were the most wholesome of all, though not pleasant to eat, and good for burning pains in the stomach, for bile from a disordered liver, for vomiting of bile and for cholera, for dropsy (swelling from fluid) and for burning fevers.",
+      "modern": "not tested",
+      "note": "No study has tested grapes, stored this way or any other, for stomach pain, liver trouble, cholera, fluid swelling or fever.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 7 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D7"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny wrote that raisins with their stones taken out were thought good for the bladder and for coughs (white raisins best for coughs), and for the windpipe and the kidneys, and that raisins eaten with pepper were used to cleanse the mouth and 'clear the brain'.",
+      "modern": "not tested",
+      "note": "No study on this page has tested raisins for coughs, the bladder or the kidneys. The few small trials of grape juice and grape powder on memory and attention ask a different question, and their results were mixed.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 12 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D12"
+        }
+      ]
+    },
+    {
+      "who": "Chinese medicine (the Mingyi Bielu and later physicians, quoted by Li Shizhen in 1578)",
+      "belief": "Chinese physicians wrote that grapes drive out excess water and help people pass urine (Mingyi Bielu), clear water from the bowels and treat painful, difficult urination (Zhen Quan), and that when the spots of smallpox would not come out, eating grapes, or drinking them ground in wine, worked very well (Su Song). Meng Shen warned that eating too many brings on a sudden, stifling restlessness and dims the eyes.",
+      "modern": "not tested",
+      "note": "No study on this page has tested grapes for passing urine, for pain when passing urine, or for smallpox, and none looked for restlessness or dim sight after eating many.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits 5: grape (Chinese text)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        }
+      ]
+    },
+    {
+      "who": "China (Cao Pi, Emperor Wen of Wei, 3rd century AD, quoted by Su Song and Li Shizhen)",
+      "belief": "The emperor wrote to his ministers that grapes at the end of summer, eaten still wet with dew after a night of heavy drinking, were sweet but not cloying, cool but not cold, and took away restlessness and thirst; wine made from them, he said, made people drunk easily and let them sober up easily too.",
+      "modern": "not tested",
+      "note": "No study on this page has tested grapes for hangovers or thirst.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits 5: grape, quoting Cao Pi (Chinese text)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        }
+      ]
+    },
+    {
       "who": "Hebrew Bible and the Talmud",
       "belief": "Genesis says Noah, a man of the soil, was the first to plant a vineyard; he drank its wine, became drunk and lay uncovered in his tent. In the Talmud Rabbi Meir argued that the forbidden tree of Eden was a vine, because 'nothing brings wailing and trouble upon man even today other than wine'.",
       "sources": [

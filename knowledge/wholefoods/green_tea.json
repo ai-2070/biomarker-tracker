@@ -22,6 +22,66 @@
   ],
   "lore": [
     {
+      "who": "China (the herbalist Chen Cheng and the physician Yang Shiying, as quoted by Li Shizhen in the Compendium of Materia Medica, Bencao Gangmu, 1578)",
+      "belief": "Chen Cheng wrote that tea taken with vinegar treats diarrhoea and dysentery and is 'very effective'. Yang Shiying wrote that ginger and tea, equal parts, finely cut and brewed strong, treat dysentery of every kind: ginger helps yang and tea helps yin, one warm and the other cold, so together they bring the two into balance. He said the poet Su Dongpo (Su Shi) had treated Lord Wen of Lu with it, with success. Li Shizhen also gathered older recipes of strong tea for 'red and white' dysentery.",
+      "modern": "not tested",
+      "note": "No study on this page tested green tea, with or without vinegar or ginger, for diarrhoea or dysentery. The findings are about death rates, heart disease, blood pressure, cholesterol, blood sugar, weight and cancer.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), Fruits 4: Tea (茗)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E5%9B%9B"
+        }
+      ]
+    },
+    {
+      "who": "Song-dynasty China (the scholar Su Shi, in his Essay on Tea, as quoted by Li Shizhen in the Bencao Gangmu, 1578)",
+      "belief": "Su Shi wrote that tea clears away restlessness and greasiness and the world can't do without it, but that it quietly harms people a good deal: salted tea on an empty stomach goes straight to the kidneys and chills the spleen and stomach, 'like leading a thief into the house'. Rinsing the mouth with strong tea after eating, though, clears the greasiness without the stomach noticing, and its bitterness 'firms the teeth and dissolves decay'.",
+      "modern": "not tested",
+      "note": "No study on this page looked at teeth, gums or tooth decay, or at tea on an empty stomach. The findings are about drinking green tea, not rinsing the mouth with it.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), Fruits 4: Tea (茗)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E5%9B%9B"
+        }
+      ]
+    },
+    {
+      "who": "China (the herbalist Su Song and Mao Wenxi's Register of Tea, Chapu, about the tea of Mount Meng in Yazhou, as quoted by Li Shizhen in the Bencao Gangmu, 1578)",
+      "belief": "The herbalist Su Song wrote that true tea is 'cold' in nature and only the tea of Mount Meng is warm and treats illness, and quoted Mao Wenxi's story of a monk long ill with a 'cold' illness who met an old man there. The old man said that tea from the middle peak, picked by many hands in three days around the spring equinox when the first thunder sounds, would cure: one liang of it brewed in the local water drives out an old illness, two keep illness away, three make the flesh and bones firm, and four make a person an 'immortal on earth'. The monk drank a little over one liang, and his illness healed before he had finished it.",
+      "modern": "not tested",
+      "note": "This is a story about one monk, with nothing to compare him with. In large cohorts in Japan and China, people who drank more green tea died at somewhat lower rates, but those studies can't show that tea was the cause, and none looked at the tea of one mountain.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), Fruits 4: Tea (茗)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E5%9B%9B"
+        }
+      ]
+    },
+    {
+      "who": "China (Li Pengfei, as quoted by Li Shizhen in the Bencao Gangmu, 1578)",
+      "belief": "Li Pengfei warned that drinking tea when very thirsty or after wine sends the water into the kidney channel, bringing cold pains in the lower back, legs and bladder, along with swelling from fluid and cramped, numb limbs. On the whole, he wrote, tea is best drunk hot and in small amounts, not drinking it is better still, and on an empty stomach it is worst of all.",
+      "modern": "not tested",
+      "note": "No study on this page tested this. The trials and cohorts looked at death rates, heart disease, blood pressure, cholesterol, blood sugar, weight and cancer, not at back pain, bladder pain or swelling, or at tea after alcohol.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), Fruits 4: Tea (茗)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E5%9B%9B"
+        }
+      ]
+    },
+    {
       "who": "Tang-dynasty China (Lu Yu, The Classic of Tea, 8th century)",
       "belief": "Lu Yu wrote the first book given wholly to tea. He called tea 'a fine tree of the south' and wrote that, being very 'cold' in nature, it is the drink best suited to people of refined conduct and frugal virtue. For feverish thirst, gloom, headache, sore eyes, restless limbs or stiff joints, he wrote, four or five sips rival 'ghee and sweet dew'.",
       "modern": "not tested",

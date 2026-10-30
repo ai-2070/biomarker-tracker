@@ -23,6 +23,60 @@
   ],
   "lore": [
     {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, AD 77)",
+      "belief": "Pliny wrote that the juice of black beet is good for long-standing headaches and dizziness, stops ringing in the ears when put into them, and makes more urine, and that it was given as an enema for dysentery and jaundice. White beet, boiled and eaten with raw garlic, was taken against tapeworm.",
+      "modern": "not tested",
+      "note": "No study on this page tests beet for headaches, dizziness, the ears, jaundice or worms; the juice in modern trials was drunk, and the outcomes were blood pressure, exercise, blood vessels and blood sugar.",
+      "sources": [
+        {
+          "title": "Natural History, book 20, chapter 27",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D20%3Achapter%3D27"
+        }
+      ]
+    },
+    {
+      "who": "England (Nicholas Culpeper, The Complete Herbal, 1653)",
+      "belief": "Culpeper wrote that red beet stops the bloody flux (dysentery with blood), heavy periods and 'the whites' (vaginal discharge), and helps the yellow jaundice, and that its root juice put into the nostrils purges the head and helps noise in the ears, toothache and bad breath. The juice of white beet, he said, opens blockages of the liver and spleen and is good for headache and 'swimmings' of the head.",
+      "modern": "not tested",
+      "note": "Much of this goes back to Pliny and Dioscorides. No study on this page tests beet for bleeding, jaundice, the liver or headache. Culpeper also noted that the red root was 'not used to be eaten' in his day.",
+      "sources": [
+        {
+          "title": "The Complete Herbal: Beets",
+          "author": "Nicholas Culpeper",
+          "when": "1653",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49513"
+        }
+      ]
+    },
+    {
+      "who": "Folk medicine in Croatia and among Haitian women in New York (recorded in 2024)",
+      "belief": "In north-western Croatia, people told researchers they used beetroot, pickled or as fresh juice, for anaemia. Haitian women in New York named beets, with carrots and spinach, among the foods eaten to stay healthy in pregnancy, which the researchers linked to treating anaemia with foods thought to be rich in iron.",
+      "modern": "not tested",
+      "note": "No study on this page tests beetroot for anaemia. The food table measures 1 mg of iron in 100 g of raw beetroot and 0.36 mg cooked, little next to the 11 to 16 mg a day of the EU reference for adults; raw beetroot does hold a fair amount of folate (150 µg per 100 g).",
+      "sources": [
+        {
+          "title": "Ethnobotanical Survey of Culturally Important Plants and Mushrooms in North-Western Part of Croatia",
+          "author": "Krstin, Katanić, Benčić, Lončar, Pfeiffer",
+          "when": "2024",
+          "kind": "scholarship",
+          "doi": "10.3390/plants13111566",
+          "pmid": "38891374"
+        },
+        {
+          "title": "Haitian women in New York City use global food plants for women's health",
+          "author": "Vardeman, Kennelly, Vandebroek",
+          "when": "2024",
+          "kind": "scholarship",
+          "doi": "10.1186/s13002-024-00648-1",
+          "pmid": "38217006"
+        }
+      ]
+    },
+    {
       "who": "Ancient Greece (Delphi, as Pliny the Elder heard it)",
       "belief": "Pliny was told that in Apollo's temple at Delphi the radish was so highly prized among foods that it was shown there in gold, the beet in silver and the turnip in lead. He called it a sign of Greek frivolity.",
       "sources": [

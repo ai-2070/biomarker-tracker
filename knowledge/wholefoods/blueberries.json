@@ -23,6 +23,51 @@
   ],
   "lore": [
     {
+      "who": "England (Nicholas Culpeper, The Complete Herbal, 1653), about bilberries, a European relative of blueberries",
+      "belief": "Culpeper wrote that black bilberries, also called whorts or whortleberries, were good in 'hot agues' (fevers) and cooled the heat of the liver and stomach; that they somewhat bound the belly and stopped vomiting and 'loathings' (nausea); and that their juice made into a syrup, or the pulp made into a conserve with sugar, was good for an old cough or an ulcer in the lungs. It was a pity, he wrote, that they were used no more in medicine than they were.",
+      "modern": "not tested",
+      "note": "This was written about bilberries, not blueberries. No study on this page tested either berry for fevers, nausea, vomiting, coughs or lung disease.",
+      "sources": [
+        {
+          "title": "The Complete Herbal: Bilberries, called by some Whorts, and Whortle-berries",
+          "author": "Nicholas Culpeper",
+          "when": "1653",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49513"
+        }
+      ]
+    },
+    {
+      "who": "Ojibwe of Lac du Flambeau, Wisconsin (as recorded by the botanist Huron H. Smith, published 1932)",
+      "belief": "The Flambeau Ojibwe made a medicinal tea from the leaves of the common blueberry and used it as a blood purifier. Smith added that white men had used the leaves in the same way.",
+      "modern": "not tested",
+      "note": "'Blood purifier' was a broad idea, not one effect that a study could measure. The trials on this page used the berries, not the leaves, and none tested blueberry leaf tea.",
+      "sources": [
+        {
+          "title": "Ethnobotany of the Ojibwe Indians, Ojibwe medicines: Ericaceae (heath family), Blueberry",
+          "author": "Huron H. Smith",
+          "when": "1932",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49527"
+        }
+      ]
+    },
+    {
+      "who": "White Americans (as noted by the botanist Huron H. Smith in his study of the Forest Potawatomi of Wisconsin, published 1933)",
+      "belief": "Smith wrote that among the whites the fruit of the velvet-leaf blueberry, a wild blueberry, had been esteemed chiefly as a food, but as one that would prevent scurvy and act as a diuretic, making the body pass more urine. The Forest Potawatomi had used the root bark of this blueberry as a medicine, though Smith could not find out for what illness.",
+      "modern": "not tested",
+      "note": "Scurvy comes from too little vitamin C, and blueberries are low in it: the UK food table measured 6 mg per 100 g. No study on this page tested blueberries for scurvy or for how much urine people pass.",
+      "sources": [
+        {
+          "title": "Ethnobotany of the Forest Potawatomi Indians, Potawatomi medicines: Ericaceae (heath family), Velvet-leaf Blueberry",
+          "author": "Huron H. Smith",
+          "when": "1933",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/ethnobotany-of-the-forest-potawatomi-indians-by-huron-h.-smith-1933/page/54/mode/2up"
+        }
+      ]
+    },
+    {
       "who": "New France, 1615 (the explorer Samuel de Champlain, among Algonquin peoples and their neighbours on his journey to Lake Huron)",
       "belief": "Champlain saw people drying blueberries in the sun for the winter, \"as we do plums in France for Lent\", and wrote that God seemed to have given these harsh lands such fruits \"for the refreshment of man\". A chief told him he had come there to dry the \"bluës\" to serve as \"manna in winter, and when they can find nothing else\". In the farming villages near Lake Huron, dried blueberries were sometimes mixed into cornmeal bread baked in the ashes.",
       "note": "\"Manna\", the food from heaven in the Bible, is Champlain's word: the people's own words weren't written down. A 2013 review of Indigenous uses of blueberries calls this the first written record of Indigenous use of blueberries and takes its title from the phrase.",
