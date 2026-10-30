@@ -20,6 +20,7 @@ import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from ".
 import { BIOMARKER_MAP, EVIDENCE, FOODS, NUTRIENT_MAP, fullName } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
+import { ClockNote } from "../components/ClockEvidence";
 
 
 const INTAKE_TYPE = {
@@ -119,6 +120,8 @@ export function NutrientPage({ id }: { id: string }) {
           intro="Outcome by outcome, strongest evidence first. Who was studied matters: a benefit in people who were low says little about people who aren't."
           findings={n.findings}
         />
+
+        <ClockNote kind="nutrient" id={n.id} />
 
         {n.foodFindings && n.foodFindings.length > 0 && (
           <Findings

@@ -1,0 +1,489 @@
+{
+  "intro": "What has been tested in people against the aging clocks on this page (PhenoAge, DunedinPACE and other DNA methylation clocks), including results where nothing changed. Most studies are small, short or analysed after the trial ended, and only two measured the blood-test PhenoAge this app calculates.",
+  "caveat": "These clocks are stand-ins for aging, not aging itself: no study has shown that lowering PhenoAge, DunedinPACE or any other clock makes people live longer. The PhenoAge in this app is calculated from nine blood markers, so anything that lowers CRP or glucose lowers it by arithmetic, and a cold or other infection that raises CRP or white blood cells can raise it for a while.",
+  "findings": [
+    {
+      "outcome": "Calorie restriction: DunedinPACE and other methylation clocks",
+      "population": "220 healthy adults without obesity, 2 years (CALERIE trial); 197 had methylation tests",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One well-run randomised trial, but the clocks were analysed after the trial (post hoc), not as its main question",
+        "Small effect: the two groups' DunedinPACE changes overlapped by close to 90 %",
+        "Clocks are stand-ins; the trial did not measure disease or deaths over the long term",
+        "The methylation PhenoAge and GrimAge clocks did not change, so the result depends on the clock"
+      ],
+      "summary": "In CALERIE, people were asked to eat 25 % fewer calories than before; on average they ate about 12 % fewer (11.9 %) over 2 years, while a control group kept eating as usual. DunedinPACE was slower in the calorie-restriction group at 12 months (standardised effect −0.29) and at 24 months (−0.25), which the authors equate to a 2–3 % slower pace of aging. Those who cut more calories had larger effects. The methylation versions of PhenoAge and GrimAge did not differ between groups (effects between −0.04 and 0.05), and neither did the first-generation clocks. This methylation PhenoAge is not the blood-test PhenoAge this app calculates; that one was not reported. An earlier analysis of the same trial's blood tests, using a different blood-based age (Klemera-Doubal biological age, not PhenoAge), also found slower aging with calorie restriction. The authors say a real test needs long trials that count disease and deaths.",
+      "bottomLine": "In a 2-year trial of 220 healthy adults who ate about 12 % fewer calories, DunedinPACE was 2–3 % slower than in the control group. Methylation PhenoAge and GrimAge did not change, and the effect was small.",
+      "label": "Calorie restriction",
+      "line": "DunedinPACE about 2 to 3% slower over 2 years; methylation PhenoAge and GrimAge didn't change",
+      "clocks": [
+        "DunedinPACE",
+        "DNAm PhenoAge",
+        "GrimAge",
+        "Horvath",
+        "Hannum"
+      ],
+      "studies": [
+        {
+          "pmid": "37118425",
+          "doi": "10.1038/s43587-022-00357-y",
+          "title": "Effect of long-term caloric restriction on DNA methylation measures of biological aging in healthy adults from the CALERIE trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 197
+        },
+        {
+          "pmid": "28531269",
+          "doi": "10.1093/gerona/glx096",
+          "title": "Change in the Rate of Biological Aging in Response to Caloric Restriction: CALERIE Biobank Analysis.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 220
+        }
+      ]
+    },
+    {
+      "outcome": "Omega-3 supplements: methylation clocks",
+      "population": "777 generally healthy, active Swiss adults aged 70 and over (mean 75), 3 years (DO-HEALTH trial)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised, placebo-controlled trial, but the clocks were analysed after the trial (post hoc) in the Swiss part only",
+        "No single main clock was chosen in advance; the authors looked for consistency across several",
+        "Small effects, about 3 to 4 months over 3 years",
+        "Healthier and more active people than most adults over 70, with low omega-3 levels at the start"
+      ],
+      "summary": "DO-HEALTH gave 1 g a day of omega-3 (330 mg EPA and 660 mg DHA from algae) or a placebo for 3 years, in a design that also tested vitamin D and a home exercise programme. Omega-3 slowed three of four main clocks: methylation PhenoAge (standardised effect −0.16), GrimAge2 (−0.32) and DunedinPACE (−0.17); the first GrimAge did not clearly change. Omega-3 combined with vitamin D, exercise or both had larger effects on methylation PhenoAge only (−0.24 to −0.32). Overall the effects were small, equal to about 2.9 to 3.8 months of aging over 3 years. These are methylation clocks, not the blood-test PhenoAge this app calculates. The authors note that the Swiss participants had lower omega-3 levels at the start than the rest of the trial, which may have helped the result.",
+      "bottomLine": "In a 3-year trial of 777 healthy Swiss adults over 70, 1 g of omega-3 a day slowed three of four methylation clocks, by about 3 to 4 months. The effect was small and the clocks were analysed after the trial ended.",
+      "label": "Omega-3 (fish or algae oil)",
+      "line": "Slowed 3 of 4 methylation clocks by about 3 to 4 months over 3 years, in adults over 70",
+      "clocks": [
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "Horvath",
+        "Hannum"
+      ],
+      "about": [
+        {
+          "kind": "nutrient",
+          "id": "omega_3"
+        }
+      ],
+      "studies": [
+        {
+          "pmid": "39900648",
+          "doi": "10.1038/s43587-024-00793-y",
+          "title": "Individual and additive effects of vitamin D, omega-3 and exercise on DNA methylation clocks of biological aging in older adults from the DO-HEALTH trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 777
+        }
+      ]
+    },
+    {
+      "outcome": "Vitamin D supplements: methylation clocks",
+      "population": "777 healthy Swiss adults aged 70 and over, 3 years (DO-HEALTH); 51 young African American adults with overweight and low vitamin D",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The larger trial (DO-HEALTH) found no change in any clock with vitamin D alone",
+        "The small trial's results were just significant and only on first-generation clocks, at different doses",
+        "Clocks were analysed after the trials (post hoc)"
+      ],
+      "summary": "In DO-HEALTH, 2,000 IU of vitamin D a day for 3 years was not associated with changes in any of the clocks (methylation PhenoAge, GrimAge, GrimAge2, DunedinPACE). Combined with omega-3 and exercise, it added to omega-3's effect on methylation PhenoAge only. In a small trial of 51 overweight or obese African American adults (average age 26) with low vitamin D, 4,000 IU a day was linked to a Horvath clock 1.85 years lower than placebo, and 2,000 IU a day to a Hannum clock 1.90 years lower; both results were only just significant (p 0.046 and 0.044), and the authors call the Hannum result not conclusive. Neither trial measured the blood-test PhenoAge this app calculates.",
+      "bottomLine": "In a 3-year trial of 777 adults over 70, vitamin D alone did not change any aging clock. A small trial of 51 young adults with low vitamin D found lower first-generation clocks, but the results were only just significant.",
+      "label": "Vitamin D",
+      "line": "No change in any clock on its own over 3 years in adults over 70",
+      "clocks": [
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "Horvath",
+        "Hannum"
+      ],
+      "about": [
+        {
+          "kind": "nutrient",
+          "id": "vitamin_d"
+        }
+      ],
+      "studies": [
+        {
+          "pmid": "39900648",
+          "doi": "10.1038/s43587-024-00793-y",
+          "title": "Individual and additive effects of vitamin D, omega-3 and exercise on DNA methylation clocks of biological aging in older adults from the DO-HEALTH trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 777
+        },
+        {
+          "pmid": "30256915",
+          "doi": "10.1093/gerona/gly223",
+          "title": "Effects of Vitamin D3 Supplementation on Epigenetic Aging in Overweight and Obese African Americans With Suboptimal Vitamin D Status: A Randomized Clinical Trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 51
+        }
+      ]
+    },
+    {
+      "outcome": "Exercise programmes: methylation clocks",
+      "population": "777 healthy Swiss adults aged 70 and over, 3 years (DO-HEALTH); 47 frail adults around 80 in Spain, 6 months",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The larger trial tested a simple home strength programme and found no change in any clock",
+        "The small trial combined exercise with a nutrition supplement, so exercise can't be judged on its own",
+        "In the small trial only one of five clocks changed, and it was registered after it had started"
+      ],
+      "summary": "In DO-HEALTH, a simple home strength programme (30 minutes, three times a week, for 3 years) was not associated with changes in any of the clocks; combined with omega-3 and vitamin D it added to their effect on methylation PhenoAge only. In a small Spanish trial of 47 frail people around 80, 6 months of supervised exercise plus a nutrition supplement improved frailty, grip strength and walking speed compared with usual care, and lowered methylation PhenoAge; the other four clocks did not change significantly. That trial was registered only after it had begun. Exercise has many proven benefits; these trials only show that the clocks didn't clearly move. Neither measured the blood-test PhenoAge this app calculates.",
+      "bottomLine": "A 3-year home strength programme in 777 adults over 70 did not change any aging clock. In a small trial of 47 frail older people, exercise with a nutrition supplement lowered one of five clocks.",
+      "label": "Exercise programmes",
+      "line": "No change in any clock with home strength exercise over 3 years; one small trial moved 1 of 5",
+      "clocks": [
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "Horvath",
+        "Hannum"
+      ],
+      "studies": [
+        {
+          "pmid": "39900648",
+          "doi": "10.1038/s43587-024-00793-y",
+          "title": "Individual and additive effects of vitamin D, omega-3 and exercise on DNA methylation clocks of biological aging in older adults from the DO-HEALTH trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 777
+        },
+        {
+          "pmid": "41677077",
+          "doi": "10.1111/acel.70376",
+          "title": "A Multidomain Lifestyle Intervention Is Associated With Improved Functional Trajectories and Favorable Changes in Epigenetic Aging Markers in Frail Older Adults: A Randomized Controlled Trial.",
+          "year": 2026,
+          "studyType": "rct",
+          "n": 47
+        }
+      ]
+    },
+    {
+      "outcome": "Multivitamin-multimineral: methylation clocks",
+      "population": "958 older adults (482 women, 476 men), 2 years (COSMOS trial)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised, placebo-controlled trial, with the clock study planned in advance",
+        "Very small effects, on two of five clocks, with confidence intervals close to zero",
+        "Read from the abstract only: the full text was not available through Europe PMC"
+      ],
+      "summary": "COSMOS gave a daily multivitamin-multimineral (Centrum Silver) or a placebo for 2 years and measured five methylation clocks. Compared with placebo, the multivitamin slowed the yearly rise of methylation GrimAge by 0.113 years (95 % CI 0.020 to 0.205) and of methylation PhenoAge by 0.214 years (0.019 to 0.410); the abstract names an effect on only these two of the five clocks (the others were Horvath, Hannum and DunedinPACE). The GrimAge effect was larger in people whose clocks were ahead of their age at the start. The authors call the effects small and say more studies are needed to know whether they matter for health. This is not the blood-test PhenoAge this app calculates.",
+      "bottomLine": "In a 2-year trial of 958 older adults, a daily multivitamin slowed two of five methylation clocks by about 0.1 to 0.2 years a year compared with placebo. The authors call the effects small, of unclear importance for health.",
+      "label": "Multivitamin",
+      "line": "Two of five methylation clocks rose about 0.1 to 0.2 years a year less than with placebo",
+      "clocks": [
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "Horvath",
+        "Hannum"
+      ],
+      "studies": [
+        {
+          "pmid": "41803341",
+          "doi": "10.1038/s41591-026-04239-3",
+          "title": "Effects of daily multivitamin-multimineral and cocoa extract supplementation on epigenetic aging clocks in the COSMOS randomized clinical trial.",
+          "year": 2026,
+          "studyType": "rct",
+          "n": 958
+        }
+      ]
+    },
+    {
+      "outcome": "Cocoa extract: methylation clocks",
+      "population": "958 older adults, 2 years (COSMOS trial)",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised, placebo-controlled trial with the clock study planned in advance",
+        "No effect on any of five clocks",
+        "Read from the abstract only: the full text was not available through Europe PMC"
+      ],
+      "summary": "In the same COSMOS trial, a daily cocoa extract (500 mg cocoa flavanols, including 80 mg epicatechin) or a placebo for 2 years did not change any of the five methylation clocks measured (Horvath, Hannum, PhenoAge, GrimAge and DunedinPACE). This is a concentrated extract, not chocolate, and the clocks are not the blood-test PhenoAge this app calculates.",
+      "bottomLine": "In a 2-year trial of 958 older adults, a daily cocoa flavanol extract did not change any of five methylation aging clocks compared with placebo.",
+      "label": "Cocoa extract",
+      "line": "No change in any of five methylation clocks over 2 years",
+      "clocks": [
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "Horvath",
+        "Hannum"
+      ],
+      "studies": [
+        {
+          "pmid": "41803341",
+          "doi": "10.1038/s41591-026-04239-3",
+          "title": "Effects of daily multivitamin-multimineral and cocoa extract supplementation on epigenetic aging clocks in the COSMOS randomized clinical trial.",
+          "year": 2026,
+          "studyType": "rct",
+          "n": 958
+        }
+      ]
+    },
+    {
+      "outcome": "Mediterranean and green-Mediterranean diets: methylation clocks",
+      "population": "256 adults in Israel with abdominal obesity or high blood fats, 228 of them men, mean age about 51, 18 months (DIRECT PLUS trial)",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised trial, with the clocks as a pre-specified secondary outcome",
+        "No difference between the three diets on any clock",
+        "The links with following the diet closely compare people, not randomised groups",
+        "Mostly men at one workplace"
+      ],
+      "summary": "DIRECT PLUS compared three diets for 18 months: healthy dietary guidelines, a Mediterranean diet with 28 g of walnuts a day, and a green-Mediterranean diet that also included 3–4 cups of green tea and a Mankai (duckweed) shake a day and less red and processed meat. Both Mediterranean diets also had fewer calories. None of the clocks (Horvath, Hannum, Li, methylation PhenoAge, GrimAge) changed differently between the three groups. DunedinPACE fell in all three groups, with no difference between them (p = 0.85), so the fall can't be credited to one diet. People who followed the green-Mediterranean diet most closely had smaller rises in two first-generation clocks, but that compares people who chose to follow it more, not randomised groups.",
+      "bottomLine": "In an 18-month trial of 256 adults, a Mediterranean or green-Mediterranean diet with green tea did not change any aging clock differently from healthy dietary guidelines. DunedinPACE fell in all three groups alike.",
+      "label": "Mediterranean diets",
+      "line": "No clock changed differently from healthy dietary guidelines over 18 months",
+      "clocks": [
+        "Horvath",
+        "Hannum",
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "other"
+      ],
+      "about": [
+        {
+          "kind": "wholefood",
+          "id": "green_tea"
+        }
+      ],
+      "studies": [
+        {
+          "pmid": "37743489",
+          "doi": "10.1186/s12916-023-03067-3",
+          "title": "The effect of polyphenols on DNA methylation-assessed biological age attenuation: the DIRECT PLUS randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 256
+        }
+      ]
+    },
+    {
+      "outcome": "8-week diet and lifestyle programme: Horvath clock in saliva",
+      "population": "43 healthy men aged 50–72 in the US, 8 weeks; 38 analysed",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Very small pilot trial, only 8 weeks, men only",
+        "Saliva, and a first-generation clock built to estimate age rather than health",
+        "The control group got no programme at all, and the result was later corrected",
+        "The data were held back for a time to allow commercial use"
+      ],
+      "summary": "Men were randomly given an 8-week programme of diet, sleep, exercise and relaxation guidance plus probiotic and plant-compound supplements, or nothing. Measured in saliva with the 2013 Horvath clock, the programme group ended 3.23 years younger than the control group (p = 0.018). A 2024 correction, accounting for the participants being 8 weeks older at the end, says the programme group scored 2.04 years younger than at the start (p = 0.043) and the control group 1.10 years older (p = 0.191). With 18 and 20 men analysed, one clock and many parts to the programme, it can't show what caused the change. The authors call for larger and longer trials. A 2022 correction says the data were held back to allow commercial use of the findings.",
+      "bottomLine": "In a pilot trial of 43 men, an 8-week diet and lifestyle programme left the saliva Horvath clock about 3 years lower than in men who had no programme. The trial was tiny, short, used one clock, and was later corrected.",
+      "label": "8-week lifestyle programme",
+      "line": "Saliva Horvath clock about 3 years lower than controls in one tiny 8-week pilot",
+      "clocks": [
+        "Horvath"
+      ],
+      "studies": [
+        {
+          "pmid": "33844651",
+          "doi": "10.18632/aging.202913",
+          "title": "Potential reversal of epigenetic age using a diet and lifestyle intervention: a pilot randomized clinical trial.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 43
+        },
+        {
+          "pmid": "38488762",
+          "doi": "10.18632/aging.205700",
+          "title": "Correction: Potential reversal of epigenetic age using a diet and lifestyle intervention: a pilot randomized clinical trial.",
+          "year": 2024,
+          "studyType": "rct",
+          "n": 43
+        },
+        {
+          "pmid": "35907207",
+          "doi": "10.18632/aging.204197",
+          "title": "Correction for: Potential reversal of epigenetic age using a diet and lifestyle intervention: a pilot randomized clinical trial.",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 43
+        }
+      ]
+    },
+    {
+      "outcome": "Lifestyle programme for prediabetes: blood-test PhenoAge",
+      "population": "181 Saudi adults with prediabetes (HbA1c 5.7–6.4 %), mean age 51, 6 months",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised trial, but without allocation concealment",
+        "Short (6 months) and in one region; the authors say it may not apply elsewhere",
+        "PhenoAge moves with glucose and other blood values, which the programme changed directly",
+        "The size of the change is large for 6 months and hasn't been repeated"
+      ],
+      "summary": "This trial used the same blood-test PhenoAge (Levine) that this app calculates. One group had a 6-month lifestyle programme asking for about 5 % weight loss, 150 minutes of moderate exercise a week, less fat and more fibre; the control group got a brochure. PhenoAge fell by 4.9 years in the programme group and rose by 1.3 years in the control group (p < 0.001). Weight fell 5.7 kg more, waist 6.3 cm more and HbA1c 0.4 % more in the programme group. Because PhenoAge is calculated from blood markers including glucose, better blood sugar lowers it directly; the drop shows how quickly the blood-test number can move, not that aging itself slowed by years. The random allocation was not concealed, and the trial lasted 6 months.",
+      "bottomLine": "In a 6-month trial of 181 adults with prediabetes, a lifestyle programme lowered the blood-test PhenoAge by 4.9 years while it rose 1.3 years in controls. Blood sugar and weight also improved, which moves PhenoAge directly.",
+      "label": "Lifestyle for prediabetes",
+      "line": "Blood-test PhenoAge 4.9 years lower after 6 months, versus 1.3 years higher in controls",
+      "clocks": [
+        "PhenoAge"
+      ],
+      "studies": [
+        {
+          "pmid": "42787268",
+          "doi": "10.3389/fragi.2026.1809697",
+          "title": "Structured lifestyle modification and biological aging: effects on PhenoAge, sclerostin, and GDF-15 in arab adults with prediabetes.",
+          "year": 2026,
+          "studyType": "rct",
+          "n": 181
+        }
+      ]
+    },
+    {
+      "outcome": "Weight-loss surgery: blood-test PhenoAge",
+      "population": "505 people with obesity having bariatric surgery in Berlin, 76 % women, mean age 41; 155 still followed at 2 years",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "No comparison group: everyone had surgery",
+        "Many people dropped out: 505 at the start, 155 at 2 years",
+        "PhenoAge moves with glucose, CRP and blood counts, which surgery changes directly"
+      ],
+      "summary": "This cohort calculated the blood-test PhenoAge (the nine-marker Levine formula this app uses) before and after weight-loss surgery. Twelve months after surgery, people's PhenoAge was on average 5.55 years lower relative to their age than before, and it stayed there to 24 months. Allowing for the fall in body mass index, it was 3.32 years lower. Glucose, CRP, creatinine, alkaline phosphatase and white blood cells all fell, which is what moves the number. The authors' estimate of 40–50 % lower expected mortality comes from the same formula, not from counting deaths. With no comparison group and most people not followed to 2 years, it can't show how much the surgery itself caused.",
+      "bottomLine": "In 505 people having weight-loss surgery, blood-test PhenoAge was about 5.5 years lower relative to age a year later, as glucose, CRP and blood counts fell. There was no comparison group, and many people dropped out.",
+      "label": "Weight-loss surgery",
+      "line": "Blood-test PhenoAge about 5.5 years lower a year after surgery, with no comparison group",
+      "clocks": [
+        "PhenoAge"
+      ],
+      "studies": [
+        {
+          "pmid": "42315524",
+          "doi": "10.1038/s41514-026-00429-y",
+          "title": "Mortality associated biological age improves independently of weight loss after bariatric surgery.",
+          "year": 2026,
+          "studyType": "observational",
+          "n": 505
+        }
+      ]
+    },
+    {
+      "outcome": "Metformin: methylation clocks",
+      "population": "192 overweight women after breast cancer, 6 months; 40 adults with HIV aged 50 and over, 96 weeks; no trials in healthy people reported",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Two small randomised trials in specific groups of patients",
+        "Wide confidence intervals: small effects can't be ruled out or in",
+        "TAME, the planned large trial of metformin and aging, has no published results"
+      ],
+      "summary": "In a trial of 192 overweight or obese women after breast cancer, 6 months of metformin, a weight-loss programme, or both did not change any methylation clock (including Horvath, Hannum, PhenoAge and GrimAge) compared with placebo. In METFORAGING, 40 people with well-controlled HIV aged 50 and over were given 850 mg of metformin twice a day or a placebo for 96 weeks; methylation PhenoAge differed by −1.02 years (95 % CI −5.30 to 3.26) and DunedinPACE by −0.008 (−0.058 to 0.042), neither significant. Recruitment stopped at 40 of the 60 planned. TAME (Targeting Aging with Metformin), a large trial proposed in 2016, had no results in Europe PMC when this was written (October 2026), so metformin has not been tested against these clocks in healthy people.",
+      "bottomLine": "Two small trials of metformin, in 192 women after breast cancer and 40 people with HIV, found no change in methylation clocks. The large planned trial of metformin and aging (TAME) has not reported results.",
+      "label": "Metformin",
+      "line": "No change in two small trials; not tested in healthy people yet",
+      "clocks": [
+        "DNAm PhenoAge",
+        "GrimAge",
+        "DunedinPACE",
+        "Horvath",
+        "Hannum"
+      ],
+      "studies": [
+        {
+          "pmid": "34920739",
+          "doi": "10.1186/s13148-021-01218-y",
+          "title": "An epigenetic aging analysis of randomized metformin and weight loss interventions in overweight postmenopausal breast cancer survivors.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 192
+        },
+        {
+          "pmid": "42023167",
+          "doi": "10.1016/j.eclinm.2026.103874",
+          "title": "Metformin and epigenetic age in non-diabetic older people with HIV in Madrid (METFORAGING): a double-blind, randomised, placebo-controlled, pilot trial.",
+          "year": 2026,
+          "studyType": "rct",
+          "n": 40
+        },
+        {
+          "pmid": "27304507",
+          "doi": "10.1016/j.cmet.2016.05.011",
+          "title": "Metformin as a Tool to Target Aging.",
+          "year": 2016,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Quitting smoking: methylation clocks",
+      "population": "1,911 US adults aged 50–84 (NHANES 1999–2002), never, former and current smokers, one blood sample each",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: compares different people at one moment, not the same people before and after quitting",
+        "People who quit may differ from those who don't in other ways",
+        "Consistent: the longer since quitting, the lower the clocks",
+        "GrimAge is partly built from a methylation estimate of smoking, so it tracks smoking by design"
+      ],
+      "summary": "In this survey sample, current smokers had the most advanced clocks on all six measured (Horvath, Hannum, skin-and-blood, methylation PhenoAge, GrimAge2 and DunedinPoAm, an earlier version of DunedinPACE). Among former smokers, the longer since quitting, the lower the clocks, most clearly for GrimAge2 and DunedinPoAm. Compared with current smokers, people who had quit 20 or more years earlier had GrimAge2 about 12.7 years lower (95 % CI 10.8 to 14.6), close to never smokers (13.9 years lower). The steepest falls were in the first 10 years after quitting. This compares different people once each, so it can't prove that quitting caused the difference, and GrimAge includes a smoking signal by design. Quitting has well-established benefits that don't depend on these clocks.",
+      "bottomLine": "In 1,911 US adults, former smokers had lower aging clocks the longer ago they had quit; after 20 years GrimAge2 was close to never smokers. This compares different people once, so it can't prove cause.",
+      "label": "Quitting smoking",
+      "line": "The longer ago people quit, the lower their clocks; after 20 years close to never smokers",
+      "clocks": [
+        "GrimAge",
+        "DNAm PhenoAge",
+        "Horvath",
+        "Hannum",
+        "other"
+      ],
+      "studies": [
+        {
+          "pmid": "42736515",
+          "doi": "10.1007/s11357-026-02535-x",
+          "title": "Duration of smoking cessation and DNA methylation aging clocks among US adults: potential reversibility of smoking-induced biological aging.",
+          "year": 2026,
+          "studyType": "observational",
+          "n": 1911
+        },
+        {
+          "pmid": "37118425",
+          "doi": "10.1038/s43587-022-00357-y",
+          "title": "Effect of long-term caloric restriction on DNA methylation measures of biological aging in healthy adults from the CALERIE trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 197
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "pmid": "29676998",
+      "doi": "10.18632/aging.101414",
+      "title": "An epigenetic biomarker of aging for lifespan and healthspan.",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "35029144",
+      "doi": "10.7554/elife.73420",
+      "title": "DunedinPACE, a DNA methylation biomarker of the pace of aging.",
+      "year": 2022,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "42926120",
+      "doi": "10.1016/j.exger.2026.113367",
+      "title": "Concordance between changes in epigenetic clocks and changes in clinical outcomes in geroscience intervention trials: A systematic review.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

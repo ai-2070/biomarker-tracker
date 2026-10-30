@@ -9,6 +9,7 @@ import { lowerFirst } from "./format";
 import { validateLifestyleDef, type LifestyleDef } from "../core/lifestyle";
 import { validateWholeFoodDef, type WholeFoodDef } from "../core/wholeFoods";
 import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "../core/phenoageWatch";
+import { validateClockFile, type ClockFile } from "../core/clocks";
 
 // Bundled at build time; nothing is fetched at runtime.
 const modules = import.meta.glob<unknown>("../../knowledge/biomarkers/*.json", { eager: true, import: "default" });
@@ -163,3 +164,11 @@ export const FOOD_COMPARISON: readonly ComparisonTopicFile[] = Object.entries(co
 export const watchDef = (id: string): BiomarkerDef | undefined => BIOMARKER_MAP.get(id) ?? (id === PHENOAGE_GAP_ID ? PHENOAGE_GAP_DEF : undefined);
 /** Watches compare with this map: every marker plus the PhenoAge gap. */
 export const WATCH_DEFS: ReadonlyMap<string, BiomarkerDef> = new Map([...BIOMARKER_MAP, [PHENOAGE_GAP_ID, PHENOAGE_GAP_DEF]]);
+
+// What has moved the aging clocks in studies (Biological age page), if the file is there and valid.
+const clockModules = import.meta.glob<unknown>("../../knowledge/clocks/interventions.json", { eager: true, import: "default" });
+export const CLOCK_FILE: ClockFile | undefined = Object.values(clockModules).flatMap((json) => {
+  const errors = validateClockFile(json);
+  if (errors.length > 0) console.error("Invalid knowledge file clocks/interventions.json:", errors);
+  return errors.length === 0 ? [json as ClockFile] : [];
+})[0];
