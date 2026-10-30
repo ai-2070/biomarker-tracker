@@ -4,7 +4,7 @@ import { dailyReference } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { findingCounts, interactionsFor, type FindingEffect, type NutrientDef } from "../../core/nutrients";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
-import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
+import { computeTrend, flagLatest, groupByBiomarker, isCritical } from "../../core/trends";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
 import { EFFECT, Findings } from "../components/findings";
@@ -14,7 +14,7 @@ import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { jump } from "../components/glance";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Card, FlagBadge, LinkButton, cx } from "../components/ui";
+import { Card, FlagBadge, LinkButton, Notice, cx } from "../components/ui";
 import { displayUnitFor, formatDate, lowerFirst, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, FOODS, NUTRIENT_MAP, fullName } from "../knowledge";
@@ -44,6 +44,12 @@ export function NutrientPage({ id }: { id: string }) {
   const notes = safetyNotes(safetyLabels(protocols, profile));
   const safety: SafetyId[] = notes.map((x) => x.id);
   const yours = interactionsFor(n, safety);
+  const grouped = groupByBiomarker(all ?? []);
+  const critical = n.status.biomarkerIds.some((id) => {
+    const def = BIOMARKER_MAP.get(id);
+    const readings = grouped.get(id);
+    return def && readings?.length ? isCritical(flagLatest(def, readings, profile)) : false;
+  });
 
   return (
     <>
@@ -56,14 +62,15 @@ export function NutrientPage({ id }: { id: string }) {
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
           {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
         </div>
-        <div className="flex flex-wrap gap-2">
+        {!critical && <div className="flex flex-wrap gap-2">
           {/* A habit with the nutrient's blood test picked to watch, when the app has one. */}
           <LinkButton variant="secondary" href={href({ name: "habits", add: n.name, ...(n.status.biomarkerIds[0] ? { marker: n.status.biomarkerIds[0] } : {}) })}>
             Start as a habit
           </LinkButton>
           <AddToProtocol label={n.name} />
-        </div>
+        </div>}
       </div>
+      {critical && <Notice role="alert" tone="danger" title="Contact a doctor now" className="mb-5">Your latest linked blood result is critically out of range. Contact a doctor urgently before changing food or supplements. Food-increase ideas and research handoff to Brain are not shown.</Notice>}
 
       {/* Wide screens: the cards at a readable width, key facts and jump links in a side column. Phones: cards only. */}
       <div className="grid gap-6 lg:grid-cols-[minmax(0,48rem)_18rem] lg:gap-10">
@@ -130,7 +137,7 @@ export function NutrientPage({ id }: { id: string }) {
         )}
 
         <span id="food" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-        <Foods n={n} safety={safety} />
+        {!critical && <Foods n={n} safety={safety} />}
 
         {n.forms.length > 0 && (
           <Card id="forms" className="flex scroll-mt-6 flex-col gap-3">
@@ -167,9 +174,9 @@ export function NutrientPage({ id }: { id: string }) {
           </Card>
         )}
 
-        <Levers n={n} />
+        {!critical && <Levers n={n} />}
 
-        {n.status.biomarkerIds.length > 0 && (
+        {!critical && n.status.biomarkerIds.length > 0 && (
           <Card className="flex flex-col gap-3">
             <H2>Test it on yourself</H2>
             <p className="text-ink-2">
@@ -198,7 +205,7 @@ export function NutrientPage({ id }: { id: string }) {
           terms={[n.name]}
           topic="supplementation"
           question={`What does research say about ${n.name.toLowerCase()} supplements, and is it relevant to my results?`}
-          critical={false}
+          critical={critical}
         />
 
         <Card>
@@ -301,9 +308,10 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
                 <dd className={cx(ref.upperLimit && "text-base tabular-nums")}>
                   {ref.upperLimit ? `${formatValue(ref.upperLimit.amount)} ${ref.upperLimit.unit}` : "None set"}
                 </dd>
+                {ref.upperLimit && <dd className="mt-1 text-xs text-ink-2">{ref.upperLimit.note}</dd>}
               </div>
             </dl>
-            <p className="mt-1.5 text-xs text-ink-2">From food and supplements together. Population values, not a target or a dose for you.</p>
+            <p className="mt-1.5 text-xs text-ink-2">Reference intakes include food and supplements. Upper limits cover only the sources stated above. Population values, not a target or a dose for you.</p>
           </section>
         )}
 

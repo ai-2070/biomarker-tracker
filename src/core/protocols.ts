@@ -122,6 +122,14 @@ const SAFETY: { note: SafetyNote; pattern: RegExp }[] = [
   },
   {
     note: {
+      id: "antiplatelet",
+      title: "Antiplatelet medicine",
+      text: "Aspirin, clopidogrel and other antiplatelet medicines reduce blood clotting. Some supplements, including high-dose vitamin E, can add to bleeding risk. Talk to your doctor or pharmacist before changing supplements.",
+    },
+    pattern: /\baspirin\b|\bacetylsalicylic\b|\bclopidogrel\b|\bplavix\b|\bprasugrel\b|\beffient\b|\bticagrelor\b|\bbrilinta\b|antiplatelet|anti-platelet/i,
+  },
+  {
+    note: {
       id: "diabetes",
       title: "Diabetes medicine",
       text: "Changes in diet, fasting, exercise or some supplements can change blood sugar while you take this medicine, sometimes to dangerously low levels. Talk to your doctor before making changes.",
