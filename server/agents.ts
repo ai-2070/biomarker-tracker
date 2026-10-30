@@ -9,7 +9,7 @@ import os from "node:os";
 import path from "node:path";
 import type { ToolSet } from "ai";
 import { providerInfo, type Effort, type ProviderId } from "../src/core/aiProviders";
-import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken } from "./bridge";
+import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
 import { which } from "./which";
 
 export { which } from "./which";
@@ -161,6 +161,7 @@ export function parseCodex(out: string, stderr: string): Parsed {
     if (ev.type === "turn.failed") error = String((ev.error as { message?: string } | undefined)?.message ?? "Codex failed.");
     if (ev.type === "error" && typeof ev.message === "string") error = ev.message;
   }
+  if (error) return { ok: false, error: `Codex: ${error}`.slice(0, 600) };
   if (text) return { ok: true, text };
   return { ok: false, error: `Codex: ${error || lastLines(stderr || out) || "no answer."}`.slice(0, 600) };
 }
@@ -287,8 +288,19 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const effort = req.effort;
   const profile = req.profile?.trim() || undefined;
   // An empty folder to work in, so the agent doesn't pick up project files or instructions.
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-agent-"));
-  const run = bridged ? openRun(req.tools, provider) : undefined;
+  let run: BridgeRun | undefined;
+  try {
+    run = bridged ? openRun(req.tools, provider) : undefined;
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : String(e) };
+  }
+  let dir: string;
+  try {
+    dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-agent-"));
+  } catch (e) {
+    if (run) closeRun(run);
+    return { ok: false, error: e instanceof Error ? e.message : String(e) };
+  }
   try {
     let parsed: Parsed;
     if (provider === "claude-code") {
@@ -304,6 +316,7 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
     } else if (provider === "codex") {
       const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
       parsed = parseCodex(r.stdout, r.stderr);
+      if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {
       const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
       parsed = parseHermes(r.stdout, r.stderr);

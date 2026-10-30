@@ -4,10 +4,10 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { PROVIDERS, providerInfo, type Effort, type ProviderId, type Region } from "../src/core/aiProviders";
+import { PROVIDERS, isLocalUrl, modelEfforts, providerInfo, type Effort, type ProviderId, type Region } from "../src/core/aiProviders";
 import { MCP_PRESETS } from "../src/core/mcpPresets";
 import { agentInstalled, hermesConnected, hermesProfiles, isAgent, openclawAgents, setHermesConnection, testAgent } from "./agents";
-import { openTerminal } from "./terminal";
+import { openAgentSignIn, openTerminal } from "./terminal";
 import { ask, type ChatMessage } from "./assistant";
 import { handleMcp, setBridgePort } from "./bridge";
 import { openRouterModels } from "./openrouter";
@@ -18,10 +18,9 @@ import { assistantCheck, currentChoice, describeModelError, readyModel } from ".
 import { addSkill, deleteSkill, getSkill, listSkills, setSkillEnabled } from "./skills";
 import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./store";
 import { generateText } from "ai";
+import { MAX_ZIP_BYTES } from "./zip";
 
 export const MAX_BODY = 20 * 1024 * 1024;
-/** Uploads (scanned files, backup zips). */
-const MAX_UPLOAD = 200 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "dist");
 
 class HttpError extends Error {
@@ -73,7 +72,7 @@ route("GET", "/api/settings/models/(ollama|lmstudio|hermes|openclaw)", async ([i
   const info = providerInfo(id!)!;
   const base = (getSettings().providers[info.id]?.baseURL?.trim() || info.defaultBaseURL || "").replace(/\/+$/, "");
   try {
-    if (!/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(`${base}/`)) return { models: [], error: `${info.label} must run on this computer.` };
+    if (!isLocalUrl(new URL(base))) return { models: [], error: `${info.label} must run on this computer.` };
     const r = await fetch(`${base}/models`, { signal: AbortSignal.timeout(4000) });
     const j = (await r.json()) as { data?: { id?: unknown }[] };
     return { models: (j.data ?? []).filter((m) => typeof m.id === "string").map((m) => ({ id: String(m.id), label: String(m.id) })) };
@@ -85,7 +84,8 @@ route("GET", "/api/settings/models/(ollama|lmstudio|hermes|openclaw)", async ([i
 /** Opens a terminal with the program maker's official install (or sign-in) command. Fixed commands only. */
 route("POST", "/api/agents/(claude-code|codex|hermes|openclaw)/(install|signin)", ([id, action]) => {
   const info = providerInfo(id!)!;
-  const cmd = action === "install" ? (process.platform === "win32" ? info.install!.windows : info.install!.unix) : info.install!.signIn;
+  if (action === "signin") return openAgentSignIn(info.id);
+  const cmd = process.platform === "win32" ? info.install!.windows : info.install!.unix;
   return openTerminal(`${action === "install" ? "Install" : "Sign in to"} ${info.label}`, cmd);
 });
 
@@ -127,7 +127,8 @@ route("PUT", "/api/settings/assistant", (_p, body) => {
   const provider = providerOf(str(body.provider, 20) ?? "");
   const model = (str(body.model, 120) ?? "").trim();
   if (!model && !providerInfo(provider)?.modelOptional) throw new HttpError(400, "Choose a model.");
-  const effort = typeof body.effort === "string" && providerInfo(provider)!.efforts.includes(body.effort as Effort) ? (body.effort as Effort) : undefined;
+  if (body.effort !== undefined && (typeof body.effort !== "string" || !modelEfforts(provider, model).includes(body.effort as Effort))) throw new HttpError(400, "This model doesn't support that effort level.");
+  const effort = body.effort as Effort | undefined;
   updateSettings((s) => (s.assistant = { provider, model, ...(effort ? { effort } : {}) }));
   return { ok: true, ready: assistantCheck() };
 });
@@ -216,8 +217,8 @@ route("DELETE", `/api/profiles/${ID}`, ([id]) => {
   profiles.deleteProfile(id!);
   return { ok: true, active: profiles.activeProfile() };
 });
-route("POST", `/api/profiles/${ID}/reveal`, ([id]) => {
-  profiles.revealFolder(id!);
+route("POST", `/api/profiles/${ID}/reveal`, async ([id]) => {
+  await profiles.revealFolder(id!);
   return { ok: true };
 });
 route("GET", `/api/profiles/${ID}/files`, ([id]) => ({ files: profiles.listFiles(id!) }));
@@ -255,7 +256,7 @@ rawRoute("POST", `/api/profiles/${ID}/files`, async ([id], req, res, url) => {
   res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ file }));
 });
 rawRoute("POST", "/api/profiles/restore", async (_p, req, res) => {
-  const created = profiles.restoreZip(await readRaw(req, MAX_UPLOAD));
+  const created = profiles.restoreZip(await readRaw(req, MAX_ZIP_BYTES));
   profiles.setActiveProfile(created.id);
   res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ profile: created }));
 });
@@ -278,11 +279,12 @@ function readRaw(req: http.IncomingMessage, max: number): Promise<Buffer> {
 
 // Assistant
 
-/** Up to 4 photos per question: JPEG, PNG or WebP as base64, each under 8 MB. Anything else is dropped. */
+/** Up to 4 photos per question: JPEG, PNG or WebP as base64, each under 8 MB. */
 function photos(v: unknown): NonNullable<ChatMessage["images"]> {
   if (!Array.isArray(v)) return [];
+  if (v.length > 4) throw new HttpError(400, "Send at most 4 photos with one question.");
   const out: NonNullable<ChatMessage["images"]> = [];
-  for (const i of v.slice(0, 4)) {
+  for (const i of v) {
     if (typeof i !== "object" || i === null) continue;
     const { mediaType, data } = i as Record<string, unknown>;
     if ((mediaType === "image/jpeg" || mediaType === "image/png" || mediaType === "image/webp") && typeof data === "string" && data.length < 8_000_000 && /^[A-Za-z0-9+/=]+$/.test(data)) out.push({ mediaType, data });
@@ -293,16 +295,17 @@ function photos(v: unknown): NonNullable<ChatMessage["images"]> {
 route("POST", "/api/assistant", async (_p, body) => {
   const snap = parseSnapshot(body.snapshot);
   if (!snap.ok) throw new HttpError(400, snap.error);
-  const raw = Array.isArray(body.messages) ? body.messages : [];
-  const messages: ChatMessage[] = raw
-    .filter((m): m is Json => typeof m === "object" && m !== null)
-    .map((m): ChatMessage => {
-      const role = m.role === "assistant" ? ("assistant" as const) : ("user" as const);
-      const images = role === "user" ? photos(m.images) : [];
-      return { role, content: str(m.content, 20_000) ?? "", ...(images.length ? { images } : {}) };
-    })
-    .filter((m) => m.content.trim() || m.images?.length)
-    .slice(-30);
+  if (!Array.isArray(body.messages)) throw new HttpError(400, "Send a conversation as a list of messages.");
+  if (body.messages.length > 30) throw new HttpError(400, "This conversation is too long. Start a new conversation (at most 30 messages).");
+  const messages: ChatMessage[] = body.messages.map((m: unknown): ChatMessage => {
+    if (typeof m !== "object" || m === null || Array.isArray(m)) throw new HttpError(400, "Each message must have a valid role and text.");
+    const message = m as Json;
+    if ((message.role !== "user" && message.role !== "assistant") || typeof message.content !== "string") throw new HttpError(400, "Each message must have a valid role and text.");
+    if (message.content.length > 20_000) throw new HttpError(400, "Each message must be at most 20,000 characters. Shorten the question or its attached text. If this is an earlier message, start a new conversation.");
+    const images = message.role === "user" ? photos(message.images) : [];
+    if (!message.content.trim() && images.length === 0) throw new HttpError(400, "Messages cannot be empty.");
+    return { role: message.role, content: message.content, ...(images.length ? { images } : {}) };
+  });
   // Photos only with the newest question; earlier ones aren't sent again.
   for (const m of messages.slice(0, -1)) delete m.images;
   if (messages.length === 0 || messages[messages.length - 1]!.role !== "user") throw new HttpError(400, "Ask a question.");
@@ -380,7 +383,14 @@ export function createServer(port: number): http.Server {
     res.setHeader("x-content-type-options", "nosniff");
     res.setHeader("referrer-policy", "no-referrer");
     if (!allowedHost(req.headers.host, port)) return send(403, { error: "Wrong host." });
-    const url = new URL(req.url ?? "/", `http://127.0.0.1:${port}`);
+    let url: URL;
+    try {
+      url = new URL(req.url ?? "/", `http://127.0.0.1:${port}`);
+      // Decode inside the request boundary, including static paths such as "/%".
+      decodeURIComponent(url.pathname);
+    } catch {
+      return send(400, { error: "The request URL isn't valid." });
+    }
     const method = req.method ?? "GET";
     // Agent programs reach the app's tools here, with a token that only works while they answer (bridge.ts).
     if (url.pathname === "/mcp") {
@@ -392,7 +402,15 @@ export function createServer(port: number): http.Server {
         return;
       }
     }
-    if (!url.pathname.startsWith("/api/")) return method === "GET" ? serveStatic(url.pathname, res) : send(405, { error: "Not allowed." });
+    if (!url.pathname.startsWith("/api/")) {
+      if (method !== "GET") return send(405, { error: "Not allowed." });
+      try {
+        return serveStatic(url.pathname, res);
+      } catch {
+        if (!res.headersSent) return send(400, { error: "The requested file couldn't be read." });
+        return;
+      }
+    }
     if (!allowedWrite(method, req.headers)) return send(403, { error: "This request isn't allowed." });
     const raw = rawRoutes.find((x) => x.method === method && x.re.test(url.pathname));
     if (raw) {

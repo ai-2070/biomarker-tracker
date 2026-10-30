@@ -40,8 +40,8 @@ describe("attached files", () => {
     expect(long).toContain("the rest of this file was left out");
   });
   it("hides the person's name in document text", () => {
-    expect(redactName("Patient: Sam Example, born 1980. Dr. Samuelson", "Sam Example")).toBe("Patient: [name] [name], born 1980. Dr. Samuelson");
-    expect(redactName("ÁGNES KOVÁCS", "Ágnes Kovács")).toBe("[name] [name]");
+    expect(redactName("Patient: Sam Example, born 1980. Dr. Samuelson", "Sam Example")).toBe("Patient: [name], born 1980. Dr. Samuelson");
+    expect(redactName("ÁGNES KOVÁCS", "Ágnes Kovács")).toBe("[name]");
     expect(redactName("Al and Bo", "Al Bo")).toBe("Al and Bo");
     expect(redactName("text", undefined)).toBe("text");
   });

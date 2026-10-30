@@ -2,6 +2,21 @@
 // questions (installers and sign-ins are interactive). Only fixed commands from src/core/aiProviders.ts.
 import { spawn } from "node:child_process";
 import { which } from "./which";
+import { providerInfo, type ProviderId } from "../src/core/aiProviders";
+
+/** Resolve exactly the installed command, then quote it for the terminal's shell. */
+export function openAgentSignIn(provider: ProviderId): { ok: true } | { ok: false; error: string } {
+  const info = providerInfo(provider);
+  if (info?.kind !== "agent" || !info.command || !info.install) return { ok: false, error: "Unknown agent program." };
+  const executable = which(info.command);
+  if (!executable) return { ok: false, error: `${info.label} isn't installed on this computer.` };
+  const args = info.install.signIn.split(" ").slice(1);
+  const quote = process.platform === "win32"
+    ? (value: string) => `'${value.replace(/'/g, "''")}'`
+    : (value: string) => `'${value.replace(/'/g, "'\\''")}'`;
+  const command = `${process.platform === "win32" ? "& " : ""}${[executable, ...args].map(quote).join(" ")}`;
+  return openTerminal(`Sign in to ${info.label}`, command);
+}
 
 export function openTerminal(title: string, command: string): { ok: true } | { ok: false; error: string } {
   try {

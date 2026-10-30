@@ -45,12 +45,12 @@ export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: 
 
   switch (choice.provider) {
     case "anthropic":
-      return { ok: true, ready: { model: createAnthropic({ apiKey: key })(choice.model), providerOptions: effort ? { anthropic: { effort } } : {}, choice } };
+      return { ok: true, ready: { model: createAnthropic({ apiKey: key, baseURL: "https://api.anthropic.com/v1" })(choice.model), providerOptions: effort ? { anthropic: { effort } } : {}, choice } };
     case "openai":
       // Chat Completions, and store: false, so OpenAI keeps no copy of the response.
-      return { ok: true, ready: { model: createOpenAI({ apiKey: key }).chat(choice.model), providerOptions: { openai: { store: false, ...(effort ? { reasoningEffort: effort } : {}) } }, choice } };
+      return { ok: true, ready: { model: createOpenAI({ apiKey: key, baseURL: "https://api.openai.com/v1" }).chat(choice.model), providerOptions: { openai: { store: false, ...(effort ? { reasoningEffort: effort } : {}) } }, choice } };
     case "mistral":
-      return { ok: true, ready: { model: createMistral({ apiKey: key })(choice.model), providerOptions: effort ? { mistral: { reasoningEffort: effort } } : {}, choice } };
+      return { ok: true, ready: { model: createMistral({ apiKey: key, baseURL: "https://api.mistral.ai/v1" })(choice.model), providerOptions: effort ? { mistral: { reasoningEffort: effort } } : {}, choice } };
     case "openrouter": {
       // Zero data retention is requested on every call (see openrouter.ts).
       const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch(fetch, effort ? { reasoning: { effort } } : {}) });

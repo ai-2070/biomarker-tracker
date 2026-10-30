@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { EFFORT_LABEL, GROUP_LABEL, canUse, type Effort, type ModelChoice, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "../../../core/aiProviders";
+import { EFFORT_LABEL, GROUP_LABEL, canUse, modelEfforts, type Effort, type ModelChoice, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "../../../core/aiProviders";
 import { api } from "../../api";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { SimpleSelect } from "../UnitSelect";
@@ -39,17 +39,20 @@ const DEFAULT = "__default";
 const isWindows = typeof navigator !== "undefined" && /Win/i.test(navigator.userAgent);
 
 /** Models or profiles the server loads (OpenRouter, Ollama, LM Studio, Hermes, OpenClaw). */
-function useLoadedList(info: ProviderInfo, installed: boolean) {
-  const [lists, setLists] = useState<Partial<Record<ProviderId, LoadedList>>>({});
+function useLoadedList(info: ProviderInfo, installed: boolean, revision: number) {
+  const [lists, setLists] = useState<Partial<Record<ProviderId, { revision: number; list: LoadedList }>>>({});
   const wanted = info.modelList === "loaded" || (info.profileLabel && installed);
+  const cached = lists[info.id];
   useEffect(() => {
-    if (!wanted || lists[info.id]) return;
+    if (!wanted || cached?.revision === revision) return;
+    let alive = true;
     void api<LoadedList>("GET", `/api/settings/models/${info.id}`).then(
-      (l) => setLists((x) => ({ ...x, [info.id]: l })),
-      (e: unknown) => setLists((x) => ({ ...x, [info.id]: { models: [], error: e instanceof Error ? e.message : "Couldn't load the list." } })),
+      (list) => alive && setLists((x) => ({ ...x, [info.id]: { revision, list } })),
+      (e: unknown) => alive && setLists((x) => ({ ...x, [info.id]: { revision, list: { models: [], error: e instanceof Error ? e.message : "Couldn't load the list." } } })),
     );
-  }, [info.id, wanted, lists]);
-  return wanted ? (lists[info.id] ?? null) : { models: [] };
+    return () => { alive = false; };
+  }, [info.id, wanted, cached, revision]);
+  return wanted ? (cached?.revision === revision ? cached.list : null) : { models: [] };
 }
 
 /** Which model the assistant uses: agent programs first, then API-key providers, then local models. */
@@ -65,6 +68,7 @@ export function ModelsSettings() {
   const [message, setMessage] = useState<{ tone: "info" | "danger"; text: string } | null>(null);
   const [testing, setTesting] = useState(false);
   const [connecting, setConnecting] = useState(false);
+  const [discoveryRevision, setDiscoveryRevision] = useState(0);
 
   async function load(keepSelection = false) {
     try {
@@ -76,6 +80,7 @@ export function ModelsSettings() {
         setEffort(d.assistant.effort);
         setCfg(d.configs[d.assistant.provider] ?? {});
       }
+      return d;
     } catch (e) {
       setLoadError(e instanceof Error ? e.message : "Couldn't load the settings.");
     }
@@ -86,13 +91,14 @@ export function ModelsSettings() {
 
   const info = data?.providers.find((p) => p.id === provider);
   const installed = !info || info.kind !== "agent" || !!data?.installed[provider];
-  const loaded = useLoadedList(info ?? ({ id: "custom", models: [], efforts: [] } as unknown as ProviderInfo), installed);
+  const loaded = useLoadedList(info ?? ({ id: "custom", models: [], efforts: [] } as unknown as ProviderInfo), installed, discoveryRevision);
 
   if (loadError) return <Notice tone="danger">{loadError}</Notice>;
   if (!data || !info) return <p className="text-ink-2">Loading…</p>;
   const isAgent = info.kind === "agent";
   const hasKey = data.hasKey[provider] || key.trim() !== "";
   const check = canUse({ provider, model, ...(effort ? { effort } : {}) }, cfg, hasKey);
+  const efforts = modelEfforts(provider, model);
 
   function pickProvider(id: ProviderId) {
     const next = data!.providers.find((x) => x.id === id)!;
@@ -110,9 +116,14 @@ export function ModelsSettings() {
     setMessage(null);
     try {
       await api("PUT", `/api/settings/provider/${provider}`, { ...cfg, ...(key.trim() ? { key: key.trim() } : {}) });
+      setDiscoveryRevision((r) => r + 1);
       await api("PUT", "/api/settings/assistant", { provider, model, ...(effort ? { effort } : {}) });
       setKey("");
-      await load(true);
+      const savedSettings = await load(true);
+      if (savedSettings) {
+        // Reflect server normalization only if the person has not edited or switched the draft meanwhile.
+        setCfg((current) => current === cfg ? savedSettings.configs[provider] ?? {} : current);
+      }
       setMessage({ tone: "info", text: "Saved." });
     } catch (e) {
       setMessage({ tone: "danger", text: e instanceof Error ? e.message : "Couldn't save." });
@@ -123,6 +134,7 @@ export function ModelsSettings() {
 
   async function removeKey() {
     await api("PUT", `/api/settings/provider/${provider}`, { key: null });
+    setDiscoveryRevision((r) => r + 1);
     await load(true);
     setMessage({ tone: "info", text: "Key removed." });
   }
@@ -150,7 +162,10 @@ export function ModelsSettings() {
     }
   }
 
-  const saved = data.assistant.provider === provider && data.assistant.model === model && data.assistant.effort === effort;
+  const savedCfg = data.configs[provider] ?? {};
+  const configFields = new Set([...Object.keys(savedCfg), ...Object.keys(cfg)] as (keyof ProviderConfig)[]);
+  const saved = data.assistant.provider === provider && data.assistant.model === model && data.assistant.effort === effort
+    && !key.trim() && [...configFields].every((field) => cfg[field] === savedCfg[field]);
 
   return (
     <div className="flex flex-col gap-5">
@@ -173,7 +188,7 @@ export function ModelsSettings() {
           onChange={(v) => pickProvider(v as ProviderId)}
         />
 
-        {isAgent && <AgentSetup info={info} installed={installed} onCheck={() => load(true)} />}
+        {isAgent && <AgentSetup info={info} installed={installed} onCheck={async () => { await load(true); }} />}
 
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-lg bg-sunken p-3 text-sm">
           <dt className="font-medium">Where it runs</dt>
@@ -196,13 +211,13 @@ export function ModelsSettings() {
           <ProfilePicker label={info.profileLabel} value={cfg.profile ?? ""} onChange={(profile) => setCfg({ ...cfg, profile })} loaded={loaded} installed={installed} />
         )}
 
-        {info.efforts.length > 0 && (
+        {efforts.length > 0 && (
           <ChoiceGroup<Effort | "default">
             label="Effort"
             help="How hard the model thinks before answering. More effort: slower, more thorough answers, and more cost or usage."
             value={effort ?? "default"}
             onChange={(v) => setEffort(v === "default" ? undefined : v)}
-            options={[{ value: "default" as const, label: "Default" }, ...info.efforts.map((e) => ({ value: e, label: EFFORT_LABEL[e] }))]}
+            options={[{ value: "default" as const, label: "Default" }, ...efforts.map((e) => ({ value: e, label: EFFORT_LABEL[e] }))]}
           />
         )}
 

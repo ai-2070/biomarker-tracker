@@ -18,8 +18,8 @@ import { cleanProfile, isProfile, parseBackup } from "../src/core/backup";
 import { validatePlan, type Plan } from "../src/core/plans";
 import { validateMeal, type Meal } from "../src/core/meals";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../src/core/types";
-import { dataPath, getSettings, readJSON, updateSettings, writeJSON } from "./store";
-import { readZip, writeZip, type ZipEntry } from "./zip";
+import { dataPath, getSettings, readJSON, syncDirectory, updateSettings, writeJSON } from "./store";
+import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip, type ZipEntry } from "./zip";
 
 export const PROFILES = () => dataPath("profiles");
 const ID_RE = /^[a-z0-9][a-z0-9-]{0,59}$/;
@@ -105,6 +105,7 @@ This is health information: keep it somewhere safe.
 function dirOf(id: string): string {
   if (!ID_RE.test(id)) throw new ProfileError(400, "That isn't a valid profile.");
   const dir = path.join(PROFILES(), id);
+  recoverSave(dir);
   if (!fs.existsSync(path.join(dir, "profile.json"))) throw new ProfileError(404, "No profile with that name.");
   return dir;
 }
@@ -127,21 +128,57 @@ function newId(name: string): string {
   }
 }
 
-const readMeta = (dir: string) => readJSON<ProfileFile | null>(path.join(dir, "profile.json"), null);
+const readRequired = <T>(dir: string, name: string): T => JSON.parse(fs.readFileSync(path.join(dir, name), "utf8")) as T;
+function readMeta(dir: string): ProfileFile {
+  const meta = readRequired<ProfileFile>(dir, "profile.json");
+  if (meta?.app !== "biomarker-tracker" || !isProfile(meta.person) || !meta.person.name) throw new ProfileError(400, "The profile details on disk are damaged.");
+  return meta;
+}
+
+const SNAPSHOT_FILES = ["results.json", "log.json", "experiments.json", "protocols.json", "meals.json", "settings.json", "profile.json"] as const;
+const JOURNAL = ".save-journal.json";
+
+/** An interrupted save is rolled back before any reader can see the folder. */
+function recoverSave(dir: string): void {
+  const file = path.join(dir, JOURNAL);
+  const text = readJSON<unknown>(file, undefined);
+  if (text === undefined) return;
+  const journal = text as { previous?: Record<string, string | null> } | null;
+  if (!journal?.previous || SNAPSHOT_FILES.some((name) => !Object.hasOwn(journal.previous!, name) || (journal.previous![name] !== null && typeof journal.previous![name] !== "string"))) throw new Error("The profile save journal is damaged.");
+  for (const name of SNAPSHOT_FILES) {
+    const previous = journal.previous[name];
+    if (previous === null) fs.rmSync(path.join(dir, name), { force: true });
+    else writeJSON(path.join(dir, name), JSON.parse(previous!));
+  }
+  fs.unlinkSync(path.join(dir, JOURNAL));
+  syncDirectory(dir);
+}
 
 type DataInput = { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; plans?: unknown; meals?: unknown; settings?: unknown };
 
 function validMeals(v: unknown): Meal[] {
   if (v === undefined) return [];
   if (!Array.isArray(v) || v.length > 1000) throw new ProfileError(400, "The meals are damaged.");
-  for (const m of v) if (validateMeal(m).length) throw new ProfileError(400, `A meal is damaged: ${validateMeal(m)[0]}.`);
+  const ids = new Set<string>();
+  for (const m of v) {
+    const errors = validateMeal(m);
+    if (errors.length) throw new ProfileError(400, `A meal is damaged: ${errors[0]}.`);
+    if (ids.has(m.id)) throw new ProfileError(400, "The meals contain duplicate IDs.");
+    ids.add(m.id);
+  }
   return v as Meal[];
 }
 
 function validPlans(v: unknown): Plan[] {
   if (v === undefined) return [];
   if (!Array.isArray(v) || v.length > 200) throw new ProfileError(400, "The protocols are damaged.");
-  for (const p of v) if (validatePlan(p).length) throw new ProfileError(400, `A protocol is damaged: ${validatePlan(p)[0]}.`);
+  const ids = new Set<string>();
+  for (const p of v) {
+    const errors = validatePlan(p);
+    if (errors.length) throw new ProfileError(400, `A protocol is damaged: ${errors[0]}.`);
+    if (ids.has(p.id)) throw new ProfileError(400, "The protocols contain duplicate IDs.");
+    ids.add(p.id);
+  }
   return v as Plan[];
 }
 
@@ -162,13 +199,39 @@ function validSettings(v: unknown): Record<string, unknown> {
 }
 
 function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "settings"> & { settings?: Record<string, unknown> }): void {
-  writeJSON(path.join(dir, "results.json"), data.measurements);
-  writeJSON(path.join(dir, "log.json"), data.protocols);
-  writeJSON(path.join(dir, "experiments.json"), data.experiments);
-  writeJSON(path.join(dir, "protocols.json"), data.plans);
-  writeJSON(path.join(dir, "meals.json"), data.meals);
-  if (data.settings) writeJSON(path.join(dir, "settings.json"), data.settings);
-  writeJSON(path.join(dir, "profile.json"), { ...meta, person: data.person, updatedAt: new Date().toISOString() });
+  recoverSave(dir);
+  const next: Record<(typeof SNAPSHOT_FILES)[number], unknown> = {
+    "results.json": data.measurements,
+    "log.json": data.protocols,
+    "experiments.json": data.experiments,
+    "protocols.json": data.plans,
+    "meals.json": data.meals,
+    "settings.json": data.settings ?? {},
+    "profile.json": { ...meta, person: data.person, updatedAt: new Date().toISOString() },
+  };
+  // Capture every old component and finish serialisation before replacing anything.
+  const previous: Record<string, string | null> = {};
+  for (const name of SNAPSHOT_FILES) {
+    try {
+      const text = fs.readFileSync(path.join(dir, name), "utf8");
+      JSON.parse(text);
+      previous[name] = text;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+      previous[name] = null;
+    }
+    JSON.stringify(next[name]);
+  }
+  writeJSON(path.join(dir, JOURNAL), { previous });
+  try {
+    for (const name of SNAPSHOT_FILES) writeJSON(path.join(dir, name), next[name]);
+    // Removing the journal commits the complete generation. A crash before this rolls back.
+    fs.unlinkSync(path.join(dir, JOURNAL));
+    syncDirectory(dir);
+  } catch (error) {
+    recoverSave(dir);
+    throw error;
+  }
 }
 
 export function listProfiles(): ProfileSummary[] {
@@ -178,9 +241,11 @@ export function listProfiles(): ProfileSummary[] {
   for (const e of fs.readdirSync(root, { withFileTypes: true })) {
     if (!e.isDirectory() || !ID_RE.test(e.name)) continue;
     const dir = path.join(root, e.name);
+    recoverSave(dir);
+    if (!fs.existsSync(path.join(dir, "profile.json"))) continue;
     const meta = readMeta(dir);
     if (!meta) continue;
-    const results = readJSON<Measurement[]>(path.join(dir, "results.json"), []);
+    const results = readRequired<Measurement[]>(dir, "results.json");
     out.push({
       id: e.name,
       person: meta.person ?? {},
@@ -196,34 +261,57 @@ export function listProfiles(): ProfileSummary[] {
 }
 
 export function createProfile(input: DataInput): ProfileSummary {
+  return createCompleteProfile(input);
+}
+
+function createCompleteProfile(input: DataInput, attachments: { originalName: string; data: Buffer; note?: string }[] = []): ProfileSummary {
   const data = validateData(input);
   if (!data.person.name) throw new ProfileError(400, "Give the profile a name.");
   const id = newId(data.person.name);
+  fs.mkdirSync(PROFILES(), { recursive: true });
+  const staging = fs.mkdtempSync(path.join(PROFILES(), ".restore-"));
   const dir = path.join(PROFILES(), id);
-  fs.mkdirSync(path.join(dir, "files"), { recursive: true });
-  fs.writeFileSync(path.join(dir, "README.txt"), README);
-  writeJSON(path.join(dir, "files.json"), []);
-  const now = new Date().toISOString();
-  writeAll(dir, { app: "biomarker-tracker", id, createdAt: now, updatedAt: now, person: data.person }, { ...data, settings: validSettings(input.settings) });
-  return listProfiles().find((p) => p.id === id)!;
+  try {
+    fs.mkdirSync(path.join(staging, "files"));
+    fs.writeFileSync(path.join(staging, "README.txt"), README);
+    writeJSON(path.join(staging, "files.json"), []);
+    const now = new Date().toISOString();
+    const meta: ProfileFile = { app: "biomarker-tracker", id, createdAt: now, updatedAt: now, person: data.person };
+    writeAll(staging, meta, { ...data, settings: validSettings(input.settings) });
+    for (const file of attachments) addFileAt(staging, file.originalName, file.data, file.note);
+    const summary: ProfileSummary = {
+      id, person: data.person, createdAt: now, updatedAt: now, results: data.measurements.length,
+      lastResult: data.measurements.reduce<string | null>((d, m) => !d || m.date > d ? m.date : d, null),
+      files: attachments.length, folder: dir,
+    };
+    fs.renameSync(staging, dir);
+    return summary;
+  } finally {
+    fs.rmSync(staging, { recursive: true, force: true });
+  }
 }
 
 export function getProfileData(id: string): ProfileData {
   const dir = dirOf(id);
   const meta = readMeta(dir)!;
-  return {
-    person: meta.person ?? {},
-    measurements: readJSON(path.join(dir, "results.json"), []),
-    protocols: readJSON(path.join(dir, "log.json"), []),
-    experiments: readJSON(path.join(dir, "experiments.json"), []),
+  const measurements = readRequired<unknown>(dir, "results.json");
+  const protocols = readRequired<unknown>(dir, "log.json");
+  const experiments = readJSON<unknown>(path.join(dir, "experiments.json"), []);
+  if (!Array.isArray(measurements) || !Array.isArray(protocols) || !Array.isArray(experiments)) throw new ProfileError(400, "The profile history on disk is damaged.");
+  const data = validateData({
+    person: meta.person,
+    measurements,
+    protocols,
+    experiments,
     plans: readJSON(path.join(dir, "protocols.json"), []),
     meals: readJSON(path.join(dir, "meals.json"), []),
-    settings: readJSON(path.join(dir, "settings.json"), {}),
-  };
+  });
+  return { ...data, settings: validSettings(readJSON(path.join(dir, "settings.json"), {})) };
 }
 
 export function saveProfileData(id: string, input: DataInput): void {
   const dir = dirOf(id);
+  getProfileData(id); // Never replace a generation whose existing source cannot be read.
   const data = validateData(input);
   if (!data.person.name) throw new ProfileError(400, "A profile needs a name.");
   writeAll(dir, readMeta(dir)!, { ...data, settings: validSettings(input.settings) });
@@ -237,7 +325,10 @@ export function deleteProfile(id: string): void {
 
 export function activeProfile(): string | null {
   const id = getSettings().activeProfile;
-  return id && ID_RE.test(id) && fs.existsSync(path.join(PROFILES(), id, "profile.json")) ? id : null;
+  if (!id || !ID_RE.test(id)) return null;
+  const dir = path.join(PROFILES(), id);
+  recoverSave(dir);
+  return fs.existsSync(path.join(dir, "profile.json")) ? id : null;
 }
 
 export function setActiveProfile(id: string): void {
@@ -248,25 +339,34 @@ export function setActiveProfile(id: string): void {
 // ---- Files ------------------------------------------------------------------------------------
 
 export function listFiles(id: string): StoredFile[] {
-  const dir = path.join(PROFILES(), id);
+  return listFilesAt(dirOf(id));
+}
+
+function listFilesAt(dir: string): StoredFile[] {
   return readJSON<StoredFile[]>(path.join(dir, "files.json"), []).filter((f) => fs.existsSync(path.join(dir, "files", f.name)));
 }
 
 /** A safe file name: the original name's letters, with the date in front, never overwriting. */
 export function storedName(dir: string, originalName: string, today: string): string {
   const ext = path.extname(originalName).toLowerCase();
-  const base = path
+  const points = Array.from(path
     .basename(originalName, path.extname(originalName))
     .replace(/[^\p{L}\p{N} ._()-]+/gu, "_")
-    .replace(/^[.\s]+/, "")
-    .slice(0, 80) || "file";
+    .replace(/^[.\s]+/, "")).slice(0, 80);
+  // Leave room for the date, extension and collision suffix on byte-limited filesystems.
+  let bytes = Buffer.byteLength(points.join(""), "utf8");
+  while (bytes > 180) bytes -= Buffer.byteLength(points.pop()!, "utf8");
+  const base = points.join("") || "file";
   let name = `${today} ${base}${ext}`;
   for (let n = 2; fs.existsSync(path.join(dir, name)); n++) name = `${today} ${base} (${n})${ext}`;
   return name;
 }
 
 export function addFile(id: string, originalName: string, data: Buffer, note?: string): StoredFile {
-  const dir = dirOf(id);
+  return addFileAt(dirOf(id), originalName, data, note);
+}
+
+function addFileAt(dir: string, originalName: string, data: Buffer, note?: string): StoredFile {
   const ext = path.extname(originalName).toLowerCase();
   const type = FILE_TYPES[ext];
   if (!type) throw new ProfileError(400, "Only PDF, image (PNG, JPG, WebP), text and CSV files can be kept.");
@@ -276,8 +376,14 @@ export function addFile(id: string, originalName: string, data: Buffer, note?: s
   fs.mkdirSync(filesDir, { recursive: true });
   const name = storedName(filesDir, path.basename(originalName), new Date().toISOString().slice(0, 10));
   fs.writeFileSync(path.join(filesDir, name), data);
-  const entry: StoredFile = { name, originalName: path.basename(originalName).slice(0, 200), size: data.length, type, addedAt: new Date().toISOString(), ...(note ? { note: note.slice(0, 200) } : {}) };
-  writeJSON(path.join(dir, "files.json"), [...listFiles(id), entry]);
+  const originalBase = path.basename(originalName, path.extname(originalName));
+  const entry: StoredFile = { name, originalName: Array.from(originalBase).slice(0, 200 - ext.length).join("") + ext, size: data.length, type, addedAt: new Date().toISOString(), ...(note ? { note: Array.from(note).slice(0, 200).join("") } : {}) };
+  try {
+    writeJSON(path.join(dir, "files.json"), [...listFilesAt(dir), entry]);
+  } catch (error) {
+    fs.rmSync(path.join(filesDir, name), { force: true });
+    throw error;
+  }
   return entry;
 }
 
@@ -306,14 +412,19 @@ export function deleteFile(id: string, name: string): void {
 /** The whole folder as a zip, inside a folder named after the profile. */
 export function backupZip(id: string): { data: Buffer; fileName: string } {
   const dir = dirOf(id);
+  getProfileData(id); // Refuse unreadable/corrupt components rather than exporting false history.
   const entries: ZipEntry[] = [];
+  let expanded = 0;
   const walk = (rel: string) => {
     for (const e of fs.readdirSync(path.join(dir, rel), { withFileTypes: true })) {
       const r = rel ? `${rel}/${e.name}` : e.name;
       if (e.isDirectory()) walk(r);
-      else if (e.isFile() && !e.name.endsWith(".tmp")) {
+      else if (e.isFile() && !e.name.endsWith(".tmp") && !e.name.startsWith(".save-")) {
         const full = path.join(dir, r);
-        entries.push({ name: `${id}/${r}`, data: fs.readFileSync(full), modified: fs.statSync(full).mtime });
+        const stat = fs.statSync(full);
+        expanded += stat.size;
+        if (expanded > MAX_ZIP_EXPANDED_BYTES) throw new ProfileError(413, "This profile exceeds the 500 MB expanded backup limit. Keep some attachments separately before backing up.");
+        entries.push({ name: `${id}/${r}`, data: fs.readFileSync(full), modified: stat.mtime });
       }
     }
   };
@@ -323,6 +434,7 @@ export function backupZip(id: string): { data: Buffer; fileName: string } {
 
 /** Restores a backup zip as a new profile. Everything in it is checked; unknown files are left out. */
 export function restoreZip(zip: Buffer): ProfileSummary {
+  if (zip.length > MAX_ZIP_BYTES) throw new ProfileError(413, "The backup exceeds the 200 MB upload limit.");
   const entries = readZip(zip);
   const profileEntry = entries.find((e) => /^(?:[^/]+\/)?profile\.json$/.test(e.name));
   if (!profileEntry) throw new ProfileError(400, "This zip isn't a Biomarker Tracker profile backup (no profile.json).");
@@ -338,7 +450,7 @@ export function restoreZip(zip: Buffer): ProfileSummary {
   };
   const meta = json("profile.json", {}) as Partial<ProfileFile>;
   if (meta.app !== "biomarker-tracker") throw new ProfileError(400, "This zip isn't a Biomarker Tracker profile backup.");
-  const created = createProfile({
+  const input: DataInput = {
     person: { ...(meta.person ?? {}), name: meta.person?.name || "Restored profile" },
     measurements: json("results.json", []),
     protocols: json("log.json", []),
@@ -346,22 +458,31 @@ export function restoreZip(zip: Buffer): ProfileSummary {
     plans: json("protocols.json", []),
     meals: json("meals.json", []),
     settings: json("settings.json", {}),
-  });
+  };
   const index = json("files.json", []);
-  const listed = Array.isArray(index) ? (index as Partial<StoredFile>[]) : [];
+  if (!Array.isArray(index) || index.some((f) => !f || typeof f !== "object" || typeof f.name !== "string" || (f.originalName !== undefined && typeof f.originalName !== "string"))) throw new ProfileError(400, "files.json in the backup is damaged.");
+  const listed = index as Partial<StoredFile>[];
+  const attachments: { originalName: string; data: Buffer; note?: string }[] = [];
   for (const e of entries) {
     if (!e.name.startsWith(`${prefix}files/`)) continue;
     const name = e.name.slice(`${prefix}files/`.length);
     if (name.includes("/") || !FILE_TYPES[path.extname(name).toLowerCase()]) continue;
     const info = listed.find((f) => f.name === name);
-    addFile(created.id, info?.originalName || name, e.data, typeof info?.note === "string" ? info.note : undefined);
+    attachments.push({ originalName: info?.originalName || name, data: e.data, ...(typeof info?.note === "string" ? { note: info.note } : {}) });
   }
-  return listProfiles().find((p) => p.id === created.id)!;
+  return createCompleteProfile(input, attachments);
 }
 
 /** Opens the profile's folder in the computer's file manager. */
-export function revealFolder(id: string): void {
+export async function revealFolder(id: string): Promise<void> {
   const dir = dirOf(id);
-  const [cmd, args] = process.platform === "win32" ? ["explorer.exe", [dir]] : process.platform === "darwin" ? ["open", [dir]] : ["xdg-open", [dir]];
-  spawn(cmd, args, { detached: true, stdio: "ignore" }).unref();
+  const [cmd, args]: [string, string[]] = process.platform === "win32" ? ["explorer.exe", [dir]] : process.platform === "darwin" ? ["open", [dir]] : ["xdg-open", [dir]];
+  const { promise, resolve, reject } = Promise.withResolvers<void>();
+  const child = spawn(cmd, args, { detached: true, stdio: "ignore" });
+  child.on("error", () => reject(new ProfileError(500, "Couldn't open the folder. Open it manually from its path instead.")));
+  child.once("spawn", () => {
+    child.unref();
+    resolve();
+  });
+  await promise;
 }

@@ -308,7 +308,22 @@ export interface ModelChoice {
 
 export type UseCheck = { ok: true } | { ok: false; reason: string };
 
-const isLocalUrl = (u: URL) => u.hostname === "localhost" || u.hostname === "127.0.0.1" || u.hostname === "[::1]";
+/** The same loopback policy is used for eligibility and local model discovery. */
+export const isLocalUrl = (u: URL): boolean => u.hostname === "localhost" || u.hostname === "127.0.0.1" || u.hostname === "[::1]";
+
+// Matches the installed Mistral SDK's modelsWithoutReasoningEffort capability gate.
+const MISTRAL_WITHOUT_EFFORT: Readonly<Record<string, true | undefined>> = {
+  "codestral-2508": true, "codestral-latest": true, "ministral-14b-2512": true, "ministral-14b-latest": true,
+  "ministral-3b-2512": true, "ministral-3b-latest": true, "ministral-8b-2512": true, "ministral-8b-latest": true,
+  "mistral-code-fim-latest": true, "mistral-code-latest": true, "mistral-large-latest": true, "mistral-large-2512": true,
+  "voxtral-small-2507": true, "voxtral-small-latest": true,
+};
+
+/** Only offer effort when the selected model's transport supports it. */
+export function modelEfforts(provider: string, model: string): readonly Effort[] {
+  if (provider === "mistral" && Object.hasOwn(MISTRAL_WITHOUT_EFFORT, model)) return [];
+  return providerInfo(provider)?.efforts ?? [];
+}
 
 /** Can the assistant send a request with this provider and settings? */
 export function canUse(choice: ModelChoice | undefined, config: ProviderConfig | undefined, hasKey: boolean): UseCheck {
@@ -316,7 +331,7 @@ export function canUse(choice: ModelChoice | undefined, config: ProviderConfig |
   const info = providerInfo(choice.provider);
   if (!info) return { ok: false, reason: "Unknown provider." };
   if (!choice.model.trim() && !info.modelOptional) return { ok: false, reason: "Choose a model." };
-  if (choice.effort && !info.efforts.includes(choice.effort)) return { ok: false, reason: `${info.label} doesn't have the effort level "${choice.effort}".` };
+  if (choice.effort && !modelEfforts(choice.provider, choice.model).includes(choice.effort)) return { ok: false, reason: `${info.label} doesn't support the effort level "${choice.effort}" for this model.` };
   const c = config ?? {};
 
   // Agents: installed-or-not is checked by the server; their profile name goes on a command line.

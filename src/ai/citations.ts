@@ -16,12 +16,26 @@ export interface CitationCheck {
 }
 
 const BRACKET = /\[([^\]\n]{0,200})\]/g;
-const ID_IN_TEXT = /\b(PMID|PMCID)\s*:?\s*(PMC\d+|\d{4,9})\b/gi;
+const ID_IN_TEXT = /\b(PMID|PMCID|DOI)\s*:?\s*(10\.\d{4,9}\/[^\s\[\]<>"{}]+|PMC\d+|\d{4,9})/gi;
 const LOOSE = /\b\p{Lu}[\p{L}'-]+(?: and \p{Lu}[\p{L}'-]+)? et al\.?,? \(?(?:19|20)\d{2}\)?/gu;
 
 /** Normalise "PMID 123", "pmid:123", "PMCID: PMC9" to "PMID:123" / "PMCID:PMC9". */
 export function normalizeId(kind: string, value: string): string {
   const k = kind.toUpperCase();
+  if (k === "DOI") {
+    let doi = value.replace(/[.,;]+$/, "");
+    let balance = 0;
+    for (const character of doi) {
+      if (character === "(") balance++;
+      else if (character === ")") balance--;
+    }
+    // Prose may wrap a citation in parentheses; balanced parentheses can belong to the DOI.
+    while (balance < 0 && doi.endsWith(")")) {
+      doi = doi.slice(0, -1).replace(/[.,;]+$/, "");
+      balance++;
+    }
+    return `DOI:${doi.toLowerCase()}`;
+  }
   return k === "PMCID" ? `PMCID:${value.toUpperCase().startsWith("PMC") ? value.toUpperCase() : `PMC${value}`}` : `PMID:${value}`;
 }
 
@@ -39,7 +53,8 @@ export function checkCitations(text: string, allowed: ReadonlySet<string>): Cita
       if (m.index! > last) segments.push({ type: "text", text: t.slice(last, m.index) });
       const id = normalizeId(m[1]!, m[2]!);
       segments.push({ type: "cite", id, valid: allowed.has(id) });
-      last = m.index! + m[0].length;
+      const suffix = m[1]!.toUpperCase() === "DOI" ? m[2]!.length - id.slice(4).length : 0;
+      last = m.index! + m[0].length - suffix;
     }
     if (last < t.length) segments.push({ type: "text", text: t.slice(last) });
   };
