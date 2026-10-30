@@ -7,6 +7,7 @@
 import type { MapKind, Question } from "../../src/core/evidenceMap";
 import { FOOD_TOPICS } from "./foodTopics";
 import { LIFESTYLE_TOPICS } from "./lifestyleTopics";
+import { WHOLE_FOOD_TOPICS } from "./wholeFoodTopics";
 
 export interface OutcomeDef {
   id: string;
@@ -37,6 +38,8 @@ export interface TopicDef {
   comparisonId?: string;
   /** Lifestyle maps: the entry in knowledge/lifestyle. */
   lifestyleId?: string;
+  /** Whole-food maps: the entry in knowledge/wholefoods. */
+  wholeFoodId?: string;
   /** In sentences: "records mention calcium". */
   name: string;
   /** Searched in titles and abstracts (any of them). */
@@ -410,4 +413,5 @@ export const TOPICS: TopicDef[] = [
   },
   ...FOOD_TOPICS,
   ...LIFESTYLE_TOPICS,
+  ...WHOLE_FOOD_TOPICS,
 ];

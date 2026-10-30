@@ -1,0 +1,3370 @@
+{
+ "topic": "wholefood-evoo",
+ "kind": "wholefood",
+ "wholeFoodId": "evoo",
+ "name": "olive oil",
+ "builtAt": "2026-10-30",
+ "fetchedAt": "2026-10-30",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "cardiovascular": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:stroke OR TITLE_ABS:\"myocardial infarction\" OR TITLE_ABS:\"heart disease\")) AND SRC:MED",
+  "mortality": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:cancer)) AND SRC:MED",
+  "diabetes": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:diabetes OR TITLE_ABS:HbA1c OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic OR TITLE_ABS:\"blood glucose\")) AND SRC:MED",
+  "lipids": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:cholesterol OR TITLE_ABS:\"lipid profile\" OR TITLE_ABS:lipids OR TITLE_ABS:triglycerides OR TITLE_ABS:LDL OR TITLE_ABS:HDL)) AND SRC:MED",
+  "polyphenols": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:hydroxytyrosol OR TITLE_ABS:\"olive polyphenols\" OR TITLE_ABS:\"phenolic compounds\") AND (TITLE_ABS:\"LDL oxidation\" OR TITLE_ABS:\"oxidized LDL\" OR TITLE_ABS:\"oxidised LDL\" OR TITLE_ABS:\"HDL function\" OR TITLE_ABS:\"cholesterol efflux\" OR TITLE_ABS:\"oxidative stress\")) AND SRC:MED",
+  "blood-pressure": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:hypertension OR TITLE_ABS:hypertensive)) AND SRC:MED",
+  "inflammation": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:\"C-reactive protein\" OR TITLE_ABS:CRP OR TITLE_ABS:inflammation OR TITLE_ABS:inflammatory OR TITLE_ABS:\"endothelial function\" OR TITLE_ABS:\"flow-mediated dilation\")) AND SRC:MED",
+  "cognition": "((TITLE_ABS:\"olive oil\" OR TITLE_ABS:\"extra virgin olive oil\" OR TITLE_ABS:\"extra-virgin olive oil\" OR TITLE_ABS:EVOO) AND (TITLE_ABS:cognitive OR TITLE_ABS:cognition OR TITLE_ABS:memory OR TITLE_ABS:dementia OR TITLE_ABS:alzheimer)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating olive oil comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 8285,
+  "retrieved": 995,
+  "animal": 13,
+  "retracted": 2,
+  "reviews": 162,
+  "trials": 815,
+  "guidelines": 3
+ },
+ "guidelines": [
+  {
+   "pmid": "39433024",
+   "doi": "10.1159/000542155",
+   "title": "European Association for the Study of Obesity (EASO) Position Statement on Medical Nutrition Therapy for the Management of Individuals with Overweight or Obesity and Cancer",
+   "year": 2025,
+   "journal": "Obesity facts",
+   "citedBy": 12,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "36990615",
+   "doi": "10.1016/s1470-2045(23)00067-0",
+   "title": "Multinational Association of Supportive Care in Cancer (MASCC) clinical practice guidelines for the prevention and management of acute radiation dermatitis: international Delphi consensus-based recommendations",
+   "year": 2023,
+   "journal": "The Lancet. Oncology",
+   "citedBy": 91,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "34714236",
+   "doi": "10.1016/j.nrleng.2020.05.020",
+   "title": "Recommendations of the Spanish Society of Neurology for the prevention of stroke. Interventions on lifestyle and air pollution",
+   "year": 2021,
+   "journal": "Neurologia",
+   "citedBy": 5,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "cardiovascular",
+   "label": "Heart attacks and strokes",
+   "finding": "Heart attacks, strokes and deaths from heart disease",
+   "counts": {
+    "all": 1401,
+    "reviews": 10,
+    "trialReviews": 10,
+    "trials": 33,
+    "largeTrials": 3
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38568797",
+     "doi": "10.1039/d3fo05246j",
+     "title": "Olive oil intake and cardiovascular disease, cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies",
+     "year": 2024,
+     "firstAuthor": "Ke Y",
+     "journal": "Food & function",
+     "citedBy": 10,
+     "n": 2710351,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39523824",
+     "doi": "10.1039/d4fo04161e",
+     "title": "Association between olive oil consumption and all-cause, cardiovascular and cancer mortality in adult subjects: a systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Del Saz-Lara A",
+     "journal": "Food & function",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "36343558",
+     "doi": "10.1016/j.clnu.2022.10.001",
+     "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Martínez-González MA",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 68,
+     "n": 1285064,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "40907633",
+     "doi": "10.1016/j.ahj.2025.08.021",
+     "title": "Extra-virgin olive oil and additional cardiovascular outcomes in the PREDIMED Trial: An outcome-wide perspective",
+     "year": 2026,
+     "firstAuthor": "de Rojas JP",
+     "journal": "American heart journal",
+     "citedBy": 3,
+     "n": 7102,
+     "why": "A large trial (about 7,102 people) from 2026, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.2857142857142857,
+    "trials": 7,
+    "inclusions": 11,
+    "reviews": [
+     {
+      "pmid": "38568797",
+      "trials": 2
+     },
+     {
+      "pmid": "39523824",
+      "trials": 2
+     },
+     {
+      "pmid": "36343558",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12700623",
+      "title": "Mediterranean diet and all-causes mortality after myocardial infarction: results from the GISSI-Prevenzione trial",
+      "year": 2003,
+      "n": 11323,
+      "inReviews": [
+       "38568797",
+       "39523824",
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24886626",
+      "title": "Olive oil intake and risk of cardiovascular disease and mortality in the PREDIMED Study",
+      "year": 2014,
+      "n": 7216,
+      "inReviews": [
+       "38568797",
+       "39523824",
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24787471",
+      "title": "Extravirgin olive oil consumption reduces risk of atrial fibrillation: the PREDIMED (Prevención con Dieta Mediterránea) trial",
+      "year": 2014,
+      "n": 6705,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "26365989",
+      "title": "Mediterranean Diet and Invasive Breast Cancer Risk Among Women at High Cardiovascular Risk in the PREDIMED Trial: A Randomized Clinical Trial",
+      "year": 2015,
+      "n": 4282,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24573661",
+      "title": "Prevention of diabetes with Mediterranean diets: a subgroup analysis of a randomized trial",
+      "year": 2014,
+      "n": 3541,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "20929998",
+      "title": "Reduction in the incidence of type 2 diabetes with the Mediterranean diet: results of the PREDIMED-Reus nutrition intervention randomized trial",
+      "year": 2011,
+      "n": 418,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "28193797",
+      "title": "Mediterranean Diet Improves High-Density Lipoprotein Function in High-Cardiovascular-Risk Individuals: A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 296,
+      "inReviews": [
+       "36343558"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "24886626",
+     "title": "Olive oil intake and risk of cardiovascular disease and mortality in the PREDIMED Study",
+     "year": 2014,
+     "n": 7216
+    },
+    {
+     "pmid": "27297848",
+     "title": "CORonary Diet Intervention with Olive oil and cardiovascular PREVention study (the CORDIOPREV study): Rationale, methods, and baseline characteristics: A clinical trial comparing the efficacy of a Mediterranean diet rich in olive oil versus a low-fat diet on cardiovascular disease in coronary patients",
+     "year": 2016,
+     "n": 1002
+    },
+    {
+     "pmid": "40907633",
+     "title": "Extra-virgin olive oil and additional cardiovascular outcomes in the PREDIMED Trial: An outcome-wide perspective",
+     "year": 2026,
+     "n": 7102
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "29897866"
+    ],
+    "citedNotEligible": [
+     "29897866"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "38568797",
+      "doi": "10.1039/d3fo05246j",
+      "title": "Olive oil intake and cardiovascular disease, cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies",
+      "year": 2024,
+      "firstAuthor": "Ke Y",
+      "journal": "Food & function",
+      "citedBy": 10,
+      "n": 2710351,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "39523824",
+      "doi": "10.1039/d4fo04161e",
+      "title": "Association between olive oil consumption and all-cause, cardiovascular and cancer mortality in adult subjects: a systematic review and meta-analysis",
+      "year": 2024,
+      "firstAuthor": "Del Saz-Lara A",
+      "journal": "Food & function",
+      "citedBy": 4,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "36343558",
+      "doi": "10.1016/j.clnu.2022.10.001",
+      "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis",
+      "year": 2022,
+      "firstAuthor": "Martínez-González MA",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 68,
+      "n": 1285064,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     },
+     {
+      "pmid": "40907633",
+      "doi": "10.1016/j.ahj.2025.08.021",
+      "title": "Extra-virgin olive oil and additional cardiovascular outcomes in the PREDIMED Trial: An outcome-wide perspective",
+      "year": 2026,
+      "firstAuthor": "de Rojas JP",
+      "journal": "American heart journal",
+      "citedBy": 3,
+      "n": 7102,
+      "why": "A large trial (about 7,102 people) from 2026, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Olive oil, especially extra virgin, eaten as food (more of it, or as part of a diet such as PREDIMED's)",
+     "comparison": "Less olive oil, other fats, or a low-fat diet",
+     "outcome": "Heart attacks, strokes or deaths from heart disease"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 6,
+     "partly": 0,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "39150532",
+      "title": "Comment on \"Olive oil intake and cardiovascular disease, cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies\" by Y. Ke, H. Fan, Y. Zhao, X. Fu, M. Wang, Y. Gao, Y. Chen, W. Huo, W. Zhang, L. Wang, Y. Wu, X. Li, D. Zhang, F. Hu, M. Zhang, L. Sun, J. Lu and D. Hu, Food &Function, 2024, D3FO05246J",
+      "year": 2024,
+      "fits": "no",
+      "reason": "A comment on another meta-analysis with no abstract, not a systematic review."
+     },
+     {
+      "pmid": "29708409",
+      "title": "The effect of high-polyphenol extra virgin olive oil on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Compares high vs low polyphenol olive oil, and the outcomes are risk factors like cholesterol and oxidation, not heart attacks, strokes or deaths."
+     },
+     {
+      "pmid": "31378629",
+      "title": "Impact of different types of olive oil on cardiovascular risk factors: A systematic review and network meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "Compares different types of olive oil, and the outcomes are risk factors, not cardiovascular events."
+     },
+     {
+      "pmid": "26055128",
+      "title": "Effects of high phenolic olive oil on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Compares high vs low phenolic olive oil, and the outcomes are blood pressure, lipids and oxidation markers, not events."
+     }
+    ]
+   }
+  },
+  {
+   "id": "mortality",
+   "label": "Death and cancer",
+   "finding": "Death from any cause, heart disease and cancer",
+   "counts": {
+    "all": 1486,
+    "reviews": 13,
+    "trialReviews": 13,
+    "trials": 4,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38568797",
+     "doi": "10.1039/d3fo05246j",
+     "title": "Olive oil intake and cardiovascular disease, cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies",
+     "year": 2024,
+     "firstAuthor": "Ke Y",
+     "journal": "Food & function",
+     "citedBy": 10,
+     "n": 2710351,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "39523824",
+     "doi": "10.1039/d4fo04161e",
+     "title": "Association between olive oil consumption and all-cause, cardiovascular and cancer mortality in adult subjects: a systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Del Saz-Lara A",
+     "journal": "Food & function",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "36343558",
+     "doi": "10.1016/j.clnu.2022.10.001",
+     "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Martínez-González MA",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 68,
+     "n": 1285064,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2857142857142857,
+    "trials": 7,
+    "inclusions": 11,
+    "reviews": [
+     {
+      "pmid": "38568797",
+      "trials": 2
+     },
+     {
+      "pmid": "39523824",
+      "trials": 2
+     },
+     {
+      "pmid": "36343558",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12700623",
+      "title": "Mediterranean diet and all-causes mortality after myocardial infarction: results from the GISSI-Prevenzione trial",
+      "year": 2003,
+      "n": 11323,
+      "inReviews": [
+       "38568797",
+       "39523824",
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24886626",
+      "title": "Olive oil intake and risk of cardiovascular disease and mortality in the PREDIMED Study",
+      "year": 2014,
+      "n": 7216,
+      "inReviews": [
+       "38568797",
+       "39523824",
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24787471",
+      "title": "Extravirgin olive oil consumption reduces risk of atrial fibrillation: the PREDIMED (Prevención con Dieta Mediterránea) trial",
+      "year": 2014,
+      "n": 6705,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "26365989",
+      "title": "Mediterranean Diet and Invasive Breast Cancer Risk Among Women at High Cardiovascular Risk in the PREDIMED Trial: A Randomized Clinical Trial",
+      "year": 2015,
+      "n": 4282,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24573661",
+      "title": "Prevention of diabetes with Mediterranean diets: a subgroup analysis of a randomized trial",
+      "year": 2014,
+      "n": 3541,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "20929998",
+      "title": "Reduction in the incidence of type 2 diabetes with the Mediterranean diet: results of the PREDIMED-Reus nutrition intervention randomized trial",
+      "year": 2011,
+      "n": 418,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "28193797",
+      "title": "Mediterranean Diet Improves High-Density Lipoprotein Function in High-Cardiovascular-Risk Individuals: A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 296,
+      "inReviews": [
+       "36343558"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "24886626",
+     "title": "Olive oil intake and risk of cardiovascular disease and mortality in the PREDIMED Study",
+     "year": 2014,
+     "n": 7216
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "36343558",
+     "38568797",
+     "39523824"
+    ],
+    "citedNotChosen": [
+     "35027106"
+    ],
+    "citedNotEligible": [
+     "35027106"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "More olive oil eaten as food",
+     "comparison": "Less olive oil",
+     "outcome": "Death from any cause, deaths from heart disease, or cancer"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 6,
+     "partly": 4,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40449295",
+      "title": "Olive oil consumption and risk of breast cancer: Prospective results from the Moli-sani Study, and a systematic review of observational studies and randomized clinical trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Systematically reviews olive oil intake but only for breast cancer in women, so the outcome and population are narrower."
+     },
+     {
+      "pmid": "39150532",
+      "title": "Comment on \"Olive oil intake and cardiovascular disease, cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies\" by Y. Ke, H. Fan, Y. Zhao, X. Fu, M. Wang, Y. Gao, Y. Chen, W. Huo, W. Zhang, L. Wang, Y. Wu, X. Li, D. Zhang, F. Hu, M. Zhang, L. Sun, J. Lu and D. Hu, Food &Function, 2024, D3FO05246J",
+      "year": 2024,
+      "fits": "no",
+      "reason": "This is a comment on another meta-analysis, not a systematic review, and it has no abstract."
+     },
+     {
+      "pmid": "38136231",
+      "title": "Oleocanthal, an Antioxidant Phenolic Compound in Extra Virgin Olive Oil (EVOO): A Comprehensive Systematic Review of Its Potential in Inflammation and Cancer",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews oleocanthal, a single compound, for its mechanisms in inflammation and cancer; it is not about eating olive oil."
+     },
+     {
+      "pmid": "32883373",
+      "title": "Olive oil and risk of breast cancer: a systematic review and dose-response meta-analysis of observational studies",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Meta-analysis of olive oil intake limited to breast cancer in women, so the outcome and population are narrower."
+     },
+     {
+      "pmid": "27713961",
+      "title": "Anti-cancer properties of olive oil secoiridoid phenols: a systematic review of in vivo studies",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Reviews olive oil phenol compounds in animal studies and trials measuring DNA damage; not the food itself or a matching outcome."
+     },
+     {
+      "pmid": "21801436",
+      "title": "Olive oil intake is inversely related to cancer prevalence: a systematic review and a meta-analysis of 13,800 patients and 23,340 controls in 19 observational studies",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Pools olive oil intake and cancer, but only from case-control studies, not trials or studies following people over time."
+     },
+     {
+      "pmid": "9085386",
+      "title": "Olive oil and human cancer: an assessment of the evidence",
+      "year": 1997,
+      "fits": "partly",
+      "reason": "Reviews olive oil and cancer risk but also counts monounsaturated fat as a stand-in for olive oil; the method is only loosely systematic."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Type 2 diabetes",
+   "finding": "Type 2 diabetes: getting it, and blood sugar in people who have it",
+   "counts": {
+    "all": 708,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 29,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40275388",
+     "doi": "10.1186/s41043-025-00866-7",
+     "title": "Effect of olive oil consumption on diabetes risk: a dose-response meta-analysis",
+     "year": 2025,
+     "firstAuthor": "Du Y",
+     "journal": "Journal of health, population, and nutrition",
+     "citedBy": 3,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "36343558",
+     "doi": "10.1016/j.clnu.2022.10.001",
+     "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Martínez-González MA",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 68,
+     "n": 1285064,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "28394365",
+     "doi": "10.1038/nutd.2017.12",
+     "title": "Olive oil in the prevention and management of type 2 diabetes mellitus: a systematic review and meta-analysis of cohort studies and intervention trials",
+     "year": 2017,
+     "firstAuthor": "Schwingshackl L",
+     "journal": "Nutrition & diabetes",
+     "citedBy": 130,
+     "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.05,
+    "trials": 10,
+    "inclusions": 11,
+    "reviews": [
+     {
+      "pmid": "40275388",
+      "trials": 3
+     },
+     {
+      "pmid": "36343558",
+      "trials": 7
+     },
+     {
+      "pmid": "28394365",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "24573661",
+      "title": "Prevention of diabetes with Mediterranean diets: a subgroup analysis of a randomized trial",
+      "year": 2014,
+      "n": 3541,
+      "inReviews": [
+       "40275388",
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "12700623",
+      "title": "Mediterranean diet and all-causes mortality after myocardial infarction: results from the GISSI-Prevenzione trial",
+      "year": 2003,
+      "n": 11323,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24886626",
+      "title": "Olive oil intake and risk of cardiovascular disease and mortality in the PREDIMED Study",
+      "year": 2014,
+      "n": 7216,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "24787471",
+      "title": "Extravirgin olive oil consumption reduces risk of atrial fibrillation: the PREDIMED (Prevención con Dieta Mediterránea) trial",
+      "year": 2014,
+      "n": 6705,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "26365989",
+      "title": "Mediterranean Diet and Invasive Breast Cancer Risk Among Women at High Cardiovascular Risk in the PREDIMED Trial: A Randomized Clinical Trial",
+      "year": 2015,
+      "n": 4282,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "29049303",
+      "title": "A Mediterranean diet with additional extra virgin olive oil and pistachios reduces the incidence of gestational diabetes mellitus (GDM): A randomized controlled trial: The St. Carlos GDM prevention study",
+      "year": 2017,
+      "n": 874,
+      "inReviews": [
+       "40275388"
+      ]
+     },
+     {
+      "pmid": "20929998",
+      "title": "Reduction in the incidence of type 2 diabetes with the Mediterranean diet: results of the PREDIMED-Reus nutrition intervention randomized trial",
+      "year": 2011,
+      "n": 418,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "28193797",
+      "title": "Mediterranean Diet Improves High-Density Lipoprotein Function in High-Cardiovascular-Risk Individuals: A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 296,
+      "inReviews": [
+       "36343558"
+      ]
+     },
+     {
+      "pmid": "25315667",
+      "title": "Effects of total dietary polyphenols on plasma nitric oxide and blood pressure in a high cardiovascular risk cohort. The PREDIMED randomized trial",
+      "year": 2015,
+      "n": 200,
+      "inReviews": [
+       "28394365"
+      ]
+     },
+     {
+      "pmid": "31364228",
+      "title": "Prevention of type 2 diabetes in prediabetic patients by using functional olive oil enriched in oleanolic acid: The PREDIABOLE study, a randomized controlled trial",
+      "year": 2019,
+      "n": 176,
+      "inReviews": [
+       "40275388"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "28394365",
+     "36343558"
+    ],
+    "citedNotChosen": [],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "40275388",
+      "doi": "10.1186/s41043-025-00866-7",
+      "title": "Effect of olive oil consumption on diabetes risk: a dose-response meta-analysis",
+      "year": 2025,
+      "firstAuthor": "Du Y",
+      "journal": "Journal of health, population, and nutrition",
+      "citedBy": 3,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults without diabetes (new cases), or adults with type 2 diabetes (blood sugar)",
+     "intervention": "Olive oil eaten as food",
+     "comparison": "Less olive oil or other fats",
+     "outcome": "New type 2 diabetes, or HbA1c and fasting glucose"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 3,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40971936",
+      "title": "The Effect of Different Types of Olive Oil on Glucose Control and Insulin Sensitivity: A GRADE-Assessed Systematic Review and Dose-Response Meta-Analysis of 51 Randomized Controlled Trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "RCTs of olive oil on fasting glucose and HbA1c, but in adults generally; no separate analysis of people with type 2 diabetes is reported."
+     },
+     {
+      "pmid": "33941427",
+      "title": "Effect of extra virgin olive oil consumption on glycemic control: A systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "RCTs of extra virgin olive oil on fasting glucose and HbA1c, but in mixed health groups; no type 2 diabetes result is reported on its own."
+     }
+    ]
+   }
+  },
+  {
+   "id": "lipids",
+   "label": "Blood fats",
+   "finding": "Blood fats: LDL and HDL cholesterol, total cholesterol and triglycerides",
+   "counts": {
+    "all": 2370,
+    "reviews": 14,
+    "trialReviews": 14,
+    "trials": 90,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37977313",
+     "doi": "10.1016/j.tjnut.2023.10.028",
+     "title": "Effect of Extra Virgin Olive Oil on Anthropometric Indices, Inflammatory and Cardiometabolic Markers: a Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+     "year": 2024,
+     "firstAuthor": "Morvaridzadeh M",
+     "journal": "The Journal of nutrition",
+     "citedBy": 24,
+     "n": 2020,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "36408701",
+     "doi": "10.1017/s0007114522003683",
+     "title": "The effects of olive oil consumption on blood lipids: a systematic review and dose-response meta-analysis of randomised controlled trials",
+     "year": 2023,
+     "firstAuthor": "Jabbarzadeh-Ganjeh B",
+     "journal": "The British journal of nutrition",
+     "citedBy": 13,
+     "n": 1730,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "35866510",
+     "doi": "10.1080/10408398.2022.2100314",
+     "title": "Comparison of canola oil and olive oil consumption on the serum lipid profile in adults: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2023,
+     "firstAuthor": "Pourrajab B",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 13,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.1590909090909091,
+    "trials": 44,
+    "inclusions": 58,
+    "reviews": [
+     {
+      "pmid": "37977313",
+      "trials": 25
+     },
+     {
+      "pmid": "36408701",
+      "trials": 26
+     },
+     {
+      "pmid": "35866510",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "31856379",
+      "title": "Effects of a healthy diet enriched or not with pecan nuts or extra-virgin olive oil on the lipid profile of patients with stable coronary artery disease: a randomised clinical trial",
+      "year": 2020,
+      "n": 204,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "29511019",
+      "title": "Randomised trial of coconut oil, olive oil or butter on blood lipids and other cardiovascular risk factors in healthy men and women",
+      "year": 2018,
+      "n": 160,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "30160543",
+      "title": "A comparative study of the effects of palm olein, cocoa butter and extra virgin olive oil on lipid profile, including low-density lipoprotein subfractions in young healthy Chinese people",
+      "year": 2019,
+      "n": 72,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "33514384",
+      "title": "The effects of canola and olive oils consumption compared to sunflower oil, on lipid profile and hepatic steatosis in women with polycystic ovarian syndrome: a randomized controlled trial",
+      "year": 2021,
+      "n": 72,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "32795310",
+      "title": "Effects of canola or olive oil on plasma lipids, lipoprotein-associated phospholipase A2 and inflammatory cytokines in patients referred for coronary angiography",
+      "year": 2020,
+      "n": 48,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "28808791",
+      "title": "Consumption of extra virgin olive oil improves body composition and blood pressure in women with excess body fat: a randomized, double-blinded, placebo-controlled clinical trial",
+      "year": 2018,
+      "n": 41,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "24625239",
+      "title": "Effect of a 6-month intervention with cooking oils containing a high concentration of monounsaturated fatty acids (olive and canola oils) compared with control oil in male Asian Indians with nonalcoholic fatty liver disease",
+      "year": 2014,
+      "n": 33,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "15297105",
+      "title": "Sunflower oil does not protect against LDL oxidation as virgin olive oil does in patients with peripheral vascular disease",
+      "year": 2004,
+      "n": 20,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "31227804",
+      "title": "Fatty acid regio-specificity of triacylglycerol molecules may affect plasma lipid responses to dietary fats-a randomised controlled cross-over trial",
+      "year": 2020,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "27677368",
+      "title": "Corn oil intake favorably impacts lipoprotein cholesterol, apolipoprotein and lipoprotein particle levels compared with extra-virgin olive oil",
+      "year": 2017,
+      "inReviews": [
+       "37977313",
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "22894911",
+      "title": "Effects of a rapeseed oil-enriched hypoenergetic diet with a high content of α-linolenic acid on body weight and cardiovascular risk profile in patients with the metabolic syndrome",
+      "year": 2012,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "11108723",
+      "title": "An olive oil-rich diet results in higher concentrations of LDL cholesterol and a higher number of LDL subfraction particles than rapeseed oil and sunflower oil diets",
+      "year": 2000,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "12370843",
+      "title": "Effect of alpha-linolenic acid-rich Camelina sativa oil on serum fatty acid composition and serum lipids in hypercholesterolemic subjects",
+      "year": 2002,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "25403327",
+      "title": "Dietary rapeseed/canola-oil supplementation reduces serum lipids and liver enzymes and alters postprandial inflammatory responses in adipose tissue compared to olive-oil supplementation in obese men",
+      "year": 2015,
+      "inReviews": [
+       "36408701",
+       "35866510"
+      ]
+     },
+     {
+      "pmid": "34811509",
+      "title": "Effect of pecan nuts and extra-virgin olive oil on glycemic profile and nontraditional anthropometric indexes in patients with coronary artery disease: a randomized clinical trial",
+      "year": 2022,
+      "n": 204,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "33971993",
+      "title": "Effects of supplementing a healthy diet with pecan nuts or extra-virgin olive oil on inflammatory profile of patients with stable coronary artery disease: a randomised clinical trial",
+      "year": 2022,
+      "n": 204,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "34836393",
+      "title": "The Effectiveness of Extra Virgin Olive Oil and the Traditional Brazilian Diet in Reducing the Inflammatory Profile of Individuals with Severe Obesity: A Randomized Clinical Trial",
+      "year": 2021,
+      "n": 149,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "32422956",
+      "title": "Traditional Brazilian Diet and Olive Oil Reduce Cardiometabolic Risk Factors in Severely Obese Individuals: A Randomized Trial",
+      "year": 2020,
+      "n": 149,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "25933490",
+      "title": "Effects of extra virgin olive oil and fish oil on lipid profile and oxidative stress in patients with metabolic syndrome",
+      "year": 2015,
+      "n": 102,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "25527749",
+      "title": "Impact of a 6-wk olive oil supplementation in healthy adults on urinary proteomic biomarkers of coronary artery disease, chronic kidney disease, and diabetes (types 1 and 2): a randomized, parallel, controlled, double-blind study",
+      "year": 2015,
+      "n": 69,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "30170304",
+      "title": "Olive oil lessened fatty liver severity independent of cardiometabolic correction in patients with non-alcoholic fatty liver disease: A randomized clinical trial",
+      "year": 2019,
+      "n": 66,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "33884713",
+      "title": "The effect of extra virgin olive oil on anthropometric indices, lipid profile, and markers of oxidative stress and inflammation in patients with depression, a double-blind randomised controlled trial",
+      "year": 2021,
+      "n": 62,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "23642776",
+      "title": "Extra virgin olive oil (EVOO) consumption and antioxidant status in healthy institutionalized elderly humans",
+      "year": 2013,
+      "n": 62,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "25670360",
+      "title": "Corn oil improves the plasma lipoprotein lipid profile compared with extra-virgin olive oil consumption in men and women with elevated cholesterol: results from a randomized controlled feeding trial",
+      "year": 2015,
+      "n": 54,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "29850450",
+      "title": "The Effects of Extra Virgin Olive Oil on Alanine Aminotransferase, Aspartate Aminotransferase, and Ultrasonographic Indices of Hepatic Steatosis in Nonalcoholic Fatty Liver Disease Patients Undergoing Low Calorie Diet",
+      "year": 2018,
+      "n": 50,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "35932536",
+      "title": "Diets enriched with palm olein, cocoa butter, and extra virgin olive oil exhibited similar lipid response: a randomized controlled study in young healthy adults",
+      "year": 2022,
+      "n": 40,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "35389391",
+      "title": "Effects of n-6 PUFA-rich soybean oil, MUFA-rich olive oil and camellia seed oil on weight and cardiometabolic profiles among Chinese women: a 3-month double-blind randomized controlled-feeding trial",
+      "year": 2022,
+      "n": 30,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "35511204",
+      "title": "Blood Lipid Responses to Diets Enriched with Cottonseed Oil Compared With Olive Oil in Adults with High Cholesterol in a Randomized Trial",
+      "year": 2022,
+      "n": 22,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "15309433",
+      "title": "Virgin Olive Oil Study (VOLOS): vasoprotective potential of extra virgin olive oil in mildly dyslipidemic patients",
+      "year": 2005,
+      "n": 22,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "10584045",
+      "title": "High-monounsaturated fatty acid diets lower both plasma cholesterol and triacylglycerol concentrations",
+      "year": 1999,
+      "n": 22,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "20706728",
+      "title": "Omega-3 fatty acids and lipoprotein associated phospholipase A(2) in healthy older adult males and females",
+      "year": 2011,
+      "n": 20,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "15983524",
+      "title": "Balance of unsaturated fatty acids is important to a cholesterol-lowering diet: comparison of mid-oleic sunflower oil and olive oil on cardiovascular disease risk factors",
+      "year": 2005,
+      "n": 19,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "32230754",
+      "title": "Effects of Olive Oil Consumption on Cardiovascular Risk Factors in Patients with Fibromyalgia",
+      "year": 2020,
+      "n": 15,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "8148353",
+      "title": "Rice bran oil consumption and plasma lipid levels in moderately hypercholesterolemic humans",
+      "year": 1994,
+      "n": 15,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "26861923",
+      "title": "Extra-Virgin Olive Oil Reduces Glycemic Response to a High-Glycemic Index Meal in Patients With Type 1 Diabetes: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 13,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "17617938",
+      "title": "Changes in the phenolic content of low density lipoprotein after olive oil consumption in men. A randomized crossover controlled trial",
+      "year": 2007,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "34435429",
+      "title": "An extra virgin olive oil-enriched chocolate spread positively modulates insulin-resistance markers compared with a palm oil-enriched one in healthy young adults: A double-blind, cross-over, randomised controlled trial",
+      "year": 2022,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "8399091",
+      "title": "Effects of canola, corn, and olive oils on fasting and postprandial plasma lipoproteins in humans as part of a National Cholesterol Education Program Step 2 diet",
+      "year": 1993,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "26488229",
+      "title": "Palm oil and cardiovascular disease: a randomized trial of the effects of hybrid palm oil supplementation on human plasma lipid patterns",
+      "year": 2016,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "16020940",
+      "title": "Nutritional intervention study with argan oil in man: effects on lipids and apolipoproteins",
+      "year": 2005,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "23347535",
+      "title": "Flaxseed oil does not affect inflammatory markers and lipid profile compared to olive oil, in young, healthy, normal weight adults",
+      "year": 2013,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "7733026",
+      "title": "Comparison of palmolein and olive oil: effects on plasma lipids and vitamin E in young adults",
+      "year": 1995,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "10694774",
+      "title": "Comparison of an oleic acid enriched-diet vs NCEP-I diet on LDL susceptibility to oxidative modifications",
+      "year": 2000,
+      "inReviews": [
+       "36408701"
+      ]
+     },
+     {
+      "pmid": "31334554",
+      "title": "A Mediterranean Diet Rich in Extra-Virgin Olive Oil Is Associated with a Reduced Prevalence of Nonalcoholic Fatty Liver Disease in Older Individuals at High Cardiovascular Risk",
+      "year": 2019,
+      "inReviews": [
+       "36408701"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 7
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 4
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 2
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "27297848",
+     "title": "CORonary Diet Intervention with Olive oil and cardiovascular PREVention study (the CORDIOPREV study): Rationale, methods, and baseline characteristics: A clinical trial comparing the efficacy of a Mediterranean diet rich in olive oil versus a low-fat diet on cardiovascular disease in coronary patients",
+     "year": 2016,
+     "n": 1002
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "36408701"
+    ],
+    "citedNotChosen": [
+     "30006369",
+     "31378629",
+     "16954359"
+    ],
+    "citedNotEligible": [
+     "30006369",
+     "16954359"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "37977313",
+      "doi": "10.1016/j.tjnut.2023.10.028",
+      "title": "Effect of Extra Virgin Olive Oil on Anthropometric Indices, Inflammatory and Cardiometabolic Markers: a Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+      "year": 2024,
+      "firstAuthor": "Morvaridzadeh M",
+      "journal": "The Journal of nutrition",
+      "citedBy": 24,
+      "n": 2020,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "35866510",
+      "doi": "10.1080/10408398.2022.2100314",
+      "title": "Comparison of canola oil and olive oil consumption on the serum lipid profile in adults: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "firstAuthor": "Pourrajab B",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 13,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Olive oil eaten as food",
+     "comparison": "Other oils or fats, or less olive oil",
+     "outcome": "LDL, HDL or total cholesterol, or triglycerides"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 5,
+     "partly": 8,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40507112",
+      "title": "Exploring the Benefits of Extra Virgin Olive Oil on Cardiovascular Health Enhancement and Disease Prevention: A Systematic Review",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Reviews trials of virgin olive oil eaten as food, but outcomes are broad cardiovascular biomarkers and events, with no clear comparison or named cholesterol outcomes."
+     },
+     {
+      "pmid": "40651889",
+      "title": "Effect of the Mediterranean diet supplemented with olive oil versus the Mediterranean diet supplemented with mixed nuts on blood pressure and serum lipid indexes among adults: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Compares a Mediterranean diet with added olive oil against one with added nuts in at-risk adults; olive oil is tested inside a whole diet, not on its own."
+     },
+     {
+      "pmid": "39153124",
+      "title": "Mediterranean diet enriched with olive oil shows no consistent benefits on cardiometabolic and anthropometric parameters: a systematic review with meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Measures blood lipids, but the intervention is a Mediterranean diet enriched with olive oil, not olive oil tested on its own."
+     },
+     {
+      "pmid": "38132869",
+      "title": "Olive Oil Polyphenols Improve HDL Cholesterol and Promote Maintenance of Lipid Metabolism: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Measures lipids in adults, but the exposure is olive oil polyphenol content at different doses, not olive oil against other fats."
+     },
+     {
+      "pmid": "34153478",
+      "title": "Beneficial effects of dietary supplementation with olive oil, oleic acid, or hydroxytyrosol in metabolic syndrome: Systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Includes olive oil eaten as food, but only in people with metabolic syndrome, and it mixes in oleic acid and hydroxytyrosol supplements."
+     },
+     {
+      "pmid": "29708409",
+      "title": "The effect of high-polyphenol extra virgin olive oil on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Compares high- with low-polyphenol olive oil on cholesterol; the comparison is another olive oil, not other fats or less olive oil."
+     },
+     {
+      "pmid": "31378629",
+      "title": "Impact of different types of olive oil on cardiovascular risk factors: A systematic review and network meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Compares types of olive oil on lipids in mainly healthy adults; the comparison is olive oil against olive oil, not other fats."
+     },
+     {
+      "pmid": "26980811",
+      "title": "Comparison of Formulas Based on Lipid Emulsions of Olive Oil, Soybean Oil, or Several Oils for Parenteral Nutrition: A Systematic Review and Meta-Analysis",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Olive oil is given as an intravenous lipid emulsion in parenteral nutrition, not eaten as food, and cholesterol is not an outcome."
+     },
+     {
+      "pmid": "26055128",
+      "title": "Effects of high phenolic olive oil on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Compares high- with low- or non-phenolic olive oil on blood fats; the comparison is another olive oil, not other fats."
+     }
+    ]
+   }
+  },
+  {
+   "id": "polyphenols",
+   "label": "Oxidised LDL and HDL",
+   "finding": "Oxidised LDL and how well HDL works: high- vs low-polyphenol olive oil",
+   "counts": {
+    "all": 3169,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 39,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40749711",
+     "doi": "10.1080/10408398.2025.2525446",
+     "title": "Effects of daily extra virgin olive oil consumption on biomarkers of inflammation and oxidative stress: a systematic review and meta-analysis",
+     "year": 2026,
+     "firstAuthor": "Vidal Damasceno J",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 4,
+     "n": 1138,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "37181304",
+     "doi": "10.1002/fsn3.3251",
+     "title": "Effect of olive oil phenols on oxidative stress biomarkers: A systematic review and dose-response meta-analysis of randomized clinical trials",
+     "year": 2023,
+     "firstAuthor": "Derakhshandeh-Rishehri SM",
+     "journal": "Food science & nutrition",
+     "citedBy": 12,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.13793103448275862,
+    "trials": 29,
+    "inclusions": 33,
+    "reviews": [
+     {
+      "pmid": "40749711",
+      "trials": 22
+     },
+     {
+      "pmid": "37181304",
+      "trials": 11
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "16954359",
+      "title": "The effect of polyphenols in olive oil on heart disease risk factors: a randomized trial",
+      "year": 2006,
+      "n": 200,
+      "inReviews": [
+       "40749711",
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "33884713",
+      "title": "The effect of extra virgin olive oil on anthropometric indices, lipid profile, and markers of oxidative stress and inflammation in patients with depression, a double-blind randomised controlled trial",
+      "year": 2021,
+      "n": 62,
+      "inReviews": [
+       "40749711",
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "15168036",
+      "title": "Effects of differing phenolic content in dietary olive oils on lipids and LDL oxidation--a randomized controlled trial",
+      "year": 2004,
+      "n": 30,
+      "inReviews": [
+       "40749711",
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "22914255",
+      "title": "Olive oil polyphenols decrease blood pressure and improve endothelial function in young women with mild hypertension",
+      "year": 2012,
+      "n": 24,
+      "inReviews": [
+       "40749711",
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "24886626",
+      "title": "Olive oil intake and risk of cardiovascular disease and mortality in the PREDIMED Study",
+      "year": 2014,
+      "n": 7216,
+      "inReviews": [
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "22535754",
+      "title": "The Mediterranean diet pattern and its main components are associated with lower plasma concentrations of tumor necrosis factor receptor 60 in patients at high risk for cardiovascular disease",
+      "year": 2012,
+      "n": 516,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "17563030",
+      "title": "Effect of a traditional Mediterranean diet on lipoprotein oxidation: a randomized controlled trial",
+      "year": 2007,
+      "n": 372,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "28193797",
+      "title": "Mediterranean Diet Improves High-Density Lipoprotein Function in High-Cardiovascular-Risk Individuals: A Randomized Controlled Trial",
+      "year": 2017,
+      "n": 296,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "33971993",
+      "title": "Effects of supplementing a healthy diet with pecan nuts or extra-virgin olive oil on inflammatory profile of patients with stable coronary artery disease: a randomised clinical trial",
+      "year": 2022,
+      "n": 204,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "21376434",
+      "title": "The effect of olive oil polyphenols on antibodies against oxidized LDL. A randomized clinical trial",
+      "year": 2011,
+      "n": 200,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "27440261",
+      "title": "Long-Term Immunomodulatory Effects of a Mediterranean Diet in Adults at High Risk of Cardiovascular Disease in the PREvención con DIeta MEDiterránea (PREDIMED) Randomized Controlled Trial",
+      "year": 2016,
+      "n": 165,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "24925270",
+      "title": "The effects of the mediterranean diet on biomarkers of vascular wall inflammation and plaque vulnerability in subjects with high risk for cardiovascular disease. A randomized trial",
+      "year": 2014,
+      "n": 164,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "34836393",
+      "title": "The Effectiveness of Extra Virgin Olive Oil and the Traditional Brazilian Diet in Reducing the Inflammatory Profile of Individuals with Severe Obesity: A Randomized Clinical Trial",
+      "year": 2021,
+      "n": 149,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "19056596",
+      "title": "Inhibition of circulating immune cell activation: a molecular antiinflammatory effect of the Mediterranean diet",
+      "year": 2009,
+      "n": 112,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "25933490",
+      "title": "Effects of extra virgin olive oil and fish oil on lipid profile and oxidative stress in patients with metabolic syndrome",
+      "year": 2015,
+      "n": 102,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "25527749",
+      "title": "Impact of a 6-wk olive oil supplementation in healthy adults on urinary proteomic biomarkers of coronary artery disease, chronic kidney disease, and diabetes (types 1 and 2): a randomized, parallel, controlled, double-blind study",
+      "year": 2015,
+      "n": 69,
+      "inReviews": [
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "34716791",
+      "title": "Extra virgin olive oil high in polyphenols improves antioxidant status in adults: a double-blind, randomized, controlled, cross-over study (OLIVAUS)",
+      "year": 2022,
+      "n": 50,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "28808791",
+      "title": "Consumption of extra virgin olive oil improves body composition and blood pressure in women with excess body fat: a randomized, double-blinded, placebo-controlled clinical trial",
+      "year": 2018,
+      "n": 41,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "33121297",
+      "title": "Effect of polyphenol-rich extra-virgin olive oil on lipid profile and inflammatory biomarkers in patients undergoing coronary angiography: a randomised, controlled, clinical trial",
+      "year": 2021,
+      "n": 40,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "26280823",
+      "title": "Effect of Extra Virgin Olive Oil on Biomarkers of Inflammation in HIV-Infected Patients: A Randomized, Crossover, Controlled Clinical Trial",
+      "year": 2015,
+      "n": 39,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "26011257",
+      "title": "Complementary phenol-enriched olive oil improves HDL characteristics in hypercholesterolemic subjects. A randomized, double-blind, crossover, controlled trial. The VOHF study",
+      "year": 2015,
+      "n": 33,
+      "inReviews": [
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "32230754",
+      "title": "Effects of Olive Oil Consumption on Cardiovascular Risk Factors in Patients with Fibromyalgia",
+      "year": 2020,
+      "n": 15,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "15333722",
+      "title": "Olive oils high in phenolic compounds modulate oxidative/antioxidative status in men",
+      "year": 2004,
+      "n": 12,
+      "inReviews": [
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "10573546",
+      "title": "Extra-virgin olive oil increases the resistance of LDL to oxidation more than refined olive oil in free-living men with peripheral vascular disease",
+      "year": 1999,
+      "n": 12,
+      "inReviews": [
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "15939067",
+      "title": "Antioxidant effect of virgin olive oil in patients with stable coronary heart disease: a randomized, crossover, controlled, clinical trial",
+      "year": 2005,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "17375118",
+      "title": "Anti-inflammatory effect of virgin olive oil in stable coronary disease patients: a randomized, crossover, controlled trial",
+      "year": 2008,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "30845690",
+      "title": "Effects of Virgin Olive Oils Differing in Their Bioactive Compound Contents on Biomarkers of Oxidative Stress and Inflammation in Healthy Adults: A Randomized Double-Blind Controlled Trial",
+      "year": 2019,
+      "inReviews": [
+       "40749711"
+      ]
+     },
+     {
+      "pmid": "11378806",
+      "title": "Effect of phenol-rich extra virgin olive oil on markers of oxidation in healthy volunteers",
+      "year": 2001,
+      "inReviews": [
+       "37181304"
+      ]
+     },
+     {
+      "pmid": "15380903",
+      "title": "Virgin olive oil reduces blood pressure in hypertensive elderly subjects",
+      "year": 2004,
+      "inReviews": [
+       "37181304"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "40749711"
+    ],
+    "citedNotChosen": [
+     "16954359",
+     "25060792",
+     "31378629"
+    ],
+    "citedNotEligible": [
+     "16954359",
+     "25060792",
+     "31378629"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "37181304",
+      "doi": "10.1002/fsn3.3251",
+      "title": "Effect of olive oil phenols on oxidative stress biomarkers: A systematic review and dose-response meta-analysis of randomized clinical trials",
+      "year": 2023,
+      "firstAuthor": "Derakhshandeh-Rishehri SM",
+      "journal": "Food science & nutrition",
+      "citedBy": 12,
+      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Olive oil high in polyphenols (extra virgin)",
+     "comparison": "Olive oil low in polyphenols (refined), or other oils",
+     "outcome": "Oxidised LDL, oxidative stress markers, or HDL function"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "all": 530,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 12,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "24050803",
+     "31378629"
+    ],
+    "citedNotEligible": [
+     "24050803",
+     "31378629"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Olive oil eaten as food",
+     "comparison": "Other oils or fats, or less olive oil",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 0,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40651889",
+      "title": "Effect of the Mediterranean diet supplemented with olive oil versus the Mediterranean diet supplemented with mixed nuts on blood pressure and serum lipid indexes among adults: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Adults at cardiovascular risk eating olive oil within a Mediterranean diet, with blood pressure measured, but compared against mixed nuts rather than other oils, fats or less olive oil."
+     },
+     {
+      "pmid": "39558500",
+      "title": "Supplementation of Olive Oil and Flaxseed Oil on Blood Pressure and Inflammation in Healthy and At-Risk Adults: A Systematic Literature Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Healthy and at-risk adults with blood pressure measured, but olive oil is pooled with flaxseed oil and the abstract reports no separate olive oil analysis."
+     }
+    ]
+   }
+  },
+  {
+   "id": "inflammation",
+   "label": "Inflammation and blood vessels",
+   "finding": "Inflammation markers (CRP) and blood vessel function",
+   "counts": {
+    "all": 2037,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 35,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37977313",
+     "doi": "10.1016/j.tjnut.2023.10.028",
+     "title": "Effect of Extra Virgin Olive Oil on Anthropometric Indices, Inflammatory and Cardiometabolic Markers: a Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+     "year": 2024,
+     "firstAuthor": "Morvaridzadeh M",
+     "journal": "The Journal of nutrition",
+     "citedBy": 24,
+     "n": 2020,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "31539817",
+     "doi": "10.1016/j.nut.2019.110559",
+     "title": "Is olive oil good for you? A systematic review and meta-analysis on anti-inflammatory benefits from regular dietary intake",
+     "year": 2020,
+     "firstAuthor": "Fernandes J",
+     "journal": "Nutrition (Burbank, Los Angeles County, Calif.)",
+     "citedBy": 68,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "26378571",
+     "doi": "10.3390/nu7095356",
+     "title": "Effects of Olive Oil on Markers of Inflammation and Endothelial Function-A Systematic Review and Meta-Analysis",
+     "year": 2015,
+     "firstAuthor": "Schwingshackl L",
+     "journal": "Nutrients",
+     "citedBy": 176,
+     "n": 3106,
+     "why": "One of the newest meta-analyses on this finding (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.040983606557377046,
+    "trials": 61,
+    "inclusions": 66,
+    "reviews": [
+     {
+      "pmid": "37977313",
+      "trials": 25
+     },
+     {
+      "pmid": "31539817",
+      "trials": 10
+     },
+     {
+      "pmid": "26378571",
+      "trials": 31
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "22535754",
+      "title": "The Mediterranean diet pattern and its main components are associated with lower plasma concentrations of tumor necrosis factor receptor 60 in patients at high risk for cardiovascular disease",
+      "year": 2012,
+      "n": 516,
+      "inReviews": [
+       "31539817",
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "24925270",
+      "title": "The effects of the mediterranean diet on biomarkers of vascular wall inflammation and plaque vulnerability in subjects with high risk for cardiovascular disease. A randomized trial",
+      "year": 2014,
+      "n": 164,
+      "inReviews": [
+       "31539817",
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "29511019",
+      "title": "Randomised trial of coconut oil, olive oil or butter on blood lipids and other cardiovascular risk factors in healthy men and women",
+      "year": 2018,
+      "n": 160,
+      "inReviews": [
+       "37977313",
+       "31539817"
+      ]
+     },
+     {
+      "pmid": "22030224",
+      "title": "Diets high in palmitic acid (16:0), lauric and myristic acids (12:0 + 14:0), or oleic acid (18:1) do not alter postprandial or fasting plasma homocysteine and inflammatory markers in healthy Malaysian adults",
+      "year": 2011,
+      "n": 45,
+      "inReviews": [
+       "31539817",
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "25407792",
+      "title": "The protective effect of the Mediterranean diet on endothelial resistance to GLP-1 in type 2 diabetes: a preliminary report",
+      "year": 2014,
+      "inReviews": [
+       "31539817",
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "23817470",
+      "title": "Docosahexaenoic acid supplementation, vascular function and risk factors for cardiovascular disease: a randomized controlled trial in young adults",
+      "year": 2013,
+      "n": 328,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "21865334",
+      "title": "Effect of low doses of long-chain n-3 PUFAs on endothelial function and arterial stiffness: a randomized controlled trial",
+      "year": 2011,
+      "n": 312,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "34811509",
+      "title": "Effect of pecan nuts and extra-virgin olive oil on glycemic profile and nontraditional anthropometric indexes in patients with coronary artery disease: a randomized clinical trial",
+      "year": 2022,
+      "n": 204,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "33971993",
+      "title": "Effects of supplementing a healthy diet with pecan nuts or extra-virgin olive oil on inflammatory profile of patients with stable coronary artery disease: a randomised clinical trial",
+      "year": 2022,
+      "n": 204,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "31856379",
+      "title": "Effects of a healthy diet enriched or not with pecan nuts or extra-virgin olive oil on the lipid profile of patients with stable coronary artery disease: a randomised clinical trial",
+      "year": 2020,
+      "n": 204,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "15383514",
+      "title": "Effect of a mediterranean-style diet on endothelial dysfunction and markers of vascular inflammation in the metabolic syndrome: a randomized trial",
+      "year": 2004,
+      "n": 180,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "34836393",
+      "title": "The Effectiveness of Extra Virgin Olive Oil and the Traditional Brazilian Diet in Reducing the Inflammatory Profile of Individuals with Severe Obesity: A Randomized Clinical Trial",
+      "year": 2021,
+      "n": 149,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "20196969",
+      "title": "Effects of marine n-3 fatty acids on circulating levels of soluble adhesion molecules in patients with chronic heart failure",
+      "year": 2010,
+      "n": 138,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "19056596",
+      "title": "Inhibition of circulating immune cell activation: a molecular antiinflammatory effect of the Mediterranean diet",
+      "year": 2009,
+      "n": 112,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "25933490",
+      "title": "Effects of extra virgin olive oil and fish oil on lipid profile and oxidative stress in patients with metabolic syndrome",
+      "year": 2015,
+      "n": 102,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "20179144",
+      "title": "In vivo nutrigenomic effects of virgin olive oil polyphenols within the frame of the Mediterranean diet: a randomized controlled trial",
+      "year": 2010,
+      "n": 90,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "19854375",
+      "title": "Krill oil supplementation increases plasma concentrations of eicosapentaenoic and docosahexaenoic acids in overweight and obese men and women",
+      "year": 2009,
+      "n": 76,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "18641189",
+      "title": "An oil mixture with trans-10, cis-12 conjugated linoleic acid increases markers of inflammation and in vivo lipid peroxidation compared with cis-9, trans-11 conjugated linoleic acid in postmenopausal women",
+      "year": 2008,
+      "n": 75,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "30160543",
+      "title": "A comparative study of the effects of palm olein, cocoa butter and extra virgin olive oil on lipid profile, including low-density lipoprotein subfractions in young healthy Chinese people",
+      "year": 2019,
+      "n": 72,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "25527749",
+      "title": "Impact of a 6-wk olive oil supplementation in healthy adults on urinary proteomic biomarkers of coronary artery disease, chronic kidney disease, and diabetes (types 1 and 2): a randomized, parallel, controlled, double-blind study",
+      "year": 2015,
+      "n": 69,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "30170304",
+      "title": "Olive oil lessened fatty liver severity independent of cardiometabolic correction in patients with non-alcoholic fatty liver disease: A randomized clinical trial",
+      "year": 2019,
+      "n": 66,
+      "inReviews": [
+       "31539817"
+      ]
+     },
+     {
+      "pmid": "18492834",
+      "title": "Fish oil in combination with high or low intakes of linoleic acid lowers plasma triacylglycerols but does not affect other cardiovascular risk markers in healthy men",
+      "year": 2008,
+      "n": 64,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "33884713",
+      "title": "The effect of extra virgin olive oil on anthropometric indices, lipid profile, and markers of oxidative stress and inflammation in patients with depression, a double-blind randomised controlled trial",
+      "year": 2021,
+      "n": 62,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "23642776",
+      "title": "Extra virgin olive oil (EVOO) consumption and antioxidant status in healthy institutionalized elderly humans",
+      "year": 2013,
+      "n": 62,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "25670360",
+      "title": "Corn oil improves the plasma lipoprotein lipid profile compared with extra-virgin olive oil consumption in men and women with elevated cholesterol: results from a randomized controlled feeding trial",
+      "year": 2015,
+      "n": 54,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "29850450",
+      "title": "The Effects of Extra Virgin Olive Oil on Alanine Aminotransferase, Aspartate Aminotransferase, and Ultrasonographic Indices of Hepatic Steatosis in Nonalcoholic Fatty Liver Disease Patients Undergoing Low Calorie Diet",
+      "year": 2018,
+      "n": 50,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "22260859",
+      "title": "Low-dose fish oil supplementation increases serum adiponectin without affecting inflammatory markers in overweight subjects",
+      "year": 2012,
+      "n": 50,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "20121889",
+      "title": "Fish-oil supplement has neutral effects on vascular and metabolic function but improves renal function in patients with Type 2 diabetes mellitus",
+      "year": 2010,
+      "n": 49,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "28808791",
+      "title": "Consumption of extra virgin olive oil improves body composition and blood pressure in women with excess body fat: a randomized, double-blinded, placebo-controlled clinical trial",
+      "year": 2018,
+      "n": 41,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "35932536",
+      "title": "Diets enriched with palm olein, cocoa butter, and extra virgin olive oil exhibited similar lipid response: a randomized controlled study in young healthy adults",
+      "year": 2022,
+      "n": 40,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "17374663",
+      "title": "Low-dose docosahexaenoic acid lowers diastolic blood pressure in middle-aged men and women",
+      "year": 2007,
+      "n": 38,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "23902780",
+      "title": "In vivo transcriptomic profile after a Mediterranean diet in high-cardiovascular risk patients: a randomized controlled trial",
+      "year": 2013,
+      "n": 34,
+      "inReviews": [
+       "31539817"
+      ]
+     },
+     {
+      "pmid": "20071644",
+      "title": "Effects of n-3 fatty acids on macro- and microvascular function in subjects with type 2 diabetes mellitus",
+      "year": 2010,
+      "n": 34,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "22071711",
+      "title": "Palm olein increases plasma cholesterol moderately compared with olive oil in healthy individuals",
+      "year": 2011,
+      "n": 32,
+      "inReviews": [
+       "31539817"
+      ]
+     },
+     {
+      "pmid": "35389391",
+      "title": "Effects of n-6 PUFA-rich soybean oil, MUFA-rich olive oil and camellia seed oil on weight and cardiometabolic profiles among Chinese women: a 3-month double-blind randomized controlled-feeding trial",
+      "year": 2022,
+      "n": 30,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "22914255",
+      "title": "Olive oil polyphenols decrease blood pressure and improve endothelial function in young women with mild hypertension",
+      "year": 2012,
+      "n": 24,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "35511204",
+      "title": "Blood Lipid Responses to Diets Enriched with Cottonseed Oil Compared With Olive Oil in Adults with High Cholesterol in a Randomized Trial",
+      "year": 2022,
+      "n": 22,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "15309433",
+      "title": "Virgin Olive Oil Study (VOLOS): vasoprotective potential of extra virgin olive oil in mildly dyslipidemic patients",
+      "year": 2005,
+      "n": 22,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "21890081",
+      "title": "Effects of high adherence to mediterranean or low-fat diets in medicated secondary prevention patients",
+      "year": 2011,
+      "n": 21,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "15297105",
+      "title": "Sunflower oil does not protect against LDL oxidation as virgin olive oil does in patients with peripheral vascular disease",
+      "year": 2004,
+      "n": 20,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "21421296",
+      "title": "Crossover study of diets enriched with virgin olive oil, walnuts or almonds. Effects on lipids and other cardiovascular risk markers",
+      "year": 2011,
+      "n": 18,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "32230754",
+      "title": "Effects of Olive Oil Consumption on Cardiovascular Risk Factors in Patients with Fibromyalgia",
+      "year": 2020,
+      "n": 15,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "20545561",
+      "title": "Comparing an olive oil-enriched diet to a standard lower-fat diet for weight loss in breast cancer survivors: a pilot study",
+      "year": 2010,
+      "n": 15,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "26861923",
+      "title": "Extra-Virgin Olive Oil Reduces Glycemic Response to a High-Glycemic Index Meal in Patients With Type 1 Diabetes: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 13,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "12482554",
+      "title": "Effects of purified eicosapentaenoic acid and docosahexaenoic acid on platelet, fibrinolytic and vascular function in hypertensive type 2 diabetic patients",
+      "year": 2003,
+      "n": 12,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "14583341",
+      "title": "Effect of eicosapentaenoic acid and docosahexaenoic acid on oxidative stress and inflammatory markers in treated-hypertensive type 2 diabetic subjects",
+      "year": 2003,
+      "n": 12,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "17617938",
+      "title": "Changes in the phenolic content of low density lipoprotein after olive oil consumption in men. A randomized crossover controlled trial",
+      "year": 2007,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "34435429",
+      "title": "An extra virgin olive oil-enriched chocolate spread positively modulates insulin-resistance markers compared with a palm oil-enriched one in healthy young adults: A double-blind, cross-over, randomised controlled trial",
+      "year": 2022,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "31227804",
+      "title": "Fatty acid regio-specificity of triacylglycerol molecules may affect plasma lipid responses to dietary fats-a randomised controlled cross-over trial",
+      "year": 2020,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "27677368",
+      "title": "Corn oil intake favorably impacts lipoprotein cholesterol, apolipoprotein and lipoprotein particle levels compared with extra-virgin olive oil",
+      "year": 2017,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "8399091",
+      "title": "Effects of canola, corn, and olive oils on fasting and postprandial plasma lipoproteins in humans as part of a National Cholesterol Education Program Step 2 diet",
+      "year": 1993,
+      "inReviews": [
+       "37977313"
+      ]
+     },
+     {
+      "pmid": "22085595",
+      "title": "Expression of proinflammatory, proatherogenic genes is reduced by the Mediterranean diet in elderly people",
+      "year": 2012,
+      "inReviews": [
+       "31539817"
+      ]
+     },
+     {
+      "pmid": "28470492",
+      "title": "Unsaturated Fatty Acids Improve Atherosclerosis Markers in Obese and Overweight Non-diabetic Elderly Patients",
+      "year": 2017,
+      "inReviews": [
+       "31539817"
+      ]
+     },
+     {
+      "pmid": "20465434",
+      "title": "Effects of a 1-year dietary intervention with n-3 polyunsaturated fatty acid-enriched olive oil on non-alcoholic fatty liver disease patients: a preliminary study",
+      "year": 2010,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "21697535",
+      "title": "CLA does not impair endothelial function and decreases body weight as compared with safflower oil in overweight and obese male subjects",
+      "year": 2011,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "23347535",
+      "title": "Flaxseed oil does not affect inflammatory markers and lipid profile compared to olive oil, in young, healthy, normal weight adults",
+      "year": 2013,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "16286173",
+      "title": "Phenolic content of virgin olive oil improves ischemic reactive hyperemia in hypercholesterolemic patients",
+      "year": 2005,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "16339498",
+      "title": "Conjugated linoleic acid impairs endothelial function",
+      "year": 2006,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "17204269",
+      "title": "The chronic intake of a Mediterranean diet enriched in virgin olive oil, decreases nuclear transcription factor kappaB activation in peripheral blood mononuclear cells from healthy men",
+      "year": 2007,
+      "inReviews": [
+       "26378571"
+      ]
+     },
+     {
+      "pmid": "18275619",
+      "title": "Chronic effects of a high-fat diet enriched with virgin olive oil and a low-fat diet enriched with alpha-linolenic acid on postprandial endothelial function in healthy men",
+      "year": 2008,
+      "inReviews": [
+       "26378571"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 5
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "26378571"
+    ],
+    "citedNotChosen": [
+     "40749711"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "37977313",
+      "doi": "10.1016/j.tjnut.2023.10.028",
+      "title": "Effect of Extra Virgin Olive Oil on Anthropometric Indices, Inflammatory and Cardiometabolic Markers: a Systematic Review and Meta-Analysis of Randomized Clinical Trials",
+      "year": 2024,
+      "firstAuthor": "Morvaridzadeh M",
+      "journal": "The Journal of nutrition",
+      "citedBy": 24,
+      "n": 2020,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "31539817",
+      "doi": "10.1016/j.nut.2019.110559",
+      "title": "Is olive oil good for you? A systematic review and meta-analysis on anti-inflammatory benefits from regular dietary intake",
+      "year": 2020,
+      "firstAuthor": "Fernandes J",
+      "journal": "Nutrition (Burbank, Los Angeles County, Calif.)",
+      "citedBy": 68,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Olive oil eaten as food",
+     "comparison": "Other oils or fats, or less olive oil",
+     "outcome": "CRP or other inflammation markers, or blood vessel function (flow-mediated dilation)"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 3,
+     "partly": 3,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40749711",
+      "title": "Effects of daily extra virgin olive oil consumption on biomarkers of inflammation and oxidative stress: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "RCTs of eating EVOO with CRP and cytokines, but the pooled comparisons are against low-phenolic olive oils, not other fats or less olive oil."
+     },
+     {
+      "pmid": "41848522",
+      "title": "Metabolic and inflammatory effects of oleuropein and olive leaf extract: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Studies olive leaf extract and oleuropein supplements, not olive oil eaten as food."
+     },
+     {
+      "pmid": "42753329",
+      "title": "Olive oil-based interventions for gingival inflammation and plaque control- A systematic review of clinical evidence",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Olive oil used in the mouth (oil pulling, mouthwash, toothpaste) for gum inflammation, not eaten, and no blood markers."
+     },
+     {
+      "pmid": "39530776",
+      "title": "Effect of the Mediterranean Diet Supplemented With Olive Oil Versus the Low-Fat Diet on Serum Inflammatory and Endothelial Indexes Among Adults: A Systematic Review and Meta-analysis of Clinical Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Inflammation and endothelial markers match, but olive oil is tested within a Mediterranean diet against a low-fat diet, not on its own."
+     },
+     {
+      "pmid": "39558500",
+      "title": "Supplementation of Olive Oil and Flaxseed Oil on Blood Pressure and Inflammation in Healthy and At-Risk Adults: A Systematic Literature Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Healthy and at-risk adults with CRP, IL-6 and TNF-α, but olive oil and flaxseed oil supplements seem pooled together, not analysed separately."
+     },
+     {
+      "pmid": "38136231",
+      "title": "Oleocanthal, an Antioxidant Phenolic Compound in Extra Virgin Olive Oil (EVOO): A Comprehensive Systematic Review of Its Potential in Inflammation and Cancer",
+      "year": 2023,
+      "fits": "no",
+      "reason": "Reviews the isolated compound oleocanthal, mostly in lab studies of inflammation and cancer, not olive oil eaten as food."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cognition",
+   "label": "Memory and dementia",
+   "finding": "Memory and thinking, and death with dementia",
+   "counts": {
+    "all": 293,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42195994",
+     "doi": "10.3390/foods15101791",
+     "title": "Impact of Olive Oil Fatty Acids and Bioactive Compounds on Cognitive Function in Adults: A Systematic Review",
+     "year": 2026,
+     "firstAuthor": "Kanaan A",
+     "journal": "Foods (Basel, Switzerland)",
+     "citedBy": 1,
+     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "37885446",
+     "doi": "10.3389/fnut.2023.1218538",
+     "title": "The effects of olive oil consumption on cognitive performance: a systematic review",
+     "year": 2023,
+     "firstAuthor": "Fazlollahi A",
+     "journal": "Frontiers in nutrition",
+     "citedBy": 18,
+     "why": "One of the newest systematic reviews on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.5714285714285714,
+    "trials": 7,
+    "inclusions": 11,
+    "reviews": [
+     {
+      "pmid": "42195994",
+      "trials": 6
+     },
+     {
+      "pmid": "37885446",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "23670794",
+      "title": "Mediterranean diet improves cognition: the PREDIMED-NAVARRA randomised trial",
+      "year": 2013,
+      "n": 522,
+      "inReviews": [
+       "42195994",
+       "37885446"
+      ]
+     },
+     {
+      "pmid": "29351799",
+      "title": "Effect of the replacement of dietary vegetable oils with a low dose of extravirgin olive oil in the Mediterranean Diet on cognitive functions in the elderly",
+      "year": 2018,
+      "n": 180,
+      "inReviews": [
+       "42195994",
+       "37885446"
+      ]
+     },
+     {
+      "pmid": "36501136",
+      "title": "Extra-Virgin Olive Oil Enhances the Blood-Brain Barrier Function in Mild Cognitive Impairment: A Randomized Controlled Trial",
+      "year": 2022,
+      "n": 25,
+      "inReviews": [
+       "42195994",
+       "37885446"
+      ]
+     },
+     {
+      "pmid": "33044178",
+      "title": "A Randomized Clinical Trial of Greek High Phenolic Early Harvest Extra Virgin Olive Oil in Mild Cognitive Impairment: The MICOIL Pilot Study",
+      "year": 2020,
+      "inReviews": [
+       "42195994",
+       "37885446"
+      ]
+     },
+     {
+      "pmid": "25961184",
+      "title": "Mediterranean Diet and Age-Related Cognitive Decline: A Randomized Clinical Trial",
+      "year": 2015,
+      "n": 447,
+      "inReviews": [
+       "42195994"
+      ]
+     },
+     {
+      "pmid": "23732551",
+      "title": "Virgin olive oil supplementation and long-term cognition: the PREDIMED-NAVARRA randomized, trial",
+      "year": 2013,
+      "n": 285,
+      "inReviews": [
+       "37885446"
+      ]
+     },
+     {
+      "pmid": "37513652",
+      "title": "Effects of Desert Olive Tree Pearls Containing High Hydroxytyrosol Concentrations on the Cognitive Functions of Middle-Aged and Older Adults",
+      "year": 2023,
+      "n": 36,
+      "inReviews": [
+       "42195994"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "41740793",
+     "38709531"
+    ],
+    "citedNotEligible": [
+     "38709531"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42195994",
+      "doi": "10.3390/foods15101791",
+      "title": "Impact of Olive Oil Fatty Acids and Bioactive Compounds on Cognitive Function in Adults: A Systematic Review",
+      "year": 2026,
+      "firstAuthor": "Kanaan A",
+      "journal": "Foods (Basel, Switzerland)",
+      "citedBy": 1,
+      "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     },
+     {
+      "pmid": "37885446",
+      "doi": "10.3389/fnut.2023.1218538",
+      "title": "The effects of olive oil consumption on cognitive performance: a systematic review",
+      "year": 2023,
+      "firstAuthor": "Fazlollahi A",
+      "journal": "Frontiers in nutrition",
+      "citedBy": 18,
+      "why": "One of the newest systematic reviews on this finding (2023); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, mostly older",
+     "intervention": "Olive oil eaten as food",
+     "comparison": "Less olive oil or other fats",
+     "outcome": "Memory and thinking, dementia, or death with dementia"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41740793",
+      "title": "Effect of extra virgin olive oil on mild cognitive impairment and dementia in older adults: a systematic review and meta-analysis of clinical trials",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pooled RCTs of extra virgin olive oil vs control for cognition, but only in older adults who already have MCI or dementia."
+     },
+     {
+      "pmid": "42092516",
+      "title": "Comment on \"effect of extra virgin olive oil on mild cognitive impairment and dementia in older adults: A systematic review and meta-analysis of clinical trials\"",
+      "year": 2026,
+      "fits": "no",
+      "reason": "This is a comment on a meta-analysis, not a systematic review itself, and has no abstract."
+     },
+     {
+      "pmid": "39482909",
+      "title": "Alzheimer's Disease May Benefit from Olive Oil Polyphenols: A Systematic Review on Preclinical Evidence Supporting the Effect of Oleocanthal on Amyloid-β Load",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews preclinical mouse studies of oleocanthal, an olive oil polyphenol, rather than adults eating olive oil itself."
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,489 @@
+{
+  "id": "evoo",
+  "name": "Extra virgin olive oil",
+  "group": "oils and fats",
+  "otherNames": ["EVOO", "Extra-virgin olive oil", "Virgin olive oil", "Olive oil", "Aceite de oliva virgen extra", "Natives Olivenöl extra", "Extra szűz olívaolaj", "Olívaolaj"],
+  "summary": "Oil pressed from olives without heat or chemical refining, so it keeps more of the olive's own compounds (polyphenols) than refined olive oil. In the PREDIMED trial in Spain, people on a Mediterranean diet with extra virgin olive oil had fewer heart attacks, strokes and heart deaths than people advised to eat less fat. Large cohort studies link more olive oil with fewer deaths, but those studies show links, not causes.",
+  "inIt": [
+    "Almost all of it is fat, mostly the monounsaturated fat oleic acid; the rest of what it's known for is a small fraction of phenolic compounds (polyphenols).",
+    "Its polyphenols include hydroxytyrosol and tyrosol and larger molecules they come from (the oleuropein complex, oleacein and oleocanthal). How much an oil has varies a lot: the three oils in the EUROLIVE trial had 2.7, 164 and 366 mg per kg.",
+    "The food table this app uses (CoFID, 'Oil, olive') lists energy, total fat, saturated fat, vitamin E and vitamin K1. It doesn't list oleic acid or monounsaturated fat separately, and it doesn't measure polyphenols at all.",
+    "The table doesn't tell extra virgin from refined olive oil: its numbers are for olive oil in general. The polyphenols, which differ between grades, aren't in it.",
+    "Like every food, it holds compounds no food table tracks. Studies of people eating the oil include all of them; studies of single compounds don't."
+  ],
+  "tableFoods": [{ "id": "17-038", "label": "1 tablespoon (about 14 g)", "grams": 14 }],
+  "processing": [
+    "Extra virgin and virgin olive oil are pressed from olives and not refined. Virgin olive oils are richer in phenolic compounds than refined olive oil: in EUROLIVE the low-polyphenol oil had 2.7 mg per kg and the high one 366 mg per kg.",
+    "The 'extra virgin' grade doesn't state polyphenol content: trials have used both low- and high-polyphenol virgin and extra virgin oils, and most bottles don't say how much they have.",
+    "In the EU, an olive oil may carry the health claim 'Olive oil polyphenols contribute to the protection of blood lipids from oxidative stress' (Regulation (EU) No 432/2012, based on an EFSA opinion from 2011) only if it has at least 5 mg of hydroxytyrosol and its derivatives (such as the oleuropein complex and tyrosol) per 20 g of oil, and the label must say the effect is obtained with 20 g of olive oil a day.",
+    "Polyphenols fade with storage: in 160 extra virgin olive oils kept in the dark at 20 °C for 12 months, phenolic content fell by 42% on average (with large differences between oils, ±24%). Oils richest in oleacein and oleocanthal lost the most.",
+    "Heat breaks some polyphenols down. In a laboratory test of deep-frying chips at 180 °C, hydroxytyrosol and its close relatives fell to 50–60% after the first 10-minute frying and to about 10% after six; tyrosol and its relatives were much more stable. A 2022 review found studies on ordinary home cooking too different and contradictory to say much more.",
+    "Olive polyphenol extracts and hydroxytyrosol capsules are a separate question from the oil: the evidence on this page comes from people eating olive oil, not from supplements."
+  ],
+  "whatStudiesDid": "In PREDIMED, 7,447 Spanish adults aged 55 to 80 at high risk of heart disease were assigned to a Mediterranean diet with extra virgin olive oil, a Mediterranean diet with mixed nuts, or a control diet (advice to eat less fat), for a median of 4.8 years. The olive oil group got quarterly diet sessions and free extra virgin olive oil: 1 litre a week for the participant and their household. In the EUROLIVE trial, 200 healthy men in five European countries used 25 mL a day of raw olive oil low, medium or high in polyphenols, each for 3 weeks with 2-week breaks in between. Cohort studies, such as the US Nurses' Health Study and Health Professionals Follow-up Study, asked people every 4 years how much olive oil they used; their highest group used more than 7 g a day (more than half a tablespoon). Meta-analyses compared highest with lowest users, or per extra 10 or 25 g a day. Some cohort analyses also modelled replacing other fats (butter, margarine, mayonnaise) with the same amount of olive oil.",
+  "markers": ["ldl", "hdl", "total_cholesterol", "triglycerides", "bp_systolic", "bp_diastolic", "glucose", "hba1c", "crp_hs"],
+  "findings": [
+    {
+      "outcome": "Heart attacks, strokes and deaths from heart disease",
+      "population": "Spanish adults aged 55 to 80 (57% women) at high risk of heart disease but without it at the start (PREDIMED trial)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "A large randomised trial with hard outcomes (heart attack, stroke, heart death), not only blood tests",
+        "The first report (2013) was withdrawn because some people had not been randomised properly: household members enrolled without randomisation, one site of 11 assigning groups without randomising, and inconsistent randomisation tables at another. The 2018 republication re-analysed the data; results held after leaving out the 1,588 people affected",
+        "The olive oil group changed its whole diet (a Mediterranean diet with education sessions) and was compared with low-fat advice, so the effect of the oil alone can't be separated",
+        "One trial in one country; it was stopped early at a planned interim analysis, which can overstate an effect",
+        "Cohort studies in other countries point the same way (see below)"
+      ],
+      "summary": "In PREDIMED, 7,447 Spanish adults at high cardiovascular risk were assigned to a Mediterranean diet with extra virgin olive oil, one with mixed nuts, or a control diet with advice to reduce dietary fat. Over a median of 4.8 years, a heart attack, stroke or death from heart disease happened in 96 people in the olive oil group (3.8%), 83 in the nuts group (3.4%) and 109 in the control group (4.4%). Compared with the control diet, the hazard ratio was 0.69 (95% confidence interval 0.53 to 0.91) for the Mediterranean diet with extra virgin olive oil and 0.72 (0.54 to 0.95) for the one with nuts. The original 2013 report was withdrawn after problems with randomisation at some sites were found; the 2018 re-analysis gave similar results, also after leaving out the 1,588 people whose assignment departed from the protocol. Because the whole diet changed, the trial shows what a Mediterranean diet with extra virgin olive oil did, not what the oil alone does.",
+      "bottomLine": "In a large Spanish trial of older adults at high heart risk, a Mediterranean diet with extra virgin olive oil went with about 30% fewer heart attacks, strokes and heart deaths than low-fat advice. The diet changed as a whole, and the trial had randomisation problems at some sites.",
+      "studies": [
+        {
+          "pmid": "29897866",
+          "doi": "10.1056/nejmoa1800389",
+          "title": "Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 7447
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause, heart disease and cancer",
+      "population": "Adults in long-term cohort studies (meta-analyses of up to 2.7 million people), and US nurses and health professionals followed for 28 years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people chose how much olive oil they used, and people who use more may differ in other ways (diet, wealth, health habits)",
+        "Intake was self-reported in food questionnaires",
+        "In favour: consistent across many cohorts and countries, with a dose-response, and in line with the PREDIMED trial for heart disease",
+        "Results for cancer disagree between meta-analyses; in the US cohorts olive oil didn't differ clearly from other vegetable oils"
+      ],
+      "summary": "A 2022 meta-analysis of 24 cohort studies and 3 reports from one trial found that every extra 25 g of olive oil a day went with a lower risk of heart and blood vessel disease (relative risk 0.84, 95% confidence interval 0.76 to 0.94) and of death from any cause (0.89, 0.85 to 0.93), but not of cancer (0.94, 0.86 to 1.03). A 2024 dose-response meta-analysis of 30 articles (2,710,351 people) found the highest olive oil users had lower risk of heart and blood vessel disease (0.85, 0.77 to 0.93), death from it (0.77, 0.67 to 0.88) and death from any cause (0.85, 0.81 to 0.89), and no link with cancer; the relationship wasn't a straight line, with lower risk seen across intakes from 0 to 18 g a day for heart and blood vessel disease and 0 to 22 g a day for death from any cause. Another 2024 meta-analysis of seven studies did find fewer cancer deaths (hazard ratio 0.89, 0.86 to 0.93). In 92,383 US women and men followed for 28 years, those using more than 7 g a day had fewer deaths than those who never or rarely used it (0.81, 0.78 to 0.84); replacing margarine, butter, mayonnaise or dairy fat with olive oil went with lower risk, but olive oil did not differ significantly from other vegetable oils combined.",
+      "bottomLine": "Across many cohort studies, people who used more olive oil died less often, especially of heart disease, with lower risk seen up to about 20 g a day. These are links, not proof, and results for cancer disagree.",
+      "studies": [
+        {
+          "pmid": "36343558",
+          "doi": "10.1016/j.clnu.2022.10.001",
+          "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "38568797",
+          "doi": "10.1039/d3fo05246j",
+          "title": "Olive oil intake and cardiovascular disease, cancer, and all-cause mortality: a systematic review and dose-response meta-analysis of prospective cohort studies.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 2710351
+        },
+        {
+          "pmid": "39523824",
+          "doi": "10.1039/d4fo04161e",
+          "title": "Association between olive oil consumption and all-cause, cardiovascular and cancer mortality in adult subjects: a systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35027106",
+          "doi": "10.1016/j.jacc.2021.10.041",
+          "title": "Consumption of Olive Oil and Risk of Total and Cause-Specific Mortality Among U.S. Adults.",
+          "year": 2022,
+          "studyType": "observational",
+          "n": 92383
+        }
+      ]
+    },
+    {
+      "outcome": "Type 2 diabetes: getting it, and blood sugar in people who have it",
+      "population": "Adults in cohort studies (risk of diabetes), and people with type 2 diabetes in trials (HbA1c and fasting glucose)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Risk of diabetes comes from a few cohort studies (observational); the authors rated this evidence low (NutriGrade)",
+        "Blood sugar in people with diabetes comes from trials, rated moderate by the authors; the effect is modest",
+        "In many of those trials olive oil was the comparison oil for fish oil, so 'control' often meant fish oil or a low-fat diet, not no olive oil"
+      ],
+      "summary": "A 2017 meta-analysis pooled 4 cohort studies (15,784 cases of diabetes) and 29 trials. People with the highest olive oil intake had a 16% lower risk of type 2 diabetes than those with the lowest (relative risk 0.84, 95% confidence interval 0.77 to 0.92), and each extra 10 g a day went with 9% lower risk (0.91, 0.87 to 0.95); the authors rated this evidence low. In people with type 2 diabetes, olive oil lowered HbA1c by 0.27 percentage points (−0.37 to −0.17) and fasting glucose by 0.44 mmol/L (−0.66 to −0.22) more than the comparison groups, rated moderate; 13 of the 22 HbA1c comparisons were against fish oil. A 2022 meta-analysis found 22% lower risk of type 2 diabetes per extra 25 g of olive oil a day (0.78, 0.69 to 0.87), consistent across studies. The authors note this concerns olive oil as a food, and may not hold for its single components.",
+      "bottomLine": "People who used more olive oil were less likely to develop type 2 diabetes in cohort studies (low-certainty evidence). In trials in people with diabetes, olive oil lowered HbA1c a little, by about 0.3 percentage points, compared with other diets or oils.",
+      "studies": [
+        {
+          "pmid": "28394365",
+          "doi": "10.1038/nutd.2017.12",
+          "title": "Olive oil in the prevention and management of type 2 diabetes mellitus: a systematic review and meta-analysis of cohort studies and intervention trials.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "36343558",
+          "doi": "10.1016/j.clnu.2022.10.001",
+          "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood fats: LDL and HDL cholesterol, total cholesterol and triglycerides",
+      "population": "Adults in randomised trials",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The authors rated the evidence for olive oil on its own as low to very low certainty (GRADE)",
+        "What the oil replaces matters: compared with butter, olive and other plant oils lowered LDL; compared with other plant oils, olive oil wasn't better",
+        "Trials were small (34 trials with 1,730 people in all) and compared olive oil with different diets and fats"
+      ],
+      "summary": "A 2023 dose-response meta-analysis of 34 randomised trials (1,730 people) found that each extra 10 g of olive oil a day had trivial effects on total cholesterol, LDL, HDL and triglycerides (certainty low to very low). A 2018 network meta-analysis of 54 trials found that olive oil and other plant oils lowered LDL cholesterol by 0.23 to 0.42 mmol/L (the range across oils) compared with butter, and supported replacing foods high in saturated fat with unsaturated oils; safflower and rapeseed oil ranked highest for lowering LDL. Between grades of olive oil, a 2019 network meta-analysis of 13 trials (611 people) found high-polyphenol (extra) virgin olive oil lowered LDL slightly compared with low-polyphenol virgin oil (−0.14 mmol/L, −0.28 to −0.01) and found no differences in total cholesterol, HDL or triglycerides. In EUROLIVE, HDL rose a little more the more polyphenols the oil had (0.025, 0.032 and 0.045 mmol/L).",
+      "bottomLine": "Adding olive oil barely changes cholesterol in trials. Using it instead of butter lowers LDL, as other plant oils do, and high-polyphenol extra virgin oil lowered LDL very slightly more than low-polyphenol oil. Certainty is low.",
+      "studies": [
+        {
+          "pmid": "36408701",
+          "doi": "10.1017/s0007114522003683",
+          "title": "The effects of olive oil consumption on blood lipids: a systematic review and dose-response meta-analysis of randomised controlled trials.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 1730
+        },
+        {
+          "pmid": "30006369",
+          "doi": "10.1194/jlr.p085522",
+          "title": "Effects of oils and solid fats on blood lipids: a systematic review and network meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31378629",
+          "doi": "10.1016/j.numecd.2019.07.001",
+          "title": "Impact of different types of olive oil on cardiovascular risk factors: A systematic review and network meta-analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 611
+        },
+        {
+          "pmid": "16954359",
+          "doi": "10.7326/0003-4819-145-5-200609050-00006",
+          "title": "The effect of polyphenols in olive oil on heart disease risk factors: a randomized trial.",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 200
+        }
+      ]
+    },
+    {
+      "outcome": "Oxidised LDL and how well HDL works: high- vs low-polyphenol olive oil",
+      "population": "Mostly healthy adults in randomised trials comparing olive oils that differed in polyphenols",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised trials in which the oils were alike except for their polyphenols, so the comparison isolates the oil's polyphenol-rich part, not the diet",
+        "Consistent across trials and meta-analyses, with more polyphenols giving larger changes; EFSA accepted it as the basis of the EU health claim",
+        "Lowered one grade: these are lab measures in short trials (weeks), not heart attacks or strokes, mostly in healthy adults (in the two key trials, European men)"
+      ],
+      "summary": "In the EUROLIVE trial, 200 healthy men used 25 mL a day of three olive oils for 3 weeks each. Oxidised LDL changed by +1.21 U/L (95% confidence interval −0.8 to 3.6) with the low-polyphenol oil, −1.48 (−3.6 to 0.6) with the medium one and −3.21 (−5.1 to −0.8) with the high one; other oxidative stress markers also fell as polyphenols rose. In 47 of these men, HDL's ability to take up cholesterol from cells (cholesterol efflux) rose by 3.05% after the polyphenol-rich oil and fell by 2.34% after the polyphenol-poor oil, and olive polyphenol metabolites were found in HDL particles. A 2019 network meta-analysis found high-polyphenol (extra) virgin olive oil may lower oxidised LDL compared with refined olive oil, with low or moderate certainty overall. A 2026 meta-analysis of 23 trials (1,138 people) found extra virgin olive oil lowered oxidised LDL by 7.73 U/L (−14.63 to −0.82) compared with low-polyphenol olive oil.",
+      "bottomLine": "In randomised trials, olive oil rich in polyphenols lowered oxidised LDL and helped HDL take up cholesterol, compared with oils that were otherwise alike but low in polyphenols. These are blood measures over a few weeks, not heart attacks.",
+      "studies": [
+        {
+          "pmid": "16954359",
+          "doi": "10.7326/0003-4819-145-5-200609050-00006",
+          "title": "The effect of polyphenols in olive oil on heart disease risk factors: a randomized trial.",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 200
+        },
+        {
+          "pmid": "25060792",
+          "doi": "10.1161/atvbaha.114.303374",
+          "title": "Olive oil polyphenols enhance high-density lipoprotein function in humans: a randomized controlled trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 47
+        },
+        {
+          "pmid": "31378629",
+          "doi": "10.1016/j.numecd.2019.07.001",
+          "title": "Impact of different types of olive oil on cardiovascular risk factors: A systematic review and network meta-analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 611
+        },
+        {
+          "pmid": "40749711",
+          "doi": "10.1080/10408398.2025.2525446",
+          "title": "Effects of daily extra virgin olive oil consumption on biomarkers of inflammation and oxidative stress: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 1138
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Older Spanish adults at high heart risk (PREDIMED), and mostly healthy adults in trials comparing olive oil grades",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small differences of 1.5 to 3 mmHg",
+        "In PREDIMED only the bottom number (diastolic) differed, the whole diet changed, and this analysis was published before the trial's randomisation problems were found",
+        "The comparison of olive oil grades rests on 13 small trials, with low or moderate certainty according to the authors"
+      ],
+      "summary": "In PREDIMED (7,447 adults), blood pressure was measured every year for 4 years. Diastolic blood pressure (the bottom number) was 1.53 mmHg lower (95% confidence interval 2.01 to 1.04 lower) in the Mediterranean diet with extra virgin olive oil group than in the low-fat control group; systolic pressure (the top number) didn't differ between groups. In a 2019 network meta-analysis of 13 trials (611 people), both high- and low-polyphenol (extra) virgin olive oil lowered systolic pressure by about 2.9 to 3.0 mmHg compared with refined olive oil, with more polyphenols going with lower systolic pressure; diastolic pressure didn't differ between oil types.",
+      "bottomLine": "Studies found small differences in blood pressure: about 1.5 mmHg lower diastolic pressure with a Mediterranean diet with extra virgin olive oil than with low-fat advice, and about 3 mmHg lower systolic pressure with virgin than with refined olive oil.",
+      "studies": [
+        {
+          "pmid": "24050803",
+          "doi": "10.1186/1741-7015-11-207",
+          "title": "Effect of the Mediterranean diet on blood pressure in the PREDIMED trial: results from a randomized controlled trial.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 7447
+        },
+        {
+          "pmid": "31378629",
+          "doi": "10.1016/j.numecd.2019.07.001",
+          "title": "Impact of different types of olive oil on cardiovascular risk factors: A systematic review and network meta-analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 611
+        }
+      ]
+    },
+    {
+      "outcome": "Inflammation markers (CRP) and blood vessel function",
+      "population": "Adults in randomised trials, healthy or at higher heart risk",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Trials differ a lot: olive oil given on its own or as part of a Mediterranean diet, against very different comparison diets; the authors call for a conservative reading",
+        "Results vary considerably between trials (high heterogeneity)",
+        "The 2026 review rated certainty moderate to very low depending on the marker",
+        "Some trials were substudies of PREDIMED"
+      ],
+      "summary": "A 2015 meta-analysis of 30 trials (3,106 people) found that olive oil lowered CRP by 0.64 mg/L (95% confidence interval −0.96 to −0.31; 15 trials) and interleukin-6 more than comparison diets, and improved how well the artery widens with blood flow (flow-mediated dilatation, +0.76 percentage points, 0.27 to 1.24). The authors said a conservative reading is needed because the trials were so different. A 2026 meta-analysis of 23 trials (1,138 people) found extra virgin olive oil lowered CRP by 0.99 mg/L (−1.66 to −0.31) compared with low-polyphenol olive oil, with considerable heterogeneity.",
+      "bottomLine": "In trials, olive oil, and extra virgin oil compared with low-polyphenol oil, lowered the inflammation marker CRP by about 0.6 to 1 mg/L and improved blood vessel widening a little. The trials were very different from each other, so certainty is low.",
+      "studies": [
+        {
+          "pmid": "26378571",
+          "doi": "10.3390/nu7095356",
+          "title": "Effects of Olive Oil on Markers of Inflammation and Endothelial Function-A Systematic Review and Meta-Analysis.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 3106
+        },
+        {
+          "pmid": "40749711",
+          "doi": "10.1080/10408398.2025.2525446",
+          "title": "Effects of daily extra virgin olive oil consumption on biomarkers of inflammation and oxidative stress: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 1138
+        }
+      ]
+    },
+    {
+      "outcome": "Memory and thinking, and death with dementia",
+      "population": "Older adults with mild cognitive impairment or dementia (trials), and US women and men followed for 28 years (cohort)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only 5 trials; the authors rated certainty low (GRADE) and said whether the small score changes matter in daily life isn't established",
+        "The cohort result is observational and counts dementia on death records",
+        "In favour: the cohort link held after adjusting for diet quality and the APOE ε4 gene"
+      ],
+      "summary": "A 2026 meta-analysis of 5 randomised trials (747 older adults with mild cognitive impairment or dementia) found that extra virgin olive oil improved global thinking scores a little, for example 0.42 points on the Mini-Mental State Examination (95% confidence interval 0.15 to 0.68); certainty was low and clinical significance not established. In 92,383 US women and men followed for 28 years (4,751 dementia-related deaths), using at least 7 g of olive oil a day went with a 28% lower risk of dying with dementia than never or rarely using it (hazard ratio 0.72, 0.64 to 0.81), regardless of overall diet quality and after adjusting for APOE ε4.",
+      "bottomLine": "A few small trials in older adults with memory problems found slightly better thinking scores with extra virgin olive oil, and a large US cohort linked olive oil with fewer dementia deaths. The evidence is low certainty and the score changes were small.",
+      "studies": [
+        {
+          "pmid": "41740793",
+          "doi": "10.1016/j.clnesp.2026.102977",
+          "title": "Effect of extra virgin olive oil on mild cognitive impairment and dementia in older adults: a systematic review and meta-analysis of clinical trials.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 747
+        },
+        {
+          "pmid": "38709531",
+          "doi": "10.1001/jamanetworkopen.2024.10021",
+          "title": "Consumption of Olive Oil and Diet Quality and Risk of Dementia-Related Death.",
+          "year": 2024,
+          "studyType": "observational",
+          "n": 92383
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "PREDIMED: heart attacks, strokes and heart deaths",
+      "caption": "Hazard ratios with 95% confidence intervals from the 2018 re-analysis of the PREDIMED trial in Spain, compared with the low-fat advice group, over a median of 4.8 years. Below 1 means fewer events. Both groups ate a whole Mediterranean diet, so the bars show what the diet with olive oil or nuts did, not the oil or nuts alone.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "Advice to eat less fat (comparison group)" },
+      "items": [
+        { "label": "Mediterranean diet with extra virgin olive oil", "value": 0.69, "low": 0.53, "high": 0.91, "note": "96 events in this group (3.8%), 109 in the comparison group (4.4%)" },
+        { "label": "Mediterranean diet with mixed nuts", "value": 0.72, "low": 0.54, "high": 0.95, "note": "83 events (3.4%)" }
+      ],
+      "sources": [
+        {
+          "pmid": "29897866",
+          "doi": "10.1056/nejmoa1800389",
+          "title": "Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 7447
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Cohort studies: risk per extra 25 g of olive oil a day",
+      "caption": "Relative risks with 95% confidence intervals from a 2022 meta-analysis of 24 cohort studies and 3 reports from one trial, for every extra 25 g of olive oil a day. Below 1 means lower risk; the cancer interval crosses 1, so no clear link. These are mostly links from observational studies: people who use more olive oil may differ in other ways.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "No difference" },
+      "items": [
+        { "label": "Heart and blood vessel disease", "value": 0.84, "low": 0.76, "high": 0.94 },
+        { "label": "Type 2 diabetes", "value": 0.78, "low": 0.69, "high": 0.87, "note": "The only result consistent across studies" },
+        { "label": "Death from any cause", "value": 0.89, "low": 0.85, "high": 0.93 },
+        { "label": "Cancer", "value": 0.94, "low": 0.86, "high": 1.03 }
+      ],
+      "sources": [
+        {
+          "pmid": "36343558",
+          "doi": "10.1016/j.clnu.2022.10.001",
+          "title": "Effect of olive oil consumption on cardiovascular disease, cancer, type 2 diabetes, and all-cause mortality: A systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "How it's thought to work",
+      "caption": "Steps measured in short randomised trials, mostly in healthy men, and in a meta-analysis of trials. They show changes in blood measures, not that these changes explain the fewer heart attacks seen in PREDIMED.",
+      "steps": [
+        { "label": "Pressing keeps the polyphenols", "text": "Virgin olive oils are richer in phenolic compounds than refined olive oil. The EUROLIVE trial's oils were alike except for these: 2.7, 164 and 366 mg per kg." },
+        { "label": "They reach the blood's cholesterol carriers", "text": "After 3 weeks of 25 mL a day of polyphenol-rich oil, more olive polyphenol metabolites were found in HDL particles than after polyphenol-poor oil (47 men)." },
+        { "label": "Less oxidised LDL", "text": "Oxidised LDL fell by 3.21 U/L with the high-polyphenol oil and didn't fall with the low one (+1.21 U/L) in 200 men." },
+        { "label": "HDL takes up more cholesterol", "text": "HDL's cholesterol efflux rose by 3.05% after the polyphenol-rich oil and fell by 2.34% after the polyphenol-poor oil." },
+        { "label": "The fat replaces other fats", "text": "Compared with butter, olive oil and other plant oils lowered LDL cholesterol by 0.23 to 0.42 mmol/L across 54 trials." }
+      ],
+      "sources": [
+        {
+          "pmid": "16954359",
+          "doi": "10.7326/0003-4819-145-5-200609050-00006",
+          "title": "The effect of polyphenols in olive oil on heart disease risk factors: a randomized trial.",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 200
+        },
+        {
+          "pmid": "25060792",
+          "doi": "10.1161/atvbaha.114.303374",
+          "title": "Olive oil polyphenols enhance high-density lipoprotein function in humans: a randomized controlled trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 47
+        },
+        {
+          "pmid": "30006369",
+          "doi": "10.1194/jlr.p085522",
+          "title": "Effects of oils and solid fats on blood lipids: a systematic review and network meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [],
+  "cautions": [
+    "'Extra virgin' on a label says nothing about how much polyphenol an oil has. Only oils carrying the EU health claim must have at least 5 mg of hydroxytyrosol and its derivatives per 20 g.",
+    "In the US cohorts, olive oil went with lower risk when it replaced margarine, butter, mayonnaise or dairy fat, but it didn't differ significantly from other vegetable oils combined. Much of the benefit may depend on what it replaces.",
+    "Repeated deep-frying breaks down most of the oil's hydroxytyrosol, and storage for a year lowers polyphenols too.",
+    "Olive polyphenol capsules and extracts are not the same as the oil, and the findings on this page don't apply to them."
+  ],
+  "unknowns": [
+    "How much of PREDIMED's result came from the olive oil itself, and how much from the rest of the Mediterranean diet and the education sessions: the trial changed them together.",
+    "Whether the changes in oxidised LDL, HDL function and CRP seen in short trials are what lowers heart risk: this hasn't been shown.",
+    "Whether extra virgin olive oil does better than other unsaturated plant oils, such as rapeseed oil, for heart attacks and deaths: the US cohorts found no clear difference from other vegetable oils, and PREDIMED compared a whole diet with low-fat advice, not oils with each other.",
+    "How much polyphenol the oils in the cohort studies had: questionnaires asked about olive oil, mostly without the grade, and the food table doesn't measure polyphenols.",
+    "What ordinary cooking does to the oil's benefits: laboratory studies of cooking are contradictory, and the trials on this page used raw oil or didn't separate raw from cooked.",
+    "Which of the oil's thousands of compounds matter: only a few (fats, vitamin E, some polyphenols) are measured; the rest is nutritional dark matter, captured in studies of people eating the oil but not named.",
+    "Whether the results apply outside Southern Europe and the US, and to younger people: most trials were in Spain or Europe, often in older adults or healthy men."
+  ],
+  "sources": [
+    {
+      "pmid": "29897866",
+      "doi": "10.1056/nejmoa1800389",
+      "title": "Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts.",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 7447
+    },
+    {
+      "pmid": "24050803",
+      "doi": "10.1186/1741-7015-11-207",
+      "title": "Effect of the Mediterranean diet on blood pressure in the PREDIMED trial: results from a randomized controlled trial.",
+      "year": 2013,
+      "studyType": "rct",
+      "n": 7447
+    },
+    {
+      "pmid": "16954359",
+      "doi": "10.7326/0003-4819-145-5-200609050-00006",
+      "title": "The effect of polyphenols in olive oil on heart disease risk factors: a randomized trial.",
+      "year": 2006,
+      "studyType": "rct",
+      "n": 200
+    },
+    {
+      "pmid": "25060792",
+      "doi": "10.1161/atvbaha.114.303374",
+      "title": "Olive oil polyphenols enhance high-density lipoprotein function in humans: a randomized controlled trial.",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 47
+    },
+    {
+      "pmid": "40749711",
+      "doi": "10.1080/10408398.2025.2525446",
+      "title": "Effects of daily extra virgin olive oil consumption on biomarkers of inflammation and oxidative stress: a systematic review and meta-analysis.",
+      "year": 2026,
+      "studyType": "meta-analysis",
+      "n": 1138
+    },
+    {
+      "pmid": "35027106",
+      "doi": "10.1016/j.jacc.2021.10.041",
+      "title": "Consumption of Olive Oil and Risk of Total and Cause-Specific Mortality Among U.S. Adults.",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 92383
+    },
+    {
+      "pmid": "32768900",
+      "doi": "10.1016/j.foodchem.2020.127730",
+      "title": "The decrease in the health benefits of extra virgin olive oil during storage is conditioned by the initial phenolic profile.",
+      "year": 2021,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "12537439",
+      "doi": "10.1021/jf025932w",
+      "title": "Changes in phenolic composition and antioxidant activity of virgin olive oil during frying.",
+      "year": 2003,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "35163926",
+      "doi": "10.3390/molecules27030661",
+      "title": "A Review of the Effects of Olive Oil-Cooking on Phenolic Compounds.",
+      "year": 2022,
+      "studyType": "review"
+    },
+    {
+      "doi": "10.2903/j.efsa.2011.2033",
+      "title": "Scientific Opinion on the substantiation of health claims related to polyphenols in olive and protection of LDL particles from oxidative damage (ID 1333, 1638, 1639, 1696, 2865), maintenance of normal blood HDL cholesterol concentrations (ID 1639), maintenance of normal blood pressure (ID 3781), “anti-inflammatory properties” (ID 1882), “contributes to the upper respiratory tract health” (ID 3468), “can help to maintain a normal function of gastrointestinal tract” (3779), and “contributes to body defences against external agents” (ID 3467) pursuant to Article 13(1) of Regulation (EC) No 1924/2006",
+      "year": 2011,
+      "studyType": "guideline"
+    }
+  ]
+}

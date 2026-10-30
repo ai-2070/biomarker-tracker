@@ -30,6 +30,8 @@ export type Route =
   | { name: "habits"; add?: string; marker?: string; meal?: string; type?: "supplement" | "diet" | "medication" | "lifestyle" }
   | { name: "lifestyle" }
   | { name: "lifestyle-item"; id: string }
+  | { name: "wholefoods" }
+  | { name: "wholefood"; id: string }
   | { name: "experiment"; id: string }
   | { name: "supplements"; kind?: "vitamin" | "mineral" | "supplement" }
   | { name: "nutrient"; id: string }
@@ -91,6 +93,8 @@ export function parseHash(hash: string): Route {
     return { name: "habits", add: params.get("change") ?? "", ...(marker ? { marker } : {}) };
   }
   if (parts[0] === "experiment" && parts[1] && parts.length === 2) return { name: "experiment", id: parts[1] };
+  if (parts[0] === "foods" && parts.length === 1) return { name: "wholefoods" };
+  if (parts[0] === "foods" && parts[1] && parts.length === 2) return { name: "wholefood", id: parts[1] };
   if (parts[0] === "lifestyle" && parts.length === 1) return { name: "lifestyle" };
   if (parts[0] === "lifestyle" && parts[1] && parts.length === 2) return { name: "lifestyle-item", id: parts[1] };
   if (parts[0] === "supplements" && parts.length === 1) {
@@ -155,6 +159,10 @@ export function href(route: Route): string {
       return route.kind ? `#/supplements?kind=${route.kind}` : "#/supplements";
     case "nutrient":
       return `#/supplements/${encodeURIComponent(route.id)}`;
+    case "wholefoods":
+      return "#/foods";
+    case "wholefood":
+      return `#/foods/${encodeURIComponent(route.id)}`;
     case "lifestyle":
       return "#/lifestyle";
     case "lifestyle-item":

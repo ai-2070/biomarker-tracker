@@ -7,6 +7,7 @@ import type { BiomarkerCategory, BiomarkerDef, EvidenceClaim, FoodTable } from "
 import foodTable from "../../knowledge/foods/cofid-foods.json";
 import { lowerFirst } from "./format";
 import { validateLifestyleDef, type LifestyleDef } from "../core/lifestyle";
+import { validateWholeFoodDef, type WholeFoodDef } from "../core/wholeFoods";
 
 // Bundled at build time; nothing is fetched at runtime.
 const modules = import.meta.glob<unknown>("../../knowledge/biomarkers/*.json", { eager: true, import: "default" });
@@ -117,6 +118,18 @@ export const LIFESTYLE: readonly LifestyleDef[] = Object.entries(lifestyleModule
   .map(([, json]) => json as LifestyleDef)
   .sort((a, b) => a.name.localeCompare(b.name));
 export const LIFESTYLE_MAP: ReadonlyMap<string, LifestyleDef> = new Map(LIFESTYLE.map((l) => [l.id, l]));
+
+// Whole foods (olive oil, blueberries, ginger…): research on eating the food itself.
+const wholeFoodModules = import.meta.glob<unknown>("../../knowledge/wholefoods/*.json", { eager: true, import: "default" });
+export const WHOLE_FOODS: readonly WholeFoodDef[] = Object.entries(wholeFoodModules)
+  .filter(([path, json]) => {
+    const errors = validateWholeFoodDef(json);
+    if (errors.length > 0) console.error(`Invalid knowledge file ${path}:`, errors);
+    return errors.length === 0;
+  })
+  .map(([, json]) => json as WholeFoodDef)
+  .sort((a, b) => a.name.localeCompare(b.name));
+export const WHOLE_FOOD_MAP: ReadonlyMap<string, WholeFoodDef> = new Map(WHOLE_FOODS.map((f) => [f.id, f]));
 export const NUTRIENT_MAP: ReadonlyMap<string, NutrientDef> = new Map(NUTRIENTS.map((n) => [n.id, n]));
 
 // Fitness tests with norms for age and sex (Body page, Biological age page), one file per test.

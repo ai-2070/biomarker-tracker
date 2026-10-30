@@ -1,0 +1,2785 @@
+{
+ "topic": "wholefood-ginger",
+ "kind": "wholefood",
+ "wholeFoodId": "ginger",
+ "name": "ginger",
+ "builtAt": "2026-10-30",
+ "fetchedAt": "2026-10-30",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "pregnancy": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:pregnancy OR TITLE_ABS:pregnant OR TITLE_ABS:\"morning sickness\" OR TITLE_ABS:hyperemesis)) AND SRC:MED",
+  "surgery": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:postoperative OR TITLE_ABS:\"post-operative\" OR TITLE_ABS:surgery OR TITLE_ABS:anaesthesia OR TITLE_ABS:anesthesia)) AND SRC:MED",
+  "chemotherapy": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:chemotherapy OR TITLE_ABS:\"chemotherapy-induced\" OR TITLE_ABS:cancer)) AND SRC:MED",
+  "dysmenorrhoea": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:dysmenorrhea OR TITLE_ABS:dysmenorrhoea OR TITLE_ABS:\"menstrual pain\" OR TITLE_ABS:\"period pain\")) AND SRC:MED",
+  "osteoarthritis": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:osteoarthritis OR TITLE_ABS:\"knee pain\" OR TITLE_ABS:arthritis)) AND SRC:MED",
+  "diabetes": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:insulin OR TITLE_ABS:glucose OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic OR TITLE_ABS:HbA1c OR TITLE_ABS:\"insulin resistance\")) AND SRC:MED",
+  "lipids": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:cholesterol OR TITLE_ABS:\"lipid profile\" OR TITLE_ABS:lipids OR TITLE_ABS:triglycerides OR TITLE_ABS:LDL OR TITLE_ABS:HDL)) AND SRC:MED",
+  "blood-pressure": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:hypertension OR TITLE_ABS:hypertensive)) AND SRC:MED",
+  "inflammation": "((TITLE_ABS:ginger OR TITLE_ABS:\"Zingiber officinale\" OR TITLE_ABS:gingerol OR TITLE_ABS:gingerols) AND (TITLE_ABS:\"C-reactive protein\" OR TITLE_ABS:CRP OR TITLE_ABS:inflammation OR TITLE_ABS:inflammatory OR TITLE_ABS:interleukin OR TITLE_ABS:TNF)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating ginger comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 3103,
+  "retrieved": 347,
+  "animal": 8,
+  "retracted": 0,
+  "reviews": 173,
+  "trials": 166,
+  "guidelines": 0
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "pregnancy",
+   "label": "Nausea in pregnancy",
+   "finding": "Nausea and vomiting in early pregnancy",
+   "counts": {
+    "all": 216,
+    "reviews": 7,
+    "trialReviews": 7,
+    "trials": 13,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "31937153",
+     "doi": "10.1080/14767058.2020.1712714",
+     "title": "Effect of ginger in the treatment of nausea and vomiting compared with vitamin B6 and placebo during pregnancy: a meta-analysis",
+     "year": 2022,
+     "firstAuthor": "Hu Y",
+     "journal": "The journal of maternal-fetal & neonatal medicine : the official journal of the European Association of Perinatal Medicine, the Federation of Asia and Oceania Perinatal Societies, the International Society of Perinatal Obstetricians",
+     "citedBy": 19,
+     "n": 1174,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "24642205",
+     "doi": "10.1186/1475-2891-13-20",
+     "title": "A systematic review and meta-analysis of the effect and safety of ginger in the treatment of pregnancy-associated nausea and vomiting",
+     "year": 2014,
+     "firstAuthor": "Viljoen E",
+     "journal": "Nutrition journal",
+     "citedBy": 110,
+     "n": 1278,
+     "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+    },
+    {
+     "pmid": "24390893",
+     "doi": "10.3122/jabfm.2014.01.130167",
+     "title": "Effects of ginger for nausea and vomiting in early pregnancy: a meta-analysis",
+     "year": 2014,
+     "firstAuthor": "Thomson M",
+     "journal": "Journal of the American Board of Family Medicine : JABFM",
+     "citedBy": 45,
+     "n": 508,
+     "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+    },
+    {
+     "pmid": "15802416",
+     "doi": "10.1097/01.aog.0000154890.47642.23",
+     "title": "Effectiveness and safety of ginger in the treatment of pregnancy-induced nausea and vomiting",
+     "year": 2005,
+     "firstAuthor": "Borrelli F",
+     "journal": "Obstetrics and gynecology",
+     "citedBy": 76,
+     "n": 675,
+     "why": "The most comprehensive review on this finding (6 trials, 2005); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.325,
+    "trials": 20,
+    "inclusions": 33,
+    "reviews": [
+     {
+      "pmid": "31937153",
+      "trials": 8
+     },
+     {
+      "pmid": "24642205",
+      "trials": 11
+     },
+     {
+      "pmid": "15802416",
+      "trials": 14
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "24390893"
+    ],
+    "shared": [
+     {
+      "pmid": "15051552",
+      "title": "A randomized controlled trial of ginger to treat nausea and vomiting in pregnancy",
+      "year": 2004,
+      "n": 291,
+      "inReviews": [
+       "31937153",
+       "24642205",
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "11275030",
+      "title": "Ginger for nausea and vomiting in pregnancy: randomized, double-masked, placebo-controlled trial",
+      "year": 2001,
+      "n": 70,
+      "inReviews": [
+       "31937153",
+       "24642205",
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "12233808",
+      "title": "Ginger syrup as an antiemetic in early pregnancy",
+      "year": 2002,
+      "n": 26,
+      "inReviews": [
+       "31937153",
+       "24642205",
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "1988321",
+      "title": "Ginger treatment of hyperemesis gravidarum",
+      "year": 1991,
+      "n": 19,
+      "inReviews": [
+       "31937153",
+       "24642205",
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "14649969",
+      "title": "A randomized comparison of ginger and vitamin B6 in the treatment of nausea and vomiting of pregnancy",
+      "year": 2003,
+      "n": 138,
+      "inReviews": [
+       "24642205",
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "14712970",
+      "title": "Effect of a ginger extract on pregnancy-induced nausea: a randomised controlled trial",
+      "year": 2003,
+      "n": 120,
+      "inReviews": [
+       "24642205",
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "18272271",
+      "title": "Comparing ginger and vitamin B6 for the treatment of nausea and vomiting in pregnancy: a randomised controlled trial",
+      "year": 2009,
+      "n": 70,
+      "inReviews": [
+       "31937153",
+       "24642205"
+      ]
+     },
+     {
+      "pmid": "19250006",
+      "title": "Effects of ginger capsules on pregnancy, nausea, and vomiting",
+      "year": 2009,
+      "n": 67,
+      "inReviews": [
+       "31937153",
+       "24642205"
+      ]
+     },
+     {
+      "pmid": "22545357",
+      "title": "Comparing the effects of ginger and metoclopramide on the treatment of pregnancy nausea",
+      "year": 2011,
+      "inReviews": [
+       "31937153",
+       "24642205"
+      ]
+     },
+     {
+      "pmid": "11710709",
+      "title": "Effects of a ginger extract on knee pain in patients with osteoarthritis",
+      "year": 2001,
+      "n": 247,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "12651648",
+      "title": "Ginger does not prevent postoperative nausea and vomiting after laparoscopic surgery",
+      "year": 2003,
+      "n": 180,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "17957907",
+      "title": "A randomized comparison of ginger and dimenhydrinate in the treatment of nausea and vomiting in pregnancy",
+      "year": 2007,
+      "n": 170,
+      "inReviews": [
+       "24642205"
+      ]
+     },
+     {
+      "pmid": "9659029",
+      "title": "The efficacy of ginger root in the prevention of postoperative nausea and vomiting after outpatient gynaecological laparoscopy",
+      "year": 1998,
+      "n": 120,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "8214465",
+      "title": "Zingiber officinale (ginger)--an antiemetic for day case surgery",
+      "year": 1993,
+      "n": 120,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "12757064",
+      "title": "The efficacy of ginger in prevention of post-operative nausea and vomiting after outpatient gynecological laparoscopy",
+      "year": 2003,
+      "n": 80,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "2205121",
+      "title": "Ginger root--a new antiemetic. The effect of ginger root on postoperative nausea and vomiting after major gynaecological surgery",
+      "year": 1990,
+      "n": 60,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "28629250",
+      "title": "A comparison between the effects of ginger, pyridoxine (vitamin B6) and placebo for the treatment of the first trimester nausea and vomiting of pregnancy (NVP)",
+      "year": 2018,
+      "inReviews": [
+       "31937153"
+      ]
+     },
+     {
+      "pmid": "17621727",
+      "title": "Comparison of the effectiveness of ginger and vitamin B6 for treatment of nausea and vomiting in early pregnancy: a randomized double-blind controlled trial",
+      "year": 2007,
+      "inReviews": [
+       "24642205"
+      ]
+     },
+     {
+      "pmid": "7485935",
+      "title": "A double-blind randomized controlled trial of ginger for the prevention of postoperative nausea and vomiting",
+      "year": 1995,
+      "inReviews": [
+       "15802416"
+      ]
+     },
+     {
+      "pmid": "10607493",
+      "title": "A randomized, placebo-controlled, cross-over study of ginger extracts and ibuprofen in osteoarthritis",
+      "year": 2000,
+      "inReviews": [
+       "15802416"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1991,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "24642205",
+     "31937153"
+    ],
+    "citedNotChosen": [
+     "26348534",
+     "22706624"
+    ],
+    "citedNotEligible": [
+     "26348534",
+     "22706624"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "24390893",
+      "doi": "10.3122/jabfm.2014.01.130167",
+      "title": "Effects of ginger for nausea and vomiting in early pregnancy: a meta-analysis",
+      "year": 2014,
+      "firstAuthor": "Thomson M",
+      "journal": "Journal of the American Board of Family Medicine : JABFM",
+      "citedBy": 45,
+      "n": 508,
+      "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+     },
+     {
+      "pmid": "15802416",
+      "doi": "10.1097/01.aog.0000154890.47642.23",
+      "title": "Effectiveness and safety of ginger in the treatment of pregnancy-induced nausea and vomiting",
+      "year": 2005,
+      "firstAuthor": "Borrelli F",
+      "journal": "Obstetrics and gynecology",
+      "citedBy": 76,
+      "n": 675,
+      "why": "The most comprehensive review on this finding (6 trials, 2005); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Pregnant women with nausea and vomiting",
+     "intervention": "Ginger: fresh, dried, ground in capsules, or tea",
+     "comparison": "Placebo, vitamin B6, or no treatment",
+     "outcome": "Nausea, vomiting, or safety in pregnancy"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 6,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40226035",
+      "title": "Effectiveness of ginger supplementation in alleviating hyperemesis gravidarum: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Ginger capsules, powder or biscuits versus placebo or B6, but the population is narrowed to women with hyperemesis gravidarum, not nausea and vomiting of pregnancy in general."
+     }
+    ]
+   }
+  },
+  {
+   "id": "surgery",
+   "label": "Nausea after surgery",
+   "finding": "Nausea and vomiting after surgery",
+   "counts": {
+    "all": 163,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 18,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37379959",
+     "doi": "10.1016/j.jep.2023.116791",
+     "title": "Ginger (Zingiber officinale Roscoe) preparations for prophylaxis of postoperative nausea and vomiting: A Bayesian network meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Zhao C",
+     "journal": "Journal of ethnopharmacology",
+     "citedBy": 6,
+     "n": 2199,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "34700257",
+     "doi": "10.1016/j.ijnurstu.2021.104094",
+     "title": "The preventive and relieving effects of ginger on postoperative nausea and vomiting: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Lu C",
+     "journal": "International journal of nursing studies",
+     "citedBy": 21,
+     "n": 1506,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "34312974",
+     "doi": "10.1111/jnu.12691",
+     "title": "Efficacy of Ginger in Preventing Postoperative Nausea and Vomiting: A Systematic Review and Meta-Analysis",
+     "year": 2021,
+     "firstAuthor": "Zhu W",
+     "journal": "Journal of nursing scholarship : an official publication of Sigma Theta Tau International Honor Society of Nursing",
+     "citedBy": 17,
+     "n": 1417,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "15772458",
+     "doi": "10.1159/000082536",
+     "title": "[Is ginger a clinically relevant antiemetic? A systematic review of randomized controlled trials]",
+     "year": 2005,
+     "firstAuthor": "Betz O",
+     "journal": "Forschende Komplementarmedizin und klassische Naturheilkunde = Research in complementary and natural classical medicine",
+     "citedBy": 20,
+     "n": 1073,
+     "why": "The most comprehensive review on this finding (24 trials, 2005); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.17647058823529413,
+    "trials": 17,
+    "inclusions": 26,
+    "reviews": [
+     {
+      "pmid": "37379959",
+      "trials": 4
+     },
+     {
+      "pmid": "34700257",
+      "trials": 7
+     },
+     {
+      "pmid": "34312974",
+      "trials": 2
+     },
+     {
+      "pmid": "15772458",
+      "trials": 13
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "12651648",
+      "title": "Ginger does not prevent postoperative nausea and vomiting after laparoscopic surgery",
+      "year": 2003,
+      "n": 180,
+      "inReviews": [
+       "37379959",
+       "34700257",
+       "34312974",
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "2205121",
+      "title": "Ginger root--a new antiemetic. The effect of ginger root on postoperative nausea and vomiting after major gynaecological surgery",
+      "year": 1990,
+      "n": 60,
+      "inReviews": [
+       "37379959",
+       "34700257",
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "7485935",
+      "title": "A double-blind randomized controlled trial of ginger for the prevention of postoperative nausea and vomiting",
+      "year": 1995,
+      "inReviews": [
+       "34700257",
+       "34312974",
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "15156419",
+      "title": "[Is ginger a relevant antiemetic for postoperative nausea and vomiting?]",
+      "year": 2004,
+      "n": 538,
+      "inReviews": [
+       "34700257",
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "26645524",
+      "title": "Investigating the effects of inhaling ginger essence on post-nephrectomy nausea and vomiting",
+      "year": 2015,
+      "n": 120,
+      "inReviews": [
+       "37379959",
+       "34700257"
+      ]
+     },
+     {
+      "pmid": "11710709",
+      "title": "Effects of a ginger extract on knee pain in patients with osteoarthritis",
+      "year": 2001,
+      "n": 247,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "23510951",
+      "title": "Efficacy of ginger on intraoperative and postoperative nausea and vomiting in elective cesarean section patients",
+      "year": 2013,
+      "n": 239,
+      "inReviews": [
+       "34700257"
+      ]
+     },
+     {
+      "pmid": "14649969",
+      "title": "A randomized comparison of ginger and vitamin B6 in the treatment of nausea and vomiting of pregnancy",
+      "year": 2003,
+      "n": 138,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "8214465",
+      "title": "Zingiber officinale (ginger)--an antiemetic for day case surgery",
+      "year": 1993,
+      "n": 120,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "9659029",
+      "title": "The efficacy of ginger root in the prevention of postoperative nausea and vomiting after outpatient gynaecological laparoscopy",
+      "year": 1998,
+      "n": 120,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "12757064",
+      "title": "The efficacy of ginger in prevention of post-operative nausea and vomiting after outpatient gynecological laparoscopy",
+      "year": 2003,
+      "n": 80,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "11275030",
+      "title": "Ginger for nausea and vomiting in pregnancy: randomized, double-masked, placebo-controlled trial",
+      "year": 2001,
+      "n": 70,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "17214049",
+      "title": "Effectiveness of ginger for prevention of nausea and vomiting after gynecological laparoscopy",
+      "year": 2006,
+      "n": 30,
+      "inReviews": [
+       "37379959"
+      ]
+     },
+     {
+      "pmid": "12233808",
+      "title": "Ginger syrup as an antiemetic in early pregnancy",
+      "year": 2002,
+      "n": 26,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "1988321",
+      "title": "Ginger treatment of hyperemesis gravidarum",
+      "year": 1991,
+      "n": 19,
+      "inReviews": [
+       "15772458"
+      ]
+     },
+     {
+      "pmid": "28629250",
+      "title": "A comparison between the effects of ginger, pyridoxine (vitamin B6) and placebo for the treatment of the first trimester nausea and vomiting of pregnancy (NVP)",
+      "year": 2018,
+      "inReviews": [
+       "34700257"
+      ]
+     },
+     {
+      "pmid": "10607493",
+      "title": "A randomized, placebo-controlled, cross-over study of ginger extracts and ibuprofen in osteoarthritis",
+      "year": 2000,
+      "inReviews": [
+       "15772458"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1990,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "34312974",
+     "34700257",
+     "37379959"
+    ],
+    "citedNotChosen": [
+     "16389016",
+     "30466995"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "15772458",
+      "doi": "10.1159/000082536",
+      "title": "[Is ginger a clinically relevant antiemetic? A systematic review of randomized controlled trials]",
+      "year": 2005,
+      "firstAuthor": "Betz O",
+      "journal": "Forschende Komplementarmedizin und klassische Naturheilkunde = Research in complementary and natural classical medicine",
+      "citedBy": 20,
+      "n": 1073,
+      "why": "The most comprehensive review on this finding (24 trials, 2005); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults having surgery",
+     "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+     "comparison": "Placebo or no ginger",
+     "outcome": "Nausea or vomiting after surgery"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 7,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42620607",
+      "title": "Ginger as a low-cost option for postoperative nausea and vomiting prevention after laparoscopic surgery in low- and middle-income countries: a systematic review and meta-analysis protocol",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Protocol only, with no results yet, and it is limited to adults having laparoscopic surgery in low- and middle-income countries."
+     },
+     {
+      "pmid": "35219104",
+      "title": "Comment on Lu et al (2022) \"The preventive and relieving effects of ginger on postoperative nausea and vomiting: A systematic review and meta-analysis of randomized controlled trials\"",
+      "year": 2022,
+      "fits": "no",
+      "reason": "A comment on another meta-analysis, not a systematic review."
+     }
+    ]
+   }
+  },
+  {
+   "id": "chemotherapy",
+   "label": "Nausea with chemotherapy",
+   "finding": "Nausea and vomiting during chemotherapy",
+   "counts": {
+    "all": 911,
+    "reviews": 12,
+    "trialReviews": 12,
+    "trials": 26,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "30299420",
+     "doi": "10.1097/ncc.0000000000000648",
+     "title": "Does the Oral Administration of Ginger Reduce Chemotherapy-Induced Nausea and Vomiting?: A Meta-analysis of 10 Randomized Controlled Trials",
+     "year": 2019,
+     "firstAuthor": "Chang WP",
+     "journal": "Cancer nursing",
+     "citedBy": 26,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    },
+    {
+     "pmid": "23448741",
+     "doi": "10.1188/13.onf.163-170",
+     "title": "Ginger as an antiemetic modality for chemotherapy-induced nausea and vomiting: a systematic review and meta-analysis",
+     "year": 2013,
+     "firstAuthor": "Lee J",
+     "journal": "Oncology nursing forum",
+     "citedBy": 39,
+     "n": 872,
+     "why": "One of the newest meta-analyses on this finding (2013); screened as answering the question"
+    },
+    {
+     "pmid": "23550785",
+     "doi": "10.1111/nure.12016",
+     "title": "Ginger (Zingiber officinale) and chemotherapy-induced nausea and vomiting: a systematic literature review",
+     "year": 2013,
+     "firstAuthor": "Marx WM",
+     "journal": "Nutrition reviews",
+     "citedBy": 72,
+     "why": "One of the newest systematic reviews on this finding (2013); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4,
+    "trials": 10,
+    "inclusions": 18,
+    "reviews": [
+     {
+      "pmid": "30299420",
+      "trials": 8
+     },
+     {
+      "pmid": "23448741",
+      "trials": 4
+     },
+     {
+      "pmid": "23550785",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "21818642",
+      "title": "Ginger (Zingiber officinale) reduces acute chemotherapy-induced nausea: a URCC CCOP study of 576 patients",
+      "year": 2012,
+      "n": 744,
+      "inReviews": [
+       "30299420",
+       "23448741",
+       "23550785"
+      ]
+     },
+     {
+      "pmid": "19005687",
+      "title": "Phase II trial of encapsulated ginger as a treatment for chemotherapy-induced nausea and vomiting",
+      "year": 2009,
+      "n": 162,
+      "inReviews": [
+       "30299420",
+       "23448741",
+       "23550785"
+      ]
+     },
+     {
+      "pmid": "15571611",
+      "title": "Antiemetic effect of ginger in gynecologic oncology patients receiving cisplatin",
+      "year": 2004,
+      "n": 48,
+      "inReviews": [
+       "30299420",
+       "23448741",
+       "23550785"
+      ]
+     },
+     {
+      "pmid": "22313739",
+      "title": "Effect of ginger on acute and delayed chemotherapy-induced nausea and vomiting: a pilot, randomized, open-label clinical trial",
+      "year": 2012,
+      "n": 100,
+      "inReviews": [
+       "30299420",
+       "23550785"
+      ]
+     },
+     {
+      "pmid": "20842754",
+      "title": "Anti-emetic effect of ginger powder versus placebo as an add-on therapy in children and young adults receiving high emetogenic chemotherapy",
+      "year": 2011,
+      "inReviews": [
+       "23448741",
+       "23550785"
+      ]
+     },
+     {
+      "pmid": "28666335",
+      "title": "A randomized, double-blind, placebo-controlled, multicenter study of a ginger extract in the management of chemotherapy-induced nausea and vomiting (CINV) in patients receiving high-dose cisplatin",
+      "year": 2017,
+      "n": 121,
+      "inReviews": [
+       "30299420"
+      ]
+     },
+     {
+      "pmid": "26414587",
+      "title": "Oral intake of ginger for chemotherapy-induced nausea and vomiting among women with breast cancer",
+      "year": 2015,
+      "n": 60,
+      "inReviews": [
+       "30299420"
+      ]
+     },
+     {
+      "pmid": "28349496",
+      "title": "A phase II randomized double-blind placebo-controlled study of 6-gingerol as an anti-emetic in solid tumor patients receiving moderately to highly emetogenic chemotherapy",
+      "year": 2017,
+      "n": 46,
+      "inReviews": [
+       "30299420"
+      ]
+     },
+     {
+      "pmid": "27714530",
+      "title": "Efficacy of ginger for prophylaxis of chemotherapy-induced nausea and vomiting in breast cancer patients receiving adriamycin-cyclophosphamide regimen: a randomized, double-blind, placebo-controlled, crossover study",
+      "year": 2017,
+      "inReviews": [
+       "30299420"
+      ]
+     },
+     {
+      "pmid": "7485935",
+      "title": "A double-blind randomized controlled trial of ginger for the prevention of postoperative nausea and vomiting",
+      "year": 1995,
+      "inReviews": [
+       "23550785"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "31519467",
+     "36501010"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "30299420",
+      "doi": "10.1097/ncc.0000000000000648",
+      "title": "Does the Oral Administration of Ginger Reduce Chemotherapy-Induced Nausea and Vomiting?: A Meta-analysis of 10 Randomized Controlled Trials",
+      "year": 2019,
+      "firstAuthor": "Chang WP",
+      "journal": "Cancer nursing",
+      "citedBy": 26,
+      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     },
+     {
+      "pmid": "23448741",
+      "doi": "10.1188/13.onf.163-170",
+      "title": "Ginger as an antiemetic modality for chemotherapy-induced nausea and vomiting: a systematic review and meta-analysis",
+      "year": 2013,
+      "firstAuthor": "Lee J",
+      "journal": "Oncology nursing forum",
+      "citedBy": 39,
+      "n": 872,
+      "why": "One of the newest meta-analyses on this finding (2013); screened as answering the question"
+     },
+     {
+      "pmid": "23550785",
+      "doi": "10.1111/nure.12016",
+      "title": "Ginger (Zingiber officinale) and chemotherapy-induced nausea and vomiting: a systematic literature review",
+      "year": 2013,
+      "firstAuthor": "Marx WM",
+      "journal": "Nutrition reviews",
+      "citedBy": 72,
+      "why": "One of the newest systematic reviews on this finding (2013); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People having chemotherapy",
+     "intervention": "Ginger added to usual anti-sickness medicines",
+     "comparison": "Placebo or usual medicines alone",
+     "outcome": "Nausea or vomiting"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 3,
+     "partly": 7,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "38625733",
+      "title": "Efficacy and Safety of Ginger on Chemotherapy-Induced Nausea and Vomiting: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "This pools trials of ginger added to usual anti-sickness drugs in chemotherapy. But the ginger was given as capsules (a supplement), and some trials used ginger moxibustion."
+     },
+     {
+      "pmid": "39173346",
+      "title": "Effectivity of oral ginger supplementation for chemotherapy induced nausea and vomiting (CINV) in children: A systematic review of clinical trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Oral ginger for chemotherapy nausea and vomiting matches, but only children were included and ginger was given as a supplement."
+     },
+     {
+      "pmid": "36232567",
+      "title": "Efficacy and Safety of Ginger on the Side Effects of Chemotherapy in Breast Cancer Patients: Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "This pools trials of ginger for chemotherapy nausea and vomiting, but only in breast cancer patients, a narrower group than all people having chemotherapy."
+     },
+     {
+      "pmid": "36501010",
+      "title": "Effects of Ginger Intake on Chemotherapy-Induced Nausea and Vomiting: A Systematic Review of Randomized Clinical Trials",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "This pools trials of ginger supplements against placebo or anti-sickness drugs for chemotherapy nausea and vomiting, so it is a supplement rather than the food."
+     },
+     {
+      "pmid": "34700257",
+      "title": "The preventive and relieving effects of ginger on postoperative nausea and vomiting: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "fits": "no",
+      "reason": "This review is about people having surgery (nausea and vomiting after an operation), not people having chemotherapy."
+     },
+     {
+      "pmid": "31519467",
+      "title": "Efficacy of Ginger (Zingiber officinale) in Ameliorating Chemotherapy-Induced Nausea and Vomiting and Chemotherapy-Related Outcomes: A Systematic Review Update and Meta-Analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "This pools trials in adults having chemotherapy against placebo or standard anti-sickness drugs, but the ginger was given as a supplement rather than as the food."
+     },
+     {
+      "pmid": "31225678",
+      "title": "The effect of ginger (Zingiber officinale) on chemotherapy-induced nausea and vomiting in breast cancer patients: A systematic literature review of randomized controlled trials",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "This reviews trials of ginger for chemotherapy nausea and vomiting, but only in breast cancer patients, a narrower group."
+     },
+     {
+      "pmid": "25912592",
+      "title": "Can nausea and vomiting be treated with ginger extract?",
+      "year": 2015,
+      "fits": "no",
+      "reason": "This is a narrative review, not a systematic one. It covers ginger extract and treats it as an alternative to other anti-sickness drugs, not an addition to them."
+     },
+     {
+      "pmid": "10793599",
+      "title": "Efficacy of ginger for nausea and vomiting: a systematic review of randomized clinical trials",
+      "year": 2000,
+      "fits": "partly",
+      "reason": "Ginger is compared with placebo for nausea and vomiting from mixed causes. Only one study is in chemotherapy, and it is not analysed separately."
+     }
+    ]
+   }
+  },
+  {
+   "id": "dysmenorrhoea",
+   "label": "Period pain",
+   "finding": "Period pain (primary dysmenorrhoea)",
+   "counts": {
+    "all": 41,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 8,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "38770631",
+     "doi": "10.1089/jicm.2023.0799",
+     "title": "Ginger for Pain Management in Primary Dysmenorrhea: A Systematic Review and Meta-Analysis",
+     "year": 2024,
+     "firstAuthor": "Moshfeghinia R",
+     "journal": "Journal of integrative and complementary medicine",
+     "citedBy": 2,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "33842121",
+     "doi": "10.7759/cureus.13743",
+     "title": "Efficacy of Ginger in the Treatment of Primary Dysmenorrhea: A Systematic Review and Meta-analysis",
+     "year": 2021,
+     "firstAuthor": "Negi R",
+     "journal": "Cureus",
+     "citedBy": 7,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "32603204",
+     "doi": "10.1177/0300060520936179",
+     "title": "Efficacy of herbal medicine (cinnamon/fennel/ginger) for primary dysmenorrhea: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Xu Y",
+     "journal": "The Journal of international medical research",
+     "citedBy": 18,
+     "n": 647,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4444444444444444,
+    "trials": 9,
+    "inclusions": 17,
+    "reviews": [
+     {
+      "pmid": "38770631",
+      "trials": 9
+     },
+     {
+      "pmid": "33842121",
+      "trials": 4
+     },
+     {
+      "pmid": "32603204",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "24559600",
+      "title": "Comparison of the effect of ginger and zinc sulfate on primary dysmenorrhea: a placebo-controlled randomized trial",
+      "year": 2014,
+      "inReviews": [
+       "38770631",
+       "33842121",
+       "32603204"
+      ]
+     },
+     {
+      "pmid": "23865123",
+      "title": "The effect of ginger for relieving of primary dysmenorrhoea",
+      "year": 2013,
+      "inReviews": [
+       "38770631",
+       "33842121",
+       "32603204"
+      ]
+     },
+     {
+      "pmid": "30545531",
+      "title": "Effect of Ginger and Novafen on menstrual pain: A cross-over trial",
+      "year": 2018,
+      "inReviews": [
+       "38770631",
+       "33842121",
+       "32603204"
+      ]
+     },
+     {
+      "pmid": "22781186",
+      "title": "Effect of Zingiber officinale R. rhizomes (ginger) on pain relief in primary dysmenorrhea: a placebo randomized trial",
+      "year": 2012,
+      "n": 56,
+      "inReviews": [
+       "38770631",
+       "32603204"
+      ]
+     },
+     {
+      "pmid": "25399316",
+      "title": "The effect of mefenamic acid and ginger on pain relief in primary dysmenorrhea: a randomized clinical trial",
+      "year": 2015,
+      "inReviews": [
+       "38770631",
+       "33842121"
+      ]
+     },
+     {
+      "pmid": "20418184",
+      "title": "Ginger (Zingiber officinale) reduces muscle pain caused by eccentric exercise",
+      "year": 2010,
+      "n": 40,
+      "inReviews": [
+       "38770631"
+      ]
+     },
+     {
+      "pmid": "34929798",
+      "title": "Effect of varash oil to decrease menstrual pain in primary dysmenorrhea of senior high school student at Palu City",
+      "year": 2021,
+      "inReviews": [
+       "38770631"
+      ]
+     },
+     {
+      "pmid": "28659234",
+      "title": "Use of ginger versus stretching exercises for the treatment of primary dysmenorrhea: a randomized controlled trial",
+      "year": 2017,
+      "inReviews": [
+       "38770631"
+      ]
+     },
+     {
+      "pmid": "10607493",
+      "title": "A randomized, placebo-controlled, cross-over study of ginger extracts and ibuprofen in osteoarthritis",
+      "year": 2000,
+      "inReviews": [
+       "38770631"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "38770631"
+    ],
+    "citedNotChosen": [
+     "26177393",
+     "27274753"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "33842121",
+      "doi": "10.7759/cureus.13743",
+      "title": "Efficacy of Ginger in the Treatment of Primary Dysmenorrhea: A Systematic Review and Meta-analysis",
+      "year": 2021,
+      "firstAuthor": "Negi R",
+      "journal": "Cureus",
+      "citedBy": 7,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     },
+     {
+      "pmid": "32603204",
+      "doi": "10.1177/0300060520936179",
+      "title": "Efficacy of herbal medicine (cinnamon/fennel/ginger) for primary dysmenorrhea: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "firstAuthor": "Xu Y",
+      "journal": "The Journal of international medical research",
+      "citedBy": 18,
+      "n": 647,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Women with period pain (primary dysmenorrhoea)",
+     "intervention": "Ginger: ground ginger in capsules",
+     "comparison": "Placebo or painkillers (NSAIDs)",
+     "outcome": "Pain intensity or duration"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 5,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "osteoarthritis",
+   "label": "Knee osteoarthritis",
+   "finding": "Knee osteoarthritis pain",
+   "counts": {
+    "all": 209,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 16,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23964445",
+     "24617168",
+     "27559855"
+    ],
+    "citedNotEligible": [
+     "23964445",
+     "24617168",
+     "27559855"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with knee osteoarthritis",
+     "intervention": "Ginger: ground ginger (reviews of extracts count as partly)",
+     "comparison": "Placebo or no ginger",
+     "outcome": "Pain or disability"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 0,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "32214292",
+      "title": "Effectiveness of Ginger on Pain and Function in Knee Osteoarthritis: A PRISMA Systematic Review and Meta-Analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Knee OA, placebo comparison, and pain/function match, but oral ginger was given as capsules (a supplement or extract, not the food itself), and topical ginger is included."
+     },
+     {
+      "pmid": "25300574",
+      "title": "Efficacy and safety of ginger in osteoarthritis patients: a meta-analysis of randomized placebo-controlled trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Oral ginger vs placebo for pain and disability matches, but the population is OA in general rather than knee OA, and the ginger form (likely supplement) is not stated."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Blood sugar in diabetes",
+   "finding": "Blood sugar and HbA1c in type 2 diabetes",
+   "counts": {
+    "all": 412,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 12,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42776175",
+     "doi": "10.2478/acph-2026-0020",
+     "title": "A meta-analysis of the effects of Zingiber officinale on metabolic indices among patients with type 2 diabetes",
+     "year": 2026,
+     "firstAuthor": "Li Q",
+     "journal": "Acta pharmaceutica (Zagreb, Croatia)",
+     "citedBy": 0,
+     "n": 837,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "42337792",
+     "doi": "10.1186/s13643-026-03251-5",
+     "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes",
+     "year": 2026,
+     "firstAuthor": "Chen X",
+     "journal": "Systematic reviews",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "39053695",
+     "doi": "10.1016/j.clnesp.2024.07.011",
+     "title": "The effect of oral supplementation of ginger on glycemic control of patients with type 2 diabetes mellitus - A systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Schumacher JC",
+     "journal": "Clinical nutrition ESPEN",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.375,
+    "trials": 8,
+    "inclusions": 11,
+    "reviews": [
+     {
+      "pmid": "42337792",
+      "trials": 6
+     },
+     {
+      "pmid": "39053695",
+      "trials": 5
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "42776175"
+    ],
+    "shared": [
+     {
+      "pmid": "33053078",
+      "title": "Effectiveness of ginger in reducing metabolic levels in people with diabetes: a randomized clinical trial",
+      "year": 2020,
+      "n": 103,
+      "inReviews": [
+       "42337792",
+       "39053695"
+      ]
+     },
+     {
+      "pmid": "23496212",
+      "title": "Effects of ginger (Zingiber officinale) on plasma glucose level, HbA1c and insulin sensitivity in type 2 diabetic patients",
+      "year": 2013,
+      "n": 64,
+      "inReviews": [
+       "42337792",
+       "39053695"
+      ]
+     },
+     {
+      "pmid": "24490949",
+      "title": "The effect of ginger consumption on glycemic status, lipid profile and some inflammatory markers in patients with type 2 diabetes mellitus",
+      "year": 2014,
+      "inReviews": [
+       "42337792",
+       "39053695"
+      ]
+     },
+     {
+      "pmid": "30670276",
+      "title": "A randomized placebo-controlled study of aromatherapy for the treatment of postoperative nausea and vomiting",
+      "year": 2019,
+      "n": 184,
+      "inReviews": [
+       "39053695"
+      ]
+     },
+     {
+      "pmid": "24559810",
+      "title": "The effect of ginger powder supplementation on insulin resistance and glycemic indices in patients with type 2 diabetes: a randomized, double-blind, placebo-controlled trial",
+      "year": 2014,
+      "n": 88,
+      "inReviews": [
+       "42337792"
+      ]
+     },
+     {
+      "pmid": "26758574",
+      "title": "Effect of cinnamon, cardamom, saffron and ginger consumption on blood pressure and a marker of endothelial function in patients with type 2 diabetes mellitus: A randomized controlled clinical trial",
+      "year": 2016,
+      "inReviews": [
+       "42337792"
+      ]
+     },
+     {
+      "pmid": "37817641",
+      "title": "The Effects of Ginger (Zingiber Officinale Roscoe) on Non-Alcoholic Fatty Liver Disease in Patients with Type 2 Diabetes Mellitus: A Randomized Double-Blinded Placebo-Controlled Clinical Trial",
+      "year": 2024,
+      "inReviews": [
+       "42337792"
+      ]
+     },
+     {
+      "pmid": "36800950",
+      "title": "The effect of zingiber officinale on prooxidant-antioxidant balance and glycemic control in diabetic patients with ESRD undergoing hemodialysis: a double-blind randomized control trial",
+      "year": 2023,
+      "inReviews": [
+       "39053695"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "42337792",
+     "39053695"
+    ],
+    "citedNotChosen": [
+     "35031435"
+    ],
+    "citedNotEligible": [
+     "35031435"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "42776175",
+      "doi": "10.2478/acph-2026-0020",
+      "title": "A meta-analysis of the effects of Zingiber officinale on metabolic indices among patients with type 2 diabetes",
+      "year": 2026,
+      "firstAuthor": "Li Q",
+      "journal": "Acta pharmaceutica (Zagreb, Croatia)",
+      "citedBy": 0,
+      "n": 837,
+      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with type 2 diabetes",
+     "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+     "comparison": "Placebo or no ginger",
+     "outcome": "Fasting glucose, HbA1c or insulin"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 4,
+     "partly": 4,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42661831",
+      "title": "6-gingerol modulates lipid metabolism, insulin resistance, and inflammation in NAFLD: evidence from a preclinical meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Animal studies of 6-gingerol, an isolated ginger compound, in fatty liver disease rather than people with type 2 diabetes."
+     },
+     {
+      "pmid": "37226794",
+      "title": "Zingiber officinale Roscoe (Ginger) and its Bioactive Compounds in Diabetes: A Systematic Review of Clinical Studies and Insight of Mechanism of Action",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Reviews clinical studies of ginger on glucose, HbA1c and insulin resistance, but in diabetes generally, mixed with isolated compounds and lab studies, with no stated control."
+     },
+     {
+      "pmid": "29393665",
+      "title": "The effects of ginger intake on weight loss and metabolic profiles among overweight and obese subjects: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "RCTs of ginger on fasting glucose and insulin, but in overweight and obese people rather than people with type 2 diabetes."
+     },
+     {
+      "pmid": "29541142",
+      "title": "Effects of Ginger (Zingiber officinale Roscoe) on Type 2 Diabetes Mellitus and Components of the Metabolic Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "RCTs of ginger on HbA1c, fasting glucose and insulin, but the population mixes type 2 diabetes with metabolic syndrome."
+     },
+     {
+      "pmid": "27806832",
+      "title": "The effect of ginger supplementation on serum C-reactive protein, lipid profile and glycaemia: a systematic review and meta-analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Pools ginger studies on fasting glucose and HbA1c, but the population is not limited to type 2 diabetes and the control group is not stated."
+     }
+    ]
+   }
+  },
+  {
+   "id": "lipids",
+   "label": "Blood fats",
+   "finding": "Blood fats (triglycerides and cholesterol)",
+   "counts": {
+    "all": 350,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36786398",
+     "doi": "10.1002/ptr.7769",
+     "title": "Effect of ginger (Zingiber officinale) intake on human serum lipid profile: Systematic review and meta-analysis",
+     "year": 2023,
+     "firstAuthor": "Salih AK",
+     "journal": "Phytotherapy research : PTR",
+     "citedBy": 8,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "36165525",
+     "doi": "10.2174/1381612828666220926093847",
+     "title": "The Effect of Ginger (Zingiber officinale) on Improving Blood Lipids and Body Weight; A Systematic Review and Multivariate Meta-analysis of Clinical Trials",
+     "year": 2022,
+     "firstAuthor": "Asghari-Jafarabadi M",
+     "journal": "Current pharmaceutical design",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "29747751",
+     "doi": "10.1016/j.phymed.2018.03.043",
+     "title": "The effect of ginger supplementation on lipid profile: A systematic review and meta-analysis of clinical trials",
+     "year": 2018,
+     "firstAuthor": "Pourmasoumi M",
+     "journal": "Phytomedicine : international journal of phytotherapy and phytopharmacology",
+     "citedBy": 46,
+     "n": 586,
+     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.36363636363636365,
+    "trials": 11,
+    "inclusions": 19,
+    "reviews": [
+     {
+      "pmid": "36786398",
+      "trials": 5
+     },
+     {
+      "pmid": "36165525",
+      "trials": 10
+     },
+     {
+      "pmid": "29747751",
+      "trials": 4
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "23496212",
+      "title": "Effects of ginger (Zingiber officinale) on plasma glucose level, HbA1c and insulin sensitivity in type 2 diabetic patients",
+      "year": 2013,
+      "n": 64,
+      "inReviews": [
+       "36786398",
+       "36165525",
+       "29747751"
+      ]
+     },
+     {
+      "pmid": "26475844",
+      "title": "Effects of Ginger on Serum Lipids and Lipoproteins in Peritoneal Dialysis Patients: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 36,
+      "inReviews": [
+       "36786398",
+       "36165525",
+       "29747751"
+      ]
+     },
+     {
+      "pmid": "24490949",
+      "title": "The effect of ginger consumption on glycemic status, lipid profile and some inflammatory markers in patients with type 2 diabetes mellitus",
+      "year": 2014,
+      "inReviews": [
+       "36786398",
+       "36165525",
+       "29747751"
+      ]
+     },
+     {
+      "pmid": "33053078",
+      "title": "Effectiveness of ginger in reducing metabolic levels in people with diabetes: a randomized clinical trial",
+      "year": 2020,
+      "n": 103,
+      "inReviews": [
+       "36786398",
+       "36165525"
+      ]
+     },
+     {
+      "pmid": "18813412",
+      "title": "Investigation of the effect of ginger on the lipid levels. A double blind controlled clinical trial",
+      "year": 2008,
+      "n": 40,
+      "inReviews": [
+       "36165525",
+       "29747751"
+      ]
+     },
+     {
+      "pmid": "22313739",
+      "title": "Effect of ginger on acute and delayed chemotherapy-induced nausea and vomiting: a pilot, randomized, open-label clinical trial",
+      "year": 2012,
+      "n": 100,
+      "inReviews": [
+       "36165525"
+      ]
+     },
+     {
+      "pmid": "24559810",
+      "title": "The effect of ginger powder supplementation on insulin resistance and glycemic indices in patients with type 2 diabetes: a randomized, double-blind, placebo-controlled trial",
+      "year": 2014,
+      "n": 88,
+      "inReviews": [
+       "36165525"
+      ]
+     },
+     {
+      "pmid": "32306991",
+      "title": "Effect of ginger on the blood glucose level of women with gestational diabetes mellitus (GDM) with impaired glucose tolerance test (GTT): a randomized double-blind placebo-controlled trial",
+      "year": 2020,
+      "n": 70,
+      "inReviews": [
+       "36786398"
+      ]
+     },
+     {
+      "pmid": "25719344",
+      "title": "The effect of ginger (Zingiber officinale) on glycemic markers in patients with type 2 diabetes",
+      "year": 2015,
+      "n": 60,
+      "inReviews": [
+       "36165525"
+      ]
+     },
+     {
+      "pmid": "26758574",
+      "title": "Effect of cinnamon, cardamom, saffron and ginger consumption on blood pressure and a marker of endothelial function in patients with type 2 diabetes mellitus: A randomized controlled clinical trial",
+      "year": 2016,
+      "inReviews": [
+       "36165525"
+      ]
+     },
+     {
+      "pmid": "22538118",
+      "title": "Ginger consumption enhances the thermic effect of food and promotes feelings of satiety without affecting metabolic and hormonal parameters in overweight men: a pilot study",
+      "year": 2012,
+      "inReviews": [
+       "36165525"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 2,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "29747751",
+     "36786398"
+    ],
+    "citedNotChosen": [
+     "42337792",
+     "35031435"
+    ],
+    "citedNotEligible": [
+     "35031435"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "36165525",
+      "doi": "10.2174/1381612828666220926093847",
+      "title": "The Effect of Ginger (Zingiber officinale) on Improving Blood Lipids and Body Weight; A Systematic Review and Multivariate Meta-analysis of Clinical Trials",
+      "year": 2022,
+      "firstAuthor": "Asghari-Jafarabadi M",
+      "journal": "Current pharmaceutical design",
+      "citedBy": 4,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+     "comparison": "Placebo or no ginger",
+     "outcome": "Triglycerides, LDL, HDL or total cholesterol"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 6,
+     "partly": 2,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42337792",
+      "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pools placebo-controlled trials of ginger reporting triglycerides, HDL, LDL and total cholesterol, but only in people with type 2 diabetes."
+     },
+     {
+      "pmid": "40457497",
+      "title": "Can ginger improve cardiovascular health indices? A protocol for a GRADE-assessed systematic review and planned dose-response meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "no",
+      "reason": "This is a protocol for a planned review of ginger and cardiovascular markers; no studies have been pooled or reviewed yet."
+     },
+     {
+      "pmid": "29541142",
+      "title": "Effects of Ginger (Zingiber officinale Roscoe) on Type 2 Diabetes Mellitus and Components of the Metabolic Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Pools RCTs of ginger reporting the lipid profile, but only in people with type 2 diabetes or metabolic syndrome."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "all": 142,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42566667",
+     "doi": "10.1111/jhn.70329",
+     "title": "Ginger Supplementation and Blood Pressure in Adults: A GRADE-Based Systematic Review and Dose-Response Meta-Analysis of Randomized Controlled Trials",
+     "year": 2026,
+     "firstAuthor": "Karimi M",
+     "journal": "Journal of human nutrition and dietetics : the official journal of the British Dietetic Association",
+     "citedBy": 1,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "30972845",
+     "doi": "10.1002/ptr.6362",
+     "title": "Does ginger supplementation lower blood pressure? A systematic review and meta-analysis of clinical trials",
+     "year": 2019,
+     "firstAuthor": "Hasani H",
+     "journal": "Phytotherapy research : PTR",
+     "citedBy": 51,
+     "n": 345,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    },
+    {
+     "pmid": "41195902",
+     "doi": "10.1080/19390211.2025.2583512",
+     "title": "Ginger (Zingiber Officinale) Supplementation and Biomarkers of Cardiovascular Disease - A Systematic Review",
+     "year": 2026,
+     "firstAuthor": "Rjabi S",
+     "journal": "Journal of dietary supplements",
+     "citedBy": 0,
+     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.16666666666666666,
+    "trials": 15,
+    "inclusions": 20,
+    "reviews": [
+     {
+      "pmid": "42566667",
+      "trials": 4
+     },
+     {
+      "pmid": "30972845",
+      "trials": 3
+     },
+     {
+      "pmid": "41195902",
+      "trials": 13
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "36058007",
+      "title": "Ginger supplementation does not increase energy expenditure in female adults",
+      "year": 2022,
+      "n": 66,
+      "inReviews": [
+       "42566667",
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "25719344",
+      "title": "The effect of ginger (Zingiber officinale) on glycemic markers in patients with type 2 diabetes",
+      "year": 2015,
+      "n": 60,
+      "inReviews": [
+       "30972845",
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "25837216",
+      "title": "Effects of ginger on serum glucose, advanced glycation end products, and inflammation in peritoneal dialysis patients",
+      "year": 2015,
+      "n": 36,
+      "inReviews": [
+       "30972845",
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "37817641",
+      "title": "The Effects of Ginger (Zingiber Officinale Roscoe) on Non-Alcoholic Fatty Liver Disease in Patients with Type 2 Diabetes Mellitus: A Randomized Double-Blinded Placebo-Controlled Clinical Trial",
+      "year": 2024,
+      "inReviews": [
+       "42566667",
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "26758574",
+      "title": "Effect of cinnamon, cardamom, saffron and ginger consumption on blood pressure and a marker of endothelial function in patients with type 2 diabetes mellitus: A randomized controlled clinical trial",
+      "year": 2016,
+      "inReviews": [
+       "30972845",
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "38892617",
+      "title": "The Effect of Therapeutic Doses of Culinary Spices in Metabolic Syndrome: A Randomized Controlled Trial",
+      "year": 2024,
+      "n": 120,
+      "inReviews": [
+       "42566667"
+      ]
+     },
+     {
+      "pmid": "33053078",
+      "title": "Effectiveness of ginger in reducing metabolic levels in people with diabetes: a randomized clinical trial",
+      "year": 2020,
+      "n": 103,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "24559810",
+      "title": "The effect of ginger powder supplementation on insulin resistance and glycemic indices in patients with type 2 diabetes: a randomized, double-blind, placebo-controlled trial",
+      "year": 2014,
+      "n": 88,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "23496212",
+      "title": "Effects of ginger (Zingiber officinale) on plasma glucose level, HbA1c and insulin sensitivity in type 2 diabetic patients",
+      "year": 2013,
+      "n": 64,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "32312261",
+      "title": "Ginger extract versus Loratadine in the treatment of allergic rhinitis: a randomized controlled trial",
+      "year": 2020,
+      "n": 40,
+      "inReviews": [
+       "42566667"
+      ]
+     },
+     {
+      "pmid": "18813412",
+      "title": "Investigation of the effect of ginger on the lipid levels. A double blind controlled clinical trial",
+      "year": 2008,
+      "n": 40,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "26475844",
+      "title": "Effects of Ginger on Serum Lipids and Lipoproteins in Peritoneal Dialysis Patients: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 36,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "24490949",
+      "title": "The effect of ginger consumption on glycemic status, lipid profile and some inflammatory markers in patients with type 2 diabetes mellitus",
+      "year": 2014,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "26318445",
+      "title": "Changes of serum adipocytokines and body weight following Zingiber officinale supplementation in obese women: a RCT",
+      "year": 2016,
+      "inReviews": [
+       "41195902"
+      ]
+     },
+     {
+      "pmid": "36800950",
+      "title": "The effect of zingiber officinale on prooxidant-antioxidant balance and glycemic control in diabetic patients with ESRD undergoing hemodialysis: a double-blind randomized control trial",
+      "year": 2023,
+      "inReviews": [
+       "41195902"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 3,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "42566667",
+     "30972845"
+    ],
+    "citedNotChosen": [
+     "42337792"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "41195902",
+      "doi": "10.1080/19390211.2025.2583512",
+      "title": "Ginger (Zingiber Officinale) Supplementation and Biomarkers of Cardiovascular Disease - A Systematic Review",
+      "year": 2026,
+      "firstAuthor": "Rjabi S",
+      "journal": "Journal of dietary supplements",
+      "citedBy": 0,
+      "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+     "comparison": "Placebo or no ginger",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 4,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42337792",
+      "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Pooled RCTs of ginger versus placebo on blood pressure, but only in people with type 2 diabetes, a single-illness population."
+     },
+     {
+      "pmid": "40457497",
+      "title": "Can ginger improve cardiovascular health indices? A protocol for a GRADE-assessed systematic review and planned dose-response meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "fits": "no",
+      "reason": "This is a protocol for a planned review of ginger and blood pressure; it reports no pooled or reviewed study results yet."
+     }
+    ]
+   }
+  },
+  {
+   "id": "inflammation",
+   "label": "Inflammation",
+   "finding": "Inflammation in the blood (CRP and other signals)",
+   "counts": {
+    "all": 1604,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 8,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41123858",
+     "doi": "10.1007/s10787-025-01994-6",
+     "title": "Antioxidant and anti-inflammatory effects of ginger supplementation in adults: a GRADE-assessed systematic review and dose-response meta-analysis of randomised controlled trials",
+     "year": 2025,
+     "firstAuthor": "Rjabi S",
+     "journal": "Inflammopharmacology",
+     "citedBy": 1,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "32763761",
+     "doi": "10.1016/j.cyto.2020.155224",
+     "title": "Effect of ginger (Zingiber officinale) on inflammatory markers: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Morvaridzadeh M",
+     "journal": "Cytokine",
+     "citedBy": 54,
+     "n": 1010,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "32147845",
+     "doi": "10.1002/ptr.6638",
+     "title": "The effects of ginger supplementation on markers of inflammatory and oxidative stress: A systematic review and meta-analysis of clinical trials",
+     "year": 2020,
+     "firstAuthor": "Jalali M",
+     "journal": "Phytotherapy research : PTR",
+     "citedBy": 44,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4230769230769231,
+    "trials": 13,
+    "inclusions": 24,
+    "reviews": [
+     {
+      "pmid": "41123858",
+      "trials": 7
+     },
+     {
+      "pmid": "32763761",
+      "trials": 9
+     },
+     {
+      "pmid": "32147845",
+      "trials": 8
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "27559855",
+      "title": "Effect of Ginger Supplementation on Proinflammatory Cytokines in Older Patients with Osteoarthritis: Outcomes of a Randomized Controlled Clinical Trial",
+      "year": 2016,
+      "n": 120,
+      "inReviews": [
+       "41123858",
+       "32763761",
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "27089418",
+      "title": "Anti-inflammatory and antioxidant effect of ginger in tuberculosis",
+      "year": 2016,
+      "n": 69,
+      "inReviews": [
+       "41123858",
+       "32763761",
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "25719344",
+      "title": "The effect of ginger (Zingiber officinale) on glycemic markers in patients with type 2 diabetes",
+      "year": 2015,
+      "n": 60,
+      "inReviews": [
+       "41123858",
+       "32763761",
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "25837216",
+      "title": "Effects of ginger on serum glucose, advanced glycation end products, and inflammation in peritoneal dialysis patients",
+      "year": 2015,
+      "n": 36,
+      "inReviews": [
+       "41123858",
+       "32763761",
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "24490949",
+      "title": "The effect of ginger consumption on glycemic status, lipid profile and some inflammatory markers in patients with type 2 diabetes mellitus",
+      "year": 2014,
+      "inReviews": [
+       "41123858",
+       "32763761",
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "26475844",
+      "title": "Effects of Ginger on Serum Lipids and Lipoproteins in Peritoneal Dialysis Patients: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 36,
+      "inReviews": [
+       "41123858",
+       "32763761"
+      ]
+     },
+     {
+      "pmid": "30099412",
+      "title": "Asymmetric dimethylarginine and soluble inter-cellular adhesion molecule-1 serum levels alteration following ginger supplementation in patients with type 2 diabetes: a randomized double-blind, placebo-controlled clinical trial",
+      "year": 2018,
+      "n": 45,
+      "inReviews": [
+       "32763761"
+      ]
+     },
+     {
+      "pmid": "20418184",
+      "title": "Ginger (Zingiber officinale) reduces muscle pain caused by eccentric exercise",
+      "year": 2010,
+      "n": 40,
+      "inReviews": [
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "24760534",
+      "title": "Pilot clinical study of the effects of ginger root extract on eicosanoids in colonic mucosa of subjects at increased risk for colorectal cancer",
+      "year": 2015,
+      "n": 20,
+      "inReviews": [
+       "32147845"
+      ]
+     },
+     {
+      "pmid": "37817641",
+      "title": "The Effects of Ginger (Zingiber Officinale Roscoe) on Non-Alcoholic Fatty Liver Disease in Patients with Type 2 Diabetes Mellitus: A Randomized Double-Blinded Placebo-Controlled Clinical Trial",
+      "year": 2024,
+      "inReviews": [
+       "41123858"
+      ]
+     },
+     {
+      "pmid": "26758574",
+      "title": "Effect of cinnamon, cardamom, saffron and ginger consumption on blood pressure and a marker of endothelial function in patients with type 2 diabetes mellitus: A randomized controlled clinical trial",
+      "year": 2016,
+      "inReviews": [
+       "32763761"
+      ]
+     },
+     {
+      "pmid": "22538118",
+      "title": "Ginger consumption enhances the thermic effect of food and promotes feelings of satiety without affecting metabolic and hormonal parameters in overweight men: a pilot study",
+      "year": 2012,
+      "inReviews": [
+       "32763761"
+      ]
+     },
+     {
+      "pmid": "22884532",
+      "title": "Effect of enteral feeding with ginger extract in acute respiratory distress syndrome",
+      "year": 2013,
+      "inReviews": [
+       "32147845"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "41123858",
+     "32763761"
+    ],
+    "citedNotChosen": [
+     "27806832"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "32147845",
+      "doi": "10.1002/ptr.6638",
+      "title": "The effects of ginger supplementation on markers of inflammatory and oxidative stress: A systematic review and meta-analysis of clinical trials",
+      "year": 2020,
+      "firstAuthor": "Jalali M",
+      "journal": "Phytotherapy research : PTR",
+      "citedBy": 44,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+     "comparison": "Placebo or no ginger",
+     "outcome": "CRP or other inflammation markers"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 5,
+     "partly": 1,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42661831",
+      "title": "6-gingerol modulates lipid metabolism, insulin resistance, and inflammation in NAFLD: evidence from a preclinical meta-analysis",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Meta-analysis of the isolated compound 6-gingerol in animal models of NAFLD, not people eating ginger."
+     },
+     {
+      "pmid": "38102801",
+      "title": "Therapeutic effects and mechanisms of action of ginger and its bioactive components on inflammatory response, oxidative stress, the immune system, and organ failure in sepsis: a comprehensive systematic review",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews ginger compounds in sepsis using experimental and animal models, not adults eating ginger compared with placebo."
+     },
+     {
+      "pmid": "35585878",
+      "title": "Ginger for Healthy Ageing: A Systematic Review on Current Evidence of Its Antioxidant, Anti-Inflammatory, and Anticancer Properties",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Broad review of ginger's properties for healthy ageing; the abstract describes no human trials comparing ginger with placebo on inflammation markers."
+     },
+     {
+      "pmid": "34857250",
+      "title": "The effects of the ginger supplements on inflammatory parameters in type 2 diabetes patients: A systematic review and meta-analysis of randomised controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Matches ginger, comparison and inflammation markers, but only includes people with type 2 diabetes."
+     }
+    ]
+   }
+  }
+ ]
+}

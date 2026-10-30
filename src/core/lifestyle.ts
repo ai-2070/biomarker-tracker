@@ -93,7 +93,7 @@ const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFin
 const strList = (v: unknown, min = 0): boolean => Array.isArray(v) && v.length >= min && v.every(isStr);
 const SAFETY_IDS = new Set(["anticoagulant", "diabetes", "pregnancy", "kidney"]);
 
-function visualErrors(v: unknown, at: string): string[] {
+export function visualErrors(v: unknown, at: string): string[] {
   if (!isObj(v)) return [`${at} is not an object`];
   const errs: string[] = [];
   if (!isStr(v.title) || !isStr(v.caption)) errs.push(`${at} needs a title and a caption`);

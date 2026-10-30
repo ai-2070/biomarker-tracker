@@ -240,7 +240,7 @@ function NewerTrials({ trials }: { trials: EvidenceMapOutcome["newerLargeTrials"
 function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]>; kind: MapKind }) {
   const rows: [string, string][] = [
     ["Who", s.question.population],
-    [kind === "food" ? "Food or exposure" : kind === "lifestyle" ? "Habit or exposure" : "Given", s.question.intervention],
+    [kind === "food" ? "Food or exposure" : kind === "lifestyle" ? "Habit or exposure" : kind === "wholefood" ? "Food" : "Given", s.question.intervention],
     ["Compared with", s.question.comparison],
     ["Measured", s.question.outcome],
   ];

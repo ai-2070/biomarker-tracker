@@ -1,0 +1,156 @@
+{
+ "topic": "wholefood-strawberries",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
+    "comparison": "Placebo, a sugar-matched control, or no strawberries",
+    "outcome": "Blood sugar or insulin, fasting or after a meal"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32238201",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of strawberry interventions vs controls pooled fasting blood glucose (7 trials), matching food, comparison and outcome."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
+    "comparison": "Placebo powder or no strawberries",
+    "outcome": "Total or LDL cholesterol, or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32238201",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of strawberry interventions in adults, pooling total cholesterol, LDL cholesterol and triglycerides against controls."
+    },
+    {
+     "pmid": "31637390",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of dietary strawberry supplementation, pooling total cholesterol and other lipids against controls; no single illness."
+    }
+   ]
+  },
+  "crp": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
+    "comparison": "Placebo or no strawberries",
+    "outcome": "C-reactive protein (CRP) or other inflammation markers"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32238201",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of strawberry interventions versus control in adults, with C-reactive protein pooled as a separate outcome."
+    },
+    {
+     "pmid": "31637390",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of dietary supplementation with strawberries versus control, with C-reactive protein pooled as a separate outcome."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
+    "comparison": "Placebo or no strawberries",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32238201",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of strawberry interventions with blood pressure as a pooled endpoint; the population is not restricted to one illness."
+    },
+    {
+     "pmid": "31637390",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials of dietary strawberry supplementation with pooled blood pressure (diastolic BP reported) among CVD risk factors."
+    },
+    {
+     "pmid": "40969412",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of strawberry consumption, including freeze-dried powder, on systolic and diastolic blood pressure in adults."
+    }
+   ]
+  },
+  "heart-attack": {
+   "question": {
+    "population": "Adults without heart disease at the start",
+    "intervention": "Eating more strawberries or berries (whole food)",
+    "comparison": "Eating fewer",
+    "outcome": "Heart attacks or coronary heart disease"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "31637390",
+     "fits": "no",
+     "reason": "Strawberry trials measured only risk factors such as cholesterol and blood pressure, not heart attacks or coronary heart disease."
+    },
+    {
+     "pmid": "41131574",
+     "fits": "no",
+     "reason": "Anthocyanin foods or extracts were studied for blood vessel function, not for heart attacks or coronary heart disease."
+    },
+    {
+     "pmid": "37810926",
+     "fits": "no",
+     "reason": "Anthocyanin supplements in people with type 2 diabetes were studied for blood sugar and lipids, not coronary events."
+    },
+    {
+     "pmid": "34977111",
+     "fits": "partly",
+     "reason": "Berry trials looked only at risk factors; the cohort studies of heart events measured anthocyanin intake, not berries specifically."
+    },
+    {
+     "pmid": "30277799",
+     "fits": "yes",
+     "reason": "Pooled cohorts of anthocyanin intake and coronary heart disease, with a subgroup analysis for berry intake."
+    },
+    {
+     "pmid": "29243749",
+     "fits": "no",
+     "reason": "Berry trials measured only risk factors such as lipids and blood pressure, not heart attacks or coronary heart disease."
+    },
+    {
+     "pmid": "27846846",
+     "fits": "no",
+     "reason": "Narrative review of anthocyanin mechanisms in animals and humans, with risk-marker outcomes rather than coronary events."
+    },
+    {
+     "pmid": "32613517",
+     "fits": "no",
+     "reason": "Studied short-term after-meal effects of anthocyanins on risk markers, not heart attacks or coronary heart disease."
+    },
+    {
+     "pmid": "29105295",
+     "fits": "no",
+     "reason": "Berry trials measured cardiovascular and metabolic markers only, not heart attacks or coronary heart disease."
+    },
+    {
+     "pmid": "26761031",
+     "fits": "no",
+     "reason": "Purified anthocyanins or extracts were studied for lipids and blood pressure, not whole berries or coronary events."
+    },
+    {
+     "pmid": "27006201",
+     "fits": "no",
+     "reason": "Berry trials measured risk factors only, in healthy people and people with heart disease, not coronary events."
+    }
+   ]
+  }
+ }
+}

@@ -6,6 +6,7 @@ import { validateBiomarkerDef } from "../src/core/knowledge";
 import { validateFitnessTest, type FitnessTestDef } from "../src/core/fitnessTests";
 import { validateNutrientDef, type NutrientDef } from "../src/core/nutrients";
 import { validateLifestyleDef, type LifestyleDef } from "../src/core/lifestyle";
+import { validateWholeFoodDef, wholeFoodFor, type WholeFoodDef } from "../src/core/wholeFoods";
 import type { FoodDb } from "../src/core/meals";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
 import { ROOT } from "./store";
@@ -31,7 +32,7 @@ function readAll(dir: string): unknown[] {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as unknown);
 }
 
-let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[]; fitness: FitnessTestDef[]; lifestyle: LifestyleDef[] } | undefined;
+let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[]; fitness: FitnessTestDef[]; lifestyle: LifestyleDef[]; wholeFoods: WholeFoodDef[] } | undefined;
 
 export function knowledge() {
   if (!cache) {
@@ -46,7 +47,9 @@ export function knowledge() {
     const fitness = (fs.existsSync(fdir) ? readAll(fdir) : []).filter((j) => validateFitnessTest(j).length === 0) as FitnessTestDef[];
     const ldir = path.join(k, "lifestyle");
     const lifestyle = (fs.existsSync(ldir) ? readAll(ldir) : []).filter((j) => validateLifestyleDef(j).length === 0) as LifestyleDef[];
-    cache = { defs, evidence, foods, nutrients, fitness, lifestyle };
+    const wdir = path.join(k, "wholefoods");
+    const wholeFoods = (fs.existsSync(wdir) ? readAll(wdir) : []).filter((j) => validateWholeFoodDef(j).length === 0) as WholeFoodDef[];
+    cache = { defs, evidence, foods, nutrients, fitness, lifestyle, wholeFoods };
   }
   return cache;
 }
@@ -72,6 +75,12 @@ export function findLifestyle(query: string): LifestyleDef | undefined {
   return knowledge().lifestyle.find(
     (l) => l.id === q || l.name.toLowerCase() === words || l.name.toLowerCase().startsWith(words) || l.otherNames.some((o) => o.toLowerCase().startsWith(words)),
   );
+}
+
+/** Find a whole food by id, name or other name ("evoo", "olive oil", "pomegranate juice"). */
+export function findWholeFood(query: string): WholeFoodDef | undefined {
+  const all = knowledge().wholeFoods;
+  return all.find((f) => f.id === query.trim().toLowerCase().replace(/[\s-]+/g, "_")) ?? wholeFoodFor(query, all);
 }
 
 /** Find a marker by id, name, abbreviation or any alias (case-insensitive). */
