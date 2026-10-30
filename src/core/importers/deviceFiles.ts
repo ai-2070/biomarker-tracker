@@ -16,7 +16,17 @@ import { isIsoDate } from "../dates";
 export function parseCsv(text: string): string[][] {
   const src = text.replace(/^﻿/, "");
   const firstLine = src.slice(0, src.search(/\r?\n/) === -1 ? src.length : src.search(/\r?\n/));
-  const counts = [",", ";", "\t"].map((d) => [d, firstLine.split(d).length] as const);
+  const counts = [",", ";", "\t"].map((d) => {
+    let count = 0;
+    let quoted = false;
+    for (let i = 0; i < firstLine.length; i++) {
+      if (firstLine[i] === '"') {
+        if (quoted && firstLine[i + 1] === '"') i++;
+        else quoted = !quoted;
+      } else if (!quoted && firstLine[i] === d) count++;
+    }
+    return [d, count] as const;
+  });
   const sep = counts.sort((a, b) => b[1] - a[1])[0]![0];
   const rows: string[][] = [];
   let row: string[] = [];
@@ -145,7 +155,9 @@ export function jsonTable(json: unknown): { headers: string[]; data: string[][] 
     else rows.push(outer);
   }
   if (rows.length === 0) return undefined;
-  const headers = [...new Set(rows.slice(0, 500).flatMap((r) => Object.keys(r)))];
+  const names = new Set<string>();
+  for (const row of rows) for (const key in row) names.add(key);
+  const headers = [...names];
   return pivotLong({ headers, data: rows.map((r) => headers.map((h) => r[h] ?? "")) });
 }
 
@@ -177,7 +189,7 @@ export function findDateColumn(headers: string[], sample: string[][], monthFirst
  * file's name (`family`, see fileFamily). Max, min, zones, counts and multi-day averages are skipped.
  */
 export function guessColumn(header: string, index: number, family = ""): ColumnGuess | undefined {
-  const h = normalizeHeader(header).toLowerCase();
+  const h = normalizeHeader(header).toLowerCase().replace(/\bsp o([2₂])\b/g, "spo2");
   const f = family.toLowerCase();
   const base = { index, header };
   const skip = (reason: string): ColumnGuess => ({ ...base, field: null, unit: "", reason });
@@ -298,7 +310,7 @@ export function withActiveTotal(t: { headers: string[]; data: string[][] }, fami
   const group = parts[0]?.part.group;
   const same = parts.filter((x) => x.part.group === group);
   if (same.length < 2) return t;
-  const unit = same[0]!.g!.unit;
+  const unit = group === "oura" && same[0]!.g!.unit === "auto" ? "s" : same[0]!.g!.unit;
   const header = `Active minutes (added up from ${same.map((x) => x.h).join(" and ")})${unit === "auto" ? "" : ` (${unit})`}`;
   const data = t.data.map((r) => {
     const nums = same.map((x) => toNumber(r[x.i] ?? ""));
@@ -383,10 +395,15 @@ export function toIsoDate(raw: string, monthFirst = false): string | undefined {
   let m = /^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/.exec(s);
   if (m) return valid(m[1]!, m[2]!, m[3]!);
   m = /^(\d{1,2})([./-])(\d{1,2})\2(\d{4})/.exec(s);
-  if (m) return monthFirst && m[2] === "/" ? valid(m[4]!, m[1]!, m[3]!) : valid(m[4]!, m[3]!, m[1]!);
-  // Two-digit years with slashes: month first, as Fitbit writes them ("01/15/24 08:00:05").
+  if (m) {
+    const a = Number(m[1]);
+    const b = Number(m[3]);
+    const firstIsMonth = b > 12 || (a <= 12 && monthFirst && m[2] === "/");
+    return firstIsMonth ? valid(m[4]!, m[1]!, m[3]!) : valid(m[4]!, m[3]!, m[1]!);
+  }
+  // Two-digit years default to Fitbit's month-first order, unless the day makes that impossible.
   m = /^(\d{1,2})\/(\d{1,2})\/(\d{2})(\s|$)/.exec(s);
-  if (m) return valid(`20${m[3]}`, m[1]!, m[2]!);
+  if (m) return Number(m[1]) > 12 ? valid(`20${m[3]}`, m[2]!, m[1]!) : valid(`20${m[3]}`, m[1]!, m[2]!);
   if (/^\d{10}(\d{3})?$/.test(s)) {
     const d = new Date(Number(s) * (s.length === 10 ? 1000 : 1));
     return valid(String(d.getFullYear()), String(d.getMonth() + 1), String(d.getDate()));
@@ -399,13 +416,23 @@ function valid(y: string, mo: string, d: string): string | undefined {
   return isIsoDate(iso) ? iso : undefined;
 }
 
-function toNumber(raw: string): number | undefined {
+function toNumber(raw: string, integer = false): number | undefined {
   const s = raw.trim().replace(/\s/g, "");
+  if (integer && /^-?\d{1,3}([.,])\d{3}(?:\1\d{3})*$/.test(s)) return Number(s.replace(/[.,]/g, ""));
   if (!/^-?\d+([.,]\d+)?$/.test(s)) return undefined;
-  return Number(s.replace(",", "."));
+  const value = Number(s.replace(",", "."));
+  return integer && !Number.isInteger(value) ? undefined : value;
 }
 
 // ---- Daily values ---------------------------------------------------------------------------------
+
+interface DeviceReading {
+  date: string;
+  value: number;
+  /** Full file path and date-only granularity survive joining overlapping exports. */
+  source?: string;
+  daily?: boolean;
+}
 
 export interface DailySeries {
   field: BodyField;
@@ -416,6 +443,8 @@ export interface DailySeries {
   days: { date: string; value: number; readings: number }[];
   /** Readings outside what a body can show (typos, sensor errors), left out. */
   dropped: number;
+  /** Overlapping exports reconciled before a daily total was calculated. */
+  reconciled?: number;
 }
 
 /**
@@ -423,22 +452,41 @@ export interface DailySeries {
  * (a night recorded in pieces, plus naps; steps counted in bursts). Readings, or for those whole days,
  * that can't be real are dropped and counted.
  */
-export function dailyAverages(field: BodyField, unit: string, from: string, readings: Iterable<{ date: string; value: number }>, toCanonical: (v: number) => number): DailySeries {
+export function dailyAverages(field: BodyField, unit: string, from: string, readings: Iterable<DeviceReading>, toCanonical: (v: number) => number): DailySeries {
   const tally = new DailyTally();
-  for (const r of readings) tally.add(from, field, unit, r.date, r.value, toCanonical);
-  return tally.series()[0] ?? { field, unit, from, days: [], dropped: 0 };
+  let reconciled = 0;
+  if (DAILY_TOTAL_FIELDS.has(field)) {
+    const byDay = new Map<string, DeviceReading[]>();
+    for (const r of readings) {
+      const rows = byDay.get(r.date) ?? [];
+      rows.push(r);
+      byDay.set(r.date, rows);
+    }
+    for (const rows of byDay.values()) {
+      const summaries = rows.filter((r) => r.daily && r.source);
+      // Prefer a whole-day summary to overlapping samples. Across summary exports, use the
+      // lexically latest path (dated export names sort newest last), never add whole days together.
+      const source = summaries.map((r) => r.source!).sort().at(-1);
+      const selected = source ? rows.filter((r) => r.daily && r.source === source) : rows;
+      reconciled += rows.length - selected.length;
+      for (const r of selected) tally.add(from, field, unit, r.date, r.value, toCanonical);
+    }
+  } else for (const r of readings) tally.add(from, field, unit, r.date, r.value, toCanonical);
+  const series = tally.series()[0] ?? { field, unit, from, days: [], dropped: 0 };
+  return reconciled ? { ...series, reconciled } : series;
 }
 
 /** Readings of one column of a CSV table, by day. */
-export function columnReadings(data: string[][], dateCol: number, g: ColumnGuess, monthFirst = false): { date: string; value: number }[] {
-  const out: { date: string; value: number }[] = [];
+export function columnReadings(data: string[][], dateCol: number, g: ColumnGuess, monthFirst = false): DeviceReading[] {
+  const out: DeviceReading[] = [];
   for (const row of data) {
     const date = toIsoDate(row[dateCol] ?? "", monthFirst);
-    const v = toNumber(row[g.index] ?? "");
+    const v = toNumber(row[g.index] ?? "", g.field === "steps");
     if (!date || v === undefined) continue;
     // Blood oxygen as a fraction (0.97) becomes a percentage.
     const value = g.field === "spo2" && v > 0 && v <= 1 ? v * 100 : v * (g.scale ?? 1);
-    out.push({ date, value });
+    const daily = /^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}\.?$|^\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4}$/.test((row[dateCol] ?? "").trim());
+    out.push({ date, value, ...(g.field && DAILY_TOTAL_FIELDS.has(g.field) ? { daily } : {}) });
   }
   return out;
 }
@@ -449,7 +497,7 @@ export interface TableColumn {
   field: BodyField | null;
   unit: string;
   reason?: string;
-  readings: { date: string; value: number }[];
+  readings: DeviceReading[];
 }
 
 /**
@@ -472,6 +520,13 @@ export function readTable(path: string, table: { headers: string[]; data: string
     if (!g) return void other.push(h);
     if (!g.field) return void columns.push({ header: h, field: null, unit: "", ...(g.reason ? { reason: g.reason } : {}), readings: [] });
     const readings = columnReadings(t.data, SLEEP_FIELDS.has(g.field) && sleepCol !== -1 ? sleepCol : dateCol, g, monthFirst);
+    if (DAILY_TOTAL_FIELDS.has(g.field)) {
+      const hasSampleTime = t.headers.some((header, col) => col !== dateCol && /^(time|timestamp|start time|start date)$/i.test(header));
+      for (const r of readings) {
+        r.source = path;
+        if (hasSampleTime) r.daily = false;
+      }
+    }
     const auto = (values: number[]) => (SLEEP_FIELDS.has(g.field!) ? sleepUnit(values) : activityUnit(values));
     columns.push({ header: h, field: g.field, unit: g.unit === "auto" ? auto(readings.map((r) => r.value)) : g.unit, readings });
   });
@@ -500,7 +555,13 @@ export const APPLE_TYPES: Record<string, { field: BodyField; scale?: number } | 
 
 const APPLE_UNITS: Record<string, string> = { count: "steps", min: "min", "count/min": "bpm", "%": "%", kg: "kg", lb: "lb", cm: "cm", in: "in", mmHg: "mmHg", "mg/dL": "mg/dL", "mmol<180.1558800000541>/L": "mmol/L", "mmol/L": "mmol/L", "mL/min·kg": "mL/kg/min", "ml/(kg*min)": "mL/kg/min" };
 
-const attr = (tag: string, name: string) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
+const attr = (tag: string, name: string) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1]?.replace(/&(#x[\da-f]+|#\d+|lt|gt|amp|quot|apos);/gi, (entity, code: string) => {
+  if (code.startsWith("#")) {
+    const n = code[1]?.toLowerCase() === "x" ? parseInt(code.slice(2), 16) : Number(code.slice(1));
+    return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : entity;
+  }
+  return ({ lt: "<", gt: ">", amp: "&", quot: '"', apos: "'" } as Record<string, string>)[code.toLowerCase()] ?? entity;
+});
 
 export interface AppleReading {
   key: string;
@@ -508,6 +569,8 @@ export interface AppleReading {
   unit: string;
   date: string;
   value: number;
+  /** Sleep interval, retained across XML chunks until its whole session is known. */
+  sleep?: { start: number; end: number; source: string };
 }
 
 /**
@@ -566,9 +629,10 @@ function appleSleep(tag: string): AppleReading[] {
   const date = toIsoDate(end ?? "");
   if (!date || !(hours > 0)) return [];
   const source = attr(tag, "sourceName") ?? "Apple Health";
-  const out: AppleReading[] = [{ key: `Sleep (${source})`, field: "sleep_duration", unit: "h", date, value: hours }];
-  if (stage === "AsleepDeep") out.push({ key: `Deep sleep (${source})`, field: "sleep_deep", unit: "h", date, value: hours });
-  if (stage === "AsleepREM") out.push({ key: `REM sleep (${source})`, field: "sleep_rem", unit: "h", date, value: hours });
+  const sleep = { start: appleTime(attr(tag, "startDate")), end: appleTime(end), source };
+  const out: AppleReading[] = [{ key: `Sleep (${source})`, field: "sleep_duration", unit: "h", date, value: hours, sleep }];
+  if (stage === "AsleepDeep") out.push({ key: `Deep sleep (${source})`, field: "sleep_deep", unit: "h", date, value: hours, sleep });
+  if (stage === "AsleepREM") out.push({ key: `REM sleep (${source})`, field: "sleep_rem", unit: "h", date, value: hours, sleep });
   return out;
 }
 
@@ -587,12 +651,25 @@ export function safeCut(xml: string): number {
  * keeps only a sum and a count per source and day.
  */
 export class DailyTally {
-  private readonly bySource = new Map<string, { field: BodyField; unit: string; toCanonical: (v: number) => number; days: Map<string, { sum: number; n: number }>; dropped: number }>();
+  private readonly bySource = new Map<string, { field: BodyField; unit: string; toCanonical: (v: number) => number; offset: number; factor: number; days: Map<string, { sum: number; n: number }>; dropped: number }>();
+  private readonly sleep = new Map<string, AppleReading[]>();
+
+  /** Keeps sleep sessions apart by device, including sessions crossing an XML chunk or midnight. */
+  addApple(reading: AppleReading, toCanonical: (v: number) => number): void {
+    if (!reading.sleep) {
+      this.add(reading.key.replace("HKQuantityTypeIdentifier", ""), reading.field, reading.unit, reading.date, reading.value, toCanonical);
+      return;
+    }
+    const rows = this.sleep.get(reading.sleep.source) ?? [];
+    rows.push(reading);
+    this.sleep.set(reading.sleep.source, rows);
+  }
 
   add(from: string, field: BodyField, unit: string, date: string, value: number, toCanonical: (v: number) => number): void {
     let s = this.bySource.get(from);
     if (!s) {
-      s = { field, unit, toCanonical, days: new Map(), dropped: 0 };
+      const offset = toCanonical(0);
+      s = { field, unit, toCanonical, offset, factor: toCanonical(1) - offset, days: new Map(), dropped: 0 };
       this.bySource.set(from, s);
     }
     const c = toCanonical(value);
@@ -604,12 +681,33 @@ export class DailyTally {
       return;
     }
     const d = s.days.get(date) ?? { sum: 0, n: 0 };
-    d.sum += value;
+    // Convert each sample into the first sample's unit before combining mixed-unit exports.
+    d.sum += (c - s.offset) / s.factor;
     d.n++;
     s.days.set(date, d);
   }
 
   series(): DailySeries[] {
+    const sleepTally = new DailyTally();
+    for (const rows of this.sleep.values()) {
+      const ordered = [...rows].sort((a, b) => a.sleep!.start - b.sleep!.start);
+      let session: AppleReading[] = [];
+      let end = -Infinity;
+      let date = "";
+      const flush = () => {
+        for (const r of session) sleepTally.add(r.key, r.field, r.unit, date, r.value, (v) => v);
+      };
+      for (const r of ordered) {
+        if (session.length && r.sleep!.start > end) {
+          flush();
+          session = [];
+        }
+        session.push(r);
+        if (session.length === 1 || r.sleep!.end >= end) date = r.date;
+        end = Math.max(session.length === 1 ? -Infinity : end, r.sleep!.end);
+      }
+      flush();
+    }
     return [...this.bySource.entries()].map(([from, s]) => {
       const sum = DAILY_TOTAL_FIELDS.has(s.field);
       const p = PLAUSIBLE[s.field];
@@ -627,6 +725,6 @@ export class DailyTally {
         days.push({ date, value: Math.round(value * 10) / 10, readings: n });
       }
       return { field: s.field, unit: s.unit, from, dropped, days };
-    });
+    }).concat(sleepTally.bySource.size ? sleepTally.series() : []);
   }
 }

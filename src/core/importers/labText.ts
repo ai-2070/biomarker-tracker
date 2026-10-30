@@ -88,7 +88,7 @@ function splitGlued(token: string): string[] {
 
 function tokenize(text: string): string[] {
   return text
-    .replace(/([<>≤≥])\s+(?=\d)/g, "$1")
+    .replace(/([<>]=?|[≤≥])\s+(?=\d)/g, "$1")
     .split(/\s+/)
     .filter(Boolean)
     .flatMap(splitGlued);
@@ -197,7 +197,8 @@ export function decimalProblem(row: Pick<ParsedRow, "value" | "labLow" | "labHig
 
 const BIRTH_WORDS = /birth|\bdob\b|geb\.|geburt|születés|szul\.|naissance|nacimiento|nascita/i;
 const SAMPLE_WORDS =
-  /collect|sample|specimen|drawn|entnahme|abnahme|probenahme|mintavétel|mintavetel|vérvétel|prélèvement|prelevement|toma de muestra|extracción|prelievo/i;
+  /collect|drawn|sampled|sample\s+(date|taken)|entnahme|abnahme|probenahme|mintavétel|mintavetel|vérvétel|prélèvement|prelevement|toma de muestra|extracción|prelievo/i;
+const RECEIPT_WORDS = /receiv|receipt|report|release|eingang|beérkez/i;
 
 interface FoundDate {
   date: string;
@@ -246,17 +247,30 @@ export function findDate(line: string, monthFirst = false): FoundDate | undefine
 /** The sample date: prefer lines that mention collection; never use birth dates. */
 function findSampleDate(lines: readonly string[], monthFirst: boolean): FoundDate | undefined {
   let fallback: FoundDate | undefined;
+  const collected: FoundDate[] = [];
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]!;
     if (BIRTH_WORDS.test(line)) continue;
     const here = findDate(line, monthFirst);
-    if (SAMPLE_WORDS.test(line)) {
-      // The date can also be on the next line, under the label.
+    const label = SAMPLE_WORDS.exec(line);
+    if (label) {
+      // Reports can put collection and receipt on the same line. Only the date after
+      // the collection label, before the next event label, belongs to the blood draw.
+      const after = line.slice(label.index + label[0].length);
+      const receipt = RECEIPT_WORDS.exec(after);
+      const collection = receipt ? after.slice(0, receipt.index) : after;
       const next = lines[i + 1];
-      const d = here ?? (next && !BIRTH_WORDS.test(next) ? findDate(next, monthFirst) : undefined);
-      if (d) return d;
+      const d = findDate(collection, monthFirst)
+        ?? (!receipt && next && !BIRTH_WORDS.test(next) && !RECEIPT_WORDS.test(next) ? findDate(next, monthFirst) : undefined);
+      if (d) collected.push(d);
     }
     if (!fallback && here) fallback = { date: here.date, note: here.note ?? "No collection date was labelled; this is the first date in the report." };
+  }
+  if (collected.length) {
+    const chosen = collected[0]!;
+    return new Set(collected.map((d) => d.date)).size > 1
+      ? { date: chosen.date, note: "Several collection dates were found. Check which blood draw these results belong to." }
+      : chosen;
   }
   return fallback;
 }
