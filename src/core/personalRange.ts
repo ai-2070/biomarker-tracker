@@ -27,7 +27,16 @@ const DAY = 86_400_000;
 const shift = (iso: string, days: number) => new Date(Date.parse(iso) + days * DAY).toISOString().slice(0, 10);
 
 export function personalRange(series: readonly Measurement[]): PersonalRange | undefined {
-  const sorted = sortByDate(series.filter((m) => m.value > 0 && Number.isFinite(m.value)));
+  // One observation per date: repeated readings must not create extra baseline coverage or weight.
+  const daily = new Map<string, { reading: Measurement; sum: number; count: number }>();
+  for (const m of sortByDate(series)) {
+    if (!(m.value > 0) || !Number.isFinite(m.value) || m.qualifier) continue;
+    const day = daily.get(m.date) ?? { reading: m, sum: 0, count: 0 };
+    day.sum += m.value;
+    day.count++;
+    daily.set(m.date, day);
+  }
+  const sorted = [...daily.values()].map(({ reading, sum, count }) => ({ ...reading, value: sum / count }));
   const last = sorted.at(-1);
   if (!last) return undefined;
   const recentFrom = shift(last.date, -(PERSONAL_RANGE.recentDays - 1));

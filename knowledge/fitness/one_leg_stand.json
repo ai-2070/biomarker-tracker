@@ -3,19 +3,17 @@
   "name": "One-leg stand",
   "unit": "s",
   "higherIsBetter": true,
-  "summary": "How many seconds you can stand on one leg without support. It reflects standing balance, which relies on the legs, the inner ear, sight and the nerves that sense where your feet are. It can be done with eyes open, and as a harder version with eyes closed.",
+  "summary": "How many seconds you can stand on one leg without support, with your eyes open. It reflects standing balance, which relies on the legs, the inner ear, sight and the nerves that sense where your feet are.",
   "howTo": [
     "Stand barefoot on a firm, flat floor, right next to a wall or kitchen counter you could grab, with someone nearby.",
     "Put your hands on your hips (Iranian norms) or cross your arms over your chest (British norms); use the same position each time and write it down.",
-    "Look at a fixed point ahead. Lift one foot clear of the floor, bending that knee behind you. Start the clock when the foot leaves the floor.",
+    "Keep your eyes open and look at a fixed point ahead throughout the test. Lift one foot clear of the floor, bending that knee behind you. Start the clock when the foot leaves the floor.",
     "Stop the clock when the lifted foot touches the floor or the standing leg, the standing foot moves, your hands leave your hips (or uncross), you touch the wall, or you reach the time limit.",
     "Time limit: up to 60 s. Write down the limit you used; the British norms stopped at 30 s and the Iranian ones at 60 s, so results above 30 s count as 30 s against the British norms.",
-    "Do two tries per leg and keep the best (Iranian protocol). Enter your right leg's time: the norms here are for the right leg (the left leg's were very similar).",
-    "Eyes closed (harder): only if eyes open is steady for at least 10 s. Same steps, close your eyes once the foot is up, and stop when you open them. Have someone stand right beside you."
+    "Do two tries per leg and keep the best (Iranian protocol). Enter your right leg's eyes-open time: the norms here are for the right leg (the left leg's were very similar). Do not enter an eyes-closed time."
   ],
   "safety": [
     "Fall risk: always do it next to a wall or counter you can grab at once, on a non-slip floor, with nothing around you to fall onto. Ideally someone stands beside you.",
-    "Don't do the eyes-closed version alone, or if you have fallen in the last year, feel dizzy, or have problems with your inner ear, feet or eyesight. Ask a doctor or physiotherapist first.",
     "Stop and sit down if you feel dizzy or unsteady.",
     "If you can't hold 10 s with eyes open and you are over 50, mention it to your doctor, especially if you have fallen or feel unsteady."
   ],
