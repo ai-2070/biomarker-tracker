@@ -73,19 +73,29 @@ export async function zipEntries(file: Blob): Promise<ZipEntry[]> {
     if (name.endsWith("/")) continue;
     if (method !== 0 && method !== 8) continue; // other compression methods are very rare
     const stream = (): ReadableStream<Uint8Array> => {
+      let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
+      let cancelled = false;
       const body = new ReadableStream<Uint8Array>({
-        async start(controller) {
-          const head = await view(file.slice(localOffset, localOffset + 30));
-          const start = localOffset + 30 + u16(head, 26) + u16(head, 28);
-          const reader = file.slice(start, start + compressed).stream().getReader();
-          for (;;) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            controller.enqueue(value);
+        async pull(controller) {
+          if (!reader) {
+            const head = await view(file.slice(localOffset, localOffset + 30));
+            if (cancelled) return;
+            const start = localOffset + 30 + u16(head, 26) + u16(head, 28);
+            reader = file.slice(start, start + compressed).stream().getReader();
           }
-          controller.close();
+          const { done, value } = await reader.read();
+          if (cancelled) return;
+          if (done) {
+            reader.releaseLock();
+            controller.close();
+          } else controller.enqueue(value);
         },
-      });
+        async cancel(reason) {
+          cancelled = true;
+          await reader?.cancel(reason);
+          reader?.releaseLock();
+        },
+      }, { highWaterMark: 0 });
       return method === 8 ? body.pipeThrough(new DecompressionStream("deflate-raw") as unknown as TransformStream<Uint8Array, Uint8Array>) : body;
     };
     entries.push({

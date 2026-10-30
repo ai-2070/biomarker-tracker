@@ -29,11 +29,11 @@ const LABELS: readonly { re: RegExp; field: BodyField | "bp" }[] = [
 ];
 
 /** Words that make a line not a measurement of the field (goals, scores, ranges, sleep score…). */
-const NOT_A_VALUE = /goal|target|score|zone|\b(max|min)\b.*(heart|hr|rate|pulse)|(heart|hr|rate|pulse).*\b(max|min)\b|minimum|maximum|lowest|highest|range|average of|trend|baseline|status|readiness|recovery/;
+const NOT_A_VALUE = /goal|target|score|\bzone\b(?! minutes)|\b(max|min)\b.*(heart|hr|rate|pulse)|(heart|hr|rate|pulse).*\b(max|min)\b|minimum|maximum|lowest|highest|range|average of|trend|baseline|status|readiness|recovery/;
 
 /** A line under a label counts only when it's just the value: "58 bpm", "128/82 mmHg", "7 h 12 min". */
 const ONLY_VALUE =
-  /^\s*\d{1,3}(?:[,.\s]\d{3})+\s*(?:steps?)?\s*$|^\s*\d{1,6}\s*steps?\s*$|^[<>~≈]?\s*\d{1,3}(?:[.,]\d{1,2})?\s*(?:\/\s*\d{2,3})?\s*(?:bpm|\/\s*min|ms|%|kg|lbs?|mmhg|mmol\/l|mg\/dl|cm|in|ml\/kg\/min)?\.?\s*$|^\s*\d{1,2}\s*(?:h|hr|hrs|hours?|ó|óra|std)\.?\s*(?:\d{1,2}\s*(?:m|min|mins|minutes?|p|perc)\.?)?\s*$|^\s*\d{1,3}\s*(?:m|min|mins|minutes?)\s*$|^\s*\d{1,2}:[0-5]\d\s*$/i;
+  /^\s*\d{1,3}(?:[,.\s]\d{3})+\s*(?:steps?)?\s*$|^\s*\d{1,6}\s*steps?\s*$|^[<>~≈]?\s*\d{1,3}(?:[.,]\d{1,2})?\s*(?:\/\s*\d{2,3})?\s*(?:bpm|\/\s*min|ms|%|kg|lbs?|mmhg|mmol\/l|mg\/dl|cm|in|ml\/kg\/min)?\.?\s*$|^\s*\d{1,2}(?:[.,]\d+)?\s*(?:h|hr|hrs|hours?|ó|óra|std)\.?\s*(?:\d{1,2}(?:[.,]\d+)?\s*(?:m|min|mins|minutes?|p|perc)\.?)?\s*$|^\s*\d{1,3}(?:[.,]\d+)?\s*(?:m|min|mins|minutes?)\s*$|^\s*\d{1,2}:[0-5]\d\s*$/i;
 
 const UNITS: Partial<Record<BodyField, readonly [RegExp, string][]>> = {
   resting_hr: [[/bpm|\/min/, "bpm"]],
@@ -57,12 +57,12 @@ const DEFAULT_UNIT: Record<BodyField, string> = {
 
 /** "7 h 12 min", "7h 12m", "7 hr", "45 min", "1:35" → hours. */
 export function durationHours(s: string): number | undefined {
-  let m = /(\d{1,2})\s*(?:h|hr|hrs|hours?|ó|óra|std)\.?\s*(\d{1,2})\s*(?:m|min|mins|minutes?|p|perc)\b/i.exec(s);
-  if (m) return Number(m[1]) + Number(m[2]) / 60;
-  m = /(\d{1,2})\s*(?:h|hr|hrs|hours?)\b/i.exec(s);
-  if (m) return Number(m[1]);
-  m = /(\d{1,3})\s*(?:m|min|mins|minutes?)\b/i.exec(s);
-  if (m) return Number(m[1]) / 60;
+  let m = /(?<![\d.,])(\d{1,2}(?:[.,]\d+)?)\s*(?:h|hr|hrs|hours?|ó|óra|std)\.?\s*(\d{1,2}(?:[.,]\d+)?)\s*(?:m|min|mins|minutes?|p|perc)\b/i.exec(s);
+  if (m) return Number(m[1]!.replace(",", ".")) + Number(m[2]!.replace(",", ".")) / 60;
+  m = /(?<![\d.,])(\d{1,2}(?:[.,]\d+)?)\s*(?:h|hr|hrs|hours?|ó|óra|std)\b/i.exec(s);
+  if (m) return Number(m[1]!.replace(",", "."));
+  m = /(?<![\d.,])(\d{1,3}(?:[.,]\d+)?)\s*(?:m|min|mins|minutes?)\b/i.exec(s);
+  if (m) return Number(m[1]!.replace(",", ".")) / 60;
   m = /^\s*(\d{1,2}):([0-5]\d)\s*$/.exec(s);
   if (m) return Number(m[1]) + Number(m[2]) / 60;
   return undefined;
@@ -112,11 +112,18 @@ export function parseHealthScreenshot(text: string, today: string): ParsedReport
     // The value: on the label's line after the label, or on one of the next two lines.
     const after = line.slice(low.search(label.re) + (low.match(label.re)?.[0].length ?? 0));
     let found: { value: number; unit: string; dia?: number } | undefined;
+    let unitConflict = false;
     let from = line;
     for (const [candidate, src] of [[after, line], [lines[i + 1] ?? "", lines[i + 1] ?? ""], [lines[i + 2] ?? "", lines[i + 2] ?? ""]] as const) {
       if (candidate !== after && LABELS.some((l) => l.re.test(candidate.toLowerCase()))) break;
       if (candidate !== after && !ONLY_VALUE.test(candidate)) continue;
       found = valueIn(field, candidate);
+      if (found && field !== "bp" && candidate !== after) {
+        const labelUnit = (UNITS[field] ?? []).find(([re]) => re.test(after.toLowerCase()))?.[1];
+        const valueUnit = (UNITS[field] ?? []).find(([re]) => re.test(candidate.toLowerCase()))?.[1];
+        unitConflict = !!labelUnit && !!valueUnit && labelUnit !== valueUnit;
+        if (labelUnit && !valueUnit) found.unit = labelUnit;
+      }
       if (found) {
         from = src === line ? line : `${line} ${src}`;
         break;
@@ -129,6 +136,7 @@ export function parseHealthScreenshot(text: string, today: string): ParsedReport
       const p = PLAUSIBLE[f];
       const c = toCanonicalRough(value, unit);
       const problems = c < p.min || c > p.max ? ["This doesn't look like a real value: check it against the screenshot."] : [];
+      if (unitConflict) problems.push("The label and value show different units: check the screenshot and choose the right unit.");
       rows.push({ line: from, biomarkerId: f, value: String(value), unit, problems, notes: ["Read from a screenshot: check the value and the date."] });
     };
     if (field === "bp") {

@@ -44,7 +44,7 @@ export async function readPdfText(file: File, progress?: OcrProgress): Promise<{
   }
 
   const lines: string[] = [];
-  let ocrText: string | null = null;
+  let ocrPages = 0;
   try {
     for (let i = 1; i <= doc.numPages; i++) {
       const page = await doc.getPage(i);
@@ -55,36 +55,32 @@ export async function readPdfText(file: File, progress?: OcrProgress): Promise<{
         const t = item.transform as number[];
         pieces.push({ str: item.str, x: t[4] ?? 0, y: t[5] ?? 0, width: item.width, height: item.height });
       }
-      lines.push(...piecesToLines(pieces));
-      page.cleanup();
-    }
-
-    if (lines.join("").trim().length < 20) {
-      // No text layer: a scan. Render each page and recognise its text.
-      const { recognize } = await import("./ocr");
-      const pages = Math.min(doc.numPages, MAX_OCR_PAGES);
-      const texts: string[] = [];
-      for (let i = 1; i <= pages; i++) {
-        const page = await doc.getPage(i);
+      const pageLines = piecesToLines(pieces);
+      if (pageLines.join("").trim().length < 20) {
+        // A text cover must not hide scanned pages later in the same report.
+        if (ocrPages >= MAX_OCR_PAGES) {
+          page.cleanup();
+          throw new PdfReadError(`This PDF has more than ${MAX_OCR_PAGES} scanned pages. Split it into smaller PDFs so every result page can be read. Nothing from this file has been imported.`, "invalid");
+        }
+        ocrPages++;
+        // Keep the bundled OCR engine out of the text-only PDF path.
+        const { recognize } = await import("./ocr");
         const viewport = page.getViewport({ scale: 2.5 });
         const canvas = document.createElement("canvas");
         canvas.width = Math.ceil(viewport.width);
         canvas.height = Math.ceil(viewport.height);
         await page.render({ canvas, canvasContext: canvas.getContext("2d")!, viewport }).promise;
-        texts.push(await recognize(canvas, (f, stage) => progress?.((i - 1 + f) / pages, pages > 1 ? `${stage} (page ${i} of ${pages})` : stage)));
-        page.cleanup();
-      }
-      ocrText = texts.join("\n");
+        lines.push(await recognize(canvas, (f, stage) => progress?.((i - 1 + f) / doc.numPages, `${stage} (page ${i} of ${doc.numPages})`)));
+      } else lines.push(...pageLines);
+      page.cleanup();
     }
   } finally {
     void doc.loadingTask.destroy();
   }
 
-  if (ocrText !== null) {
-    if (ocrText.replace(/\s/g, "").length < 20) {
-      throw new PdfReadError("No text was found in this PDF, even with text recognition. Please enter the values by hand.", "no-text");
-    }
-    return { text: ocrText, ocr: true };
+  const text = lines.join("\n");
+  if (text.replace(/\s/g, "").length < 20) {
+    throw new PdfReadError("No text was found in this PDF, even with text recognition. Please enter the values by hand.", "no-text");
   }
-  return { text: lines.join("\n"), ocr: false };
+  return { text, ocr: ocrPages > 0 };
 }
