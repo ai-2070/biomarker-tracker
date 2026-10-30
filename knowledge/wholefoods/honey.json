@@ -22,6 +22,67 @@
   ],
   "lore": [
     {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny wrote that honey keeps things from rotting by its sweetness alone, and that it was used with the greatest success for the throat and tonsils, for quinsy (an abscess beside the tonsils) and for all ailments of the mouth, and in fevers when the tongue is parched.",
+      "modern": "partly",
+      "finding": "Mouth sores from cancer treatment (oral mucositis)",
+      "note": "One part has been tested: in trials in people having radiotherapy or chemotherapy, honey used in the mouth went with fewer severe mouth sores and less pain. Nobody has tested it for quinsy, for other mouth complaints or for a parched tongue in fever.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 22, chapter 50 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D22%3Achapter%3D50"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny wrote that honey boiled in water was used for pneumonia and pleurisy, for snakebites and for poisoning by mushrooms, that honeyed wine was given for paralysis, and that honey with rose oil was dropped into the ears.",
+      "modern": "not tested",
+      "note": "None of these uses has been tested. Pneumonia, snakebite and mushroom poisoning are emergencies treated in hospital today.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 22, chapter 50 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D22%3Achapter%3D50"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Varro, as quoted by Pliny the Elder, about AD 77)",
+      "belief": "Pliny passed on Varro's explanation that jaundice was called the 'royal disease' because it was cured with honeyed wine (mulsum). Honeyed wine, Pliny added, revived a failing appetite and helped people put on flesh.",
+      "modern": "not tested",
+      "note": "No study has tested honey or honeyed wine for jaundice, a yellowing of the skin and eyes that comes from the liver or the blood and needs a doctor.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 22, chapter 53 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D22%3Achapter%3D53"
+        }
+      ]
+    },
+    {
+      "who": "Babylonian Talmud (Yoma 83b, compiled about the 6th century AD)",
+      "belief": "The rabbis taught that a person seized by bulmos, a sudden, faint, ravenous hunger, was to be fed honey and all kinds of sweet foods, because they 'restore the sight of his eyes'; Shmuel added a sheep's tail with honey, and others fine wheat or barley flour with honey. Abaye said honey brightens the eyes only after a meal, and before one it whets the appetite.",
+      "modern": "not tested",
+      "note": "The rabbis pointed to Jonathan, whose eyes lit up after he tasted honey, but said it was no proof, since he was only very hungry. No study on this page has tested honey for sudden faintness from hunger; the trials looked at blood sugar over weeks or months, with mixed results.",
+      "sources": [
+        {
+          "title": "Babylonian Talmud, Yoma 83b (William Davidson translation)",
+          "author": "Talmud",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Yoma.83b.7-10"
+        }
+      ]
+    },
+    {
       "who": "Hebrew Bible",
       "belief": "God promised to bring the Israelites out of Egypt to 'a land flowing with milk and honey'. Samson, who had torn a lion apart with his bare hands, later found bees and honey in its skeleton and made a riddle of it: 'Out of the eater came something to eat, out of the strong came something sweet.' And when Saul's son Jonathan, in a battle where the troops had been forbidden to eat, dipped a stick in honey and tasted it, 'his eyes lit up'.",
       "sources": [

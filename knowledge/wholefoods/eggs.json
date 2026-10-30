@@ -29,6 +29,87 @@
   ],
   "lore": [
     {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, AD 77)",
+      "belief": "Pliny wrote that the yolk of one egg swallowed raw, without letting it touch the teeth, is remarkably good for a cough, catarrh of the chest and a sore throat, and that raw yolk is very good for the kidneys, a sore or ulcerated bladder, and coughing up blood. For dysentery, five raw yolks were given in wine with other ingredients.",
+      "modern": "not tested",
+      "note": "No study on this page tests eggs for coughs, the kidneys or the bladder. Two points on this page bear on eating eggs raw: raw and lightly cooked eggs can carry Salmonella (see who should be careful), and in 10 volunteers about a third of the protein in a raw egg meal escaped digestion in the small intestine, against about 6% when cooked.",
+      "sources": [
+        {
+          "title": "Natural History, book 29, chapter 11",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D29%3Achapter%3D11"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, AD 77)",
+      "belief": "Pliny wrote that eggs slip down however swollen the throat, warming it as they pass, and that they are the only food that nourishes the sick without loading the stomach, being food and drink at once. Eggs softened in vinegar and kneaded with meal into bread were said to bring back the strength of people with coeliac flux, a long-lasting diarrhoea.",
+      "modern": "not tested",
+      "note": "Pliny's coeliac flux was a long diarrhoea, not today's coeliac disease. No study on this page tests eggs as food for the sick or for diarrhoea; in one small study, about 94% of the protein in a cooked egg meal was taken up in the small intestine.",
+      "sources": [
+        {
+          "title": "Natural History, book 29, chapter 11",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D29%3Achapter%3D11"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Celsus, De Medicina, 1st century AD)",
+      "belief": "Celsus ranked foods by how much they nourish and what they do in the body: a hard-boiled egg is very substantial food, a soft-cooked or raw egg very light. He counted soft eggs among the foods best suited to the stomach and eggs, soft or raw, among those least likely to cause wind, but hard eggs, especially poached, among the foods that bind the bowels; raw eggs, he said, make phlegm thicker.",
+      "modern": "partly",
+      "note": "One part has been measured: in 10 healthy volunteers, 35% of the protein in a raw egg meal escaped digestion in the small intestine, against 6% when cooked, which fits cooked eggs being the more substantial food. His points about the stomach, wind, the bowels and phlegm haven't been tested in any study on this page.",
+      "sources": [
+        {
+          "title": "De Medicina, book 2, chapter 18",
+          "author": "Celsus (Loeb Classical Library translation, LacusCurtius)",
+          "when": "1st century AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#18"
+        },
+        {
+          "title": "De Medicina, book 2, chapters 23 to 26",
+          "author": "Celsus (Loeb Classical Library translation, LacusCurtius)",
+          "when": "1st century AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#24"
+        },
+        {
+          "title": "De Medicina, book 2, chapter 30",
+          "author": "Celsus (Loeb Classical Library translation, LacusCurtius)",
+          "when": "1st century AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#30"
+        }
+      ]
+    },
+    {
+      "who": "Jewish tradition (Babylonian Talmud, Berakhot and Horayot)",
+      "belief": "The rabbis taught that an egg is better than the same amount of any other food except meat: a lightly cooked egg, they said, is better than six log (a measure of volume) of fine flour, and a roasted egg better than four. Another teaching lists eating a hard-boiled egg without salt among five things that bring back forgotten learning.",
+      "modern": "not tested",
+      "note": "No study on this page compares the nourishment of eggs with flour or tests eggs for memory; the page's studies are about the heart, cholesterol, diabetes and the eyes. An egg holds a lot of protein, vitamins and minerals for its size (see what's in it), but that doesn't test these sayings.",
+      "sources": [
+        {
+          "title": "Berakhot 44b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Berakhot.44b.8"
+        },
+        {
+          "title": "Horayot 13b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Horayot.13b.2"
+        }
+      ]
+    },
+    {
       "who": "Hindu tradition (the Chandogya Upanishad and the Laws of Manu)",
       "belief": "The Chandogya Upanishad tells that in the beginning there was nothing. It became something, grew, and turned into an egg. The egg lay for a year, then broke open into two halves, one of silver and one of gold: the silver became the earth and the gold the sky, the membranes the mountains and the mist, the veins the rivers, the fluid the sea, and what was born from it was the sun. In the Laws of Manu, the creator's seed became a golden egg, as bright as the sun, in which he was born as Brahman, forefather of the whole world; he lived in it for a year, then split it in two to make heaven and earth.",
       "sources": [

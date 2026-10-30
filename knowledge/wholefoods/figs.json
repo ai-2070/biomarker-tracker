@@ -24,6 +24,81 @@
   ],
   "lore": [
     {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny wrote that dried figs, though hard on the stomach, were good in every case for the bladder, for laboured breathing and asthma, and for diseases of the liver, kidneys and spleen.",
+      "modern": "not tested",
+      "note": "No study on this page has tested figs for asthma or breathing, or for the bladder, liver, kidneys or spleen.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 63 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D63"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny wrote that figs were extremely useful for people recovering from a long illness, and for people with epilepsy or dropsy (swelling from fluid held in the body).",
+      "modern": "not tested",
+      "note": "No study has tested figs in people recovering from an illness, or in epilepsy or fluid swelling.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 63 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D63"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
+      "belief": "Pliny warned that ripe figs make people sweat and bring out pimples, which made them unwholesome in autumn, when the sweating was followed by shivering; that they upset the stomach for a short time; that they were generally thought to spoil the voice; and that figs forced to ripen early were never wholesome.",
+      "modern": "not tested",
+      "note": "None of these warnings has been studied: no study on this page looked at sweating, pimples, shivering or the voice after eating figs.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 63 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D63"
+        }
+      ]
+    },
+    {
+      "who": "Babylonian Talmud (Yoma 83b, compiled about the 6th century AD)",
+      "belief": "The rabbis taught that a person seized by bulmos, a sudden, faint, ravenous hunger, was to be fed honey and sweet foods. Rabbi Yohanan told how, seized by it once, he ran to the east side of a fig tree, where the sun ripens the figs first, found ripe figs, ate them and was saved.",
+      "modern": "not tested",
+      "note": "Bulmos isn't a term modern medicine uses. No study on this page has tested figs for sudden weakness from hunger.",
+      "sources": [
+        {
+          "title": "Babylonian Talmud, Yoma 83b (William Davidson translation)",
+          "author": "Talmud",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Yoma.83b.7-10"
+        }
+      ]
+    },
+    {
+      "who": "Chinese medicine (Wang Ying and Li Shizhen, in the Bencao Gangmu, 1578)",
+      "belief": "Chinese physicians wrote that the fig fruit opens the appetite and stops diarrhoea (Wang Ying), and Li Shizhen added that it treats the 'five kinds of piles'; for painful, swollen piles a hot brew of the leaves was used to steam and wash them.",
+      "modern": "not tested",
+      "note": "No study on this page has tested figs for appetite, diarrhoea or piles. The small trials found something close to the opposite of stopping diarrhoea: figs loosened stools in people with constipation.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits 3: fig (Chinese text)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%B8%89"
+        }
+      ]
+    },
+    {
       "who": "Hebrew Bible and the Talmud",
       "belief": "In Genesis, once Adam and Eve had eaten from the forbidden tree, they saw they were naked and sewed fig leaves together to cover themselves. The rabbis of the Talmud argued over which tree it had been: Rabbi Nehemiah said a fig, because they mended their shame with the same tree that had caused it; Rabbi Meir said a vine and Rabbi Judah wheat.",
       "note": "Genesis never names the fruit. The apple of later European art isn't in the text.",

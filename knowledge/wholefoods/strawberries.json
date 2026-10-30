@@ -22,6 +22,67 @@
   ],
   "lore": [
     {
+      "who": "England (Nicholas Culpeper, The Complete Herbal, 1653)",
+      "belief": "Culpeper wrote that ripe strawberries are 'cool and moist', and that the berries are excellently good to cool the liver, the blood and the spleen, or a hot, choleric stomach, to refresh and comfort the fainting spirits and to quench thirst, and that they are good also for other inflammations.",
+      "modern": "partly",
+      "finding": "C-reactive protein (CRP), a blood marker of inflammation",
+      "note": "'Cooling' the liver and blood belongs to the hot-and-cold medicine of his time and can't be tested as such. Inflammation can be measured: in two meta-analyses of small trials, CRP, a blood marker of inflammation, was about 0.5 to 0.6 mg/L lower with strawberries, mostly as freeze-dried powder, but no study has shown that this means less illness.",
+      "sources": [
+        {
+          "title": "The Complete Herbal: Strawberries",
+          "author": "Nicholas Culpeper",
+          "when": "1653",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49513"
+        }
+      ]
+    },
+    {
+      "who": "England (Nicholas Culpeper, The Complete Herbal, 1653)",
+      "belief": "Culpeper also warned that it is 'not amiss to refrain from them in a fever', in case they rotted in the stomach and made the fits worse, and in his list of fruits he wrote that strawberries are 'very hurtful for such as have agues', the fevers that come and go.",
+      "modern": "not tested",
+      "note": "No study on this page looked at eating strawberries during a fever.",
+      "sources": [
+        {
+          "title": "The Complete Herbal: Strawberries; Fruits and their buds",
+          "author": "Nicholas Culpeper",
+          "when": "1653",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49513"
+        }
+      ]
+    },
+    {
+      "who": "England (Nicholas Culpeper, The Complete Herbal, 1653)",
+      "belief": "The water distilled from the berries, Culpeper wrote, is 'a sovereign remedy and cordial in the panting and beating of the heart', a racing, pounding heart, and is good for the yellow jaundice.",
+      "modern": "not tested",
+      "note": "No study on this page tested strawberries, or a water distilled from them, for a racing heart or for jaundice. The only heart finding is about heart attacks: in a large US study of women, eating blueberries and strawberries more than 3 times a week went with fewer heart attacks, but the result could be chance.",
+      "sources": [
+        {
+          "title": "The Complete Herbal: Strawberries",
+          "author": "Nicholas Culpeper",
+          "when": "1653",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49513"
+        }
+      ]
+    },
+    {
+      "who": "England (Nicholas Culpeper, The Complete Herbal, 1653)",
+      "belief": "Boiled in wine and water and drunk, Culpeper wrote, the leaves and roots cool the liver and blood, 'assuage all inflammations in the reins and bladder' (the kidneys and bladder) and make the body pass more urine. In his list of distilled waters, strawberry water 'breaks the stone' and helps all inward inflammations, especially those of the kidneys, bladder and urinary passages.",
+      "modern": "not tested",
+      "note": "No study on this page tested strawberries, their leaves or their roots for kidney or bladder stones, kidney or bladder inflammation, or the flow of urine.",
+      "sources": [
+        {
+          "title": "The Complete Herbal: Strawberries; Simple waters distilled",
+          "author": "Nicholas Culpeper",
+          "when": "1653",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/49513"
+        }
+      ]
+    },
+    {
       "who": "Ancient Rome (Ovid, Metamorphoses, about AD 8)",
       "belief": "Ovid pictured the Golden Age, the first age of the world, as a time when no one ploughed or sowed: the earth gave every fruit of its own accord, and people, content with food nobody had to grow, gathered strawberry-tree fruit and wild strawberries on the mountainsides, blackberries from the bushes and acorns from the ground.",
       "note": "For a Roman poet, the wild strawberry was food from an innocent past without work or war. Pliny the Elder, writing a few decades later, called it the 'ground strawberry' and found it remarkable that the strawberry tree (arbutus) bore a similar fruit: the only case he knew of the same kind of fruit growing both on a tree and on the ground.",
