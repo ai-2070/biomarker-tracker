@@ -29,6 +29,8 @@ export const setBridgePort = (p: number) => (port = p);
 export const bridgeUrl = () => `http://127.0.0.1:${port}/mcp`;
 
 export function openRun(tools: ToolSet, engine?: string): BridgeRun {
+  // Hermes stores one stable token: overlapping runs must never retarget it to another scope.
+  if (engine === "hermes" && current.has(engine)) throw new Error("Hermes is still answering another question. Wait for it to finish or choose another model.");
   const run: BridgeRun = { token: crypto.randomBytes(32).toString("hex"), tools, steps: [], ids: new Set() };
   runs.set(run.token, run);
   if (engine) current.set(engine, run);

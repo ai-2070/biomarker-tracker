@@ -46,6 +46,10 @@ export function jump(e: React.MouseEvent, id: string) {
   e.preventDefault();
   const el = document.getElementById(id);
   if (!el) return;
+  // The hash belongs to the router, so reveal collapsed research before scrolling by hand.
+  for (let parent = el.parentElement; parent; parent = parent.parentElement) {
+    if (parent instanceof HTMLDetailsElement) parent.open = true;
+  }
   el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   el.focus({ preventScroll: true });
 }

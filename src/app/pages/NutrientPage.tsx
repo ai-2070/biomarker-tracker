@@ -2,12 +2,12 @@ import { todayIso } from "../../core/dates";
 import { selectFoods } from "../../core/foods";
 import { dailyReference } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
-import { findingCounts, interactionsFor, type FindingEffect, type NutrientDef } from "../../core/nutrients";
+import { interactionsFor, type NutrientDef } from "../../core/nutrients";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
-import { EFFECT, Findings } from "../components/findings";
+import { Findings } from "../components/findings";
 import { GradeBadge, StudyLink } from "../components/evidence";
 import { AddToProtocol } from "../components/AddToProtocol";
 import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
@@ -21,6 +21,7 @@ import { BIOMARKER_MAP, EVIDENCE, FOODS, NUTRIENT_MAP, fullName } from "../knowl
 import { href } from "../router";
 import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
+import { SupplementGuide } from "../components/SupplementGuide";
 
 
 const INTAKE_TYPE = {
@@ -33,8 +34,8 @@ function H2({ children }: { children: string }) {
 }
 
 /**
- * One vitamin or mineral: what it does, your status, too little and too much, food sources, what trials
- * of supplements found (and, separately, foods), forms, EFSA reference values, interactions and research.
+ * One nutrient or supplement: its roles and studied benefits, cautions, status and food sources,
+ * with supplement and food evidence kept apart.
  */
 export function NutrientPage({ id }: { id: string }) {
   const n = NUTRIENT_MAP.get(id);
@@ -45,6 +46,7 @@ export function NutrientPage({ id }: { id: string }) {
   const notes = safetyNotes(safetyLabels(protocols, profile));
   const safety: SafetyId[] = notes.map((x) => x.id);
   const yours = interactionsFor(n, safety);
+  const basic = n.researchStatus === "not-reviewed";
 
   return (
     <>
@@ -56,6 +58,7 @@ export function NutrientPage({ id }: { id: string }) {
           <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
           {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
+          {basic && !n.simpleGuide && <p className="mt-2 text-sm font-medium text-ink-2">Basic guide · Benefits not yet reviewed</p>}
         </div>
         <div className="flex flex-wrap gap-2">
           {/* A habit with the nutrient's blood test picked to watch, when the app has one. */}
@@ -83,75 +86,47 @@ export function NutrientPage({ id }: { id: string }) {
             <p className="text-sm text-ink-2">Shown because of something in your habits or profile.</p>
           </div>
         )}
+        {n.simpleGuide ? <SupplementGuide n={n} guide={n.simpleGuide} /> : (
+          <>
 
         <Card className="flex flex-col gap-4">
           <p className="text-lg">{n.summary}</p>
           <div>
-            <h2 className="mb-1 font-semibold">What it does</h2>
+            <h2 className="mb-1 font-semibold">{basic ? "About the ingredient" : n.kind === "supplement" ? "What it does" : "Roles in your body"}</h2>
             <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">
               {n.roles.map((r) => (
                 <li key={r}>{r}</li>
               ))}
             </ul>
+            {!basic && (
+              <p className="mt-3 text-sm text-ink-2">
+                {n.kind === "supplement"
+                  ? "The findings below show which uses were studied in people, what changed and how strong the evidence is."
+                  : "These roles explain why your body needs the nutrient. Supplement benefits depend on your status and the use being studied."}
+              </p>
+            )}
           </div>
         </Card>
 
-        <span id="status" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-        <Status n={n} all={all ?? []} />
-
-        <span id="low-high" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-        <Card className="grid gap-5 sm:grid-cols-2">
-          <div className="flex flex-col gap-3">
-            <H2>Too little</H2>
-            <List title="Signs" items={n.low.signs} />
-            <List title="Who tends to run low" items={n.low.atRisk} />
-          </div>
-          <div className="flex flex-col gap-3">
-            <H2>Too much</H2>
-            <p className="text-ink-2">{n.high.note}</p>
-            {n.high.signs.length > 0 && <List title="Signs" items={n.high.signs} />}
-          </div>
-        </Card>
-
-        <span id="trials" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-        <Findings
-          prefix="trial"
-          title="What trials of supplements found"
-          intro="Outcome by outcome, strongest evidence first. Who was studied matters: a benefit in people who were low says little about people who aren't."
-          findings={n.findings}
-        />
-
-        <ClockNote kind="nutrient" id={n.id} />
-
-        {n.foodFindings && n.foodFindings.length > 0 && (
-          <Findings
-            prefix="food"
-            title="What studies of foods found"
-            intro="Foods rich in it, not the supplement. A food brings many other compounds, so these findings don't carry over to supplements, or the other way round."
-            findings={n.foodFindings}
-          />
-        )}
-
-        <span id="food" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-        <Foods n={n} safety={safety} />
-
-        {n.forms.length > 0 && (
-          <Card id="forms" className="flex scroll-mt-6 flex-col gap-3">
-            <H2>Supplement forms</H2>
-            <dl className="flex flex-col gap-3">
-              {n.forms.map((f) => (
-                <div key={f.name}>
-                  <dt className="font-medium">{f.name}</dt>
-                  <dd className="text-ink-2">{f.note}</dd>
-                </div>
-              ))}
-            </dl>
+        {basic ? (
+          <Card id="uses" className="flex scroll-mt-6 flex-col gap-3">
+            <H2>Common uses</H2>
+            <p className="text-sm text-ink-2">These are purposes people use it for. Benefits and study quality have not been reviewed here.</p>
+            <ul className="flex list-disc flex-col gap-2 pl-5">
+              {n.commonUses?.map((use) => <li key={use}>{use}</li>)}
+            </ul>
           </Card>
+        ) : (
+          <>
+            <span id="trials" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+            <Findings
+              prefix="trial"
+              title="Main uses & potential benefits"
+              intro="See what this supplement may help with and who was studied. Benefits depend on the use and the people taking it."
+              findings={n.findings}
+            />
+          </>
         )}
-
-        <span id="reference" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-        <Reference n={n} />
-
         {(n.interactions.length > 0 || n.cautions.length > 0) && (
           <Card id="interactions" className="flex scroll-mt-6 flex-col gap-3">
             <H2>Interactions and cautions</H2>
@@ -169,6 +144,66 @@ export function NutrientPage({ id }: { id: string }) {
             {n.cautions.length > 0 && <List title="Cautions" items={n.cautions} />}
           </Card>
         )}
+        {!basic && (
+          <>
+        <span id="status" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+        <Status n={n} all={all ?? []} />
+
+        <span id="low-high" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+        <Card className="grid gap-5 sm:grid-cols-2">
+          <div className="flex flex-col gap-3">
+            <H2>Too little</H2>
+            <List title="Signs" items={n.low.signs} />
+            <List title="Who tends to run low" items={n.low.atRisk} />
+          </div>
+          <div className="flex flex-col gap-3">
+            <H2>Too much</H2>
+            <p className="text-ink-2">{n.high.note}</p>
+            {n.high.signs.length > 0 && <List title="Signs" items={n.high.signs} />}
+          </div>
+        </Card>
+          </>
+        )}
+
+        {!basic && <ClockNote kind="nutrient" id={n.id} />}
+
+        {n.foodFindings && n.foodFindings.length > 0 && (
+          <Findings
+            prefix="food"
+            title="What studies of foods found"
+            intro="Foods rich in it, not the supplement. A food brings many other compounds, so these findings don't carry over to supplements, or the other way round."
+            findings={n.foodFindings}
+          />
+        )}
+
+        {(!basic || n.foodSources.examples.length > 0) && (
+          <>
+            <span id="food" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+            <Foods n={n} safety={safety} />
+          </>
+        )}
+
+        {n.forms.length > 0 && (
+          <Card id="forms" className="flex scroll-mt-6 flex-col gap-3">
+            <H2>Supplement forms</H2>
+            <dl className="flex flex-col gap-3">
+              {n.forms.map((f) => (
+                <div key={f.name}>
+                  <dt className="font-medium">{f.name}</dt>
+                  <dd className="text-ink-2">{f.note}</dd>
+                </div>
+              ))}
+            </dl>
+          </Card>
+        )}
+
+        {!basic && (
+          <>
+            <span id="reference" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+            <Reference n={n} />
+          </>
+        )}
+
 
         <Levers n={n} />
 
@@ -188,7 +223,7 @@ export function NutrientPage({ id }: { id: string }) {
           </Card>
         )}
 
-        {hasEvidenceMap(n.id) && (
+        {!basic && hasEvidenceMap(n.id) && (
           <Card id="evidence-map" className="flex scroll-mt-6 flex-col gap-4">
             <H2>How the evidence was found</H2>
             <EvidenceMap mapId={n.id} citedTitles={Object.fromEntries([...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => f.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))} />
@@ -206,6 +241,7 @@ export function NutrientPage({ id }: { id: string }) {
 
         <Card>
           <h2 className="mb-2 font-semibold">General sources</h2>
+          {n.sources.length > 0 && (
           <ul className="flex flex-col gap-1 text-sm text-ink-2">
             {n.sources.map((s) => (
               <li key={s.pmid ?? s.doi}>
@@ -213,35 +249,54 @@ export function NutrientPage({ id }: { id: string }) {
               </li>
             ))}
           </ul>
+          )}
+          {n.basicSources && (
+            <ul className="flex flex-col gap-1 text-sm text-ink-2">
+              {n.basicSources.map((s) => (
+                <li key={s.url}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">{s.title}</a> ({s.year})
+                </li>
+              ))}
+            </ul>
+          )}
           <p className="mt-3 text-sm text-ink-2">
-            General information, not a diagnosis or a dose for you. Grades and wording are a first draft, checked against the cited studies
-            but not yet reviewed by a clinician.
+            {basic
+              ? "Basic reference information, with sources for descriptions and cautions. Benefits have not been reviewed here. Not a diagnosis or a dose for you."
+              : "General information, not a diagnosis or a dose for you. Grades and wording are a first draft, checked against the cited studies but not yet reviewed by a clinician."}
           </p>
         </Card>
+          </>
+        )}
       </div>
       </div>
     </>
   );
 }
 
-/** The side column on wide screens: your result, the EU values for a day, what trials found, and where things are. */
+/** The side column on wide screens: your result, EU reference values and links in reading order. */
 function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<typeof groupByBiomarker>[0]; hasInteractions: boolean }) {
   const profile = useProfile();
   const units = useDisplayUnits();
+  const basic = n.researchStatus === "not-reviewed";
   const byMarker = groupByBiomarker(all);
-  const ref = dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
-  const counts = findingCounts(n);
-  const links = [
-    ["status", "How status is measured"],
-    ["low-high", "Too little, too much"],
-    ["trials", "What trials found"],
-    ["food", "Food sources"],
+  const ref = basic ? undefined : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
+  const links = (n.simpleGuide ? [
+    ["uses", "Potential benefits & common claims"],
+    ["origin", "What it is & where it comes from"],
+    ["dosage-safety", "Dosage & safety"],
     n.forms.length > 0 && ["forms", "Supplement forms"],
-    ["reference", "Reference intakes"],
+    ["sources", "Ingredient & safety sources"],
+  ] : [
+    basic ? ["uses", "Common uses"] : ["trials", "Main uses & potential benefits"],
     hasInteractions && ["interactions", "Interactions and cautions"],
-    hasEvidenceMap(n.id) && ["evidence-map", "How the evidence was found"],
+    !basic && ["status", "How status is measured"],
+    !basic && ["low-high", "Too little, too much"],
+    (!basic || n.foodSources.examples.length > 0) && ["food", "Food sources"],
+    n.forms.length > 0 && ["forms", "Supplement forms"],
+    !basic && ["reference", "Reference intakes"],
+    !basic && hasEvidenceMap(n.id) && ["evidence-map", "How the evidence was found"],
     ["research", "Search research"],
-  ].filter((x): x is [string, string] => Boolean(x));
+  ]).filter((x): x is [string, string] => Boolean(x));
   return (
     <aside aria-label="Key facts" className="hidden lg:col-start-2 lg:row-start-1 lg:block">
       <div className="sticky top-6 flex flex-col gap-5 text-sm">
@@ -279,7 +334,7 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
           </section>
         )}
 
-        {(ref.intake || ref.bySex || ref.upperLimit || n.reference.noUpperLimit) && (
+        {ref && (ref.intake || ref.bySex || ref.upperLimit || n.reference.noUpperLimit) && (
           <section>
             <h2 className="mb-1.5 text-xs font-medium text-ink-2">EU values for a day</h2>
             <dl className="flex flex-col gap-1.5">
@@ -310,20 +365,6 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
           </section>
         )}
 
-        {n.findings.length > 0 && (
-          <section>
-            <h2 className="mb-1.5 text-xs font-medium text-ink-2">Supplement trials, {n.findings.length} outcomes</h2>
-            <ul className="flex flex-wrap gap-1.5">
-              {(Object.keys(EFFECT) as FindingEffect[])
-                .filter((e) => counts[e] > 0)
-                .map((e) => (
-                  <li key={e} className={cx("rounded-full px-2 py-0.5 text-xs font-medium", EFFECT[e].className)}>
-                    {EFFECT[e].label} {counts[e]}
-                  </li>
-                ))}
-            </ul>
-          </section>
-        )}
 
         <nav aria-label="On this page">
           <h2 className="mb-1 text-xs font-medium text-ink-2">On this page</h2>

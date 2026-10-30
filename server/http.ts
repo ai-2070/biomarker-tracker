@@ -33,7 +33,7 @@ class HttpError extends Error {
 }
 
 type Json = Record<string, unknown>;
-type Handler = (params: string[], body: Json) => Promise<unknown> | unknown;
+type Handler = (params: string[], body: Json, signal?: AbortSignal) => Promise<unknown> | unknown;
 const routes: { method: string; re: RegExp; fn: Handler }[] = [];
 const route = (method: string, pattern: string, fn: Handler) => routes.push({ method, re: new RegExp(`^${pattern}$`), fn });
 
@@ -290,7 +290,16 @@ function photos(v: unknown): NonNullable<ChatMessage["images"]> {
   return out;
 }
 
-route("POST", "/api/assistant", async (_p, body) => {
+route("POST", "/api/assistant", async (_p, body, signal) => {
+  if (body.scope !== undefined && body.scope !== "research") throw new HttpError(400, "Unknown assistant scope.");
+  if (body.scope === "research") {
+    // Do not parse or retain snapshot/history/photos, even when a caller supplies them.
+    const raw = Array.isArray(body.messages) ? body.messages : [];
+    const latest = raw.filter((m): m is Json => typeof m === "object" && m !== null && m.role === "user").at(-1);
+    const question = str(latest?.content, 20_000)?.trim();
+    if (!question) throw new HttpError(400, "Ask a question.");
+    return ask([{ role: "user", content: question }], { measurements: [], protocols: [], experiments: [], profile: {} }, { researchOnly: true, signal });
+  }
   const snap = parseSnapshot(body.snapshot);
   if (!snap.ok) throw new HttpError(400, snap.error);
   const raw = Array.isArray(body.messages) ? body.messages : [];
@@ -306,7 +315,7 @@ route("POST", "/api/assistant", async (_p, body) => {
   // Photos only with the newest question; earlier ones aren't sent again.
   for (const m of messages.slice(0, -1)) delete m.images;
   if (messages.length === 0 || messages[messages.length - 1]!.role !== "user") throw new HttpError(400, "Ask a question.");
-  return ask(messages, snap.snapshot);
+  return ask(messages, snap.snapshot, { signal });
 });
 
 // Security and serving
@@ -407,12 +416,19 @@ export function createServer(port: number): http.Server {
     }
     const r = routes.find((x) => x.method === method && x.re.test(url.pathname));
     if (!r) return send(404, { error: "Not found." });
+    const controller = url.pathname === "/api/assistant" ? new AbortController() : undefined;
+    const cancel = () => controller?.abort();
+    if (controller) res.once("close", cancel);
     try {
       const body = method === "GET" ? {} : await readBody(req);
-      send(200, await r.fn(r.re.exec(url.pathname)!.slice(1), body));
+      const result = await r.fn(r.re.exec(url.pathname)!.slice(1), body, controller?.signal);
+      if (!res.destroyed) send(200, result);
     } catch (e) {
+      if (res.destroyed) return;
       if (e instanceof HttpError || e instanceof profiles.ProfileError) return send(e.status, { error: e.message });
       send(400, { error: e instanceof Error ? e.message : "Something went wrong." });
+    } finally {
+      if (controller) res.off("close", cancel);
     }
   });
 }

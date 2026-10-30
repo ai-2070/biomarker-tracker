@@ -3,6 +3,8 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { PRESCRIBING, nutrientText, searchNutrients, validateNutrientDef, type NutrientDef } from "../../src/core/nutrients";
 import type { FoodTable } from "../../src/core/types";
+import { demoProfile } from "../../src/core/demo";
+import { nutrientFor } from "../../src/core/plans";
 import { loadDefs } from "../helpers";
 
 const ROOT = join(import.meta.dirname, "..", "..", "knowledge");
@@ -52,6 +54,14 @@ describe("knowledge base: vitamins and minerals", () => {
     expect(ids("b12")[0]).toBe("vitamin_b12");
     expect(ids("warfarin")).toContain("vitamin_k");
     expect(ids("salmon").length).toBeGreaterThan(0);
+  });
+
+  it("links every supplement in Standard Routine to a knowledge entry", () => {
+    const routine = demoProfile("2026-10-30").plans.find((p) => p.name === "Standard Routine");
+    expect(routine).toBeDefined();
+    for (const item of routine!.items.filter((i) => i.category === "supplement")) {
+      expect(nutrientFor(item, nutrients), item.label).toBeDefined();
+    }
   });
 
   it("has unique ids", () => {

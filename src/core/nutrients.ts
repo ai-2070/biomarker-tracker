@@ -62,6 +62,17 @@ export interface NutrientDef {
   otherNames: string[];
   /** Plain language, 1–3 sentences. */
   summary: string;
+  /** Basic guides defer efficacy review to on-demand research. */
+  researchStatus?: "not-reviewed";
+  /** Purposes people use it for, not claims that it works. Required on basic guides. */
+  commonUses?: string[];
+  /** Public reference pages for basic descriptions and cautions, not research findings. */
+  basicSources?: { title: string; year: number; url: string }[];
+  /** Opt-in concise guide; commonUses are potential claims, checked with Brain on demand. */
+  simpleGuide?: {
+    origin: string[];
+    dosage: string[];
+  };
   /** Its main jobs in the body, short phrases. */
   roles: string[];
   /** How status is measured. `biomarkerIds` are markers in this app (may be empty). */
@@ -108,6 +119,14 @@ const UNITS = new Set(["µg", "mg", "g"]);
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const isStr = (v: unknown): v is string => typeof v === "string" && v.trim().length > 0;
 const strList = (v: unknown, min = 0): boolean => Array.isArray(v) && v.length >= min && v.every(isStr);
+const isHttpsUrl = (v: unknown): boolean => {
+  if (typeof v !== "string") return false;
+  try {
+    return new URL(v).protocol === "https:";
+  } catch {
+    return false;
+  }
+};
 
 export function citationErrors(v: unknown, where: string): string[] {
   if (!Array.isArray(v) || v.length === 0) return [`${where} needs at least one source`];
@@ -147,12 +166,26 @@ export function validateNutrientDef(v: unknown): string[] {
   if (!isStr(v.id) || !/^[a-z0-9_]+$/.test(v.id)) errs.push("id must be lowercase_with_underscores");
   for (const k of ["name", "summary"] as const) if (!isStr(v[k])) errs.push(`${k} is required`);
   if (!NUTRIENT_KINDS.includes(v.kind as NutrientKind)) errs.push("kind must be vitamin, mineral or supplement");
+  const basic = v.researchStatus === "not-reviewed";
+  if (v.researchStatus !== undefined && !basic) errs.push("researchStatus must be not-reviewed when provided");
+  if (v.simpleGuide !== undefined) {
+    if (!basic) errs.push("simpleGuide belongs only to basic supplement guides");
+    if (!isObj(v.simpleGuide) || !strList(v.simpleGuide.origin, 1) || !strList(v.simpleGuide.dosage, 1))
+      errs.push("simpleGuide needs origin and dosage descriptions");
+  }
+  if (basic && v.kind !== "supplement") errs.push("basic guides are for other supplements, not vitamins or minerals");
+  if ((basic || v.commonUses !== undefined) && !strList(v.commonUses, basic ? 1 : 0)) errs.push("commonUses must list the purposes of a basic guide");
+  if (v.basicSources !== undefined) {
+    if (!basic) errs.push("basicSources belong only to basic supplement guides");
+    if (!Array.isArray(v.basicSources) || v.basicSources.length === 0 || !v.basicSources.every((s) => isObj(s) && isStr(s.title) && typeof s.year === "number" && isHttpsUrl(s.url)))
+      errs.push("basicSources need a title, year and HTTPS URL");
+  }
   if (!strList(v.otherNames)) errs.push("otherNames must be a list of strings");
   if (!strList(v.roles, 1)) errs.push("roles needs at least one entry");
   if (!isObj(v.status) || !strList(v.status.biomarkerIds) || !isStr(v.status.note)) errs.push("status needs biomarkerIds and a note");
-  if (!isObj(v.low) || !strList(v.low.signs, 1) || !strList(v.low.atRisk, 1)) errs.push("low needs signs and atRisk");
+  if (!isObj(v.low) || !strList(v.low.signs, basic ? 0 : 1) || !strList(v.low.atRisk, basic ? 0 : 1)) errs.push("low needs signs and atRisk");
   if (!isObj(v.high) || !strList(v.high.signs) || !isStr(v.high.note)) errs.push("high needs signs and a note");
-  if (!isObj(v.foodSources) || !strList(v.foodSources.examples, 1)) errs.push("foodSources needs examples");
+  if (!isObj(v.foodSources) || !strList(v.foodSources.examples, basic ? 0 : 1)) errs.push("foodSources needs examples");
   if (!Array.isArray(v.forms) || !v.forms.every((f) => isObj(f) && isStr(f.name) && isStr(f.note))) errs.push("forms need a name and a note each");
   const r = v.reference;
   if (!isObj(r)) errs.push("reference is required");
@@ -163,16 +196,21 @@ export function validateNutrientDef(v: unknown): string[] {
       errs.push("reference intake needs group, amount, unit (µg, mg, g) and type (PRI or AI)");
     if (r.upperLimit !== undefined && !(isObj(r.upperLimit) && typeof r.upperLimit.amount === "number" && UNITS.has(String(r.upperLimit.unit)) && isStr(r.upperLimit.note))) errs.push("upperLimit needs amount, unit and note");
     if (r.upperLimit === undefined && !isStr(r.noUpperLimit)) errs.push("give an upperLimit or say why there is none (noUpperLimit)");
-    errs.push(...citationErrors(r.sources, "reference"));
+    if (!(basic && Array.isArray(r.sources) && r.sources.length === 0)) errs.push(...citationErrors(r.sources, "reference"));
   }
   errs.push(...findingErrors(v.findings, "finding"));
-  if (Array.isArray(v.findings) && v.findings.length === 0) errs.push("findings needs at least one supplement finding");
+  if (Array.isArray(v.findings)) {
+    if (basic && v.findings.length > 0) errs.push("basic guides must not contain graded findings");
+    if (!basic && v.findings.length === 0) errs.push("findings needs at least one supplement finding");
+  }
   if (v.foodFindings !== undefined) errs.push(...findingErrors(v.foodFindings, "food finding"));
+  if (basic && Array.isArray(v.foodFindings) && v.foodFindings.length > 0) errs.push("basic guides must not contain graded food findings");
   if (!Array.isArray(v.interactions) || !v.interactions.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId)))))
     errs.push("interactions need with and note (and a known safetyId, if any)");
   if (!strList(v.cautions)) errs.push("cautions must be a list of strings");
   if (!strList(v.evidenceClaims)) errs.push("evidenceClaims must be a list of ids");
-  errs.push(...citationErrors(v.sources, "sources"));
+  if (basic && Array.isArray(v.evidenceClaims) && v.evidenceClaims.length > 0) errs.push("basic guides must not link graded evidence claims");
+  if (!(basic && Array.isArray(v.sources) && v.sources.length === 0 && Array.isArray(v.basicSources) && v.basicSources.length > 0)) errs.push(...citationErrors(v.sources, "sources"));
   return errs;
 }
 
@@ -183,6 +221,9 @@ export const PRESCRIBING = /\byou should (take|start|stop)\b|\btake \d|\bwe reco
 export function nutrientText(n: NutrientDef): string[] {
   return [
     n.summary,
+    ...(n.commonUses ?? []),
+    ...(n.simpleGuide?.origin ?? []),
+    ...(n.simpleGuide?.dosage ?? []),
     ...n.roles,
     n.status.note,
     ...n.low.signs,
@@ -250,7 +291,9 @@ function searchFields(n: NutrientDef): NutrientMatch[] {
     { label: "", text: n.name },
     ...f("Also called", n.otherNames),
     ...f("What it does", n.roles),
+    ...f("Common use", n.commonUses ?? []),
     ...f("Food", n.foodSources.examples),
+    ...f("Origin", n.simpleGuide?.origin ?? []),
     ...f("Trial outcome", n.findings.map((x) => x.outcome)),
     ...f("Food study", (n.foodFindings ?? []).map((x) => x.outcome)),
     ...f("Interaction", n.interactions.map((x) => x.with)),

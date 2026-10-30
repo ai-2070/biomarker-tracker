@@ -1,0 +1,24 @@
+{
+  "id": "nac",
+  "name": "N-acetylcysteine (NAC)",
+  "kind": "supplement",
+  "otherNames": ["NAC", "N-acetylcysteine", "N-acetyl-L-cysteine", "acetylcysteine"],
+  "researchStatus": "not-reviewed",
+  "summary": "N-acetylcysteine (NAC), also called acetylcysteine, is a modified form of the amino acid cysteine. It is both a medicine with specific medical uses and an ingredient sold in supplements; those uses and products should not be confused.",
+  "commonUses": ["Used in supplements marketed for antioxidant support", "Used in supplements marketed for glutathione support"],
+  "roles": ["NAC supplies cysteine, a building block for the body's glutathione.", "Its chemical action on bonds in mucus proteins underlies its use in mucus-thinning medicines; this is not a general supplement benefit claim."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test. It does not define an NAC deficiency."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Oral supplements", "note": "Capsules and powders are sold as supplements. Their marketing is separate from the indications and supervision attached to medicines."},
+    {"name": "Acetylcysteine medicines", "note": "Medical formulations include oral, inhaled and intravenous products. Route and purpose matter; an oral supplement is not a substitute for emergency or prescribed treatment."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [{"with": "Nitroglycerin (glyceryl trinitrate)", "note": "NAC can increase the blood-pressure-lowering effect of nitroglycerin. Discuss the combination with the prescribing clinician or pharmacist."}],
+  "cautions": ["Nausea, vomiting and diarrhea can occur with NAC.", "Acetylcysteine is used medically for paracetamol (acetaminophen) poisoning. Suspected poisoning needs urgent medical care, not self-treatment with a supplement.", "Safety information for an intravenous or inhaled medicine cannot simply be applied to an oral supplement. This guide does not establish long-term supplement safety."],
+  "evidenceClaims": [],
+  "sources": [{"pmid": "34221501", "doi": "10.1155/2021/9949453", "title": "N-Acetylcysteine: A Review of Clinical Usefulness (an Old Drug with New Tricks).", "year": 2021, "studyType": "review"}]
+}

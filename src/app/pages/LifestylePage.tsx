@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { LIFESTYLE_CATEGORIES, type LifestyleCategory, type LifestyleDef } from "../../core/lifestyle";
-import { findingCounts, sortFindings, type NutrientDef } from "../../core/nutrients";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { SafetyId } from "../../core/types";
@@ -29,21 +28,6 @@ const CATEGORY_LABEL: Record<LifestyleCategory, string> = {
   "breathing and mind": "Breathing and mind",
 };
 
-// findingCounts only reads `findings`, which lifestyle entries share with nutrients.
-const counts = (l: LifestyleDef) => findingCounts({ findings: l.findings } as NutrientDef);
-
-function countsText(l: LifestyleDef): string {
-  const c = counts(l);
-  return [
-    c.helps && `${c.helps} ${c.helps === 1 ? "benefit" : "benefits"}`,
-    c["no clear effect"] && `${c["no clear effect"]} no clear effect`,
-    c.mixed && `${c.mixed} mixed`,
-    c.harms && `${c.harms} ${c.harms === 1 ? "harm" : "harms"}`,
-  ]
-    .filter(Boolean)
-    .join(" · ");
-}
-
 /** Every word must start a word somewhere in the entry (name, other names, summary, findings). */
 function matches(l: LifestyleDef, query: string): boolean {
   const fold = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
@@ -64,7 +48,7 @@ export function LifestylePage() {
 
   return (
     <>
-      <PageTitle sub="What research says about everyday habits: walking, sleep, sauna, cold water, red light and more. How they're thought to work, what the studies had people do, what they found, and drawings of the studies' own numbers. General information, not a plan for you.">
+      <PageTitle sub="Explore the potential benefits of everyday habits, who the findings apply to, and important cautions. Start with walking, sleep, sauna, cold water or red light.">
         Lifestyle
       </PageTitle>
 
@@ -107,13 +91,8 @@ export function LifestylePage() {
                     <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{CATEGORY_LABEL[l.category]}</p>
                     <h2 className="font-serif text-2xl font-normal">{l.name}</h2>
                   </div>
-                  <p className="line-clamp-3 text-ink-2">{l.summary}</p>
-                  <div className="mt-auto flex flex-col gap-1 border-t border-line pt-3 text-sm text-ink-2">
-                    <p>What studies found: {countsText(l)}</p>
-                    <p>
-                      {l.visuals.length} {l.visuals.length === 1 ? "drawing" : "drawings"} from the studies
-                    </p>
-                  </div>
+                  <p className="text-ink-2">{l.summary}</p>
+                  <p className="mt-auto border-t border-line pt-3 text-sm text-ink-2">Explore benefits, cautions and the research</p>
                 </a>
               </li>
             ))}
@@ -195,41 +174,16 @@ export function LifestyleItemPage({ id }: { id: string }) {
             </div>
           )}
 
-          {/* The answer first: the summary, then what studies found; the detail behind it follows. */}
+          {/* Uses and relevant cautions first; mechanisms and research detail follow. */}
           <p className="max-w-3xl text-lg">{l.summary}</p>
 
           <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
           <Findings
             prefix="finding"
-            title="Main uses &amp; benefits"
-            intro="Outcome by outcome, strongest evidence first. Many lifestyle studies follow people over years rather than assigning them a habit, so a link isn't always cause and effect: the grades say how sure the evidence is."
+            title="Main uses &amp; potential benefits"
+            intro="See where this habit may help and who was studied. Open the research details for the full findings and sources."
             findings={l.findings}
           />
-
-          <ClockNote kind="lifestyle" id={l.id} />
-
-          <Card className="flex flex-col gap-6">
-            <H2 id="pictures">In pictures</H2>
-            {l.visuals.map((v, i) => (
-              <div key={v.title} className={cx(i > 0 && "border-t border-line pt-5")}>
-                <LifestyleFigure v={v} id={anchorId("visual", v.title)} />
-              </div>
-            ))}
-          </Card>
-
-          <Card id="how" className="flex scroll-mt-6 flex-col gap-4">
-            <H2>How it's thought to work</H2>
-            <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
-              {l.howItWorks.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-            <div>
-              <h3 className="mb-1 font-semibold">What the studies had people do</h3>
-              <p className="text-ink-2">{l.whatStudiesDid}</p>
-            </div>
-          </Card>
-
           {(l.whoShouldBeCareful.length > 0 || l.cautions.length > 0) && (
             <Card id="careful" className="flex scroll-mt-6 flex-col gap-3">
               <H2>Who should be careful</H2>
@@ -256,6 +210,31 @@ export function LifestyleItemPage({ id }: { id: string }) {
               )}
             </Card>
           )}
+
+          <ClockNote kind="lifestyle" id={l.id} />
+
+          <Card className="flex flex-col gap-6">
+            <H2 id="pictures">In pictures</H2>
+            {l.visuals.map((v, i) => (
+              <div key={v.title} className={cx(i > 0 && "border-t border-line pt-5")}>
+                <LifestyleFigure v={v} id={anchorId("visual", v.title)} />
+              </div>
+            ))}
+          </Card>
+
+          <Card id="how" className="flex scroll-mt-6 flex-col gap-4">
+            <H2>How it's thought to work</H2>
+            <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
+              {l.howItWorks.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            <div>
+              <h3 className="mb-1 font-semibold">What the studies had people do</h3>
+              <p className="text-ink-2">{l.whatStudiesDid}</p>
+            </div>
+          </Card>
+
 
           <Card id="unknowns" className="flex scroll-mt-6 flex-col gap-2">
             <H2>What isn't known yet</H2>
@@ -321,10 +300,10 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
   const byMarker = groupByBiomarker(all);
   const mine = l.markers.filter((id) => BIOMARKER_MAP.has(id) && byMarker.has(id)).slice(0, 5);
   const links: [string, string][] = [
-    ["findings", "Main uses & benefits"],
+    ["findings", "Main uses & potential benefits"],
+    ...((l.whoShouldBeCareful.length > 0 || l.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ["pictures", "In pictures"],
     ["how", "How it's thought to work"],
-    ...((l.whoShouldBeCareful.length > 0 || l.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ["unknowns", "What isn't known yet"],
     ...((hasEvidenceMap(`lifestyle-${l.id}`) ? [["evidence-map", "How the evidence was found"]] : []) as [string, string][]),
     ["research", "Search research"],
@@ -362,18 +341,6 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
             </ul>
           </section>
         )}
-        <section>
-          <h2 className="mb-1.5 text-xs font-medium text-ink-2">Main uses &amp; benefits</h2>
-          <ul className="flex flex-col gap-1">
-            {sortFindings(l.findings).map((f) => (
-              <li key={`${f.outcome}|${f.population}`}>
-                <a href={`#${anchorId("finding", `${f.outcome} ${f.population}`)}`} onClick={(e) => jump(e, anchorId("finding", `${f.outcome} ${f.population}`))} className="text-ink no-underline hover:underline">
-                  {f.label ?? f.outcome}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
         <nav aria-label="On this page">
           <h2 className="mb-1.5 text-xs font-medium text-ink-2">On this page</h2>
           <ul className="flex flex-col gap-1">

@@ -1,0 +1,33 @@
+{
+  "id": "hyaluronic_acid",
+  "name": "Hyaluronic acid",
+  "kind": "supplement",
+  "otherNames": ["Hyaluronic Acid", "hyaluronan", "sodium hyaluronate", "oral hyaluronic acid"],
+  "researchStatus": "not-reviewed",
+  "summary": "Hyaluronic acid, also called hyaluronan, is a long-chain carbohydrate made naturally in the body. Oral supplements are different products from skin creams, eye preparations and medical injections. This guide covers the swallowed ingredient, not those other uses.",
+  "commonUses": ["Used in oral products marketed for skin hydration.", "Used in oral products marketed for joint health."],
+  "roles": ["Hyaluronan is part of the material surrounding cells and is present in skin and joint fluid.", "Its ability to bind water and its viscosity depend partly on the length of its molecular chains."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Oral hyaluronic acid or sodium hyaluronate", "note": "Sodium hyaluronate is a salt form. Products can differ in molecular chain length; the name alone does not identify an equivalent formulation."},
+    {"name": "Fermentation-derived ingredient", "note": "Made using microorganisms rather than extracted from animal tissue. Check the finished product's ingredients, not just the source of the hyaluronan."},
+    {"name": "Animal-derived ingredient", "note": "Some products use material extracted from chicken combs. Source and purification differ from fermentation-derived products."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Safety findings for swallowed hyaluronan cannot be transferred to injected fillers or joint injections; these have different routes, formulations and risks.",
+    "With an allergy relevant to a product's animal source or other ingredients, ask about the exact formulation. The ingredient name alone does not establish that the finished supplement is suitable.",
+    "Combination products can also contain collagen or other ingredients; their safety cannot be inferred from hyaluronan alone.",
+    "The cited review's oral safety observations concern particular preparations and study populations. They do not establish safety for every molecular size, blend or person."
+  ],
+  "sources": [
+    {"pmid": "25014997", "doi": "10.1186/1475-2891-13-70", "title": "Ingested hyaluronan moisturizes dry skin.", "year": 2014, "studyType": "review"},
+    {"pmid": "31320101", "doi": "10.1016/j.carbpol.2019.115001", "title": "Hyaluronic acid behavior in oral administration and perspectives for nanotechnology-based formulations: A review.", "year": 2019, "studyType": "review"}
+  ]
+}

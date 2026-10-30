@@ -1,0 +1,24 @@
+{
+  "id": "eaa",
+  "name": "Essential amino acids (EAA)",
+  "kind": "supplement",
+  "researchStatus": "not-reviewed",
+  "otherNames": ["EAA", "EAAs", "Essential amino acid blend", "Essential amino acids"],
+  "summary": "EAA supplements are mixtures of essential amino acids, the protein building blocks that must come from the diet. An EAA blend is not the same as a branched-chain amino acid (BCAA) product.",
+  "commonUses": ["Used as a source of free amino acids in drinks and powders.", "Used in products marketed for exercise recovery and muscle maintenance."],
+  "roles": ["Essential amino acids supply building blocks for proteins throughout the body.", "BCAAs are leucine, isoleucine and valine: only part of the full essential amino acid group."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Full EAA blend", "note": "Contains the essential amino acids as free amino acids. The amount and balance of each ingredient vary by product."},
+    {"name": "BCAA blend", "note": "Contains only the branched-chain subset, not the full EAA group. BCAA and EAA are not interchangeable names."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [{"with": "Kidney disease", "note": "Kidney disease can change how protein and amino acid intake is managed. Discuss an EAA product with your clinician rather than assuming it fits your nutrition plan.", "safetyId": "kidney"}],
+  "cautions": ["Inherited amino acid disorders can make particular ingredients unsafe. A general EAA blend is not a substitute for a specialist formula for phenylketonuria or maple syrup urine disease.", "EAA blends differ in their amino acid balance; safety information for one mixture does not establish a safe upper amount for every mixture.", "Free amino acids do not provide all the nutrients in food and are not a complete meal replacement."],
+  "evidenceClaims": [],
+  "sources": [{"pmid": "37800468", "doi": "10.1080/15502783.2023.2263409", "title": "International society of sports nutrition position stand: essential amino acid supplementation on skeletal muscle and Performance", "year": 2023, "studyType": "review"}]
+}

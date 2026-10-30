@@ -1,0 +1,24 @@
+{
+  "id": "hmb",
+  "name": "HMB",
+  "kind": "supplement",
+  "researchStatus": "not-reviewed",
+  "otherNames": ["HMB", "Beta-hydroxy-beta-methylbutyrate", "Hydroxymethylbutyrate", "HMB-Ca", "HMB-FA"],
+  "summary": "HMB is a substance the body makes when it breaks down leucine, an amino acid found in protein. Supplements contain a calcium salt or a free-acid form; this basic guide does not assess their benefits.",
+  "commonUses": ["Used in products marketed for exercise recovery.", "Used in sports and older-adult nutrition products marketed for muscle maintenance."],
+  "roles": ["HMB is a metabolite of leucine, not leucine itself.", "The body produces HMB through an intermediate called alpha-ketoisocaproate."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Calcium HMB", "note": "Also labelled HMB-Ca; the calcium salt contributes calcium as well as HMB."},
+    {"name": "Free-acid HMB", "note": "Also labelled HMB-FA; this differs from the calcium salt in composition and absorption. The forms are not identical products."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [],
+  "cautions": ["Safety observations from studied HMB products do not establish that any amount or every formulation is safe.", "Calcium HMB adds calcium to the total from foods and other supplements; it is not calcium-free.", "Combination nutrition products may contain other amino acids or ingredients. Their safety cannot be judged from HMB alone."],
+  "evidenceClaims": [],
+  "sources": [{"pmid": "23374455", "doi": "10.1186/1550-2783-10-6", "title": "International Society of Sports Nutrition Position Stand: beta-hydroxy-beta-methylbutyrate (HMB)", "year": 2013, "studyType": "review"}]
+}

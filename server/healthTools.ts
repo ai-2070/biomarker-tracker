@@ -324,14 +324,22 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
             ...(p.description ? { description: p.description } : {}),
             ...(p.source ? { source: p.source } : {}),
             running: p.active ? `since ${p.active.since}` : "not started",
-            items: p.items.map((i) => ({
-              item: i.label,
-              ...(i.amount ? { amountTheyWrote: i.amount } : {}),
-              type: i.category,
-              when: i.when,
-              ...(i.note ? { note: i.note } : {}),
-              ...(nutrientFor(i, nutrients) ? { nutrient: nutrientFor(i, nutrients)!.name, euReferenceForThisPerson: dailyReference(nutrientFor(i, nutrients)!, { sex: s.profile.sex, age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined }) } : {}),
-            })),
+            items: p.items.map((i) => {
+              const n = nutrientFor(i, nutrients);
+              return {
+                item: i.label,
+                ...(i.amount ? { amountTheyWrote: i.amount } : {}),
+                type: i.category,
+                when: i.when,
+                ...(i.note ? { note: i.note } : {}),
+                ...(n ? {
+                  nutrient: n.name,
+                  ...(n.researchStatus === "not-reviewed"
+                    ? { researchStatus: n.researchStatus }
+                    : { euReferenceForThisPerson: dailyReference(n, { sex: s.profile.sex, age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined }) }),
+                } : {}),
+              };
+            }),
             interactionsBetweenItems: pairWarnings(p, nutrients),
           })),
         };
@@ -440,7 +448,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     get_nutrient: tool({
       description:
-        "The app's research-based entry for a vitamin or mineral: what it does, how status is measured, who runs low, food sources, supplement forms, graded findings from supplement trials (and separately from foods) with study IDs, EFSA reference intakes and upper limit (population values, never a personal dose), interactions and cautions. Use it for any question about a vitamin, mineral or supplement of one.",
+        "The app's entry for a vitamin, mineral or other supplement: description, forms, interactions and cautions. Basic guides have researchStatus 'not-reviewed' and commonUses describing purposes, not proven benefits; they have no graded findings. Other entries include graded supplement findings, separate food findings and EFSA population values, never personal doses. Use this for supplement questions and respect the entry's research status.",
       inputSchema: z.object({ nutrient: z.string().describe("Name or id, e.g. vitamin D, iron, magnesium") }),
       execute: async ({ nutrient }) => {
         const n = findNutrient(nutrient);
@@ -449,7 +457,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         const finding = (f: (typeof n.findings)[number]) => ({ outcome: f.outcome, studiedIn: f.population, effect: f.effect, grade: f.grade, whyThisGrade: f.whyThisGrade, summary: f.summary, studies: f.studies.map(cite) });
         return {
           ...n,
-          reference: { ...n.reference, note: "EFSA population values for healthy adults. Not a target or a dose for this person.", sources: n.reference.sources.map(cite) },
+          reference: { ...n.reference, note: n.researchStatus === "not-reviewed" ? "This basic guide does not provide reference intakes or upper-limit values." : "EFSA population values for healthy adults. Not a target or a dose for this person.", sources: n.reference.sources.map(cite) },
           findings: n.findings.map(finding),
           ...(n.foodFindings ? { foodFindings: n.foodFindings.map(finding) } : {}),
           sources: n.sources.map(cite),

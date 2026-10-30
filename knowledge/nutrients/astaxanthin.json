@@ -1,0 +1,61 @@
+{
+  "id": "astaxanthin",
+  "name": "Astaxanthin",
+  "kind": "supplement",
+  "otherNames": ["Algal astaxanthin", "Haematococcus pluvialis extract"],
+  "researchStatus": "not-reviewed",
+  "summary": "Astaxanthin is a red-orange carotenoid pigment found in algae and pink seafood. It acts as an antioxidant, and a common supplement source is an extract of cultivated freshwater microalgae.",
+  "commonUses": [
+    "May help skin retain moisture",
+    "May support skin elasticity",
+    "May offer mild protection against UV-related skin stress",
+    "May help with eye strain from prolonged screen use",
+    "May support exercise endurance",
+    "May help recovery after exercise",
+    "May support memory and thinking",
+    "May help maintain healthy blood fat levels"
+  ],
+  "simpleGuide": {
+    "origin": [
+      "The freshwater microalga Haematococcus pluvialis makes astaxanthin when stressed by conditions such as strong light or a shortage of nutrients. Its cells build up the red pigment, which helps protect the algae.",
+      "Astaxanthin also travels through aquatic food chains and contributes to the pink or red colour of salmon, trout, shrimp and krill. The usual supplement source is cultivated algae, rather than an extract of those foods. Unlike beta-carotene, it is not converted into vitamin A."
+    ],
+    "dosage": [
+      "There is no established daily requirement. EFSA assessed 8 mg a day from a specified algal astaxanthin supplement, alongside dietary intake, as safe for adults. This is a safety assessment, not a recommended dose.",
+      "Check the amount of active astaxanthin in milligrams (mg), not just the weight of the oil or algae extract. Avoid adding together several products containing astaxanthin."
+    ]
+  },
+  "roles": ["A carotenoid pigment with antioxidant activity; it is not an essential nutrient and is not converted into vitamin A."],
+  "status": {"biomarkerIds": [], "note": "There is no routine clinical deficiency test for astaxanthin."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "Safety depends on the ingredient, amount, age and other ingredients in the product."},
+  "foodSources": {"examples": ["Salmon and trout", "Shrimp, crab and krill"], "note": "Eating these foods is different from taking an isolated astaxanthin supplement."},
+  "forms": [
+    {"name": "Algal astaxanthin", "note": "Usually extracted from Haematococcus pluvialis and supplied in oil-filled capsules. An algal ingredient does not guarantee a vegan capsule or an allergen-free product."},
+    {"name": "Synthetic astaxanthin", "note": "Contains a different mixture of molecular forms. Evidence and safety assessments for a specified algal ingredient do not automatically apply to every other preparation."},
+    {"name": "Combination products", "note": "May also contain lutein, other antioxidants, fish or krill oil. Check the full ingredient and allergen list; research on a blend cannot establish the effect of astaxanthin alone."}
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No general nutrient upper limit is set. EFSA's adult assessment concerns a specified algal ingredient at 8 mg a day alongside dietary intake, not every astaxanthin product or every age group.",
+    "sources": [{"pmid": "32874213", "doi": "10.2903/j.efsa.2020.5993", "title": "Safety of astaxanthin for its use as a novel food in food supplements", "year": 2020, "studyType": "guideline"}]
+  },
+  "findings": [],
+  "interactions": [
+    {"with": "Warfarin", "note": "A case report described bruising and a very high INR (a blood-clotting test result) after astaxanthin was added to warfarin treatment. It does not prove the interaction, but warrants a doctor or pharmacist check before combining them.", "safetyId": "anticoagulant"},
+    {"with": "Pregnancy or breastfeeding", "note": "Supplement safety has not been established during pregnancy or breastfeeding. Discuss it with a doctor or pharmacist.", "safetyId": "pregnancy"}
+  ],
+  "cautions": [
+    "Not a replacement for sunscreen or other sun protection.",
+    "Adult safety assessments do not establish a suitable amount for children. Long-term information is limited, and safety depends on the particular preparation.",
+    "Check fish, shellfish, carrier-oil and capsule ingredients if you have an allergy or dietary restriction."
+  ],
+  "evidenceClaims": [],
+  "sources": [
+    {"pmid": "24402174", "doi": "10.3390/md12010128", "title": "Astaxanthin: Sources, Extraction, Stability, Biological Activities and Its Commercial Applications—A Review", "year": 2014, "studyType": "review"},
+    {"pmid": "21566799", "doi": "10.3390/md9020278", "title": "Carotenoids in Marine Animals", "year": 2011, "studyType": "review"},
+    {"pmid": "32874213", "doi": "10.2903/j.efsa.2020.5993", "title": "Safety of astaxanthin for its use as a novel food in food supplements", "year": 2020, "studyType": "guideline"},
+    {"pmid": "31788888", "doi": "10.1002/ptr.6514", "title": "Astaxanthin: How much is too much? A safety review", "year": 2019, "studyType": "review"},
+    {"pmid": "31073352", "doi": "10.1016/j.jccase.2019.01.002", "title": "Interaction between warfarin and astaxanthin: A case report", "year": 2019, "studyType": "observational", "n": 1}
+  ]
+}

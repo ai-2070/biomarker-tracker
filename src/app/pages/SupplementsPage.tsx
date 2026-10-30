@@ -1,10 +1,11 @@
 import { Toggle } from "@base-ui/react/toggle";
 import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { useState } from "react";
-import { findingCounts, interactionsFor, searchNutrients, type NutrientDef, type NutrientKind, type NutrientMatch } from "../../core/nutrients";
+import { interactionsFor, searchNutrients, type NutrientDef, type NutrientKind, type NutrientMatch } from "../../core/nutrients";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "../../core/trends";
 import type { Measurement, Profile, SafetyId } from "../../core/types";
+import { GradeBadge } from "../components/evidence";
 import { SearchIcon } from "../components/icons";
 import { Button, Card, FlagBadge, PageTitle, cx, inputStyles } from "../components/ui";
 import { displayUnitFor, showMeasurement } from "../format";
@@ -37,7 +38,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
 
   return (
     <>
-      <PageTitle sub="What research says about vitamins, minerals and other common supplements (omega-3, creatine, fibre and more): what they do, who tends to run low, where they come from in food, and what trials actually found. General information, not a dose for you.">
+      <PageTitle sub="Explore nutrients and supplements, their uses and important cautions. Basic guides cover descriptions and common uses; entries with reviewed findings also show potential benefits, who was studied and the evidence strength. General information, not a dose for you.">
         Supplementation
       </PageTitle>
 
@@ -81,34 +82,6 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
       </ToggleGroup>
       </div>
 
-      {!searching && (
-      <Card className="mb-5 flex flex-col gap-3">
-        <h2 className="font-serif text-2xl font-normal">Before you look at supplements</h2>
-        <ol className="flex max-w-3xl list-decimal flex-col gap-2 pl-5 text-ink-2">
-          <li>
-            <span className="text-ink">Supplements help most when you're low.</span> In people who aren't, many large trials found no benefit, and
-            a few found harm. A blood test shows your status for some of them.
-          </li>
-          <li>
-            <span className="text-ink">Food and a supplement are different things.</span> Food tables track about 150 nutrients, but foods are
-            estimated to hold more than 26,000 distinct chemicals, most of them never studied: researchers call this nutritional dark matter (
-            <a href="https://doi.org/10.1038/s43016-019-0005-1" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
-              Barabási 2019
-            </a>
-            ). A supplement gives one nutrient on its own, without everything that comes with it in food, so findings for one don't carry over to
-            the other. Diets rich in beta-carotene went with less lung cancer, yet beta-carotene pills raised lung cancer in smokers. That's why
-            they're graded separately here.{" "}
-            <a href={href({ name: "meals", section: "dark-matter" })} className="font-medium text-accent">
-              More on what food tables can't tell you
-            </a>
-          </li>
-          <li>
-            <span className="text-ink">Talk to a doctor or pharmacist first</span> if you take medicines, are pregnant, or have kidney or liver
-            disease. Some supplements interact with medicines or build up in the body.
-          </li>
-        </ol>
-      </Card>
-      )}
 
       <p aria-live="polite" className={cx("mb-3 text-sm text-ink-2", !searching && "sr-only")}>
         {searching ? `${shown.length} of ${inKind.length} ${shown.length === 1 ? "matches" : "match"} “${query.trim()}”` : ""}
@@ -137,10 +110,38 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
           ))}
         </ul>
       )}
+      {!searching && (
+      <Card className="mt-6 mb-5 flex flex-col gap-3">
+        <h2 className="font-serif text-2xl font-normal">Find the uses that matter to you</h2>
+        <ol className="flex max-w-3xl list-decimal flex-col gap-2 pl-5 text-ink-2">
+          <li>
+            <span className="text-ink">Start with its role and studied benefits.</span> Each page separates what the body needs from what an extra
+            supplement changed, with who was studied and the evidence grade. A blood test shows your status for some of them.
+          </li>
+          <li>
+            <span className="text-ink">Food and a supplement are different things.</span> Food tables track about 150 nutrients, but foods are
+            estimated to hold more than 26,000 distinct chemicals, most of them never studied: researchers call this nutritional dark matter (
+            <a href="https://doi.org/10.1038/s43016-019-0005-1" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+              Barabási 2019
+            </a>
+            ). A supplement gives one nutrient on its own, without everything that comes with it in food, so findings for one don't carry over to
+            the other. Diets rich in beta-carotene went with less lung cancer, yet beta-carotene pills raised lung cancer in smokers. That's why
+            they're graded separately here.{" "}
+            <a href={href({ name: "meals", section: "dark-matter" })} className="font-medium text-accent">
+              More on what food tables can't tell you
+            </a>
+          </li>
+          <li>
+            <span className="text-ink">Talk to a doctor or pharmacist first</span> if you take medicines, are pregnant, or have kidney or liver
+            disease. Some supplements interact with medicines or build up in the body.
+          </li>
+        </ol>
+      </Card>
+      )}
 
       <p className="mt-6 text-sm text-ink-2">
-        Evidence grades and wording are a first draft, checked against the cited studies but not yet reviewed by a clinician. Reference values
-        are from the European Food Safety Authority (EFSA).
+        Entries marked Basic guide have not had their benefits reviewed. Evidence grades on other entries are checked against the cited studies
+        but not yet reviewed by a clinician. Reference values, where provided, are from the European Food Safety Authority (EFSA).
       </p>
     </>
   );
@@ -148,7 +149,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
 
 function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef; match?: NutrientMatch; byMarker: Map<string, Measurement[]>; safety: SafetyId[]; profile: Profile }) {
   const units = useDisplayUnits();
-  const counts = findingCounts(n);
+  const benefit = n.findings.find((f) => f.effect === "helps");
   const warn = interactionsFor(n, safety);
   // Your latest status result, from the first of its markers you have results for.
   const markerId = n.status.biomarkerIds.find((id) => byMarker.has(id));
@@ -170,6 +171,7 @@ function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef;
         </div>
         {warn.length > 0 && <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-sm font-medium text-warn">Check interactions</span>}
       </div>
+      {n.researchStatus === "not-reviewed" && <p className="text-sm font-medium text-ink-2">Basic guide · Benefits not yet reviewed</p>}
       {/* When a search found it by something other than its name, say what. */}
       {match && match.label !== "About" ? (
         <div className="rounded-lg bg-accent-soft px-3 py-2 text-sm">
@@ -179,6 +181,16 @@ function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef;
         </div>
       ) : null}
       <p className={cx("text-ink-2", match && match.label !== "About" ? "line-clamp-2" : "line-clamp-3")}>{n.summary}</p>
+      {benefit && (
+        <div className="flex flex-col gap-1 text-sm">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="font-medium">A studied use: {benefit.label ?? benefit.outcome}</span>
+            <GradeBadge grade={benefit.grade} />
+          </p>
+          <p className="text-ink-2">{benefit.line ?? benefit.bottomLine}</p>
+          <p className="text-ink-2">Studied in: {benefit.population}</p>
+        </div>
+      )}
       <div className="mt-auto flex flex-col gap-2 border-t border-line pt-3 text-sm">
         {def && latest && flag ? (
           <p className="flex flex-wrap items-center gap-2">
@@ -191,17 +203,6 @@ function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef;
         ) : (
           <p className="text-ink-2">{n.status.biomarkerIds.length ? "No status result yet" : "No routine blood test for it in the app"}</p>
         )}
-        <p className="text-ink-2">
-          What supplement trials found:{" "}
-          {[
-            counts.helps && `${counts.helps} ${counts.helps === 1 ? "benefit" : "benefits"}`,
-            counts["no clear effect"] && `${counts["no clear effect"]} no clear effect`,
-            counts.mixed && `${counts.mixed} mixed`,
-            counts.harms && `${counts.harms} ${counts.harms === 1 ? "harm" : "harms"}`,
-          ]
-            .filter(Boolean)
-            .join(" · ")}
-        </p>
       </div>
     </a>
   );

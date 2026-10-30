@@ -1,0 +1,33 @@
+{
+  "id": "collagen",
+  "name": "Collagen peptides",
+  "kind": "supplement",
+  "otherNames": ["Collagen Peptide", "collagen", "collagen peptides", "hydrolysed collagen", "hydrolyzed collagen", "collagen hydrolysate"],
+  "researchStatus": "not-reviewed",
+  "summary": "Collagen is a structural protein in connective tissues. Collagen peptide supplements contain collagen broken into smaller protein fragments, usually from animal tissues. They supply amino acids but are not a complete protein source.",
+  "commonUses": ["Used as a protein ingredient in powders, drinks and foods.", "Used in products marketed for skin or joint health."],
+  "roles": ["Collagen is part of the structural framework of skin, cartilage, bones and tendons.", "Collagen is rich in glycine and proline but has an incomplete essential amino acid profile; it is not nutritionally interchangeable with a complete protein."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Hydrolysed collagen or collagen peptides", "note": "Collagen broken into smaller fragments. The source animal and processing method affect the mixture of peptides."},
+    {"name": "Gelatin", "note": "Heat-denatured collagen, with different physical properties from a collagen peptide powder."},
+    {"name": "Undenatured collagen", "note": "Retains more of its original structure and is a different preparation from hydrolysed collagen. The products are not interchangeable."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Check the source animal: collagen may come from cattle, pigs, chickens, fish or other marine organisms. The word marine does not identify the species or its allergy suitability.",
+    "With a fish allergy, discuss a fish-derived collagen product with an allergy clinician rather than assuming processing makes it suitable. Check the full ingredient and allergen information.",
+    "Collagen is not a nutritionally complete replacement for other dietary protein sources.",
+    "Long-term safety information is limited for the many different peptide products. A study of one preparation does not establish the safety of every collagen blend."
+  ],
+  "sources": [
+    {"pmid": "37064452", "doi": "10.1016/j.heliyon.2023.e14961", "title": "Collagen supplementation in skin and orthopedic diseases: A review of the literature.", "year": 2023, "studyType": "review"},
+    {"pmid": "32712803", "doi": "10.1007/s12016-020-08806-5", "title": "Fish Allergy: Fishing for Novel Diagnostic and Therapeutic Options.", "year": 2022, "studyType": "review"}
+  ]
+}

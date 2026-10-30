@@ -1,0 +1,30 @@
+{
+  "id": "ashwagandha",
+  "name": "Ashwagandha",
+  "kind": "supplement",
+  "otherNames": ["Ashwagandha", "Withania somnifera", "Indian ginseng"],
+  "researchStatus": "not-reviewed",
+  "summary": "Ashwagandha is the shrub Withania somnifera, used in Ayurvedic traditions and sold in herbal supplements. Products may contain root, leaf, or extracts of both, which are not interchangeable preparations.",
+  "commonUses": ["Used in products marketed for stress and relaxation", "Used in products marketed for sleep"],
+  "roles": ["The plant contains withanolides, a group of biologically active compounds.", "It is an herbal ingredient, not an essential vitamin or mineral."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Root preparations", "note": "Root powder and root extracts have different compositions. The ingredient and preparation should be identified on the label."},
+    {"name": "Leaf or root-and-leaf extracts", "note": "These differ from root-only products. A finding about one preparation cannot be assumed to apply to another."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [
+    {"with": "Pregnancy and breastfeeding", "note": "NCCIH advises against use during pregnancy and breastfeeding. Discuss any exposure with a clinician.", "safetyId": "pregnancy"},
+    {"with": "Thyroid disorders or thyroid hormone medicines", "note": "NCCIH does not recommend it for people with thyroid disorders and lists possible interactions with thyroid hormone medicines. Discuss it with the treating clinician."},
+    {"with": "Diabetes medicines", "note": "NCCIH lists a possible interaction with medicines for diabetes. Discuss the combination with the treating clinician.", "safetyId": "diabetes"},
+    {"with": "Sedatives, anticonvulsants or immunosuppressants", "note": "NCCIH lists possible interactions with these medicines. A pharmacist or clinician can check the particular combination."}
+  ],
+  "cautions": ["Rare but serious liver injury has been linked to ashwagandha supplements. Discuss liver concerns or suspected adverse effects promptly with a clinician.", "It is not recommended for people with thyroid or autoimmune disorders, or around surgery. Thyroid effects are a safety concern, not a reason to use it for a thyroid condition.", "Drowsiness, stomach upset, diarrhea and vomiting can occur. Long-term safety remains uncertain.", "NCCIH advises against use in pregnancy, breastfeeding and hormone-sensitive prostate cancer; these are important exceptions to general wellness marketing."],
+  "evidenceClaims": [],
+  "sources": [],
+  "basicSources": [{"title": "Ashwagandha: Usefulness and Safety — NCCIH", "year": 2023, "url": "https://www.nccih.nih.gov/health/ashwagandha"}]
+}

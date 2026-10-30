@@ -9,7 +9,7 @@ import os from "node:os";
 import path from "node:path";
 import type { ToolSet } from "ai";
 import { providerInfo, type Effort, type ProviderId } from "../src/core/aiProviders";
-import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken } from "./bridge";
+import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
 import { which } from "./which";
 
 export { which } from "./which";
@@ -278,9 +278,11 @@ export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: 
 
 export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const { provider } = req;
+  if (req.signal?.aborted) return { ok: false, error: "Stopped." };
   const info = providerInfo(provider)!;
   if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
   const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
+  if (req.signal?.aborted) return { ok: false, error: "Stopped." };
   const system = req.system + (bridged ? BRIDGE_NOTE : `${NO_TOOLS_NOTE}\n\nThe user's data:\n${req.dataPack()}`);
   const question = conversationText(req.messages);
   const model = req.model.trim() || undefined;
@@ -288,8 +290,9 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const profile = req.profile?.trim() || undefined;
   // An empty folder to work in, so the agent doesn't pick up project files or instructions.
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-agent-"));
-  const run = bridged ? openRun(req.tools, provider) : undefined;
+  let run: BridgeRun | undefined;
   try {
+    run = bridged ? openRun(req.tools, provider) : undefined;
     let parsed: Parsed;
     if (provider === "claude-code") {
       const systemFile = path.join(dir, "system.md");
@@ -324,6 +327,8 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
     if (!parsed.ok) return parsed;
     const steps = run ? run.steps : (parsed.tools ?? []).map((t) => ({ tool: t, server: info.label, input: "" }));
     return { ok: true, text: parsed.text, steps, studyIds: run ? [...run.ids] : [], usedTools: bridged };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "The agent could not answer." };
   } finally {
     if (run) closeRun(run);
     fs.rmSync(dir, { recursive: true, force: true });
