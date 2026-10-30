@@ -186,20 +186,16 @@ export function WholeFoodPage({ id }: { id: string }) {
             </div>
           )}
 
-          <Card className="flex flex-col gap-4">
-            <p className="text-lg">{f.summary}</p>
-            <div>
-              <h2 className="mb-1 font-semibold">What's in it</h2>
-              <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
-                {f.inIt.map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            {f.tableFoods.length > 0 && <Measured f={f} db={db} />}
-          </Card>
+          {/* The answer first: the summary, then what studies found; the detail behind it follows. */}
+          <p className="max-w-3xl text-lg">{f.summary}</p>
 
-          {f.history && <History f={f} />}
+          <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
+          <Findings
+            prefix="finding"
+            title="What studies found"
+            intro="Studies of people eating the food, strongest evidence first. Many follow people over years rather than testing the food in a trial, and people who eat a food often differ in other ways, so the grades say how sure the evidence is."
+            findings={f.findings}
+          />
 
           {f.visuals.length > 0 && (
             <Card className="flex flex-col gap-6">
@@ -212,13 +208,17 @@ export function WholeFoodPage({ id }: { id: string }) {
             </Card>
           )}
 
-          <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-          <Findings
-            prefix="finding"
-            title="What studies found"
-            intro="Studies of people eating the food, strongest evidence first. Many follow people over years rather than testing the food in a trial, and people who eat a food often differ in other ways, so the grades say how sure the evidence is."
-            findings={f.findings}
-          />
+          {f.history && <History f={f} />}
+
+          <Card id="in-it" className="flex scroll-mt-6 flex-col gap-4">
+            <H2>What's in it</H2>
+            <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
+              {f.inIt.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            {f.tableFoods.length > 0 && <Measured f={f} db={db} />}
+          </Card>
 
           <Card className="flex flex-col gap-3">
             <H2 id="processing">What the studies used, and what changes it</H2>
@@ -436,9 +436,10 @@ function Measured({ f, db }: { f: WholeFoodDef; db: FoodDb | undefined }) {
 /** Side column on wide screens: what studies found, and where things are on the page. */
 function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
   const links: [string, string][] = [
-    ...((f.history ? [["history", "Then and now"]] : []) as [string, string][]),
-    ...((f.visuals.length ? [["pictures", "In pictures"]] : []) as [string, string][]),
     ["findings", "What studies found"],
+    ...((f.visuals.length ? [["pictures", "In pictures"]] : []) as [string, string][]),
+    ...((f.history ? [["history", "Then and now"]] : []) as [string, string][]),
+    ["in-it", "What's in it"],
     ["processing", "What changes it"],
     ...((f.whoShouldBeCareful.length > 0 || f.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ["unknowns", "What isn't known yet"],
