@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Select } from "@base-ui/react/select";
-import { BODY_FIELDS, type BodyField } from "../../core/body";
+import { BODY_FIELDS, DAILY_TOTAL_FIELDS, SLEEP_FIELDS, type BodyField } from "../../core/body";
 import {
   DailyTally,
   appleRecords,
@@ -17,11 +17,11 @@ import {
 import { zipEntries } from "../../core/importers/zipRead";
 import type { Measurement } from "../../core/types";
 import { listUnits, matchUnit, toCanonical } from "../../core/units";
-import { addMeasurements } from "../../db/db";
+import { saveDeviceMeasurements } from "../../db/db";
 import { monthFirst } from "../components/LabReview";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, CheckIcon, ChevronDownIcon, LinkButton, Notice, PageTitle, cx } from "../components/ui";
-import { formatDate } from "../format";
+import { formatDate, showValue } from "../format";
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, shortName } from "../knowledge";
 import { href } from "../router";
@@ -41,7 +41,7 @@ interface Read {
   skipped: { file: string; what: string; reason: string; family?: string }[];
   ignored: { file: string; columns: string[]; family?: string }[];
   problems: string[];
-  /** Files read that held nothing to import (sleep, steps, settings…). */
+  /** Files read that held nothing to import (settings, goals…). */
   empty: string[];
 }
 
@@ -149,7 +149,7 @@ const SOURCES: [string, string][] = [
   ["Apple Health", "Health app → your picture → Export All Health Data. Choose the zip (or export.xml): heart rate, blood oxygen, sleep stages, workouts, weight and more. Apple's HRV is a different measure (SDNN) and isn't imported."],
   ["Fitbit", "Google Takeout (takeout.google.com) → Fitbit. Choose the zip or the Fitbit folder: heart rate, resting heart rate, HRV, SpO2, sleep and weight are read."],
   ["Google Fit", "Google Takeout → Fit. Choose the zip or \"Daily activity metrics.csv\"."],
-  ["Samsung Health", "Settings → Download personal data. Choose the folder: heart rate, oxygen saturation, weight and blood pressure files are read."],
+  ["Samsung Health", "Settings → Download personal data. Choose the zip or full folder: heart rate, overnight heart rate and HRV, oxygen saturation, weight, blood pressure, sleep stages, daily steps and active time are read. Keep the sleep-stage, daily step-trend, daily activity-summary and Energy Score files. Only recorded overnight measurements are taken from Energy Score; the scores and overlapping detail records aren't imported."],
   ["Garmin", "Garmin account → Data management → Export your data (arrives by email). Choose the zip or folder; daily summaries give resting heart rate and SpO2, sleep files the night's stages. Or export a Connect report as CSV."],
   ["Oura", "membership.ouraring.com → Export data → CSV (sleep, resting heart rate, HRV)."],
   ["Whoop", "Whoop app → Settings → Data export. Choose the zip, or physiological_cycles.csv, sleeps.csv and workouts.csv."],
@@ -163,7 +163,7 @@ export function DeviceImportPage() {
   const existing = useAllMeasurements();
   const [read, setRead] = useState<Read | null>(null);
   const [busy, setBusy] = useState<{ file: string; fraction: number; of?: string } | null>(null);
-  const [saved, setSaved] = useState<{ readings: number; kinds: number; already: number } | null>(null);
+  const [saved, setSaved] = useState<{ readings: number; kinds: number; updated: number } | null>(null);
 
   async function onFiles(files: File[]) {
     if (files.length === 0) return;
@@ -211,21 +211,13 @@ export function DeviceImportPage() {
 
   async function save() {
     if (!read) return;
-    const taken = new Set(have);
-    const toSave: Omit<Measurement, "id">[] = [];
-    let already = 0;
+    const toSave: Omit<Measurement, "id" | "source">[] = [];
     const kinds = new Set<string>();
     for (const r of read.rows.filter((x) => x.include)) {
       const def = BIOMARKER_MAP.get(r.series.field)!;
       const unit = matchUnit(def, r.series.unit);
       if (!unit) continue;
       for (const d of r.series.days) {
-        const k = `${def.id}|${d.date}`;
-        if (taken.has(k)) {
-          already++;
-          continue;
-        }
-        taken.add(k);
         kinds.add(def.id);
         toSave.push({
           biomarkerId: def.id,
@@ -233,17 +225,29 @@ export function DeviceImportPage() {
           originalValue: d.value,
           originalUnit: unit,
           date: d.date,
-          source: "device",
-          note: `${r.file}: ${r.series.from}${d.readings > 1 ? `, average of ${d.readings} readings` : ""}`,
+          note: `${r.file}: ${r.series.from}${d.readings > 1 ? `, ${DAILY_TOTAL_FIELDS.has(r.series.field) ? "total" : "average"} of ${d.readings} readings` : ""}`,
         });
       }
     }
-    await addMeasurements(toSave);
-    setSaved({ readings: toSave.length, kinds: kinds.size, already });
+    const result = await saveDeviceMeasurements(toSave);
+    setSaved({ readings: result.added + result.updated, kinds: kinds.size, updated: result.updated });
     setRead(null);
   }
 
   const update = (key: string, patch: (r: Row) => Row) => setRead((s) => (s ? { ...s, rows: s.rows.map((r) => (r.key === key ? patch(r) : r)) } : s));
+  const importActions = read && (
+    <div className="flex flex-wrap gap-2">
+      <Button onClick={() => void save()} disabled={!read.rows.some((r) => r.include)}>
+        Save
+      </Button>
+      <Button variant="quiet" onClick={() => setRead(null)}>
+        Choose other files
+      </Button>
+      <LinkButton variant="quiet" href={href({ name: "body" })}>
+        Cancel
+      </LinkButton>
+    </div>
+  );
 
   return (
     <>
@@ -256,7 +260,7 @@ export function DeviceImportPage() {
 
       {saved && (
         <Notice role="status" title={`Saved ${saved.readings} daily ${saved.readings === 1 ? "value" : "values"} for ${saved.kinds} ${saved.kinds === 1 ? "measurement" : "measurements"}`} className="mb-5">
-          {saved.already > 0 && `${saved.already} ${saved.already === 1 ? "day was" : "days were"} already saved and skipped. `}
+          {saved.updated > 0 && `${saved.updated} existing daily ${saved.updated === 1 ? "value was" : "values were"} updated. `}
           <a href={href({ name: "body" })} className="font-medium text-accent">
             See them on Body
           </a>
@@ -311,6 +315,7 @@ export function DeviceImportPage() {
 
       {read && (
         <div className="flex flex-col gap-5">
+          {importActions}
           {read.problems.map((p) => (
             <Notice key={p} tone="warn">
               {p}
@@ -319,7 +324,8 @@ export function DeviceImportPage() {
           {read.rows.length > 0 && (
             <Card className="flex flex-col gap-3">
               <h2 className="font-serif text-2xl font-normal">Found {read.rows.length === 1 ? "one series" : `${read.rows.length} series`}</h2>
-              <p className="text-ink-2">One value per day: the average of that day's readings. Check what each became, change it if needed, and untick what you don't want.</p>
+              <p className="text-ink-2">One value per day: sleep, steps and active minutes are added up; other readings are averaged. Check what each became, change it if needed, and untick what you don't want.</p>
+              <p className="text-sm text-ink-2">Saving replaces existing readings for the same measurement and date, including manually entered readings. Other dates are kept.</p>
               <ul className="flex flex-col divide-y divide-line">
                 {read.rows.map((r, i) => (
                   <SeriesRow key={r.key} row={r} earlier={read.rows.slice(0, i)} have={have} onChange={(patch) => update(r.key, patch)} />
@@ -342,7 +348,7 @@ export function DeviceImportPage() {
           {read.empty.length > 0 && (
             <details className="text-sm text-ink-2">
               <summary className="min-h-11 cursor-pointer py-2">
-                {read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (sleep, steps, settings and the like)
+                {read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (settings, goals and the like)
               </summary>
               <p className="break-words">{[...new Set(read.empty)].slice(0, 60).join(", ")}{read.empty.length > 60 ? "…" : ""}</p>
             </details>
@@ -357,17 +363,7 @@ export function DeviceImportPage() {
               ))}
             </details>
           )}
-          <div className="flex flex-wrap gap-2">
-            <Button onClick={() => void save()} disabled={!read.rows.some((r) => r.include)}>
-              Save
-            </Button>
-            <Button variant="quiet" onClick={() => setRead(null)}>
-              Choose other files
-            </Button>
-            <LinkButton variant="quiet" href={href({ name: "body" })}>
-              Cancel
-            </LinkButton>
-          </div>
+          {importActions}
         </div>
       )}
     </>
@@ -380,7 +376,8 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
   const first = s.days[0]!;
   const last = s.days.at(-1)!;
   const already = s.days.filter((d) => have.has(`${s.field}|${d.date}`)).length;
-  const unitOk = !!matchUnit(def, s.unit);
+  const matchedUnit = matchUnit(def, s.unit);
+  const unitOk = !!matchedUnit;
   // Only a real choice (kg or lb), not names for the same thing (bpm or /min).
   const unitsDiffer = new Set(listUnits(def).map((u) => toCanonical(def, 1, u))).size > 1;
   const median = [...s.days].sort((a, b) => a.value - b.value)[Math.floor(s.days.length / 2)]?.value ?? 0;
@@ -421,8 +418,9 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
           )}
         </div>
         <p className="text-sm text-ink-2">
-          {s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest {last.value} {s.unit}
-          {already > 0 && ` · ${already} already saved, skipped`}
+          {s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest{" "}
+          {SLEEP_FIELDS.has(s.field) && matchedUnit ? showValue(def, toCanonical(def, last.value, matchedUnit), def.canonicalUnit) : `${last.value} ${s.unit}`}
+          {already > 0 && ` · ${already} already saved, will be updated`}
           {s.dropped > 0 && ` · ${s.dropped} impossible ${s.dropped === 1 ? "reading" : "readings"} left out`}
         </p>
         {overlap && (

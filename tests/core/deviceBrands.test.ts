@@ -129,6 +129,135 @@ describe("Withings", () => {
   });
 });
 
+describe("Samsung Health body composition", () => {
+  const path = "samsunghealth/com.samsung.health.weight.20261030120000.csv";
+
+  it("imports the percentage, not fat mass, from a zipped weight export", async () => {
+    const text = "com.samsung.shealth.tracker.weight,6302004,4\ncom.samsung.health.weight.start_time,com.samsung.health.weight.weight,com.samsung.health.weight.body_fat_mass,com.samsung.health.weight.body_fat\n2026-03-01 07:00:00.000,80,20,25\n";
+    const archive = zipStore([{ name: path, data: new TextEncoder().encode(text) }]);
+    const [entry] = await zipEntries(new Blob([archive as BlobPart]));
+    const table = tableOf(parseCsv(await entry!.text()))!;
+    expect(read(entry!.name, table)).toEqual({
+      weight: [["2026-03-01", 80]],
+      body_fat: [["2026-03-01", 25]],
+    });
+    expect(readTable(entry!.name, table).columns.find((c) => c.header === "body fat mass")).toMatchObject({
+      field: null,
+      reason: expect.any(String),
+      readings: [],
+    });
+  });
+
+  it("does not invent a percentage when only fat mass is present", () => {
+    const text = "com.samsung.shealth.tracker.weight\ncom.samsung.health.weight.start_time,com.samsung.health.weight.weight,com.samsung.health.weight.body_fat_mass\n2026-03-01 07:00:00.000,80,20\n";
+    expect(csv(path, text)).toEqual({
+      weight: [["2026-03-01", 80]],
+    });
+  });
+});
+
+describe("Samsung Health steps", () => {
+  it("uses only the combined daily total, with the newest snapshot replacing an earlier total", () => {
+    const text = `com.samsung.shealth.step_daily_trend,7010053,6
+create_time,update_time,source_type,count,day_time
+2026-03-05 10:00:00.000,2026-03-05 11:00:00.000,-2,4800,2026-03-01 00:00:00.000
+2026-03-05 10:00:00.000,2026-03-05 10:00:00.000,-2,5000,2026-03-01 00:00:00.000
+2026-03-05 10:00:00.000,2026-03-05 11:00:00.000,0,3000,2026-03-01 00:00:00.000
+2026-03-05 10:00:00.000,2026-03-05 11:00:00.000,108,4500,2026-03-01 00:00:00.000
+2026-03-05 10:00:00.000,2026-03-05 11:00:00.000,-2,2000,2026-03-02 00:00:00.000
+`;
+    expect(csv("com.samsung.shealth.step_daily_trend.csv", text)).toEqual({ steps: [["2026-03-01", 4800], ["2026-03-02", 2000]] });
+  });
+
+  it("reads the daily date encoded as UTC-midnight milliseconds", () => {
+    const text = `com.samsung.shealth.step_daily_trend\nsource_type,count,day_time\n-2,1234,${Date.UTC(2026, 2, 1)}\n`;
+    expect(csv("com.samsung.shealth.step_daily_trend.csv", text)).toEqual({ steps: [["2026-03-01", 1234]] });
+  });
+
+  it("does not invent a combined total from overlapping phone and watch counts", () => {
+    const text = "com.samsung.shealth.step_daily_trend\nsource_type,count,day_time\n0,3000,2026-03-01\n108,4500,2026-03-01\n";
+    const result = readTable("com.samsung.shealth.step_daily_trend.csv", tableOf(parseCsv(text))!);
+    expect(result.columns.filter((c) => c.field === "steps").flatMap((c) => c.readings)).toEqual([]);
+    expect(result.columns).toContainEqual(expect.objectContaining({ field: null, reason: expect.any(String) }));
+  });
+
+  it.each([false, true])("ignores redundant Samsung step files regardless of zip order (reversed: %s)", async (reverse) => {
+    const enc = new TextEncoder();
+    const files = [
+      { name: "com.samsung.shealth.tracker.pedometer_day_summary.csv", data: enc.encode("date,step_count,walk_step_count,run_step_count\n2026-03-01,5000,4500,500\n") },
+      { name: "com.samsung.shealth.tracker.pedometer_step_count.csv", data: enc.encode("date,count\n2026-03-01,7000\n") },
+      { name: "com.samsung.shealth.activity.day_summary.csv", data: enc.encode("date,step_count\n2026-03-01,5000\n") },
+      { name: "com.samsung.shealth.step_daily_trend.csv", data: enc.encode("day_time,source_type,count\n2026-03-01,-2,5000\n2026-03-01,0,3000\n2026-03-01,108,4500\n") },
+    ];
+    const entries = await zipEntries(new Blob([zipStore(reverse ? files.reverse() : files) as BlobPart]));
+    const totals = [];
+    for (const entry of entries) {
+      const result = csv(entry.name, await entry.text());
+      if (result.steps) totals.push(result.steps);
+    }
+    expect(totals).toEqual([[["2026-03-01", 5000]]]);
+  });
+});
+
+describe("Samsung Health active time", () => {
+  it("reads the activity day's milliseconds as minutes, not seconds or scoring inputs", () => {
+    const text = `com.samsung.shealth.activity.day_summary,7010053,6
+create_time,day_time,active_time,exercise_time,dynamic_active_time,walk_time,run_time,step_count
+2026-03-05 10:00:00.000,2026-03-01 00:00:00.000,845219,0,0,838419,6800,1274
+2026-03-05 10:00:00.000,2026-03-02 00:00:00.000,2700000,120000,0,2580000,120000,5000
+`;
+    expect(csv("com.samsung.shealth.activity.day_summary.csv", text)).toEqual({ active_minutes: [["2026-03-01", 14.1], ["2026-03-02", 45]] });
+  });
+  it("replaces cumulative daily snapshots instead of adding them", () => {
+    const text = "com.samsung.shealth.activity.day_summary\nday_time,update_time,active_time\n2026-03-01,2026-03-02 12:00:00.000,1200000\n2026-03-01,2026-03-02 10:00:00.000,1800000\n";
+    expect(csv("com.samsung.shealth.activity.day_summary.csv", text)).toEqual({ active_minutes: [["2026-03-01", 20]] });
+  });
+  it("does not import overlapping pedometer or detail-bin active time", () => {
+    expect(csv("com.samsung.shealth.tracker.pedometer_day_summary.csv", "day_time,active_time\n2026-03-01,745753\n2026-03-01,44351\n2026-03-01,605419\n")).toEqual({});
+    expect(json("jsons/com.samsung.shealth.activity.day_summary/example.binning_data.json", [{ date: "2026-03-01", mTotalActiveTime: 60000 }, { date: "2026-03-01", mTotalActiveTime: 120000 }])).toEqual({});
+  });
+});
+
+describe("Samsung Health overnight resting summaries", () => {
+  it("imports the measured sleeping heart rate and HRV, not scores, scales or baselines", () => {
+    const text = `com.samsung.shealth.vitality_score,7010053,4
+day_time,create_time,shr_value,shrv_value,shr_score,shrv_score,shr_balance_scale,shrv_balance_scale,prev_shr_avg,prev_shrv_avg,shr_baseline_min,shrv_baseline_max,sleep_duration,sleep_duration_scale,active_time,pkg_name
+2026-03-01 00:00:00.000,2026-03-05 12:00:00.000,60,50,98,95,90,85,61,51,45,80,24000000,97,845219,com.sec.android.app.shealth
+`;
+    expect(csv("com.samsung.shealth.vitality_score.csv", text)).toEqual({
+      resting_hr: [["2026-03-01", 60]],
+      hrv_resting: [["2026-03-01", 50]],
+    });
+  });
+  it("uses each summary day and its latest update instead of averaging snapshots", () => {
+    const text = `com.samsung.shealth.vitality_score
+day_time,update_time,shr_value,shrv_value
+2026-03-01,2026-03-05 12:00:00.000,57,65
+2026-03-01,2026-03-05 10:00:00.000,60,50
+`;
+    expect(csv("com.samsung.shealth.vitality_score.csv", text)).toEqual({
+      resting_hr: [["2026-03-01", 57]],
+      hrv_resting: [["2026-03-01", 65]],
+    });
+  });
+  it("leaves unavailable measurements out rather than filling them from scores or previous averages", () => {
+    const text = `com.samsung.shealth.vitality_score
+day_time,shr_value,shrv_value,shr_score,shrv_score,prev_shr_avg,prev_shrv_avg
+2026-03-01,-1,0,99,98,60,50
+2026-03-02,55,,99,98,60,50
+2026-03-03,,48,99,98,60,50
+`;
+    expect(csv("com.samsung.shealth.vitality_score.csv", text)).toEqual({
+      resting_hr: [["2026-03-02", 55]],
+      hrv_resting: [["2026-03-03", 48]],
+    });
+  });
+  it("keeps ordinary heart-rate and HRV readings separate from resting summaries", () => {
+    expect(csv("com.samsung.health.heart_rate.csv", "date,heart_rate\n2026-03-01,88\n")).toEqual({ heart_rate: [["2026-03-01", 88]] });
+    expect(json("jsons/com.samsung.health.hrv/example.binning_data.json", [{ date: "2026-03-01", rmssd: 50 }])).toEqual({ hrv: [["2026-03-01", 50]] });
+  });
+});
+
 describe("shared helpers", () => {
   it("names file families without dates and numbers", () => {
     expect(fileFamily("Takeout/Fitbit/Global Export Data/heart_rate-2026-03-01.json")).toBe("takeout/fitbit/global export data/heart rate");
@@ -191,6 +320,59 @@ describe("zip files", () => {
 });
 
 describe("sleep", () => {
+  it("reads Samsung's actual sleep from stage intervals, excluding awake time", () => {
+    const text = `com.samsung.health.sleep_stage,7010053,7
+start_time,end_time,sleep_id,stage,time_offset
+2026-03-01 13:35:30.000,2026-03-01 15:17:30.000,night,40004,UTC+0100
+2026-03-01 08:37:00.000,2026-03-01 12:50:00.000,night,40002,UTC+0100
+2026-03-01 15:17:30.000,2026-03-01 15:52:00.000,night,40001,UTC+0100
+2026-03-01 12:50:00.000,2026-03-01 13:35:30.000,night,40003,UTC+0100
+`;
+    expect(csv("com.samsung.health.sleep_stage.20260302.csv", text)).toEqual({
+      sleep_duration: [["2026-03-01", 400.5]],
+      sleep_deep: [["2026-03-01", 45.5]],
+      sleep_rem: [["2026-03-01", 102]],
+    });
+  });
+  it("dates all Samsung stages by the session's local wake-up day and adds naps", () => {
+    const text = `com.samsung.health.sleep_stage,7010053,7
+start_time,end_time,sleep_id,stage,time_offset
+2026-03-01 20:00:00.000,2026-03-01 21:00:00.000,night,40002,UTC+0200
+2026-03-01 21:00:00.000,2026-03-01 21:30:00.000,night,40003,UTC+0200
+2026-03-01 21:30:00.000,2026-03-01 22:00:00.000,night,40004,UTC+0200
+2026-03-01 22:00:00.000,2026-03-01 22:30:00.000,night,40001,UTC+0200
+2026-03-02 10:00:00.000,2026-03-02 10:20:00.000,nap,40002,UTC+0200
+`;
+    expect(csv("com.samsung.health.sleep_stage.csv", text)).toEqual({
+      sleep_duration: [["2026-03-02", 140]],
+      sleep_deep: [["2026-03-02", 30]],
+      sleep_rem: [["2026-03-02", 30]],
+    });
+  });
+  it("uses Samsung's negative time-zone offsets when the local wake-up date is the previous day", () => {
+    const text = "com.samsung.health.sleep_stage,7010053,7\nstart_time,end_time,sleep_id,stage,time_offset\n2026-03-02 01:00:00.000,2026-03-02 02:00:00.000,night,40002,UTC-0500\n";
+    expect(csv("com.samsung.health.sleep_stage.csv", text)).toEqual({ sleep_duration: [["2026-03-01", 60]] });
+  });
+  it.each(["sleep", "sleep_combined", "vitality_score"])("does not import Samsung %s score inputs or time in bed as sleep", (kind) => {
+    const text = `com.samsung.shealth.${kind},7010053,12
+start_time,end_time,total_sleep_time_weight,sleep_duration_scale,sleep_duration,total_rem_duration,total_light_duration,sleep_score
+2026-03-01 08:37:00.000,2026-03-01 15:52:00.000,34,97.9,435,102,254,83
+`;
+    const result = readTable(`com.samsung.shealth.${kind}.20260302.csv`, tableOf(parseCsv(text))!);
+    expect(result.columns.filter((c) => c.field)).toEqual([]);
+    expect(result.columns).toContainEqual(expect.objectContaining({ field: null, reason: expect.any(String) }));
+  });
+  it("leaves out a Samsung session with invalid intervals or unknown stages rather than undercounting it", () => {
+    const text = `com.samsung.health.sleep_stage,7010053,7
+start_time,end_time,sleep_id,stage,time_offset
+2026-03-01 20:00:00.000,2026-03-01 21:00:00.000,bad-stage,40002,UTC+0100
+2026-03-01 21:00:00.000,2026-03-01 22:00:00.000,bad-stage,99999,UTC+0100
+2026-03-02 20:00:00.000,2026-03-02 21:00:00.000,bad-time,40002,UTC+0100
+2026-03-02 22:00:00.000,2026-03-02 21:00:00.000,bad-time,40003,UTC+0100
+2026-03-03 20:00:00.000,2026-03-03 21:00:00.000,good,40002,UTC+0100
+`;
+    expect(csv("com.samsung.health.sleep_stage.csv", text)).toEqual({ sleep_duration: [["2026-03-03", 60]] });
+  });
   it("reads Fitbit sleep logs: total, deep and REM in minutes, naps added", () => {
     expect(
       json("Takeout/Fitbit/Global Export Data/sleep-2026-03-01.json", [

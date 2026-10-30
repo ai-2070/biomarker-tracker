@@ -14,7 +14,7 @@ import { LifestyleFigure } from "../components/LifestyleVisuals";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, FlagBadge, LinkButton, PageTitle, cx, inputStyles } from "../components/ui";
-import { displayUnitFor, formatDate, showMeasurement } from "../format";
+import { displayUnitFor, formatDate, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, LIFESTYLE, LIFESTYLE_MAP } from "../knowledge";
 import { href } from "../router";
@@ -350,7 +350,7 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
                     {latest && (
                       <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
                         <span className="text-base tabular-nums">
-                          {showMeasurement(def, latest, unit)} {unit}
+                          {showMeasurement(def, latest, unit)} {valueUnit(def, unit)}
                         </span>
                         {flag && flag !== "unknown" && <FlagBadge flag={flag} />}
                         <span className="text-ink-2">{formatDate(latest.date)}</span>

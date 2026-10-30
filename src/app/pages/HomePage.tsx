@@ -13,7 +13,7 @@ import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { ArrowRightIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { cx } from "../components/ui";
-import { displayUnitFor, formatDate, showMeasurement } from "../format";
+import { displayUnitFor, formatDate, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bloodOnly, bodyOnly, shortName } from "../knowledge";
 import { useProfiles } from "../profiles";
@@ -170,7 +170,7 @@ function BloodSummaryList({ d }: { d: Dashboard }) {
               <span className="truncate text-sm font-medium">{shortName(m.def)}</span>
               <Sparkline series={m.series.slice(-12)} {...(m.range ? { range: m.range } : {})} tone={tone} />
               <SummaryValue text={showMeasurement(m.def, m.latest, unit)} flag={m.flag} />
-              <span className="truncate text-sm text-ink-2">{unit}</span>
+              <span className="truncate text-sm text-ink-2">{valueUnit(m.def, unit)}</span>
             </a>
           </li>
         );

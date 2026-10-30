@@ -4,6 +4,7 @@ import { parseBackup } from "../../src/core/backup";
 import {
   addMeasurement,
   addProtocol,
+  saveDeviceMeasurements,
   createExperiment,
   deleteHabit,
   saveHabit,
@@ -53,6 +54,42 @@ describe("db", () => {
     await addMeasurement({ ...sample, biomarkerId: "b12" }, db);
     const ferritin = await measurementsFor("ferritin", db);
     expect(ferritin.map((m) => m.date)).toEqual(["2023-06-01", "2024-06-01"]);
+  });
+
+  it("reimports corrected device values in place, adds new days and keeps unrelated results", async () => {
+    const bad = { biomarkerId: "body_fat", value: 20, originalValue: 20, originalUnit: "%", date: "2026-03-01", source: "device" as const, note: "weight.csv: body fat mass" };
+    const id = await addMeasurement({ ...bad, qualifier: "<", labRange: { high: 30 } }, db);
+    const otherDay = await addMeasurement({ ...bad, date: "2026-02-01" }, db);
+    const otherMarker = await addMeasurement(sample, db);
+    const corrected = { ...bad, value: 25, originalValue: 25, note: "weight.csv: body fat" };
+    const nextDay = { ...corrected, date: "2026-03-02", value: 24.5, originalValue: 24.5 };
+    expect(await saveDeviceMeasurements([corrected, nextDay], db)).toEqual({ added: 1, updated: 1 });
+    expect(await db.measurements.get(id)).toEqual({ ...corrected, id });
+    expect(await db.measurements.get(otherDay)).toEqual({ ...bad, date: "2026-02-01", id: otherDay });
+    expect(await db.measurements.get(otherMarker)).toEqual({ ...sample, id: otherMarker });
+    const before = await db.measurements.toArray();
+    expect(await saveDeviceMeasurements([corrected, nextDay], db)).toEqual({ added: 0, updated: 2 });
+    expect(await db.measurements.toArray()).toEqual(before);
+  });
+
+  it("uses the first overlapping series and updates every existing reading on that day", async () => {
+    const day = { ...sample, biomarkerId: "weight", originalUnit: "kg", value: 80, originalValue: 80 };
+    const firstId = await addMeasurement(day, db);
+    const secondId = await addMeasurement({ ...day, value: 81, originalValue: 81 }, db);
+    const imported = { ...day, value: 79, originalValue: 79, note: "watch.csv: weight" };
+    expect(await saveDeviceMeasurements([imported, { ...imported, value: 90, originalValue: 90 }], db)).toEqual({ added: 0, updated: 1 });
+    expect(await measurementsFor("weight", db)).toEqual([
+      { ...imported, source: "device", id: firstId },
+      { ...imported, source: "device", id: secondId },
+    ].sort((a, b) => a.id.localeCompare(b.id)));
+  });
+
+  it("serializes concurrent reimports without creating duplicate days", async () => {
+    const first = { ...sample, biomarkerId: "body_fat", originalUnit: "%", value: 20, originalValue: 20 };
+    const second = { ...first, value: 25, originalValue: 25 };
+    await Promise.all([saveDeviceMeasurements([first], db), saveDeviceMeasurements([second], db)]);
+    const results = await measurementsFor("body_fat", db);
+    expect(results.map(({ id: _id, ...m }) => m)).toEqual([{ ...second, source: "device" }]);
   });
 
   it("exports a backup that passes validation and restores it", async () => {

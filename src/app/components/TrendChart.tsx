@@ -5,12 +5,12 @@ import { dayNumber } from "../../core/dates";
 import { timeTicks } from "../../core/timeWindow";
 import { flagMeasurement, flagValue, isCritical, isOutOfRange, paddedDomain, sortByDate, type Flag, type ResolvedRange } from "../../core/trends";
 import { niceTicks } from "../../core/scale";
-import { formatValue, fromCanonical } from "../../core/units";
+import { formatValue, fromCanonical, toCanonical } from "../../core/units";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "../../core/types";
 import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
 import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "./timeControls";
 import { cx } from "./ui";
-import { FLAG_LABEL, formatDate, showRange } from "../format";
+import { FLAG_LABEL, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../format";
 import { habitTypesIn, ofTypes, type ProtocolCategory } from "../../core/protocols";
 import { HabitTypes, Toggle, useChartPrefs } from "./chartHabits";
 
@@ -85,6 +85,7 @@ export function TrendChart({
   const [habit, setHabit] = useState<string | null>(null);
   const [moved, setMoved] = useState(false);
   const conv = (v: number) => fromCanonical(def, v, unit);
+  const suffix = valueUnit(def, unit);
   const sorted = useMemo(() => sortByDate(measurements), [measurements]);
   const readings = useMemo(() => sorted.map((m) => ({ date: m.date, value: m.value })), [sorted]);
   // Totals: days or weeks (a month's total can't be compared with the weekly advice).
@@ -98,13 +99,13 @@ export function TrendChart({
     group === "each"
       ? sorted.map((m) => {
           const flag = flagMeasurement(def, m, profile);
-          return { t: dayNumber(m.date) * DAY_MS, y: conv(m.value), date: m.date, label: `${m.qualifier ?? ""}${formatValue(conv(m.value))}`, flag, out: isOutOfRange(flag), count: 1, from: m.date, to: m.date };
+          return { t: dayNumber(m.date) * DAY_MS, y: conv(m.value), date: m.date, label: showMeasurement(def, m, unit), flag, out: isOutOfRange(flag), count: 1, from: m.date, to: m.date };
         })
       : groupReadings(readings, group, totals ? "total" : "average").map((p) => {
           // An average is judged against the range (not the person's usual range, which is never a flag);
           // a weekly total only when the week has a reading every day (a week still under way would look low).
           const flag = range && range.source !== "personal" && (!totals || p.count >= 7) ? flagValue(p.value, range) : "unknown";
-          return { t: dayNumber(p.date) * DAY_MS, y: conv(p.value), date: p.date, label: formatValue(conv(p.value)), flag, out: isOutOfRange(flag) && !isCritical(flag), count: p.count, from: p.from, to: p.to };
+          return { t: dayNumber(p.date) * DAY_MS, y: conv(p.value), date: p.date, label: showValue(def, p.value, unit), flag, out: isOutOfRange(flag) && !isCritical(flag), count: p.count, from: p.from, to: p.to };
         });
 
   // The whole time span, with a little room at the ends; at least two weeks.
@@ -120,7 +121,8 @@ export function TrendChart({
   const box = useRef<HTMLDivElement>(null);
   const width = useWidth(box);
   const height = width < 640 ? 256 : 288;
-  const plotLeft = CHART_LAYOUT.yAxisWidth + CHART_LAYOUT.padX;
+  const yAxisWidth = suffix ? CHART_LAYOUT.yAxisWidth : 88;
+  const plotLeft = yAxisWidth + CHART_LAYOUT.padX;
   const plotWidth = Math.max(width - plotLeft - CHART_LAYOUT.marginRight - CHART_LAYOUT.padX, 1);
   const t = useTimeView(full, { left: plotLeft, width: plotWidth }, { ref: box, minSpan: 14, drag: "select", onChange: () => setMoved(true) });
   const v = t.v;
@@ -154,8 +156,8 @@ export function TrendChart({
   const selStats = sel ? statsBetween(readings, isoOfDay(sel.from), isoOfDay(sel.to)) : undefined;
   const shaded = habit && prefs.habits ? shownHabits.find((p) => p.id === habit) : undefined;
   const showOutKey = hasRange && band && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
-  const summary = `Chart of ${def.name} in ${unit}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} averages`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Reference range"} ${rangeText}` : ""}.`;
-  const withUnit = (x: number) => `${formatValue(conv(x))} ${unit}`;
+  const summary = `Chart of ${def.name} in ${suffix || "hours and minutes"}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} averages`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Reference range"} ${rangeText}` : ""}.`;
+  const withUnit = (x: number) => `${showValue(def, x, unit)} ${suffix}`.trim();
 
   return (
     <figure className="m-0 flex flex-col gap-3">
@@ -263,8 +265,8 @@ export function TrendChart({
             <YAxis
               domain={[yMin, yMax]}
               allowDataOverflow
-              tickFormatter={(x: number) => formatValue(x)}
-              width={CHART_LAYOUT.yAxisWidth}
+              tickFormatter={(x: number) => suffix ? formatValue(x) : showValue(def, toCanonical(def, x, unit), unit)}
+              width={yAxisWidth}
               axisLine={false}
               tickLine={false}
               tick={{ fill: "var(--color-muted)", fontSize: 12 }}
@@ -280,7 +282,7 @@ export function TrendChart({
                   <div className="rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-md">
                     <div className="text-ink-2">{p.count > 1 ? `${formatDate(p.from)} – ${formatDate(p.to)}` : formatDate(p.date)}</div>
                     <div className="font-semibold">
-                      {p.label} {unit}
+                      {p.label} {suffix}
                     </div>
                     {p.count > 1 && <div className="text-ink-2">Average of {p.count} readings</div>}
                     {p.flag !== "unknown" && <div className="text-ink-2">{FLAG_LABEL[p.flag]}</div>}
@@ -326,7 +328,7 @@ export function TrendChart({
           <span className="tabular-nums">
             {selStats.count} {selStats.count === 1 ? "reading" : "readings"}
             {selStats.count > 1 &&
-              ` · average ${withUnit(selStats.average)} · from ${withUnit(selStats.first.value)} to ${withUnit(selStats.last.value)} (${selStats.change > 0 ? "+" : selStats.change < 0 ? "−" : "±"}${formatValue(Math.abs(conv(selStats.last.value) - conv(selStats.first.value)))} ${unit})`}
+              ` · average ${withUnit(selStats.average)} · from ${withUnit(selStats.first.value)} to ${withUnit(selStats.last.value)} (${suffix ? `${selStats.change > 0 ? "+" : selStats.change < 0 ? "−" : "±"}${formatValue(Math.abs(conv(selStats.last.value) - conv(selStats.first.value)))} ${suffix}` : showChange(def, selStats.last.value - selStats.first.value, unit)})`}
           </span>
         ) : (
           "No readings in this period."
@@ -370,7 +372,7 @@ export function TrendChart({
         </div>
       </figcaption>
       {prefs.habits && habitTypes.length > 1 && <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />}
-      {prefs.habits && <ProtocolLanes protocols={shownHabits} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} />}
+      {prefs.habits && <ProtocolLanes protocols={shownHabits} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} inset={{ left: plotLeft, right: CHART_LAYOUT.marginRight + CHART_LAYOUT.padX }} />}
     </figure>
   );
 }

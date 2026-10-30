@@ -11,7 +11,7 @@ import { flagLatest, flagMeasurement, recentAverage, resolveRange, sortByDate } 
 import type { Measurement, Profile } from "../../../core/types";
 import { formatValue, listUnits } from "../../../core/units";
 import { addMeasurements } from "../../../db/db";
-import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement } from "../../format";
+import { displayUnitFor, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../../format";
 import { useDisplayUnits } from "../../hooks";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
@@ -408,11 +408,11 @@ export function LatestFigure({ ms, id, label, profile, className, chart = false 
       ? "From a watch or ring, or type it in"
       : "Not measured yet"
     : byAverage
-      ? `Last night ${formatHours(last.value)}.${range?.low !== undefined && range.high !== undefined ? ` The usual advice is ${range.low}–${range.high} hours.` : ""}`
+      ? `Last night ${showMeasurement(def, last, unit)}.${range?.low !== undefined && range.high !== undefined ? ` The usual advice is ${showRange(def, range, unit)}.` : ""}`
       : def.judgeAverageOfDays
         ? `${formatDate(last.date)}. Judged on a week's average, which needs 3 nights.`
         : week
-          ? `Average over the last week: ${formatHours(week.value)}`
+          ? `Average over the last week: ${showValue(def, week.value, unit)}`
           : def.personalRange
             ? usual
               ? `${usual.recent ? `Last week ${ms1(usual.recent.value)}; ` : ""}your usual ${Math.round(usual.low)}–${ms1(usual.high)}`
@@ -424,11 +424,11 @@ export function LatestFigure({ ms, id, label, profile, className, chart = false 
         <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
           {byAverage && week ? (
             <>
-              <span className={big}>{formatHours(week.value)}</span>
+              <span className={big}>{showValue(def, week.value, unit)}</span>
               <span className="text-ink-2">a night, last week</span>
             </>
-          ) : unit === "h" ? (
-            <span className={big}>{formatHours(last.value)}</span>
+          ) : SLEEP_FIELDS.has(id) ? (
+            <span className={big}>{showMeasurement(def, last, unit)}</span>
           ) : (
             <>
               <span className={cx(big, flag?.startsWith("critical") && "text-danger")}>{showMeasurement(def, last, unit)}</span>
@@ -512,7 +512,7 @@ export function BodySummaryList({ markers }: { markers: DashboardMarker[] }) {
               <span className="truncate text-sm font-medium">{SUMMARY_LABEL[m.def.id] ?? shortName(m.def)}</span>
               <Sparkline series={m.series.slice(-12)} {...(m.range ? { range: m.range } : {})} tone={tone} />
               <SummaryValue text={bp && dia ? `${Math.round(m.latest.value)}/${Math.round(dia.latest.value)}` : showMeasurement(m.def, m.latest, unit)} flag={flag} />
-              <span className="truncate text-sm text-ink-2">{unit}</span>
+              <span className="truncate text-sm text-ink-2">{valueUnit(m.def, unit)}</span>
             </a>
           </li>
         );

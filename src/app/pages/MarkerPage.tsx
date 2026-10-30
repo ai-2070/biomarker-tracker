@@ -13,7 +13,7 @@ import { LeversPanel, leversHeading } from "../components/LeversPanel";
 import { Fold, FoldGroup, Row, Rows } from "../components/disclosure";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, LinkButton, Notice } from "../components/ui";
-import { displayUnitFor, formatDate, formatHours, showChange, showMeasurement, showRange, showValue } from "../format";
+import { displayUnitFor, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../format";
 import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useMediaQuery, useProfile, useProtocols } from "../hooks";
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
@@ -49,7 +49,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
   const week = def.judgeAverageOfDays && measurements ? recentAverage(measurements, def.judgeAverageOfDays) : undefined;
   // Active minutes: the advice is per week, so the last 7 days' total is checked.
   const total = def.judgeSumOfDays && measurements ? recentTotal(measurements, def.judgeSumOfDays) : undefined;
-  const fmt = (v: number) => (unit === "h" ? formatHours(v) : `${showValue(def, v, unit)} ${unit}`);
+  const fmt = (v: number) => `${showValue(def, v, unit)} ${valueUnit(def, unit)}`.trim();
 
   return (
     <>
@@ -66,7 +66,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
           <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">{fullName(def)}</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          {listUnits(def).length > 1 && (
+          {valueUnit(def, unit) && listUnits(def).length > 1 && (
             <UnitSelect compact label="Show in" units={listUnits(def)} value={unit} onChange={(u) => void setDisplayUnit(def.id, u)} />
           )}
           <LinkButton href={href(def.category === "Body" ? { name: "add", kind: "body" } : { name: "add", marker: def.id })}>{def.category === "Body" ? "Add measurements" : "Add result"}</LinkButton>
@@ -87,7 +87,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
                 <div>
                   <p className="text-sm text-ink-2">Latest result, {formatDate(trend.latest.date)}</p>
                   <p className="font-serif text-5xl font-normal tabular-nums">
-                    {showMeasurement(def, trend.latest, unit)} <span className="text-lg font-normal text-ink-2">{unit}</span>
+                    {showMeasurement(def, trend.latest, unit)} <span className="text-lg font-normal text-ink-2">{valueUnit(def, unit)}</span>
                   </p>
                 </div>
                 {usual?.recent && latestFlag === "unknown" ? (
@@ -115,7 +115,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
               )}
               {usual && (
                 <p className="text-ink-2">
-                  Your usual range: {showValue(def, usual.low, unit)}–{showValue(def, usual.high, unit)} {unit}, from your own {usual.baseline.count} readings between{" "}
+                  Your usual range: {showValue(def, usual.low, unit)}–{showValue(def, usual.high, unit)} {valueUnit(def, unit)}, from your own {usual.baseline.count} readings between{" "}
                   {formatDate(usual.baseline.from)} and {formatDate(usual.baseline.to)}.
                   {usual.recent &&
                     ` Last week's average, ${fmt(usual.recent.value)}, is ${usual.recent.position === "within" ? "within it" : usual.recent.position === "below" ? "lower than usual" : "higher than usual"}.`}{" "}
@@ -197,7 +197,7 @@ function TrendSummary({ def, trend, unit }: { def: BiomarkerDef; trend: NonNulla
     <div className="flex flex-col gap-1 text-ink-2">
       <p>
         <span className="font-medium text-ink">
-          {change === "no change" ? "No change" : `${change} ${unit}${pct}`}
+          {change === "no change" ? "No change" : `${change} ${valueUnit(def, unit)}${pct}`}
         </span>{" "}
         since the previous result on {formatDate(trend.previous.date)}.
       </p>
@@ -205,7 +205,7 @@ function TrendSummary({ def, trend, unit }: { def: BiomarkerDef; trend: NonNulla
         <p>
           Across all {trend.count} results, the average change is about{" "}
           <span className="font-medium text-ink">
-            {showChange(def, trend.ratePerYear, unit) === "no change" ? "zero" : `${showChange(def, trend.ratePerYear, unit)} ${unit}`}
+            {showChange(def, trend.ratePerYear, unit) === "no change" ? "zero" : `${showChange(def, trend.ratePerYear, unit)} ${valueUnit(def, unit)}`}
           </span>{" "}
           per year.
         </p>
@@ -242,14 +242,14 @@ function MeasurementList({
         {rows.map((m) => {
           const flag = flagMeasurement(def, m, profile);
           const r = resolveRange(def, m, profile);
-          const entered = m.originalUnit !== unit ? `${m.qualifier ?? ""}${formatValue(m.originalValue)} ${m.originalUnit}` : undefined;
+          const entered = valueUnit(def, unit) && m.originalUnit !== unit ? `${m.qualifier ?? ""}${formatValue(m.originalValue)} ${m.originalUnit}` : undefined;
           const during = activeOn(protocols, m.date);
           return (
             <Row
               key={m.id}
               title={
                 <span>
-                  <span className="tabular-nums">{showMeasurement(def, m, unit)}</span> {unit}
+                  <span className="tabular-nums">{showMeasurement(def, m, unit)}</span> {valueUnit(def, unit)}
                   <span className="font-normal text-ink-2"> · {formatDate(m.date)}</span>
                 </span>
               }
@@ -278,7 +278,7 @@ function MeasurementList({
                   triggerVariant="quiet"
                   triggerClassName="text-sm -ml-3"
                   title="Delete this result?"
-                  description={`${def.name} ${showMeasurement(def, m, unit)} ${unit} from ${formatDate(m.date)} will be removed from this device. This cannot be undone.`}
+                  description={`${def.name} ${showMeasurement(def, m, unit)} ${valueUnit(def, unit)} from ${formatDate(m.date)} will be removed from this device. This cannot be undone.`}
                   confirmLabel="Delete result"
                   onConfirm={() => deleteMeasurement(m.id)}
                 />

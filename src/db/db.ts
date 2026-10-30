@@ -112,6 +112,40 @@ export async function addMeasurements(ms: Omit<Measurement, "id">[], database = 
   return rows;
 }
 
+/** A reviewed device import replaces each measurement/day; the first overlapping series wins. */
+export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "source">[], database = db): Promise<{ added: number; updated: number }> {
+  const incoming = new Map<string, Omit<Measurement, "id" | "source">>();
+  for (const m of ms) {
+    const key = `${m.biomarkerId}|${m.date}`;
+    if (!incoming.has(key)) incoming.set(key, m);
+  }
+  return database.transaction("rw", database.measurements, async () => {
+    const existing = await database.measurements.where("[biomarkerId+date]").anyOf([...incoming.values()].map((m) => [m.biomarkerId, m.date])).toArray();
+    const ids = new Map<string, string[]>();
+    for (const m of existing) {
+      const key = `${m.biomarkerId}|${m.date}`;
+      const matches = ids.get(key) ?? [];
+      matches.push(m.id);
+      ids.set(key, matches);
+    }
+    const rows: Measurement[] = [];
+    let added = 0;
+    let updated = 0;
+    for (const [key, m] of incoming) {
+      const matches = ids.get(key);
+      if (matches) {
+        for (const id of matches) rows.push({ ...m, source: "device", id });
+        updated++;
+      } else {
+        rows.push({ ...m, source: "device", id: newId() });
+        added++;
+      }
+    }
+    await database.measurements.bulkPut(rows);
+    return { added, updated };
+  });
+}
+
 export async function deleteMeasurement(id: string, database = db): Promise<void> {
   await database.measurements.delete(id);
 }

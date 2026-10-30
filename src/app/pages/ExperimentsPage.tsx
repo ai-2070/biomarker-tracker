@@ -16,7 +16,7 @@ import type { BiomarkerDef, Experiment, Measurement } from "../../core/types";
 import { deleteExperiment, endExperiment } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { Button, Card, CheckIcon, LinkButton, Notice, cx } from "../components/ui";
-import { CATEGORY_LABEL, formatChange, formatDate, showMeasurement, showWatchValue } from "../format";
+import { CATEGORY_LABEL, formatChange, formatDate, showMeasurement, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useExperiments, useWatchMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName, nameInSentence, watchDef } from "../knowledge";
 import { href, navigate } from "../router";
@@ -68,7 +68,7 @@ export function MarkerChoice({ def, checked, onChange, baseline }: { def: Biomar
         {checked && (
           <span className={cx("text-sm", baseline ? "text-ok" : "text-warn")}>
             {baseline
-              ? `Before: ${showMeasurement(def, baseline, def.canonicalUnit)} ${def.canonicalUnit} on ${formatDate(baseline.date)}`
+              ? `Before: ${showMeasurement(def, baseline, def.canonicalUnit)} ${valueUnit(def, def.canonicalUnit)} on ${formatDate(baseline.date)}`
               : "No recent result. Get tested before you start."}
             {!def.biologicalVariation && " Normal variation isn't known for this marker, so results can't be judged."}
           </span>
@@ -251,7 +251,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
           <ul className="text-sm text-ink-2">
             {[...r.before.map((m) => ["Before", m] as const), ...r.after.map((m) => ["After", m] as const)].map(([when, m]) => (
               <li key={m.id}>
-                {when}: {showMeasurement(def, m, unit)} {unit} on {formatDate(m.date)}
+                {when}: {showMeasurement(def, m, unit)} {valueUnit(def, unit)} on {formatDate(m.date)}
               </li>
             ))}
           </ul>
@@ -283,7 +283,7 @@ function Stat({ label, value, def, unit, count }: { label: string; value?: numbe
         {count > 1 ? ` (average of ${count})` : ""}
       </dt>
       <dd className="font-serif text-3xl font-normal tabular-nums">
-        {value === undefined ? "–" : showWatchValue(def, value, unit)} <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : unit}</span>
+        {value === undefined ? "–" : showWatchValue(def, value, unit)} <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : valueUnit(def, unit)}</span>
       </dd>
     </div>
   );
