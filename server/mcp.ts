@@ -51,12 +51,23 @@ async function connect(cfg: McpServerConfig): Promise<Live> {
   // stderr ignored: an unread pipe fills up and freezes the server.
   const transport = new StdioClientTransport({ command, args, env, stderr: "ignore" });
   transports.set(cfg.id, transport);
-  const client = await createMCPClient({ transport });
-  const tools = await client.tools();
-  return { client, tools };
+  let client: McpClient | undefined;
+  try {
+    client = await createMCPClient({ transport });
+    const tools = await client.tools();
+    // stop/remove may have invalidated this start while initialization or discovery awaited.
+    if (transports.get(cfg.id) !== transport) throw new Error("The research server was stopped.");
+    return { client, tools };
+  } catch (e) {
+    if (transports.get(cfg.id) === transport) transports.delete(cfg.id);
+    await client?.close().catch(() => undefined);
+    await transport.close().catch(() => undefined);
+    throw e;
+  }
 }
 
 function liveFor(cfg: McpServerConfig): Promise<Live> {
+  if (!getSettings().mcp.some((s) => s.id === cfg.id)) return Promise.reject(new Error("No such server."));
   let p = live.get(cfg.id);
   if (!p) {
     const started: Promise<Live> = connect(cfg).then(
@@ -65,8 +76,10 @@ function liveFor(cfg: McpServerConfig): Promise<Live> {
         return l;
       },
       (e: unknown) => {
-        if (live.get(cfg.id) === started) live.delete(cfg.id); // try again fresh next time
-        lastError.set(cfg.id, e instanceof Error ? e.message : String(e));
+        if (live.get(cfg.id) === started) {
+          live.delete(cfg.id); // try again fresh next time
+          lastError.set(cfg.id, e instanceof Error ? e.message : String(e));
+        }
         throw e;
       },
     );
@@ -85,7 +98,7 @@ export async function stop(id: string): Promise<void> {
 }
 
 export async function stopAll(): Promise<void> {
-  await Promise.all([...live.keys()].map(stop));
+  await Promise.all([...new Set([...live.keys(), ...transports.keys()])].map(stop));
 }
 
 /**
@@ -94,6 +107,7 @@ export async function stopAll(): Promise<void> {
  */
 export async function assistantTools(waitMs = START_WAIT_MS): Promise<{ tools: ToolSet; failed: { name: string; error: string }[]; servers: ServerInfo[] }> {
   const byServer = new Map<string, ToolSet>();
+  const admitted = new Map<string, Promise<Live>>();
   const servers: ServerInfo[] = [];
   const failed: { name: string; error: string }[] = [];
   const enabled = getSettings().mcp.filter((s) => s.enabled);
@@ -104,7 +118,10 @@ export async function assistantTools(waitMs = START_WAIT_MS): Promise<{ tools: T
         timer = setTimeout(() => reject(new Error("still starting (the first start downloads it); it will be ready for a later question")), waitMs);
       });
       try {
-        const l = await Promise.race([liveFor(cfg), slow]);
+        const pending = liveFor(cfg);
+        const l = await Promise.race([pending, slow]);
+        if (live.get(cfg.id) !== pending || !getSettings().mcp.some((s) => s.id === cfg.id && s.enabled)) return;
+        admitted.set(cfg.id, pending);
         byServer.set(cfg.id, l.tools);
         const preset = cfg.presetId ? mcpPreset(cfg.presetId) : undefined;
         servers.push({ id: cfg.id, name: cfg.name, about: preset?.description ?? "", tools: Object.keys(l.tools).length });
@@ -115,8 +132,13 @@ export async function assistantTools(waitMs = START_WAIT_MS): Promise<{ tools: T
       }
     }),
   );
-  servers.sort((a, b) => a.id.localeCompare(b.id));
-  return { tools: byServer.size ? researchTools(byServer) : {}, failed, servers };
+  // A different server may have kept this question waiting while an earlier one was removed.
+  const current = getSettings().mcp;
+  for (const id of byServer.keys()) {
+    if (live.get(id) !== admitted.get(id) || !current.some((s) => s.id === id && s.enabled)) byServer.delete(id);
+  }
+  const available = servers.filter((s) => byServer.has(s.id)).sort((a, b) => a.id.localeCompare(b.id));
+  return { tools: byServer.size ? researchTools(byServer) : {}, failed, servers: available };
 }
 
 export interface ServerInfo {
@@ -274,8 +296,9 @@ export async function updateServer(id: string, patch: { enabled?: boolean; env?:
 }
 
 export async function removeServer(id: string): Promise<void> {
-  await stop(id);
+  // End admission before the first await so another question cannot start a replacement.
   updateSettings((s) => (s.mcp = s.mcp.filter((x) => x.id !== id)));
+  await stop(id);
   updateSecrets((s) => delete s.mcpEnv[id]);
   lastError.delete(id);
 }

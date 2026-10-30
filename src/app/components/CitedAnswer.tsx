@@ -4,7 +4,10 @@ import { cx } from "./ui";
 
 /** Where a verified citation links to. */
 function citeUrl(id: string): string {
-  const [kind, value] = id.split(":");
+  const separator = id.indexOf(":");
+  const kind = id.slice(0, separator);
+  const value = id.slice(separator + 1);
+  if (kind === "DOI") return `https://doi.org/${encodeURI(value).replace(/[?#]/g, encodeURIComponent)}`;
   return kind === "PMCID" ? `https://europepmc.org/article/PMC/${value}` : `https://pubmed.ncbi.nlm.nih.gov/${value}/`;
 }
 

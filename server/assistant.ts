@@ -2,6 +2,7 @@
 import { generateText, isStepCount, type ModelMessage, type ToolSet } from "ai";
 import { skillIndex } from "../src/core/skills";
 import { providerInfo } from "../src/core/aiProviders";
+import { WEEKDAYS } from "../src/core/plans";
 import { isAgent, runAgent } from "./agents";
 import { setIdleTools } from "./bridge";
 import { biologicalAge, experimentResults, healthTools, resultsOverview, safetyOf, type HealthSnapshot } from "./healthTools";
@@ -22,7 +23,7 @@ export type { ToolStep } from "./steps";
 export { studyIdsIn } from "./steps";
 
 export type AssistantReply =
-  | { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; /** e.g. answered without the app's tools */ note?: string }
+  | { ok: true; text: string; model: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; /** e.g. answered without the app's tools */ note?: string }
   | { ok: false; error: string };
 
 export const MAX_STEPS = 10;
@@ -39,7 +40,7 @@ export function dataPack(snapshot: HealthSnapshot): string {
       habits: snapshot.protocols.map((p) => ({ entry: p.label, kind: p.category, start: p.start, end: p.end ?? "ongoing" })),
       experiments: experimentResults(snapshot),
       meals: (snapshot.meals ?? []).map((m) => ({ name: m.name, foods: m.items.length })),
-      protocols: (snapshot.plans ?? []).map((p) => ({ name: p.name, running: p.active ? `since ${p.active.since}` : "not started", items: p.items.map((i) => [i.label, i.amount, i.when].filter(Boolean).join(", ")) })),
+      protocols: (snapshot.plans ?? []).map((p) => ({ name: p.name, running: p.active ? `since ${p.active.since}` : "not started", items: p.items.map((i) => ({ label: i.label, amount: i.amount ?? null, when: i.when, days: i.days?.length ? i.days : WEEKDAYS, withFood: i.withFood ?? false, note: i.note ?? null })) })),
     },
     null,
     1,
@@ -99,6 +100,10 @@ export async function ask(
   const choice = currentChoice();
   const agent = !opts.ready && choice && isAgent(choice.provider) ? choice : undefined;
   const r = opts.ready ? ({ ok: true, ready: opts.ready } as const) : agent ? undefined : readyModel();
+  const answeringChoice = agent ?? (r?.ok ? r.ready.choice : choice);
+  const info = providerInfo(answeringChoice.provider);
+  const label = info?.models.find((m) => m.id === answeringChoice.model)?.label ?? (answeringChoice.model || "default model");
+  const modelLabel = `${info?.label ?? answeringChoice.provider} · ${label.replace(/ \(fastest\)$/, "")}`;
   if (r && !r.ok) return { ok: false, error: r.reason };
   if (agent) {
     const check = assistantCheck();
@@ -134,7 +139,7 @@ export async function ask(
     });
     if (!a.ok) return a;
     const note = a.usedTools ? undefined : `${providerInfo(agent.provider)!.label} answered from a summary of your data, without the app's research tools, so its citations can't be checked.`;
-    return { ok: true, text: a.text, steps: a.steps, studyIds: a.studyIds, truncated: false, failedServers: mcp.failed, ...(note ? { note } : {}) };
+    return { ok: true, text: a.text, model: modelLabel, steps: a.steps, studyIds: a.studyIds, truncated: false, failedServers: mcp.failed, ...(note ? { note } : {}) };
   }
   const { model, providerOptions } = r!.ready;
 
@@ -157,11 +162,15 @@ export async function ask(
     const ids = new Set<string>();
     for (const step of res.steps) {
       for (const c of step.toolCalls) {
-        steps.push(toolStep(c.toolName, c.input));
+        const recorded = toolStep(c.toolName, c.input);
+        const result = step.toolResults.find((tr) => tr.toolCallId === c.toolCallId);
+        recorded.success = !!result && !(typeof result.output === "object" && result.output !== null && "error" in result.output);
+        if (recorded.success && ["propose_habit", "propose_protocol", "propose_meal"].includes(c.toolName)) recorded.output = result!.output;
+        steps.push(recorded);
       }
       for (const tr of step.toolResults) for (const id of studyIdsFromTool(tr.toolName, tr.output)) ids.add(id);
     }
-    return { ok: true, text: res.text, steps, studyIds: [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed };
+    return { ok: true, text: res.text, model: modelLabel, steps, studyIds: [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed };
   } catch (e) {
     return { ok: false, error: describeModelError(e) };
   }

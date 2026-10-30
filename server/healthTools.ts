@@ -6,6 +6,7 @@ import { parseBackup } from "../src/core/backup";
 import { todayIso } from "../src/core/dates";
 import { selectLevers } from "../src/core/evidence";
 import { analyzeMarker, rcvBand, retestDate } from "../src/core/experiments";
+import { chanceNote, pickedAfterResults } from "../src/core/habits";
 import { selectFoods } from "../src/core/foods";
 import { summarizePhenoAge } from "../src/core/phenoageDraws";
 import { ageAt } from "../src/core/phenoageDraws";
@@ -261,6 +262,10 @@ export function experimentResults(s: HealthSnapshot) {
     start: e.start,
     retestFrom: retestDate(e),
     ended: e.end ?? null,
+    chosenOn: e.chosenOn ?? null,
+    pickedAfterResults: pickedAfterResults(e),
+    interpretation: pickedAfterResults(e) ? "A hint, not a test: these markers were selected after follow-up results were available." : e.chosenOn ? "Markers were selected before follow-up results were available." : "When these markers were selected is not recorded.",
+    caution: chanceNote(e.markerIds.length) ?? null,
     markers: e.markerIds.flatMap((id) => {
       const def = defs.get(id);
       if (!def) return [];
@@ -329,6 +334,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
               ...(i.amount ? { amountTheyWrote: i.amount } : {}),
               type: i.category,
               when: i.when,
+              days: i.days?.length ? i.days : WEEKDAYS,
+              withFood: i.withFood ?? false,
               ...(i.note ? { note: i.note } : {}),
               ...(nutrientFor(i, nutrients) ? { nutrient: nutrientFor(i, nutrients)!.name, euReferenceForThisPerson: dailyReference(nutrientFor(i, nutrients)!, { sex: s.profile.sex, age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined }) } : {}),
             })),
@@ -366,6 +373,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         const { nutrients } = knowledge();
         return {
           shownToPerson: { name: r.plan.name, items: r.plan.items.length },
+          plan: r.plan,
           interactionsBetweenItems: pairWarnings(r.plan, nutrients),
           note: "A card is shown in the chat. Nothing is saved until the person creates it; they can edit it afterwards on the Protocols page.",
         };
@@ -412,6 +420,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         const shown = Object.fromEntries(["energyKcal", "protein", "fat", "carbohydrate", "fibre"].map((k) => [k, Math.round(t[k]!.amount * 10) / 10]));
         return {
           shownToPerson: { name: input.name, foods: input.items.length },
+          meal: { ...input, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
           appTotals: shown,
           note: "A card is shown in the chat with the full totals. Nothing is saved until the person saves it. Report these totals rather than calculating your own.",
         };

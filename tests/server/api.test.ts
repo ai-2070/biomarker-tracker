@@ -83,8 +83,8 @@ describe("AI model settings", () => {
   it("saves an effort level only if the provider has it", async () => {
     await call("PUT", "/api/settings/assistant", { provider: "claude-code", model: "sonnet", effort: "xhigh" });
     expect(getSettings().assistant).toEqual({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
-    await call("PUT", "/api/settings/assistant", { provider: "codex", model: "", effort: "max" });
-    expect(getSettings().assistant).toEqual({ provider: "codex", model: "" });
+    expect((await call("PUT", "/api/settings/assistant", { provider: "codex", model: "", effort: "max" })).status).toBe(400);
+    expect(getSettings().assistant).toEqual({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
   });
 
   it("opens install and sign-in only for known programs", async () => {

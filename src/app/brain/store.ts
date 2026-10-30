@@ -22,6 +22,8 @@ export interface Step {
   tool: string;
   server?: string;
   input: string;
+  output?: unknown;
+  success?: boolean;
 }
 
 export type Turn =
@@ -80,12 +82,13 @@ export interface BrainState {
 }
 
 type Reply =
-  | { ok: true; text: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
+  | { ok: true; text: string; model?: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { ok: false; error: string };
 
 let state: BrainState = { open: false, draft: "", turns: [], busy: false, attachments: [], focusTick: 0 };
 const listeners = new Set<() => void>();
 let controller: AbortController | null = null;
+let generation = 0;
 let nextId = 0;
 const newId = () => `b${++nextId}`;
 
@@ -143,10 +146,12 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
   if (critical) return [];
   const seen = new Set<string>();
   return steps.flatMap((st): Turn[] => {
+    if (st.server || st.success !== true || !st.output || typeof st.output !== "object") return [];
+    const output = st.output as { plan?: unknown; meal?: unknown; shownToPerson?: unknown };
     if (!st.server && st.tool === "propose_protocol") {
       try {
         // Real ids: the protocol is saved in the profile, unlike chat turns.
-        const r = planFromProposal(JSON.parse(st.input), () => crypto.randomUUID(), new Date().toISOString());
+        const r = planFromProposal(output.plan, () => crypto.randomUUID(), new Date().toISOString());
         return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, state: "open" }] : [];
       } catch {
         return [];
@@ -154,22 +159,17 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
     }
     if (!st.server && st.tool === "propose_meal") {
       try {
-        const m = JSON.parse(st.input) as { name?: unknown; items?: unknown; note?: unknown };
-        const note = typeof m.note === "string" && m.note.trim() ? { note: m.note.trim() } : {};
-        const meal = { id: crypto.randomUUID(), name: String(m.name ?? "").trim(), items: m.items as Meal["items"], ...note, createdAt: new Date().toISOString() };
-        return validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal, state: "open" }] : [];
+        const meal = output.meal as Meal;
+        return meal && validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal: { ...meal, id: crypto.randomUUID() }, state: "open" }] : [];
       } catch {
         return [];
       }
     }
-    if (st.server || st.tool !== "propose_habit") return [];
-    let input: unknown;
-    try {
-      input = JSON.parse(st.input);
-    } catch {
-      return [];
-    }
-    const r = parseHabitProposal(input, BIOMARKER_MAP, today);
+    if (st.tool !== "propose_habit") return [];
+    const proposal = output.shownToPerson;
+    if (!proposal || typeof proposal !== "object") return [];
+    const fields = proposal as Record<string, unknown>;
+    const r = parseHabitProposal({ ...fields, watchMarkers: fields.markerIds }, BIOMARKER_MAP, today);
     if (!r.ok || seen.has(r.proposal.label.toLowerCase())) return [];
     seen.add(r.proposal.label.toLowerCase());
     return [{ id: newId(), role: "habit" as const, proposal: r.proposal, state: "open" as const }];
@@ -177,8 +177,10 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
 }
 
 export function newConversation(): void {
+  generation++;
   controller?.abort();
-  set((s) => ({ turns: [], busy: false, attachments: [], draft: "", focusTick: s.focusTick + 1 }));
+  controller = null;
+  set((s) => ({ turns: [], busy: false, attachments: [], draft: "", pending: undefined, focusTick: s.focusTick + 1 }));
 }
 
 const MAX_TEXT_FILE = 5_000_000;
@@ -188,7 +190,9 @@ const MAX_TEXT_FILE = 5_000_000;
  * anything else is attached as text to the next question.
  */
 export async function addFiles(files: File[]): Promise<void> {
+  const batch = generation;
   for (const file of files) {
+    if (batch !== generation) return;
     const id = newId();
     const usable = isPdf(file) || isImage(file) || isTextFile(file.name, file.type);
     set((s) => ({
@@ -200,8 +204,10 @@ export async function addFiles(files: File[]): Promise<void> {
       ],
     }));
     if (!usable) continue;
-    const progress = (fraction: number, stage: string) =>
+    const progress = (fraction: number, stage: string) => {
+      if (batch !== generation) return;
       set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, fraction, stage } : a)) }));
+    };
     try {
       let text: string;
       let ocr = false;
@@ -214,6 +220,7 @@ export async function addFiles(files: File[]): Promise<void> {
         text = r.text;
         ocr = r.ocr;
       }
+      if (batch !== generation || !state.attachments.some((a) => a.id === id)) continue;
       const report = parseLabText(text, BLOOD_MARKERS, { monthFirst });
       if (report.rows.length > 0) {
         // Lab results: checked by the person in a review card, never sent as text.
@@ -240,6 +247,7 @@ export async function addFiles(files: File[]): Promise<void> {
         attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined, ...(isImage(file) ? { photo: file, sendPhoto: false } : {}) } : a)),
       }));
     } catch (e) {
+      if (batch !== generation) return;
       const error = e instanceof Error ? e.message : "This file couldn't be read.";
       set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "error", error } : a)) }));
     }
@@ -261,29 +269,31 @@ export async function send(model: string, text?: string): Promise<void> {
   const docs = ready.filter((a) => !a.sendPhoto);
   const photos = ready.filter((a) => a.sendPhoto && a.photo);
   if ((!question && ready.length === 0) || state.busy || state.attachments.some((a) => a.status === "reading")) return;
-  const snap = await snapshot();
-  let images: { mediaType: "image/jpeg"; data: string }[] = [];
-  try {
-    images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
-  } catch (e) {
-    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: e instanceof Error ? e.message : "The photo couldn't be prepared." }] }));
+  if (photos.length > 4) {
+    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: "Send up to 4 photos at a time. Untick or remove extra photos and try again; your attachments are still here." }] }));
     return;
   }
-  const sent = questionWithFiles(
-    question || (photos.length ? "Please look at the attached photo." : ""),
-    docs.map((d) => ({ name: d.name, text: redactName(d.text ?? "", snap.name) })),
-  );
-  const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
-  set((s) => ({ turns: [...s.turns, user], busy: true, ...(text === undefined ? { draft: "" } : {}), attachments: s.attachments.filter((a) => a.status !== "ready") }));
-
-  controller = new AbortController();
-  const mine = controller;
+  const mine = new AbortController();
+  controller = mine;
+  const batch = generation;
+  const cancelled = () => mine.signal.aborted || batch !== generation;
+  set({ busy: true });
   try {
+    const snap = await snapshot();
+    if (cancelled()) return;
+    const images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
+    if (cancelled()) return;
+    const sent = questionWithFiles(
+      question || (photos.length ? "Please look at the attached photo." : ""),
+      docs.map((d) => ({ name: redactName(d.name, snap.name), text: redactName(d.text ?? "", snap.name) })),
+    );
+    const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
+    const sentIds = new Set(ready.map((a) => a.id));
+    set((s) => ({ turns: [...s.turns, user], ...(text === undefined ? { draft: "" } : {}), attachments: s.attachments.filter((a) => !sentIds.has(a.id)) }));
+    const priorPhotoNote = "\n\n[A photo was sent with this question; it isn't sent again.]";
     const messages: { role: string; content: string; images?: typeof images }[] = state.turns.flatMap((t) =>
       t.role === "user"
-        ? [{ role: "user", content: t.photos && t.id !== user.id ? `${t.sent}
-
-[A photo was sent with this question; it isn't sent again.]` : t.sent }]
+        ? [{ role: "user", content: t.photos && t.id !== user.id && t.sent.length + priorPhotoNote.length <= 20_000 ? t.sent + priorPhotoNote : t.sent }]
         : t.role === "assistant"
           ? [{ role: "assistant", content: t.content }]
           : [],
@@ -292,20 +302,20 @@ export async function send(model: string, text?: string): Promise<void> {
     if (images.length) messages[messages.length - 1] = { ...messages[messages.length - 1]!, images };
     const { name: _n, ...data } = snap;
     const r = await api<Reply>("POST", "/api/assistant", { messages, snapshot: data }, mine.signal);
-    if (mine.signal.aborted) return;
+    if (cancelled()) return;
     set((s) => ({
       turns: [
         ...s.turns,
         ...(r.ok
           ? [
-              { id: newId(), role: "assistant" as const, content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) },
+              { id: newId(), role: "assistant" as const, content: r.text, model: r.model ?? model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) },
               ...habitTurns(r.steps, snap.measurements, todayIso()),
             ]
           : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],
     }));
   } catch (e) {
-    if (mine.signal.aborted) return;
+    if (cancelled()) return;
     set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: e instanceof Error ? e.message : "Something went wrong." }] }));
   } finally {
     if (controller === mine) {

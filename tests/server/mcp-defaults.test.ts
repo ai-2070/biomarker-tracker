@@ -74,7 +74,7 @@ describe("research servers behind two tools", () => {
     const input = { server: "pubmed", tool: "search", input: { q: "ferritin" } };
     expect(await t.use_research_tool!.execute!(input, opts)).toEqual({ results: [{ pmid: "22222222", title: "ferritin" }] });
     expect(toolStep("use_research_tool", input)).toEqual({ tool: "search", server: "pubmed", input: '{"q":"ferritin"}' });
-    expect(studyIdsFromTool("use_research_tool", { results: [{ pmid: "22222222" }] })).toEqual(["PMID:22222222"]);
+    expect(studyIdsFromTool("use_research_tool", { results: [{ pmid: "22222222", title: "Retrieved study" }] })).toEqual(["PMID:22222222"]);
     const listing = await t.research_tools!.execute!({ server: "pubmed" }, opts);
     expect(studyIdsFromTool("research_tools", listing)).toEqual([]);
   });

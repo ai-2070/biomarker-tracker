@@ -14,7 +14,7 @@ import { todayIso } from "../../core/dates";
 import type { HabitProposal } from "../../core/habitProposal";
 import { defaultRetestDays } from "../../core/habits";
 import { safetyNotes, validateProtocol } from "../../core/protocols";
-import { addProtocol, saveMeal, savePlan, watchHabit } from "../../db/db";
+import { createHabit, saveMeal, savePlan } from "../../db/db";
 import { foodById, mealTotals } from "../../core/meals";
 import { formatValue } from "../../core/units";
 import { useFoodDb } from "../foodDb";
@@ -174,18 +174,18 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
 
   const brain = useBrain();
   const titleId = useId();
-  const { settings, reload } = useBrainSettings(true);
+  const { settings, fresh, reload } = useBrainSettings(brain.open);
   const [dragging, setDragging] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const stickToEnd = useRef(true);
   const critical = useCritical();
-  const ready = !!settings?.ready.ok;
+  const ready = fresh && !!settings?.ready.ok;
   const model = settings ? modelLabel(settings.assistant) : "";
 
   // A question from a "Summarize with Brain" button goes out once the model is known.
   useEffect(() => {
-    if (brain.pending && settings !== undefined) takePending(!!settings?.ready.ok, model);
-  }, [brain.pending, settings, model]);
+    if (brain.pending && fresh) takePending(!!settings?.ready.ok, model);
+  }, [brain.pending, settings, fresh, model]);
 
   // Keep the newest message in view, unless the person scrolled up to read.
   useLayoutEffect(() => {
@@ -270,12 +270,12 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         className={cx("flex-1 overflow-y-auto overscroll-contain px-4 py-4", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]")}
       >
         <CriticalBanner items={critical} />
-        {settings === null ? (
+        {fresh && settings === null ? (
           <NoServer />
-        ) : settings && !ready && brain.turns.length === 0 ? (
+        ) : fresh && settings && !ready && brain.turns.length === 0 ? (
           <NeedsModel settings={settings} />
         ) : brain.turns.length === 0 ? (
-          <Welcome settings={settings} />
+          <Welcome settings={fresh ? settings ?? undefined : undefined} />
         ) : (
           <Conversation turns={brain.turns} busy={brain.busy} model={model} />
         )}
@@ -792,8 +792,7 @@ function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) {
     if (!r.ok) return setError(Object.values(r.errors)[0]);
     setSaving(true);
     try {
-      const id = await addProtocol(r.entry);
-      if (markers.length) await watchHabit({ ...r.entry, id }, markers, defaultRetestDays(markers), today);
+      await createHabit(r.entry, markers.length ? { markerIds: markers, retestAfterDays: defaultRetestDays(markers), today } : undefined);
       setHabitState(turn.id, "saved");
     } catch {
       setError("The habit couldn't be saved. Try again.");

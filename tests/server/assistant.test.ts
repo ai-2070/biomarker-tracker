@@ -160,8 +160,8 @@ describe("assistant", () => {
     expect(p).toMatch(/research_tools/);
   });
 
-  it("collects every study ID that a tool returned", () => {
-    expect(studyIdsIn({ studies: [{ id: "PMID:123456" }, { pmid: "7654321" }], text: "see PMCID:PMC99999" }).sort()).toEqual(["PMCID:PMC99999", "PMID:123456", "PMID:7654321"]);
+  it("collects study IDs only from retrieved structured records", () => {
+    expect(studyIdsIn({ studies: [{ id: "PMID:123456", title: "A retrieved study" }, { pmid: "7654321", title: "Another retrieved study" }], text: "see PMCID:PMC99999" }).sort()).toEqual(["PMID:123456", "PMID:7654321"]);
   });
 
   it("runs a tool and returns the answer, the steps and the citable IDs", async () => {
@@ -185,7 +185,7 @@ describe("assistant", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.text).toBe("Your ferritin is low [PMID:33285139].");
-    expect(r.steps).toEqual([{ tool: "get_marker", input: '{"marker":"ferritin"}' }]);
+    expect(r.steps).toEqual([{ tool: "get_marker", input: '{"marker":"ferritin"}', success: true }]);
     // The marker's own sources came back from the tool, so they may be cited.
     expect(r.studyIds).toContain("PMID:33285139");
   });

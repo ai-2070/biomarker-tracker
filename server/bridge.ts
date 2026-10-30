@@ -29,6 +29,7 @@ export const setBridgePort = (p: number) => (port = p);
 export const bridgeUrl = () => `http://127.0.0.1:${port}/mcp`;
 
 export function openRun(tools: ToolSet, engine?: string): BridgeRun {
+  if (engine === "hermes" && current.has(engine)) throw new Error("Hermes is already answering a question. Wait for it to finish before asking another.");
   const run: BridgeRun = { token: crypto.randomBytes(32).toString("hex"), tools, steps: [], ids: new Set() };
   runs.set(run.token, run);
   if (engine) current.set(engine, run);
@@ -80,12 +81,16 @@ async function listTools(tools: ToolSet): Promise<Tool[]> {
 export async function callTool(run: BridgeRun, name: string, input: Record<string, unknown>): Promise<{ text: string; isError: boolean }> {
   const t = run.tools[name];
   if (!t?.execute) return { text: `No tool called ${name}.`, isError: true };
-  run.steps.push(toolStep(name, input));
+  const step = toolStep(name, input);
+  run.steps.push(step);
   try {
     const output: unknown = await t.execute(input, { toolCallId: crypto.randomUUID(), messages: [] } as unknown as Parameters<NonNullable<typeof t.execute>>[1]);
+    if (["propose_habit", "propose_protocol", "propose_meal"].includes(name)) step.output = output;
+    step.success = !(typeof output === "object" && output !== null && "error" in output);
     for (const id of studyIdsFromTool(name, output)) run.ids.add(id);
-    return { text: typeof output === "string" ? output : JSON.stringify(output), isError: false };
+    return { text: typeof output === "string" ? output : JSON.stringify(output), isError: !step.success };
   } catch (e) {
+    step.success = false;
     return { text: e instanceof Error ? e.message : String(e), isError: true };
   }
 }
