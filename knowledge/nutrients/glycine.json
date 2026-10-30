@@ -1,0 +1,24 @@
+{
+  "id": "glycine",
+  "name": "Glycine",
+  "kind": "supplement",
+  "otherNames": ["Glycine", "glycine amino acid", "aminoacetic acid"],
+  "researchStatus": "not-reviewed",
+  "summary": "Glycine is a normal amino acid found in proteins and made by the body. It also takes part in making other molecules; selling it as a supplement does not mean that everyone has too little.",
+  "commonUses": ["Used in products marketed for sleep", "Used in amino-acid and glutathione-support products"],
+  "roles": ["Glycine is a building block for proteins and for glutathione.", "It participates in one-carbon metabolism, the transfer of small chemical units used to make and maintain other molecules."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test. Lower blood glycine in some research populations does not establish a general dietary deficiency syndrome or a need for supplements."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": [], "note": "Glycine occurs in dietary proteins, and the body can also make it. This is different from taking isolated glycine."},
+  "forms": [
+    {"name": "Isolated glycine", "note": "Sold as an amino-acid powder or in capsules. This is not a complete protein source."},
+    {"name": "Combination products", "note": "Products combining glycine with NAC or other ingredients have different compositions from glycine alone. Findings about a mixture cannot be assigned to glycine by itself."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [],
+  "cautions": ["Being a normal part of proteins does not establish that concentrated supplements are safe in every circumstance. This guide does not establish long-term supplement safety.", "Blood-level associations with metabolic disease are not a diagnosis of glycine deficiency and are not instructions to treat a condition with glycine.", "This guide has not assessed medicine interactions or safety in pregnancy, breastfeeding or children; an empty interaction list is not confirmation that every combination is safe."],
+  "evidenceClaims": [],
+  "sources": [{"pmid": "31208147", "doi": "10.3390/nu11061356", "title": "Glycine Metabolism and Its Alterations in Obesity and Metabolic Diseases.", "year": 2019, "studyType": "review"}]
+}

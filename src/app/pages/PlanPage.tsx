@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "../../core/dates";
-import { findingCounts, interactionsFor } from "../../core/nutrients";
+import { interactionsFor } from "../../core/nutrients";
 import { dailyReference, mealNote } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { formatValue } from "../../core/units";
@@ -169,11 +169,10 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   const meals = useMeals();
   const meal = item.mealId ? meals?.find((m) => m.id === item.mealId) : undefined;
   const n = meal ? undefined : nutrientFor(item, NUTRIENTS);
-  const counts = n ? findingCounts(n) : undefined;
   // A whole food (olive oil, blueberries…) links to its research page.
   const food = n || item.category === "medication" ? undefined : wholeFoodFor(item.label, WHOLE_FOODS);
   // The day's EU reference values for this nutrient, next to the person's own amount.
-  const ref = n ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined }) : undefined;
+  const ref = n && n.researchStatus !== "not-reviewed" ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined }) : undefined;
   const intake = ref?.intake
     ? `${num(ref.intake.amount)} ${ref.intake.unit} a day`
     : ref?.bySex
@@ -203,11 +202,10 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
                 · upper limit <span className="text-ink tabular-nums">{num(ref.upperLimit.amount)} {ref.upperLimit.unit}</span>
               </span>
             )}
-            {counts && (
-              <a href={href({ name: "nutrient", id: n.id })} className="text-ink underline underline-offset-2">
-                · What research says
-              </a>
-            )}
+            <a href={href({ name: "nutrient", id: n.id })} className="text-ink underline underline-offset-2">
+              {(intake || ref?.upperLimit) && "· "}
+              {n.researchStatus === "not-reviewed" ? "Basic guide · benefits not reviewed" : "What research says"}
+            </a>
           </p>
         )}
         {meal && (

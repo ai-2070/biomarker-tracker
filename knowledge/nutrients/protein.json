@@ -1,0 +1,28 @@
+{
+  "id": "protein",
+  "name": "Protein powder",
+  "kind": "supplement",
+  "researchStatus": "not-reviewed",
+  "otherNames": ["Protein Powder", "Protein supplement", "Protein shake", "Whey protein", "Casein protein", "Plant protein"],
+  "summary": "Protein powder is a concentrated source of dietary protein made from milk, eggs or plant ingredients such as soy and peas. It supplies amino acids, like protein foods do; it is not a promise of muscle gain or a complete meal by itself.",
+  "commonUses": ["Used as a convenient source of dietary protein in drinks and foods.", "Used in sports nutrition products marketed for training and recovery."],
+  "roles": ["Protein provides amino acids for the maintenance and repair of body tissues.", "The body uses amino acids to make enzymes, many hormones and other proteins, not just muscle."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Whey and casein", "note": "Both come from milk. Concentrates and isolates differ in protein and other components; a milk-derived isolate is not automatically suitable for milk allergy."},
+    {"name": "Plant protein", "note": "Soy, pea, rice and blends differ in their amino acid profiles and other ingredients. Plant-based does not mean allergen-free."},
+    {"name": "Egg protein", "note": "Made from egg, often egg white; this is an egg-containing product, not an alternative for someone with egg allergy."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [{"with": "Kidney disease", "note": "Protein needs can differ with kidney disease and its treatment. Discuss a protein powder with your clinician or renal dietitian rather than using a general sports nutrition target.", "safetyId": "kidney"}],
+  "cautions": ["Milk, egg and soy proteins can be allergens. Check the source and allergen information, including warnings about shared manufacturing equipment.", "Milk allergy is different from lactose intolerance. Milk-derived powders vary in lactose content, and lower lactose does not remove the milk protein allergen.", "A protein powder is not necessarily a complete meal: fibre, vitamins, minerals and other food components depend on the actual product."],
+  "evidenceClaims": [],
+  "sources": [
+    {"pmid": "28642676", "doi": "10.1186/s12970-017-0177-8", "title": "International Society of Sports Nutrition Position Stand: protein and exercise", "year": 2017, "studyType": "review"},
+    {"pmid": "24482589", "title": "Protein – Which is Best?", "year": 2004, "studyType": "review"}
+  ]
+}

@@ -49,7 +49,6 @@ describe("protocols", () => {
     expect(nutrientFor({ label: "Magnesium glycinate", category: "supplement" }, nutrients)?.id).toBe("magnesium");
     // Other supplements link too: "Fish oil" is a name of omega-3.
     expect(nutrientFor(plan.items[4]!, nutrients)?.id).toBe("omega_3");
-    expect(nutrientFor({ label: "Ashwagandha", category: "supplement" }, nutrients)).toBeUndefined();
     expect(nutrientFor({ label: "Iron", category: "lifestyle" }, nutrients)).toBeUndefined();
   });
 

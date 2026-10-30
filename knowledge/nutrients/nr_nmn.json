@@ -1,0 +1,24 @@
+{
+  "id": "nr_nmn",
+  "name": "NR and NMN",
+  "kind": "supplement",
+  "otherNames": ["NR/NMN", "NR", "NMN", "nicotinamide riboside", "nicotinamide mononucleotide", "NAD precursors"],
+  "researchStatus": "not-reviewed",
+  "summary": "Nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN) are two different compounds involved in making NAD, a molecule cells use in metabolism. They are sold as supplements, often under the same marketing theme, but they are not interchangeable ingredients.",
+  "commonUses": ["Used in products marketed for healthy aging", "Used in products marketed for cellular energy"],
+  "roles": ["NAD carries electrons in reactions that help cells process energy and is also used by enzymes involved in cell signaling.", "Cells can convert NR into NMN, then NMN into NAD; sharing a pathway does not make the two supplements equivalent."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test. A research measurement of NAD is not a validated test of whether someone needs NR or NMN."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Nicotinamide riboside (NR)", "note": "A nucleoside, often supplied as NR chloride. It is distinct from NMN and from nicotinamide, another NAD precursor."},
+    {"name": "Nicotinamide mononucleotide (NMN)", "note": "A nucleotide with a phosphate group. Findings about an NR product cannot be transferred to an NMN product, or the reverse."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "interactions": [],
+  "cautions": ["The body using NAD does not establish that taking either precursor slows aging or improves health; this guide has not reviewed those claims.", "Short-term tolerability findings do not establish safety over years. This guide does not establish long-term safety for either compound.", "This combined page is for identifying ingredients, not combining their study results. Product form and the compound actually tested matter."],
+  "evidenceClaims": [],
+  "sources": [{"pmid": "32486488", "doi": "10.3390/nu12061616", "title": "Nicotinamide Riboside-The Current State of Research and Therapeutic Uses.", "year": 2020, "studyType": "review"}]
+}

@@ -28,6 +28,7 @@ import { INTERACTIVE_SELECTOR, brainShortcut } from "./logic";
 import { ModelMenu, ToolsMenu, goToSettings, modelLabel, useBrainSettings, type BrainSettings } from "./menus";
 import {
   addFiles,
+  backToMyChat,
   closeBrain,
   newConversation,
   openBrain,
@@ -164,6 +165,10 @@ function useCritical(): CriticalItem[] {
   return items;
 }
 
+function PersonalCriticalBanner() {
+  return <CriticalBanner items={useCritical()} />;
+}
+
 function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTMLDivElement | null>; closing: boolean; onClosed: () => void }) {
   // Unmount once the closing animation ends (with a fallback in case no animation runs).
   useEffect(() => {
@@ -178,24 +183,30 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
   const [dragging, setDragging] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const stickToEnd = useRef(true);
-  const critical = useCritical();
+  const research = brain.scope === "research";
   const ready = !!settings?.ready.ok;
   const model = settings ? modelLabel(settings.assistant) : "";
 
   // A question from a "Summarize with Brain" button goes out once the model is known.
   useEffect(() => {
     if (brain.pending && settings !== undefined) takePending(!!settings?.ready.ok, model);
-  }, [brain.pending, settings, model]);
+  }, [brain.pending, brain.scope, settings, model]);
 
   // Keep the newest message in view, unless the person scrolled up to read.
   useLayoutEffect(() => {
     const el = listRef.current;
     if (el && stickToEnd.current) el.scrollTop = el.scrollHeight;
-  }, [brain.turns.length, brain.busy]);
+  }, [brain.turns.length, brain.busy, brain.scope]);
+
+  useEffect(() => {
+    setDragging(false);
+    stickToEnd.current = true;
+  }, [brain.scope]);
 
   const onDrag = (e: DragEvent, over: boolean) => {
     if (!e.dataTransfer.types.includes("Files")) return;
     e.preventDefault();
+    if (research) return;
     if (over) setDragging(true);
     else if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDragging(false);
   };
@@ -224,7 +235,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         if (!e.dataTransfer.files.length) return;
         e.preventDefault();
         setDragging(false);
-        void addFiles([...e.dataTransfer.files]);
+        if (!research) void addFiles([...e.dataTransfer.files]);
       }}
       className={cx(
         "fixed z-50 flex flex-col overflow-hidden border-line bg-surface text-ink shadow-2xl shadow-black/15",
@@ -243,7 +254,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         <button
           type="button"
           onClick={newConversation}
-          disabled={brain.turns.length === 0 && brain.attachments.length === 0}
+          disabled={brain.turns.length === 0 && brain.attachments.length === 0 && !brain.draft && !brain.pending && !brain.busy}
           title="New conversation"
           aria-label="New conversation"
           className="flex size-10 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink disabled:opacity-40 disabled:hover:bg-transparent"
@@ -260,6 +271,14 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
           <CloseIcon />
         </button>
       </header>
+      {research && (
+        <div className="flex flex-wrap items-center gap-x-3 border-b border-line px-4 py-1">
+          <p className="min-w-0 flex-1 text-xs leading-relaxed text-ink-2">Research only · Profile and results excluded</p>
+          <button type="button" onClick={backToMyChat} className="min-h-11 shrink-0 text-sm font-medium text-accent underline-offset-4 hover:underline">
+            Back to my chat
+          </button>
+        </div>
+      )}
 
       <div
         ref={listRef}
@@ -269,13 +288,13 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         }}
         className={cx("flex-1 overflow-y-auto overscroll-contain px-4 py-4", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]")}
       >
-        <CriticalBanner items={critical} />
+        {!research && <PersonalCriticalBanner />}
         {settings === null ? (
           <NoServer />
         ) : settings && !ready && brain.turns.length === 0 ? (
           <NeedsModel settings={settings} />
         ) : brain.turns.length === 0 ? (
-          <Welcome settings={settings} />
+          <Welcome settings={settings} research={research} />
         ) : (
           <Conversation turns={brain.turns} busy={brain.busy} model={model} />
         )}
@@ -283,7 +302,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
 
       <Composer settings={settings} ready={ready} model={model} onSettingsChange={reload} closing={closing} />
 
-      {dragging && (
+      {dragging && !research && (
         <div className="pointer-events-none absolute inset-1.5 flex animate-fade items-center justify-center rounded-xl border-2 border-dashed border-accent bg-surface/90 text-center backdrop-blur-sm">
           <p className="max-w-xs">
             <span className="block font-medium text-ink">Drop a lab report or a document</span>
@@ -326,8 +345,23 @@ function NeedsModel({ settings }: { settings: BrainSettings }) {
   );
 }
 
-function Welcome({ settings }: { settings: BrainSettings | undefined }) {
+function Welcome({ settings, research }: { settings: BrainSettings | undefined; research: boolean }) {
   const info = settings ? providerInfo(settings.assistant.provider) : undefined;
+  if (research) {
+    return (
+      <div className="flex min-h-full flex-col justify-end gap-5">
+        <div>
+          <p className="font-serif text-3xl">Check the evidence</p>
+          <p className="mt-1 text-ink-2">Ask about a claim or study. Brain looks for human research and explains what it supports, and what is still unknown.</p>
+        </div>
+        <p className="text-xs leading-relaxed text-ink-2">
+          Only your question and this public research topic go to {info?.label ?? "your model"}
+          {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}.
+          {" "}Your profile, results, personal chat and files are not included. Avoid typing private health details here.
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="flex min-h-full flex-col justify-end gap-5">
       <div>
@@ -624,6 +658,7 @@ function AttachmentChip({ a, photoTarget }: { a: Attachment; photoTarget: PhotoT
 
 function Composer({ settings, ready, model, onSettingsChange, closing }: { settings: BrainSettings | null | undefined; ready: boolean; model: string; onSettingsChange: () => void; closing: boolean }) {
   const brain = useBrain();
+  const research = brain.scope === "research";
   const textRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const reading = brain.attachments.some((a) => a.status === "reading");
@@ -652,7 +687,7 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
 
   return (
     <div className={cx("border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]")}>
-      {brain.attachments.length > 0 && (
+      {!research && brain.attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1.5">
           {brain.attachments.map((a) => (
             <AttachmentChip key={a.id} a={a} photoTarget={photoTarget} />
@@ -679,33 +714,37 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
             const files = [...e.clipboardData.files];
             if (files.length) {
               e.preventDefault();
-              void addFiles(files);
+              if (!research) void addFiles(files);
             }
           }}
-          placeholder={brain.busy ? "Brain is working…" : hasDocs ? "What should Brain do with this file?" : "Ask about your results, or drop a lab report"}
+          placeholder={brain.busy ? "Brain is working…" : research ? "Ask about the evidence" : hasDocs ? "What should Brain do with this file?" : "Ask about your results, or drop a lab report"}
           className="block max-h-42 min-h-11 w-full resize-none bg-transparent px-3 pt-3 pb-1 text-base text-ink outline-none placeholder:text-ink-2"
         />
         <div className="flex items-center gap-1 px-1.5 pb-1.5">
-          <input
-            ref={fileRef}
-            type="file"
-            multiple
-            hidden
-            accept="application/pdf,.pdf,image/*,.txt,.csv,.tsv,.md,.json,text/plain,text/csv"
-            onChange={(e) => {
-              void addFiles([...(e.target.files ?? [])]);
-              e.target.value = "";
-            }}
-          />
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            title="Attach a lab report or document (or drop or paste it)"
-            aria-label="Attach a lab report or document"
-            className="flex size-9 shrink-0 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink"
-          >
-            <PaperclipIcon className="size-[18px]" />
-          </button>
+          {!research && (
+            <>
+              <input
+                ref={fileRef}
+                type="file"
+                multiple
+                hidden
+                accept="application/pdf,.pdf,image/*,.txt,.csv,.tsv,.md,.json,text/plain,text/csv"
+                onChange={(e) => {
+                  void addFiles([...(e.target.files ?? [])]);
+                  e.target.value = "";
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => fileRef.current?.click()}
+                title="Attach a lab report or document (or drop or paste it)"
+                aria-label="Attach a lab report or document"
+                className="flex size-9 shrink-0 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink"
+              >
+                <PaperclipIcon className="size-[18px]" />
+              </button>
+            </>
+          )}
           {settings && (
             <>
               <ModelMenu settings={settings} onChange={onSettingsChange} />

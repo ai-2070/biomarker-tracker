@@ -1,0 +1,32 @@
+{
+  "id": "sulforaphane",
+  "name": "Sulforaphane",
+  "kind": "supplement",
+  "otherNames": ["Sulforaphane", "broccoli sprout extract", "glucoraphanin"],
+  "researchStatus": "not-reviewed",
+  "summary": "Sulforaphane is a sulfur-containing compound formed from glucoraphanin, a precursor found in broccoli and other cruciferous vegetables. Supplements may supply sulforaphane itself or ingredients intended to produce it. A glucoraphanin label is not a measurement of sulforaphane delivered to the body.",
+  "commonUses": ["Used in broccoli-derived supplements marketed for cellular defence.", "Used in products marketed for antioxidant support."],
+  "roles": ["The enzyme myrosinase converts glucoraphanin into sulforaphane.", "Plant enzymes and gut microbes can contribute to this conversion, so the preparation affects exposure."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Sulforaphane", "note": "Supplies the compound itself; its stability and the finished formulation matter."},
+    {"name": "Glucoraphanin", "note": "Supplies the precursor, not sulforaphane itself. Conversion varies between people and preparations."},
+    {"name": "Glucoraphanin with myrosinase", "note": "Adds the converting enzyme. Enzyme activity and processing affect conversion; this is not automatically equivalent to preformed sulforaphane."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Sulforaphane preparations can cause nausea, heartburn or other digestive discomfort.",
+    "A burning sensation at the back of the throat has been reported with sulforaphane preparations.",
+    "Broccoli extract weight, glucoraphanin content and sulforaphane content are different label measurements. They cannot be treated as interchangeable amounts.",
+    "The source and formulation matter to safety as well as absorption; findings about one broccoli preparation cannot establish the safety of every concentrated supplement."
+  ],
+  "sources": [
+    {"pmid": "31590459", "doi": "10.3390/molecules24193593", "title": "Broccoli or Sulforaphane: Is It the Source or Dose That Matters?", "year": 2019, "studyType": "review"}
+  ]
+}

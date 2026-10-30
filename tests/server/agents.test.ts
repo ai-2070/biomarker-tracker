@@ -19,7 +19,7 @@ import {
   parseOpenClaw,
   which,
 } from "../../server/agents";
-import { closeRun, openRun, stableToken } from "../../server/bridge";
+import { closeRun, openRun, runFor, stableToken } from "../../server/bridge";
 import { createServer } from "../../server/http";
 import { openRouterModels, zdrFetch } from "../../server/openrouter";
 
@@ -201,6 +201,26 @@ describe("bridge: the app's tools for agent programs over MCP", () => {
     await expect(connect(run.token)).rejects.toThrow();
     const r = await fetch(`http://127.0.0.1:${port}/mcp`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
     expect(r.status).toBe(401);
+  });
+
+  it("never retargets the Hermes stable token to an overlapping request", async () => {
+    const first = openRun(tools, "hermes");
+    const token = stableToken();
+    const client = await connect(token);
+    try {
+      expect(() => openRun({
+        get_results: tool({ inputSchema: z.object({}), execute: async () => ({ private: "OTHER_SCOPE" }) }),
+      }, "hermes")).toThrow();
+      expect(runFor(token)).toBe(first);
+      expect((await client.listTools()).tools.map((t) => t.name)).toEqual(["search_research"]);
+      expect((await client.callTool({ name: "get_results", arguments: {} })).isError).toBe(true);
+    } finally {
+      await client.close();
+      closeRun(first);
+    }
+    const next = openRun(tools, "hermes");
+    expect(runFor(token)).toBe(next);
+    closeRun(next);
   });
 
   it("with the stable token and no question running, lists tools but won't run them", async () => {

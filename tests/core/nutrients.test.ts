@@ -34,6 +34,19 @@ const n: NutrientDef = {
   sources: [study],
 };
 
+const basic: NutrientDef = {
+  ...n,
+  id: "basic_supplement",
+  kind: "supplement",
+  researchStatus: "not-reviewed",
+  commonUses: ["Used in products marketed for relaxation"],
+  low: { signs: [], atRisk: [] },
+  foodSources: { examples: [] },
+  reference: { intake: [], noUpperLimit: "No reference values supplied in this guide.", sources: [] },
+  findings: [],
+  interactions: [],
+};
+
 describe("vitamins and minerals", () => {
   it("accepts a complete entry", () => {
     expect(validateNutrientDef(n)).toEqual([]);
@@ -43,6 +56,49 @@ describe("vitamins and minerals", () => {
     expect(validateNutrientDef({ ...n, reference: ref })).toContain("give an upperLimit or say why there is none (noUpperLimit)");
     expect(validateNutrientDef({ ...n, findings: [{ ...finding("A", "helps", "high"), studies: [] }] })).toContain("finding 1 needs at least one source");
     expect(validateNutrientDef({ ...n, interactions: [{ with: "X", note: "Y", safetyId: "nope" }] })).not.toEqual([]);
+  });
+  it("accepts sourced basic guides without inventing findings or deficiency signs", () => {
+    expect(validateNutrientDef(basic)).toEqual([]);
+    expect(validateNutrientDef({
+      ...basic,
+      sources: [],
+      basicSources: [{ title: "Public safety guidance", year: 2025, url: "https://example.org/safety" }],
+    })).toEqual([]);
+  });
+  it("does not let unreviewed guides present graded benefits or omit their purpose", () => {
+    expect(validateNutrientDef({ ...basic, commonUses: [] })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, findings: [finding("A", "helps", "high")] })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, foodFindings: [finding("A", "helps", "high")] })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, evidenceClaims: ["claim"] })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, kind: "vitamin" })).not.toEqual([]);
+  });
+  it("requires origin and amount context without turning a claim guide into a graded review", () => {
+    const simpleGuide = { origin: ["Cultivated algae"], dosage: ["Read the active ingredient amount."] };
+    expect(validateNutrientDef({ ...basic, simpleGuide })).toEqual([]);
+    expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, origin: [] } })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, dosage: [""] } })).not.toEqual([]);
+    expect(validateNutrientDef({ ...n, simpleGuide })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, simpleGuide, findings: [finding("A", "helps", "high")] })).not.toEqual([]);
+  });
+  it("keeps the source and finding requirements for researched entries", () => {
+    expect(validateNutrientDef({ ...n, findings: [] })).not.toEqual([]);
+    expect(validateNutrientDef({ ...n, sources: [] })).not.toEqual([]);
+    expect(validateNutrientDef({ ...n, researchStatus: "complete" })).not.toEqual([]);
+    expect(validateNutrientDef({ ...n, basicSources: [{ title: "Web page", year: 2025, url: "https://example.org/" }] })).not.toEqual([]);
+  });
+  it("requires real sources and safe source links on basic guides", () => {
+    expect(validateNutrientDef({ ...basic, sources: [] })).not.toEqual([]);
+    expect(validateNutrientDef({
+      ...basic, sources: [],
+      basicSources: [{ title: "Unsafe link", year: 2025, url: "javascript:alert(1)" }],
+    })).not.toEqual([]);
+    expect(validateNutrientDef({
+      ...basic, sources: [],
+      basicSources: [{ title: "Broken link", year: 2025, url: "not a URL" }],
+    })).not.toEqual([]);
+  });
+  it("finds basic guides by their common uses", () => {
+    expect(searchNutrients([n, basic], "relaxation").map((x) => x.n.id)).toEqual(["basic_supplement"]);
   });
   it("counts and orders findings: strongest first, harms first at the same grade", () => {
     expect(findingCounts(n)).toEqual({ helps: 2, "no clear effect": 1, harms: 1, mixed: 0 });

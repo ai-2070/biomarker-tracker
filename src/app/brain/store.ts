@@ -67,15 +67,18 @@ export interface Attachment {
   sendPhoto?: boolean;
 }
 
+export type BrainScope = "personal" | "research";
+
 export interface BrainState {
   open: boolean;
+  scope: BrainScope;
   draft: string;
   turns: Turn[];
   busy: boolean;
   attachments: Attachment[];
   /** Bumped to move focus into the question box. */
   focusTick: number;
-  /** A question to send as soon as Brain knows a model is ready (from "Summarize with Brain" buttons). */
+  /** A question waiting for the window's model-readiness check. */
   pending?: string;
 }
 
@@ -83,15 +86,59 @@ type Reply =
   | { ok: true; text: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { ok: false; error: string };
 
-let state: BrainState = { open: false, draft: "", turns: [], busy: false, attachments: [], focusTick: 0 };
+type Thread = Pick<BrainState, "draft" | "turns" | "busy" | "attachments" | "pending"> & { researchContext?: string };
+const emptyThread = (): Thread => ({ draft: "", turns: [], busy: false, attachments: [] });
+const threads: Record<BrainScope, Thread> = { personal: emptyThread(), research: emptyThread() };
+const epochs: Record<BrainScope, number> = { personal: 0, research: 0 };
+let state: BrainState = { open: false, scope: "personal", ...threads.personal, focusTick: 0 };
 const listeners = new Set<() => void>();
-let controller: AbortController | null = null;
+interface Request {
+  controller: AbortController;
+  scope: BrainScope;
+  epoch: number;
+  submitted: boolean;
+}
+let request: Request | null = null;
 let nextId = 0;
 const newId = () => `b${++nextId}`;
+const notify = () => { for (const l of listeners) l(); };
 
 function set(patch: Partial<BrainState> | ((s: BrainState) => Partial<BrainState>)) {
   state = { ...state, ...(typeof patch === "function" ? patch(state) : patch) };
-  for (const l of listeners) l();
+  threads[state.scope] = { ...threads[state.scope], draft: state.draft, turns: state.turns, busy: state.busy, attachments: state.attachments, pending: state.pending };
+  notify();
+}
+
+/** File reads may finish in the parked personal thread, never in the visible research thread. */
+function setThread(scope: BrainScope, patch: (thread: Thread) => Partial<Thread>) {
+  const next = { ...threads[scope], ...patch(threads[scope]) };
+  threads[scope] = next;
+  if (state.scope === scope) {
+    state = { ...state, ...next };
+    notify();
+  }
+}
+
+function cancelRequest() {
+  const mine = request;
+  if (!mine) return;
+  mine.controller.abort();
+  request = null;
+  setThread(mine.scope, (s) => ({
+    busy: false,
+    ...(mine.submitted ? { turns: [...s.turns, { id: newId(), role: "stopped" as const }] } : {}),
+  }));
+}
+
+function changeScope(scope: BrainScope) {
+  if (state.scope === scope) return;
+  cancelRequest();
+  state = { ...state, scope, ...threads[scope] };
+  notify();
+}
+
+function isCurrent(mine: Request): boolean {
+  return request === mine && !mine.controller.signal.aborted && state.scope === mine.scope && epochs[mine.scope] === mine.epoch;
 }
 
 export function useBrain(): BrainState {
@@ -105,13 +152,30 @@ export function useBrain(): BrainState {
 }
 
 export function openBrain(opts: { draft?: string } = {}): void {
+  // Prefilled questions elsewhere in the app refer to the person's data; the pill has no draft.
+  if (opts.draft !== undefined) changeScope("personal");
   set((s) => ({ open: true, ...(opts.draft ? { draft: opts.draft } : {}), focusTick: s.focusTick + 1 }));
 }
 export const closeBrain = () => set({ open: false });
 
 /** Opens Brain and sends the question once a model is ready (otherwise it waits in the question box). */
 export function askBrain(question: string): void {
+  changeScope("personal");
   set((s) => ({ open: true, pending: question, focusTick: s.focusTick + 1 }));
+}
+
+/** A public evidence question, isolated from the person's chat, draft and files. */
+export function askResearchBrain(question: string): void {
+  if (!question.trim()) return;
+  changeScope("research");
+  cancelRequest();
+  threads.research.researchContext = question.trim();
+  set((s) => ({ open: true, draft: question, pending: question, focusTick: s.focusTick + 1 }));
+}
+
+export function backToMyChat(): void {
+  changeScope("personal");
+  set((s) => ({ open: true, focusTick: s.focusTick + 1 }));
 }
 
 /** Called by the window once it knows whether a model is ready. */
@@ -119,17 +183,20 @@ export function takePending(ready: boolean, model: string): void {
   const q = state.pending;
   if (!q) return;
   set({ pending: undefined });
-  if (ready && !state.busy) void send(model, q);
-  else set({ draft: q });
+  if (ready && !state.busy && !state.attachments.some((a) => a.status === "reading")) {
+    // Keep an unanswered question editable if preparing/sending is blocked by a file read.
+    if (state.scope === "research") set({ draft: q });
+    void send(model, q);
+  } else set({ draft: q });
 }
 export const toggleBrain = () => (state.open ? closeBrain() : openBrain());
-export const setDraft = (draft: string) => set({ draft });
-export const removeAttachment = (id: string) => set((s) => ({ attachments: s.attachments.filter((a) => a.id !== id) }));
-export const setSendPhoto = (id: string, on: boolean) => set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, sendPhoto: on } : a)) }));
+export const setDraft = (draft: string) => set({ draft, pending: undefined });
+export const removeAttachment = (id: string) => setThread("personal", (s) => ({ attachments: s.attachments.filter((a) => a.id !== id) }));
+export const setSendPhoto = (id: string, on: boolean) => setThread("personal", (s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, sendPhoto: on } : a)) }));
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
-  set((s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
+  setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
 export const setHabitState = (id: string, state: "saved" | "dismissed") =>
-  set((s) => ({ turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol" || t.role === "meal") ? { ...t, state } : t)) }));
+  setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol" || t.role === "meal") ? { ...t, state } : t)) }));
 
 /**
  * Habit cards from Brain's propose_habit calls, checked again here (the same rules as the server) and
@@ -177,8 +244,10 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
 }
 
 export function newConversation(): void {
-  controller?.abort();
-  set((s) => ({ turns: [], busy: false, attachments: [], draft: "", focusTick: s.focusTick + 1 }));
+  cancelRequest();
+  epochs[state.scope]++;
+  threads[state.scope] = emptyThread();
+  set((s) => ({ ...threads[s.scope], pending: undefined, focusTick: s.focusTick + 1 }));
 }
 
 const MAX_TEXT_FILE = 5_000_000;
@@ -188,10 +257,13 @@ const MAX_TEXT_FILE = 5_000_000;
  * anything else is attached as text to the next question.
  */
 export async function addFiles(files: File[]): Promise<void> {
+  if (state.scope !== "personal") return;
+  const epoch = epochs.personal;
   for (const file of files) {
+    if (epochs.personal !== epoch) return;
     const id = newId();
     const usable = isPdf(file) || isImage(file) || isTextFile(file.name, file.type);
-    set((s) => ({
+    setThread("personal", (s) => ({
       attachments: [
         ...s.attachments,
         usable
@@ -200,8 +272,11 @@ export async function addFiles(files: File[]): Promise<void> {
       ],
     }));
     if (!usable) continue;
+    const update = (patch: (s: Thread) => Partial<Thread>) => {
+      if (epochs.personal === epoch && threads.personal.attachments.some((a) => a.id === id)) setThread("personal", patch);
+    };
     const progress = (fraction: number, stage: string) =>
-      set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, fraction, stage } : a)) }));
+      update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, fraction, stage } : a)) }));
     try {
       let text: string;
       let ocr = false;
@@ -214,10 +289,11 @@ export async function addFiles(files: File[]): Promise<void> {
         text = r.text;
         ocr = r.ocr;
       }
+      if (epochs.personal !== epoch || !threads.personal.attachments.some((a) => a.id === id)) continue;
       const report = parseLabText(text, BLOOD_MARKERS, { monthFirst });
       if (report.rows.length > 0) {
         // Lab results: checked by the person in a review card, never sent as text.
-        set((s) => ({
+        update((s) => ({
           attachments: s.attachments.filter((a) => a.id !== id),
           turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, file, ocr, report, state: "open" }],
         }));
@@ -227,7 +303,7 @@ export async function addFiles(files: File[]): Promise<void> {
       if (isImage(file)) {
         const shot = parseHealthScreenshot(text, todayIso());
         if (shot.rows.length > 0) {
-          set((s) => ({
+          update((s) => ({
             attachments: s.attachments.filter((a) => a.id !== id),
             turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, file, ocr: true, report: shot, state: "open", kind: "body" }],
           }));
@@ -236,12 +312,12 @@ export async function addFiles(files: File[]): Promise<void> {
       }
       // Any other picture: its text (if any) can go with the question, or the photo itself if the person chooses.
       if (!text.trim() && !isImage(file)) throw new Error("No text was found in this file.");
-      set((s) => ({
+      update((s) => ({
         attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined, ...(isImage(file) ? { photo: file, sendPhoto: false } : {}) } : a)),
       }));
     } catch (e) {
       const error = e instanceof Error ? e.message : "This file couldn't be read.";
-      set((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "error", error } : a)) }));
+      update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "error", error } : a)) }));
     }
   }
 }
@@ -253,72 +329,87 @@ async function snapshot() {
   return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, expirationDate: expiration?.value === true };
 }
 
-/** Sends the draft (or `text`) with any attached documents. `model` labels the answer. */
+/** Sends only this thread's question and, in personal mode, its profile and attachments. */
 export async function send(model: string, text?: string): Promise<void> {
+  const scope = state.scope;
   const question = (text ?? state.draft).trim();
-  // Ready attachments that give something: text, or the photo itself when chosen.
-  const ready = state.attachments.filter((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim()));
-  const docs = ready.filter((a) => !a.sendPhoto);
-  const photos = ready.filter((a) => a.sendPhoto && a.photo);
-  if ((!question && ready.length === 0) || state.busy || state.attachments.some((a) => a.status === "reading")) return;
-  const snap = await snapshot();
-  let images: { mediaType: "image/jpeg"; data: string }[] = [];
+  const consumeDraft = text === undefined || state.draft.trim() === question;
+  const ready = scope === "personal" ? state.attachments.filter((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim())) : [];
+  if ((!question && ready.length === 0) || state.busy || (scope === "personal" && state.attachments.some((a) => a.status === "reading"))) return;
+  // Claim the request before any await: Stop/scope changes also cancel snapshot and photo preparation.
+  const mine: Request = { controller: new AbortController(), scope, epoch: epochs[scope], submitted: false };
+  request = mine;
+  const priorTurns = state.turns;
+  set({ busy: true, pending: undefined });
   try {
-    images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
-  } catch (e) {
-    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: e instanceof Error ? e.message : "The photo couldn't be prepared." }] }));
-    return;
-  }
-  const sent = questionWithFiles(
-    question || (photos.length ? "Please look at the attached photo." : ""),
-    docs.map((d) => ({ name: d.name, text: redactName(d.text ?? "", snap.name) })),
-  );
-  const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
-  set((s) => ({ turns: [...s.turns, user], busy: true, ...(text === undefined ? { draft: "" } : {}), attachments: s.attachments.filter((a) => a.status !== "ready") }));
-
-  controller = new AbortController();
-  const mine = controller;
-  try {
-    const messages: { role: string; content: string; images?: typeof images }[] = state.turns.flatMap((t) =>
-      t.role === "user"
-        ? [{ role: "user", content: t.photos && t.id !== user.id ? `${t.sent}
+    const snap = scope === "personal" ? await snapshot() : undefined;
+    if (!isCurrent(mine)) return;
+    const photos = ready.filter((a) => a.sendPhoto && a.photo);
+    const images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
+    if (!isCurrent(mine)) return;
+    let sent: string;
+    if (scope === "research") {
+      // Only the public claim supplied to this thread accompanies a follow-up, never chat history.
+      const context = threads.research.researchContext;
+      sent = context && context !== question
+        ? `Public research topic:\n${context}\n\nLatest question:\n${question}`
+        : question;
+      if (!context) threads.research.researchContext = question;
+    } else {
+      sent = questionWithFiles(
+        question || (photos.length ? "Please look at the attached photo." : ""),
+        ready.filter((a) => !a.sendPhoto).map((d) => ({ name: d.name, text: redactName(d.text ?? "", snap?.name) })),
+      );
+    }
+    const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
+    mine.submitted = true;
+    set((s) => ({
+      turns: [...s.turns, user],
+      ...(consumeDraft && s.draft.trim() === question ? { draft: "" } : {}),
+      attachments: s.attachments.filter((a) => !ready.some((r) => r.id === a.id)),
+    }));
+    let body: object;
+    if (scope === "research") {
+      body = { scope: "research", messages: [{ role: "user", content: sent }] };
+    } else {
+      const messages: { role: string; content: string; images?: typeof images }[] = [...priorTurns, user].flatMap((t) =>
+        t.role === "user"
+          ? [{ role: "user", content: t.photos && t.id !== user.id ? `${t.sent}
 
 [A photo was sent with this question; it isn't sent again.]` : t.sent }]
-        : t.role === "assistant"
-          ? [{ role: "assistant", content: t.content }]
-          : [],
-    );
-    // Photos go only with the question they belong to.
-    if (images.length) messages[messages.length - 1] = { ...messages[messages.length - 1]!, images };
-    const { name: _n, ...data } = snap;
-    const r = await api<Reply>("POST", "/api/assistant", { messages, snapshot: data }, mine.signal);
-    if (mine.signal.aborted) return;
+          : t.role === "assistant"
+            ? [{ role: "assistant", content: t.content }]
+            : [],
+      );
+      if (images.length) messages[messages.length - 1] = { ...messages[messages.length - 1]!, images };
+      const { name: _n, ...data } = snap!;
+      body = { messages, snapshot: data };
+    }
+    const r = await api<Reply>("POST", "/api/assistant", body, mine.controller.signal);
+    if (!isCurrent(mine)) return;
     set((s) => ({
       turns: [
         ...s.turns,
         ...(r.ok
           ? [
               { id: newId(), role: "assistant" as const, content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) },
-              ...habitTurns(r.steps, snap.measurements, todayIso()),
+              ...(snap ? habitTurns(r.steps, snap.measurements, todayIso()) : []),
             ]
           : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],
     }));
   } catch (e) {
-    if (mine.signal.aborted) return;
+    if (!isCurrent(mine)) return;
     set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: e instanceof Error ? e.message : "Something went wrong." }] }));
   } finally {
-    if (controller === mine) {
-      controller = null;
+    if (request === mine) {
+      request = null;
       set({ busy: false });
     }
   }
 }
 
-/** Stops waiting for the answer. (An agent program may still finish its run in the background.) */
+/** Cancels preparation or the active request; disconnecting also stops server-side model work. */
 export function stop(): void {
-  if (!controller) return;
-  controller.abort();
-  controller = null;
-  set((s) => ({ busy: false, turns: [...s.turns, { id: newId(), role: "stopped" }] }));
+  cancelRequest();
 }

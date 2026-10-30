@@ -91,11 +91,21 @@ Log supplements, diet changes, medicines and routines, then watch chosen markers
 
 <img src="docs/screenshots/intake.png" alt="Intake analyzer: a day of meals and foods compared with EFSA reference intakes for energy, macronutrients, vitamins and minerals" width="100%">
 
-### Supplementation knowledge base
+### Foods, supplements and lifestyle knowledge
 
 <img src="docs/screenshots/supplement.png" alt="Vitamin D page: what it does, how status is measured, food sources, supplement forms, and findings from trials with evidence grades" width="100%">
 
-15 vitamins and minerals, each with findings from supplement trials (graded by evidence strength), food findings kept apart from supplement findings, EFSA reference intakes and upper limits, interactions, and cited sources.
+Explore whole foods, vitamins, minerals, other supplements and everyday habits. Research entries lead with **main uses and potential benefits**, the people studied and the evidence strength. Normal nutrient roles are kept separate from the effects of taking extra supplements; food findings remain separate from supplement findings.
+
+Personal interaction warnings come first, and safety findings stay visible. Mixed findings and outcomes without a clear benefit are grouped separately under **Other uses studied**. Expand **Research details & sources** for the full findings, grade explanations and citations; a link to a finding opens its research section automatically. Research entries for nutrients also include food sources, EFSA reference intakes and upper limits, and interactions.
+
+**Basic supplement guides** cover the 15 previously missing supplements in Standard Routine, bringing the library to 35 entries. They explain the ingredient, common uses, forms and cautions, with basic references rather than efficacy verdicts. Except for the astaxanthin pilot below, they are labelled **Benefits not yet reviewed**; common uses are purposes, not proven benefits. Protocol items link to these guides without changing the person's routine.
+
+Basic guides set `researchStatus: "not-reviewed"` and `commonUses`, and contain no graded findings or linked evidence claims. Their sources can be general publications or HTTPS public guidance in `basicSources` (such as NIH NCCIH safety pages). Empty findings mean the benefit review has not been done, not that studies found no benefit. These guides do not display unreviewed reference values or deficiency sections.
+
+**Astaxanthin pilot:** a concise **Potential benefits & common claims** list, phrased as “May…”, with **Check evidence** beside each claim. The page explains its algal origin, amounts and important safety points; ingredient and safety references remain available without AI. It contains no baked-in benefit reviews, verdicts or grades. `simpleGuide` selects this layout; `commonUses` supplies the claims and `findings` stays empty. Other knowledge pages retain their existing layouts.
+
+Each button opens a **research-only Brain conversation** using the person's chosen model, enabled skills and research sources. `POST /api/assistant` with `scope: "research"` accepts only the latest user question; the client and server both exclude the profile snapshot, previous conversation, attachments and photos. Follow-ups can include the original public claim, not the personal chat. **Back to my chat** restores the personal conversation, draft and files. With no usable model the question stays editable and model setup is offered. Retrieved citations use the existing verifier; agents without research-tool access are explicitly marked as unverified. Disconnecting cancels model work, and Hermes's stable bridge token cannot be retargeted to an overlapping request.
 
 **Evidence maps** show how the studies behind each finding were found. Every PubMed record is searched instead of picking papers by hand. Written rules choose the reviews and trials, and a model checks each review against the finding's question, with every decision kept and its reason shown. The map also shows how much the reviews share their trials, and which newer studies aren't on the page yet.
 

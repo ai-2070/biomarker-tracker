@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { todayIso } from "../../core/dates";
 import { NUTRIENT_OF_KEY, adultReference, mealTotals, shareOfReference, type FoodDb } from "../../core/meals";
-import { findingCounts, sortFindings, type NutrientDef } from "../../core/nutrients";
 import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import type { SafetyId } from "../../core/types";
@@ -39,19 +38,6 @@ const GROUP_LABEL: Record<FoodGroup, string> = {
   sweets: "Sweets",
 };
 
-function countsText(f: WholeFoodDef): string {
-  // findingCounts only reads `findings`, which food entries share with nutrients.
-  const c = findingCounts({ findings: f.findings } as NutrientDef);
-  return [
-    c.helps && `${c.helps} ${c.helps === 1 ? "benefit" : "benefits"}`,
-    c["no clear effect"] && `${c["no clear effect"]} no clear effect`,
-    c.mixed && `${c.mixed} mixed`,
-    c.harms && `${c.harms} ${c.harms === 1 ? "harm" : "harms"}`,
-  ]
-    .filter(Boolean)
-    .join(" · ");
-}
-
 /** Every word must start a word somewhere in the entry (name, other names, summary, what's in it, findings). */
 function matches(f: WholeFoodDef, query: string): boolean {
   const fold = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
@@ -72,7 +58,7 @@ export function WholeFoodsPage() {
   const searching = query.trim() !== "";
   return (
     <>
-      <PageTitle sub="What research says about eating whole foods, not their nutrients one by one. A food holds thousands of compounds the food table doesn't measure, and a study of people eating it captures all of them. What's in each food, what studies found, what processing changes, and who should be careful. General information, not a diet.">
+      <PageTitle sub="Explore what foods contribute, their potential benefits, and who should be careful. Find the uses studied and the research behind them.">
         Foods
       </PageTitle>
 
@@ -115,8 +101,7 @@ export function WholeFoodsPage() {
                     <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{GROUP_LABEL[f.group]}</p>
                     <h2 className="font-serif text-2xl font-normal">{f.name}</h2>
                   </div>
-                  <p className="line-clamp-3 text-ink-2">{f.summary}</p>
-                  <p className="mt-auto border-t border-line pt-3 text-sm text-ink-2">What studies found: {countsText(f)}</p>
+                  <p className="text-ink-2">{f.summary}</p>
                 </a>
               </li>
             ))}
@@ -194,10 +179,34 @@ export function WholeFoodPage({ id }: { id: string }) {
           <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
           <Findings
             prefix="finding"
-            title="Main uses &amp; benefits"
-            intro="Studies of people eating the food, strongest evidence first. Many follow people over years rather than testing the food in a trial, and people who eat a food often differ in other ways, so the grades say how sure the evidence is."
+            title="Main uses &amp; potential benefits"
+            intro="What this food may help with, who the findings apply to, and important risks. Open the research for the full results and sources."
             findings={f.findings}
           />
+
+          {(f.whoShouldBeCareful.length > 0 || f.cautions.length > 0) && (
+            <Card id="careful" className="flex scroll-mt-6 flex-col gap-3">
+              <H2>Who should be careful</H2>
+              <SafetyNotices notes={notes.filter((x) => f.whoShouldBeCareful.some((w) => w.safetyId === x.id))} />
+              {f.whoShouldBeCareful.length > 0 && (
+                <dl className="flex flex-col gap-3">
+                  {f.whoShouldBeCareful.map((x) => (
+                    <div key={x.with} className={cx(x.safetyId && safety.includes(x.safetyId) && "rounded-lg bg-warn-soft p-2")}>
+                      <dt className="font-medium">{x.with}</dt>
+                      <dd className="text-ink-2">{x.note}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              {f.cautions.length > 0 && (
+                <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">
+                  {f.cautions.map((c) => (
+                    <li key={c}>{c}</li>
+                  ))}
+                </ul>
+              )}
+            </Card>
+          )}
 
           <ClockNote kind="wholefood" id={f.id} />
 
@@ -235,30 +244,6 @@ export function WholeFoodPage({ id }: { id: string }) {
               </ul>
             )}
           </Card>
-
-          {(f.whoShouldBeCareful.length > 0 || f.cautions.length > 0) && (
-            <Card id="careful" className="flex scroll-mt-6 flex-col gap-3">
-              <H2>Who should be careful</H2>
-              <SafetyNotices notes={notes.filter((x) => f.whoShouldBeCareful.some((w) => w.safetyId === x.id))} />
-              {f.whoShouldBeCareful.length > 0 && (
-                <dl className="flex flex-col gap-3">
-                  {f.whoShouldBeCareful.map((x) => (
-                    <div key={x.with} className={cx(x.safetyId && safety.includes(x.safetyId) && "rounded-lg bg-warn-soft p-2")}>
-                      <dt className="font-medium">{x.with}</dt>
-                      <dd className="text-ink-2">{x.note}</dd>
-                    </div>
-                  ))}
-                </dl>
-              )}
-              {f.cautions.length > 0 && (
-                <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">
-                  {f.cautions.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              )}
-            </Card>
-          )}
 
           <Card id="unknowns" className="flex scroll-mt-6 flex-col gap-2">
             <H2>What isn't known yet</H2>
@@ -518,12 +503,12 @@ function Measured({ f, db }: { f: WholeFoodDef; db: FoodDb | undefined }) {
 /** Side column on wide screens: what studies found, and where things are on the page. */
 function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
   const links: [string, string][] = [
-    ["findings", "Main uses & benefits"],
+    ["findings", "Main uses & potential benefits"],
+    ...((f.whoShouldBeCareful.length > 0 || f.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ...((f.visuals.length ? [["pictures", "In pictures"]] : []) as [string, string][]),
     ...((f.history || f.lore ? [["history", "Then and now"]] : []) as [string, string][]),
     ["in-it", "What's in it"],
     ["processing", "What changes it"],
-    ...((f.whoShouldBeCareful.length > 0 || f.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
     ["unknowns", "What isn't known yet"],
     ...((hasMap ? [["evidence-map", "How the evidence was found"]] : []) as [string, string][]),
     ["research", "Search research"],
@@ -531,18 +516,6 @@ function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
   return (
     <aside aria-label="Key facts" className="hidden lg:col-start-2 lg:row-start-1 lg:block">
       <div className="sticky top-6 flex flex-col gap-5 text-sm">
-        <section>
-          <h2 className="mb-1.5 text-xs font-medium text-ink-2">Main uses &amp; benefits</h2>
-          <ul className="flex flex-col gap-1">
-            {sortFindings(f.findings).map((x) => (
-              <li key={`${x.outcome}|${x.population}`}>
-                <a href={`#${anchorId("finding", `${x.outcome} ${x.population}`)}`} onClick={(e) => jump(e, anchorId("finding", `${x.outcome} ${x.population}`))} className="text-ink no-underline hover:underline">
-                  {x.label ?? x.outcome}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
         <nav aria-label="On this page">
           <h2 className="mb-1.5 text-xs font-medium text-ink-2">On this page</h2>
           <ul className="flex flex-col gap-1">

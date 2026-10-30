@@ -1,0 +1,37 @@
+{
+  "id": "fermented_garlic",
+  "name": "Fermented garlic extract",
+  "kind": "supplement",
+  "otherNames": ["Fermented Garlic Extract", "fermented garlic", "aged garlic extract", "black garlic extract"],
+  "researchStatus": "not-reviewed",
+  "summary": "Garlic supplements are made from Allium sativum using different processing and extraction methods. Fermented garlic, aged garlic extract and black garlic are related preparations, not interchangeable ingredients. This guide covers their names and basic cautions, not their effectiveness.",
+  "commonUses": ["Used in products marketed for cardiovascular health.", "Used in products marketed for immune support."],
+  "roles": ["Garlic contains sulfur-containing compounds; processing changes the mixture present in an extract.", "Heating and browning, ageing and microbial fermentation are different processes even when product names overlap."],
+  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
+  "low": {"signs": [], "atRisk": []},
+  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
+  "foodSources": {"examples": []},
+  "forms": [
+    {"name": "Fermented garlic extract", "note": "Check the manufacturer's processing description and ingredient specification; the name alone does not identify the extract's composition."},
+    {"name": "Aged garlic extract", "note": "An aged preparation; do not assume that a product labelled fermented garlic contains the same compounds or matches the extract in an aged-garlic study."},
+    {"name": "Black garlic extract", "note": "Black garlic commonly undergoes controlled heat and humidity, with browning reactions. The term fermented is also used, but black colour does not establish microbial fermentation or equivalence to aged garlic extract."}
+  ],
+  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {"with": "Blood thinners and medicines that affect bleeding", "note": "Garlic supplements may increase bleeding risk, including with anticoagulants or aspirin. Talk with a clinician about the specific preparation.", "safetyId": "anticoagulant"},
+    {"with": "Pregnancy or breastfeeding", "note": "Garlic supplement use beyond food amounts may not be safe in pregnancy or breastfeeding. Discuss the product with a clinician.", "safetyId": "pregnancy"}
+  ],
+  "cautions": [
+    "Garlic can cause abdominal pain, gas, nausea, and breath or body odour.",
+    "Allergic reactions to garlic can occur; fermentation or ageing is not proof that a product is suitable for someone with garlic allergy.",
+    "Tell the team planning any operation or procedure about garlic supplements because of the possible bleeding risk.",
+    "Safety information for garlic in general does not establish the safety of every concentrated, fermented or blended extract."
+  ],
+  "sources": [
+    {"pmid": "17918162", "doi": "10.1002/mnfr.200700072", "title": "Garlic (Allium sativum L.): adverse effects and drug interactions in humans.", "year": 2007, "studyType": "review"},
+    {"pmid": "36125851", "doi": "10.1111/jfbc.14394", "title": "Black garlic: A review of its biological significance.", "year": 2022, "studyType": "review"}
+  ],
+  "basicSources": [{"title": "Garlic: Usefulness and Safety — NCCIH", "year": 2025, "url": "https://www.nccih.nih.gov/health/garlic"}]
+}
