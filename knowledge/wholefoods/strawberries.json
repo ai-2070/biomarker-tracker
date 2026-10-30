@@ -20,6 +20,136 @@
     "Other flavonoids such as quercetin and catechin, and fisetin, a flavonol also found in apples, persimmons, grapes, onions and cucumbers. None of these are in the food table. Fisetin is sold as a supplement, but supplement studies aren't evidence about strawberries.",
     "The food table tracks about 30 nutrients for strawberries. A study of people eating the fruit captures everything in it, named or not, which is why this page uses studies of the food itself."
   ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Ovid, Metamorphoses, about AD 8)",
+      "belief": "Ovid pictured the Golden Age, the first age of the world, as a time when no one ploughed or sowed: the earth gave every fruit of its own accord, and people, content with food nobody had to grow, gathered strawberry-tree fruit and wild strawberries on the mountainsides, blackberries from the bushes and acorns from the ground.",
+      "note": "For a Roman poet, the wild strawberry was food from an innocent past without work or war. Pliny the Elder, writing a few decades later, called it the 'ground strawberry' and found it remarkable that the strawberry tree (arbutus) bore a similar fruit: the only case he knew of the same kind of fruit growing both on a tree and on the ground.",
+      "sources": [
+        {
+          "title": "Metamorphoses, Book 1, line 104 (Latin: 'arbuteos fetus montanaque fraga legebant')",
+          "author": "Ovid",
+          "when": "about AD 8",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0029:book=1:card=89"
+        },
+        {
+          "title": "Metamorphoses, Book 1 (English translation by Brookes More, 1922)",
+          "author": "Ovid",
+          "when": "about AD 8",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0028:book=1:card=89"
+        },
+        {
+          "title": "Natural History, Book 15, chapter 28: The fruit of the arbutus (English translation by John Bostock and H. T. Riley, 1855)",
+          "author": "Pliny the Elder",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=15:chapter=28"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Virgil, Eclogues, 1st century BC)",
+      "belief": "In Virgil's third Eclogue, a shepherd sings a warning to boys picking flowers and the strawberries that grow close to the ground: run away from here, a cold snake is lurking in the grass.",
+      "note": "In Latin: 'Qui legitis flores et humi nascentia fraga, frigidus, o pueri, fugite hinc, latet anguis in herba.' In 1891 the British doctor W. T. Fernie read the lines as a warning against eating too many wild strawberries, which he wrote could bring on a painful colic.",
+      "sources": [
+        {
+          "title": "Eclogues, Eclogue 3, lines 92–93 (Latin, edited by J. B. Greenough, 1900)",
+          "author": "Virgil",
+          "when": "1st century BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0056:poem=3"
+        },
+        {
+          "title": "The Bucolics and Eclogues, Eclogue III (English translation)",
+          "author": "Virgil",
+          "when": "1st century BC",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/230"
+        },
+        {
+          "title": "The History and Capabilities of Herbal Simples: XXXII. Strawberries (The Hospital, 13 June 1891)",
+          "author": "W. T. Fernie",
+          "when": "1891",
+          "kind": "scholarship",
+          "pmid": "29834505"
+        }
+      ]
+    },
+    {
+      "who": "German folk legend (as recorded by the British doctor W. T. Fernie, 1891)",
+      "belief": "German legends dedicated strawberries to the Virgin Mary, whose favourite fruit they were. On St John's morning she went strawberry picking with the children, and so on that day a mother who had lost a little child would not taste a strawberry, for fear that her child would get none in Paradise.",
+      "sources": [
+        {
+          "title": "The History and Capabilities of Herbal Simples: XXXII. Strawberries (The Hospital, 13 June 1891)",
+          "author": "W. T. Fernie",
+          "when": "1891",
+          "kind": "scholarship",
+          "pmid": "29834505"
+        }
+      ]
+    },
+    {
+      "who": "Poland (a legend from the Podhale region, gathered in a 2025 study of Polish plant folklore)",
+      "belief": "In a time of terrible famine, the Virgin Mary appeared to a poor girl named Koziombka, who offered Jesus her most precious possession: a string of round, blood-red beads her mother had given her. When she tore it and the beads scattered on the ground, the Mother of God turned them into berries 'that smelled like honey and were red as blood'. Everyone around began to pick them, the famine in Podhale ended, and people called the wild strawberries koziombki, after the girl.",
+      "note": "In Polish folklore, the plants linked with God or the Virgin are often edible ones, including those that added to poor villagers' food, such as bilberries, wild strawberries and hazelnuts.",
+      "sources": [
+        {
+          "title": "Divine thus good, devilish thus bad? Folk linguistic perceptions about plants and their characteristics in Polish folklore (Journal of Ethnobiology and Ethnomedicine)",
+          "author": "Kielak",
+          "when": "2025",
+          "kind": "scholarship",
+          "doi": "10.1186/s13002-025-00787-z"
+        }
+      ]
+    },
+    {
+      "who": "A 'widespread superstition' recorded by the British doctor W. T. Fernie (1891)",
+      "belief": "Strawberries were thought wholesome for nearly everyone, but if a person with a wound to the head ate the fruit, the superstition held, it would certainly kill them.",
+      "modern": "not tested",
+      "note": "No study has looked at strawberries and head wounds. Fernie himself called it a superstition, set beside the old herbalists' praise of strawberries as the most wholesome of English fruits.",
+      "sources": [
+        {
+          "title": "The History and Capabilities of Herbal Simples: XXXII. Strawberries (The Hospital, 13 June 1891)",
+          "author": "W. T. Fernie",
+          "when": "1891",
+          "kind": "scholarship",
+          "pmid": "29834505"
+        }
+      ]
+    },
+    {
+      "who": "Seneca (the vision of the prophet Handsome Lake, about 1800, as published by Arthur C. Parker, 1913)",
+      "belief": "Handsome Lake lay so ill that his family thought him dead. When he woke he told of three messengers of the Creator holding berry bushes, who said his relatives would gather the early strawberries, hold a strawberry feast and drink the berry juice in thanks for his recovery. From then on, they said, thanksgiving dances should be held whenever the strawberries ripened, and everyone, the children and the old, should drink the juice, because the sweet water of the berries was a medicine and the early strawberries a great medicine.",
+      "modern": "not tested",
+      "note": "Parker added that the strawberry was thought so sacred that it grows along the 'heaven road', and that someone who had recovered from a severe illness would say 'I almost ate strawberries'. No study has tested strawberries or their juice as a medicine for recovering from illness; the trials on this page measured blood markers, mostly with freeze-dried strawberry powder.",
+      "sources": [
+        {
+          "title": "The Code of Handsome Lake, the Seneca Prophet (New York State Museum Bulletin 163), pages 24–25",
+          "author": "Arthur C. Parker",
+          "when": "1913",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/codeofhandsomela01hand"
+        }
+      ]
+    },
+    {
+      "who": "Oneida Nation (Haudenosaunee), today",
+      "belief": "The Oneida teach that strawberries are shaped like the human heart and are medicine, because their delicious flavour raises the spirit, and that eating berries is good for the heart and blood. When a child sees the wild strawberries growing, they tell an adult, and the faithkeepers set the date of the Strawberry Ceremony, at which a boy and a girl hand out the strawberry drink.",
+      "modern": "partly",
+      "note": "The Oneida say the ceremony was revitalized in the late 1700s, in Handsome Lake's time. On the heart and blood: trials on this page, mostly of freeze-dried strawberry powder, found no clear effect on blood pressure, mixed results for cholesterol and a slightly lower CRP (an inflammation marker); none has shown fewer heart attacks.",
+      "sources": [
+        {
+          "title": "Strawberry Ceremony work packet",
+          "author": "Oneida Nation",
+          "when": "2024",
+          "kind": "ancient text",
+          "url": "https://oneida-nsn.gov/wp-content/uploads/2024/05/strawberry-ceremony-work-packet.pdf"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Sweden (the botanist and physician Carl Linnaeus, 1700s, as retold by a British doctor in 1891)",

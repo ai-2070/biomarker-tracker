@@ -21,6 +21,113 @@
     "Beets are one of the foods named as high in oxalate, which can form kidney stones. Reported amounts vary hugely: across 8 websites and apps, the oxalate in beets ranged from 36.9 to 794 mg per 100 g. The food table doesn't measure oxalate.",
     "Nobody knows how much of beetroot's effect comes from nitrate and how much from its other compounds. A food has thousands of compounds that food tables don't track."
   ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Delphi, as Pliny the Elder heard it)",
+      "belief": "Pliny was told that in Apollo's temple at Delphi the radish was so highly prized among foods that it was shown there in gold, the beet in silver and the turnip in lead. He called it a sign of Greek frivolity.",
+      "sources": [
+        {
+          "title": "Natural History, book 19, chapter 26",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D19%3Achapter%3D26"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, AD 77)",
+      "belief": "Pliny wrote that physicians thought beet less wholesome than cabbage, that he never remembered seeing it served at table, and that some people would not even taste it, convinced it was a food only for the robust. It was eaten mostly with lentils and beans, or with mustard to liven up its blandness.",
+      "modern": "not tested",
+      "note": "No study on this page set out to test this. Beet was then grown mainly for its leaves. The trials here gave beetroot juice for weeks to months, and red urine was the usual effect; beetroot is high in oxalate, which matters for people prone to kidney stones (see who should be careful).",
+      "sources": [
+        {
+          "title": "Natural History, book 19, chapter 40",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D19%3Achapter%3D40"
+        },
+        {
+          "title": "Evolution of Root Morphology in Table Beet: Historical and Iconographic",
+          "author": "Goldman, Janick",
+          "when": "2021",
+          "kind": "scholarship",
+          "doi": "10.3389/fpls.2021.689926"
+        }
+      ]
+    },
+    {
+      "who": "Jewish tradition (Rav Hisda, Babylonia, in the Talmud)",
+      "belief": "Rav Hisda said that a cooked dish of beets is good for the heart, good for the eyes, and even more so for the bowels. Abaye added: only when it sits on the stove and bubbles 'tukh tukh'.",
+      "modern": "not tested",
+      "note": "No trial has tested a long-simmered beet dish. The blood pressure findings on this page come mostly from beetroot juice, a different thing. The Hebrew word here, tered, means spinach in modern Hebrew; scholars take it to mean beet in the Talmud.",
+      "sources": [
+        {
+          "title": "Berakhot 39a",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Berakhot.39a.10"
+        },
+        {
+          "title": "Evolution of Root Morphology in Table Beet: Historical and Iconographic",
+          "author": "Goldman, Janick",
+          "when": "2021",
+          "kind": "scholarship",
+          "doi": "10.3389/fpls.2021.689926"
+        }
+      ]
+    },
+    {
+      "who": "Jewish tradition (the Sabbath, in the Talmud)",
+      "belief": "Asked how one should delight in the Sabbath, Rav answered: with a dish of beets, large fish and heads of garlic. Even a small dish, if prepared in honour of the Sabbath, counts as a delight.",
+      "sources": [
+        {
+          "title": "Shabbat 118b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Shabbat.118b.2"
+        },
+        {
+          "title": "Evolution of Root Morphology in Table Beet: Historical and Iconographic",
+          "author": "Goldman, Janick",
+          "when": "2021",
+          "kind": "scholarship",
+          "doi": "10.3389/fpls.2021.689926"
+        }
+      ]
+    },
+    {
+      "who": "Jewish festivals (the New Year and Passover, in the Talmud)",
+      "belief": "Abaye said that a person should be used to eating gourd, fenugreek, leeks, beets and dates at the start of the year (Rosh Hashanah), because they grow and multiply quickly, a good sign for the deeds of the year ahead. For the two cooked foods of the Passover Seder, Rav Huna named beets and rice, and his student Rava would seek out beets and rice for that meal to follow his teacher's words exactly.",
+      "note": "The Aramaic word, silka, covers leaf beet too: the translation of the same saying in Horayot 12a calls it chard.",
+      "sources": [
+        {
+          "title": "Keritot 6a",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Keritot.6a.2"
+        },
+        {
+          "title": "Horayot 12a",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Horayot.12a.12"
+        },
+        {
+          "title": "Pesachim 114b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Pesachim.114b.8"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Ancient Greece and Rome (Dioscorides, Pliny)",

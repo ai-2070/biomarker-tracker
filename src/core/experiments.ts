@@ -41,7 +41,7 @@ export function rcvBand(cviPercent: number, nBefore = 1, nAfter = 1, cvaPercent 
 
 /** Two-sided 95% t values by degrees of freedom; between rows the smaller df is used (wider, so cautious). */
 const T_95: readonly [number, number][] = [
-  [4, 2.776], [5, 2.571], [6, 2.447], [7, 2.365], [8, 2.306], [9, 2.262], [10, 2.228], [12, 2.179],
+  [1, 12.706], [2, 4.303], [3, 3.182], [4, 2.776], [5, 2.571], [6, 2.447], [7, 2.365], [8, 2.306], [9, 2.262], [10, 2.228], [12, 2.179],
   [15, 2.131], [20, 2.086], [25, 2.06], [30, 2.042], [40, 2.021], [60, 2.0], [120, 1.98],
 ];
 export function t95(df: number): number {
@@ -70,6 +70,26 @@ export function personalBand(before: readonly number[], after: readonly number[]
   if (sd < 1e-9) return undefined; // identical readings: no spread to judge against
   const k = t95(df) * sd * Math.sqrt(1 / before.length + 1 / after.length);
   return { up: Math.expm1(k), down: Math.expm1(-k) };
+}
+
+/** Before and after as a plain difference (`change` in the marker's own unit, the band too). */
+function analyzeDifference(e: Experiment, def: BiomarkerDef, mine: readonly Measurement[]): MarkerResult {
+  const before = beforeResults(e, mine);
+  const after = afterResults(e, mine);
+  const r: MarkerResult = { biomarkerId: def.id, before, after, verdict: "waiting" };
+  if (before.length === 0) return { ...r, verdict: "no-baseline" };
+  const mean = (xs: readonly Measurement[]) => xs.reduce((a, m) => a + m.value, 0) / xs.length;
+  r.beforeValue = mean(before);
+  if (after.length === 0) return r;
+  r.afterValue = mean(after);
+  r.change = r.afterValue - r.beforeValue;
+  const start = dayNumber(e.start);
+  const band = differenceBand(sortByDate(mine.filter((m) => dayNumber(m.date) <= start)).map((m) => m.value), before.length, after.length);
+  if (!band) return { ...r, verdict: "no-variation-data" };
+  r.band = band;
+  r.bandFrom = "personal";
+  r.verdict = r.change > band.up ? "rise" : r.change < band.down ? "fall" : "within-noise";
+  return r;
 }
 
 /** Geometric mean: the right average for values compared on the log scale. */
@@ -118,8 +138,25 @@ export function afterResults(e: Experiment, ms: readonly Measurement[]): Measure
   });
 }
 
+/**
+ * Normal variation for a value compared as a plain difference (the PhenoAge gap), from the person's own
+ * values before the start, oldest first, at least MIN_PERSONAL of them: test-to-test noise estimated
+ * from the differences between consecutive tests (the mean successive difference, which a slow real
+ * trend barely affects), as a t-based band around the difference of the before and after averages.
+ */
+export function differenceBand(history: readonly number[], nBefore: number, nAfter: number): ChangeBand | undefined {
+  if (history.length < MIN_PERSONAL || nBefore < 1 || nAfter < 1) return undefined;
+  let ss = 0;
+  for (let i = 1; i < history.length; i++) ss += (history[i]! - history[i - 1]!) ** 2;
+  const sd = Math.sqrt(ss / (2 * (history.length - 1)));
+  if (sd < 1e-9) return undefined;
+  const k = t95(history.length - 1) * sd * Math.sqrt(1 / nBefore + 1 / nAfter);
+  return { up: k, down: -k };
+}
+
 export function analyzeMarker(e: Experiment, def: BiomarkerDef, ms: readonly Measurement[]): MarkerResult {
   const mine = ms.filter((m) => m.biomarkerId === def.id);
+  if (def.changeScale === "difference") return analyzeDifference(e, def, mine);
   const before = beforeResults(e, mine);
   const after = afterResults(e, mine);
   const r: MarkerResult = { biomarkerId: def.id, before, after, verdict: "waiting" };

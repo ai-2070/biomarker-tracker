@@ -20,6 +20,129 @@
     "The UK food table (CoFID, 'Honey') measures per 100 g: 288 kcal, 76.4 g of carbohydrate, all of it sugars, 0.4 g of protein, no fat and no fibre, 11 mg of sodium and 51 mg of potassium. This app's copy lists total sugars, not fructose and glucose separately, and the table measures none of the polyphenols, enzymes, hydrogen peroxide activity or methylglyoxal.",
     "Like every food, honey holds compounds no food table tracks, and they differ between honeys. Studies of people eating honey, or having it put on their wounds, include all of them."
   ],
+  "lore": [
+    {
+      "who": "Hebrew Bible",
+      "belief": "God promised to bring the Israelites out of Egypt to 'a land flowing with milk and honey'. Samson, who had torn a lion apart with his bare hands, later found bees and honey in its skeleton and made a riddle of it: 'Out of the eater came something to eat, out of the strong came something sweet.' And when Saul's son Jonathan, in a battle where the troops had been forbidden to eat, dipped a stick in honey and tasted it, 'his eyes lit up'.",
+      "sources": [
+        {
+          "title": "Exodus 3:8 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Exodus.3.8"
+        },
+        {
+          "title": "Judges 14:5-14 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Judges.14.5-14"
+        },
+        {
+          "title": "1 Samuel 14:27-29 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/I_Samuel.14.27-29"
+        }
+      ]
+    },
+    {
+      "who": "Jewish New Year (Rosh Hashanah), written down in the 16th century",
+      "belief": "On the eve of the Jewish New Year many eat a sweet apple dipped in honey and say: 'May a sweet year be renewed on us!' Moses Isserles, writing in the 1500s, recorded the custom with the words 'This is what we do', citing older authorities.",
+      "sources": [
+        {
+          "title": "Shulchan Arukh, Orach Chayim 583:1, with the gloss of Moses Isserles (Sefaria Community Translation)",
+          "author": "Joseph Karo and Moses Isserles",
+          "when": "16th century",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.583.1"
+        }
+      ]
+    },
+    {
+      "who": "Islam (the Qur'an and the sayings of the Prophet)",
+      "belief": "The Qur'an says God taught the bee to make its homes in the mountains and trees and to eat from every fruit, and that from its belly comes 'a drink, varying in colors, in which there is healing for people'. Paradise has rivers of purified honey. The Prophet Muhammad is reported to have advised honey for diarrhoea.",
+      "modern": "partly",
+      "finding": "Short-term (acute) cough in children",
+      "note": "Trials found that honey eased children's short-term coughs, and honey dressings helped burns heal; nobody has tested honey as a cure for illness in general, and no trial of honey for diarrhoea was found for this page. Honey isn't safe for babies under one (see Then and now).",
+      "sources": [
+        {
+          "title": "Qur'an 16:68-69 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/16/68-69"
+        },
+        {
+          "title": "Qur'an 47:15 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/47/15"
+        },
+        {
+          "title": "Traditional and modern uses of natural honey in human diseases: a review",
+          "author": "Eteraf-Oskouei",
+          "when": "2013",
+          "kind": "scholarship",
+          "pmid": "23997898"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece (the infant Zeus, as retold by Diodorus of Sicily; a shrine at Paestum, about 520 BC)",
+      "belief": "The Greeks told that Rhea hid the newborn Zeus from his father Cronus in a cave on Crete, where nymphs fed him on honey and milk; in thanks he made the bees' colour like copper with a gleam of gold and made them proof against wind and snow. At Paestum, a Greek city in southern Italy, sealed bronze jars were left in an underground shrine; the excavators called their contents honey, 'a symbol of immortality', and in 2025 chemists confirmed the jars had once held honey or honeycomb.",
+      "sources": [
+        {
+          "title": "Diodorus Siculus, Library of History, book 5, chapter 70 (translated by C. H. Oldfather, Loeb)",
+          "author": "Diodorus Siculus",
+          "when": "1st century BC",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Diodorus_Siculus/5D*.html"
+        },
+        {
+          "title": "A Symbol of Immortality: Evidence of Honey in Bronze Jars Found in a Paestum Shrine Dating to 530-510 BCE",
+          "author": "Carvalho",
+          "when": "2025",
+          "kind": "scholarship",
+          "doi": "10.1021/jacs.5c04888",
+          "pmid": "40736130"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, 1st century AD)",
+      "belief": "Pliny wrote that many people had reached an extreme old age living on bread soaked in honeyed wine. When the Emperor Augustus asked Pollio Romilius, then over a hundred, how he had kept such vigour of mind and body, he answered: 'Honied wine within, oil without.'",
+      "modern": "not tested",
+      "note": "Honeyed wine (mulsum) was wine sweetened with honey, not honey alone. No study has measured whether honey lengthens life.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 22, chapter 53 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D22%3Achapter%3D53"
+        }
+      ]
+    },
+    {
+      "who": "China (Shennong's Classic of Materia Medica, about 2,000 years ago)",
+      "belief": "This early Chinese book of medicines puts 'stone honey' among its upper-class medicines, the ones meant to nourish life, for those who wish to 'lighten the body, not grow old and lengthen their years'. Taken for a long time, it says, honey strengthens the will, lightens the body, and keeps people from hunger and from ageing.",
+      "modern": "not tested",
+      "note": "Li Shizhen's great herbal of 1578 explains that the old name 'stone honey' meant honey from bees nesting in rocks, thought the best. No study has measured whether honey slows ageing or lengthens life.",
+      "sources": [
+        {
+          "title": "Shennong Bencao Jing (Shennong's Classic of Materia Medica), preface and upper class: 'stone honey' (Chinese text)",
+          "author": "Shennong Bencao Jing",
+          "when": "about 1st-2nd century AD",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E7%A5%9E%E8%BE%B2%E6%9C%AC%E8%8D%89%E7%B6%93"
+        },
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), insects 1: honey (Chinese text)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E8%9F%B2%E4%B9%8B%E4%B8%80"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Ancient Egypt (Edwin Smith Papyrus, about 1500 BC)",

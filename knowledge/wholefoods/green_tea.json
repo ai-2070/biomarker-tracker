@@ -20,6 +20,196 @@
     "Breakdown products: after a cup, gut bacteria turn catechins into compounds called valerolactones, which EFSA describes as the main ones found in urine.",
     "The food table (CoFID, 'Tea, green, infusion') measures almost nothing in it: per 100 g, 0 kcal, 20 mg potassium, 3 mg vitamin C and traces of other minerals and vitamins; vitamin K1 and vitamin E weren't measured, and it has no figures for catechins, caffeine, theanine or fluoride. So the nutrient numbers for green tea say nothing about what it is studied for."
   ],
+  "lore": [
+    {
+      "who": "Tang-dynasty China (Lu Yu, The Classic of Tea, 8th century)",
+      "belief": "Lu Yu wrote the first book given wholly to tea. He called tea 'a fine tree of the south' and wrote that, being very 'cold' in nature, it is the drink best suited to people of refined conduct and frugal virtue. For feverish thirst, gloom, headache, sore eyes, restless limbs or stiff joints, he wrote, four or five sips rival 'ghee and sweet dew'.",
+      "modern": "not tested",
+      "note": "No study on this page tested green tea for headaches, sore eyes or stiff joints. 'Cold' is the old Chinese idea of the hot and cold natures of foods, which studies don't measure.",
+      "sources": [
+        {
+          "title": "茶經 (The Classic of Tea), 卷上, 一之源 (On origins)",
+          "author": "Lu Yu",
+          "when": "8th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%8C%B6%E7%B6%93/%E5%8D%B7%E4%B8%8A"
+        },
+        {
+          "title": "The Patron Saint of Tea: Religious Aspects of the Life and Work of Lu Yu (in Tea in China: A Religious and Cultural History)",
+          "author": "Benn",
+          "when": "2015",
+          "kind": "scholarship",
+          "doi": "10.21313/hawaii/9780824839635.003.0005"
+        },
+        {
+          "title": "Tea and tea drinking: China's outstanding contributions to the mankind.",
+          "author": "Chen and others",
+          "when": "2022",
+          "kind": "scholarship",
+          "doi": "10.1186/s13020-022-00571-1",
+          "pmid": "35193642"
+        }
+      ]
+    },
+    {
+      "who": "China (the legend of Shennong, as Lu Yu told it in The Classic of Tea, 8th century)",
+      "belief": "Lu Yu wrote that tea as a drink began with Shennong, the Divine Farmer of legend, and became known in the days of the Duke of Zhou. Among the old sayings he collected is one from 'Shennong's Food Classic': drunk for a long time, tea gives people strength and lifts their spirits.",
+      "modern": "not tested",
+      "note": "Shennong is a culture hero of myth, traditionally dated to about 2737–2697 BC, and a 2015 history of tea in China weighs these legends against the surviving evidence. No study on this page measured strength or mood in tea drinkers. The legend that Shennong eased 72 poisonings with tea leaves is under Then and now.",
+      "sources": [
+        {
+          "title": "茶經 (The Classic of Tea), 卷下, 六之飲 (On drinking) and 七之事 (Records)",
+          "author": "Lu Yu",
+          "when": "8th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%8C%B6%E7%B6%93/%E5%8D%B7%E4%B8%8B"
+        },
+        {
+          "title": "The Early History of Tea: Myth and Reality (in Tea in China: A Religious and Cultural History)",
+          "author": "Benn",
+          "when": "2015",
+          "kind": "scholarship",
+          "doi": "10.21313/hawaii/9780824839635.003.0002"
+        }
+      ]
+    },
+    {
+      "who": "Daoist China (stories and sayings Lu Yu collected in The Classic of Tea, 8th century)",
+      "belief": "Lu Yu gathered stories that tied tea to the Daoist immortals. In one, a man named Yu Hong went into the mountains to pick tea and met a Daoist leading three blue oxen, who said he was the immortal Danqiuzi, led him to Waterfall Mountain, told him great tea trees grew there, and asked for the leftovers of his cup. Yu Hong made offerings to him, and his family later found great tea there. The Daoist master Tao Hongjing wrote that bitter tea 'lightens the body and changes the bones', and that the immortals Danqiuzi and the Lord of Yellow Mountain drank it; another old writer said that bitter tea, eaten for a long time, makes a person 'grow wings', the phrase for becoming an immortal.",
+      "modern": "not tested",
+      "note": "Becoming an immortal is a religious idea, not something a study can test. The nearest modern question, whether green tea drinkers live longer, has only observational answers (see Death from any cause). Kakuzo Okakura wrote in 1906 that the Daoists claimed tea as an important ingredient of the elixir of immortality.",
+      "sources": [
+        {
+          "title": "茶經 (The Classic of Tea), 卷下, 七之事 (Records)",
+          "author": "Lu Yu",
+          "when": "8th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%8C%B6%E7%B6%93/%E5%8D%B7%E4%B8%8B"
+        },
+        {
+          "title": "The Book of Tea, chapter II, The Schools of Tea",
+          "author": "Kakuzo Okakura",
+          "when": "1906",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/769"
+        },
+        {
+          "title": "The Early History of Tea: Myth and Reality (in Tea in China: A Religious and Cultural History)",
+          "author": "Benn",
+          "when": "2015",
+          "kind": "scholarship",
+          "doi": "10.21313/hawaii/9780824839635.003.0002"
+        }
+      ]
+    },
+    {
+      "who": "Chan (Zen) Buddhist monks in Tang China (recorded by Feng Yan, 8th century)",
+      "belief": "Feng Yan wrote that in the Kaiyuan years (713–741), at Lingyan Temple on Mount Tai, the Chan master Xiangmo taught meditation. His students strove not to sleep and ate nothing in the evening, but all of them were allowed tea. People carried it with them and brewed it wherever they went, others copied them, and from there tea drinking spread to the capital and became a custom. He also quoted an old herbal: tea 'quenches thirst and keeps people from sleeping'.",
+      "modern": "partly",
+      "note": "Green tea has caffeine, about 11 mg per 200 ml in a 2025 laboratory study (see What's in it), and a 2016 review found that caffeine from about 40 mg improves alertness and attention. No study on this page tested green tea itself for staying awake. Okakura (1906) also wrote that Buddhists used tea against drowsiness in their long hours of meditation.",
+      "sources": [
+        {
+          "title": "封氏聞見記 (Feng's Record of Things Heard and Seen), 卷六, 飲茶 (Drinking tea)",
+          "author": "Feng Yan",
+          "when": "8th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E5%B0%81%E6%B0%8F%E8%81%9E%E8%A6%8B%E8%A8%98/%E5%8D%B7%E5%85%AD"
+        },
+        {
+          "title": "Buddhism and Tea during the Tang Dynasty (in Tea in China: A Religious and Cultural History)",
+          "author": "Benn",
+          "when": "2015",
+          "kind": "scholarship",
+          "doi": "10.21313/hawaii/9780824839635.003.0003"
+        },
+        {
+          "title": "A review of caffeine's effects on cognitive, physical and occupational performance.",
+          "author": "McLellan, Caldwell and Lieberman",
+          "when": "2016",
+          "kind": "scholarship",
+          "doi": "10.1016/j.neubiorev.2016.09.001",
+          "pmid": "27612937"
+        },
+        {
+          "title": "The Book of Tea, chapter II, The Schools of Tea",
+          "author": "Kakuzo Okakura",
+          "when": "1906",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/769"
+        }
+      ]
+    },
+    {
+      "who": "Tang-dynasty China (tea sellers after Lu Yu's death, as told in the New Book of Tang, 11th century)",
+      "belief": "The New Book of Tang tells that Lu Yu was a foundling, said to have been found beside the water by a monk who raised him, and that he took his names from a line of the Book of Changes that came up when he cast it: 'the wild goose gradually reaches the land; its feathers can be used in the rites'. His three-part book on tea made the whole empire know tea drinking, and tea sellers went as far as making pottery figures of him, setting them by their stoves and worshipping him as the god of tea.",
+      "note": "A 2015 history describes Lu Yu as raised by the head of a Buddhist monastery and, soon after his death, venerated as the God of Tea (chashen), with tea merchants making offerings to clay figures of him.",
+      "sources": [
+        {
+          "title": "新唐書 (New Book of Tang), 卷196, 隱逸 (Recluses): 陸羽 (Lu Yu)",
+          "author": "Ouyang Xiu, Song Qi and others",
+          "when": "11th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%96%B0%E5%94%90%E6%9B%B8/%E5%8D%B7196"
+        },
+        {
+          "title": "The Patron Saint of Tea: Religious Aspects of the Life and Work of Lu Yu (in Tea in China: A Religious and Cultural History)",
+          "author": "Benn",
+          "when": "2015",
+          "kind": "scholarship",
+          "doi": "10.21313/hawaii/9780824839635.003.0005"
+        }
+      ]
+    },
+    {
+      "who": "Tang-dynasty China (the poet Lu Tong, 'Seven bowls of tea')",
+      "belief": "Thanking a friend for a gift of new tea, Lu Tong wrote of drinking it bowl by bowl: the first moistens his lips and throat, the second breaks his loneliness, the third searches his dry insides and finds only five thousand scrolls of writing, the fourth brings a light sweat that carries all life's wrongs out through the pores, the fifth makes his flesh and bones pure, the sixth puts him in touch with the immortals, and the seventh he cannot drink: he feels only a cool wind rising under his arms that would carry him away to Penglai, the mountain of the immortals. The poem ends by asking whether the countless common people toiling on the steep cliffs below will ever find rest.",
+      "note": "Okakura put the seven cups into English in The Book of Tea (1906). A 2015 history of tea in China notes that many qualities linked with tea today, such as healthful, cleansing, spiritual, invigorating and refreshing, were first given to it by Tang writers, mostly poets.",
+      "sources": [
+        {
+          "title": "走筆謝孟諫議寄新茶 (Written in haste to thank Imperial Counsellor Meng for sending new tea), in 全唐詩 (Complete Tang Poems), 卷388",
+          "author": "Lu Tong",
+          "when": "9th century",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%B5%B0%E7%AD%86%E8%AC%9D%E5%AD%9F%E8%AB%AB%E8%AD%B0%E5%AF%84%E6%96%B0%E8%8C%B6"
+        },
+        {
+          "title": "The Book of Tea, chapter II, The Schools of Tea",
+          "author": "Kakuzo Okakura",
+          "when": "1906",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/769"
+        },
+        {
+          "title": "Tea Poetry in Tang China (in Tea in China: A Religious and Cultural History)",
+          "author": "Benn",
+          "when": "2015",
+          "kind": "scholarship",
+          "doi": "10.21313/hawaii/9780824839635.003.0004"
+        }
+      ]
+    },
+    {
+      "who": "Japan (the tea master Sen no Rikyū, 16th century, as told by Kakuzo Okakura in The Book of Tea, 1906)",
+      "belief": "Okakura wrote that the Japanese tea ceremony grew from a Zen ritual in which monks gathered before an image of Bodhidharma and drank tea from a single bowl 'with the profound formality of a holy sacrament', and that 'Teaism' is a worship of the imperfect. Its greatest master, Rikyū, served the warlord Hideyoshi until enemies accused him of a plot to poison Hideyoshi in a cup of tea, and he was ordered to die by his own hand. Okakura tells how Rikyū held a last tea ceremony for his disciples, gave each of them one of his tea things, broke the bowl so that no one would drink from it again, and then, in the white death robe hidden under his tea gown, greeted the dagger with a poem.",
+      "note": "Okakura's account is a literary retelling written about three centuries after the events, and he gives the poison plot only as what Rikyū's enemies claimed.",
+      "sources": [
+        {
+          "title": "The Book of Tea, chapters I, II, IV (The Tea-Room) and VII (Tea-Masters)",
+          "author": "Kakuzo Okakura",
+          "when": "1906",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/769"
+        },
+        {
+          "title": "Rikyū and the Fruition of the Way of Tea (in The Japanese Way of Tea)",
+          "author": "Sen Sōshitsu XV",
+          "when": "2017",
+          "kind": "scholarship",
+          "doi": "10.1515/9780824864804-014"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "China (the legend of Shen Nong, the mythical inventor of farming and medicine)",

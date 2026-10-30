@@ -20,6 +20,162 @@
     "The table doesn't tell extra virgin from refined olive oil: its numbers are for olive oil in general. The polyphenols, which differ between grades, aren't in it.",
     "Like every food, it holds compounds no food table tracks. Studies of people eating the oil include all of them; studies of single compounds don't."
   ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Athens)",
+      "belief": "The Athenians told that Athena and Poseidon competed for their land. Poseidon struck the Acropolis with his trident and brought up a salt sea; Athena planted an olive tree, and the gods judged the land hers because she had planted first. Her tree was shown on the Acropolis, and when the Persian army burned it, a shoot a cubit long was said to have sprung from the stump the very next day. Oil from the city's sacred olive trees was the prize for winners at the Panathenaic Games, and anyone who dug up or cut down a sacred tree was once tried for his life.",
+      "note": "Herodotus gives the regrown shoot as what the Athenians said. The Constitution of the Athenians says that by its time the death penalty for cutting a sacred olive was still law but no longer used.",
+      "sources": [
+        {
+          "title": "Library, book 3, chapter 14, section 1 (translated by J. G. Frazer)",
+          "author": "Apollodorus",
+          "when": "1st or 2nd century AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0022%3Atext%3DLibrary%3Abook%3D3%3Achapter%3D14%3Asection%3D1"
+        },
+        {
+          "title": "Histories, book 8, chapter 55 (translated by A. D. Godley)",
+          "author": "Herodotus",
+          "when": "5th century BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0126%3Abook%3D8%3Achapter%3D55"
+        },
+        {
+          "title": "Constitution of the Athenians, chapter 60 (translated by H. Rackham)",
+          "author": "Aristotle or his school",
+          "when": "4th century BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0046%3Achapter%3D60"
+        }
+      ]
+    },
+    {
+      "who": "Hebrew Bible (Genesis, Exodus, 1 Samuel)",
+      "belief": "In Genesis, the dove Noah sent out came back in the evening with a plucked olive leaf in its bill, and Noah knew the flood waters had gone down. Exodus tells the Israelites to bring clear oil of beaten olives to keep the sanctuary's lamps burning, and describes a sacred anointing oil of myrrh, cinnamon, aromatic cane and cassia in olive oil, used to consecrate Aaron and his sons as priests. Samuel anointed the young David from a horn of oil, and the spirit of God gripped David from that day on.",
+      "note": "Anointing with olive oil set people and things apart as holy; the word 'anoint' appears over 130 times in the Hebrew Bible.",
+      "sources": [
+        {
+          "title": "Genesis 8:11 (JPS translation, Sefaria)",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Genesis.8.11"
+        },
+        {
+          "title": "Exodus 27:20 and 30:23–30 (JPS translation, Sefaria)",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Exodus.30.23-30"
+        },
+        {
+          "title": "1 Samuel 16:13 (JPS translation, Sefaria)",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/I_Samuel.16.13"
+        },
+        {
+          "title": "The Ethnobotanical Heritage of Olea europaea L. in Italy: Continuity of a Millenary Mediterranean Tradition",
+          "author": "Mazzei, Lombardo, Zelasco, Rizzo, Tagarelli",
+          "when": "2026",
+          "kind": "scholarship",
+          "doi": "10.3390/plants15142221"
+        }
+      ]
+    },
+    {
+      "who": "Jewish tradition (Hanukkah, in the Babylonian Talmud)",
+      "belief": "The Talmud explains Hanukkah this way: when the Greeks entered the Temple, they defiled all its oil. After the Hasmoneans defeated them, only one cruse was found still sealed by the High Priest, with enough oil to light the lamp for a single day. A miracle happened and it burned for eight days, so the next year the Sages made those eight days a festival of praise and thanks.",
+      "sources": [
+        {
+          "title": "Shabbat 21b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Shabbat.21b.10"
+        }
+      ]
+    },
+    {
+      "who": "Early Christianity (New Testament)",
+      "belief": "The Letter of James says that anyone sick should call the elders of the church to pray over them, anointing them with oil in the name of the Lord, and that the prayer of faith will save the sick. Mark's Gospel says the apostles anointed with oil many who were sick and cured them. Blessed oil and blessed olive branches stayed part of Christian rites.",
+      "modern": "not tested",
+      "note": "The text credits the healing to prayer and faith, not to the oil. The studies on this page are about eating olive oil; none tests anointing.",
+      "sources": [
+        {
+          "title": "James 5:14–15 (King James Version, Wikisource)",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Bible_(King_James)/James"
+        },
+        {
+          "title": "The Ethnobotanical Heritage of Olea europaea L. in Italy: Continuity of a Millenary Mediterranean Tradition",
+          "author": "Mazzei, Lombardo, Zelasco, Rizzo, Tagarelli",
+          "when": "2026",
+          "kind": "scholarship",
+          "doi": "10.3390/plants15142221"
+        }
+      ]
+    },
+    {
+      "who": "Islam (the Qur'an and the hadith)",
+      "belief": "In the Qur'an's Verse of Light, God's light is likened to a lamp in a niche, lit from the oil of a blessed olive tree, neither of the east nor of the west, whose oil would almost glow even if no fire touched it. Another sura opens with the oath 'By the fig and the olive', and a third speaks of a tree from Mount Sinai that gives oil and food. A saying of the Prophet recorded by al-Tirmidhi: 'Eat olive and use its oil, for indeed it is a blessed tree.'",
+      "note": "Al-Tirmidhi himself noted doubts about how this saying was passed down; a later grading shown on sunnah.com calls it sound (sahih).",
+      "sources": [
+        {
+          "title": "Qur'an 24:35, the Verse of Light (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/24/35"
+        },
+        {
+          "title": "Qur'an 95:1 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/95/1"
+        },
+        {
+          "title": "Qur'an 23:20 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/23/20"
+        },
+        {
+          "title": "Jami' at-Tirmidhi 1851, on eating olive oil",
+          "author": "al-Tirmidhi",
+          "when": "9th century AD",
+          "kind": "ancient text",
+          "url": "https://sunnah.com/tirmidhi:1851"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, AD 77)",
+      "belief": "Pliny wrote that two liquids are especially agreeable to the human body: wine inside and oil outside. He told of Pollio Romilius, more than a hundred years old, whom the Emperor Augustus asked how he had kept such vigour of mind and body. The answer: 'Honeyed wine within, oil without.'",
+      "modern": "not tested",
+      "note": "This oil was rubbed on the skin, not eaten. The studies on this page are about eating olive oil; none tests oil on the skin for a long life, and one man's long life can't show what caused it.",
+      "sources": [
+        {
+          "title": "Natural History, book 14, chapter 29",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D14%3Achapter%3D29"
+        },
+        {
+          "title": "Natural History, book 22, chapter 53",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D22%3Achapter%3D53"
+        }
+      ]
+    },
+    {
+      "who": "Italian folk tradition (late 19th to mid-20th century)",
+      "belief": "Olive branches blessed on Palm Sunday were kept at home to guard people, animals, fields and houses against hail, storms, fire, the evil eye, witches and demons: burned in summer to calm storms, set as crosses at the edges of fields against hail, and shown at windows during thunderstorms. To learn whether a fever or a headache came from the evil eye, people watched how drops of oil behaved when poured into a dish.",
+      "sources": [
+        {
+          "title": "The Ethnobotanical Heritage of Olea europaea L. in Italy: Continuity of a Millenary Mediterranean Tradition",
+          "author": "Mazzei, Lombardo, Zelasco, Rizzo, Tagarelli",
+          "when": "2026",
+          "kind": "scholarship",
+          "doi": "10.3390/plants15142221"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Ancient Greece and Rome (Hippocratic writings, Celsus, Dioscorides, Galen)",

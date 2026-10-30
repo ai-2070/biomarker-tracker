@@ -8,6 +8,7 @@ import foodTable from "../../knowledge/foods/cofid-foods.json";
 import { lowerFirst } from "./format";
 import { validateLifestyleDef, type LifestyleDef } from "../core/lifestyle";
 import { validateWholeFoodDef, type WholeFoodDef } from "../core/wholeFoods";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "../core/phenoageWatch";
 
 // Bundled at build time; nothing is fetched at runtime.
 const modules = import.meta.glob<unknown>("../../knowledge/biomarkers/*.json", { eager: true, import: "default" });
@@ -157,3 +158,8 @@ export const FOOD_COMPARISON: readonly ComparisonTopicFile[] = Object.entries(co
     return [json as ComparisonTopicFile];
   })
   .sort((a, b) => TOPICS.indexOf(a.topic) - TOPICS.indexOf(b.topic));
+
+/** A marker for habit watches: the knowledge base, plus the derived PhenoAge gap. */
+export const watchDef = (id: string): BiomarkerDef | undefined => BIOMARKER_MAP.get(id) ?? (id === PHENOAGE_GAP_ID ? PHENOAGE_GAP_DEF : undefined);
+/** Watches compare with this map: every marker plus the PhenoAge gap. */
+export const WATCH_DEFS: ReadonlyMap<string, BiomarkerDef> = new Map([...BIOMARKER_MAP, [PHENOAGE_GAP_ID, PHENOAGE_GAP_DEF]]);

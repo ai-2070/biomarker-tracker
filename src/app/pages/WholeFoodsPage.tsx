@@ -208,7 +208,7 @@ export function WholeFoodPage({ id }: { id: string }) {
             </Card>
           )}
 
-          {f.history && <History f={f} />}
+          {(f.history || f.lore) && <History f={f} />}
 
           <Card id="in-it" className="flex scroll-mt-6 flex-col gap-4">
             <H2>What's in it</H2>
@@ -319,56 +319,113 @@ const VERDICT: Record<ModernVerdict, { label: string; className: string }> = {
 };
 
 /**
- * Then and now: what people used the food for in the past, set against what modern studies found.
- * Generations of people eating a food and watching what followed tested the whole food, with every
+ * Then and now. First what people believed: myths, religion, symbols and folk beliefs, told as theirs with
+ * where they're written. Then what people used the food for, set against what modern studies found:
+ * generations of people eating a food and watching what followed tested the whole food, with every
  * compound in it, so old uses can point at effects no table explains; they can also be wrong.
  */
 function History({ f }: { f: WholeFoodDef }) {
+  const findingLink = (outcome: string | undefined) => {
+    const to = outcome ? f.findings.find((x) => x.outcome === outcome) : undefined;
+    return to ? anchorId("finding", `${to.outcome} ${to.population}`) : undefined;
+  };
   return (
-    <Card id="history" className="flex scroll-mt-6 flex-col gap-4">
+    <Card id="history" className="flex scroll-mt-6 flex-col gap-5">
       <div>
         <H2>Then and now</H2>
         <p className="mt-1 max-w-3xl text-ink-2">
-          What people used {f.name.toLowerCase()} for long before laboratories, and what modern studies found. People judged a food by eating it and
-          watching what followed, which tests everything in it, including what no food table measures. But watching without a comparison group is also
-          fooled by illnesses that pass on their own and by remembering the hits, so each use is checked against the studies.
+          What people believed about {f.name.toLowerCase()} and used it for, long before laboratories. People judged a food by eating it and watching what
+          followed, which tests everything in it, including what no food table measures; but watching without a comparison group is also fooled by
+          illnesses that pass on their own, so each use is checked against the studies.
         </p>
       </div>
-      <ul className="flex flex-col gap-3">
-        {f.history!.map((h) => {
-          const v = VERDICT[h.modern];
-          const to = h.finding ? f.findings.find((x) => x.outcome === h.finding) : undefined;
-          const anchor = to ? anchorId("finding", `${to.outcome} ${to.population}`) : undefined;
-          return (
-            <li key={`${h.who}|${h.use}`} className="flex flex-col gap-1.5 rounded-lg border border-line p-3">
-              <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{h.who}</p>
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <p className="font-medium">{h.use}</p>
-                <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", v.className)}>{v.label}</span>
-              </div>
-              <p className="text-ink-2">
-                {h.note}
-                {anchor && (
-                  <>
-                    {" "}
-                    <a href={`#${anchor}`} onClick={(e) => jump(e, anchor)} className="text-accent">
-                      See the finding
-                    </a>
-                  </>
-                )}
-              </p>
-              <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
-                {h.sources.map((s) => (
-                  <li key={s.pmid ?? s.doi ?? s.title}>
-                    <span>History: </span>
-                    <StudyLink s={s} />
-                  </li>
-                ))}
-              </ul>
-            </li>
-          );
-        })}
-      </ul>
+
+      {f.lore && (
+        <section className="flex flex-col gap-3">
+          <h3 className="font-semibold">What people believed</h3>
+          <ul className="flex flex-col gap-4">
+            {f.lore.map((l) => {
+              const anchor = findingLink(l.finding);
+              return (
+                <li key={`${l.who}|${l.belief}`} className="flex flex-col gap-1 border-l-2 border-line-strong pl-3">
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{l.who}</p>
+                    {l.modern && <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", VERDICT[l.modern].className)}>{VERDICT[l.modern].label}</span>}
+                  </div>
+                  <p>{l.belief}</p>
+                  {l.note && (
+                    <p className="text-ink-2">
+                      {l.note}
+                      {anchor && (
+                        <>
+                          {" "}
+                          <a href={`#${anchor}`} onClick={(e) => jump(e, anchor)} className="text-accent">
+                            See the finding
+                          </a>
+                        </>
+                      )}
+                    </p>
+                  )}
+                  <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
+                    {l.sources.map((src) => {
+                      const href = src.url ?? (src.doi ? `https://doi.org/${src.doi}` : `https://pubmed.ncbi.nlm.nih.gov/${src.pmid}/`);
+                      return (
+                        <li key={href}>
+                          <span>{src.kind === "ancient text" ? "Text: " : "Source: "}</span>
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+                            {src.title}
+                          </a>
+                          {[src.author, src.when].filter(Boolean).length > 0 && <span> ({[src.author, src.when].filter(Boolean).join(", ")})</span>}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
+      {f.history && (
+        <section className="flex flex-col gap-3">
+          {f.lore && <h3 className="font-semibold">Uses, checked against studies</h3>}
+          <ul className="flex flex-col gap-3">
+            {f.history.map((h) => {
+              const v = VERDICT[h.modern];
+              const anchor = findingLink(h.finding);
+              return (
+                <li key={`${h.who}|${h.use}`} className="flex flex-col gap-1.5 rounded-lg border border-line p-3">
+                  <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{h.who}</p>
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <p className="font-medium">{h.use}</p>
+                    <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", v.className)}>{v.label}</span>
+                  </div>
+                  <p className="text-ink-2">
+                    {h.note}
+                    {anchor && (
+                      <>
+                        {" "}
+                        <a href={`#${anchor}`} onClick={(e) => jump(e, anchor)} className="text-accent">
+                          See the finding
+                        </a>
+                      </>
+                    )}
+                  </p>
+                  <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
+                    {h.sources.map((src) => (
+                      <li key={src.pmid ?? src.doi ?? src.title}>
+                        <span>History: </span>
+                        <StudyLink s={src} />
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
     </Card>
   );
 }
@@ -438,7 +495,7 @@ function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
   const links: [string, string][] = [
     ["findings", "Main uses & benefits"],
     ...((f.visuals.length ? [["pictures", "In pictures"]] : []) as [string, string][]),
-    ...((f.history ? [["history", "Then and now"]] : []) as [string, string][]),
+    ...((f.history || f.lore ? [["history", "Then and now"]] : []) as [string, string][]),
     ["in-it", "What's in it"],
     ["processing", "What changes it"],
     ...((f.whoShouldBeCareful.length > 0 || f.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),

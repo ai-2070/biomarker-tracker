@@ -21,6 +21,101 @@
     "Measured in the UK food table (CoFID 2021, per 100 g of blueberries): 40 kcal, 9.1 g sugars, 1.5 g fibre, 6 mg vitamin C, 66 mg potassium and 0.94 mg vitamin E. Blueberries are low in vitamin C.",
     "Not shown for blueberries: vitamin K1 (the table has no measured value for them) and manganese (the table doesn't track it at all)."
   ],
+  "lore": [
+    {
+      "who": "New France, 1615 (the explorer Samuel de Champlain, among Algonquin peoples and their neighbours on his journey to Lake Huron)",
+      "belief": "Champlain saw people drying blueberries in the sun for the winter, \"as we do plums in France for Lent\", and wrote that God seemed to have given these harsh lands such fruits \"for the refreshment of man\". A chief told him he had come there to dry the \"bluës\" to serve as \"manna in winter, and when they can find nothing else\". In the farming villages near Lake Huron, dried blueberries were sometimes mixed into cornmeal bread baked in the ashes.",
+      "note": "\"Manna\", the food from heaven in the Bible, is Champlain's word: the people's own words weren't written down. A 2013 review of Indigenous uses of blueberries calls this the first written record of Indigenous use of blueberries and takes its title from the phrase.",
+      "sources": [
+        {
+          "title": "Voyages of Samuel de Champlain, vol. 3: Voyage made in 1615 (translated by Charles Pomeroy Otis)",
+          "author": "Samuel de Champlain",
+          "when": "1619",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/6825"
+        },
+        {
+          "title": "Manna in Winter: Indigenous Americans, Huckleberries, and Blueberries",
+          "author": "Hummer",
+          "when": "2013",
+          "kind": "scholarship",
+          "doi": "10.21273/HORTSCI.48.4.413"
+        }
+      ]
+    },
+    {
+      "who": "New England, 1643 (Roger Williams, A Key into the Language of America)",
+      "belief": "Williams wrote that the Native people he lived among dried \"hurtle-berries\" (blueberries and whortleberries) to keep all year, beat them to powder and mixed them with parched meal into a dish called sautáuthig, \"as sweet to them as plum or spice cake to the English\". Of the many sorts, he wrote, some were \"opening\" and some \"of a binding nature\".",
+      "modern": "not tested",
+      "note": "\"Opening\" and \"binding\" were the words of his time for loosening or firming the bowels. No study on this page looked at blueberries and bowel habits. The 2013 review reads Williams's dried \"currants\" as blueberries or whortleberries.",
+      "sources": [
+        {
+          "title": "A Key into the Language of America, chapter XVI",
+          "author": "Roger Williams",
+          "when": "1643",
+          "kind": "ancient text",
+          "url": "https://www.gutenberg.org/ebooks/63701"
+        },
+        {
+          "title": "Manna in Winter: Indigenous Americans, Huckleberries, and Blueberries",
+          "author": "Hummer",
+          "when": "2013",
+          "kind": "scholarship",
+          "doi": "10.21273/HORTSCI.48.4.413"
+        }
+      ]
+    },
+    {
+      "who": "Chippewa (Ojibwe) of Minnesota, Wisconsin and Ontario (as recorded by the ethnologist Frances Densmore up to 1925)",
+      "belief": "Dried blueberries were a food for winter and for travel: wild rice was parched in grease, seasoned with maple sugar, mixed with dried blueberries and carried on journeys, or stored with the berries through the winter and cooked together in spring. A Canadian Chippewa said his people mixed dried blueberries with moose fat and deer tallow.",
+      "note": "Densmore adds that all dried berries were boiled when used, then sweetened with maple sugar or combined with other foods. Across North America, the 2013 review describes pemmican, lean meat and fat preserved with blueberries or other fruit, as a food that helped people survive.",
+      "sources": [
+        {
+          "title": "Uses of Plants by the Chippewa Indians (44th Annual Report of the Bureau of American Ethnology), p. 318",
+          "author": "Frances Densmore",
+          "when": "1928",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/usesofplantsbych00dens/page/318/mode/2up"
+        },
+        {
+          "title": "Uses of Plants by the Chippewa Indians (44th Annual Report of the Bureau of American Ethnology), p. 322",
+          "author": "Frances Densmore",
+          "when": "1928",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/usesofplantsbych00dens/page/322/mode/2up"
+        },
+        {
+          "title": "Manna in Winter: Indigenous Americans, Huckleberries, and Blueberries",
+          "author": "Hummer",
+          "when": "2013",
+          "kind": "scholarship",
+          "doi": "10.21273/HORTSCI.48.4.413"
+        }
+      ]
+    },
+    {
+      "who": "Chippewa (Ojibwe) medicine (as recorded by Frances Densmore, published 1928)",
+      "belief": "For \"craziness\", dried blueberry flowers were placed on hot stones and the fumes breathed in. It was said to be one of the remedies given by Winabojo, who in Chippewa tradition taught the people to live in their land and gave every living thing its life, and these remedies were the most highly regarded.",
+      "modern": "not tested",
+      "note": "Densmore's table lists it under the nervous system and puts \"craziness\" in quotation marks; it doesn't say more about what was meant. No study has tested the smoke of blueberry flowers; this page's findings are about eating the berries.",
+      "sources": [
+        {
+          "title": "Uses of Plants by the Chippewa Indians (44th Annual Report of the Bureau of American Ethnology), p. 338",
+          "author": "Frances Densmore",
+          "when": "1928",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/usesofplantsbych00dens/page/338/mode/2up"
+        },
+        {
+          "title": "Uses of Plants by the Chippewa Indians (44th Annual Report of the Bureau of American Ethnology), p. 381",
+          "author": "Frances Densmore",
+          "when": "1928",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/usesofplantsbych00dens/page/381/mode/2up"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Cree of northern Manitoba, Canada (as explained by Cree knowledge keepers in a 2025 study)",

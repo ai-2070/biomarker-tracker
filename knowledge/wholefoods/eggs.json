@@ -27,6 +27,105 @@
     "The food table does list protein, vitamin D, vitamin B12, selenium, iodine, retinol (vitamin A), folate, riboflavin and a small amount of the omega-3 fats EPA and DHA. In it, the vitamin D, the retinol and most of the vitamin B12, iron, zinc, iodine and selenium are in the yolk; the boiled white has no vitamin D or retinol.",
     "Like every food, eggs hold compounds no food table tracks. Studies of people eating eggs include all of them; studies of single nutrients from eggs (choline or lutein capsules) don't."
   ],
+  "lore": [
+    {
+      "who": "Hindu tradition (the Chandogya Upanishad and the Laws of Manu)",
+      "belief": "The Chandogya Upanishad tells that in the beginning there was nothing. It became something, grew, and turned into an egg. The egg lay for a year, then broke open into two halves, one of silver and one of gold: the silver became the earth and the gold the sky, the membranes the mountains and the mist, the veins the rivers, the fluid the sea, and what was born from it was the sun. In the Laws of Manu, the creator's seed became a golden egg, as bright as the sun, in which he was born as Brahman, forefather of the whole world; he lived in it for a year, then split it in two to make heaven and earth.",
+      "sources": [
+        {
+          "title": "Chandogya Upanishad 3.19 (translated by F. Max Müller, Sacred Books of the East, volume 1)",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_1/Kh%C3%A2ndogya-upanishad/Third_Prap%C3%A2thaka"
+        },
+        {
+          "title": "Laws of Manu 1.9–13 (translated by G. Bühler, Sacred Books of the East, volume 25)",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_25/Laws_of_Manu/Chapter_1"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece (Aristophanes, The Birds, 414 BC)",
+      "belief": "In Aristophanes' comedy the birds sing their own creation story: at first there were only Chaos, Night, dark Erebus and deep Tartarus. Black-winged Night laid an egg in the depths of Erebus, and from it, after long ages, sprang Eros with glittering golden wings. Eros mated with Chaos and hatched the race of birds, older, they boast, than the gods of Olympus.",
+      "note": "A comic poet's version, sung by birds who want to prove they are older than the gods.",
+      "sources": [
+        {
+          "title": "Birds, lines 685–705 (translated by Eugene O'Neill Jr.)",
+          "author": "Aristophanes",
+          "when": "414 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0026%3Acard%3D685"
+        }
+      ]
+    },
+    {
+      "who": "Finland (the Kalevala, folk songs gathered by Elias Lönnrot)",
+      "belief": "The Kalevala opens with the world made from eggs. A duck, finding nowhere to nest on the endless sea, laid six golden eggs and one of iron on the knee of the water-mother. As the duck brooded them, the knee grew burning hot; the water-mother shook, and the eggs fell into the sea and broke. The lower half of the shell became the earth and the upper half the sky; the white became the moonlight, the yolk the sunshine, the speckled parts the stars and the dark parts the clouds.",
+      "sources": [
+        {
+          "title": "The Kalevala, Rune I (translated by John Martin Crawford)",
+          "author": "Elias Lönnrot",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/The_Kalevala/Rune_I"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Livia, wife of the Emperor Augustus)",
+      "belief": "When Livia was pregnant with the future emperor Tiberius and longed for a son, she tried a way of divining then popular with young women: she kept a hen's egg warm herself until it hatched. Pliny says she carried it in her bosom and handed it to her nurse whenever she had to put it down; Suetonius says it was warmed in her hands and her attendants' in turn. A cockerel with a fine crest hatched, and she bore a son.",
+      "sources": [
+        {
+          "title": "Natural History, book 10, chapter 76",
+          "author": "Pliny the Elder (translated by John Bostock and H. T. Riley, 1855)",
+          "when": "AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D10%3Achapter%3D76"
+        },
+        {
+          "title": "Lives of the Caesars, Tiberius 14 (translated by J. C. Rolfe, LacusCurtius)",
+          "author": "Suetonius",
+          "when": "early 2nd century AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Tiberius*.html"
+        }
+      ]
+    },
+    {
+      "who": "Jewish tradition (the Passover Seder)",
+      "belief": "At the Passover Seder two cooked foods are set out. In the Talmud, Rav Yosef explains them as reminders of the Passover lamb and the festival offering of Temple times, and Hizkiya says they may even be a fish and the egg fried with it. The Shulchan Arukh, the 16th-century code of Jewish law, records the custom of using meat and an egg.",
+      "sources": [
+        {
+          "title": "Pesachim 114b",
+          "author": "Babylonian Talmud (William Davidson translation, Sefaria)",
+          "when": "compiled about the 6th century AD",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Pesachim.114b.8-10"
+        },
+        {
+          "title": "Shulchan Arukh, Orach Chayim 473:4 (Sefaria Community Translation)",
+          "author": "Joseph Karo",
+          "when": "16th century",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Shulchan_Arukh%2C_Orach_Chayim.473.4"
+        }
+      ]
+    },
+    {
+      "who": "Romanian Orthodox folk tradition (recorded in 1909)",
+      "belief": "In Romania, Easter without red eggs was unthinkable. When two people cracked eggs together, the younger held out an egg point up and said 'Christ has risen'. Legends explained the red: in one, the eggs Mary brought to the cross were stained by the blood from Christ's wounds, and after he rose she greeted everyone with 'Christ is risen' and a red egg; in others, the eggs turned red by a miracle that bore witness to the resurrection. Women threw the red shells on running water, so they would float to the Blajini, a gentle people in a far-off land, and tell them Easter had come.",
+      "note": "The folklorist Agnes Murgoci recorded eight legends about where red Easter eggs came from.",
+      "sources": [
+        {
+          "title": "Roumanian Easter Eggs (Folk-Lore, volume 20)",
+          "author": "Murgoci",
+          "when": "1909",
+          "kind": "scholarship",
+          "doi": "10.1080/0015587x.1909.9719885",
+          "url": "https://en.wikisource.org/wiki/Folk-Lore/Volume_20/Roumanian_Easter_Eggs"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Folk first aid (recorded in recent surveys in Turkey, England and Bangladesh)",

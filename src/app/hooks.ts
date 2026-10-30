@@ -5,6 +5,7 @@ import { useSyncExternalStore } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, getProfile, measurementsFor } from "../db/db";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
+import { withPhenoAgeGap } from "../core/phenoageWatch";
 
 /** All measurements, live. `undefined` while loading. */
 export function useAllMeasurements(): Measurement[] | undefined {
@@ -97,4 +98,10 @@ export function useIntakeList(): IntakeItem[] | undefined {
 export async function setIntakeList(items: IntakeItem[]): Promise<void> {
   if (items.length === 0) await db.settings.delete(INTAKE_KEY);
   else await db.settings.put({ key: INTAKE_KEY, value: items });
+}
+
+/** The person's results plus their PhenoAge gap at each complete blood test, for habit watches (never stored). */
+export function useWatchMeasurements(all: readonly Measurement[] | undefined): Measurement[] | undefined {
+  const profile = useProfile();
+  return all ? [...withPhenoAgeGap(all, profile.birthMonth, new Map()).measurements] : undefined;
 }

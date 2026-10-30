@@ -16,11 +16,12 @@ import type { BiomarkerDef, Experiment, Measurement } from "../../core/types";
 import { deleteExperiment, endExperiment } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { Button, Card, CheckIcon, LinkButton, Notice, cx } from "../components/ui";
-import { CATEGORY_LABEL, formatDate, formatPercent, showMeasurement, showValue } from "../format";
-import { useAllMeasurements, useExperiments } from "../hooks";
-import { BIOMARKER_MAP, fullName, nameInSentence } from "../knowledge";
+import { CATEGORY_LABEL, formatChange, formatDate, showMeasurement, showWatchValue } from "../format";
+import { useAllMeasurements, useExperiments, useWatchMeasurements } from "../hooks";
+import { BIOMARKER_MAP, fullName, nameInSentence, watchDef } from "../knowledge";
 import { href, navigate } from "../router";
 import { NotFound } from "./NotFound";
+import { PHENOAGE_GAP_ID } from "../../core/phenoageWatch";
 
 const PHASE_LABEL: Record<ExperimentPhase, string> = {
   "needs-baseline": "Needs a 'before' test",
@@ -45,7 +46,7 @@ export function PhaseBadge({ phase }: { phase: ExperimentPhase }) {
 
 function analyze(e: Experiment, all: readonly Measurement[]): MarkerResult[] {
   return e.markerIds.flatMap((id) => {
-    const def = BIOMARKER_MAP.get(id);
+    const def = watchDef(id);
     return def ? [analyzeMarker(e, def, all)] : [];
   });
 }
@@ -81,7 +82,8 @@ export function MarkerChoice({ def, checked, onChange, baseline }: { def: Biomar
 
 export function ExperimentPage({ id }: { id: string }) {
   const experiments = useExperiments();
-  const all = useAllMeasurements();
+  // Results plus the PhenoAge gap at each complete blood test, so a watched gap can be compared.
+  const all = useWatchMeasurements(useAllMeasurements());
   const today = todayIso();
   if (!experiments || !all) return <p className="text-ink-2">Loading…</p>;
   const e = experiments.find((x) => x.id === id);
@@ -123,7 +125,7 @@ export function ExperimentPage({ id }: { id: string }) {
         )}
 
         {results.map((r) => (
-          <ResultCard key={r.biomarkerId} result={r} def={BIOMARKER_MAP.get(r.biomarkerId)!} experiment={e} />
+          <ResultCard key={r.biomarkerId} result={r} def={watchDef(r.biomarkerId)!} experiment={e} />
         ))}
 
         <Card className="flex flex-col gap-2 text-ink-2">
@@ -146,6 +148,14 @@ export function ExperimentPage({ id }: { id: string }) {
             when there are at least {MIN_PERSONAL} before and {MIN_PERSONAL} after: how much they spread around their average. With so few
             results the limits are made wider to stay cautious.
           </p>
+          {e.markerIds.includes(PHENOAGE_GAP_ID) && (
+            <p className="text-sm">
+              The PhenoAge gap is your PhenoAge minus your age at each blood test with all 9 markers, so the year you age between tests doesn't
+              count against you. It is compared in years, and normal variation comes from how much your own gap changed from one blood test to
+              the next before the start (at least {MIN_PERSONAL} tests), which a slow real trend barely affects. A lower gap is a good sign, but nobody has shown that lowering it adds years
+              of life.
+            </p>
+          )}
         </Card>
 
         <div className="flex flex-wrap gap-2">
@@ -218,7 +228,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
         {r.change !== undefined && (
           <div>
             <dt className="text-sm text-ink-2">Change</dt>
-            <dd className="font-serif text-3xl font-normal tabular-nums">{formatPercent(r.change)}</dd>
+            <dd className="font-serif text-3xl font-normal tabular-nums">{formatChange(r.change, def)}</dd>
           </div>
         )}
       </dl>
@@ -226,8 +236,12 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
       {r.band && r.change !== undefined && <NoiseGauge change={r.change} band={r.band} />}
       {r.band && (
         <p className="text-sm text-ink-2">
-          Normal variation for these tests: {formatPercent(r.band.down)} to {formatPercent(r.band.up)}
-          {r.bandFrom === "personal" ? `, estimated from your own ${r.before.length + r.after.length} results.` : "."}
+          Normal variation for these tests: {formatChange(r.band.down, def)} to {formatChange(r.band.up, def)}
+          {def.changeScale === "difference"
+            ? ", estimated from how much your own PhenoAge gap changed from one earlier blood test to the next."
+            : r.bandFrom === "personal"
+              ? `, estimated from your own ${r.before.length + r.after.length} results.`
+              : "."}
         </p>
       )}
       <p className="text-ink-2">{explain[r.verdict]}</p>
@@ -245,9 +259,16 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
       )}
       {r.verdict === "no-baseline" || r.verdict === "waiting" ? (
         <div>
-          <LinkButton variant="secondary" href={href({ name: "add", marker: def.id })}>
-            Add a {nameInSentence(def)} result
-          </LinkButton>
+          {def.id === PHENOAGE_GAP_ID ? (
+            // Worked out from blood tests: there's no gap to type in, only a blood test with all 9 markers.
+            <LinkButton variant="secondary" href={href({ name: "phenoage" })}>
+              What a PhenoAge blood test needs
+            </LinkButton>
+          ) : (
+            <LinkButton variant="secondary" href={href({ name: "add", marker: def.id })}>
+              Add a {nameInSentence(def)} result
+            </LinkButton>
+          )}
         </div>
       ) : null}
     </Card>
@@ -262,7 +283,7 @@ function Stat({ label, value, def, unit, count }: { label: string; value?: numbe
         {count > 1 ? ` (average of ${count})` : ""}
       </dt>
       <dd className="font-serif text-3xl font-normal tabular-nums">
-        {value === undefined ? "–" : showValue(def, value, unit)} <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : unit}</span>
+        {value === undefined ? "–" : showWatchValue(def, value, unit)} <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : unit}</span>
       </dd>
     </div>
   );

@@ -22,6 +22,118 @@
     "In 10 people, eating 40 g of dried figs raised the antioxidant capacity of the blood for about 4 hours. That is a laboratory measure, not a health outcome.",
     "Nobody knows which compounds, if any, explain effects seen in trials. Fibre is the usual explanation for constipation results, but a food has thousands of compounds that food tables don't track."
   ],
+  "lore": [
+    {
+      "who": "Hebrew Bible and the Talmud",
+      "belief": "In Genesis, once Adam and Eve had eaten from the forbidden tree, they saw they were naked and sewed fig leaves together to cover themselves. The rabbis of the Talmud argued over which tree it had been: Rabbi Nehemiah said a fig, because they mended their shame with the same tree that had caused it; Rabbi Meir said a vine and Rabbi Judah wheat.",
+      "note": "Genesis never names the fruit. The apple of later European art isn't in the text.",
+      "sources": [
+        {
+          "title": "Genesis 3:7 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Genesis.3.7"
+        },
+        {
+          "title": "Babylonian Talmud, Berakhot 40a (William Davidson translation)",
+          "author": "Talmud",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Berakhot.40a"
+        }
+      ]
+    },
+    {
+      "who": "Hebrew Bible (2 Kings and Micah)",
+      "belief": "When King Hezekiah lay dangerously ill and was told he would die, he prayed, and God promised to heal him; the prophet Isaiah then had a cake of figs laid on his rash (a boil in older translations), and he recovered. For the prophets the fig tree also meant peace: in days to come, Micah said, every family would sit under its own vine and fig tree with no one to disturb them.",
+      "modern": "not tested",
+      "note": "In the story the healing comes from God, with the figs as the means. No trial found for this page has tested figs laid on the skin; the fig trials are of eating them.",
+      "sources": [
+        {
+          "title": "2 Kings 20:1-7 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/II_Kings.20.1-7"
+        },
+        {
+          "title": "Micah 4:4 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Micah.4.4"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Livy and Pliny the Elder)",
+      "belief": "Romans believed the twins Romulus and Remus, founders of Rome, were left by the flooded Tiber beneath a fig tree, where a she-wolf found and suckled them. A fig tree kept in memory of it, the Ficus Ruminalis, grew in the Forum; when it withered, people took it as an evil omen, and the priests replaced it.",
+      "sources": [
+        {
+          "title": "Livy, History of Rome, book 1, chapter 4 (translated by Canon Roberts)",
+          "author": "Livy",
+          "when": "about 25 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0026%3Abook%3D1%3Achapter%3D4"
+        },
+        {
+          "title": "Pliny the Elder, Natural History, book 15, chapter 20 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D15%3Achapter%3D20"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Cato the Elder, 2nd century BC, as told by Pliny)",
+      "belief": "Cato, who cried at every sitting of the Senate that Carthage must be destroyed, once held up a ripe fig and asked the senators when they thought it had been picked. When they agreed it was fresh, he told them it had been picked at Carthage two days before: so close was the enemy. The third war with Carthage, in which the city was destroyed, began soon after.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 15, chapter 20 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D15%3Achapter%3D20"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, Natural History, 1st century AD)",
+      "belief": "Pliny wrote that figs invigorate the young, improve the health of the old and slow the forming of wrinkles, that they are nourishing and strengthening, and that athletes in earlier times lived on them.",
+      "modern": "not tested",
+      "note": "No study has tested figs for strength, ageing or wrinkles.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, book 23, chapter 63 (translated by J. Bostock and H. T. Riley)",
+          "author": "Pliny the Elder",
+          "when": "about AD 77",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D23%3Achapter%3D63"
+        }
+      ]
+    },
+    {
+      "who": "Christianity (the Gospel of Mark)",
+      "belief": "Mark tells that Jesus, hungry on the way into Jerusalem, came to a fig tree in leaf but found no fruit on it, for it wasn't the season for figs, and said that no one would ever eat from it again. The next morning his disciples saw it withered from the roots, and he used it to teach them about faith.",
+      "sources": [
+        {
+          "title": "Gospel of Mark, chapter 11, verses 12-14 and 20-24 (King James Version)",
+          "author": "New Testament",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Bible_(King_James)/Mark"
+        }
+      ]
+    },
+    {
+      "who": "Islam (the Qur'an)",
+      "belief": "A chapter of the Qur'an is named The Fig (At-Tin) and opens with an oath: 'By the fig and the olive, and by Mount Sinai, and by this secure city', meaning Mecca.",
+      "sources": [
+        {
+          "title": "Qur'an 95:1-3 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/95/1-3"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Early Neolithic Jordan Valley (Gilgal I, about 11,400 to 11,200 years ago)",

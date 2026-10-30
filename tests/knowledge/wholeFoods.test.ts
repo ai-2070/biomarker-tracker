@@ -63,6 +63,21 @@ describe("whole foods: then and now", () => {
   });
 });
 
+describe("whole foods: what people believed", () => {
+  const src = [{ pmid: "1", title: "A history of honey", year: 2020, studyType: "review" }];
+  const finding = { outcome: "Death", population: "P", effect: "helps", grade: "low", whyThisGrade: ["w"], summary: "S", studies: src };
+  const entry = (lore: unknown) => ({ id: "x", name: "X", group: "fruit", otherNames: [], summary: "S", inIt: ["I"], tableFoods: [], processing: [], whatStudiesDid: "W", markers: [], findings: [finding], visuals: [{ kind: "flow", title: "T", caption: "C", steps: [{ label: "a", text: "b" }, { label: "c", text: "d" }], sources: src }], whoShouldBeCareful: [], cautions: [], unknowns: ["U"], sources: src, lore });
+  const hymn = { title: "Homeric Hymn to Demeter", kind: "ancient text", url: "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0138" };
+
+  it("tells a belief with where it's written, and scores only health claims", () => {
+    expect(validateWholeFoodDef(entry([{ who: "Ancient Greece", belief: "Persephone ate the seeds", sources: [hymn] }]))).toEqual([]);
+    expect(validateWholeFoodDef(entry([{ who: "W", belief: "It gives long life", modern: "not tested", note: "No study measured lifespan", sources: [hymn] }]))).toEqual([]);
+    expect(validateWholeFoodDef(entry([{ who: "W", belief: "B", sources: [{ title: "T", kind: "ancient text" }] }]))).toContain("lore 1: every source needs a link, a DOI or a PMID");
+    expect(validateWholeFoodDef(entry([{ who: "W", belief: "B", sources: [{ ...hymn, url: "http://example.org" }] }]))).toContain("lore 1: links must be https");
+    expect(validateWholeFoodDef(entry([{ who: "W", belief: "B", modern: "agrees", sources: [hymn] }]))).toContain('lore 1: "agrees" needs the finding it rests on');
+  });
+});
+
 describe("whole foods: linking protocol items", () => {
   const base = { group: "fruit", summary: "S", inIt: ["I"], tableFoods: [], processing: [], whatStudiesDid: "W", markers: [], findings: [], visuals: [], whoShouldBeCareful: [], cautions: [], unknowns: ["U"], sources: [] };
   const foods = [

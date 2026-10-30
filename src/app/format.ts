@@ -97,3 +97,18 @@ export const FLAG_LABEL: Record<Flag, string> = {
   "critical-high": "Very high",
   unknown: "No range",
 };
+
+/** A watch's change: a percentage, or a plain difference in the marker's unit (the PhenoAge gap: "−1.2 years"). */
+export function formatChange(change: number, def: { changeScale?: "ratio" | "difference"; canonicalUnit: string } | undefined): string {
+  if (def?.changeScale !== "difference") return formatPercent(change);
+  const v = Math.round(change * 10) / 10;
+  if (v === 0) return `0 ${def.canonicalUnit}`;
+  return `${v > 0 ? "+" : "−"}${Math.abs(v).toFixed(1)} ${def.canonicalUnit}`;
+}
+
+/** A value in a watch: as the marker shows it, or for a difference marker (the PhenoAge gap) one decimal with a real minus sign. */
+export function showWatchValue(def: BiomarkerDef, value: number, unit: string): string {
+  if (def.changeScale !== "difference") return showValue(def, value, unit);
+  const v = Math.round(value * 10) / 10;
+  return v < 0 ? `−${Math.abs(v).toFixed(1)}` : v.toFixed(1);
+}

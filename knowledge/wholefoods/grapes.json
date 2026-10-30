@@ -24,6 +24,138 @@
     "Concord grape juice, made from a dark American grape, is rich in these compounds: one 355 ml daily serving in a trial held 777 mg of polyphenols, 167 mg of them anthocyanins. In another trial, purple grape juice held 138 mg of anthocyanins per litre and white grape juice 1 mg.",
     "The UK food table (CoFID) measures the basic nutrients. Per 100 g: red grapes 67 kcal, 17 g sugars, 1.3 g fibre and 213 mg potassium; raisins 256 kcal, 62.6 g sugars, 2.7 g fibre and 889 mg potassium; unsweetened grape juice 62 kcal, 16 g sugars and no fibre. It measures none of the anthocyanins, flavan-3-ols, quercetin or resveratrol, and a food has thousands of compounds no table tracks."
   ],
+  "lore": [
+    {
+      "who": "Hebrew Bible and the Talmud",
+      "belief": "Genesis says Noah, a man of the soil, was the first to plant a vineyard; he drank its wine, became drunk and lay uncovered in his tent. In the Talmud Rabbi Meir argued that the forbidden tree of Eden was a vine, because 'nothing brings wailing and trouble upon man even today other than wine'.",
+      "sources": [
+        {
+          "title": "Genesis 9:20-21 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Genesis.9.20-21"
+        },
+        {
+          "title": "Babylonian Talmud, Berakhot 40a (William Davidson translation)",
+          "author": "Talmud",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Berakhot.40a"
+        }
+      ]
+    },
+    {
+      "who": "Hebrew Bible (Numbers and Micah)",
+      "belief": "The spies Moses sent into Canaan cut a single cluster of grapes so heavy that two of them had to carry it on a frame, and brought it back with pomegranates and figs to show what the land produced. The prophets pictured peace as every family sitting under its own vine and fig tree, with no one to disturb them.",
+      "sources": [
+        {
+          "title": "Numbers 13:23 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Numbers.13.23"
+        },
+        {
+          "title": "Micah 4:4 (JPS Tanakh)",
+          "author": "Hebrew Bible",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Micah.4.4"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece (Euripides, Bacchae, first staged 405 BC)",
+      "belief": "The Greeks honoured Dionysus, son of Semele, as the god who discovered 'the liquid drink of the grape' and brought it to mortals. In Euripides' play the prophet Teiresias says it frees wretched people from grief, gives them sleep and a way to forget their daily troubles, and that there is no other cure for hardships.",
+      "note": "This is about wine, not the fruit.",
+      "sources": [
+        {
+          "title": "Euripides, Bacchae, lines 266-297 (translated by T. A. Buckley)",
+          "author": "Euripides",
+          "when": "405 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0092%3Acard%3D266"
+        }
+      ]
+    },
+    {
+      "who": "Christianity (the Gospels)",
+      "belief": "Jesus called himself 'the true vine', his Father the vine-grower and his followers the branches, which bear fruit only while they stay joined to the vine. At the Last Supper he gave his disciples the cup as his blood, and said he would not drink 'this fruit of the vine' again until he drank it new with them in his Father's kingdom.",
+      "sources": [
+        {
+          "title": "Gospel of John, chapter 15, verses 1-5 (King James Version)",
+          "author": "New Testament",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Bible_(King_James)/John"
+        },
+        {
+          "title": "Gospel of Matthew, chapter 26, verses 26-29 (King James Version)",
+          "author": "New Testament",
+          "kind": "ancient text",
+          "url": "https://en.wikisource.org/wiki/Bible_(King_James)/Matthew"
+        }
+      ]
+    },
+    {
+      "who": "Islam (the Qur'an)",
+      "belief": "The Qur'an counts grapevines among God's gifts, with palms, olives and pomegranates, and promises the righteous 'gardens and grapevines' in Paradise, where there are also rivers of wine 'delicious to those who drink'. On earth, it says, people take from palms and grapes both 'intoxicant and good provision', and another verse calls intoxicants a defilement from the work of Satan, to be avoided.",
+      "sources": [
+        {
+          "title": "Qur'an 6:99 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/6/99"
+        },
+        {
+          "title": "Qur'an 78:32 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/78/32"
+        },
+        {
+          "title": "Qur'an 47:15 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/47/15"
+        },
+        {
+          "title": "Qur'an 16:67 and 5:90 (Saheeh International translation)",
+          "kind": "ancient text",
+          "url": "https://quran.com/16/67"
+        }
+      ]
+    },
+    {
+      "who": "Han China (Sima Qian, Records of the Grand Historian, about 100 BC)",
+      "belief": "Sima Qian recorded that in Dayuan (the Ferghana valley in Central Asia) people made wine from grapes, and rich families stored more than ten thousand measures of it, some for decades without it spoiling. Han envoys brought the seeds home, the emperor had grapes and alfalfa planted on fertile land, and in time they grew beside his palaces as far as the eye could see.",
+      "note": "Li Shizhen's herbal of 1578 credits Zhang Qian, the first Han envoy to the west, with bringing grapes to China; the older history speaks only of Han envoys.",
+      "sources": [
+        {
+          "title": "Shiji (Records of the Grand Historian), chapter 123, Account of Dayuan (Chinese text)",
+          "author": "Sima Qian",
+          "when": "about 100 BC",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E5%8F%B2%E8%A8%98/%E5%8D%B7123"
+        },
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits 5: grape (Chinese text)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        }
+      ]
+    },
+    {
+      "who": "Chinese medicine (Shennong's Classic of Materia Medica, quoted by Li Shizhen in 1578)",
+      "belief": "The Shennong classic says grapes treat aching, damp-stiff sinews and bones, boost energy, 'double strength' and strengthen the will, make people plump and hardy, help them bear hunger, wind and cold, and that eaten for a long time they 'lighten the body, keep away old age and lengthen the years'.",
+      "modern": "not tested",
+      "note": "No study has measured whether grapes slow ageing or lengthen life. In the evidence on this page, people in large US cohorts who ate more grapes and raisins got type 2 diabetes less often, which is a different question.",
+      "sources": [
+        {
+          "title": "Bencao Gangmu (Compendium of Materia Medica), fruits 5: grape, quoting the Shennong Bencao Jing (Chinese text)",
+          "author": "Li Shizhen",
+          "when": "1578",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E6%9C%AC%E8%8D%89%E7%B6%B1%E7%9B%AE/%E6%9E%9C%E4%B9%8B%E4%BA%94"
+        }
+      ]
+    }
+  ],
   "history": [
     {
       "who": "Ayurveda, traditional medicine of the Indian subcontinent",

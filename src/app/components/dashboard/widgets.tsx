@@ -5,9 +5,9 @@ import { ageAt } from "../../../core/phenoageDraws";
 import { isCritical } from "../../../core/trends";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { openBrain } from "../../brain/store";
-import { CATEGORY_LABEL, displayUnitFor, formatDate, formatPercent, formatYears, showChange, showMeasurement } from "../../format";
-import { useDisplayUnits } from "../../hooks";
-import { BIOMARKER_MAP, fullName, nameInSentence, shortName } from "../../knowledge";
+import { CATEGORY_LABEL, displayUnitFor, formatChange, formatDate, formatYears, showChange, showMeasurement } from "../../format";
+import { useDisplayUnits, useWatchMeasurements } from "../../hooks";
+import { BIOMARKER_MAP, WATCH_DEFS, fullName, nameInSentence, shortName, watchDef } from "../../knowledge";
 import { href } from "../../router";
 import { ArrowRightIcon } from "../icons";
 import { cx, FlagBadge } from "../ui";
@@ -276,10 +276,11 @@ const SHORT_PHASE: Record<ExperimentPhase, string> = {
 };
 
 /** Ongoing habits, and past ones whose watched markers have a result. Each says what changed, if it watches markers. */
-export function HabitsPanel({ protocols, experiments, all, today }: { protocols: ProtocolEntry[]; experiments: Experiment[]; all: Measurement[]; today: string }) {
+export function HabitsPanel({ protocols, experiments, all: results, today }: { protocols: ProtocolEntry[]; experiments: Experiment[]; all: Measurement[]; today: string }) {
+  const all = useWatchMeasurements(results) ?? results;
   const habits = habitsOf(protocols, experiments);
   const rows = habits
-    .map((h) => ({ h, s: h.watch ? summarizeWatch(h.watch, BIOMARKER_MAP, all, today) : undefined }))
+    .map((h) => ({ h, s: h.watch ? summarizeWatch(h.watch, WATCH_DEFS, all, today) : undefined }))
     .filter(({ h, s }) => (h.start <= today && !h.end) || s?.headline)
     .slice(0, 6);
   return (
@@ -295,7 +296,7 @@ export function HabitsPanel({ protocols, experiments, all, today }: { protocols:
         <ul className="flex flex-col divide-y divide-line">
           {rows.map(({ h, s }) => {
             const r = s?.headline;
-            const def = r ? BIOMARKER_MAP.get(r.biomarkerId) : undefined;
+            const def = r ? watchDef(r.biomarkerId) : undefined;
             const beyond = r?.verdict === "rise" || r?.verdict === "fall";
             return (
               <li key={h.id} className="py-2 first:pt-0 last:pb-0">
@@ -308,7 +309,7 @@ export function HabitsPanel({ protocols, experiments, all, today }: { protocols:
                     {r && def && r.change !== undefined ? (
                       <>
                         <span className={cx("font-medium", beyond ? "text-ok" : "text-ink-2")}>
-                          {shortName(def)} {formatPercent(r.change)}
+                          {shortName(def)} {formatChange(r.change, def)}
                         </span>
                         {beyond ? ", beyond normal variation" : ", within normal variation"}
                       </>

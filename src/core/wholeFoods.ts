@@ -32,6 +32,12 @@ export interface WholeFoodDef {
    * generations, so it can point at effects of compounds no table measures; it can also be wrong.
    */
   history?: HistoryUse[];
+  /**
+   * What people believed: myths, religion, symbols and folk beliefs (Persephone and the pomegranate seeds),
+   * told as what a culture believed, with where it's written: an ancient text (linked) or scholarship.
+   * Not scored against studies, except a health claim (long life), which gets a verdict like `history`.
+   */
+  lore?: Lore[];
   /** Foods in the UK food table (CoFID ids) this page is about, with a labelled example portion for the measured nutrients. */
   tableFoods: { id: string; label: string; grams: number }[];
   /** What processing, storage or the form changes: extra virgin vs refined, juice vs whole fruit, fresh vs dried. */
@@ -68,6 +74,32 @@ export interface HistoryUse {
   sources: Citation[];
 }
 
+/** Where a belief is written: an ancient or historical text (with a link to a translation) or scholarship. */
+export interface LoreSource {
+  title: string;
+  /** "Homeric Hymn to Demeter", "Pliny the Elder", or a modern author. */
+  author?: string;
+  /** Year written, if known (negative for BC is avoided: say it in `when`). */
+  when?: string;
+  kind: "ancient text" | "scholarship";
+  url?: string;
+  doi?: string;
+  pmid?: string;
+}
+
+export interface Lore {
+  /** Who believed it, and when: "Ancient Greece (Homeric Hymn to Demeter, about 600 BC)". */
+  who: string;
+  /** The belief, told plainly as theirs: "Persephone ate pomegranate seeds in the underworld, so…". */
+  belief: string;
+  /** Optional context: what it meant, how far it spread, or that a popular modern claim isn't in old texts. */
+  note?: string;
+  /** Only for a health claim (long life, strength): what modern studies say, as in `history`. */
+  modern?: ModernVerdict;
+  finding?: string;
+  sources: LoreSource[];
+}
+
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const isStr = (v: unknown): v is string => typeof v === "string" && v.trim().length > 0;
 const strList = (v: unknown, min = 0): boolean => Array.isArray(v) && v.length >= min && v.every(isStr);
@@ -83,6 +115,27 @@ export function validateWholeFoodDef(v: unknown): string[] {
   if (!strList(v.otherNames)) errs.push("otherNames must be a list of strings");
   if (!strList(v.inIt, 1)) errs.push("inIt needs at least one point");
   if (!strList(v.processing)) errs.push("processing must be a list of strings");
+  if (v.lore !== undefined) {
+    if (!Array.isArray(v.lore) || v.lore.length === 0) errs.push("lore, when given, needs at least one belief");
+    else {
+      const outcomes = new Set(Array.isArray(v.findings) ? (v.findings as unknown[]).flatMap((f) => (isObj(f) && isStr(f.outcome) ? [f.outcome] : [])) : []);
+      (v.lore as unknown[]).forEach((l, i) => {
+        const at = `lore ${i + 1}`;
+        if (!isObj(l) || !isStr(l.who) || !isStr(l.belief)) return void errs.push(`${at} needs who and belief`);
+        if (l.note !== undefined && !isStr(l.note)) errs.push(`${at} note must be text`);
+        if (l.modern !== undefined && !MODERN_VERDICTS.includes(l.modern as ModernVerdict)) errs.push(`${at} modern must be one of ${MODERN_VERDICTS.join(", ")}`);
+        if (l.finding !== undefined && !outcomes.has(String(l.finding))) errs.push(`${at} finding must be the outcome of a finding on this page`);
+        if ((l.modern === "agrees" || l.modern === "disagrees") && l.finding === undefined) errs.push(`${at}: "${l.modern}" needs the finding it rests on`);
+        if (!Array.isArray(l.sources) || l.sources.length === 0) errs.push(`${at} needs at least one source`);
+        else
+          for (const s of l.sources as unknown[]) {
+            if (!isObj(s) || !isStr(s.title) || (s.kind !== "ancient text" && s.kind !== "scholarship")) errs.push(`${at}: every source needs a title and a kind (ancient text or scholarship)`);
+            else if (!isStr(s.url) && !isStr(s.doi) && !isStr(s.pmid)) errs.push(`${at}: every source needs a link, a DOI or a PMID`);
+            else if (isStr(s.url) && !/^https:\/\//.test(s.url)) errs.push(`${at}: links must be https`);
+          }
+      });
+    }
+  }
   if (v.history !== undefined) {
     if (!Array.isArray(v.history) || v.history.length === 0) errs.push("history, when given, needs at least one use");
     else {
@@ -119,6 +172,7 @@ export function wholeFoodText(f: WholeFoodDef): string[] {
     f.whatStudiesDid,
     ...f.inIt,
     ...(f.history ?? []).flatMap((h) => [h.use, h.note]),
+    ...(f.lore ?? []).flatMap((l) => [l.belief, l.note ?? ""]),
     ...f.processing,
     ...f.findings.flatMap((x) => [x.outcome, x.population, x.summary, x.bottomLine ?? "", x.label ?? "", x.line ?? "", ...x.whyThisGrade]),
     ...f.visuals.flatMap((x) => [x.title, x.caption]),

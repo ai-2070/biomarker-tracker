@@ -111,6 +111,11 @@ export interface BiomarkerDef {
   judgeSumOfDays?: number;
   /** No population range: the person's own usual range is shown instead (HRV). See `personalRange.ts`. */
   personalRange?: boolean;
+  /**
+   * How a habit watch compares before and after: "ratio" (default, percent change on the log scale) or
+   * "difference" (plain difference, for values that can be zero or negative, like the PhenoAge gap).
+   */
+  changeScale?: "ratio" | "difference";
   summary: string;
   high: { meaning: string; commonCauses: string[] };
   low: { meaning: string; commonCauses: string[] };
