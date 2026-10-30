@@ -6,7 +6,8 @@ import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
-import { FOOD_GROUPS, type FoodGroup, type ModernVerdict, type WholeFoodDef } from "../../core/wholeFoods";
+import { FOOD_GROUPS, type FoodGroup, type LoreSource, type ModernVerdict, type WholeFoodDef } from "../../core/wholeFoods";
+import type { Citation } from "../../core/types";
 import { AddToProtocol } from "../components/AddToProtocol";
 import { StudyLink } from "../components/evidence";
 import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
@@ -321,44 +322,83 @@ const VERDICT: Record<ModernVerdict, { label: string; className: string }> = {
   harmful: { label: "Can be harmful", className: "bg-danger-soft text-danger" },
 };
 
+/** One source line: an ancient text (linked), scholarship, or a study citation. */
+function SourceLine({ src }: { src: LoreSource | Citation }) {
+  if ("kind" in src && (src.kind === "ancient text" || src.kind === "scholarship")) {
+    const url = src.url ?? (src.doi ? `https://doi.org/${src.doi}` : `https://pubmed.ncbi.nlm.nih.gov/${src.pmid}/`);
+    return (
+      <>
+        <span>{src.kind === "ancient text" ? "Text: " : "Source: "}</span>
+        <a href={url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+          {src.title}
+        </a>
+        {[src.author, src.when].filter(Boolean).length > 0 && <span> ({[src.author, src.when].filter(Boolean).join(", ")})</span>}
+      </>
+    );
+  }
+  return (
+    <>
+      <span>Source: </span>
+      <StudyLink s={src as Citation} />
+    </>
+  );
+}
+
+/** A health belief or use, from either list, in one shape for the page. */
+interface HealthBelief {
+  who: string;
+  text: string;
+  modern: ModernVerdict;
+  finding?: string;
+  note?: string;
+  sources: (LoreSource | Citation)[];
+}
+
 /**
- * Then and now. First what people believed: myths, religion, symbols and folk beliefs, told as theirs with
- * where they're written. Then what people used the food for, set against what modern studies found:
- * generations of people eating a food and watching what followed tested the whole food, with every
- * compound in it, so old uses can point at effects no table explains; they can also be wrong.
+ * Then and now. First what people believed the food did for health, from old medical writers, sacred
+ * texts and folk medicine, each checked against modern studies: generations of people eating a food and
+ * watching what followed tested the whole food, with every compound in it, so old beliefs can point at
+ * effects no table explains; they can also be wrong. Then, folded, the stories and symbols around it.
  */
 function History({ f }: { f: WholeFoodDef }) {
   const findingLink = (outcome: string | undefined) => {
     const to = outcome ? f.findings.find((x) => x.outcome === outcome) : undefined;
     return to ? anchorId("finding", `${to.outcome} ${to.population}`) : undefined;
   };
+  // Health: every old use, and the beliefs with a health claim (they carry a verdict).
+  const health: HealthBelief[] = [
+    ...(f.lore ?? []).flatMap((l) => (l.modern ? [{ who: l.who, text: l.belief, modern: l.modern, finding: l.finding, note: l.note, sources: l.sources }] : [])),
+    ...(f.history ?? []).map((h) => ({ who: h.who, text: h.use, modern: h.modern, finding: h.finding, note: h.note, sources: h.sources })),
+  ];
+  const stories = (f.lore ?? []).filter((l) => !l.modern);
   return (
     <Card id="history" className="flex scroll-mt-6 flex-col gap-5">
       <div>
         <H2>Then and now</H2>
         <p className="mt-1 max-w-3xl text-ink-2">
-          What people believed about {f.name.toLowerCase()} and used it for, long before laboratories. People judged a food by eating it and watching what
-          followed, which tests everything in it, including what no food table measures; but watching without a comparison group is also fooled by
-          illnesses that pass on their own, so each use is checked against the studies.
+          What people believed {f.name.toLowerCase()} did for health, long before laboratories, and what modern studies found. People judged a food
+          by eating it and watching what followed, which tests everything in it, including what no food table measures; but watching without a
+          comparison group is also fooled by illnesses that pass on their own, so each belief is checked against the studies.
         </p>
       </div>
 
-      {f.lore && (
+      {health.length > 0 && (
         <section className="flex flex-col gap-3">
-          <h3 className="font-semibold">What people believed</h3>
-          <ul className="flex flex-col gap-4">
-            {f.lore.map((l) => {
-              const anchor = findingLink(l.finding);
+          <h3 className="font-semibold">What they believed it did for health</h3>
+          <ul className="flex flex-col gap-3">
+            {health.map((h) => {
+              const v = VERDICT[h.modern];
+              const anchor = findingLink(h.finding);
               return (
-                <li key={`${l.who}|${l.belief}`} className="flex flex-col gap-1 border-l-2 border-line-strong pl-3">
+                <li key={`${h.who}|${h.text}`} className="flex flex-col gap-1.5 rounded-lg border border-line p-3">
+                  <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{h.who}</p>
                   <div className="flex flex-wrap items-start justify-between gap-2">
-                    <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{l.who}</p>
-                    {l.modern && <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", VERDICT[l.modern].className)}>{VERDICT[l.modern].label}</span>}
+                    <p className="font-medium">{h.text}</p>
+                    <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", v.className)}>{v.label}</span>
                   </div>
-                  <p>{l.belief}</p>
-                  {l.note && (
+                  {(h.note || anchor) && (
                     <p className="text-ink-2">
-                      {l.note}
+                      {h.note}
                       {anchor && (
                         <>
                           {" "}
@@ -370,56 +410,9 @@ function History({ f }: { f: WholeFoodDef }) {
                     </p>
                   )}
                   <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
-                    {l.sources.map((src) => {
-                      const href = src.url ?? (src.doi ? `https://doi.org/${src.doi}` : `https://pubmed.ncbi.nlm.nih.gov/${src.pmid}/`);
-                      return (
-                        <li key={href}>
-                          <span>{src.kind === "ancient text" ? "Text: " : "Source: "}</span>
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
-                            {src.title}
-                          </a>
-                          {[src.author, src.when].filter(Boolean).length > 0 && <span> ({[src.author, src.when].filter(Boolean).join(", ")})</span>}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
-
-      {f.history && (
-        <section className="flex flex-col gap-3">
-          {f.lore && <h3 className="font-semibold">Uses, checked against studies</h3>}
-          <ul className="flex flex-col gap-3">
-            {f.history.map((h) => {
-              const v = VERDICT[h.modern];
-              const anchor = findingLink(h.finding);
-              return (
-                <li key={`${h.who}|${h.use}`} className="flex flex-col gap-1.5 rounded-lg border border-line p-3">
-                  <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{h.who}</p>
-                  <div className="flex flex-wrap items-start justify-between gap-2">
-                    <p className="font-medium">{h.use}</p>
-                    <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", v.className)}>{v.label}</span>
-                  </div>
-                  <p className="text-ink-2">
-                    {h.note}
-                    {anchor && (
-                      <>
-                        {" "}
-                        <a href={`#${anchor}`} onClick={(e) => jump(e, anchor)} className="text-accent">
-                          See the finding
-                        </a>
-                      </>
-                    )}
-                  </p>
-                  <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
-                    {h.sources.map((src) => (
-                      <li key={src.pmid ?? src.doi ?? src.title}>
-                        <span>History: </span>
-                        <StudyLink s={src} />
+                    {h.sources.map((src, i) => (
+                      <li key={i}>
+                        <SourceLine src={src} />
                       </li>
                     ))}
                   </ul>
@@ -428,6 +421,35 @@ function History({ f }: { f: WholeFoodDef }) {
             })}
           </ul>
         </section>
+      )}
+
+      {stories.length > 0 && (
+        <details className="group rounded-lg border border-line">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-3 font-medium select-none">
+            <span>
+              Stories and symbols <span className="font-normal text-ink-2">({stories.length}: myths, religion and customs, not about health)</span>
+            </span>
+            <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
+              ▾
+            </span>
+          </summary>
+          <ul className="flex flex-col gap-4 border-t border-line p-3">
+            {stories.map((l) => (
+              <li key={`${l.who}|${l.belief}`} className="flex flex-col gap-1 border-l-2 border-line-strong pl-3">
+                <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{l.who}</p>
+                <p>{l.belief}</p>
+                {l.note && <p className="text-ink-2">{l.note}</p>}
+                <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
+                  {l.sources.map((src, i) => (
+                    <li key={i}>
+                      <SourceLine src={src} />
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </details>
       )}
     </Card>
   );
