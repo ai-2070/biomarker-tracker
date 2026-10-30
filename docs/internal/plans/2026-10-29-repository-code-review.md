@@ -1,6 +1,6 @@
 # Repository code review — 2026-10-29
 
-Scope: the current repository, not a change diff. Read-only review; no application fixes made. Findings are appended by review round. The second round targets fresh cross-layer and failure-path issues and excludes duplicates.
+Scope: review rounds 1–8 examined the repository without application edits. Findings remain as historical review receipts; the appended remediation ledger records the subsequent fixes, commits and verification.
 
 Severity: **P1** = high-impact privacy, safety or data-loss defect; **P2** = material correctness or reliability defect; **P3** = lower-impact defect. **Executed** means the implementation was exercised with synthetic inputs; **source-confirmed** means the cited control/data flow was inspected but the complete runtime scenario was not exercised. Mocked HTTP boundaries are identified explicitly. No finding implies that every other path is correct.
 
@@ -1145,3 +1145,205 @@ This pass adds five distinct findings after excluding the previous 111 entries a
 | Cumulative | 16 | 94 | 6 | 116 |
 
 The new high-priority item is intact profile history being erased after a transient read failure (**R8-001**). Other additions concern same-profile save ordering, lost/inflated device data and inaccurate evidence-design descriptions.
+
+
+## Remediation — 2026-10-30
+
+All **116 original findings are addressed** on branch `fix/repository-review-remediation`, based on `363b31e`. The original findings above remain historical receipts, not statements that these defects are still present. Each ID below records its repair and implementation batch. No changes were pushed to `main`.
+
+### Commit batches
+
+| Batch | Commit | Scope |
+|---|---|---|
+| P | `21f138a` | Profile ownership, save ordering, migration/replacement, transactional mutations, backup validation and persisted reading order |
+| C | `f8daddc` | Clinical/statistical boundaries, historical draw selection and fitness-test uncertainty |
+| I | `6f2eccf` | Device/lab parsing, streaming, daily provenance and page-level PDF OCR |
+| S | `db9e33b` | Filesystem persistence/recovery, assistant privacy/trust, providers, MCP lifecycle and settings |
+| N | `db3ea21` | Nutrition safety, form fidelity, coverage, child references and editors |
+| U | `2877129` | Chart history/ranges, bounded age display, calendar labels and entry forms |
+| E | `e461b72` | Evidence provenance/publication, participant extraction, shipped artifact corrections and life-table generation |
+
+### Finding-by-finding closure ledger
+
+Every row is addressed. Multiple batch letters identify cross-layer repairs rather than duplicate findings.
+
+| Finding | Batch | Repair |
+|---|---|---|
+| R1-001 | P | Origin-wide edit lease and transactional snapshot ownership prevent cross-profile writes. |
+| R1-002 | P | Flush propagates failure and drains pending writes before replacement. |
+| R1-003 | P | Fallible transitions retain or restore the current saver, including failed adoption. |
+| R1-004 | P | Startup uploads the retained working copy instead of skipping its initial snapshot. |
+| R1-005 | P | Replacement clears all person-owned tables and settings in one transaction. |
+| R1-006 | P | Boot and first-folder setup inspect all person-owned data before migration. |
+| R1-007 | P | Folder imports include protocols.json and meals.json. |
+| R1-008 | S | ZIP writer, reader and HTTP restore share bounded size support; unsupported export fails. |
+| R1-009 | S | Shortened attachment metadata retains its extension and complete code points. |
+| R1-010 | S | Restores publish a staging folder only after all files validate and persist. |
+| R1-011 | S | Malformed static URL escapes return controlled HTTP 400 responses. |
+| R1-012 | S | Sign-in uses the discovered executable with fixed, shell-quoted arguments. |
+| R1-013 | S | Secret replacement files are created exclusively with private permissions before writing. |
+| R1-014 | S | Overlapping stable-token Hermes runs are refused without replacing active ownership. |
+| R1-015 | S | Only structured retrieved-study records grant citation authority; errors and echoes do not. |
+| R1-016 | S | DOIs are normalized, checked and linked, including balanced citation punctuation. |
+| R1-017 | S | Proposal cards consume successful validated tool output, never rejected inputs. |
+| R1-018 | S | Validated proposal output remains complete parseable JSON. |
+| R1-019 | P + C | Blood-pressure critical boundaries are explicitly inclusive; unrelated boundaries stay unchanged. |
+| R1-020 | P + C | Censored results use interval-aware definite flags and retain uncertainty. |
+| R1-021 | C | Blood-pressure averaging stops at the selected paired endpoint. |
+| R1-022 | C | The full fractional age-74 year remains eligible; age 75 is excluded. |
+| R1-023 | C | Calendar ticks advance aligned intervals through the entire history. |
+| R1-024 | E | Abstract cleanup preserves inequalities and intervening study facts. |
+| R1-025 | E | Unsupported bibliography-derived pooled-study overlap was removed end to end. |
+| R1-026 | E | The removed overlap path no longer downloads or caches incomplete reference lists. |
+| R1-027 | E | Title-declared meta-analysis outranks weaker review tags and shipped rationales were corrected. |
+| R1-028 | E | Country fetch/completeness failures stop life-table publication. |
+| R1-029 | S | Model-facing attachment filenames are name-redacted as well as document text. |
+| R1-030 | U | Height accepts intermediate typing and validates its committed value on blur. |
+| R1-031 | P + N | Intake enforces 60 items before saving; legacy oversize lists remain visible and shrinkable. |
+| R1-032 | P + N | Protocol editor and persistence enforce 60 items before invalid data can block sync. |
+| R1-033 | P + N | Meal editor and persistence enforce 40 foods before invalid data can block sync. |
+| R1-034 | P | Replacing JSON resets the person editor to the restored profile, not its stale draft. |
+| R1-035 | S | Sending establishes cancellation and exclusivity before asynchronous preparation. |
+| R1-036 | S | Conversation generations invalidate pending attachment/OCR completions. |
+| R1-037 | N | Duplicate food rows retain stable editor identity and controlled gram values. |
+| R1-038 | N | Critical nutrient results show urgent handling and suppress increase/research handoff controls. |
+| R1-039 | U | Biological-age comparison uses calendar age at the same blood draw. |
+| R1-040 | U | Combined timeline navigation includes early body history and body-only profiles. |
+| R1-041 | S | Client and server explicitly refuse more than four photos instead of silently dropping one. |
+| R1-042 | I | Mixed Apple units normalize before accumulation under one series unit. |
+| R1-043 | I | Contiguous sleep stages use their session wake-up date; separate naps still count. |
+| R1-044 | I | Oura activity totals retain known seconds semantics. |
+| R1-045 | I | Screenshot decimal durations parse the complete number, not its fractional suffix. |
+| R1-046 | I | Next-line screenshot values inherit label units and flag conflicting context. |
+| R1-047 | I | ZIP entry reads follow consumer demand and propagate cancellation. |
+| R1-048 | I | PDF OCR is selected page by page, preserving mixed text/scanned results and order. |
+| R1-049 | I | Lab review deduplicates against storage and already accepted pending rows. |
+| R1-050 | I | Unambiguous device dates override locale-dependent component order. |
+| R1-051 | N | Critical latest results suppress intake increase suggestions before ranking/rendering. |
+| R1-052 | N | Meal suggestions honor remaining food-applicable upper-limit room. |
+| R1-053 | N | Duplicate food quantities aggregate before per-food safety thresholds. |
+| R1-054 | N | Quick picks preserve supplement form rather than substituting carotene/retinol or K2/K1. |
+| R1-055 | C | Qualified experiment results omit unjustified exact means and percentages. |
+| R1-056 | C | Nonpositive experimental inputs never expose infinite or NaN changes. |
+| R1-057 | N | Omega-3 protocol quick picks use the supported EPA+DHA mapping. |
+| R2-001 | P | Deleting an open folder clears its recovery copy; missing deleted owners are not migrated. |
+| R2-002 | S | Failed MCP discovery closes owned clients/transports, including real stdio-process coverage. |
+| R2-003 | E | Stale or incomplete screening cannot select unscreened reviews or overwrite a published map. |
+| R2-004 | C | Small-sample pace intervals use finite t critical values for degrees of freedom 1–3. |
+| R2-005 | S | Assistant comparisons preserve post-hoc selection warnings and selection timing. |
+| R3-001 | P | Backup validation enforces the existing integer re-test interval domain. |
+| R3-002 | I | Grouped step counts parse as integers; fractional step counts are rejected. |
+| R3-003 | I | JSON header discovery scans every flattened record, not only the first 500. |
+| R3-004 | I | Apple XML attributes decode named and numeric entities before unit recognition. |
+| R3-005 | I | Active-zone-minute screenshots do not collide with heart-rate-zone exclusions. |
+| R3-006 | I | Delimiter detection ignores punctuation inside quoted headers. |
+| R3-007 | P | Activation checks persisted active state transactionally, creating one stoppable habit set. |
+| R3-008 | U | Calendar-day chart labels format without local-timezone day shifts. |
+| R3-009 | S | Pending questions wait for fresh readiness before being consumed. |
+| R3-010 | U | Weekly activity chart descriptions/tooltips distinguish totals from averages. |
+| R3-011 | E | Participant extraction rejects doses and recruitment pools; shipped large-trial entries are reconciled. |
+| R3-012 | P + N | Antiplatelet precautions route independently from anticoagulant vitamin-K restrictions. |
+| R3-013 | P + C | Persisted save order disambiguates same-day readings across latest/draw consumers. |
+| R3-014 | U | Aggregate points use historical contributor ranges and preserve incompatible-range uncertainty. |
+| R3-015 | P + C | Daily assessments and HRV coverage require distinct observed dates. |
+| R3-016 | U | Open fitness-age bounds retain bounded wording without an exact age difference. |
+| R3-017 | S | Named providers use pinned canonical endpoints rather than ambient SDK overrides. |
+| R3-018 | S | MCP removal closes admission before asynchronous shutdown and fences stale publication. |
+| R3-019 | S | A durable rollback journal prevents readers/backups from observing mixed generations. |
+| R3-020 | S | File-manager launches await spawn/error and retain asynchronous error handling. |
+| R4-001 | N | Partial totals display measurement coverage and do not imply precise intake shortfalls. |
+| R4-002 | P + N | Protocol activation applies shared planning-date validation and reports failures. |
+| R4-003 | C | Tied fitness-test ceilings retain percentile uncertainty instead of strict rank claims. |
+| R4-004 | C | Unsupported interpolation into the final open norm interval is omitted. |
+| R4-005 | C | Balance instructions match the recordable eyes-open method. |
+| R4-006 | N | Meal field edits/deletions patch the latest record and preserve the current editor draft. |
+| R4-007 | S | Codex terminal errors and unsuccessful exits cannot be hidden by interim answer text. |
+| R4-008 | S | Protocol tool/fallback summaries retain weekdays and with-food instructions. |
+| R4-009 | S | Effort controls advertise and forward only settings supported by the selected model. |
+| R4-010 | S | Local discovery shares URL-based loopback eligibility, including IPv6. |
+| R5-001 | S | Full short/Unicode names and canonically equivalent document text are redacted. |
+| R5-002 | C | Negated conditions do not affirm cardiovascular treatment or diabetes inputs. |
+| R5-003 | I | An empty remapped device series remains editable, explains recovery and cannot save. |
+| R5-004 | I | Spaced ASCII inclusive comparators survive lab tokenization and validation. |
+| R5-005 | P + I | Deduplication distinguishes exact and censored observations at the same limit. |
+| R5-006 | E | Screening reuse requires current fingerprints of the actual question and study inputs. |
+| R5-007 | E | Each new decision retains its own model/date; historical provenance remains explicitly legacy. |
+| R5-008 | S | Outgoing content is budgeted with disclosure; excess transport input is rejected, not silently sliced. |
+| R5-009 | U | Chart windows clamp to remaining data bounds when endpoints disappear. |
+| R6-001 | P + S | All imported identity-keyed tables reject duplicate IDs before publication/replacement. |
+| R6-002 | P + S | A habit and its initial watch commit or roll back together, including retry after failure. |
+| R6-003 | S | Stored attachment basenames truncate at Unicode code-point boundaries. |
+| R6-004 | S | Test eligibility includes dirty endpoint/configuration/key changes. |
+| R6-005 | S | Saving local configuration invalidates discovery and discards stale results. |
+| R7-001 | U | Blood entry restricts marker selection and independently guards submission against body markers. |
+| R7-002 | I | Collection dates outrank receipt/release dates, including separate labels on one German line. |
+| R7-003 | P | Zero measurements no longer disable the supported habits/profile JSON backup. |
+| R7-004 | N | Known child profiles receive no adult-only intake comparisons or upper limits. |
+| R7-005 | N | Nutrient sidebars retain source-specific upper-limit scope. |
+| R8-001 | S | Existing profile read/parse failures propagate rather than becoming authoritative empty history. |
+| R8-002 | P | Single-flight autosave drains newer snapshots and flush awaits the full sequence. |
+| R8-003 | I | Header normalization preserves recognition of SpO2 oxygen columns. |
+| R8-004 | I | Overlapping daily summaries reconcile by file/day without deduplicating legitimate increments. |
+| R8-005 | E | Any-design metadata controls screening, rationale, counts and UI wording per outcome. |
+
+### Executed verification
+
+| Check | Result |
+|---|---|
+| `bun run test` | **86 files, 1,068 tests passed**, exit 0 |
+| `bun run build` | Both TypeScript projects and the Vite production build passed, exit 0 |
+| Targeted profile/DB/server/DOI regression run | 54 tests passed, including failed adoption recovery, single-flight flush, journal-sync failures and DOI boundaries |
+| Same-day-order inverse | Replacing production save order with a constant made the two consumer-order regressions fail with reversed IDs/values; restored tests passed |
+| Single-flight inverse | Removing the production in-flight guard made the regression fail with two simultaneous uploads instead of one; restored tests passed |
+| Public research-record audit | Research lane retrieved 942 distinct shipped large-trial PMIDs, including 129 newer-large-trial PMIDs; corrected 43 source-supported count assertions and dependent selections/counts |
+
+The mutation checks used actual production sites, not test-only copies. Both sources were restored byte-identically: `src/db/db.ts` blob `9d267b2a7e203ef24525753f672b848f7a532e88`; `src/app/profiles.ts` blob `fc0ea895db230e02d06f4458b6b37846873daaa8`. The restored four-file run passed all 54 selected tests.
+
+Permanent regression coverage includes the existing suites and new focused profile/DB, clinical, importer/PDF/ZIP, assistant/provider/MCP, nutrition/editor, chart-aggregation and generator suites. TSX regression files are included in Vitest discovery. Incidental wording/implementation assertions were removed rather than re-pinned; browser checks cover those visible surfaces.
+
+#### Actual browser/runtime receipts
+
+Functional browser checks used managed Chromium, synthetic data, and an explicit mock refusing every local-server API request. They did not read a real profile folder or contact a model. Most interactions ran against Vite development output; the final production preview separately loaded the shipped Biotin evidence page successfully.
+
+| Scenario | Observed result |
+|---|---|
+| Habits-only browser profile | Zero measurements and one habit; Download file enabled |
+| Height entered character by character | `170` visible and saved as height 170 after blur |
+| Blood-entry isolation | Body fat absent from blood picker; direct body-marker entry opens the body flow |
+| Duplicate food rows | Removing the first 125 g row leaves the second displayed and stored as 200 g, including after blur |
+| Overlapping step summaries | March 1 saved once as 8,000 steps; March 2 as 9,000; reconciliation disclosed in review |
+| Oxygen CSV | `Date,SpO2` produced and saved blood oxygen 97% |
+| Replace JSON, then edit details | Restored identity remained Replacement Synthetic B; old meals/results were cleared; later condition edit did not restore the old person |
+| Critical potassium | Nutrient page showed Contact a doctor now before explanations; intake retained totals without food/supplement-increase ideas |
+| Mobile critical notice | At 360 CSS px, document width was 360 px and the urgent notice was visible |
+| Two real tabs | Second tab was blocked before profile editing with the explicit already-open message |
+| Real mixed PDF | A selectable-text cover, image-only Ferritin page and selectable CRP page yielded Ferritin 45 µg/L and CRP 2 mg/L in order; both were reviewed and saved with OCR disclosure |
+| Historical age/timeline | April 2022 draw compared against age 42.2 at that draw, not current age; January 2000 body history remained navigable |
+| Activity/fitness bounds | Seven 30-minute days showed a 210-minute weekly total; fitness age retained 75 or older with no exact age comparison |
+| Delete chart endpoint | A 1M view at October 2026 immediately reclamped to the remaining April 2022 reading after deletion |
+| Production evidence page | Biotin showed historical review selections, explicit input/model-provenance uncertainty, and any-design wording rather than claiming trial reviews |
+
+Isolated implementation probes also exercised actual filesystem rollback/read faults/restore failures and Unicode attachment round trips; real fake-IndexedDB mutation paths; finite small-sample clinical calculations; and a mocked screening runner. MCP process regressions use the installed stdio SDK and a local child process, not an external research service.
+
+#### Independent closure review
+
+Two read-only reviewers found four remaining repair gaps; all were corrected and included in the passing final suite. Their bounded follow-up inspections found no remaining blocker in those specific closures. Those follow-ups inspected source/artifacts and did not independently rerun the suites or the broader research audit.
+
+| Gap | Closure |
+|---|---|
+| Incomplete screening could replace a published map | Any incomplete outcome aborts before the sole publication write; prior bytes are preserved, including when a later outcome is incomplete |
+| Shipped false large-trial counts survived the parser fix | Public-source audit removed 38 falsely large PMIDs, corrected five still-large counts, and updated 32 outcomes; source-backed corrections are in `tests/fixtures/evidenceFixesTrialCounts.json` |
+| Journal deletion was not durable before save acknowledgement | Save and recovery sync the directory after journal unlink; sync failure propagates rather than acknowledging success |
+| Surrounding parentheses became part of a valid DOI | Unmatched prose punctuation is excluded while legitimate balanced DOI parentheses and rendered punctuation are preserved |
+
+### Operational and evidence limits
+
+- **One editable tab per origin.** Current browsers coordinate both static and folder modes with Web Locks. Folder mode requires that API; a second tab explains that the first must close before reload. This deliberately avoids concurrent editing of one shared IndexedDB working copy.
+- **Backup limits are explicit and aligned.** Encoded ZIP limit: 200 MiB; expanded limit: 500 MiB. An export outside supported limits fails instead of offering an unrestorable backup. Existing attachments are not deleted.
+- **Historical same-day chronology cannot be reconstructed.** Existing rows acquire deterministic migration order; newly saved readings receive persisted monotonic order. The migration does not claim to recover creation timestamps that were never stored.
+- **Historical screening is not silently upgraded.** All 41 existing maps preserve their actual historical decisions/selections and visibly mark exact-input/model attribution unverified. No fingerprints or model decisions were fabricated. A fresh build requires complete current-input screening and otherwise leaves the published artifact unchanged. Unsupported pooled-study-overlap data was removed, not relabelled as verified independence.
+- **Participant audit is not clinical adjudication.** The public-record pass repaired identified extraction roots and shipped large-trial assertions; it did not adjudicate every paper's design, every analysis population, or the clinical findings themselves. Existing clinician-review notices remain.
+- **Windows verification boundary.** Private-file creation and directory-sync ordering/failure are covered through actual writes plus platform-boundary instrumentation. Native POSIX permission enforcement, native directory fsync and actual power-loss durability were not exercised on this Windows workstation.
+- Real provider calls, agent installation/sign-in terminals and a live IPv6 model service were not exercised. Those boundaries use deterministic adapter/transport tests and local fixtures. No real health data or provider credentials were used.
+- Existing AI SDK deprecation/test-model warnings and Vite's large-chunk warning remain; the suites/build still exit successfully. No unrelated dependency or UI redesign was introduced.
+
