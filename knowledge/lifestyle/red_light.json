@@ -10,7 +10,7 @@
     "LED light therapy",
     "Cold laser"
   ],
-  "summary": "Red or near-infrared light, from LEDs or low-power lasers, shone on the skin to change how cells behave without heating them. Trials found more hair in pattern hair loss and some effect on wrinkles, and a cancer-care guideline recommends it, given by clinicians, to prevent mouth sores during some cancer treatments. Most trials are small and use different devices and doses, and how it works in people is still a hypothesis.",
+  "summary": "Red and near-infrared light shone on the skin to change how cells behave. It's best supported for regrowing hair in pattern hair loss and, given by clinicians, for preventing mouth sores during cancer treatment; effects on wrinkles are smaller and less certain.",
   "howItWorks": [
     "Light is described by its wavelength, measured in nanometres (nm, a billionth of a metre). The eye sees from about 400 nm (violet) to 700 nm (red). Near-infrared light, just beyond red, is invisible.",
     "Devices use LEDs (light-emitting diodes, the small lamps in most masks and panels) or low-power lasers. They are meant to change how cells work without burning or heating them, unlike lasers used to cut or remove tissue.",
@@ -263,22 +263,78 @@
       "from": 400,
       "to": 1100,
       "bands": [
-        { "label": "Violet and blue", "from": 400, "to": 500 },
-        { "label": "Green", "from": 500, "to": 565 },
-        { "label": "Yellow", "from": 565, "to": 590 },
-        { "label": "Orange", "from": 590, "to": 625 },
-        { "label": "Red", "from": 625, "to": 700 },
-        { "label": "Near-infrared (invisible)", "from": 700, "to": 1100 },
-        { "label": "Tissue's first optical window", "from": 650, "to": 950 }
+        {
+          "label": "Violet and blue",
+          "from": 400,
+          "to": 500
+        },
+        {
+          "label": "Green",
+          "from": 500,
+          "to": 565
+        },
+        {
+          "label": "Yellow",
+          "from": 565,
+          "to": 590
+        },
+        {
+          "label": "Orange",
+          "from": 590,
+          "to": 625
+        },
+        {
+          "label": "Red",
+          "from": 625,
+          "to": 700
+        },
+        {
+          "label": "Near-infrared (invisible)",
+          "from": 700,
+          "to": 1100
+        },
+        {
+          "label": "Tissue's first optical window",
+          "from": 650,
+          "to": 950
+        }
       ],
       "marks": [
-        { "nm": 630, "label": "red LED in a home face-mask trial (crow's feet)", "group": "Used in trials and studies" },
-        { "nm": 633, "label": "red LED in a split-face wrinkle trial", "group": "Used in trials and studies" },
-        { "nm": 655, "label": "red lasers and LEDs in home hair-growth helmet trials", "group": "Used in trials and studies" },
-        { "nm": 810, "label": "near-infrared proposed for light through the skull to the brain", "group": "Used in trials and studies" },
-        { "nm": 830, "label": "near-infrared LED in the split-face wrinkle trial", "group": "Used in trials and studies" },
-        { "nm": 850, "label": "near-infrared LED in the home face-mask trial", "group": "Used in trials and studies" },
-        { "nm": 904, "label": "near-infrared laser in knee osteoarthritis trials", "group": "Used in trials and studies" }
+        {
+          "nm": 630,
+          "label": "red LED in a home face-mask trial (crow's feet)",
+          "group": "Used in trials and studies"
+        },
+        {
+          "nm": 633,
+          "label": "red LED in a split-face wrinkle trial",
+          "group": "Used in trials and studies"
+        },
+        {
+          "nm": 655,
+          "label": "red lasers and LEDs in home hair-growth helmet trials",
+          "group": "Used in trials and studies"
+        },
+        {
+          "nm": 810,
+          "label": "near-infrared proposed for light through the skull to the brain",
+          "group": "Used in trials and studies"
+        },
+        {
+          "nm": 830,
+          "label": "near-infrared LED in the split-face wrinkle trial",
+          "group": "Used in trials and studies"
+        },
+        {
+          "nm": 850,
+          "label": "near-infrared LED in the home face-mask trial",
+          "group": "Used in trials and studies"
+        },
+        {
+          "nm": 904,
+          "label": "near-infrared laser in knee osteoarthritis trials",
+          "group": "Used in trials and studies"
+        }
       ],
       "sources": [
         {
@@ -339,18 +395,58 @@
       "from": 400,
       "to": 1300,
       "bands": [
-        { "label": "Visible light", "from": 400, "to": 700 },
-        { "label": "Near-infrared (invisible; IRA runs to 1440 nm)", "from": 700, "to": 1300 },
-        { "label": "Skin's optical window: melanin, haemoglobin and water absorb least", "from": 600, "to": 1300 }
+        {
+          "label": "Visible light",
+          "from": 400,
+          "to": 700
+        },
+        {
+          "label": "Near-infrared (invisible; IRA runs to 1440 nm)",
+          "from": 700,
+          "to": 1300
+        },
+        {
+          "label": "Skin's optical window: melanin, haemoglobin and water absorb least",
+          "from": 600,
+          "to": 1300
+        }
       ],
       "marks": [
-        { "nm": 620, "label": "red peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
-        { "nm": 680, "label": "far-red peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
-        { "nm": 760, "label": "first near-infrared peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
-        { "nm": 820, "label": "second near-infrared peak", "group": "Cytochrome c oxidase: where cell responses peaked" },
-        { "nm": 418, "label": "haemoglobin absorption peak (blue)", "group": "Haemoglobin: where blood absorbs most" },
-        { "nm": 542, "label": "haemoglobin absorption peak", "group": "Haemoglobin: where blood absorbs most" },
-        { "nm": 577, "label": "haemoglobin absorption peak", "group": "Haemoglobin: where blood absorbs most" }
+        {
+          "nm": 620,
+          "label": "red peak",
+          "group": "Cytochrome c oxidase: where cell responses peaked"
+        },
+        {
+          "nm": 680,
+          "label": "far-red peak",
+          "group": "Cytochrome c oxidase: where cell responses peaked"
+        },
+        {
+          "nm": 760,
+          "label": "first near-infrared peak",
+          "group": "Cytochrome c oxidase: where cell responses peaked"
+        },
+        {
+          "nm": 820,
+          "label": "second near-infrared peak",
+          "group": "Cytochrome c oxidase: where cell responses peaked"
+        },
+        {
+          "nm": 418,
+          "label": "haemoglobin absorption peak (blue)",
+          "group": "Haemoglobin: where blood absorbs most"
+        },
+        {
+          "nm": 542,
+          "label": "haemoglobin absorption peak",
+          "group": "Haemoglobin: where blood absorbs most"
+        },
+        {
+          "nm": 577,
+          "label": "haemoglobin absorption peak",
+          "group": "Haemoglobin: where blood absorbs most"
+        }
       ],
       "sources": [
         {
