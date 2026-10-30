@@ -118,6 +118,8 @@
       ],
       "summary": "Selenium supplements didn't lower cancer overall, cancer deaths, or cancers of the prostate, bowel, lung or bladder. Trials at low risk of bias suggested more melanoma, and in SELECT men with the highest selenium levels at the start had more high-grade prostate cancer when given more. An earlier idea that people with low blood selenium would benefit wasn't confirmed. Observational studies linked higher selenium with less cancer, but these were judged very low certainty because of confounding; the trials are the better test.",
       "bottomLine": "In 10 trials of adults, mostly men, selenium supplements didn't lower cancer overall, cancer deaths, or cancers of the prostate, bowel, lung or bladder. Trials at low risk of bias suggested more melanoma (a skin cancer), and men with the highest selenium at the start had more high-grade prostate cancer when given more.",
+      "label": "Cancer",
+      "line": "No fewer cancers across 10 trials; some signs of harm, such as more melanoma",
       "studies": [
         {
           "pmid": "29376219",
@@ -149,6 +151,8 @@
       ],
       "summary": "In the NPC trial (1,202 people, about 7.7 years), type 2 diabetes developed more often with 200 µg a day of selenium than with placebo (12.6 compared with 8.4 cases per 1,000 people a year), most clearly in people whose selenium was already highest. SELECT saw a smaller increase that wasn't statistically clear, and a Cochrane pooling found about 6% more, also not statistically clear. Selenium supplements don't appear to prevent diabetes and may raise the risk in people who already get enough.",
       "bottomLine": "In a trial of 1,202 people over about 7.7 years, type 2 diabetes was more common with selenium than with placebo (12.6 compared with 8.4 cases per 1,000 people a year), most clearly in people whose selenium was already highest. Other trials' increases weren't statistically clear.",
+      "label": "Type 2 diabetes",
+      "line": "More type 2 diabetes in one trial, mostly in people already high in selenium",
       "studies": [
         {
           "pmid": "17620655",
@@ -187,6 +191,8 @@
       ],
       "summary": "A Cochrane review of 12 trials found no effect of selenium supplements on deaths, deaths from heart disease or heart events. A larger Cochrane review of antioxidant trials also found no effect on deaths from any cause with selenium. SELECT recorded more hair loss and skin inflammation with selenium.",
       "bottomLine": "In 12 trials, selenium supplements had no effect on deaths, deaths from heart disease or heart events, and one large trial (SELECT) recorded more hair loss and skin inflammation. Most people studied were men in the US, where selenium intake is higher than in much of Europe.",
+      "label": "Heart disease and death",
+      "line": "No effect on deaths or heart events in 12 trials",
       "studies": [
         {
           "pmid": "23440843",
@@ -218,6 +224,8 @@
       ],
       "summary": "In this trial, 100 µg of selenium twice a day for six months improved quality of life and eye findings, and slowed the disease, compared with placebo. It is a single trial in people with a diagnosed condition under specialist care, not evidence for thyroid health in general.",
       "bottomLine": "In one trial of adults with mild thyroid eye disease, six months of selenium improved quality of life and eye findings, and slowed the disease, compared with placebo. It is a single trial in people under specialist care, not evidence for thyroid health in general.",
+      "label": "Mild thyroid eye disease",
+      "line": "Better quality of life and eye findings in one trial, under specialist care",
       "studies": [
         {
           "pmid": "21591944",
@@ -241,6 +249,8 @@
       ],
       "summary": "Selenium lowered thyroid antibody levels in two trials, and one small trial at high risk of bias reported better well-being. No trial measured quality of life properly or whether people needed less thyroid hormone. The Cochrane reviewers concluded the evidence is too incomplete to support or rule out a benefit.",
       "bottomLine": "In adults with Hashimoto's thyroiditis, selenium lowered thyroid antibody levels in two trials, but no trial measured quality of life properly or whether people needed less thyroid hormone. Reviewers found the evidence too incomplete to support or rule out a benefit.",
+      "label": "Hashimoto's thyroiditis",
+      "line": "Antibodies fell in two trials; too little evidence on how people felt",
       "studies": [
         {
           "pmid": "23744563",

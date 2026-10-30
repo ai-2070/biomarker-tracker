@@ -34,6 +34,13 @@ export interface NutrientFinding {
    * summary only, adding nothing it doesn't say.
    */
   bottomLine?: string;
+  /**
+   * For "Main uses & benefits": a bold short name ("Heart attacks and strokes", "Cough in children") and
+   * one plain line on what happened ("About 30% fewer in a large trial"), both written only from the
+   * summary, no stronger than it. The grade is shown beside them.
+   */
+  label?: string;
+  line?: string;
   studies: Citation[];
 }
 
@@ -88,6 +95,9 @@ export interface NutrientDef {
 
 /** A bottom line is one or two real sentences: not a label, not a paragraph. */
 export const BOTTOM_LINE = { min: 90, max: 340 } as const;
+/** "Main uses & benefits": a short bold name and one plain line. */
+export const FINDING_LABEL = { min: 3, max: 34 } as const;
+export const FINDING_LINE = { min: 15, max: 120 } as const;
 
 const STUDY_TYPES = new Set(["meta-analysis", "rct", "observational", "animal", "in vitro", "review", "guideline"]);
 const GRADES = new Set(["high", "moderate", "low", "very low"]);
@@ -122,6 +132,10 @@ export function findingErrors(v: unknown, where: string): string[] {
     if (!strList(f.whyThisGrade, 1)) errs.push(`${at} needs at least one reason for its grade`);
     if (f.bottomLine !== undefined && !(isStr(f.bottomLine) && f.bottomLine.length >= BOTTOM_LINE.min && f.bottomLine.length <= BOTTOM_LINE.max))
       errs.push(`${at} bottomLine must be ${BOTTOM_LINE.min}-${BOTTOM_LINE.max} characters`);
+    if (f.label !== undefined && !(isStr(f.label) && f.label.length >= FINDING_LABEL.min && f.label.length <= FINDING_LABEL.max))
+      errs.push(`${at} label must be ${FINDING_LABEL.min}-${FINDING_LABEL.max} characters`);
+    if (f.line !== undefined && !(isStr(f.line) && f.line.length >= FINDING_LINE.min && f.line.length <= FINDING_LINE.max))
+      errs.push(`${at} line must be ${FINDING_LINE.min}-${FINDING_LINE.max} characters`);
     return [...errs, ...citationErrors(f.studies, at)];
   });
 }
@@ -180,7 +194,7 @@ export function nutrientText(n: NutrientDef): string[] {
     ...n.forms.flatMap((f) => [f.name, f.note]),
     n.reference.upperLimit?.note ?? "",
     n.reference.noUpperLimit ?? "",
-    ...[...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", ...f.whyThisGrade]),
+    ...[...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", f.label ?? "", f.line ?? "", ...f.whyThisGrade]),
     ...n.interactions.flatMap((x) => [x.with, x.note]),
     ...n.cautions,
   ];

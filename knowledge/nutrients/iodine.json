@@ -113,6 +113,8 @@
       ],
       "summary": "In a trial in India and Thailand (832 women), daily iodine in mildly deficient pregnant women made no difference to the children's IQ or behaviour at age 5–6. Two meta-analyses (2020 and 2021) also found no effect on children's thinking, language or movement skills or on birth size. The 2020 review concluded that there is not enough good evidence to support routine supplements in mild to moderate deficiency. Severe deficiency is different, see below.",
       "bottomLine": "In mildly deficient pregnant women (832 in a trial in India and Thailand), daily iodine made no difference to their children's IQ or behaviour at age 5–6, and two meta-analyses agreed. Severe deficiency is a different case.",
+      "label": "Child development (pregnancy)",
+      "line": "No difference in children's IQ or behaviour when mothers were mildly deficient",
       "studies": [
         {
           "pmid": "29030199",
@@ -150,6 +152,8 @@
       ],
       "summary": "Trials found that iodine prevented the rise in thyroglobulin (a sign of thyroid strain) and, in some, the growth of the thyroid during pregnancy, but most found no change in TSH or free T4. A 2017 Cochrane review found less overactive thyroid after birth with iodine, but more stomach upset during pregnancy in one small trial, and no clear effect on underactive thyroid, preterm birth or birth weight.",
       "bottomLine": "In pregnant women with mild to moderate iodine deficiency, iodine prevented a rise in a sign of thyroid strain, but most trials found no change in the usual thyroid blood tests. There was no clear effect on preterm birth or birth weight.",
+      "label": "Mother's thyroid in pregnancy",
+      "line": "Prevented one sign of thyroid strain, but usual thyroid tests mostly didn't change",
       "studies": [
         {
           "pmid": "28260263",
@@ -179,6 +183,8 @@
       ],
       "summary": "In New Zealand (184 children, mildly deficient), iodine for 28 weeks improved 2 of 4 thinking tests (perceptual reasoning), and the overall score was slightly higher than with placebo. In Albania (310 children, moderately deficient), iodised oil by mouth improved information processing, fine motor skills and visual problem solving. These results apply to children who were deficient.",
       "bottomLine": "In iodine-deficient children aged 10–13 in New Zealand (184 children) and Albania (310), iodine improved some thinking tests, such as reasoning and information processing. The results apply to children who were deficient.",
+      "label": "Thinking skills in children",
+      "line": "Improved some thinking tests in deficient children aged 10 to 13",
       "studies": [
         {
           "pmid": "19726593",
@@ -210,6 +216,8 @@
       ],
       "summary": "A 2013 meta-analysis found that iodine-deficient young children scored on average about 7 to 10 IQ points lower than children with enough iodine, and that iodine supplements given to mothers in deficient areas were linked to better development. The authors call for better trials. This is the reason countries prevent deficiency, mainly through iodised salt.",
       "bottomLine": "A 2013 meta-analysis found iodine-deficient young children scored about 7 to 10 IQ points lower than others, and iodine given to mothers in deficient areas was linked to better development. The authors call for better trials.",
+      "label": "Young children's development",
+      "line": "Iodine for mothers in deficient areas was linked to better child development",
       "studies": [
         {
           "pmid": "23609774",
@@ -233,6 +241,8 @@
       ],
       "summary": "A 2002 Cochrane review found that iodised salt improved iodine status and tended to reduce goitre, with no harms reported. The studies could not say whether it improved children's development, and none looked specifically for iodine-induced overactive thyroid.",
       "bottomLine": "In areas with iodine deficiency, iodised salt improved iodine status and tended to reduce goitre (a swollen thyroid), with no harms reported. The studies could not say whether it helped children's development.",
+      "label": "Iodised salt: goitre",
+      "line": "Improved iodine status and tended to reduce goitre (a swollen thyroid) in deficient areas",
       "studies": [
         {
           "pmid": "12137681",
@@ -254,6 +264,8 @@
       ],
       "summary": "In a 5-year study of 3,018 adults, mild underactive thyroid and autoimmune thyroiditis became more common as regional iodine intake went from mildly low to more than adequate and excessive (median urine iodine 84, 243 and 651 µg/L). Among people who already had thyroid antibodies, a raised TSH became more common with higher intake. The authors conclude that more than adequate or excessive iodine may lead to these conditions.",
       "bottomLine": "In a 5-year study of 3,018 adults in three regions of China, mild underactive thyroid and autoimmune thyroid inflammation became more common as iodine intake rose from mildly low to excessive. The authors say high intake may lead to these conditions.",
+      "label": "High iodine intake: thyroid",
+      "line": "In one Chinese study, underactive and autoimmune thyroid grew more common as intake rose",
       "studies": [
         {
           "pmid": "16807415",

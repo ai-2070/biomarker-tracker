@@ -200,7 +200,7 @@ export function LifestyleItemPage({ id }: { id: string }) {
           <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
           <Findings
             prefix="finding"
-            title="What studies found"
+            title="Main uses &amp; benefits"
             intro="Outcome by outcome, strongest evidence first. Many lifestyle studies follow people over years rather than assigning them a habit, so a link isn't always cause and effect: the grades say how sure the evidence is."
             findings={l.findings}
           />
@@ -318,7 +318,7 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
   const byMarker = groupByBiomarker(all);
   const mine = l.markers.filter((id) => BIOMARKER_MAP.has(id) && byMarker.has(id)).slice(0, 5);
   const links: [string, string][] = [
-    ["findings", "What studies found"],
+    ["findings", "Main uses & benefits"],
     ["pictures", "In pictures"],
     ["how", "How it's thought to work"],
     ...((l.whoShouldBeCareful.length > 0 || l.cautions.length > 0 ? [["careful", "Who should be careful"]] : []) as [string, string][]),
@@ -360,12 +360,12 @@ function Aside({ l, all }: { l: LifestyleDef; all: Parameters<typeof groupByBiom
           </section>
         )}
         <section>
-          <h2 className="mb-1.5 text-xs font-medium text-ink-2">What studies found</h2>
+          <h2 className="mb-1.5 text-xs font-medium text-ink-2">Main uses &amp; benefits</h2>
           <ul className="flex flex-col gap-1">
             {sortFindings(l.findings).map((f) => (
               <li key={`${f.outcome}|${f.population}`}>
                 <a href={`#${anchorId("finding", `${f.outcome} ${f.population}`)}`} onClick={(e) => jump(e, anchorId("finding", `${f.outcome} ${f.population}`))} className="text-ink no-underline hover:underline">
-                  {f.outcome}
+                  {f.label ?? f.outcome}
                 </a>
               </li>
             ))}

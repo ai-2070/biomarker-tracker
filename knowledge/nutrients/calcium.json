@@ -130,6 +130,8 @@
       ],
       "summary": "Pooled trials of calcium supplements (with or without vitamin D) found about 11% fewer fractures overall, but the best-quality trials found none, and a review of trials in older adults living at home found no lower fracture risk with calcium, vitamin D or both. Combined with vitamin D, the Cochrane review found a small drop in hip fractures, mainly in care-home residents. The large Women's Health Initiative trial (1000 mg calcium with 400 IU vitamin D a day) did not significantly reduce hip fractures.",
       "bottomLine": "In adults over 50, calcium supplements with or without vitamin D cut fractures by about 11% in pooled trials, but the best-quality trials found no drop. With vitamin D, a small fall in hip fractures was seen mainly in care homes.",
+      "label": "Bone fractures",
+      "line": "About 11% fewer in pooled trials of adults over 50, but no drop in the best-quality trials",
       "studies": [
         {
           "pmid": "26420387",
@@ -176,6 +178,8 @@
       ],
       "summary": "Calcium supplements raised bone density by about 1 to 2% at most sites. The gain appeared in the first year and did not grow after that, and the reviewers judged it unlikely to reduce fractures in a meaningful way. A higher number on a scan is not the same as fewer broken bones.",
       "bottomLine": "In adults over 50, calcium supplements raised bone density by about 1 to 2%, mostly in the first year. Reviewers judged a gain this small unlikely to reduce fractures in a meaningful way.",
+      "label": "Bone density",
+      "line": "Raised bone density by about 1 to 2%, judged too small to cut fractures much",
       "studies": [
         {
           "pmid": "26420598",
@@ -199,6 +203,8 @@
       ],
       "summary": "Meta-analyses by Bolland and colleagues found about 20 to 30% more heart attacks with calcium supplements, with or without vitamin D. A later meta-analysis that counted only heart events confirmed from medical records found no increase in heart disease or deaths. Whether calcium supplements raise heart risk is still debated. EFSA concluded in 2012 that no link with cardiovascular disease had been established.",
       "bottomLine": "In older adults, mostly women after menopause, some meta-analyses found about 20 to 30% more heart attacks with calcium supplements, but one using events confirmed from medical records found no increase. Whether calcium raises heart risk is still debated.",
+      "label": "Heart attacks and strokes",
+      "line": "Some reviews found 20 to 30% more heart attacks, another no increase; still debated",
       "studies": [
         {
           "pmid": "20671013",
@@ -236,6 +242,8 @@
       ],
       "summary": "In the Women's Health Initiative trial, women taking 1000 mg calcium with 400 IU vitamin D a day had about 17% more kidney stones over 7 years. The Cochrane review of vitamin D with or without calcium found about 16% more kidney disease. Calcium from food did not show this pattern (see the food findings).",
       "bottomLine": "In women after menopause, 1000 mg calcium with 400 IU vitamin D a day led to about 17% more kidney stones over 7 years in the Women's Health Initiative trial. Calcium from food did not show this pattern.",
+      "label": "Kidney stones",
+      "line": "About 17% more over 7 years with calcium plus vitamin D in a large trial of women after menopause",
       "studies": [
         {
           "pmid": "16481635",
@@ -268,6 +276,8 @@
       ],
       "summary": "Calcium supplements in pregnancy (trials used at least 1 g a day) were linked to less high blood pressure and pre-eclampsia, a serious pregnancy complication. The effect was clear in women with low calcium diets but not in women whose diets already had enough. HELLP syndrome, a rare complication, was slightly more common with calcium. This is a decision for the pregnancy care team, not a general rule.",
       "bottomLine": "In pregnant women, calcium supplements (at least 1 g a day in trials) were linked to less high blood pressure and pre-eclampsia, but clearly only in women with low calcium diets. A rare complication, HELLP syndrome, was slightly more common.",
+      "label": "Pre-eclampsia (pregnancy)",
+      "line": "Less high blood pressure and pre-eclampsia, clearly only in women with low-calcium diets",
       "studies": [
         {
           "pmid": "30277579",
@@ -291,6 +301,8 @@
       ],
       "summary": "Calcium (1200 mg a day), vitamin D (1000 IU a day) or both did not lower the number of people whose adenomas came back over 3 to 5 years.",
       "bottomLine": "In adults who recently had bowel polyps removed, calcium (1200 mg a day), vitamin D (1000 IU a day) or both did not lower the number of people whose polyps came back over 3 to 5 years.",
+      "label": "Bowel polyps coming back",
+      "line": "Did not lower how many people had polyps come back over 3 to 5 years",
       "studies": [
         {
           "pmid": "26465985",
@@ -316,6 +328,8 @@
       ],
       "summary": "In most cohort studies, people who ate more calcium, milk or dairy did not have fewer fractures. There is no trial evidence that eating more calcium-rich food prevents fractures.",
       "bottomLine": "In 44 cohort studies of adults over 50, people who ate more calcium, milk or dairy mostly did not have fewer fractures. There is no trial evidence that eating more calcium-rich food prevents fractures.",
+      "label": "Calcium-rich food: fractures",
+      "line": "People eating more calcium, milk or dairy mostly didn't have fewer fractures",
       "studies": [
         {
           "pmid": "26420387",
@@ -338,6 +352,8 @@
       ],
       "summary": "Adding calcium-rich foods raised bone density by about 1 to 2%, similar to supplements. As with supplements, a gain this small is unlikely to change fracture risk much.",
       "bottomLine": "In 15 trials of adults over 50, adding calcium-rich foods raised bone density by about 1 to 2%, similar to supplements. As with supplements, a gain this small is unlikely to change fracture risk much.",
+      "label": "Calcium-rich food: bone density",
+      "line": "Adding calcium-rich foods raised bone density by about 1 to 2%, like supplements",
       "studies": [
         {
           "pmid": "26420598",
@@ -360,6 +376,8 @@
       ],
       "summary": "Women with the most calcium from food had about 35% fewer kidney stones than those with the least, while women using calcium supplements had about 20% more. One explanation is that calcium eaten with meals binds oxalate in the gut. This is a good example of why food and supplements are treated as different things.",
       "bottomLine": "In 91,731 US nurses followed for 12 years, those with the most calcium from food had about 35% fewer kidney stones, while those using calcium supplements had about 20% more. Food and supplements behaved differently here.",
+      "label": "Food calcium: kidney stones",
+      "line": "In US nurses: about 35% fewer stones with the most food calcium, 20% more with supplements",
       "studies": [
         {
           "pmid": "9092314",

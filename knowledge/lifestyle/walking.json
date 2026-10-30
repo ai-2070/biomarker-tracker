@@ -43,6 +43,8 @@
       ],
       "summary": "A 2022 meta-analysis pooled 15 cohorts with 47,471 adults followed for a median of 7.1 years, with 3,013 deaths. Compared with the quarter who walked least (a median of 3,553 steps a day), the risk of dying was lower in the other quarters: hazard ratio 0.60 at a median of 5,801 steps, 0.55 at 7,842 and 0.47 at 10,901. The risk kept falling with more steps up to about 6,000 to 8,000 steps a day in adults aged 60 and over, and 8,000 to 10,000 in younger adults. A 2025 meta-analysis of 57 studies found that 7,000 steps a day, compared with 2,000, was linked with a 47% lower risk of death (14 studies, moderate certainty), with most of the drop by around 5,000 to 7,000 steps. These studies show links in groups of people, not proof that walking more causes the lower risk.",
       "bottomLine": "Adults who took more steps a day died less often over about 7 years: 7,000 steps compared with 2,000 was linked with a 47% lower risk, with most of the drop by 5,000 to 7,000 steps. These are links in cohort studies, not proof of cause.",
+      "label": "Death from any cause",
+      "line": "47% lower risk at 7,000 vs 2,000 steps a day (a link in cohorts)",
       "studies": [
         {
           "pmid": "35247352",
@@ -73,6 +75,8 @@
       ],
       "summary": "In the 2025 meta-analysis, 7,000 steps a day compared with 2,000 was linked with a 25% lower risk of developing cardiovascular disease (hazard ratio 0.75, six studies, moderate certainty) and a 47% lower risk of dying from it (0.53, three studies, low certainty). For new cardiovascular disease the risk fell most steeply up to around 5,000 to 7,000 steps a day; for cardiovascular deaths it kept falling in a straight line. The studies were few, and the authors list residual confounding as a limit.",
       "bottomLine": "Compared with 2,000 steps a day, 7,000 was linked with a 25% lower risk of developing heart disease or stroke (moderate certainty) and a 47% lower risk of dying from it (low certainty, only three studies).",
+      "label": "Heart disease and stroke",
+      "line": "25% lower risk at 7,000 vs 2,000 steps a day (a link)",
       "studies": [
         {
           "pmid": "40713949",
@@ -95,6 +99,8 @@
       ],
       "summary": "A 2015 meta-analysis of randomised trials (32 articles) in inactive adults compared walking-only programmes of at least 4 weeks with no exercise. Walking raised fitness (VO₂max by 3.04 mL/kg/min) and lowered systolic blood pressure by 3.58 mmHg and diastolic by 1.54 mmHg, waist size by 1.51 cm, weight by 1.37 kg and body fat by 1.22 percentage points. Blood fats did not change. A 2015 review of 42 studies of outdoor walking groups (1,843 people) found systolic blood pressure 3.72 mmHg lower, diastolic 3.14 mmHg lower, resting heart rate 2.88 beats a minute lower and VO₂max 2.66 mL/kg/min higher by the end, with no notable side effects reported. These are average changes; they are small, and they don't say how one person will respond.",
       "bottomLine": "In trials of inactive adults, walking programmes of at least 4 weeks raised fitness and lowered blood pressure by about 3.6/1.5 mmHg, weight by about 1.4 kg and waist by about 1.5 cm. Blood fats did not change. The changes are small averages.",
+      "label": "Blood pressure, fitness and weight",
+      "line": "Fitness up, blood pressure about 3.6/1.5 mmHg and weight 1.4 kg lower in trials",
       "studies": [
         {
           "pmid": "25579505",
@@ -125,6 +131,8 @@
       ],
       "summary": "In the 2025 meta-analysis, 7,000 steps a day compared with 2,000 was linked with a 14% lower risk of developing type 2 diabetes (hazard ratio 0.86, 95% CI 0.74 to 0.99, four studies, moderate certainty). In people who already had type 2 diabetes, a 2014 meta-analysis of 20 randomised trials (866 people) found that walking for 8 weeks or more lowered HbA1c by 0.50 percentage points. Supervised walking lowered it by 0.58; walking without supervision did not clearly lower it, unless motivational strategies were used. Walking also lowered BMI and diastolic blood pressure in these trials, but systolic blood pressure and cholesterol did not clearly change.",
       "bottomLine": "More steps were linked with a 14% lower risk of type 2 diabetes. In people who had it, walking trials of 8 weeks or more lowered HbA1c by about 0.5 percentage points, mainly when walking was supervised or came with motivational support.",
+      "label": "Type 2 diabetes",
+      "line": "14% lower risk with more steps; HbA1c about 0.5 points lower in walking trials",
       "studies": [
         {
           "pmid": "40713949",
@@ -155,6 +163,8 @@
       ],
       "summary": "A 2024 network meta-analysis of 218 randomised trials (14,170 people with major depression) found that walking or jogging reduced depression moderately compared with control conditions such as usual care (effect size −0.62), among the largest effects of the exercise types studied. Confidence in this result was low, because only one study had a low risk of bias, and walking and jogging were combined. In the 2025 step meta-analysis, 7,000 steps a day compared with 2,000 was linked with a 22% lower risk of depressive symptoms (three studies, moderate certainty). A 2015 review of walking groups also found lower depression scores.",
       "bottomLine": "In trials of people with major depression, walking or jogging reduced depression moderately compared with usual care, but confidence was low because most trials had a risk of bias. More daily steps were linked with fewer depressive symptoms.",
+      "label": "Depression",
+      "line": "Moderately less depression in trials, most at risk of bias",
       "studies": [
         {
           "pmid": "38355154",
@@ -194,6 +204,8 @@
       ],
       "summary": "A 2024 meta-analysis of 10 cohort studies compared usual walking speeds with easy walking (under 3.2 km/h). The risk of type 2 diabetes was 15% lower at average speed (3.2 to 4.8 km/h, relative risk 0.85, low certainty), 24% lower at fairly brisk speed (4.8 to 6.4 km/h, 0.76, low certainty) and 39% lower at brisk speed (over 6.4 km/h, 0.61, moderate certainty), and the link was similar whether or not studies adjusted for total activity or time spent walking. In the 2022 step meta-analysis, after accounting for total steps, people with the highest stepping rate over their best 30 minutes of the day had a lower risk of death (hazard ratio 0.67), but time spent walking at 100 steps a minute or faster was not clearly linked with it (0.86, 95% CI 0.58 to 1.28). Whether walking faster itself adds to the benefit of walking more isn't settled.",
       "bottomLine": "People who usually walked faster had less type 2 diabetes in cohort studies, up to 39% less at a brisk pace. For death the results were mixed after counting total steps. Fast walkers may simply be fitter, so whether pace itself matters isn't settled.",
+      "label": "Walking pace",
+      "line": "Faster walkers had less diabetes; results for death are mixed",
       "studies": [
         {
           "pmid": "38050034",

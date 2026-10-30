@@ -39,6 +39,8 @@
       ],
       "summary": "In a Dutch randomised trial, 3,018 adults ended a warm shower with 30, 60 or 90 seconds of cold for 30 days in a row, then as they chose for 60 more days, or kept to warm showers. 79 % of those in the cold groups completed the first 30 days. Self-reported sickness absence from work was 29 % lower in the cold shower groups (incidence rate ratio 0.71), but the number of days people felt ill did not differ clearly between groups. People knew their group and reported their own illness and absence. A 2025 review of cold-water immersion found no clear effect on measures of immune function in the hour after cold water.",
       "bottomLine": "In one large Dutch trial, adults who ended warm showers with cold reported 29 % less sickness absence from work, but no clear change in the number of days they felt ill. People knew their group and reported everything themselves.",
+      "label": "Sickness absence from work",
+      "line": "29% less absence in one Dutch trial, but no fewer days ill (self-reported)",
       "studies": [
         {
           "pmid": "27631616",
@@ -70,6 +72,8 @@
       ],
       "summary": "A 2025 meta-analysis of 11 randomised studies (3,177 people) of cold water at 7 to 15 °C found lower stress 12 hours after cold water, but no clear effect on stress immediately, 1 hour, 24 hours or 48 hours after. Sleep quality and quality of life improved in some studies, but mood did not. A 2026 meta-analysis of 13 studies (4,105 people) of cold showers, cold-water immersion and winter swimming found results that generally leaned towards less depression and stress and better wellbeing and mood, but with wide confidence intervals and smaller effects in controlled studies only; anxiety showed little consistent benefit. Its authors concluded that the evidence does not establish that cold water improves mood or stress, and that it should not be seen as a treatment for mental health conditions on its own.",
       "bottomLine": "Studies of cold water lean towards less stress and better wellbeing, but the effects shrink in the better-controlled studies and most studies have a high risk of bias. A 2026 review concluded the evidence does not establish a benefit for mood or stress.",
+      "label": "Mood, stress and wellbeing",
+      "line": "Small, inconsistent effects that shrink in better-controlled studies",
       "studies": [
         {
           "pmid": "39879231",
@@ -101,6 +105,8 @@
       ],
       "summary": "A Cochrane review of 17 small trials (366 people) found less muscle soreness after cold-water immersion than after rest, at 24, 48, 72 and 96 hours after exercise (standardised mean differences from -0.55 to -0.93), and lower ratings of tiredness straight after. Cold water was no better than contrast (alternating hot and cold) or warm-water immersion. Study quality was low and the results varied. A 2026 umbrella review of 15 meta-analyses found the same reduction in soreness up to 96 hours, and better heart rate variability straight after exercise, but rated the certainty of the evidence low to very low.",
       "bottomLine": "In small trials, sitting in cold water after exercise eased muscle soreness over the next 4 days compared with resting, but it was no better than warm water or alternating hot and cold. The trials were of low quality.",
+      "label": "Muscle soreness after exercise",
+      "line": "Eased soreness vs resting in small trials, but no better than warm water",
       "studies": [
         {
           "pmid": "22336838",
@@ -131,6 +137,8 @@
       ],
       "summary": "In a 12-week trial, 21 active men did strength training 2 days a week with either 10 minutes of cold water or an active cool-down after each session. Strength and muscle mass increased more in the active cool-down group; type II muscle fibre size grew by 17 % in that group but not with cold water. A separate experiment in the same paper found that cold water damped the signals in muscle that lead to growth. A 2024 meta-analysis of 8 studies found smaller muscle gains when cold water followed strength training, and a 2026 umbrella review found that cold water after exercise impaired gains in strength and muscle size.",
       "bottomLine": "When cold water followed every strength-training session, muscle size and strength grew less than with training alone, in a 12-week trial and in reviews of the few studies. The studies were small, and the trial was in men only.",
+      "label": "Gains from strength training",
+      "line": "Muscle size and strength grew less when cold water followed every session",
       "studies": [
         {
           "pmid": "26174323",
@@ -167,6 +175,8 @@
       ],
       "summary": "In 8 people with type 2 diabetes, 10 days of mild cold at 14 to 15 °C raised insulin sensitivity by about 43 %. Muscle showed clear changes, while glucose uptake by brown fat rose only a little. Experienced winter-swimming men, who dip 2 to 3 times a week, made more heat in response to cold than other men. A 2022 review of 104 studies concluded that cold water seems to reduce or change body fat and improve insulin sensitivity, but that most studies were small, often of one sex, with different temperatures and water, and that it is unclear whether winter swimmers are healthier because of it.",
       "bottomLine": "Small studies suggest cold can raise heat production and insulin sensitivity, in one study of 8 people with diabetes by about 43 %. The studies were tiny and short, and it is unclear whether winter swimmers are healthier because of the cold.",
+      "label": "Metabolism and insulin",
+      "line": "Raised heat production and insulin sensitivity in tiny, short studies",
       "studies": [
         {
           "pmid": "26147760",
@@ -204,6 +214,8 @@
       ],
       "summary": "Sudden immersion in cold water sets off cold shock: a gasp, fast breathing, a faster heart and higher blood pressure. In men immersed in 10 °C water, heart rate averaged 128 beats a minute in the first 30 seconds before they got used to it. Cold water submersion can cause irregular heartbeats even in healthy volunteers, which a review links to the cold shock and diving reflexes acting together, for example when holding the breath under water. In 28 winter swimmers, systolic blood pressure rose while they waited undressed in the cold, did not rise further in the water, and was back to its usual level 4 minutes later; very high pressures were recorded in several of them. The response gets smaller with repeated immersions.",
       "bottomLine": "The first moments in cold water raise heart rate and blood pressure sharply and can cause irregular heartbeats, even in healthy people. The response shrinks with repeated immersions; whether regular cold water changes resting blood pressure is not known.",
+      "label": "Heart on first entering cold water",
+      "line": "Heart rate and blood pressure rise sharply; irregular beats can occur",
       "studies": [
         {
           "pmid": "16714416",

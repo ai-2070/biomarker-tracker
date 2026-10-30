@@ -34,6 +34,8 @@
       ],
       "summary": "In a 2014 trial, 136 volunteers were randomly assigned to red light (611 to 650 nm), a broader red and near-infrared light (570 to 850 nm), twice a week for 30 sessions, or to no treatment. The treated groups had better skin feeling and complexion, less roughness and denser collagen on ultrasound, and blinded ratings of photographs favoured treatment; the broader light gave no extra benefit over red alone. In a 2025 trial of 60 Asian adults aged 30 to 65, a home mask with 630 nm red and 850 nm near-infrared LEDs improved crow's feet more than a sham mask over 16 weeks, as judged by independent raters; the trial was funded by a company. A 2007 split-face trial of 76 people (633 nm, 830 nm or both, twice a week for 4 weeks) found wrinkles reduced by up to 36% and skin elasticity up by up to 19% compared with the start, and more collagen in skin samples. No serious side effects were reported. These are small, short trials with different devices.",
       "bottomLine": "In a few small randomised trials, red and near-infrared light on the face reduced wrinkles and roughness and increased collagen more than no treatment or a sham mask. Devices and schedules all differed, follow-up was short, and one trial was company-funded.",
+      "label": "Wrinkles and skin ageing",
+      "line": "Fewer wrinkles and more collagen in a few small trials",
       "studies": [
         {
           "pmid": "24286286",
@@ -74,6 +76,8 @@
       ],
       "summary": "A 2019 meta-analysis of 11 double-blind randomised trials found more hair density with low-level laser therapy than with sham devices, in both men and women and with both comb and helmet devices, though the trials differed a lot. A 2021 meta-analysis of 15 studies (795 people) and a 2025 meta-analysis of 38 studies (3,098 patients, most with pattern hair loss) also found more hair density than with placebo, after 4 to 26 weeks of use. In two trials of a home helmet with 655 nm lasers and LEDs, used every other day for 16 weeks, men had a 39% greater increase in hair counts than with a sham helmet, and women also gained more hair than with the sham. A 2020 review of 10 randomised trials found the devices safe, with only minor side effects, but warned that some trials had links with industry. Results for other kinds of hair loss were too few to pool.",
       "bottomLine": "In sham-controlled trials of laser and LED combs, caps and helmets, men and women with pattern hair loss gained more hair density than with sham devices. Trials differed a lot, lasted months not years, and some had links with industry.",
+      "label": "Pattern hair loss",
+      "line": "More hair density than sham devices in trials lasting months",
       "studies": [
         {
           "pmid": "30706177",
@@ -136,6 +140,8 @@
       ],
       "summary": "In 2019 the Mucositis Study Group of MASCC/ISOO (the Multinational Association of Supportive Care in Cancer and the International Society of Oral Oncology) systematically reviewed photobiomodulation. It recommended it for preventing oral mucositis and its pain in people having a stem cell transplant, radiotherapy for head and neck cancer, or radiotherapy with chemotherapy. Each recommendation is for 1 or 2 specific protocols, and the guideline says the clinician should keep to every setting of the chosen protocol. No guideline was possible for treating sores already present or for sores caused by chemotherapy alone, because the evidence was inadequate. A 2016 review found no reports of poor tumour outcomes, but called confirming that the light doesn't affect how the cancer responds a critical priority. This is care given by cancer teams, not with home devices.",
       "bottomLine": "An international cancer-care guideline recommends red or near-infrared light, given with specific settings by clinicians, to prevent painful mouth sores during stem cell transplants and head and neck radiotherapy. Evidence was too weak for treating sores already present.",
+      "label": "Mouth sores during cancer care",
+      "line": "A cancer-care guideline backs it for prevention, given by clinicians",
       "studies": [
         {
           "pmid": "31286228",
@@ -166,6 +172,8 @@
       ],
       "summary": "A 2019 meta-analysis of 22 placebo-controlled trials (1,063 people) found that laser therapy reduced pain by about 14 mm more than placebo on a visual analogue scale (a line on which people mark their pain) at the end of treatment, and more with the doses recommended by the World Association for Laser Therapy (785 to 860 nm at 4 to 8 J, or 904 nm at 1 to 3 J, per treatment spot); disability was also lower, and no side effects were reported. A 2015 meta-analysis of 9 trials (518 people) found no clear difference from sham in pain, stiffness or function, including in trials that followed those recommendations. A 2023 meta-analysis of 14 trials (820 people) found less pain with laser plus exercise than with sham laser plus exercise, but no better knee movement, muscle strength or function. The 2019 review noted that major knee osteoarthritis guidelines don't recommend the therapy.",
       "bottomLine": "For knee osteoarthritis, one large review found low-level laser eased pain more than placebo, while another found no clear difference. With exercise, pain improved but strength and function did not. Major guidelines did not recommend it.",
+      "label": "Knee osteoarthritis pain",
+      "line": "Results disagree between reviews; major guidelines didn't recommend it",
       "studies": [
         {
           "pmid": "31662383",
@@ -205,6 +213,8 @@
       ],
       "summary": "A 2022 meta-analysis of 37 double-blind, placebo-controlled crossover studies (586 participants) found that light before exercise improved muscle endurance in single-joint exercises and time to exhaustion in cycling, but not muscle strength, running or swimming. A 2024 meta-analysis of 34 randomised trials found better muscle endurance and recovery of strength, and lower creatine kinase (an enzyme released by damaged muscle) after exercise. In that review the benefits were seen in inactive people and in athletes, but not in physically active people.",
       "bottomLine": "In placebo-controlled trials, light on muscles before exercise improved muscle endurance and some measures of recovery, but not strength, running or swimming. One review found no benefit in physically active people.",
+      "label": "Exercise performance and recovery",
+      "line": "Better muscle endurance in some trials, not strength or running",
       "studies": [
         {
           "pmid": "35802348",
@@ -235,6 +245,8 @@
       ],
       "summary": "A 2021 meta-analysis of 13 randomised trials (413 patients) found that low-level laser therapy, added to other care, about doubled the chance of an ulcer healing completely (risk ratio 2.10), shrank ulcers more and shortened healing time compared with control. The authors rated the quality of the evidence as very low and called for larger, better trials. A 2025 meta-analysis of 11 studies (657 people) with grade I to II ulcers also found more complete healing and fewer infections. This is treatment under medical care, alongside standard wound care.",
       "bottomLine": "In small trials, low-level laser added to other care helped more diabetic foot ulcers heal completely and heal faster. The evidence was rated very low quality, and this is treatment under medical care.",
+      "label": "Diabetic foot ulcers",
+      "line": "More ulcers healed in small trials of laser with other care; very low quality",
       "studies": [
         {
           "pmid": "33751853",

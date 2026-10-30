@@ -111,6 +111,8 @@
       ],
       "summary": "A 2017 meta-analysis of 22 trials (721 people, average age 57 to 70) found that adding creatine to resistance training 2 to 3 days a week for 7 to 52 weeks gave about 1.4 kg more lean tissue mass and slightly larger gains in chest press and leg press strength than training with placebo. A 2026 meta-analysis of 11 trials in people aged 60 and over confirmed a small extra gain in strength (moderate certainty), but the extra gain in muscle mass and in everyday physical function was not clear. In 2016 EFSA concluded that creatine together with regular resistance training improves muscle strength in adults over 55. The benefit comes with the training: these trials compared training plus creatine with training alone. The 2026 review warns against applying the results to frail older adults or those with marked muscle loss (sarcopenia). Whole-body bone density did not change in a 2025 meta-analysis.",
       "bottomLine": "In older adults doing resistance training, adding creatine gave a small extra gain in strength, and in one review about 1.4 kg more lean mass, compared with training alone. The extra muscle mass and everyday function are less certain, and the results may not apply to frail older adults.",
+      "label": "Strength in older adults",
+      "line": "A little more strength with weight training than training alone; extra muscle less certain",
       "studies": [
         {
           "pmid": "42712402",
@@ -157,6 +159,8 @@
       ],
       "summary": "A 2024 meta-analysis of 23 trials in adults under 50 found that creatine plus resistance training increased upper-body strength by about 4.4 kg and lower-body strength by about 11.4 kg more than training with placebo. Most participants were men; the few trials in women showed no clear gain. A 2022 meta-analysis of 14 trials found that about 20 g a day for 3 to 7 days raised average power over repeated short sprints, but not peak power or fatigue. An older 2003 meta-analysis of 100 studies found the effects were small, largest in repeated short efforts of 30 seconds or less in the laboratory, and not seen for running and swimming. Based on EFSA's 2011 opinion, the EU allows the claim that creatine increases physical performance in repeated bursts of short, high-intensity exercise.",
       "bottomLine": "In younger adults, mostly men, creatine with resistance training gave larger strength gains than training alone, and it raised average power over repeated short sprints. The effects were small, few women were studied, and running and swimming did not improve.",
+      "label": "Strength and short sprints",
+      "line": "Small extra strength gains with weight training and more sprint power, mostly in young men",
       "studies": [
         {
           "pmid": "39519498",
@@ -193,6 +197,8 @@
       ],
       "summary": "A 2023 meta-analysis of 13 placebo-controlled studies in trained people found no change in endurance performance with creatine monohydrate; the effect was close to zero and slightly negative. An earlier 2003 meta-analysis also found no benefit for running and swimming. The evidence for creatine is about short bursts of hard effort, not long steady exercise.",
       "bottomLine": "Across 13 placebo-controlled studies in trained people, creatine did not improve endurance performance; the effect was close to zero. An older review also found no benefit for running and swimming.",
+      "label": "Endurance exercise",
+      "line": "No clear benefit for endurance in 13 placebo-controlled studies",
       "studies": [
         {
           "pmid": "36877404",
@@ -222,6 +228,8 @@
       ],
       "summary": "A 2024 meta-analysis of 16 small trials (492 adults aged about 21 to 76, healthy or with an illness) found small improvements in memory tests, attention time and processing speed with creatine monohydrate, but no change in overall thinking ability or in executive function (planning and self-control). The authors rated the memory evidence moderate and the rest low. A 2023 meta-analysis of 8 trials in healthy people found a small gain in memory that was seen in older adults (66 to 76) but not in younger people. In 2024 EFSA reviewed the trials and concluded that a cause-and-effect relationship between creatine and better thinking has not been established: an effect on working memory was seen only at 20 g a day for 5 to 7 days, and not at lower amounts or with longer use.",
       "bottomLine": "Small trials found slightly better memory test scores with creatine, mostly in older adults, but no change in overall thinking ability. In 2024 EFSA concluded that a cause-and-effect link between creatine and better thinking has not been established.",
+      "label": "Memory and thinking",
+      "line": "Slightly better memory in small trials, mostly in older adults; no change in overall thinking",
       "studies": [
         {
           "pmid": "39070254",
@@ -259,6 +267,8 @@
       ],
       "summary": "A 2025 meta-analysis of 11 trials (1,093 people) found that depression scores fell slightly more with creatine than with placebo, equal to about 2.2 points on the Hamilton Depression Rating Scale, below the 3 points thought to make a real difference to patients. The evidence was rated very low quality, and there were signs of bias favouring creatine, so the true effect may be trivial or none. In a 2012 trial of 52 women with major depression who were given the antidepressant escitalopram, adding creatine (5 g a day in the trial) improved scores more than placebo, from week 2 to week 8. These trials do not show that creatine can replace depression treatment; changes to treatment belong with a doctor.",
       "bottomLine": "Across 11 trials, depression scores fell slightly more with creatine than with placebo, but the average change was below what makes a real difference to patients and the evidence was very low quality. One small trial found extra benefit alongside an antidepressant.",
+      "label": "Depression symptoms",
+      "line": "Scores fell slightly more than on placebo, less than patients would notice; very low-quality evidence",
       "studies": [
         {
           "pmid": "41189312",
@@ -290,6 +300,8 @@
       ],
       "summary": "Creatine breaks down into creatinine, which is the basis of the most widely used kidney blood test. A 2026 meta-analysis of 26 trials (1,036 people, healthy or with chronic kidney disease) found blood creatinine 0.14 mg/dL higher with creatine, and kidney function estimated from creatinine (eGFR) about 11 mL/min lower. But when filtration was measured directly with a tracer (Cr-EDTA), it did not change, and neither did urea or protein in the urine; the authors think the creatinine rise reflects creatine turning into creatinine, not kidney injury. Another 2026 meta-analysis of 20 trials found a similar creatinine rise (0.13 mg/dL) without a difference in urea or eGFR. Most trials were short, and the reviews call for trials longer than a year.",
       "bottomLine": "In trials, creatine raised blood creatinine and so made kidney function estimated from creatinine (eGFR) look worse, but kidney filtration measured directly did not change. Most trials were short, so long-term effects are less certain.",
+      "label": "Kidney function and lab tests",
+      "line": "Raises blood creatinine, so kidney tests look worse; directly measured filtration didn't change",
       "studies": [
         {
           "pmid": "42507286",
@@ -327,6 +339,8 @@
       ],
       "summary": "Weight gain is the most consistent effect of creatine. In a 2022 meta-analysis of 14 trials, about 20 g a day for 3 to 7 days added about 0.8 kg of body weight compared with placebo. Small trials that measured body water with a tracer (deuterium dilution) found it rises: in 13 young footballers, 7 days of creatine raised body water by about 2.3 litres and weight by about 1 kg. In a 2003 trial in 32 young adults, the share of water inside and outside cells did not change. Body fat did not rise: in a 2023 meta-analysis of 12 trials in adults under 50 doing resistance training, fat mass did not change and body fat percentage fell very slightly. So an early rise of about a kilogram on the scale is common with creatine and is not fat.",
       "bottomLine": "Creatine adds weight, about 0.8 kg after a few days of high amounts in trials, with more water held in the body, while body fat did not rise. An early jump on the scale is common and is not fat gain.",
+      "label": "Body weight and water",
+      "line": "About 0.8 kg heavier after a few days of high amounts, with more body water; fat didn't rise",
       "studies": [
         {
           "pmid": "36041731",

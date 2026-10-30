@@ -146,6 +146,8 @@
       ],
       "summary": "Taking vitamin C every day (trials used at least 200 mg a day) did not make colds less likely in ordinary people: the risk was about the same as with placebo (3 % lower at most).",
       "bottomLine": "In children and adults in the general community, vitamin C every day did not make colds less likely. The risk of catching one was about the same as with placebo (3 % lower at most).",
+      "label": "Catching colds",
+      "line": "No fewer colds in the general community",
       "studies": [
         {
           "pmid": "23440782",
@@ -169,6 +171,8 @@
       ],
       "summary": "In people under short periods of extreme physical stress, regular vitamin C halved the risk of catching a cold. This doesn't carry over to everyday life or to ordinary exercise, and the trials are few and small.",
       "bottomLine": "In marathon runners, skiers and soldiers on subarctic exercises, regular vitamin C halved the risk of catching a cold. The trials are few and small, and the result doesn't carry over to everyday life or ordinary exercise.",
+      "label": "Colds under heavy physical stress",
+      "line": "Half as many colds in marathon runners, skiers and soldiers; few, small trials",
       "studies": [
         {
           "pmid": "23440782",
@@ -191,6 +195,8 @@
       ],
       "summary": "In people already taking vitamin C every day, colds were a little shorter (by 8 % in adults, about half a day in a week-long cold, and 14 % in children) and a little milder; a 2023 analysis found the effect was mainly on more severe symptoms. Starting vitamin C once a cold had begun did not consistently shorten it. This is a modest effect on a mild illness.",
       "bottomLine": "In people already on daily vitamin C, colds were a little shorter (8 % in adults, about half a day in a week-long cold; 14 % in children) and a little milder. Vitamin C first given once a cold had begun did not consistently shorten it.",
+      "label": "How long colds last",
+      "line": "Colds a little shorter and milder with daily use (8 % in adults); not when started late",
       "studies": [
         {
           "pmid": "23440782",
@@ -221,6 +227,8 @@
       ],
       "summary": "In the Physicians' Health Study II, 500 mg of vitamin C a day for about 8 years did not change heart attacks, strokes, deaths from heart disease, prostate cancer or cancer overall. Across 29 trials, vitamin C did not change the risk of death. Observational studies linking fruit-and-vegetable-rich diets with better health can't be explained by vitamin C supplements, which are a different intervention.",
       "bottomLine": "In mostly well-nourished middle-aged and older adults, vitamin C supplements did not change heart attacks, strokes or cancer in an 8-year trial, or the risk of death across 29 trials. Diets rich in fruit and vegetables are a different thing from these pills.",
+      "label": "Heart disease, cancer and death",
+      "line": "No change in heart attacks, strokes, cancer or deaths in well-nourished adults",
       "studies": [
         {
           "pmid": "18997197",
@@ -259,6 +267,8 @@
       ],
       "summary": "In people with iron-deficiency anaemia, iron tablets with vitamin C raised haemoglobin and ferritin about as much as iron tablets alone, with the same rate of side effects. Vitamin C does help the body absorb iron from plant foods eaten in the same meal (see the linked evidence), but adding vitamin C tablets to iron treatment hasn't been shown to make a real difference.",
       "bottomLine": "In adults with iron-deficiency anaemia, iron tablets with vitamin C raised haemoglobin and iron stores (ferritin) about as much as iron tablets alone, with the same side effects. This is about tablets, not vitamin C eaten with plant foods in the same meal.",
+      "label": "Added to iron tablets",
+      "line": "Iron levels rose about as much as with iron tablets alone",
       "studies": [
         {
           "pmid": "33136134",
@@ -282,6 +292,8 @@
       ],
       "summary": "Men with high vitamin C intake, including from supplements, had a higher risk of kidney stones; women did not. This fits with vitamin C being partly broken down to oxalate, but no trial has tested it. It is mainly a consideration for people who have had kidney stones or have kidney disease, to discuss with their doctor.",
       "bottomLine": "Over about 11 years, US men with high vitamin C intake, including from supplements, had more kidney stones; women did not. It comes from observational studies of nurses and health professionals, and no trial has tested it.",
+      "label": "Kidney stones",
+      "line": "More kidney stones in men with high intake in observational studies; not in women",
       "studies": [
         {
           "pmid": "26463139",

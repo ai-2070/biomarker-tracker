@@ -159,7 +159,7 @@ export function lifestyleText(l: LifestyleDef): string[] {
     l.summary,
     l.whatStudiesDid,
     ...l.howItWorks,
-    ...l.findings.flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", ...f.whyThisGrade]),
+    ...l.findings.flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", f.label ?? "", f.line ?? "", ...f.whyThisGrade]),
     ...l.visuals.flatMap((v) => [v.title, v.caption]),
     ...l.whoShouldBeCareful.flatMap((x) => [x.with, x.note]),
     ...l.cautions,

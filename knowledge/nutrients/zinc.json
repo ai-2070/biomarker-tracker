@@ -145,6 +145,8 @@
       ],
       "summary": "Regular zinc may make little or no difference to the chance of catching a cold (about 7 % lower risk at most, which could be chance). When colds did happen, they probably lasted about as long as without zinc.",
       "bottomLine": "In children and adults taking zinc regularly, the chance of catching a cold was at most about 7 % lower, which could be chance. When colds did happen, they probably lasted about as long as without zinc.",
+      "label": "Catching colds",
+      "line": "No clear drop in colds (at most about 7 % fewer, which could be chance)",
       "studies": [
         {
           "pmid": "38719213",
@@ -168,6 +170,8 @@
       ],
       "summary": "On average, colds were about 2 days shorter with zinc in treatment trials, but some trials found a large effect and others none, and how bad the symptoms were did not clearly change. It is unclear which products, if any, work. Lozenge trials used amounts of zinc well above the upper limit for short periods; this is research, not a guide to use.",
       "bottomLine": "In trials of mostly zinc lozenges started at the first symptoms, colds were on average about 2 days shorter, but some trials found a large effect and others none. Symptoms were not clearly milder, and it is unclear which products, if any, work.",
+      "label": "Colds, started at first symptoms",
+      "line": "About 2 days shorter on average, but trials disagree widely",
       "studies": [
         {
           "pmid": "38719213",
@@ -190,6 +194,8 @@
       ],
       "summary": "Zinc used to treat colds probably increases mild side effects, mainly bad taste and nausea, by about a third compared with placebo. No treatment trial reported on serious side effects.",
       "bottomLine": "In cold treatment trials, zinc probably increased mild side effects, mainly bad taste and nausea, by about a third compared with placebo. No treatment trial reported on serious side effects.",
+      "label": "Side effects (cold trials)",
+      "line": "About a third more mild side effects, mainly bad taste and nausea",
       "studies": [
         {
           "pmid": "38719213",
@@ -213,6 +219,8 @@
       ],
       "summary": "In people who already had AMD, zinc (alone, or with vitamins C and E and beta-carotene) slowed progression to late AMD. With the combination, about 78 fewer people in 1,000 with intermediate AMD got worse, but only about 4 fewer in 1,000 with early AMD. The trial used 80 mg of zinc a day as zinc oxide, with copper added to prevent copper deficiency, far above the upper limit; this is a treatment studied under eye doctors' care, not a general supplement. The beta-carotene in the original formula raised lung cancer risk, mostly in former smokers, and was later replaced with lutein and zeaxanthin.",
       "bottomLine": "In people aged 55–80 who already had AMD, zinc alone or with vitamins C and E and beta-carotene slowed progression to late AMD. With the combination, about 78 fewer in 1,000 with intermediate AMD got worse, but only about 4 fewer in 1,000 with early AMD. The zinc amounts were far above the upper limit.",
+      "label": "Macular degeneration (AMD)",
+      "line": "Slowed worsening, mostly in intermediate disease, at amounts far above the upper limit",
       "studies": [
         {
           "pmid": "11594942",
@@ -244,6 +252,8 @@
       ],
       "summary": "People given high-dose zinc were admitted to hospital for urinary problems (such as an enlarged prostate, urinary infections and stones) more often than those given no zinc: 11.1 % compared with 7.6 %. There was no increase in prostate or other cancers. This is a signal at high doses, not proof.",
       "bottomLine": "In older adults with the eye disease AMD, 11.1 % of those given high-dose zinc were admitted to hospital for urinary problems, compared with 7.6 % given no zinc. There was no increase in prostate or other cancers; this is a signal at high doses, not proof.",
+      "label": "Urinary problems (high doses)",
+      "line": "11.1 % against 7.6 % admitted to hospital with high-dose zinc; a signal, not proof",
       "studies": [
         {
           "pmid": "17222649",
@@ -275,6 +285,8 @@
       ],
       "summary": "In this meta-analysis, zinc lowered fasting glucose and HbA1c (glycated haemoglobin, the 2–3-month average of blood sugar), mostly in people with diabetes. Lower blood numbers are not the same as fewer complications, and the trials were small and varied. Anyone with diabetes considering zinc would discuss it with their doctor alongside their treatment.",
       "bottomLine": "In 32 small trials, zinc lowered fasting glucose and HbA1c (a 2–3-month average of blood sugar), mostly in people with diabetes. Lower blood numbers are not the same as fewer complications, and the trials varied a lot.",
+      "label": "Blood sugar",
+      "line": "Lower fasting glucose and HbA1c in small, varied trials, mostly in diabetes",
       "studies": [
         {
           "pmid": "31161192",

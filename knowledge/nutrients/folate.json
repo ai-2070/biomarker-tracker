@@ -106,6 +106,8 @@
       ],
       "summary": "Taking folic acid around conception and in early pregnancy lowered the risk of neural tube defects by about two thirds, both for a first affected pregnancy and for a repeat. The effect was similar at 400 µg a day and at higher amounts in the trials. The neural tube forms in the first weeks of pregnancy, often before a pregnancy is known, which is why health bodies advise folic acid for anyone who could become pregnant. Talk to your doctor or midwife; some people are advised a higher amount.",
       "bottomLine": "In trials, women given folic acid around conception and in early pregnancy had about two thirds fewer babies with neural tube defects such as spina bifida, for a first or a repeat case. The neural tube forms in the first weeks, often before a pregnancy is known.",
+      "label": "Neural tube defects (pregnancy)",
+      "line": "About two thirds fewer babies with spina bifida and similar defects, with folic acid around conception",
       "studies": [
         {
           "pmid": "26662928",
@@ -135,6 +137,8 @@
       ],
       "summary": "High homocysteine goes with more heart disease, and folic acid lowers homocysteine. But in large trials, lowering it did not reduce heart attacks or deaths. This is a clear example of a blood level improving without a health benefit.",
       "bottomLine": "In large trials of adults given folic acid, often with B12 and B6, homocysteine in the blood fell but heart attacks and deaths did not. It is a clear example of a blood level improving without a health benefit.",
+      "label": "Heart attacks and death",
+      "line": "Lowered homocysteine but not heart attacks or deaths in large trials",
       "studies": [
         {
           "pmid": "28816346",
@@ -158,6 +162,8 @@
       ],
       "summary": "Across trials, stroke was slightly less common with homocysteine-lowering B vitamins (about 4.3% compared with 5.1%). In the China Stroke Primary Prevention Trial, adults with high blood pressure who got folic acid with their blood pressure medicine had about a fifth fewer first strokes over 4.5 years. The benefit seems to depend on folate status, so it may be small or absent in people who already get enough.",
       "bottomLine": "Across trials, stroke was slightly less common with homocysteine-lowering B vitamins (about 4.3% compared with 5.1%), and a large trial in Chinese adults with high blood pressure found about a fifth fewer first strokes. The benefit may be small or absent in people who already get enough folate.",
+      "label": "Stroke",
+      "line": "Slightly fewer strokes (4.3% against 5.1%); may be small or absent if folate is already enough",
       "studies": [
         {
           "pmid": "28816346",
@@ -189,6 +195,8 @@
       ],
       "summary": "Folic acid with B12 (and sometimes B6) lowered homocysteine by about a quarter but did not slow the decline of memory and thinking with age. In people who already had mild memory problems there was probably little or no effect over 6 to 24 months. No trial reported whether fewer people developed dementia. A possible benefit in people with high homocysteine came from subgroup analyses in one trial and needs testing.",
       "bottomLine": "In older adults, folic acid with B12 lowered homocysteine by about a quarter but did not slow the decline of memory and thinking, and probably made little or no difference in people with mild memory problems. No trial reported whether fewer people developed dementia.",
+      "label": "Memory and dementia",
+      "line": "Lowered homocysteine but didn't slow memory and thinking decline in older adults",
       "studies": [
         {
           "pmid": "24965307",
@@ -219,6 +227,8 @@
       ],
       "summary": "There was a concern that folic acid might speed up cancers. In these trials, folic acid at amounts higher than fortification gives neither raised nor lowered cancer overall, or for bowel, prostate, lung, breast or other sites, over about 5 years. EFSA's 2023 review also found the evidence insufficient to link folate intake with bowel or prostate cancer.",
       "bottomLine": "Across 13 trials lasting about 5 years, folic acid, at amounts higher than fortification gives, neither raised nor lowered the risk of cancer overall, or bowel, prostate, lung, breast or other cancers. This eased a concern that it might speed up cancers.",
+      "label": "Cancer",
+      "line": "Neither raised nor lowered cancer risk over about 5 years in 13 trials",
       "studies": [
         {
           "pmid": "23352552",
@@ -241,6 +251,8 @@
       ],
       "summary": "Folic or folinic acid alongside methotrexate reduced stomach and gut side effects such as nausea, reduced liver test abnormalities, and fewer people stopped methotrexate. It did not seem to make methotrexate less effective for arthritis. This is part of medical treatment and is arranged by the prescribing doctor.",
       "bottomLine": "In adults with rheumatoid arthritis on low-dose methotrexate, added folic or folinic acid meant fewer gut side effects, fewer liver test problems and fewer people giving up methotrexate, without seeming to make it less effective. It is arranged by the prescribing doctor.",
+      "label": "Methotrexate side effects",
+      "line": "Fewer gut and liver side effects in rheumatoid arthritis, as part of the doctor's treatment",
       "studies": [
         {
           "pmid": "23728635",
@@ -263,6 +275,8 @@
       ],
       "summary": "In the DIVINe trial, a daily tablet of high-dose folic acid (2.5 mg) with B6 and B12 lowered homocysteine, but kidney function fell faster and heart attacks, strokes and deaths were about twice as common as with placebo over 3 years. It is a single small trial, but it is a reason not to assume high-dose B vitamins are harmless in kidney disease.",
       "bottomLine": "In one small trial of people with diabetes and kidney disease, high-dose folic acid with B6 and B12 lowered homocysteine, but kidney function fell faster and heart attacks, strokes and deaths were about twice as common as with placebo over 3 years.",
+      "label": "Kidney disease with diabetes",
+      "line": "One small trial: faster kidney decline and about twice the heart attacks, strokes and deaths",
       "studies": [
         {
           "pmid": "20424250",

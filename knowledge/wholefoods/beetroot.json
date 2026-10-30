@@ -136,6 +136,8 @@
       ],
       "summary": "A 2017 meta-analysis of 22 trials of beetroot juice found systolic blood pressure 3.55 mmHg lower (95% confidence interval 2.54 to 4.55 lower) and diastolic 1.32 mmHg lower (0.68 to 1.97 lower) than in comparison groups; the difference was larger in trials of 14 days or more (5.11 vs 2.67 mmHg) and with 500 mL a day than with 70 to 140 mL. In people with high blood pressure, a 2022 meta-analysis of 7 trials (218 people) found systolic pressure 4.95 mmHg lower (1.01 to 8.88 lower) but no clear change in diastolic, and a 2024 meta-analysis of 11 trials (349 people) found clinic systolic pressure 5.31 mmHg lower (3.16 to 7.46 lower) with no clear effect on clinic diastolic or 24-hour pressure. In a 4-week trial in 68 people with high blood pressure, half already on medicines, 250 mL of juice a day lowered home systolic pressure by 8.1 mmHg compared with nitrate-depleted juice, and clinic and 24-hour systolic pressure fell 7.7 mmHg from the start, with no change on placebo; heart rate didn't change. But in the longest trial, 6 months of 70 mL of juice a day in people with or at risk of type 2 diabetes, arm blood pressure didn't differ from placebo; only central systolic pressure was 2.6 mmHg lower. An earlier meta-analysis that pooled nitrate salts with juice found systolic 4.4 mmHg lower, and another found the fall only in clinic readings. No trial measured heart attacks or strokes.",
       "bottomLine": "In short trials, beetroot juice went with systolic blood pressure about 3.5 to 5 mmHg lower, a little more in people with high blood pressure; diastolic changed less. The longest trial, 6 months, found no fall in arm blood pressure, and no trial measured heart attacks or strokes.",
+      "label": "Blood pressure",
+      "line": "About 3.5 to 5 mmHg lower in short juice trials; no fall in a 6-month trial",
       "studies": [
         {
           "pmid": "29141968",
@@ -208,6 +210,8 @@
       ],
       "summary": "A 2026 meta-analysis of 38 placebo-controlled trials (703 healthy adults) found beetroot juice raised VO₂max (the most oxygen the body can use) slightly: standardised effect 0.24 (95% confidence interval 0.11 to 0.37), 0.19 (0.07 to 0.31) after adjusting for missing small studies. It was larger in recreationally active people (0.38) and not clear in highly trained athletes (0.07, −0.09 to 0.23); the authors rated the certainty moderate. A 2020 meta-analysis of 80 trials of nitrate (any source) found a small gain in performance (0.17, 0.12 to 0.23), but none in well-trained endurance athletes (0.02) and none clear in the 6 studies of women only. An umbrella review of 20 meta-analyses (2,672 people) found longer time to exhaustion (0.33, 0.19 to 0.47) but no clear change in many other measures; a 2017 meta-analysis found time to exhaustion improved but time-trial results less likely to. A 2022 meta-analysis of 123 studies found nitrate salts were not as effective as beetroot juice or a high-nitrate diet, and that practices harmful to mouth bacteria lowered the effect.",
       "bottomLine": "In lab tests, beetroot juice went with a small gain in endurance and VO₂max, mostly in recreationally active people. There was no clear gain in well-trained athletes and few trials in women. The authors rated the certainty moderate.",
+      "label": "Endurance and fitness",
+      "line": "Small gain in lab tests, mostly in recreationally active people",
       "studies": [
         {
           "pmid": "42523624",
@@ -269,6 +273,8 @@
       ],
       "summary": "Flow-mediated dilation measures how much an artery widens when blood flow rises. A 2016 meta-analysis of 12 trials (246 people) of nitrate or beetroot found better blood vessel function (standardised effect 0.36, 95% confidence interval 0.16 to 0.56), with smaller effects in older people and those at higher heart risk. A 2026 meta-analysis of 13 trials found better flow-mediated dilation (pooled difference 1.48%, 95% confidence interval 0.70 to 2.27), but results varied hugely between trials. In a 6-week trial in 69 people with high cholesterol, 250 mL of beetroot juice a day raised flow-mediated dilation by 1.1 percentage points while it fell 0.3 on nitrate-depleted juice. The 4-week trial in high blood pressure found about 20% better blood vessel function and less artery stiffness. But a 2-week trial in 27 people with type 2 diabetes found no change in blood vessel function, and the 6-month trial found no change in artery stiffness, though artery wall thickness in the neck (CIMT) was 0.06 mm lower than on placebo.",
       "bottomLine": "In several small trials, beetroot juice or nitrate improved how well arteries widen, but results varied hugely, one trial in type 2 diabetes found no change, and the 6-month trial found no change in artery stiffness.",
+      "label": "Blood vessel function",
+      "line": "Results disagree between small trials",
       "studies": [
         {
           "pmid": "25764393",
@@ -337,6 +343,8 @@
       ],
       "summary": "A 2022 meta-analysis of 6 trials, all using beetroot juice, found faster recovery of muscle strength 72 hours after exercise (standardised effect 0.54), better jump performance 24 to 72 hours after (0.75 to 1.32), and less tenderness at 48 and 72 hours. Juice didn't change oxidative stress markers or creatine kinase, and CRP (inflammation) was higher than on placebo at 48 hours. A 2026 meta-analysis of 7 trials found creatine kinase 98.67 IU/L lower, strength 8.93% and jump performance 4.72% better than on placebo, with no change in CRP, IL-6 or TNF-α, but results varied a lot between trials.",
       "bottomLine": "In a few small trials, beetroot juice went with faster recovery of strength and jumping after muscle-damaging exercise. Results for blood markers of muscle damage disagree between meta-analyses, and the trials had some concerns about bias.",
+      "label": "Recovery after hard exercise",
+      "line": "Strength came back faster in a few small trials",
       "studies": [
         {
           "pmid": "34151694",
@@ -366,6 +374,8 @@
       ],
       "summary": "A 2024 systematic review of 20 studies (18 randomised trials) of beetroot products found conflicting results on blood sugar and couldn't reach a conclusion. In a 2-week crossover trial in 27 people with type 2 diabetes, 250 mL of juice a day (7.5 mmol of nitrate) didn't change insulin sensitivity, measured with a clamp test, compared with nitrate-depleted juice. In a 12-week trial in 46 people with type 2 diabetes, 24 mL of concentrated juice a day didn't change fasting glucose, insulin or HbA1c compared with no juice. A study in which 44 people with type 2 diabetes ate 100 g of raw beetroot a day for 8 weeks found fasting blood sugar 13.53 mg/dL and HbA1c 0.34 percentage points lower, but it had no comparison group. The 4-week blood pressure trial found no change in blood sugar measures.",
       "bottomLine": "Small trials of beetroot juice in type 2 diabetes found no change in blood sugar, insulin sensitivity or HbA1c. One study of raw beetroot found lower blood sugar, but it had no comparison group, so the effect is unclear.",
+      "label": "Blood sugar and insulin",
+      "line": "No clear change in small trials in type 2 diabetes",
       "studies": [
         {
           "pmid": "38760619",
@@ -420,6 +430,8 @@
       ],
       "summary": "A 2019 meta-analysis of 13 trials (297 people) of nitrate or nitrite, from beetroot juice or salts, found no effect on thinking (standardised effect 0.06, 95% confidence interval −0.06 to 0.18) or on blood flow in the brain at rest or during tasks. A 13-week trial in 62 overweight older adults found no change in thinking or frontal brain blood flow with any of three amounts of concentrated beetroot juice. In a 2-week trial in 27 people with type 2 diabetes, simple reaction time was 13.9 milliseconds faster on beetroot juice than on nitrate-depleted juice, but four other thinking tests didn't differ.",
       "bottomLine": "Trials so far haven't found that beetroot juice or nitrate improves thinking or brain blood flow; one small trial found slightly faster reaction time in one of five tests.",
+      "label": "Thinking and brain blood flow",
+      "line": "No clear change in trials so far",
       "studies": [
         {
           "pmid": "29617153",

@@ -123,6 +123,8 @@
       ],
       "summary": "A 2016 meta-analysis of 34 double-blind trials (2,028 people; median 368 mg a day for about 3 months, as research) found blood pressure about 2 mmHg lower for the top number and 1.8 mmHg lower for the bottom number than with placebo. A 2006 Cochrane review of 12 trials in people with high blood pressure found a small fall in the bottom number only and called the evidence weak. The effect is small compared with blood pressure medicines, and no trial showed fewer heart attacks or strokes.",
       "bottomLine": "Across 34 trials (2,028 adults with and without high blood pressure), magnesium lowered blood pressure by about 2 mmHg for the top number and 1.8 mmHg for the bottom number compared with placebo. That is small next to blood pressure medicines, and no trial showed fewer heart attacks or strokes.",
+      "label": "Blood pressure",
+      "line": "About 2 mmHg lower top number in trials; small next to blood pressure medicines",
       "studies": [
         {
           "pmid": "27402922",
@@ -154,6 +156,8 @@
       ],
       "summary": "A 2020 Cochrane review found that magnesium is unlikely to give a meaningful reduction in cramps for older adults with cramps of no known cause: the number of cramps per week was about the same as with placebo. For leg cramps in pregnancy, trial results conflict. Stomach and bowel side effects, such as diarrhoea, were more common with magnesium.",
       "bottomLine": "In older adults with cramps of no known cause, magnesium did about as well as placebo: the number of cramps per week stayed about the same. For cramps in pregnancy, trial results conflict. Side effects such as diarrhoea were more common with magnesium.",
+      "label": "Night-time leg cramps",
+      "line": "In older adults, about as many cramps a week as with placebo",
       "studies": [
         {
           "pmid": "32956536",
@@ -177,6 +181,8 @@
       ],
       "summary": "A 2021 meta-analysis of 3 small trials found people fell asleep about 17 minutes sooner with magnesium than with placebo, but total sleep time did not clearly change. The authors judged the evidence too weak for firm conclusions. Claims that magnesium improves sleep in general go beyond what trials have shown.",
       "bottomLine": "In 3 small trials of older adults with trouble sleeping, people fell asleep about 17 minutes sooner with magnesium than with placebo, but total sleep time did not clearly change. The authors judged the evidence too weak for firm conclusions.",
+      "label": "Sleep in older adults",
+      "line": "Fell asleep about 17 minutes sooner in 3 small trials; total sleep didn't clearly change",
       "studies": [
         {
           "pmid": "33865376",
@@ -207,6 +213,8 @@
       ],
       "summary": "A 2016 meta-analysis found that oral magnesium reduced how often migraines came and how strong they were (10 trials, 789 people). A 2012 American Academy of Neurology and American Headache Society guideline rated magnesium as probably effective for preventing migraine. The trials were small and of mixed quality, so the size of the benefit is uncertain.",
       "bottomLine": "In 10 trials (789 people) of adults with migraine, oral magnesium made migraines less frequent and less strong, and a US guideline rated it probably effective. The trials were small and of mixed quality, so the size of the benefit is uncertain.",
+      "label": "Migraine prevention",
+      "line": "Fewer and milder migraines in small trials of mixed quality",
       "studies": [
         {
           "pmid": "26752497",
@@ -237,6 +245,8 @@
       ],
       "summary": "A 2016 meta-analysis found slightly lower fasting blood sugar with magnesium than with placebo in people with diabetes, and better blood sugar after a glucose drink in people at high risk. The effects were small and varied between trials, and they show changes in blood tests, not fewer diabetes complications.",
       "bottomLine": "In people with diabetes, fasting blood sugar was slightly lower with magnesium than with placebo, and in people at high risk, blood sugar after a glucose drink was better. The effects were small and varied, and are blood test changes, not fewer complications.",
+      "label": "Blood sugar",
+      "line": "Slightly lower fasting blood sugar in diabetes; small, varied blood test changes",
       "studies": [
         {
           "pmid": "27530471",
@@ -259,6 +269,8 @@
       ],
       "summary": "A 2014 Cochrane review of 10 trials (9,090 women) found not enough high-quality evidence that magnesium supplements in pregnancy improve outcomes for mother or baby. This is about oral supplements; magnesium given in hospital by drip for severe pre-eclampsia is a separate medical treatment.",
       "bottomLine": "A review of 10 trials (9,090 pregnant women) found not enough high-quality evidence that magnesium supplements by mouth improve outcomes for mother or baby. Magnesium given in hospital by drip for severe pre-eclampsia is a separate medical treatment.",
+      "label": "Pregnancy outcomes",
+      "line": "Not enough good evidence that magnesium by mouth helps mother or baby",
       "studies": [
         {
           "pmid": "24696187",

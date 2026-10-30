@@ -36,7 +36,7 @@ describe("knowledge base: whole foods", () => {
 
   it("gives every finding a bottom line, and every visual a source", () => {
     for (const f of entries) {
-      for (const x of f.findings) expect(x.bottomLine, `${f.id}: ${x.outcome}`).toBeTruthy();
+      for (const x of f.findings) { expect(x.bottomLine, `${f.id}: ${x.outcome}`).toBeTruthy(); expect(x.label && x.line, `${f.id}: ${x.outcome} needs a label and a line`).toBeTruthy(); }
       for (const v of f.visuals) expect(v.sources.length, `${f.id}: ${v.title}`).toBeGreaterThan(0);
     }
   });

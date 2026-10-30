@@ -180,6 +180,8 @@
       ],
       "summary": "In a double-blind trial in Korea, 80 adults with functional constipation ate a fig (Ficus carica) paste or a placebo for 8 weeks. Compared with placebo, the fig paste went with a shorter colon transit time (how long food takes to pass through the large bowel), better stool type and less abdominal discomfort; blood tests and checks for organ harm stayed normal. The abstract gives no sizes of these differences. A 2022 meta-analysis of 11 fruit trials included this one, rated its risk of bias low, but described it among trials in which fruit did not clearly change stool consistency or frequency; in its pooled analysis, kiwifruit, not fig paste, improved stool form. Two small trials tested fig syrup, a different product: in 90 pregnant women with constipation, 15 mL of fig syrup or fig-walnut syrup each night for 14 days went with more bowel movements and better quality of life than placebo; in 60 children, fig syrup and red sugar worked about the same for stool frequency.",
       "bottomLine": "One placebo-controlled trial in 80 adults found that a fig paste shortened the time food took through the bowel and improved stool type over 8 weeks. A meta-analysis didn't count it as clearly changing stool form or frequency, and the evidence is thin.",
+      "label": "Constipation",
+      "line": "Faster bowel transit and better stools in one trial of fig paste",
       "studies": [
         {
           "pmid": "27440682",
@@ -226,6 +228,8 @@
       ],
       "summary": "In a single-blind randomised trial, 150 adults with irritable bowel syndrome with constipation were split into three groups for 4 months: dried figs (45 g twice a day, according to two reviews), flixweed seed, or a control group. Compared with the control group, figs went with better scores on the IBS severity scale, less frequent pain, less bloating, better bowel frequency, fewer hard stools, better quality of life and more satisfaction with bowel habits. Pain severity and CRP (an inflammation marker) did not change. Figs and flixweed did about as well as each other. A 2023 systematic review of herbal remedies for IBS-C included the trial and judged the overall evidence for such remedies to be of limited quality.",
       "bottomLine": "In one Iranian trial of 150 adults with IBS with constipation, eating dried figs every day for 4 months went with fewer symptoms and better quality of life than no figs, though pain severity didn't change and patients knew what they were eating.",
+      "label": "Irritable bowel with constipation",
+      "line": "Fewer symptoms in one trial of 150 adults; pain severity didn't change",
       "studies": [
         {
           "pmid": "30318190",
@@ -264,6 +268,8 @@
       ],
       "summary": "In a crossover trial, 83 adults aged 30 to 75 with raised LDL cholesterol added 120 g of dried California Mission figs a day to their usual diet for 5 weeks and ate their usual diet for another 5 weeks. LDL cholesterol, HDL cholesterol and triglycerides did not differ between the two periods; total cholesterol tended to rise with figs, but only in people who had the usual diet first. Soluble fibre intake rose from 8.2 to 12.6 g a day, sugars from 23.4% to 32.2% of energy, and body weight did not change. In a second crossover trial, 55 adults with overweight and another heart risk factor ate three-quarters of a cup a day of mixed dried plums, figs, dates and raisins or a starchy snack with the same energy, for 4 weeks each: blood fats did not differ between the two, although LDL was 0.10 mmol/L higher than at the start during the dried fruit period.",
       "bottomLine": "In a 5-week trial in 83 adults with high LDL cholesterol, adding 120 g of dried figs a day did not lower LDL or triglycerides, and total cholesterol tended to rise. A trial of mixed dried fruit including figs also found no change in blood fats.",
+      "label": "LDL cholesterol and triglycerides",
+      "line": "No fall in LDL or triglycerides in a 5-week trial",
       "studies": [
         {
           "pmid": "21811062",
@@ -296,6 +302,8 @@
       ],
       "summary": "In a 4-week crossover trial of 55 adults with overweight and another heart risk factor, three-quarters of a cup a day of mixed dried plums, figs, dates and raisins went with fasting blood sugar 0.08 mmol/L higher (95% confidence interval 0.005 to 0.16 higher) than a starchy snack with the same energy and carbohydrate, a very small difference; fasting insulin, blood pressure and weight change did not differ. In a crossover study of 12 healthy adults, a traditional Greek halva with currants and dried figs had a glycaemic index of 52 (low), lower than glucose; this was a whole dessert, not figs alone. Studies that lowered blood sugar after a glucose drink used fig fruit extracts standardised to abscisic acid, or fig leaf preparations, which are different products. A 2023 review describes a 2-month trial in 50 people with type 2 diabetes in which figs lowered blood sugar by 13.5%, against 27.6% with metformin; that trial isn't indexed in Europe PMC and couldn't be checked.",
       "bottomLine": "There is almost no research on figs themselves and blood sugar. In a trial of mixed dried fruit including figs, fasting blood sugar was very slightly higher than with a starchy snack. Extract and leaf studies don't show what eating figs does.",
+      "label": "Blood sugar",
+      "line": "Almost no research on figs themselves; no clear change",
       "studies": [
         {
           "pmid": "32513313",
@@ -335,6 +343,8 @@
       ],
       "summary": "In the same crossover trial (88 people with data, 120 g of dried California Mission figs a day for 5 weeks), diet recalls showed more calcium and potassium in the diet during the fig period, but mineral levels in blood samples were nearly the same as during the usual diet. Figs also replaced other foods: the authors estimated that eating figs pushed out about 4% of desserts, 5% of vegetables, 10% of dairy products and 23% of grain products that people would otherwise have eaten.",
       "bottomLine": "In a 5-week trial, adding 120 g of dried figs a day raised calcium and potassium in people's diets, but mineral levels in the blood didn't change. The figs also took the place of some other foods, including dairy and grains.",
+      "label": "Minerals in the blood",
+      "line": "More calcium and potassium eaten, but blood levels didn't change (one trial)",
       "studies": [
         {
           "pmid": "25156424",

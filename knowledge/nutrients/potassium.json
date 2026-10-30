@@ -122,6 +122,8 @@
       ],
       "summary": "A 2017 meta-analysis of 23 placebo-controlled trials (1,213 people) found blood pressure about 4 mmHg lower for the top number and 2.5 mmHg lower for the bottom number with potassium supplements. A 2006 Cochrane review of 6 trials found large but uncertain falls and called the evidence inconclusive. The trials measured blood pressure, not strokes or heart attacks, and excluded people for whom extra potassium is unsafe.",
       "bottomLine": "In 23 placebo-controlled trials (1,213 people), potassium supplements lowered blood pressure by about 4 mmHg for the top number and 2.5 mmHg for the bottom number. The trials measured blood pressure, not strokes or heart attacks, and excluded people for whom extra potassium is unsafe.",
+      "label": "Blood pressure, if already high",
+      "line": "Top number about 4 mmHg lower, bottom 2.5 lower, in people with high blood pressure",
       "studies": [
         {
           "pmid": "28419159",
@@ -152,6 +154,8 @@
       ],
       "summary": "A 2013 meta-analysis for the World Health Organization found that more potassium lowered blood pressure in people with high blood pressure, but not clearly in people without it.",
       "bottomLine": "In adults without high blood pressure, more potassium did not clearly lower blood pressure, while it did in people with high blood pressure (a 2013 analysis for the World Health Organization). This comes from splitting trials by blood pressure, not from trials designed for the question.",
+      "label": "Blood pressure, if normal",
+      "line": "No clear fall in people without high blood pressure",
       "studies": [
         {
           "pmid": "23558164",
@@ -173,6 +177,8 @@
       ],
       "summary": "A 2020 dose-response meta-analysis found a U-shaped pattern: blood pressure fell with moderate extra potassium, the benefit faded at larger extra amounts, and blood pressure rose at the largest amounts in people already treated for high blood pressure. The authors advise caution because few trials tested large amounts, and conclude that excessive supplementation should be avoided, especially in some groups.",
       "bottomLine": "Across 32 trials of potassium supplements, blood pressure fell with moderate extra potassium, the benefit faded at larger amounts, and it rose at the largest amounts in people already treated for high blood pressure. Few trials tested large amounts, so this pattern is uncertain.",
+      "label": "Blood pressure at large amounts",
+      "line": "Benefit faded at larger amounts and blood pressure rose at the largest; few trials",
       "studies": [
         {
           "pmid": "32500831",
@@ -195,6 +201,8 @@
       ],
       "summary": "A 2015 Cochrane review found fewer new stones and less stone growth with citrate salts (mostly potassium citrate) than with placebo or no treatment. More people stopped treatment because of stomach side effects. This is a medical treatment for people with stones, not evidence for general use.",
       "bottomLine": "In adults with calcium-containing kidney stones, citrate salts (mostly potassium citrate) led to fewer new stones and less stone growth than placebo or no treatment, but more people stopped because of stomach side effects. This is a medical treatment, not evidence for general use.",
+      "label": "Kidney stones (medical treatment)",
+      "line": "Fewer new stones with potassium citrate in people with stones; more stomach side effects",
       "studies": [
         {
           "pmid": "26439475",
@@ -217,6 +225,8 @@
       ],
       "summary": "A 2015 meta-analysis found that potassium bicarbonate and citrate lowered calcium loss in urine and a urine marker of bone breakdown (NTX). The authors call this a possible benefit for bone; whether it prevents fractures is not known from these studies.",
       "bottomLine": "In 14 studies, potassium bicarbonate and citrate lowered calcium loss in urine and a urine marker of bone breakdown. The authors call this a possible benefit for bone, but these studies can't show whether it prevents fractures.",
+      "label": "Calcium loss and bone breakdown",
+      "line": "Less calcium lost in urine in small studies; effect on fractures unknown",
       "studies": [
         {
           "pmid": "25572045",
@@ -241,6 +251,8 @@
       ],
       "summary": "In the SSaSS trial (20,995 people, about 5 years), villages using a salt substitute of 75 % sodium chloride and 25 % potassium chloride had fewer strokes, heart events and deaths than villages using regular salt. A 2022 Cochrane review found salt substitutes probably lower blood pressure, heart events and heart deaths slightly in adults, and probably raise blood potassium slightly. This is a change in salt, not a potassium supplement. People with kidney disease or on medicines that raise potassium were excluded.",
       "bottomLine": "In a trial of 20,995 people in rural China over about 5 years, villages using a salt substitute with 25 % potassium chloride had fewer strokes, heart events and deaths than villages using regular salt. People with kidney disease or on medicines that raise potassium were excluded.",
+      "label": "Salt substitute: strokes, deaths",
+      "line": "Fewer strokes, heart events and deaths in a trial of 20,995 people in rural China",
       "studies": [
         {
           "pmid": "34459569",
@@ -271,6 +283,8 @@
       ],
       "summary": "A 2013 meta-analysis for the World Health Organization found that people with higher potassium intake had about a 24 % lower risk of stroke. There was no clear link with heart disease overall. These studies show an association with potassium-rich diets, not the effect of supplements.",
       "bottomLine": "In 11 studies of adults' usual diets, people who ate more potassium had about a 24 % lower risk of stroke, with no clear link to heart disease overall. This shows an association with potassium-rich diets, not the effect of supplements.",
+      "label": "Potassium-rich diets: stroke",
+      "line": "About 24 % lower stroke risk with higher intake; an association, not proof",
       "studies": [
         {
           "pmid": "23558164",

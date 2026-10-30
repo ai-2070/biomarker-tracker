@@ -29,7 +29,7 @@ describe("knowledge base: lifestyle", () => {
 
   it("gives every finding a bottom line, and every visual a source", () => {
     for (const l of entries) {
-      for (const f of l.findings) expect(f.bottomLine, `${l.id}: ${f.outcome}`).toBeTruthy();
+      for (const f of l.findings) { expect(f.bottomLine, `${l.id}: ${f.outcome}`).toBeTruthy(); expect(f.label && f.line, `${l.id}: ${f.outcome} needs a label and a line`).toBeTruthy(); }
       for (const v of l.visuals) expect(v.sources.length, `${l.id}: ${v.title}`).toBeGreaterThan(0);
     }
   });

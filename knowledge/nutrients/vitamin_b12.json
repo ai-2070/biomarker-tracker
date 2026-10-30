@@ -109,6 +109,8 @@
       ],
       "summary": "A Cochrane review found that daily high-dose tablets (1000 to 2000 µg in the trials) raised blood B12 about as well as injections, and one trial found tablets raised it more. An earlier trial found blood counts and nerve symptoms improved equally in both groups. The evidence is small and short, and none of the trials reported how people felt, so it can't show whether tablets suit everyone, especially people with nerve damage or pernicious anaemia.",
       "bottomLine": "In small, short trials in adults with diagnosed B12 deficiency, daily high-dose tablets raised blood B12 about as well as injections. None reported how people felt, so it's unclear whether tablets suit everyone, especially people with nerve damage or pernicious anaemia.",
+      "label": "Tablets compared with injections",
+      "line": "High-dose tablets raised B12 about as well as injections in small, short trials",
       "studies": [
         {
           "pmid": "29543316",
@@ -139,6 +141,8 @@
       ],
       "summary": "In this dose-finding trial, small daily amounts close to normal dietary intake barely changed methylmalonic acid. Only much larger daily amounts (about 650 to 1000 µg in the trial) came close to the maximum effect. This helps explain why low-dose multivitamins often don't correct a shortage in older people. It shows changes in a blood marker, not that people felt or functioned better.",
       "bottomLine": "In a trial in older people with mildly low B12, small daily amounts close to normal dietary intake barely changed methylmalonic acid, a blood marker. Only much larger amounts came close to the maximum effect. It measured the blood marker, not how people felt or functioned.",
+      "label": "Mild shortage in older people",
+      "line": "Small daily amounts barely changed a blood marker; much larger ones came close to full effect",
       "studies": [
         {
           "pmid": "15911731",
@@ -162,6 +166,8 @@
       ],
       "summary": "B12 is often taken for memory, mood or energy. In people who were not clearly deficient, B12 alone or with other B vitamins did not improve memory, thinking or depression scores. Only one trial looked at tiredness, so there is not enough evidence on that. People with a real deficiency are a different case: treating it can improve symptoms caused by the deficiency.",
       "bottomLine": "In adults who were not clearly deficient, B12 alone or with other B vitamins did not improve memory, thinking or depression scores, and only one trial looked at tiredness. People with a real deficiency are a different case: treating it can improve its symptoms.",
+      "label": "Memory, mood and tiredness",
+      "line": "No clear benefit in people who weren't deficient; tiredness barely studied",
       "studies": [
         {
           "pmid": "33809274",
@@ -185,6 +191,8 @@
       ],
       "summary": "High homocysteine in the blood goes with more heart disease, so large trials lowered it with B vitamins. Homocysteine fell, but heart attacks and deaths did not. Stroke was slightly less common (about 4.3% compared with 5.1%), mostly in trials where folic acid was the main ingredient (see folate). Lowering a blood level is not the same as a health benefit.",
       "bottomLine": "Large trials of B12 with folic acid, often with B6, lowered the blood level homocysteine but not heart attacks or deaths. Stroke was slightly less common (about 4.3% compared with 5.1%), mostly in trials where folic acid was the main ingredient.",
+      "label": "Heart attacks, strokes and death",
+      "line": "Homocysteine fell but heart attacks and deaths didn't; strokes slightly fewer",
       "studies": [
         {
           "pmid": "28816346",
@@ -208,6 +216,8 @@
       ],
       "summary": "In this trial, methylcobalamin tablets raised B12 levels and improved nerve tests, pain and quality of life compared with placebo, while the placebo group got slightly worse. Some measures, such as heart rhythm reflex tests, did not improve. It is a single small trial in people already low-normal on long-term metformin, so it doesn't show that B12 helps nerve damage in people with normal B12.",
       "bottomLine": "In one small trial of people with type 2 diabetes, long-term metformin and low-normal B12, methylcobalamin tablets improved nerve tests, pain and quality of life compared with placebo. It doesn't show that B12 helps nerve damage in people with normal B12.",
+      "label": "Diabetic nerve damage on metformin",
+      "line": "Better nerve tests, pain and quality of life in one small trial of people with low-normal B12",
       "studies": [
         {
           "pmid": "33513879",

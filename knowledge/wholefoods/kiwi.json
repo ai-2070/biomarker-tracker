@@ -140,6 +140,8 @@
       ],
       "summary": "In a 2024 meta-analysis, kiwifruit gave 0.36 more bowel movements a week than psyllium fibre (95% CI 0.24 to 0.48; 3 trials, 192 people), a small difference against a treatment that itself works; the 2025 British Dietetic Association guideline rated this low certainty and found no difference from psyllium in how many people had a clinical benefit (risk ratio 1.32, 0.91 to 1.92). A 2022 meta-analysis of 7 trials (399 people) found kiwifruit vs psyllium 1.01 more spontaneous bowel movements a week (−0.02 to 2.04). In the largest trial, in New Zealand, Italy and Japan, two green kiwifruit a day for 4 weeks raised complete spontaneous bowel movements by 1.53 a week in functional constipation and 1.73 in IBS-C, and improved gut comfort; psyllium's effect was clear only in IBS-C. In a US trial of 79 people, kiwifruit, prunes and psyllium all raised bowel movements; kiwifruit had the fewest side effects and the least dissatisfaction. Two gold kiwifruit a day worked about as well as psyllium in a smaller trial. Kiwifruit capsules and powders are a different product: in a 2023 meta-analysis of 3 trials they did not change stool frequency (0.24 a week, −0.32 to 0.80).",
       "bottomLine": "In trials, two green kiwifruit a day for 4 weeks gave somewhat more bowel movements, slightly more than psyllium fibre and with few side effects. A 2025 guideline rated the evidence low, and kiwifruit capsules and powders did not show the same effect.",
+      "label": "Constipation",
+      "line": "Two green kiwifruit a day gave more bowel movements, slightly more than psyllium",
       "studies": [
         {
           "pmid": "37905980",
@@ -218,6 +220,8 @@
       ],
       "summary": "A 2026 meta-analysis of 6 randomised trials (10 groups) found systolic blood pressure 5.73 mmHg lower (95% CI 2.44 to 9.02 lower) and diastolic 4.08 mmHg lower (2.10 to 6.07 lower) with kiwifruit, more with three a day, with raised starting blood pressure and in trials of 8 weeks or less; the authors asked for caution because there were few trials. A 2019 meta-analysis of 5 trials (489 people) found no clear effect: systolic −1.72 mmHg (−4.27 to 0.84), diastolic −2.35 (−5.10 to 0.41). In a Norwegian trial of 118 adults with high-normal or stage 1 high blood pressure, three kiwifruit a day for 8 weeks gave 24-hour systolic 3.6 mmHg (0.7 to 6.5) and diastolic 1.9 mmHg (0.3 to 3.6) lower than one apple a day, but office blood pressure did not differ. In 102 male smokers, three kiwifruit a day for 8 weeks lowered systolic by 10 and diastolic by 9 mmHg against controls. Two kiwifruit before breakfast for 7 weeks gave systolic 2.7 mmHg lower (0.0 to 5.5) in 42 healthy adults. No trial measured heart attacks or strokes.",
       "bottomLine": "In small trials, two or three kiwifruit a day went with blood pressure a few mmHg lower, most in people whose pressure was raised. One meta-analysis found a clear effect and an older one didn't, and no trial measured heart attacks or strokes.",
+      "label": "Blood pressure",
+      "line": "A few mmHg lower in small trials, most when pressure was raised",
       "studies": [
         {
           "pmid": "42657351",
@@ -272,6 +276,8 @@
       ],
       "summary": "A 2024 meta-analysis of 6 randomised trials found LDL cholesterol 9.30 mg/dL lower with kiwifruit (95% CI 1.04 to 17.56 lower), but no clear change in triglycerides (−12.91 mg/dL, −28.17 to 2.34), total cholesterol or HDL. A 2019 meta-analysis of 5 trials (489 people) found no effect on LDL (−0.41 mmol/L, −0.99 to 0.18) or triglycerides (−0.23 mmol/L, −0.66 to 0.20). In a 2004 crossover trial in healthy volunteers, two or three kiwifruit a day for 28 days lowered triglycerides by 15% compared with control, with no change in cholesterol. Two kiwifruit a day for 7 weeks (42 people) and two SunGold a day for 6 weeks (23 people) did not change triglycerides or cholesterol.",
       "bottomLine": "Results on blood fats disagree. One meta-analysis found LDL cholesterol slightly lower with kiwifruit, another found no effect, and several small trials found no change in triglycerides or cholesterol.",
+      "label": "LDL cholesterol and triglycerides",
+      "line": "Results disagree between studies",
       "studies": [
         {
           "pmid": "39479621",
@@ -325,6 +331,8 @@
       ],
       "summary": "In 30 healthy Chinese adults, eating kiwifruit before a rice meal (replacing part of the rice) gave a blood sugar peak 0.9 mmol/L lower at breakfast (95% CI 0.2 to 1.6) and 1.1 mmol/L lower at lunch (0.5 to 1.7) than the rice meal eaten at one sitting. In 9 healthy adults, whole kiwifruit pulp eaten with wheat cereal almost halved the rise in blood sugar compared with a meal with the same sugars added, and avoided a later dip; fibre and organic acids each explained part of it. A 2017 study in 20 people found similar results. Over weeks, kiwifruit did not change fasting blood sugar: 0.09 mmol/L (−0.06 to 0.24) after 7 weeks in 42 people, and no clear change in a 2024 meta-analysis.",
       "bottomLine": "In small studies in healthy adults, kiwifruit eaten with or instead of part of a starchy meal gave a lower blood sugar peak after that meal. Over weeks it didn't change fasting blood sugar, and people with diabetes weren't tested.",
+      "label": "Blood sugar after a starchy meal",
+      "line": "Lower peak after that meal in small studies in healthy adults",
       "studies": [
         {
           "pmid": "30126094",
@@ -380,6 +388,8 @@
       ],
       "summary": "In 15 young men with below-average vitamin C, gold kiwifruit (about 80 mg of vitamin C each) raised plasma vitamin C from 38 µmol/L to 50 with half a kiwifruit a day, 53 with one and 62 with two; three a day reached 68 at first, then 58. Urine vitamin C rose from two a day, suggesting the blood was close to saturated. Four weeks after stopping it was back to 42. In a trial of 167 young adults with low vitamin C, two SunGold a day brought plasma vitamin C to saturation within two weeks, as did a 250 mg tablet. In 20 adults with a history of severe respiratory infections, two SunGold a day for six weeks raised vitamin C above 60 µmol/L, but about one in five didn't reach 50, possibly because of smoking or higher body weight.",
       "bottomLine": "In small studies, one to two gold kiwifruit a day raised low blood vitamin C to levels researchers call healthy or saturated, much as a vitamin C tablet did. Smokers and heavier people rose less, and the studies measured blood levels, not health.",
+      "label": "Vitamin C in the blood",
+      "line": "Raised low levels much as a vitamin C tablet did, in small studies",
       "studies": [
         {
           "pmid": "25191543",
@@ -420,6 +430,8 @@
       ],
       "summary": "In a trial of 167 young adults with low vitamin C, two SunGold kiwifruit a day for 4 weeks lowered fatigue and improved well-being after two weeks compared with placebo, with a trend for mood; a 250 mg vitamin C tablet improved well-being, and mood and fatigue only in those with consistently low vitamin C. A later analysis of daily smartphone surveys found kiwifruit improved vitality and mood within days, but the effects weakened after adjusting for other factors. A published comment said the trial mixed random and non-random allocation, and a correction removed 'randomized' from its title. In a 2025 crossover trial of 26 adults with mild to moderate mood disturbance, without blinding, four weeks of two SunGold a day lowered mood disturbance scores by 65% compared with usual diet.",
       "bottomLine": "Two small trials found better self-reported mood and vitality with two gold kiwifruit a day. People knew they were eating kiwifruit, one trial's randomisation was questioned, and the evidence is very weak.",
+      "label": "Mood and vitality",
+      "line": "Better self-reported mood in two small trials; very weak evidence",
       "studies": [
         {
           "pmid": "32971991",
@@ -466,6 +478,8 @@
       ],
       "summary": "In a 2011 study without a control group, 24 adults in Taiwan with sleep problems ate two kiwifruit an hour before bed for 4 weeks; total sleep time measured by a wrist device rose by 13.4% and sleep efficiency by 5.41%, and time to fall asleep fell by 35.4%. In 15 elite athletes, also without a control group, the same amount for 4 weeks went with better sleep quality scores and longer self-reported sleep. In a 2017 trial in 74 students with insomnia symptoms, 130 g of kiwifruit or of pear an hour before bed for 4 weeks gave no difference in sleep measured by a wrist device, though the kiwifruit group rated their sleep quality and daytime function better (as described in the athletes' paper).",
       "bottomLine": "Studies without a control group found longer sleep after two kiwifruit before bed, but the one controlled trial, against pear, found no difference in sleep measured by a wrist device. The evidence is very weak.",
+      "label": "Sleep",
+      "line": "Longer sleep in uncontrolled studies, no difference in the one controlled trial",
       "studies": [
         {
           "pmid": "21669584",
@@ -504,6 +518,8 @@
       ],
       "summary": "In a 16-week trial, 89 women with low iron stores ate an iron-fortified breakfast cereal (16 mg of iron) with milk and either two gold kiwifruit (164 mg of vitamin C) or one banana every day. In the 69 analysed, median ferritin rose by 10.0 µg/L in the kiwifruit group against 1.0 µg/L in the banana group, and soluble transferrin receptor, another iron marker, fell more. The authors linked it to the vitamin C and the carotenoids lutein and zeaxanthin, which can help iron absorption.",
       "bottomLine": "In one trial in women with low iron stores, two gold kiwifruit eaten with an iron-fortified breakfast cereal raised ferritin more than a banana did over 16 weeks. It is a single trial, tied to a fortified meal.",
+      "label": "Iron with a fortified breakfast",
+      "line": "Ferritin rose more than with a banana in one trial in women with low iron",
       "studies": [
         {
           "pmid": "20727238",

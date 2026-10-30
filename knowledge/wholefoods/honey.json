@@ -163,6 +163,8 @@
       ],
       "summary": "A 2018 Cochrane review of 6 randomised trials (899 children aged 12 months to 18 years) found that honey probably reduces how often children cough more than no treatment (1.05 points lower on a 7-point scale, 95% confidence interval 0.62 to 1.48 lower; 2 trials, 154 children) or placebo (1.62 points lower, 0.22 to 3.02 lower; 2 trials, 402 children), both moderate certainty. Honey may work about as well as the cough medicine dextromethorphan (0.07 points lower, 1.07 lower to 0.94 higher; low certainty) and may be better than the antihistamine diphenhydramine (0.57 points lower, 0.24 to 0.90 lower; 1 trial, 80 children; low certainty). Beyond three days, honey probably had no advantage over placebo or salbutamol. The authors found no strong evidence for or against honey, and noted that most children were treated for one night. A 2023 systematic review of 10 trials rated the evidence low to very low. A 2026 meta-analysis of honey against cough medicines (6 trials, 576 children aged about 3 to 5, followed for up to 3 days) found no clear difference on most outcomes, except less effect of cough on the child's sleep (0.73 points, 0.01 to 1.45); its other favourable results came from post-hoc analyses that the authors called hypothesis-generating.",
       "bottomLine": "In trials in children aged 1 year and over with a short-term cough, honey probably reduced how often they coughed more than no treatment or placebo, by about 1 to 1.6 points on a 7-point scale. Most children had it for one night only, and against cough medicines the results were unclear.",
+      "label": "Cough in children",
+      "line": "Coughed less often, about 1 to 1.6 points on a 7-point scale, mostly over one night",
       "studies": [
         {
           "pmid": "29633783",
@@ -202,6 +204,8 @@
       ],
       "summary": "A 2021 systematic review and meta-analysis of 14 studies found that, compared with usual care, honey improved a combined symptom score (3 studies, 3.96 points lower, 95% confidence interval 2.51 to 5.42 lower), how often people coughed (8 studies, standardised mean difference −0.36, −0.50 to −0.21) and how bad the cough was (5 studies, −0.44, −0.64 to −0.25). A standardised mean difference puts results from different scales on one scale, in standard deviations. The 2 studies that compared honey with a placebo found no clear difference in combined symptoms (−0.63, −1.44 to 0.18), with very different results (I² 91%). The authors judged the risk of bias moderate overall and called for high-quality placebo-controlled trials.",
       "bottomLine": "In a meta-analysis of 14 studies of colds and other upper airway infections, honey eased cough and other symptoms more than usual care. In the two studies against a placebo there was no clear difference, so how much of the effect is honey itself is uncertain.",
+      "label": "Cold symptoms",
+      "line": "Eased cough and symptoms more than usual care; no clear difference against placebo",
       "studies": [
         {
           "pmid": "32817011",
@@ -227,6 +231,8 @@
       ],
       "summary": "A 2023 GRADE-assessed meta-analysis (full text read) of 18 controlled trials (33 comparisons, 1,105 people; 21% had type 1 or type 2 diabetes) found fasting glucose 0.20 mmol/L lower with honey (95% confidence interval 0.04 to 0.37 lower; low certainty), with no clear change in HbA1c, fasting insulin or body weight. After correcting for small-study effects, the fall was no longer clear (0.10 lower, 0.30 lower to 0.09 higher). Trials gave 5 to 125 g of honey a day (median 40 g) for 1 to 24 weeks; 70% compared honey with the usual diet and 15% with sucrose. In subgroups, raw honey (5 trials) went with fasting glucose 1.05 mmol/L lower and clover honey (2 trials) 1.82 mmol/L lower, both low certainty. A 2025 umbrella review with an updated meta-analysis (full text read; 16 honey trials) found HbA1c 0.25 lower (0.05 to 0.45 lower; very low certainty), but this came from one study; trials of 12 weeks or more went with higher fasting glucose, and in its dose analysis fasting glucose was 3.81 mg/dL (about 0.2 mmol/L) higher at 20 g a day.",
       "bottomLine": "In small trials, honey went with slightly lower fasting blood sugar, about 0.2 mmol/L, but the evidence is low certainty and partly explained by small studies. Long-term blood sugar (HbA1c) didn't clearly change, and a later review found higher fasting sugar in trials of 12 weeks or more.",
+      "label": "Blood sugar",
+      "line": "Results disagree: slightly lower fasting sugar in small trials, higher in longer ones",
       "studies": [
         {
           "pmid": "36379223",
@@ -259,6 +265,8 @@
       ],
       "summary": "The 2023 meta-analysis (full text read; up to 29 trial comparisons) found total cholesterol 0.18 mmol/L lower (95% confidence interval 0.04 to 0.33 lower), LDL cholesterol 0.16 mmol/L lower (0.02 to 0.30 lower) and triglycerides 0.13 mmol/L lower (0.07 to 0.20 lower), all low certainty, and HDL cholesterol 0.07 mmol/L higher (0.04 to 0.10 higher; high certainty). The LDL result was unstable: leaving out any one of 6 trials removed it. In subgroups, raw honey (5 trials) went with total cholesterol 0.61 mmol/L lower and triglycerides 0.27 mmol/L lower, and clover honey (3 trials) with LDL 0.38 mmol/L lower, all low certainty. A 2022 meta-analysis of 23 trials found no effect of honey on total cholesterol, triglycerides, LDL or HDL, with evidence from very low to moderate quality. A 2025 updated meta-analysis (full text read) found triglycerides 8.09 mg/dL (about 0.09 mmol/L) higher with honey (1.22 to 14.9 higher; low certainty). A 2018 trial in 60 healthy young adults reported better blood fats with 70 g of honey a day than with 70 g of sucrose.",
       "bottomLine": "Meta-analyses disagree. One found slightly lower LDL cholesterol and triglycerides and slightly higher HDL with honey, a few tenths of a mmol/L or less; another found no effect on any blood fat; a third found triglycerides slightly higher.",
+      "label": "Cholesterol and triglycerides",
+      "line": "Results disagree between reviews: slightly better, no change, or higher triglycerides",
       "studies": [
         {
           "pmid": "36379223",
@@ -305,6 +313,8 @@
       ],
       "summary": "A 2015 Cochrane review of 26 trials of honey on wounds (3,011 people; 11 trials in burns) found high-quality evidence that honey dressings healed partial-thickness burns 4.68 days faster than conventional dressings (95% confidence interval 4.28 to 5.09 days; 2 trials, 992 people). Conventional dressings included polyurethane film, paraffin gauze, soframycin gauze, sterile linen and leaving the burn exposed; whether adverse events or infections differed was unclear. Against silver sulfadiazine cream, burns treated with honey healed 5.12 days faster (0.73 to 9.51; 4 trials, 332 people; very low quality), but the chance of being healed within 6 weeks was the same (risk ratio 1.00, 0.98 to 1.02; 6 trials, 462 people; high quality), with fewer adverse events with honey. Early removal of the burn and skin grafting healed partial- and full-thickness burns 13.6 days faster than honey followed by grafting when needed (9.82 to 17.38; 1 trial, 50 people; low quality). A 2017 review of 9 trials against silver sulfadiazine found healing 5.76 days faster with honey (3.39 to 8.14; moderate quality) and more infected wounds made sterile (risk ratio 2.59).",
       "bottomLine": "Applied to the skin as a dressing, not eaten: in a Cochrane review, honey healed partial-thickness burns about 4.7 days faster than conventional dressings (high-quality evidence). Against silver sulfadiazine cream the gain was less certain, and early surgery with skin grafts healed burns faster than honey.",
+      "label": "Burns (on the skin)",
+      "line": "Healed about 4.7 days faster than conventional dressings",
       "studies": [
         {
           "pmid": "25742878",
@@ -336,6 +346,8 @@
       ],
       "summary": "In the 2015 Cochrane review, the effects of honey compared with other treatments were unclear for venous leg ulcers (2 trials, 476 people; low quality), minor acute wounds (3 trials, 213 people; very low), diabetic foot ulcers (2 trials, 93 people; low), cutaneous leishmaniasis (1 trial, 100 people; low) and mixed chronic wounds (2 trials, 150 people; low). Honey healed infected wounds after surgery more often than antiseptic washes and gauze (risk ratio of healing 1.69, 95% confidence interval 1.10 to 2.61; 1 trial, 50 people; moderate quality), with fewer adverse events. It healed pressure ulcers faster than saline soaks and Fournier's gangrene faster than Eusol soaks, both very low quality. The authors concluded that, beyond burns and infected wounds after surgery, the evidence is of low or very low quality and not a robust basis for decisions. A 2024 meta-analysis of 8 studies of chronic wounds (906 people) found healing time 17.13 days shorter (7.89 to 26.37) and a larger share of each wound healed, but no clear difference in how many wounds healed (risk ratio 2.00, 0.78 to 5.10); honey may have caused more painful discomfort during treatment, and the evidence was very low quality.",
       "bottomLine": "Applied to the skin, not eaten: for leg ulcers, diabetic foot ulcers and other long-lasting wounds, trials of honey dressings are small and their results unclear. One small trial found infected wounds after surgery healed more often with honey than with antiseptic washes.",
+      "label": "Ulcers and wounds (on the skin)",
+      "line": "Results unclear in small trials; infected surgery wounds healed more often in one",
       "studies": [
         {
           "pmid": "25742878",
@@ -368,6 +380,8 @@
       ],
       "summary": "A 2019 meta-analysis of 19 randomised trials (1,276 people having radiotherapy or chemotherapy) found that when honey was used to prevent mouth sores, severe ('intolerable') sores were less common (risk ratio 0.18, 95% confidence interval 0.09 to 0.41), and pain scores were lower in the first month of treatment (3.25 points, 2.09 to 4.41) and at its end (2.32 points, 0.18 to 4.47). A 2022 meta-analysis in children (5 studies, 316 children) found mouth sores of any grade less common with honey (risk ratio 0.19, 0.12 to 0.30) and a shorter recovery time (mean difference 5.10, 0.61 to 9.60), with very mixed recovery results between studies. In 2020 the MASCC/ISOO clinical practice guideline made a new 'Suggestion' for honey, used both in the mouth and swallowed ('combined topical and systemic'), to prevent mouth sores in people with head and neck cancer having radiotherapy with or without chemotherapy.",
       "bottomLine": "In trials in people having radiotherapy or chemotherapy, mostly for head and neck cancer, honey used in the mouth went with fewer severe mouth sores and less pain. An international cancer-care guideline gives it a 'Suggestion', its weaker level, for head and neck radiotherapy.",
+      "label": "Mouth sores from cancer treatment",
+      "line": "Fewer severe mouth sores and less pain in trials during radiotherapy or chemotherapy",
       "studies": [
         {
           "pmid": "30919153",

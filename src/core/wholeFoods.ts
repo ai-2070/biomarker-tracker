@@ -120,7 +120,7 @@ export function wholeFoodText(f: WholeFoodDef): string[] {
     ...f.inIt,
     ...(f.history ?? []).flatMap((h) => [h.use, h.note]),
     ...f.processing,
-    ...f.findings.flatMap((x) => [x.outcome, x.population, x.summary, x.bottomLine ?? "", ...x.whyThisGrade]),
+    ...f.findings.flatMap((x) => [x.outcome, x.population, x.summary, x.bottomLine ?? "", x.label ?? "", x.line ?? "", ...x.whyThisGrade]),
     ...f.visuals.flatMap((x) => [x.title, x.caption]),
     ...f.whoShouldBeCareful.flatMap((x) => [x.with, x.note]),
     ...f.cautions,
