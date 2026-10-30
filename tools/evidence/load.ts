@@ -15,8 +15,9 @@ export const SCREENING_DIR = join(ROOT, "knowledge", "evidence-maps", "screening
 
 export interface ScreeningFile {
   topic: string;
-  /** Who screened: the model and how it was run. */
+  /** Legacy file-level attribution, not proof of any retained decision's model. New decisions carry their own. */
   by: string;
+  provenance?: "legacy-inputs-unverified";
   outcomes: Record<string, { question: Question; at: string; decisions: Decision[] }>;
 }
 

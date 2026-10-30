@@ -20,8 +20,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating beetroot comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 1191,
@@ -47,6 +47,7 @@
   {
    "id": "blood-pressure",
    "label": "Blood pressure",
+   "anyDesign": true,
    "finding": "Blood pressure",
    "counts": {
     "all": 454,
@@ -65,7 +66,7 @@
      "journal": "Advances in nutrition (Bethesda, Md.)",
      "citedBy": 106,
      "n": 650,
-     "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2017); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30400267",
@@ -75,227 +76,10 @@
      "firstAuthor": "Bonilla Ocampo DA",
      "journal": "Biomolecules",
      "citedBy": 62,
-     "why": "One of the newest systematic reviews on this finding (2018); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.30434782608695654,
-    "trials": 23,
-    "inclusions": 30,
-    "reviews": [
-     {
-      "pmid": "29141968",
-      "trials": 19
-     },
-     {
-      "pmid": "30400267",
-      "trials": 11
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "26607938",
-      "title": "Dietary nitrate improves vascular function in patients with hypercholesterolemia: a randomized, double-blind, placebo-controlled study",
-      "year": 2016,
-      "n": 69,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "25421976",
-      "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study",
-      "year": 2015,
-      "n": 68,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "26135348",
-      "title": "Absence of an effect of high nitrate intake from beetroot juice on blood pressure in treated hypertensive individuals: a randomized controlled trial",
-      "year": 2015,
-      "n": 27,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "25294299",
-      "title": "Beetroot supplementation lowers daily systolic blood pressure in older, overweight subjects",
-      "year": 2014,
-      "n": 24,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "23231777",
-      "title": "Effect of beetroot juice on lowering blood pressure in free-living, disease-free adults: a randomized, placebo-controlled trial",
-      "year": 2012,
-      "n": 13,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "18250365",
-      "title": "Acute blood pressure lowering, vasoprotective, and antiplatelet properties of dietary nitrate via bioconversion to nitrite",
-      "year": 2008,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "22414688",
-      "title": "Blood pressure-lowering effects of beetroot juice and novel beetroot-enriched bread products in normotensive male subjects",
-      "year": 2012,
-      "inReviews": [
-       "29141968",
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "24858657",
-      "title": "Dietary nitrate supplementation improves reaction time in type 2 diabetes: development and application of a novel nitrate-depleted beetroot juice placebo",
-      "year": 2014,
-      "n": 27,
-      "inReviews": [
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "27278926",
-      "title": "Improvement of hypertension, endothelial function and systemic inflammation following short-term supplementation with red beet (Beta vulgaris L.) juice: a randomized crossover pilot study",
-      "year": 2016,
-      "n": 24,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "20585108",
-      "title": "Inorganic nitrate supplementation lowers blood pressure in humans: role for nitrite-derived NO",
-      "year": 2010,
-      "n": 20,
-      "inReviews": [
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "22248502",
-      "title": "Nitrate supplementation's improvement of 10-km time-trial performance in trained cyclists",
-      "year": 2012,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "19661447",
-      "title": "Dietary nitrate supplementation reduces the O2 cost of low-intensity exercise and enhances tolerance to high-intensity exercise in humans",
-      "year": 2009,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "21071588",
-      "title": "Dietary nitrate supplementation reduces the O2 cost of walking and running: a placebo-controlled study",
-      "year": 2011,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "26084693",
-      "title": "Effects of chronic dietary nitrate supplementation on the hemodynamic response to dynamic exercise",
-      "year": 2015,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "20466802",
-      "title": "Dietary nitrate supplementation enhances muscle contractile efficiency during knee-extensor exercise in humans",
-      "year": 2010,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "25596150",
-      "title": "The effect of dietary nitrate supplementation on the oxygen cost of cycling, walking performance and resting blood pressure in individuals with chronic obstructive pulmonary disease: A double blind placebo controlled, randomised control trial",
-      "year": 2015,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "26316026",
-      "title": "Effects of handgrip exercise or inorganic nitrate supplementation on 24-h ambulatory blood pressure and peripheral arterial function in overweight and obese middle age and older adults: A pilot RCT",
-      "year": 2015,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "23174856",
-      "title": "Effects of short-term dietary nitrate supplementation on blood pressure, O2 uptake kinetics, and muscle and cognitive function in older adults",
-      "year": 2013,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "23395779",
-      "title": "Effect of dietary nitrate on blood pressure, endothelial function, and insulin sensitivity in type 2 diabetes",
-      "year": 2013,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "26874390",
-      "title": "One Week of Daily Dosing With Beetroot Juice Improves Submaximal Endurance and Blood Pressure in Older Patients With Heart Failure and Preserved Ejection Fraction",
-      "year": 2016,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "20702806",
-      "title": "Acute and chronic effects of dietary nitrate supplementation on blood pressure and the physiological responses to moderate-intensity and incremental exercise",
-      "year": 2010,
-      "inReviews": [
-       "29141968"
-      ]
-     },
-     {
-      "pmid": "24125415",
-      "title": "Beetroot juice improves in overweight and slightly obese men postprandial endothelial function after consumption of a mixed meal",
-      "year": 2013,
-      "inReviews": [
-       "30400267"
-      ]
-     },
-     {
-      "pmid": "25683748",
-      "title": "High-nitrate vegetable diet increases plasma nitrate and nitrite concentrations and reduces blood pressure in healthy women",
-      "year": 2015,
-      "inReviews": [
-       "30400267"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2006,
@@ -414,11 +198,12 @@
       "firstAuthor": "Bonilla Ocampo DA",
       "journal": "Biomolecules",
       "citedBy": 62,
-      "why": "One of the newest systematic reviews on this finding (2018); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2018); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Beetroot juice or whole beetroot (nitrate-rich); reviews pooling nitrate salts count as partly",
@@ -517,6 +302,7 @@
   {
    "id": "endurance",
    "label": "Endurance",
+   "anyDesign": true,
    "finding": "Endurance and fitness tests (time to exhaustion, VO₂max)",
    "counts": {
     "all": 388,
@@ -535,7 +321,7 @@
      "journal": "Advances in nutrition (Bethesda, Md.)",
      "citedBy": 50,
      "n": 1705,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42445795",
@@ -545,7 +331,7 @@
      "firstAuthor": "Cai C",
      "journal": "Frontiers in nutrition",
      "citedBy": 0,
-     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42523624",
@@ -556,444 +342,10 @@
      "journal": "Frontiers in nutrition",
      "citedBy": 0,
      "n": 703,
-     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.05,
-    "trials": 50,
-    "inclusions": 55,
-    "reviews": [
-     {
-      "pmid": "35580578",
-      "trials": 32
-     },
-     {
-      "pmid": "42445795",
-      "trials": 20
-     },
-     {
-      "pmid": "42523624",
-      "trials": 3
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "30181436",
-      "title": "Effects of Beetroot Juice Supplementation on Performance and Fatigue in a 30-s All-Out Sprint Exercise: A Randomized, Double-Blind Cross-Over Study",
-      "year": 2018,
-      "n": 15,
-      "inReviews": [
-       "35580578",
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "23640589",
-      "title": "Beetroot juice and exercise: pharmacodynamic and dose-response relationships",
-      "year": 2013,
-      "n": 10,
-      "inReviews": [
-       "35580578",
-       "42523624"
-      ]
-     },
-     {
-      "pmid": "32272260",
-      "title": "Influence of muscle oxygenation and nitrate-rich beetroot juice supplementation on O2 uptake kinetics and exercise tolerance",
-      "year": 2020,
-      "inReviews": [
-       "35580578",
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "26614506",
-      "title": "Influence of beetroot juice supplementation on intermittent exercise performance",
-      "year": 2016,
-      "inReviews": [
-       "35580578",
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "21471821",
-      "title": "Acute dietary nitrate supplementation improves cycling time trial performance",
-      "year": 2011,
-      "inReviews": [
-       "35580578",
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "31343548",
-      "title": "Effects of Citrulline Malate and Beetroot Juice Supplementation on Blood Flow, Energy Metabolism, and Performance During Maximum Effort Leg Extension Exercise",
-      "year": 2019,
-      "n": 27,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "29412076",
-      "title": "Repeated-sprint performance and plasma responses following beetroot juice supplementation do not differ between recreational, competitive and elite sprint athletes",
-      "year": 2018,
-      "n": 22,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "26332900",
-      "title": "The Effects of Chronic Nitrate Supplementation and the Use of Strong and Weak Antibacterial Agents on Plasma Nitrite Concentration and Exercise Blood Pressure",
-      "year": 2015,
-      "n": 12,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "29357494",
-      "title": "Beetroot juice ingestion during prolonged moderate-intensity exercise attenuates progressive rise in O2 uptake",
-      "year": 2018,
-      "n": 12,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "28719765",
-      "title": "Beetroot juice is more beneficial than sodium nitrate for attenuating muscle pain after strenuous eccentric-bias exercise",
-      "year": 2017,
-      "n": 10,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "30427246",
-      "title": "No Effect of Beetroot Juice Supplementation on 100-m and 200-m Swimming Performance in Moderately Trained Swimmers",
-      "year": 2019,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "26641379",
-      "title": "Increase in Maximal Cycling Power With Acute Dietary Nitrate Supplementation",
-      "year": 2016,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "29444414",
-      "title": "No individual or combined effects of caffeine and beetroot-juice supplementation during submaximal or maximal running",
-      "year": 2018,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "32470923",
-      "title": "No Differences Between Beetroot Juice and Placebo on Competitive 5-km Running Performance: A Double-Blind, Placebo-Controlled Trial",
-      "year": 2020,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "27822169",
-      "title": "The effect of six days of dietary nitrate supplementation on performance in trained CrossFit athletes",
-      "year": 2016,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "28182502",
-      "title": "Effect of Dietary Nitrate Supplementation on Swimming Performance in Trained Swimmers",
-      "year": 2017,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "17635415",
-      "title": "Effects of dietary nitrate on oxygen cost during exercise",
-      "year": 2007,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "22709704",
-      "title": "Whole beetroot consumption acutely improves running performance",
-      "year": 2012,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "27589795",
-      "title": "Effects of a Short-Term High-Nitrate Diet on Exercise Performance",
-      "year": 2016,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "26885762",
-      "title": "The Effects of Nitrate-Rich Supplementation on Neuromuscular Efficiency during Heavy Resistance Exercise",
-      "year": 2016,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "33180007",
-      "title": "Acute Beetroot Juice Supplementation Does Not Improve Match-Play Activity in Professional Tennis Players",
-      "year": 2022,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "24978834",
-      "title": "Effects of dietary nitrate, caffeine, and their combination on 20-km cycling time trial performance",
-      "year": 2015,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "30286760",
-      "title": "Effects of a single dose of beetroot juice on cycling time trial performance at ventilatory thresholds intensity in male triathletes",
-      "year": 2018,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "19913611",
-      "title": "Dietary nitrate reduces maximal oxygen consumption while maintaining work performance in maximal exercise",
-      "year": 2010,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "26077126",
-      "title": "Effects of sodium phosphate and beetroot juice supplementation on repeated-sprint ability in females",
-      "year": 2015,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "22248502",
-      "title": "Nitrate supplementation's improvement of 10-km time-trial performance in trained cyclists",
-      "year": 2012,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "30653856",
-      "title": "No effect of beetroot juice supplementation on exercise economy and performance in recreationally active females despite increased torque production",
-      "year": 2019,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "26988767",
-      "title": "Is beetroot juice more effective than sodium nitrate? The effects of equimolar nitrate dosages of nitrate-rich beetroot juice and sodium nitrate on oxygen consumption during exercise",
-      "year": 2016,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "30299412",
-      "title": "Sucrose but Not Nitrate Ingestion Reduces Strenuous Cycling-induced Intestinal Injury",
-      "year": 2019,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "27616745",
-      "title": "No Effect of Acute and 6-Day Nitrate Supplementation on VO2 and Time-Trial Performance in Highly Trained Cyclists",
-      "year": 2017,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "25683748",
-      "title": "High-nitrate vegetable diet increases plasma nitrate and nitrite concentrations and reduces blood pressure in healthy women",
-      "year": 2015,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "29722627",
-      "title": "Effect of dietary nitrate supplementation on conduit artery blood flow, muscle oxygenation, and metabolic rate during handgrip exercise",
-      "year": 2018,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "24436354",
-      "title": "No improvement of repeated-sprint performance with dietary nitrate",
-      "year": 2014,
-      "inReviews": [
-       "35580578"
-      ]
-     },
-     {
-      "pmid": "39017740",
-      "title": "Acute inorganic nitrate ingestion does not impact oral microbial composition, cognitive function, or high-intensity exercise performance in female team-sport athletes",
-      "year": 2024,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "30747267",
-      "title": "Effects of chronic beetroot juice supplementation on maximum oxygen uptake, velocity associated with maximum oxygen uptake, and peak velocity in recreational runners: a double-blinded, randomized and crossover study",
-      "year": 2019,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "28327503",
-      "title": "Beetroot Juice Supplementation Improves High-Intensity Intermittent Type Exercise Performance in Trained Soccer Players",
-      "year": 2017,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "40323707",
-      "title": "The effect of acute beetroot juice consumption prior to climbing on lower-body isokinetic and isometric strength, aerobic power, and muscle soreness among mountain climbers",
-      "year": 2025,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "23370859",
-      "title": "Dietary nitrate supplementation improves team sport-specific intense intermittent exercise performance",
-      "year": 2013,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "25846114",
-      "title": "Dietary nitrate improves sprint performance and cognitive function during prolonged intermittent exercise",
-      "year": 2015,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "29995952",
-      "title": "The effects of beetroot juice supplementation on exercise economy, rating of perceived exertion and running mechanics in elite distance runners: A double-blinded, randomized study",
-      "year": 2018,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "39796497",
-      "title": "Effect of Beetroot Juice Supplementation on Aerobic Capacity in Female Athletes: A Randomized Controlled Study",
-      "year": 2024,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "27777094",
-      "title": "Dietary nitrate supplementation improves sprint and high-intensity intermittent running performance",
-      "year": 2016,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "35889796",
-      "title": "Acute Beetroot Juice Supplementation Enhances Intermittent Running Performance but Does Not Reduce Oxygen Cost of Exercise among Recreational Adults",
-      "year": 2022,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "35726852",
-      "title": "The effect of eight weeks beetroot juice supplement on aerobic, anaerobic power, and field performance of soccer players",
-      "year": 2024,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "38953606",
-      "title": "Effects of acute beetroot juice intake on performance, maximal oxygen uptake, and ventilatory efficiency in well-trained master rowers: a randomized, double-blinded crossover study",
-      "year": 2024,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "37394944",
-      "title": "Acute beetroot juice supplementation did not enhance intermittent running performance in trained rugby players",
-      "year": 2023,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "32594854",
-      "title": "The impact of beetroot juice supplementation on muscular endurance, maximal strength and countermovement jump performance",
-      "year": 2021,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "40369047",
-      "title": "Single and combined effect of beetroot juice and caffeine intake on muscular strength, power and endurance performance in resistance-trained males",
-      "year": 2025,
-      "inReviews": [
-       "42445795"
-      ]
-     },
-     {
-      "pmid": "19661447",
-      "title": "Dietary nitrate supplementation reduces the O2 cost of low-intensity exercise and enhances tolerance to high-intensity exercise in humans",
-      "year": 2009,
-      "inReviews": [
-       "42523624"
-      ]
-     },
-     {
-      "pmid": "37823208",
-      "title": "Sex differences in the effects of inorganic nitrate supplementation on exercise economy and endurance capacity in healthy young adults",
-      "year": 2023,
-      "inReviews": [
-       "42523624"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2009,
@@ -1104,6 +456,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Healthy adults, from untrained to athletes",
      "intervention": "Beetroot juice (nitrate-rich)",
@@ -1286,6 +639,7 @@
   {
    "id": "vascular",
    "label": "Blood vessels",
+   "anyDesign": true,
    "finding": "Blood vessel function (flow-mediated dilation) and artery stiffness",
    "counts": {
     "all": 193,
@@ -1396,6 +750,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Beetroot juice or whole beetroot (nitrate-rich)",
@@ -1438,6 +793,7 @@
   {
    "id": "recovery",
    "label": "Muscle recovery",
+   "anyDesign": true,
    "finding": "Muscle damage and recovery after hard exercise",
    "counts": {
     "all": 223,
@@ -1455,7 +811,7 @@
      "firstAuthor": "Beba M",
      "journal": "Annals of medicine and surgery (2012)",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34151694",
@@ -1465,7 +821,7 @@
      "firstAuthor": "Jones L",
      "journal": "Journal of dietary supplements",
      "citedBy": 25,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34399653",
@@ -1475,100 +831,10 @@
      "firstAuthor": "Rojano-Ortega D",
      "journal": "Sports health",
      "citedBy": 19,
-     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.7142857142857143,
-    "trials": 7,
-    "inclusions": 17,
-    "reviews": [
-     {
-      "pmid": "42583675",
-      "trials": 5
-     },
-     {
-      "pmid": "34151694",
-      "trials": 6
-     },
-     {
-      "pmid": "34399653",
-      "trials": 6
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "28719765",
-      "title": "Beetroot juice is more beneficial than sodium nitrate for attenuating muscle pain after strenuous eccentric-bias exercise",
-      "year": 2017,
-      "n": 10,
-      "inReviews": [
-       "42583675",
-       "34151694",
-       "34399653"
-      ]
-     },
-     {
-      "pmid": "32125249",
-      "title": "Chronic Beetroot Juice Supplementation Accelerates Recovery Kinetics following Simulated Match Play in Soccer Players",
-      "year": 2021,
-      "inReviews": [
-       "42583675",
-       "34151694",
-       "34399653"
-      ]
-     },
-     {
-      "pmid": "26537365",
-      "title": "The effects of beetroot juice supplementation on indices of muscle damage following eccentric exercise",
-      "year": 2016,
-      "inReviews": [
-       "42583675",
-       "34151694",
-       "34399653"
-      ]
-     },
-     {
-      "pmid": "27548212",
-      "title": "Effects of Beetroot Juice on Recovery of Muscle Function and Performance between Bouts of Repeated Sprint Exercise",
-      "year": 2016,
-      "inReviews": [
-       "42583675",
-       "34151694",
-       "34399653"
-      ]
-     },
-     {
-      "pmid": "28165768",
-      "title": "Minimal muscle damage after a marathon and no influence of beetroot juice on inflammation and recovery",
-      "year": 2017,
-      "inReviews": [
-       "42583675",
-       "34151694",
-       "34399653"
-      ]
-     },
-     {
-      "pmid": "24500154",
-      "title": "Dietary nitrate reduces resting metabolic rate: a randomized, crossover study in humans",
-      "year": 2014,
-      "n": 13,
-      "inReviews": [
-       "34399653"
-      ]
-     },
-     {
-      "pmid": "33115598",
-      "title": "The effect of dietary nitrate and vitamin C on endothelial function, oxidative stress and blood lipids in untreated hypercholesterolemic subjects: A randomized double-blind crossover study",
-      "year": 2021,
-      "inReviews": [
-       "34151694"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2011,
@@ -1648,11 +914,12 @@
       "firstAuthor": "Rojano-Ortega D",
       "journal": "Sports health",
       "citedBy": 19,
-      "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults after hard exercise",
      "intervention": "Beetroot juice",
@@ -1688,6 +955,7 @@
   {
    "id": "sugar",
    "label": "Blood sugar",
+   "anyDesign": true,
    "finding": "Blood sugar and insulin",
    "counts": {
     "all": 252,
@@ -1705,7 +973,7 @@
      "firstAuthor": "Alhalabi B",
      "journal": "Current nutrition reports",
      "citedBy": 2,
-     "why": "One of the newest systematic reviews on this finding (2024); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1776,6 +1044,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Beetroot juice or whole beetroot",
@@ -1796,6 +1065,7 @@
   {
    "id": "cognition",
    "label": "Thinking and brain blood flow",
+   "anyDesign": true,
    "finding": "Thinking and blood flow in the brain",
    "counts": {
     "all": 103,
@@ -1813,7 +1083,7 @@
      "firstAuthor": "Nowak A",
      "journal": "Nutrients",
      "citedBy": 5,
-     "why": "One of the newest systematic reviews on this finding (2025); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1891,11 +1161,12 @@
       "firstAuthor": "Nowak A",
       "journal": "Nutrients",
       "citedBy": 5,
-      "why": "One of the newest systematic reviews on this finding (2025); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, often older",
      "intervention": "Beetroot juice (nitrate-rich)",

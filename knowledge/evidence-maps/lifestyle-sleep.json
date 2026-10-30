@@ -20,8 +20,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 7350,
@@ -92,6 +92,7 @@
   {
    "id": "mortality",
    "label": "Sleep length and death",
+   "anyDesign": true,
    "finding": "Short or long sleep and death from any cause",
    "counts": {
     "all": 1095,
@@ -109,7 +110,7 @@
      "firstAuthor": "Ungvari Z",
      "journal": "GeroScience",
      "citedBy": 11,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30058510",
@@ -119,7 +120,7 @@
      "firstAuthor": "García-Perdomo HA",
      "journal": "Epidemiology and psychiatric sciences",
      "citedBy": 58,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30371228",
@@ -130,7 +131,7 @@
      "journal": "Journal of the American Heart Association",
      "citedBy": 401,
      "n": 3340684,
-     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -217,7 +218,7 @@
       "firstAuthor": "Ungvari Z",
       "journal": "GeroScience",
       "citedBy": 11,
-      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30058510",
@@ -227,7 +228,7 @@
       "firstAuthor": "García-Perdomo HA",
       "journal": "Epidemiology and psychiatric sciences",
       "citedBy": 58,
-      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30371228",
@@ -238,11 +239,12 @@
       "journal": "Journal of the American Heart Association",
       "citedBy": 401,
       "n": 3340684,
-      "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2018); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
      "intervention": "Short or long usual sleep",
@@ -376,6 +378,7 @@
   {
    "id": "cardiovascular",
    "label": "Heart disease and stroke",
+   "anyDesign": true,
    "finding": "Short or long sleep and heart disease or stroke",
    "counts": {
     "all": 2004,
@@ -393,7 +396,7 @@
      "firstAuthor": "Ungvari Z",
      "journal": "GeroScience",
      "citedBy": 4,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35245890",
@@ -403,7 +406,7 @@
      "firstAuthor": "Wang H",
      "journal": "Sleep medicine",
      "citedBy": 49,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "29206050",
@@ -414,55 +417,10 @@
      "journal": "European heart journal. Acute cardiovascular care",
      "citedBy": 125,
      "n": 816995,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0,
-    "trials": 3,
-    "inclusions": 3,
-    "reviews": [
-     {
-      "pmid": "40072786",
-      "trials": 1
-     },
-     {
-      "pmid": "29206050",
-      "trials": 2
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "35245890"
-    ],
-    "shared": [
-     {
-      "pmid": "15583226",
-      "title": "Brief communication: Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite",
-      "year": 2004,
-      "n": 12,
-      "inReviews": [
-       "29206050"
-      ]
-     },
-     {
-      "pmid": "25424573",
-      "title": "Experimental sleep restriction causes endothelial dysfunction in healthy humans",
-      "year": 2014,
-      "inReviews": [
-       "40072786"
-      ]
-     },
-     {
-      "pmid": "23070488",
-      "title": "Impaired insulin signaling in human adipocytes after experimental sleep restriction: a randomized, crossover study",
-      "year": 2012,
-      "inReviews": [
-       "29206050"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2004,
@@ -573,7 +531,7 @@
       "firstAuthor": "Ungvari Z",
       "journal": "GeroScience",
       "citedBy": 4,
-      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35245890",
@@ -583,7 +541,7 @@
       "firstAuthor": "Wang H",
       "journal": "Sleep medicine",
       "citedBy": 49,
-      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "29206050",
@@ -594,11 +552,12 @@
       "journal": "European heart journal. Acute cardiovascular care",
       "citedBy": 125,
       "n": 816995,
-      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
      "intervention": "Short or long usual sleep",
@@ -697,6 +656,7 @@
   {
    "id": "insulin",
    "label": "Insulin sensitivity",
+   "anyDesign": true,
    "finding": "Insulin sensitivity after shortened or disturbed sleep",
    "counts": {
     "all": 707,
@@ -714,7 +674,7 @@
      "firstAuthor": "Sondrup N",
      "journal": "Sleep medicine reviews",
      "citedBy": 66,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30870662",
@@ -724,7 +684,7 @@
      "firstAuthor": "Zhu B",
      "journal": "Sleep medicine reviews",
      "citedBy": 132,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35494895",
@@ -734,374 +694,10 @@
      "firstAuthor": "Singh T",
      "journal": "Cureus",
      "citedBy": 25,
-     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.125,
-    "trials": 40,
-    "inclusions": 50,
-    "reviews": [
-     {
-      "pmid": "35189549",
-      "trials": 19
-     },
-     {
-      "pmid": "30870662",
-      "trials": 28
-     },
-     {
-      "pmid": "35494895",
-      "trials": 3
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "26361380",
-      "title": "A single night of partial sleep loss impairs fasting insulin sensitivity but does not affect cephalic phase insulin release in young men",
-      "year": 2016,
-      "n": 16,
-      "inReviews": [
-       "35189549",
-       "30870662",
-       "35494895"
-      ]
-     },
-     {
-      "pmid": "25658017",
-      "title": "Subchronic sleep restriction causes tissue-specific insulin resistance",
-      "year": 2015,
-      "n": 14,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "29862620",
-      "title": "Differential effects of the circadian system and circadian misalignment on insulin sensitivity and insulin secretion in humans",
-      "year": 2018,
-      "n": 14,
-      "inReviews": [
-       "35189549",
-       "35494895"
-      ]
-     },
-     {
-      "pmid": "23070488",
-      "title": "Impaired insulin signaling in human adipocytes after experimental sleep restriction: a randomized, crossover study",
-      "year": 2012,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "19567526",
-      "title": "Exposure to recurrent sleep restriction in the setting of high caloric intake and physical inactivity results in increased insulin resistance and reduced glucose tolerance",
-      "year": 2009,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "23115399",
-      "title": "Short sleep duration, glucose dysregulation and hormonal regulation of appetite in men and women",
-      "year": 2012,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "25105727",
-      "title": "Acute Changes in Sleep Duration on Eating Behaviors and Appetite-Regulating Hormones in Overweight/Obese Adults",
-      "year": 2015,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "30140739",
-      "title": "Acute sleep loss results in tissue-specific alterations in genome-wide DNA methylation state and metabolic fuel utilization in humans",
-      "year": 2018,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "27866988",
-      "title": "The effects of partial sleep restriction and altered sleep timing on appetite and food reward",
-      "year": 2017,
-      "inReviews": [
-       "35189549",
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "26538305",
-      "title": "Resting metabolic rate varies by race and by sleep duration",
-      "year": 2015,
-      "n": 36,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "31053213",
-      "title": "Effects of Two-Week Sleep Extension on Glucose Metabolism in Chronically Sleep-Deprived Individuals",
-      "year": 2019,
-      "n": 21,
-      "inReviews": [
-       "35494895"
-      ]
-     },
-     {
-      "pmid": "25683266",
-      "title": "Metabolic and hormonal effects of 'catch-up' sleep in men with chronic, repetitive, lifestyle-driven sleep restriction",
-      "year": 2015,
-      "n": 19,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "33940082",
-      "title": "Severe sleep restriction suppresses appetite independent of effects on appetite regulating hormones in healthy young men without obesity",
-      "year": 2021,
-      "n": 18,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "29129611",
-      "title": "Effect of sleep curtailment on dietary behavior and physical activity: A randomized crossover trial",
-      "year": 2018,
-      "n": 16,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "21715510",
-      "title": "Short sleep duration increases energy intakes but does not change energy expenditure in normal-weight individuals",
-      "year": 2011,
-      "n": 15,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "21471283",
-      "title": "Acute sleep deprivation reduces energy expenditure in healthy men",
-      "year": 2011,
-      "n": 14,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "15583226",
-      "title": "Brief communication: Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite",
-      "year": 2004,
-      "n": 12,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "17519315",
-      "title": "Sleep loss alters basal metabolic hormone secretion and modulates the dynamic counterregulatory response to hypoglycemia",
-      "year": 2007,
-      "n": 10,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "30535338",
-      "title": "Sleep Loss Disrupts Morning-to-Evening Differences in Human White Adipose Tissue Transcriptome",
-      "year": 2019,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "29233906",
-      "title": "Skeletal muscle insulin signaling and whole-body glucose metabolism following acute sleep restriction in healthy males",
-      "year": 2017,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "22985906",
-      "title": "Effects of three weeks of mild sleep restriction implemented in the home environment on multiple metabolic and endocrine markers in healthy young men",
-      "year": 2013,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "30615104",
-      "title": "Impact of sleep restriction on metabolic outcomes induced by overfeeding: a randomized controlled trial in healthy individuals",
-      "year": 2019,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "22914550",
-      "title": "Effect of a phase advance and phase delay of the 24-h cycle on energy metabolism, appetite, and related hormones",
-      "year": 2012,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "26771705",
-      "title": "Effects of the Internal Circadian System and Circadian Misalignment on Glucose Tolerance in Chronic Shift Workers",
-      "year": 2016,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "23951335",
-      "title": "Sleep architecture when sleeping at an unusual circadian time and associations with insulin sensitivity",
-      "year": 2013,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "32475359",
-      "title": "Glucose control upon waking is unaffected by hourly sleep fragmentation during the night, but is impaired by morning caffeinated coffee",
-      "year": 2020,
-      "inReviews": [
-       "35189549"
-      ]
-     },
-     {
-      "pmid": "28071649",
-      "title": "Effect of shortened sleep on energy expenditure, core body temperature, and appetite: a human randomised crossover trial",
-      "year": 2017,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "26612385",
-      "title": "Sleep Restriction Enhances the Daily Rhythm of Circulating Levels of Endocannabinoid 2-Arachidonoylglycerol",
-      "year": 2016,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "26467988",
-      "title": "Elevated ghrelin predicts food intake during experimental sleep restriction",
-      "year": 2016,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "20357041",
-      "title": "Acute partial sleep deprivation increases food intake in healthy men",
-      "year": 2010,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "24352294",
-      "title": "Postprandial thermogenesis and substrate oxidation are unaffected by sleep restriction",
-      "year": 2014,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "23392199",
-      "title": "Effects of experimental sleep restriction on caloric intake and activity energy expenditure",
-      "year": 2013,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "19056602",
-      "title": "Sleep curtailment is accompanied by increased intake of calories from snacks",
-      "year": 2009,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "23428257",
-      "title": "Acute sleep deprivation increases portion size and affects food choice in young men",
-      "year": 2013,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "22259064",
-      "title": "Acute sleep deprivation enhances the brain's response to hedonic food stimuli: an fMRI study",
-      "year": 2012,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "22357722",
-      "title": "Sleep restriction leads to increased activation of brain regions sensitive to food stimuli",
-      "year": 2012,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "24839251",
-      "title": "Increased impulsivity in response to food cues after sleep loss in healthy young men",
-      "year": 2014,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "24088722",
-      "title": "Experimental sleep curtailment causes wake-dependent increases in 24-h energy expenditure as measured by whole-room indirect calorimetry",
-      "year": 2013,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "22760574",
-      "title": "Sleep restriction is not associated with a positive energy balance in adolescent boys",
-      "year": 2012,
-      "inReviews": [
-       "30870662"
-      ]
-     },
-     {
-      "pmid": "23954406",
-      "title": "Effects of sleep restriction on the human plasma metabolome",
-      "year": 2013,
-      "inReviews": [
-       "30870662"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2000,
@@ -1212,7 +808,7 @@
       "firstAuthor": "Zhu B",
       "journal": "Sleep medicine reviews",
       "citedBy": 132,
-      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35494895",
@@ -1222,11 +818,12 @@
       "firstAuthor": "Singh T",
       "journal": "Cureus",
       "citedBy": 25,
-      "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, mostly healthy",
      "intervention": "Shortened, broken-up or mistimed sleep (in trials), or short sleep",
@@ -1297,6 +894,7 @@
   {
    "id": "intake-weight",
    "label": "Eating and weight",
+   "anyDesign": true,
    "finding": "How much people eat, and body weight, after shortened sleep",
    "counts": {
     "all": 2269,
@@ -1314,7 +912,7 @@
      "firstAuthor": "Kohanmoo A",
      "journal": "Obesity science & practice",
      "citedBy": 24,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39469806",
@@ -1324,7 +922,7 @@
      "firstAuthor": "Jiang H",
      "journal": "Geriatrics & gerontology international",
      "citedBy": 10,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39079836",
@@ -1334,7 +932,7 @@
      "firstAuthor": "Lange MG",
      "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
      "citedBy": 7,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34620371",
@@ -1345,7 +943,7 @@
      "journal": "Clinical nutrition ESPEN",
      "citedBy": 34,
      "n": 43,
-     "why": "The most comprehensive review on this finding (50 trials, 2021); screened as answering the question"
+     "why": "The most comprehensive review on this finding (50 trials, 2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -1361,291 +959,6 @@
      "why": "A large trial (about 1,780 people) from 2025, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.03225806451612903,
-    "trials": 31,
-    "inclusions": 33,
-    "reviews": [
-     {
-      "pmid": "38835720",
-      "trials": 1
-     },
-     {
-      "pmid": "39469806",
-      "trials": 2
-     },
-     {
-      "pmid": "34620371",
-      "trials": 30
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "39079836"
-    ],
-    "shared": [
-     {
-      "pmid": "22259064",
-      "title": "Acute sleep deprivation enhances the brain's response to hedonic food stimuli: an fMRI study",
-      "year": 2012,
-      "inReviews": [
-       "39469806",
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "23729925",
-      "title": "Dietary intake following experimentally restricted sleep in adolescents",
-      "year": 2013,
-      "inReviews": [
-       "39469806",
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "23483886",
-      "title": "Evening chronotype is associated with changes in eating behavior, more sleep apnea, and increased stress hormones in short sleeping obese individuals",
-      "year": 2013,
-      "n": 119,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "20723551",
-      "title": "Effects of sleep restriction on adiponectin levels in healthy men and women",
-      "year": 2010,
-      "n": 74,
-      "inReviews": [
-       "38835720"
-      ]
-     },
-     {
-      "pmid": "27999367",
-      "title": "Phenotypic Stability of Energy Balance Responses to Experimental Total Sleep Deprivation and Sleep Restriction in Healthy Adults",
-      "year": 2016,
-      "n": 66,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "28401667",
-      "title": "Increased energy intake following sleep restriction in men and women: A one-size-fits-all conclusion?",
-      "year": 2017,
-      "n": 43,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "26538305",
-      "title": "Resting metabolic rate varies by race and by sleep duration",
-      "year": 2015,
-      "n": 36,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "29438540",
-      "title": "Influence of sleep restriction on weight loss outcomes associated with caloric restriction",
-      "year": 2018,
-      "n": 21,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "29129611",
-      "title": "Effect of sleep curtailment on dietary behavior and physical activity: A randomized crossover trial",
-      "year": 2018,
-      "n": 16,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "21715510",
-      "title": "Short sleep duration increases energy intakes but does not change energy expenditure in normal-weight individuals",
-      "year": 2011,
-      "n": 15,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "21471283",
-      "title": "Acute sleep deprivation reduces energy expenditure in healthy men",
-      "year": 2011,
-      "n": 14,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "15583226",
-      "title": "Brief communication: Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite",
-      "year": 2004,
-      "n": 12,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "20921542",
-      "title": "Insufficient sleep undermines dietary efforts to reduce adiposity",
-      "year": 2010,
-      "n": 10,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "28071649",
-      "title": "Effect of shortened sleep on energy expenditure, core body temperature, and appetite: a human randomised crossover trial",
-      "year": 2017,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "22760574",
-      "title": "Sleep restriction is not associated with a positive energy balance in adolescent boys",
-      "year": 2012,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "25706861",
-      "title": "Sweet/dessert foods are more appealing to adolescents after sleep restriction",
-      "year": 2015,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "26612385",
-      "title": "Sleep Restriction Enhances the Daily Rhythm of Circulating Levels of Endocannabinoid 2-Arachidonoylglycerol",
-      "year": 2016,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "20357041",
-      "title": "Acute partial sleep deprivation increases food intake in healthy men",
-      "year": 2010,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "23392199",
-      "title": "Effects of experimental sleep restriction on caloric intake and activity energy expenditure",
-      "year": 2013,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "22972835",
-      "title": "Alterations in sleep architecture in response to experimental sleep curtailment are associated with signs of positive energy balance",
-      "year": 2012,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "19056602",
-      "title": "Sleep curtailment is accompanied by increased intake of calories from snacks",
-      "year": 2009,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "26467988",
-      "title": "Elevated ghrelin predicts food intake during experimental sleep restriction",
-      "year": 2016,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "25105727",
-      "title": "Acute Changes in Sleep Duration on Eating Behaviors and Appetite-Regulating Hormones in Overweight/Obese Adults",
-      "year": 2015,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "27866988",
-      "title": "The effects of partial sleep restriction and altered sleep timing on appetite and food reward",
-      "year": 2017,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "23428257",
-      "title": "Acute sleep deprivation increases portion size and affects food choice in young men",
-      "year": 2013,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "30893841",
-      "title": "Increased Hunger, Food Cravings, Food Reward, and Portion Size Selection after Sleep Curtailment in Women Without Obesity",
-      "year": 2019,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "24839251",
-      "title": "Increased impulsivity in response to food cues after sleep loss in healthy young men",
-      "year": 2014,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "23115399",
-      "title": "Short sleep duration, glucose dysregulation and hormonal regulation of appetite in men and women",
-      "year": 2012,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "22357722",
-      "title": "Sleep restriction leads to increased activation of brain regions sensitive to food stimuli",
-      "year": 2012,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "19567526",
-      "title": "Exposure to recurrent sleep restriction in the setting of high caloric intake and physical inactivity results in increased insulin resistance and reduced glucose tolerance",
-      "year": 2009,
-      "inReviews": [
-       "34620371"
-      ]
-     },
-     {
-      "pmid": "24088722",
-      "title": "Experimental sleep curtailment causes wake-dependent increases in 24-h energy expenditure as measured by whole-room indirect calorimetry",
-      "year": 2013,
-      "inReviews": [
-       "34620371"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1984,
@@ -1789,7 +1102,7 @@
       "firstAuthor": "Kohanmoo A",
       "journal": "Obesity science & practice",
       "citedBy": 24,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39469806",
@@ -1799,7 +1112,7 @@
       "firstAuthor": "Jiang H",
       "journal": "Geriatrics & gerontology international",
       "citedBy": 10,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39079836",
@@ -1809,7 +1122,7 @@
       "firstAuthor": "Lange MG",
       "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
       "citedBy": 7,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "34620371",
@@ -1820,7 +1133,7 @@
       "journal": "Clinical nutrition ESPEN",
       "citedBy": 34,
       "n": 43,
-      "why": "The most comprehensive review on this finding (50 trials, 2021); screened as answering the question"
+      "why": "The most comprehensive review on this finding (50 trials, 2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39989394",
@@ -1836,6 +1149,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults",
      "intervention": "Shortened sleep (in trials), or short usual sleep",
@@ -1976,13 +1290,14 @@
   {
    "id": "cbt-i",
    "label": "Insomnia therapy (CBT-I)",
+   "anyDesign": true,
    "finding": "Insomnia: falling asleep, waking in the night, and insomnia severity, with CBT-I",
    "counts": {
     "all": 2011,
     "reviews": 180,
     "trialReviews": 180,
     "trials": 418,
-    "largeTrials": 14
+    "largeTrials": 13
    },
    "chosenReviews": [
     {
@@ -1994,7 +1309,7 @@
      "journal": "BMC nursing",
      "citedBy": 1,
      "n": 1537,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42240717",
@@ -2005,7 +1320,7 @@
      "journal": "Sleep & breathing = Schlaf & Atmung",
      "citedBy": 0,
      "n": 3507,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42841437",
@@ -2016,7 +1331,7 @@
      "journal": "Sleep",
      "citedBy": 0,
      "n": 14166,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38231522",
@@ -2027,159 +1342,10 @@
      "journal": "JAMA psychiatry",
      "citedBy": 131,
      "n": 31452,
-     "why": "The most comprehensive review on this finding (241 trials, 2024); screened as answering the question"
+     "why": "The most comprehensive review on this finding (241 trials, 2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.03571428571428571,
-    "trials": 14,
-    "inclusions": 15,
-    "reviews": [
-     {
-      "pmid": "41540418",
-      "trials": 3
-     },
-     {
-      "pmid": "42240717",
-      "trials": 11
-     },
-     {
-      "pmid": "38231522",
-      "trials": 1
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "42841437"
-    ],
-    "shared": [
-     {
-      "pmid": "32069463",
-      "title": "Nurse-Guided Internet-Delivered Cognitive Behavioral Therapy for Insomnia in General Practice: Results from a Pragmatic Randomized Clinical Trial",
-      "year": 2020,
-      "n": 134,
-      "inReviews": [
-       "41540418",
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "33328044",
-      "title": "Effects of digital cognitive behavioural therapy for insomnia on insomnia severity: a large-scale randomised controlled trial",
-      "year": 2020,
-      "n": 5349,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "27902836",
-      "title": "Effect of a Web-Based Cognitive Behavior Therapy for Insomnia Intervention With 1-Year Follow-up: A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 303,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "39675747",
-      "title": "Effectiveness and safety of an interactive internet-based intervention to improve insomnia: Results from a randomised controlled trial",
-      "year": 2025,
-      "n": 290,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "40528280",
-      "title": "Effectiveness of internet-based self-help cognitive behavioral therapy for insomnia (CBT-I) among community adults: A randomized controlled trial",
-      "year": 2025,
-      "n": 179,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "39250131",
-      "title": "Nurse-Supported Self-Directed Cognitive Behavioral Therapy for Insomnia: A Randomized Clinical Trial",
-      "year": 2024,
-      "n": 178,
-      "inReviews": [
-       "41540418"
-      ]
-     },
-     {
-      "pmid": "31909725",
-      "title": "Efficacy of a Self-Help Web-Based Recovery Training in Improving Sleep in Workers: Randomized Controlled Trial in the General Working Population",
-      "year": 2020,
-      "n": 89,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "36972049",
-      "title": "Digital Cognitive Behavioral Therapy for Insomnia Using a Smartphone Application in China: A Pilot Randomized Clinical Trial",
-      "year": 2023,
-      "n": 82,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "28400355",
-      "title": "Mobile Phone-Delivered Cognitive Behavioral Therapy for Insomnia: A Randomized Waitlist Controlled Trial",
-      "year": 2017,
-      "n": 77,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "35462241",
-      "title": "Network Intervention Analyses of cognitive therapy and behavior therapy for insomnia: Symptom specific effects and process measures",
-      "year": 2022,
-      "n": 65,
-      "inReviews": [
-       "38231522"
-      ]
-     },
-     {
-      "pmid": "38156655",
-      "title": "Investigating the subjective and objective efficacy of a cognitive behavioural therapy for insomnia (CBT-I)-based smartphone app on sleep: A randomised controlled trial",
-      "year": 2024,
-      "n": 29,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "38895830",
-      "title": "Investigating the efficacy of digital cognitive behavioural therapy in comparison to a sleep-monitoring application via integrated diary and actigraphy: A randomised-controlled trial",
-      "year": 2025,
-      "n": 29,
-      "inReviews": [
-       "42240717"
-      ]
-     },
-     {
-      "pmid": "33609425",
-      "title": "The effect of nurse-led Internet-based cognitive behavioural therapy for insomnia on patients with cardiovascular disease: A randomized controlled trial with 6-month follow-up",
-      "year": 2021,
-      "inReviews": [
-       "41540418"
-      ]
-     },
-     {
-      "pmid": "30185239",
-      "title": "Randomized Controlled Trial to Test the Efficacy of an Unguided Online Intervention with Automated Feedback for the Treatment of Insomnia",
-      "year": 2019,
-      "inReviews": [
-       "42240717"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -2321,7 +1487,7 @@
      "pmid": "33328044",
      "title": "Effects of digital cognitive behavioural therapy for insomnia on insomnia severity: a large-scale randomised controlled trial",
      "year": 2020,
-     "n": 5349
+     "n": 1721
     },
     {
      "pmid": "32112507",
@@ -2334,12 +1500,6 @@
      "title": "The effect of sleep-wake intraindividual variability in digital cognitive behavioral therapy for insomnia: a mediation analysis of a large-scale RCT",
      "year": 2021,
      "n": 1720
-    },
-    {
-     "pmid": "33249492",
-     "title": "Digital cognitive behavioral therapy for insomnia promotes later health resilience during the coronavirus disease 19 (COVID-19) pandemic",
-     "year": 2021,
-     "n": 2020
     },
     {
      "pmid": "33908343",
@@ -2395,7 +1555,7 @@
       "journal": "BMC nursing",
       "citedBy": 1,
       "n": 1537,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42240717",
@@ -2406,7 +1566,7 @@
       "journal": "Sleep & breathing = Schlaf & Atmung",
       "citedBy": 0,
       "n": 3507,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42841437",
@@ -2417,7 +1577,7 @@
       "journal": "Sleep",
       "citedBy": 0,
       "n": 14166,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38231522",
@@ -2428,11 +1588,12 @@
       "journal": "JAMA psychiatry",
       "citedBy": 131,
       "n": 31452,
-      "why": "The most comprehensive review on this finding (241 trials, 2024); screened as answering the question"
+      "why": "The most comprehensive review on this finding (241 trials, 2024); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with chronic insomnia (reviews limited to one other illness, such as cancer, count as partly)",
      "intervention": "Cognitive behavioural therapy for insomnia (CBT-I), face to face or digital",
@@ -3455,6 +2616,7 @@
   {
    "id": "regularity",
    "label": "Sleep regularity",
+   "anyDesign": true,
    "finding": "Sleep regularity (going to sleep and waking at similar times) and death from any cause",
    "counts": {
     "all": 389,
@@ -3472,7 +2634,7 @@
      "firstAuthor": "Kalkanis A",
      "journal": "Sleep medicine reviews",
      "citedBy": 4,
-     "why": "One of the newest systematic reviews on this finding (2025); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36081237",
@@ -3483,7 +2645,7 @@
      "journal": "Sleep medicine reviews",
      "citedBy": 61,
      "n": 133403,
-     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33054339",
@@ -3494,47 +2656,10 @@
      "journal": "Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",
      "citedBy": 245,
      "n": 92340,
-     "why": "One of the newest systematic reviews on this finding (2020); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2020); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0,
-    "trials": 2,
-    "inclusions": 2,
-    "reviews": [
-     {
-      "pmid": "36081237",
-      "trials": 1
-     },
-     {
-      "pmid": "33054339",
-      "trials": 1
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "41259946"
-    ],
-    "shared": [
-     {
-      "pmid": "32511726",
-      "title": "Intraindividual variability in sleep schedule: effects of an internet-based cognitive-behavioral therapy for insomnia program and its relation with symptom remission",
-      "year": 2020,
-      "n": 303,
-      "inReviews": [
-       "36081237"
-      ]
-     },
-     {
-      "pmid": "29332677",
-      "title": "Pilot study of sleep and meal timing effects, independent of sleep duration and food intake, on insulin sensitivity in healthy individuals",
-      "year": 2018,
-      "inReviews": [
-       "33054339"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2014,
@@ -3590,7 +2715,7 @@
       "firstAuthor": "Kalkanis A",
       "journal": "Sleep medicine reviews",
       "citedBy": 4,
-      "why": "One of the newest systematic reviews on this finding (2025); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "36081237",
@@ -3601,7 +2726,7 @@
       "journal": "Sleep medicine reviews",
       "citedBy": 61,
       "n": 133403,
-      "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33054339",
@@ -3612,11 +2737,12 @@
       "journal": "Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",
       "citedBy": 245,
       "n": 92340,
-      "why": "One of the newest systematic reviews on this finding (2020); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2020); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
      "intervention": "Regular sleep (going to sleep and waking at similar times)",

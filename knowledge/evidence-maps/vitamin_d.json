@@ -18,8 +18,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin D, with vitamin D in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin D trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 100400,
@@ -90,12 +90,13 @@
   {
    "id": "fractures-falls",
    "label": "Fractures and falls",
+   "anyDesign": false,
    "finding": "Bone fractures and falls (vitamin D on its own)",
    "counts": {
     "reviews": 192,
     "trialReviews": 63,
     "trials": 218,
-    "largeTrials": 76
+    "largeTrials": 73
    },
    "chosenReviews": [
     {
@@ -107,7 +108,7 @@
      "journal": "BMJ (Clinical research ed.)",
      "citedBy": 5,
      "n": 153902,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40943885",
@@ -118,7 +119,7 @@
      "journal": "Journal of clinical medicine",
      "citedBy": 4,
      "n": 23211,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38698349",
@@ -129,7 +130,7 @@
      "journal": "BMC geriatrics",
      "citedBy": 29,
      "n": 58937,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -156,600 +157,6 @@
      "why": "A large trial (about 2,495 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.2361111111111111,
-    "trials": 72,
-    "inclusions": 106,
-    "reviews": [
-     {
-      "pmid": "42161415",
-      "trials": 57
-     },
-     {
-      "pmid": "40943885",
-      "trials": 13
-     },
-     {
-      "pmid": "38698349",
-      "trials": 36
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "34337905",
-      "title": "Vitamin D supplementation and risk of falling: outcomes from the randomized, placebo-controlled D-Health Trial",
-      "year": 2021,
-      "n": 21315,
-      "inReviews": [
-       "42161415",
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "20060665",
-      "title": "Does daily vitamin D 800 IU and calcium 1000 mg supplementation decrease the risk of falling in ambulatory women aged 65-71 years? A 3-year randomized population-based trial (OSTPRE-FPS)",
-      "year": 2010,
-      "n": 1573,
-      "inReviews": [
-       "42161415",
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "21956713",
-      "title": "Effects of three-monthly oral 150,000 IU cholecalciferol supplementation on falls, mobility, and muscle strength in older postmenopausal women: a randomized controlled trial",
-      "year": 2012,
-      "n": 686,
-      "inReviews": [
-       "42161415",
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "16505262",
-      "title": "Effect of cholecalciferol plus calcium on falling in ambulatory older men and women: a 3-year randomized controlled trial",
-      "year": 2006,
-      "n": 246,
-      "inReviews": [
-       "42161415",
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "32492153",
-      "title": "VITamin D and OmegA-3 TriaL (VITAL): Effects of Vitamin D Supplements on Risk of Falls in the US Population",
-      "year": 2020,
-      "n": 25871,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "17998225",
-      "title": "Effect of annual intramuscular vitamin D on fracture risk in elderly men and women--a population-based, randomized, double-blind, placebo-controlled trial",
-      "year": 2007,
-      "n": 9440,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "16641143",
-      "title": "Vitamin D supplementation and the prevention of fractures and falls: results of a randomised trial in elderly people in residential accommodation",
-      "year": 2006,
-      "n": 3717,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "15860827",
-      "title": "Randomised controlled trial of calcium and supplementation with cholecalciferol (vitamin D3) for prevention of fractures in primary care",
-      "year": 2005,
-      "n": 3314,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "12609940",
-      "title": "Effect of four monthly oral vitamin D3 (cholecalciferol) supplementation on fractures and mortality in men and women living in the community: randomised double blind controlled trial",
-      "year": 2003,
-      "n": 2686,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "20460620",
-      "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
-      "year": 2010,
-      "n": 2256,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "35136915",
-      "title": "Effects of vitamin D, omega-3 fatty acids, and a simple home strength exercise program on fall prevention: the DO-HEALTH randomized clinical trial",
-      "year": 2022,
-      "n": 2157,
-      "inReviews": [
-       "42161415",
-       "40943885"
-      ]
-     },
-     {
-      "pmid": "33284677",
-      "title": "The Effects of Four Doses of Vitamin D Supplements on Falls in Older Adults : A Response-Adaptive, Randomized Clinical Trial",
-      "year": 2021,
-      "n": 688,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "11991447",
-      "title": "Combined calcium and vitamin D3 supplementation in elderly women: confirmation of reversal of secondary hyperparathyroidism and hip fracture risk: the Decalyos II study",
-      "year": 2002,
-      "n": 583,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26954409",
-      "title": "Effect of Vitamin D Supplementation on Tibial Cartilage Volume and Knee Pain Among Patients With Symptomatic Knee Osteoarthritis: A Randomized Clinical Trial",
-      "year": 2016,
-      "n": 413,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "25799402",
-      "title": "Exercise and vitamin D in fall prevention among older women: a randomized clinical trial",
-      "year": 2015,
-      "n": 409,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "8633602",
-      "title": "Falls in the elderly: a prospective study of risk factors and risk profiles",
-      "year": 1996,
-      "n": 354,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "27986983",
-      "title": "Optimum dose of vitamin D for disease prevention in older people: BEST-D trial of vitamin D in primary care",
-      "year": 2017,
-      "n": 305,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "18195202",
-      "title": "Effects of ergocalciferol added to calcium on the risk of falls in elderly high-risk women",
-      "year": 2008,
-      "n": 302,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "18629569",
-      "title": "Effects of a long-term vitamin D and calcium supplementation on falls and parameters of muscle function in community-dwelling older individuals",
-      "year": 2009,
-      "n": 242,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26237520",
-      "title": "Treatment of Vitamin D Insufficiency in Postmenopausal Women: A Randomized Clinical Trial",
-      "year": 2015,
-      "n": 230,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26554884",
-      "title": "Effect of isolated vitamin D supplementation on the rate of falls and postural balance in postmenopausal women fallers: a randomized, double-blind, placebo-controlled trial",
-      "year": 2016,
-      "n": 160,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "23939263",
-      "title": "Cholecalciferol treatment to reduce blood pressure in older patients with isolated systolic hypertension: the VitDISH randomized controlled trial",
-      "year": 2013,
-      "n": 159,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "14695863",
-      "title": "A randomised, controlled comparison of different calcium and vitamin D supplementation regimens in elderly women after hip fracture: The Nottingham Neck of Femur (NONOF) Study",
-      "year": 2004,
-      "n": 150,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "15501836",
-      "title": "Vitamin D supplementation improves neuromuscular function in older people who fall",
-      "year": 2004,
-      "n": 139,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "27861700",
-      "title": "Vitamin D and Physical Function in Sedentary Older Men",
-      "year": 2017,
-      "n": 130,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "12568412",
-      "title": "Effects of vitamin D and calcium supplementation on falls: a randomized controlled trial",
-      "year": 2003,
-      "n": 122,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "23982800",
-      "title": "A parallel group double-blind RCT of vitamin D3 assessing physical function: is the biochemical response to treatment affected by overweight and obesity?",
-      "year": 2014,
-      "n": 102,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26277680",
-      "title": "Delivery of a Vitamin D Intervention in Homebound Older Adults Using a Meals-on-Wheels Program: A Pilot Study",
-      "year": 2015,
-      "n": 68,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "20103775",
-      "title": "The effects of vitamin D supplementation on physical function and quality of life in older patients with heart failure: a randomized controlled trial",
-      "year": 2010,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "17302660",
-      "title": "A higher dose of vitamin d reduces the risk of falls in nursing home residents: a randomized, multiple-dose study",
-      "year": 2007,
-      "inReviews": [
-       "42161415",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "21525191",
-      "title": "Urinary tract stone occurrence in the Women's Health Initiative (WHI) randomized clinical trial of calcium and vitamin D supplements",
-      "year": 2011,
-      "n": 36282,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "16481635",
-      "title": "Calcium plus vitamin D supplementation and the risk of fractures",
-      "year": 2006,
-      "n": 36282,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "35939577",
-      "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
-      "year": 2022,
-      "n": 25871,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "37011645",
-      "title": "The effect of monthly vitamin D supplementation on fractures: a tertiary outcome from the population-based, double-blind, randomised, placebo-controlled D-Health trial",
-      "year": 2023,
-      "n": 21315,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "22038523",
-      "title": "Design, history and results of the Thiazolidinedione Intervention with vitamin D Evaluation (TIDE) randomised controlled trial",
-      "year": 2012,
-      "n": 16000,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "36604262",
-      "title": "Vitamin D supplementation and adverse skeletal and non-skeletal outcomes in individuals at increased cardiovascular risk: Results from the International Polycap Study (TIPS)-3 randomized controlled trial",
-      "year": 2023,
-      "n": 5670,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "15885294",
-      "title": "Oral vitamin D3 and calcium for secondary prevention of low-trauma fractures in elderly people (Randomised Evaluation of Calcium Or vitamin D, RECORD): a randomised placebo-controlled trial",
-      "year": 2005,
-      "n": 5292,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "24114665",
-      "title": "Use of calcium supplements, vitamin D supplements and specific osteoporosis drugs among French women aged 75-85 years: patterns of use and associated factors",
-      "year": 2013,
-      "n": 4221,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "17473911",
-      "title": "Preventing fractures among older people living in institutional care: a pragmatic randomised double blind placebo controlled trial of vitamin D supplementation",
-      "year": 2007,
-      "n": 3440,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "20200964",
-      "title": "Effect of vitamin D(3) and calcium on fracture risk in 65- to 71-year-old women: a population-based 3-year randomized, controlled trial--the OSTPRE-FPS",
-      "year": 2010,
-      "n": 3432,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "8554248",
-      "title": "Vitamin D supplementation and fracture incidence in elderly persons. A randomized, placebo-controlled clinical trial",
-      "year": 1996,
-      "n": 2578,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "33170239",
-      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 2157,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "38552276",
-      "title": "Effects of testosterone and vitamin D on fall risk in pre-frail hypogonadal men: a factorial design RCT",
-      "year": 2024,
-      "n": 1266,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "28695804",
-      "title": "Effects of Enhanced Exercise and Combined Vitamin D and Calcium Supplementation on Muscle Strength and Fracture Risk in Postmenopausal Chinese Women",
-      "year": 2017,
-      "n": 614,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "11918228",
-      "title": "Can vitamin D supplementation reduce the risk of fracture in the elderly? A randomized controlled trial",
-      "year": 2002,
-      "n": 575,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "36821761",
-      "title": "The association of vitamin D supplementation and serum vitamin D levels with physical activity in older adults: Results from a randomized trial",
-      "year": 2023,
-      "n": 571,
-      "inReviews": [
-       "40943885"
-      ]
-     },
-     {
-      "pmid": "16274368",
-      "title": "Should older people in residential care receive vitamin D to prevent falls? Results of a randomized trial",
-      "year": 2005,
-      "n": 540,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "28921338",
-      "title": "The effect of high-dose vitamin D3 supplementation on bone mineral density in subjects with prediabetes",
-      "year": 2018,
-      "n": 511,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "23332626",
-      "title": "[Effect of calcium and vitamin D in the reduction of falls in the elderly: a randomized trial versus placebo]",
-      "year": 2014,
-      "n": 508,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "30964526",
-      "title": "Effect of Vitamin D Supplementation on Relapse-Free Survival Among Patients With Digestive Tract Cancers: The AMATERASU Randomized Clinical Trial",
-      "year": 2019,
-      "n": 439,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "28369286",
-      "title": "A 2-Year Follow-Up After a 2-Year RCT with Vitamin D and Exercise: Effects on Falls, Injurious Falls and Physical Functioning Among Older Women",
-      "year": 2017,
-      "n": 409,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "30624670",
-      "title": "Randomized controlled trial of vitamin D supplementation in older people to optimize bone health",
-      "year": 2019,
-      "n": 379,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "10999778",
-      "title": "Effect of calcium or 25OH vitamin D3 dietary supplementation on bone loss at the hip in men and women over the age of 60",
-      "year": 2000,
-      "n": 316,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "23585346",
-      "title": "Hip bone loss is attenuated with 1000 IU but not 400 IU daily vitamin D3: a 1-year double-blind RCT in postmenopausal women",
-      "year": 2013,
-      "n": 305,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "30698279",
-      "title": "Vitamin D and Falls in Older African American Women: The PODA Randomized Clinical Trial",
-      "year": 2019,
-      "n": 260,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "17243866",
-      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
-      "year": 2007,
-      "n": 244,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "9278463",
-      "title": "Effect of calcium and vitamin D supplementation on bone density in men and women 65 years of age or older",
-      "year": 1997,
-      "n": 213,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "26747333",
-      "title": "Monthly High-Dose Vitamin D Treatment for the Prevention of Functional Decline: A Randomized Clinical Trial",
-      "year": 2016,
-      "n": 200,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "30715090",
-      "title": "The effect of vitamin D supplementation on lower-extremity power and function in older adults: a randomized controlled trial",
-      "year": 2019,
-      "n": 100,
-      "inReviews": [
-       "42161415"
-      ]
-     },
-     {
-      "pmid": "24856872",
-      "title": "Biochemical parameters after cholecalciferol repletion in hemodialysis: results From the VitaDial randomized trial",
-      "year": 2014,
-      "n": 55,
-      "inReviews": [
-       "42161415"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1990,
@@ -1039,12 +446,6 @@
      "n": 9440
     },
     {
-     "pmid": "18179991",
-     "title": "Distribution and correlates of serum 25-hydroxyvitamin D levels in a sample of patients with hip fracture",
-     "year": 2007,
-     "n": 1174
-    },
-    {
      "pmid": "17473911",
      "title": "Preventing fractures among older people living in institutional care: a pragmatic randomised double blind placebo controlled trial of vitamin D supplementation",
      "year": 2007,
@@ -1084,7 +485,7 @@
      "pmid": "18433305",
      "title": "Calcium and vitamin d supplementation decreases incidence of stress fractures in female navy recruits",
      "year": 2008,
-     "n": 14416
+     "n": 5201
     },
     {
      "pmid": "17924051",
@@ -1339,12 +740,6 @@
      "n": 1682
     },
     {
-     "pmid": "38552276",
-     "title": "Effects of testosterone and vitamin D on fall risk in pre-frail hypogonadal men: a factorial design RCT",
-     "year": 2024,
-     "n": 1266
-    },
-    {
      "pmid": "39585370",
      "title": "Association of standardized serum 25-hydroxyvitamin D with falls in post-menopausal women",
      "year": 2025,
@@ -1355,12 +750,6 @@
      "title": "Effects of vitamin D3, omega-3s, and a simple home exercise program on incident vertebral fractures: the DO-HEALTH randomized controlled trial",
      "year": 2025,
      "n": 1488
-    },
-    {
-     "pmid": "41199222",
-     "title": "A randomized control trial comparing Falls Reduction for Elderly Emergency Department (FREED) interventions and usual care",
-     "year": 2025,
-     "n": 1026
     },
     {
      "pmid": "42704968",
@@ -1398,7 +787,7 @@
       "journal": "BMJ (Clinical research ed.)",
       "citedBy": 5,
       "n": 153902,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40943885",
@@ -1409,7 +798,7 @@
       "journal": "Journal of clinical medicine",
       "citedBy": 4,
       "n": 23211,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38698349",
@@ -1420,7 +809,7 @@
       "journal": "BMC geriatrics",
       "citedBy": 29,
       "n": 58937,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42704968",
@@ -1447,6 +836,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults living at home or in care homes, mostly older adults (not a group defined by one illness)",
      "intervention": "Vitamin D (D3, D2 or calcifediol) on its own; a review that also analyses vitamin D without calcium separately counts",
@@ -1699,6 +1089,7 @@
   {
    "id": "mortality",
    "label": "Death from any cause",
+   "anyDesign": false,
    "finding": "Cancer, heart disease and death from any cause",
    "counts": {
     "reviews": 128,
@@ -1716,7 +1107,7 @@
      "journal": "Fundamental & clinical pharmacology",
      "citedBy": 0,
      "n": 30320,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38615341",
@@ -1726,7 +1117,7 @@
      "firstAuthor": "Tao X",
      "journal": "Biomolecules & biomedicine",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37111028",
@@ -1737,7 +1128,7 @@
      "journal": "Nutrients",
      "citedBy": 40,
      "n": 82210,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "24414552",
@@ -1748,629 +1139,10 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 267,
      "n": 95286,
-     "why": "The most comprehensive review of trials on this outcome (159 trials, 2014); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (159 trials, 2014); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.062146892655367235,
-    "trials": 295,
-    "inclusions": 350,
-    "reviews": [
-     {
-      "pmid": "42823826",
-      "trials": 21
-     },
-     {
-      "pmid": "38615341",
-      "trials": 16
-     },
-     {
-      "pmid": "37111028",
-      "trials": 71
-     },
-     {
-      "pmid": "24414552",
-      "trials": 242
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "12609940",
-      "title": "Effect of four monthly oral vitamin D3 (cholecalciferol) supplementation on fractures and mortality in men and women living in the community: randomised double blind controlled trial",
-      "year": 2003,
-      "n": 2686,
-      "inReviews": [
-       "42823826",
-       "38615341",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "20460620",
-      "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
-      "year": 2010,
-      "n": 2256,
-      "inReviews": [
-       "42823826",
-       "38615341",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17998225",
-      "title": "Effect of annual intramuscular vitamin D on fracture risk in elderly men and women--a population-based, randomized, double-blind, placebo-controlled trial",
-      "year": 2007,
-      "n": 9440,
-      "inReviews": [
-       "38615341",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17473911",
-      "title": "Preventing fractures among older people living in institutional care: a pragmatic randomised double blind placebo controlled trial of vitamin D supplementation",
-      "year": 2007,
-      "n": 3440,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "15860827",
-      "title": "Randomised controlled trial of calcium and supplementation with cholecalciferol (vitamin D3) for prevention of fractures in primary care",
-      "year": 2005,
-      "n": 3314,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "8554248",
-      "title": "Vitamin D supplementation and fracture incidence in elderly persons. A randomized, placebo-controlled clinical trial",
-      "year": 1996,
-      "n": 2578,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "21956713",
-      "title": "Effects of three-monthly oral 150,000 IU cholecalciferol supplementation on falls, mobility, and muscle strength in older postmenopausal women: a randomized controlled trial",
-      "year": 2012,
-      "n": 686,
-      "inReviews": [
-       "42823826",
-       "38615341",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "11991447",
-      "title": "Combined calcium and vitamin D3 supplementation in elderly women: confirmation of reversal of secondary hyperparathyroidism and hip fracture risk: the Decalyos II study",
-      "year": 2002,
-      "n": 583,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "11918228",
-      "title": "Can vitamin D supplementation reduce the risk of fracture in the elderly? A randomized controlled trial",
-      "year": 2002,
-      "n": 575,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "16274368",
-      "title": "Should older people in residential care receive vitamin D to prevent falls? Results of a randomized trial",
-      "year": 2005,
-      "n": 540,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "16507374",
-      "title": "Clinical and laboratory safety of one year's use of a combination calcium + vitamin D tablet in ambulatory elderly women with vitamin D insufficiency: results of a multicenter, randomized, double-blind, placebo-controlled study",
-      "year": 2005,
-      "n": 192,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "14695863",
-      "title": "A randomised, controlled comparison of different calcium and vitamin D supplementation regimens in elderly women after hip fracture: The Nottingham Neck of Femur (NONOF) Study",
-      "year": 2004,
-      "n": 150,
-      "inReviews": [
-       "42823826",
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17309935",
-      "title": "Calcium/vitamin D supplementation and cardiovascular events",
-      "year": 2007,
-      "n": 36282,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "30415629",
-      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "42823826",
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "10022414",
-      "title": "Prevention of femoral and lumbar bone loss with hormone replacement therapy and vitamin D3 in early postmenopausal women: a population-based 5-year randomized trial",
-      "year": 1999,
-      "n": 13100,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "15040824",
-      "title": "Vitamin D and calcium supplementation prevents osteoporotic fractures in elderly community dwelling residents: a pragmatic population-based 3-year intervention study",
-      "year": 2004,
-      "n": 9605,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "22112804",
-      "title": "Long-term follow-up for mortality and cancer in a randomized placebo-controlled trial of vitamin D(3) and/or calcium (RECORD trial)",
-      "year": 2012,
-      "n": 5292,
-      "inReviews": [
-       "42823826",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "20204604",
-      "title": "Effect of calcium and vitamin D supplementation on bone mineral density in women aged 65-71 years: a 3-year randomized population-based trial (OSTPRE-FPS)",
-      "year": 2010,
-      "n": 3432,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "33170239",
-      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 2157,
-      "inReviews": [
-       "42823826",
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "17556697",
-      "title": "Vitamin D and calcium supplementation reduces cancer risk: results of a randomized trial",
-      "year": 2007,
-      "n": 1179,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "25799402",
-      "title": "Exercise and vitamin D in fall prevention among older women: a randomized clinical trial",
-      "year": 2015,
-      "n": 409,
-      "inReviews": [
-       "42823826",
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "16183652",
-      "title": "Randomised controlled trial of prevention of falls in people aged > or =75 with severe visual impairment: the VIP trial",
-      "year": 2005,
-      "n": 391,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17874029",
-      "title": "Efficacy of different doses and time intervals of oral vitamin D supplementation with or without calcium in elderly nursing home residents",
-      "year": 2008,
-      "n": 338,
-      "inReviews": [
-       "38615341",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18195202",
-      "title": "Effects of ergocalciferol added to calcium on the risk of falls in elderly high-risk women",
-      "year": 2008,
-      "n": 302,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "7714065",
-      "title": "Prevention of bone loss by vitamin D supplementation in elderly women: a randomized double-blind trial",
-      "year": 1995,
-      "n": 283,
-      "inReviews": [
-       "42823826",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "1883119",
-      "title": "Effect of vitamin D supplementation on wintertime and overall bone loss in healthy postmenopausal women",
-      "year": 1991,
-      "n": 249,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17243866",
-      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
-      "year": 2007,
-      "n": 244,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18629569",
-      "title": "Effects of a long-term vitamin D and calcium supplementation on falls and parameters of muscle function in community-dwelling older individuals",
-      "year": 2009,
-      "n": 242,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "9797910",
-      "title": "Calcium and vitamin D supplementation increases spinal BMD in healthy, postmenopausal women",
-      "year": 1998,
-      "n": 240,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "9278463",
-      "title": "Effect of calcium and vitamin D supplementation on bone density in men and women 65 years of age or older",
-      "year": 1997,
-      "n": 213,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17656420",
-      "title": "Does vitamin D stop inpatients falling? A randomised controlled trial",
-      "year": 2007,
-      "n": 205,
-      "inReviews": [
-       "42823826",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "19321573",
-      "title": "Vitamin D supplementation enhances the beneficial effects of weight loss on cardiovascular disease risk markers",
-      "year": 2009,
-      "n": 200,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "22250141",
-      "title": "High doses of vitamin D to reduce exacerbations in chronic obstructive pulmonary disease: a randomized trial",
-      "year": 2012,
-      "n": 182,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "23939263",
-      "title": "Cholecalciferol treatment to reduce blood pressure in older patients with isolated systolic hypertension: the VitDISH randomized controlled trial",
-      "year": 2013,
-      "n": 159,
-      "inReviews": [
-       "42823826",
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "18089701",
-      "title": "Effects of calcium and vitamin D supplementation on hip bone mineral density and calcium-related analytes in elderly ambulatory Australian women: a five-year randomized controlled trial",
-      "year": 2008,
-      "n": 120,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "20130093",
-      "title": "Once-weekly dose of 8400 IU vitamin D(3) compared with placebo: effects on neuromuscular function and tolerability in older adults with vitamin D insufficiency",
-      "year": 2010,
-      "n": 114,
-      "inReviews": [
-       "42823826",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17181890",
-      "title": "Skeletal site-dependent response of bone mineral density and quantitative ultrasound parameters following a 12-month dietary intervention using dairy products fortified with calcium and vitamin D: the Postmenopausal Health Study",
-      "year": 2006,
-      "n": 101,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "15231008",
-      "title": "Supplementation with oral vitamin D3 and calcium during winter prevents seasonal bone loss: a randomized controlled open-label prospective trial",
-      "year": 2004,
-      "n": 55,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18544622",
-      "title": "Comparison of daily, weekly, and monthly vitamin D3 in ethanol dosing protocols for two months in elderly hip fracture patients",
-      "year": 2008,
-      "n": 48,
-      "inReviews": [
-       "38615341",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "16043680",
-      "title": "A randomized controlled trial of vitamin D3 supplementation in African American women",
-      "year": 2005,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "12716689",
-      "title": "Vitamin D supplementation and bone mineral density in early postmenopausal women",
-      "year": 2003,
-      "inReviews": [
-       "37111028",
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "9492970",
-      "title": "Design of the Women's Health Initiative clinical trial and observational study. The Women's Health Initiative Study Group",
-      "year": 1998,
-      "n": 100000,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "28384800",
-      "title": "Effect of Monthly High-Dose Vitamin D Supplementation on Cardiovascular Disease in the Vitamin D Assessment Study : A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 47905,
-      "inReviews": [
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "19221190",
-      "title": "Calcium plus vitamin D supplementation and mortality in postmenopausal women: the Women's Health Initiative calcium-vitamin D randomized controlled trial",
-      "year": 2009,
-      "n": 36282,
-      "inReviews": [
-       "42823826"
-      ]
-     },
-     {
-      "pmid": "21709199",
-      "title": "Calcium plus vitamin D supplementation and the risk of nonmelanoma and melanoma skin cancer: post hoc analyses of the women's health initiative randomized controlled trial",
-      "year": 2011,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18853250",
-      "title": "A randomized controlled trial of calcium plus vitamin D supplementation and risk of benign proliferative breast disease",
-      "year": 2009,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "21774589",
-      "title": "The effect of calcium plus vitamin D on risk for invasive cancer: results of the Women's Health Initiative (WHI) calcium plus vitamin D randomized clinical trial",
-      "year": 2011,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "17502530",
-      "title": "Calcium plus vitamin D supplementation and the risk of postmenopausal weight gain",
-      "year": 2007,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "21525191",
-      "title": "Urinary tract stone occurrence in the Women's Health Initiative (WHI) randomized clinical trial of calcium and vitamin D supplements",
-      "year": 2011,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "16481635",
-      "title": "Calcium plus vitamin D supplementation and the risk of fractures",
-      "year": 2006,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18824662",
-      "title": "Effect of calcium and vitamin D supplementation on blood pressure: the Women's Health Initiative Randomized Trial",
-      "year": 2008,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "19001601",
-      "title": "Calcium plus vitamin D supplementation and the risk of breast cancer",
-      "year": 2008,
-      "n": 36282,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18755319",
-      "title": "Calcium, vitamin D supplementation, and physical function in the Women's Health Initiative",
-      "year": 2008,
-      "n": 33067,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "35026158",
-      "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
-      "year": 2022,
-      "n": 21315,
-      "inReviews": [
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "32090730",
-      "title": "High-dose oral vitamin D supplementation and mortality in people aged 65-84 years: the VIDAL cluster feasibility RCT of open versus double-blind individual randomisation",
-      "year": 2020,
-      "n": 20000,
-      "inReviews": [
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "22038523",
-      "title": "Design, history and results of the Thiazolidinedione Intervention with vitamin D Evaluation (TIDE) randomised controlled trial",
-      "year": 2012,
-      "n": 16000,
-      "inReviews": [
-       "37111028"
-      ]
-     },
-     {
-      "pmid": "21986389",
-      "title": "The VITamin D and OmegA-3 TriaL (VITAL): rationale and design of a large randomized controlled trial of vitamin D and marine omega-3 fatty acid supplements for the primary prevention of cancer and cardiovascular disease",
-      "year": 2012,
-      "n": 16000,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "18433305",
-      "title": "Calcium and vitamin d supplementation decreases incidence of stress fractures in female navy recruits",
-      "year": 2008,
-      "n": 14416,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "10824236",
-      "title": "Identification of early postmenopausal women with no bone response to HRT: results of a five-year clinical trial",
-      "year": 2000,
-      "n": 14220,
-      "inReviews": [
-       "24414552"
-      ]
-     },
-     {
-      "pmid": "9692075",
-      "title": "Does vitamin D strengthen the increase in femoral neck BMD in osteoporotic women treated with estrogen?",
-      "year": 1998,
-      "n": 13100,
-      "inReviews": [
-       "24414552"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -2635,7 +1407,7 @@
       "journal": "Fundamental & clinical pharmacology",
       "citedBy": 0,
       "n": 30320,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38615341",
@@ -2645,7 +1417,7 @@
       "firstAuthor": "Tao X",
       "journal": "Biomolecules & biomedicine",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "37111028",
@@ -2656,7 +1428,7 @@
       "journal": "Nutrients",
       "citedBy": 40,
       "n": 82210,
-      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "24414552",
@@ -2667,11 +1439,12 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 267,
       "n": 95286,
-      "why": "The most comprehensive review of trials on this outcome (159 trials, 2014); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (159 trials, 2014); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
      "intervention": "Vitamin D (D3, D2 or calcifediol)",
@@ -2875,6 +1648,7 @@
   {
    "id": "cancer",
    "label": "Cancer",
+   "anyDesign": false,
    "finding": "Cancer, heart disease and death from any cause",
    "counts": {
     "reviews": 362,
@@ -2892,7 +1666,7 @@
      "journal": "Ageing research reviews",
      "citedBy": 55,
      "n": 104727,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35352965",
@@ -2902,7 +1676,7 @@
      "firstAuthor": "Guo Z",
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 20,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35954381",
@@ -2913,7 +1687,7 @@
      "journal": "Cancers",
      "citedBy": 35,
      "n": 72669,
-     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35727272",
@@ -2924,7 +1698,7 @@
      "journal": "JAMA",
      "citedBy": 107,
      "n": 739803,
-     "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -2962,609 +1736,6 @@
      "why": "A large trial (about 1,437 people) from 2023, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.23497267759562843,
-    "trials": 61,
-    "inclusions": 104,
-    "reviews": [
-     {
-      "pmid": "37004841",
-      "trials": 19
-     },
-     {
-      "pmid": "35352965",
-      "trials": 27
-     },
-     {
-      "pmid": "35954381",
-      "trials": 20
-     },
-     {
-      "pmid": "35727272",
-      "trials": 38
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "30415629",
-      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "35026158",
-      "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
-      "year": 2022,
-      "n": 21315,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "22112804",
-      "title": "Long-term follow-up for mortality and cancer in a randomized placebo-controlled trial of vitamin D(3) and/or calcium (RECORD trial)",
-      "year": 2012,
-      "n": 5292,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "12609940",
-      "title": "Effect of four monthly oral vitamin D3 (cholecalciferol) supplementation on fractures and mortality in men and women living in the community: randomised double blind controlled trial",
-      "year": 2003,
-      "n": 2686,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "26465985",
-      "title": "A Trial of Calcium and Vitamin D for the Prevention of Colorectal Adenomas",
-      "year": 2015,
-      "n": 2259,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "30027269",
-      "title": "Monthly High-Dose Vitamin D Supplementation and Cancer Risk: A Post Hoc Analysis of the Vitamin D Assessment Randomized Clinical Trial",
-      "year": 2018,
-      "n": 47905,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "16481636",
-      "title": "Calcium plus vitamin D supplementation and the risk of colorectal cancer",
-      "year": 2006,
-      "n": 36282,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "33206192",
-      "title": "Effect of Vitamin D3 Supplements on Development of Advanced Cancer: A Secondary Analysis of the VITAL Randomized Clinical Trial",
-      "year": 2020,
-      "n": 25871,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "32090730",
-      "title": "High-dose oral vitamin D supplementation and mortality in people aged 65-84 years: the VIDAL cluster feasibility RCT of open versus double-blind individual randomisation",
-      "year": 2020,
-      "n": 20000,
-      "inReviews": [
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "34982819",
-      "title": "Vitamin D supplementation and prevention of cardiovascular disease and cancer in the Finnish Vitamin D Trial: a randomized controlled trial",
-      "year": 2022,
-      "n": 2495,
-      "inReviews": [
-       "37004841",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "28350929",
-      "title": "Effect of Vitamin D and Calcium Supplementation on Cancer Incidence in Older Women: A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 2303,
-      "inReviews": [
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "20460620",
-      "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
-      "year": 2010,
-      "n": 2256,
-      "inReviews": [
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "17556697",
-      "title": "Vitamin D and calcium supplementation reduces cancer risk: results of a randomized trial",
-      "year": 2007,
-      "n": 1179,
-      "inReviews": [
-       "35352965",
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "25476069",
-      "title": "Vitamin D3 supplementation in patients with chronic obstructive pulmonary disease (ViDiCO): a multicentre, double-blind, randomised controlled trial",
-      "year": 2015,
-      "n": 240,
-      "inReviews": [
-       "37004841",
-       "35352965",
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "28384800",
-      "title": "Effect of Monthly High-Dose Vitamin D Supplementation on Cardiovascular Disease in the Vitamin D Assessment Study : A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 47905,
-      "inReviews": [
-       "35954381",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "19001601",
-      "title": "Calcium plus vitamin D supplementation and the risk of breast cancer",
-      "year": 2008,
-      "n": 36282,
-      "inReviews": [
-       "37004841",
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "15885294",
-      "title": "Oral vitamin D3 and calcium for secondary prevention of low-trauma fractures in elderly people (Randomised Evaluation of Calcium Or vitamin D, RECORD): a randomised placebo-controlled trial",
-      "year": 2005,
-      "n": 5292,
-      "inReviews": [
-       "37004841",
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "33693713",
-      "title": "Vitamin D Supplementation for Prevention of Cancer: The D2d Cancer Outcomes (D2dCA) Ancillary Study",
-      "year": 2021,
-      "n": 2385,
-      "inReviews": [
-       "37004841",
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "30964526",
-      "title": "Effect of Vitamin D Supplementation on Relapse-Free Survival Among Patients With Digestive Tract Cancers: The AMATERASU Randomized Clinical Trial",
-      "year": 2019,
-      "n": 439,
-      "inReviews": [
-       "37004841",
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "23032549",
-      "title": "Effect of vitamin D3 supplementation on upper respiratory tract infections in healthy adults: the VIDARIS randomized controlled trial",
-      "year": 2012,
-      "n": 322,
-      "inReviews": [
-       "35352965",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "22865902",
-      "title": "Vitamin D3 supplementation has no effect on conventional cardiovascular risk factors: a parallel-group, double-blind, placebo-controlled RCT",
-      "year": 2012,
-      "n": 305,
-      "inReviews": [
-       "35352965",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "18195202",
-      "title": "Effects of ergocalciferol added to calcium on the risk of falls in elderly high-risk women",
-      "year": 2008,
-      "n": 302,
-      "inReviews": [
-       "35352965",
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "30018118",
-      "title": "Vitamin D Supplementation and Survival of Patients with Non-small Cell Lung Cancer: A Randomized, Double-Blind, Placebo-Controlled Trial",
-      "year": 2018,
-      "n": 155,
-      "inReviews": [
-       "37004841",
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "26829443",
-      "title": "Vitamin D 20,000 IU per Week for Five Years Does Not Prevent Progression From Prediabetes to Diabetes",
-      "year": 2016,
-      "inReviews": [
-       "35352965",
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "16481635",
-      "title": "Calcium plus vitamin D supplementation and the risk of fractures",
-      "year": 2006,
-      "n": 36282,
-      "inReviews": [
-       "37004841"
-      ]
-     },
-     {
-      "pmid": "19221190",
-      "title": "Calcium plus vitamin D supplementation and mortality in postmenopausal women: the Women's Health Initiative calcium-vitamin D randomized controlled trial",
-      "year": 2009,
-      "n": 36282,
-      "inReviews": [
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "21709199",
-      "title": "Calcium plus vitamin D supplementation and the risk of nonmelanoma and melanoma skin cancer: post hoc analyses of the women's health initiative randomized controlled trial",
-      "year": 2011,
-      "n": 36282,
-      "inReviews": [
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "28654155",
-      "title": "Incidence of hematologic malignancy and cause-specific mortality in the Women's Health Initiative randomized controlled trial of calcium and vitamin D supplementation",
-      "year": 2017,
-      "n": 34763,
-      "inReviews": [
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "10022414",
-      "title": "Prevention of femoral and lumbar bone loss with hormone replacement therapy and vitamin D3 in early postmenopausal women: a population-based 5-year randomized trial",
-      "year": 1999,
-      "n": 13100,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "32621874",
-      "title": "Efficacy of vitamin D3 supplementation for the prevention of pulmonary tuberculosis and mortality in HIV: a randomised, double-blind, placebo-controlled trial",
-      "year": 2020,
-      "n": 6250,
-      "inReviews": [
-       "37004841"
-      ]
-     },
-     {
-      "pmid": "20200964",
-      "title": "Effect of vitamin D(3) and calcium on fracture risk in 65- to 71-year-old women: a population-based 3-year randomized, controlled trial--the OSTPRE-FPS",
-      "year": 2010,
-      "n": 3432,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "25411293",
-      "title": "Effect of daily vitamin B-12 and folic acid supplementation on fracture incidence in elderly individuals with an elevated plasma homocysteine concentration: B-PROOF, a randomized controlled trial",
-      "year": 2014,
-      "n": 2919,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "8554248",
-      "title": "Vitamin D supplementation and fracture incidence in elderly persons. A randomized, placebo-controlled clinical trial",
-      "year": 1996,
-      "n": 2578,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "33022713",
-      "title": "Risk of keratinocyte carcinomas with vitamin D and calcium supplementation: a secondary analysis of a randomized clinical trial",
-      "year": 2020,
-      "n": 2259,
-      "inReviews": [
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "33170239",
-      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 2157,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "21956713",
-      "title": "Effects of three-monthly oral 150,000 IU cholecalciferol supplementation on falls, mobility, and muscle strength in older postmenopausal women: a randomized controlled trial",
-      "year": 2012,
-      "n": 686,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "15767334",
-      "title": "Risk of prostate cancer in a randomized clinical trial of calcium supplementation",
-      "year": 2005,
-      "n": 672,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "26954409",
-      "title": "Effect of Vitamin D Supplementation on Tibial Cartilage Volume and Knee Pain Among Patients With Symptomatic Knee Osteoarthritis: A Randomized Clinical Trial",
-      "year": 2016,
-      "n": 413,
-      "inReviews": [
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "25799402",
-      "title": "Exercise and vitamin D in fall prevention among older women: a randomized clinical trial",
-      "year": 2015,
-      "n": 409,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "28515107",
-      "title": "A Randomized Double-Blind Placebo-Controlled Trial of the Effect of Vitamin D3 Supplementation on Breast Density in Premenopausal Women",
-      "year": 2017,
-      "n": 405,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "21613558",
-      "title": "Serum 25-hydroxyvitamin D concentrations in relation to cardiometabolic risk factors and metabolic syndrome in postmenopausal women",
-      "year": 2011,
-      "n": 292,
-      "inReviews": [
-       "37004841"
-      ]
-     },
-     {
-      "pmid": "29905969",
-      "title": "Vitamin D Supplementation in Elderly Black Women Does Not Prevent Bone Loss: A Randomized Controlled Trial",
-      "year": 2018,
-      "n": 260,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "1883119",
-      "title": "Effect of vitamin D supplementation on wintertime and overall bone loss in healthy postmenopausal women",
-      "year": 1991,
-      "n": 249,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "9797910",
-      "title": "Calcium and vitamin D supplementation increases spinal BMD in healthy, postmenopausal women",
-      "year": 1998,
-      "n": 240,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "26237520",
-      "title": "Treatment of Vitamin D Insufficiency in Postmenopausal Women: A Randomized Clinical Trial",
-      "year": 2015,
-      "n": 230,
-      "inReviews": [
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "27058906",
-      "title": "Effects of Vitamin D on Cardiac Function in Patients With Chronic HF: The VINDICATE Study",
-      "year": 2016,
-      "n": 229,
-      "inReviews": [
-       "37004841"
-      ]
-     },
-     {
-      "pmid": "9278463",
-      "title": "Effect of calcium and vitamin D supplementation on bone density in men and women 65 years of age or older",
-      "year": 1997,
-      "n": 213,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "19321573",
-      "title": "Vitamin D supplementation enhances the beneficial effects of weight loss on cardiovascular disease risk markers",
-      "year": 2009,
-      "n": 200,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "14728632",
-      "title": "Alfacalcidol reduces the number of fallers in a community-dwelling elderly population with a minimum calcium intake of more than 500 mg daily",
-      "year": 2004,
-      "n": 191,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "22250141",
-      "title": "High doses of vitamin D to reduce exacerbations in chronic obstructive pulmonary disease: a randomized trial",
-      "year": 2012,
-      "n": 182,
-      "inReviews": [
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "23939263",
-      "title": "Cholecalciferol treatment to reduce blood pressure in older patients with isolated systolic hypertension: the VitDISH randomized controlled trial",
-      "year": 2013,
-      "n": 159,
-      "inReviews": [
-       "35352965"
-      ]
-     },
-     {
-      "pmid": "22073146",
-      "title": "Effects of vitamin D supplementation on cognitive and emotional functioning in young adults--a randomised controlled trial",
-      "year": 2011,
-      "n": 128,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "1939527",
-      "title": "1,25-Dihydroxyvitamin D3 and muscle strength in the elderly: a randomized controlled trial",
-      "year": 1991,
-      "n": 98,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "24420547",
-      "title": "Vitamin D therapy to reduce blood pressure and left ventricular hypertrophy in resistant hypertension: randomized, controlled trial",
-      "year": 2014,
-      "n": 68,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "29486367",
-      "title": "Comparison of the effect of daily versus bolus dose maternal vitamin D3 supplementation on the 24,25-dihydroxyvitamin D3 to 25-hydroxyvitamin D3 ratio",
-      "year": 2018,
-      "n": 40,
-      "inReviews": [
-       "35954381"
-      ]
-     },
-     {
-      "pmid": "22086300",
-      "title": "Is a daily supplementation with 40 microgram vitamin D3 sufficient? A randomised controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "33849913",
-      "title": "The Influence of Vitamin D on Mammographic Density: Results from CALGB 70806 (Alliance) a Randomized Clinical Trial",
-      "year": 2021,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "19258546",
-      "title": "Effects of vitamin D and calcium supplementation on markers of apoptosis in normal colon mucosa: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2009,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "16043680",
-      "title": "A randomized controlled trial of vitamin D3 supplementation in African American women",
-      "year": 2005,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "12716689",
-      "title": "Vitamin D supplementation and bone mineral density in early postmenopausal women",
-      "year": 2003,
-      "inReviews": [
-       "35727272"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1994,
@@ -3949,7 +2120,7 @@
       "journal": "Ageing research reviews",
       "citedBy": 55,
       "n": 104727,
-      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35352965",
@@ -3959,7 +2130,7 @@
       "firstAuthor": "Guo Z",
       "journal": "Critical reviews in food science and nutrition",
       "citedBy": 20,
-      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35954381",
@@ -3970,7 +2141,7 @@
       "journal": "Cancers",
       "citedBy": 35,
       "n": 72669,
-      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35727272",
@@ -3981,7 +2152,7 @@
       "journal": "JAMA",
       "citedBy": 107,
       "n": 739803,
-      "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40096917",
@@ -4019,6 +2190,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
      "intervention": "Vitamin D (D3, D2 or calcifediol)",
@@ -4369,6 +2541,7 @@
   {
    "id": "cardiovascular",
    "label": "Heart and blood vessel disease",
+   "anyDesign": false,
    "finding": "Cancer, heart disease and death from any cause",
    "counts": {
     "reviews": 124,
@@ -4386,7 +2559,7 @@
      "journal": "Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",
      "citedBy": 0,
      "n": 114379,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40685646",
@@ -4396,7 +2569,7 @@
      "firstAuthor": "Cheng X",
      "journal": "The British journal of nutrition",
      "citedBy": 4,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37802169",
@@ -4407,7 +2580,7 @@
      "journal": "Current problems in cardiology",
      "citedBy": 5,
      "n": 493389,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35727272",
@@ -4418,588 +2591,10 @@
      "journal": "JAMA",
      "citedBy": 107,
      "n": 739803,
-     "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.15873015873015872,
-    "trials": 63,
-    "inclusions": 83,
-    "reviews": [
-     {
-      "pmid": "41183312",
-      "trials": 15
-     },
-     {
-      "pmid": "37802169",
-      "trials": 30
-     },
-     {
-      "pmid": "35727272",
-      "trials": 38
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "40685646"
-    ],
-    "shared": [
-     {
-      "pmid": "28384800",
-      "title": "Effect of Monthly High-Dose Vitamin D Supplementation on Cardiovascular Disease in the Vitamin D Assessment Study : A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 47905,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "30415629",
-      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "35026158",
-      "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
-      "year": 2022,
-      "n": 21315,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "12609940",
-      "title": "Effect of four monthly oral vitamin D3 (cholecalciferol) supplementation on fractures and mortality in men and women living in the community: randomised double blind controlled trial",
-      "year": 2003,
-      "n": 2686,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "34982819",
-      "title": "Vitamin D supplementation and prevention of cardiovascular disease and cancer in the Finnish Vitamin D Trial: a randomized controlled trial",
-      "year": 2022,
-      "n": 2495,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "26465985",
-      "title": "A Trial of Calcium and Vitamin D for the Prevention of Colorectal Adenomas",
-      "year": 2015,
-      "n": 2259,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "20460620",
-      "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
-      "year": 2010,
-      "n": 2256,
-      "inReviews": [
-       "41183312",
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "37380191",
-      "title": "Vitamin D supplementation and major cardiovascular events: D-Health randomised controlled trial",
-      "year": 2023,
-      "n": 21315,
-      "inReviews": [
-       "41183312",
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "10022414",
-      "title": "Prevention of femoral and lumbar bone loss with hormone replacement therapy and vitamin D3 in early postmenopausal women: a population-based 5-year randomized trial",
-      "year": 1999,
-      "n": 13100,
-      "inReviews": [
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "22112804",
-      "title": "Long-term follow-up for mortality and cancer in a randomized placebo-controlled trial of vitamin D(3) and/or calcium (RECORD trial)",
-      "year": 2012,
-      "n": 5292,
-      "inReviews": [
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "17556697",
-      "title": "Vitamin D and calcium supplementation reduces cancer risk: results of a randomized trial",
-      "year": 2007,
-      "n": 1179,
-      "inReviews": [
-       "37802169",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "18195202",
-      "title": "Effects of ergocalciferol added to calcium on the risk of falls in elderly high-risk women",
-      "year": 2008,
-      "n": 302,
-      "inReviews": [
-       "41183312",
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "34173940",
-      "title": "Calcifediol supplementation in adults on hemodialysis: a randomized controlled trial",
-      "year": 2022,
-      "n": 284,
-      "inReviews": [
-       "41183312",
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "17309935",
-      "title": "Calcium/vitamin D supplementation and cardiovascular events",
-      "year": 2007,
-      "n": 36282,
-      "inReviews": [
-       "41183312"
-      ]
-     },
-     {
-      "pmid": "16481635",
-      "title": "Calcium plus vitamin D supplementation and the risk of fractures",
-      "year": 2006,
-      "n": 36282,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "16481636",
-      "title": "Calcium plus vitamin D supplementation and the risk of colorectal cancer",
-      "year": 2006,
-      "n": 36282,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "32090730",
-      "title": "High-dose oral vitamin D supplementation and mortality in people aged 65-84 years: the VIDAL cluster feasibility RCT of open versus double-blind individual randomisation",
-      "year": 2020,
-      "n": 20000,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "36604262",
-      "title": "Vitamin D supplementation and adverse skeletal and non-skeletal outcomes in individuals at increased cardiovascular risk: Results from the International Polycap Study (TIPS)-3 randomized controlled trial",
-      "year": 2023,
-      "n": 5670,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "20200964",
-      "title": "Effect of vitamin D(3) and calcium on fracture risk in 65- to 71-year-old women: a population-based 3-year randomized, controlled trial--the OSTPRE-FPS",
-      "year": 2010,
-      "n": 3432,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "25411293",
-      "title": "Effect of daily vitamin B-12 and folic acid supplementation on fracture incidence in elderly individuals with an elevated plasma homocysteine concentration: B-PROOF, a randomized controlled trial",
-      "year": 2014,
-      "n": 2919,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "8554248",
-      "title": "Vitamin D supplementation and fracture incidence in elderly persons. A randomized, placebo-controlled clinical trial",
-      "year": 1996,
-      "n": 2578,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "33693713",
-      "title": "Vitamin D Supplementation for Prevention of Cancer: The D2d Cancer Outcomes (D2dCA) Ancillary Study",
-      "year": 2021,
-      "n": 2385,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "28350929",
-      "title": "Effect of Vitamin D and Calcium Supplementation on Cancer Incidence in Older Women: A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 2303,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "33170239",
-      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 2157,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "21956713",
-      "title": "Effects of three-monthly oral 150,000 IU cholecalciferol supplementation on falls, mobility, and muscle strength in older postmenopausal women: a randomized controlled trial",
-      "year": 2012,
-      "n": 686,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "15767334",
-      "title": "Risk of prostate cancer in a randomized clinical trial of calcium supplementation",
-      "year": 2005,
-      "n": 672,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "25799402",
-      "title": "Exercise and vitamin D in fall prevention among older women: a randomized clinical trial",
-      "year": 2015,
-      "n": 409,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "28515107",
-      "title": "A Randomized Double-Blind Placebo-Controlled Trial of the Effect of Vitamin D3 Supplementation on Breast Density in Premenopausal Women",
-      "year": 2017,
-      "n": 405,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "36695682",
-      "title": "Nonskeletal and skeletal effects of high doses versus low doses of vitamin D3 in renal transplant recipients: Results of the VITALE (VITamin D supplementation in renAL transplant recipients) study, a randomized clinical trial",
-      "year": 2023,
-      "n": 335,
-      "inReviews": [
-       "41183312"
-      ]
-     },
-     {
-      "pmid": "23032549",
-      "title": "Effect of vitamin D3 supplementation on upper respiratory tract infections in healthy adults: the VIDARIS randomized controlled trial",
-      "year": 2012,
-      "n": 322,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "22865902",
-      "title": "Vitamin D3 supplementation has no effect on conventional cardiovascular risk factors: a parallel-group, double-blind, placebo-controlled RCT",
-      "year": 2012,
-      "n": 305,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "29905969",
-      "title": "Vitamin D Supplementation in Elderly Black Women Does Not Prevent Bone Loss: A Randomized Controlled Trial",
-      "year": 2018,
-      "n": 260,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "1883119",
-      "title": "Effect of vitamin D supplementation on wintertime and overall bone loss in healthy postmenopausal women",
-      "year": 1991,
-      "n": 249,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "17243866",
-      "title": "Two-year randomized controlled trial of vitamin K1 (phylloquinone) and vitamin D3 plus calcium on the bone health of older women",
-      "year": 2007,
-      "n": 244,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "9797910",
-      "title": "Calcium and vitamin D supplementation increases spinal BMD in healthy, postmenopausal women",
-      "year": 1998,
-      "n": 240,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "27058906",
-      "title": "Effects of Vitamin D on Cardiac Function in Patients With Chronic HF: The VINDICATE Study",
-      "year": 2016,
-      "n": 229,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "15972580",
-      "title": "A new active vitamin D, ED-71, increases bone mass in osteoporotic patients under vitamin D supplementation: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2005,
-      "n": 219,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "9278463",
-      "title": "Effect of calcium and vitamin D supplementation on bone density in men and women 65 years of age or older",
-      "year": 1997,
-      "n": 213,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "19321573",
-      "title": "Vitamin D supplementation enhances the beneficial effects of weight loss on cardiovascular disease risk markers",
-      "year": 2009,
-      "n": 200,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "16507374",
-      "title": "Clinical and laboratory safety of one year's use of a combination calcium + vitamin D tablet in ambulatory elderly women with vitamin D insufficiency: results of a multicenter, randomized, double-blind, placebo-controlled study",
-      "year": 2005,
-      "n": 192,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "14728632",
-      "title": "Alfacalcidol reduces the number of fallers in a community-dwelling elderly population with a minimum calcium intake of more than 500 mg daily",
-      "year": 2004,
-      "n": 191,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "22250141",
-      "title": "High doses of vitamin D to reduce exacerbations in chronic obstructive pulmonary disease: a randomized trial",
-      "year": 2012,
-      "n": 182,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "22431675",
-      "title": "Dose response to vitamin D supplementation in postmenopausal women: a randomized trial",
-      "year": 2012,
-      "n": 163,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "30554193",
-      "title": "Daily Supplementation with 4000 IU Vitamin D3 for Three Years Does Not Modify Cardiovascular Risk Markers in Patients with Advanced Heart Failure: The Effect of Vitamin D on Mortality in Heart Failure Trial",
-      "year": 2019,
-      "n": 161,
-      "inReviews": [
-       "41183312"
-      ]
-     },
-     {
-      "pmid": "23939263",
-      "title": "Cholecalciferol treatment to reduce blood pressure in older patients with isolated systolic hypertension: the VitDISH randomized controlled trial",
-      "year": 2013,
-      "n": 159,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "22073146",
-      "title": "Effects of vitamin D supplementation on cognitive and emotional functioning in young adults--a randomised controlled trial",
-      "year": 2011,
-      "n": 128,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "18089701",
-      "title": "Effects of calcium and vitamin D supplementation on hip bone mineral density and calcium-related analytes in elderly ambulatory Australian women: a five-year randomized controlled trial",
-      "year": 2008,
-      "n": 120,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "20130093",
-      "title": "Once-weekly dose of 8400 IU vitamin D(3) compared with placebo: effects on neuromuscular function and tolerability in older adults with vitamin D insufficiency",
-      "year": 2010,
-      "n": 114,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "19118956",
-      "title": "Changes in body composition following a dietary and lifestyle intervention trial: the postmenopausal health study",
-      "year": 2009,
-      "n": 101,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "1939527",
-      "title": "1,25-Dihydroxyvitamin D3 and muscle strength in the elderly: a randomized controlled trial",
-      "year": 1991,
-      "n": 98,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "31518424",
-      "title": "Supplemental 25-Hydroxycholecalciferol Is More Effective than Cholecalciferol in Raising Serum 25-Hydroxyvitamin D Concentrations in Older Adults",
-      "year": 2020,
-      "n": 91,
-      "inReviews": [
-       "41183312"
-      ]
-     },
-     {
-      "pmid": "19262561",
-      "title": "The efficacy and safety of calcitriol and/or Caltrate D in elderly Chinese women with low bone mass",
-      "year": 2009,
-      "n": 74,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "24420547",
-      "title": "Vitamin D therapy to reduce blood pressure and left ventricular hypertrophy in resistant hypertension: randomized, controlled trial",
-      "year": 2014,
-      "n": 68,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "21288233",
-      "title": "The response of elderly veterans to daily vitamin D3 supplementation of 2,000 IU: a pilot efficacy study",
-      "year": 2011,
-      "n": 34,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "38199870",
-      "title": "Effects of vitamin D, omega-3 and a simple strength exercise programme in cardiovascular disease prevention: The DO-HEALTH randomized controlled trial",
-      "year": 2024,
-      "inReviews": [
-       "41183312"
-      ]
-     },
-     {
-      "pmid": "26829443",
-      "title": "Vitamin D 20,000 IU per Week for Five Years Does Not Prevent Progression From Prediabetes to Diabetes",
-      "year": 2016,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "28498942",
-      "title": "Effect of vitamin D on all-cause mortality in heart failure (EVITA): a 3-year randomized clinical trial with 4000 IU vitamin D daily",
-      "year": 2017,
-      "inReviews": [
-       "37802169"
-      ]
-     },
-     {
-      "pmid": "22086300",
-      "title": "Is a daily supplementation with 40 microgram vitamin D3 sufficient? A randomised controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "33849913",
-      "title": "The Influence of Vitamin D on Mammographic Density: Results from CALGB 70806 (Alliance) a Randomized Clinical Trial",
-      "year": 2021,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "19258546",
-      "title": "Effects of vitamin D and calcium supplementation on markers of apoptosis in normal colon mucosa: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2009,
-      "inReviews": [
-       "35727272"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1992,
@@ -5347,7 +2942,7 @@
       "journal": "Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",
       "citedBy": 0,
       "n": 114379,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40685646",
@@ -5357,7 +2952,7 @@
       "firstAuthor": "Cheng X",
       "journal": "The British journal of nutrition",
       "citedBy": 4,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "37802169",
@@ -5368,7 +2963,7 @@
       "journal": "Current problems in cardiology",
       "citedBy": 5,
       "n": 493389,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35727272",
@@ -5379,11 +2974,12 @@
       "journal": "JAMA",
       "citedBy": 107,
       "n": 739803,
-      "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
      "intervention": "Vitamin D (D3, D2 or calcifediol)",
@@ -5552,6 +3148,7 @@
   {
    "id": "respiratory",
    "label": "Respiratory infections",
+   "anyDesign": false,
    "finding": "Respiratory infections (colds, flu, chest infections)",
    "counts": {
     "reviews": 169,
@@ -5569,7 +3166,7 @@
      "journal": "BMC infectious diseases",
      "citedBy": 0,
      "n": 11576,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39993397",
@@ -5580,7 +3177,7 @@
      "journal": "The lancet. Diabetes & endocrinology",
      "citedBy": 22,
      "n": 61589,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40969681",
@@ -5591,7 +3188,7 @@
      "journal": "EClinicalMedicine",
      "citedBy": 1,
      "n": 101751,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35215468",
@@ -5602,7 +3199,7 @@
      "journal": "Nutrients",
      "citedBy": 8,
      "n": 30263,
-     "why": "The most comprehensive review of trials on this outcome (390 trials, 2022); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (390 trials, 2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -5618,610 +3215,6 @@
      "why": "A large trial (about 1,747 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.2459016393442623,
-    "trials": 61,
-    "inclusions": 106,
-    "reviews": [
-     {
-      "pmid": "42143317",
-      "trials": 5
-     },
-     {
-      "pmid": "39993397",
-      "trials": 41
-     },
-     {
-      "pmid": "40969681",
-      "trials": 31
-     },
-     {
-      "pmid": "35215468",
-      "trials": 29
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "31420647",
-      "title": "Effect of Monthly High-Dose Vitamin D Supplementation on Acute Respiratory Infections in Older Adults: A Randomized Controlled Trial",
-      "year": 2020,
-      "n": 5110,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "24014734",
-      "title": "Vitamin D3 supplementation and upper respiratory tract infections in a randomized, controlled trial",
-      "year": 2013,
-      "n": 2259,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "30328294",
-      "title": "Effect of Vitamin D supplementation to reduce respiratory infections in children and adolescents in Vietnam: A randomized controlled trial",
-      "year": 2019,
-      "n": 1300,
-      "inReviews": [
-       "42143317",
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "28719693",
-      "title": "Effect of High-Dose vs Standard-Dose Wintertime Vitamin D Supplementation on Viral Upper Respiratory Tract Infections in Young Healthy Children",
-      "year": 2017,
-      "n": 703,
-      "inReviews": [
-       "42143317",
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "24885201",
-      "title": "Vitamin D3 and gargling for the prevention of upper respiratory tract infections: a randomized controlled trial",
-      "year": 2014,
-      "n": 600,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "29582888",
-      "title": "Intake of 25-Hydroxyvitamin D3 Reduces Duration and Severity of Upper Respiratory Tract Infection: A Randomized, Double-Blind, Placebo-Controlled, Parallel Group Comparison Study",
-      "year": 2018,
-      "n": 428,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "26540136",
-      "title": "Vitamin D Supplementation and the Risk of Colds in Patients with Asthma",
-      "year": 2016,
-      "n": 408,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "23032549",
-      "title": "Effect of vitamin D3 supplementation on upper respiratory tract infections in healthy adults: the VIDARIS randomized controlled trial",
-      "year": 2012,
-      "n": 322,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "25724847",
-      "title": "Double-blind randomised placebo-controlled trial of bolus-dose vitamin D3 supplementation in adults with asthma (ViDiAs)",
-      "year": 2015,
-      "n": 250,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "25476069",
-      "title": "Vitamin D3 supplementation in patients with chronic obstructive pulmonary disease (ViDiCO): a multicentre, double-blind, randomised controlled trial",
-      "year": 2015,
-      "n": 240,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "30601999",
-      "title": "Randomized Trial of Vitamin D Supplementation to Prevent Seasonal Influenza and Upper Respiratory Infection in Patients With Inflammatory Bowel Disease",
-      "year": 2019,
-      "n": 223,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "19296870",
-      "title": "A randomized controlled trial of vitamin D3 supplementation for the prevention of symptomatic upper respiratory tract infections",
-      "year": 2009,
-      "n": 162,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "26063508",
-      "title": "Double-blind randomised controlled trial of vitamin D3 supplementation for the prevention of acute respiratory infection in older adults and their carers (ViDiFlu)",
-      "year": 2015,
-      "n": 137,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "27861708",
-      "title": "High-Dose Monthly Vitamin D for Prevention of Acute Respiratory Infection in Older Long-Term Care Residents: A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 107,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "20632889",
-      "title": "Vitamin D supplementation for the prevention of acute respiratory tract infection: a randomized, double-blinded trial among young Finnish men",
-      "year": 2010,
-      "inReviews": [
-       "39993397",
-       "40969681",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "32090730",
-      "title": "High-dose oral vitamin D supplementation and mortality in people aged 65-84 years: the VIDAL cluster feasibility RCT of open versus double-blind individual randomisation",
-      "year": 2020,
-      "n": 20000,
-      "inReviews": [
-       "39993397",
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "32706534",
-      "title": "Vitamin D Supplements for Prevention of Tuberculosis Infection and Disease",
-      "year": 2020,
-      "n": 8851,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "33170239",
-      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 2157,
-      "inReviews": [
-       "39993397",
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "22494826",
-      "title": "Effect on the incidence of pneumonia of vitamin D supplementation by quarterly bolus dose to infants in Kabul: a randomised controlled superiority trial",
-      "year": 2012,
-      "n": 1524,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "24108783",
-      "title": "Effect of vitamin D supplementation on antibiotic use: a randomized controlled trial",
-      "year": 2014,
-      "n": 644,
-      "inReviews": [
-       "39993397",
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "27889723",
-      "title": "Vitamin D Supplementation for Treatment and Prevention of Pneumonia in Under-five Children: A Randomized Double-blind Placebo Controlled Trial",
-      "year": 2016,
-      "n": 324,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "35487792",
-      "title": "Efficacy and Safety of Vitamin D Supplementation to Prevent COVID-19 in Frontline Healthcare Workers. A Randomized Clinical Trial",
-      "year": 2022,
-      "n": 321,
-      "inReviews": [
-       "39993397",
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "39181322",
-      "title": "Weekly Vitamin D Supplementation to Prevent Acute Respiratory Infections in Young Children at Different Latitudes: A Randomized Controlled Trial",
-      "year": 2024,
-      "n": 303,
-      "inReviews": [
-       "42143317",
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "29800180",
-      "title": "Effect of Vitamin D Supplementation on Recurrent Wheezing in Black Infants Who Were Born Preterm: The D-Wheeze Randomized Clinical Trial",
-      "year": 2018,
-      "n": 300,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "25088394",
-      "title": "Effects of vitamin D supplements on influenza A illness during the 2009 H1N1 pandemic: a randomized controlled trial",
-      "year": 2014,
-      "n": 247,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "22908115",
-      "title": "Randomized trial of vitamin D supplementation and risk of acute respiratory infection in Mongolia",
-      "year": 2012,
-      "n": 247,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "22250141",
-      "title": "High doses of vitamin D to reduce exacerbations in chronic obstructive pulmonary disease: a randomized trial",
-      "year": 2012,
-      "n": 182,
-      "inReviews": [
-       "39993397",
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "26319134",
-      "title": "Vitamin D supplementation to patients with frequent respiratory tract infections: a post hoc analysis of a randomized and placebo-controlled trial",
-      "year": 2015,
-      "n": 124,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "20219962",
-      "title": "Randomized trial of vitamin D supplementation to prevent seasonal influenza A in schoolchildren",
-      "year": 2010,
-      "n": 12,
-      "inReviews": [
-       "39993397",
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "38113446",
-      "title": "Effect of Daily Vitamin D Supplementation on Risk of Upper Respiratory Infection in Older Adults: A Randomized Controlled Trial",
-      "year": 2024,
-      "inReviews": [
-       "39993397",
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "36215222",
-      "title": "Prevention of covid-19 and other acute respiratory infections with cod liver oil supplementation, a low dose vitamin D supplement: quadruple blinded, randomised placebo controlled trial",
-      "year": 2022,
-      "n": 34601,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "32621874",
-      "title": "Efficacy of vitamin D3 supplementation for the prevention of pulmonary tuberculosis and mortality in HIV: a randomised, double-blind, placebo-controlled trial",
-      "year": 2020,
-      "n": 6250,
-      "inReviews": [
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "36215226",
-      "title": "Effect of a test-and-treat approach to vitamin D supplementation on risk of all cause acute respiratory tract infection and covid-19: phase 3 randomised controlled trial (CORONAVIT)",
-      "year": 2022,
-      "n": 6200,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "21628364",
-      "title": "Effect of weekly vitamin D supplements on mortality, morbidity, and growth of low birthweight term infants in India up to age 6 months: randomised controlled trial",
-      "year": 2011,
-      "n": 2079,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "29813149",
-      "title": "Effect of Higher vs Standard Dosage of Vitamin D3 Supplementation on Bone Strength and Infection in Healthy Infants: A Randomized Clinical Trial",
-      "year": 2018,
-      "n": 1200,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "29861487",
-      "title": "Vitamin D Status and Immune Health Outcomes in a Cross-Sectional Study and a Randomized Trial of Healthy Young Children",
-      "year": 2018,
-      "n": 457,
-      "inReviews": [
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "20723187",
-      "title": "Effects of vitamin D supplementation to children diagnosed with pneumonia in Kabul: a randomised controlled trial",
-      "year": 2010,
-      "n": 453,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "29315160",
-      "title": "Preventive Effects of Vitamin D on Seasonal Influenza A in Infants: A Multicenter, Randomized, Open, Controlled Clinical Trial",
-      "year": 2018,
-      "n": 400,
-      "inReviews": [
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "24004292",
-      "title": "Effect of vitamin D3 supplementation on Staphylococcus aureus nasal carriage: a randomized, double-blind, placebo-controlled trial in healthy adults",
-      "year": 2014,
-      "n": 322,
-      "inReviews": [
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "38178229",
-      "title": "High-dose vitamin D3 supplementation shows no beneficial effects on white blood cell counts, acute phase reactants, or frequency of respiratory infections",
-      "year": 2024,
-      "n": 307,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "33481482",
-      "title": "Influence of Vitamin D Supplementation by Simulated Sunlight or Oral D3 on Respiratory Infection during Military Training",
-      "year": 2021,
-      "n": 250,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "34213544",
-      "title": "Effects of Maternal Vitamin D Supplementation During Pregnancy and Lactation on Infant Acute Respiratory Infections: Follow-up of a Randomized Trial in Bangladesh",
-      "year": 2021,
-      "n": 235,
-      "inReviews": [
-       "42143317"
-      ]
-     },
-     {
-      "pmid": "36615837",
-      "title": "Vitamin D3 Supplementation at 5000 IU Daily for the Prevention of Influenza-like Illness in Healthcare Workers: A Pragmatic Randomized Clinical Trial",
-      "year": 2022,
-      "n": 199,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "29072165",
-      "title": "Therapeutic effect of vitamin D in acute lower respiratory infection: A randomized controlled trial",
-      "year": 2017,
-      "n": 154,
-      "inReviews": [
-       "42143317"
-      ]
-     },
-     {
-      "pmid": "26419363",
-      "title": "Vitamin D supplementation improves well-being in patients with frequent respiratory tract infections: a post hoc analysis of a randomized, placebo-controlled trial",
-      "year": 2015,
-      "n": 124,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "23694840",
-      "title": "Vitamin D supplementation reduces the risk of acute otitis media in otitis-prone children",
-      "year": 2013,
-      "n": 116,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "23104230",
-      "title": "The effects of a mid-winter 8-week course of sub-sunburn sunbed exposures on tanning, vitamin D status and colds",
-      "year": 2012,
-      "n": 105,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "31346969",
-      "title": "Effect of Vitamin D Supplementation in the Prevention of Recurrent Pneumonia in Under-Five Children",
-      "year": 2019,
-      "n": 100,
-      "inReviews": [
-       "35215468"
-      ]
-     },
-     {
-      "pmid": "34730890",
-      "title": "The effect of standard-dose wintertime vitamin D supplementation on influenza infection in immunized nursing home elderly residents",
-      "year": 2021,
-      "n": 97,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "26841365",
-      "title": "Improved control of childhood asthma with low-dose, short-term vitamin D supplementation: a randomized, double-blind, placebo-controlled trial",
-      "year": 2016,
-      "n": 89,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "25283480",
-      "title": "Reduced primary care respiratory infection visits following pregnancy and infancy vitamin D supplementation: a randomised controlled trial",
-      "year": 2015,
-      "n": 87,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "35276863",
-      "title": "Vitamin D Intake May Reduce SARS-CoV-2 Infection Morbidity in Health Care Workers",
-      "year": 2022,
-      "n": 78,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "29712666",
-      "title": "Randomized phase 2 trial of monthly vitamin D to prevent respiratory complications in children with sickle cell disease",
-      "year": 2018,
-      "n": 62,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "30218062",
-      "title": "Effect of adjunctive single high-dose vitamin D3 on outcome of community-acquired pneumonia in hospitalised adults: The VIDCAPS randomised controlled trial",
-      "year": 2018,
-      "n": 60,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "22026455",
-      "title": "Vitamin D supplementation did not prevent influenza-like illness as diagnosed retrospectively by questionnaires in subjects participating in randomized clinical trials",
-      "year": 2012,
-      "n": 38,
-      "inReviews": [
-       "40969681"
-      ]
-     },
-     {
-      "pmid": "29572676",
-      "title": "Winter cholecalciferol supplementation at 55°N has little effect on markers of innate immune defense in healthy children aged 4-8 years: a secondary analysis from a randomized controlled trial",
-      "year": 2019,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "25050610",
-      "title": "Vitamin D supplementation and upper respiratory tract infections in adolescent swimmers: a randomized controlled trial",
-      "year": 2015,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "21315433",
-      "title": "Vitamin D supplementation in children may prevent asthma exacerbation triggered by acute respiratory infection",
-      "year": 2011,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "35283046",
-      "title": "A randomized trial of vitamin D supplementation to prevent seasonal influenza and enterovirus infection in children",
-      "year": 2022,
-      "inReviews": [
-       "39993397"
-      ]
-     },
-     {
-      "pmid": "39227626",
-      "title": "Randomized trial of influence of vitamin D on the prevention and improvement of symptomatic COVID-19",
-      "year": 2024,
-      "inReviews": [
-       "40969681"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1999,
@@ -6409,7 +3402,7 @@
       "journal": "BMC infectious diseases",
       "citedBy": 0,
       "n": 11576,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39993397",
@@ -6420,7 +3413,7 @@
       "journal": "The lancet. Diabetes & endocrinology",
       "citedBy": 22,
       "n": 61589,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40969681",
@@ -6431,7 +3424,7 @@
       "journal": "EClinicalMedicine",
       "citedBy": 1,
       "n": 101751,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35215468",
@@ -6442,7 +3435,7 @@
       "journal": "Nutrients",
       "citedBy": 8,
       "n": 30263,
-      "why": "The most comprehensive review of trials on this outcome (390 trials, 2022); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (390 trials, 2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41826107",
@@ -6458,6 +3451,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Children or adults (any age; not people already ill with COVID-19 or in hospital)",
      "intervention": "Vitamin D (D3, D2 or calcifediol) to prevent infection",
@@ -6605,12 +3599,13 @@
   {
    "id": "large-doses",
    "label": "Very large doses",
+   "anyDesign": false,
    "finding": "Falls and fractures with a very large amount once a year",
    "counts": {
     "reviews": 205,
     "trialReviews": 70,
     "trials": 443,
-    "largeTrials": 87
+    "largeTrials": 83
    },
    "chosenReviews": [
     {
@@ -6622,7 +3617,7 @@
      "journal": "Journal of clinical medicine",
      "citedBy": 4,
      "n": 23211,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38698349",
@@ -6633,7 +3628,7 @@
      "journal": "BMC geriatrics",
      "citedBy": 29,
      "n": 58937,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38615341",
@@ -6643,7 +3638,7 @@
      "firstAuthor": "Tao X",
      "journal": "Biomolecules & biomedicine",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -6690,505 +3685,8 @@
      "citedBy": 4,
      "n": 1488,
      "why": "A large trial (about 1,488 people) from 2025, as new as the newest review or newer"
-    },
-    {
-     "pmid": "41199222",
-     "doi": "10.1186/s12873-025-01383-w",
-     "title": "A randomized control trial comparing Falls Reduction for Elderly Emergency Department (FREED) interventions and usual care",
-     "year": 2025,
-     "firstAuthor": "Sri-On J",
-     "journal": "BMC emergency medicine",
-     "citedBy": 0,
-     "n": 1026,
-     "why": "A large trial (about 1,026 people) from 2025, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.13725490196078433,
-    "trials": 51,
-    "inclusions": 65,
-    "reviews": [
-     {
-      "pmid": "40943885",
-      "trials": 13
-     },
-     {
-      "pmid": "38698349",
-      "trials": 36
-     },
-     {
-      "pmid": "38615341",
-      "trials": 16
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "21956713",
-      "title": "Effects of three-monthly oral 150,000 IU cholecalciferol supplementation on falls, mobility, and muscle strength in older postmenopausal women: a randomized controlled trial",
-      "year": 2012,
-      "n": 686,
-      "inReviews": [
-       "40943885",
-       "38698349",
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "34337905",
-      "title": "Vitamin D supplementation and risk of falling: outcomes from the randomized, placebo-controlled D-Health Trial",
-      "year": 2021,
-      "n": 21315,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "17998225",
-      "title": "Effect of annual intramuscular vitamin D on fracture risk in elderly men and women--a population-based, randomized, double-blind, placebo-controlled trial",
-      "year": 2007,
-      "n": 9440,
-      "inReviews": [
-       "38698349",
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "12609940",
-      "title": "Effect of four monthly oral vitamin D3 (cholecalciferol) supplementation on fractures and mortality in men and women living in the community: randomised double blind controlled trial",
-      "year": 2003,
-      "n": 2686,
-      "inReviews": [
-       "38698349",
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "20460620",
-      "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
-      "year": 2010,
-      "n": 2256,
-      "inReviews": [
-       "38698349",
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "20060665",
-      "title": "Does daily vitamin D 800 IU and calcium 1000 mg supplementation decrease the risk of falling in ambulatory women aged 65-71 years? A 3-year randomized population-based trial (OSTPRE-FPS)",
-      "year": 2010,
-      "n": 1573,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "33284677",
-      "title": "The Effects of Four Doses of Vitamin D Supplements on Falls in Older Adults : A Response-Adaptive, Randomized Clinical Trial",
-      "year": 2021,
-      "n": 688,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "25799402",
-      "title": "Exercise and vitamin D in fall prevention among older women: a randomized clinical trial",
-      "year": 2015,
-      "n": 409,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "18195202",
-      "title": "Effects of ergocalciferol added to calcium on the risk of falls in elderly high-risk women",
-      "year": 2008,
-      "n": 302,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "16505262",
-      "title": "Effect of cholecalciferol plus calcium on falling in ambulatory older men and women: a 3-year randomized controlled trial",
-      "year": 2006,
-      "n": 246,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "18629569",
-      "title": "Effects of a long-term vitamin D and calcium supplementation on falls and parameters of muscle function in community-dwelling older individuals",
-      "year": 2009,
-      "n": 242,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "12568412",
-      "title": "Effects of vitamin D and calcium supplementation on falls: a randomized controlled trial",
-      "year": 2003,
-      "n": 122,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26277680",
-      "title": "Delivery of a Vitamin D Intervention in Homebound Older Adults Using a Meals-on-Wheels Program: A Pilot Study",
-      "year": 2015,
-      "n": 68,
-      "inReviews": [
-       "40943885",
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "32492153",
-      "title": "VITamin D and OmegA-3 TriaL (VITAL): Effects of Vitamin D Supplements on Risk of Falls in the US Population",
-      "year": 2020,
-      "n": 25871,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "16641143",
-      "title": "Vitamin D supplementation and the prevention of fractures and falls: results of a randomised trial in elderly people in residential accommodation",
-      "year": 2006,
-      "n": 3717,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "15860827",
-      "title": "Randomised controlled trial of calcium and supplementation with cholecalciferol (vitamin D3) for prevention of fractures in primary care",
-      "year": 2005,
-      "n": 3314,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "35136915",
-      "title": "Effects of vitamin D, omega-3 fatty acids, and a simple home strength exercise program on fall prevention: the DO-HEALTH randomized clinical trial",
-      "year": 2022,
-      "n": 2157,
-      "inReviews": [
-       "40943885"
-      ]
-     },
-     {
-      "pmid": "27022679",
-      "title": "Efficacy of High-Dose Supplementation With Oral Vitamin D3 on Depressive Symptoms in Dialysis Patients With Vitamin D3 Insufficiency: A Prospective, Randomized, Double-Blind Study",
-      "year": 2016,
-      "n": 746,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "11991447",
-      "title": "Combined calcium and vitamin D3 supplementation in elderly women: confirmation of reversal of secondary hyperparathyroidism and hip fracture risk: the Decalyos II study",
-      "year": 2002,
-      "n": 583,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "36821761",
-      "title": "The association of vitamin D supplementation and serum vitamin D levels with physical activity in older adults: Results from a randomized trial",
-      "year": 2023,
-      "n": 571,
-      "inReviews": [
-       "40943885"
-      ]
-     },
-     {
-      "pmid": "16274368",
-      "title": "Should older people in residential care receive vitamin D to prevent falls? Results of a randomized trial",
-      "year": 2005,
-      "n": 540,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "21706518",
-      "title": "Vitamin D supplementation during pregnancy: double-blind, randomized clinical trial of safety and effectiveness",
-      "year": 2011,
-      "n": 494,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "26954409",
-      "title": "Effect of Vitamin D Supplementation on Tibial Cartilage Volume and Knee Pain Among Patients With Symptomatic Knee Osteoarthritis: A Randomized Clinical Trial",
-      "year": 2016,
-      "n": 413,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "30624670",
-      "title": "Randomized controlled trial of vitamin D supplementation in older people to optimize bone health",
-      "year": 2019,
-      "n": 379,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "8633602",
-      "title": "Falls in the elderly: a prospective study of risk factors and risk profiles",
-      "year": 1996,
-      "n": 354,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "17874029",
-      "title": "Efficacy of different doses and time intervals of oral vitamin D supplementation with or without calcium in elderly nursing home residents",
-      "year": 2008,
-      "n": 338,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "27986983",
-      "title": "Optimum dose of vitamin D for disease prevention in older people: BEST-D trial of vitamin D in primary care",
-      "year": 2017,
-      "n": 305,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26237520",
-      "title": "Treatment of Vitamin D Insufficiency in Postmenopausal Women: A Randomized Clinical Trial",
-      "year": 2015,
-      "n": 230,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26747333",
-      "title": "Monthly High-Dose Vitamin D Treatment for the Prevention of Functional Decline: A Randomized Clinical Trial",
-      "year": 2016,
-      "n": 200,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "26554884",
-      "title": "Effect of isolated vitamin D supplementation on the rate of falls and postural balance in postmenopausal women fallers: a randomized, double-blind, placebo-controlled trial",
-      "year": 2016,
-      "n": 160,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "23939263",
-      "title": "Cholecalciferol treatment to reduce blood pressure in older patients with isolated systolic hypertension: the VitDISH randomized controlled trial",
-      "year": 2013,
-      "n": 159,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "14695863",
-      "title": "A randomised, controlled comparison of different calcium and vitamin D supplementation regimens in elderly women after hip fracture: The Nottingham Neck of Femur (NONOF) Study",
-      "year": 2004,
-      "n": 150,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "15501836",
-      "title": "Vitamin D supplementation improves neuromuscular function in older people who fall",
-      "year": 2004,
-      "n": 139,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "27861700",
-      "title": "Vitamin D and Physical Function in Sedentary Older Men",
-      "year": 2017,
-      "n": 130,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "23982800",
-      "title": "A parallel group double-blind RCT of vitamin D3 assessing physical function: is the biochemical response to treatment affected by overweight and obesity?",
-      "year": 2014,
-      "n": 102,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "32653031",
-      "title": "Oral intermittent vitamin D substitution: influence of pharmaceutical form and dosage frequency on medication adherence: a randomized clinical trial",
-      "year": 2020,
-      "n": 97,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "11157326",
-      "title": "Efficacy and safety of vitamin D3 intake exceeding the lowest observed adverse effect level",
-      "year": 2001,
-      "n": 61,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "26160254",
-      "title": "Comprehensive Safety Monitoring of 12-Month Daily 7000-IU Vitamin D3 Supplementation in Human Immunodeficiency Virus-Infected Children and Young Adults",
-      "year": 2016,
-      "n": 58,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "18544622",
-      "title": "Comparison of daily, weekly, and monthly vitamin D3 in ethanol dosing protocols for two months in elderly hip fracture patients",
-      "year": 2008,
-      "n": 48,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "18326608",
-      "title": "Pharmacokinetics of a single, large dose of cholecalciferol",
-      "year": 2008,
-      "n": 30,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "25899914",
-      "title": "Vitamin D supplementation in nursing home patients: randomized controlled trial of standard daily dose versus individualized loading dose regimen",
-      "year": 2015,
-      "n": 30,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "27975236",
-      "title": "Impact of High-Dose Vitamin D3 Supplementation in Patients with Crohn's Disease in Remission: A Pilot Randomized Double-Blind Controlled Study",
-      "year": 2017,
-      "n": 18,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "28323044",
-      "title": "Medium doses of daily vitamin D decrease falls and higher doses of daily vitamin D3 increase falls: A randomized clinical trial",
-      "year": 2017,
-      "inReviews": [
-       "40943885"
-      ]
-     },
-     {
-      "pmid": "20103775",
-      "title": "The effects of vitamin D supplementation on physical function and quality of life in older patients with heart failure: a randomized controlled trial",
-      "year": 2010,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "23553992",
-      "title": "The role of vitamin D in improving physical performance in the elderly",
-      "year": 2013,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "17302660",
-      "title": "A higher dose of vitamin d reduces the risk of falls in nursing home residents: a randomized, multiple-dose study",
-      "year": 2007,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "29931459",
-      "title": "Effects of Vitamin D3 Supplementation on Muscle Strength, Mass, and Physical Performance in Women with Vitamin D Insufficiency: A Randomized Placebo-Controlled Trial",
-      "year": 2018,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "34118059",
-      "title": "The effects of vitamin D supplementation on types of falls",
-      "year": 2021,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "35010961",
-      "title": "Effects of Vitamin D3 Supplementation and Resistance Training on 25-Hydroxyvitamin D Status and Functional Performance of Older Adults: A Randomized Placebo-Controlled Trial",
-      "year": 2021,
-      "inReviews": [
-       "38698349"
-      ]
-     },
-     {
-      "pmid": "24561419",
-      "title": "An evaluation of high-dose vitamin D for rheumatoid arthritis",
-      "year": 2014,
-      "inReviews": [
-       "38615341"
-      ]
-     },
-     {
-      "pmid": "28842727",
-      "title": "Effect of vitamin D3 on bone turnover markers in critical illness: post hoc analysis from the VITdAL-ICU study",
-      "year": 2017,
-      "inReviews": [
-       "38615341"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1981,
@@ -7508,12 +4006,6 @@
      "n": 9440
     },
     {
-     "pmid": "18179991",
-     "title": "Distribution and correlates of serum 25-hydroxyvitamin D levels in a sample of patients with hip fracture",
-     "year": 2007,
-     "n": 1174
-    },
-    {
      "pmid": "17473911",
      "title": "Preventing fractures among older people living in institutional care: a pragmatic randomised double blind placebo controlled trial of vitamin D supplementation",
      "year": 2007,
@@ -7553,7 +4045,7 @@
      "pmid": "18433305",
      "title": "Calcium and vitamin d supplementation decreases incidence of stress fractures in female navy recruits",
      "year": 2008,
-     "n": 14416
+     "n": 5201
     },
     {
      "pmid": "17924051",
@@ -7662,12 +4154,6 @@
      "title": "Impact of clinical fractures on health-related quality of life is dependent on time of assessment since fracture: results from the FREEDOM trial",
      "year": 2012,
      "n": 7868
-    },
-    {
-     "pmid": "23033239",
-     "title": "High-dose vitamin D supplementation in people with prediabetes and hypovitaminosis D",
-     "year": 2013,
-     "n": 1551
     },
     {
      "pmid": "23652464",
@@ -7874,12 +4360,6 @@
      "n": 1682
     },
     {
-     "pmid": "38552276",
-     "title": "Effects of testosterone and vitamin D on fall risk in pre-frail hypogonadal men: a factorial design RCT",
-     "year": 2024,
-     "n": 1266
-    },
-    {
      "pmid": "39585370",
      "title": "Association of standardized serum 25-hydroxyvitamin D with falls in post-menopausal women",
      "year": 2025,
@@ -7890,12 +4370,6 @@
      "title": "Effects of vitamin D3, omega-3s, and a simple home exercise program on incident vertebral fractures: the DO-HEALTH randomized controlled trial",
      "year": 2025,
      "n": 1488
-    },
-    {
-     "pmid": "41199222",
-     "title": "A randomized control trial comparing Falls Reduction for Elderly Emergency Department (FREED) interventions and usual care",
-     "year": 2025,
-     "n": 1026
     },
     {
      "pmid": "42704968",
@@ -7928,7 +4402,7 @@
       "journal": "Journal of clinical medicine",
       "citedBy": 4,
       "n": 23211,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38698349",
@@ -7939,7 +4413,7 @@
       "journal": "BMC geriatrics",
       "citedBy": 29,
       "n": 58937,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38615341",
@@ -7949,7 +4423,7 @@
       "firstAuthor": "Tao X",
       "journal": "Biomolecules & biomedicine",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42704968",
@@ -7994,21 +4468,11 @@
       "citedBy": 4,
       "n": 1488,
       "why": "A large trial (about 1,488 people) from 2025, as new as the newest review or newer"
-     },
-     {
-      "pmid": "41199222",
-      "doi": "10.1186/s12873-025-01383-w",
-      "title": "A randomized control trial comparing Falls Reduction for Elderly Emergency Department (FREED) interventions and usual care",
-      "year": 2025,
-      "firstAuthor": "Sri-On J",
-      "journal": "BMC emergency medicine",
-      "citedBy": 0,
-      "n": 1026,
-      "why": "A large trial (about 1,026 people) from 2025, as new as the newest review or newer"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Older adults (not a group defined by one illness)",
      "intervention": "Very large doses of vitamin D given at long intervals (a bolus, such as once a year or every few months)",
@@ -8478,12 +4942,13 @@
   {
    "id": "diabetes",
    "label": "Type 2 diabetes",
+   "anyDesign": false,
    "finding": "Type 2 diabetes in people with prediabetes",
    "counts": {
     "reviews": 227,
     "trialReviews": 62,
     "trials": 232,
-    "largeTrials": 20
+    "largeTrials": 19
    },
    "chosenReviews": [
     {
@@ -8494,7 +4959,7 @@
      "firstAuthor": "Wu W",
      "journal": "Nutrition reviews",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40199888",
@@ -8505,7 +4970,7 @@
      "journal": "Nature communications",
      "citedBy": 19,
      "n": 22220,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36745886",
@@ -8515,7 +4980,7 @@
      "firstAuthor": "Pittas AG",
      "journal": "Annals of internal medicine",
      "citedBy": 132,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30627160",
@@ -8526,7 +4991,7 @@
      "journal": "International journal of endocrinology",
      "citedBy": 33,
      "n": 44161,
-     "why": "The most comprehensive review of trials on this outcome (47 trials, 2018); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (47 trials, 2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -8542,320 +5007,6 @@
      "why": "A large trial (about 2,098 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.10416666666666667,
-    "trials": 32,
-    "inclusions": 42,
-    "reviews": [
-     {
-      "pmid": "42721218",
-      "trials": 16
-     },
-     {
-      "pmid": "40199888",
-      "trials": 9
-     },
-     {
-      "pmid": "36745886",
-      "trials": 5
-     },
-     {
-      "pmid": "30627160",
-      "trials": 12
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "31173679",
-      "title": "Vitamin D Supplementation and Prevention of Type 2 Diabetes",
-      "year": 2019,
-      "n": 2423,
-      "inReviews": [
-       "42721218",
-       "40199888",
-       "36745886"
-      ]
-     },
-     {
-      "pmid": "35613725",
-      "title": "Effect of active vitamin D treatment on development of type 2 diabetes: DPVD randomised controlled trial in Japanese population",
-      "year": 2022,
-      "n": 1256,
-      "inReviews": [
-       "42721218",
-       "40199888",
-       "36745886"
-      ]
-     },
-     {
-      "pmid": "26829443",
-      "title": "Vitamin D 20,000 IU per Week for Five Years Does Not Prevent Progression From Prediabetes to Diabetes",
-      "year": 2016,
-      "inReviews": [
-       "42721218",
-       "40199888",
-       "36745886"
-      ]
-     },
-     {
-      "pmid": "23033239",
-      "title": "High-dose vitamin D supplementation in people with prediabetes and hypovitaminosis D",
-      "year": 2013,
-      "n": 1551,
-      "inReviews": [
-       "42721218",
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "17277040",
-      "title": "The effects of calcium and vitamin D supplementation on blood glucose and markers of inflammation in nondiabetic adults",
-      "year": 2007,
-      "n": 314,
-      "inReviews": [
-       "42721218",
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "24456991",
-      "title": "Vitamin-D supplementation in prediabetes reduced progression to type 2 diabetes and was associated with decreased insulin resistance and systemic inflammation: an open label randomized prospective study from Eastern India",
-      "year": 2014,
-      "inReviews": [
-       "42721218",
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "19617604",
-      "title": "Vitamin D supplementation and type 2 diabetes: a substudy of a randomised placebo-controlled trial in older people (RECORD trial, ISRCTN 51647438)",
-      "year": 2009,
-      "inReviews": [
-       "36745886",
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "30415629",
-      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "40199888"
-      ]
-     },
-     {
-      "pmid": "36648947",
-      "title": "Association of Body Weight With Response to Vitamin D Supplementation and Metabolism",
-      "year": 2023,
-      "n": 16515,
-      "inReviews": [
-       "40199888"
-      ]
-     },
-     {
-      "pmid": "21986389",
-      "title": "The VITamin D and OmegA-3 TriaL (VITAL): rationale and design of a large randomized controlled trial of vitamin D and marine omega-3 fatty acid supplements for the primary prevention of cancer and cardiovascular disease",
-      "year": 2012,
-      "n": 16000,
-      "inReviews": [
-       "40199888"
-      ]
-     },
-     {
-      "pmid": "26767629",
-      "title": "Baseline characteristics of participants in the VITamin D and OmegA-3 TriaL (VITAL)",
-      "year": 2016,
-      "n": 5107,
-      "inReviews": [
-       "40199888"
-      ]
-     },
-     {
-      "pmid": "39621103",
-      "title": "The effect of vitamin D3 supplementation on the incidence of type 2 diabetes in healthy older adults not at high risk for diabetes (FIND): a randomised controlled trial",
-      "year": 2025,
-      "n": 2271,
-      "inReviews": [
-       "40199888"
-      ]
-     },
-     {
-      "pmid": "24947792",
-      "title": "No effect of high-dose vitamin D supplementation on glycemic status or cardiovascular risk factors in subjects with prediabetes",
-      "year": 2014,
-      "n": 511,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "24152375",
-      "title": "The effects of vitamin D₂ or D₃ supplementation on glycaemic control and related metabolic parameters in people at risk of type 2 diabetes: protocol of a randomised double-blind placebo-controlled trial",
-      "year": 2013,
-      "n": 342,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "30583032",
-      "title": "Does high-dose vitamin D supplementation impact insulin resistance and risk of development of diabetes in patients with pre-diabetes? A double-blind randomized clinical trial",
-      "year": 2019,
-      "n": 162,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "28679142",
-      "title": "Effect of Two Different Doses of Vitamin D Supplementation on Metabolic Profiles of Insulin-Resistant Patients with Polycystic Ovary Syndrome: A Randomized, Double-Blind, Placebo-Controlled Trial",
-      "year": 2017,
-      "n": 90,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "29186759",
-      "title": "Effect of Two Different Doses of Vitamin D Supplementation on Metabolic Profiles of Insulin-Resistant Patients with Polycystic Ovary Syndrome",
-      "year": 2017,
-      "n": 90,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "25716637",
-      "title": "EFFECT OF HIGH-DOSE VITAMIN D REPLETION ON GLYCEMIC CONTROL IN AFRICAN-AMERICAN MALES WITH PREDIABETES AND HYPOVITAMINOSIS D",
-      "year": 2015,
-      "n": 87,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "27717236",
-      "title": "Effect of vitamin D supplementation on oral glucose tolerance in individuals with low vitamin D status and increased risk for developing type 2 diabetes (EVIDENCE): A double-blind, randomized, placebo-controlled clinical trial",
-      "year": 2017,
-      "n": 71,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "26106626",
-      "title": "Glucose Metabolism Effects of Vitamin D in Prediabetes: The VitDmet Randomized Placebo-Controlled Supplementation Study",
-      "year": 2015,
-      "n": 66,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "31559433",
-      "title": "Effect of vitamin D3 supplementation on insulin resistance and β-cell function in prediabetes: a double-blind, randomized, placebo-controlled trial",
-      "year": 2019,
-      "n": 64,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "20596692",
-      "title": "The effect of different doses of vitamin D(3) on markers of vascular health in patients with type 2 diabetes: a randomised controlled trial",
-      "year": 2010,
-      "n": 61,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "22464806",
-      "title": "Vitamin D supplementation has no effect on insulin resistance assessment in women with polycystic ovary syndrome and vitamin D deficiency",
-      "year": 2012,
-      "n": 50,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "35167764",
-      "title": "The effect of vitamin D supplementation on glycemic status of elderly people with prediabetes: a 12-month open-label, randomized-controlled study",
-      "year": 2022,
-      "n": 45,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "25299668",
-      "title": "Effects of combined calcium and vitamin D supplementation on insulin secretion, insulin sensitivity and β-cell function in multi-ethnic vitamin D-deficient adults at risk for type 2 diabetes: a pilot randomized, placebo-controlled trial",
-      "year": 2014,
-      "n": 45,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "21715514",
-      "title": "Effects of vitamin D and calcium supplementation on pancreatic β cell function, insulin sensitivity, and glycemia in adults at high risk of diabetes: the Calcium and Vitamin D for Diabetes Mellitus (CaDDM) randomized controlled trial",
-      "year": 2011,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "31937856",
-      "title": "Vitamin D Supplementation in Overweight/obese Asian Indian Women with Prediabetes Reduces Glycemic Measures and Truncal Subcutaneous Fat: A 78 Weeks Randomized Placebo-Controlled Trial (PREVENT-WIN Trial)",
-      "year": 2020,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "36541437",
-      "title": "Effect of Vitamin D and/or Calcium Supplementation on Pancreatic β-Cell Function in Subjects with Prediabetes: A Randomized, Controlled Trial",
-      "year": 2023,
-      "inReviews": [
-       "42721218"
-      ]
-     },
-     {
-      "pmid": "36558465",
-      "title": "Effects of Vitamin D3 and Marine Omega-3 Fatty Acids Supplementation on Biomarkers of Systemic Inflammation: 4-Year Findings from the VITAL Randomized Trial",
-      "year": 2022,
-      "inReviews": [
-       "40199888"
-      ]
-     },
-     {
-      "pmid": "35140313",
-      "title": "Safety and tolerability of high-dose daily vitamin D3 supplementation in the vitamin D and type 2 diabetes (D2d) study-a randomized trial in persons with prediabetes",
-      "year": 2022,
-      "inReviews": [
-       "36745886"
-      ]
-     },
-     {
-      "pmid": "18279409",
-      "title": "Vitamin D improves endothelial function in patients with Type 2 diabetes mellitus and low vitamin D levels",
-      "year": 2008,
-      "inReviews": [
-       "30627160"
-      ]
-     },
-     {
-      "pmid": "21194910",
-      "title": "The effect of vitamin D replacement on markers of vascular health in stroke patients - a randomised controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "30627160"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1997,
@@ -8982,12 +5133,6 @@
      "n": 2708
     },
     {
-     "pmid": "23033239",
-     "title": "High-dose vitamin D supplementation in people with prediabetes and hypovitaminosis D",
-     "year": 2013,
-     "n": 1551
-    },
-    {
      "pmid": "26699871",
      "title": "Genetic Variations in the Vitamin D Receptor Predict Type 2 Diabetes and Myocardial Infarction in a Community-Based Population: The Tromsø Study",
      "year": 2015,
@@ -9057,7 +5202,7 @@
      "pmid": "37104979",
      "title": "Indices of hepatic steatosis and fibrosis in prediabetes and association with diabetes development in the vitamin D and type 2 diabetes study",
      "year": 2023,
-     "n": 3972
+     "n": 2423
     },
     {
      "pmid": "37001590",
@@ -9105,7 +5250,7 @@
       "firstAuthor": "Wu W",
       "journal": "Nutrition reviews",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40199888",
@@ -9116,7 +5261,7 @@
       "journal": "Nature communications",
       "citedBy": 19,
       "n": 22220,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30627160",
@@ -9127,7 +5272,7 @@
       "journal": "International journal of endocrinology",
       "citedBy": 33,
       "n": 44161,
-      "why": "The most comprehensive review of trials on this outcome (47 trials, 2018); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (47 trials, 2018); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42024385",
@@ -9143,6 +5288,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults without diabetes at the start, with prediabetes or at risk of type 2 diabetes",
      "intervention": "Vitamin D (D3, D2 or calcifediol)",

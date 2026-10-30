@@ -18,8 +18,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin E, with vitamin E in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin E trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 50199,
@@ -35,6 +35,7 @@
   {
    "id": "prostate",
    "label": "Prostate cancer",
+   "anyDesign": false,
    "finding": "Prostate cancer",
    "counts": {
     "reviews": 14,
@@ -52,7 +53,7 @@
      "journal": "Nutrition and cancer",
      "citedBy": 57,
      "n": 165056,
-     "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2010); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -394,7 +395,7 @@
       "journal": "Nutrition and cancer",
       "citedBy": 57,
       "n": 165056,
-      "why": "One of the newest meta-analyses of trials on this outcome (2010); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2010); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "27777235",
@@ -476,6 +477,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Men (healthy, or at average risk)",
      "intervention": "Vitamin E supplements (alone, or with results for vitamin E apart)",
@@ -496,6 +498,7 @@
   {
    "id": "cardiovascular",
    "label": "Heart attacks and strokes",
+   "anyDesign": false,
    "finding": "Heart attacks, strokes and deaths from heart and blood vessel disease",
    "counts": {
     "reviews": 55,
@@ -512,7 +515,7 @@
      "firstAuthor": "Maggio E",
      "journal": "Nutrition reviews",
      "citedBy": 10,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33109618",
@@ -523,7 +526,7 @@
      "journal": "Stroke and vascular neurology",
      "citedBy": 36,
      "n": 148016,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "32379630",
@@ -534,7 +537,7 @@
      "journal": "Complementary therapies in clinical practice",
      "citedBy": 13,
      "n": 384248,
-     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "23335472",
@@ -545,324 +548,10 @@
      "journal": "BMJ (Clinical research ed.)",
      "citedBy": 321,
      "n": 294478,
-     "why": "The most comprehensive review of trials on this outcome (50 trials, 2013); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (50 trials, 2013); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.4642857142857143,
-    "trials": 28,
-    "inclusions": 67,
-    "reviews": [
-     {
-      "pmid": "37698992",
-      "trials": 18
-     },
-     {
-      "pmid": "33109618",
-      "trials": 17
-     },
-     {
-      "pmid": "32379630",
-      "trials": 18
-     },
-     {
-      "pmid": "23335472",
-      "trials": 14
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "15998891",
-      "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "10639540",
-      "title": "Vitamin E supplementation and cardiovascular events in high-risk patients",
-      "year": 2000,
-      "n": 6996,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "11197445",
-      "title": "Low-dose aspirin and vitamin E in people at cardiovascular risk: a randomised trial in general practice. Collaborative Group of the Primary Prevention Project",
-      "year": 2001,
-      "n": 4495,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "8622332",
-      "title": "Randomised controlled trial of vitamin E in patients with coronary disease: Cambridge Heart Antioxidant Study (CHAOS)",
-      "year": 1996,
-      "n": 2002,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "18032779",
-      "title": "Vitamin E supplementation reduces cardiovascular events in a subgroup of middle-aged individuals with both type 2 diabetes mellitus and the haptoglobin 2-2 genotype: a prospective double-blinded clinical trial",
-      "year": 2008,
-      "n": 1434,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "18997197",
-      "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-      "year": 2008,
-      "n": 754,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "11072938",
-      "title": "Secondary prevention with antioxidants of cardiovascular disease in endstage renal disease (SPACE): randomised placebo-controlled trial",
-      "year": 2000,
-      "n": 196,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "7495235",
-      "title": "Vitamin E plus aspirin compared with aspirin alone in patients with transient ischemic attacks",
-      "year": 1995,
-      "n": 52,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "12114037",
-      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
-      "year": 2002,
-      "n": 20536,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630"
-      ]
-     },
-     {
-      "pmid": "17698683",
-      "title": "A randomized factorial trial of vitamins C and E and beta carotene in the secondary prevention of cardiovascular events in women: results from the Women's Antioxidant Cardiovascular Study",
-      "year": 2007,
-      "n": 1450,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630"
-      ]
-     },
-     {
-      "pmid": "9521232",
-      "title": "Effect of vitamin E and beta carotene on the incidence of primary nonfatal myocardial infarction and fatal coronary heart disease",
-      "year": 1998,
-      "n": 1204,
-      "inReviews": [
-       "37698992",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "12435256",
-      "title": "Effects of hormone replacement therapy and antioxidant vitamin supplements on coronary atherosclerosis in postmenopausal women: a randomized controlled trial",
-      "year": 2002,
-      "n": 423,
-      "inReviews": [
-       "37698992",
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "17305650",
-      "title": "Prevention of serious vascular events by aspirin amongst patients with peripheral arterial disease: randomized, double-blind trial",
-      "year": 2007,
-      "n": 185,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "32379630"
-      ]
-     },
-     {
-      "pmid": "15557412",
-      "title": "The SU.VI.MAX Study: a randomized, placebo-controlled trial of the health effects of antioxidant vitamins and minerals",
-      "year": 2004,
-      "n": 13017,
-      "inReviews": [
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "10465168",
-      "title": "Dietary supplementation with n-3 polyunsaturated fatty acids and vitamin E after myocardial infarction: results of the GISSI-Prevenzione trial. Gruppo Italiano per lo Studio della Sopravvivenza nell'Infarto miocardico",
-      "year": 1999,
-      "n": 11324,
-      "inReviews": [
-       "33109618",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "9193380",
-      "title": "Randomised trial of alpha-tocopherol and beta-carotene supplements on incidence of major coronary events in men with previous myocardial infarction",
-      "year": 1997,
-      "n": 1862,
-      "inReviews": [
-       "32379630",
-       "23335472"
-      ]
-     },
-     {
-      "pmid": "10634823",
-      "title": "Controlled trial of alpha-tocopherol and beta-carotene supplements on stroke incidence and mortality in male smokers",
-      "year": 2000,
-      "n": 1057,
-      "inReviews": [
-       "37698992",
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "9241125",
-      "title": "Probucol and multivitamins in the prevention of restenosis after coronary angioplasty. Multivitamins and Probucol Study Group",
-      "year": 1997,
-      "n": 317,
-      "inReviews": [
-       "37698992",
-       "32379630"
-      ]
-     },
-     {
-      "pmid": "11030804",
-      "title": "Vitamin E and beta carotene supplementation in high risk for stroke: a subgroup analysis of the Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
-      "year": 2000,
-      "n": 290406,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "10601381",
-      "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
-      "year": 1999,
-      "n": 39876,
-      "inReviews": [
-       "32379630"
-      ]
-     },
-     {
-      "pmid": "10639539",
-      "title": "Effects of an angiotensin-converting-enzyme inhibitor, ramipril, on cardiovascular events in high-risk patients",
-      "year": 2000,
-      "n": 9297,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "11181464",
-      "title": "Effects of ramipril and vitamin E on atherosclerosis: the study to evaluate carotid ultrasound changes in patients treated with ramipril and vitamin E (SECURE)",
-      "year": 2001,
-      "n": 732,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "11123502",
-      "title": "Antioxidant Supplementation in Atherosclerosis Prevention (ASAP) study: a randomized trial of the effect of vitamins E and C on 3-year progression of carotid atherosclerosis",
-      "year": 2000,
-      "n": 520,
-      "inReviews": [
-       "32379630"
-      ]
-     },
-     {
-      "pmid": "9051202",
-      "title": "The influence of antioxidant nutrients on platelet function in healthy volunteers",
-      "year": 1997,
-      "n": 40,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "10545428",
-      "title": "Vascular effects of estrogen and vitamin E therapies in postmenopausal women",
-      "year": 1999,
-      "n": 28,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "8127329",
-      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
-      "year": 1994,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "12234947",
-      "title": "Alpha-tocopherol supplementation in healthy individuals reduces low-density lipoprotein oxidation but not atherosclerosis: the Vitamin E Atherosclerosis Prevention Study (VEAPS)",
-      "year": 2002,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "11432713",
-      "title": "An intervention trial to inhibit the progression of precancerous gastric lesions: compliance, serum micronutrients and S-allyl cysteine levels, and toxicity",
-      "year": 2001,
-      "inReviews": [
-       "23335472"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1989,
@@ -1335,7 +1024,7 @@
       "firstAuthor": "Maggio E",
       "journal": "Nutrition reviews",
       "citedBy": 10,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33109618",
@@ -1346,7 +1035,7 @@
       "journal": "Stroke and vascular neurology",
       "citedBy": 36,
       "n": 148016,
-      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "32379630",
@@ -1357,7 +1046,7 @@
       "journal": "Complementary therapies in clinical practice",
       "citedBy": 13,
       "n": 384248,
-      "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2020); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "23335472",
@@ -1368,11 +1057,12 @@
       "journal": "BMJ (Clinical research ed.)",
       "citedBy": 321,
       "n": 294478,
-      "why": "The most comprehensive review of trials on this outcome (50 trials, 2013); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (50 trials, 2013); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Middle-aged and older adults, healthy or with vascular disease or diabetes",
      "intervention": "Vitamin E supplements (alone, or with results for vitamin E apart)",
@@ -1464,6 +1154,7 @@
   {
    "id": "stroke",
    "label": "Stroke by type",
+   "anyDesign": false,
    "finding": "Stroke, by type",
    "counts": {
     "reviews": 15,
@@ -1480,7 +1171,7 @@
      "firstAuthor": "Maggio E",
      "journal": "Nutrition reviews",
      "citedBy": 10,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33109618",
@@ -1491,7 +1182,7 @@
      "journal": "Stroke and vascular neurology",
      "citedBy": 36,
      "n": 148016,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "21264448",
@@ -1502,292 +1193,10 @@
      "journal": "Thrombosis and haemostasis",
      "citedBy": 34,
      "n": 166282,
-     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.3888888888888889,
-    "trials": 27,
-    "inclusions": 48,
-    "reviews": [
-     {
-      "pmid": "37698992",
-      "trials": 18
-     },
-     {
-      "pmid": "33109618",
-      "trials": 17
-     },
-     {
-      "pmid": "21264448",
-      "trials": 13
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "15998891",
-      "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "12114037",
-      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
-      "year": 2002,
-      "n": 20536,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "11197445",
-      "title": "Low-dose aspirin and vitamin E in people at cardiovascular risk: a randomised trial in general practice. Collaborative Group of the Primary Prevention Project",
-      "year": 2001,
-      "n": 4495,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "8622332",
-      "title": "Randomised controlled trial of vitamin E in patients with coronary disease: Cambridge Heart Antioxidant Study (CHAOS)",
-      "year": 1996,
-      "n": 2002,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "17698683",
-      "title": "A randomized factorial trial of vitamins C and E and beta carotene in the secondary prevention of cardiovascular events in women: results from the Women's Antioxidant Cardiovascular Study",
-      "year": 2007,
-      "n": 1450,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "18032779",
-      "title": "Vitamin E supplementation reduces cardiovascular events in a subgroup of middle-aged individuals with both type 2 diabetes mellitus and the haptoglobin 2-2 genotype: a prospective double-blinded clinical trial",
-      "year": 2008,
-      "n": 1434,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "18997197",
-      "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-      "year": 2008,
-      "n": 754,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "11072938",
-      "title": "Secondary prevention with antioxidants of cardiovascular disease in endstage renal disease (SPACE): randomised placebo-controlled trial",
-      "year": 2000,
-      "n": 196,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "7495235",
-      "title": "Vitamin E plus aspirin compared with aspirin alone in patients with transient ischemic attacks",
-      "year": 1995,
-      "n": 52,
-      "inReviews": [
-       "37698992",
-       "33109618",
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "10639540",
-      "title": "Vitamin E supplementation and cardiovascular events in high-risk patients",
-      "year": 2000,
-      "n": 6996,
-      "inReviews": [
-       "37698992",
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "10634823",
-      "title": "Controlled trial of alpha-tocopherol and beta-carotene supplements on stroke incidence and mortality in male smokers",
-      "year": 2000,
-      "n": 1057,
-      "inReviews": [
-       "37698992",
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "17305650",
-      "title": "Prevention of serious vascular events by aspirin amongst patients with peripheral arterial disease: randomized, double-blind trial",
-      "year": 2007,
-      "n": 185,
-      "inReviews": [
-       "37698992",
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "11030804",
-      "title": "Vitamin E and beta carotene supplementation in high risk for stroke: a subgroup analysis of the Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
-      "year": 2000,
-      "n": 290406,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "8360931",
-      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
-      "year": 1993,
-      "n": 29584,
-      "inReviews": [
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "10465168",
-      "title": "Dietary supplementation with n-3 polyunsaturated fatty acids and vitamin E after myocardial infarction: results of the GISSI-Prevenzione trial. Gruppo Italiano per lo Studio della Sopravvivenza nell'Infarto miocardico",
-      "year": 1999,
-      "n": 11324,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "15769967",
-      "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
-      "year": 2005,
-      "n": 9541,
-      "inReviews": [
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "10639539",
-      "title": "Effects of an angiotensin-converting-enzyme inhibitor, ramipril, on cardiovascular events in high-risk patients",
-      "year": 2000,
-      "n": 9297,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "9521232",
-      "title": "Effect of vitamin E and beta carotene on the incidence of primary nonfatal myocardial infarction and fatal coronary heart disease",
-      "year": 1998,
-      "n": 1204,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "11181464",
-      "title": "Effects of ramipril and vitamin E on atherosclerosis: the study to evaluate carotid ultrasound changes in patients treated with ramipril and vitamin E (SECURE)",
-      "year": 2001,
-      "n": 732,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "12435256",
-      "title": "Effects of hormone replacement therapy and antioxidant vitamin supplements on coronary atherosclerosis in postmenopausal women: a randomized controlled trial",
-      "year": 2002,
-      "n": 423,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "9241125",
-      "title": "Probucol and multivitamins in the prevention of restenosis after coronary angioplasty. Multivitamins and Probucol Study Group",
-      "year": 1997,
-      "n": 317,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "9051202",
-      "title": "The influence of antioxidant nutrients on platelet function in healthy volunteers",
-      "year": 1997,
-      "n": 40,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "10545428",
-      "title": "Vascular effects of estrogen and vitamin E therapies in postmenopausal women",
-      "year": 1999,
-      "n": 28,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "8127329",
-      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
-      "year": 1994,
-      "inReviews": [
-       "37698992"
-      ]
-     },
-     {
-      "pmid": "12234947",
-      "title": "Alpha-tocopherol supplementation in healthy individuals reduces low-density lipoprotein oxidation but not atherosclerosis: the Vitamin E Atherosclerosis Prevention Study (VEAPS)",
-      "year": 2002,
-      "inReviews": [
-       "33109618"
-      ]
-     },
-     {
-      "pmid": "11231747",
-      "title": "Effects of vitamin E on lipid peroxidation in healthy persons",
-      "year": 2001,
-      "inReviews": [
-       "21264448"
-      ]
-     },
-     {
-      "pmid": "2963532",
-      "title": "Platelet function in type I diabetes: effects of supplementation with large doses of vitamin E",
-      "year": 1988,
-      "inReviews": [
-       "21264448"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1983,
@@ -1958,7 +1367,7 @@
       "firstAuthor": "Maggio E",
       "journal": "Nutrition reviews",
       "citedBy": 10,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33109618",
@@ -1969,7 +1378,7 @@
       "journal": "Stroke and vascular neurology",
       "citedBy": 36,
       "n": 148016,
-      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "21264448",
@@ -1980,11 +1389,12 @@
       "journal": "Thrombosis and haemostasis",
       "citedBy": 34,
       "n": 166282,
-      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults",
      "intervention": "Vitamin E supplements",
@@ -2041,6 +1451,7 @@
   {
    "id": "mortality",
    "label": "Death from any cause",
+   "anyDesign": false,
    "finding": "Death from any cause",
    "counts": {
     "reviews": 22,
@@ -2057,7 +1468,7 @@
      "firstAuthor": "Jiang S",
      "journal": "Journal of nutritional science and vitaminology",
      "citedBy": 20,
-     "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2014); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "24040282",
@@ -2068,7 +1479,7 @@
      "journal": "PloS one",
      "citedBy": 108,
      "n": 241883,
-     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "22419320",
@@ -2079,7 +1490,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 309,
      "n": 296707,
-     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -2095,625 +1506,6 @@
      "why": "A large trial (about 2,118 people) from 2014, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.0798611111111111,
-    "trials": 432,
-    "inclusions": 501,
-    "reviews": [
-     {
-      "pmid": "25078376",
-      "trials": 22
-     },
-     {
-      "pmid": "24040282",
-      "trials": 48
-     },
-     {
-      "pmid": "22419320",
-      "trials": 431
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "19066370",
-      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-      "year": 2009,
-      "n": 35533,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11197445",
-      "title": "Low-dose aspirin and vitamin E in people at cardiovascular risk: a randomised trial in general practice. Collaborative Group of the Primary Prevention Project",
-      "year": 2001,
-      "n": 4495,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8622332",
-      "title": "Randomised controlled trial of vitamin E in patients with coronary disease: Cambridge Heart Antioxidant Study (CHAOS)",
-      "year": 1996,
-      "n": 2002,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "17227997",
-      "title": "Chemoprevention of precancerous gastric lesions with antioxidant vitamin supplementation: a randomized trial in a high-risk population",
-      "year": 2007,
-      "n": 1980,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "14711717",
-      "title": "Vitamin E supplementation and cataract: randomized controlled trial",
-      "year": 2004,
-      "n": 1906,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "17698683",
-      "title": "A randomized factorial trial of vitamins C and E and beta carotene in the secondary prevention of cardiovascular events in women: results from the Women's Antioxidant Cardiovascular Study",
-      "year": 2007,
-      "n": 1450,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "18032779",
-      "title": "Vitamin E supplementation reduces cardiovascular events in a subgroup of middle-aged individuals with both type 2 diabetes mellitus and the haptoglobin 2-2 genotype: a prospective double-blinded clinical trial",
-      "year": 2008,
-      "n": 1434,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8008027",
-      "title": "A clinical trial of antioxidant vitamins to prevent colorectal adenoma. Polyp Prevention Study Group",
-      "year": 1994,
-      "n": 864,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "10218756",
-      "title": "Impact of trace elements and vitamin supplementation on immunity and infections in institutionalized elderly patients: a randomized controlled trial. MIN. VIT. AOX. geriatric network",
-      "year": 1999,
-      "n": 725,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15315997",
-      "title": "Vitamin E and respiratory tract infections in elderly nursing home residents: a randomized controlled trial",
-      "year": 2004,
-      "n": 617,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12435256",
-      "title": "Effects of hormone replacement therapy and antioxidant vitamin supplements on coronary atherosclerosis in postmenopausal women: a randomized controlled trial",
-      "year": 2002,
-      "n": 423,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11072938",
-      "title": "Secondary prevention with antioxidants of cardiovascular disease in endstage renal disease (SPACE): randomised placebo-controlled trial",
-      "year": 2000,
-      "n": 196,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15517433",
-      "title": "High dose vitamin E therapy in amyotrophic lateral sclerosis as add-on therapy to riluzole: results of a placebo-controlled double-blind study",
-      "year": 2005,
-      "n": 160,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "9267584",
-      "title": "Effect of micronutrient supplementation on infection in institutionalized elderly subjects: a controlled trial",
-      "year": 1997,
-      "n": 81,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "16926662",
-      "title": "The Melbourne Atherosclerosis Vitamin E Trial (MAVET): a study of high dose vitamin E in smokers",
-      "year": 2006,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11815895",
-      "title": "The Roche European American Cataract Trial (REACT): a randomized clinical trial to investigate the efficacy of an oral antioxidant micronutrient mixture to slow progression of age-related cataract",
-      "year": 2002,
-      "inReviews": [
-       "25078376",
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15998890",
-      "title": "Low-dose aspirin in the primary prevention of cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "25078376",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15998891",
-      "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8360931",
-      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
-      "year": 1993,
-      "n": 29584,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12114037",
-      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
-      "year": 2002,
-      "n": 20536,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "20104528",
-      "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
-      "year": 2010,
-      "n": 12741,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "10465168",
-      "title": "Dietary supplementation with n-3 polyunsaturated fatty acids and vitamin E after myocardial infarction: results of the GISSI-Prevenzione trial. Gruppo Italiano per lo Studio della Sopravvivenza nell'Infarto miocardico",
-      "year": 1999,
-      "n": 11324,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15769967",
-      "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
-      "year": 2005,
-      "n": 9541,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11594943",
-      "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E and beta carotene for age-related cataract and vision loss: AREDS report no. 9",
-      "year": 2001,
-      "n": 4757,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "16849680",
-      "title": "Randomized double-blind factorial trial of three treatments to reduce the prevalence of precancerous gastric lesions",
-      "year": 2006,
-      "n": 3365,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15217803",
-      "title": "Effects of long-term daily low-dose supplementation with antioxidant vitamins and minerals on structure and function of large arteries",
-      "year": 2004,
-      "n": 1162,
-      "inReviews": [
-       "25078376",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "9506548",
-      "title": "Mortality in DATATOP: a multicenter trial in early Parkinson's disease. Parkinson Study Group",
-      "year": 1998,
-      "n": 800,
-      "inReviews": [
-       "25078376",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15829527",
-      "title": "Vitamin E and donepezil for the treatment of mild cognitive impairment",
-      "year": 2005,
-      "n": 769,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "18997197",
-      "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-      "year": 2008,
-      "n": 754,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12169075",
-      "title": "Effect of daily vitamin E and multivitamin-mineral supplementation on acute respiratory tract infections in elderly persons: a randomized controlled trial",
-      "year": 2002,
-      "n": 652,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8512476",
-      "title": "A randomized trial of vitamin A and vitamin E supplementation for retinitis pigmentosa",
-      "year": 1993,
-      "n": 601,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12600905",
-      "title": "Six-year effect of combined vitamin C and E supplementation on atherosclerotic progression: the Antioxidant Supplementation in Atherosclerosis Prevention (ASAP) Study",
-      "year": 2003,
-      "n": 520,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "9110909",
-      "title": "A controlled trial of selegiline, alpha-tocopherol, or both as treatment for Alzheimer's disease. The Alzheimer's Disease Cooperative Study",
-      "year": 1997,
-      "n": 341,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8449125",
-      "title": "Antioxidant vitamins or lactulose for the prevention of the recurrence of colorectal adenomas. Colorectal Cancer Study Group of the University of Modena and the Health Care District 16",
-      "year": 1993,
-      "n": 255,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8529777",
-      "title": "Effects on health of dietary supplementation with 100 mg d-alpha-tocopheryl acetate, daily for 6 years",
-      "year": 1995,
-      "n": 161,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12465157",
-      "title": "Supplementary vitamin E does not affect the loss of cartilage volume in knee osteoarthritis: a 2 year double blind randomized placebo controlled study",
-      "year": 2002,
-      "n": 136,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "3293777",
-      "title": "A randomized trial of vitamins C and E in the prevention of recurrence of colorectal polyps",
-      "year": 1988,
-      "n": 129,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "7790695",
-      "title": "Effects of long-term vitamin E supplementation in alcoholic cirrhotics",
-      "year": 1995,
-      "n": 67,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8825017",
-      "title": "Multicenter ophthalmic and nutritional age-related macular degeneration study--part 2: antioxidant intervention and conclusions",
-      "year": 1996,
-      "n": 39,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15693087",
-      "title": "Effects of vitamins C and E on oxidative stress markers and endothelial function in patients with systemic lupus erythematosus: a double blind, placebo controlled pilot study",
-      "year": 2005,
-      "n": 39,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "14672612",
-      "title": "A randomized placebo controlled trial of vitamin E for alcoholic hepatitis",
-      "year": 2004,
-      "n": 26,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12618567",
-      "title": "PoleStriding exercise and vitamin E for management of peripheral vascular disease",
-      "year": 2003,
-      "n": 14,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15262194",
-      "title": "Impact of Vitamin E supplementation on lipoprotein peroxidation and composition in Type 1 diabetic patients treated with Atorvastatin",
-      "year": 2004,
-      "n": 11,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11432713",
-      "title": "An intervention trial to inhibit the progression of precancerous gastric lesions: compliance, serum micronutrients and S-allyl cysteine levels, and toxicity",
-      "year": 2001,
-      "inReviews": [
-       "25078376",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "8876776",
-      "title": "Rationale and design of a multicenter study of selegiline and alpha-tocopherol in the treatment of Alzheimer disease using novel clinical outcomes. Alzheimer's Disease Cooperative Study",
-      "year": 1996,
-      "inReviews": [
-       "25078376",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12207836",
-      "title": "Dietary antioxidants and DNA damage in patients on long-term acid-suppression therapy: a randomized controlled study",
-      "year": 2002,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "16081469",
-      "title": "The effect of micronutrient supplementation on quality-of-life and left ventricular function in elderly patients with chronic heart failure",
-      "year": 2005,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15992652",
-      "title": "Treatment of asymptomatic adults with elevated coronary calcium scores with atorvastatin, vitamin C, and vitamin E: the St. Francis Heart Study randomized clinical trial",
-      "year": 2005,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11465936",
-      "title": "A double-blind, placebo-controlled randomized clinical trial of alpha-tocopherol (vitamin E) in the treatment of amyotrophic lateral sclerosis. ALS riluzole-tocopherol Study Group",
-      "year": 2001,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "14743544",
-      "title": "Pilot clinical trial of the use of alpha-tocopherol for the prevention of hepatocellular carcinoma in patients with liver cirrhosis",
-      "year": 2003,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "12234947",
-      "title": "Alpha-tocopherol supplementation in healthy individuals reduces low-density lipoprotein oxidation but not atherosclerosis: the Vitamin E Atherosclerosis Prevention Study (VEAPS)",
-      "year": 2002,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11500195",
-      "title": "Effect of glutathione S-transferase M1 genotype on progression of atherosclerosis in lifelong male smokers",
-      "year": 2001,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "15668500",
-      "title": "Antioxidant vitamin supplementation reduces benzo(a)pyrene-DNA adducts and potential cancer risk in female smokers",
-      "year": 2005,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "17159011",
-      "title": "A randomized trial of vitamin E supplementation and cognitive function in women",
-      "year": 2006,
-      "n": 39876,
-      "inReviews": [
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "17846285",
-      "title": "Effects of random allocation to vitamin E supplementation on the occurrence of venous thromboembolism: report from the Women's Health Study",
-      "year": 2007,
-      "n": 39876,
-      "inReviews": [
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "10601381",
-      "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
-      "year": 1999,
-      "n": 39876,
-      "inReviews": [
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "18975365",
-      "title": "Vitamin E in the primary prevention of rheumatoid arthritis: the Women's Health Study",
-      "year": 2008,
-      "n": 39144,
-      "inReviews": [
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "21257986",
-      "title": "Randomised vitamin E supplementation and risk of chronic lung disease in the Women's Health Study",
-      "year": 2011,
-      "n": 38597,
-      "inReviews": [
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "18339679",
-      "title": "Randomised aspirin assignment and risk of adult-onset asthma in the Women's Health Study",
-      "year": 2008,
-      "n": 37270,
-      "inReviews": [
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "11552710",
-      "title": "Molecular epidemiologic studies within the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-      "year": 2001,
-      "n": 32400,
-      "inReviews": [
-       "22419320"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1990,
@@ -3015,7 +1807,7 @@
       "firstAuthor": "Jiang S",
       "journal": "Journal of nutritional science and vitaminology",
       "citedBy": 20,
-      "why": "One of the newest meta-analyses of trials on this outcome (2014); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2014); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "24040282",
@@ -3026,7 +1818,7 @@
       "journal": "PloS one",
       "citedBy": 108,
       "n": 241883,
-      "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2013); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "24621441",
@@ -3042,6 +1834,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with chronic diseases",
      "intervention": "Vitamin E supplements (alone or with other nutrients, with results for vitamin E apart)",
@@ -3105,6 +1898,7 @@
   {
    "id": "amd",
    "label": "Macular degeneration",
+   "anyDesign": false,
    "finding": "Worsening of age-related macular degeneration (AMD, an eye disease that damages central vision)",
    "counts": {
     "reviews": 17,
@@ -3122,7 +1916,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 80,
      "n": 3791,
-     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "28756617",
@@ -3133,7 +1927,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 68,
      "n": 76756,
-     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "23152201",
@@ -3144,582 +1938,10 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 63,
      "n": 6150,
-     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.10625,
-    "trials": 80,
-    "inclusions": 97,
-    "reviews": [
-     {
-      "pmid": "28756618",
-      "trials": 18
-     },
-     {
-      "pmid": "28756617",
-      "trials": 67
-     },
-     {
-      "pmid": "23152201",
-      "trials": 12
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "11594942",
-      "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
-      "year": 2001,
-      "n": 3640,
-      "inReviews": [
-       "28756618",
-       "28756617",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "10487974",
-      "title": "Methodology of the VECAT study: vitamin E intervention in cataract and age-related maculopathy",
-      "year": 1999,
-      "inReviews": [
-       "28756618",
-       "28756617",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "10641899",
-      "title": "Baseline ophthalmic findings in the vitamin E, cataract and age-related maculopathy (VECAT) study",
-      "year": 1999,
-      "inReviews": [
-       "28756618",
-       "28756617",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "8127329",
-      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
-      "year": 1994,
-      "inReviews": [
-       "28756618",
-       "28756617",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "22503302",
-      "title": "Vitamins E and C and medical record-confirmed age-related macular degeneration in a randomized trial of male physicians",
-      "year": 2012,
-      "inReviews": [
-       "28756618",
-       "28756617",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "15769967",
-      "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
-      "year": 2005,
-      "n": 9541,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "17222649",
-      "title": "High dose zinc increases hospital admissions due to genitourinary complications",
-      "year": 2007,
-      "n": 3640,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "10487973",
-      "title": "The VECAT study: methodology and statistical power for measurement of age-related macular features. Vitamin E, Cataract, and Age-related Maculopathy Study",
-      "year": 1999,
-      "n": 1204,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "8825016",
-      "title": "Multicenter ophthalmic and nutritional age-related macular degeneration study--part 1: design, subjects and procedures. Age-related Macular Degeneration Study Group",
-      "year": 1996,
-      "n": 39,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "17122108",
-      "title": "The effect of lutein and zeaxanthin supplementation on metabolites of these carotenoids in the serum of persons aged 60 or older",
-      "year": 2006,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "16386999",
-      "title": "Vitamin E in the treatment of uveitis-associated macular edema",
-      "year": 2006,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "17157802",
-      "title": "Effects of long-term zinc supplementation on plasma thiol metabolites and redox status in patients with age-related macular degeneration",
-      "year": 2007,
-      "inReviews": [
-       "28756618",
-       "23152201"
-      ]
-     },
-     {
-      "pmid": "15998890",
-      "title": "Low-dose aspirin in the primary prevention of cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "15998891",
-      "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "19066370",
-      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-      "year": 2009,
-      "n": 35533,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8261860",
-      "title": "[Preliminary report on the results of nutrition prevention trials of cancer and other common diseases among residents in Linxian, China]",
-      "year": 1993,
-      "n": 29584,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8594266",
-      "title": "Effect of vitamin E and beta carotene on the incidence of angina pectoris. A randomized, double-blind, controlled trial",
-      "year": 1996,
-      "n": 29133,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9568790",
-      "title": "The association between baseline vitamin E, selenium, and prostate cancer in the alpha-tocopherol, beta-carotene cancer prevention study",
-      "year": 1998,
-      "n": 29133,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8901854",
-      "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
-      "year": 1996,
-      "n": 29133,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9437195",
-      "title": "Effect of alpha-tocopherol (vitamin E) and beta-carotene supplementation on the incidence of intermittent claudication in male smokers",
-      "year": 1997,
-      "n": 26289,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8941095",
-      "title": "Intake of dietary fiber and risk of coronary heart disease in a cohort of Finnish men. The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
-      "year": 1996,
-      "n": 21930,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "10067908",
-      "title": "Prospective cohort study of antioxidant vitamin supplement use and the risk of age-related maculopathy",
-      "year": 1999,
-      "n": 21120,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9521168",
-      "title": "Prostate cancer and supplementation with alpha-tocopherol and beta-carotene: incidence and mortality in a controlled trial",
-      "year": 1998,
-      "n": 14573,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9503043",
-      "title": "Background and rationale behind the SU.VI.MAX Study, a prevention trial using nutritional doses of a combination of antioxidant vitamins and minerals to reduce cardiovascular diseases and cancers. SUpplementation en VItamines et Minéraux AntioXydants Study",
-      "year": 1998,
-      "n": 12735,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8908384",
-      "title": "Rationale and design of a large study to evaluate the renal and cardiovascular effects of an ACE inhibitor and vitamin E in high-risk patients with diabetes. The MICRO-HOPE Study. Microalbuminuria, cardiovascular, and renal outcomes. Heart Outcomes Prevention Evaluation",
-      "year": 1996,
-      "n": 9541,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8888665",
-      "title": "Study design and baseline characteristics of the study to evaluate carotid ultrasound changes in patients treated with ramipril and vitamin E: SECURE",
-      "year": 1996,
-      "n": 9541,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8520707",
-      "title": "A secondary prevention trial of antioxidant vitamins and cardiovascular disease in women. Rationale, design, and methods. The WACS Research Group",
-      "year": 1995,
-      "n": 8000,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "24310343",
-      "title": "Secondary analyses of the effects of lutein/zeaxanthin on age-related macular degeneration progression: AREDS2 report No. 3",
-      "year": 2014,
-      "n": 4203,
-      "inReviews": [
-       "28756618"
-      ]
-     },
-     {
-      "pmid": "9683311",
-      "title": "Factorial trial of three interventions to reduce the progression of precancerous gastric lesions in Shandong, China: design issues and initial data",
-      "year": 1998,
-      "n": 3411,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8363468",
-      "title": "The Linxian cataract studies. Two nutrition intervention trials",
-      "year": 1993,
-      "n": 3249,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8923024",
-      "title": "Chemoprevention trial on precancerous lesions of the stomach in Venezuela: summary of study design and baseline data",
-      "year": 1996,
-      "n": 2200,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9548624",
-      "title": "Gastric cancer and premalignant lesions in atrophic gastritis: a controlled trial on the effect of supplementation with alpha-tocopherol and beta-carotene. The Helsinki Gastritis Study Group",
-      "year": 1998,
-      "n": 2132,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8622332",
-      "title": "Randomised controlled trial of vitamin E in patients with coronary disease: Cambridge Heart Antioxidant Study (CHAOS)",
-      "year": 1996,
-      "n": 2002,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9193380",
-      "title": "Randomised trial of alpha-tocopherol and beta-carotene supplements on incidence of major coronary events in men with previous myocardial infarction",
-      "year": 1997,
-      "n": 1862,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9527321",
-      "title": "Long-term supplementation with alpha-tocopherol and beta-carotene and age-related cataract",
-      "year": 1997,
-      "n": 1828,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9659191",
-      "title": "Effects of alpha tocopherol and beta carotene supplements on symptoms, progression, and prognosis of angina pectoris",
-      "year": 1998,
-      "n": 1795,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "19066368",
-      "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial",
-      "year": 2009,
-      "n": 1307,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "24974817",
-      "title": "No clinically significant association between CFH and ARMS2 genotypes and response to nutritional supplements: AREDS report number 38",
-      "year": 2014,
-      "n": 1237,
-      "inReviews": [
-       "28756618"
-      ]
-     },
-     {
-      "pmid": "9521232",
-      "title": "Effect of vitamin E and beta carotene on the incidence of primary nonfatal myocardial infarction and fatal coronary heart disease",
-      "year": 1998,
-      "n": 1204,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "12098721",
-      "title": "Vitamin E supplementation and macular degeneration: randomised controlled trial",
-      "year": 2002,
-      "n": 1193,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9541437",
-      "title": "Retinal vascular changes following supplementation with alpha-tocopherol or beta-carotene",
-      "year": 1998,
-      "n": 1072,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9591958",
-      "title": "Six-year supplementation with alpha-tocopherol and beta-carotene and age-related maculopathy",
-      "year": 1998,
-      "n": 941,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8008027",
-      "title": "A clinical trial of antioxidant vitamins to prevent colorectal adenoma. Polyp Prevention Study Group",
-      "year": 1994,
-      "n": 864,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "2508608",
-      "title": "DATATOP: a multicenter controlled clinical trial in early Parkinson's disease. Parkinson Study Group",
-      "year": 1989,
-      "n": 800,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9433680",
-      "title": "Effects of trace element and/or vitamin supplementation on vitamin and mineral status, free radical metabolism and immunological markers in elderly long term-hospitalized subjects. Geriatric Network MIN. VIT. AOX",
-      "year": 1997,
-      "n": 756,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "18997197",
-      "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-      "year": 2008,
-      "n": 754,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8512476",
-      "title": "A randomized trial of vitamin A and vitamin E supplementation for retinitis pigmentosa",
-      "year": 1993,
-      "n": 601,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8275193",
-      "title": "Chemoprevention of oral leukoplakia and chronic esophagitis in an area of high incidence of oral and esophageal cancer",
-      "year": 1993,
-      "n": 532,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9250116",
-      "title": "Effects of supplemental beta-carotene, cigarette smoking, and alcohol consumption on serum carotenoids in the Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study",
-      "year": 1997,
-      "n": 491,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "23218821",
-      "title": "Secondary outcomes in a clinical trial of carotenoids with coantioxidants versus placebo in early age-related macular degeneration",
-      "year": 2013,
-      "n": 433,
-      "inReviews": [
-       "28756618"
-      ]
-     },
-     {
-      "pmid": "9799882",
-      "title": "Incidence of cataract operations in Finnish male smokers unaffected by alpha tocopherol or beta carotene supplements",
-      "year": 1998,
-      "n": 425,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9920356",
-      "title": "Increased tendency towards gingival bleeding caused by joint effect of alpha-tocopherol supplementation and acetylsalicylic acid",
-      "year": 1998,
-      "n": 409,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9881881",
-      "title": "Beta-carotene concentration in buccal mucosal cells with and without dysplastic oral leukoplakia after long-term beta-carotene supplementation in male smokers",
-      "year": 1998,
-      "n": 343,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9110909",
-      "title": "A controlled trial of selegiline, alpha-tocopherol, or both as treatment for Alzheimer's disease. The Alzheimer's Disease Cooperative Study",
-      "year": 1997,
-      "n": 341,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "10691066",
-      "title": "Design of Physicians' Health Study II--a randomized trial of beta-carotene, vitamins E and C, and multivitamins, in prevention of cancer, cardiovascular disease, and eye disease, and review of results of completed trials",
-      "year": 2000,
-      "n": 333,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9734742",
-      "title": "Effect of supplemental beta-carotene on plasma concentrations of carotenoids, retinol, and alpha-tocopherol in humans",
-      "year": 1998,
-      "n": 259,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8449125",
-      "title": "Antioxidant vitamins or lactulose for the prevention of the recurrence of colorectal adenomas. Colorectal Cancer Study Group of the University of Modena and the Health Care District 16",
-      "year": 1993,
-      "n": 255,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "9036866",
-      "title": "Serological evidence of an association between Chlamydia pneumoniae infection and lung cancer",
-      "year": 1997,
-      "n": 230,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "8529777",
-      "title": "Effects on health of dietary supplementation with 100 mg d-alpha-tocopheryl acetate, daily for 6 years",
-      "year": 1995,
-      "n": 161,
-      "inReviews": [
-       "28756617"
-      ]
-     },
-     {
-      "pmid": "3293777",
-      "title": "A randomized trial of vitamins C and E in the prevention of recurrence of colorectal polyps",
-      "year": 1988,
-      "n": 129,
-      "inReviews": [
-       "28756617"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1996,
@@ -3874,7 +2096,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 80,
       "n": 3791,
-      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "28756617",
@@ -3885,7 +2107,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 68,
       "n": 76756,
-      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "23152201",
@@ -3896,11 +2118,12 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 63,
       "n": 6150,
-      "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People who already have age-related macular degeneration (AMD), or older adults",
      "intervention": "Antioxidant vitamin and mineral supplements that include vitamin E (such as the AREDS formula), or vitamin E alone",
@@ -3943,6 +2166,7 @@
   {
    "id": "nash",
    "label": "Fatty liver (NASH)",
+   "anyDesign": false,
    "finding": "Liver inflammation in fatty liver disease (NASH, non-alcoholic steatohepatitis)",
    "counts": {
     "reviews": 48,
@@ -3959,7 +2183,7 @@
      "firstAuthor": "Karimi M",
      "journal": "Nutrition & metabolism",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40895855",
@@ -3969,7 +2193,7 @@
      "firstAuthor": "Hussaini H",
      "journal": "Cureus",
      "citedBy": 2,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37686767",
@@ -3980,184 +2204,10 @@
      "journal": "Nutrients",
      "citedBy": 43,
      "n": 794,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.3125,
-    "trials": 16,
-    "inclusions": 26,
-    "reviews": [
-     {
-      "pmid": "42374454",
-      "trials": 11
-     },
-     {
-      "pmid": "40895855",
-      "trials": 5
-     },
-     {
-      "pmid": "37686767",
-      "trials": 10
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "20427778",
-      "title": "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis",
-      "year": 2010,
-      "n": 247,
-      "inReviews": [
-       "42374454",
-       "40895855",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "31332029",
-      "title": "Role of Vitamin E for Nonalcoholic Steatohepatitis in Patients With Type 2 Diabetes: A Randomized Controlled Trial",
-      "year": 2019,
-      "n": 105,
-      "inReviews": [
-       "42374454",
-       "40895855",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "21521847",
-      "title": "Effect of vitamin E or metformin for treatment of nonalcoholic fatty liver disease in children and adolescents: the TONIC randomized controlled trial",
-      "year": 2011,
-      "n": 173,
-      "inReviews": [
-       "42374454",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "30920975",
-      "title": "Treatment options for nonalcoholic fatty liver disease: a double-blinded randomized placebo-controlled trial",
-      "year": 2019,
-      "n": 150,
-      "inReviews": [
-       "42374454",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "39970876",
-      "title": "Vitamin E (300 mg) in the treatment of MASH: A multi-center, randomized, double-blind, placebo-controlled study",
-      "year": 2025,
-      "n": 124,
-      "inReviews": [
-       "42374454",
-       "40895855"
-      ]
-     },
-     {
-      "pmid": "14638353",
-      "title": "Vitamin E and vitamin C treatment improves fibrosis in patients with nonalcoholic steatohepatitis",
-      "year": 2003,
-      "n": 49,
-      "inReviews": [
-       "40895855",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "24373555",
-      "title": "Tocotrienols for normalisation of hepatic echogenic response in nonalcoholic fatty liver: a randomised placebo-controlled clinical trial",
-      "year": 2013,
-      "n": 44,
-      "inReviews": [
-       "42374454",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "17162245",
-      "title": "Randomized placebo-controlled trial of ursodeoxycholic acid with vitamin e in nonalcoholic steatohepatitis",
-      "year": 2006,
-      "inReviews": [
-       "42374454",
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "15998891",
-      "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
-      "year": 2005,
-      "n": 39876,
-      "inReviews": [
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "21990298",
-      "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-      "year": 2011,
-      "n": 35533,
-      "inReviews": [
-       "40895855"
-      ]
-     },
-     {
-      "pmid": "15769967",
-      "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
-      "year": 2005,
-      "n": 9541,
-      "inReviews": [
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "30586008",
-      "title": "Haptoglobin 2 Allele is Associated With Histologic Response to Vitamin E in Subjects With Nonalcoholic Steatohepatitis",
-      "year": 2019,
-      "n": 228,
-      "inReviews": [
-       "42374454"
-      ]
-     },
-     {
-      "pmid": "39001559",
-      "title": "The effect of vitamin E and docosahexaenoic acid ethyl ester on Metabolic Dysfunction-Associated steatotic Liver Disease (MASLD)-A randomised, double-blind, placebo-controlled, parallel-group clinical trial (PUVENAFLD)",
-      "year": 2024,
-      "n": 203,
-      "inReviews": [
-       "42374454"
-      ]
-     },
-     {
-      "pmid": "18330955",
-      "title": "Effect of lifestyle intervention on non-alcoholic fatty liver disease in Chinese obese children",
-      "year": 2008,
-      "n": 38,
-      "inReviews": [
-       "37686767"
-      ]
-     },
-     {
-      "pmid": "39160468",
-      "title": "Assessing the efficacy of tocotrienol-rich fraction vitamin E in obese children with non-alcoholic fatty liver disease: a single-blind, randomized clinical trial",
-      "year": 2024,
-      "n": 29,
-      "inReviews": [
-       "42374454"
-      ]
-     },
-     {
-      "pmid": "23718573",
-      "title": "Vitamin E and changes in serum alanine aminotransferase levels in patients with non-alcoholic steatohepatitis",
-      "year": 2013,
-      "inReviews": [
-       "42374454"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -4305,7 +2355,7 @@
       "firstAuthor": "Karimi M",
       "journal": "Nutrition & metabolism",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40895855",
@@ -4315,7 +2365,7 @@
       "firstAuthor": "Hussaini H",
       "journal": "Cureus",
       "citedBy": 2,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "37686767",
@@ -4326,11 +2376,12 @@
       "journal": "Nutrients",
       "citedBy": 43,
       "n": 794,
-      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with non-alcoholic fatty liver disease or NASH",
      "intervention": "Vitamin E",

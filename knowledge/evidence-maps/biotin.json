@@ -19,9 +19,9 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving biotin, with biotin in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
   "For wrong lab results, hair, nails, status in pregnancy, reviews of any study design count, because that evidence comes from lab or observational studies rather than trials.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded biotin trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 3757,
@@ -37,6 +37,7 @@
   {
    "id": "lab-interference",
    "label": "Wrong lab results",
+   "anyDesign": true,
    "finding": "Wrong results on blood tests that use biotin (immunoassays), including thyroid and heart tests",
    "counts": {
     "reviews": 2,
@@ -53,7 +54,7 @@
      "firstAuthor": "Elston MS",
      "journal": "The Journal of clinical endocrinology and metabolism",
      "citedBy": 75,
-     "why": "One of the newest systematic reviews of trials on this outcome (2016); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (reviews of any study design) (2016); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -93,11 +94,12 @@
       "firstAuthor": "Elston MS",
       "journal": "The Journal of clinical endocrinology and metabolism",
       "citedBy": 75,
-      "why": "One of the newest systematic reviews of trials on this outcome (2016); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (reviews of any study design) (2016); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People taking biotin supplements",
      "intervention": "Biotin, especially high doses",
@@ -118,12 +120,13 @@
   {
    "id": "multiple-sclerosis",
    "label": "Multiple sclerosis",
+   "anyDesign": false,
    "finding": "Disability and walking in progressive multiple sclerosis",
    "counts": {
     "reviews": 2,
     "trialReviews": 1,
     "trials": 2,
-    "largeTrials": 1
+    "largeTrials": 0
    },
    "chosenReviews": [
     {
@@ -135,7 +138,7 @@
      "journal": "Multiple sclerosis and related disorders",
      "citedBy": 16,
      "n": 889,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -157,12 +160,6 @@
     }
    ],
    "largeTrials": [
-    {
-     "pmid": "27589059",
-     "title": "MD1003 (high-dose biotin) for the treatment of progressive multiple sclerosis: A randomised, double-blind, placebo-controlled study",
-     "year": 2016,
-     "n": 1003
-    }
    ],
    "page": {
     "alsoChosen": [
@@ -179,6 +176,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with progressive multiple sclerosis",
      "intervention": "Very high-dose biotin",
@@ -199,6 +197,7 @@
   {
    "id": "hair",
    "label": "Hair",
+   "anyDesign": true,
    "finding": "Hair growth and hair loss",
    "counts": {
     "reviews": 0,
@@ -226,6 +225,7 @@
   {
    "id": "nails",
    "label": "Nails",
+   "anyDesign": true,
    "finding": "Brittle nails",
    "counts": {
     "reviews": 0,
@@ -251,6 +251,7 @@
   {
    "id": "diabetes",
    "label": "Blood sugar and fats",
+   "anyDesign": false,
    "finding": "Blood sugar and blood fats",
    "counts": {
     "reviews": 3,
@@ -268,7 +269,7 @@
      "journal": "Frontiers in nutrition",
      "citedBy": 15,
      "n": 445,
-     "why": "One of the newest systematic reviews of trials on this outcome (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -314,6 +315,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with type 2 diabetes",
      "intervention": "Biotin supplements",
@@ -342,6 +344,7 @@
   {
    "id": "pregnancy",
    "label": "Status in pregnancy",
+   "anyDesign": true,
    "finding": "A urine sign of low biotin status (3-hydroxyisovaleric acid, 3-HIA) in pregnancy",
    "counts": {
     "reviews": 0,

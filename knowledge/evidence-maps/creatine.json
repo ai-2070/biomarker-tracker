@@ -19,8 +19,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving creatine, with creatine in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded creatine trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 6009,
@@ -36,6 +36,7 @@
   {
    "id": "strength-older",
    "label": "Strength, older adults",
+   "anyDesign": false,
    "finding": "Muscle strength and lean mass, with resistance training",
    "counts": {
     "reviews": 99,
@@ -53,7 +54,7 @@
      "journal": "European review of aging and physical activity : official journal of the European Group for Research into Elderly and Physical Activity",
      "citedBy": 4,
      "n": 482,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34199420",
@@ -63,7 +64,7 @@
      "firstAuthor": "Forbes SC",
      "journal": "Nutrients",
      "citedBy": 53,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "29138605",
@@ -74,450 +75,10 @@
      "journal": "Open access journal of sports medicine",
      "citedBy": 160,
      "n": 721,
-     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.2826086956521739,
-    "trials": 46,
-    "inclusions": 72,
-    "reviews": [
-     {
-      "pmid": "41388441",
-      "trials": 9
-     },
-     {
-      "pmid": "34199420",
-      "trials": 26
-     },
-     {
-      "pmid": "29138605",
-      "trials": 37
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "25386713",
-      "title": "Effects of Creatine and Resistance Training on Bone Health in Postmenopausal Women",
-      "year": 2015,
-      "n": 24,
-      "inReviews": [
-       "41388441",
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "27523919",
-      "title": "Effect of creatine supplementation and drop-set resistance training in untrained aging adults",
-      "year": 2016,
-      "n": 17,
-      "inReviews": [
-       "41388441",
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "25993883",
-      "title": "Strategic creatine supplementation and resistance training in healthy older adults",
-      "year": 2015,
-      "n": 15,
-      "inReviews": [
-       "41388441",
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "18685526",
-      "title": "Low-dose creatine combined with protein during resistance training in older men",
-      "year": 2008,
-      "n": 13,
-      "inReviews": [
-       "41388441",
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "12665537",
-      "title": "Effects of creatine supplementation and exercise training on fitness in men 55-75 yr old",
-      "year": 2003,
-      "n": 46,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "18420964",
-      "title": "Randomized controlled trial of dietary creatine as an adjunct therapy to physical training in chronic obstructive pulmonary disease",
-      "year": 2008,
-      "n": 44,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "9805101",
-      "title": "Effects of creatine monohydrate ingestion in sedentary and weight-trained older adults",
-      "year": 1998,
-      "n": 32,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "18708688",
-      "title": "Effect of creatine supplementation and resistance-exercise training on muscle insulin-like growth factor in young adults",
-      "year": 2008,
-      "n": 24,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "33234019",
-      "title": "Effect of 12 months of creatine supplementation and whole-body resistance training on measures of bone, muscle and strength in older males",
-      "year": 2021,
-      "n": 20,
-      "inReviews": [
-       "41388441",
-       "34199420"
-      ]
-     },
-     {
-      "pmid": "11740307",
-      "title": "Creatine supplementation combined with resistance training in older men",
-      "year": 2001,
-      "n": 16,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "12560406",
-      "title": "Creatine supplementation enhances isometric strength and body composition improvements following strength exercise training in older adults",
-      "year": 2003,
-      "n": 14,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "24098469",
-      "title": "Creatine supplementation associated or not with strength training upon emotional and cognitive measures in older women: a randomized double-blind study",
-      "year": 2013,
-      "n": 14,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "20881878",
-      "title": "Creatine in type 2 diabetes: a randomized, double-blind, placebo-controlled trial",
-      "year": 2011,
-      "n": 13,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "20126965",
-      "title": "The effects of supplementation with creatine and protein on muscle strength following a traditional resistance training program in middle-aged and older men",
-      "year": 2010,
-      "n": 11,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "30958973",
-      "title": "Effects of high-velocity resistance training and creatine supplementation in untrained healthy aging males",
-      "year": 2019,
-      "inReviews": [
-       "41388441",
-       "34199420"
-      ]
-     },
-     {
-      "pmid": "23053133",
-      "title": "Long-term creatine supplementation improves muscular performance during resistance training in older women",
-      "year": 2013,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "17957000",
-      "title": "Global and targeted gene expression and protein content in skeletal muscle of young men following short-term creatine monohydrate supplementation",
-      "year": 2008,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "18309444",
-      "title": "The effects of creatine and whey protein supplementation on body composition in men aged 48 to 72 years during resistance training",
-      "year": 2008,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "17312085",
-      "title": "Resistance training with creatine monohydrate improves upper-body strength in patients with Parkinson disease: a randomized trial",
-      "year": 2007,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "24530883",
-      "title": "Creatine supplementation and resistance training in vulnerable older women: a randomized double-blind placebo-controlled clinical trial",
-      "year": 2014,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "21311365",
-      "title": "Beneficial effect of creatine supplementation in knee osteoarthritis",
-      "year": 2011,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "24633488",
-      "title": "Creatine supplementation post-exercise does not enhance training-induced adaptations in middle to older aged males",
-      "year": 2014,
-      "inReviews": [
-       "34199420",
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "26192975",
-      "title": "Effects of long-term low-dose dietary creatine supplementation in older women",
-      "year": 2015,
-      "n": 56,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "37206869",
-      "title": "The role of resistance training and creatine supplementation on oxidative stress, antioxidant defense, muscle strength, and quality of life in older adults",
-      "year": 2023,
-      "n": 45,
-      "inReviews": [
-       "41388441"
-      ]
-     },
-     {
-      "pmid": "26414681",
-      "title": "Can Creatine Supplementation Improve Body Composition and Objective Physical Function in Rheumatoid Arthritis Patients? A Randomized Controlled Trial",
-      "year": 2016,
-      "n": 40,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "20576665",
-      "title": "Effect of creatine supplementation as a potential adjuvant therapy to exercise training in cardiac patients: a randomized controlled trial",
-      "year": 2010,
-      "n": 37,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "20026378",
-      "title": "Effects of oral creatine and resistance training on serum myostatin and GASP-1",
-      "year": 2010,
-      "n": 27,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "14600563",
-      "title": "Effect of creatine and weight training on muscle creatine and performance in vegetarians",
-      "year": 2003,
-      "n": 24,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "15870625",
-      "title": "Increased IGF mRNA in human skeletal muscle after creatine supplementation",
-      "year": 2005,
-      "n": 24,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "11509496",
-      "title": "Effects of acute creatine monohydrate supplementation on leucine kinetics and mixed-muscle protein synthesis",
-      "year": 2001,
-      "n": 14,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "15320650",
-      "title": "Acute creatine monohydrate supplementation: a descriptive physiological profile of responders vs. nonresponders",
-      "year": 2004,
-      "n": 11,
-      "inReviews": [
-       "34199420"
-      ]
-     },
-     {
-      "pmid": "11880821",
-      "title": "Creatine supplementation improves muscular performance in older men",
-      "year": 2002,
-      "n": 10,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "37144634",
-      "title": "A 2-yr Randomized Controlled Trial on Creatine Supplementation during Exercise for Postmenopausal Bone Health",
-      "year": 2023,
-      "inReviews": [
-       "41388441"
-      ]
-     },
-     {
-      "pmid": "15595301",
-      "title": "Effect of creatine ingestion after exercise on muscle thickness in males and females",
-      "year": 2004,
-      "inReviews": [
-       "41388441"
-      ]
-     },
-     {
-      "pmid": "17917696",
-      "title": "Creatine supplementation reduces plasma levels of pro-inflammatory cytokines and PGE2 after a half-ironman competition",
-      "year": 2008,
-      "inReviews": [
-       "34199420"
-      ]
-     },
-     {
-      "pmid": "22080314",
-      "title": "Creatine supplementation decreases oxidative DNA damage and lipid peroxidation induced by a single bout of resistance exercise",
-      "year": 2011,
-      "inReviews": [
-       "34199420"
-      ]
-     },
-     {
-      "pmid": "23800565",
-      "title": "Effects of creatine supplementation on oxidative stress and inflammatory markers after repeated-sprint exercise in humans",
-      "year": 2013,
-      "inReviews": [
-       "34199420"
-      ]
-     },
-     {
-      "pmid": "24458508",
-      "title": "Periodized resistance training with and without supplementation improve body composition and performance in older men",
-      "year": 2014,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "11374116",
-      "title": "Neuromuscular properties and fatigue in older men following acute creatine supplementation",
-      "year": 2001,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "17985060",
-      "title": "Effects of creatine supplementation on the onset of neuromuscular fatigue threshold and muscle strength in elderly men and women (64 - 86 years)",
-      "year": 2007,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "21574777",
-      "title": "Effect of creatine supplementation on measured glomerular filtration rate in postmenopausal women",
-      "year": 2011,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "12783039",
-      "title": "Effects of oral creatine and resistance training on myogenic regulatory factor expression",
-      "year": 2003,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "11581551",
-      "title": "Effects of oral creatine and resistance training on myosin heavy chain expression",
-      "year": 2001,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "27224505",
-      "title": "Resistance Training and Co-supplementation with Creatine and Protein in Older Subjects with Frailty",
-      "year": 2016,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "16581862",
-      "title": "Creatine supplementation augments the increase in satellite cell and myonuclei number in human skeletal muscle induced by strength training",
-      "year": 2006,
-      "inReviews": [
-       "29138605"
-      ]
-     },
-     {
-      "pmid": "18048590",
-      "title": "Effects of resistance exercise with and without creatine supplementation on gene expression and cell signaling in human skeletal muscle",
-      "year": 2008,
-      "inReviews": [
-       "29138605"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1982,
@@ -711,7 +272,7 @@
       "journal": "European review of aging and physical activity : official journal of the European Group for Research into Elderly and Physical Activity",
       "citedBy": 4,
       "n": 482,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "34199420",
@@ -721,11 +282,12 @@
       "firstAuthor": "Forbes SC",
       "journal": "Nutrients",
       "citedBy": 53,
-      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults over about 55",
      "intervention": "Creatine with resistance training",
@@ -985,12 +547,13 @@
   {
    "id": "performance-young",
    "label": "Strength and sprints, under 50",
+   "anyDesign": false,
    "finding": "Strength and short, repeated bursts of hard exercise",
    "counts": {
     "reviews": 126,
     "trialReviews": 41,
     "trials": 455,
-    "largeTrials": 1
+    "largeTrials": 0
    },
    "chosenReviews": [
     {
@@ -1001,7 +564,7 @@
      "firstAuthor": "Sun R",
      "journal": "Journal of the International Society of Sports Nutrition",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42384726",
@@ -1011,7 +574,7 @@
      "firstAuthor": "Bai X",
      "journal": "Journal of the International Society of Sports Nutrition",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41901084",
@@ -1022,7 +585,7 @@
      "journal": "Nutrients",
      "citedBy": 0,
      "n": 1211,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39747536",
@@ -1032,416 +595,11 @@
      "firstAuthor": "Luo H",
      "journal": "Scientific reports",
      "citedBy": 7,
-     "why": "The most comprehensive review of trials on this outcome (67 trials, 2025); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (67 trials, 2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
-    {
-     "pmid": "42455839",
-     "doi": "10.1371/journal.pone.0353630",
-     "title": "Examining the feasibility and preliminary effects of resistance exercise training and creatine supplementation in individuals treated for colorectal cancer",
-     "year": 2026,
-     "firstAuthor": "Fairman CM",
-     "journal": "PloS one",
-     "citedBy": 0,
-     "n": 1378,
-     "why": "A large trial (about 1,378 people) from 2026, as new as the newest review or newer"
-    }
    ],
-   "overlap": {
-    "cca": 0.011363636363636364,
-    "trials": 44,
-    "inclusions": 45,
-    "reviews": [
-     {
-      "pmid": "42821324",
-      "trials": 26
-     },
-     {
-      "pmid": "41901084",
-      "trials": 15
-     },
-     {
-      "pmid": "39747536",
-      "trials": 4
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "42384726"
-    ],
-    "shared": [
-     {
-      "pmid": "10694141",
-      "title": "Creatine supplementation and sprint performance in soccer players",
-      "year": 2000,
-      "inReviews": [
-       "42821324",
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "27034623",
-      "title": "Acute and chronic safety and efficacy of dose dependent creatine nitrate supplementation and exercise performance",
-      "year": 2016,
-      "n": 48,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "12665537",
-      "title": "Effects of creatine supplementation and exercise training on fitness in men 55-75 yr old",
-      "year": 2003,
-      "n": 46,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "15903359",
-      "title": "Effect of low-dose, short-duration creatine supplementation on anaerobic exercise performance",
-      "year": 2005,
-      "n": 40,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "14600563",
-      "title": "Effect of creatine and weight training on muscle creatine and performance in vegetarians",
-      "year": 2003,
-      "n": 24,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "12930166",
-      "title": "The effects of 8 weeks of creatine monohydrate and glutamine supplementation on body composition and performance measures",
-      "year": 2003,
-      "n": 17,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "19387397",
-      "title": "Effects of creatine monohydrate and polyethylene glycosylated creatine supplementation on muscular strength, endurance, and power output",
-      "year": 2009,
-      "n": 16,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "11740307",
-      "title": "Creatine supplementation combined with resistance training in older men",
-      "year": 2001,
-      "n": 16,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "37242187",
-      "title": "The Effect of Acute Pre-Workout Supplement Ingestion on Basketball-Specific Performance of Well-Trained Athletes",
-      "year": 2023,
-      "n": 15,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "24362707",
-      "title": "Vitamin D2 supplementation amplifies eccentric exercise-induced muscle damage in NASCAR pit crew athletes",
-      "year": 2013,
-      "n": 15,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "42588107",
-      "title": "Multistrain Probiotic Supplementation Combined with a Standardized Diet Did Not Significantly Affect Exercise Performance or Inflammatory Responses in Male Endurance Runners: A Randomized Controlled Trial",
-      "year": 2026,
-      "n": 14,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "32599716",
-      "title": "Effects of Creatine Supplementation during Resistance Training Sessions in Physically Active Young Adults",
-      "year": 2020,
-      "n": 13,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "35966022",
-      "title": "A randomized open-labeled study to examine the effects of creatine monohydrate and combined training on jump and scoring performance in young basketball players",
-      "year": 2022,
-      "n": 12,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "10362452",
-      "title": "Effects of in-season (5 weeks) creatine and pyruvate supplementation on anaerobic performance and body composition in American football players",
-      "year": 1999,
-      "n": 11,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "14767410",
-      "title": "Effects of high dose oral creatine supplementation on anaerobic capacity of elite wrestlers",
-      "year": 2003,
-      "n": 10,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "40219860",
-      "title": "Effect of a Multi-Ingredient Post-Workout Dietary Supplement on Body Composition and Muscle Strength - A Randomized Controlled Trial",
-      "year": 2025,
-      "n": 10,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "11828245",
-      "title": "Effects of creatine supplementation on muscle power, endurance, and sprint performance",
-      "year": 2002,
-      "n": 10,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "26778661",
-      "title": "Effects of plyometric training and creatine supplementation on maximal-intensity exercise and endurance in female soccer players",
-      "year": 2016,
-      "n": 10,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "16083193",
-      "title": "Low dose creatine supplementation enhances sprint phase of 400 meters swimming performance",
-      "year": 2004,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "34371813",
-      "title": "Creatine Enhances the Effects of Cluster-Set Resistance Training on Lower-Limb Body Composition and Strength in Resistance-Trained Men: A Pilot Study",
-      "year": 2021,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "36960692",
-      "title": "Creatine monohydrate supplementation changes total body water and DXA lean mass estimates in female collegiate dancers",
-      "year": 2023,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "26225130",
-      "title": "The efficacy of a β-hydroxy-β-methylbutyrate supplementation on physical capacity, body composition and biochemical markers in elite rowers: a randomised, double-blind, placebo-controlled crossover study",
-      "year": 2015,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "24015935",
-      "title": "Magnesium status and the physical performance of volleyball players: effects of magnesium supplementation",
-      "year": 2014,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "38542677",
-      "title": "The Effect of Creatine Nitrate and Caffeine Individually or Combined on Exercise Performance and Cognitive Function: A Randomized, Crossover, Double-Blind, Placebo-Controlled Trial",
-      "year": 2024,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "15705052",
-      "title": "The effects of acute creatine supplementation on multiple sprint cycling and running performance in rugby players",
-      "year": 2005,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "40010353",
-      "title": "Effects of Combined Versus Single Supplementation of Creatine, Beta-Alanine, and L-Citrulline During Short Sprint Interval Training on Basketball Players' Performance: A Double-Blind Randomized Placebo-Controlled Trial",
-      "year": 2025,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "17679046",
-      "title": "Impact of differing protein sources and a creatine containing nutritional formula after 12 weeks of resistance training",
-      "year": 2007,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "15129933",
-      "title": "Creatine supplementation in young soccer players",
-      "year": 2004,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "39086058",
-      "title": "Palmitoylethanolamide Does Not Affect Recovery from Exercise-Induced Muscle Damage in Healthy Males",
-      "year": 2024,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "42390589",
-      "title": "Does creatine supplementation improve strength and power in physically active individuals on a vegan diet? a randomized, triple-blind, placebo-controlled trial",
-      "year": 2026,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "28708126",
-      "title": "The Effect of a 12-Week Beta-hydroxy-beta-methylbutyrate (HMB) Supplementation on Highly-Trained Combat Sports Athletes: A Randomised, Double-Blind, Placebo-Controlled Crossover Study",
-      "year": 2017,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "19387386",
-      "title": "Effects of two and five days of creatine loading on muscular strength and anaerobic power in trained athletes",
-      "year": 2009,
-      "inReviews": [
-       "42821324"
-      ]
-     },
-     {
-      "pmid": "28199799",
-      "title": "The efficacy of protein supplementation during recovery from muscle-damaging concurrent exercise",
-      "year": 2017,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "28806275",
-      "title": "Effects of Creatine and Carbohydrate Loading on Cycling Time Trial Performance",
-      "year": 2018,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "40507040",
-      "title": "The Effects of Creatine Monohydrate Supplementation on Recovery from Eccentric Exercise-Induced Muscle Damage: A Double-Blind, Randomized, Placebo-Controlled Trial Considering Sex and Age Differences",
-      "year": 2025,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "24530883",
-      "title": "Creatine supplementation and resistance training in vulnerable older women: a randomized double-blind placebo-controlled clinical trial",
-      "year": 2014,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "33726784",
-      "title": "Effect of whey vs. soy protein supplementation on recovery kinetics following speed endurance training in competitive male soccer players: a randomized controlled trial",
-      "year": 2021,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "29722252",
-      "title": "Creatine monohydrate supplementation during eight weeks of progressive resistance training increases strength in as little as two weeks without reducing markers of muscle damage",
-      "year": 2019,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "11252467",
-      "title": "Creatine supplementation improves sprint performance in male sprinters",
-      "year": 2001,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "17136944",
-      "title": "Effect of creatine and beta-alanine supplementation on performance and endocrine responses in strength/power athletes",
-      "year": 2006,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "19777799",
-      "title": "Effects of arginine supplementation on post-exercise metabolic responses",
-      "year": 2009,
-      "inReviews": [
-       "39747536"
-      ]
-     },
-     {
-      "pmid": "30123060",
-      "title": "Short-Term High-Dose Vitamin C and E Supplementation Attenuates Muscle Damage and Inflammatory Responses to Repeated Taekwondo Competitions: A Randomized Placebo-Controlled Trial",
-      "year": 2018,
-      "inReviews": [
-       "39747536"
-      ]
-     },
-     {
-      "pmid": "33478522",
-      "title": "Short-term co-ingestion of creatine and sodium bicarbonate improves anaerobic performance in trained taekwondo athletes",
-      "year": 2021,
-      "inReviews": [
-       "39747536"
-      ]
-     },
-     {
-      "pmid": "18284711",
-      "title": "Reducing exercise-induced muscular injury in kendo athletes with supplementation of coenzyme Q10",
-      "year": 2008,
-      "inReviews": [
-       "39747536"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1993,
@@ -1615,12 +773,6 @@
     }
    ],
    "largeTrials": [
-    {
-     "pmid": "42455839",
-     "title": "Examining the feasibility and preliminary effects of resistance exercise training and creatine supplementation in individuals treated for colorectal cancer",
-     "year": 2026,
-     "n": 1378
-    }
    ],
    "page": {
     "alsoChosen": [],
@@ -1639,7 +791,7 @@
       "firstAuthor": "Sun R",
       "journal": "Journal of the International Society of Sports Nutrition",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42384726",
@@ -1649,7 +801,7 @@
       "firstAuthor": "Bai X",
       "journal": "Journal of the International Society of Sports Nutrition",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41901084",
@@ -1660,7 +812,7 @@
       "journal": "Nutrients",
       "citedBy": 0,
       "n": 1211,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39747536",
@@ -1670,22 +822,12 @@
       "firstAuthor": "Luo H",
       "journal": "Scientific reports",
       "citedBy": 7,
-      "why": "The most comprehensive review of trials on this outcome (67 trials, 2025); screened as answering the question"
-     },
-     {
-      "pmid": "42455839",
-      "doi": "10.1371/journal.pone.0353630",
-      "title": "Examining the feasibility and preliminary effects of resistance exercise training and creatine supplementation in individuals treated for colorectal cancer",
-      "year": 2026,
-      "firstAuthor": "Fairman CM",
-      "journal": "PloS one",
-      "citedBy": 0,
-      "n": 1378,
-      "why": "A large trial (about 1,378 people) from 2026, as new as the newest review or newer"
+      "why": "The most comprehensive review of trials on this outcome (67 trials, 2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Healthy adults under 50",
      "intervention": "Creatine",
@@ -1875,6 +1017,7 @@
   {
    "id": "endurance",
    "label": "Endurance",
+   "anyDesign": false,
    "finding": "Endurance performance",
    "counts": {
     "reviews": 7,
@@ -1892,7 +1035,7 @@
      "journal": "Nutrients",
      "citedBy": 0,
      "n": 1211,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41323837",
@@ -1902,7 +1045,7 @@
      "firstAuthor": "Deng B",
      "journal": "Food science & nutrition",
      "citedBy": 1,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36877404",
@@ -1912,258 +1055,10 @@
      "firstAuthor": "Fernández-Landa J",
      "journal": "Sports medicine (Auckland, N.Z.)",
      "citedBy": 22,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.018518518518518517,
-    "trials": 27,
-    "inclusions": 28,
-    "reviews": [
-     {
-      "pmid": "41901084",
-      "trials": 15
-     },
-     {
-      "pmid": "41323837",
-      "trials": 3
-     },
-     {
-      "pmid": "36877404",
-      "trials": 10
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "29722252",
-      "title": "Creatine monohydrate supplementation during eight weeks of progressive resistance training increases strength in as little as two weeks without reducing markers of muscle damage",
-      "year": 2019,
-      "inReviews": [
-       "41901084",
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "12665537",
-      "title": "Effects of creatine supplementation and exercise training on fitness in men 55-75 yr old",
-      "year": 2003,
-      "n": 46,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "11072779",
-      "title": "Creatine supplementation alters the response to a graded cycle ergometer test",
-      "year": 2000,
-      "n": 36,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "31936727",
-      "title": "Effect of Ten Weeks of Creatine Monohydrate Plus HMB Supplementation on Athletic Performance Tests in Elite Male Endurance Athletes",
-      "year": 2020,
-      "n": 28,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "14600563",
-      "title": "Effect of creatine and weight training on muscle creatine and performance in vegetarians",
-      "year": 2003,
-      "n": 24,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "11740307",
-      "title": "Creatine supplementation combined with resistance training in older men",
-      "year": 2001,
-      "n": 16,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "32599716",
-      "title": "Effects of Creatine Supplementation during Resistance Training Sessions in Physically Active Young Adults",
-      "year": 2020,
-      "n": 13,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "21921817",
-      "title": "The effects of creatine monohydrate loading on anaerobic performance and one-repetition maximum strength",
-      "year": 2012,
-      "n": 12,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "11828245",
-      "title": "Effects of creatine supplementation on muscle power, endurance, and sprint performance",
-      "year": 2002,
-      "n": 10,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "26778661",
-      "title": "Effects of plyometric training and creatine supplementation on maximal-intensity exercise and endurance in female soccer players",
-      "year": 2016,
-      "n": 10,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "28199799",
-      "title": "The efficacy of protein supplementation during recovery from muscle-damaging concurrent exercise",
-      "year": 2017,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "28806275",
-      "title": "Effects of Creatine and Carbohydrate Loading on Cycling Time Trial Performance",
-      "year": 2018,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "40507040",
-      "title": "The Effects of Creatine Monohydrate Supplementation on Recovery from Eccentric Exercise-Induced Muscle Damage: A Double-Blind, Randomized, Placebo-Controlled Trial Considering Sex and Age Differences",
-      "year": 2025,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "24530883",
-      "title": "Creatine supplementation and resistance training in vulnerable older women: a randomized double-blind placebo-controlled clinical trial",
-      "year": 2014,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "10694141",
-      "title": "Creatine supplementation and sprint performance in soccer players",
-      "year": 2000,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "33726784",
-      "title": "Effect of whey vs. soy protein supplementation on recovery kinetics following speed endurance training in competitive male soccer players: a randomized controlled trial",
-      "year": 2021,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "11252467",
-      "title": "Creatine supplementation improves sprint performance in male sprinters",
-      "year": 2001,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "17136944",
-      "title": "Effect of creatine and beta-alanine supplementation on performance and endocrine responses in strength/power athletes",
-      "year": 2006,
-      "inReviews": [
-       "41901084"
-      ]
-     },
-     {
-      "pmid": "26225130",
-      "title": "The efficacy of a β-hydroxy-β-methylbutyrate supplementation on physical capacity, body composition and biochemical markers in elite rowers: a randomised, double-blind, placebo-controlled crossover study",
-      "year": 2015,
-      "inReviews": [
-       "41323837"
-      ]
-     },
-     {
-      "pmid": "19346975",
-      "title": "Effects of amino acids supplement on physiological adaptations to resistance training",
-      "year": 2009,
-      "inReviews": [
-       "41323837"
-      ]
-     },
-     {
-      "pmid": "26849784",
-      "title": "The Effect of β-Hydroxy-β-Methylbutyrate on Aerobic Capacity and Body Composition in Trained Athletes",
-      "year": 2016,
-      "inReviews": [
-       "41323837"
-      ]
-     },
-     {
-      "pmid": "11842271",
-      "title": "Effects of creatine monohydrate supplementation during combined strength and high intensity rowing training on performance",
-      "year": 2001,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "18059577",
-      "title": "Effect of in-season creatine supplementation on body composition and performance in rugby union football players",
-      "year": 2007,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "21941005",
-      "title": "Effect of creatine supplementation on jumping performance in elite volleyball players",
-      "year": 2011,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "8128901",
-      "title": "Creatine supplementation per se does not enhance endurance exercise performance",
-      "year": 1993,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "15129933",
-      "title": "Creatine supplementation in young soccer players",
-      "year": 2004,
-      "inReviews": [
-       "36877404"
-      ]
-     },
-     {
-      "pmid": "8889115",
-      "title": "Effect of creatine on aerobic and anaerobic metabolism in skeletal muscle in swimmers",
-      "year": 1996,
-      "inReviews": [
-       "36877404"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1993,
@@ -2332,7 +1227,7 @@
       "journal": "Nutrients",
       "citedBy": 0,
       "n": 1211,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41323837",
@@ -2342,11 +1237,12 @@
       "firstAuthor": "Deng B",
       "journal": "Food science & nutrition",
       "citedBy": 1,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Trained adults",
      "intervention": "Creatine",
@@ -2375,6 +1271,7 @@
   {
    "id": "cognition",
    "label": "Memory and thinking",
+   "anyDesign": false,
    "finding": "Memory and thinking",
    "counts": {
     "reviews": 12,
@@ -2391,7 +1288,7 @@
      "firstAuthor": "Prokopidis K",
      "journal": "Nutrition reviews",
      "citedBy": 41,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39070254",
@@ -2402,7 +1299,7 @@
      "journal": "Frontiers in nutrition",
      "citedBy": 24,
      "n": 492,
-     "why": "One of the newest systematic reviews of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "29704637",
@@ -2413,177 +1310,10 @@
      "journal": "Experimental gerontology",
      "citedBy": 104,
      "n": 281,
-     "why": "One of the newest systematic reviews of trials on this outcome (2018); screened as answering the question"
+     "why": "One of the newest systematic reviews of trials on this outcome (2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.28125,
-    "trials": 16,
-    "inclusions": 25,
-    "reviews": [
-     {
-      "pmid": "35984306",
-      "trials": 11
-     },
-     {
-      "pmid": "39070254",
-      "trials": 7
-     },
-     {
-      "pmid": "29704637",
-      "trials": 7
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "25632150",
-      "title": "Creatine supplementation enhances corticomotor excitability and cognitive performance during oxygen deprivation",
-      "year": 2015,
-      "inReviews": [
-       "35984306",
-       "39070254",
-       "29704637"
-      ]
-     },
-     {
-      "pmid": "21118604",
-      "title": "The influence of creatine supplementation on the cognitive functioning of vegetarians and omnivores",
-      "year": 2011,
-      "inReviews": [
-       "35984306",
-       "39070254",
-       "29704637"
-      ]
-     },
-     {
-      "pmid": "17828627",
-      "title": "Creatine supplementation and cognitive performance in elderly individuals",
-      "year": 2007,
-      "n": 17,
-      "inReviews": [
-       "35984306",
-       "29704637"
-      ]
-     },
-     {
-      "pmid": "24098469",
-      "title": "Creatine supplementation associated or not with strength training upon emotional and cognitive measures in older women: a randomized double-blind study",
-      "year": 2013,
-      "n": 14,
-      "inReviews": [
-       "35984306",
-       "39070254"
-      ]
-     },
-     {
-      "pmid": "31403610",
-      "title": "Can Creatine Combat the Mental Fatigue-associated Decrease in Visuomotor Skills?",
-      "year": 2020,
-      "n": 14,
-      "inReviews": [
-       "35984306",
-       "39070254"
-      ]
-     },
-     {
-      "pmid": "18579168",
-      "title": "Creatine supplementation does not improve cognitive function in young adults",
-      "year": 2008,
-      "inReviews": [
-       "35984306",
-       "29704637"
-      ]
-     },
-     {
-      "pmid": "17046034",
-      "title": "Creatine supplementation, sleep deprivation, cortisol, melatonin and behavior",
-      "year": 2007,
-      "inReviews": [
-       "35984306",
-       "29704637"
-      ]
-     },
-     {
-      "pmid": "37968687",
-      "title": "The effects of creatine supplementation on cognitive performance-a randomised controlled study",
-      "year": 2023,
-      "n": 123,
-      "inReviews": [
-       "39070254"
-      ]
-     },
-     {
-      "pmid": "28079396",
-      "title": "Does brain creatine content rely on exogenous creatine in healthy youth? A proof-of-principle study",
-      "year": 2017,
-      "n": 67,
-      "inReviews": [
-       "35984306"
-      ]
-     },
-     {
-      "pmid": "14600563",
-      "title": "Effect of creatine and weight training on muscle creatine and performance in vegetarians",
-      "year": 2003,
-      "n": 24,
-      "inReviews": [
-       "35984306"
-      ]
-     },
-     {
-      "pmid": "15320650",
-      "title": "Acute creatine monohydrate supplementation: a descriptive physiological profile of responders vs. nonresponders",
-      "year": 2004,
-      "n": 11,
-      "inReviews": [
-       "35984306"
-      ]
-     },
-     {
-      "pmid": "35805647",
-      "title": "Effects of Four Weeks of Beta-Alanine Supplementation Combined with One Week of Creatine Loading on Physical and Cognitive Performance in Military Personnel",
-      "year": 2022,
-      "n": 10,
-      "inReviews": [
-       "39070254"
-      ]
-     },
-     {
-      "pmid": "34515048",
-      "title": "Guanidinoacetate-Creatine Supplementation Improves Functional Performance and Muscle and Brain Bioenergetics in the Elderly: A Pilot Study",
-      "year": 2021,
-      "inReviews": [
-       "35984306"
-      ]
-     },
-     {
-      "pmid": "23554283",
-      "title": "Creatine supplementation in fibromyalgia: a randomized, double-blind, placebo-controlled trial",
-      "year": 2013,
-      "inReviews": [
-       "39070254"
-      ]
-     },
-     {
-      "pmid": "16377978",
-      "title": "Effects of creatine supplementation on cerebral white matter in competitive sportsmen",
-      "year": 2006,
-      "inReviews": [
-       "29704637"
-      ]
-     },
-     {
-      "pmid": "12660409",
-      "title": "Creatine supplementation: a comparison of loading and maintenance protocols on creatine uptake by human skeletal muscle",
-      "year": 2003,
-      "inReviews": [
-       "29704637"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -2688,11 +1418,12 @@
       "journal": "Experimental gerontology",
       "citedBy": 104,
       "n": 281,
-      "why": "One of the newest systematic reviews of trials on this outcome (2018); screened as answering the question"
+      "why": "One of the newest systematic reviews of trials on this outcome (2018); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with an illness",
      "intervention": "Creatine",
@@ -2749,6 +1480,7 @@
   {
    "id": "depression",
    "label": "Depression",
+   "anyDesign": false,
    "finding": "Symptoms of depression",
    "counts": {
     "reviews": 2,
@@ -2766,7 +1498,7 @@
      "journal": "The British journal of nutrition",
      "citedBy": 0,
      "n": 1093,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -2811,6 +1543,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with or without depression",
      "intervention": "Creatine, alone or with an antidepressant",
@@ -2831,6 +1564,7 @@
   {
    "id": "kidney",
    "label": "Kidney function",
+   "anyDesign": false,
    "finding": "Kidney function, and the blood creatinine test",
    "counts": {
     "reviews": 7,
@@ -2848,7 +1582,7 @@
      "journal": "Journal of renal nutrition : the official journal of the Council on Renal Nutrition of the National Kidney Foundation",
      "citedBy": 1,
      "n": 19,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41199218",
@@ -2859,7 +1593,7 @@
      "journal": "BMC nephrology",
      "citedBy": 4,
      "n": 177,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -2948,6 +1682,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, mostly healthy",
      "intervention": "Creatine",
@@ -2983,6 +1718,7 @@
   {
    "id": "body-weight",
    "label": "Body weight and water",
+   "anyDesign": false,
    "finding": "Body weight, body water and body fat",
    "counts": {
     "reviews": 16,
@@ -2999,7 +1735,7 @@
      "firstAuthor": "Pashayee-Khamene F",
      "journal": "Journal of the International Society of Sports Nutrition",
      "citedBy": 18,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "12945830",
@@ -3009,7 +1745,7 @@
      "firstAuthor": "Branch JD.",
      "journal": "International journal of sport nutrition and exercise metabolism",
      "citedBy": 150,
-     "why": "One of the newest meta-analyses of trials on this outcome (2003); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2003); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -3159,7 +1895,7 @@
       "firstAuthor": "Pashayee-Khamene F",
       "journal": "Journal of the International Society of Sports Nutrition",
       "citedBy": 18,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "12945830",
@@ -3169,11 +1905,12 @@
       "firstAuthor": "Branch JD.",
       "journal": "International journal of sport nutrition and exercise metabolism",
       "citedBy": 150,
-      "why": "One of the newest meta-analyses of trials on this outcome (2003); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2003); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Healthy adults",
      "intervention": "Creatine",

@@ -20,8 +20,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 9747,
@@ -82,6 +82,7 @@
   {
    "id": "sickness",
    "label": "Sick days",
+   "anyDesign": true,
    "finding": "Sickness absence from work and days of illness",
    "counts": {
     "all": 1684,
@@ -100,7 +101,7 @@
      "journal": "PloS one",
      "citedBy": 17,
      "n": 3177,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -167,6 +168,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Healthy adults",
      "intervention": "Cold showers, cold-water immersion or winter swimming",
@@ -187,6 +189,7 @@
   {
    "id": "mood",
    "label": "Mood and stress",
+   "anyDesign": true,
    "finding": "Mood, stress, wellbeing and sleep",
    "counts": {
     "all": 3574,
@@ -205,7 +208,7 @@
      "journal": "PloS one",
      "citedBy": 17,
      "n": 3177,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42819812",
@@ -216,124 +219,10 @@
      "journal": "Frontiers in physiology",
      "citedBy": 0,
      "n": 4105,
-     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.09090909090909091,
-    "trials": 11,
-    "inclusions": 12,
-    "reviews": [
-     {
-      "pmid": "39879231",
-      "trials": 7
-     },
-     {
-      "pmid": "42819812",
-      "trials": 5
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "27631616",
-      "title": "The Effect of Cold Showering on Health and Work: A Randomized Controlled Trial",
-      "year": 2016,
-      "n": 3018,
-      "inReviews": [
-       "39879231",
-       "42819812"
-      ]
-     },
-     {
-      "pmid": "41309213",
-      "title": "A randomized controlled pilot trial of low and high arousal resilience interventions for depressive symptoms",
-      "year": 2025,
-      "n": 141,
-      "inReviews": [
-       "42819812"
-      ]
-     },
-     {
-      "pmid": "40267744",
-      "title": "A supplementary training program integrating cold exposure, breathing exercises and mindfulness as a complementary treatment for neuropsychological aspects of multiple sclerosis - a pilot interventional study",
-      "year": 2025,
-      "n": 13,
-      "inReviews": [
-       "42819812"
-      ]
-     },
-     {
-      "pmid": "24799686",
-      "title": "Voluntary activation of the sympathetic nervous system and attenuation of the innate immune response in humans",
-      "year": 2014,
-      "n": 12,
-      "inReviews": [
-       "42819812"
-      ]
-     },
-     {
-      "pmid": "31222379",
-      "title": "Cold-water immersion blunts and delays increases in circulating testosterone and cytokines post-resistance exercise",
-      "year": 2019,
-      "n": 11,
-      "inReviews": [
-       "39879231"
-      ]
-     },
-     {
-      "pmid": "23377833",
-      "title": "Effect of evening postexercise cold water immersion on subsequent sleep",
-      "year": 2013,
-      "n": 11,
-      "inReviews": [
-       "39879231"
-      ]
-     },
-     {
-      "pmid": "25121612",
-      "title": "Cold water immersion enhances recovery of submaximal muscle function after resistance exercise",
-      "year": 2014,
-      "n": 10,
-      "inReviews": [
-       "39879231"
-      ]
-     },
-     {
-      "pmid": "33507839",
-      "title": "Effects of cold water immersion on circulating inflammatory markers at the Kona Ironman World Championship",
-      "year": 2021,
-      "inReviews": [
-       "39879231"
-      ]
-     },
-     {
-      "pmid": "33820701",
-      "title": "Recovering body temperature from acute cold stress is associated with delayed proinflammatory cytokine production in vivo",
-      "year": 2021,
-      "inReviews": [
-       "39879231"
-      ]
-     },
-     {
-      "pmid": "36348102",
-      "title": "Partial body cryotherapy exposure drives acute redistribution of circulating lymphocytes: preliminary findings",
-      "year": 2023,
-      "inReviews": [
-       "39879231"
-      ]
-     },
-     {
-      "pmid": "37845341",
-      "title": "The effectiveness of the Wim Hof method on cardiac autonomic function, blood pressure, arterial compliance, and different psychological parameters",
-      "year": 2023,
-      "inReviews": [
-       "42819812"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2005,
@@ -432,6 +321,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with low mood",
      "intervention": "Cold showers, cold-water immersion or winter swimming",
@@ -488,6 +378,7 @@
   {
    "id": "soreness",
    "label": "Muscle soreness",
+   "anyDesign": true,
    "finding": "Muscle soreness after exercise",
    "counts": {
     "all": 1547,
@@ -505,7 +396,7 @@
      "firstAuthor": "Veen J",
      "journal": "Scandinavian journal of medicine & science in sports",
      "citedBy": 3,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42088589",
@@ -516,7 +407,7 @@
      "journal": "Frontiers in sports and active living",
      "citedBy": 2,
      "n": 1243,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41716304",
@@ -526,7 +417,7 @@
      "firstAuthor": "Zhu Y",
      "journal": "Frontiers in sports and active living",
      "citedBy": 2,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40078372",
@@ -536,413 +427,10 @@
      "firstAuthor": "Wang H",
      "journal": "Frontiers in physiology",
      "citedBy": 9,
-     "why": "The most comprehensive review on this finding (55 trials, 2025); screened as answering the question"
+     "why": "The most comprehensive review on this finding (55 trials, 2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.16279069767441862,
-    "trials": 43,
-    "inclusions": 64,
-    "reviews": [
-     {
-      "pmid": "41490103",
-      "trials": 5
-     },
-     {
-      "pmid": "42088589",
-      "trials": 15
-     },
-     {
-      "pmid": "41716304",
-      "trials": 15
-     },
-     {
-      "pmid": "40078372",
-      "trials": 29
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "21986695",
-      "title": "The effect of cold water immersion on 48-hour performance testing in collegiate soccer players",
-      "year": 2012,
-      "n": 13,
-      "inReviews": [
-       "41490103",
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "21170794",
-      "title": "Effects of cold water immersion on the recovery of physical performance and muscle damage following a one-off soccer match",
-      "year": 2011,
-      "n": 10,
-      "inReviews": [
-       "41490103",
-       "42088589",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "27430594",
-      "title": "Dosages of cold-water immersion post exercise on functional and clinical responses: a randomized controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "41490103",
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "24674975",
-      "title": "Postexercise cold water immersion benefits are not greater than the placebo effect",
-      "year": 2014,
-      "inReviews": [
-       "41490103",
-       "42088589",
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "21716151",
-      "title": "Cold water immersion recovery after simulated collision sport exercise",
-      "year": 2012,
-      "inReviews": [
-       "42088589",
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "27575565",
-      "title": "Use of Cold-Water Immersion to Reduce Muscle Damage and Delayed-Onset Muscle Soreness and Preserve Muscle Power in Jiu-Jitsu Athletes",
-      "year": 2016,
-      "inReviews": [
-       "42088589",
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "17978833",
-      "title": "Effect of hydrotherapy on the signs and symptoms of delayed onset muscle soreness",
-      "year": 2008,
-      "n": 38,
-      "inReviews": [
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "30026562",
-      "title": "Multiple Cold-Water Immersions Attenuate Muscle Damage but not Alter Systemic Inflammation and Muscle Function Recovery: A Parallel Randomized Controlled Trial",
-      "year": 2018,
-      "n": 15,
-      "inReviews": [
-       "42088589",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "30509634",
-      "title": "Faster physical performance recovery with cold water immersion is not related to lower muscle damage level in professional soccer players",
-      "year": 2018,
-      "inReviews": [
-       "41490103",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "21088862",
-      "title": "Comparison between cold water immersion therapy (CWIT) and light emitting diode therapy (LEDT) in short-term skeletal muscle recovery after high-intensity exercise in athletes--preliminary results",
-      "year": 2011,
-      "inReviews": [
-       "42088589",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "21132438",
-      "title": "Short term effects of various water immersions on recovery from exhaustive intermittent exercise",
-      "year": 2011,
-      "inReviews": [
-       "42088589",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "39593644",
-      "title": "Effects of multiple cold-water immersion during pre-season on recovery performance in under-20 male soccer players: A randomized controlled trial",
-      "year": 2024,
-      "inReviews": [
-       "42088589",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "22645174",
-      "title": "Effects of water immersion on posttraining recovery in Australian footballers",
-      "year": 2012,
-      "inReviews": [
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "23458430",
-      "title": "Cold-water immersion decreases cerebral oxygenation but improves recovery after intermittent-sprint exercise in the heat",
-      "year": 2014,
-      "inReviews": [
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "25074283",
-      "title": "The effect of various cold-water immersion protocols on exercise-induced inflammatory response and functional recovery from high-intensity sprint exercise",
-      "year": 2014,
-      "inReviews": [
-       "41716304",
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "24768476",
-      "title": "Cold water immersion in the management of delayed-onset muscle soreness: is dose important? A randomised controlled trial",
-      "year": 2014,
-      "n": 50,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "27557407",
-      "title": "The Effect of Water Temperature during Cold-Water Immersion on Recovery from Exercise-Induced Muscle Damage",
-      "year": 2016,
-      "n": 42,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "26174323",
-      "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training",
-      "year": 2015,
-      "n": 21,
-      "inReviews": [
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "31797035",
-      "title": "The physiological effects of daily cold-water immersion on 5-day tournament performance in international standard youth field-hockey players",
-      "year": 2020,
-      "n": 18,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "31456474",
-      "title": "Comparative efficacy of active recovery and cold water immersion as post-match recovery interventions in elite youth soccer",
-      "year": 2020,
-      "n": 15,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "16686568",
-      "title": "Body cooling between two bouts of exercise in the heat enhances subsequent performance",
-      "year": 2006,
-      "n": 15,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "21829501",
-      "title": "Time-course of changes in inflammatory response after whole-body cryotherapy multi exposures following severe exercise",
-      "year": 2011,
-      "n": 11,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "25121612",
-      "title": "Cold water immersion enhances recovery of submaximal muscle function after resistance exercise",
-      "year": 2014,
-      "n": 10,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "33120891",
-      "title": "Multiple Cryotherapy Attenuates Oxi-Inflammatory Response Following Skeletal Muscle Injury",
-      "year": 2020,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "32901996",
-      "title": "Prolonging the duration of cooling does not enhance recovery following a marathon",
-      "year": 2021,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "27396361",
-      "title": "Recovery From Exercise-Induced Muscle Damage: Cold-Water Immersion Versus Whole-Body Cryotherapy",
-      "year": 2017,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "27227791",
-      "title": "The Effects of a Single Whole-Body Cryotherapy Exposure on Physiological, Performance, and Perceptual Responses of Professional Academy Soccer Players After Repeated Sprint Exercise",
-      "year": 2017,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "33021585",
-      "title": "Vitamins C and E Associated With Cryotherapy in the Recovery of the Inflammatory Response After Resistance Exercise: A Randomized Clinical Trial",
-      "year": 2022,
-      "inReviews": [
-       "42088589"
-      ]
-     },
-     {
-      "pmid": "26735552",
-      "title": "Effects of Cold Water Immersion on Muscle Oxygenation During Repeated Bouts of Fatiguing Exercise: A Randomized Controlled Study",
-      "year": 2016,
-      "inReviews": [
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "31652109",
-      "title": "Cold-Water Immersion Does Not Accelerate Performance Recovery After 10-km Street Run: Randomized Controlled Clinical Trial",
-      "year": 2020,
-      "inReviews": [
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "27136509",
-      "title": "Cold Water Immersion is Acutely Detrimental but Increases Performance Post-12 h in Rugby Players",
-      "year": 2016,
-      "inReviews": [
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "37103570",
-      "title": "Repeated cold-water immersion improves autonomic cardiac modulation following five sessions of high-intensity interval exercise",
-      "year": 2023,
-      "inReviews": [
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "22796996",
-      "title": "Evaluation of hydrotherapy, using passive tests and power tests, for recovery across a cyclic week of competitive rugby union",
-      "year": 2013,
-      "inReviews": [
-       "41716304"
-      ]
-     },
-     {
-      "pmid": "33507839",
-      "title": "Effects of cold water immersion on circulating inflammatory markers at the Kona Ironman World Championship",
-      "year": 2021,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "33820701",
-      "title": "Recovering body temperature from acute cold stress is associated with delayed proinflammatory cytokine production in vivo",
-      "year": 2021,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "38548939",
-      "title": "Effects of post-exercise cold-water immersion on performance and perceptive outcomes of competitive adolescent swimmers",
-      "year": 2024,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "31677292",
-      "title": "Partial-body cryotherapy (-135°C) and cold-water immersion (10°C) after muscle damage in females",
-      "year": 2020,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "17654228",
-      "title": "Influence of cold-water immersion on indices of muscle damage following prolonged intermittent shuttle running",
-      "year": 2007,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "19401897",
-      "title": "A single 10-min bout of cold-water immersion therapy after strenuous plyometric exercise has no beneficial effect on recovery from the symptoms of exercise-induced muscle damage",
-      "year": 2009,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "28276987",
-      "title": "The use of continuous vs. intermittent cold water immersion as a recovery method in basketball players after training: a randomized controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "23873339",
-      "title": "Effect of cryotherapy on muscle recovery and inflammation following a bout of damaging exercise",
-      "year": 2013,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "18547863",
-      "title": "Effect of water immersion methods on post-exercise recovery from simulated team sport exercise",
-      "year": 2009,
-      "inReviews": [
-       "40078372"
-      ]
-     },
-     {
-      "pmid": "22935028",
-      "title": "Effects of sports massage and intermittent cold-water immersion on recovery from matches by basketball players",
-      "year": 2013,
-      "inReviews": [
-       "40078372"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1999,
@@ -1064,7 +552,7 @@
       "firstAuthor": "Veen J",
       "journal": "Scandinavian journal of medicine & science in sports",
       "citedBy": 3,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42088589",
@@ -1075,7 +563,7 @@
       "journal": "Frontiers in sports and active living",
       "citedBy": 2,
       "n": 1243,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41716304",
@@ -1085,7 +573,7 @@
       "firstAuthor": "Zhu Y",
       "journal": "Frontiers in sports and active living",
       "citedBy": 2,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40078372",
@@ -1095,11 +583,12 @@
       "firstAuthor": "Wang H",
       "journal": "Frontiers in physiology",
       "citedBy": 9,
-      "why": "The most comprehensive review on this finding (55 trials, 2025); screened as answering the question"
+      "why": "The most comprehensive review on this finding (55 trials, 2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults after hard or unaccustomed exercise, mostly young and active",
      "intervention": "Cold-water immersion (or other cooling) after exercise",
@@ -1184,6 +673,7 @@
   {
    "id": "training",
    "label": "Muscle growth with training",
+   "anyDesign": true,
    "finding": "Muscle growth and strength gains with regular cold water after strength training",
    "counts": {
     "all": 265,
@@ -1202,7 +692,7 @@
      "journal": "European journal of sport science",
      "citedBy": 4,
      "n": 170,
-     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33146851",
@@ -1212,7 +702,7 @@
      "firstAuthor": "Malta ES",
      "journal": "Sports medicine (Auckland, N.Z.)",
      "citedBy": 35,
-     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42816732",
@@ -1222,230 +712,10 @@
      "firstAuthor": "Berjisian E",
      "journal": "Sports medicine - open",
      "citedBy": 0,
-     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.2727272727272727,
-    "trials": 22,
-    "inclusions": 34,
-    "reviews": [
-     {
-      "pmid": "35068365",
-      "trials": 8
-     },
-     {
-      "pmid": "33146851",
-      "trials": 15
-     },
-     {
-      "pmid": "42816732",
-      "trials": 11
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "26174323",
-      "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training",
-      "year": 2015,
-      "n": 21,
-      "inReviews": [
-       "35068365",
-       "33146851",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "24674975",
-      "title": "Postexercise cold water immersion benefits are not greater than the placebo effect",
-      "year": 2014,
-      "inReviews": [
-       "35068365",
-       "33146851",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "25760154",
-      "title": "Does Regular Post-exercise Cold Application Attenuate Trained Muscle Adaptation?",
-      "year": 2015,
-      "n": 14,
-      "inReviews": [
-       "35068365",
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "29952675",
-      "title": "Effects of Chronic Cold-Water Immersion in Elite Rugby Players",
-      "year": 2019,
-      "n": 13,
-      "inReviews": [
-       "35068365",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "25121612",
-      "title": "Cold water immersion enhances recovery of submaximal muscle function after resistance exercise",
-      "year": 2014,
-      "n": 10,
-      "inReviews": [
-       "35068365",
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "24552795",
-      "title": "Strength training adaptations after cold-water immersion",
-      "year": 2014,
-      "inReviews": [
-       "35068365",
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "10362390",
-      "title": "Effects of cold water immersion on the symptoms of exercise-induced muscle damage",
-      "year": 1999,
-      "inReviews": [
-       "33146851",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "28679683",
-      "title": "Cold-water immersion following sprint interval training does not alter endurance signaling pathways or training adaptations in human skeletal muscle",
-      "year": 2017,
-      "inReviews": [
-       "33146851",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "27699485",
-      "title": "Passive and post-exercise cold-water immersion augments PGC-1α and VEGF expression in human skeletal muscle",
-      "year": 2016,
-      "inReviews": [
-       "33146851",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "24504431",
-      "title": "Does hydrotherapy help or hinder adaptation to training in competitive cyclists?",
-      "year": 2014,
-      "inReviews": [
-       "33146851",
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "17978833",
-      "title": "Effect of hydrotherapy on the signs and symptoms of delayed onset muscle soreness",
-      "year": 2008,
-      "n": 38,
-      "inReviews": [
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "22722961",
-      "title": "Effects of cold water immersion and active recovery on post-exercise heart rate variability",
-      "year": 2012,
-      "n": 20,
-      "inReviews": [
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "30026562",
-      "title": "Multiple Cold-Water Immersions Attenuate Muscle Damage but not Alter Systemic Inflammation and Muscle Function Recovery: A Parallel Randomized Controlled Trial",
-      "year": 2018,
-      "n": 15,
-      "inReviews": [
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "33217726",
-      "title": "Does Cold-Water Immersion After Strength Training Attenuate Training Adaptation?",
-      "year": 2021,
-      "n": 11,
-      "inReviews": [
-       "35068365"
-      ]
-     },
-     {
-      "pmid": "31222379",
-      "title": "Cold-water immersion blunts and delays increases in circulating testosterone and cytokines post-resistance exercise",
-      "year": 2019,
-      "n": 11,
-      "inReviews": [
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "21170794",
-      "title": "Effects of cold water immersion on the recovery of physical performance and muscle damage following a one-off soccer match",
-      "year": 2011,
-      "n": 10,
-      "inReviews": [
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "32138641",
-      "title": "Males benefit more from cold water immersion during repeated handgrip contractions than females despite similar oxygen kinetics",
-      "year": 2020,
-      "inReviews": [
-       "35068365"
-      ]
-     },
-     {
-      "pmid": "27396361",
-      "title": "Recovery From Exercise-Induced Muscle Damage: Cold-Water Immersion Versus Whole-Body Cryotherapy",
-      "year": 2017,
-      "inReviews": [
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "21132438",
-      "title": "Short term effects of various water immersions on recovery from exhaustive intermittent exercise",
-      "year": 2011,
-      "inReviews": [
-       "33146851"
-      ]
-     },
-     {
-      "pmid": "26818586",
-      "title": "Impact of resistance exercise on ribosome biogenesis is acutely regulated by post-exercise recovery strategies",
-      "year": 2016,
-      "inReviews": [
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "21941017",
-      "title": "Effect of daily cold water immersion on heart rate variability and subjective ratings of well-being in highly trained swimmers",
-      "year": 2012,
-      "inReviews": [
-       "42816732"
-      ]
-     },
-     {
-      "pmid": "18274940",
-      "title": "Effect of cold water immersion on repeat cycling performance and thermoregulation in the heat",
-      "year": 2008,
-      "inReviews": [
-       "42816732"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2011,
@@ -1529,7 +799,7 @@
       "journal": "European journal of sport science",
       "citedBy": 4,
       "n": 170,
-      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33146851",
@@ -1539,11 +809,12 @@
       "firstAuthor": "Malta ES",
       "journal": "Sports medicine (Auckland, N.Z.)",
       "citedBy": 35,
-      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults doing strength (resistance) training",
      "intervention": "Regular cold-water immersion after training sessions",
@@ -1607,6 +878,7 @@
   {
    "id": "metabolism",
    "label": "Brown fat and metabolism",
+   "anyDesign": true,
    "finding": "Brown fat, metabolism and insulin sensitivity",
    "counts": {
     "all": 3536,
@@ -1625,7 +897,7 @@
      "journal": "Biomedicines",
      "citedBy": 10,
      "n": 85,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36568070",
@@ -1635,105 +907,10 @@
      "firstAuthor": "Perez LC",
      "journal": "Frontiers in endocrinology",
      "citedBy": 12,
-     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.3333333333333333,
-    "trials": 9,
-    "inclusions": 12,
-    "reviews": [
-     {
-      "pmid": "38540150",
-      "trials": 4
-     },
-     {
-      "pmid": "36568070",
-      "trials": 8
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "28275131",
-      "title": "Tea catechin and caffeine activate brown adipose tissue and increase cold-induced thermogenic capacity in humans",
-      "year": 2017,
-      "n": 10,
-      "inReviews": [
-       "38540150",
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "26993316",
-      "title": "Human brown adipose tissue [(15)O]O2 PET imaging in the presence and absence of cold stimulus",
-      "year": 2016,
-      "inReviews": [
-       "38540150",
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "23867622",
-      "title": "Recruited brown adipose tissue as an antiobesity agent in humans",
-      "year": 2013,
-      "inReviews": [
-       "38540150",
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "22378725",
-      "title": "Nonpungent capsaicin analogs (capsinoids) increase energy expenditure through the activation of brown adipose tissue in humans",
-      "year": 2012,
-      "n": 10,
-      "inReviews": [
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "28089568",
-      "title": "Inhibition of Intracellular Triglyceride Lipolysis Suppresses Cold-Induced Brown Adipose Tissue Metabolism and Increases Shivering in Humans",
-      "year": 2017,
-      "inReviews": [
-       "38540150"
-      ]
-     },
-     {
-      "pmid": "27443171",
-      "title": "A new method of infrared thermography for quantification of brown adipose tissue activation in healthy adults (TACTICAL): a randomized trial",
-      "year": 2017,
-      "inReviews": [
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "23780370",
-      "title": "Brown fat activation mediates cold-induced thermogenesis in adult humans in response to a mild decrease in ambient temperature",
-      "year": 2013,
-      "inReviews": [
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "23237788",
-      "title": "Effects of green tea extracts on non-shivering thermogenesis during mild cold exposure in young men",
-      "year": 2013,
-      "inReviews": [
-       "36568070"
-      ]
-     },
-     {
-      "pmid": "32558052",
-      "title": "The effect of mirabegron on energy expenditure and brown adipose tissue in healthy lean South Asian and Europid men",
-      "year": 2020,
-      "inReviews": [
-       "36568070"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1995,
@@ -1849,7 +1026,7 @@
       "journal": "Biomedicines",
       "citedBy": 10,
       "n": 85,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "36568070",
@@ -1859,11 +1036,12 @@
       "firstAuthor": "Perez LC",
       "journal": "Frontiers in endocrinology",
       "citedBy": 12,
-      "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2022); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults",
      "intervention": "Repeated cold exposure (cold air, cold water or winter swimming)",
@@ -1920,6 +1098,7 @@
   {
    "id": "cold-shock",
    "label": "Cold shock and the heart",
+   "anyDesign": true,
    "finding": "Heart rate, blood pressure and heart rhythm in the first moments in cold water",
    "counts": {
     "all": 1449,
@@ -1938,7 +1117,7 @@
      "journal": "Journal of thermal biology",
      "citedBy": 8,
      "n": 145,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -2029,6 +1208,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults suddenly immersed in cold water, healthy or winter swimmers",
      "intervention": "Cold-water immersion",
