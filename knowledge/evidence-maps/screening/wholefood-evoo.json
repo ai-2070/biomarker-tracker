@@ -1,0 +1,394 @@
+{
+ "topic": "wholefood-evoo",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Olive oil eaten as food",
+    "comparison": "Other oils or fats, or less olive oil",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40651889",
+     "fits": "partly",
+     "reason": "Adults at cardiovascular risk eating olive oil within a Mediterranean diet, with blood pressure measured, but compared against mixed nuts rather than other oils, fats or less olive oil."
+    },
+    {
+     "pmid": "39558500",
+     "fits": "partly",
+     "reason": "Healthy and at-risk adults with blood pressure measured, but olive oil is pooled with flaxseed oil and the abstract reports no separate olive oil analysis."
+    }
+   ]
+  },
+  "polyphenols": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Olive oil high in polyphenols (extra virgin)",
+    "comparison": "Olive oil low in polyphenols (refined), or other oils",
+    "outcome": "Oxidised LDL, oxidative stress markers, or HDL function"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "37181304",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing high- vs low-phenol olive oil on ox-LDL, MDA and FRAP, which matches the food, comparison and outcome."
+    },
+    {
+     "pmid": "40749711",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of EVOO consumption with a subgroup comparing it to low-polyphenol olive oil on ox-LDL, which matches the question."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Adults, mostly older",
+    "intervention": "Olive oil eaten as food",
+    "comparison": "Less olive oil or other fats",
+    "outcome": "Memory and thinking, dementia, or death with dementia"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "39482909",
+     "fits": "no",
+     "reason": "Reviews preclinical mouse studies of oleocanthal, an olive oil polyphenol, rather than adults eating olive oil itself."
+    },
+    {
+     "pmid": "42092516",
+     "fits": "no",
+     "reason": "This is a comment on a meta-analysis, not a systematic review itself, and has no abstract."
+    },
+    {
+     "pmid": "41740793",
+     "fits": "partly",
+     "reason": "Pooled RCTs of extra virgin olive oil vs control for cognition, but only in older adults who already have MCI or dementia."
+    },
+    {
+     "pmid": "42195994",
+     "fits": "yes",
+     "reason": "Systematically reviewed RCTs and a cohort study of adults consuming olive oil (mostly EVOO) with memory and cognitive outcomes."
+    },
+    {
+     "pmid": "37885446",
+     "fits": "yes",
+     "reason": "Systematically reviewed RCTs and cohort studies of olive oil consumption and cognitive performance in adults over 55."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Olive oil, especially extra virgin, eaten as food (more of it, or as part of a diet such as PREDIMED's)",
+    "comparison": "Less olive oil, other fats, or a low-fat diet",
+    "outcome": "Heart attacks, strokes or deaths from heart disease"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40507112",
+     "fits": "yes",
+     "reason": "Systematic review of clinical studies of virgin/extra virgin olive oil intake, including within a Mediterranean diet, reporting cardiovascular events as well as biomarkers."
+    },
+    {
+     "pmid": "38568797",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing higher vs lower olive oil intake in adults, with CHD, stroke and CVD death as outcomes."
+    },
+    {
+     "pmid": "39523824",
+     "fits": "yes",
+     "reason": "Meta-analysis of olive oil consumption in adults, pooling cardiovascular mortality."
+    },
+    {
+     "pmid": "29708409",
+     "fits": "no",
+     "reason": "Compares high vs low polyphenol olive oil, and the outcomes are risk factors like cholesterol and oxidation, not heart attacks, strokes or deaths."
+    },
+    {
+     "pmid": "36343558",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohorts and a trial on olive oil consumption and CVD events and mortality in adults."
+    },
+    {
+     "pmid": "36330142",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing higher vs lower olive oil intake, with total CVD risk as the outcome."
+    },
+    {
+     "pmid": "39150532",
+     "fits": "no",
+     "reason": "A comment on another meta-analysis with no abstract, not a systematic review."
+    },
+    {
+     "pmid": "31378629",
+     "fits": "no",
+     "reason": "Compares different types of olive oil, and the outcomes are risk factors, not cardiovascular events."
+    },
+    {
+     "pmid": "26055128",
+     "fits": "no",
+     "reason": "Compares high vs low phenolic olive oil, and the outcomes are blood pressure, lipids and oxidation markers, not events."
+    },
+    {
+     "pmid": "24775425",
+     "fits": "yes",
+     "reason": "Meta-analysis of observational studies and a trial on olive oil consumption and CHD and stroke risk."
+    }
+   ]
+  },
+  "inflammation": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Olive oil eaten as food",
+    "comparison": "Other oils or fats, or less olive oil",
+    "outcome": "CRP or other inflammation markers, or blood vessel function (flow-mediated dilation)"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "37977313",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of extra virgin olive oil eaten by adults, pooling CRP, IL-6, IL-10 and TNF-α against control groups."
+    },
+    {
+     "pmid": "39530776",
+     "fits": "partly",
+     "reason": "Inflammation and endothelial markers match, but olive oil is tested within a Mediterranean diet against a low-fat diet, not on its own."
+    },
+    {
+     "pmid": "38136231",
+     "fits": "no",
+     "reason": "Reviews the isolated compound oleocanthal, mostly in lab studies of inflammation and cancer, not olive oil eaten as food."
+    },
+    {
+     "pmid": "26378571",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of olive oil eaten as food versus controls, pooling CRP, IL-6 and flow-mediated dilation."
+    },
+    {
+     "pmid": "41848522",
+     "fits": "no",
+     "reason": "Studies olive leaf extract and oleuropein supplements, not olive oil eaten as food."
+    },
+    {
+     "pmid": "40749711",
+     "fits": "partly",
+     "reason": "RCTs of eating EVOO with CRP and cytokines, but the pooled comparisons are against low-phenolic olive oils, not other fats or less olive oil."
+    },
+    {
+     "pmid": "39558500",
+     "fits": "partly",
+     "reason": "Healthy and at-risk adults with CRP, IL-6 and TNF-α, but olive oil and flaxseed oil supplements seem pooled together, not analysed separately."
+    },
+    {
+     "pmid": "42753329",
+     "fits": "no",
+     "reason": "Olive oil used in the mouth (oil pulling, mouthwash, toothpaste) for gum inflammation, not eaten, and no blood markers."
+    },
+    {
+     "pmid": "31539817",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of regular dietary olive oil intake on CRP, IL-6 and TNF-α."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults without diabetes (new cases), or adults with type 2 diabetes (blood sugar)",
+    "intervention": "Olive oil eaten as food",
+    "comparison": "Less olive oil or other fats",
+    "outcome": "New type 2 diabetes, or HbA1c and fasting glucose"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "36343558",
+     "fits": "yes",
+     "reason": "Pooled prospective cohorts and an RCT of olive oil intake and incident type 2 diabetes in adults, per 25 g/day."
+    },
+    {
+     "pmid": "40971936",
+     "fits": "partly",
+     "reason": "RCTs of olive oil on fasting glucose and HbA1c, but in adults generally; no separate analysis of people with type 2 diabetes is reported."
+    },
+    {
+     "pmid": "40275388",
+     "fits": "yes",
+     "reason": "Pooled cohorts and RCTs of olive oil consumption and diabetes risk, with a dose-response analysis."
+    },
+    {
+     "pmid": "33941427",
+     "fits": "partly",
+     "reason": "RCTs of extra virgin olive oil on fasting glucose and HbA1c, but in mixed health groups; no type 2 diabetes result is reported on its own."
+    },
+    {
+     "pmid": "28394365",
+     "fits": "yes",
+     "reason": "Pooled cohorts on olive oil and new type 2 diabetes, plus trials of HbA1c and fasting glucose in type 2 diabetes patients."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "More olive oil eaten as food",
+    "comparison": "Less olive oil",
+    "outcome": "Death from any cause, deaths from heart disease, or cancer"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "38568797",
+     "fits": "yes",
+     "reason": "Pools cohort studies of olive oil intake in adults for all-cause, CVD and cancer mortality; all parts match."
+    },
+    {
+     "pmid": "39523824",
+     "fits": "yes",
+     "reason": "Pools studies of olive oil consumption in adults for all-cause, cardiovascular and cancer mortality; all parts match."
+    },
+    {
+     "pmid": "38136231",
+     "fits": "no",
+     "reason": "Reviews oleocanthal, a single compound, for its mechanisms in inflammation and cancer; it is not about eating olive oil."
+    },
+    {
+     "pmid": "36343558",
+     "fits": "yes",
+     "reason": "Pools cohorts and an RCT of olive oil consumption for all-cause mortality and cancer incidence; matches."
+    },
+    {
+     "pmid": "36330142",
+     "fits": "yes",
+     "reason": "Pools cohort studies comparing higher with lower olive oil intake for all-cause mortality and CVD; matches."
+    },
+    {
+     "pmid": "39150532",
+     "fits": "no",
+     "reason": "This is a comment on another meta-analysis, not a systematic review, and it has no abstract."
+    },
+    {
+     "pmid": "40449295",
+     "fits": "partly",
+     "reason": "Systematically reviews olive oil intake but only for breast cancer in women, so the outcome and population are narrower."
+    },
+    {
+     "pmid": "35015763",
+     "fits": "yes",
+     "reason": "Pools case-control and cohort studies of highest versus lowest olive oil intake for the risk of any cancer."
+    },
+    {
+     "pmid": "32883373",
+     "fits": "partly",
+     "reason": "Meta-analysis of olive oil intake limited to breast cancer in women, so the outcome and population are narrower."
+    },
+    {
+     "pmid": "21801436",
+     "fits": "partly",
+     "reason": "Pools olive oil intake and cancer, but only from case-control studies, not trials or studies following people over time."
+    },
+    {
+     "pmid": "27713961",
+     "fits": "no",
+     "reason": "Reviews olive oil phenol compounds in animal studies and trials measuring DNA damage; not the food itself or a matching outcome."
+    },
+    {
+     "pmid": "21443483",
+     "fits": "yes",
+     "reason": "Systematic search of studies on olive oil consumption and cancer risk, with a high-versus-low meta-analysis for breast cancer."
+    },
+    {
+     "pmid": "9085386",
+     "fits": "partly",
+     "reason": "Reviews olive oil and cancer risk but also counts monounsaturated fat as a stand-in for olive oil; the method is only loosely systematic."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Olive oil eaten as food",
+    "comparison": "Other oils or fats, or less olive oil",
+    "outcome": "LDL, HDL or total cholesterol, or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40507112",
+     "fits": "partly",
+     "reason": "Reviews trials of virgin olive oil eaten as food, but outcomes are broad cardiovascular biomarkers and events, with no clear comparison or named cholesterol outcomes."
+    },
+    {
+     "pmid": "37977313",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of extra virgin olive oil eaten as food, with triglycerides, total, LDL and HDL cholesterol among the outcomes."
+    },
+    {
+     "pmid": "40651889",
+     "fits": "partly",
+     "reason": "Compares a Mediterranean diet with added olive oil against one with added nuts in at-risk adults; olive oil is tested inside a whole diet, not on its own."
+    },
+    {
+     "pmid": "39153124",
+     "fits": "partly",
+     "reason": "Measures blood lipids, but the intervention is a Mediterranean diet enriched with olive oil, not olive oil tested on its own."
+    },
+    {
+     "pmid": "29708409",
+     "fits": "partly",
+     "reason": "Compares high- with low-polyphenol olive oil on cholesterol; the comparison is another olive oil, not other fats or less olive oil."
+    },
+    {
+     "pmid": "39001794",
+     "fits": "yes",
+     "reason": "Umbrella review of reviews on olive oil intake in adults, including blood lipid outcomes."
+    },
+    {
+     "pmid": "31378629",
+     "fits": "partly",
+     "reason": "Compares types of olive oil on lipids in mainly healthy adults; the comparison is olive oil against olive oil, not other fats."
+    },
+    {
+     "pmid": "26055128",
+     "fits": "partly",
+     "reason": "Compares high- with low- or non-phenolic olive oil on blood fats; the comparison is another olive oil, not other fats."
+    },
+    {
+     "pmid": "36408701",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of RCTs of olive oil intake in adults, covering total, LDL and HDL cholesterol and triglycerides."
+    },
+    {
+     "pmid": "38132869",
+     "fits": "partly",
+     "reason": "Measures lipids in adults, but the exposure is olive oil polyphenol content at different doses, not olive oil against other fats."
+    },
+    {
+     "pmid": "35866510",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing canola oil with olive oil on blood lipids in adults."
+    },
+    {
+     "pmid": "34153478",
+     "fits": "partly",
+     "reason": "Includes olive oil eaten as food, but only in people with metabolic syndrome, and it mixes in oleic acid and hydroxytyrosol supplements."
+    },
+    {
+     "pmid": "29420053",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing olive oil with other plant oils on total, LDL and HDL cholesterol and triglycerides."
+    },
+    {
+     "pmid": "26980811",
+     "fits": "no",
+     "reason": "Olive oil is given as an intravenous lipid emulsion in parenteral nutrition, not eaten as food, and cholesterol is not an outcome."
+    }
+   ]
+  }
+ }
+}

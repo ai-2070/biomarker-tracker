@@ -1,0 +1,705 @@
+{
+  "id": "ginger",
+  "name": "Ginger",
+  "group": "herbs and spices",
+  "otherNames": ["Ginger root", "Fresh ginger", "Ground ginger", "Ginger powder", "Dried ginger", "Ginger tea", "Zingiber officinale"],
+  "summary": "The root (rhizome) of the ginger plant, eaten fresh, dried and ground, or as tea. In trials, mostly of ground ginger in capsules, it eased nausea in early pregnancy and period pain a little, with mixed results for sickness after surgery or chemotherapy. Small changes in blood sugar, blood fats, blood pressure and CRP come from short trials of low certainty, most of them in Iran.",
+  "inIt": [
+    "Gingerols, mainly 6-gingerol, are the main pungent compounds of the fresh root. A review links them to ginger's reputed effects on nausea, arthritis and pain; which compounds cause any effect in people is not known.",
+    "Shogaols form when gingerols lose water during drying and heating. They give dried ginger its sharper taste. In water the change goes both ways and settles at a balance.",
+    "Paradols: in mice, 6-paradol is the main breakdown product of 6-shogaol. In cell studies, 6-paradol and 6-shogaol made fat and muscle cells take up more glucose; whether this happens in people is not known.",
+    "Zingerone is one of the five main compounds measured in fresh, dried, stir-fried and charred ginger, next to 6-, 8- and 10-gingerol and 6-shogaol.",
+    "Volatile oils: one analysis of dried Australian ginger found 100 volatile compounds, including 54 terpenoid compounds and 35 related to gingerols, some never reported in ginger before.",
+    "The food table (CoFID) lists energy, protein, fat, carbohydrate, fibre, minerals and some vitamins for fresh and ground ginger. It measures none of the compounds above, so the nutrient numbers for ginger say nothing about what ginger is studied for."
+  ],
+  "tableFoods": [
+    { "id": "13-890", "label": "A thumb-sized piece (about 10 g)", "grams": 10 },
+    { "id": "13-832", "label": "1 teaspoon ground (about 2 g)", "grams": 2 }
+  ],
+  "processing": [
+    "Fresh or dried: drying and heating turn gingerols into shogaols. In one laboratory study moist heat made more shogaol than dry heat (up to 2,991 mg of 6-shogaol per kg of ginger after 360 minutes at 120 °C), and dry heat on ground ginger made more than dry heat on fresh slices.",
+    "In another analysis, dried ginger had 5.2 times the phenolic content of fresh ginger. Stir-frying and charring lowered gingerols and raised shogaols.",
+    "How ginger is dried matters too: in a 2026 study, drying at 120 °C then 80 °C gave more gingerols than drying at 80 °C alone (11.87 against 7.12 mg per g), but kept less volatile oil (1.29% against 3.46%).",
+    "Capsules of ground ginger are the dried food. Concentrated extracts are different products: trials have used a carbon dioxide (CO₂) extract, capsules of pure 6-gingerol, extracts standardised to 5% gingerols, and an extract of ginger with galangal (EV.EXT 77). Results from extracts can't be taken as results for eating ginger.",
+    "Ginger tea and drinks: the amount of gingerols in ginger teas and drinks varied widely in a 2007 US analysis, and so did the amount in nine ginger supplements. None of the trials on this page tested ginger ale.",
+    "Ginger biscuits and crystallised ginger: one pregnancy trial used ginger biscuits (2,500 mg of ginger a day). No trial found for this page tested crystallised (candied) ginger."
+  ],
+  "whatStudiesDid": "Most trials gave ground (dried) ginger root in capsules, for days or weeks. In early pregnancy, most trials gave 1,000 to 1,950 mg a day of ginger powder in capsules for about 4 days; others used ginger biscuits (2,500 mg a day), syrup, an extract or an essence, and several compared ginger with vitamin B6 rather than a dummy pill. Before surgery, trials gave a fixed amount of at least 1 g. During chemotherapy, ginger was added to the usual anti-sickness medicines: often powdered root at 0.5 to 1.5 g a day for 3 to 5 days, but also concentrated extracts, 6-gingerol capsules and ginger tea. For period pain, women (mostly students in Iran) had 750 to 2,000 mg of crude dry ginger powder a day, usually on the first 3 days of one period. In type 2 diabetes, trials gave 1,200 to 3,000 mg a day for 8 to 12 weeks; 10 of 13 were in Iran. These describe the studies; they are not amounts for anyone to follow.",
+  "markers": ["glucose", "hba1c", "triglycerides", "ldl", "hdl", "crp_hs", "bp_systolic", "bp_diastolic"],
+  "findings": [
+    {
+      "outcome": "Nausea and vomiting in early pregnancy",
+      "population": "Pregnant women with nausea and vomiting, mostly in early pregnancy; most trials used ground ginger in capsules for about 4 days",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The review's own authors rated the evidence low quality: few, small trials with outcomes measured in different ways",
+        "Nausea improved, but the number of vomiting episodes was not clearly lower",
+        "Several trials compared ginger with vitamin B6 rather than a dummy pill, and a few used syrup, extract or essence instead of ground ginger",
+        "The Cochrane review of all treatments found the evidence for ginger limited and not consistent",
+        "Safety comes mostly from one cohort in which women reported ginger use themselves"
+      ],
+      "summary": "In a 2014 review of 12 randomised trials with 1,278 pregnant women, ginger improved nausea compared with a dummy pill (mean difference in nausea scores 1.20, 95% confidence interval 0.56 to 1.84), but the number of vomiting episodes was not clearly lower (0.72, −0.03 to 1.46). Most trials gave ginger powder in capsules, 1,000 to 1,950 mg a day, usually for 4 days; the authors rated the evidence low quality. A 2022 review of 13 trials (1,174 women) found the same pattern against a dummy pill, and no clear difference between ginger and vitamin B6. The Cochrane review of all treatments for nausea in early pregnancy (41 trials, 5,449 women, 2015) said ginger products may help, but the evidence was limited and not consistent, and found no high-quality evidence for any treatment. On safety, miscarriage was not significantly more common with ginger than with a dummy pill in the 2014 review (risk ratio 3.14, 0.65 to 15.11, a very wide interval), and heartburn and drowsiness were not more common. In a Norwegian cohort of 68,522 pregnant women, the 1,020 (1.5%) who used ginger had no higher risk of birth defects, stillbirth, preterm birth, low birth weight or a low Apgar score.",
+      "bottomLine": "In small trials, mostly of ground ginger in capsules for a few days, ginger eased nausea in early pregnancy compared with a dummy pill, but did not clearly reduce vomiting. The evidence is low quality. A large Norwegian cohort found no higher risk of birth defects or other birth problems in women who used ginger.",
+      "studies": [
+        {
+          "pmid": "24642205",
+          "doi": "10.1186/1475-2891-13-20",
+          "title": "A systematic review and meta-analysis of the effect and safety of ginger in the treatment of pregnancy-associated nausea and vomiting.",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 1278
+        },
+        {
+          "pmid": "31937153",
+          "doi": "10.1080/14767058.2020.1712714",
+          "title": "Effect of ginger in the treatment of nausea and vomiting compared with vitamin B6 and placebo during pregnancy: a meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1174
+        },
+        {
+          "pmid": "26348534",
+          "doi": "10.1002/14651858.cd007575.pub4",
+          "title": "Interventions for nausea and vomiting in early pregnancy.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 5449
+        },
+        {
+          "pmid": "22706624",
+          "doi": "10.1007/s00228-012-1331-5",
+          "title": "Safety of ginger use in pregnancy: results from a large population-based cohort study.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 68522
+        }
+      ]
+    },
+    {
+      "outcome": "Nausea and vomiting after surgery",
+      "population": "Adults having surgery, given ginger by mouth before the operation (mostly ground ginger in capsules)",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Reviews disagree: some found fewer people sick, others only milder nausea with no clear difference in vomiting or the need for anti-sickness medicine",
+        "Many small trials with different amounts, timing and kinds of surgery",
+        "A network review found the clearest result for ginger oil, a different product from eating ginger"
+      ],
+      "summary": "A 2006 review of 5 trials (363 patients) found fewer people with nausea or vomiting in the 24 hours after surgery when they had a fixed amount of at least 1 g of ginger beforehand (relative risk 0.69, 95% confidence interval 0.54 to 0.89) and fewer with vomiting (0.61, 0.45 to 0.84); abdominal discomfort was the only side effect reported. Later reviews were less clear. In 10 trials (918 patients, 2018), nausea and vomiting were milder (standardised mean difference −0.247, −0.455 to −0.040), but fewer people being sick or needing anti-sickness medicine could have been chance. In 14 trials (1,417 people, 2021), nausea was milder (mean difference −0.71, −1.37 to −0.06) and fewer people needed rescue anti-sickness medicine (relative risk 0.71, 0.62 to 0.82). In another review of 14 trials (1,506 patients, 2022), nausea scores were lower 2, 6 and 12 hours after surgery, but vomiting, nausea-and-vomiting and the use of anti-sickness medicine did not differ except in the recovery room.",
+      "bottomLine": "Ginger before surgery made nausea afterwards somewhat milder in several reviews, but whether fewer people were sick or needed anti-sickness medicine differed between reviews. The trials were small and varied.",
+      "studies": [
+        {
+          "pmid": "16389016",
+          "doi": "10.1016/j.ajog.2005.06.046",
+          "title": "The efficacy of ginger for the prevention of postoperative nausea and vomiting: a meta-analysis.",
+          "year": 2006,
+          "studyType": "meta-analysis",
+          "n": 363
+        },
+        {
+          "pmid": "30466995",
+          "doi": "10.1016/j.phymed.2018.09.007",
+          "title": "Ginger (Zingiber officinale): An alternative for the prevention of postoperative nausea and vomiting. A meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 918
+        },
+        {
+          "pmid": "34312974",
+          "doi": "10.1111/jnu.12691",
+          "title": "Efficacy of Ginger in Preventing Postoperative Nausea and Vomiting: A Systematic Review and Meta-Analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1417
+        },
+        {
+          "pmid": "34700257",
+          "doi": "10.1016/j.ijnurstu.2021.104094",
+          "title": "The preventive and relieving effects of ginger on postoperative nausea and vomiting: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1506
+        },
+        {
+          "pmid": "37379959",
+          "doi": "10.1016/j.jep.2023.116791",
+          "title": "Ginger (Zingiber officinale Roscoe) preparations for prophylaxis of postoperative nausea and vomiting: A Bayesian network meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Nausea and vomiting during chemotherapy",
+      "population": "Adults having chemotherapy, with ginger added to their usual anti-sickness medicines",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Overall, nausea and vomiting were not clearly different; the benefit for early (acute) vomiting comes from subgroups of a few trials",
+        "The reviews mix ground ginger root with concentrated extracts (a CO₂ extract, 6-gingerol capsules, extracts with 5% gingerols) and ginger tea",
+        "Trials differed in chemotherapy, amounts and timing"
+      ],
+      "summary": "A 2019 review of 18 articles found that, with 1 g a day or less for more than 3 days, people were less likely to vomit in the first day after chemotherapy (acute vomiting; odds ratio 0.4, 95% confidence interval 0.17 to 0.81; 3 trials, 301 people; moderate certainty by GRADE). There was no clear link with overall or delayed vomiting, or with how often or how badly people felt sick. A 2022 review of 23 trials found no difference overall in acute or delayed nausea or vomiting; only in trials with 1 g a day or less for more than 4 days was acute vomiting less common (odds ratio 0.30, 0.12 to 0.79). In these trials ginger was given with the usual anti-sickness medicines. The trials used powdered dried root in capsules (0.5 to 1.5 g a day for 3 to 5 days in several), but also a CO₂ extract, 6-gingerol capsules, an extract with 5% gingerols and ginger tea, which were not separated in the analysis.",
+      "bottomLine": "Added to usual anti-sickness medicines, ginger did not clearly reduce nausea or vomiting overall during chemotherapy. In smaller groups of trials with up to 1 g a day for several days, vomiting on the first day was less common. Trials mixed ginger root with concentrated extracts.",
+      "studies": [
+        {
+          "pmid": "31519467",
+          "doi": "10.1016/j.jand.2019.06.009",
+          "title": "Efficacy of Ginger (Zingiber officinale) in Ameliorating Chemotherapy-Induced Nausea and Vomiting and Chemotherapy-Related Outcomes: A Systematic Review Update and Meta-Analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "36501010",
+          "doi": "10.3390/nu14234982",
+          "title": "Effects of Ginger Intake on Chemotherapy-Induced Nausea and Vomiting: A Systematic Review of Randomized Clinical Trials.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Period pain (primary dysmenorrhoea)",
+      "population": "Young women with painful periods, mostly students in Iran, given crude dry ginger powder in capsules for the first days of one period",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Few, small trials of poor methodological quality, with large differences between them",
+        "Five of the six trials in one review were in Iran, mostly following women for only one period",
+        "Side effects were rarely reported",
+        "In favour: every review found less pain than with a dummy pill, and all trials used plain dried ginger powder"
+      ],
+      "summary": "A 2015 review pooled 4 trials comparing ginger with a dummy pill during the first 3 to 4 days of the period: the pain score (a visual analogue scale) was 1.85 lower (95% confidence interval 0.84 to 2.87), with 750 to 2,000 mg of ginger powder a day. A 2016 review of 6 trials found pain 1.55 cm lower on a 10 cm scale than with a dummy pill (0.68 to 2.43), and no difference from mefenamic acid, an anti-inflammatory painkiller (standardised mean difference 0, −0.40 to 0.41). All its trials used crude dry ginger powder; five were in Iran and one in India, mostly in students, usually over one period; the authors called the studies few, of poor quality and very different from each other. A 2024 review (12 trials pooled) found pain less intense (standardised mean difference −1.13, −1.59 to −0.68) and shorter (−0.29, −0.46 to −0.12) than with a dummy pill, and no difference from anti-inflammatory painkillers (NSAIDs) or exercise; safety was rarely reported.",
+      "bottomLine": "In small trials, mostly in Iranian students, dried ginger powder for the first days of a period lowered period pain compared with a dummy pill, by about 1.5 to 2 points on a 10-point scale, and did about as well as anti-inflammatory painkillers. The trials were few and of poor quality.",
+      "studies": [
+        {
+          "pmid": "26177393",
+          "doi": "10.1111/pme.12853",
+          "title": "Efficacy of Ginger for Alleviating the Symptoms of Primary Dysmenorrhea: A Systematic Review and Meta-analysis of Randomized Clinical Trials.",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "27274753",
+          "doi": "10.1155/2016/6295737",
+          "title": "Efficacy of Oral Ginger (Zingiber officinale) for Dysmenorrhea: A Systematic Review and Meta-Analysis.",
+          "year": 2016,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "38770631",
+          "doi": "10.1089/jicm.2023.0799",
+          "title": "Ginger for Pain Management in Primary Dysmenorrhea: A Systematic Review and Meta-Analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Knee osteoarthritis pain",
+      "population": "Adults with knee osteoarthritis given ground ginger in capsules (not extracts)",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Only small trials of ground ginger: one blinded trial of 60 people and one open-label trial (people knew what they got) of 60",
+        "The blinded trial found no benefit; the open-label one found ginger added a little to a painkiller",
+        "The larger trials and the pooled benefit in reviews come from concentrated extracts, a different product (see What isn't known)"
+      ],
+      "summary": "In a blinded trial, 60 people with knee osteoarthritis had 1 g of powdered ginger a day in a capsule or a dummy pill for 8 weeks: ginger did not improve knee pain, symptoms, daily activities, sport or quality of life, and caused no notable side effects. In an open-label trial, 60 people had diclofenac (a painkiller), 750 mg of ginger in capsules, or both, for 12 weeks: all three groups improved, the combination numerically most, with no significant difference in side effects. In 120 older people with knee osteoarthritis given daily capsules of 500 mg ginger powder or a dummy pill for 3 months, two inflammation signals in the blood (TNF-α and IL-1β) fell with ginger; the abstract reports only these blood signals, not pain.",
+      "bottomLine": "For knee osteoarthritis, trials of plain ground ginger are few and small: one blinded trial found no benefit over a dummy pill, and an open-label one found it added a little to a painkiller. The clearer benefits reported in reviews come from concentrated extracts.",
+      "studies": [
+        {
+          "pmid": "23964445",
+          "title": "The efficacy of powdered ginger in osteoarthritis of the knee.",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "24617168",
+          "title": "Efficacy and tolerability of ginger (Zingiber officinale) in patients of osteoarthritis of knee.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "27559855",
+          "doi": "10.1080/21551197.2016.1206762",
+          "title": "Effect of Ginger Supplementation on Proinflammatory Cytokines in Older Patients with Osteoarthritis: Outcomes of a Randomized Controlled Clinical Trial.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 120
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and HbA1c in type 2 diabetes",
+      "population": "Adults with type 2 diabetes given 1,200 to 3,000 mg of ginger a day for 8 to 12 weeks, 10 of 13 trials in Iran",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The newest review rated certainty low for fasting glucose and HbA1c: results differed a lot between trials",
+        "Mostly small, short trials from one country",
+        "A smaller 2024 review of 5 trials found no clear effect",
+        "Its authors judged the size of the changes of limited clinical importance"
+      ],
+      "summary": "A 2026 review of 13 trials in type 2 diabetes found fasting blood glucose 16.27 mg/dL lower with ginger than with a dummy pill (95% confidence interval 6.80 to 25.75) and HbA1c 0.41 percentage points lower (0.20 to 0.63), with no change in insulin resistance (HOMA-IR). Results varied a lot between trials, the certainty was low for both, and the authors judged the size of the effects of limited clinical importance. Ten of the 13 trials were in Iran; they lasted 8 to 12 weeks with 1,200 to 3,000 mg of ginger a day. A 2022 review of 10 trials found similar falls (fasting glucose 18.81 mg/dL, HbA1c 0.57 points). A 2024 review that included only 5 trials, all of ginger powder in capsules at 1.2 to 2 g a day for 4 to 12 weeks, found no significant effect on fasting glucose or HbA1c.",
+      "bottomLine": "In short trials in type 2 diabetes, mostly in Iran, ginger went with slightly lower fasting blood sugar and HbA1c than a dummy pill. The certainty is low, one smaller review found no clear effect, and the authors called the changes of limited clinical importance.",
+      "studies": [
+        {
+          "pmid": "42337792",
+          "doi": "10.1186/s13643-026-03251-5",
+          "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35031435",
+          "doi": "10.1016/j.ctim.2022.102802",
+          "title": "The effect of ginger supplementation on metabolic profiles in patients with type 2 diabetes mellitus: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "39053695",
+          "doi": "10.1016/j.clnesp.2024.07.011",
+          "title": "The effect of oral supplementation of ginger on glycemic control of patients with type 2 diabetes mellitus - A systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood fats (triglycerides and cholesterol)",
+      "population": "Adults in short ginger trials, many with type 2 diabetes or overweight",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Triglycerides fell modestly in several reviews; LDL cholesterol did not clearly change",
+        "Certainty low for triglycerides and HDL, very low for LDL and total cholesterol in the newest review",
+        "Small, short trials with large differences between them",
+        "One review's LDL figures in its abstract don't agree with each other, so they are not used here"
+      ],
+      "summary": "In the 2026 review of 13 trials in type 2 diabetes, triglycerides were 17.10 mg/dL lower with ginger than with a dummy pill (95% confidence interval 3.07 to 31.13) and HDL cholesterol 2.13 mg/dL higher (0.44 to 3.82), with low certainty; total cholesterol and LDL cholesterol did not change (very low certainty). A 2018 review of 12 trials (586 people) found triglycerides 17.59 mg/dL lower (5.87 to 29.32), no clear change in total cholesterol (−5.13, −11.05 to 0.78) or HDL; it also reported lower LDL, but the numbers in its abstract are inconsistent. A 2023 review found lower total cholesterol and triglycerides (standardised mean differences −0.44 and −0.61) and no clear change in HDL or LDL. A 2022 review of 10 trials in type 2 diabetes found no significant change in any blood fat.",
+      "bottomLine": "In short trials, ginger went with slightly lower triglycerides in several reviews, but LDL cholesterol did not clearly change and one review in diabetes found no change in any blood fat. Certainty is low.",
+      "studies": [
+        {
+          "pmid": "42337792",
+          "doi": "10.1186/s13643-026-03251-5",
+          "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "29747751",
+          "doi": "10.1016/j.phymed.2018.03.043",
+          "title": "The effect of ginger supplementation on lipid profile: A systematic review and meta-analysis of clinical trials.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 586
+        },
+        {
+          "pmid": "36786398",
+          "doi": "10.1002/ptr.7769",
+          "title": "Effect of ginger (Zingiber officinale) intake on human serum lipid profile: Systematic review and meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35031435",
+          "doi": "10.1016/j.ctim.2022.102802",
+          "title": "The effect of ginger supplementation on metabolic profiles in patients with type 2 diabetes mellitus: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in short ginger supplement trials, including people with type 2 diabetes, high blood pressure or obesity",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The newest review rated certainty low (results differed between trials)",
+        "Trials were short; the fall in diastolic pressure was less robust",
+        "In type 2 diabetes alone the fall in systolic pressure was small (1.62 mmHg)"
+      ],
+      "summary": "A 2026 review of 12 trials found systolic blood pressure 5.03 mmHg lower with ginger than without (95% confidence interval 1.57 to 8.49) and diastolic 2.03 mmHg lower (0.15 to 3.90), with low certainty by GRADE because results differed between trials. The falls were seen mainly in trials of people with raised blood pressure or obesity and with 2,000 mg a day or more; the authors note the trials were short. A 2019 review of 6 trials (345 people) found systolic pressure 6.36 mmHg lower (1.46 to 11.27) and diastolic 2.12 mmHg lower (0.31 to 3.92). In the 2026 review of trials in type 2 diabetes, systolic pressure was 1.62 mmHg lower (0.24 to 3.01; moderate certainty) and diastolic pressure did not change.",
+      "bottomLine": "In short trials, ginger supplements went with blood pressure a few mmHg lower than without, mostly in people with raised blood pressure or obesity. Certainty is low, and in type 2 diabetes the fall was small.",
+      "studies": [
+        {
+          "pmid": "42566667",
+          "doi": "10.1111/jhn.70329",
+          "title": "Ginger Supplementation and Blood Pressure in Adults: A GRADE-Based Systematic Review and Dose-Response Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "30972845",
+          "doi": "10.1002/ptr.6362",
+          "title": "Does ginger supplementation lower blood pressure? A systematic review and meta-analysis of clinical trials.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 345
+        },
+        {
+          "pmid": "42337792",
+          "doi": "10.1186/s13643-026-03251-5",
+          "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Inflammation in the blood (CRP and other signals)",
+      "population": "Adults in ginger supplement trials, mostly people with a health condition",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Very large differences between trials",
+        "CRP is a blood signal, not an illness: no trial showed fewer illnesses",
+        "The effect was seen mainly in people with health conditions",
+        "Reviews don't separate ground ginger from extracts"
+      ],
+      "summary": "A 2025 review of 29 randomised trials found CRP 0.86 mg/L lower with ginger (95% confidence interval 0.62 to 1.10), with lower TNF-α and IL-6 (two other inflammation signals) and better measures of antioxidant status; the authors say the effect was clearest in people with health conditions and that the large differences between trials call for caution. A 2016 review of 9 studies found CRP 0.84 mg/L lower (0.31 to 1.38). A 2020 review of 16 trials (1,010 people) found lower CRP, high-sensitivity CRP and TNF-α, but no clear change in IL-6.",
+      "bottomLine": "In ginger supplement trials, CRP, a blood marker of inflammation, was a little lower (by under 1 mg/L) than without ginger, mostly in people with health conditions. Trials differed widely, and lower CRP is not the same as less illness.",
+      "studies": [
+        {
+          "pmid": "41123858",
+          "doi": "10.1007/s10787-025-01994-6",
+          "title": "Antioxidant and anti-inflammatory effects of ginger supplementation in adults: a GRADE-assessed systematic review and dose-response meta-analysis of randomised controlled trials.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "27806832",
+          "doi": "10.3402/fnr.v60.32613",
+          "title": "The effect of ginger supplementation on serum C-reactive protein, lipid profile and glycaemia: a systematic review and meta-analysis.",
+          "year": 2016,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32763761",
+          "doi": "10.1016/j.cyto.2020.155224",
+          "title": "Effect of ginger (Zingiber officinale) on inflammatory markers: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 1010
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Nausea and vomiting with ginger compared with a dummy pill",
+      "caption": "Ratios with 95% confidence intervals from three reviews. Below 1 means fewer people were sick with ginger. The surgery figures come from 5 small trials; the chemotherapy figures are subgroups (up to 1 g a day for several days), while overall the chemotherapy reviews found no clear difference in nausea or delayed vomiting. Relative risks and odds ratios are not the same measure, so compare bars within each pair only.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "Dummy pill or usual care (no difference)" },
+      "items": [
+        { "label": "Nausea or vomiting after surgery (relative risk)", "value": 0.69, "low": 0.54, "high": 0.89, "note": "5 trials, 363 patients, at least 1 g before surgery (2006)" },
+        { "label": "Vomiting after surgery (relative risk)", "value": 0.61, "low": 0.45, "high": 0.84, "note": "5 trials, 363 patients (2006)" },
+        { "label": "Vomiting on the first day of chemotherapy (odds ratio)", "value": 0.4, "low": 0.17, "high": 0.81, "note": "Subgroup: 3 trials, 301 people, 1 g a day or less for more than 3 days (2019)" },
+        { "label": "Vomiting on the first day of chemotherapy, other review (odds ratio)", "value": 0.3, "low": 0.12, "high": 0.79, "note": "Subgroup of a 23-trial review: 1 g a day or less for more than 4 days (2022)" }
+      ],
+      "sources": [
+        {
+          "pmid": "16389016",
+          "doi": "10.1016/j.ajog.2005.06.046",
+          "title": "The efficacy of ginger for the prevention of postoperative nausea and vomiting: a meta-analysis.",
+          "year": 2006,
+          "studyType": "meta-analysis",
+          "n": 363
+        },
+        {
+          "pmid": "31519467",
+          "doi": "10.1016/j.jand.2019.06.009",
+          "title": "Efficacy of Ginger (Zingiber officinale) in Ameliorating Chemotherapy-Induced Nausea and Vomiting and Chemotherapy-Related Outcomes: A Systematic Review Update and Meta-Analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "36501010",
+          "doi": "10.3390/nu14234982",
+          "title": "Effects of Ginger Intake on Chemotherapy-Induced Nausea and Vomiting: A Systematic Review of Randomized Clinical Trials.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Type 2 diabetes: blood sugar and blood fats with ginger compared with a dummy pill",
+      "caption": "Mean differences with 95% confidence intervals from a 2026 review of 13 trials in type 2 diabetes (8 to 12 weeks, 1,200 to 3,000 mg of ginger a day, 10 trials in Iran). Below 0 means lower with ginger. Certainty was low for all three; total and LDL cholesterol did not change (very low certainty). The authors judged the changes of limited clinical importance.",
+      "scale": "linear",
+      "unit": "mg/dL",
+      "reference": { "value": 0, "label": "No difference" },
+      "items": [
+        { "label": "Fasting blood glucose", "value": -16.27, "low": -25.75, "high": -6.8, "note": "Low certainty" },
+        { "label": "Triglycerides", "value": -17.1, "low": -31.13, "high": -3.07, "note": "Low certainty" },
+        { "label": "HDL cholesterol", "value": 2.13, "low": 0.44, "high": 3.82, "note": "Low certainty; higher HDL is usually seen as better" }
+      ],
+      "sources": [
+        {
+          "pmid": "42337792",
+          "doi": "10.1186/s13643-026-03251-5",
+          "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "From fresh to dried ginger: gingerols become shogaols",
+      "caption": "What laboratory chemistry shows happens to ginger's pungent compounds with drying, heating and digestion in mice. It explains why fresh and dried ginger differ; it doesn't show which form works better in people, which no trial found for this page tested.",
+      "steps": [
+        { "label": "Fresh root", "text": "Gingerols, mainly 6-gingerol, are the main pungent compounds of fresh ginger." },
+        { "label": "Drying and heating", "text": "Heat makes gingerols lose water and turn into shogaols. In water the change runs both ways; at 100 °C and strong acid (pH 1) it reached a balance within 2 hours." },
+        { "label": "Dried and cooked ginger", "text": "Moist heat made more shogaol than dry heat, up to 2,991 mg of 6-shogaol per kg after 360 minutes at 120 °C. Stir-frying and charring lowered gingerols and raised shogaols." },
+        { "label": "After eating (in mice)", "text": "In mice, 6-paradol is the main breakdown product of 6-shogaol. What happens in people was not measured in these studies." }
+      ],
+      "sources": [
+        {
+          "pmid": "26228533",
+          "doi": "10.1016/j.phytochem.2015.07.012",
+          "title": "Gingerols and shogaols: Important nutraceutical principles from ginger.",
+          "year": 2015,
+          "studyType": "review"
+        },
+        {
+          "pmid": "11745724",
+          "doi": "10.1002/jps.1116",
+          "title": "The stability of gingerol and shogaol in aqueous solutions.",
+          "year": 2001,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "30263794",
+          "doi": "10.1007/s10068-017-0301-1",
+          "title": "Heat-induced conversion of gingerols to shogaols in ginger as affected by heat type (dry or moist heat), sample type (fresh or dried), temperature and time.",
+          "year": 2018,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "26799205",
+          "doi": "10.1016/j.jchromb.2016.01.009",
+          "title": "Chemical characterization and antioxidant activities comparison in fresh, dried, stir-frying and carbonized ginger.",
+          "year": 2016,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "28106738",
+          "doi": "10.3390/ijms18010168",
+          "title": "6-Paradol and 6-Shogaol, the Pungent Compounds of Ginger, Promote Glucose Utilization in Adipocytes and Myotubes, and 6-Paradol Reduces Blood Glucose in High-Fat Diet-Fed Mice.",
+          "year": 2017,
+          "studyType": "animal"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Pregnancy",
+      "note": "Ginger is among the most studied remedies for nausea in early pregnancy, and a cohort of 68,522 Norwegian women found no higher risk of birth defects, stillbirth or preterm birth in the 1,020 who used it. But the trials were small and short, and in one review miscarriage was not clearly more common with ginger, with a very wide uncertainty range (risk ratio 3.14, 0.65 to 15.11). A 2012 review argued that evidence of effect is not the same as proof of safety. Talk to your midwife or doctor before using ginger in capsules or other concentrated forms while pregnant, and about any severe or lasting vomiting.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Blood thinners (anticoagulants such as warfarin, or medicines against platelets)",
+      "note": "Ginger is often said to raise bleeding risk, but the evidence is weak and mixed. In a review of 8 trials, 4 found ginger lowered platelet clumping and 4 found no effect. In 12 healthy men, a ginger product for about 2 weeks did not change warfarin's effect on clotting (INR). In heart patients, 4 g of ginger powder a day for 3 months did not change platelet clumping, but a single 10 g amount did. One case report describes a 76-year-old woman on phenprocoumon whose INR rose to 10, with nosebleeds, weeks after she began ginger products. If you use a blood thinner, talk to your doctor before using ginger in capsules or other concentrated forms.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Diabetes medicines",
+      "note": "In trials in type 2 diabetes, ginger went with slightly lower fasting blood sugar and HbA1c (low certainty). No study found for this page looked at low blood sugar when ginger is added to medicines that lower blood sugar, so whether that happens isn't known. If you use such medicines, talk to your doctor before using ginger supplements.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "Side effects in the trials were mostly mild and stomach-related. In the pregnancy review, heartburn and drowsiness were not more common with ginger; the 2006 surgery review reported only abdominal discomfort. In a trial of a concentrated extract (EV.EXT 77) for knee pain, stomach and gut side effects were more common with the extract (59 people against 21), mostly mild.",
+    "Ginger supplements differ a lot: in nine ginger root supplements analysed in 2007, the amount of 6-gingerol varied with a coefficient of variation of 115%, and ginger teas and drinks also varied widely.",
+    "In the chemotherapy trials, ginger was given alongside the usual anti-sickness medicines, not instead of them.",
+    "The pregnancy trials were in nausea and vomiting of early pregnancy. The Cochrane review left out hyperemesis gravidarum (severe, lasting vomiting in pregnancy), which needs a doctor or midwife."
+  ],
+  "unknowns": [
+    "Knee osteoarthritis and extracts: a 2015 review of 5 trials (593 people) found modestly less pain (standardised mean difference −0.30, −0.50 to −0.09) and disability with ginger, and rated the evidence moderate, but the ginger trials in its reference list all describe a ginger extract in their titles, for example EV.EXT 77, a concentrated extract of ginger and galangal (261 people, 2001). People given ginger in that review were more than twice as likely to stop because of side effects (risk ratio 2.33, 1.04 to 5.22). Whether eating ginger does the same is not known.",
+    "How ginger might ease nausea is not settled. In 24 healthy people, 1,200 mg of ginger in capsules made the stomach empty faster; in cells, ginger extracts, 6-gingerol and 6-shogaol blocked serotonin 5-HT3 receptors, the target of some anti-sickness medicines. These are proposed explanations, not proof.",
+    "Whether fresh ginger, dried ginger, tea or cooked ginger differ in effect hasn't been tested head to head: most trials used ground ginger in capsules, and the chemistry differs between forms.",
+    "No trial has looked at long-term outcomes such as heart attacks, strokes or diabetes complications; the blood sugar, blood fat, blood pressure and CRP trials lasted weeks to a few months.",
+    "Most metabolic and period pain trials came from Iran, often small and with different amounts, so how far the results apply elsewhere is uncertain.",
+    "Ginger contains many compounds the food table doesn't measure (nutritional dark matter), and the trials can't say which of them, alone or together, explain any effect."
+  ],
+  "sources": [
+    {
+      "pmid": "24642205",
+      "doi": "10.1186/1475-2891-13-20",
+      "title": "A systematic review and meta-analysis of the effect and safety of ginger in the treatment of pregnancy-associated nausea and vomiting.",
+      "year": 2014,
+      "studyType": "meta-analysis",
+      "n": 1278
+    },
+    {
+      "pmid": "26348534",
+      "doi": "10.1002/14651858.cd007575.pub4",
+      "title": "Interventions for nausea and vomiting in early pregnancy.",
+      "year": 2015,
+      "studyType": "meta-analysis",
+      "n": 5449
+    },
+    {
+      "pmid": "22706624",
+      "doi": "10.1007/s00228-012-1331-5",
+      "title": "Safety of ginger use in pregnancy: results from a large population-based cohort study.",
+      "year": 2013,
+      "studyType": "observational",
+      "n": 68522
+    },
+    {
+      "pmid": "22196569",
+      "doi": "10.1016/j.ctcp.2011.08.007",
+      "title": "Ginger to reduce nausea and vomiting during pregnancy: evidence of effectiveness is not the same as proof of safety.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26488162",
+      "doi": "10.1371/journal.pone.0141119",
+      "title": "The Effect of Ginger (Zingiber officinale) on Platelet Aggregation: A Systematic Literature Review.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "15801937",
+      "doi": "10.1111/j.1365-2125.2005.02322.x",
+      "title": "Effect of ginkgo and ginger on the pharmacokinetics and pharmacodynamics of warfarin in healthy subjects.",
+      "year": 2005,
+      "studyType": "rct",
+      "n": 12
+    },
+    {
+      "pmid": "9175175",
+      "doi": "10.1016/s0952-3278(97)90587-1",
+      "title": "Effect of ginger (Zingiber officinale Rosc.) and fenugreek (Trigonella foenumgraecum L.) on blood lipids, blood sugar and platelet aggregation in patients with coronary artery disease.",
+      "year": 1997,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "14742762",
+      "doi": "10.1345/aph.1d225",
+      "title": "Ginger-associated overanticoagulation by phenprocoumon.",
+      "year": 2004,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "25300574",
+      "doi": "10.1016/j.joca.2014.09.024",
+      "title": "Efficacy and safety of ginger in osteoarthritis patients: a meta-analysis of randomized placebo-controlled trials.",
+      "year": 2015,
+      "studyType": "meta-analysis",
+      "n": 593
+    },
+    {
+      "pmid": "11710709",
+      "doi": "10.1002/1529-0131(200111)44:11<2531::aid-art433>3.0.co;2-j",
+      "title": "Effects of a ginger extract on knee pain in patients with osteoarthritis.",
+      "year": 2001,
+      "studyType": "rct",
+      "n": 261
+    },
+    {
+      "pmid": "18403946",
+      "doi": "10.1097/meg.0b013e3282f4b224",
+      "title": "Effects of ginger on gastric emptying and motility in healthy humans.",
+      "year": 2008,
+      "studyType": "rct",
+      "n": 24
+    },
+    {
+      "pmid": "23490018",
+      "doi": "10.1111/nmo.12107",
+      "title": "Ginger and its pungent constituents non-competitively inhibit activation of human recombinant and native 5-HT3 receptors of enteric neurons.",
+      "year": 2013,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "26228533",
+      "doi": "10.1016/j.phytochem.2015.07.012",
+      "title": "Gingerols and shogaols: Important nutraceutical principles from ginger.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11745724",
+      "doi": "10.1002/jps.1116",
+      "title": "The stability of gingerol and shogaol in aqueous solutions.",
+      "year": 2001,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "30263794",
+      "doi": "10.1007/s10068-017-0301-1",
+      "title": "Heat-induced conversion of gingerols to shogaols in ginger as affected by heat type (dry or moist heat), sample type (fresh or dried), temperature and time.",
+      "year": 2018,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "26799205",
+      "doi": "10.1016/j.jchromb.2016.01.009",
+      "title": "Chemical characterization and antioxidant activities comparison in fresh, dried, stir-frying and carbonized ginger.",
+      "year": 2016,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "42737386",
+      "doi": "10.3390/foods15173144",
+      "title": "Effects of Different Drying Methods on the Active Ingredients of Ginger Powder.",
+      "year": 2026,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "34522899",
+      "doi": "10.1016/j.crfs.2021.08.010",
+      "title": "Pungent and volatile constituents of dried Australian ginger.",
+      "year": 2021,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "28106738",
+      "doi": "10.3390/ijms18010168",
+      "title": "6-Paradol and 6-Shogaol, the Pungent Compounds of Ginger, Promote Glucose Utilization in Adipocytes and Myotubes, and 6-Paradol Reduces Blood Glucose in High-Fat Diet-Fed Mice.",
+      "year": 2017,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "17561453",
+      "doi": "10.1016/j.jchromb.2007.05.011",
+      "title": "High-performance liquid chromatographic analysis of 6-gingerol, 8-gingerol, 10-gingerol, and 6-shogaol in ginger-containing dietary supplements, spices, teas, and beverages.",
+      "year": 2007,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "36501010",
+      "doi": "10.3390/nu14234982",
+      "title": "Effects of Ginger Intake on Chemotherapy-Induced Nausea and Vomiting: A Systematic Review of Randomized Clinical Trials.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "27274753",
+      "doi": "10.1155/2016/6295737",
+      "title": "Efficacy of Oral Ginger (Zingiber officinale) for Dysmenorrhea: A Systematic Review and Meta-Analysis.",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "42337792",
+      "doi": "10.1186/s13643-026-03251-5",
+      "title": "Meta-analysis of the effects of ginger supplementation on glycemic control, blood pressure and lipid profile in patients with type 2 diabetes.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

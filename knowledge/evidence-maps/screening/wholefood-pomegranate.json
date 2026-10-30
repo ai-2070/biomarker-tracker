@@ -1,0 +1,257 @@
+{
+ "topic": "wholefood-pomegranate",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "carotid": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Pomegranate juice or the fruit (seeds/arils)",
+    "comparison": "Placebo drink or no pomegranate",
+    "outcome": "Carotid intima-media thickness, atherosclerosis, or blood vessel function"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32147056",
+     "fits": "partly",
+     "reason": "Pomegranate vs placebo in adults, but outcomes are inflammatory and endothelial biomarkers, not CIMT or direct vessel function; 'supplementation' may include extracts."
+    },
+    {
+     "pmid": "33188983",
+     "fits": "partly",
+     "reason": "Pomegranate juice vs control, but outcomes are only vascular adhesion molecules and IL-6, not CIMT, atherosclerosis or direct vessel function."
+    },
+    {
+     "pmid": "40296437",
+     "fits": "partly",
+     "reason": "Adults with endothelial outcomes, but juice is pooled with extracts and components, and FMD was measured in only one study."
+    }
+   ]
+  },
+  "crp": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Pomegranate juice or the fruit (seeds/arils)",
+    "comparison": "Placebo drink, water, or no pomegranate",
+    "outcome": "C-reactive protein (CRP) or other inflammation markers"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40807079",
+     "fits": "partly",
+     "reason": "Pomegranate juice RCTs with pooled hs-CRP, but only in women with PCOS, so the population is narrower."
+    },
+    {
+     "pmid": "38553998",
+     "fits": "yes",
+     "reason": "Pools RCTs of pomegranate juice against control groups for CRP in adults with various conditions."
+    },
+    {
+     "pmid": "37507609",
+     "fits": "yes",
+     "reason": "Pools RCTs of pomegranate consumption in adults for CRP, IL-6 and TNF-α, though the abstract doesn't say whether extracts were also included."
+    },
+    {
+     "pmid": "32147056",
+     "fits": "yes",
+     "reason": "Pools RCTs of pomegranate juice against placebo in adults for hs-CRP, CRP, IL-6 and TNF-α."
+    },
+    {
+     "pmid": "26922037",
+     "fits": "yes",
+     "reason": "Pools RCTs of pomegranate juice against control for plasma CRP."
+    },
+    {
+     "pmid": "22820239",
+     "fits": "no",
+     "reason": "Broad review of the chemistry and pharmacology of pomegranate peel and fruit extracts, with no pooled human inflammation-marker outcomes."
+    }
+   ]
+  },
+  "exercise": {
+   "question": {
+    "population": "Adults, often active or athletes",
+    "intervention": "Pomegranate juice",
+    "comparison": "Placebo drink",
+    "outcome": "Muscle soreness, muscle damage, strength recovery or performance"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40034870",
+     "fits": "partly",
+     "reason": "Population and muscle damage, soreness and recovery outcomes match, but it pools pomegranate supplementation in general with no separate juice-versus-placebo analysis."
+    },
+    {
+     "pmid": "33795919",
+     "fits": "partly",
+     "reason": "Reviews recovery from muscle damage in athletes, but covers tart cherry and pomegranate supplements in any form and does not isolate juice versus placebo."
+    },
+    {
+     "pmid": "30350760",
+     "fits": "partly",
+     "reason": "Healthy adults with performance and recovery outcomes match, but pomegranate supplementation is reviewed in any form rather than juice versus a placebo drink."
+    },
+    {
+     "pmid": "31512981",
+     "fits": "partly",
+     "reason": "Athletes with strength, soreness and muscle damage outcomes match, but it mixes pills and juice and does not analyse juice versus placebo separately."
+    },
+    {
+     "pmid": "37005403",
+     "fits": "no",
+     "reason": "Looks at pomegranate and cognitive function, mostly in animals, not muscle damage or performance in active adults."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Pomegranate juice or the fruit (seeds/arils)",
+    "comparison": "Placebo drink, water, or no pomegranate",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "38410857",
+     "fits": "yes",
+     "reason": "Pools RCTs in adults eating or drinking pomegranate in different forms, mainly juice, and reports systolic and diastolic blood pressure."
+    },
+    {
+     "pmid": "37461211",
+     "fits": "yes",
+     "reason": "Pools clinical trials of pomegranate juice alone in humans and reports systolic and diastolic blood pressure."
+    },
+    {
+     "pmid": "27888156",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled RCTs of drinking pomegranate juice and reports systolic and diastolic blood pressure."
+    },
+    {
+     "pmid": "29173650",
+     "fits": "yes",
+     "reason": "Reviews RCTs in adults of pomegranate juice or capsules against a control, reporting each study's blood pressure, so the juice studies are covered."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Pomegranate juice or the fruit (seeds/arils)",
+    "comparison": "Placebo drink, water, or no pomegranate",
+    "outcome": "Fasting glucose, HbA1c or insulin"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40617711",
+     "fits": "partly",
+     "reason": "RCTs of pomegranate supplementation (form not specified) on cardiometabolic factors; the abstract reports no glucose, HbA1c or insulin results."
+    },
+    {
+     "pmid": "35458227",
+     "fits": "partly",
+     "reason": "Systematic review of pomegranate trials that covers glycemia and insulin resistance, but pools mixed formulations with no analysis of juice or fruit alone."
+    },
+    {
+     "pmid": "42920955",
+     "fits": "partly",
+     "reason": "Adults given pomegranate seed supplements; the abstract reports lipids and inflammation but no glucose, HbA1c or insulin results."
+    },
+    {
+     "pmid": "32951728",
+     "fits": "partly",
+     "reason": "Pooled RCTs on FBG, HbA1c and insulin, but only in type 2 diabetes, with pomegranate supplementation of unspecified form."
+    },
+    {
+     "pmid": "40847381",
+     "fits": "yes",
+     "reason": "Pooled RCTs in adults on FBS, insulin and HbA1c, with a separate dose-response analysis for pomegranate juice."
+    },
+    {
+     "pmid": "38194826",
+     "fits": "yes",
+     "reason": "Pooled RCTs of pomegranate consumption in adults measuring FBG, fasting insulin and HbA1c."
+    },
+    {
+     "pmid": "39499092",
+     "fits": "yes",
+     "reason": "Pooled RCTs in mixed adult groups with subgroups by intervention type, including pomegranate juice, versus placebo, measuring fasting insulin."
+    },
+    {
+     "pmid": "40556017",
+     "fits": "no",
+     "reason": "Mechanistic review of pomegranate compounds and molecular pathways, not a review of trials measuring glucose, HbA1c or insulin in adults."
+    },
+    {
+     "pmid": "28985741",
+     "fits": "yes",
+     "reason": "Pooled RCTs of pomegranate interventions in adults measuring fasting glucose, fasting insulin and HbA1c."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Pomegranate juice or the fruit (seeds/arils)",
+    "comparison": "Placebo drink, water, or no pomegranate",
+    "outcome": "LDL or HDL cholesterol, or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40617711",
+     "fits": "partly",
+     "reason": "Pools pomegranate supplementation trials in mixed forms with no whole-food analysis described; the abstract is cut off before any lipid results are reported."
+    },
+    {
+     "pmid": "35458227",
+     "fits": "partly",
+     "reason": "Reviews pomegranate trials on lipids in people with metabolic syndrome risk factors, but mixes product forms and does not separate juice or fruit."
+    },
+    {
+     "pmid": "37485775",
+     "fits": "partly",
+     "reason": "Limited to hemodialysis patients and mixes juice with extracts and peel extract, though it reports triglycerides and HDL."
+    },
+    {
+     "pmid": "42153011",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials of pomegranate juice in adults reporting triglycerides, LDL and HDL cholesterol."
+    },
+    {
+     "pmid": "42920955",
+     "fits": "partly",
+     "reason": "Pomegranate seed supplementation, possibly not the whole food; reports triglycerides and the LDL/HDL ratio rather than LDL or HDL themselves."
+    },
+    {
+     "pmid": "40216355",
+     "fits": "partly",
+     "reason": "Pools juice, extract and seed oil together with no separate juice analysis described, though it covers all the lipid outcomes."
+    },
+    {
+     "pmid": "40807079",
+     "fits": "partly",
+     "reason": "Pomegranate juice trials with LDL, HDL and triglyceride outcomes, but limited to women with PCOS."
+    },
+    {
+     "pmid": "35405162",
+     "fits": "no",
+     "reason": "Outcomes are oxidative stress markers such as oxidized LDL, not LDL or HDL cholesterol or triglycerides."
+    },
+    {
+     "pmid": "26857863",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled trials of pomegranate consumption (juice amounts reported) on LDL, HDL and triglycerides in humans."
+    },
+    {
+     "pmid": "31987256",
+     "fits": "partly",
+     "reason": "Pomegranate vs placebo on lipids, but dosage forms vary and no separate juice or fruit analysis is described."
+    }
+   ]
+  }
+ }
+}

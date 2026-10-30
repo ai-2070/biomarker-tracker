@@ -1,0 +1,445 @@
+{
+ "topic": "wholefood-ginger",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "osteoarthritis": {
+   "question": {
+    "population": "Adults with knee osteoarthritis",
+    "intervention": "Ginger: ground ginger (reviews of extracts count as partly)",
+    "comparison": "Placebo or no ginger",
+    "outcome": "Pain or disability"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32214292",
+     "fits": "partly",
+     "reason": "Knee OA, placebo comparison, and pain/function match, but oral ginger was given as capsules (a supplement or extract, not the food itself), and topical ginger is included."
+    },
+    {
+     "pmid": "25300574",
+     "fits": "partly",
+     "reason": "Oral ginger vs placebo for pain and disability matches, but the population is OA in general rather than knee OA, and the ginger form (likely supplement) is not stated."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults with type 2 diabetes",
+    "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+    "comparison": "Placebo or no ginger",
+    "outcome": "Fasting glucose, HbA1c or insulin"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42776175",
+     "fits": "yes",
+     "reason": "Pooled RCTs of powdered ginger rhizome versus placebo in adults with type 2 diabetes, reporting fasting glucose, HbA1c and HOMA-IR."
+    },
+    {
+     "pmid": "42661831",
+     "fits": "no",
+     "reason": "Animal studies of 6-gingerol, an isolated ginger compound, in fatty liver disease rather than people with type 2 diabetes."
+    },
+    {
+     "pmid": "42337792",
+     "fits": "yes",
+     "reason": "Pooled RCTs of ginger versus placebo in type 2 diabetes, reporting fasting blood sugar, HbA1c and HOMA-IR."
+    },
+    {
+     "pmid": "39053695",
+     "fits": "yes",
+     "reason": "Pooled RCTs of ginger powder capsules in type 2 diabetes, reporting fasting blood sugar and HbA1c."
+    },
+    {
+     "pmid": "37226794",
+     "fits": "partly",
+     "reason": "Reviews clinical studies of ginger on glucose, HbA1c and insulin resistance, but in diabetes generally, mixed with isolated compounds and lab studies, with no stated control."
+    },
+    {
+     "pmid": "30921234",
+     "fits": "yes",
+     "reason": "Pooled RCTs of dietary ginger versus control in type 2 diabetes, reporting fasting blood sugar and HbA1c."
+    },
+    {
+     "pmid": "29541142",
+     "fits": "partly",
+     "reason": "RCTs of ginger on HbA1c, fasting glucose and insulin, but the population mixes type 2 diabetes with metabolic syndrome."
+    },
+    {
+     "pmid": "29393665",
+     "fits": "partly",
+     "reason": "RCTs of ginger on fasting glucose and insulin, but in overweight and obese people rather than people with type 2 diabetes."
+    },
+    {
+     "pmid": "27806832",
+     "fits": "partly",
+     "reason": "Pools ginger studies on fasting glucose and HbA1c, but the population is not limited to type 2 diabetes and the control group is not stated."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+    "comparison": "Placebo or no ginger",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42337792",
+     "fits": "partly",
+     "reason": "Pooled RCTs of ginger versus placebo on blood pressure, but only in people with type 2 diabetes, a single-illness population."
+    },
+    {
+     "pmid": "41195902",
+     "fits": "yes",
+     "reason": "Pooled RCTs of ginger supplementation in healthy and unhealthy adults, with systolic blood pressure among the outcomes."
+    },
+    {
+     "pmid": "40457497",
+     "fits": "no",
+     "reason": "This is a protocol for a planned review of ginger and blood pressure; it reports no pooled or reviewed study results yet."
+    },
+    {
+     "pmid": "36184251",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs giving ginger alone to adults with cardiovascular risk factors, with systolic and diastolic blood pressure as outcomes."
+    },
+    {
+     "pmid": "42566667",
+     "fits": "yes",
+     "reason": "Pooled RCTs of ginger supplementation in adults, looking at systolic and diastolic blood pressure."
+    },
+    {
+     "pmid": "30972845",
+     "fits": "yes",
+     "reason": "Pooled randomised trials of ginger supplementation, looking at systolic and diastolic blood pressure."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+    "comparison": "Placebo or no ginger",
+    "outcome": "Triglycerides, LDL, HDL or total cholesterol"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42337792",
+     "fits": "partly",
+     "reason": "Pools placebo-controlled trials of ginger reporting triglycerides, HDL, LDL and total cholesterol, but only in people with type 2 diabetes."
+    },
+    {
+     "pmid": "41195902",
+     "fits": "yes",
+     "reason": "Pools RCTs of ginger supplementation in healthy and unhealthy people, with triglycerides, LDL and HDL among the outcomes."
+    },
+    {
+     "pmid": "40457497",
+     "fits": "no",
+     "reason": "This is a protocol for a planned review of ginger and cardiovascular markers; no studies have been pooled or reviewed yet."
+    },
+    {
+     "pmid": "29541142",
+     "fits": "partly",
+     "reason": "Pools RCTs of ginger reporting the lipid profile, but only in people with type 2 diabetes or metabolic syndrome."
+    },
+    {
+     "pmid": "27806832",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of ginger supplementation reporting the lipid profile, including triglycerides and HDL, with no population restriction."
+    },
+    {
+     "pmid": "36786398",
+     "fits": "yes",
+     "reason": "Pools RCTs of ginger intake in humans for triglycerides, total cholesterol, LDL and HDL."
+    },
+    {
+     "pmid": "36165525",
+     "fits": "yes",
+     "reason": "Pools RCTs of ginger supplementation for triglycerides, total cholesterol, LDL and HDL."
+    },
+    {
+     "pmid": "36184251",
+     "fits": "yes",
+     "reason": "Systematically reviews RCTs of ginger alone for triglycerides, LDL, HDL and total cholesterol in people with risk factors such as obesity and diabetes."
+    },
+    {
+     "pmid": "29747751",
+     "fits": "yes",
+     "reason": "Pools trials of ginger supplementation in adults for triglycerides, LDL, HDL and total cholesterol."
+    }
+   ]
+  },
+  "surgery": {
+   "question": {
+    "population": "Adults having surgery",
+    "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+    "comparison": "Placebo or no ginger",
+    "outcome": "Nausea or vomiting after surgery"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "34700257",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing ginger with placebo in people having surgery, with postoperative nausea and vomiting as outcomes."
+    },
+    {
+     "pmid": "15772458",
+     "fits": "yes",
+     "reason": "Systematic review of ginger RCTs across several conditions, with postoperative nausea and vomiting reviewed as its own group."
+    },
+    {
+     "pmid": "10793599",
+     "fits": "yes",
+     "reason": "Review of ginger for nausea and vomiting that pools ginger versus placebo trials for postoperative nausea separately."
+    },
+    {
+     "pmid": "42620607",
+     "fits": "partly",
+     "reason": "Protocol only, with no results yet, and it is limited to adults having laparoscopic surgery in low- and middle-income countries."
+    },
+    {
+     "pmid": "37379959",
+     "fits": "yes",
+     "reason": "Network meta-analysis of ginger preparations, including ginger powder, against placebo for postoperative nausea and vomiting in surgical patients."
+    },
+    {
+     "pmid": "34312974",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs with a ginger versus placebo comparison for postoperative nausea and vomiting."
+    },
+    {
+     "pmid": "30466995",
+     "fits": "yes",
+     "reason": "Meta-analysis of placebo-controlled RCTs of oral ginger in people having any surgery, with postoperative nausea and vomiting as outcomes."
+    },
+    {
+     "pmid": "35219104",
+     "fits": "no",
+     "reason": "A comment on another meta-analysis, not a systematic review."
+    },
+    {
+     "pmid": "16389016",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing ginger with placebo for postoperative nausea and vomiting over 24 hours."
+    }
+   ]
+  },
+  "dysmenorrhoea": {
+   "question": {
+    "population": "Women with period pain (primary dysmenorrhoea)",
+    "intervention": "Ginger: ground ginger in capsules",
+    "comparison": "Placebo or painkillers (NSAIDs)",
+    "outcome": "Pain intensity or duration"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "38770631",
+     "fits": "yes",
+     "reason": "Pools trials of ginger against placebo and NSAIDs in primary dysmenorrhoea, reporting both pain intensity and pain duration."
+    },
+    {
+     "pmid": "33842121",
+     "fits": "yes",
+     "reason": "Meta-analysis of oral ginger against placebo and NSAIDs in primary dysmenorrhoea, with pain severity and duration as main outcomes."
+    },
+    {
+     "pmid": "32603204",
+     "fits": "yes",
+     "reason": "Reviews several herbs but has a separate ginger-vs-placebo analysis of pain intensity in primary dysmenorrhoea."
+    },
+    {
+     "pmid": "27274753",
+     "fits": "yes",
+     "reason": "Pools trials of oral ginger against placebo and an NSAID for menstrual pain severity; population is dysmenorrhoea, not stated as primary only."
+    },
+    {
+     "pmid": "26177393",
+     "fits": "yes",
+     "reason": "Meta-analysis of ginger powder (750-2000 mg) against placebo in primary dysmenorrhoea, measuring pain on a visual analogue scale."
+    }
+   ]
+  },
+  "pregnancy": {
+   "question": {
+    "population": "Pregnant women with nausea and vomiting",
+    "intervention": "Ginger: fresh, dried, ground in capsules, or tea",
+    "comparison": "Placebo, vitamin B6, or no treatment",
+    "outcome": "Nausea, vomiting, or safety in pregnancy"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42322087",
+     "fits": "yes",
+     "reason": "Umbrella review of systematic reviews of ginger (mostly 450-1950 mg capsules) versus placebo or vitamin B6 for nausea, vomiting and safety in pregnancy."
+    },
+    {
+     "pmid": "40226035",
+     "fits": "partly",
+     "reason": "Ginger capsules, powder or biscuits versus placebo or B6, but the population is narrowed to women with hyperemesis gravidarum, not nausea and vomiting of pregnancy in general."
+    },
+    {
+     "pmid": "31937153",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of ginger versus placebo and versus vitamin B6 for nausea and vomiting in pregnant women."
+    },
+    {
+     "pmid": "24390893",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of ginger (about 1 g daily) versus placebo for nausea and vomiting in early pregnancy."
+    },
+    {
+     "pmid": "24642205",
+     "fits": "yes",
+     "reason": "Systematic review and meta-analysis of randomised trials of oral ginger versus placebo for nausea, vomiting and safety in pregnancy."
+    },
+    {
+     "pmid": "22951628",
+     "fits": "yes",
+     "reason": "Systematic review of randomised trials of oral ginger versus placebo for nausea, vomiting and safety in pregnancy."
+    },
+    {
+     "pmid": "15802416",
+     "fits": "yes",
+     "reason": "Systematic review of randomised trials and a cohort study of ginger versus placebo or vitamin B6 for nausea, vomiting and safety in pregnancy."
+    }
+   ]
+  },
+  "chemotherapy": {
+   "question": {
+    "population": "People having chemotherapy",
+    "intervention": "Ginger added to usual anti-sickness medicines",
+    "comparison": "Placebo or usual medicines alone",
+    "outcome": "Nausea or vomiting"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "34700257",
+     "fits": "no",
+     "reason": "This review is about people having surgery (nausea and vomiting after an operation), not people having chemotherapy."
+    },
+    {
+     "pmid": "25912592",
+     "fits": "no",
+     "reason": "This is a narrative review, not a systematic one. It covers ginger extract and treats it as an alternative to other anti-sickness drugs, not an addition to them."
+    },
+    {
+     "pmid": "10793599",
+     "fits": "partly",
+     "reason": "Ginger is compared with placebo for nausea and vomiting from mixed causes. Only one study is in chemotherapy, and it is not analysed separately."
+    },
+    {
+     "pmid": "38625733",
+     "fits": "partly",
+     "reason": "This pools trials of ginger added to usual anti-sickness drugs in chemotherapy. But the ginger was given as capsules (a supplement), and some trials used ginger moxibustion."
+    },
+    {
+     "pmid": "39173346",
+     "fits": "partly",
+     "reason": "Oral ginger for chemotherapy nausea and vomiting matches, but only children were included and ginger was given as a supplement."
+    },
+    {
+     "pmid": "36232567",
+     "fits": "partly",
+     "reason": "This pools trials of ginger for chemotherapy nausea and vomiting, but only in breast cancer patients, a narrower group than all people having chemotherapy."
+    },
+    {
+     "pmid": "30299420",
+     "fits": "yes",
+     "reason": "This pools trials of oral ginger, including dry and powdered ginger root, against placebo or standard care for chemotherapy nausea and vomiting."
+    },
+    {
+     "pmid": "31519467",
+     "fits": "partly",
+     "reason": "This pools trials in adults having chemotherapy against placebo or standard anti-sickness drugs, but the ginger was given as a supplement rather than as the food."
+    },
+    {
+     "pmid": "36501010",
+     "fits": "partly",
+     "reason": "This pools trials of ginger supplements against placebo or anti-sickness drugs for chemotherapy nausea and vomiting, so it is a supplement rather than the food."
+    },
+    {
+     "pmid": "31225678",
+     "fits": "partly",
+     "reason": "This reviews trials of ginger for chemotherapy nausea and vomiting, but only in breast cancer patients, a narrower group."
+    },
+    {
+     "pmid": "23448741",
+     "fits": "yes",
+     "reason": "This pools trials of ginger against placebo or metoclopramide in cancer patients, with chemotherapy nausea and vomiting as the outcome."
+    },
+    {
+     "pmid": "23550785",
+     "fits": "yes",
+     "reason": "This systematically reviews trials of ginger for chemotherapy nausea and vomiting in people having chemotherapy."
+    }
+   ]
+  },
+  "inflammation": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Ginger: ground ginger in capsules or other ginger preparations",
+    "comparison": "Placebo or no ginger",
+    "outcome": "CRP or other inflammation markers"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "38102801",
+     "fits": "no",
+     "reason": "Reviews ginger compounds in sepsis using experimental and animal models, not adults eating ginger compared with placebo."
+    },
+    {
+     "pmid": "42661831",
+     "fits": "no",
+     "reason": "Meta-analysis of the isolated compound 6-gingerol in animal models of NAFLD, not people eating ginger."
+    },
+    {
+     "pmid": "27806832",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective studies of ginger supplementation in adults, with serum CRP as an outcome."
+    },
+    {
+     "pmid": "36184251",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of ginger alone in adults with cardiometabolic and other conditions, with CRP and TNF-α as outcomes."
+    },
+    {
+     "pmid": "41123858",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of ginger supplementation in adults, pooling CRP, TNF-α and IL-6."
+    },
+    {
+     "pmid": "32763761",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of ginger supplementation, pooling CRP, hs-CRP, TNF-α, IL-6 and sICAM."
+    },
+    {
+     "pmid": "34857250",
+     "fits": "partly",
+     "reason": "Matches ginger, comparison and inflammation markers, but only includes people with type 2 diabetes."
+    },
+    {
+     "pmid": "32147845",
+     "fits": "yes",
+     "reason": "Meta-analysis of clinical trials of ginger supplementation compared with controls, with CRP, TNF-α and IL-6 as outcomes."
+    },
+    {
+     "pmid": "35585878",
+     "fits": "no",
+     "reason": "Broad review of ginger's properties for healthy ageing; the abstract describes no human trials comparing ginger with placebo on inflammation markers."
+    }
+   ]
+  }
+ }
+}

@@ -18,7 +18,7 @@ import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useMediaQuery, use
 import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
 import type { ProtocolEntry } from "../../core/types";
-import { BIOMARKER_MAP, FITNESS_MAP, LIFESTYLE, fullName, nameInSentence } from "../knowledge";
+import { BIOMARKER_MAP, FITNESS_MAP, LIFESTYLE, WHOLE_FOODS, fullName, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { FitnessPanel } from "../components/dashboard/fitness";
 import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
@@ -406,16 +406,19 @@ function SourceLink({ source: s }: { source: Citation }) {
 
 /** Lifestyle research that mentions this marker (Sleep for sleep, Walking and Sauna for blood pressure…). */
 function LifestyleLinks({ markerId }: { markerId: string }) {
-  const topics = LIFESTYLE.filter((l) => l.markers.includes(markerId));
+  const topics = [
+    ...WHOLE_FOODS.filter((f) => f.markers.includes(markerId)).map((f) => ({ id: f.id, name: f.name, to: href({ name: "wholefood", id: f.id }) })),
+    ...LIFESTYLE.filter((l) => l.markers.includes(markerId)).map((l) => ({ id: l.id, name: l.name, to: href({ name: "lifestyle-item", id: l.id }) })),
+  ];
   if (!topics.length) return null;
   return (
     <p className="text-sm text-ink-2">
-      What research says about habits that can change it:{" "}
-      {topics.map((l, i) => (
-        <span key={l.id}>
+      What research says about foods and habits that can change it:{" "}
+      {topics.map((t, i) => (
+        <span key={t.id}>
           {i > 0 && " · "}
-          <a href={href({ name: "lifestyle-item", id: l.id })} className="font-medium text-accent">
-            {l.name}
+          <a href={t.to} className="font-medium text-accent">
+            {t.name}
           </a>
         </span>
       ))}

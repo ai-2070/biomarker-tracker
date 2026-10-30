@@ -1,0 +1,271 @@
+{
+  "id": "pomegranate",
+  "name": "Pomegranate",
+  "group": "fruit",
+  "otherNames": ["Pomegranate juice", "Pomegranate seeds", "Pomegranate arils", "Punica granatum", "Pomegranates"],
+  "summary": "A fruit whose juicy red seeds (arils) are eaten fresh or pressed into juice. Almost all the human research is on 100% pomegranate juice, not on the fresh seeds. Meta-analyses of small trials found that juice went with a few mmHg lower blood pressure, with smaller and less certain changes in blood fats, blood sugar and inflammation; trials on artery thickness, prostate cancer and recovery from exercise did not show a clear effect.",
+  "inIt": [
+    "Pomegranate is known for ellagitannins, a kind of tannin. The main one is punicalagin. In one study, 180 mL of pomegranate juice held 318 mg of ellagitannins (as punicalagins) and 25 mg of ellagic acid.",
+    "Juices also contain anthocyanins (the red colour), ellagic acid compounds and other tannins, measured in commercial and home-pressed juices in a 2000 study.",
+    "The UK food table (CoFID) measures the basic nutrients in the seeds: per 100 g, 51 kcal, 11.8 g of sugars, 13 mg of vitamin C and 240 mg of potassium. It has no fibre value for them, and it measures none of the ellagitannins, anthocyanins or other polyphenols.",
+    "The body takes up little of these compounds as they are. After juice, ellagic acid showed up in the blood within about an hour and was gone by about four hours.",
+    "Gut bacteria turn ellagic acid into urolithins, which stay in the body longer. People differ a lot: in intervention trials, 25 to 80% of people made only urolithin A, 10 to 50% also made other urolithins, and 5 to 25% made none that could be detected. In a group of 839 people, age was the main factor linked to which type someone was.",
+    "Nobody knows yet which of these compounds, if any, explains the effects seen in trials. A food has thousands of compounds that food tables don't track."
+  ],
+  "tableFoods": [{ "id": "14-226", "label": "Seeds from half a pomegranate (about 80 g)", "grams": 80 }],
+  "processing": [
+    "Fresh seeds (arils) and 100% juice are not the same food. In a 2000 study, commercial juices pressed from whole pomegranates held 1,500 to 1,900 mg of punicalagin per litre, while juice pressed in the lab from the seeds alone had only traces. The authors concluded that industrial pressing pulls tannins out of the rind.",
+    "Pressing with the peel made juice bitter and astringent, with more total polyphenols but fewer anthocyanins, in a 2013 study.",
+    "Many trials used 100% pomegranate juice (some of the Wonderful variety) or juice concentrate. Many others used extracts in capsules or liquid, or seed oil: those are different products, and this page keeps them apart where the studies allow.",
+    "In 16 volunteers, a cup of juice and two pomegranate extracts gave similar blood levels of ellagic acid and similar urolithin A in urine. That doesn't show they have the same effects.",
+    "The UK food table has only a sweetened pomegranate juice drink (CoFID 14-341), not pure juice, so its numbers don't describe 100% juice. It lists 0 g of fibre for that drink."
+  ],
+  "whatStudiesDid": "Most trials gave 100% pomegranate juice every day for a few weeks to about 18 months. Amounts were usually around a cup (about 240 mL); meta-analyses grouped trials by up to or more than 240 mL a day, or up to or more than 300 mL a day. A trial in adults at moderate heart risk gave 240 mL a day for up to 18 months. A prostate cancer trial gave 8 ounces (about 240 mL) a day, with 570 mg of polyphenols. A trial in people on dialysis gave 100 mL at each dialysis session, three times a week, for a year. Exercise trials gave juice for a few days around hard exercise, for example 250 mL twice a day for nine days. Very few trials used the fresh seeds.",
+  "markers": ["bp_systolic", "bp_diastolic", "ldl", "hdl", "triglycerides", "crp_hs", "glucose", "hba1c"],
+  "findings": [
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in small randomised trials, many with high blood pressure or heart risk; the 2017 and 2023 meta-analyses included 100% pomegranate juice only",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Mostly small, short trials: 14 juice trials with 573 people in total in the 2023 meta-analysis",
+        "Very mixed results between trials: in the 2024 meta-analysis of all pomegranate products, heterogeneity (I²) was 90% for systolic pressure",
+        "A 2017 systematic review of 8 trials judged the evidence weak: only 2 found a clear fall in systolic pressure",
+        "In the 2023 meta-analysis the effect was seen in trials of up to 2 months and not in longer ones",
+        "The abstracts don't say who funded most trials"
+      ],
+      "summary": "A 2017 meta-analysis of 8 randomised placebo-controlled trials of pomegranate juice found systolic blood pressure 4.96 mmHg lower (95% confidence interval 2.25 to 7.67 lower) and diastolic 2.01 mmHg lower (0.31 to 3.71 lower). A 2023 meta-analysis of 14 juice trials (573 people) found systolic pressure 5.02 mmHg lower (2.48 to 7.55 lower). In trials with up to 300 mL a day it was 6.11 mmHg lower; with more than 300 mL a day, 3.28 mmHg lower, which could be chance. Trials of up to 2 months found a fall, and the authors wrote that the benefit was lost after 2 months. A 2024 meta-analysis of 22 trials of all pomegranate products (juice, extracts and others mixed) found systolic 7.87 and diastolic 3.23 mmHg lower, with a larger fall when systolic pressure started above 130 mmHg, but results varied widely between trials. A 2017 systematic review of 8 trials, rating their reporting, concluded that the trials did not convincingly show a benefit and called for longer, better trials. No trial measured heart attacks or strokes.",
+      "bottomLine": "In meta-analyses of small trials, drinking pomegranate juice went with systolic blood pressure about 5 mmHg lower and diastolic about 2 mmHg lower. Trials were short and results varied a lot, the fall wasn't seen in trials longer than 2 months, and one review called the evidence weak.",
+      "studies": [
+        { "pmid": "27888156", "doi": "10.1016/j.phrs.2016.11.018", "title": "Effects of pomegranate juice on blood pressure: A systematic review and meta-analysis of randomized controlled trials.", "year": 2017, "studyType": "meta-analysis" },
+        { "pmid": "37461211", "doi": "10.1002/ptr.7952", "title": "Impact of pomegranate juice on blood pressure: A systematic review and meta-analysis.", "year": 2023, "studyType": "meta-analysis", "n": 573 },
+        { "pmid": "38410857", "doi": "10.1002/ptr.8170", "title": "The effects of pomegranate consumption on blood pressure in adults: A systematic review and meta-analysis.", "year": 2024, "studyType": "meta-analysis" },
+        { "pmid": "29173650", "doi": "10.1016/j.nutres.2017.07.007", "title": "Evidence for the effectiveness of pomegranate supplementation for blood pressure management is weak: A systematic review of randomized clinical trials.", "year": 2017, "studyType": "review", "n": 619 }
+      ]
+    },
+    {
+      "outcome": "Blood fats (LDL cholesterol, HDL cholesterol, triglycerides)",
+      "population": "Adults in small randomised trials, healthy or with metabolic problems such as diabetes or fatty liver",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analyses disagree: two found no effect on blood fats, a newer one of juice alone found small changes",
+        "A 2020 review rated the certainty of the evidence as low (GRADE), because results were imprecise and inconsistent",
+        "The juice-only meta-analysis found high heterogeneity and many trials did not describe how people were randomised",
+        "The changes found are small: a few mg/dL"
+      ],
+      "summary": "A 2026 meta-analysis of 17 randomised trials of pomegranate juice only (663 people; full text read) found triglycerides 8.2 mg/dL lower (95% confidence interval 0.12 to 16.3 lower), LDL cholesterol 4.8 mg/dL lower (0.16 to 9.4 lower) and HDL cholesterol 2.8 mg/dL higher (0.9 to 4.72 higher), with no change in total cholesterol; results varied a lot between trials, and the changes looked larger in people with metabolic disorders. Older meta-analyses did not find this: a 2016 meta-analysis of 12 trials (545 people) found no effect of pomegranate on any blood fat, and a 2020 review of 17 trials (763 people) found no effect and rated the evidence low. A 2025 meta-analysis of 37 trials of juice, extracts and seed oil together (2,695 people) found HDL 2.5 mg/dL higher and no change in total cholesterol, LDL or triglycerides.",
+      "bottomLine": "Results disagree. The newest meta-analysis of pomegranate juice alone found slightly lower LDL and triglycerides and slightly higher HDL, a few mg/dL each, but earlier meta-analyses found no effect and one rated the evidence low.",
+      "studies": [
+        { "pmid": "42153011", "doi": "10.22038/ajp.2025.26398", "title": "Pomegranate juice consumption and lipid profile: An updated systematic review and meta-analysis.", "year": 2026, "studyType": "meta-analysis", "n": 663 },
+        { "pmid": "26857863", "doi": "10.1016/j.phymed.2015.12.014", "title": "Lipid profile changes after pomegranate consumption: A systematic review and meta-analysis of randomized controlled trials.", "year": 2016, "studyType": "meta-analysis", "n": 545 },
+        { "pmid": "31987256", "doi": "10.1016/j.ctim.2019.102236", "title": "Effects of pomegranate on lipid profiles: A systematic review of randomised controlled trials.", "year": 2020, "studyType": "meta-analysis", "n": 763 },
+        { "pmid": "40216355", "doi": "10.1016/j.prostaglandins.2025.106992", "title": "An updated systematic review and meta-analysis of pomegranate consumption on lipid profile.", "year": 2025, "studyType": "meta-analysis", "n": 2695 }
+      ]
+    },
+    {
+      "outcome": "Inflammation: C-reactive protein (CRP)",
+      "population": "Adults in randomised trials, many in Iran, including people with type 2 diabetes or polycystic ovary syndrome",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Two meta-analyses of juice disagree: the first found no clear effect, the update found a much larger fall",
+        "The update's effect came mainly from some subgroups (Iranian trials, type 2 diabetes, polycystic ovary syndrome)",
+        "Small trials; CRP is a marker in the blood, not an illness",
+        "The certainty rating of the 2024 update isn't given in its abstract"
+      ],
+      "summary": "A 2016 meta-analysis of 5 randomised trials of pomegranate juice (427 people) found no clear effect on CRP (0.22 mg/L lower, 95% confidence interval 0.45 lower to 0.01 higher). A 2024 update with 11 juice trials (696 people) found CRP 2.55 mg/L lower (1.66 to 3.44 lower), with the fall seen in subgroups such as Iranian trials, people with type 2 diabetes or polycystic ovary syndrome, and trials with less than 250 mL a day; it found no link with dose or duration. A 2023 meta-analysis of 33 trials of all pomegranate products found CRP 0.50 mg/L lower (0.20 to 0.79 lower), with lower IL-6 and TNF-α, two other inflammation markers. The two juice meta-analyses differ more than tenfold in size of effect.",
+      "bottomLine": "One meta-analysis of pomegranate juice found no clear effect on CRP, an inflammation marker; a later one with more trials found a fall of 2.55 mg/L, mainly in some groups such as people with type 2 diabetes. The results disagree, so the effect is uncertain.",
+      "studies": [
+        { "pmid": "26922037", "doi": "10.1016/j.phymed.2015.12.008", "title": "Effects of supplementation with pomegranate juice on plasma C-reactive protein concentrations: A systematic review and meta-analysis of randomized controlled trials.", "year": 2016, "studyType": "meta-analysis", "n": 427 },
+        { "pmid": "38553998", "doi": "10.1002/ptr.8188", "title": "The effect of pomegranate juice supplementation on C-reactive protein levels: GRADE-assessed systematic review and dose-response updated meta-analysis of data from randomized controlled trials.", "year": 2024, "studyType": "meta-analysis", "n": 696 },
+        { "pmid": "37507609", "doi": "10.1007/s10787-023-01294-x", "title": "The effects of pomegranate consumption on inflammatory and oxidative stress biomarkers in adults: a systematic review and meta-analysis.", "year": 2023, "studyType": "meta-analysis" }
+      ]
+    },
+    {
+      "outcome": "Blood sugar: fasting glucose and HbA1c (long-term blood sugar)",
+      "population": "Adults in randomised trials, healthy or with type 2 diabetes or metabolic syndrome",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The 2025 meta-analysis rated its pooled results for all pomegranate products as moderate certainty (GRADE), but did not rate juice on its own",
+        "In juice trials, results varied very widely (heterogeneity I² 93% for fasting glucose)",
+        "An earlier meta-analysis (2017) found no effect",
+        "The change in fasting glucose is small, and HbA1c did not change"
+      ],
+      "summary": "A 2025 meta-analysis of 34 randomised trials (1,500 people; full text read) found fasting glucose 3.0 mg/dL (about 0.17 mmol/L) lower with pomegranate products of any kind, and rated this moderate certainty, but HbA1c did not change. In the 22 trials of juice, fasting glucose was 2.76 mg/dL lower (95% confidence interval 0.68 to 4.83 lower), with very mixed results between trials; insulin did not change clearly (0.29 lower, 0.74 lower to 0.17 higher) and nor did HbA1c in the 3 juice trials that measured it (0.15 percentage points lower, 0.39 lower to 0.10 higher). The one trial of the fruit itself found no change (1.30 mg/dL higher, 3.11 lower to 5.71 higher). A 2017 meta-analysis of 16 trials (538 people) found no effect on fasting glucose, insulin or HbA1c.",
+      "bottomLine": "In trials of pomegranate juice, fasting blood sugar was on average about 3 mg/dL (0.15 mmol/L) lower, a small change, with very mixed results; long-term blood sugar (HbA1c) did not change, and an earlier meta-analysis found no effect at all.",
+      "studies": [
+        { "pmid": "40847381", "doi": "10.1186/s40795-025-01138-7", "title": "The effect of pomegranate products on glycemic profile in adults: a GRADE- assessed systematic review and dose-response meta-analysis of randomized controlled trials.", "year": 2025, "studyType": "meta-analysis", "n": 1500 },
+        { "pmid": "28985741", "doi": "10.1186/s12937-017-0290-1", "title": "Lack of efficacy of pomegranate supplementation for glucose management, insulin levels and sensitivity: evidence from a systematic review and meta-analysis.", "year": 2017, "studyType": "meta-analysis", "n": 538 }
+      ]
+    },
+    {
+      "outcome": "Thickening of the neck arteries (carotid intima-media thickness)",
+      "population": "Adults at moderate heart risk (randomised trial); a few people with narrowed neck arteries (small study without randomisation)",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The larger, randomised trial (289 people, 18 months) found no overall difference",
+        "The study that found less thickening had 10 people drinking juice, was not randomised, and was not blinded",
+        "Artery thickness is a sign of hardening arteries, not an illness itself",
+        "The benefits in some subgroups of the larger trial were exploratory analyses"
+      ],
+      "summary": "In a 2004 study without randomisation, 10 people with narrowed neck arteries drank pomegranate juice for a year (5 for up to 3 years). Their artery wall thickness fell by up to 30% after a year, while it rose by 9% in a control group that didn't drink juice; systolic blood pressure was 12% lower after a year and didn't fall further. A later double-blind randomised trial in 289 men and women at moderate heart risk gave 240 mL of juice a day or a control drink for up to 18 months and found no difference in how fast artery walls thickened overall. In exploratory analyses, people with the most unfavourable blood fats or oxidation markers at the start had less thickening with juice; these subgroup findings need testing.",
+      "bottomLine": "A very small early study without randomisation found thinner artery walls after a year of pomegranate juice. A larger randomised trial in 289 people at moderate heart risk, 240 mL a day for up to 18 months, found no overall difference.",
+      "studies": [
+        { "pmid": "19766760", "doi": "10.1016/j.amjcard.2009.05.037", "title": "Effects of consumption of pomegranate juice on carotid intima-media thickness in men and women at moderate risk for coronary heart disease.", "year": 2009, "studyType": "rct", "n": 289 },
+        { "pmid": "15158307", "doi": "10.1016/j.clnu.2003.10.002", "title": "Pomegranate juice consumption for 3 years by patients with carotid artery stenosis reduces common carotid intima-media thickness, blood pressure and LDL oxidation.", "year": 2004, "studyType": "observational" }
+      ]
+    },
+    {
+      "outcome": "Prostate cancer: how fast PSA rises after treatment (PSA doubling time)",
+      "population": "Men whose PSA was rising again after surgery or radiotherapy for prostate cancer, and men on active surveillance",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The first juice trial had no comparison group; PSA doubling time also lengthened with placebo in the later trial",
+        "In the placebo-controlled trial most men had an extract; the juice group was 17 men",
+        "PSA doubling time is a marker, not survival or spread of cancer",
+        "The benefit seen in men with one gene type (MnSOD AA) was found in an extract group and needs testing"
+      ],
+      "summary": "In a 2006 trial without a comparison group, men with rising PSA after prostate cancer treatment drank 8 ounces (about 240 mL) of pomegranate juice a day; the average time for PSA to double rose from 15 to 54 months. A later double-blind placebo-controlled trial (183 men) mostly tested an extract: median PSA doubling time lengthened from 11.1 to 15.6 months with placebo, 12.9 to 14.5 with extract and 12.7 to 20.3 with juice (17 men), and none of these differed clearly from each other. A 2017 review concluded that pomegranate juice and extract are safe but did not clearly improve outcomes in these men in the large placebo-controlled trial. A 2021 trial of extract in 30 men on active surveillance found no difference in PSA doubling time.",
+      "bottomLine": "An early trial without a comparison group found PSA rising more slowly in men drinking pomegranate juice after prostate cancer treatment, but in a later placebo-controlled trial PSA slowed with placebo too, and juice or extract did not differ clearly from it.",
+      "studies": [
+        { "pmid": "16818701", "doi": "10.1158/1078-0432.ccr-05-2290", "title": "Phase II study of pomegranate juice for men with rising prostate-specific antigen following surgery or radiation for prostate cancer.", "year": 2006, "studyType": "observational" },
+        { "pmid": "26169045", "doi": "10.1038/pcan.2015.32", "title": "A randomized, double-blind, placebo-controlled study of the effects of pomegranate extract on rising PSA levels in men following primary therapy for prostate cancer.", "year": 2015, "studyType": "rct", "n": 183 },
+        { "pmid": "28440320", "doi": "10.1038/pcan.2017.19", "title": "A review of pomegranate in prostate cancer.", "year": 2017, "studyType": "review" },
+        { "pmid": "33095939", "doi": "10.1002/pros.24076", "title": "A phase II randomized placebo-controlled trial of pomegranate fruit extract in men with localized prostate cancer undergoing active surveillance.", "year": 2021, "studyType": "rct", "n": 30 }
+      ]
+    },
+    {
+      "outcome": "Muscle damage and soreness after hard exercise",
+      "population": "Mostly young men, trained or untrained, in small trials of eccentric exercise, weightlifting or jumping",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Ten small studies in the meta-analysis, mixing juice and extracts",
+        "Almost all participants were men",
+        "Different exercises, amounts and timings make trials hard to compare",
+        "Some single trials found benefits, others found none"
+      ],
+      "summary": "A 2025 meta-analysis of 10 studies of pomegranate juice or extract found no clear effect on creatine kinase (a muscle damage marker), myoglobin, lactate or muscle soreness after hard exercise. Lactate dehydrogenase, another damage marker, was 21 U/L lower right after exercise (3.0 to 39.3 lower). Single trials of juice differ: in 17 resistance-trained men, juice went with better strength and less soreness in the arm, but not the thigh; in 36 untrained men drinking 250 mL twice a day for nine days, juice was no better than a placebo drink; and in 14 volleyball players drinking 1,000 mL around a jumping test, juice did not beat placebo on average.",
+      "bottomLine": "A meta-analysis of 10 small studies, mostly in young men, found no clear effect of pomegranate juice or extract on muscle soreness or most muscle damage markers after hard exercise. Single trials disagree.",
+      "studies": [
+        { "pmid": "40034870", "doi": "10.1016/j.cdnut.2025.104560", "title": "The Effects of Pomegranate Supplementation on Markers of Exercise-Induced Muscle Damage: A Systematic Review and Meta-Analysis.", "year": 2025, "studyType": "meta-analysis" },
+        { "pmid": "21659887", "doi": "10.1519/jsc.0b013e318220d992", "title": "The effect of pomegranate juice supplementation on strength and soreness after eccentric exercise.", "year": 2011, "studyType": "rct", "n": 17 },
+        { "pmid": "31337122", "doi": "10.3390/nu11071593", "title": "No Effect of Tart Cherry Juice or Pomegranate Juice on Recovery from Exercise-Induced Muscle Damage in Non-Resistance Trained Men.", "year": 2019, "studyType": "rct", "n": 36 },
+        { "pmid": "42015544", "doi": "10.1080/15502783.2026.2642149", "title": "Individual responses to pomegranate juice on recovery from exercise-induced muscle damage in collegiate male volleyball players.", "year": 2026, "studyType": "rct", "n": 14 }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Blood pressure in meta-analyses of pomegranate trials",
+      "caption": "Average difference in blood pressure (mmHg) between people drinking pomegranate juice and the comparison groups, with 95% confidence intervals. Below 0 means lower blood pressure. The last two bars mix juice, extracts and other products. An interval that crosses 0 could be chance. Trials were small and short, and results varied a lot between them.",
+      "scale": "linear",
+      "unit": "mmHg",
+      "reference": { "value": 0, "label": "No difference" },
+      "items": [
+        { "label": "Systolic, juice (8 trials)", "value": -4.96, "low": -7.67, "high": -2.25, "note": "2017 meta-analysis" },
+        { "label": "Diastolic, juice (8 trials)", "value": -2.01, "low": -3.71, "high": -0.31, "note": "2017 meta-analysis" },
+        { "label": "Systolic, juice (14 trials)", "value": -5.02, "low": -7.55, "high": -2.48, "note": "2023 meta-analysis, 573 people" },
+        { "label": "Systolic, juice up to 300 mL a day", "value": -6.11, "low": -9.22, "high": -3.0, "note": "2023 meta-analysis, subgroup" },
+        { "label": "Systolic, juice over 300 mL a day", "value": -3.28, "low": -6.85, "high": 0.27, "note": "2023 meta-analysis, subgroup" },
+        { "label": "Systolic, all pomegranate products (22 trials)", "value": -7.87, "low": -10.34, "high": -5.39, "note": "2024 meta-analysis; I² 90%" },
+        { "label": "Diastolic, all pomegranate products (22 trials)", "value": -3.23, "low": -5.37, "high": -1.09, "note": "2024 meta-analysis; I² 92%" }
+      ],
+      "sources": [
+        { "pmid": "27888156", "doi": "10.1016/j.phrs.2016.11.018", "title": "Effects of pomegranate juice on blood pressure: A systematic review and meta-analysis of randomized controlled trials.", "year": 2017, "studyType": "meta-analysis" },
+        { "pmid": "37461211", "doi": "10.1002/ptr.7952", "title": "Impact of pomegranate juice on blood pressure: A systematic review and meta-analysis.", "year": 2023, "studyType": "meta-analysis", "n": 573 },
+        { "pmid": "38410857", "doi": "10.1002/ptr.8170", "title": "The effects of pomegranate consumption on blood pressure in adults: A systematic review and meta-analysis.", "year": 2024, "studyType": "meta-analysis" }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Blood fats in a meta-analysis of pomegranate juice",
+      "caption": "Average difference (mg/dL) between people drinking pomegranate juice and comparison groups in 17 randomised trials (663 people), with 95% confidence intervals. For LDL and triglycerides below 0 means lower; for HDL above 0 means higher. Total cholesterol didn't change. Older meta-analyses found no effect on blood fats, so these small differences are uncertain. To convert: LDL and HDL divide by 38.7 for mmol/L, triglycerides by 88.6.",
+      "scale": "linear",
+      "unit": "mg/dL",
+      "reference": { "value": 0, "label": "No difference" },
+      "items": [
+        { "label": "Triglycerides", "value": -8.2, "low": -16.3, "high": -0.12, "note": "17 treatment arms" },
+        { "label": "LDL cholesterol", "value": -4.8, "low": -9.4, "high": -0.16 },
+        { "label": "HDL cholesterol", "value": 2.8, "low": 0.9, "high": 4.72 }
+      ],
+      "sources": [
+        { "pmid": "42153011", "doi": "10.22038/ajp.2025.26398", "title": "Pomegranate juice consumption and lipid profile: An updated systematic review and meta-analysis.", "year": 2026, "studyType": "meta-analysis", "n": 663 }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "From pomegranate tannins to urolithins",
+      "caption": "What studies of people drinking pomegranate juice found happens to its main polyphenols. How much someone makes of each urolithin depends on their gut bacteria, so the same juice may act differently in different people; whether that changes its effects is not known.",
+      "steps": [
+        { "label": "In the juice", "text": "In one study, 180 mL of juice held 318 mg of ellagitannins (as punicalagins) and 25 mg of ellagic acid." },
+        { "label": "Ellagic acid in the blood", "text": "After 180 mL of juice concentrate, ellagic acid appeared in the blood of all 18 volunteers, peaking about an hour later. In another study it was gone by 4 hours." },
+        { "label": "Gut bacteria make urolithins", "text": "Bacteria in the gut turn ellagic acid into urolithins. Urolithin A was found in the urine of 11 of 18 volunteers on the day of the juice and 16 of 18 the next day." },
+        { "label": "People differ", "text": "In trials, 25 to 80% of people made only urolithin A, 10 to 50% also made other urolithins, and 5 to 25% made none that could be detected. Age was the main factor linked to this in 839 people." }
+      ],
+      "sources": [
+        { "pmid": "15369737", "doi": "10.1016/j.cccn.2004.04.029", "title": "Bioavailability of ellagic acid in human plasma after consumption of ellagitannins from pomegranate (Punica granatum L.) juice.", "year": 2004, "studyType": "observational", "n": 1 },
+        { "pmid": "16988113", "doi": "10.1093/jn/136.10.2481", "title": "Pomegranate juice ellagitannin metabolites are present in human plasma and some persist in urine for up to 48 hours.", "year": 2006, "studyType": "observational", "n": 18 },
+        { "pmid": "24976365", "doi": "10.1021/jf5024615", "title": "Ellagic acid metabolism by human gut microbiota: consistent observation of three urolithin phenotypes in intervention trials, independent of food source, age, and health status.", "year": 2014, "studyType": "review" },
+        { "pmid": "30004553", "doi": "10.1039/c8fo00956b", "title": "The gut microbiota urolithin metabotypes revisited: the human metabolism of ellagic acid is mainly determined by aging.", "year": 2018, "studyType": "observational", "n": 839 }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Warfarin or other blood thinners",
+      "note": "Two case reports describe changed blood-clotting results (INR) in people on warfarin linked to pomegranate juice: in one, the INR fell too low after a woman stopped drinking the juice. Case reports can't prove the juice was the cause. Studies in volunteers found that pomegranate juice, unlike grapefruit juice, did not change how the body cleared midazolam (broken down by the enzyme CYP3A) or flurbiprofen (CYP2C9). The evidence for an interaction is weak. If you take warfarin, talk to your doctor before changing how much pomegranate juice you drink.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Kidney disease or dialysis",
+      "note": "The UK food table lists 240 mg of potassium per 100 g of the seeds; it has no value for pure juice. Small trials in people on dialysis gave 100 mL of juice at each dialysis session and reported it as safe and well tolerated, but that doesn't show it suits everyone with kidney disease. If you have been told to limit potassium, talk to your doctor or renal dietitian.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Diabetes",
+      "note": "The UK food table lists 11.8 g of sugars per 100 g of the seeds. In trials, juice did not raise fasting blood sugar or HbA1c, but if you are managing blood sugar, talk to your doctor or dietitian about juice.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "A review of 66 clinical studies found side effects reported in 11; the most common were stomach and gut problems. In case reports the most serious was an allergic reaction.",
+    "In a trial of extract capsules, diarrhoea was reported in 1.9% of men on 1 g a day and 13.5% on 3 g a day. Extracts are a different product from the fruit.",
+    "Pomegranate juice is not a treatment for high blood pressure, diabetes or prostate cancer. Anything clearly out of range in your results is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "Almost no trials tested eating the fresh seeds: in a 2025 meta-analysis of 34 blood sugar trials, only one used the fruit itself. What is known is mostly about juice, which differs from the seeds (commercial juice carries tannins from the rind).",
+    "No trial has measured heart attacks, strokes, cancer or deaths. The trials measured blood pressure, blood markers and artery thickness, mostly for weeks to months.",
+    "Many trials used extracts in capsules, liquid extracts or seed oil, and some meta-analyses pool them with juice. Effects of extracts can't be taken as effects of the fruit, or the other way round. The prostate cancer trials mostly tested an extract.",
+    "Who funded most trials isn't stated in the abstracts read for this page. Several trials used juice of one commercial variety (Wonderful).",
+    "Results for blood fats, blood sugar and CRP disagree between meta-analyses, and many of the newer trials come from one country (Iran), so they may not hold elsewhere.",
+    "People differ in which urolithins their gut bacteria make from pomegranate. Whether this decides who benefits is not known.",
+    "It isn't known which compounds explain any effect. The food table measures sugars, vitamin C and potassium, but none of the polyphenols, and a food has thousands of compounds no table tracks."
+  ],
+  "sources": [
+    { "pmid": "11052704", "doi": "10.1021/jf000404a", "title": "Antioxidant activity of pomegranate juice and its relationship with phenolic composition and processing.", "year": 2000, "studyType": "in vitro" },
+    { "pmid": "23957402", "doi": "10.1111/1750-3841.12204", "title": "Peel effects on phenolic composition, antioxidant activity, and making of pomegranate juice and wine.", "year": 2013, "studyType": "in vitro" },
+    { "pmid": "15369737", "doi": "10.1016/j.cccn.2004.04.029", "title": "Bioavailability of ellagic acid in human plasma after consumption of ellagitannins from pomegranate (Punica granatum L.) juice.", "year": 2004, "studyType": "observational", "n": 1 },
+    { "pmid": "16988113", "doi": "10.1093/jn/136.10.2481", "title": "Pomegranate juice ellagitannin metabolites are present in human plasma and some persist in urine for up to 48 hours.", "year": 2006, "studyType": "observational", "n": 18 },
+    { "pmid": "18598186", "doi": "10.1089/jmf.2007.650", "title": "Pomegranate juice and extracts provide similar levels of plasma and urinary ellagitannin metabolites in human subjects.", "year": 2008, "studyType": "observational", "n": 16 },
+    { "pmid": "24976365", "doi": "10.1021/jf5024615", "title": "Ellagic acid metabolism by human gut microbiota: consistent observation of three urolithin phenotypes in intervention trials, independent of food source, age, and health status.", "year": 2014, "studyType": "review" },
+    { "pmid": "30004553", "doi": "10.1039/c8fo00956b", "title": "The gut microbiota urolithin metabotypes revisited: the human metabolism of ellagic acid is mainly determined by aging.", "year": 2018, "studyType": "observational", "n": 839 },
+    { "pmid": "19637955", "doi": "10.1592/phco.29.8.1002", "title": "Potential interaction between pomegranate juice and warfarin.", "year": 2009, "studyType": "observational", "n": 1 },
+    { "pmid": "20029019", "doi": "10.1136/emj.2007.055855", "title": "Possible interaction between pomegranate juice and warfarin.", "year": 2010, "studyType": "observational", "n": 1 },
+    { "pmid": "17322140", "doi": "10.1177/0091270006298359", "title": "Pomegranate juice does not impair clearance of oral or intravenous midazolam, a probe for cytochrome P450-3A activity: comparison with grapefruit juice.", "year": 2007, "studyType": "rct", "n": 13 },
+    { "pmid": "21497708", "doi": "10.1016/j.clinthera.2011.02.012", "title": "Effect of 2 weeks' consumption of pomegranate juice on the pharmacokinetics of a single dose of midazolam: an open-label, randomized, single-center, 2-period crossover study in healthy Japanese volunteers.", "year": 2011, "studyType": "rct", "n": 16 },
+    { "pmid": "27294349", "doi": "10.1007/s13318-016-0352-3", "title": "Effects of Grapefruit and Pomegranate Juices on the Pharmacokinetic Properties of Dapoxetine and Midazolam in Healthy Subjects.", "year": 2017, "studyType": "rct", "n": 12 },
+    { "pmid": "23047652", "doi": "10.1038/clpt.2012.170", "title": "Pomegranate juice and pomegranate extract do not impair oral clearance of flurbiprofen in human volunteers: divergence from in vitro results.", "year": 2012, "studyType": "rct" },
+    { "pmid": "22609423", "doi": "10.1016/j.freeradbiomed.2012.05.013", "title": "One year of pomegranate juice intake decreases oxidative stress, inflammation, and incidence of infections in hemodialysis patients: a randomized placebo-controlled trial.", "year": 2012, "studyType": "rct", "n": 101 },
+    { "pmid": "25218876", "doi": "10.1053/j.jrn.2014.07.006", "title": "A pilot randomized crossover trial assessing the safety and short-term effects of pomegranate supplementation in hemodialysis patients.", "year": 2015, "studyType": "rct", "n": 24 },
+    { "pmid": "37116077", "doi": "10.1515/jcim-2022-0247", "title": "Reporting of adverse effects of pomegranate in clinical studies: a systematic review.", "year": 2024, "studyType": "review" },
+    { "pmid": "22689129", "doi": "10.1038/pcan.2012.20", "title": "A randomized phase II study of pomegranate extract for men with rising PSA following initial therapy for localized prostate cancer.", "year": 2013, "studyType": "rct", "n": 104 },
+    { "pmid": "40847381", "doi": "10.1186/s40795-025-01138-7", "title": "The effect of pomegranate products on glycemic profile in adults: a GRADE- assessed systematic review and dose-response meta-analysis of randomized controlled trials.", "year": 2025, "studyType": "meta-analysis", "n": 1500 }
+  ]
+}

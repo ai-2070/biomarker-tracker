@@ -219,3 +219,10 @@ export const SunIcon = (p: P) => (
     <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
   </Icon>
 );
+
+export const LeafIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M5 19c0-8 5-13.5 14-14-.5 9-6 14-14 14Z" />
+    <path d="M5 19c3-4 6-7 9.5-9" />
+  </Icon>
+);

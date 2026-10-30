@@ -17,9 +17,10 @@ import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate } from "../format";
 import { useMeals, usePlans, useProfile, useProtocols } from "../hooks";
-import { NUTRIENTS } from "../knowledge";
+import { NUTRIENTS, WHOLE_FOODS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
+import { wholeFoodFor } from "../../core/wholeFoods";
 
 /** One protocol: its items as a day's schedule, warnings, and start / stop / share. */
 export function PlanPage({ id }: { id: string }) {
@@ -169,6 +170,8 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   const meal = item.mealId ? meals?.find((m) => m.id === item.mealId) : undefined;
   const n = meal ? undefined : nutrientFor(item, NUTRIENTS);
   const counts = n ? findingCounts(n) : undefined;
+  // A whole food (olive oil, blueberries…) links to its research page.
+  const food = n || item.category === "medication" ? undefined : wholeFoodFor(item.label, WHOLE_FOODS);
   // The day's EU reference values for this nutrient, next to the person's own amount.
   const ref = n ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined }) : undefined;
   const intake = ref?.intake
@@ -210,6 +213,11 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
         {meal && (
           <a href={href({ name: "meal", id: meal.id })} className="mt-1 inline-block text-sm text-ink underline underline-offset-2">
             Open the meal
+          </a>
+        )}
+        {!n && food && (
+          <a href={href({ name: "wholefood", id: food.id })} className="mt-1 inline-block text-sm text-ink underline underline-offset-2">
+            What research says about {food.name.toLowerCase()}
           </a>
         )}
       </div>

@@ -1,0 +1,258 @@
+{
+ "topic": "wholefood-blueberries",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
+    "comparison": "Placebo or no blueberries",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "37963472",
+     "fits": "partly",
+     "reason": "Covers blood pressure in RCTs, but only in patients with cardiometabolic disease, and blueberry is pooled together with cranberry rather than clearly on its own."
+    },
+    {
+     "pmid": "35445669",
+     "fits": "yes",
+     "reason": "Meta-analysis of blueberry intake in human studies that reports systolic and diastolic blood pressure among the metabolic syndrome outcomes."
+    },
+    {
+     "pmid": "34139510",
+     "fits": "yes",
+     "reason": "RCTs of blueberry as fruit, juice or powder (plus some extracts) versus placebo, with blood pressure pooled as an outcome."
+    },
+    {
+     "pmid": "27654329",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing blueberry supplementation with placebo on systolic and diastolic blood pressure."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
+    "comparison": "Placebo or no blueberries",
+    "outcome": "Cholesterol or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "35445669",
+     "fits": "yes",
+     "reason": "Pooled human studies of blueberry intake and reported triglycerides, total, LDL and HDL cholesterol; the population was not limited to one illness."
+    },
+    {
+     "pmid": "34139510",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials with lipid outcomes, but blueberry extract was pooled with fruit, juice and powder, and no separate whole-food analysis is reported."
+    },
+    {
+     "pmid": "33066847",
+     "fits": "yes",
+     "reason": "Controlled trials of blueberry, including powder and freeze-dried forms, versus control in adults, with triglycerides and other lipid outcomes pooled."
+    }
+   ]
+  },
+  "vascular": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
+    "comparison": "Placebo powder or drink, or no blueberries",
+    "outcome": "Blood vessel function (flow-mediated dilation) or arterial stiffness"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41974068",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of blueberry consumption versus control in healthy adults that pooled flow-mediated dilation."
+    },
+    {
+     "pmid": "38887319",
+     "fits": "yes",
+     "reason": "Meta-analysis of blueberry interventions in adults that pooled flow-mediated dilation as a measure of endothelial function."
+    },
+    {
+     "pmid": "36150681",
+     "fits": "yes",
+     "reason": "Systematic review of human trials of blueberries and their bioactives in healthy and at-risk adults that covers vascular function markers."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Children or adults, often older adults",
+    "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
+    "comparison": "Placebo or no blueberries",
+    "outcome": "Memory, thinking or mood"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41974068",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of blueberry consumption in healthy people, with pooled cognitive (executive function) and mood outcomes."
+    },
+    {
+     "pmid": "40856863",
+     "fits": "partly",
+     "reason": "Pooled RCTs of blueberry intake and memory, but only in older adults with prior cognitive decline, a narrower population."
+    },
+    {
+     "pmid": "35676847",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of blueberry intake on cognitive performance and mood in human studies."
+    },
+    {
+     "pmid": "30999017",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of whole, freeze-dried and concentrate blueberry in children and adults, covering cognition and mood."
+    },
+    {
+     "pmid": "30941401",
+     "fits": "yes",
+     "reason": "Systematic review of blueberry trials in children, older adults and people with MCI, with memory and executive function outcomes."
+    },
+    {
+     "pmid": "32090247",
+     "fits": "no",
+     "reason": "A comment on errors in an earlier review, not a systematic review itself."
+    },
+    {
+     "pmid": "32658969",
+     "fits": "no",
+     "reason": "An author reply to comments on an earlier review, not a systematic review itself."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
+    "comparison": "Placebo or no blueberries",
+    "outcome": "Blood sugar, HbA1c or insulin sensitivity"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "36676944",
+     "fits": "partly",
+     "reason": "Covers whole blueberry in obesity/diabetes, but pools bilberry and animal studies; glucose effects are reported mainly in rodents, not humans."
+    },
+    {
+     "pmid": "35445669",
+     "fits": "yes",
+     "reason": "Meta-analysis of human blueberry studies reporting pooled HbA1c, glucose, HOMA-IR and insulin in adults with metabolic syndrome risk factors."
+    },
+    {
+     "pmid": "34139510",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of blueberry (powder, fruit, juice, plus some extract) versus placebo, pooling glycemic markers in adults with metabolic risk."
+    },
+    {
+     "pmid": "35282984",
+     "fits": "partly",
+     "reason": "Pools blueberry with cranberry for glucose, HbA1c and insulin resistance; the abstract does not report a blueberry-only analysis."
+    },
+    {
+     "pmid": "29345498",
+     "fits": "partly",
+     "reason": "Combines blueberry and cranberry, including extracts, and is limited to adults with type 2 diabetes; the outcome is glycemic control."
+    }
+   ]
+  },
+  "diabetes-risk": {
+   "question": {
+    "population": "Adults without diabetes",
+    "intervention": "Eating more blueberries",
+    "comparison": "Eating fewer or none",
+    "outcome": "New type 2 diabetes"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "36676944",
+     "fits": "partly",
+     "reason": "Reviews whole blueberry intake, but outcomes are obesity and glycaemic markers (mostly in animals), not new type 2 diabetes."
+    },
+    {
+     "pmid": "35282984",
+     "fits": "partly",
+     "reason": "Trials of blueberry or cranberry in people with or without diabetes; outcomes are glucose markers, not new type 2 diabetes."
+    },
+    {
+     "pmid": "29345498",
+     "fits": "no",
+     "reason": "Trials in adults who already have type 2 diabetes, looking at glycaemic control rather than new diabetes."
+    },
+    {
+     "pmid": "35028521",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts on type 2 diabetes risk that analyses blueberries as a separate fruit subtype."
+    },
+    {
+     "pmid": "26816602",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts that pools risk of type 2 diabetes for high versus low blueberry intake."
+    },
+    {
+     "pmid": "23990623",
+     "fits": "yes",
+     "reason": "Pooled three cohorts of adults free of chronic disease and reports new type 2 diabetes per extra servings of blueberries."
+    }
+   ]
+  },
+  "exercise": {
+   "question": {
+    "population": "Adults, often active or athletes",
+    "intervention": "Blueberries or related berries (bilberry, cranberry), as food, juice or whole-fruit powder",
+    "comparison": "Placebo or no berries",
+    "outcome": "Muscle soreness, muscle damage, recovery or exercise performance"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "30999017",
+     "fits": "no",
+     "reason": "Looks at blueberries and cognition and mood, not muscle soreness, recovery or exercise performance."
+    },
+    {
+     "pmid": "30941401",
+     "fits": "no",
+     "reason": "Looks at blueberries and cognitive performance in children and older adults, not exercise or muscle outcomes."
+    },
+    {
+     "pmid": "32090247",
+     "fits": "no",
+     "reason": "A comment on a review of blueberries and cognition, not a systematic review of exercise or muscle outcomes."
+    },
+    {
+     "pmid": "32658969",
+     "fits": "no",
+     "reason": "An author reply about a review of blueberries and cognition, not a review of exercise or muscle outcomes."
+    },
+    {
+     "pmid": "38165220",
+     "fits": "yes",
+     "reason": "Reviews blueberry, cranberry and bilberry products against a control in healthy people, measuring exercise performance and recovery."
+    },
+    {
+     "pmid": "39063294",
+     "fits": "partly",
+     "reason": "Covers many berries and mostly blackcurrant, with only a few blueberry studies (one in humans) and animal studies mixed in."
+    },
+    {
+     "pmid": "34204250",
+     "fits": "no",
+     "reason": "Looks at berry anthocyanins and cognition, vascular function and heart-health markers, not exercise or muscle outcomes."
+    }
+   ]
+  }
+ }
+}

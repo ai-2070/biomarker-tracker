@@ -5,6 +5,7 @@ import { anyDesignKind, classify, eligibleReviews, type Decision, type EvidenceR
 import type { ComparisonTopicFile } from "../../src/core/foodComparison";
 import type { NutrientDef } from "../../src/core/nutrients";
 import type { LifestyleDef } from "../../src/core/lifestyle";
+import type { WholeFoodDef } from "../../src/core/wholeFoods";
 import type { Citation } from "../../src/core/types";
 import { TOPICS } from "./topics";
 
@@ -36,7 +37,11 @@ export function loadTopic(id: string | undefined) {
   // What each outcome checks, and the studies it cites: a nutrient finding, or a food comparison claim.
   const claims = topic.kind === "food" ? read<ComparisonTopicFile>("food-comparison", `${topic.comparisonId}.json`).claims : [];
   const findings =
-    topic.kind === "lifestyle" ? read<LifestyleDef>("lifestyle", `${topic.lifestyleId}.json`).findings : topic.kind === "food" ? [] : read<NutrientDef>("nutrients", `${topic.nutrientId}.json`).findings;
+    topic.kind === "lifestyle"
+      ? read<LifestyleDef>("lifestyle", `${topic.lifestyleId}.json`).findings
+      : topic.kind === "wholefood"
+        ? read<WholeFoodDef>("wholefoods", `${topic.wholeFoodId}.json`).findings
+        : topic.kind === "food" ? [] : read<NutrientDef>("nutrients", `${topic.nutrientId}.json`).findings;
   const studiesFor = (finding: string | undefined): Citation[] =>
     !finding ? [] : topic.kind === "food" ? (claims.find((c) => c.id === finding)?.studies ?? []) : (findings.find((f) => f.outcome === finding)?.studies ?? []);
   // One record per paper (a review can also be a guideline).

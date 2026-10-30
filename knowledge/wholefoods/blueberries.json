@@ -1,0 +1,790 @@
+{
+  "id": "blueberries",
+  "name": "Blueberries",
+  "group": "fruit",
+  "otherNames": [
+    "Blueberry",
+    "Wild blueberries",
+    "Lowbush blueberries",
+    "Highbush blueberries",
+    "Frozen blueberries",
+    "Dried blueberries",
+    "Freeze-dried blueberry powder",
+    "Blueberry powder",
+    "Blueberry juice"
+  ],
+  "summary": "Small blue berries, eaten fresh, frozen, dried or as freeze-dried powder, known for their blue and purple pigments (anthocyanins). In trials, mostly with freeze-dried powder for up to 6 months, blood vessels widened a little better; effects on blood pressure, blood fats, blood sugar and memory were small or inconsistent. In large US cohorts, people who ate more blueberries developed type 2 diabetes less often, a link rather than proof.",
+  "inIt": [
+    "Anthocyanins, the blue and purple pigments. Blueberries are one of the richest sources among common fruits: about 387 mg per 100 g in cultivated (highbush) and 487 mg in wild (lowbush) blueberries in US measurements, against 21 mg in strawberries. The food table doesn't measure anthocyanins.",
+    "Other polyphenols, such as chlorogenic acid and flavanols (procyanidins). These aren't in the food table either.",
+    "After eating, few anthocyanins circulate unchanged: they appear in the blood mostly as smaller phenolic acid metabolites, many made by gut bacteria. Researchers think these metabolites, rather than the pigments themselves, explain much of the effect on blood vessels.",
+    "Measured in the UK food table (CoFID 2021, per 100 g of blueberries): 40 kcal, 9.1 g sugars, 1.5 g fibre, 6 mg vitamin C, 66 mg potassium and 0.94 mg vitamin E. Blueberries are low in vitamin C.",
+    "Not shown for blueberries: vitamin K1 (the table has no measured value for them) and manganese (the table doesn't track it at all)."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-325",
+      "label": "A handful (about 80 g)",
+      "grams": 80
+    }
+  ],
+  "processing": [
+    "Frozen: quick freezing is widely used to keep blueberries, and it keeps vitamin C, phenolics and anthocyanins. In storage at −18 °C, 12% of the anthocyanins were lost after 10 months.",
+    "Freeze-dried powder, used in most trials, keeps anthocyanins well; drying with heat can lose a lot of them. The powder slowly loses anthocyanins when warm: half was gone after 139 days at 25 °C, 39 days at 42 °C and 12 days at 60 °C.",
+    "How much fresh fruit the trial powders stood for, as the authors put it: 26 g of powder = 150 g of fresh blueberries (one US cup, the 6-month trial); 24 g = 1 cup (a 90-day memory trial); 22 g ≈ 1 cup (a trial in men with type 2 diabetes); 26 g of wild blueberry powder = 178 g fresh.",
+    "Juice and purée: heat, oxygen and the fruit's own enzymes break down its compounds, with the greatest losses of vitamin C and anthocyanins, and the polyphenol-rich skins and seeds are left behind in the press cake. In the large US diabetes study, fruit juice went with higher risk; that juice was apple, orange, grapefruit and other juices, not blueberry juice specifically.",
+    "Baking: in one small trial (10 healthy people), baked products made with blueberry powder had 42% less anthocyanins than the same powder in a drink, but blood vessel function improved to a similar degree over the next 6 hours.",
+    "Wild (lowbush) and cultivated (highbush) blueberries: in the US measurements, wild had more anthocyanins (487 against 387 mg per 100 g, from one and seven samples). Across 215 types of blueberry, most varied within a 1.6-fold range.",
+    "European bilberries (Vaccinium myrtillus) are a related but different species. Bilberry and bilberry-extract trials aren't counted on this page."
+  ],
+  "whatStudiesDid": "Most trials gave freeze-dried whole blueberry powder stirred into water or a drink, so that neither the participants nor the researchers knew who had blueberry and who had a look-alike placebo powder. Amounts were 22 to 26 g of powder a day, which the authors said equals about 150 to 178 g of fresh blueberries (about one US cup); the 6-month trial also tested half that (13 g, said to equal 75 g), and a midlife memory trial used half a cup's worth. Other trials used smoothies made with blueberry powder twice a day for 6 weeks, or baked products. Short studies measured blood vessels over 1 to 6 hours after one drink; longer ones lasted 6 weeks to 6 months. The type 2 diabetes link comes from questionnaires, every 4 years, asking how often people ate a standard portion of blueberries, in three US cohorts followed for up to 24 years.",
+  "markers": [
+    "bp_systolic",
+    "bp_diastolic",
+    "ldl",
+    "hdl",
+    "total_cholesterol",
+    "triglycerides",
+    "glucose",
+    "hba1c"
+  ],
+  "findings": [
+    {
+      "outcome": "Blood vessel function (flow-mediated dilation: how much an artery widens when blood flow increases)",
+      "population": "Adults in trials of 4 weeks to 6 months: healthy older people, people with metabolic syndrome, and postmenopausal women with raised blood pressure",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The authors of the 2024 review rated the evidence for flow-mediated dilation as moderate (GRADE)",
+        "Two separate reviews and the longest trial point the same way, and in the 6-month trial the full amount worked while half did not",
+        "Small trials: the 2024 review pooled 6 trials with 276 people for this outcome, and results varied a lot between them",
+        "A stand-in measure: no trial has tested whether it leads to fewer heart attacks or strokes",
+        "Several trials were funded by the US Highbush Blueberry Council or used powder it supplied"
+      ],
+      "summary": "Flow-mediated dilation is measured as a percentage; these are differences in that percentage. In a 2024 review of trials, blueberries (mostly freeze-dried powder) raised it by 1.50% on average (95% confidence interval 0.81 to 2.20), though results varied a lot between trials (I² 87%); the authors rated the evidence moderate. A 2026 review of 14 trials with 632 healthy people found 1.11% (0.50 to 1.72) with little variation between trials. In the longest trial, 115 adults with metabolic syndrome had freeze-dried powder equal to 150 g of fresh blueberries a day for 6 months: flow-mediated dilation rose by 1.45% (0.83 to 2.1) and artery stiffness (augmentation index) fell, while half that amount (75 g) changed nothing. In 61 healthy people aged 65 to 80, 26 g of wild blueberry powder a day (said to equal 178 g fresh) for 12 weeks raised it by 0.86% (0.56 to 1.17). In one research group's trials, a month of daily wild blueberries also raised it. In 43 postmenopausal women with raised blood pressure, 22 g of powder a day for 12 weeks also improved it. These are measures of the blood vessel lining; whether they mean fewer heart attacks or strokes hasn't been tested. The 6-month trial was funded by the US Highbush Blueberry Council with oversight from the USDA and a UK research council.",
+      "bottomLine": "In trials, mostly with freeze-dried blueberry powder for 4 weeks to 6 months, arteries widened a little better (about 1 to 1.5% more flow-mediated dilation). Whether this means fewer heart attacks or strokes hasn't been tested.",
+      "studies": [
+        {
+          "pmid": "38887319",
+          "doi": "10.3389/fphys.2024.1368892",
+          "title": "Effect of blueberry intervention on endothelial function: a systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "41974068",
+          "doi": "10.1016/j.nutres.2026.03.007",
+          "title": "Blueberry consumption enhances vascular function but not cognitive abilities in healthy individuals: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 632
+        },
+        {
+          "pmid": "31136659",
+          "doi": "10.1093/ajcn/nqy380",
+          "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "36972800",
+          "doi": "10.1016/j.ajcnut.2023.03.017",
+          "title": "Wild blueberry (poly)phenols can improve vascular function and cognitive performance in healthy older individuals: a double-blind randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 61
+        },
+        {
+          "pmid": "36847333",
+          "doi": "10.1039/d3fo00157a",
+          "title": "Daily blueberry consumption for 12 weeks improves endothelial function in postmenopausal women with above-normal blood pressure through reductions in oxidative stress: a randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 43
+        },
+        {
+          "pmid": "30772905",
+          "doi": "10.1093/gerona/glz047",
+          "title": "Circulating Anthocyanin Metabolites Mediate Vascular Benefits of Blueberries: Insights From Randomized Controlled Trials, Metabolomics, and Nutrigenomics.",
+          "year": 2019,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in trials: postmenopausal women with raised blood pressure, people with metabolic syndrome, and healthy older people",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Reviews disagree: some found small falls, others found none",
+        "Single trials in similar people (postmenopausal women with raised blood pressure, the same amount of powder) found different results",
+        "Small, short trials",
+        "Several trials were funded by the US Highbush Blueberry Council or used powder it supplied"
+      ],
+      "summary": "Reviews of trials disagree. A 2026 review in healthy people (14 trials, 632 people) found no change in systolic pressure (−0.11 mmHg, 95% confidence interval −2.82 to 2.60) or diastolic pressure (−0.46, −2.80 to 1.87). A 2024 review found diastolic pressure 2.20 mmHg lower (−4.13 to −0.27) but no clear change in systolic pressure (−1.43, −3.11 to 0.26). A 2017 review of 6 trials with 204 people found no effect, while reviews from 2021 and 2022 reported lower blood pressure. Single trials differ too: in 48 postmenopausal women with raised blood pressure, 22 g of freeze-dried powder a day for 8 weeks lowered blood pressure from 138/80 to 131/75 mmHg, with no change on a placebo powder; a 12-week trial of the same amount in 43 similar women found no major difference; the 6-month trial in 115 adults with metabolic syndrome found none; and in 61 healthy people aged 65 to 80, 24-hour systolic pressure was 3.59 mmHg lower (−6.95 to −0.23) than on placebo after 12 weeks.",
+      "bottomLine": "Trials of blueberries, mostly freeze-dried powder, disagree on blood pressure: some found falls of a few mmHg, others found none, and reviews pooling them differ too.",
+      "studies": [
+        {
+          "pmid": "41974068",
+          "doi": "10.1016/j.nutres.2026.03.007",
+          "title": "Blueberry consumption enhances vascular function but not cognitive abilities in healthy individuals: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 632
+        },
+        {
+          "pmid": "38887319",
+          "doi": "10.3389/fphys.2024.1368892",
+          "title": "Effect of blueberry intervention on endothelial function: a systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "27654329",
+          "doi": "10.1038/jhh.2016.70",
+          "title": "Effects of blueberry supplementation on blood pressure: a systematic review and meta-analysis of randomized clinical trials.",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 204
+        },
+        {
+          "pmid": "34139510",
+          "doi": "10.1016/j.nutres.2021.04.006",
+          "title": "Blueberry intervention improves metabolic syndrome risk factors: systematic review and meta-analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35445669",
+          "doi": "10.1039/d1fo03715c",
+          "title": "Beneficial effects of blueberry supplementation on the components of metabolic syndrome: a systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "25578927",
+          "doi": "10.1016/j.jand.2014.11.001",
+          "title": "Daily blueberry consumption improves blood pressure and arterial stiffness in postmenopausal women with pre- and stage 1-hypertension: a randomized, double-blind, placebo-controlled clinical trial.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 48
+        },
+        {
+          "pmid": "36847333",
+          "doi": "10.1039/d3fo00157a",
+          "title": "Daily blueberry consumption for 12 weeks improves endothelial function in postmenopausal women with above-normal blood pressure through reductions in oxidative stress: a randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 43
+        },
+        {
+          "pmid": "31136659",
+          "doi": "10.1093/ajcn/nqy380",
+          "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "36972800",
+          "doi": "10.1016/j.ajcnut.2023.03.017",
+          "title": "Wild blueberry (poly)phenols can improve vascular function and cognitive performance in healthy older individuals: a double-blind randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 61
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and insulin sensitivity",
+      "population": "Adults with obesity, insulin resistance or metabolic syndrome, and men with type 2 diabetes",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The longest and largest trial found no change in insulin resistance, its main measure",
+        "Small trials disagree with each other",
+        "Short trials (6 to 8 weeks), apart from one of 6 months",
+        "The trial that found lower HbA1c was funded by the US Highbush Blueberry Council"
+      ],
+      "summary": "In the longest trial (6 months, 115 adults with metabolic syndrome), freeze-dried powder equal to 75 or 150 g of fresh blueberries a day did not change insulin resistance, the trial's main measure. In an earlier 6-week trial, 32 adults with obesity and insulin resistance had smoothies with 22.5 g of blueberry powder (bioactives from whole blueberries) twice a day, and their insulin sensitivity, measured with a clamp test, rose more than on placebo (1.7 against 0.4 mg per kg of fat-free mass per minute); a similar 6-week smoothie trial in 44 adults with metabolic syndrome found no difference. Reviews of blueberry trials from 2021 and 2022 found no clear effect on fasting glucose, HbA1c (average blood sugar over about 3 months) or insulin resistance, though the 2022 review found lower insulin levels. In 52 men with type 2 diabetes, 22 g of freeze-dried powder a day for 8 weeks ended with lower HbA1c than placebo (7.1% against 7.5%), but fasting glucose and insulin didn't differ; that trial was funded by the US Highbush Blueberry Council.",
+      "bottomLine": "In most trials, blueberries (mostly freeze-dried powder) did not clearly change blood sugar or insulin resistance, including the longest trial of 6 months. One small trial in men with type 2 diabetes found slightly lower HbA1c after 8 weeks.",
+      "studies": [
+        {
+          "pmid": "31136659",
+          "doi": "10.1093/ajcn/nqy380",
+          "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "20724487",
+          "doi": "10.3945/jn.110.125336",
+          "title": "Bioactives in blueberries improve insulin sensitivity in obese, insulin-resistant men and women.",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 32
+        },
+        {
+          "pmid": "26024297",
+          "doi": "10.3390/nu7064107",
+          "title": "Blueberries improve endothelial function, but not blood pressure, in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled clinical trial.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 44
+        },
+        {
+          "pmid": "34139510",
+          "doi": "10.1016/j.nutres.2021.04.006",
+          "title": "Blueberry intervention improves metabolic syndrome risk factors: systematic review and meta-analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35445669",
+          "doi": "10.1039/d1fo03715c",
+          "title": "Beneficial effects of blueberry supplementation on the components of metabolic syndrome: a systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32337475",
+          "doi": "10.1093/cdn/nzaa030",
+          "title": "Effect of Blueberry Consumption on Cardiometabolic Health Parameters in Men with Type 2 Diabetes: An 8-Week, Double-Blind, Randomized, Placebo-Controlled Trial.",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 52
+        }
+      ]
+    },
+    {
+      "outcome": "Cholesterol and triglycerides",
+      "population": "Adults in trials, many with metabolic syndrome, raised blood pressure or type 2 diabetes",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Reviews of largely the same trials reach different conclusions",
+        "Some reviews also counted blueberry extracts, not only the fruit, juice or powder",
+        "In the longest trial the change in HDL cholesterol was seen only in a subgroup (people not taking statins)",
+        "Small, short trials"
+      ],
+      "summary": "Reviews disagree. A 2021 review (12 trials pooled) found lower total and LDL cholesterol, and a 2022 review (21 trials pooled) found improvements in triglycerides, total, LDL and HDL cholesterol. A 2024 review found no clear change in LDL cholesterol (+0.05, 95% confidence interval −0.14 to 0.24) or HDL cholesterol, and a 2020 review of 11 trials found no difference between blueberry and control groups, apart from a small, uncertain fall in triglycerides (−0.27 mmol/L, −0.57 to 0.17). The 2021 review counted extracts as well as powder, fruit, juice and frozen berries. In the 6-month trial, HDL cholesterol rose by 0.08 mmol/L with 150 g a day, but only in the 71 people not taking statins. In 52 men with type 2 diabetes, triglycerides were lower after 8 weeks than on placebo (179.6 against 199.6 mg/dL), while total, LDL and HDL cholesterol didn't differ.",
+      "bottomLine": "Reviews of blueberry trials disagree on cholesterol and triglycerides: some found small improvements, others none. The longest trial found HDL cholesterol a little higher after 6 months, only in people not taking statins.",
+      "studies": [
+        {
+          "pmid": "34139510",
+          "doi": "10.1016/j.nutres.2021.04.006",
+          "title": "Blueberry intervention improves metabolic syndrome risk factors: systematic review and meta-analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35445669",
+          "doi": "10.1039/d1fo03715c",
+          "title": "Beneficial effects of blueberry supplementation on the components of metabolic syndrome: a systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "38887319",
+          "doi": "10.3389/fphys.2024.1368892",
+          "title": "Effect of blueberry intervention on endothelial function: a systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "33066847",
+          "doi": "10.1016/j.ctim.2020.102389",
+          "title": "Blueberry and cardiovascular disease risk factors: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31136659",
+          "doi": "10.1093/ajcn/nqy380",
+          "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "32337475",
+          "doi": "10.1093/cdn/nzaa030",
+          "title": "Effect of Blueberry Consumption on Cardiometabolic Health Parameters in Men with Type 2 Diabetes: An 8-Week, Double-Blind, Randomized, Placebo-Controlled Trial.",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 52
+        }
+      ]
+    },
+    {
+      "outcome": "Memory and thinking",
+      "population": "Older adults with mild cognitive impairment or self-reported memory decline, healthy older adults, middle-aged adults with memory complaints, and adults with metabolic syndrome",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials using many different memory tests; most tests showed no change",
+        "The clearest benefit was in people who already had memory problems",
+        "Several trials were funded by the US Highbush Blueberry Council or used powder it supplied",
+        "The cohort study is observational: people who eat more blueberries may differ in other ways"
+      ],
+      "summary": "In a 2025 review of 9 trials with 513 older adults with mild cognitive impairment or self-reported memory decline, blueberries improved episodic memory (remembering events and word lists; standardised mean difference 0.34, 95% confidence interval 0.11 to 0.57, a small effect), but not processing speed, recognition memory, visuospatial learning or working memory. A 2026 review in healthy people found no clear effect on executive function (planning and switching between tasks) or mood. Single trials differ: 61 healthy people aged 65 to 80 on wild blueberry powder for 12 weeks recalled more words right away and switched tasks more accurately than on placebo; 37 people aged 60 to 75 on 24 g of freeze-dried powder a day (said to equal 1 cup fresh) for 90 days made fewer errors on two tests of executive function, with no change in walking or balance; middle-aged people with memory complaints and insulin resistance did better on two tests after powder equal to half a cup a day for 12 weeks; and in the 6-month trial in 115 adults with metabolic syndrome, memory, attention, mood and sleep didn't change. In 16,010 women aged 70 and over (Nurses' Health Study), those who ate the most blueberries had slower decline in thinking scores than those who ate the least, a link that may reflect other differences between them.",
+      "bottomLine": "In older adults with memory complaints, blueberry trials found a small improvement in episodic memory, but not in other tests. In healthy people and in adults with metabolic syndrome, trials found little or no change.",
+      "studies": [
+        {
+          "pmid": "40856863",
+          "doi": "10.1007/s10522-025-10308-w",
+          "title": "Blueberries for brainpower: A systematic review and meta-analysis with Bayesian post hoc analysis of RCTS exploring cognitive function in the elderly with prior cognitive decline.",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 513
+        },
+        {
+          "pmid": "41974068",
+          "doi": "10.1016/j.nutres.2026.03.007",
+          "title": "Blueberry consumption enhances vascular function but not cognitive abilities in healthy individuals: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 632
+        },
+        {
+          "pmid": "36972800",
+          "doi": "10.1016/j.ajcnut.2023.03.017",
+          "title": "Wild blueberry (poly)phenols can improve vascular function and cognitive performance in healthy older individuals: a double-blind randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 61
+        },
+        {
+          "pmid": "28283823",
+          "doi": "10.1007/s00394-017-1400-8",
+          "title": "Dietary blueberry improves cognition among older adults in a randomized, double-blind, placebo-controlled trial.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 37
+        },
+        {
+          "pmid": "35458181",
+          "doi": "10.3390/nu14081619",
+          "title": "Blueberry Supplementation in Midlife for Dementia Risk Reduction.",
+          "year": 2022,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "38432713",
+          "doi": "10.1016/j.ajcnut.2023.12.006",
+          "title": "Chronic and postprandial effect of blueberries on cognitive function, alertness, and mood in participants with metabolic syndrome - results from a six-month, double-blind, randomized controlled trial.",
+          "year": 2024,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "22535616",
+          "doi": "10.1002/ana.23594",
+          "title": "Dietary intakes of berries and flavonoids in relation to cognitive decline.",
+          "year": 2012,
+          "studyType": "observational",
+          "n": 16010
+        }
+      ]
+    },
+    {
+      "outcome": "Risk of type 2 diabetes",
+      "population": "187,382 US nurses and other health professionals free of major chronic disease at the start, followed for up to 24 years (three cohorts)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people weren't assigned to eat blueberries, so other differences between them may explain the link",
+        "Diet was self-reported on questionnaires; the authors note that measurement error is larger for fruits eaten less often",
+        "Almost all participants were white US health professionals",
+        "In favour: three large cohorts with long follow-up, adjusted for diet quality and other fruits, publicly funded"
+      ],
+      "summary": "In three US cohorts (66,105 women in the Nurses' Health Study, 85,104 women in the Nurses' Health Study II and 36,173 men in the Health Professionals Follow-up Study), 12,198 people developed type 2 diabetes. After adjusting for personal, lifestyle and diet factors and for the other fruits, every 3 extra servings of blueberries a week went with 26% lower risk (hazard ratio 0.74, 95% confidence interval 0.66 to 0.83), the strongest link among the 10 fruits asked about. Total whole fruit had a much weaker link (0.98 per 3 servings a week), and the same increase in fruit juice (apple, orange, grapefruit and other juices) went with higher risk (1.08, 1.05 to 1.11). Replacing 3 servings of fruit juice a week with blueberries went with 33% lower risk (24% to 40%). Intake came from questionnaires every 4 years, and people who eat blueberries may differ in ways that adjusting can't fully remove. The study was funded by the US National Institutes of Health.",
+      "bottomLine": "In three large US cohorts, people who ate more blueberries were less likely to develop type 2 diabetes (26% lower risk per 3 servings a week). This is a link from questionnaires, not proof that blueberries are the cause.",
+      "studies": [
+        {
+          "pmid": "23990623",
+          "doi": "10.1136/bmj.f5001",
+          "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 187382
+        }
+      ]
+    },
+    {
+      "outcome": "Recovery after hard exercise (berries in general: blueberries, cranberries and bilberries)",
+      "population": "Healthy people in short exercise trials",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The review mixes three kinds of berry, so it isn't evidence for blueberries alone",
+        "Only one small blueberry trial (10 women) found faster recovery of strength",
+        "Short trials with different exercise tests"
+      ],
+      "summary": "A 2024 systematic review of 13 trials of Vaccinium berries (blueberries, cranberries and bilberries) in healthy people found no differences in exercise performance, and only one study reported benefits for markers of recovery; there was little evidence that the berries changed inflammation markers such as interleukins and CRP after exercise. In one blueberry trial, 10 women drank a blueberry smoothie before and after 300 hard eccentric contractions of the thigh muscles, and their isometric strength recovered faster over 60 hours than with a placebo drink; inflammation markers were still raised after 60 hours.",
+      "bottomLine": "Trials of blueberries and related berries found no clear effect on exercise performance or recovery. In one small blueberry trial, 10 women's strength came back a little faster after hard exercise.",
+      "studies": [
+        {
+          "pmid": "38165220",
+          "doi": "10.1039/d3fo04435a",
+          "title": "Effects of Vaccinium berries (blueberries, cranberries and bilberries) on oxidative stress, inflammation, exercise performance, and recovery - a systematic review.",
+          "year": 2024,
+          "studyType": "review"
+        },
+        {
+          "pmid": "22564864",
+          "doi": "10.1186/1550-2783-9-19",
+          "title": "Effect of New Zealand blueberry consumption on recovery from eccentric exercise-induced muscle damage.",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 10
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Type 2 diabetes risk for every 3 extra servings a week, by fruit",
+      "caption": "Hazard ratios with 95% confidence intervals from three US cohorts (187,382 people), each fruit adjusted for the others and for personal, lifestyle and diet factors. Below 1 means fewer people developed type 2 diabetes. Blueberries had the strongest link; fruit juice (apple, orange, grapefruit and other juices, not blueberry juice) went with higher risk. These are links from questionnaires, not proof of cause.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "No difference in risk"
+      },
+      "items": [
+        {
+          "label": "Blueberries",
+          "value": 0.74,
+          "low": 0.66,
+          "high": 0.83,
+          "note": "This page's food"
+        },
+        {
+          "label": "Grapes and raisins",
+          "value": 0.88,
+          "low": 0.83,
+          "high": 0.93
+        },
+        {
+          "label": "Prunes",
+          "value": 0.89,
+          "low": 0.79,
+          "high": 1.01
+        },
+        {
+          "label": "Apples and pears",
+          "value": 0.93,
+          "low": 0.9,
+          "high": 0.96
+        },
+        {
+          "label": "Bananas",
+          "value": 0.95,
+          "low": 0.91,
+          "high": 0.98
+        },
+        {
+          "label": "Grapefruit",
+          "value": 0.95,
+          "low": 0.91,
+          "high": 0.99
+        },
+        {
+          "label": "Peaches, plums and apricots",
+          "value": 0.97,
+          "low": 0.92,
+          "high": 1.02
+        },
+        {
+          "label": "Oranges",
+          "value": 0.99,
+          "low": 0.95,
+          "high": 1.03
+        },
+        {
+          "label": "Strawberries",
+          "value": 1.03,
+          "low": 0.96,
+          "high": 1.1
+        },
+        {
+          "label": "Cantaloupe melon",
+          "value": 1.1,
+          "low": 1.02,
+          "high": 1.18
+        },
+        {
+          "label": "Fruit juice",
+          "value": 1.08,
+          "low": 1.05,
+          "high": 1.11,
+          "note": "Apple, orange, grapefruit and other juices"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "23990623",
+          "doi": "10.1136/bmj.f5001",
+          "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 187382
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Change in blood vessel widening with blueberries",
+      "caption": "Difference from placebo in flow-mediated dilation (how much the arm artery widens, measured as a percentage), with 95% confidence intervals. Above 0 means the artery widened more. Two reviews of trials and two single trials, mostly with freeze-dried powder. It's a measure of the blood vessel lining: whether it means fewer heart attacks or strokes hasn't been tested.",
+      "scale": "linear",
+      "unit": "% flow-mediated dilation",
+      "reference": {
+        "value": 0,
+        "label": "No difference from placebo"
+      },
+      "items": [
+        {
+          "label": "2024 review of trials",
+          "value": 1.5,
+          "low": 0.81,
+          "high": 2.2,
+          "note": "6 trials, 276 people; results varied a lot between trials"
+        },
+        {
+          "label": "2026 review, healthy people",
+          "value": 1.11,
+          "low": 0.5,
+          "high": 1.72,
+          "note": "14 trials, 632 people"
+        },
+        {
+          "label": "6 months, 150 g a day (as powder)",
+          "value": 1.45,
+          "low": 0.83,
+          "high": 2.1,
+          "note": "115 adults with metabolic syndrome (2019)"
+        },
+        {
+          "label": "12 weeks, wild blueberry powder",
+          "value": 0.86,
+          "low": 0.56,
+          "high": 1.17,
+          "note": "61 healthy people aged 65–80 (2023)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "38887319",
+          "doi": "10.3389/fphys.2024.1368892",
+          "title": "Effect of blueberry intervention on endothelial function: a systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "41974068",
+          "doi": "10.1016/j.nutres.2026.03.007",
+          "title": "Blueberry consumption enhances vascular function but not cognitive abilities in healthy individuals: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 632
+        },
+        {
+          "pmid": "31136659",
+          "doi": "10.1093/ajcn/nqy380",
+          "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "36972800",
+          "doi": "10.1016/j.ajcnut.2023.03.017",
+          "title": "Wild blueberry (poly)phenols can improve vascular function and cognitive performance in healthy older individuals: a double-blind randomized controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 61
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "How blueberries might act on blood vessels (a hypothesis)",
+      "caption": "A proposed explanation pieced together from short trials and laboratory work, not a proven mechanism. Each step rests on small studies, and blueberries hold many compounds besides anthocyanins that the food table doesn't track.",
+      "steps": [
+        {
+          "label": "Eaten",
+          "text": "Blueberries bring anthocyanins (the blue pigments) and other polyphenols such as chlorogenic acid and flavanols."
+        },
+        {
+          "label": "Changed",
+          "text": "Few anthocyanins reach the blood unchanged. They circulate mostly as smaller phenolic acid metabolites, many made by gut bacteria."
+        },
+        {
+          "label": "In the blood",
+          "text": "In a trial in 21 healthy men, artery widening rose 1 to 2 hours and again 6 hours after a blueberry drink, in step with these metabolites and with lower activity of an enzyme in white blood cells that makes oxidants (NADPH oxidase)."
+        },
+        {
+          "label": "Vessel lining",
+          "text": "Proposed: less oxidative stress and more nitric oxide let the vessel lining relax. In 48 postmenopausal women, nitric oxide in the blood rose from 9.11 to 15.35 µmol/L after 8 weeks of blueberry powder."
+        },
+        {
+          "label": "Unknown",
+          "text": "Whether these short-term changes lead to fewer heart attacks or strokes hasn't been tested."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "30772905",
+          "doi": "10.1093/gerona/glz047",
+          "title": "Circulating Anthocyanin Metabolites Mediate Vascular Benefits of Blueberries: Insights From Randomized Controlled Trials, Metabolomics, and Nutrigenomics.",
+          "year": 2019,
+          "studyType": "review"
+        },
+        {
+          "pmid": "24004888",
+          "doi": "10.3945/ajcn.113.066639",
+          "title": "Intake and time dependence of blueberry flavonoid-induced improvements in vascular function: a randomized, controlled, double-blind, crossover intervention study with mechanistic insights into biological activity.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 21
+        },
+        {
+          "pmid": "38432713",
+          "doi": "10.1016/j.ajcnut.2023.12.006",
+          "title": "Chronic and postprandial effect of blueberries on cognitive function, alertness, and mood in participants with metabolic syndrome - results from a six-month, double-blind, randomized controlled trial.",
+          "year": 2024,
+          "studyType": "rct",
+          "n": 115
+        },
+        {
+          "pmid": "25578927",
+          "doi": "10.1016/j.jand.2014.11.001",
+          "title": "Daily blueberry consumption improves blood pressure and arterial stiffness in postmenopausal women with pre- and stage 1-hypertension: a randomized, double-blind, placebo-controlled clinical trial.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 48
+        },
+        {
+          "pmid": "25044909",
+          "doi": "10.1002/mnfr.201400231",
+          "title": "Impact of processing on the bioavailability and vascular effects of blueberry (poly)phenols.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 10
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [],
+  "cautions": [
+    "Many of the trials here were funded by the US Highbush Blueberry Council or used powder it supplied (the 6-month trial, the 90-day memory trial, the trial in men with type 2 diabetes, the midlife memory trial and the 12-week trial in postmenopausal women). Industry funding doesn't make a result wrong, but it is worth knowing.",
+    "Most trials used freeze-dried whole blueberry powder. Blueberry extracts and capsules are a different thing, and the findings on this page don't cover them.",
+    "In the large diabetes study, fruit juice went with higher risk; that juice was apple, orange, grapefruit and other juices. It isn't known whether blueberry juice behaves like whole blueberries."
+  ],
+  "unknowns": [
+    "No trial has tested whether blueberries lead to fewer heart attacks, strokes, cases of diabetes or dementia. The trials measured short-term markers: artery widening, blood pressure, blood fats, blood sugar and test scores.",
+    "Most trials were small (about 10 to 115 people), lasted 6 months or less, and were done in the US and UK.",
+    "The type 2 diabetes link comes from questionnaires filled in by US health professionals; people who eat blueberries may differ in ways that adjusting can't remove.",
+    "Which compounds matter isn't known. In one research group's trials, purified anthocyanins improved artery widening about as much as wild blueberries with similar amounts of anthocyanins, but blueberries hold many other compounds that the food table doesn't track and that haven't been tested one by one.",
+    "A review that pooled blueberry and cranberry trials found lower fasting glucose (−17.72 mg/dL) and HbA1c (−0.32%) in people with diabetes, but it can't say how much of that comes from blueberries.",
+    "How much makes a difference is unclear: in the 6-month trial, powder equal to 150 g a day changed blood vessel function and 75 g didn't, but other amounts haven't been compared over long periods."
+  ],
+  "sources": [
+    {
+      "pmid": "31329250",
+      "doi": "10.1093/advances/nmz065",
+      "title": "Recent Research on the Health Benefits of Blueberries and Their Anthocyanins.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23990623",
+      "doi": "10.1136/bmj.f5001",
+      "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies.",
+      "year": 2013,
+      "studyType": "observational",
+      "n": 187382
+    },
+    {
+      "pmid": "31136659",
+      "doi": "10.1093/ajcn/nqy380",
+      "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial.",
+      "year": 2019,
+      "studyType": "rct",
+      "n": 115
+    },
+    {
+      "pmid": "38432713",
+      "doi": "10.1016/j.ajcnut.2023.12.006",
+      "title": "Chronic and postprandial effect of blueberries on cognitive function, alertness, and mood in participants with metabolic syndrome - results from a six-month, double-blind, randomized controlled trial.",
+      "year": 2024,
+      "studyType": "rct",
+      "n": 115
+    },
+    {
+      "pmid": "36972800",
+      "doi": "10.1016/j.ajcnut.2023.03.017",
+      "title": "Wild blueberry (poly)phenols can improve vascular function and cognitive performance in healthy older individuals: a double-blind randomized controlled trial.",
+      "year": 2023,
+      "studyType": "rct",
+      "n": 61
+    },
+    {
+      "pmid": "28283823",
+      "doi": "10.1007/s00394-017-1400-8",
+      "title": "Dietary blueberry improves cognition among older adults in a randomized, double-blind, placebo-controlled trial.",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 37
+    },
+    {
+      "pmid": "32337475",
+      "doi": "10.1093/cdn/nzaa030",
+      "title": "Effect of Blueberry Consumption on Cardiometabolic Health Parameters in Men with Type 2 Diabetes: An 8-Week, Double-Blind, Randomized, Placebo-Controlled Trial.",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 52
+    },
+    {
+      "pmid": "35458181",
+      "doi": "10.3390/nu14081619",
+      "title": "Blueberry Supplementation in Midlife for Dementia Risk Reduction.",
+      "year": 2022,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "36847333",
+      "doi": "10.1039/d3fo00157a",
+      "title": "Daily blueberry consumption for 12 weeks improves endothelial function in postmenopausal women with above-normal blood pressure through reductions in oxidative stress: a randomized controlled trial.",
+      "year": 2023,
+      "studyType": "rct",
+      "n": 43
+    },
+    {
+      "pmid": "25044909",
+      "doi": "10.1002/mnfr.201400231",
+      "title": "Impact of processing on the bioavailability and vascular effects of blueberry (poly)phenols.",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 10
+    },
+    {
+      "pmid": "30772905",
+      "doi": "10.1093/gerona/glz047",
+      "title": "Circulating Anthocyanin Metabolites Mediate Vascular Benefits of Blueberries: Insights From Randomized Controlled Trials, Metabolomics, and Nutrigenomics.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35282984",
+      "doi": "10.1016/j.numecd.2022.02.004",
+      "title": "Effects of blueberry and cranberry on type 2 diabetes parameters in individuals with or without diabetes: A systematic review and meta-analysis of randomized clinical trials.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

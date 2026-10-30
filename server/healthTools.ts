@@ -20,7 +20,7 @@ import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
 import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "../src/core/plans";
 import { closestFoods, dailyReference, foodNameNote, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
-import { findLifestyle, findMarker, findNutrient, foods, knowledge } from "./knowledge";
+import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 import { phenoAgePace } from "../src/core/agePace";
 import { bestBeforeMoments, bestBeforeWithShift, phenoAgeShift, tableFor } from "../src/core/lifeTable";
@@ -454,6 +454,23 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
           ...(n.foodFindings ? { foodFindings: n.foodFindings.map(finding) } : {}),
           sources: n.sources.map(cite),
           safetyNotesFromLog: safetyOf(s).filter((id) => n.interactions.some((x) => x.safetyId === id)),
+        };
+      },
+    }),
+    get_whole_food: tool({
+      description:
+        "The app's research-based entry for a whole food (extra virgin olive oil, blueberries, strawberries, ginger, pomegranate…): what's in it (including compounds the food table doesn't measure), graded findings from studies of people eating it with study IDs, what processing changes, the numbers behind the page's charts, who should be careful, and what isn't known. Use it for questions about one of these foods. Keep food evidence apart from supplement evidence, and never turn what studies used into an amount for this person.",
+      inputSchema: z.object({ food: z.string().describe("Name or id, e.g. olive oil, blueberries, ginger") }),
+      execute: async ({ food }) => {
+        const f = findWholeFood(food);
+        if (!f) return { error: `No entry for "${food}". Entries: ${knowledge().wholeFoods.map((x) => x.name).join(", ")}. For nutrients per 100 g of any food, use find_foods.` };
+        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType });
+        return {
+          ...f,
+          findings: f.findings.map((x) => ({ outcome: x.outcome, studiedIn: x.population, effect: x.effect, grade: x.grade, whyThisGrade: x.whyThisGrade, summary: x.summary, studies: x.studies.map(cite) })),
+          visuals: f.visuals.map((v) => ({ ...v, sources: v.sources.map(cite) })),
+          sources: f.sources.map(cite),
+          safetyNotesFromLog: safetyOf(s).filter((id) => f.whoShouldBeCareful.some((x) => x.safetyId === id)),
         };
       },
     }),

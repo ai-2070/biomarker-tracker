@@ -1,0 +1,743 @@
+{
+  "id": "strawberries",
+  "name": "Strawberries",
+  "group": "fruit",
+  "otherNames": [
+    "strawberry",
+    "fresh strawberries",
+    "frozen strawberries",
+    "freeze-dried strawberries",
+    "freeze-dried strawberry powder",
+    "strawberry powder",
+    "Fragaria x ananassa"
+  ],
+  "summary": "A common fruit rich in vitamin C, with red pigments (anthocyanins) and other plant compounds the food table doesn't measure. Most trials gave freeze-dried whole strawberry powder for a few weeks: they found a slightly lower CRP, an inflammation marker, and mixed results for cholesterol, blood sugar and memory. No trial has shown that eating strawberries prevents a disease.",
+  "inIt": [
+    "Vitamin C: strawberries are rich in it, and the food table measures it. One lab measured 57 mg per 100 g in fresh strawberries; serum vitamin C rose within 30 minutes of a 500 g purée drink.",
+    "Folate, potassium and fibre: measured in the food table. Most of the folate in strawberries is 5-methyl-tetrahydrofolate (65% in one analysis).",
+    "Anthocyanins, the red pigments, almost all pelargonidin-3-glucoside (97% in one analysis). The food table doesn't measure them. In the blood they appear mostly as pelargonidin glucuronide, and the amount passed in urine rose in step with the amount eaten in a trial of 100, 200 and 400 g.",
+    "Ellagitannins and ellagic acid, with anthocyanins the main antioxidant compounds in strawberries. Not in the food table. Gut bacteria turn them into urolithins, and people differ a lot in how much they make.",
+    "Other flavonoids such as quercetin and catechin, and fisetin, a flavonol also found in apples, persimmons, grapes, onions and cucumbers. None of these are in the food table. Fisetin is sold as a supplement, but supplement studies aren't evidence about strawberries.",
+    "The food table tracks about 30 nutrients for strawberries. A study of people eating the fruit captures everything in it, named or not, which is why this page uses studies of the food itself."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-324",
+      "label": "A small bowl (about 150 g)",
+      "grams": 150
+    }
+  ],
+  "processing": [
+    "Freeze-dried whole strawberry powder is what most trials used: 10 to 60 g a day, mostly mixed into a drink. Researchers said 50 g equals about 3 cups or 500 g of fresh strawberries, 40 g about 0.45 kg, 32 g about 2.5 servings, 24 g about 2 cups and 13 g about 1 serving.",
+    "Fresh strawberries lose vitamin C, folate and anthocyanins in the fridge: in one lab study at 4 °C, all three were already lower after one day.",
+    "A review notes that freezing kept the most of strawberries' compounds in several studies, compared with drying with heat.",
+    "Jam: cooking at a higher temperature lowered vitamin C, anthocyanins and phenolic compounds in strawberry jam, and vitamin C fell quickly during storage whether the jam was kept cold or warm. Jam also adds sugar.",
+    "Heated purée released 2.5 times more free ellagic acid than fresh strawberries, but people made the same amount of urolithins from both.",
+    "The main allergy protein (Fra a 1) was slightly lower in oven- or sun-dried strawberries, and broke down after more than 10 minutes at 99 °C in a lab test."
+  ],
+  "whatStudiesDid": "Most trials gave adults with overweight, obesity, metabolic syndrome, prediabetes, type 2 diabetes or raised cholesterol freeze-dried whole strawberry powder in a drink every day for 3 to 12 weeks, usually 13 to 50 g a day, compared with a control powder matched for calories and often fibre. A few used fresh strawberries (454 g a day for a month in one trial) or strawberry purée (500 g once). After-meal studies added 10 to 40 g of powder to a high-fat or high-carbohydrate meal and followed the blood for up to 6 hours. Memory trials in older adults used 24 to 26 g a day for 8 to 13 weeks. The cohort studies asked people how often they ate strawberries and followed them for years.",
+  "markers": [
+    "ldl",
+    "total_cholesterol",
+    "hdl",
+    "triglycerides",
+    "glucose",
+    "hba1c",
+    "crp_hs",
+    "bp_systolic",
+    "bp_diastolic"
+  ],
+  "findings": [
+    {
+      "outcome": "Blood fats: total and LDL cholesterol",
+      "population": "Adults with overweight, obesity, metabolic syndrome or raised cholesterol, mostly in trials of freeze-dried whole strawberry powder drunk daily for 3 to 12 weeks; one trial of fresh strawberries",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials (17 to 60 people) lasting 3 to 12 weeks",
+        "Results disagree between trials and between doses: in one trial the higher dose lowered cholesterol and the lower did not, in another the reverse",
+        "The pooled analysis found no overall change; lower cholesterol showed only in subgroups of people who started with high levels",
+        "Several trials were partly funded by the California Strawberry Commission",
+        "In favour: many trials were double-blind and compared strawberries with a powder matched for calories and fibre"
+      ],
+      "summary": "A 2020 meta-analysis of 11 randomised trials (7 with blood fats) found that strawberries did not change the blood fat profile overall. In people whose total cholesterol was above 5 mmol/L at the start, it fell by 0.52 mmol/L (95% confidence interval 0.15 to 0.88); in people whose LDL cholesterol was above 3 mmol/L, LDL fell by 0.31 mmol/L (0.02 to 0.60). A 2019 meta-analysis of 14 trials found total cholesterol 6.49 mg/dL lower and no change in the other blood fats. Single trials differ. In 60 adults with abdominal obesity and raised blood fats, 50 g a day of freeze-dried strawberries for 12 weeks lowered total and LDL cholesterol compared with a matched control drink, while 25 g did not. In 34 adults with moderately raised cholesterol, 2 × 25 g a day for 4 weeks did not change LDL. In 40 adults, 13 g a day lowered LDL by 4.9% compared with 40 g a day, but not compared with the control, and lowered total cholesterol by 2.8% compared with the control. In 25 adults with prediabetes, 32 g a day for 12 weeks lowered total cholesterol by 7.0 mg/dL (2.0 to 12.0). In 28 people already on a cholesterol-lowering diet, 454 g of fresh strawberries a day for a month kept their LDL as low as an oat bran bread control did. Fasting triglycerides and HDL mostly did not change.",
+      "bottomLine": "In small trials, mostly of freeze-dried strawberry powder, cholesterol results disagree. Pooled trials showed no overall change, with lower total and LDL cholesterol only in people who started with high levels. Triglycerides and HDL mostly didn't change.",
+      "studies": [
+        {
+          "pmid": "32238201",
+          "doi": "10.1017/s000711452000121x",
+          "title": "Effects of strawberry intervention on cardiovascular risk factors: a meta-analysis of randomised controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31637390",
+          "doi": "10.1039/c9fo01684h",
+          "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24670970",
+          "doi": "10.3945/jn.113.188169",
+          "title": "Freeze-dried strawberries lower serum cholesterol and lipid peroxidation in adults with abdominal adiposity and elevated serum lipids.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "20797478",
+          "doi": "10.1016/j.nutres.2010.06.016",
+          "title": "Strawberries decrease atherosclerotic markers in subjects with metabolic syndrome.",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 27
+        },
+        {
+          "pmid": "33758944",
+          "doi": "10.1093/jn/nxab034",
+          "title": "Strawberry Consumption, Cardiometabolic Risk Factors, and Vascular Function: A Randomized Controlled Trial in Adults with Moderate Hypercholesterolemia.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 34
+        },
+        {
+          "pmid": "35512768",
+          "doi": "10.1080/07315724.2021.2014369",
+          "title": "Randomized Double-Blind Controlled Trial of Freeze-Dried Strawberry Powder Supplementation in Adults with Overweight or Obesity and Elevated Cholesterol.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 40
+        },
+        {
+          "pmid": "40250566",
+          "doi": "10.1016/j.tjnut.2025.04.015",
+          "title": "Strawberries Improve Insulin Resistance and Related Cardiometabolic Markers in Adults with Prediabetes: A Randomized Controlled Crossover Trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 25
+        },
+        {
+          "pmid": "19013285",
+          "doi": "10.1016/j.metabol.2008.07.018",
+          "title": "The effect of strawberries in a cholesterol-lowering dietary portfolio.",
+          "year": 2008,
+          "studyType": "rct",
+          "n": 28
+        }
+      ]
+    },
+    {
+      "outcome": "C-reactive protein (CRP), a blood marker of inflammation",
+      "population": "Adults with overweight, obesity, metabolic syndrome, type 2 diabetes or raised cholesterol, mostly in trials of freeze-dried whole strawberry powder for 4 to 12 weeks",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Few, small trials; the two meta-analyses pooled largely the same ones",
+        "Several single trials found no change in CRP",
+        "CRP is a blood marker, not a disease: no trial measured heart attacks or other illness",
+        "Several trials were partly funded by the California Strawberry Commission",
+        "In favour: the 2020 meta-analysis found little difference between trials and no sign of publication bias"
+      ],
+      "summary": "A 2020 meta-analysis (6 trials with CRP) found CRP 0.63 mg/L lower with strawberries (95% confidence interval 0.22 to 1.04 lower), with little difference between trials and no evidence of publication bias. A 2019 meta-analysis of 14 trials found it 0.472 mg/L lower. In 36 people with type 2 diabetes, 50 g a day of freeze-dried strawberries (said to equal 500 g fresh) for 6 weeks lowered CRP from 2.5 to 2.04 mg/L compared with the start. In 25 adults with prediabetes, 32 g a day for 12 weeks lowered high-sensitivity CRP and interleukin-6. Other trials found no change in CRP: 12 weeks of 25 or 50 g a day in 60 adults with abdominal obesity, 4 weeks of 2 × 25 g a day in 34 adults with raised cholesterol, and 12 weeks of 50 g a day in 17 adults with knee osteoarthritis. With a single high-carbohydrate, moderate-fat meal, a strawberry drink reduced the rise in CRP and interleukin-6 over the next 6 hours in 24 overweight adults.",
+      "bottomLine": "Two meta-analyses of small trials found CRP, a blood marker of inflammation, about 0.5 to 0.6 mg/L lower with strawberries, mostly freeze-dried powder. Several single trials saw no change, and no study has shown that this means less illness.",
+      "studies": [
+        {
+          "pmid": "32238201",
+          "doi": "10.1017/s000711452000121x",
+          "title": "Effects of strawberry intervention on cardiovascular risk factors: a meta-analysis of randomised controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31637390",
+          "doi": "10.1039/c9fo01684h",
+          "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24334868",
+          "doi": "10.1159/000356053",
+          "title": "Effects of freeze-dried strawberry supplementation on metabolic biomarkers of atherosclerosis in subjects with type 2 diabetes: a randomized double-blind controlled trial.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 36
+        },
+        {
+          "pmid": "40250566",
+          "doi": "10.1016/j.tjnut.2025.04.015",
+          "title": "Strawberries Improve Insulin Resistance and Related Cardiometabolic Markers in Adults with Prediabetes: A Randomized Controlled Crossover Trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 25
+        },
+        {
+          "pmid": "24670970",
+          "doi": "10.3945/jn.113.188169",
+          "title": "Freeze-dried strawberries lower serum cholesterol and lipid peroxidation in adults with abdominal adiposity and elevated serum lipids.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "33758944",
+          "doi": "10.1093/jn/nxab034",
+          "title": "Strawberry Consumption, Cardiometabolic Risk Factors, and Vascular Function: A Randomized Controlled Trial in Adults with Moderate Hypercholesterolemia.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 34
+        },
+        {
+          "pmid": "28846633",
+          "doi": "10.3390/nu9090949",
+          "title": "Strawberries Improve Pain and Inflammation in Obese Adults with Radiographic Evidence of Knee Osteoarthritis.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 17
+        },
+        {
+          "pmid": "21736853",
+          "doi": "10.1017/s0007114511001176",
+          "title": "Strawberry anthocyanin and its association with postprandial inflammation and insulin.",
+          "year": 2011,
+          "studyType": "rct",
+          "n": 24
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and insulin, fasting and after meals",
+      "population": "Adults with overweight, obesity, insulin resistance, prediabetes or type 2 diabetes, and healthy young women; freeze-dried whole strawberry powder or strawberry purée",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Pooled trials found no change in fasting glucose, and one meta-analysis found it slightly higher",
+        "The clearest result comes from one 25-person single-blinded trial compared with no strawberries rather than a matched placebo, partly funded by the California Strawberry Commission",
+        "After-meal results disagree: two trials found lower insulin, one found no difference",
+        "Insulin, glucose and HbA1c are markers; no trial measured who developed diabetes"
+      ],
+      "summary": "A 2020 meta-analysis (7 trials) found no effect on fasting glucose; a 2019 meta-analysis found fasting glucose 2.083 mg/dL higher. In a 28-week crossover trial in 25 adults with prediabetes, 32 g of freeze-dried strawberries a day (said to equal about 2.5 servings of fresh strawberries) for 12 weeks, compared with no strawberries, lowered fasting insulin by 6.9 µIU/mL (95% confidence interval 3.2 to 10.7), insulin resistance (HOMA-IR) by 2.3 (1.3 to 3.4), fasting glucose by 8.9 mg/dL (4.7 to 13.2) and HbA1c by 0.2 percentage points (0.1 to 0.3). In 33 adults with obesity and raised LDL, 32 g a day for 4 weeks lowered fasting insulin and insulin resistance but not glucose. After meals: in 24 overweight adults a strawberry drink with a high-carbohydrate meal lowered the insulin response; in 21 adults with insulin resistance, 40 g of powder with a high-carbohydrate, high-fat meal lowered insulin over 6 hours, while 10 and 20 g did not, and glucose did not differ; in 30 adults with overweight or obesity, 40 g added to a high-fat meal changed neither glucose, insulin nor triglycerides. In 23 healthy young women, glucose and insulin peaked at 30 minutes and quickly returned to baseline after both 500 g of strawberry purée and a sugar-matched placebo drink.",
+      "bottomLine": "Trials disagree. In one 12-week trial in 25 adults with prediabetes, freeze-dried strawberries lowered insulin, fasting glucose and HbA1c, but pooled trials showed no change in fasting glucose, and after-meal results were mixed.",
+      "studies": [
+        {
+          "pmid": "32238201",
+          "doi": "10.1017/s000711452000121x",
+          "title": "Effects of strawberry intervention on cardiovascular risk factors: a meta-analysis of randomised controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31637390",
+          "doi": "10.1039/c9fo01684h",
+          "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "40250566",
+          "doi": "10.1016/j.tjnut.2025.04.015",
+          "title": "Strawberries Improve Insulin Resistance and Related Cardiometabolic Markers in Adults with Prediabetes: A Randomized Controlled Crossover Trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 25
+        },
+        {
+          "pmid": "33922576",
+          "doi": "10.3390/nu13051421",
+          "title": "Dietary Strawberries Improve Cardiometabolic Risks in Adults with Obesity and Elevated Serum LDL Cholesterol in a Randomized Controlled Crossover Trial.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 33
+        },
+        {
+          "pmid": "21736853",
+          "doi": "10.1017/s0007114511001176",
+          "title": "Strawberry anthocyanin and its association with postprandial inflammation and insulin.",
+          "year": 2011,
+          "studyType": "rct",
+          "n": 24
+        },
+        {
+          "pmid": "26842771",
+          "doi": "10.1002/mnfr.201500845",
+          "title": "A dose-response evaluation of freeze-dried strawberries independent of fiber content on metabolic indices in abdominally obese individuals with insulin resistance in a randomized, single-blinded, diet-controlled crossover trial.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 21
+        },
+        {
+          "pmid": "28003205",
+          "doi": "10.3945/ajcn.116.141804",
+          "title": "Incorporating freeze-dried strawberry powder into a high-fat meal does not alter postprandial vascular function or blood markers of cardiovascular disease risk: a randomized controlled trial.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 30
+        },
+        {
+          "pmid": "37008410",
+          "doi": "10.1017/jns.2022.117",
+          "title": "Effects of acute strawberry consumption on serum levels of vitamin C and folic acid, the antioxidant potential of LDL and blood glucose response: a randomised cross-over controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 23
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in 8 randomised trials (mean ages 46.5 to 62), most with obesity, metabolic syndrome, raised cholesterol or raised blood pressure; mostly freeze-dried whole strawberry powder, one trial of fresh strawberries",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The meta-analysis authors rated the certainty moderate with GRADE, lowered for imprecision",
+        "Eight small, short trials, mostly of freeze-dried powder",
+        "An earlier meta-analysis found diastolic pressure slightly lower, so results are not fully consistent"
+      ],
+      "summary": "A 2025 meta-analysis of 8 randomised trials (12 comparisons) found no clear effect on systolic blood pressure (0.96 mmHg higher, 95% confidence interval 0.26 lower to 2.20 higher) or diastolic blood pressure (0.33 mmHg lower, 1.31 lower to 0.65 higher); the authors rated the certainty of this as moderate. In subgroups, systolic pressure was higher with 25 g a day of powder or less and in people under 50, and diastolic pressure lower in people aged 50 or more. A 2020 meta-analysis (6 trials) also found no effect, while a 2019 meta-analysis found diastolic pressure 2.22 mmHg lower. In 60 postmenopausal women with raised blood pressure, 25 or 50 g of powder a day for 8 weeks did not differ from the control. In 34 adults, one 50 g dose lowered systolic pressure 2 hours later by 3.1 mmHg compared with a control drink, but 4 weeks of daily powder did not change resting blood pressure.",
+      "bottomLine": "A 2025 meta-analysis of 8 trials, rated moderate certainty, found no clear effect of strawberries on blood pressure. In one trial a single 50 g dose of powder lowered systolic pressure for a couple of hours.",
+      "studies": [
+        {
+          "pmid": "40969412",
+          "doi": "10.22038/ajp.2024.25222",
+          "title": "Impact of strawberry consumption on blood pressure in adults: GRADE-assessed systematic review and dose-response meta-analysis of data from randomized controlled trials.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32238201",
+          "doi": "10.1017/s000711452000121x",
+          "title": "Effects of strawberry intervention on cardiovascular risk factors: a meta-analysis of randomised controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31637390",
+          "doi": "10.1039/c9fo01684h",
+          "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "29099521",
+          "doi": "10.1039/c7fo01183k",
+          "title": "Impact of daily strawberry consumption on blood pressure and arterial stiffness in pre- and stage 1-hypertensive postmenopausal women: a randomized controlled trial.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 60
+        },
+        {
+          "pmid": "33758944",
+          "doi": "10.1093/jn/nxab034",
+          "title": "Strawberry Consumption, Cardiometabolic Risk Factors, and Vascular Function: A Randomized Controlled Trial in Adults with Moderate Hypercholesterolemia.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 34
+        }
+      ]
+    },
+    {
+      "outcome": "Memory, thinking and Alzheimer's dementia",
+      "population": "Older adults (60 to 75, and about 72 on average) and middle-aged adults with insulin resistance and memory complaints in trials of freeze-dried whole strawberry powder; older adults in two US cohort studies of whole strawberries in the usual diet",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Three small trials (35 and 37 people in the two that give a count), 8 to 13 weeks, each testing many skills: some improved, others did not",
+        "In one trial a memory test improved during the control phase, not the strawberry phase",
+        "The cohort studies are observational: people who eat more strawberries may differ in other ways",
+        "Two of the trials and one cohort study were partly funded by the California Strawberry Commission"
+      ],
+      "summary": "In 37 healthy adults aged 60 to 75, 24 g of freeze-dried strawberries a day (said to equal 2 cups fresh) for 90 days, compared with a placebo powder, went with better scores on a spatial navigation task and on word recognition, but not on gait or balance. In 35 healthy adults aged about 72, 26 g a day for 8 weeks improved processing speed, while episodic memory improved during the control phase. In middle-aged adults with overweight, insulin resistance and memory complaints, 12 weeks of strawberry powder went with less memory interference and fewer depressive symptoms, with no change in metabolic measures. In 16,010 women aged 70 or more in the Nurses' Health Study, those who ate the most strawberries had slower cognitive decline than those who ate the least (difference in the global score 0.03, 95% confidence interval 0.00 to 0.06). In 925 adults aged 58 to 98 in the Rush Memory and Aging Project, 245 developed Alzheimer's dementia over about 6.7 years; higher strawberry intake went with a lower risk (hazard ratio 0.76, 0.60 to 0.96), after adjusting for age, education, activity, APOE-ε4, other fruit and energy intake.",
+      "bottomLine": "Three small trials of freeze-dried strawberries found better scores on some memory or speed tests but not on others. Two cohort studies linked eating more strawberries with slower cognitive decline and less Alzheimer's dementia; links, not proof.",
+      "studies": [
+        {
+          "pmid": "33468271",
+          "doi": "10.1017/s0007114521000222",
+          "title": "Dietary strawberry improves cognition in a randomised, double-blind, placebo-controlled trial in older adults.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 37
+        },
+        {
+          "pmid": "40199714",
+          "doi": "10.1016/j.numecd.2025.104018",
+          "title": "Strawberries modestly improve cognition and cardiovascular health in older adults.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 35
+        },
+        {
+          "pmid": "37892506",
+          "doi": "10.3390/nu15204431",
+          "title": "Early Intervention in Cognitive Aging with Strawberry Supplementation.",
+          "year": 2023,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "22535616",
+          "doi": "10.1002/ana.23594",
+          "title": "Dietary intakes of berries and flavonoids in relation to cognitive decline.",
+          "year": 2012,
+          "studyType": "observational",
+          "n": 16010
+        },
+        {
+          "pmid": "31847371",
+          "doi": "10.3390/nu11123060",
+          "title": "Association of Strawberries and Anthocyanidin Intake with Alzheimer's Dementia Risk.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 925
+        }
+      ]
+    },
+    {
+      "outcome": "Heart attacks (blueberries and strawberries counted together; berries in general)",
+      "population": "93,600 US women aged 25 to 42 at the start (Nurses' Health Study II), followed for 18 years",
+      "effect": "no clear effect",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Strawberries were not reported on their own: this is a berries-in-general result",
+        "The confidence interval includes no difference",
+        "Observational: diet was asked by questionnaire, and berry eaters may differ in other ways"
+      ],
+      "summary": "Among 93,600 young and middle-aged women followed for 18 years, 405 had a heart attack. Women eating more than 3 servings a week of blueberries and strawberries together tended to have fewer heart attacks than women eating less (hazard ratio 0.66, 95% confidence interval 0.40 to 1.08), a result that could be chance. Higher intake of anthocyanins, the red and blue pigments these berries contain, went with fewer heart attacks (0.68, 0.49 to 0.96, highest versus lowest fifth); that is a compound counted from the whole diet, not strawberries. No result for strawberries alone was reported in the abstract.",
+      "bottomLine": "In a large US study of young and middle-aged women, eating blueberries and strawberries more than 3 times a week went with fewer heart attacks, but the result could be chance, and strawberries were not studied on their own.",
+      "studies": [
+        {
+          "pmid": "23319811",
+          "doi": "10.1161/circulationaha.112.122408",
+          "title": "High anthocyanin intake is associated with a reduced risk of myocardial infarction in young and middle-aged women.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 93600
+        }
+      ]
+    },
+    {
+      "outcome": "Knee osteoarthritis pain",
+      "population": "17 adults with obesity and knee osteoarthritis seen on X-ray, aged about 57, in one crossover trial of freeze-dried whole strawberry powder",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "One trial with 17 people; the two papers report the same trial",
+        "Many blood markers were tested, so some may differ by chance",
+        "Pain was self-reported; the trial was double-blind, which helps"
+      ],
+      "summary": "In a double-blind crossover trial, 17 adults with obesity and knee osteoarthritis drank 50 g of freeze-dried strawberries a day for 12 weeks and a control drink for 12 weeks. Compared with the control, constant, intermittent and total pain scores (ICOAP questionnaire) and disability scores (HAQ-DI) were lower, as were the inflammation markers interleukin-6 and interleukin-1β and MMP-3, a marker of cartilage breakdown. CRP, glucose and blood fats did not change. A second paper from the same trial reported lower TNF-α, soluble TNF receptor 2 and two markers of lipid oxidation.",
+      "bottomLine": "In one 12-week crossover trial of 17 adults with obesity and knee osteoarthritis, a freeze-dried strawberry drink lowered pain scores and some inflammation markers compared with a control drink. It needs repeating in larger trials.",
+      "studies": [
+        {
+          "pmid": "28846633",
+          "doi": "10.3390/nu9090949",
+          "title": "Strawberries Improve Pain and Inflammation in Obese Adults with Radiographic Evidence of Knee Osteoarthritis.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 17
+        },
+        {
+          "pmid": "30382270",
+          "doi": "10.1039/c8fo01194j",
+          "title": "Strawberries decrease circulating levels of tumor necrosis factor and lipid peroxides in obese adults with knee osteoarthritis.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 17
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "CRP in two meta-analyses of strawberry trials",
+      "caption": "Average difference in C-reactive protein (CRP), a blood marker of inflammation, with strawberries compared with control, mostly freeze-dried strawberry powder for some weeks. 0 means no difference; the line shows the 95% confidence interval (the 2019 meta-analysis gave only the average in its abstract). The two pooled largely the same small trials, so they are not two separate confirmations, and a lower CRP has not been shown to mean less illness.",
+      "scale": "linear",
+      "unit": "mg/L",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "2020 meta-analysis (6 trials with CRP)",
+          "value": -0.63,
+          "low": -1.04,
+          "high": -0.22
+        },
+        {
+          "label": "2019 meta-analysis (14 trials in all)",
+          "value": -0.472,
+          "note": "No interval given in the abstract"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "32238201",
+          "doi": "10.1017/s000711452000121x",
+          "title": "Effects of strawberry intervention on cardiovascular risk factors: a meta-analysis of randomised controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31637390",
+          "doi": "10.1039/c9fo01684h",
+          "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Blood pressure in strawberry trials",
+      "caption": "Average difference in blood pressure with strawberries compared with control. 0 means no difference; lines show the 95% confidence interval. In the 2025 meta-analysis of 8 trials (rated moderate certainty) both intervals cross 0: no clear effect. The 2019 meta-analysis found diastolic pressure a little lower (no interval in its abstract).",
+      "scale": "linear",
+      "unit": "mmHg",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "Systolic (top number), 2025 meta-analysis",
+          "value": 0.96,
+          "low": -0.26,
+          "high": 2.2
+        },
+        {
+          "label": "Diastolic (bottom number), 2025 meta-analysis",
+          "value": -0.33,
+          "low": -1.31,
+          "high": 0.65
+        },
+        {
+          "label": "Diastolic (bottom number), 2019 meta-analysis",
+          "value": -2.22,
+          "note": "No interval given in the abstract"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "40969412",
+          "doi": "10.22038/ajp.2024.25222",
+          "title": "Impact of strawberry consumption on blood pressure in adults: GRADE-assessed systematic review and dose-response meta-analysis of data from randomized controlled trials.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31637390",
+          "doi": "10.1039/c9fo01684h",
+          "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "The 4 hours after 500 g of strawberry purée",
+      "caption": "One crossover trial in 23 healthy women aged about 22, compared with a drink matched for sugar. Blood was taken fasting and at 0.5, 1, 2 and 4 hours. It shows what reached the blood from one large serving, not a lasting effect. The drink was made by a food company whose staff were among the authors.",
+      "steps": [
+        {
+          "label": "The drink",
+          "text": "500 g of strawberry purée with 255 mg vitamin C, 330 µg folate and 171.5 mg anthocyanins, mostly pelargonidin-3-glucoside (136.5 mg), as measured by the researchers."
+        },
+        {
+          "label": "30 minutes: sugar peaks",
+          "text": "Blood glucose and insulin peaked and quickly went back to baseline, after both the strawberry drink and the sugar-matched drink."
+        },
+        {
+          "label": "1 hour: LDL resists oxidation longer",
+          "text": "In a lab test, LDL taken from the blood took longer to oxidise after the strawberry drink."
+        },
+        {
+          "label": "2 hours: vitamin C and folate peak",
+          "text": "Serum vitamin C peaked at 15.0 µg/mL and folate at 14.4 ng/mL (averages)."
+        },
+        {
+          "label": "Up to 4 hours: still raised",
+          "text": "Vitamin C and folate stayed higher than before the drink from 30 minutes to 4 hours."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "37008410",
+          "doi": "10.1017/jns.2022.117",
+          "title": "Effects of acute strawberry consumption on serum levels of vitamin C and folic acid, the antioxidant potential of LDL and blood glucose response: a randomised cross-over controlled trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 23
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Strawberry allergy or birch pollen allergy",
+      "note": "Strawberries contain proteins that cause allergic reactions in some people, including one like the birch pollen allergen Bet v 1 (Fra a 1), profilin and lipid transfer protein. People allergic to birch pollen can react to strawberries. In fruits of the rose family these proteins mainly cause symptoms in the mouth; reactions in the whole body are reported rarely, for example when exercise followed eating them. Anyone who has reacted to strawberries can discuss it with a doctor or allergist."
+    }
+  ],
+  "cautions": [
+    "Most trials used freeze-dried whole strawberry powder in a drink, often compared with a powder matched for calories and fibre. Whether the same happens with fresh strawberries in an everyday diet is less studied.",
+    "Many of the trials, and one of the cohort studies, were partly funded by the California Strawberry Commission. That doesn't make a result wrong, but independent trials would make it more convincing.",
+    "The results are changes in blood markers (CRP, cholesterol, insulin) over weeks. No trial has shown fewer heart attacks, less diabetes or less dementia from eating strawberries.",
+    "Strawberry jam, syrups and sweetened strawberry products add sugar, and jam loses much of its vitamin C in storage."
+  ],
+  "unknowns": [
+    "Whether eating strawberries for years lowers heart disease, diabetes or dementia: only cohort studies, which show links, have looked, and the heart attack result counted strawberries together with blueberries.",
+    "Which compounds matter. Trials of isolated compounds, such as a strawberry and cranberry polyphenol extract that improved insulin sensitivity in 41 adults, or fisetin and anthocyanin supplements, test something else and aren't evidence about the fruit.",
+    "Whether fresh strawberries do what the powder did: fresh and freeze-dried strawberries have rarely been compared in the same trial.",
+    "Long-term effects: daily trials lasted at most 12 weeks per period, or 6 months in a Chinese trial in people with precancerous changes of the gullet that had no untreated comparison group (60 g of powder a day lowered the tissue grade in 29 of 36 people). Without such a group, it can't show the powder caused this.",
+    "Why people respond differently. Gut bacteria turn strawberries' ellagitannins into very different amounts of urolithins (in one study all 20 people made urolithin A, but only 3 made urolithin B); whether this changes the effects is unknown.",
+    "How common strawberry allergy is: the studies found describe the allergy proteins, not how many people react."
+  ],
+  "sources": [
+    {
+      "pmid": "32238201",
+      "doi": "10.1017/s000711452000121x",
+      "title": "Effects of strawberry intervention on cardiovascular risk factors: a meta-analysis of randomised controlled trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31637390",
+      "doi": "10.1039/c9fo01684h",
+      "title": "Effects of strawberry supplementation on cardiovascular risk factors: a comprehensive systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "40969412",
+      "doi": "10.22038/ajp.2024.25222",
+      "title": "Impact of strawberry consumption on blood pressure in adults: GRADE-assessed systematic review and dose-response meta-analysis of data from randomized controlled trials.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "39262175",
+      "doi": "10.1080/10408398.2024.2398634",
+      "title": "Strawberry (Fragaria x Ananassa) intake on human health and disease outcomes: a comprehensive literature review.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22153122",
+      "doi": "10.1016/j.nut.2011.08.009",
+      "title": "The strawberry: composition, nutritional quality, and impact on human health.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24345049",
+      "doi": "10.1080/10408398.2011.608174",
+      "title": "Strawberry as a functional food: an evidence-based review.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "doi": "10.1016/j.lwt.2017.08.049",
+      "title": "Folate, ascorbic acid, anthocyanin and colour changes in strawberry (Fragaria × annanasa) during refrigerated storage",
+      "year": 2017,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "32044703",
+      "doi": "10.1016/j.foodchem.2020.126297",
+      "title": "Effect of temperature on stability of anthocyanins, ascorbic acid and color in strawberry and raspberry jams.",
+      "year": 2020,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "23121441",
+      "doi": "10.1089/ars.2012.4901",
+      "title": "Fisetin: a dietary antioxidant for health promotion.",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29318244",
+      "doi": "10.1039/c7fo01843f",
+      "title": "Metabolic fate of strawberry polyphenols after chronic intake in healthy older adults.",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 19
+    },
+    {
+      "pmid": "18424598",
+      "doi": "10.1093/jn/138.5.897",
+      "title": "Anthocyanin excretion by humans increases linearly with increasing strawberry dose.",
+      "year": 2008,
+      "studyType": "rct",
+      "n": 12
+    },
+    {
+      "pmid": "22126674",
+      "doi": "10.1021/jf203641r",
+      "title": "Strawberry processing does not affect the production and urinary excretion of urolithins, ellagic acid metabolites, in humans.",
+      "year": 2012,
+      "studyType": "observational",
+      "n": 20
+    },
+    {
+      "pmid": "15656654",
+      "doi": "10.1021/jf049144d",
+      "title": "Metabolism of antioxidant and chemopreventive ellagitannins from strawberries, raspberries, walnuts, and oak-aged wine in humans: identification of biomarkers and individual variability.",
+      "year": 2005,
+      "studyType": "observational",
+      "n": 40
+    },
+    {
+      "pmid": "37008410",
+      "doi": "10.1017/jns.2022.117",
+      "title": "Effects of acute strawberry consumption on serum levels of vitamin C and folic acid, the antioxidant potential of LDL and blood glucose response: a randomised cross-over controlled trial.",
+      "year": 2023,
+      "studyType": "rct",
+      "n": 23
+    },
+    {
+      "pmid": "30004458",
+      "doi": "10.3390/nu10070857",
+      "title": "Effect of the Strawberry Genotype, Cultivation and Processing on the Fra a 1 Allergen Content.",
+      "year": 2018,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "15507096",
+      "doi": "10.1111/j.1398-9995.2004.00585.x",
+      "title": "Bet v 1 homologues in strawberry identified as IgE-binding proteins and presumptive allergens.",
+      "year": 2004,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "16650053",
+      "doi": "10.1111/j.1365-2222.2006.02453.x",
+      "title": "The role of profilin and lipid transfer protein in strawberry allergy in the Mediterranean area.",
+      "year": 2006,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "35690877",
+      "doi": "10.1186/s13223-022-00692-0",
+      "title": "Generalized allergic reaction in response to exercise due to strawberry gibberellin-regulated protein: a case report.",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "22135048",
+      "doi": "10.1158/1940-6207.capr-11-0469",
+      "title": "Randomized phase II trial of lyophilized strawberries in patients with dysplastic precancerous lesions of the esophagus.",
+      "year": 2012,
+      "studyType": "rct",
+      "n": 75
+    },
+    {
+      "pmid": "28290272",
+      "doi": "10.1017/s0007114517000393",
+      "title": "Strawberry and cranberry polyphenols improve insulin sensitivity in insulin-resistant, non-diabetic adults: a parallel, double-blind, controlled and randomised clinical trial.",
+      "year": 2017,
+      "studyType": "rct",
+      "n": 41
+    }
+  ]
+}
