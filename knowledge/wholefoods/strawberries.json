@@ -138,6 +138,8 @@
       ],
       "summary": "A 2020 meta-analysis of 11 randomised trials (7 with blood fats) found that strawberries did not change the blood fat profile overall. In people whose total cholesterol was above 5 mmol/L at the start, it fell by 0.52 mmol/L (95% confidence interval 0.15 to 0.88); in people whose LDL cholesterol was above 3 mmol/L, LDL fell by 0.31 mmol/L (0.02 to 0.60). A 2019 meta-analysis of 14 trials found total cholesterol 6.49 mg/dL lower and no change in the other blood fats. Single trials differ. In 60 adults with abdominal obesity and raised blood fats, 50 g a day of freeze-dried strawberries for 12 weeks lowered total and LDL cholesterol compared with a matched control drink, while 25 g did not. In 34 adults with moderately raised cholesterol, 2 × 25 g a day for 4 weeks did not change LDL. In 40 adults, 13 g a day lowered LDL by 4.9% compared with 40 g a day, but not compared with the control, and lowered total cholesterol by 2.8% compared with the control. In 25 adults with prediabetes, 32 g a day for 12 weeks lowered total cholesterol by 7.0 mg/dL (2.0 to 12.0). In 28 people already on a cholesterol-lowering diet, 454 g of fresh strawberries a day for a month kept their LDL as low as an oat bran bread control did. Fasting triglycerides and HDL mostly did not change.",
       "bottomLine": "In small trials, mostly of freeze-dried strawberry powder, cholesterol results disagree. Pooled trials showed no overall change, with lower total and LDL cholesterol only in people who started with high levels. Triglycerides and HDL mostly didn't change.",
+      "label": "Cholesterol",
+      "line": "No overall change in small pooled trials; lower only in people who started high",
       "studies": [
         {
           "pmid": "32238201",
@@ -217,6 +219,8 @@
       ],
       "summary": "A 2020 meta-analysis (6 trials with CRP) found CRP 0.63 mg/L lower with strawberries (95% confidence interval 0.22 to 1.04 lower), with little difference between trials and no evidence of publication bias. A 2019 meta-analysis of 14 trials found it 0.472 mg/L lower. In 36 people with type 2 diabetes, 50 g a day of freeze-dried strawberries (said to equal 500 g fresh) for 6 weeks lowered CRP from 2.5 to 2.04 mg/L compared with the start. In 25 adults with prediabetes, 32 g a day for 12 weeks lowered high-sensitivity CRP and interleukin-6. Other trials found no change in CRP: 12 weeks of 25 or 50 g a day in 60 adults with abdominal obesity, 4 weeks of 2 × 25 g a day in 34 adults with raised cholesterol, and 12 weeks of 50 g a day in 17 adults with knee osteoarthritis. With a single high-carbohydrate, moderate-fat meal, a strawberry drink reduced the rise in CRP and interleukin-6 over the next 6 hours in 24 overweight adults.",
       "bottomLine": "Two meta-analyses of small trials found CRP, a blood marker of inflammation, about 0.5 to 0.6 mg/L lower with strawberries, mostly freeze-dried powder. Several single trials saw no change, and no study has shown that this means less illness.",
+      "label": "Inflammation (CRP)",
+      "line": "About 0.5 to 0.6 mg/L lower in small trials, mostly with powder; several saw no change",
       "studies": [
         {
           "pmid": "32238201",
@@ -295,6 +299,8 @@
       ],
       "summary": "A 2020 meta-analysis (7 trials) found no effect on fasting glucose; a 2019 meta-analysis found fasting glucose 2.083 mg/dL higher. In a 28-week crossover trial in 25 adults with prediabetes, 32 g of freeze-dried strawberries a day (said to equal about 2.5 servings of fresh strawberries) for 12 weeks, compared with no strawberries, lowered fasting insulin by 6.9 µIU/mL (95% confidence interval 3.2 to 10.7), insulin resistance (HOMA-IR) by 2.3 (1.3 to 3.4), fasting glucose by 8.9 mg/dL (4.7 to 13.2) and HbA1c by 0.2 percentage points (0.1 to 0.3). In 33 adults with obesity and raised LDL, 32 g a day for 4 weeks lowered fasting insulin and insulin resistance but not glucose. After meals: in 24 overweight adults a strawberry drink with a high-carbohydrate meal lowered the insulin response; in 21 adults with insulin resistance, 40 g of powder with a high-carbohydrate, high-fat meal lowered insulin over 6 hours, while 10 and 20 g did not, and glucose did not differ; in 30 adults with overweight or obesity, 40 g added to a high-fat meal changed neither glucose, insulin nor triglycerides. In 23 healthy young women, glucose and insulin peaked at 30 minutes and quickly returned to baseline after both 500 g of strawberry purée and a sugar-matched placebo drink.",
       "bottomLine": "Trials disagree. In one 12-week trial in 25 adults with prediabetes, freeze-dried strawberries lowered insulin, fasting glucose and HbA1c, but pooled trials showed no change in fasting glucose, and after-meal results were mixed.",
+      "label": "Blood sugar and insulin",
+      "line": "Results disagree: lower in one small prediabetes trial, no change in pooled trials",
       "studies": [
         {
           "pmid": "32238201",
@@ -372,6 +378,8 @@
       ],
       "summary": "A 2025 meta-analysis of 8 randomised trials (12 comparisons) found no clear effect on systolic blood pressure (0.96 mmHg higher, 95% confidence interval 0.26 lower to 2.20 higher) or diastolic blood pressure (0.33 mmHg lower, 1.31 lower to 0.65 higher); the authors rated the certainty of this as moderate. In subgroups, systolic pressure was higher with 25 g a day of powder or less and in people under 50, and diastolic pressure lower in people aged 50 or more. A 2020 meta-analysis (6 trials) also found no effect, while a 2019 meta-analysis found diastolic pressure 2.22 mmHg lower. In 60 postmenopausal women with raised blood pressure, 25 or 50 g of powder a day for 8 weeks did not differ from the control. In 34 adults, one 50 g dose lowered systolic pressure 2 hours later by 3.1 mmHg compared with a control drink, but 4 weeks of daily powder did not change resting blood pressure.",
       "bottomLine": "A 2025 meta-analysis of 8 trials, rated moderate certainty, found no clear effect of strawberries on blood pressure. In one trial a single 50 g dose of powder lowered systolic pressure for a couple of hours.",
+      "label": "Blood pressure",
+      "line": "No clear change in a 2025 review of 8 trials",
       "studies": [
         {
           "pmid": "40969412",
@@ -425,6 +433,8 @@
       ],
       "summary": "In 37 healthy adults aged 60 to 75, 24 g of freeze-dried strawberries a day (said to equal 2 cups fresh) for 90 days, compared with a placebo powder, went with better scores on a spatial navigation task and on word recognition, but not on gait or balance. In 35 healthy adults aged about 72, 26 g a day for 8 weeks improved processing speed, while episodic memory improved during the control phase. In middle-aged adults with overweight, insulin resistance and memory complaints, 12 weeks of strawberry powder went with less memory interference and fewer depressive symptoms, with no change in metabolic measures. In 16,010 women aged 70 or more in the Nurses' Health Study, those who ate the most strawberries had slower cognitive decline than those who ate the least (difference in the global score 0.03, 95% confidence interval 0.00 to 0.06). In 925 adults aged 58 to 98 in the Rush Memory and Aging Project, 245 developed Alzheimer's dementia over about 6.7 years; higher strawberry intake went with a lower risk (hazard ratio 0.76, 0.60 to 0.96), after adjusting for age, education, activity, APOE-ε4, other fruit and energy intake.",
       "bottomLine": "Three small trials of freeze-dried strawberries found better scores on some memory or speed tests but not on others. Two cohort studies linked eating more strawberries with slower cognitive decline and less Alzheimer's dementia; links, not proof.",
+      "label": "Memory and thinking",
+      "line": "Mixed: better on some tests in three small trials; slower decline in cohorts (a link)",
       "studies": [
         {
           "pmid": "33468271",
@@ -479,6 +489,8 @@
       ],
       "summary": "Among 93,600 young and middle-aged women followed for 18 years, 405 had a heart attack. Women eating more than 3 servings a week of blueberries and strawberries together tended to have fewer heart attacks than women eating less (hazard ratio 0.66, 95% confidence interval 0.40 to 1.08), a result that could be chance. Higher intake of anthocyanins, the red and blue pigments these berries contain, went with fewer heart attacks (0.68, 0.49 to 0.96, highest versus lowest fifth); that is a compound counted from the whole diet, not strawberries. No result for strawberries alone was reported in the abstract.",
       "bottomLine": "In a large US study of young and middle-aged women, eating blueberries and strawberries more than 3 times a week went with fewer heart attacks, but the result could be chance, and strawberries were not studied on their own.",
+      "label": "Heart attacks (berries in general)",
+      "line": "No clear difference: fewer in one large study of women, but it could be chance",
       "studies": [
         {
           "pmid": "23319811",
@@ -502,6 +514,8 @@
       ],
       "summary": "In a double-blind crossover trial, 17 adults with obesity and knee osteoarthritis drank 50 g of freeze-dried strawberries a day for 12 weeks and a control drink for 12 weeks. Compared with the control, constant, intermittent and total pain scores (ICOAP questionnaire) and disability scores (HAQ-DI) were lower, as were the inflammation markers interleukin-6 and interleukin-1β and MMP-3, a marker of cartilage breakdown. CRP, glucose and blood fats did not change. A second paper from the same trial reported lower TNF-α, soluble TNF receptor 2 and two markers of lipid oxidation.",
       "bottomLine": "In one 12-week crossover trial of 17 adults with obesity and knee osteoarthritis, a freeze-dried strawberry drink lowered pain scores and some inflammation markers compared with a control drink. It needs repeating in larger trials.",
+      "label": "Knee arthritis pain",
+      "line": "Less pain than a control drink in one small trial of 17 adults",
       "studies": [
         {
           "pmid": "28846633",

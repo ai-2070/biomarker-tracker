@@ -130,6 +130,8 @@
       ],
       "summary": "In three large US cohorts (215,618 people followed for up to 32 years), eating at least one egg a day wasn't linked with heart disease and stroke after accounting for updated lifestyle and the foods eaten with eggs (hazard ratio 0.93, 95% confidence interval 0.82 to 1.05, against less than one egg a month). In the same paper's meta-analysis (1,720,108 people), each extra egg a day wasn't linked with cardiovascular disease (relative risk 0.98, 0.93 to 1.03): 1.01 (0.96 to 1.06) in US cohorts, 1.05 (0.92 to 1.19) in European ones and 0.92 (0.85 to 0.99) in Asian ones. In contrast, the Lifetime Risk Pooling Project (29,615 US adults, median 17.5 years) found each extra half egg a day went with higher risk of cardiovascular disease (1.06, 1.03 to 1.10), and each extra 300 mg of dietary cholesterol a day too (1.17, 1.09 to 1.26); the egg link disappeared after adjusting for dietary cholesterol (0.99, 0.93 to 1.05), pointing to the cholesterol in eggs. The 2020 authors suggest that study lacked simultaneous control for foods such as red meat and for BMI. A 2022 meta-analysis (3,601,401 people) found 1.04 (1.00 to 1.08) per extra 50-g egg a day, 1.08 (1.02 to 1.14) in US cohorts and no link in Asian ones. In 461,213 Chinese adults, daily egg eaters had lower risk than non-eaters (0.89, 0.87 to 0.92), and PURE (146,011 people in 21 countries) found no link for 7 or more eggs a week (major cardiovascular disease 0.92, 0.83 to 1.01).",
       "bottomLine": "Across large cohort studies, eating up to about an egg a day wasn't clearly linked with heart disease or stroke overall. Some US studies found a small higher risk, tied to the cholesterol in eggs; Asian studies found lower risk. These are links, not proof.",
+      "label": "Heart disease and stroke",
+      "line": "No clear link up to about an egg a day in large cohorts (a link, not proof)",
       "studies": [
         {
           "pmid": "32132002",
@@ -185,6 +187,8 @@
       ],
       "summary": "A 2022 meta-analysis of 33 cohort studies (2,216,720 people, 232,408 deaths) found no link between the highest and lowest egg intakes and death from any cause (relative risk 1.02, 95% confidence interval 0.94 to 1.11), heart and blood vessel disease (1.04, 0.87 to 1.23) or stroke (0.81, 0.64 to 1.02), but a higher risk of cancer death (1.20, 1.04 to 1.39); per extra egg a week, risk of death from any cause was 2% higher and of cancer death 4% higher, and of stroke death 4% lower. The authors rated the certainty low to moderate. In PURE (146,011 people in 21 countries), eating 7 or more eggs a week wasn't linked with death (hazard ratio 1.04, 0.94 to 1.15, against fewer than 1 a week), nor in 31,544 people with vascular disease in two international trials (0.88, 0.62 to 1.24). In contrast, the US Lifetime Risk Pooling Project (29,615 adults) found each extra half egg a day went with higher risk of death (1.08, 1.04 to 1.11), and in 27,078 men in the ATBC study each extra 50-g egg a day went with a hazard ratio of 1.06 for death from any cause.",
       "bottomLine": "In most large cohort studies, people who ate more eggs didn't die more often overall. Some analyses found a small higher risk, and one meta-analysis found more cancer deaths at the highest intakes. The evidence is low to moderate certainty.",
+      "label": "Death from any cause",
+      "line": "No clear link in most large cohorts; some found a small higher risk",
       "studies": [
         {
           "pmid": "35396834",
@@ -232,6 +236,8 @@
       ],
       "summary": "In three large US cohorts (213,798 people, 20,514 new cases of type 2 diabetes), each extra egg a day went with 14% higher risk (95% confidence interval 7% to 20%) after adjusting for updated BMI, lifestyle and diet. In the same paper's meta-analysis of 16 cohort studies (589,559 people), the pooled relative risk per egg a day was 1.07 (0.99 to 1.15) overall, but 1.18 (1.10 to 1.27) in US studies, 0.99 (0.85 to 1.15) in European ones and 0.82 (0.62 to 1.09) in Asian ones. An earlier meta-analysis with 39,610 Swedish men found the same split: per extra 3 eggs a week, 1.18 (1.13 to 1.24) in five US studies and 0.97 (0.90 to 1.05) in seven non-US studies, and no clear link in the Swedish men themselves. Both groups of authors suggest that egg-eating habits and the overall diet around eggs differ between populations.",
       "bottomLine": "In US cohort studies, people who ate more eggs were more likely to develop type 2 diabetes; in European and Asian studies they weren't. Why isn't known: what eggs are eaten with may differ. These are links, not proof.",
+      "label": "Type 2 diabetes",
+      "line": "Higher risk in US cohorts, not in European or Asian ones (a link)",
       "studies": [
         {
           "pmid": "32453379",
@@ -263,6 +269,8 @@
       ],
       "summary": "A 2018 meta-analysis of 28 trials found that eating eggs raised LDL cholesterol by 5.55 mg/dL (95% confidence interval 3.14 to 7.69), HDL cholesterol by 2.13 mg/dL (1.10 to 3.16) and total cholesterol by 5.60 mg/dL (3.11 to 8.09) compared with low-egg diets (5.55 mg/dL is about 0.14 mmol/L), with no change in the LDL-to-HDL ratio or triglycerides; part of the variation between trials was explained by people's response to dietary cholesterol. A 2020 meta-analysis of trials in healthy people found LDL 8.14 mg/dL (about 0.21 mmol/L) higher (4.46 to 11.82; 13 trials), no clear change in HDL (1.27, −0.28 to 2.83) and a slightly higher LDL-to-HDL ratio (0.14, 0.05 to 0.22), with larger effects in trials over 2 months. Across 55 trials of dietary cholesterol (2,652 people), each extra 100 mg a day was predicted to raise LDL by 1.90 to 4.58 mg/dL depending on the model. People differ: in trials adding 640 mg of cholesterol a day from eggs for 30 days, LDL and HDL didn't rise in 'hyporesponders' but both rose in 'hyperresponders' (40 men and 51 premenopausal women), while the LDL-to-HDL ratio stayed the same in the women and rose in the male hyperresponders. The American Heart Association's 2020 advisory concluded that most trial meta-analyses link cholesterol intakes above current average levels with higher total or LDL cholesterol.",
       "bottomLine": "In trials, eating more eggs raised LDL cholesterol by about 5 to 8 mg/dL (about 0.14 to 0.21 mmol/L) on average, and HDL a little in some analyses. People differ: in some, blood cholesterol barely moves; in others ('hyperresponders') it rises more.",
+      "label": "LDL and HDL cholesterol",
+      "line": "Raised LDL a little in trials, about 5 to 8 mg/dL; some people rise more",
       "studies": [
         {
           "pmid": "29111915",
@@ -323,6 +331,8 @@
       ],
       "summary": "A 2013 meta-analysis of cohort studies found that, in people with diabetes, eating at least one egg a day went with higher cardiovascular risk than eating less than one a week (hazard ratio 1.69, 95% confidence interval 1.09 to 2.62). The 2020 meta-analysis found a pooled relative risk of 1.25 (0.99 to 1.59) per extra egg a day and 1.40 (1.00 to 1.97) for high against low intake in people with type 2 diabetes, with considerable variation between studies; in its own three US cohorts, egg intake wasn't linked with heart disease in people with type 2 diabetes (1.06, 0.81 to 1.39 for at least one egg a day). In the DIABEGG trial, 140 people with prediabetes or type 2 diabetes ate 2 eggs a day 6 days a week or fewer than 2 eggs a week for 3 months, with more unsaturated fats in both diets: HDL, LDL, total cholesterol, triglycerides and blood sugar control didn't differ. Over 12 months (128 people), glucose, HbA1c, blood fats and CRP still didn't differ. A 2017 review of 6 trials in people with or at risk of type 2 diabetes found that 6 to 12 eggs a week didn't change total or LDL cholesterol, triglycerides, fasting glucose, insulin or CRP, and HDL rose in 4 of the 6.",
       "bottomLine": "Some cohort studies found more heart disease in people with type 2 diabetes who ate more eggs, but results vary and are imprecise. Trials of up to 12 months found no change in their blood fats, blood sugar or CRP. Neither settles the question.",
+      "label": "Heart disease (with diabetes)",
+      "line": "Results disagree: some cohorts found more, trials found no change in blood fats",
       "studies": [
         {
           "pmid": "23676423",
@@ -377,6 +387,8 @@
       ],
       "summary": "Lutein and zeaxanthin collect in the macula, the centre of the retina, where they may reduce damage from light; more of this macular pigment may lower the risk of age-related macular degeneration, but that hasn't been tested with eggs. A 2021 meta-analysis of 5 randomised trials (296 people) found that eating eggs raised macular pigment optical density (how much yellow pigment sits in the centre of the retina) by 0.037 (95% confidence interval 0.004 to 0.069) and serum lutein by 0.150 µmol/L (0.037 to 0.263), with no variation between trials. In 24 women eating 6 eggs a week for 12 weeks, serum zeaxanthin and macular pigment rose, while serum lutein and cholesterol didn't change. In older adults taking statins, 4 egg yolks a day for 5 weeks raised macular pigment by up to 50% in those who started low. In a 90-day trial of 100 people, lutein-enriched eggs raised serum lutein by 76% but macular pigment didn't change in any group. In the 4-month ALGOVUE trial (99 people), 2 eggs a day raised macular pigment slightly with standard or enriched eggs. In 10 men given 6 mg of lutein from different sources, more of it reached the blood from lutein-enriched eggs than from supplements or spinach.",
       "bottomLine": "In small trials, eating eggs raised lutein in the blood and slightly increased the yellow pigment at the centre of the retina, which is thought to protect it. No trial has tested whether this prevents eye disease, and one trial found no change.",
+      "label": "Lutein and eye pigment",
+      "line": "Small rise in blood lutein and eye pigment in small trials; eye disease not tested",
       "studies": [
         {
           "pmid": "33491232",
@@ -440,6 +452,8 @@
       ],
       "summary": "Eggs are one of the richest food sources of choline. TMAO (trimethylamine N-oxide) is made by gut bacteria and the liver from choline and has been linked with heart disease; whether it causes it is still debated. A 2025 meta-analysis of 6 randomised trials found no clear effect of eating eggs on fasting blood TMAO (−0.08 µmol/L, 95% confidence interval −0.47 to 0.32), choline or betaine, with moderate certainty. In a 4-week trial in 82 healthy young adults, 4 hard-boiled eggs a day didn't raise fasting TMAO or platelet reactivity, while choline bitartrate supplements with similar total choline raised both. After single breakfasts of 0 to 6 egg yolks in 6 volunteers, eating 2 or more raised TMAO in blood and urine in the following hours, with large differences between people, and no change in CRP or oxidised LDL.",
       "bottomLine": "Eggs are rich in choline, which gut bacteria can turn into TMAO. In trials, eating eggs daily didn't clearly raise fasting TMAO, unlike choline supplements. Whether TMAO itself harms the heart is still debated.",
+      "label": "TMAO, a gut-bacteria product",
+      "line": "Daily eggs didn't clearly raise fasting TMAO in trials",
       "studies": [
         {
           "pmid": "41146117",

@@ -101,6 +101,8 @@
       ],
       "summary": "A 2018 meta-analysis of 28 randomised trials (1,924 people) found that psyllium, a median of about 10.2 g a day as studied, lowered LDL cholesterol by 0.33 mmol/L, non-HDL cholesterol by 0.39 mmol/L and apolipoprotein B (the protein on cholesterol-carrying particles) by 0.05 g/L compared with control. The authors rated the evidence moderate for LDL because results varied between trials. A 2018 meta-analysis of 3 trials in people already taking statins found extra LDL lowering when psyllium was added, about equal to doubling the statin dose; most of its authors worked for Procter & Gamble, which sells psyllium. No trial measured heart attacks or strokes.",
       "bottomLine": "Across 28 trials (1,924 adults), psyllium lowered LDL cholesterol by 0.33 mmol/L compared with control. A smaller analysis found it added to statins' effect. These are blood test changes; no trial measured heart attacks or strokes.",
+      "label": "Cholesterol (LDL)",
+      "line": "LDL 0.33 mmol/L lower across 28 trials; heart attacks and strokes not measured",
       "studies": [
         {
           "pmid": "30239559",
@@ -131,6 +133,8 @@
       ],
       "summary": "A 2015 meta-analysis of 35 randomised trials found that in people being treated for type 2 diabetes, psyllium taken before meals lowered fasting blood sugar by 37.0 mg/dL (milligrams per decilitre) and HbA1c by 0.97 percentage points (10.6 mmol/mol). The effect grew with how high blood sugar was at the start: none in people with normal blood sugar, modest in people at risk. Its authors were mostly from Procter & Gamble, which sells psyllium, and it included the company's own trial records. A 2020 meta-analysis of 8 trials (395 people with diabetes) also found fasting blood sugar 31.71 mg/dL lower and HbA1c 0.91 percentage points lower, but results varied hugely between trials, and body weight did not change.",
       "bottomLine": "In people with type 2 diabetes, psyllium lowered fasting blood sugar, and HbA1c by 0.91 to 0.97 percentage points, in two meta-analyses, with no effect in people with normal blood sugar. Trials were small and varied, and the largest analysis came from a company that sells psyllium.",
+      "label": "Blood sugar in type 2 diabetes",
+      "line": "HbA1c 0.91 to 0.97 points lower in type 2 diabetes, in small, varied trials",
       "studies": [
         {
           "pmid": "26561625",
@@ -161,6 +165,8 @@
       ],
       "summary": "A 2022 meta-analysis of 16 randomised trials (1,251 adults) found that 66 % of people responded to fibre supplements against 41 % with control; psyllium was one of the two fibres with a clear effect. Stools became more frequent and softer, mostly in trials with more than 10 g of fibre a day for at least 4 weeks. Gas was more common with fibre. The authors urged caution because results varied a lot. An earlier 2016 meta-analysis of 7 trials found 77 % responded to fibre against 44 % with placebo, but rated the evidence low quality.",
       "bottomLine": "In 16 trials of adults with chronic constipation, 66 % responded to fibre supplements against 41 % with control, and psyllium was one of the fibres that clearly worked. Gas was more common, and results varied a lot between trials.",
+      "label": "Long-lasting constipation",
+      "line": "66 % responded with fibre against 41 % with control; more gas",
       "studies": [
         {
           "pmid": "35816465",
@@ -191,6 +197,8 @@
       ],
       "summary": "A 2014 meta-analysis of 14 randomised trials (906 people with IBS) found that fibre helped, but only soluble fibre such as psyllium: about 7 people needed soluble fibre for one more to improve. Bran, an insoluble fibre, showed no clear benefit. A 2008 meta-analysis found the benefit of fibre limited to ispaghula (psyllium). In a 2009 trial of 275 people in general practice, more people had adequate relief with psyllium than with placebo in the first and second months (57 % against 35 %, then 59 % against 41 %); bran helped only in the third month, and people on bran dropped out early more often because symptoms got worse.",
       "bottomLine": "In 14 trials (906 people with IBS), soluble fibre such as psyllium eased symptoms: about 7 people needed it for one more to improve. Bran showed no clear benefit. Most trials were small.",
+      "label": "Irritable bowel (IBS) symptoms",
+      "line": "About 7 people needed soluble fibre for one more to improve; bran showed no clear benefit",
       "studies": [
         {
           "pmid": "25070054",
@@ -236,6 +244,8 @@
       ],
       "summary": "A 2020 meta-analysis of 22 randomised trials in adults found no clear effect of psyllium on body weight, BMI (body mass index) or waist size. A 2023 meta-analysis limited to 6 studies (354 people with overweight or obesity), where psyllium was taken just before meals for about 4.8 months, found 2.1 kg more weight loss, a BMI 0.8 lower and a waist 2.2 cm smaller than control; its authors were from Procter & Gamble, which sells psyllium. In people with diabetes, a 2020 meta-analysis found no change in weight or BMI.",
       "bottomLine": "A meta-analysis of 22 trials found no clear effect of psyllium on weight, BMI or waist size. A smaller one of 6 studies in people with overweight, by a company that sells psyllium, found 2.1 kg more weight loss.",
+      "label": "Body weight and waist",
+      "line": "No clear effect in 22 trials; one company-funded analysis found 2.1 kg more loss",
       "studies": [
         {
           "pmid": "30880409",
@@ -266,6 +276,8 @@
       ],
       "summary": "A 2020 meta-analysis of 11 randomised trials (592 people) found the top number of blood pressure (systolic) 2.04 mmHg lower with psyllium than with control. The effect was larger in people whose blood pressure was higher to begin with. The effect is small compared with blood pressure medicines, and the trials did not look at heart attacks or strokes.",
       "bottomLine": "In 11 small trials (592 people), the top number of blood pressure was about 2 mmHg lower with psyllium, more so when it started higher. That is small next to blood pressure medicines.",
+      "label": "Blood pressure",
+      "line": "Top number about 2 mmHg lower in small trials; small next to medicines",
       "studies": [
         {
           "pmid": "32066221",
@@ -291,6 +303,8 @@
       ],
       "summary": "A 2019 series of meta-analyses, partly funded by the World Health Organization, looked at fibre from foods and left out trials of supplements. People who ate the most fibre had 15 to 30 % lower rates of death, heart disease, stroke, type 2 diabetes and bowel cancer than those who ate the least. The lowest risks were at 25 to 29 g of fibre a day. Trials of higher-fibre diets showed lower body weight, systolic blood pressure and total cholesterol. These findings are about whole foods such as whole grains, and cannot be assumed for psyllium.",
       "bottomLine": "In cohort studies, people who ate the most fibre from foods had 15 to 30 % lower rates of death, heart disease, stroke, type 2 diabetes and bowel cancer. This is about fibre-rich foods, not psyllium, and is mostly observational.",
+      "label": "Fibre-rich foods: disease, death",
+      "line": "15 to 30 % lower rates of death and major diseases in cohort studies; not about psyllium",
       "studies": [
         {
           "pmid": "30638909",

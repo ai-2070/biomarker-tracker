@@ -192,7 +192,7 @@ export function WholeFoodPage({ id }: { id: string }) {
           <span id="findings" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
           <Findings
             prefix="finding"
-            title="What studies found"
+            title="Main uses &amp; benefits"
             intro="Studies of people eating the food, strongest evidence first. Many follow people over years rather than testing the food in a trial, and people who eat a food often differ in other ways, so the grades say how sure the evidence is."
             findings={f.findings}
           />
@@ -436,7 +436,7 @@ function Measured({ f, db }: { f: WholeFoodDef; db: FoodDb | undefined }) {
 /** Side column on wide screens: what studies found, and where things are on the page. */
 function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
   const links: [string, string][] = [
-    ["findings", "What studies found"],
+    ["findings", "Main uses & benefits"],
     ...((f.visuals.length ? [["pictures", "In pictures"]] : []) as [string, string][]),
     ...((f.history ? [["history", "Then and now"]] : []) as [string, string][]),
     ["in-it", "What's in it"],
@@ -450,12 +450,12 @@ function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
     <aside aria-label="Key facts" className="hidden lg:col-start-2 lg:row-start-1 lg:block">
       <div className="sticky top-6 flex flex-col gap-5 text-sm">
         <section>
-          <h2 className="mb-1.5 text-xs font-medium text-ink-2">What studies found</h2>
+          <h2 className="mb-1.5 text-xs font-medium text-ink-2">Main uses &amp; benefits</h2>
           <ul className="flex flex-col gap-1">
             {sortFindings(f.findings).map((x) => (
               <li key={`${x.outcome}|${x.population}`}>
                 <a href={`#${anchorId("finding", `${x.outcome} ${x.population}`)}`} onClick={(e) => jump(e, anchorId("finding", `${x.outcome} ${x.population}`))} className="text-ink no-underline hover:underline">
-                  {x.outcome}
+                  {x.label ?? x.outcome}
                 </a>
               </li>
             ))}

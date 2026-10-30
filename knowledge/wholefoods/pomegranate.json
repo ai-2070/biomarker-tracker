@@ -157,6 +157,8 @@
       ],
       "summary": "A 2017 meta-analysis of 8 randomised placebo-controlled trials of pomegranate juice found systolic blood pressure 4.96 mmHg lower (95% confidence interval 2.25 to 7.67 lower) and diastolic 2.01 mmHg lower (0.31 to 3.71 lower). A 2023 meta-analysis of 14 juice trials (573 people) found systolic pressure 5.02 mmHg lower (2.48 to 7.55 lower). In trials with up to 300 mL a day it was 6.11 mmHg lower; with more than 300 mL a day, 3.28 mmHg lower, which could be chance. Trials of up to 2 months found a fall, and the authors wrote that the benefit was lost after 2 months. A 2024 meta-analysis of 22 trials of all pomegranate products (juice, extracts and others mixed) found systolic 7.87 and diastolic 3.23 mmHg lower, with a larger fall when systolic pressure started above 130 mmHg, but results varied widely between trials. A 2017 systematic review of 8 trials, rating their reporting, concluded that the trials did not convincingly show a benefit and called for longer, better trials. No trial measured heart attacks or strokes.",
       "bottomLine": "In meta-analyses of small trials, drinking pomegranate juice went with systolic blood pressure about 5 mmHg lower and diastolic about 2 mmHg lower. Trials were short and results varied a lot, the fall wasn't seen in trials longer than 2 months, and one review called the evidence weak.",
+      "label": "Blood pressure",
+      "line": "About 5 mmHg lower (top number) in short juice trials; not seen past 2 months",
       "studies": [
         {
           "pmid": "27888156",
@@ -203,6 +205,8 @@
       ],
       "summary": "A 2026 meta-analysis of 17 randomised trials of pomegranate juice only (663 people; full text read) found triglycerides 8.2 mg/dL lower (95% confidence interval 0.12 to 16.3 lower), LDL cholesterol 4.8 mg/dL lower (0.16 to 9.4 lower) and HDL cholesterol 2.8 mg/dL higher (0.9 to 4.72 higher), with no change in total cholesterol; results varied a lot between trials, and the changes looked larger in people with metabolic disorders. Older meta-analyses did not find this: a 2016 meta-analysis of 12 trials (545 people) found no effect of pomegranate on any blood fat, and a 2020 review of 17 trials (763 people) found no effect and rated the evidence low. A 2025 meta-analysis of 37 trials of juice, extracts and seed oil together (2,695 people) found HDL 2.5 mg/dL higher and no change in total cholesterol, LDL or triglycerides.",
       "bottomLine": "Results disagree. The newest meta-analysis of pomegranate juice alone found slightly lower LDL and triglycerides and slightly higher HDL, a few mg/dL each, but earlier meta-analyses found no effect and one rated the evidence low.",
+      "label": "Cholesterol and triglycerides",
+      "line": "Results disagree: the newest review found small improvements, earlier ones none",
       "studies": [
         {
           "pmid": "42153011",
@@ -251,6 +255,8 @@
       ],
       "summary": "A 2016 meta-analysis of 5 randomised trials of pomegranate juice (427 people) found no clear effect on CRP (0.22 mg/L lower, 95% confidence interval 0.45 lower to 0.01 higher). A 2024 update with 11 juice trials (696 people) found CRP 2.55 mg/L lower (1.66 to 3.44 lower), with the fall seen in subgroups such as Iranian trials, people with type 2 diabetes or polycystic ovary syndrome, and trials with less than 250 mL a day; it found no link with dose or duration. A 2023 meta-analysis of 33 trials of all pomegranate products found CRP 0.50 mg/L lower (0.20 to 0.79 lower), with lower IL-6 and TNF-α, two other inflammation markers. The two juice meta-analyses differ more than tenfold in size of effect.",
       "bottomLine": "One meta-analysis of pomegranate juice found no clear effect on CRP, an inflammation marker; a later one with more trials found a fall of 2.55 mg/L, mainly in some groups such as people with type 2 diabetes. The results disagree, so the effect is uncertain.",
+      "label": "Inflammation (CRP)",
+      "line": "Results disagree between reviews of juice trials",
       "studies": [
         {
           "pmid": "26922037",
@@ -290,6 +296,8 @@
       ],
       "summary": "A 2025 meta-analysis of 34 randomised trials (1,500 people; full text read) found fasting glucose 3.0 mg/dL (about 0.17 mmol/L) lower with pomegranate products of any kind, and rated this moderate certainty, but HbA1c did not change. In the 22 trials of juice, fasting glucose was 2.76 mg/dL lower (95% confidence interval 0.68 to 4.83 lower), with very mixed results between trials; insulin did not change clearly (0.29 lower, 0.74 lower to 0.17 higher) and nor did HbA1c in the 3 juice trials that measured it (0.15 percentage points lower, 0.39 lower to 0.10 higher). The one trial of the fruit itself found no change (1.30 mg/dL higher, 3.11 lower to 5.71 higher). A 2017 meta-analysis of 16 trials (538 people) found no effect on fasting glucose, insulin or HbA1c.",
       "bottomLine": "In trials of pomegranate juice, fasting blood sugar was on average about 3 mg/dL (0.15 mmol/L) lower, a small change, with very mixed results; long-term blood sugar (HbA1c) did not change, and an earlier meta-analysis found no effect at all.",
+      "label": "Blood sugar",
+      "line": "Fasting sugar slightly lower, about 3 mg/dL, with very mixed results; HbA1c unchanged",
       "studies": [
         {
           "pmid": "40847381",
@@ -322,6 +330,8 @@
       ],
       "summary": "In a 2004 study without randomisation, 10 people with narrowed neck arteries drank pomegranate juice for a year (5 for up to 3 years). Their artery wall thickness fell by up to 30% after a year, while it rose by 9% in a control group that didn't drink juice; systolic blood pressure was 12% lower after a year and didn't fall further. A later double-blind randomised trial in 289 men and women at moderate heart risk gave 240 mL of juice a day or a control drink for up to 18 months and found no difference in how fast artery walls thickened overall. In exploratory analyses, people with the most unfavourable blood fats or oxidation markers at the start had less thickening with juice; these subgroup findings need testing.",
       "bottomLine": "A very small early study without randomisation found thinner artery walls after a year of pomegranate juice. A larger randomised trial in 289 people at moderate heart risk, 240 mL a day for up to 18 months, found no overall difference.",
+      "label": "Neck artery thickening",
+      "line": "No overall difference in a randomised trial of 289 people over 18 months",
       "studies": [
         {
           "pmid": "19766760",
@@ -353,6 +363,8 @@
       ],
       "summary": "In a 2006 trial without a comparison group, men with rising PSA after prostate cancer treatment drank 8 ounces (about 240 mL) of pomegranate juice a day; the average time for PSA to double rose from 15 to 54 months. A later double-blind placebo-controlled trial (183 men) mostly tested an extract: median PSA doubling time lengthened from 11.1 to 15.6 months with placebo, 12.9 to 14.5 with extract and 12.7 to 20.3 with juice (17 men), and none of these differed clearly from each other. A 2017 review concluded that pomegranate juice and extract are safe but did not clearly improve outcomes in these men in the large placebo-controlled trial. A 2021 trial of extract in 30 men on active surveillance found no difference in PSA doubling time.",
       "bottomLine": "An early trial without a comparison group found PSA rising more slowly in men drinking pomegranate juice after prostate cancer treatment, but in a later placebo-controlled trial PSA slowed with placebo too, and juice or extract did not differ clearly from it.",
+      "label": "PSA after prostate cancer",
+      "line": "PSA rise not clearly slower than with placebo in a controlled trial",
       "studies": [
         {
           "pmid": "16818701",
@@ -399,6 +411,8 @@
       ],
       "summary": "A 2025 meta-analysis of 10 studies of pomegranate juice or extract found no clear effect on creatine kinase (a muscle damage marker), myoglobin, lactate or muscle soreness after hard exercise. Lactate dehydrogenase, another damage marker, was 21 U/L lower right after exercise (3.0 to 39.3 lower). Single trials of juice differ: in 17 resistance-trained men, juice went with better strength and less soreness in the arm, but not the thigh; in 36 untrained men drinking 250 mL twice a day for nine days, juice was no better than a placebo drink; and in 14 volleyball players drinking 1,000 mL around a jumping test, juice did not beat placebo on average.",
       "bottomLine": "A meta-analysis of 10 small studies, mostly in young men, found no clear effect of pomegranate juice or extract on muscle soreness or most muscle damage markers after hard exercise. Single trials disagree.",
+      "label": "Muscle soreness after exercise",
+      "line": "No clear change in a review of 10 small studies",
       "studies": [
         {
           "pmid": "40034870",

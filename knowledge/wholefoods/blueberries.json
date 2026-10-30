@@ -125,6 +125,8 @@
       ],
       "summary": "Flow-mediated dilation is measured as a percentage; these are differences in that percentage. In a 2024 review of trials, blueberries (mostly freeze-dried powder) raised it by 1.50% on average (95% confidence interval 0.81 to 2.20), though results varied a lot between trials (I² 87%); the authors rated the evidence moderate. A 2026 review of 14 trials with 632 healthy people found 1.11% (0.50 to 1.72) with little variation between trials. In the longest trial, 115 adults with metabolic syndrome had freeze-dried powder equal to 150 g of fresh blueberries a day for 6 months: flow-mediated dilation rose by 1.45% (0.83 to 2.1) and artery stiffness (augmentation index) fell, while half that amount (75 g) changed nothing. In 61 healthy people aged 65 to 80, 26 g of wild blueberry powder a day (said to equal 178 g fresh) for 12 weeks raised it by 0.86% (0.56 to 1.17). In one research group's trials, a month of daily wild blueberries also raised it. In 43 postmenopausal women with raised blood pressure, 22 g of powder a day for 12 weeks also improved it. These are measures of the blood vessel lining; whether they mean fewer heart attacks or strokes hasn't been tested. The 6-month trial was funded by the US Highbush Blueberry Council with oversight from the USDA and a UK research council.",
       "bottomLine": "In trials, mostly with freeze-dried blueberry powder for 4 weeks to 6 months, arteries widened a little better (about 1 to 1.5% more flow-mediated dilation). Whether this means fewer heart attacks or strokes hasn't been tested.",
+      "label": "Blood vessel function",
+      "line": "Arteries widened a little better (about 1 to 1.5%) in trials, mostly with powder",
       "studies": [
         {
           "pmid": "38887319",
@@ -187,6 +189,8 @@
       ],
       "summary": "Reviews of trials disagree. A 2026 review in healthy people (14 trials, 632 people) found no change in systolic pressure (−0.11 mmHg, 95% confidence interval −2.82 to 2.60) or diastolic pressure (−0.46, −2.80 to 1.87). A 2024 review found diastolic pressure 2.20 mmHg lower (−4.13 to −0.27) but no clear change in systolic pressure (−1.43, −3.11 to 0.26). A 2017 review of 6 trials with 204 people found no effect, while reviews from 2021 and 2022 reported lower blood pressure. Single trials differ too: in 48 postmenopausal women with raised blood pressure, 22 g of freeze-dried powder a day for 8 weeks lowered blood pressure from 138/80 to 131/75 mmHg, with no change on a placebo powder; a 12-week trial of the same amount in 43 similar women found no major difference; the 6-month trial in 115 adults with metabolic syndrome found none; and in 61 healthy people aged 65 to 80, 24-hour systolic pressure was 3.59 mmHg lower (−6.95 to −0.23) than on placebo after 12 weeks.",
       "bottomLine": "Trials of blueberries, mostly freeze-dried powder, disagree on blood pressure: some found falls of a few mmHg, others found none, and reviews pooling them differ too.",
+      "label": "Blood pressure",
+      "line": "Results disagree: some trials found falls of a few mmHg, others none",
       "studies": [
         {
           "pmid": "41974068",
@@ -272,6 +276,8 @@
       ],
       "summary": "In the longest trial (6 months, 115 adults with metabolic syndrome), freeze-dried powder equal to 75 or 150 g of fresh blueberries a day did not change insulin resistance, the trial's main measure. In an earlier 6-week trial, 32 adults with obesity and insulin resistance had smoothies with 22.5 g of blueberry powder (bioactives from whole blueberries) twice a day, and their insulin sensitivity, measured with a clamp test, rose more than on placebo (1.7 against 0.4 mg per kg of fat-free mass per minute); a similar 6-week smoothie trial in 44 adults with metabolic syndrome found no difference. Reviews of blueberry trials from 2021 and 2022 found no clear effect on fasting glucose, HbA1c (average blood sugar over about 3 months) or insulin resistance, though the 2022 review found lower insulin levels. In 52 men with type 2 diabetes, 22 g of freeze-dried powder a day for 8 weeks ended with lower HbA1c than placebo (7.1% against 7.5%), but fasting glucose and insulin didn't differ; that trial was funded by the US Highbush Blueberry Council.",
       "bottomLine": "In most trials, blueberries (mostly freeze-dried powder) did not clearly change blood sugar or insulin resistance, including the longest trial of 6 months. One small trial in men with type 2 diabetes found slightly lower HbA1c after 8 weeks.",
+      "label": "Blood sugar and insulin",
+      "line": "No clear change in most trials, including the longest (6 months)",
       "studies": [
         {
           "pmid": "31136659",
@@ -334,6 +340,8 @@
       ],
       "summary": "Reviews disagree. A 2021 review (12 trials pooled) found lower total and LDL cholesterol, and a 2022 review (21 trials pooled) found improvements in triglycerides, total, LDL and HDL cholesterol. A 2024 review found no clear change in LDL cholesterol (+0.05, 95% confidence interval −0.14 to 0.24) or HDL cholesterol, and a 2020 review of 11 trials found no difference between blueberry and control groups, apart from a small, uncertain fall in triglycerides (−0.27 mmol/L, −0.57 to 0.17). The 2021 review counted extracts as well as powder, fruit, juice and frozen berries. In the 6-month trial, HDL cholesterol rose by 0.08 mmol/L with 150 g a day, but only in the 71 people not taking statins. In 52 men with type 2 diabetes, triglycerides were lower after 8 weeks than on placebo (179.6 against 199.6 mg/dL), while total, LDL and HDL cholesterol didn't differ.",
       "bottomLine": "Reviews of blueberry trials disagree on cholesterol and triglycerides: some found small improvements, others none. The longest trial found HDL cholesterol a little higher after 6 months, only in people not taking statins.",
+      "label": "Cholesterol and triglycerides",
+      "line": "Results disagree between reviews: small improvements or none",
       "studies": [
         {
           "pmid": "34139510",
@@ -394,6 +402,8 @@
       ],
       "summary": "In a 2025 review of 9 trials with 513 older adults with mild cognitive impairment or self-reported memory decline, blueberries improved episodic memory (remembering events and word lists; standardised mean difference 0.34, 95% confidence interval 0.11 to 0.57, a small effect), but not processing speed, recognition memory, visuospatial learning or working memory. A 2026 review in healthy people found no clear effect on executive function (planning and switching between tasks) or mood. Single trials differ: 61 healthy people aged 65 to 80 on wild blueberry powder for 12 weeks recalled more words right away and switched tasks more accurately than on placebo; 37 people aged 60 to 75 on 24 g of freeze-dried powder a day (said to equal 1 cup fresh) for 90 days made fewer errors on two tests of executive function, with no change in walking or balance; middle-aged people with memory complaints and insulin resistance did better on two tests after powder equal to half a cup a day for 12 weeks; and in the 6-month trial in 115 adults with metabolic syndrome, memory, attention, mood and sleep didn't change. In 16,010 women aged 70 and over (Nurses' Health Study), those who ate the most blueberries had slower decline in thinking scores than those who ate the least, a link that may reflect other differences between them.",
       "bottomLine": "In older adults with memory complaints, blueberry trials found a small improvement in episodic memory, but not in other tests. In healthy people and in adults with metabolic syndrome, trials found little or no change.",
+      "label": "Memory and thinking",
+      "line": "Small gain in one kind of memory in older adults with complaints; little or no change otherwise",
       "studies": [
         {
           "pmid": "40856863",
@@ -465,6 +475,8 @@
       ],
       "summary": "In three US cohorts (66,105 women in the Nurses' Health Study, 85,104 women in the Nurses' Health Study II and 36,173 men in the Health Professionals Follow-up Study), 12,198 people developed type 2 diabetes. After adjusting for personal, lifestyle and diet factors and for the other fruits, every 3 extra servings of blueberries a week went with 26% lower risk (hazard ratio 0.74, 95% confidence interval 0.66 to 0.83), the strongest link among the 10 fruits asked about. Total whole fruit had a much weaker link (0.98 per 3 servings a week), and the same increase in fruit juice (apple, orange, grapefruit and other juices) went with higher risk (1.08, 1.05 to 1.11). Replacing 3 servings of fruit juice a week with blueberries went with 33% lower risk (24% to 40%). Intake came from questionnaires every 4 years, and people who eat blueberries may differ in ways that adjusting can't fully remove. The study was funded by the US National Institutes of Health.",
       "bottomLine": "In three large US cohorts, people who ate more blueberries were less likely to develop type 2 diabetes (26% lower risk per 3 servings a week). This is a link from questionnaires, not proof that blueberries are the cause.",
+      "label": "Type 2 diabetes",
+      "line": "Got it less often in large US cohorts, 26% lower per 3 servings a week (a link, not proof)",
       "studies": [
         {
           "pmid": "23990623",
@@ -488,6 +500,8 @@
       ],
       "summary": "A 2024 systematic review of 13 trials of Vaccinium berries (blueberries, cranberries and bilberries) in healthy people found no differences in exercise performance, and only one study reported benefits for markers of recovery; there was little evidence that the berries changed inflammation markers such as interleukins and CRP after exercise. In one blueberry trial, 10 women drank a blueberry smoothie before and after 300 hard eccentric contractions of the thigh muscles, and their isometric strength recovered faster over 60 hours than with a placebo drink; inflammation markers were still raised after 60 hours.",
       "bottomLine": "Trials of blueberries and related berries found no clear effect on exercise performance or recovery. In one small blueberry trial, 10 women's strength came back a little faster after hard exercise.",
+      "label": "Recovery (berries in general)",
+      "line": "No clear change in trials; in one small trial strength came back a little faster",
       "studies": [
         {
           "pmid": "38165220",

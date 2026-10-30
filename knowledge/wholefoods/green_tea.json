@@ -148,6 +148,8 @@
       ],
       "summary": "In the Ohsaki study (40,530 Japanese adults aged 40 to 79, followed for up to 11 years), people who drank 5 or more cups a day had lower death rates than those who drank less than 1 cup: hazard ratio 0.88 (95% confidence interval 0.79 to 0.98) in men and 0.77 (0.67 to 0.89) in women. In the JPHC study (90,914 Japanese adults, 18.7 years), the figures for more than 5 cups were 0.87 (0.81 to 0.94) in men and 0.83 (0.75 to 0.91) in women. A pooled analysis of eight Japanese cohorts (313,381 people, 17.3 years on average, 52,943 deaths) found 0.90 (0.87 to 0.94) in men and 0.82 (0.74 to 0.90) in women for 5 or more cups against less than 1. In 164,681 Chinese men, regular drinkers had lower death rates (0.89, 0.85 to 0.93, for more than 10 g of leaves a day); in two Shanghai cohorts the link was weaker (0.95, 0.90 to 1.01) and clearer in never-smokers (0.89, 0.82 to 0.96). A 2015 meta-analysis of cohorts found a relative risk of 0.80 (0.68 to 0.93) for the highest against the lowest green tea intake, and 4% lower risk per extra cup a day. These are observational studies, nearly all in Japan and China.",
       "bottomLine": "In large Japanese and Chinese cohorts, people who drank more green tea, up to 5 or more cups a day, died at somewhat lower rates over 10 to 18 years than those who drank little. These are observational studies, so other differences between drinkers may explain part of it.",
+      "label": "Death from any cause",
+      "line": "Somewhat lower in drinkers in Japanese and Chinese cohorts (a link, not proof)",
       "studies": [
         {
           "pmid": "16968850",
@@ -218,6 +220,8 @@
       ],
       "summary": "In the pooled analysis of eight Japanese cohorts, 5 or more cups a day against less than 1 went with lower death from heart disease (hazard ratio 0.82, 95% confidence interval 0.75 to 0.90, in men; 0.75, 0.68 to 0.84, in women) and from stroke and other cerebrovascular disease (0.76, 0.68 to 0.85, in men; 0.78, 0.68 to 0.89, in women). In the Ohsaki study, death from cardiovascular disease was lower in women drinking 5 or more cups (0.69, 0.53 to 0.90), and the link was strongest for stroke deaths. A 2023 meta-analysis of seven East Asian cohorts (772,922 people, 9,211 cases) found a lower risk of coronary heart disease than in non-drinkers with 1 to 4 cups of 300 ml a day (relative risk 0.89 for 1 cup, 0.84 for 2, 0.85 for 3, 0.88 for 4), but no clear difference at 5 cups (0.92, 0.82 to 1.04). A 2023 meta-analysis of five cohorts (645,393 people, 11,421 strokes) found a lower stroke risk with the highest intake (0.74, 0.66 to 0.83), lowest at about 900 ml a day (0.77, 0.72 to 0.82). The 2013 Cochrane review of trials found no trial that reported heart attacks or strokes.",
       "bottomLine": "In East Asian cohorts, people who drank green tea had somewhat lower rates of heart disease and stroke, most clearly at 1 to 4 cups a day for heart disease. No trial has tested whether green tea prevents heart attacks or strokes.",
+      "label": "Heart disease and stroke",
+      "line": "Somewhat lower in East Asian cohorts (a link); not tested in trials",
       "studies": [
         {
           "pmid": "31392470",
@@ -275,6 +279,8 @@
       ],
       "summary": "A 2020 meta-analysis of 24 trials (1,697 people) found systolic blood pressure 1.17 mmHg lower with green tea than with control (95% confidence interval 0.16 to 2.18) and diastolic 1.24 mmHg lower (0.40 to 2.07). In its open-access full text, 8 of its 25 comparisons gave green tea as a drink and 17 used extract capsules; a separate result for the drink is not given in the text. A 2025 meta-analysis of 36 trials found similar falls (systolic 1.08 mmHg, 0.18 to 1.98; diastolic 1.09 mmHg, 0.50 to 1.67), with large differences between trials and no clear link with the amount or the length of the trial. A 2014 review of 13 trials found larger falls in trials of extracts and in people with a systolic pressure of 130 mmHg or more. The 2013 Cochrane review, which counted only trials of at least 3 months, found systolic pressure 3.18 mmHg (1.11 to 5.25) and diastolic 3.42 mmHg (2.30 to 4.54) lower with green tea, but only a few trials contributed and the results were not stable to sensitivity analysis.",
       "bottomLine": "In short trials, green tea, mostly as extract capsules, went with blood pressure about 1 mmHg lower than without; trials of 3 months or more in a Cochrane review found about 3 mmHg, from few trials. A result for the drink alone isn't reported.",
+      "label": "Blood pressure",
+      "line": "About 1 to 3 mmHg lower in trials, mostly of extract capsules",
       "studies": [
         {
           "pmid": "32028419",
@@ -321,6 +327,8 @@
       ],
       "summary": "A 2011 meta-analysis of 14 trials (1,136 people) of green tea drinks or extracts found LDL cholesterol 2.19 mg/dL lower than with control (95% confidence interval 1.21 to 3.16) and total cholesterol 7.20 mg/dL lower (6.21 to 8.19), with no change in HDL cholesterol; the results didn't differ by type of intervention (drink or extract). A 2011 review of 20 trials of green tea catechins (1,415 people, 145 to 3,000 mg a day for 3 to 24 weeks) found LDL 5.30 mg/dL lower (0.62 to 9.99) and no change in HDL or triglycerides. A 2014 review of 20 trials (1,536 people) found LDL 0.19 mmol/L lower (0.09 to 0.3) and total cholesterol 0.13 mmol/L lower (0.07 to 0.2). The 2013 Cochrane review (trials of at least 3 months) found LDL 0.64 mmol/L lower (0.52 to 0.77) and total cholesterol 0.62 mmol/L lower with green tea, but only a few trials contributed and the results were not stable to sensitivity analysis.",
       "bottomLine": "In short trials, green tea drinks and extracts lowered LDL cholesterol a little, by about 2 to 5 mg/dL (0.1 to 0.2 mmol/L) in most reviews, with no change in HDL. One review found drinks and extracts did about the same.",
+      "label": "LDL cholesterol",
+      "line": "A little lower, about 2 to 5 mg/dL, in short trials",
       "studies": [
         {
           "pmid": "21715508",
@@ -370,6 +378,8 @@
       ],
       "summary": "A 2020 meta-analysis of 27 trials (2,194 people) found fasting blood sugar 1.44 mg/dL lower with green tea (95% confidence interval 0.62 to 2.26), with no clear change in fasting insulin or HbA1c (0.06 percentage points lower, from 0.12 lower to 0.01 higher). Its open-access full text shows that 20 comparisons used extract capsules; in the 8 trials of green tea as a drink, several of them catechin-enriched drinks, fasting blood sugar did not clearly change (0.37 mg/dL lower, from 3.00 lower to 2.27 higher) and neither did HbA1c (5 trials, 0.10 lower, from 0.42 lower to 0.22 higher). A 2013 meta-analysis of 17 trials (1,133 people) of drinks and extracts found fasting glucose 0.09 mmol/L and HbA1c 0.30 percentage points lower. In type 2 diabetes, a 2021 review of 14 trials found no significant effect on fasting glucose, insulin, HbA1c or insulin resistance. In a Japanese cohort of 17,413 adults, those who drank 6 or more cups a day were less likely to report new type 2 diabetes over 5 years than those who drank less than 1 cup a week (odds ratio 0.67, 0.47 to 0.94); diabetes was self-reported and only 49% of the original group were followed up.",
       "bottomLine": "In trials, green tea as a drink did not clearly change fasting blood sugar or HbA1c; the small fall seen overall, about 1.4 mg/dL, came mostly from extract capsules. In one Japanese cohort, heavy drinkers reported less new diabetes.",
+      "label": "Blood sugar and HbA1c",
+      "line": "No clear change with the drink in trials",
       "studies": [
         {
           "pmid": "32670385",
@@ -417,6 +427,8 @@
       ],
       "summary": "The Cochrane review (2012) looked at trials of at least 12 weeks comparing green tea preparations with a control in overweight or obese adults. In six trials outside Japan (532 people), weight differed by 0.04 kg on average (95% confidence interval from 0.5 kg lower to 0.4 kg higher), BMI by 0.2 kg/m² and waist size by 0.2 cm, none of them statistically significant. The eight trials in Japan (1,030 people) were too different to pool; their differences ranged from 0.2 to 3.5 kg in favour of green tea preparations. The authors concluded that any change was small, not statistically significant and not likely to be clinically important, and that green tea had no significant effect on keeping weight off after a period of weight loss. In the trials that recorded side effects, most were mild to moderate.",
       "bottomLine": "In a Cochrane review of 12- to 13-week trials of green tea preparations in overweight adults, weight changed very little, by 0.04 kg on average in trials outside Japan. The authors judged any change too small to be clinically important.",
+      "label": "Body weight",
+      "line": "Very little change in 12- to 13-week trials",
       "studies": [
         {
           "pmid": "23235664",
@@ -440,6 +452,8 @@
       ],
       "summary": "The Cochrane review (2020) included 142 studies. In 11 trials, all of green tea extract against a dummy pill (1,795 people), results for prostate cancer (risk ratio 0.50, 95% confidence interval 0.18 to 1.36; 3 trials, 201 men), gynaecological cancer (1.50, 0.41 to 5.48) and non-melanoma skin cancer (1.00, 0.06 to 15.92) were uncertain, all of low certainty. In cohort and case-control studies with over 1,100,000 people, the highest against the lowest green tea intake went with an overall cancer incidence of 0.83 (0.65 to 1.07; 3 studies) and no difference in cancer deaths (0.99, 0.91 to 1.07; 8 studies, 504,366 people), both of low certainty. For oesophageal, prostate and urinary tract cancer and leukaemia, cohort studies found higher risks and case-control studies lower or no difference. The Japanese cohorts on this page also found no link with total cancer deaths, except moderate drinking in women in the pooled analysis (0.89 for 1 to 2 cups, 0.91 for 3 to 4).",
       "bottomLine": "A Cochrane review found no clear link between drinking green tea and cancer deaths, and results for single cancers conflicted between types of study. The few trials tested extracts, not the drink. Certainty is low.",
+      "label": "Cancer",
+      "line": "No clear link with cancer deaths; results for single cancers conflict",
       "studies": [
         {
           "pmid": "32118296",

@@ -41,6 +41,8 @@
       ],
       "summary": "A 2010 meta-analysis pooled 16 prospective studies with 27 cohort groups, 1,382,999 people and 112,566 deaths, followed for 4 to 25 years. Compared with people sleeping a middle amount (7 hours a night in most studies), short sleepers had a 12% higher risk of dying (relative risk 1.12, 95% CI 1.06 to 1.18) and long sleepers a 30% higher risk (1.30, 1.22 to 1.38). Short sleep meant anything from 5 or fewer to under 7 hours, and long sleep more than 8 or 9 hours or longer, depending on the study. Results differed between studies. The authors say the link with long sleep may be explained by other illnesses and differences between people, and that it isn't known whether sleep duration is a cause or a marker of ill health.",
       "bottomLine": "In 16 cohort studies with almost 1.4 million adults, short sleepers had a 12% and long sleepers a 30% higher risk of dying than people sleeping about 7 hours. These are links, not proof: long sleep may be a sign of illness rather than its cause.",
+      "label": "Death from any cause",
+      "line": "Short and long sleep linked with earlier death (12% and 30% higher risk)",
       "studies": [
         {
           "pmid": "20469800",
@@ -65,6 +67,8 @@
       ],
       "summary": "A 2011 meta-analysis pooled 15 prospective studies (24 cohort groups, 474,684 people, 16,067 events) followed for 6.9 to 25 years. Short sleep was linked with a higher risk of developing or dying of coronary heart disease (relative risk 1.48, 95% CI 1.22 to 1.80) and stroke (1.15, 1.00 to 1.31), but not of cardiovascular disease as a whole (1.03, 0.93 to 1.15). Long sleep was linked with a higher risk of coronary heart disease (1.38, 1.15 to 1.66), stroke (1.65, 1.45 to 1.87) and cardiovascular disease as a whole (1.41, 1.19 to 1.68). The authors conclude that short and long sleep are predictors, or markers, of heart and blood vessel disease.",
       "bottomLine": "In 15 cohort studies with 474,684 adults, short sleep was linked with 48% more coronary heart disease, and long sleep with 38% more heart disease and 65% more strokes. Sleep was self-reported, and the authors call it a predictor or marker, not a proven cause.",
+      "label": "Heart disease and stroke",
+      "line": "Short and long sleep linked with more heart disease; long sleep with more strokes",
       "studies": [
         {
           "pmid": "21300732",
@@ -89,6 +93,8 @@
       ],
       "summary": "A 2022 meta-analysis of randomised controlled trials found 35 eligible articles and pooled 21 sleep-restriction studies. Restricting sleep reduced insulin sensitivity, measured with glucose tolerance tests and HOMA-IR (an estimate of insulin resistance from fasting glucose and insulin). Measured with the most precise method (a clamp test), whole-body insulin sensitivity also fell, but one clamp measure, peripheral insulin sensitivity, did not change. Sleep out of step with the body clock and suppressed deep sleep also lowered insulin sensitivity, while disturbed REM sleep and broken-up sleep had no effect, in a few small trials. The authors conclude that sleep duration, quality and timing matter for metabolism and type 2 diabetes risk.",
       "bottomLine": "Across 21 randomised trials, shortening sleep made the body less sensitive to insulin, and so did sleep out of step with the body clock and suppressed deep sleep. The trials were short and measured insulin sensitivity, not diabetes itself.",
+      "label": "Insulin sensitivity",
+      "line": "Less sensitive to insulin after shortened or disturbed sleep in short trials",
       "studies": [
         {
           "pmid": "35189549",
@@ -111,6 +117,8 @@
       ],
       "summary": "A 2017 meta-analysis of 17 intervention studies (496 people) pooled 11 of them (172 people). After partial sleep deprivation, people ate 385 kcal more a day than after normal sleep (95% CI 252 to 517), with more fat and less protein, while the energy they used, at rest and in total, did not change. The authors say this may contribute to weight gain in the long term. A 2015 review of 18 randomised trials found that sleep restriction increased food intake, but effects on body weight were inconsistent, and few trials tested what happens when sleep is lengthened.",
       "bottomLine": "In short trials, people ate about 385 kcal more on days after shortened sleep, without using more energy. The trials were small and short, and effects on body weight were inconsistent, so the long-term effect on weight isn't known.",
+      "label": "Eating and body weight",
+      "line": "About 385 kcal more eaten after short sleep in small trials; weight unclear",
       "studies": [
         {
           "pmid": "27804960",
@@ -142,6 +150,8 @@
       ],
       "summary": "A 2015 meta-analysis of 20 randomised trials (1,162 adults, mean age 56) compared face-to-face CBT-I with no active treatment. After treatment, people fell asleep 19 minutes faster (95% CI 14 to 24), spent 26 minutes less awake during the night (15 to 37) and spent about 10% more of their time in bed asleep, while total sleep time rose by about 8 minutes, which was not clearly different from no change. No harms were reported, and the changes seemed to last. A 2020 meta-analysis of 33 trials of digital CBT-I found insomnia severity scores 5.00 points lower than with control (−5.68 to −4.33) after treatment and 3.48 points lower after a year, with results varying a lot between trials. Face-to-face CBT-I improved scores by 3.07 points more than digital, within the 4 points the authors counted as no meaningful difference.",
       "bottomLine": "In 20 trials of adults with chronic insomnia, CBT-I helped people fall asleep 19 minutes faster and spend 26 minutes less awake at night, though total sleep barely changed. Online and app versions also lowered insomnia severity, with benefits still seen after a year.",
+      "label": "Insomnia, with behavioural therapy",
+      "line": "Fell asleep 19 minutes faster and 26 minutes less awake at night in trials",
       "studies": [
         {
           "pmid": "26054060",
@@ -174,6 +184,8 @@
       ],
       "summary": "A 2024 UK Biobank study calculated a Sleep Regularity Index from one week of wrist activity data in 60,977 people (average age 62.8) and followed them for about 6.3 years, during which 1,859 died. Compared with the fifth with the least regular sleep, the other fifths had a 20% to 48% lower risk of dying, after adjusting for age, sex, ethnicity and social, lifestyle and health factors. The most regular fifth had a hazard ratio of 0.70 (95% CI 0.59 to 0.83) in the fully adjusted model. In this study, regularity predicted death more strongly than sleep duration did. The authors note that one week gives only a snapshot of a person's sleep.",
       "bottomLine": "In 60,977 UK adults whose sleep was measured for a week, people with more regular sleep had a 20% to 48% lower risk of dying over about 6 years than the least regular fifth. It is one observational study, with one week of measurement each.",
+      "label": "Sleep regularity",
+      "line": "20% to 48% lower risk of death with more regular sleep in one study (a link)",
       "studies": [
         {
           "pmid": "37738616",

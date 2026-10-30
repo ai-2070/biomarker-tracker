@@ -138,6 +138,8 @@
       ],
       "summary": "In three US cohorts (66,105 women in the Nurses' Health Study, 85,104 in the Nurses' Health Study II and 36,173 men in the Health Professionals Follow-up Study), 12,198 people developed type 2 diabetes. With each fruit adjusted for the others and for personal, lifestyle and diet factors, every 3 extra servings a week of grapes or raisins went with a hazard ratio of 0.88 (95% confidence interval 0.83 to 0.93). The same increase in fruit juice (apple, orange, grapefruit and other juices) went with a higher risk, 1.08 (1.05 to 1.11). In the full text, swapping 3 servings a week of fruit juice for grapes or raisins went with a 19% lower risk (14% to 24% lower). The study was funded by the US National Institutes of Health. It recorded grapes and raisins together, not their colour.",
       "bottomLine": "In three large US cohorts, people who ate more grapes and raisins were less likely to develop type 2 diabetes (12% lower risk per 3 servings a week), while fruit juice went with higher risk. This is a link from questionnaires, not proof, and grape colour wasn't recorded.",
+      "label": "Type 2 diabetes",
+      "line": "12% lower risk per 3 servings a week in US cohorts (a link, not proof)",
       "studies": [
         {
           "pmid": "23990623",
@@ -162,6 +164,8 @@
       ],
       "summary": "A 2023 meta-analysis of 30 randomised trials of grape products found systolic blood pressure 3.17 mmHg lower (95% confidence interval 0.99 to 5.36 lower), rated low certainty, and no clear change in diastolic pressure. Whole grape products (raisins and grape powder) went with 2.69 mmHg lower systolic pressure (0.57 to 4.81 lower); grape juice did not change it clearly. In a crossover trial of 64 adults with high-normal or mildly high blood pressure, 100% Concord grape juice (7 ml per kg a day for 8 weeks) did not change 24-hour blood pressure compared with a matched placebo drink. In a 30-day crossover trial in 24 men with metabolic syndrome, freeze-dried grape powder lowered systolic pressure compared with placebo. In a 12-week trial in 46 adults, systolic pressure fell by 6.0 to 10.2 mmHg with raisin snacks and didn't change with processed snacks; in a 12-week trial in 51 people with type 2 diabetes it was 8.7 mmHg lower with raisins than with processed snacks. No trial compared dark with green grapes.",
       "bottomLine": "In a meta-analysis of 30 small trials of grape products, systolic blood pressure was about 3 mmHg lower, with low certainty. Raisins and grape powder (a mix of grape colours) went with a fall; grape juice, including dark Concord juice, did not clearly change blood pressure.",
+      "label": "Blood pressure",
+      "line": "Lower with raisins and grape powder, not clearly with juice (small trials)",
       "studies": [
         {
           "pmid": "37482483",
@@ -217,6 +221,8 @@
       ],
       "summary": "A 2020 meta-analysis of 24 randomised trials (1,205 people; full text read) found LDL cholesterol 6.3 mg/dL lower (95% confidence interval 3.0 to 9.5 lower), total cholesterol 7.6 mg/dL lower, triglycerides 14.5 mg/dL lower and HDL 1.4 mg/dL higher with grape products of any kind compared with placebo. Of the trials, 11 tested grape powder or pomace, 5 grape juice and 8 extracts. By type of product, LDL was 6.3 mg/dL lower with whole grape products (grape powder or pomace; 1.6 to 11.0 lower), not clearly changed with grape seed extracts (4.3 lower, 10.9 lower to 2.2 higher) and unchanged with grape juice (0.21 mg/dL higher, 7.6 lower to 8.1 higher). A 2019 meta-analysis of 48 trials of grape products in any form found LDL 5.0 mg/dL lower, total cholesterol 6.2 lower and triglycerides 7.6 lower, with no change in HDL. Neither looked at grape colour.",
       "bottomLine": "Meta-analyses of grape products found LDL cholesterol about 5 to 6 mg/dL lower, a small change. The fall came from grape powder and pomace; in grape juice trials LDL didn't change, and the pooled results mix in extracts, so the effect of eating grapes is uncertain.",
+      "label": "LDL cholesterol and blood fats",
+      "line": "LDL a little lower with grape powder, unchanged with juice; uncertain",
       "studies": [
         {
           "pmid": "31979098",
@@ -248,6 +254,8 @@
       ],
       "summary": "In a 1999 study without a comparison group, 15 adults with coronary artery disease drank purple grape juice (about 7.7 ml per kg a day) for 14 days; flow-mediated dilation, how much the arm artery widens, rose from 2.2% to 6.4%, and LDL resisted oxidation longer. In a double-blind crossover trial in 26 healthy smokers, 2 weeks of Concord grape juice improved flow-mediated dilation and artery stiffness compared with placebo, and blunted the worsening right after smoking a cigarette. In 24 men with metabolic syndrome, 30 days of freeze-dried grape powder raised flow-mediated dilation compared with placebo. But a 2023 meta-analysis of 30 trials of grape products found no clear effect on endothelial function overall. No trial measured heart attacks or strokes.",
       "bottomLine": "Very small, short studies of purple Concord grape juice and of grape powder found that arteries widened better, but when trials were pooled there was no clear effect on blood vessel function. No study measured heart attacks or strokes.",
+      "label": "Blood vessel function",
+      "line": "Better in very small studies, no clear effect when trials were pooled",
       "studies": [
         {
           "pmid": "10477529",
@@ -295,6 +303,8 @@
       ],
       "summary": "A 2022 systematic review found 8 randomised trials of grapes and cognition (474 people); 3 of them tested extracts, which are a different intervention. Of the trials of grapes themselves: in 12 older adults with memory decline, 12 weeks of Concord grape juice improved verbal learning but not recall; in 21 such adults, 16 weeks of juice reduced memory interference and changed brain activation on scans; in 25 working mothers, 355 ml of Concord juice a day for 12 weeks improved immediate spatial memory and driving performance in a simulator compared with placebo; and in 10 older adults with mild memory decline, 6 months of grape powder kept brain metabolism stable on PET scans while it fell with placebo, with no difference in test scores. One trial compared dark with green directly: in 20 young adults, a glass of purple grape juice improved reaction time on an attention task and calmness 20 minutes later compared with sugar-matched white grape juice, with no effect on memory. The review authors said differences in design, amounts and tests made the trials hard to compare.",
       "bottomLine": "A few very small trials of Concord grape juice and grape powder found better scores on some memory or attention tests and no change on others. One trial found purple juice beat white juice on attention 20 minutes later. The evidence is too thin to know whether grapes help thinking.",
+      "label": "Memory and thinking",
+      "line": "Better on some tests, not others, in a few very small trials",
       "studies": [
         {
           "pmid": "34041549",
@@ -359,6 +369,8 @@
       ],
       "summary": "Glycaemic index studies found raisins raise blood sugar less than glucose: a glycaemic index of about 49 to 62 in healthy, trained and prediabetic adults, and an estimated 66 for Corinthian raisins in healthy people and people with type 2 diabetes. In a 12-week trial in 46 adults, with raisins three times a day blood sugar after meals fell by 13.1 mg/dL and HbA1c by 0.12 percentage points, both more than with processed snacks; fasting glucose didn't change. In a 12-week trial in 51 people with type 2 diabetes, blood sugar after meals was 23% lower with raisins than with processed snacks, while the falls in fasting glucose and HbA1c could be chance. A 2021 meta-analysis of 29 trials of grapes and grape products (1,297 people) found no change in HbA1c or fasting insulin, slightly higher fasting glucose (1.19 mg/dL) and lower insulin resistance (HOMA-IR 0.54 lower).",
       "bottomLine": "Raisins raise blood sugar less than glucose, and in two small trials raisin snacks went with lower blood sugar after meals than processed snacks did. Across 29 trials of grape products, long-term blood sugar (HbA1c) didn't change. Raisins are usually made from green grapes.",
+      "label": "Blood sugar",
+      "line": "Lower after meals with raisin snacks in two small trials; HbA1c unchanged",
       "studies": [
         {
           "pmid": "19083424",

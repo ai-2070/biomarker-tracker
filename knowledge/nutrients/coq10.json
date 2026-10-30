@@ -100,6 +100,8 @@
       ],
       "summary": "In Q-SYMBIO, 420 people with moderate to severe heart failure had CoQ10 (100 mg three times a day) or placebo on top of their usual treatment for 2 years. Fewer had a major heart event with CoQ10 (15% compared with 26%), and fewer died (10% compared with 18%). The 16-week measures (symptom class, walking test and a blood marker of heart strain) didn't clearly change. A Cochrane review found CoQ10 probably reduces deaths and hospital stays for heart failure (moderate quality), but the deaths result comes from that one trial, effects on heart pumping and exercise capacity are very uncertain, and the reviewers found no convincing evidence to support or refute its use. It is studied as an add-on to treatment, never instead of it.",
       "bottomLine": "In one 2-year trial of 420 people with heart failure, fewer died with CoQ10 added to their treatment (10% compared with 18%). A Cochrane review found it probably reduces deaths and hospital stays, but that rests mainly on this one trial and it was studied only as an add-on to treatment.",
+      "label": "Heart failure (with treatment)",
+      "line": "Fewer deaths (10% against 18%) in one 2-year trial, added to usual treatment",
       "studies": [
         {
           "pmid": "35608922",
@@ -131,6 +133,8 @@
       ],
       "summary": "A pooling of 6 trials (371 people) found fewer and shorter migraine attacks with CoQ10 than with control, but no clear change in how severe they were. Another pooling of 4 trials (221 people) found about 1.87 fewer attacks a month, with no clear effect on severity or on how long attacks lasted. The trials were small and the evidence is limited.",
       "bottomLine": "In small trials of adults with migraine, CoQ10 was linked to fewer attacks (about 1.87 fewer a month in one pooling of 4 trials), but not to less severe attacks. The trials were few and small, so the evidence is limited.",
+      "label": "Migraine attacks",
+      "line": "Fewer attacks a month in small trials, but not less severe ones",
       "studies": [
         {
           "pmid": "33402403",
@@ -162,6 +166,8 @@
       ],
       "summary": "Statins lower blood CoQ10, which led to the idea that supplements could ease statin muscle aches. The pooled trials disagree. One meta-analysis of 12 trials (575 people) and another of 7 trials (389 people) found less muscle pain with CoQ10. Two others, of 6 trials (302 people) and 7 trials (321 people), found no clear benefit, and the second found no difference in how many people stayed on their statin. None found a change in creatine kinase, a blood marker of muscle damage. The trials were small and short.",
       "bottomLine": "Meta-analyses of small, short trials disagree: two found less muscle pain with CoQ10 in people on statins, two found no clear benefit, and one found no difference in how many people stayed on their statin.",
+      "label": "Muscle aches from statins",
+      "line": "Small trials disagree: some found less muscle pain, others no clear benefit",
       "studies": [
         {
           "pmid": "30371340",
@@ -209,6 +215,8 @@
       ],
       "summary": "A Cochrane review pooled two trials with 50 people and found no clear change in blood pressure with CoQ10: the top number fell by 3.68 mmHg on average, but the range of likely values included no change, and the bottom number by 2.03 mmHg, also not clear. The reviewers concluded that CoQ10 doesn't have a clinically meaningful effect on blood pressure, while noting that the trials were few and small.",
       "bottomLine": "In a Cochrane review of two small trials (50 people with high blood pressure), CoQ10 didn't clearly lower blood pressure, and the reviewers concluded it has no clinically meaningful effect. The trials were few and small.",
+      "label": "Blood pressure",
+      "line": "No clear fall in blood pressure in two small trials (50 people)",
       "studies": [
         {
           "pmid": "26935713",
@@ -232,6 +240,8 @@
       ],
       "summary": "A pooling of 40 trials (2,424 people) found slightly lower fasting blood sugar, fasting insulin and HbA1c (average blood sugar over about three months) with CoQ10; HbA1c fell by 0.12 percentage points. The effect was larger in people with diabetes, and results varied a lot between trials. A pooling of 50 trials (2,794 people) found small falls in total cholesterol (5.53 mg/dL), LDL cholesterol (3.03 mg/dL) and triglycerides (9.06 mg/dL), and a small rise in HDL cholesterol; mg/dL is the US unit.",
       "bottomLine": "Poolings of 40 and 50 mostly small trials found slightly lower blood sugar, HbA1c, cholesterol and triglycerides with CoQ10; HbA1c fell by 0.12 percentage points. The changes were small and varied a lot between trials.",
+      "label": "Blood sugar and blood fats",
+      "line": "Slightly lower blood sugar, cholesterol and triglycerides; small and varied between trials",
       "studies": [
         {
           "pmid": "35958521",
@@ -263,6 +273,8 @@
       ],
       "summary": "A pooling of 13 trials (1,126 people) found lower fatigue scores with CoQ10 than with placebo, a small to moderate effect, in both healthy and ill people. The benefit was clear with products containing only CoQ10, not with combination products. Only one stomach-related side effect was reported among 602 people taking CoQ10. A later review in healthy adults found the evidence for less tiredness suggestive, with very low to low certainty overall.",
       "bottomLine": "In 13 trials (1,126 people), fatigue scores were somewhat lower with CoQ10 than with placebo, in healthy and ill people. The benefit was clear only with CoQ10 alone, and a later review in healthy adults called it suggestive.",
+      "label": "Tiredness",
+      "line": "Somewhat lower tiredness scores in 13 trials; clear only with CoQ10-only products",
       "studies": [
         {
           "pmid": "36091835",
@@ -293,6 +305,8 @@
       ],
       "summary": "A review of 24 studies in healthy adults found that CoQ10 reliably raised its blood level, but effects on exercise performance were small and inconsistent. Longer use showed a small benefit that wasn't stable when unusual results were left out, and single doses showed no benefit. Strength and short, intense exercise barely changed. The reviewers rated certainty very low to low. EFSA also judged a claim about endurance not substantiated.",
       "bottomLine": "In 24 studies of healthy adults, CoQ10 raised its blood level but effects on exercise performance were small and inconsistent, and the small benefit with longer use wasn't stable. Certainty was very low to low.",
+      "label": "Exercise performance",
+      "line": "Raised CoQ10 in the blood, but no clear change in exercise performance",
       "studies": [
         {
           "pmid": "41457257",

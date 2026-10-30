@@ -43,7 +43,7 @@ describe("knowledge base: vitamins and minerals", () => {
   });
 
   it("gives every finding a bottom line, shown first on the page", () => {
-    for (const n of nutrients) for (const f of [...n.findings, ...(n.foodFindings ?? [])]) expect(f.bottomLine, `${n.id}: ${f.outcome}`).toBeTruthy();
+    for (const n of nutrients) for (const f of [...n.findings, ...(n.foodFindings ?? [])]) { expect(f.bottomLine, `${n.id}: ${f.outcome}`).toBeTruthy(); expect(f.label && f.line, `${n.id}: ${f.outcome} needs a label and a line`).toBeTruthy(); }
   });
 
   it("finds the obvious entries when searched", () => {

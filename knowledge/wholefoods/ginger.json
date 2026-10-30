@@ -146,6 +146,8 @@
       ],
       "summary": "In a 2014 review of 12 randomised trials with 1,278 pregnant women, ginger improved nausea compared with a dummy pill (mean difference in nausea scores 1.20, 95% confidence interval 0.56 to 1.84), but the number of vomiting episodes was not clearly lower (0.72, −0.03 to 1.46). Most trials gave ginger powder in capsules, 1,000 to 1,950 mg a day, usually for 4 days; the authors rated the evidence low quality. A 2022 review of 13 trials (1,174 women) found the same pattern against a dummy pill, and no clear difference between ginger and vitamin B6. The Cochrane review of all treatments for nausea in early pregnancy (41 trials, 5,449 women, 2015) said ginger products may help, but the evidence was limited and not consistent, and found no high-quality evidence for any treatment. On safety, miscarriage was not significantly more common with ginger than with a dummy pill in the 2014 review (risk ratio 3.14, 0.65 to 15.11, a very wide interval), and heartburn and drowsiness were not more common. In a Norwegian cohort of 68,522 pregnant women, the 1,020 (1.5%) who used ginger had no higher risk of birth defects, stillbirth, preterm birth, low birth weight or a low Apgar score.",
       "bottomLine": "In small trials, mostly of ground ginger in capsules for a few days, ginger eased nausea in early pregnancy compared with a dummy pill, but did not clearly reduce vomiting. The evidence is low quality. A large Norwegian cohort found no higher risk of birth defects or other birth problems in women who used ginger.",
+      "label": "Nausea in early pregnancy",
+      "line": "Eased nausea in small trials, mostly capsules; vomiting not clearly reduced",
       "studies": [
         {
           "pmid": "24642205",
@@ -193,6 +195,8 @@
       ],
       "summary": "A 2006 review of 5 trials (363 patients) found fewer people with nausea or vomiting in the 24 hours after surgery when they had a fixed amount of at least 1 g of ginger beforehand (relative risk 0.69, 95% confidence interval 0.54 to 0.89) and fewer with vomiting (0.61, 0.45 to 0.84); abdominal discomfort was the only side effect reported. Later reviews were less clear. In 10 trials (918 patients, 2018), nausea and vomiting were milder (standardised mean difference −0.247, −0.455 to −0.040), but fewer people being sick or needing anti-sickness medicine could have been chance. In 14 trials (1,417 people, 2021), nausea was milder (mean difference −0.71, −1.37 to −0.06) and fewer people needed rescue anti-sickness medicine (relative risk 0.71, 0.62 to 0.82). In another review of 14 trials (1,506 patients, 2022), nausea scores were lower 2, 6 and 12 hours after surgery, but vomiting, nausea-and-vomiting and the use of anti-sickness medicine did not differ except in the recovery room.",
       "bottomLine": "Ginger before surgery made nausea afterwards somewhat milder in several reviews, but whether fewer people were sick or needed anti-sickness medicine differed between reviews. The trials were small and varied.",
+      "label": "Nausea after surgery",
+      "line": "Somewhat milder nausea in reviews; whether fewer people were sick differed",
       "studies": [
         {
           "pmid": "16389016",
@@ -247,6 +251,8 @@
       ],
       "summary": "A 2019 review of 18 articles found that, with 1 g a day or less for more than 3 days, people were less likely to vomit in the first day after chemotherapy (acute vomiting; odds ratio 0.4, 95% confidence interval 0.17 to 0.81; 3 trials, 301 people; moderate certainty by GRADE). There was no clear link with overall or delayed vomiting, or with how often or how badly people felt sick. A 2022 review of 23 trials found no difference overall in acute or delayed nausea or vomiting; only in trials with 1 g a day or less for more than 4 days was acute vomiting less common (odds ratio 0.30, 0.12 to 0.79). In these trials ginger was given with the usual anti-sickness medicines. The trials used powdered dried root in capsules (0.5 to 1.5 g a day for 3 to 5 days in several), but also a CO₂ extract, 6-gingerol capsules, an extract with 5% gingerols and ginger tea, which were not separated in the analysis.",
       "bottomLine": "Added to usual anti-sickness medicines, ginger did not clearly reduce nausea or vomiting overall during chemotherapy. In smaller groups of trials with up to 1 g a day for several days, vomiting on the first day was less common. Trials mixed ginger root with concentrated extracts.",
+      "label": "Nausea during chemotherapy",
+      "line": "No clear change overall; less vomiting on day one in some groups of trials",
       "studies": [
         {
           "pmid": "31519467",
@@ -277,6 +283,8 @@
       ],
       "summary": "A 2015 review pooled 4 trials comparing ginger with a dummy pill during the first 3 to 4 days of the period: the pain score (a visual analogue scale) was 1.85 lower (95% confidence interval 0.84 to 2.87), with 750 to 2,000 mg of ginger powder a day. A 2016 review of 6 trials found pain 1.55 cm lower on a 10 cm scale than with a dummy pill (0.68 to 2.43), and no difference from mefenamic acid, an anti-inflammatory painkiller (standardised mean difference 0, −0.40 to 0.41). All its trials used crude dry ginger powder; five were in Iran and one in India, mostly in students, usually over one period; the authors called the studies few, of poor quality and very different from each other. A 2024 review (12 trials pooled) found pain less intense (standardised mean difference −1.13, −1.59 to −0.68) and shorter (−0.29, −0.46 to −0.12) than with a dummy pill, and no difference from anti-inflammatory painkillers (NSAIDs) or exercise; safety was rarely reported.",
       "bottomLine": "In small trials, mostly in Iranian students, dried ginger powder for the first days of a period lowered period pain compared with a dummy pill, by about 1.5 to 2 points on a 10-point scale, and did about as well as anti-inflammatory painkillers. The trials were few and of poor quality.",
+      "label": "Period pain",
+      "line": "About 1.5 to 2 points lower on a 10-point scale in small, poor-quality trials",
       "studies": [
         {
           "pmid": "26177393",
@@ -313,6 +321,8 @@
       ],
       "summary": "In a blinded trial, 60 people with knee osteoarthritis had 1 g of powdered ginger a day in a capsule or a dummy pill for 8 weeks: ginger did not improve knee pain, symptoms, daily activities, sport or quality of life, and caused no notable side effects. In an open-label trial, 60 people had diclofenac (a painkiller), 750 mg of ginger in capsules, or both, for 12 weeks: all three groups improved, the combination numerically most, with no significant difference in side effects. In 120 older people with knee osteoarthritis given daily capsules of 500 mg ginger powder or a dummy pill for 3 months, two inflammation signals in the blood (TNF-α and IL-1β) fell with ginger; the abstract reports only these blood signals, not pain.",
       "bottomLine": "For knee osteoarthritis, trials of plain ground ginger are few and small: one blinded trial found no benefit over a dummy pill, and an open-label one found it added a little to a painkiller. The clearer benefits reported in reviews come from concentrated extracts.",
+      "label": "Knee arthritis pain",
+      "line": "No clear benefit from plain ground ginger in a few small trials",
       "studies": [
         {
           "pmid": "23964445",
@@ -351,6 +361,8 @@
       ],
       "summary": "A 2026 review of 13 trials in type 2 diabetes found fasting blood glucose 16.27 mg/dL lower with ginger than with a dummy pill (95% confidence interval 6.80 to 25.75) and HbA1c 0.41 percentage points lower (0.20 to 0.63), with no change in insulin resistance (HOMA-IR). Results varied a lot between trials, the certainty was low for both, and the authors judged the size of the effects of limited clinical importance. Ten of the 13 trials were in Iran; they lasted 8 to 12 weeks with 1,200 to 3,000 mg of ginger a day. A 2022 review of 10 trials found similar falls (fasting glucose 18.81 mg/dL, HbA1c 0.57 points). A 2024 review that included only 5 trials, all of ginger powder in capsules at 1.2 to 2 g a day for 4 to 12 weeks, found no significant effect on fasting glucose or HbA1c.",
       "bottomLine": "In short trials in type 2 diabetes, mostly in Iran, ginger went with slightly lower fasting blood sugar and HbA1c than a dummy pill. The certainty is low, one smaller review found no clear effect, and the authors called the changes of limited clinical importance.",
+      "label": "Blood sugar in type 2 diabetes",
+      "line": "Slightly lower fasting sugar and HbA1c in short trials, of limited clinical importance",
       "studies": [
         {
           "pmid": "42337792",
@@ -388,6 +400,8 @@
       ],
       "summary": "In the 2026 review of 13 trials in type 2 diabetes, triglycerides were 17.10 mg/dL lower with ginger than with a dummy pill (95% confidence interval 3.07 to 31.13) and HDL cholesterol 2.13 mg/dL higher (0.44 to 3.82), with low certainty; total cholesterol and LDL cholesterol did not change (very low certainty). A 2018 review of 12 trials (586 people) found triglycerides 17.59 mg/dL lower (5.87 to 29.32), no clear change in total cholesterol (−5.13, −11.05 to 0.78) or HDL; it also reported lower LDL, but the numbers in its abstract are inconsistent. A 2023 review found lower total cholesterol and triglycerides (standardised mean differences −0.44 and −0.61) and no clear change in HDL or LDL. A 2022 review of 10 trials in type 2 diabetes found no significant change in any blood fat.",
       "bottomLine": "In short trials, ginger went with slightly lower triglycerides in several reviews, but LDL cholesterol did not clearly change and one review in diabetes found no change in any blood fat. Certainty is low.",
+      "label": "Cholesterol and triglycerides",
+      "line": "Small and inconsistent: triglycerides a little lower in several reviews, LDL unchanged",
       "studies": [
         {
           "pmid": "42337792",
@@ -432,6 +446,8 @@
       ],
       "summary": "A 2026 review of 12 trials found systolic blood pressure 5.03 mmHg lower with ginger than without (95% confidence interval 1.57 to 8.49) and diastolic 2.03 mmHg lower (0.15 to 3.90), with low certainty by GRADE because results differed between trials. The falls were seen mainly in trials of people with raised blood pressure or obesity and with 2,000 mg a day or more; the authors note the trials were short. A 2019 review of 6 trials (345 people) found systolic pressure 6.36 mmHg lower (1.46 to 11.27) and diastolic 2.12 mmHg lower (0.31 to 3.92). In the 2026 review of trials in type 2 diabetes, systolic pressure was 1.62 mmHg lower (0.24 to 3.01; moderate certainty) and diastolic pressure did not change.",
       "bottomLine": "In short trials, ginger supplements went with blood pressure a few mmHg lower than without, mostly in people with raised blood pressure or obesity. Certainty is low, and in type 2 diabetes the fall was small.",
+      "label": "Blood pressure",
+      "line": "A few mmHg lower in short trials, mostly in people with raised blood pressure or obesity",
       "studies": [
         {
           "pmid": "42566667",
@@ -470,6 +486,8 @@
       ],
       "summary": "A 2025 review of 29 randomised trials found CRP 0.86 mg/L lower with ginger (95% confidence interval 0.62 to 1.10), with lower TNF-α and IL-6 (two other inflammation signals) and better measures of antioxidant status; the authors say the effect was clearest in people with health conditions and that the large differences between trials call for caution. A 2016 review of 9 studies found CRP 0.84 mg/L lower (0.31 to 1.38). A 2020 review of 16 trials (1,010 people) found lower CRP, high-sensitivity CRP and TNF-α, but no clear change in IL-6.",
       "bottomLine": "In ginger supplement trials, CRP, a blood marker of inflammation, was a little lower (by under 1 mg/L) than without ginger, mostly in people with health conditions. Trials differed widely, and lower CRP is not the same as less illness.",
+      "label": "Inflammation (CRP)",
+      "line": "A little lower, by under 1 mg/L, in supplement trials that differed widely",
       "studies": [
         {
           "pmid": "41123858",

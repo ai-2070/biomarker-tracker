@@ -123,6 +123,8 @@
       ],
       "summary": "EPA and DHA lower triglycerides, and more omega-3 lowers them more. In a Cochrane review of trials lasting at least a year, triglycerides fell by about 15 %, depending on the amount. A dose-response analysis of 90 trials found an almost straight-line relation, clearest in people with high blood fats or overweight given more than 2 g a day. In people with very high triglycerides, prescription omega-3 at 4 g a day lowered them by 30 % or more; EPA+DHA medicines also raised LDL cholesterol in that group, while EPA alone did not. A lower triglyceride number is not the same as fewer heart attacks: see the next finding.",
       "bottomLine": "In adults, EPA and DHA lowered triglycerides by about 15 % on average, and more omega-3 lowered them more. Medicine-level amounts (4 g a day) lowered very high levels by 30 % or more. A lower number is not the same as fewer heart attacks.",
+      "label": "Triglycerides",
+      "line": "Lowered triglycerides by about 15% on average, more at higher amounts",
       "studies": [
         {
           "pmid": "32114706",
@@ -161,6 +163,8 @@
       ],
       "summary": "In the Cochrane review (86 trials, 162,796 people), more EPA and DHA made little or no difference to death from any cause or to cardiovascular events (high certainty), stroke, or heart rhythm problems. It may slightly reduce coronary heart disease events: about 1 fewer for every 167 people treated (low certainty). In VITAL, 25,871 US adults over 50 taking 1 g a day for about 5 years had no fewer major cardiovascular events or cancers; heart attacks were lower, but that was not the trial's main question. In ASCEND, 15,480 people with diabetes had serious vascular events at about the same rate (8.9 % with omega-3, 9.2 % with placebo). REDUCE-IT, funded by the maker, found fewer cardiovascular events (17.2 % against 22.0 %) with 4 g a day of purified EPA in people with high triglycerides on statins; that is a prescription medicine, and its results don't apply to fish oil supplements.",
       "bottomLine": "In 86 trials with about 163,000 adults, omega-3 supplements made little or no difference to deaths or cardiovascular events, with perhaps a slight fall in coronary heart disease events (about 1 in 167 people). Large trials such as VITAL and ASCEND found no clear benefit.",
+      "label": "Heart attacks, strokes, deaths",
+      "line": "Little or no difference to deaths or heart and blood vessel events in 86 trials",
       "studies": [
         {
           "pmid": "32114706",
@@ -208,6 +212,8 @@
       ],
       "summary": "In a meta-analysis of 7 large trials, people taking omega-3 supplements were about 25 % more likely to develop atrial fibrillation than those taking placebo. The extra risk was larger in trials using more than 1 g a day (about 49 % higher) than in trials using 1 g a day or less (about 12 % higher). In REDUCE-IT, the prescription EPA medicine also led to more hospital stays for atrial fibrillation or flutter (3.1 % against 2.1 %). Atrial fibrillation raises the risk of stroke, and anyone with palpitations would discuss it with a doctor.",
       "bottomLine": "In 7 large trials with 81,210 adults, omega-3 supplements raised the risk of atrial fibrillation by about 25 %: about 12 % at 1 g a day or less and about 49 % above 1 g a day.",
+      "label": "Irregular heartbeat",
+      "line": "About 25% higher risk of atrial fibrillation, more in trials above 1 g a day",
       "studies": [
         {
           "pmid": "34612056",
@@ -239,6 +245,8 @@
       ],
       "summary": "Across 11 trials, bleeding was not clearly more common with omega-3 than without (about 9 % more, which could be chance), and neither were bleeding strokes, bleeding in the brain or bleeding in the gut. Bleeding risk did not depend on whether people also took antiplatelet medicines. High-dose purified EPA, a prescription medicine, raised the relative risk of bleeding by about half, but the absolute rise was small (0.6 %). In VITAL (1 g a day) there was no extra bleeding. These trials did not look specifically at people on anticoagulants such as warfarin.",
       "bottomLine": "In 11 trials with 120,643 adults, bleeding was not clearly more common with omega-3. High-dose purified EPA, a prescription medicine, raised bleeding by about half in relative terms, but only 0.6 % in absolute terms.",
+      "label": "Bleeding",
+      "line": "Not clearly more bleeding in 11 large trials; small rise with high-dose prescription EPA",
       "studies": [
         {
           "pmid": "38742535",
@@ -270,6 +278,8 @@
       ],
       "summary": "A dose-response analysis of 71 trials found blood pressure fell a little with EPA and DHA: at 2–3 g a day, about 2.6 mmHg for the top number (systolic) and about 1.6–1.8 mmHg for the bottom number (diastolic). The fall was larger in people with high blood pressure or high blood fats and in older people. The Cochrane review, which only included trials lasting at least a year, found little or no effect on blood pressure. Any effect is small compared with blood pressure medicines.",
       "bottomLine": "In 71 trials, blood pressure fell a little with EPA and DHA (about 2.6 mmHg systolic at 2–3 g a day), more in people with high blood pressure. A Cochrane review of longer trials found little or no effect.",
+      "label": "Blood pressure",
+      "line": "Small falls in some trials (about 2.6 mmHg top number); little or no effect in longer trials",
       "studies": [
         {
           "pmid": "35647665",
@@ -301,6 +311,8 @@
       ],
       "summary": "In a Cochrane review of people with major depression, omega-3 lowered symptom scores by about 2.5 points on a common rating scale compared with placebo, less than the 3 points that patients would notice. The evidence was very low certainty and likely overstates the effect; remission and response rates did not differ. In VITAL-DEP, adults over 50 without depression who took 1 g of fish oil a day for about 5 years had slightly more depression or clinically relevant symptoms (13.9 against 12.3 per 1,000 people a year), with no difference in mood scores. Depression is treated by a doctor; this evidence doesn't support omega-3 as a replacement for treatment.",
       "bottomLine": "In people with major depression, omega-3 lowered symptom scores by less than patients would notice (very low certainty). In a large prevention trial of adults over 50, depression was slightly more common with omega-3, with no difference in mood scores.",
+      "label": "Depression",
+      "line": "Lowered symptom scores by less than patients would notice; very low-certainty evidence",
       "studies": [
         {
           "pmid": "34817851",
@@ -332,6 +344,8 @@
       ],
       "summary": "In the Cochrane review, preterm birth before 37 weeks fell from 13.4 % to 11.9 % with omega-3, and early preterm birth before 34 weeks from 4.6 % to 2.7 %. Low birthweight was a little less common, but pregnancies lasting beyond 42 weeks were probably more common (2.6 % against 1.6 %). The later ORIP trial, giving 900 mg a day of omega-3 from fish oil from before 20 weeks, found no fall in early preterm birth (2.2 % against 2.0 %), and more babies were very large for their age. Supplements in pregnancy are a question for a midwife or doctor.",
       "bottomLine": "In 70 trials, preterm birth fell from 13.4 % to 11.9 % with omega-3 in pregnancy, but a large later trial found no fall in early preterm birth (2.2 % against 2.0 %). Pregnancies lasting beyond 42 weeks were probably more common.",
+      "label": "Preterm birth",
+      "line": "Fewer preterm births in 70 trials (11.9% against 13.4%); a later large trial found no fall in early preterm birth",
       "studies": [
         {
           "pmid": "30480773",
@@ -365,6 +379,8 @@
       ],
       "summary": "Eating oily fish lowered triglycerides slightly (about 0.11 mmol/L on average) and raised HDL cholesterol a little (about 0.06 mmol/L). Other risk markers did not clearly change. This is the effect of the whole food, and it is much smaller than that of medicine-level omega-3 supplements.",
       "bottomLine": "In 14 trials with 1,378 adults, eating oily fish lowered triglycerides slightly (about 0.11 mmol/L) and raised HDL cholesterol a little. Fish contains many nutrients, so this can't be put down to omega-3 alone.",
+      "label": "Eating oily fish: blood fats",
+      "line": "Slightly lower triglycerides and a little higher HDL cholesterol in 14 trials",
       "studies": [
         {
           "pmid": "28992469",
@@ -388,6 +404,8 @@
       ],
       "summary": "In a pooled analysis of 4 cohort studies, eating 350 g of fish a week or more was not linked with less heart disease or fewer deaths in the general population, compared with little or no fish. In people who already had vascular disease, eating at least 175 g a week (about 2 portions) went with lower risk of major cardiovascular events and death, with no further fall at higher amounts; in one cohort, fish richer in omega-3 went with lower risk. These are links, not proof of cause. The Cochrane review found little trial evidence on the effects of eating fish.",
       "bottomLine": "In 191,558 adults, eating fish was not linked with less heart disease or death in the general population. In people who already had vascular disease, about 2 portions a week went with lower risk. These are links, not proof of cause.",
+      "label": "Eating fish: heart disease",
+      "line": "No link overall; about 2 portions a week went with lower risk in people with blood vessel disease",
       "studies": [
         {
           "pmid": "33683310",

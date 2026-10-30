@@ -106,6 +106,8 @@
       ],
       "summary": "Many blood tests use biotin and a protein called streptavidin to catch what they measure (immunoassays), and extra biotin in the blood can disturb them. In a small study, 6 healthy adults used 10 mg a day for a week, an amount common in supplements: 9 of 23 biotin-based tests gave wrong results, some falsely high and some falsely low, while none of 14 tests without biotin did. In a man using very high doses, thyroid tests looked like severe Graves' disease (an overactive thyroid), with very high free thyroxine (free T4) and suppressed TSH (thyroid-stimulating hormone), although he had no symptoms; the results became normal when the biotin was paused. One heart attack test (a fifth-generation troponin T test) was disturbed at blood levels reached with 10 mg a day, which could delay or miss a diagnosis of heart damage; two other troponin tests were not. In a large US clinic, 7.7% of outpatients said they used biotin, and 7.4% of emergency patients had blood levels at or above the lowest level known to disturb one maker's tests. Tests differ by maker, so the risk depends on the lab, and how often this leads to a wrong diagnosis or treatment hasn't been measured.",
       "bottomLine": "At 10 mg a day, an amount common in supplements, biotin gave wrong results in 9 of 23 biotin-based blood tests in a small study. It can make thyroid tests look like an overactive thyroid and hide heart damage on one troponin test; the risk depends on the lab's tests.",
+      "label": "Wrong lab results",
+      "line": "Can make thyroid and heart tests read wrong; 9 of 23 tests did in a small study",
       "studies": [
         {
           "pmid": "28973622",
@@ -152,6 +154,8 @@
       ],
       "summary": "A first trial of 154 people with progressive MS found that 13 (12.6%) of those on high-dose biotin improved in disability, against none on placebo. The larger SPI2 trial, with 642 people in 13 countries, found no significant difference: 12% improved on biotin and 9% on placebo. A meta-analysis of 3 trials with 889 people found insufficient evidence of less disability; more people improved their 25-foot walking time on biotin (moderate certainty). Side effects were about as common as on placebo, but 4.7% of people on biotin had lab-test interference, against none on placebo. The SPI2 authors concluded that high-dose biotin can't be recommended for progressive MS. SPI2 was funded by the maker.",
       "bottomLine": "In the large SPI2 trial of 642 people with progressive multiple sclerosis, 300 mg of biotin a day gave no significant benefit: 12% improved on biotin and 9% on placebo. A meta-analysis found a possible gain in walking time, and lab-test interference in 4.7% of users.",
+      "label": "Progressive multiple sclerosis",
+      "line": "No clear benefit for disability in the largest trial: 12% improved, against 9% on placebo",
       "studies": [
         {
           "pmid": "33222767",
@@ -191,6 +195,8 @@
       ],
       "summary": "A 2017 review found only 18 reported cases of biotin use for hair and nail changes. Every person had an underlying cause, such as a biotin shortage or a rare hair condition (uncombable hair), and all improved. A 2024 review found 3 studies of hair: the best, a double-blind placebo-controlled trial, found no difference in hair growth between biotin and placebo; the other two, in people on the acne medicine isotretinoin and in women after weight-loss stomach surgery (sleeve gastrectomy), were open to several biases and showed no striking benefit. There is no good evidence that biotin helps hair in people who aren't short of it. Hair loss has many causes that a doctor can look into.",
       "bottomLine": "The only placebo-controlled trial of biotin for hair growth found no difference from placebo. Reports of benefit come from people with a biotin shortage or a rare hair condition, so there is no good evidence that biotin helps hair in people who aren't short of it.",
+      "label": "Hair growth",
+      "line": "The only placebo-controlled trial found no difference in hair growth",
       "studies": [
         {
           "pmid": "28879195",
@@ -219,6 +225,8 @@
       ],
       "summary": "A 2018 review found clinical trials reporting firmer, harder and thicker brittle nails with oral biotin, and case reports of improvement in a few other nail problems, such as worn-down or rough nails. The authors said larger trials with control groups are still needed to know whether it works. Brittle nails can come from many causes, and nails grow slowly, so short uncontrolled studies are hard to judge.",
       "bottomLine": "A review found trials reporting firmer, harder and thicker brittle nails with biotin, and case reports for a few other nail problems. Its authors said larger trials with control groups are still needed to know whether biotin really works.",
+      "label": "Brittle nails",
+      "line": "Small trials reported firmer, thicker nails; larger controlled trials are still needed",
       "studies": [
         {
           "pmid": "29057689",
@@ -242,6 +250,8 @@
       ],
       "summary": "A meta-analysis pooled 5 randomised trials with 445 people with type 2 diabetes, given biotin for 28 to 90 days. Total cholesterol was lower by 0.22 mmol/L. The authors also reported lower fasting glucose (by 1.21 mmol/L) and triglycerides (by 0.59 mmol/L), but for both the range of likely results included no change. Insulin did not change, and there was too little data on HbA1c (long-term blood sugar), LDL or HDL cholesterol to draw conclusions. The trials were few, small and short.",
       "bottomLine": "In 5 short trials with 445 people with type 2 diabetes, total cholesterol was 0.22 mmol/L lower with biotin. Falls in fasting glucose and triglycerides were uncertain, and there was too little data on HbA1c (long-term blood sugar).",
+      "label": "Blood sugar and fats (diabetes)",
+      "line": "Slightly lower total cholesterol in 5 short trials; effects on blood sugar uncertain",
       "studies": [
         {
           "pmid": "36386951",
@@ -265,6 +275,8 @@
       ],
       "summary": "About half of pregnant women excrete more 3-HIA in urine, a sign that a biotin-dependent enzyme is working less well. In a randomised trial of 26 pregnant women with raised 3-HIA, 300 µg of biotin a day for 14 days lowered it in both early and late pregnancy, while it rose slightly on placebo. The authors took this as evidence that mild biotin shortage is common in pregnancy. The trial measured only a urine marker over two weeks; it didn't look at the health of mothers or babies.",
       "bottomLine": "In a small trial of 26 pregnant women with a raised urine sign of low biotin status, biotin for two weeks lowered it, while it rose slightly on placebo. The trial didn't look at the health of mothers or babies.",
+      "label": "Low biotin sign in pregnancy",
+      "line": "Lowered a urine sign of low biotin in a small trial; mothers' and babies' health not studied",
       "studies": [
         {
           "pmid": "11815321",
