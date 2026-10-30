@@ -13,7 +13,8 @@ import {
   protocolToIntake,
   MAX_INTAKE_ITEMS,
   MAX_SUPPLEMENT_AMOUNT,
-  SUPPLEMENT_KEY_OF_NUTRIENT,
+  supplementKeyFor,
+  validateIntakeItems,
   type NeedsAmount,
   intakeTotals,
   upperLimitRoom,
@@ -31,7 +32,7 @@ import { foodById, mealTotals, saltFromSodium, type FoodDb, type Meal, type Tota
 import { MAX_ITEMS, nutrientFor } from "../../core/plans";
 import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
-import { computeTrend, flagLatest, groupByBiomarker, sortByDate } from "../../core/trends";
+import { computeTrend, flagLatest, groupByBiomarker, isCritical, sortByDate } from "../../core/trends";
 import type { Measurement, Profile, SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
 import { newId, savePlan } from "../../db/db";
@@ -73,13 +74,20 @@ export function IntakePage() {
   const db = useFoodDb();
   const meals = useMeals() ?? [];
   const list = useIntakeList();
+  const [saveError, setSaveError] = useState("");
   const profile = useProfile();
   const all = useAllMeasurements() ?? [];
   const protocols = useProtocols() ?? [];
   const notes = safetyNotes(safetyLabels(protocols, profile));
   const safety: SafetyId[] = notes.map((n) => n.id);
   const items = list ?? [];
-  const save = (next: IntakeItem[]) => void setIntakeList(next);
+  const save = (next: IntakeItem[]) => {
+    const errors = validateIntakeItems(next);
+    const repairingOversize = next.length > MAX_INTAKE_ITEMS && next.length < items.length && next.every((item) => validateIntakeItems([item]).length === 0);
+    if (errors.length && !repairingOversize) { setSaveError(`Cannot save this list: ${errors.join("; ")}. Remove an item before adding another.`); return; }
+    setSaveError("");
+    void setIntakeList(next).catch(() => setSaveError("Could not save the list. Please try again."));
+  };
 
   return (
     <>
@@ -90,6 +98,8 @@ export function IntakePage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-8">
         <div className="flex flex-col gap-5">
           <ListEditor items={items} db={db} meals={meals} save={save} />
+          {saveError && <Notice tone="warn">{saveError}</Notice>}
+          {items.length > MAX_INTAKE_ITEMS && <Notice tone="warn">This saved list has {items.length} items; the limit is {MAX_INTAKE_ITEMS}. Your entries are still here. Remove items until it is within the limit before adding or changing anything.</Notice>}
           {notes.length > 0 && <SafetyNotices notes={notes} />}
         </div>
         <div className="flex min-w-0 flex-col gap-5">
@@ -286,7 +296,7 @@ function SupplementForm({ add }: { add: (it: IntakeItem) => void }) {
         .filter((i) => i.category === "supplement")
         .flatMap((i) => {
           const n = nutrientFor(i, NUTRIENTS);
-          const k = n ? SUPPLEMENT_KEY_OF_NUTRIENT[n.id] : undefined;
+          const k = n ? supplementKeyFor(i, n.id) : undefined;
           return k && SUPPLEMENT_NUTRIENTS.some((x) => x.key === k) ? [[i.label.toLowerCase(), { label: i.label, amount: i.amount, key: k }] as const] : [];
         }),
     ).values(),
@@ -551,17 +561,24 @@ function Analysis({ items, db, profile, all, safety }: { items: IntakeItem[]; db
   const { totals, supplements, missingMeals } = intakeTotals(items, meals, db);
   const age = profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined;
   const weight = sortByDate(all.filter((m) => m.biomarkerId === "weight")).at(-1);
-  const macros = macroRows(totals, weight?.value);
+  const adult = age === undefined || age >= 18;
+  const macros = macroRows(totals, weight?.value, age);
   const vitamins = nutrientRows(totals, db, NUTRIENTS, { ...(profile.sex ? { sex: profile.sex } : {}), ...(age !== undefined ? { age } : {}) }, supplements);
   const kcal = totals.energyKcal;
-  const resting = weight ? bmrMifflin(weight.value, profile.heightCm, age, profile.sex) : undefined;
+  const resting = adult && weight ? bmrMifflin(weight.value, profile.heightCm, age, profile.sex) : undefined;
+  const critical = [...groupByBiomarker(all)].some(([id, readings]) => {
+    const def = BIOMARKER_MAP.get(id);
+    return def ? isCritical(flagLatest(def, readings, profile)) : false;
+  });
   return (
     <>
       {missingMeals > 0 && <Notice tone="warn">{missingMeals} {missingMeals === 1 ? "meal in the list was" : "meals in the list were"} deleted since, so the totals leave them out.</Notice>}
+      {!adult && <Notice>These reference values are for adults. Measured totals are shown without adult intake comparisons or food-increase ideas.</Notice>}
+      {critical && <Notice role="alert" tone="danger" title="Contact a doctor now">A latest result is critically out of range. Contact a doctor urgently before changing food or supplements. Food-increase ideas are not shown.</Notice>}
       <EnergyCard kcal={kcal} resting={resting} />
       <MacroCard rows={macros} totals={totals} weightKnown={!!weight} />
       <NutrientCard rows={vitamins} />
-      <Gaps vitamins={vitamins} macros={macros} db={db} safety={safety} all={all} profile={profile} />
+      {adult && !critical && <Gaps vitamins={vitamins} macros={macros} db={db} safety={safety} all={all} profile={profile} />}
       <Card className="flex flex-col gap-2">
         <DarkMatterNote />
         <p className="text-sm text-ink-2">
@@ -618,6 +635,7 @@ const STATUS_CHIP: Record<string, { text: string; className: string }> = {
   "needs-weight": { text: "Add your weight", className: "bg-sunken text-ink-2" },
   "not-measured": { text: "Not measured", className: "bg-sunken text-ink-2" },
   "no-reference": { text: "No reference", className: "bg-sunken text-ink-2" },
+  partial: { text: "Partly measured", className: "bg-sunken text-ink-2" },
 };
 
 function Chip({ status }: { status: string }) {
@@ -647,6 +665,7 @@ function MacroCard({ rows, totals, weightKnown }: { rows: MacroRow[]; totals: Re
               </span>
             </span>
             <span className="text-sm text-ink-2">EFSA: {r.reference}</span>
+            {r.measuredIn < r.of && <span className="text-xs text-ink-2">Measured in {r.measuredIn} of {r.of} sources; the rest is unknown.</span>}
           </li>
         ))}
       </ul>
@@ -673,15 +692,15 @@ function NutrientCard({ rows }: { rows: NutrientRow[] }) {
             <span className="col-span-2 row-start-2 flex items-center gap-2 sm:col-span-1 sm:row-start-auto">
               <span className="h-2 flex-1 overflow-hidden rounded-full bg-sunken" aria-hidden="true">
                 <span
-                  className={cx("block h-full rounded-full", r.status === "above-upper-limit" ? "bg-danger" : r.status === "below" ? "bg-warn" : "bg-ok")}
+                  className={cx("block h-full rounded-full", r.status === "above-upper-limit" ? "bg-danger" : r.status === "below" ? "bg-warn" : r.status === "partial" ? "bg-ink-2" : "bg-ok")}
                   style={{ width: `${Math.min(100, r.share ?? 0)}%` }}
                 />
               </span>
-              <span className="w-12 text-right text-sm tabular-nums">{r.share !== undefined ? `${r.share} %` : ""}</span>
+              <span className="w-12 text-right text-sm tabular-nums">{r.share !== undefined ? `${r.measuredIn < r.of ? "≥ " : ""}${r.share} %` : ""}</span>
             </span>
-            <span className="hidden text-right text-sm text-ink-2 tabular-nums sm:block">
-              {units(r)}
-              {r.reference ? ` of ${formatValue(r.reference.amount)}` : ""}
+            <span className="col-span-2 text-sm text-ink-2 tabular-nums sm:col-span-1 sm:text-right">
+              {r.measuredIn === 0 ? "Unknown" : <>{r.measuredIn < r.of ? "At least " : ""}{units(r)}{r.reference ? ` of ${formatValue(r.reference.amount)}` : ""}</>}
+              {r.measuredIn < r.of && <span className="block text-xs">Measured in {r.measuredIn} of {r.of} sources; the rest is unknown.</span>}
             </span>
             <span className="row-start-1 justify-self-end sm:row-start-auto">
               <Chip status={r.status} />
@@ -690,8 +709,8 @@ function NutrientCard({ rows }: { rows: NutrientRow[] }) {
         ))}
       </ul>
       <p className="text-sm text-ink-2">
-        Share of the EU reference intake for a whole day, for your sex and age. Unmeasured values never count as zero: a nutrient measured in
-        only some foods is shown as such on its page.{" "}
+        Share of the adult EU reference intake for a whole day where the reference applies to your known sex and age. Unmeasured values never count as zero:
+        partial totals show their coverage here and are not treated as a precise shortfall.{" "}
         {rows.some((r) => r.status === "above-upper-limit") &&
           "Above the upper limit means more than the highest daily intake considered safe over a long time. Magnesium's and folic acid's limits count supplements only; the others count food and supplements together. Worth discussing with a doctor or pharmacist if it's usual."}
       </p>
@@ -757,25 +776,30 @@ function Gaps({ vitamins, macros, db, safety, all, profile }: { vitamins: Nutrie
           );
         })}
         {low.map((r) => {
-          const advice = gapAdvice(r.key, r, PORTION_FOODS, db, safety, room);
-          const rich = mealsRichIn(r.key, mealList, db, safety);
-          const marker = r.nutrient.status.biomarkerIds.map((id) => BIOMARKER_MAP.get(id)).find((d) => d && byMarker.has(d.id));
-          const ms = marker ? byMarker.get(marker.id)! : [];
-          const latest = marker && ms.length ? computeTrend(ms)?.latest : undefined;
-          const flag = marker && ms.length ? flagLatest(marker, ms, profile) : undefined;
+          const linked = r.nutrient.status.biomarkerIds.flatMap((id) => {
+            const d = BIOMARKER_MAP.get(id);
+            const readings = byMarker.get(id);
+            return d && readings?.length ? [{ marker: d, ms: readings, flag: flagLatest(d, readings, profile) }] : [];
+          });
+          const result = linked.find((x) => x.flag === "critical-high" || x.flag === "critical-low") ?? linked[0];
+          const { marker, ms, flag } = result ?? {};
+          const critical = flag === "critical-high" || flag === "critical-low";
+          const latest = ms ? computeTrend(ms)?.latest : undefined;
+          const advice = critical ? undefined : gapAdvice(r.key, r, PORTION_FOODS, db, safety, room);
+          const rich = critical || advice?.kind !== "foods" ? [] : mealsRichIn(r.key, mealList, db, safety, 2, room);
           return (
             <li key={r.key} className="rounded-lg border border-line p-3">
               <p className="font-medium">
                 {r.nutrient.name}: {r.share} % of the reference
               </p>
-              {advice.kind === "talk-to-doctor" ? (
+              {critical ? <Notice tone="danger" className="mt-2" title="Contact a doctor now">Your linked blood result is critically out of range. Contact a doctor urgently before changing food or supplements. Food-increase ideas are not shown.</Notice> : advice?.kind === "talk-to-doctor" ? (
                 <Notice tone="warn" className="mt-2" title="Talk to your doctor or pharmacist first">
                   {advice.because.map((b) => `${b.with}: ${b.note}`).join(" ")}
                 </Notice>
               ) : (
                 <>
-                  {advice.foods.length > 0 && <ul className="mt-2 flex flex-col gap-1">{advice.foods.map((f) => ideaLine(f, r.unit, true))}</ul>}
-                  {advice.hidden.length > 0 && (
+                  {advice?.kind === "foods" && advice.foods.length > 0 && <ul className="mt-2 flex flex-col gap-1">{advice.foods.map((f) => ideaLine(f, r.unit, true))}</ul>}
+                  {advice?.kind === "foods" && advice.hidden.length > 0 && (
                     <p className="mt-1 text-sm text-ink-2">Left out for you: {advice.hidden.map((h) => `${h.name} (${h.reason})`).join("; ")}.</p>
                   )}
                   {rich.length > 0 && (
@@ -800,13 +824,11 @@ function Gaps({ vitamins, macros, db, safety, all, profile }: { vitamins: Nutrie
                 {latest && marker ? (
                   <>
                     Your {marker.name.toLowerCase()} blood result: {showMeasurement(marker, latest, displayUnitFor(marker, units[marker.id]))}{" "}
-                    {displayUnitFor(marker, units[marker.id])} ({formatDate(latest.date)}) {flag && flag !== "unknown" && <FlagBadge flag={flag} />}. Supplements
-                    help most when you're low.{" "}
+                    {displayUnitFor(marker, units[marker.id])} ({formatDate(latest.date)}) {flag && flag !== "unknown" && <FlagBadge flag={flag} />}.{" "}
                   </>
-                ) : (
-                  "Supplements help most when you're low. "
-                )}
-                <a href={href({ name: "nutrient", id: r.nutrient.id })}>Supplements: what trials found, forms and the upper limit</a>
+                ) : null}
+                {!critical && <><span>Supplements help most when you&apos;re low. </span>
+                <a href={href({ name: "nutrient", id: r.nutrient.id })}>Supplements: what trials found, forms and the upper limit</a></>}
               </p>
             </li>
           );

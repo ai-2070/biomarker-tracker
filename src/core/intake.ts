@@ -1,5 +1,5 @@
 import { SAFETY_LIMITS } from "./foods";
-import { MAX_GRAMS, NUTRIENT_OF_KEY, adultReference, mealSafetyBlock, mealTotals, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "./meals";
+import { MAX_GRAMS, NUTRIENT_OF_KEY, adultReference, dailyReference, mealSafetyBlock, mealTotals, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "./meals";
 import { interactionsFor, type NutrientDef } from "./nutrients";
 import { nutrientFor, type PlanItem } from "./plans";
 import { MAX_LABEL } from "./protocols";
@@ -29,7 +29,7 @@ export const SUPPLEMENT_NUTRIENTS: readonly { key: string; label: string; unit: 
   { key: "vitaminA", label: "Vitamin A (retinol)", unit: "µg" },
   { key: "vitaminD", label: "Vitamin D", unit: "µg" },
   { key: "vitaminE", label: "Vitamin E", unit: "mg" },
-  { key: "vitaminK1", label: "Vitamin K", unit: "µg" },
+  { key: "vitaminK1", label: "Vitamin K1", unit: "µg" },
   { key: "vitaminB6", label: "Vitamin B6", unit: "mg" },
   { key: "vitaminB12", label: "Vitamin B12", unit: "µg" },
   { key: "folate", label: "Folic acid", unit: "µg" },
@@ -172,7 +172,7 @@ export type MacroKey = "protein" | "carbohydrate" | "sugars" | "fibre" | "fat" |
 export const MACRO_KEYS: readonly MacroKey[] = ["protein", "carbohydrate", "sugars", "fibre", "fat", "saturatedFat", "epaDha", "sodium"];
 const KCAL_PER_G: Partial<Record<MacroKey, number>> = { protein: 4, fat: 9, saturatedFat: 9, carbohydrate: 3.75, sugars: 3.75 };
 
-export type MacroStatus = "below" | "within" | "above" | "as-low-as-possible" | "needs-weight" | "not-measured";
+export type MacroStatus = "below" | "within" | "above" | "as-low-as-possible" | "needs-weight" | "not-measured" | "no-reference" | "partial";
 
 export interface MacroRow {
   key: MacroKey;
@@ -188,13 +188,15 @@ export interface MacroRow {
   missing?: number;
 }
 
-export function macroRows(totals: Record<string, Total>, weightKg?: number): MacroRow[] {
+export function macroRows(totals: Record<string, Total>, weightKg?: number, age?: number): MacroRow[] {
   const kcal = totals.energyKcal?.amount ?? 0;
   return MACRO_KEYS.map((key) => {
     const t = totals[key] ?? { amount: 0, measuredIn: 0, of: 0 };
     const base = { key, amount: t.amount, measuredIn: t.measuredIn, of: t.of };
     const pct = KCAL_PER_G[key] !== undefined && kcal > 0 ? (t.amount * KCAL_PER_G[key]!) / kcal * 100 : undefined;
     const withPct = pct !== undefined ? { ...base, energyPct: pct } : base;
+    if (age !== undefined && (!Number.isFinite(age) || age < 18)) return { ...base, reference: "Adult reference not applicable", status: "no-reference" as const };
+    if (t.measuredIn > 0 && (t.measuredIn < t.of || (pct !== undefined && totals.energyKcal && totals.energyKcal.measuredIn < totals.energyKcal.of))) return { ...base, reference: REFERENCE_TEXT[key](weightKg), status: "partial" as const };
     if (t.measuredIn === 0) return { ...withPct, reference: REFERENCE_TEXT[key](weightKg), status: "not-measured" as const };
     switch (key) {
       case "protein": {
@@ -265,7 +267,7 @@ export interface NutrientRow {
   share?: number;
   /** `from`: what the limit covers, and so what was compared: all sources, or supplements only. */
   upperLimit?: { amount: number; unit: string; compared: number; from: "all" | "supplements" };
-  status: "below" | "met" | "above-upper-limit" | "no-reference" | "not-measured";
+  status: "below" | "met" | "above-upper-limit" | "no-reference" | "not-measured" | "partial";
 }
 
 export function nutrientRows(
@@ -283,7 +285,7 @@ export function nutrientRows(
     if (!n || !t || !unit) continue;
     const ref = adultReference(n, person);
     const share = shareOfReference(t, unit, ref);
-    const ul = n.reference.upperLimit;
+    const ul = dailyReference(n, person).upperLimit;
     const ulKey = UL_FROM_FOOD[n.id];
     const compared = ulKey ? totals[ulKey] : undefined;
     // Unmeasured counts as nothing known: the room left under the limit is never made smaller by a guess.
@@ -295,7 +297,7 @@ export function nutrientRows(
           ? { amount: ul.amount, unit: ul.unit, compared: supplements[suppKey] ?? 0, from: "supplements" as const }
           : undefined;
     const status: NutrientRow["status"] =
-      t.measuredIn === 0 ? "not-measured" : upperLimit && upperLimit.compared > upperLimit.amount ? "above-upper-limit" : share === undefined ? "no-reference" : share < 100 ? "below" : "met";
+      t.measuredIn === 0 ? "not-measured" : upperLimit && upperLimit.compared > upperLimit.amount ? "above-upper-limit" : t.measuredIn < t.of ? "partial" : share === undefined ? "no-reference" : share < 100 ? "below" : "met";
     rows.push({ key, nutrient: n, amount: t.amount, unit, measuredIn: t.measuredIn, of: t.of, ...(ref ? { reference: ref } : {}), ...(share !== undefined ? { share } : {}), ...(upperLimit ? { upperLimit } : {}), status });
   }
   return rows;
@@ -396,11 +398,13 @@ export function foodIdeas(
 }
 
 /** Meals (the person's own or examples) with the most of a nutrient per portion, without safety blocks. */
-export function mealsRichIn<M extends { id: string; name: string; items: readonly MealItem[] }>(key: string, meals: readonly M[], db: FoodDb, safety: readonly SafetyId[], limit = 2): { meal: M; amount: number }[] {
+export function mealsRichIn<M extends { id: string; name: string; items: readonly MealItem[] }>(key: string, meals: readonly M[], db: FoodDb, safety: readonly SafetyId[], limit = 2, room: UpperLimitRoom = {}): { meal: M; amount: number }[] {
   const limits = safety.flatMap((s) => (SAFETY_LIMITS[s] ? [SAFETY_LIMITS[s]!] : []));
   return meals
     .filter((m) => !mealSafetyBlock(m.items, db, limits))
-    .map((meal) => ({ meal, amount: mealTotals(meal.items, db)[key]?.amount ?? 0 }))
+    .map((meal) => ({ meal, totals: mealTotals(meal.items, db) }))
+    .filter(({ totals }) => Object.entries(room).every(([k, r]) => !totals[k]?.measuredIn || totals[k]!.amount <= r.room))
+    .map(({ meal, totals }) => ({ meal, amount: totals[key]?.amount ?? 0 }))
     .filter((x) => x.amount > 0)
     .sort((a, b) => b.amount - a.amount)
     .slice(0, limit);
@@ -452,6 +456,13 @@ export const SUPPLEMENT_KEY_OF_NUTRIENT: Readonly<Record<string, string>> = {
   ...Object.fromEntries(Object.entries(NUTRIENT_OF_KEY).filter(([k]) => SUPPLEMENT_KEYS.has(k)).map(([k, id]) => [id, k])),
   omega_3: "epaDha",
 };
+
+/** Keep forms with different reference and safety semantics out of automatic imports. */
+export function supplementKeyFor(item: Pick<PlanItem, "label">, nutrientId: string): string | undefined {
+  if (nutrientId === "vitamin_a" && /caroten/i.test(item.label)) return undefined;
+  if (nutrientId === "vitamin_k" && /(?:\bk\s*[- ]?2\b|menaquinone|\bmk\s*[- ]?[47]\b)/i.test(item.label)) return undefined;
+  return SUPPLEMENT_KEY_OF_NUTRIENT[nutrientId];
+}
 
 /** A supplement in a protocol the analyzer can count, but whose amount isn't written in the nutrient's unit. */
 export interface NeedsAmount {
@@ -507,8 +518,12 @@ export function protocolToIntake(
       }
     }
     const nutrient = it.category === "supplement" ? nutrientFor(it, nutrients) : undefined;
-    const key = nutrient ? SUPPLEMENT_KEY_OF_NUTRIENT[nutrient.id] : undefined;
+    const key = nutrient ? supplementKeyFor(it, nutrient.id) : undefined;
     const def = key ? SUPPLEMENT_NUTRIENTS.find((x) => x.key === key) : undefined;
+    if (nutrient && !key && (nutrient.id === "vitamin_a" || nutrient.id === "vitamin_k")) {
+      skipped.push({ label: it.label, reason: "this form is not represented: the analyzer counts retinol and vitamin K1, not beta-carotene or vitamin K2" });
+      continue;
+    }
     if (def) {
       const amount = parseLabelAmount(it.amount, def.unit);
       if (amount !== undefined) items.push({ id: newId(), kind: "supplement", nutrient: def.key, amount, name: clip(it.label, 80) });

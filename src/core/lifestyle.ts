@@ -91,7 +91,7 @@ const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object
 const isStr = (v: unknown): v is string => typeof v === "string" && v.trim().length > 0;
 const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
 const strList = (v: unknown, min = 0): boolean => Array.isArray(v) && v.length >= min && v.every(isStr);
-const SAFETY_IDS = new Set(["anticoagulant", "diabetes", "pregnancy", "kidney"]);
+const SAFETY_IDS = new Set(["anticoagulant", "antiplatelet", "diabetes", "pregnancy", "kidney"]);
 
 export function visualErrors(v: unknown, at: string): string[] {
   if (!isObj(v)) return [`${at} is not an object`];

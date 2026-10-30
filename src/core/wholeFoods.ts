@@ -71,7 +71,7 @@ export interface HistoryUse {
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const isStr = (v: unknown): v is string => typeof v === "string" && v.trim().length > 0;
 const strList = (v: unknown, min = 0): boolean => Array.isArray(v) && v.length >= min && v.every(isStr);
-const SAFETY_IDS = new Set(["anticoagulant", "diabetes", "pregnancy", "kidney"]);
+const SAFETY_IDS = new Set(["anticoagulant", "antiplatelet", "diabetes", "pregnancy", "kidney"]);
 
 /** Problems with a whole-food file; empty means valid. */
 export function validateWholeFoodDef(v: unknown): string[] {
