@@ -9,7 +9,7 @@
     "kPa": 7.50062
   },
   "defaultRanges": [{ "low": 90, "high": 139 }],
-  "criticalRange": { "high": 180 },
+  "criticalRange": { "high": 180, "highInclusive": true },
   "rangeNote": "European guidelines (2024): below 120 is non-elevated, 120–139 elevated, 140 or more on repeated readings is high blood pressure. US guidelines start at 130. Home readings run lower than clinic ones: 135/85 at home is about 140/90 in a clinic. Sit quietly for 5 minutes before measuring, and take two readings.",
   "summary": "The top number of a blood pressure reading: the pressure in your arteries when the heart beats. It's one of the strongest risk factors for stroke and heart disease, and often has no symptoms.",
   "high": {

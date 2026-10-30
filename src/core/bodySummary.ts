@@ -31,8 +31,8 @@ export function bodySummary(
   const age = w && profile.birthMonth ? ageAt(profile.birthMonth, w.date) : undefined;
   const bmr = w ? bmrMifflin(w.value, profile.heightCm, age, profile.sex) : undefined;
   const bp = latestBloodPressure(measurements);
-  const sys30 = series("bp_systolic").filter((m) => bp && m.date >= shift(bp.systolic.date, -29));
-  const dia30 = series("bp_diastolic").filter((m) => bp && m.date >= shift(bp.systolic.date, -29));
+  const sys30 = series("bp_systolic").filter((m) => bp && m.date >= shift(bp.systolic.date, -29) && m.date <= bp.systolic.date);
+  const dia30 = series("bp_diastolic").filter((m) => bp && m.date >= shift(bp.systolic.date, -29) && m.date <= bp.systolic.date);
   const h = heartAgeData(profile, measurements, protocols, today);
   const latestOf = (id: string) => {
     const s = series(id);
