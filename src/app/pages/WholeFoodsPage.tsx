@@ -6,7 +6,7 @@ import { ageAt } from "../../core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "../../core/protocols";
 import type { SafetyId } from "../../core/types";
 import { formatValue } from "../../core/units";
-import { FOOD_GROUPS, type FoodGroup, type WholeFoodDef } from "../../core/wholeFoods";
+import { FOOD_GROUPS, type FoodGroup, type ModernVerdict, type WholeFoodDef } from "../../core/wholeFoods";
 import { AddToProtocol } from "../components/AddToProtocol";
 import { StudyLink } from "../components/evidence";
 import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
@@ -30,6 +30,7 @@ const GROUP_LABEL: Record<FoodGroup, string> = {
   "herbs and spices": "Herbs and spices",
   "nuts and seeds": "Nuts and seeds",
   fish: "Fish",
+  "eggs and dairy": "Eggs and dairy",
   legumes: "Beans and lentils",
   grains: "Grains",
   drinks: "Drinks",
@@ -198,6 +199,8 @@ export function WholeFoodPage({ id }: { id: string }) {
             {f.tableFoods.length > 0 && <Measured f={f} db={db} />}
           </Card>
 
+          {f.history && <History f={f} />}
+
           {f.visuals.length > 0 && (
             <Card className="flex flex-col gap-6">
               <H2 id="pictures">In pictures</H2>
@@ -307,6 +310,69 @@ export function WholeFoodPage({ id }: { id: string }) {
   );
 }
 
+const VERDICT: Record<ModernVerdict, { label: string; className: string }> = {
+  agrees: { label: "Studies agree", className: "bg-ok-soft text-ok" },
+  partly: { label: "Partly", className: "bg-sunken text-ink" },
+  "not tested": { label: "Not tested yet", className: "bg-accent-soft text-accent" },
+  disagrees: { label: "Studies don't support it", className: "bg-warn-soft text-warn" },
+  harmful: { label: "Can be harmful", className: "bg-danger-soft text-danger" },
+};
+
+/**
+ * Then and now: what people used the food for in the past, set against what modern studies found.
+ * Generations of people eating a food and watching what followed tested the whole food, with every
+ * compound in it, so old uses can point at effects no table explains; they can also be wrong.
+ */
+function History({ f }: { f: WholeFoodDef }) {
+  return (
+    <Card id="history" className="flex scroll-mt-6 flex-col gap-4">
+      <div>
+        <H2>Then and now</H2>
+        <p className="mt-1 max-w-3xl text-ink-2">
+          What people used {f.name.toLowerCase()} for long before laboratories, and what modern studies found. People judged a food by eating it and
+          watching what followed, which tests everything in it, including what no food table measures. But watching without a comparison group is also
+          fooled by illnesses that pass on their own and by remembering the hits, so each use is checked against the studies.
+        </p>
+      </div>
+      <ul className="flex flex-col gap-3">
+        {f.history!.map((h) => {
+          const v = VERDICT[h.modern];
+          const to = h.finding ? f.findings.find((x) => x.outcome === h.finding) : undefined;
+          const anchor = to ? anchorId("finding", `${to.outcome} ${to.population}`) : undefined;
+          return (
+            <li key={`${h.who}|${h.use}`} className="flex flex-col gap-1.5 rounded-lg border border-line p-3">
+              <p className="font-mono text-xs font-medium tracking-[0.1em] text-ink-2 uppercase">{h.who}</p>
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <p className="font-medium">{h.use}</p>
+                <span className={cx("shrink-0 rounded-full px-2 py-0.5 text-xs font-medium", v.className)}>{v.label}</span>
+              </div>
+              <p className="text-ink-2">
+                {h.note}
+                {anchor && (
+                  <>
+                    {" "}
+                    <a href={`#${anchor}`} onClick={(e) => jump(e, anchor)} className="text-accent">
+                      See the finding
+                    </a>
+                  </>
+                )}
+              </p>
+              <ul className="flex flex-col gap-0.5 text-sm text-ink-2">
+                {h.sources.map((s) => (
+                  <li key={s.pmid ?? s.doi ?? s.title}>
+                    <span>History: </span>
+                    <StudyLink s={s} />
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </Card>
+  );
+}
+
 /**
  * What the UK food table measured in an example portion: energy, fibre and sugars, and the vitamins and
  * minerals with the biggest share of a day's EU reference intake. The compounds the food is known for
@@ -370,6 +436,7 @@ function Measured({ f, db }: { f: WholeFoodDef; db: FoodDb | undefined }) {
 /** Side column on wide screens: what studies found, and where things are on the page. */
 function Aside({ f, hasMap }: { f: WholeFoodDef; hasMap: boolean }) {
   const links: [string, string][] = [
+    ...((f.history ? [["history", "Then and now"]] : []) as [string, string][]),
     ...((f.visuals.length ? [["pictures", "In pictures"]] : []) as [string, string][]),
     ["findings", "What studies found"],
     ["processing", "What changes it"],

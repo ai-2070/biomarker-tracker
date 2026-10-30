@@ -1,0 +1,95 @@
+{
+ "topic": "wholefood-kiwi",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Kiwifruit (whole fruit)",
+    "comparison": "Usual diet or another fruit",
+    "outcome": "LDL cholesterol or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "30774402",
+     "fits": "yes",
+     "reason": "Pooled RCTs of kiwifruit in adults with various cardiovascular risk factors and reported LDL-C and triglycerides, matching population, food and outcome."
+    },
+    {
+     "pmid": "39479621",
+     "fits": "yes",
+     "reason": "Pooled RCTs of kiwifruit consumption in adults and reported LDL-C and triglycerides, matching population, food and outcome."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Kiwifruit (whole fruit)",
+    "comparison": "Usual diet or another fruit",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42657351",
+     "fits": "yes",
+     "reason": "Pools RCTs of whole kiwifruit eaten by adults with systolic and diastolic blood pressure as outcomes, which matches the question."
+    },
+    {
+     "pmid": "30774402",
+     "fits": "yes",
+     "reason": "Pools RCTs of kiwifruit in adults with several cardiovascular risk factors and reports systolic and diastolic BP; the comparison isn't stated."
+    }
+   ]
+  },
+  "constipation": {
+   "question": {
+    "population": "Adults with constipation",
+    "intervention": "Kiwifruit (whole fruit; powders and extracts count as partly)",
+    "comparison": "Placebo, psyllium, prunes or usual diet",
+    "outcome": "Bowel movements a week, stool consistency or symptoms"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "37243443",
+     "fits": "partly",
+     "reason": "Adults with chronic constipation and kiwifruit outcomes match, but only kiwifruit supplements were pooled; whole kiwifruit studies were excluded."
+    },
+    {
+     "pmid": "36247043",
+     "fits": "yes",
+     "reason": "Pooled RCTs of kiwifruit or its extracts vs placebo or psyllium in constipation, reporting bowel movements, Bristol stool type and pain."
+    },
+    {
+     "pmid": "37905980",
+     "fits": "yes",
+     "reason": "Adults with chronic constipation; whole kiwifruit analysed on its own vs psyllium for bowel movements per week."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Kiwifruit eaten with or before a starchy meal",
+    "comparison": "The same meal without kiwifruit, or another fruit",
+    "outcome": "Blood sugar after the meal"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "30774402",
+     "fits": "partly",
+     "reason": "Whole kiwifruit in adults with cardiovascular risk factors, with 2-hour post-meal glucose as an eligible outcome, but the trials test long-term intake, not kiwifruit eaten with a starchy meal."
+    },
+    {
+     "pmid": "39479621",
+     "fits": "no",
+     "reason": "Long-term kiwifruit intake in adults, measuring fasting glucose and other cardiometabolic markers, not blood sugar after a starchy meal eaten with kiwifruit."
+    }
+   ]
+  }
+ }
+}

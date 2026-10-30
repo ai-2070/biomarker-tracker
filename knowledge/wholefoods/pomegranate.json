@@ -12,6 +12,59 @@
     "Gut bacteria turn ellagic acid into urolithins, which stay in the body longer. People differ a lot: in intervention trials, 25 to 80% of people made only urolithin A, 10 to 50% also made other urolithins, and 5 to 25% made none that could be detected. In a group of 839 people, age was the main factor linked to which type someone was.",
     "Nobody knows yet which of these compounds, if any, explains the effects seen in trials. A food has thousands of compounds that food tables don't track."
   ],
+  "history": [
+    {
+      "who": "Ancient Egypt (Ebers Papyrus, about 1550 BC)",
+      "use": "The root of the pomegranate tree against tapeworms",
+      "modern": "not tested",
+      "note": "This used the root, not the fruit, and the root is a different and riskier medicine: its alkaloids, such as pelletierine, resemble strychnine in structure, and isopelletierine is moderately toxic (in rodents, about 70 mg per kg by mouth kills half of them). A 2026 laboratory study called the evidence that these alkaloids kill worms controversial and thin, and no trial in people was found for this page.",
+      "sources": [
+        { "pmid": "29881352", "doi": "10.3389/fphar.2018.00544", "title": "Vasculoprotective Effects of Pomegranate (Punica granatum L.).", "year": 2018, "studyType": "review" },
+        { "pmid": "42075933", "doi": "10.3390/molecules31081254", "title": "The Truth Behind the Myth of Pomegranate Tree Root: Proofs on Anti-Nematode and Anti-Feeding Properties of Pelletierine-like Alkaloids.", "year": 2026, "studyType": "in vitro" }
+      ]
+    },
+    {
+      "who": "Ayurveda (India); the peel in Chinese medicine",
+      "use": "Pomegranate for diarrhoea",
+      "modern": "not tested",
+      "note": "No trial in people was found for this page, only laboratory and animal studies, mostly of the peel, which is not the part people eat.",
+      "sources": [
+        { "pmid": "18590349", "title": "Therapeutic applications of pomegranate (Punica granatum L.): a review.", "year": 2008, "studyType": "review" },
+        { "pmid": "39055489", "doi": "10.3389/fphar.2024.1401826", "title": "Pomegranate seeds: a comprehensive review of traditional uses, chemical composition, and pharmacological properties.", "year": 2024, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Unani medicine (Middle East and India)",
+      "use": "Pomegranate as a remedy for diabetes",
+      "modern": "partly",
+      "finding": "Blood sugar: fasting glucose and HbA1c (long-term blood sugar)",
+      "note": "In trials of pomegranate juice, fasting blood sugar was on average about 3 mg/dL (0.15 mmol/L) lower, a small change with very mixed results. Long-term blood sugar (HbA1c) didn't change, and an earlier meta-analysis found no effect at all.",
+      "sources": [
+        { "pmid": "18590349", "title": "Therapeutic applications of pomegranate (Punica granatum L.): a review.", "year": 2008, "studyType": "review" },
+        { "pmid": "29881352", "doi": "10.3389/fphar.2018.00544", "title": "Vasculoprotective Effects of Pomegranate (Punica granatum L.).", "year": 2018, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Traditional Chinese, Ayurvedic, Islamic and Persian medicine",
+      "use": "Pomegranate for high blood pressure",
+      "modern": "partly",
+      "finding": "Blood pressure",
+      "note": "In meta-analyses of small trials, drinking pomegranate juice went with systolic blood pressure about 5 mmHg lower and diastolic about 2 mmHg lower. But the fall wasn't seen in trials longer than 2 months, and one review called the evidence weak.",
+      "sources": [
+        { "pmid": "33515685", "doi": "10.1016/j.jep.2021.113877", "title": "A unique understanding of traditional medicine of pomegranate, Punica granatum L. and its current research status.", "year": 2021, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Traditional Chinese, Ayurvedic, Islamic and Persian medicine",
+      "use": "Pomegranate against hardening of the arteries (atherosclerosis)",
+      "modern": "disagrees",
+      "finding": "Thickening of the neck arteries (carotid intima-media thickness)",
+      "note": "A very small early study without randomisation found thinner neck artery walls after a year of pomegranate juice, but a randomised trial in 289 people at moderate heart risk, 240 mL a day for up to 18 months, found no overall difference.",
+      "sources": [
+        { "pmid": "33515685", "doi": "10.1016/j.jep.2021.113877", "title": "A unique understanding of traditional medicine of pomegranate, Punica granatum L. and its current research status.", "year": 2021, "studyType": "review" }
+      ]
+    }
+  ],
   "tableFoods": [{ "id": "14-226", "label": "Seeds from half a pomegranate (about 80 g)", "grams": 80 }],
   "processing": [
     "Fresh seeds (arils) and 100% juice are not the same food. In a 2000 study, commercial juices pressed from whole pomegranates held 1,500 to 1,900 mg of punicalagin per litre, while juice pressed in the lab from the seeds alone had only traces. The authors concluded that industrial pressing pulls tannins out of the rind.",

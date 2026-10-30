@@ -1,0 +1,333 @@
+{
+ "topic": "wholefood-eggs",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "tmao": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Eggs",
+    "comparison": "Fewer or no eggs, or choline supplements",
+    "outcome": "TMAO or choline in the blood"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41146117",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs in adults comparing egg intake with control, measuring blood choline and TMAO; it matches the population, food, comparison and outcome."
+    }
+   ]
+  },
+  "mortality": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Eating more eggs",
+    "comparison": "Eating fewer eggs",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "35396834",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies in the general population comparing higher vs lower egg intake with all-cause mortality."
+    },
+    {
+     "pmid": "35524693",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of observational studies in adults linking egg consumption to all-cause mortality."
+    },
+    {
+     "pmid": "35178575",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of prospective cohorts in the general population on egg intake and all-cause mortality."
+    },
+    {
+     "pmid": "31173548",
+     "fits": "yes",
+     "reason": "Pools prospective studies of egg consumption and total mortality in adults, alongside an NHANES cohort analysis."
+    },
+    {
+     "pmid": "35360933",
+     "fits": "yes",
+     "reason": "Updated meta-analysis of cohorts includes egg consumption and overall mortality, alongside dietary and serum cholesterol."
+    },
+    {
+     "pmid": "35711545",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of prospective cohorts with a separate analysis of egg intake and all-cause mortality."
+    },
+    {
+     "pmid": "29680985",
+     "fits": "yes",
+     "reason": "Cohort study plus meta-analyses of egg consumption and all-cause mortality in adults."
+    },
+    {
+     "pmid": "36469594",
+     "fits": "no",
+     "reason": "A letter to the editor with no abstract, not a systematic review."
+    },
+    {
+     "pmid": "36469598",
+     "fits": "no",
+     "reason": "An author reply to a letter with no abstract, not a systematic review."
+    }
+   ]
+  },
+  "diabetes-heart": {
+   "question": {
+    "population": "People with type 2 diabetes",
+    "intervention": "Eating more eggs",
+    "comparison": "Eating fewer eggs",
+    "outcome": "Heart disease, or heart risk factors such as cholesterol"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "33932789",
+     "fits": "partly",
+     "reason": "Pooled cohorts of egg intake and coronary heart disease, but in general adults with no separate analysis of people with type 2 diabetes."
+    },
+    {
+     "pmid": "32453379",
+     "fits": "no",
+     "reason": "Looks at egg intake and the risk of getting type 2 diabetes, not heart outcomes in people who already have it."
+    },
+    {
+     "pmid": "23676423",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohorts on egg intake and heart disease, with a separate result for people with diabetes."
+    },
+    {
+     "pmid": "28359773",
+     "fits": "yes",
+     "reason": "Systematic review of trials comparing more eggs with no or few eggs on cholesterol and other heart risk factors in people with type 2 diabetes."
+    },
+    {
+     "pmid": "23643053",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing highest and lowest egg intake for heart disease, with a separate analysis of people with diabetes."
+    },
+    {
+     "pmid": "24711708",
+     "fits": "yes",
+     "reason": "Systematic review of egg intake and heart disease or heart risk markers in people with type 2 diabetes."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults without diabetes",
+    "intervention": "Eating more eggs",
+    "comparison": "Eating fewer eggs",
+    "outcome": "New type 2 diabetes"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "33932789",
+     "fits": "yes",
+     "reason": "Pooled nine prospective US adult cohorts and compared how often people ate eggs against new type 2 diabetes, including 7+ eggs/week versus none."
+    },
+    {
+     "pmid": "32453379",
+     "fits": "yes",
+     "reason": "Meta-analysis of 16 prospective cohorts linking egg intake to new type 2 diabetes in adults without diabetes at baseline."
+    },
+    {
+     "pmid": "23676423",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts comparing high with low egg intake for new type 2 diabetes in the general population."
+    },
+    {
+     "pmid": "28359773",
+     "fits": "no",
+     "reason": "Reviewed trials in people with or at risk of diabetes and measured heart risk factors, not new type 2 diabetes."
+    },
+    {
+     "pmid": "23643053",
+     "fits": "yes",
+     "reason": "Meta-analysis that pooled the risk of diabetes for the highest versus lowest egg intake, with a dose-response analysis."
+    },
+    {
+     "pmid": "24711708",
+     "fits": "yes",
+     "reason": "Systematic review that includes eight studies of egg intake and new type 2 diabetes in people without diabetes."
+    },
+    {
+     "pmid": "26739035",
+     "fits": "yes",
+     "reason": "Meta-analysis of 12 prospective cohorts comparing highest with lowest egg intake for new type 2 diabetes."
+    },
+    {
+     "pmid": "27108219",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of prospective cohorts on egg intake and new type 2 diabetes."
+    },
+    {
+     "pmid": "26993632",
+     "fits": "yes",
+     "reason": "Includes a dose-response meta-analysis of prospective studies on egg intake and new type 2 diabetes."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Eggs (or extra eggs) in the diet",
+    "comparison": "Fewer or no eggs, or an egg substitute",
+    "outcome": "LDL or HDL cholesterol"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "35360933",
+     "fits": "no",
+     "reason": "This review looks at eggs and dietary cholesterol in relation to death rates, not LDL or HDL cholesterol."
+    },
+    {
+     "pmid": "32524644",
+     "fits": "yes",
+     "reason": "It pools randomised trials comparing more versus fewer eggs, and the outcomes include LDL and HDL cholesterol."
+    },
+    {
+     "pmid": "35711545",
+     "fits": "no",
+     "reason": "This review pools cohort studies of egg intake and death rates; LDL and HDL cholesterol are not outcomes."
+    },
+    {
+     "pmid": "31076323",
+     "fits": "yes",
+     "reason": "It pools randomised trials in middle-aged and older adults comparing more versus fewer whole eggs, or eggs versus egg substitutes, on LDL and HDL."
+    },
+    {
+     "pmid": "29111915",
+     "fits": "yes",
+     "reason": "It pools randomised trials comparing egg eaters with low-egg control diets, and the outcomes include LDL and HDL cholesterol."
+    },
+    {
+     "pmid": "11333841",
+     "fits": "partly",
+     "reason": "Results are pooled per 100 mg of dietary cholesterol (from eggs or other sources), not eggs on their own, and LDL is not reported."
+    },
+    {
+     "pmid": "36469594",
+     "fits": "no",
+     "reason": "This is a letter about a mortality meta-analysis, not a systematic review of eggs and LDL or HDL."
+    },
+    {
+     "pmid": "36469598",
+     "fits": "no",
+     "reason": "This is an author's reply to a letter about a mortality meta-analysis, not a systematic review of eggs and LDL or HDL."
+    },
+    {
+     "pmid": "32635569",
+     "fits": "yes",
+     "reason": "It pools randomised trials in healthy adults comparing more egg consumption with controls on LDL and HDL cholesterol."
+    }
+   ]
+  },
+  "lutein": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Eggs or egg yolks",
+    "comparison": "Fewer or no eggs",
+    "outcome": "Lutein or zeaxanthin in the blood, or macular pigment"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "33491232",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of whole egg consumption versus controls, reporting serum lutein and macular pigment optical density, including healthy people."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Eating more eggs",
+    "comparison": "Eating fewer eggs",
+    "outcome": "Heart disease or stroke"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "35524693",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies in adults linking egg intake to deaths from heart disease and stroke, as well as all-cause deaths."
+    },
+    {
+     "pmid": "33015124",
+     "fits": "partly",
+     "reason": "Meta-analysis of cohort studies of egg intake that looked at stroke only, not heart disease."
+    },
+    {
+     "pmid": "32653422",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing higher with lower egg intake for heart disease events, including coronary artery disease."
+    },
+    {
+     "pmid": "32132002",
+     "fits": "yes",
+     "reason": "Updated meta-analysis of cohort studies of egg intake and cardiovascular disease, with separate results for heart disease and stroke."
+    },
+    {
+     "pmid": "32865658",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies of egg intake and cardiovascular disease, heart disease, stroke and heart failure."
+    },
+    {
+     "pmid": "35711545",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies of egg intake that includes deaths from cardiovascular disease."
+    },
+    {
+     "pmid": "27710205",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing high with low egg intake for heart disease and stroke."
+    },
+    {
+     "pmid": "33932789",
+     "fits": "yes",
+     "reason": "Pooled analysis of nine US adult cohorts looking at egg intake and coronary heart disease."
+    },
+    {
+     "pmid": "33330601",
+     "fits": "no",
+     "reason": "A correction notice, not a review."
+    },
+    {
+     "pmid": "29680985",
+     "fits": "yes",
+     "reason": "Cohort study plus meta-analyses of egg intake and deaths from cardiovascular disease, including stroke."
+    },
+    {
+     "pmid": "23295181",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort studies of egg intake and heart disease and stroke."
+    },
+    {
+     "pmid": "23676423",
+     "fits": "yes",
+     "reason": "Meta-analysis of cohort studies comparing highest with lowest egg intake for cardiovascular disease and cardiac deaths."
+    },
+    {
+     "pmid": "28359773",
+     "fits": "no",
+     "reason": "Review of trials measuring cholesterol and other risk factors, not heart disease or stroke events, in people with or at risk of diabetes."
+    },
+    {
+     "pmid": "23643053",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing highest with lowest egg intake for cardiovascular disease risk."
+    },
+    {
+     "pmid": "24711708",
+     "fits": "partly",
+     "reason": "Systematic review of egg intake and cardiovascular disease limited to people with type 2 diabetes."
+    }
+   ]
+  }
+ }
+}

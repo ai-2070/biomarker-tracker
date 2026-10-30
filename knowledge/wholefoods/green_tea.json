@@ -1,0 +1,765 @@
+{
+  "id": "green_tea",
+  "name": "Green tea",
+  "group": "drinks",
+  "otherNames": ["Matcha", "Sencha", "Gyokuro", "Green tea infusion", "Brewed green tea", "Matcha tea"],
+  "summary": "The unfermented leaves of the tea plant, brewed as a drink or whisked as powdered leaf (matcha). In large Japanese and Chinese cohorts, people who drank more green tea had somewhat lower rates of death, heart disease and stroke, but these studies can't show cause. Short trials, mostly of extract capsules rather than the drink, found small falls in blood pressure and LDL cholesterol, and no clear change in blood sugar or body weight.",
+  "inIt": [
+    "Catechins: EFSA states that most of the polyphenols in green tea are catechins, and treats epigallocatechin gallate (EGCG) as the most relevant one. People in the EU who drink green tea get on average 90 to 300 mg of EGCG a day from it, and very heavy drinkers up to 866 mg.",
+    "Caffeine: in a 2025 laboratory study, green tea had on average about 11 mg of caffeine per 200 ml, and longer brewing raised it. One matcha powder, measured in a 2026 study, had 41.8 mg of caffeine per gram.",
+    "L-theanine, an amino acid found in tea: 12.5 mg per 200 ml of green tea on average in the same 2025 study; brewing temperature didn't change it.",
+    "Fluoride: in 15 Iranian green teas the leaves had on average 52 mg of fluoride per kg, about 89% of it passed into the cup, and the infusions had 0.162 to 3.29 mg per litre.",
+    "Vitamin K: a 1999 case report described green tea as a possible source of vitamin K, but a 1995 analysis, titled 'Tea and coffee brews are not dietary sources of vitamin K-1', found that brewed tea isn't one.",
+    "Breakdown products: after a cup, gut bacteria turn catechins into compounds called valerolactones, which EFSA describes as the main ones found in urine.",
+    "The food table (CoFID, 'Tea, green, infusion') measures almost nothing in it: per 100 g, 0 kcal, 20 mg potassium, 3 mg vitamin C and traces of other minerals and vitamins; vitamin K1 and vitamin E weren't measured, and it has no figures for catechins, caffeine, theanine or fluoride. So the nutrient numbers for green tea say nothing about what it is studied for."
+  ],
+  "history": [
+    {
+      "who": "China (the legend of Shen Nong, the mythical inventor of farming and medicine)",
+      "use": "Tea leaves as an antidote: in the legend, Shen Nong tasted hundreds of herbs, was poisoned 72 times in one day, and eased the poisoning with the leaves of the tea tree",
+      "modern": "not tested",
+      "note": "This is a legend, not a record of a real person or event. No study has tested tea as an antidote to poisoning.",
+      "sources": [
+        {
+          "pmid": "35193642",
+          "doi": "10.1186/s13020-022-00571-1",
+          "title": "Tea and tea drinking: China's outstanding contributions to the mankind.",
+          "year": 2022,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Tang dynasty China (tea listed as a medicine in the herbal Xin Xiu Ben Cao)",
+      "use": "Tea as a medicine to quench thirst, clear \"heat\" and phlegm, pass more urine and sleep less",
+      "modern": "partly",
+      "note": "Green tea contains caffeine (see what's in it), and caffeine keeps people awake, lessens tiredness and makes the body pass more urine. This page reviews no trials of green tea itself on sleep, alertness, thirst or phlegm.",
+      "sources": [
+        {
+          "pmid": "24872929",
+          "doi": "10.4103/2225-4110.124326",
+          "title": "Recent scientific studies of a traditional chinese medicine, tea, on prevention of chronic diseases.",
+          "year": 2014,
+          "studyType": "review"
+        },
+        {
+          "pmid": "22450537",
+          "doi": "10.2183/pjab.88.88",
+          "title": "Health-promoting effects of green tea.",
+          "year": 2012,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Japan (the Zen priest Eisai, in his 1211 book on tea and health, Kissa Yōjōki)",
+      "use": "Tea for health: the book described how to harvest and make tea and what it does as a medicine",
+      "modern": "partly",
+      "finding": "Death from any cause",
+      "note": "In large Japanese and Chinese cohorts, people who drank more green tea died at somewhat lower rates over 10 to 18 years, but these studies can't show that tea was the cause. Short trials, mostly of extracts, found small falls in blood pressure and LDL cholesterol, and no clear change in blood sugar or body weight.",
+      "sources": [
+        {
+          "pmid": "22450537",
+          "doi": "10.2183/pjab.88.88",
+          "title": "Health-promoting effects of green tea.",
+          "year": 2012,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Ming dynasty China (the physician Li Shizhen, in the herbal Ben Cao Gang Mu)",
+      "use": "A warning: drinking tea for a long time severely irritates the stomach of people with a \"weak body and blood\"",
+      "modern": "not tested",
+      "note": "The modern researchers who quote this warning say it hasn't been studied: whether people can drink a lot of tea without irritating the stomach and gut is still an open question.",
+      "sources": [
+        {
+          "pmid": "24872929",
+          "doi": "10.4103/2225-4110.124326",
+          "title": "Recent scientific studies of a traditional chinese medicine, tea, on prevention of chronic diseases.",
+          "year": 2014,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Edo-period Japan (the physician Kaibara Ekiken, 1630–1714, in his book Yōjōkun, \"Lessons for Health Promotion\")",
+      "use": "A warning that drinking green tea for a long time removes body fat and makes people lose weight",
+      "modern": "disagrees",
+      "finding": "Body weight",
+      "note": "In 12- to 13-week trials of green tea preparations in overweight adults, weight changed very little (0.04 kg on average in trials outside Japan), too little to matter. Years of drinking haven't been tested in trials.",
+      "sources": [
+        {
+          "pmid": "27689985",
+          "doi": "10.3390/molecules21101305",
+          "title": "Beneficial Effects of Tea and the Green Tea Catechin Epigallocatechin-3-gallate on Obesity.",
+          "year": 2016,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "tableFoods": [{ "id": "17-171", "label": "1 cup (about 250 ml)", "grams": 250 }],
+  "processing": [
+    "Brewed tea: EFSA describes a cup as usually made from 1.8 to 3 g of leaves, brewed with water at 50 to 100 °C (usually below boiling) for 30 seconds to 3 minutes; in Japan and China 2 to 3 g are typically used for 100 to 150 ml.",
+    "Water and temperature: in a 2026 laboratory study, boiling water drew out more catechins than the makers' recommended brewing, especially the gallated ones such as EGCG. More mineral-rich water drew out less, and kept far less EGCG when the tea was held at 80 °C for an hour (1.4% left in mineral water against 38.4% in distilled water); lemon juice kept about 95% of the EGCG.",
+    "Brewing time: in a 2025 laboratory study, longer brewing raised both caffeine and L-theanine in the teas tested. For green tea, tea bags and loose leaves gave the same amounts.",
+    "Matcha is the whole leaf ground to powder and whisked into water, so the leaf itself is drunk. In a 2003 analysis, the EGCG available from drinking matcha was 137 times that from one ordinary green tea (China Green Tips) per gram of leaf, and at least three times the highest value reported for other green teas.",
+    "Bottled green tea: a 2022 analysis found all eight catechins it measured in every bottled green tea tested, at varying concentrations. EFSA's view that traditional infusions are in general safe also covers drinks made up to the same composition.",
+    "Milk and cooling: EFSA notes that milk proteins can bind catechins, and that as hot tea cools, caffeine and catechins can settle out together ('creaming'); how much either changes what the body absorbs hasn't been worked out.",
+    "Green tea extract capsules and catechin-enriched drinks are different products: food supplements provide 5 to 1,000 mg of EGCG a day (EFSA), and EFSA's liver concerns are about them, not about brewed tea. Results from extracts can't be taken as results for drinking tea."
+  ],
+  "whatStudiesDid": "The cohorts asked people once how much green tea they usually drank: in Japan, from less than 1 cup to 5 or more cups a day (the Ohsaki study, the JPHC study and a pooled analysis of eight cohorts); in a cohort of Chinese men, as grams of dried leaves a day (up to 5 g, 5 to 10 g, more than 10 g); a review of heart disease counted a cup as 300 ml. Most trials of blood pressure, cholesterol and blood sugar gave green tea extract in capsules (for example, from 208 mg of EGCG to 1,344 mg of catechins a day). Others gave catechin-enriched green tea drinks, for example 582.8 mg of catechins a day for 12 weeks against a drink with 96 mg, or a drink made from 9 g of green tea a day for 4 weeks. Trials of body weight lasted 12 to 13 weeks. In the nadolol trial, 10 healthy volunteers drank 700 ml of green tea a day for 14 days. These describe the studies; they are not amounts for anyone to follow.",
+  "markers": ["bp_systolic", "bp_diastolic", "ldl", "total_cholesterol", "glucose", "hba1c", "ferritin", "weight"],
+  "findings": [
+    {
+      "outcome": "Death from any cause",
+      "population": "Middle-aged and older adults in Japan and China, followed for 7 to 18 years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational studies only: no trial has tested green tea against death",
+        "Almost all cohorts were in Japan and China, and green tea drinkers may differ in diet, smoking and health in ways the adjustments miss",
+        "The direction agrees across large cohorts, but the differences are modest, about 10 to 20% at the highest intakes",
+        "A 2020 review of tea in general rated the strength of evidence low for death from any cause, and found that studies at higher risk of bias showed larger associations",
+        "Intake was reported once, at the start"
+      ],
+      "summary": "In the Ohsaki study (40,530 Japanese adults aged 40 to 79, followed for up to 11 years), people who drank 5 or more cups a day had lower death rates than those who drank less than 1 cup: hazard ratio 0.88 (95% confidence interval 0.79 to 0.98) in men and 0.77 (0.67 to 0.89) in women. In the JPHC study (90,914 Japanese adults, 18.7 years), the figures for more than 5 cups were 0.87 (0.81 to 0.94) in men and 0.83 (0.75 to 0.91) in women. A pooled analysis of eight Japanese cohorts (313,381 people, 17.3 years on average, 52,943 deaths) found 0.90 (0.87 to 0.94) in men and 0.82 (0.74 to 0.90) in women for 5 or more cups against less than 1. In 164,681 Chinese men, regular drinkers had lower death rates (0.89, 0.85 to 0.93, for more than 10 g of leaves a day); in two Shanghai cohorts the link was weaker (0.95, 0.90 to 1.01) and clearer in never-smokers (0.89, 0.82 to 0.96). A 2015 meta-analysis of cohorts found a relative risk of 0.80 (0.68 to 0.93) for the highest against the lowest green tea intake, and 4% lower risk per extra cup a day. These are observational studies, nearly all in Japan and China.",
+      "bottomLine": "In large Japanese and Chinese cohorts, people who drank more green tea, up to 5 or more cups a day, died at somewhat lower rates over 10 to 18 years than those who drank little. These are observational studies, so other differences between drinkers may explain part of it.",
+      "studies": [
+        {
+          "pmid": "16968850",
+          "doi": "10.1001/jama.296.10.1255",
+          "title": "Green tea consumption and mortality due to cardiovascular disease, cancer, and all causes in Japan: the Ohsaki study.",
+          "year": 2006,
+          "studyType": "observational",
+          "n": 40530
+        },
+        {
+          "pmid": "25900254",
+          "doi": "10.1016/j.annepidem.2015.03.007",
+          "title": "Association of green tea consumption with mortality due to all causes and major causes of death in a Japanese population: the Japan Public Health Center-based Prospective Study (JPHC Study).",
+          "year": 2015,
+          "studyType": "observational",
+          "n": 90914
+        },
+        {
+          "pmid": "31392470",
+          "doi": "10.1007/s10654-019-00545-y",
+          "title": "Green tea consumption and mortality in Japanese men and women: a pooled analysis of eight population-based cohort studies in Japan.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 313381
+        },
+        {
+          "pmid": "27372743",
+          "doi": "10.1007/s10654-016-0173-3",
+          "title": "Association of green tea consumption with mortality from all-cause, cardiovascular disease and cancer in a Chinese cohort of 165,000 adult men.",
+          "year": 2016,
+          "studyType": "observational",
+          "n": 164681
+        },
+        {
+          "pmid": "28135196",
+          "doi": "10.1016/j.je.2016.08.004",
+          "title": "Green tea consumption and cause-specific mortality: Results from two prospective cohort studies in China.",
+          "year": 2017,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "26202661",
+          "doi": "10.1017/s0007114515002329",
+          "title": "Tea consumption and mortality of all cancers, CVD and all causes: a meta-analysis of eighteen prospective cohort studies.",
+          "year": 2015,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32073596",
+          "doi": "10.1093/advances/nmaa010",
+          "title": "Dose-Response Relation between Tea Consumption and Risk of Cardiovascular Disease and All-Cause Mortality: A Systematic Review and Meta-Analysis of Population-Based Studies.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart disease and stroke",
+      "population": "Adults in East Asian cohorts (Japan and China), followed for many years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational studies only, nearly all from Japan and China",
+        "Few cohorts in each meta-analysis: five for stroke, seven for coronary heart disease",
+        "Other habits of green tea drinkers may explain part of the link",
+        "No trial has measured heart attacks or strokes: the Cochrane review found none that reported them",
+        "In favour: the direction is consistent, with a pattern by amount"
+      ],
+      "summary": "In the pooled analysis of eight Japanese cohorts, 5 or more cups a day against less than 1 went with lower death from heart disease (hazard ratio 0.82, 95% confidence interval 0.75 to 0.90, in men; 0.75, 0.68 to 0.84, in women) and from stroke and other cerebrovascular disease (0.76, 0.68 to 0.85, in men; 0.78, 0.68 to 0.89, in women). In the Ohsaki study, death from cardiovascular disease was lower in women drinking 5 or more cups (0.69, 0.53 to 0.90), and the link was strongest for stroke deaths. A 2023 meta-analysis of seven East Asian cohorts (772,922 people, 9,211 cases) found a lower risk of coronary heart disease than in non-drinkers with 1 to 4 cups of 300 ml a day (relative risk 0.89 for 1 cup, 0.84 for 2, 0.85 for 3, 0.88 for 4), but no clear difference at 5 cups (0.92, 0.82 to 1.04). A 2023 meta-analysis of five cohorts (645,393 people, 11,421 strokes) found a lower stroke risk with the highest intake (0.74, 0.66 to 0.83), lowest at about 900 ml a day (0.77, 0.72 to 0.82). The 2013 Cochrane review of trials found no trial that reported heart attacks or strokes.",
+      "bottomLine": "In East Asian cohorts, people who drank green tea had somewhat lower rates of heart disease and stroke, most clearly at 1 to 4 cups a day for heart disease. No trial has tested whether green tea prevents heart attacks or strokes.",
+      "studies": [
+        {
+          "pmid": "31392470",
+          "doi": "10.1007/s10654-019-00545-y",
+          "title": "Green tea consumption and mortality in Japanese men and women: a pooled analysis of eight population-based cohort studies in Japan.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 313381
+        },
+        {
+          "pmid": "16968850",
+          "doi": "10.1001/jama.296.10.1255",
+          "title": "Green tea consumption and mortality due to cardiovascular disease, cancer, and all causes in Japan: the Ohsaki study.",
+          "year": 2006,
+          "studyType": "observational",
+          "n": 40530
+        },
+        {
+          "pmid": "36849317",
+          "doi": "10.1016/j.numecd.2023.01.017",
+          "title": "Green tea consumption and the risk of coronary heart disease: A systematic review and meta-analysis of cohort studies.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 772922
+        },
+        {
+          "pmid": "36599267",
+          "doi": "10.1016/j.nut.2022.111936",
+          "title": "Green tea consumption and the risk of stroke: A systematic review and meta-analysis of cohort studies.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 645393
+        },
+        {
+          "pmid": "23780706",
+          "doi": "10.1002/14651858.cd009934.pub2",
+          "title": "Green and black tea for the primary prevention of cardiovascular disease.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 821
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in short trials, many with overweight or raised cardiovascular risk; most given green tea extract in capsules",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Most trials gave green tea extract in capsules, not the drink (17 of 25 comparisons in one review), and the reviews don't report the drink alone in their text",
+        "The falls are small, about 1 to 3 mmHg",
+        "Results differed a lot between trials (I² 85% for systolic pressure in the 2025 review)",
+        "Trials were short, mostly weeks to a few months",
+        "The Cochrane review's larger effect rests on few trials and changed in sensitivity analyses"
+      ],
+      "summary": "A 2020 meta-analysis of 24 trials (1,697 people) found systolic blood pressure 1.17 mmHg lower with green tea than with control (95% confidence interval 0.16 to 2.18) and diastolic 1.24 mmHg lower (0.40 to 2.07). In its open-access full text, 8 of its 25 comparisons gave green tea as a drink and 17 used extract capsules; a separate result for the drink is not given in the text. A 2025 meta-analysis of 36 trials found similar falls (systolic 1.08 mmHg, 0.18 to 1.98; diastolic 1.09 mmHg, 0.50 to 1.67), with large differences between trials and no clear link with the amount or the length of the trial. A 2014 review of 13 trials found larger falls in trials of extracts and in people with a systolic pressure of 130 mmHg or more. The 2013 Cochrane review, which counted only trials of at least 3 months, found systolic pressure 3.18 mmHg (1.11 to 5.25) and diastolic 3.42 mmHg (2.30 to 4.54) lower with green tea, but only a few trials contributed and the results were not stable to sensitivity analysis.",
+      "bottomLine": "In short trials, green tea, mostly as extract capsules, went with blood pressure about 1 mmHg lower than without; trials of 3 months or more in a Cochrane review found about 3 mmHg, from few trials. A result for the drink alone isn't reported.",
+      "studies": [
+        {
+          "pmid": "32028419",
+          "doi": "10.1097/md.0000000000019047",
+          "title": "Effect of green tea supplementation on blood pressure: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 1697
+        },
+        {
+          "pmid": "40497293",
+          "doi": "10.1080/08037051.2025.2517122",
+          "title": "Effect of green tea supplementation on blood pressure in adults: a GRADE-assessed systematic review and dose-response meta-analysis of randomised controlled trials.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24861099",
+          "doi": "10.1007/s00394-014-0720-1",
+          "title": "Green tea catechins and blood pressure: a systematic review and meta-analysis of randomised controlled trials.",
+          "year": 2014,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "23780706",
+          "doi": "10.1002/14651858.cd009934.pub2",
+          "title": "Green and black tea for the primary prevention of cardiovascular disease.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 821
+        }
+      ]
+    },
+    {
+      "outcome": "LDL and total cholesterol",
+      "population": "Adults in trials of green tea drinks, extracts or catechin capsules lasting 3 to 24 weeks",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Trials mixed green tea drinks with extracts and catechin capsules; one review found no difference between them, the others don't give the drink alone",
+        "Short trials, weeks to a few months",
+        "Most reviews found small falls, about 2 to 5 mg/dL (0.1 to 0.2 mmol/L); the larger Cochrane figure rests on few trials and changed in sensitivity analyses",
+        "No trial measured heart attacks or strokes"
+      ],
+      "summary": "A 2011 meta-analysis of 14 trials (1,136 people) of green tea drinks or extracts found LDL cholesterol 2.19 mg/dL lower than with control (95% confidence interval 1.21 to 3.16) and total cholesterol 7.20 mg/dL lower (6.21 to 8.19), with no change in HDL cholesterol; the results didn't differ by type of intervention (drink or extract). A 2011 review of 20 trials of green tea catechins (1,415 people, 145 to 3,000 mg a day for 3 to 24 weeks) found LDL 5.30 mg/dL lower (0.62 to 9.99) and no change in HDL or triglycerides. A 2014 review of 20 trials (1,536 people) found LDL 0.19 mmol/L lower (0.09 to 0.3) and total cholesterol 0.13 mmol/L lower (0.07 to 0.2). The 2013 Cochrane review (trials of at least 3 months) found LDL 0.64 mmol/L lower (0.52 to 0.77) and total cholesterol 0.62 mmol/L lower with green tea, but only a few trials contributed and the results were not stable to sensitivity analysis.",
+      "bottomLine": "In short trials, green tea drinks and extracts lowered LDL cholesterol a little, by about 2 to 5 mg/dL (0.1 to 0.2 mmol/L) in most reviews, with no change in HDL. One review found drinks and extracts did about the same.",
+      "studies": [
+        {
+          "pmid": "21715508",
+          "doi": "10.3945/ajcn.110.010926",
+          "title": "Green tea intake lowers fasting serum total and LDL cholesterol in adults: a meta-analysis of 14 randomized controlled trials.",
+          "year": 2011,
+          "studyType": "meta-analysis",
+          "n": 1136
+        },
+        {
+          "pmid": "22027055",
+          "doi": "10.1016/j.jada.2011.08.009",
+          "title": "Green tea catechins decrease total and low-density lipoprotein cholesterol: a systematic review and meta-analysis.",
+          "year": 2011,
+          "studyType": "meta-analysis",
+          "n": 1415
+        },
+        {
+          "pmid": "24675010",
+          "doi": "10.1016/j.numecd.2014.01.016",
+          "title": "The effect of green tea on blood pressure and lipid profile: a systematic review and meta-analysis of randomized clinical trials.",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 1536
+        },
+        {
+          "pmid": "23780706",
+          "doi": "10.1002/14651858.cd009934.pub2",
+          "title": "Green and black tea for the primary prevention of cardiovascular disease.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 821
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and HbA1c",
+      "population": "Adults in short trials of green tea drinks or extract capsules, some with type 2 diabetes; and a Japanese cohort",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "This page is about the drink: in the trials that gave green tea as a drink, fasting blood sugar and HbA1c did not clearly change",
+        "The small fall overall came mostly from extract capsules",
+        "The drink trials were few (8), and several used catechin-enriched drinks",
+        "In type 2 diabetes, a review of 14 trials found no significant effect",
+        "The lower diabetes risk in heavy drinkers comes from one Japanese cohort with self-reported diabetes and low follow-up"
+      ],
+      "summary": "A 2020 meta-analysis of 27 trials (2,194 people) found fasting blood sugar 1.44 mg/dL lower with green tea (95% confidence interval 0.62 to 2.26), with no clear change in fasting insulin or HbA1c (0.06 percentage points lower, from 0.12 lower to 0.01 higher). Its open-access full text shows that 20 comparisons used extract capsules; in the 8 trials of green tea as a drink, several of them catechin-enriched drinks, fasting blood sugar did not clearly change (0.37 mg/dL lower, from 3.00 lower to 2.27 higher) and neither did HbA1c (5 trials, 0.10 lower, from 0.42 lower to 0.22 higher). A 2013 meta-analysis of 17 trials (1,133 people) of drinks and extracts found fasting glucose 0.09 mmol/L and HbA1c 0.30 percentage points lower. In type 2 diabetes, a 2021 review of 14 trials found no significant effect on fasting glucose, insulin, HbA1c or insulin resistance. In a Japanese cohort of 17,413 adults, those who drank 6 or more cups a day were less likely to report new type 2 diabetes over 5 years than those who drank less than 1 cup a week (odds ratio 0.67, 0.47 to 0.94); diabetes was self-reported and only 49% of the original group were followed up.",
+      "bottomLine": "In trials, green tea as a drink did not clearly change fasting blood sugar or HbA1c; the small fall seen overall, about 1.4 mg/dL, came mostly from extract capsules. In one Japanese cohort, heavy drinkers reported less new diabetes.",
+      "studies": [
+        {
+          "pmid": "32670385",
+          "doi": "10.1186/s12986-020-00469-5",
+          "title": "Effects of green tea consumption on glycemic control: a systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 2194
+        },
+        {
+          "pmid": "23803878",
+          "doi": "10.3945/ajcn.112.052746",
+          "title": "Effect of green tea on glucose control and insulin sensitivity: a meta-analysis of 17 randomized controlled trials.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 1133
+        },
+        {
+          "pmid": "33285391",
+          "doi": "10.1016/j.dsx.2020.11.004",
+          "title": "Effect of green tea on glycemic control in patients with type 2 diabetes mellitus: A systematic review and meta-analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "16618952",
+          "doi": "10.7326/0003-4819-144-8-200604180-00005",
+          "title": "The relationship between green tea and total caffeine intake and risk for self-reported type 2 diabetes among Japanese adults.",
+          "year": 2006,
+          "studyType": "observational",
+          "n": 17413
+        }
+      ]
+    },
+    {
+      "outcome": "Body weight",
+      "population": "Overweight or obese adults in trials of green tea preparations lasting 12 to 13 weeks",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The trials tested green tea preparations; the review's abstract doesn't separate brewed tea from extracts or catechin-enriched drinks",
+        "Trials lasted only 12 to 13 weeks",
+        "The eight trials in Japan were too different from each other to pool",
+        "In favour of the conclusion: a Cochrane review, and the pooled trials outside Japan showed almost no difference"
+      ],
+      "summary": "The Cochrane review (2012) looked at trials of at least 12 weeks comparing green tea preparations with a control in overweight or obese adults. In six trials outside Japan (532 people), weight differed by 0.04 kg on average (95% confidence interval from 0.5 kg lower to 0.4 kg higher), BMI by 0.2 kg/m² and waist size by 0.2 cm, none of them statistically significant. The eight trials in Japan (1,030 people) were too different to pool; their differences ranged from 0.2 to 3.5 kg in favour of green tea preparations. The authors concluded that any change was small, not statistically significant and not likely to be clinically important, and that green tea had no significant effect on keeping weight off after a period of weight loss. In the trials that recorded side effects, most were mild to moderate.",
+      "bottomLine": "In a Cochrane review of 12- to 13-week trials of green tea preparations in overweight adults, weight changed very little, by 0.04 kg on average in trials outside Japan. The authors judged any change too small to be clinically important.",
+      "studies": [
+        {
+          "pmid": "23235664",
+          "doi": "10.1002/14651858.cd008650.pub2",
+          "title": "Green tea for weight loss and weight maintenance in overweight or obese adults.",
+          "year": 2012,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Cancer",
+      "population": "Adults in cohort and case-control studies, mostly in Asia, and in a few trials of green tea extract",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The Cochrane review rated the evidence low certainty for every main result",
+        "For some cancers, cohort studies and case-control studies pointed in opposite directions",
+        "The trials tested green tea extract, not the drink, and were few and small",
+        "Most studies were in Asian populations with high green tea intake"
+      ],
+      "summary": "The Cochrane review (2020) included 142 studies. In 11 trials, all of green tea extract against a dummy pill (1,795 people), results for prostate cancer (risk ratio 0.50, 95% confidence interval 0.18 to 1.36; 3 trials, 201 men), gynaecological cancer (1.50, 0.41 to 5.48) and non-melanoma skin cancer (1.00, 0.06 to 15.92) were uncertain, all of low certainty. In cohort and case-control studies with over 1,100,000 people, the highest against the lowest green tea intake went with an overall cancer incidence of 0.83 (0.65 to 1.07; 3 studies) and no difference in cancer deaths (0.99, 0.91 to 1.07; 8 studies, 504,366 people), both of low certainty. For oesophageal, prostate and urinary tract cancer and leukaemia, cohort studies found higher risks and case-control studies lower or no difference. The Japanese cohorts on this page also found no link with total cancer deaths, except moderate drinking in women in the pooled analysis (0.89 for 1 to 2 cups, 0.91 for 3 to 4).",
+      "bottomLine": "A Cochrane review found no clear link between drinking green tea and cancer deaths, and results for single cancers conflicted between types of study. The few trials tested extracts, not the drink. Certainty is low.",
+      "studies": [
+        {
+          "pmid": "32118296",
+          "doi": "10.1002/14651858.cd005004.pub3",
+          "title": "Green tea (Camellia sinensis) for the prevention of cancer.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31392470",
+          "doi": "10.1007/s10654-019-00545-y",
+          "title": "Green tea consumption and mortality in Japanese men and women: a pooled analysis of eight population-based cohort studies in Japan.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 313381
+        },
+        {
+          "pmid": "16968850",
+          "doi": "10.1001/jama.296.10.1255",
+          "title": "Green tea consumption and mortality due to cardiovascular disease, cancer, and all causes in Japan: the Ohsaki study.",
+          "year": 2006,
+          "studyType": "observational",
+          "n": 40530
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Coronary heart disease by cups of green tea a day",
+      "caption": "Relative risks with 95% confidence intervals compared with people who drank no green tea, from a 2023 meta-analysis of seven cohorts in East Asia (772,922 people, 9,211 cases). One cup was counted as 300 ml. Below 1 means lower risk. These are observational studies: they show a link, not that tea caused it.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "No green tea" },
+      "items": [
+        { "label": "1 cup a day", "value": 0.89, "low": 0.83, "high": 0.96 },
+        { "label": "2 cups a day", "value": 0.84, "low": 0.77, "high": 0.93 },
+        { "label": "3 cups a day", "value": 0.85, "low": 0.77, "high": 0.92 },
+        { "label": "4 cups a day", "value": 0.88, "low": 0.81, "high": 0.96 },
+        { "label": "5 cups a day", "value": 0.92, "low": 0.82, "high": 1.04, "note": "The interval includes 1: no clear difference" }
+      ],
+      "sources": [
+        {
+          "pmid": "36849317",
+          "doi": "10.1016/j.numecd.2023.01.017",
+          "title": "Green tea consumption and the risk of coronary heart disease: A systematic review and meta-analysis of cohort studies.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 772922
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "LDL cholesterol with green tea in three reviews of trials",
+      "caption": "Mean differences with 95% confidence intervals against control, in mmol/L. Below 0 means lower LDL with green tea. The trials mixed green tea drinks with extracts and catechin capsules. The Cochrane figure comes from only a few trials of at least 3 months and was not stable to sensitivity analysis; the two larger reviews found falls of about 0.2 mmol/L.",
+      "scale": "linear",
+      "unit": "mmol/L",
+      "reference": { "value": 0, "label": "No difference" },
+      "items": [
+        { "label": "13 trials (2014)", "value": -0.16, "low": -0.22, "high": -0.09 },
+        { "label": "20 trials, 1,536 people (2014)", "value": -0.19, "low": -0.3, "high": -0.09 },
+        { "label": "Cochrane, trials of 3 months or more (2013)", "value": -0.64, "low": -0.77, "high": -0.52, "note": "Few trials; not stable to sensitivity analysis" }
+      ],
+      "sources": [
+        {
+          "pmid": "24861099",
+          "doi": "10.1007/s00394-014-0720-1",
+          "title": "Green tea catechins and blood pressure: a systematic review and meta-analysis of randomised controlled trials.",
+          "year": 2014,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24675010",
+          "doi": "10.1016/j.numecd.2014.01.016",
+          "title": "The effect of green tea on blood pressure and lipid profile: a systematic review and meta-analysis of randomized clinical trials.",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 1536
+        },
+        {
+          "pmid": "23780706",
+          "doi": "10.1002/14651858.cd009934.pub2",
+          "title": "Green and black tea for the primary prevention of cardiovascular disease.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 821
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "From the cup to the body: what happens to green tea catechins",
+      "caption": "What laboratory and small human studies show about catechins, mainly EGCG, from brewing to the breakdown products in urine. Whether catechins explain the links seen in the cohorts is a hypothesis: caffeine, other compounds the food table doesn't track, or other habits of tea drinkers may matter too.",
+      "steps": [
+        { "label": "In the cup", "text": "A cup is usually brewed from 1.8 to 3 g of leaves. Boiling water drew out more catechins than the makers' recommended brewing, and mineral-rich water less. EGCG is the main catechin." },
+        { "label": "Milk and cooling", "text": "Milk proteins can bind catechins, and as tea cools, caffeine and catechins can settle out together. EFSA says how much this changes absorption hasn't been worked out." },
+        { "label": "In the blood", "text": "After green tea in 8 people, EGCG peaked in the blood after about 1.3 to 1.6 hours, at about 78 ng per ml, and halved in about 3.4 hours, with large differences between people." },
+        { "label": "In the gut", "text": "Gut bacteria break catechins down into valerolactones, which appeared in blood and urine after 3 hours, peaked after 8 to 15 hours, and are the main breakdown products in urine." },
+        { "label": "Extracts are different", "text": "Green tea extract taken on an empty stomach and all at once gave much more EGCG in the blood than with food or in split doses. EFSA links extracts at 800 mg of EGCG a day or more to raised liver enzymes." }
+      ],
+      "sources": [
+        {
+          "pmid": "32625874",
+          "doi": "10.2903/j.efsa.2018.5239",
+          "title": "Scientific opinion on the safety of green tea catechins.",
+          "year": 2018,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "42679480",
+          "doi": "10.1016/j.foodchem.2026.150884",
+          "title": "Brewing conditions and post-brewing handling shape the catechin profile and stability of tea infusions.",
+          "year": 2026,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "12376503",
+          "title": "Pharmacokinetics of tea catechins after ingestion of green tea and (-)-epigallocatechin-3-gallate by humans: formation of different metabolites and individual variability.",
+          "year": 2002,
+          "studyType": "observational",
+          "n": 8
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Pregnancy (caffeine)",
+      "note": "Green tea contains caffeine. EFSA (2015) concluded that caffeine intakes from all sources up to 200 mg a day, spread over the day, by pregnant women do not raise safety concerns for the unborn baby; caffeine from all sources counts, not only green tea. In a 2025 laboratory study green tea had on average about 11 mg of caffeine per 200 ml, with more after longer brewing, and one matcha powder had 41.8 mg per gram. Talk to your midwife or doctor about caffeine in pregnancy.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Green tea extract supplements (liver)",
+      "note": "EFSA (2018) found that green tea extracts at 800 mg of EGCG a day or more, taken as food supplements, raised liver enzymes (serum transaminases) in trials, a sign of liver injury, and that it was not possible to identify a dose of EGCG from extracts that could be considered safe; liver injury was also reported with one extract product at 375 mg of EGCG a day. Traditional green tea infusions, at the amounts people in the EU usually drink, are in general considered safe, though rare cases of liver injury after drinking them have been reported, most probably an individual (idiosyncratic) reaction. EFSA notes that 800 mg a day is above the average from drinking green tea in the EU (90 to 300 mg of EGCG a day) but within the range of very heavy drinkers (300 to 866 mg). EFSA notes that extracts have been linked to liver injury especially when used for weight control. If you use green tea extract supplements, or have a liver condition, talk to your doctor."
+    },
+    {
+      "with": "Nadolol (a beta-blocker) and possibly other medicines",
+      "note": "In a trial in 10 healthy volunteers, drinking 700 ml of green tea a day for 14 days lowered the amount of nadolol in the blood by about 85% and weakened its effect on blood pressure. In a second trial in 11 volunteers, a single 150 ml of brewed green tea with nadolol lowered it to about 37% of the usual amount, and green tea 1 hour before still lowered it to about 54%. Few other medicines have been tested. If you take nadolol or other heart or blood pressure medicines, talk to your doctor or pharmacist about green tea."
+    },
+    {
+      "with": "Blood thinners (warfarin)",
+      "note": "The evidence is a single case: a 1999 report describes a man on warfarin whose INR fell from 3.79 to 1.37 after he began drinking half to one gallon of green tea a day, and rose to 2.55 when he stopped; the authors put it down to vitamin K. A 1995 analysis found brewed tea isn't a dietary source of vitamin K1. If you use warfarin, talk to your doctor before making a large change in how much green tea you drink.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Low iron (low ferritin)",
+      "note": "Polyphenol-rich drinks lower the absorption of iron from plant and fortified foods (non-haem iron) when drunk with a meal: in a 1999 study black tea cut iron absorption from a bread meal by 79 to 94%, and adding milk made little or no difference. Green tea as a drink has been studied less; in 10 young women, green tea extract added to a meal lowered iron absorption from 12.1% to 8.9%. If your ferritin is low, talk to your doctor about tea with meals."
+    }
+  ],
+  "cautions": [
+    "Most trials of blood pressure, cholesterol, blood sugar and weight used green tea extract capsules or catechin-enriched drinks, not ordinary brewed tea, and EFSA's liver concerns are about extracts. Results for extracts can't be taken as results for the drink, or the reverse.",
+    "Green tea contains caffeine; in a 2025 laboratory study longer brewing raised the caffeine in the teas tested.",
+    "Fluoride: most of the fluoride in green tea leaves passes into the cup (about 89% in an analysis of Iranian green teas, 0.162 to 3.29 mg per litre); those authors concluded the teas didn't add significantly to daily fluoride intake.",
+    "Bottled green teas differ: a 2022 analysis found their catechin amounts varied from product to product."
+  ],
+  "unknowns": [
+    "Matcha: no trial found for this page tested the health effects of matcha itself. A 2003 analysis found far more EGCG available per gram of leaf from matcha than from one ordinary green tea, but whether that changes any effect isn't known.",
+    "What explains the links in the cohorts isn't known: catechins, caffeine, theanine, other compounds the food table doesn't measure (nutritional dark matter), or the other habits of people who drink green tea.",
+    "Almost all the cohort evidence comes from Japan and China, where green tea is drunk daily, so how far it applies elsewhere is uncertain.",
+    "No trial has measured heart attacks, strokes or deaths; the trials of blood pressure, cholesterol and blood sugar lasted weeks to months, and few gave ordinary brewed tea.",
+    "How much EGCG the body absorbs from a cup is uncertain: EFSA lists catechins settling out as tea cools and binding to milk and food proteins as unresolved questions.",
+    "Interactions with medicines other than nadolol have hardly been studied. In rats, 21 days of matcha didn't significantly change nadolol levels but made it last longer in the blood (half-life 7.7 against 4.0 hours); whether this applies to people isn't known."
+  ],
+  "sources": [
+    {
+      "pmid": "32625874",
+      "doi": "10.2903/j.efsa.2018.5239",
+      "title": "Scientific opinion on the safety of green tea catechins.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "doi": "10.2903/j.efsa.2015.4102",
+      "title": "Scientific Opinion on the safety of caffeine.",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "16968850",
+      "doi": "10.1001/jama.296.10.1255",
+      "title": "Green tea consumption and mortality due to cardiovascular disease, cancer, and all causes in Japan: the Ohsaki study.",
+      "year": 2006,
+      "studyType": "observational",
+      "n": 40530
+    },
+    {
+      "pmid": "31392470",
+      "doi": "10.1007/s10654-019-00545-y",
+      "title": "Green tea consumption and mortality in Japanese men and women: a pooled analysis of eight population-based cohort studies in Japan.",
+      "year": 2019,
+      "studyType": "observational",
+      "n": 313381
+    },
+    {
+      "pmid": "23780706",
+      "doi": "10.1002/14651858.cd009934.pub2",
+      "title": "Green and black tea for the primary prevention of cardiovascular disease.",
+      "year": 2013,
+      "studyType": "meta-analysis",
+      "n": 821
+    },
+    {
+      "pmid": "32028419",
+      "doi": "10.1097/md.0000000000019047",
+      "title": "Effect of green tea supplementation on blood pressure: A systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 1697
+    },
+    {
+      "pmid": "32670385",
+      "doi": "10.1186/s12986-020-00469-5",
+      "title": "Effects of green tea consumption on glycemic control: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 2194
+    },
+    {
+      "pmid": "12376503",
+      "title": "Pharmacokinetics of tea catechins after ingestion of green tea and (-)-epigallocatechin-3-gallate by humans: formation of different metabolites and individual variability.",
+      "year": 2002,
+      "studyType": "observational",
+      "n": 8
+    },
+    {
+      "pmid": "40647065",
+      "doi": "10.3390/foods14132313",
+      "title": "Determination of L-Theanine and Caffeine Contents in Tea Infusions with Different Fermentation Degrees and Brewing Conditions Using the Chromatographic Method.",
+      "year": 2025,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "42679480",
+      "doi": "10.1016/j.foodchem.2026.150884",
+      "title": "Brewing conditions and post-brewing handling shape the catechin profile and stability of tea infusions.",
+      "year": 2026,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "14518774",
+      "doi": "10.1016/s0021-9673(03)01133-6",
+      "title": "Determination of catechins in matcha green tea by micellar electrokinetic chromatography.",
+      "year": 2003,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "34405405",
+      "doi": "10.1111/1556-4029.14864",
+      "title": "Simultaneous determination of eight catechins and four theaflavins in bottled tea by liquid chromatography-tandem mass spectrometry for forensic analysis.",
+      "year": 2022,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "27042093",
+      "doi": "10.4137/ehi.s38511",
+      "title": "Daily Fluoride Intake from Iranian Green Tea: Evaluation of Various Flavorings on Fluoride Release.",
+      "year": 2016,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "7798585",
+      "doi": "10.1016/s0002-8223(95)00018-6",
+      "title": "Tea and coffee brews are not dietary sources of vitamin K-1 (phylloquinone).",
+      "year": 1995,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "10332534",
+      "doi": "10.1345/aph.18238",
+      "title": "Probable antagonism of warfarin by green tea.",
+      "year": 1999,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "24419562",
+      "doi": "10.1038/clpt.2013.241",
+      "title": "Green tea ingestion greatly reduces plasma concentrations of nadolol in healthy subjects.",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 10
+    },
+    {
+      "pmid": "32320490",
+      "doi": "10.1111/bcp.14315",
+      "title": "Effects of single green tea ingestion on pharmacokinetics of nadolol in healthy volunteers.",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 11
+    },
+    {
+      "pmid": "41686841",
+      "doi": "10.1371/journal.pone.0342857",
+      "title": "Effects of matcha green tea on the pharmacokinetics of nadolol in rats.",
+      "year": 2026,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "10999016",
+      "doi": "10.1017/s0007114599000537",
+      "title": "Inhibition of non-haem iron absorption in man by polyphenolic-containing beverages.",
+      "year": 1999,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "11237939",
+      "doi": "10.1093/ajcn/73.3.607",
+      "title": "Green tea or rosemary extract added to foods reduces nonheme-iron absorption.",
+      "year": 2001,
+      "studyType": "rct",
+      "n": 10
+    },
+    {
+      "pmid": "23235664",
+      "doi": "10.1002/14651858.cd008650.pub2",
+      "title": "Green tea for weight loss and weight maintenance in overweight or obese adults.",
+      "year": 2012,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32118296",
+      "doi": "10.1002/14651858.cd005004.pub3",
+      "title": "Green tea (Camellia sinensis) for the prevention of cancer.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "36849317",
+      "doi": "10.1016/j.numecd.2023.01.017",
+      "title": "Green tea consumption and the risk of coronary heart disease: A systematic review and meta-analysis of cohort studies.",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 772922
+    },
+    {
+      "pmid": "36599267",
+      "doi": "10.1016/j.nut.2022.111936",
+      "title": "Green tea consumption and the risk of stroke: A systematic review and meta-analysis of cohort studies.",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 645393
+    }
+  ]
+}

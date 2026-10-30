@@ -1,0 +1,353 @@
+{
+ "topic": "wholefood-honey",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Honey eaten as food, often in place of other sugars",
+    "comparison": "Sugar or no honey",
+    "outcome": "Cholesterol or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41261111",
+     "fits": "yes",
+     "reason": "Updated meta-analysis of RCTs analyses honey on its own, apart from royal jelly and propolis, and reports triglycerides among cardiometabolic outcomes."
+    },
+    {
+     "pmid": "36379223",
+     "fits": "yes",
+     "reason": "Meta-analysis of controlled trials of oral honey intake pooling total cholesterol, LDL, HDL and triglycerides."
+    },
+    {
+     "pmid": "34218823",
+     "fits": "yes",
+     "reason": "Meta-analysis of controlled trials of honey consumption pooling cholesterol fractions and triglycerides."
+    }
+   ]
+  },
+  "colds": {
+   "question": {
+    "population": "Children or adults with colds or other upper respiratory infections",
+    "intervention": "Honey",
+    "comparison": "Usual care or other treatments",
+    "outcome": "Symptoms such as cough, sore throat or congestion"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "32817011",
+     "fits": "yes",
+     "reason": "Pooled studies of honey versus usual care or placebo in people with upper respiratory infections, measuring cough and combined symptom scores."
+    },
+    {
+     "pmid": "20091616",
+     "fits": "yes",
+     "reason": "Reviewed trials of honey versus no treatment or cough medicine in children with acute cough; the one included trial was in upper respiratory infections and measured cough."
+    },
+    {
+     "pmid": "19370690",
+     "fits": "no",
+     "reason": "Population is children with chronic non-specific cough, not colds or other acute upper respiratory infections, and no studies were found."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Honey eaten as food, often in place of other sugars",
+    "comparison": "Sugar, other sweeteners, or no honey",
+    "outcome": "Fasting glucose, HbA1c or insulin"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41261111",
+     "fits": "yes",
+     "reason": "Honey is analysed apart from royal jelly and propolis in a meta-analysis of RCTs reporting HbA1c and fasting blood glucose."
+    },
+    {
+     "pmid": "36379223",
+     "fits": "yes",
+     "reason": "Meta-analysis of controlled trials of eating honey, with fasting glucose and other glycemic control results."
+    },
+    {
+     "pmid": "33552217",
+     "fits": "yes",
+     "reason": "Systematic review of trials of eating honey in adults with or without type 2 diabetes, reporting glycemic status."
+    }
+   ]
+  },
+  "burns": {
+   "question": {
+    "population": "People with burns",
+    "intervention": "Honey dressings applied to the skin",
+    "comparison": "Other dressings, silver sulfadiazine or standard care",
+    "outcome": "Healing time, healing rate or infection"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42099328",
+     "fits": "yes",
+     "reason": "RCTs of honey dressings across wound types, with burns reported as a separate category for healing time and antibacterial effect."
+    },
+    {
+     "pmid": "27027667",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing honey with silver dressings on healing time; the included studies were on burns."
+    },
+    {
+     "pmid": "27576926",
+     "fits": "yes",
+     "reason": "RCTs of honey versus silver sulfadiazine for burns, measuring healing time and infected wounds made sterile."
+    },
+    {
+     "pmid": "19648986",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing honey with other dressings, mostly silver sulfadiazine, for burns, measuring healing at 15 days."
+    }
+   ]
+  },
+  "cough": {
+   "question": {
+    "population": "Children with a short-term cough",
+    "intervention": "Honey",
+    "comparison": "No treatment, placebo or cough medicines",
+    "outcome": "Cough frequency or severity, or sleep"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42671586",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of honey versus cough medicines in children with acute cough, reporting cough frequency, severity and sleep."
+    },
+    {
+     "pmid": "37355498",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of honey versus placebo, no treatment or cough medicines in children with acute cough, reporting cough frequency and sleep."
+    },
+    {
+     "pmid": "36284810",
+     "fits": "partly",
+     "reason": "Compares honey with cough medicines in children, but the abstract does not say the cough is short-term or which cough or sleep outcomes were assessed."
+    },
+    {
+     "pmid": "29633783",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of honey versus no treatment, placebo or cough medicines in children with acute cough, reporting cough frequency."
+    },
+    {
+     "pmid": "25536086",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of honey versus no treatment, placebo or cough medicines in children with acute cough, with pooled cough frequency."
+    },
+    {
+     "pmid": "27280298",
+     "fits": "yes",
+     "reason": "Meta-analysis of randomised trials of honey in children with acute cough, reporting cough severity and frequency and sleep quality."
+    },
+    {
+     "pmid": "20091616",
+     "fits": "yes",
+     "reason": "Cochrane review of honey versus no treatment or dextromethorphan in children with acute cough, reporting cough frequency, severity and sleep."
+    },
+    {
+     "pmid": "22419319",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs of honey versus no treatment or cough medicines in children with acute cough, with pooled cough frequency."
+    },
+    {
+     "pmid": "19370690",
+     "fits": "partly",
+     "reason": "Reviews honey versus placebo in children, but for chronic non-specific cough rather than short-term cough, and it found no eligible trials."
+    }
+   ]
+  },
+  "wounds": {
+   "question": {
+    "population": "People with leg ulcers, diabetic foot ulcers or other wounds",
+    "intervention": "Honey applied to the wound",
+    "comparison": "Other dressings or standard care",
+    "outcome": "Healing time or healing rate"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "26852154",
+     "fits": "partly",
+     "reason": "Mainly a narrative review of how honey works; it compares honey with other topical agents but reports wound area and re-epithelialisation, not clearly healing time or rate."
+    },
+    {
+     "pmid": "42099328",
+     "fits": "yes",
+     "reason": "Systematic review of 22 RCTs of honey dressings on surgical wounds, ulcers and burns that reports shorter healing."
+    },
+    {
+     "pmid": "27027667",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing honey with silver dressings on wounds (all burns), with days to healing as the outcome."
+    },
+    {
+     "pmid": "23896128",
+     "fits": "yes",
+     "reason": "Systematic review of studies of any design on honey for burns, ulcers and other wounds that assesses wound healing."
+    },
+    {
+     "pmid": "25742878",
+     "fits": "yes",
+     "reason": "Cochrane review of RCTs comparing honey with other dressings for acute and chronic wounds, including leg and diabetic foot ulcers; healing is the main outcome."
+    },
+    {
+     "pmid": "23450557",
+     "fits": "yes",
+     "reason": "Cochrane review of trials comparing honey with conventional treatments for acute and chronic wounds, with time to healing as the main outcome."
+    },
+    {
+     "pmid": "11405898",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs comparing topical honey with other treatments for burns and infected postoperative wounds, with healing time as an outcome."
+    },
+    {
+     "pmid": "18843679",
+     "fits": "yes",
+     "reason": "Cochrane review of trials comparing honey with other treatments for acute and chronic wounds, including leg ulcers; healing is the main outcome."
+    },
+    {
+     "pmid": "41928876",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing honey with conventional dressings for diabetic foot ulcers, reporting healing rate and time to healing."
+    },
+    {
+     "pmid": "39125335",
+     "fits": "yes",
+     "reason": "Meta-analysis of honey dressings for chronic wounds that reports healing time and healing rate."
+    },
+    {
+     "pmid": "38257078",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing honey with placebo for obstetric wounds, with wound healing as a main outcome."
+    },
+    {
+     "pmid": "37032304",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials of honey dressings for diabetic foot ulcers that reports wound recovery time and rate."
+    },
+    {
+     "pmid": "33856925",
+     "fits": "yes",
+     "reason": "Meta-analysis comparing honey with povidone iodine dressings for wounds, with healing duration as the outcome."
+    },
+    {
+     "pmid": "30712715",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs and quasi-experimental studies of honey dressings for diabetic foot ulcers, reporting healing time and rate."
+    },
+    {
+     "pmid": "37164904",
+     "fits": "no",
+     "reason": "This is a corrigendum with no abstract, not a review."
+    },
+    {
+     "pmid": "32507418",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of honey for acute and chronic wounds that reports shorter healing time."
+    },
+    {
+     "pmid": "33262630",
+     "fits": "no",
+     "reason": "Reviews honey combined with other agents, mostly in lab and mouse studies, for antimicrobial effects; no human healing comparison."
+    },
+    {
+     "pmid": "30956051",
+     "fits": "no",
+     "reason": "This is a comment on a review with no abstract, not a review."
+    },
+    {
+     "pmid": "27502813",
+     "fits": "yes",
+     "reason": "Systematic review of trials and observational studies comparing topical honey with conventional dressings for diabetic foot ulcers."
+    }
+   ]
+  },
+  "mucositis": {
+   "question": {
+    "population": "People having radiotherapy or chemotherapy",
+    "intervention": "Honey in the mouth",
+    "comparison": "Placebo, saline or usual care",
+    "outcome": "Oral mucositis: how often, how severe, or pain"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "38688612",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of honey in head and neck cancer patients having radiotherapy; reports severe mucositis incidence and pain."
+    },
+    {
+     "pmid": "32692203",
+     "fits": "yes",
+     "reason": "Meta-analysis of trials of honey in head and neck cancer patients having radiotherapy; reports mucositis incidence and severity."
+    },
+    {
+     "pmid": "33900311",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of honey in patients having radiotherapy; reports incidence by mucositis grade and pain."
+    },
+    {
+     "pmid": "35341151",
+     "fits": "yes",
+     "reason": "Meta-analysis of honey for children having radio/chemotherapy; reports incidence and severe grades of oral mucositis."
+    },
+    {
+     "pmid": "30352321",
+     "fits": "yes",
+     "reason": "Network meta-analysis of RCTs of honey vs control arms in chemo/radiotherapy patients; reports moderate-severe oral mucositis."
+    },
+    {
+     "pmid": "30919153",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of honey in radiochemotherapy patients; reports mucositis grades and pain scores."
+    },
+    {
+     "pmid": "30712719",
+     "fits": "yes",
+     "reason": "Systematic review of 17 RCTs of honey in head and neck cancer patients having radio/chemoradiotherapy, with oral mucositis outcomes."
+    },
+    {
+     "pmid": "27028991",
+     "fits": "yes",
+     "reason": "Meta-analysis of honey in head and neck cancer patients having radiotherapy; reports mucositis severity and time to onset."
+    },
+    {
+     "pmid": "32646360",
+     "fits": "yes",
+     "reason": "Umbrella review of honey reviews in head and neck cancer patients having radiotherapy; reports oral mucositis incidence and severity."
+    },
+    {
+     "pmid": "27600797",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs comparing honey with blank control in radio/chemotherapy patients; reports oral mucositis incidence."
+    },
+    {
+     "pmid": "32056010",
+     "fits": "yes",
+     "reason": "Guideline systematic review of many agents, with honey judged separately, for preventing oral mucositis in cancer patients having radio/chemotherapy."
+    },
+    {
+     "pmid": "25778825",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of oral honey vs placebo or no treatment in radiotherapy patients; reports mucositis incidence, grade and pain."
+    },
+    {
+     "pmid": "22218067",
+     "fits": "yes",
+     "reason": "Meta-analysis of controlled trials of honey vs control for radiation-induced oral mucositis."
+    }
+   ]
+  }
+ }
+}

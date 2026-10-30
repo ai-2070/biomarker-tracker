@@ -1,0 +1,335 @@
+{
+  "id": "kiwi",
+  "name": "Kiwifruit",
+  "group": "fruit",
+  "otherNames": ["Kiwi", "Kiwi fruit", "Kiwis", "Green kiwifruit", "Gold kiwifruit", "SunGold", "Hayward kiwifruit", "Chinese gooseberry", "Actinidia deliciosa", "Actinidia chinensis"],
+  "summary": "A fruit from China, now grown mostly in New Zealand, Italy and other countries, in green (Hayward) and gold (such as SunGold) kinds. The best-studied effect is on constipation: in trials, two green kiwifruit a day gave a few more bowel movements a week, at least as many as psyllium fibre. Smaller trials found raised vitamin C in the blood, a few mmHg lower blood pressure, and lower blood sugar peaks after starchy meals; evidence on sleep and mood is weak. Many trials were funded by the kiwifruit marketer Zespri.",
+  "history": [
+    {
+      "who": "Ancient Greece, Rome and medieval Europe",
+      "use": "None: the fruit was unknown to them. It grows wild in the mountains of southwest China; the first botanical specimens reached Europe around the 1750s and the first fruits, preserved in spirit, reached Kew in London in 1886.",
+      "modern": "not tested",
+      "note": "There is no Greek or Roman tradition to test. The fruit was domesticated only in the 20th century: seeds reached New Zealand in 1904, the Hayward variety spread from the late 1930s, and the old name 'Chinese gooseberry' gave way to 'kiwifruit' by 1969. Most varieties sold today are selections from wild plants, not bred over centuries.",
+      "sources": [
+        { "pmid": "29470689", "doi": "10.1007/s00394-018-1627-z", "title": "The nutritional and health attributes of kiwifruit: a review.", "year": 2018, "studyType": "review" },
+        { "pmid": "23394980", "doi": "10.1016/b978-0-12-394294-4.00002-x", "title": "Kiwifruit: the wild and the cultivated plants.", "year": 2013, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "China (Chinese pharmacopoeias from the Tang dynasty, AD 618–907, onwards)",
+      "use": "The fruit, called mihoutao, was listed for aiding digestion, easing indigestion (dyspepsia) and vomiting, and reducing irritability.",
+      "modern": "partly",
+      "finding": "Constipation (bowel movements)",
+      "note": "Modern trials tested constipation rather than indigestion: two green kiwifruit a day gave somewhat more bowel movements, graded low by a 2025 guideline. A Zespri-funded review of 12 trials found smaller indigestion scores, but none tested indigestion as its main question. Irritability and vomiting haven't been tested.",
+      "sources": [
+        { "pmid": "29470689", "doi": "10.1007/s00394-018-1627-z", "title": "The nutritional and health attributes of kiwifruit: a review.", "year": 2018, "studyType": "review" },
+        { "pmid": "37793579", "doi": "10.1016/j.jep.2023.117222", "title": "The genus Actinidia Lindl. (Actinidiaceae): A comprehensive review on its ethnobotany, phytochemistry, and pharmacological properties.", "year": 2024, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Traditional medicine in China and East Asia (plants of the kiwifruit family, Actinidia)",
+      "use": "Ten Actinidia species were used for digestive problems, rheumatism, kidney problems, heart and blood vessel problems, cancers, haemorrhoids and diabetes, among other illnesses. These uses are for the plants in general, often other parts than the fruit.",
+      "modern": "not tested",
+      "note": "No trial of the eaten fruit has tested rheumatism, kidney disease, cancer, haemorrhoids or diabetes itself. Trials measured markers such as blood pressure, blood fats and blood sugar, which are only part of these questions.",
+      "sources": [
+        { "pmid": "37793579", "doi": "10.1016/j.jep.2023.117222", "title": "The genus Actinidia Lindl. (Actinidiaceae): A comprehensive review on its ethnobotany, phytochemistry, and pharmacological properties.", "year": 2024, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Italy (20th century)",
+      "use": "Its high vitamin C gave kiwifruit the name 'frutto della salute', the health fruit.",
+      "modern": "agrees",
+      "finding": "Vitamin C in the blood",
+      "note": "The vitamin C is real and reaches the blood: in trials, one to two kiwifruit a day raised low blood levels to what researchers call healthy or saturated. Whether that improves health beyond preventing a shortage is a separate question.",
+      "sources": [
+        { "pmid": "29470689", "doi": "10.1007/s00394-018-1627-z", "title": "The nutritional and health attributes of kiwifruit: a review.", "year": 2018, "studyType": "review" }
+      ]
+    }
+  ],
+  "inIt": [
+    "Kiwifruit is best known for vitamin C. In the US food table, as quoted in a 2018 review, green Hayward kiwifruit has 92.7 mg per 100 g and SunGold 161.3 mg; green kiwifruit typically holds 80 to 120 mg, varying with growing region, harvest, storage and ripening.",
+    "The UK food table (CoFID) measures green kiwifruit flesh: per 100 g, 44 kcal, 8.3 g of sugars, 2.7 g of fibre, 71 mg of vitamin C, 289 mg of potassium, 2.17 mg of vitamin E and 33 µg of folate. It has no gold kiwifruit, and no vitamin K value for kiwifruit.",
+    "Its fibre includes soluble and insoluble kinds. A 2018 review reported that kiwifruit fibre swells and holds more water than wheat bran, sugar beet fibre or apple fibre, which is thought to matter for stool softness and transit. Two green kiwifruit of the size used in one large trial gave about 6 g of fibre.",
+    "Green kiwifruit contains actinidin, an enzyme that breaks down protein. It is the most abundant protein in kiwifruit and also its main allergen. SunGold has much less actinidin activity than green kiwifruit, and other gold varieties have none.",
+    "Other compounds include the carotenoids lutein, zeaxanthin and beta-carotene, chlorophylls, quinic acid, chlorogenic acid and other phenolic compounds. A sleep study describes serotonin in kiwifruit. The UK table measures none of these, nor actinidin, and a food has thousands of compounds no table tracks.",
+    "In the US table, green kiwifruit has 40.3 µg of vitamin K per 100 g and SunGold 6.1 µg, and green has 122 µg of lutein plus zeaxanthin per 100 g against 24 µg in SunGold."
+  ],
+  "tableFoods": [{ "id": "14-371", "label": "1 kiwifruit, peeled (about 75 g)", "grams": 75 }],
+  "processing": [
+    "Green and gold are different fruits. In the US food table green Hayward has 3 g of fibre per 100 g against 1.4 g in SunGold, and 9.0 g of sugars against 12.3 g, and SunGold has 161.3 mg of vitamin C per 100 g against 92.7 mg. The UK table's kiwifruit (CoFID 14-371) is green, so its numbers don't describe gold kiwifruit.",
+    "Most trials used peeled fruit; in the largest constipation trial people were told to eat the kiwifruit without the skin. Eating SunGold with its skin adds about 50% more fibre, 32% more vitamin E and 34% more folate, according to the New Zealand food table quoted in a 2018 review. One small trial found the skin added some gut effects that the flesh alone didn't.",
+    "Actinidin, the protein-digesting enzyme, is strongest in green kiwifruit. In lab digestion models, green kiwifruit extract broke down proteins faster than SunGold extract, though SunGold did better for some proteins.",
+    "Heat and strong acid can change the structure of several kiwifruit allergens, a 2019 review reported; whether cooked kiwifruit is safe for people with kiwifruit allergy is a question for an allergist.",
+    "Kiwifruit capsules, powders and extracts (such as products sold for constipation) are a different product from the fruit. In meta-analyses they did not change stool frequency, while the whole fruit did."
+  ],
+  "whatStudiesDid": "Constipation trials mostly gave two green kiwifruit a day for 4 weeks, peeled, compared with psyllium fibre (7.5 or 12 g a day) or prunes (100 g a day); one trial gave two gold kiwifruit a day. Blood pressure trials gave three kiwifruit a day for 8 weeks, compared with one apple a day or no change, or two kiwifruit before breakfast for 7 weeks. Vitamin C studies gave half to three gold kiwifruit a day for several weeks each. Mood and vitality trials gave two SunGold kiwifruit a day for 4 weeks. Sleep studies gave two kiwifruit an hour before bed for 4 weeks. Blood sugar studies gave kiwifruit before or with a starchy meal on single test days. An iron trial gave two gold kiwifruit with an iron-fortified breakfast cereal every day for 16 weeks.",
+  "markers": ["bp_systolic", "bp_diastolic", "ldl", "triglycerides", "glucose", "sleep_duration", "ferritin"],
+  "findings": [
+    {
+      "outcome": "Constipation (bowel movements)",
+      "population": "Adults with chronic constipation or constipation-type irritable bowel syndrome (IBS-C), in trials of the whole fruit, mostly two green kiwifruit a day for 4 weeks",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The British Dietetic Association's 2025 guideline rated the evidence low using GRADE: kiwifruit gave more bowel movements than psyllium (high risk of bias, imprecision), and no difference was found in how many people had a clinical benefit",
+        "Neither participants nor kiwifruit could be blinded: everyone knew what they were eating",
+        "The largest trial (184 people) was mainly funded by Zespri, the New Zealand kiwifruit marketer, and two of its authors were Zespri employees; other trials also had Zespri support",
+        "Trials lasted 4 weeks; nothing is known about longer use",
+        "EFSA concluded that a cause and effect relationship is established for green Hayward kiwifruit and normal defecation, on an application from Zespri"
+      ],
+      "summary": "In a 2024 meta-analysis, kiwifruit gave 0.36 more bowel movements a week than psyllium fibre (95% CI 0.24 to 0.48; 3 trials, 192 people), a small difference against a treatment that itself works; the 2025 British Dietetic Association guideline rated this low certainty and found no difference from psyllium in how many people had a clinical benefit (risk ratio 1.32, 0.91 to 1.92). A 2022 meta-analysis of 7 trials (399 people) found kiwifruit vs psyllium 1.01 more spontaneous bowel movements a week (−0.02 to 2.04). In the largest trial, in New Zealand, Italy and Japan, two green kiwifruit a day for 4 weeks raised complete spontaneous bowel movements by 1.53 a week in functional constipation and 1.73 in IBS-C, and improved gut comfort; psyllium's effect was clear only in IBS-C. In a US trial of 79 people, kiwifruit, prunes and psyllium all raised bowel movements; kiwifruit had the fewest side effects and the least dissatisfaction. Two gold kiwifruit a day worked about as well as psyllium in a smaller trial. Kiwifruit capsules and powders are a different product: in a 2023 meta-analysis of 3 trials they did not change stool frequency (0.24 a week, −0.32 to 0.80).",
+      "bottomLine": "In trials, two green kiwifruit a day for 4 weeks gave somewhat more bowel movements, slightly more than psyllium fibre and with few side effects. A 2025 guideline rated the evidence low, and kiwifruit capsules and powders did not show the same effect.",
+      "studies": [
+        { "pmid": "37905980", "doi": "10.1111/apt.17782", "title": "Systematic review and meta-analysis: Foods, drinks and diets and their effect on chronic constipation in adults.", "year": 2024, "studyType": "meta-analysis", "n": 1714 },
+        { "pmid": "41081381", "doi": "10.1111/nmo.70173", "title": "British Dietetic Association Guidelines for the Dietary Management of Chronic Constipation in Adults.", "year": 2025, "studyType": "guideline" },
+        { "pmid": "36247043", "doi": "10.1155/2022/7596920", "title": "Kiwifruit and Kiwifruit Extracts for Treatment of Constipation: A Systematic Review and Meta-Analysis.", "year": 2022, "studyType": "meta-analysis", "n": 399 },
+        { "pmid": "36537785", "doi": "10.14309/ajg.0000000000002124", "title": "Consumption of 2 Green Kiwifruits Daily Improves Constipation and Abdominal Comfort-Results of an International Multicenter Randomized Controlled Trial.", "year": 2023, "studyType": "rct", "n": 184 },
+        { "pmid": "34074830", "doi": "10.14309/ajg.0000000000001149", "title": "Exploratory Comparative Effectiveness Trial of Green Kiwifruit, Psyllium, or Prunes in US Patients With Chronic Constipation.", "year": 2021, "studyType": "rct", "n": 79 },
+        { "pmid": "36235798", "doi": "10.3390/nu14194146", "title": "Two Gold Kiwifruit Daily for Effective Treatment of Constipation in Adults-A Randomized Clinical Trial.", "year": 2022, "studyType": "rct", "n": 56 },
+        { "pmid": "37243443", "doi": "10.1111/nmo.14613", "title": "The effect of food, vitamin, or mineral supplements on chronic constipation in adults: A systematic review and meta-analysis of randomized controlled trials.", "year": 2023, "studyType": "meta-analysis", "n": 787 },
+        { "pmid": "34136006", "doi": "10.2903/j.efsa.2021.6641", "title": "Green kiwifruit (lat. Actinidia deliciosa var. Hayward) and maintenance of normal defecation: evaluation of a health claim pursuant to Article 13(5) of Regulation (EC) No 1924/2006.", "year": 2021, "studyType": "review" }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults, many with high-normal or raised blood pressure, in small randomised trials of the whole fruit (two or three a day)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Few trials: 6 in the 2026 meta-analysis and 5 in the 2019 one, which found no clear effect",
+        "In the best-measured trial, 24-hour blood pressure fell but office blood pressure didn't",
+        "The 2026 meta-analysis found larger effects in shorter trials (8 weeks or less) and asked for confirmation in larger trials",
+        "Unblinded designs (the comparison was an apple or no change)"
+      ],
+      "summary": "A 2026 meta-analysis of 6 randomised trials (10 groups) found systolic blood pressure 5.73 mmHg lower (95% CI 2.44 to 9.02 lower) and diastolic 4.08 mmHg lower (2.10 to 6.07 lower) with kiwifruit, more with three a day, with raised starting blood pressure and in trials of 8 weeks or less; the authors asked for caution because there were few trials. A 2019 meta-analysis of 5 trials (489 people) found no clear effect: systolic −1.72 mmHg (−4.27 to 0.84), diastolic −2.35 (−5.10 to 0.41). In a Norwegian trial of 118 adults with high-normal or stage 1 high blood pressure, three kiwifruit a day for 8 weeks gave 24-hour systolic 3.6 mmHg (0.7 to 6.5) and diastolic 1.9 mmHg (0.3 to 3.6) lower than one apple a day, but office blood pressure did not differ. In 102 male smokers, three kiwifruit a day for 8 weeks lowered systolic by 10 and diastolic by 9 mmHg against controls. Two kiwifruit before breakfast for 7 weeks gave systolic 2.7 mmHg lower (0.0 to 5.5) in 42 healthy adults. No trial measured heart attacks or strokes.",
+      "bottomLine": "In small trials, two or three kiwifruit a day went with blood pressure a few mmHg lower, most in people whose pressure was raised. One meta-analysis found a clear effect and an older one didn't, and no trial measured heart attacks or strokes.",
+      "studies": [
+        { "pmid": "42657351", "doi": "10.1002/hsr2.73126", "title": "Effects of Kiwifruit Consumption on Blood Pressure in Adults: A Systematic Review and Meta-Analysis.", "year": 2026, "studyType": "meta-analysis" },
+        { "pmid": "30774402", "doi": "10.2147/dmso.s193225", "title": "Effect of kiwifruit on metabolic health in patients with cardiovascular risk factors: a systematic review and meta-analysis.", "year": 2019, "studyType": "meta-analysis", "n": 489 },
+        { "pmid": "25483553", "doi": "10.3109/08037051.2014.976979", "title": "The effect of kiwifruit consumption on blood pressure in subjects with moderately elevated blood pressure: a randomized, controlled study.", "year": 2015, "studyType": "rct", "n": 118 },
+        { "pmid": "22258209", "doi": "10.1038/jhh.2011.116", "title": "Kiwifruit decreases blood pressure and whole-blood platelet aggregation in male smokers.", "year": 2013, "studyType": "rct", "n": 102 },
+        { "pmid": "35807858", "doi": "10.3390/nu14132678", "title": "Metabolic and Blood Pressure Effects of Consuming Two Kiwifruit Daily for 7 Weeks: A Randomised Controlled Trial.", "year": 2022, "studyType": "rct", "n": 43 }
+      ]
+    },
+    {
+      "outcome": "Blood fats (LDL cholesterol and triglycerides)",
+      "population": "Adults, healthy or with heart risk factors, in small randomised trials of the whole fruit",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analyses disagree: one found lower LDL, an older one found no effect on any blood fat",
+        "Few, small trials (5 to 6 per meta-analysis)",
+        "Several individual trials found no change in triglycerides or cholesterol"
+      ],
+      "summary": "A 2024 meta-analysis of 6 randomised trials found LDL cholesterol 9.30 mg/dL lower with kiwifruit (95% CI 1.04 to 17.56 lower), but no clear change in triglycerides (−12.91 mg/dL, −28.17 to 2.34), total cholesterol or HDL. A 2019 meta-analysis of 5 trials (489 people) found no effect on LDL (−0.41 mmol/L, −0.99 to 0.18) or triglycerides (−0.23 mmol/L, −0.66 to 0.20). In a 2004 crossover trial in healthy volunteers, two or three kiwifruit a day for 28 days lowered triglycerides by 15% compared with control, with no change in cholesterol. Two kiwifruit a day for 7 weeks (42 people) and two SunGold a day for 6 weeks (23 people) did not change triglycerides or cholesterol.",
+      "bottomLine": "Results on blood fats disagree. One meta-analysis found LDL cholesterol slightly lower with kiwifruit, another found no effect, and several small trials found no change in triglycerides or cholesterol.",
+      "studies": [
+        { "pmid": "39479621", "doi": "10.1002/fsn3.4385", "title": "The effects of kiwifruit consumption on anthropometric and cardiometabolic indices in adults: A systematic review and meta-analysis.", "year": 2024, "studyType": "meta-analysis" },
+        { "pmid": "30774402", "doi": "10.2147/dmso.s193225", "title": "Effect of kiwifruit on metabolic health in patients with cardiovascular risk factors: a systematic review and meta-analysis.", "year": 2019, "studyType": "meta-analysis", "n": 489 },
+        { "pmid": "15370099", "doi": "10.1080/09537100410001710290", "title": "Effects of kiwi fruit consumption on platelet aggregation and plasma lipids in healthy human volunteers.", "year": 2004, "studyType": "rct" },
+        { "pmid": "35807858", "doi": "10.3390/nu14132678", "title": "Metabolic and Blood Pressure Effects of Consuming Two Kiwifruit Daily for 7 Weeks: A Randomised Controlled Trial.", "year": 2022, "studyType": "rct", "n": 43 },
+        { "pmid": "38231672", "doi": "10.3390/foods12234236", "title": "Effects of Daily Ingestion of Two SunGold Kiwifruit for 6 Weeks on Metabolic and Inflammatory Biomarkers: A Randomized, Cross-Over, Exploratory Intervention Study.", "year": 2023, "studyType": "rct", "n": 23 }
+      ]
+    },
+    {
+      "outcome": "Blood sugar after a starchy meal",
+      "population": "Healthy adults on single test days, with kiwifruit eaten before or with cereal or rice",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small crossover studies (9 to 30 people), all in healthy adults, from one research group in New Zealand",
+        "Single test meals: they show the response to one meal, not long-term blood sugar",
+        "In longer trials fasting blood sugar didn't change, and no trial tested people with diabetes"
+      ],
+      "summary": "In 30 healthy Chinese adults, eating kiwifruit before a rice meal (replacing part of the rice) gave a blood sugar peak 0.9 mmol/L lower at breakfast (95% CI 0.2 to 1.6) and 1.1 mmol/L lower at lunch (0.5 to 1.7) than the rice meal eaten at one sitting. In 9 healthy adults, whole kiwifruit pulp eaten with wheat cereal almost halved the rise in blood sugar compared with a meal with the same sugars added, and avoided a later dip; fibre and organic acids each explained part of it. A 2017 study in 20 people found similar results. Over weeks, kiwifruit did not change fasting blood sugar: 0.09 mmol/L (−0.06 to 0.24) after 7 weeks in 42 people, and no clear change in a 2024 meta-analysis.",
+      "bottomLine": "In small studies in healthy adults, kiwifruit eaten with or instead of part of a starchy meal gave a lower blood sugar peak after that meal. Over weeks it didn't change fasting blood sugar, and people with diabetes weren't tested.",
+      "studies": [
+        { "pmid": "30126094", "doi": "10.3390/nu10081110", "title": "Postprandial Glycaemic, Hormonal and Satiety Responses to Rice and Kiwifruit Preloads in Chinese Adults: A Randomised Controlled Crossover Trial.", "year": 2018, "studyType": "rct", "n": 30 },
+        { "pmid": "35956366", "doi": "10.3390/nu14153189", "title": "Dietary Fibre and Organic Acids in Kiwifruit Suppress Glycaemic Response Equally by Delaying Absorption-A Randomised Crossover Human Trial with Parallel Analysis of 13C-Acetate Uptake.", "year": 2022, "studyType": "rct", "n": 9 },
+        { "pmid": "29084137", "doi": "10.3390/nu9111195", "title": "Kiwifruit Non-Sugar Components Reduce Glycaemic Response to Co-Ingested Cereal in Humans.", "year": 2017, "studyType": "rct", "n": 20 },
+        { "pmid": "35807858", "doi": "10.3390/nu14132678", "title": "Metabolic and Blood Pressure Effects of Consuming Two Kiwifruit Daily for 7 Weeks: A Randomised Controlled Trial.", "year": 2022, "studyType": "rct", "n": 43 },
+        { "pmid": "39479621", "doi": "10.1002/fsn3.4385", "title": "The effects of kiwifruit consumption on anthropometric and cardiometabolic indices in adults: A systematic review and meta-analysis.", "year": 2024, "studyType": "meta-analysis" }
+      ]
+    },
+    {
+      "outcome": "Vitamin C in the blood",
+      "population": "Young adults and others with low or below-average vitamin C levels, eating gold kiwifruit",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Consistent across several studies, with a large effect on a nutrient the fruit is measured to contain",
+        "But small: 14 to 167 people, and the dose study had no control group and gave doses in a fixed order",
+        "Zespri funded or co-funded most of these studies",
+        "A blood level, not a health outcome"
+      ],
+      "summary": "In 15 young men with below-average vitamin C, gold kiwifruit (about 80 mg of vitamin C each) raised plasma vitamin C from 38 µmol/L to 50 with half a kiwifruit a day, 53 with one and 62 with two; three a day reached 68 at first, then 58. Urine vitamin C rose from two a day, suggesting the blood was close to saturated. Four weeks after stopping it was back to 42. In a trial of 167 young adults with low vitamin C, two SunGold a day brought plasma vitamin C to saturation within two weeks, as did a 250 mg tablet. In 20 adults with a history of severe respiratory infections, two SunGold a day for six weeks raised vitamin C above 60 µmol/L, but about one in five didn't reach 50, possibly because of smoking or higher body weight.",
+      "bottomLine": "In small studies, one to two gold kiwifruit a day raised low blood vitamin C to levels researchers call healthy or saturated, much as a vitamin C tablet did. Smokers and heavier people rose less, and the studies measured blood levels, not health.",
+      "studies": [
+        { "pmid": "25191543", "doi": "10.1017/jns.2012.15", "title": "Bioavailability of vitamin C from kiwifruit in non-smoking males: determination of 'healthy' and 'optimal' intakes.", "year": 2012, "studyType": "observational", "n": 15 },
+        { "pmid": "32971991", "doi": "10.3390/nu12092898", "title": "KiwiC for Vitality: Results of a Randomized Placebo-Controlled Trial Testing the Effects of Kiwifruit or Vitamin C Tablets on Vitality in Adults with Low Vitamin C Levels.", "year": 2020, "studyType": "rct", "n": 167 },
+        { "pmid": "38539806", "doi": "10.3390/antiox13030272", "title": "SunGold Kiwifruit Consumption Restores Adequate to Optimal Vitamin C Status in People with a History of Severe Respiratory Infections.", "year": 2024, "studyType": "observational", "n": 20 }
+      ]
+    },
+    {
+      "outcome": "Mood and vitality",
+      "population": "Young adults with low vitamin C, and adults with mild to moderate mood disturbance, eating two SunGold kiwifruit a day",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Two small trials; the larger was reanalysed after a published comment that it mixed random and non-random allocation, and its corrected title no longer calls it randomised",
+        "Self-reported mood: the kiwifruit groups knew what they were eating (the comparison was a tablet or usual diet)",
+        "The larger trial was funded by Zespri",
+        "Results weakened when adjusted for other factors in the smartphone analysis"
+      ],
+      "summary": "In a trial of 167 young adults with low vitamin C, two SunGold kiwifruit a day for 4 weeks lowered fatigue and improved well-being after two weeks compared with placebo, with a trend for mood; a 250 mg vitamin C tablet improved well-being, and mood and fatigue only in those with consistently low vitamin C. A later analysis of daily smartphone surveys found kiwifruit improved vitality and mood within days, but the effects weakened after adjusting for other factors. A published comment said the trial mixed random and non-random allocation, and a correction removed 'randomized' from its title. In a 2025 crossover trial of 26 adults with mild to moderate mood disturbance, without blinding, four weeks of two SunGold a day lowered mood disturbance scores by 65% compared with usual diet.",
+      "bottomLine": "Two small trials found better self-reported mood and vitality with two gold kiwifruit a day. People knew they were eating kiwifruit, one trial's randomisation was questioned, and the evidence is very weak.",
+      "studies": [
+        { "pmid": "32971991", "doi": "10.3390/nu12092898", "title": "KiwiC for Vitality: Results of a Randomized Placebo-Controlled Trial Testing the Effects of Kiwifruit or Vitamin C Tablets on Vitality in Adults with Low Vitamin C Levels.", "year": 2020, "studyType": "rct", "n": 167 },
+        { "pmid": "36235715", "doi": "10.3390/nu14194062", "title": "Mixed Random and Nonrandom Allocation, and Group Randomization Have Been Mislabeled and Misanalysed, Necessitating Reanalysis. Comment on Conner et al. KiwiC for Vitality: Results of a Randomized Placebo-Controlled Trial Testing the Effects of Kiwifruit or Vitamin C Tablets on Vitality in Adults with Low Vitamin C Levels. Nutrients 2020, 12, 2898.", "year": 2022, "studyType": "review" },
+        { "pmid": "38073290", "doi": "10.1017/s0007114523002787", "title": "Smartphone survey data reveal the timecourse of changes in mood outcomes following vitamin C or kiwifruit intervention in adults with low vitamin C.", "year": 2024, "studyType": "rct", "n": 155 },
+        { "pmid": "40284237", "doi": "10.3390/nu17081375", "title": "SunGold Kiwifruit and Psychological Health (GoKiPH): A Randomised Controlled Crossover Trial.", "year": 2025, "studyType": "rct", "n": 26 }
+      ]
+    },
+    {
+      "outcome": "Sleep",
+      "population": "Adults with self-reported sleep problems, elite athletes and students with insomnia symptoms, eating two kiwifruit an hour before bed",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The two studies with good news had no control group (24 adults; 15 athletes), so expectation and time could explain the changes",
+        "The athletes' study used only questionnaires and diaries",
+        "The only controlled trial found (74 students, kiwifruit vs pear) found no difference in sleep measured by a wrist device; it isn't in Europe PMC and was read only as described in a later paper"
+      ],
+      "summary": "In a 2011 study without a control group, 24 adults in Taiwan with sleep problems ate two kiwifruit an hour before bed for 4 weeks; total sleep time measured by a wrist device rose by 13.4% and sleep efficiency by 5.41%, and time to fall asleep fell by 35.4%. In 15 elite athletes, also without a control group, the same amount for 4 weeks went with better sleep quality scores and longer self-reported sleep. In a 2017 trial in 74 students with insomnia symptoms, 130 g of kiwifruit or of pear an hour before bed for 4 weeks gave no difference in sleep measured by a wrist device, though the kiwifruit group rated their sleep quality and daytime function better (as described in the athletes' paper).",
+      "bottomLine": "Studies without a control group found longer sleep after two kiwifruit before bed, but the one controlled trial, against pear, found no difference in sleep measured by a wrist device. The evidence is very weak.",
+      "studies": [
+        { "pmid": "21669584", "title": "Effect of kiwifruit consumption on sleep quality in adults with sleep problems.", "year": 2011, "studyType": "observational", "n": 24 },
+        { "pmid": "37242157", "doi": "10.3390/nu15102274", "title": "The Impact of Kiwifruit Consumption on the Sleep and Recovery of Elite Athletes.", "year": 2023, "studyType": "observational", "n": 15 },
+        { "doi": "10.1007/s41105-017-0095-9", "title": "The effects of kiwi fruit consumption in students with chronic insomnia symptoms: a randomized controlled trial", "year": 2017, "studyType": "rct", "n": 74 }
+      ]
+    },
+    {
+      "outcome": "Iron status with an iron-fortified breakfast",
+      "population": "Women aged 18 to 44 with low iron stores (ferritin 25 µg/L or less), in New Zealand",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "A single randomised trial",
+        "The kiwifruit was eaten with a cereal fortified with iron; it isn't known whether the effect holds for other meals",
+        "20 of 89 women weren't in the final analysis",
+        "Unblinded (kiwifruit vs banana); the abstract doesn't say who funded it"
+      ],
+      "summary": "In a 16-week trial, 89 women with low iron stores ate an iron-fortified breakfast cereal (16 mg of iron) with milk and either two gold kiwifruit (164 mg of vitamin C) or one banana every day. In the 69 analysed, median ferritin rose by 10.0 µg/L in the kiwifruit group against 1.0 µg/L in the banana group, and soluble transferrin receptor, another iron marker, fell more. The authors linked it to the vitamin C and the carotenoids lutein and zeaxanthin, which can help iron absorption.",
+      "bottomLine": "In one trial in women with low iron stores, two gold kiwifruit eaten with an iron-fortified breakfast cereal raised ferritin more than a banana did over 16 weeks. It is a single trial, tied to a fortified meal.",
+      "studies": [
+        { "pmid": "20727238", "doi": "10.1017/s0007114510003144", "title": "Gold kiwifruit consumed with an iron-fortified breakfast cereal meal improves iron status in women with low iron stores: a 16-week randomised controlled trial.", "year": 2011, "studyType": "rct", "n": 89 }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Bowel movements in meta-analyses of kiwifruit trials",
+      "caption": "Average difference in bowel movements a week, with 95% confidence intervals. The first two bars compare whole kiwifruit with psyllium, a fibre supplement that itself works, so 0 would mean 'as good as psyllium'. The last two are capsules, powders and extracts, a different product from the fruit. An interval that crosses 0 could be chance. The 2025 guideline rated the evidence low.",
+      "scale": "linear",
+      "unit": "bowel movements a week",
+      "reference": { "value": 0, "label": "No difference" },
+      "items": [
+        { "label": "Kiwifruit vs psyllium (3 trials, 192 people)", "value": 0.36, "low": 0.24, "high": 0.48, "note": "2024 meta-analysis; all bowel movements" },
+        { "label": "Kiwifruit vs psyllium (2022 review)", "value": 1.01, "low": -0.02, "high": 2.04, "note": "Spontaneous bowel movements" },
+        { "label": "Kiwifruit extracts vs placebo", "value": 1.36, "low": -0.44, "high": 3.16, "note": "2022 meta-analysis; spontaneous bowel movements" },
+        { "label": "Kiwifruit supplements vs control (3 trials)", "value": 0.24, "low": -0.32, "high": 0.8, "note": "2023 meta-analysis; capsules and sachets" }
+      ],
+      "sources": [
+        { "pmid": "37905980", "doi": "10.1111/apt.17782", "title": "Systematic review and meta-analysis: Foods, drinks and diets and their effect on chronic constipation in adults.", "year": 2024, "studyType": "meta-analysis", "n": 1714 },
+        { "pmid": "36247043", "doi": "10.1155/2022/7596920", "title": "Kiwifruit and Kiwifruit Extracts for Treatment of Constipation: A Systematic Review and Meta-Analysis.", "year": 2022, "studyType": "meta-analysis", "n": 399 },
+        { "pmid": "37243443", "doi": "10.1111/nmo.14613", "title": "The effect of food, vitamin, or mineral supplements on chronic constipation in adults: A systematic review and meta-analysis of randomized controlled trials.", "year": 2023, "studyType": "meta-analysis", "n": 787 },
+        { "pmid": "41081381", "doi": "10.1111/nmo.70173", "title": "British Dietetic Association Guidelines for the Dietary Management of Chronic Constipation in Adults.", "year": 2025, "studyType": "guideline" }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Blood vitamin C with more gold kiwifruit a day",
+      "caption": "Average plasma vitamin C in 15 young men with below-average levels, given half, one, two and then three gold kiwifruit a day (about 80 mg of vitamin C each) for 4 to 6 weeks each, in that order. The line marks 50 µmol/L, which the study called a healthy level; it called 70 saturating. There was no control group, and Zespri co-funded the study.",
+      "scale": "linear",
+      "unit": "µmol/L",
+      "reference": { "value": 50, "label": "'Healthy' level in the study (50 µmol/L)" },
+      "items": [
+        { "label": "At the start", "value": 38 },
+        { "label": "Half a kiwifruit a day", "value": 50, "note": "Highest, by week 4" },
+        { "label": "1 a day", "value": 53, "note": "After 6 weeks" },
+        { "label": "2 a day", "value": 62, "note": "After 6 weeks" },
+        { "label": "3 a day, at first", "value": 68, "note": "Highest" },
+        { "label": "3 a day, after 4 weeks", "value": 58, "note": "Very variable" },
+        { "label": "4 weeks after stopping", "value": 42 }
+      ],
+      "sources": [
+        { "pmid": "25191543", "doi": "10.1017/jns.2012.15", "title": "Bioavailability of vitamin C from kiwifruit in non-smoking males: determination of 'healthy' and 'optimal' intakes.", "year": 2012, "studyType": "observational", "n": 15 }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "How kiwifruit is thought to act in the gut",
+      "caption": "A hypothesis put together from a review, an MRI study and lab studies, not a proven chain. The MRI study was in 14 healthy people over 3 days; the actinidin step comes from lab digestion models, and its effect in people hasn't been shown. Zespri funded or co-funded these studies.",
+      "steps": [
+        { "label": "Fibre that holds water", "text": "Kiwifruit fibre swells and holds more water than wheat bran, sugar beet or apple fibre, a 2018 review reported. Two green kiwifruit gave about 6 g of fibre in a large trial." },
+        { "label": "More water in the bowel", "text": "In an MRI study of 14 healthy adults, two kiwifruit twice a day for 3 days left more water in the small bowel and a larger colon than a control drink, with 1.46 vs 1.14 stools a day and softer stools." },
+        { "label": "Gut bacteria ferment it", "text": "Bacteria in the colon ferment kiwifruit fibre, which the review lists as another likely part of the effect, with changes in the bacteria and what they make." },
+        { "label": "Actinidin breaks down protein", "text": "Green kiwifruit holds actinidin, an enzyme that broke down proteins faster in lab digestion models, more with green than with SunGold. Whether this helps digestion in people isn't known." }
+      ],
+      "sources": [
+        { "pmid": "29470689", "doi": "10.1007/s00394-018-1627-z", "title": "The nutritional and health attributes of kiwifruit: a review.", "year": 2018, "studyType": "review" },
+        { "pmid": "30706488", "doi": "10.1111/apt.15127", "title": "Mechanisms underlying effects of kiwifruit on intestinal function shown by MRI in healthy volunteers.", "year": 2019, "studyType": "rct", "n": 14 },
+        { "pmid": "36537785", "doi": "10.14309/ajg.0000000000002124", "title": "Consumption of 2 Green Kiwifruits Daily Improves Constipation and Abdominal Comfort-Results of an International Multicenter Randomized Controlled Trial.", "year": 2023, "studyType": "rct", "n": 184 },
+        { "pmid": "36140865", "doi": "10.3390/foods11182739", "title": "Actinidin in Green and SunGold Kiwifruit Improves Digestion of Alternative Proteins-An In Vitro Investigation.", "year": 2022, "studyType": "in vitro" }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Kiwifruit allergy, or allergy to latex or some pollens",
+      "note": "Kiwifruit allergy was first described in 1981 and ranges from itching and swelling in the mouth (oral allergy syndrome) to life-threatening anaphylaxis. It can cross-react with latex, pollens and other fruits, and severe reactions were reported more often in children than in adults. Actinidin, the enzyme in green kiwifruit, is its main allergen. Trials left out people with kiwifruit or latex allergy. If you react to kiwifruit, latex or pollen, talk to your doctor or an allergist."
+    },
+    {
+      "with": "Warfarin or other blood thinners",
+      "note": "Two trials found kiwifruit lowered how readily platelets clump in lab tests of blood: by 18% with two or three a day for 28 days in healthy volunteers, and by 15% with three a day for 8 weeks in male smokers. No study tested people taking blood thinners, and none showed bleeding, so the evidence for an interaction is weak and indirect. Kiwifruit also contains vitamin K (40.3 µg per 100 g in green, 6.1 µg in SunGold, US food table), which the UK table doesn't measure. If you take a blood thinner, talk to your doctor before eating much more kiwifruit than usual.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Kidney disease",
+      "note": "The UK food table lists 289 mg of potassium per 100 g of green kiwifruit. The constipation trials left out people with significant kidney disease. If you have been told to limit potassium, talk to your doctor or renal dietitian about kiwifruit.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "In trials kiwifruit caused few side effects: in the US trial, side effects were least common with kiwifruit and most common with psyllium, and the largest trial reported no significant adverse events. Kiwifruit capsule extracts may have more minor side effects than placebo (risk ratio 4.58, 95% CI 0.79 to 26.4), which could be chance.",
+    "Kiwifruit is not a treatment for high blood pressure, iron deficiency or sleep problems. Anything clearly out of range in your results is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "Most trials lasted 4 to 8 weeks. Nothing is known about effects over years, and no trial measured heart attacks, strokes or deaths.",
+    "Much of the research was funded by Zespri, which markets New Zealand kiwifruit, or done by researchers with ties to it; several abstracts don't say who paid. Independent trials are fewer.",
+    "Green and gold kiwifruit differ in fibre, vitamin C, actinidin and vitamin K, and trials used different kinds, so a result for one kind may not hold for the other.",
+    "It isn't known which parts of the fruit explain the gut effects: fibre, actinidin, other compounds, or all together. The UK table measures fibre and vitamin C but not actinidin, carotenoids or other compounds, and a food has thousands of compounds no table tracks.",
+    "Sleep has been tested mostly without control groups; the only controlled trial found didn't show a difference in measured sleep.",
+    "Kiwifruit capsules, powders and extracts are a different product; trials of them don't show what the fruit does, and the fruit's trials don't show what they do."
+  ],
+  "sources": [
+    { "pmid": "29470689", "doi": "10.1007/s00394-018-1627-z", "title": "The nutritional and health attributes of kiwifruit: a review.", "year": 2018, "studyType": "review" },
+    { "pmid": "23394980", "doi": "10.1016/b978-0-12-394294-4.00002-x", "title": "Kiwifruit: the wild and the cultivated plants.", "year": 2013, "studyType": "review" },
+    { "pmid": "37793579", "doi": "10.1016/j.jep.2023.117222", "title": "The genus Actinidia Lindl. (Actinidiaceae): A comprehensive review on its ethnobotany, phytochemistry, and pharmacological properties.", "year": 2024, "studyType": "review" },
+    { "pmid": "36140865", "doi": "10.3390/foods11182739", "title": "Actinidin in Green and SunGold Kiwifruit Improves Digestion of Alternative Proteins-An In Vitro Investigation.", "year": 2022, "studyType": "in vitro" },
+    { "pmid": "32443433", "doi": "10.3390/nu12051453", "title": "The Effects on Immune Function and Digestive Health of Consuming the Skin and Flesh of Zespri SunGold Kiwifruit (Actinidia Chinensis var. Chinensis 'Zesy002') in Healthy and IBS-Constipated Individuals.", "year": 2020, "studyType": "rct", "n": 38 },
+    { "pmid": "33336949", "doi": "10.1111/1541-4337.12426", "title": "A Comprehensive Review on Kiwifruit Allergy: Pathogenesis, Diagnosis, Management, and Potential Modification of Allergens Through Processing.", "year": 2019, "studyType": "review" },
+    { "pmid": "14675467", "doi": "10.1046/j.0905-6157.2003.00095.x", "title": "Kiwi fruit allergy: a review.", "year": 2003, "studyType": "review" },
+    { "pmid": "37447357", "doi": "10.3390/nu15133030", "title": "Kiwifruit's Allergy in Children: What Do We Know?", "year": 2023, "studyType": "review" },
+    { "pmid": "15370099", "doi": "10.1080/09537100410001710290", "title": "Effects of kiwi fruit consumption on platelet aggregation and plasma lipids in healthy human volunteers.", "year": 2004, "studyType": "rct" },
+    { "pmid": "22258209", "doi": "10.1038/jhh.2011.116", "title": "Kiwifruit decreases blood pressure and whole-blood platelet aggregation in male smokers.", "year": 2013, "studyType": "rct", "n": 102 },
+    { "pmid": "36537785", "doi": "10.14309/ajg.0000000000002124", "title": "Consumption of 2 Green Kiwifruits Daily Improves Constipation and Abdominal Comfort-Results of an International Multicenter Randomized Controlled Trial.", "year": 2023, "studyType": "rct", "n": 184 },
+    { "pmid": "34074830", "doi": "10.14309/ajg.0000000000001149", "title": "Exploratory Comparative Effectiveness Trial of Green Kiwifruit, Psyllium, or Prunes in US Patients With Chronic Constipation.", "year": 2021, "studyType": "rct", "n": 79 },
+    { "pmid": "36247043", "doi": "10.1155/2022/7596920", "title": "Kiwifruit and Kiwifruit Extracts for Treatment of Constipation: A Systematic Review and Meta-Analysis.", "year": 2022, "studyType": "meta-analysis", "n": 399 },
+    { "pmid": "41081381", "doi": "10.1111/nmo.70173", "title": "British Dietetic Association Guidelines for the Dietary Management of Chronic Constipation in Adults.", "year": 2025, "studyType": "guideline" },
+    { "pmid": "35266507", "doi": "10.1093/advances/nmac025", "title": "Habitual Green Kiwifruit Consumption Is Associated with a Reduction in Upper Gastrointestinal Symptoms: A Systematic Scoping Review.", "year": 2022, "studyType": "review", "n": 661 },
+    { "pmid": "21669584", "title": "Effect of kiwifruit consumption on sleep quality in adults with sleep problems.", "year": 2011, "studyType": "observational", "n": 24 },
+    { "pmid": "25191543", "doi": "10.1017/jns.2012.15", "title": "Bioavailability of vitamin C from kiwifruit in non-smoking males: determination of 'healthy' and 'optimal' intakes.", "year": 2012, "studyType": "observational", "n": 15 }
+  ]
+}

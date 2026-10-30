@@ -1,0 +1,1138 @@
+{
+ "topic": "wholefood-green_tea",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "mortality": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Drinking more green tea (the drink, not extracts)",
+    "comparison": "Drinking less or none",
+    "outcome": "Death from any cause"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40525136",
+     "fits": "partly",
+     "reason": "Reports all-cause mortality, but for tea in general with no separate green tea analysis, and only in people with diabetes."
+    },
+    {
+     "pmid": "38938012",
+     "fits": "partly",
+     "reason": "Pools cohorts on all-cause mortality, but for tea in general; the abstract reports no separate green tea analysis."
+    },
+    {
+     "pmid": "32073596",
+     "fits": "partly",
+     "reason": "Healthy adults and all-cause mortality match, but it analyses tea in general rather than green tea on its own."
+    },
+    {
+     "pmid": "34034384",
+     "fits": "partly",
+     "reason": "Covers tea in general, not green tea separately, and reports only cardiovascular death, not death from any cause."
+    },
+    {
+     "pmid": "26202661",
+     "fits": "yes",
+     "reason": "Pools cohort studies with a separate green tea analysis of all-cause mortality, comparing highest and lowest intake and per extra cup."
+    },
+    {
+     "pmid": "25354990",
+     "fits": "partly",
+     "reason": "Pools cohorts on total mortality, but for tea in general; the abstract reports no separate green tea analysis."
+    }
+   ]
+  },
+  "cardiovascular": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Drinking more green tea (the drink, not extracts)",
+    "comparison": "Drinking less or none",
+    "outcome": "Heart disease or stroke"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40525136",
+     "fits": "partly",
+     "reason": "Tea (type not specified) and CVD outcomes, but only in people with diabetes; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "38938012",
+     "fits": "partly",
+     "reason": "Tea in general and CVD mortality in prospective cohorts; green tea is not analysed separately."
+    },
+    {
+     "pmid": "38161525",
+     "fits": "yes",
+     "reason": "Systematic review of green tea consumption and cardiovascular outcomes in general populations."
+    },
+    {
+     "pmid": "32073596",
+     "fits": "partly",
+     "reason": "Tea (black and green) and CVD events, stroke and mortality in healthy adults; no separate green tea analysis is reported."
+    },
+    {
+     "pmid": "34034384",
+     "fits": "partly",
+     "reason": "Daily tea intake and CVD mortality; tea type is not separated, so green tea is not analysed on its own."
+    },
+    {
+     "pmid": "25354990",
+     "fits": "partly",
+     "reason": "Tea in general and CHD, stroke and cardiac death in cohorts; green tea is not analysed separately."
+    },
+    {
+     "pmid": "34396859",
+     "fits": "partly",
+     "reason": "Umbrella review of tea in general and CVD outcomes; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "41152040",
+     "fits": "no",
+     "reason": "Looks at black tea, not green tea, and coronary heart disease."
+    },
+    {
+     "pmid": "40881917",
+     "fits": "no",
+     "reason": "Correction notice with no review content."
+    },
+    {
+     "pmid": "36849317",
+     "fits": "yes",
+     "reason": "Green tea consumption versus none and coronary heart disease risk in cohort studies."
+    },
+    {
+     "pmid": "36599267",
+     "fits": "yes",
+     "reason": "Green tea consumption versus none and stroke risk in cohort studies."
+    },
+    {
+     "pmid": "36505265",
+     "fits": "yes",
+     "reason": "Tea and coronary artery disease, with a separate green tea analysis that includes dose-response."
+    },
+    {
+     "pmid": "36704803",
+     "fits": "no",
+     "reason": "Green tea supplementation (mostly extracts) and risk factors such as lipids and blood pressure, not heart disease or stroke."
+    },
+    {
+     "pmid": "31943427",
+     "fits": "no",
+     "reason": "Hibiscus sour tea and risk factors, not green tea and heart disease or stroke."
+    },
+    {
+     "pmid": "26318390",
+     "fits": "yes",
+     "reason": "Green tea consumption versus none and CVD, cerebral infarction and intracerebral hemorrhage."
+    },
+    {
+     "pmid": "21248184",
+     "fits": "yes",
+     "reason": "Includes a separate green tea analysis against coronary artery disease risk in observational studies."
+    },
+    {
+     "pmid": "26024546",
+     "fits": "no",
+     "reason": "Tea and blood pressure in people with hypertension; the outcome is not heart disease or stroke."
+    },
+    {
+     "pmid": "22843186",
+     "fits": "partly",
+     "reason": "Tea in general and stroke risk; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "11549554",
+     "fits": "partly",
+     "reason": "Tea in general and stroke, MI and CHD; green tea is not analysed separately."
+    },
+    {
+     "pmid": "19228856",
+     "fits": "partly",
+     "reason": "Green and black tea pooled against stroke risk; no separate green tea estimate is reported."
+    },
+    {
+     "pmid": "23780706",
+     "fits": "partly",
+     "reason": "Green tea RCTs in healthy or high-risk adults, analysed apart from black tea, but no trial reported heart disease or stroke events; results are only blood pressure and lipids."
+    }
+   ]
+  },
+  "cancer": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Drinking more green tea",
+    "comparison": "Drinking less or none",
+    "outcome": "New cancers or cancer deaths"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40643840",
+     "fits": "no",
+     "reason": "Population is cancer patients and the outcome is survival or progression; tea is pooled with coffee and green tea is not analysed on its own."
+    },
+    {
+     "pmid": "38938012",
+     "fits": "partly",
+     "reason": "Cancer mortality in prospective cohorts matches, but the exposure is tea in general and green tea is not analysed on its own."
+    },
+    {
+     "pmid": "32118296",
+     "fits": "yes",
+     "reason": "Reviews green tea consumption against cancer incidence and mortality in trials and observational studies, though the trials used extract."
+    },
+    {
+     "pmid": "26202661",
+     "fits": "yes",
+     "reason": "Pools cohorts with a separate highest vs lowest green tea analysis for all-cancer mortality."
+    },
+    {
+     "pmid": "19588362",
+     "fits": "yes",
+     "reason": "Systematically reviews green tea consumption in relation to cancer incidence and mortality across cancer types."
+    },
+    {
+     "pmid": "14987318",
+     "fits": "partly",
+     "reason": "Green tea consumption matches, but the outcome is limited to gastrointestinal cancers and precancerous lesions."
+    },
+    {
+     "pmid": "36036958",
+     "fits": "partly",
+     "reason": "Green tea intake vs no intake matches, but liver cancer is the only cancer outcome."
+    },
+    {
+     "pmid": "25207625",
+     "fits": "partly",
+     "reason": "Tea in general with a tea-type subgroup; the outcome is limited to pancreatic cancer."
+    },
+    {
+     "pmid": "40832777",
+     "fits": "yes",
+     "reason": "Pools cohorts and RCTs of green tea intake vs controls for cancer risk, with a separate green tea estimate."
+    },
+    {
+     "pmid": "41059289",
+     "fits": "no",
+     "reason": "Animal studies of green tea extracts and polyphenols measuring tumour growth, not human intake and cancer incidence."
+    },
+    {
+     "pmid": "37653503",
+     "fits": "partly",
+     "reason": "Tea in general, with green tea not analysed on its own, and the outcome is limited to colorectal cancer."
+    },
+    {
+     "pmid": "37038314",
+     "fits": "partly",
+     "reason": "Green tea intake is analysed separately, but the outcome is limited to hepatocellular carcinoma."
+    },
+    {
+     "pmid": "34818954",
+     "fits": "no",
+     "reason": "The exposure is tea drinking temperature (hot tea), not drinking more vs less green tea."
+    },
+    {
+     "pmid": "33744644",
+     "fits": "partly",
+     "reason": "Dose-response for green tea intake, but the outcome is limited to esophageal cancer."
+    },
+    {
+     "pmid": "36678274",
+     "fits": "partly",
+     "reason": "Green tea is a subgroup, but the population is women and the outcome is gynecologic cancers only."
+    },
+    {
+     "pmid": "33002099",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts with separate green tea analyses for cancer incidence across many sites."
+    },
+    {
+     "pmid": "31277115",
+     "fits": "partly",
+     "reason": "Green tea consumption matches, but the outcome is limited to breast cancer in case-control studies."
+    },
+    {
+     "pmid": "32856842",
+     "fits": "partly",
+     "reason": "Tea in general, with green tea not analysed on its own, and the outcome is limited to nasopharyngeal cancer."
+    },
+    {
+     "pmid": "32911881",
+     "fits": "partly",
+     "reason": "Green tea consumption in cohorts matches, but the population is women and the outcome is stomach cancer only."
+    },
+    {
+     "pmid": "35479756",
+     "fits": "no",
+     "reason": "The exposure is hot tea temperature, not the amount of green tea consumed."
+    },
+    {
+     "pmid": "32078065",
+     "fits": "partly",
+     "reason": "Looks at tea in general and colorectal cancer risk; the abstract does not report green tea analysed on its own."
+    },
+    {
+     "pmid": "34311801",
+     "fits": "partly",
+     "reason": "Combines coffee and tea, only in women, for breast cancer; tea type subgroups are mentioned but green tea results are not clearly reported."
+    },
+    {
+     "pmid": "31274008",
+     "fits": "yes",
+     "reason": "Pools studies of green tea drinking and new oesophageal cancers in adults, comparing higher with lower intake."
+    },
+    {
+     "pmid": "30513889",
+     "fits": "yes",
+     "reason": "Pools cohort and case-control studies of green tea drinking and new breast cancers in women."
+    },
+    {
+     "pmid": "28353571",
+     "fits": "yes",
+     "reason": "Dose-response pooling of observational studies of green tea cups per day and new prostate cancers; also includes catechin trials."
+    },
+    {
+     "pmid": "28095030",
+     "fits": "yes",
+     "reason": "Pools studies comparing high green tea drinking with none for new liver cancers, with dose-response."
+    },
+    {
+     "pmid": "32667980",
+     "fits": "partly",
+     "reason": "Umbrella review of tea in general across cancer types; green tea is not reported on its own."
+    },
+    {
+     "pmid": "31959020",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of green tea drinking and new breast cancers, highest versus lowest intake."
+    },
+    {
+     "pmid": "29876987",
+     "fits": "yes",
+     "reason": "Pools case-control and cohort studies of highest versus lowest green tea intake and breast cancer risk."
+    },
+    {
+     "pmid": "33016141",
+     "fits": "partly",
+     "reason": "Tea in general and endometrial cancer, mostly black tea studies; no separate green tea analysis is reported."
+    },
+    {
+     "pmid": "31700812",
+     "fits": "yes",
+     "reason": "Pools tea studies on lung cancer and reports green tea separately, including a dose analysis."
+    },
+    {
+     "pmid": "29579174",
+     "fits": "yes",
+     "reason": "Non-herbal tea and ovarian cancer, with a separate pooled green tea subgroup versus low or no intake."
+    },
+    {
+     "pmid": "26138307",
+     "fits": "yes",
+     "reason": "Pools highest versus lowest green tea intake and dose-response for new endometrial cancers."
+    },
+    {
+     "pmid": "28980522",
+     "fits": "yes",
+     "reason": "Dose-response meta-analysis of cohort and case-control studies of green tea intake and new gastric cancers."
+    },
+    {
+     "pmid": "30220294",
+     "fits": "partly",
+     "reason": "Title covers tea in general and breast cancer; no abstract, so a separate green tea analysis cannot be confirmed."
+    },
+    {
+     "pmid": "28454105",
+     "fits": "partly",
+     "reason": "Tea in general versus none for biliary tract cancer; green tea is not analysed on its own in the abstract."
+    },
+    {
+     "pmid": "25502726",
+     "fits": "partly",
+     "reason": "Tea in general and coffee for laryngeal cancer; green tea is not analysed separately."
+    },
+    {
+     "pmid": "25353660",
+     "fits": "yes",
+     "reason": "Pools case-control and cohort studies of green tea intake, high versus low and per cup, for new pancreatic cancers."
+    },
+    {
+     "pmid": "28454102",
+     "fits": "yes",
+     "reason": "Tea and colorectal cancer meta-analysis with a separate green tea subgroup and dose-response analysis."
+    },
+    {
+     "pmid": "31577096",
+     "fits": "partly",
+     "reason": "Trials of concentrated green tea catechin extract, not the drink, versus placebo for prostate cancer in men with precancerous lesions."
+    },
+    {
+     "pmid": "26412579",
+     "fits": "partly",
+     "reason": "Pools cohort studies of green tea drinking versus none or lowest intake, but covers only liver cancer in Asian adults."
+    },
+    {
+     "pmid": "28287319",
+     "fits": "partly",
+     "reason": "Reviews green tea consumption and prostate cancer prevention, but covers only one cancer site and also includes treatment outcomes."
+    },
+    {
+     "pmid": "28167914",
+     "fits": "partly",
+     "reason": "Includes a separate green tea analysis of highest versus lowest intake, but the outcome is limited to bladder cancer."
+    },
+    {
+     "pmid": "30876465",
+     "fits": "partly",
+     "reason": "Pools tea versus lower intake for brain cancer only; green tea is not analysed separately from other teas."
+    },
+    {
+     "pmid": "24389399",
+     "fits": "partly",
+     "reason": "Has a green tea subgroup for highest versus lowest intake, but the outcome is limited to oral cancer."
+    },
+    {
+     "pmid": "25996185",
+     "fits": "partly",
+     "reason": "Cohort pooling of tea and endometrial cancer only; green tea was explicitly not analysed separately."
+    },
+    {
+     "pmid": "25370683",
+     "fits": "partly",
+     "reason": "Pools prospective studies of tea and cancer incidence at many sites; analyses are mainly of tea overall, with tea type subgroups not clearly reported for green tea."
+    },
+    {
+     "pmid": "30572470",
+     "fits": "partly",
+     "reason": "Pools tea intake and oral cancer only, with tea type subgroups, and is based on case-control studies only."
+    },
+    {
+     "pmid": "23858521",
+     "fits": "partly",
+     "reason": "Pools green tea drinking versus less or none, but the outcome is limited to ovarian cancer."
+    },
+    {
+     "pmid": "31790152",
+     "fits": "partly",
+     "reason": "Systematically reviews green tea and liver cancer, but covers only one cancer site in the Japanese population."
+    },
+    {
+     "pmid": "28445129",
+     "fits": "partly",
+     "reason": "Pools tea consumption and ovarian cancer only; green tea is not analysed separately."
+    },
+    {
+     "pmid": "23368908",
+     "fits": "partly",
+     "reason": "Pools highest versus non or lowest green tea intake separately, but the outcome is limited to oesophageal cancer."
+    },
+    {
+     "pmid": "23909723",
+     "fits": "partly",
+     "reason": "Pools green tea consumption versus none or least, but the outcome is limited to oesophageal cancer."
+    },
+    {
+     "pmid": "23170950",
+     "fits": "partly",
+     "reason": "Pools green tea drinkers versus non-drinkers, but the outcome is limited to oesophageal cancer."
+    },
+    {
+     "pmid": "23052791",
+     "fits": "partly",
+     "reason": "Includes a green tea subgroup of highest versus lowest intake, but the outcome is limited to bladder cancer."
+    },
+    {
+     "pmid": "23353620",
+     "fits": "partly",
+     "reason": "Includes a separate green tea analysis of high versus low intake, but the outcome is limited to bladder cancer."
+    },
+    {
+     "pmid": "24528523",
+     "fits": "partly",
+     "reason": "Includes a green tea subgroup of highest versus non or lowest intake, but the outcome is limited to prostate cancer."
+    },
+    {
+     "pmid": "25363316",
+     "fits": "partly",
+     "reason": "Pools tea and oral, pharyngeal and laryngeal cancer only; green tea is not analysed separately."
+    },
+    {
+     "pmid": "21667398",
+     "fits": "partly",
+     "reason": "Pools green tea separately as highest versus non or lowest intake, but the outcome is limited to prostate cancer."
+    },
+    {
+     "pmid": "26208825",
+     "fits": "partly",
+     "reason": "Title only: tea and gallbladder cancer, a single site, with no indication that green tea is analysed separately."
+    },
+    {
+     "pmid": "21403523",
+     "fits": "yes",
+     "reason": "Pools studies following people over time and case-control studies of tea and liver cancer, with a separate pooled analysis of green tea in the general population."
+    },
+    {
+     "pmid": "25077380",
+     "fits": "no",
+     "reason": "Looks at black tea, not green tea, and breast cancer risk."
+    },
+    {
+     "pmid": "25194612",
+     "fits": "yes",
+     "reason": "Tea and lung cancer review that includes a separate pooled estimate for green tea drinking and new lung cancers."
+    },
+    {
+     "pmid": "19437116",
+     "fits": "yes",
+     "reason": "Pools studies of green tea drinking and new breast cancers; a recurrence analysis in patients is also reported."
+    },
+    {
+     "pmid": "24858717",
+     "fits": "partly",
+     "reason": "Looks at tea in general and pancreatic cancer; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "33755622",
+     "fits": "yes",
+     "reason": "Summary of a Cochrane review on green tea for cancer prevention; the abstract gives no details, so the judgement rests on the title."
+    },
+    {
+     "pmid": "18973231",
+     "fits": "yes",
+     "reason": "Pools case-control and cohort studies comparing the highest and lowest green tea drinking for stomach cancer risk."
+    },
+    {
+     "pmid": "19128856",
+     "fits": "yes",
+     "reason": "Pools studies of green tea drinking, highest versus lowest and per two cups a day, and lung cancer risk."
+    },
+    {
+     "pmid": "21191454",
+     "fits": "yes",
+     "reason": "Pools observational studies of highest versus no or lowest green tea drinking and stomach cancer risk."
+    },
+    {
+     "pmid": "21218135",
+     "fits": "no",
+     "reason": "A methods commentary on a meta-analysis with no abstract, not a systematic review itself."
+    },
+    {
+     "pmid": "22964413",
+     "fits": "yes",
+     "reason": "Dose-response analysis of observational studies of green tea drinking and lung cancer risk."
+    },
+    {
+     "pmid": "22994721",
+     "fits": "yes",
+     "reason": "Pools case-control studies of high versus low green tea drinking and colorectal cancer risk."
+    },
+    {
+     "pmid": "18364341",
+     "fits": "yes",
+     "reason": "Pools case-control and cohort studies of green tea drinking and gastric cancer risk."
+    },
+    {
+     "pmid": "15911927",
+     "fits": "yes",
+     "reason": "Pools observational studies of green tea drinking and new breast cancers; recurrence in patients is also analysed."
+    },
+    {
+     "pmid": "26550420",
+     "fits": "partly",
+     "reason": "Looks at tea in general and thyroid cancer; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "24636229",
+     "fits": "partly",
+     "reason": "Looks at tea and five cancers in studies following people over time; only a black tea subgroup is reported, with no separate green tea result."
+    },
+    {
+     "pmid": "24460331",
+     "fits": "partly",
+     "reason": "Looks at tea in general in Chinese women only and breast cancer; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "22371426",
+     "fits": "yes",
+     "reason": "Systematic review of cohort and case-control studies of green tea drinking and gastric cancer in the Japanese general population."
+    },
+    {
+     "pmid": "24521891",
+     "fits": "partly",
+     "reason": "Looks at tea in general in Chinese people and nasopharynx cancer; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "23163842",
+     "fits": "yes",
+     "reason": "Pools studies following people over time of green tea drinking, highest versus lowest and per cup a day, and colorectal cancer."
+    },
+    {
+     "pmid": "22967345",
+     "fits": "partly",
+     "reason": "Tea in general rather than green tea specifically, and only lung cancer in a Chinese population."
+    },
+    {
+     "pmid": "22920932",
+     "fits": "partly",
+     "reason": "Includes subgroups by tea type, but the outcome is only bladder cancer rather than cancer overall."
+    },
+    {
+     "pmid": "26137276",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, and only gallbladder cancer."
+    },
+    {
+     "pmid": "23679258",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, and only renal cell carcinoma."
+    },
+    {
+     "pmid": "25471334",
+     "fits": "no",
+     "reason": "About green tea catechins interacting with breast cancer endocrine treatment, not drinking tea and new cancers."
+    },
+    {
+     "pmid": "27388462",
+     "fits": "partly",
+     "reason": "Tea in general against only non-melanoma skin cancer; green tea evidence was too sparse to analyse."
+    },
+    {
+     "pmid": "25550896",
+     "fits": "partly",
+     "reason": "Has a green tea subgroup, but the outcome is only prostate cancer."
+    },
+    {
+     "pmid": "22440851",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, in women only, and only ovarian cancer."
+    },
+    {
+     "pmid": "16311246",
+     "fits": "partly",
+     "reason": "Pools green tea drinking against none or the lowest intake, but only breast cancer in women."
+    },
+    {
+     "pmid": "25316242",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, and only pancreatic cancer."
+    },
+    {
+     "pmid": "25733642",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, in women only, and only endometrial cancer."
+    },
+    {
+     "pmid": "22532034",
+     "fits": "no",
+     "reason": "Includes only phase I trials of green tea extract, a surrogate study and preclinical work; no studies of tea drinking and new lung cancers."
+    },
+    {
+     "pmid": "25664021",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, and only laryngeal cancer."
+    },
+    {
+     "pmid": "24961728",
+     "fits": "no",
+     "reason": "A comment on a meta-analysis with no abstract, so it is not a systematic review."
+    },
+    {
+     "pmid": "24931920",
+     "fits": "no",
+     "reason": "A comment on a meta-analysis with no abstract, so it is not a systematic review."
+    },
+    {
+     "pmid": "19909454",
+     "fits": "yes",
+     "reason": "Systematically reviews green tea drinking and the risk of cancers in human studies."
+    },
+    {
+     "pmid": "22564714",
+     "fits": "partly",
+     "reason": "Includes epidemiological studies of green tea intake, but only ovarian cancer in women."
+    },
+    {
+     "pmid": "16638787",
+     "fits": "partly",
+     "reason": "Pools green tea drinking against none or the lowest intake, but only colorectal cancer."
+    },
+    {
+     "pmid": "18940008",
+     "fits": "yes",
+     "reason": "Systematically reviews trials and cohort and case-control studies of green tea and cancer prevention."
+    },
+    {
+     "pmid": "11369742",
+     "fits": "partly",
+     "reason": "Tea in general with no green tea analysis, and only urinary tract cancer."
+    },
+    {
+     "pmid": "20490647",
+     "fits": "partly",
+     "reason": "Meta-analysis of green tea intake vs none, but the outcome is limited to ovarian cancer in women rather than cancer overall."
+    },
+    {
+     "pmid": "21800977",
+     "fits": "partly",
+     "reason": "Systematic review of tea intake and ovarian cancer only; green tea is not analysed separately from tea in general."
+    },
+    {
+     "pmid": "19766982",
+     "fits": "partly",
+     "reason": "Meta-analysis of tea and endometrial cancer only, with a green tea subgroup; the outcome is limited to one cancer in women."
+    },
+    {
+     "pmid": "21595018",
+     "fits": "partly",
+     "reason": "Meta-analyses of green tea intake, but the outcomes are limited to ovarian and endometrial cancers in women."
+    },
+    {
+     "pmid": "17905170",
+     "fits": "partly",
+     "reason": "Meta-analysis of tea of all types and ovarian cancer only; green tea is not analysed on its own."
+    }
+   ]
+  },
+  "weight": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Green tea as a drink (reviews of extracts count as partly)",
+    "comparison": "Placebo, water or no tea",
+    "outcome": "Body weight or body fat"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "35504067",
+     "fits": "partly",
+     "reason": "Green tea vs placebo with body weight as an outcome, but only in women with PCOS and given as a supplement."
+    },
+    {
+     "pmid": "35014893",
+     "fits": "no",
+     "reason": "The outcome is blood lipids, not body weight or fat, and animal studies are included."
+    },
+    {
+     "pmid": "38034724",
+     "fits": "partly",
+     "reason": "Uses a green tea catechin supplement, not the drink; mainly about blood pressure and lipids, with waist circumference the only body fat outcome."
+    },
+    {
+     "pmid": "24742977",
+     "fits": "no",
+     "reason": "A review protocol whose outcome is blood pressure, not body weight or fat."
+    },
+    {
+     "pmid": "39350601",
+     "fits": "partly",
+     "reason": "Weight and fat vs exercise plus placebo in overweight adults, but uses green tea catechin supplements rather than the drink."
+    },
+    {
+     "pmid": "42770106",
+     "fits": "no",
+     "reason": "The outcomes are obesity-related hormones, not body weight or fat, and only postmenopausal women are studied."
+    },
+    {
+     "pmid": "39165287",
+     "fits": "partly",
+     "reason": "Herbal tea vs placebo on weight in women with PCOS; green tea is not analysed on its own."
+    },
+    {
+     "pmid": "34966355",
+     "fits": "partly",
+     "reason": "Includes a green tea subgroup on body weight vs placebo, but only in women with PCOS and as tea supplements."
+    },
+    {
+     "pmid": "40326418",
+     "fits": "partly",
+     "reason": "Green tea supplementation in adults on weight and fat; the form is a supplement, not specified as the drink."
+    },
+    {
+     "pmid": "39497467",
+     "fits": "yes",
+     "reason": "Pooled trials of drinking green tea vs placebo or water on body weight in adults."
+    },
+    {
+     "pmid": "37300478",
+     "fits": "partly",
+     "reason": "Green tea supplements given in mg doses on weight in overweight women; extract form and only women."
+    },
+    {
+     "pmid": "38031409",
+     "fits": "partly",
+     "reason": "Green tea extract supplements rather than the drink, on body weight and body fat."
+    },
+    {
+     "pmid": "33207344",
+     "fits": "partly",
+     "reason": "Green tea or extract on weight and body fat, but only in people with type 2 diabetes."
+    },
+    {
+     "pmid": "32372444",
+     "fits": "partly",
+     "reason": "Green tea supplements and extracts on weight in obese adults, not the drink itself."
+    },
+    {
+     "pmid": "28627214",
+     "fits": "yes",
+     "reason": "Systematic review of daily green tea consumption on body weight and fat in humans."
+    },
+    {
+     "pmid": "24558988",
+     "fits": "yes",
+     "reason": "Pooled RCTs of green tea or its extracts vs placebo on weight and fat mass in healthy overweight adults."
+    },
+    {
+     "pmid": "19906797",
+     "fits": "partly",
+     "reason": "Green tea catechin supplements rather than the drink, on weight and waist measures."
+    },
+    {
+     "pmid": "19597519",
+     "fits": "partly",
+     "reason": "Catechin or EGCG-caffeine supplements rather than green tea as a drink, on weight loss."
+    },
+    {
+     "pmid": "23235664",
+     "fits": "yes",
+     "reason": "Pooled RCTs of green tea preparations vs control on weight in overweight or obese adults."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Green tea as a drink (reviews mixing extract capsules count as partly)",
+    "comparison": "Placebo, water or no tea",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "36689359",
+     "fits": "partly",
+     "reason": "Healthy adults, RCTs and blood pressure match, but the review calls it green tea 'supplementation', lists EGCG as a search term, and may include extracts."
+    },
+    {
+     "pmid": "40497293",
+     "fits": "partly",
+     "reason": "Adults, placebo or control and blood pressure match, but the review covers green tea 'supplementation', which likely mixes extracts with the drink."
+    },
+    {
+     "pmid": "32507441",
+     "fits": "yes",
+     "reason": "RCTs of green or black tea as a drink in adults with high blood pressure, measuring blood pressure, with green tea analysed as its own category."
+    },
+    {
+     "pmid": "25079225",
+     "fits": "no",
+     "reason": "Studies black tea only, not green tea."
+    },
+    {
+     "pmid": "26024546",
+     "fits": "partly",
+     "reason": "Green and black tea are pooled in adults with high or borderline-high blood pressure, and green tea is not analysed on its own in the abstract."
+    },
+    {
+     "pmid": "42694065",
+     "fits": "partly",
+     "reason": "Observational studies of tea in general, analysed by tea type; the outcome is a hypertension diagnosis, not blood pressure readings."
+    },
+    {
+     "pmid": "38804341",
+     "fits": "no",
+     "reason": "Covers pregnant women and tea in general, with pregnancy hypertension disorders as the outcome."
+    },
+    {
+     "pmid": "38034724",
+     "fits": "partly",
+     "reason": "Tests green tea catechin supplements, not the drink, and only in overweight or obese people."
+    },
+    {
+     "pmid": "35750605",
+     "fits": "partly",
+     "reason": "Umbrella review of earlier meta-analyses that mix green tea drinks with supplements."
+    },
+    {
+     "pmid": "32028419",
+     "fits": "partly",
+     "reason": "Blood pressure RCTs of green tea 'supplementation', which likely mix extracts with the drink."
+    },
+    {
+     "pmid": "24861099",
+     "fits": "partly",
+     "reason": "Green tea RCTs on blood pressure that include extract studies, with extracts as a subgroup."
+    },
+    {
+     "pmid": "24675010",
+     "fits": "partly",
+     "reason": "Green tea RCTs on blood pressure, framed as a dietary supplement, so they likely mix extracts with the drink."
+    },
+    {
+     "pmid": "25176280",
+     "fits": "partly",
+     "reason": "Green tea RCTs on blood pressure that likely mix polyphenol or extract products with the drink."
+    },
+    {
+     "pmid": "25479028",
+     "fits": "partly",
+     "reason": "Pools green tea with green tea extract against placebo, and only in overweight or obese adults."
+    },
+    {
+     "pmid": "25137341",
+     "fits": "yes",
+     "reason": "RCTs of tea intake on blood pressure, with a separate green tea analysis compared with controls."
+    },
+    {
+     "pmid": "17420419",
+     "fits": "partly",
+     "reason": "Black and green tea are pooled together, and green tea is not analysed on its own."
+    },
+    {
+     "pmid": "24742977",
+     "fits": "no",
+     "reason": "This is a protocol for a planned review, with no studies reviewed yet."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Green tea as a drink (reviews mixing extract capsules count as partly)",
+    "comparison": "Placebo, water or no tea",
+    "outcome": "Fasting glucose, HbA1c or insulin"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "42228178",
+     "fits": "partly",
+     "reason": "Green tea vs placebo with a blood glucose outcome, but limited to postmenopausal women and includes extracts."
+    },
+    {
+     "pmid": "38894639",
+     "fits": "no",
+     "reason": "Reviews herbal teas that are not Camellia sinensis, so not green tea."
+    },
+    {
+     "pmid": "36704803",
+     "fits": "partly",
+     "reason": "Green tea supplementation, mainly extract, with glycemic markers among cardiovascular risk factors; not the drink alone."
+    },
+    {
+     "pmid": "33216644",
+     "fits": "no",
+     "reason": "The outcome is adiponectin, not fasting glucose, HbA1c or insulin."
+    },
+    {
+     "pmid": "31943427",
+     "fits": "no",
+     "reason": "Reviews sour tea (hibiscus), not green tea."
+    },
+    {
+     "pmid": "41073208",
+     "fits": "partly",
+     "reason": "Green tea with fasting glucose and HbA1c outcomes, but limited to people with metabolic syndrome; doses suggest extracts."
+    },
+    {
+     "pmid": "35750605",
+     "fits": "partly",
+     "reason": "Umbrella review of green tea and glucose that mixes the drink with supplements and pools meta-analyses, not studies."
+    },
+    {
+     "pmid": "39809182",
+     "fits": "partly",
+     "reason": "Green tea RCTs with fasting glucose, HbA1c and insulin resistance, but limited to type 2 diabetes."
+    },
+    {
+     "pmid": "33285391",
+     "fits": "partly",
+     "reason": "Green tea with glucose, insulin and HbA1c outcomes, but limited to type 2 diabetes and framed as supplementary intake."
+    },
+    {
+     "pmid": "32670385",
+     "fits": "yes",
+     "reason": "RCTs of green tea consumption in adults reporting fasting glucose, fasting insulin and HbA1c."
+    },
+    {
+     "pmid": "39165287",
+     "fits": "no",
+     "reason": "Reviews herbal tea in women with PCOS; green tea is not identified or analysed."
+    },
+    {
+     "pmid": "30591664",
+     "fits": "yes",
+     "reason": "Network meta-analysis compares green tea with placebo or water on fasting blood glucose in RCTs."
+    },
+    {
+     "pmid": "31519281",
+     "fits": "no",
+     "reason": "The outcomes are CRP and oxidative stress, not glucose, HbA1c or insulin."
+    },
+    {
+     "pmid": "34966355",
+     "fits": "partly",
+     "reason": "A green tea subgroup vs placebo reports fasting glucose and insulin, but only in women with PCOS and using tea supplements."
+    },
+    {
+     "pmid": "28868822",
+     "fits": "partly",
+     "reason": "Mixes green tea and extract vs placebo on glycemic outcomes, and is limited to prediabetes or type 2 diabetes."
+    },
+    {
+     "pmid": "31852132",
+     "fits": "no",
+     "reason": "A protocol for herbal tea in type 2 diabetes, not green tea."
+    },
+    {
+     "pmid": "24206044",
+     "fits": "partly",
+     "reason": "Green tea or extract vs placebo in people at risk of type 2 diabetes on glucose, insulin and HbA1c; mixes extracts."
+    },
+    {
+     "pmid": "32105058",
+     "fits": "partly",
+     "reason": "Narrative review of leaf tea RCTs and preclinical studies on glucose metabolism; no pooled analysis and no defined comparison."
+    },
+    {
+     "pmid": "23803878",
+     "fits": "partly",
+     "reason": "Green tea and green tea extract RCTs on fasting glucose, HbA1c and insulin; mixes extracts with the drink."
+    },
+    {
+     "pmid": "25052177",
+     "fits": "no",
+     "reason": "The outcome is type 2 diabetes incidence, not fasting glucose, HbA1c or insulin."
+    },
+    {
+     "pmid": "23426037",
+     "fits": "partly",
+     "reason": "Adults, RCTs and outcomes (fasting glucose, insulin, HbA1c) match, but it pools green tea catechin preparations rather than green tea as a drink."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Green tea as a drink (reviews mixing extract capsules count as partly)",
+    "comparison": "Placebo, water or no tea",
+    "outcome": "LDL or total cholesterol"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "33188386",
+     "fits": "partly",
+     "reason": "Tea drinks vs placebo on TC/LDL in healthy and at-risk adults, but green and black tea are pooled with no separate green tea analysis reported."
+    },
+    {
+     "pmid": "34396859",
+     "fits": "partly",
+     "reason": "Umbrella review of brewed tea and blood lipids, but it covers tea in general rather than green tea on its own."
+    },
+    {
+     "pmid": "38894639",
+     "fits": "no",
+     "reason": "Herbal (non-Camellia sinensis) teas in type 2 diabetes, not green tea."
+    },
+    {
+     "pmid": "36704803",
+     "fits": "partly",
+     "reason": "Green tea RCTs on TC/LDL, but it centres on supplementation and largely pools green tea extract (GTE) rather than the drink."
+    },
+    {
+     "pmid": "31943427",
+     "fits": "no",
+     "reason": "Sour tea (Hibiscus sabdariffa), not green tea."
+    },
+    {
+     "pmid": "35014893",
+     "fits": "partly",
+     "reason": "Green tea and lipids in obese people only, mixing extract with tea and including animal studies."
+    },
+    {
+     "pmid": "26318390",
+     "fits": "no",
+     "reason": "Green tea drinking, but the outcomes are CVD and stroke events, not LDL or total cholesterol."
+    },
+    {
+     "pmid": "24972454",
+     "fits": "no",
+     "reason": "Black tea, not green tea."
+    },
+    {
+     "pmid": "25237889",
+     "fits": "no",
+     "reason": "Black tea, not green tea."
+    },
+    {
+     "pmid": "23780706",
+     "fits": "partly",
+     "reason": "Green tea analysed separately vs placebo/no intervention on TC/LDL in healthy/at-risk adults, but tea extracts are eligible and mixed in."
+    },
+    {
+     "pmid": "41073208",
+     "fits": "partly",
+     "reason": "Green tea RCTs on TC/LDL, but only in people with metabolic syndrome, and dosing suggests extracts are included."
+    },
+    {
+     "pmid": "32578328",
+     "fits": "partly",
+     "reason": "Tea RCTs with a green tea LDL finding, but limited to metabolic syndrome outcomes and populations."
+    },
+    {
+     "pmid": "38034724",
+     "fits": "partly",
+     "reason": "Lipid outcomes in overweight/obese adults, but the intervention is a green tea catechin supplement, not the drink."
+    },
+    {
+     "pmid": "24675010",
+     "fits": "yes",
+     "reason": "RCTs of green tea (Camellia sinensis) vs control pooled for total and LDL cholesterol in adults."
+    },
+    {
+     "pmid": "37082776",
+     "fits": "partly",
+     "reason": "Green tea RCTs on TC/LDL, but limited to overweight and obese women, a narrower population."
+    },
+    {
+     "pmid": "32434539",
+     "fits": "yes",
+     "reason": "RCTs of green tea consumption vs control pooled for TC and LDL in normal-weight and overweight adults."
+    },
+    {
+     "pmid": "32289742",
+     "fits": "partly",
+     "reason": "Lipid outcomes, but uses green tea extract rather than the drink and is limited to type 2 diabetes."
+    },
+    {
+     "pmid": "28636182",
+     "fits": "yes",
+     "reason": "RCTs of green tea vs control pooled for TC and LDL in overweight/obese adults with a risk factor."
+    },
+    {
+     "pmid": "22027055",
+     "fits": "partly",
+     "reason": "TC/LDL vs control, but the intervention is green tea catechins (an extract), not the tea drink."
+    },
+    {
+     "pmid": "35750605",
+     "fits": "partly",
+     "reason": "Umbrella review of green tea and lipids, but it mixes green tea with its bioactive supplements."
+    },
+    {
+     "pmid": "21715508",
+     "fits": "partly",
+     "reason": "Adults, RCTs, total and LDL cholesterol match, but green tea drinks and extracts are pooled together, with no separate drink-only analysis reported."
+    },
+    {
+     "pmid": "27324590",
+     "fits": "partly",
+     "reason": "Healthy adults in RCTs with LDL cholesterol match, but the exposure is green tea EGCG given in measured doses rather than green tea as a drink."
+    }
+   ]
+  }
+ }
+}

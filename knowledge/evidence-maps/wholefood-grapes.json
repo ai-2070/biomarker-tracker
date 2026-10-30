@@ -1,0 +1,848 @@
+{
+ "topic": "wholefood-grapes",
+ "kind": "wholefood",
+ "wholeFoodId": "grapes",
+ "name": "grapes",
+ "builtAt": "2026-10-30",
+ "fetchedAt": "2026-10-30",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "diabetes": "((TITLE_ABS:grape OR TITLE_ABS:grapes OR TITLE_ABS:raisin OR TITLE_ABS:raisins OR TITLE_ABS:\"grape juice\" OR TITLE_ABS:\"Concord grape\" OR TITLE_ABS:\"Vitis vinifera\") AND (TITLE_ABS:diabetes OR TITLE_ABS:\"type 2 diabetes\")) AND SRC:MED",
+  "blood-pressure": "((TITLE_ABS:grape OR TITLE_ABS:grapes OR TITLE_ABS:raisin OR TITLE_ABS:raisins OR TITLE_ABS:\"grape juice\" OR TITLE_ABS:\"Concord grape\" OR TITLE_ABS:\"Vitis vinifera\") AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:hypertension OR TITLE_ABS:hypertensive)) AND SRC:MED",
+  "lipids": "((TITLE_ABS:grape OR TITLE_ABS:grapes OR TITLE_ABS:raisin OR TITLE_ABS:raisins OR TITLE_ABS:\"grape juice\" OR TITLE_ABS:\"Concord grape\" OR TITLE_ABS:\"Vitis vinifera\") AND (TITLE_ABS:cholesterol OR TITLE_ABS:\"lipid profile\" OR TITLE_ABS:lipids OR TITLE_ABS:triglycerides OR TITLE_ABS:LDL OR TITLE_ABS:HDL)) AND SRC:MED",
+  "vascular": "((TITLE_ABS:grape OR TITLE_ABS:grapes OR TITLE_ABS:raisin OR TITLE_ABS:raisins OR TITLE_ABS:\"grape juice\" OR TITLE_ABS:\"Concord grape\" OR TITLE_ABS:\"Vitis vinifera\") AND (TITLE_ABS:\"endothelial function\" OR TITLE_ABS:\"flow-mediated dilation\" OR TITLE_ABS:\"vascular function\" OR TITLE_ABS:\"arterial stiffness\")) AND SRC:MED",
+  "cognition": "((TITLE_ABS:grape OR TITLE_ABS:grapes OR TITLE_ABS:raisin OR TITLE_ABS:raisins OR TITLE_ABS:\"grape juice\" OR TITLE_ABS:\"Concord grape\" OR TITLE_ABS:\"Vitis vinifera\") AND (TITLE_ABS:cognitive OR TITLE_ABS:cognition OR TITLE_ABS:memory OR TITLE_ABS:dementia OR TITLE_ABS:alzheimer)) AND SRC:MED",
+  "sugar": "((TITLE_ABS:grape OR TITLE_ABS:grapes OR TITLE_ABS:raisin OR TITLE_ABS:raisins OR TITLE_ABS:\"grape juice\" OR TITLE_ABS:\"Concord grape\" OR TITLE_ABS:\"Vitis vinifera\") AND (TITLE_ABS:insulin OR TITLE_ABS:glucose OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic OR TITLE_ABS:HbA1c OR TITLE_ABS:\"insulin resistance\")) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating grapes comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 2353,
+  "retrieved": 213,
+  "animal": 14,
+  "retracted": 0,
+  "reviews": 43,
+  "trials": 156,
+  "guidelines": 0
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "diabetes",
+   "label": "Type 2 diabetes",
+   "finding": "Type 2 diabetes",
+   "counts": {
+    "all": 369,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 6,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35028521",
+     "doi": "10.1136/bmjnph-2020-000218",
+     "title": "Fruit and vegetable consumption and the risk of type 2 diabetes: a systematic review and dose-response meta-analysis of prospective studies",
+     "year": 2021,
+     "firstAuthor": "Halvorsen RE",
+     "journal": "BMJ nutrition, prevention & health",
+     "citedBy": 88,
+     "n": 20,
+     "why": "One of the newest systematic reviews on this finding (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23990623"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "35028521",
+      "doi": "10.1136/bmjnph-2020-000218",
+      "title": "Fruit and vegetable consumption and the risk of type 2 diabetes: a systematic review and dose-response meta-analysis of prospective studies",
+      "year": 2021,
+      "firstAuthor": "Halvorsen RE",
+      "journal": "BMJ nutrition, prevention & health",
+      "citedBy": 88,
+      "n": 20,
+      "why": "One of the newest systematic reviews on this finding (2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults without diabetes",
+     "intervention": "Eating more grapes or raisins",
+     "comparison": "Eating fewer",
+     "outcome": "New type 2 diabetes"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "23990623",
+      "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Analyses grapes and raisins separately for new type 2 diabetes, but pools only three cohorts of US health professionals rather than reviewing studies."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "all": 303,
+    "reviews": 7,
+    "trialReviews": 2,
+    "trials": 26,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37482483",
+     "doi": "10.1016/j.numecd.2023.05.001",
+     "title": "The effect of whole grape products on blood pressure and vascular function: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2023,
+     "firstAuthor": "Ashoori M",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "37482483"
+    ],
+    "citedNotChosen": [
+     "20844075",
+     "22810991",
+     "24393750",
+     "25609549"
+    ],
+    "citedNotEligible": [
+     "20844075",
+     "22810991",
+     "24393750",
+     "25609549"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Grapes, raisins, 100% grape juice or whole-grape powder",
+     "comparison": "Placebo, other snacks or no grapes",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "26375022",
+      "title": "Effect of Grape Polyphenols on Blood Pressure: A Meta-Analysis of Randomized Controlled Trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Meta-analysis of RCTs on blood pressure, but the exposure is grape polyphenols, which may be extracts or supplements rather than the whole food."
+     }
+    ]
+   }
+  },
+  {
+   "id": "lipids",
+   "label": "Blood fats",
+   "finding": "Blood fats (LDL cholesterol, total cholesterol, triglycerides)",
+   "counts": {
+    "all": 692,
+    "reviews": 5,
+    "trialReviews": 3,
+    "trials": 25,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2000,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "31979098",
+     "31517353"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Grapes, raisins, 100% grape juice or whole-grape powder (reviews pooling seed extracts count as partly)",
+     "comparison": "Placebo or no grapes",
+     "outcome": "LDL or total cholesterol, or triglycerides"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 0,
+     "partly": 3,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "31979098",
+      "title": "Impact of Grape Products on Lipid Profile: A Meta-Analysis of Randomized Controlled Studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Lipid RCTs vs placebo match, but grape products, juice and extracts are pooled together, with no separate whole-grape analysis reported."
+     },
+     {
+      "pmid": "31517353",
+      "title": "Effects of grape products on blood lipids: a systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Adults, RCTs, TC/LDL/TG match, but grape products in any form are pooled, likely including extracts, with no whole-food analysis reported."
+     },
+     {
+      "pmid": "28145414",
+      "title": "Do grape polyphenols improve metabolic syndrome components? A systematic review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Reviews lipid outcomes, but the exposure is grape polyphenols in general, including extracts and wine-related products, not grapes themselves."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vascular",
+   "label": "Blood vessels",
+   "finding": "Blood vessel function (flow-mediated dilation)",
+   "counts": {
+    "all": 111,
+    "reviews": 4,
+    "trialReviews": 2,
+    "trials": 11,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37482483",
+     "doi": "10.1016/j.numecd.2023.05.001",
+     "title": "The effect of whole grape products on blood pressure and vascular function: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2023,
+     "firstAuthor": "Ashoori M",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 4,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "37482483"
+    ],
+    "citedNotChosen": [
+     "10477529",
+     "24061071",
+     "22810991"
+    ],
+    "citedNotEligible": [
+     "10477529",
+     "24061071",
+     "22810991"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Grapes, 100% grape juice or whole-grape powder",
+     "comparison": "Placebo or no grapes",
+     "outcome": "Flow-mediated dilation or artery stiffness"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "23894543",
+      "title": "The acute effects of grape polyphenols supplementation on endothelial function in adults: meta-analyses of controlled trials",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools FMD trials in adults versus controls, but the exposure is grape polyphenol supplementation rather than clearly the whole food or juice."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cognition",
+   "label": "Memory and thinking",
+   "finding": "Memory and thinking",
+   "counts": {
+    "all": 332,
+    "reviews": 1,
+    "trialReviews": 1,
+    "trials": 9,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "34041549",
+     "doi": "10.1093/nutrit/nuab025",
+     "title": "The effect of grape interventions on cognitive and mental performance in healthy participants and those with mild cognitive impairment: a systematic review of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Bird RJ",
+     "journal": "Nutrition reviews",
+     "citedBy": 15,
+     "why": "One of the newest systematic reviews on this finding (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "34041549"
+    ],
+    "citedNotChosen": [
+     "20028599",
+     "22468945",
+     "26864371",
+     "27856335",
+     "28429081"
+    ],
+    "citedNotEligible": [
+     "20028599",
+     "22468945",
+     "26864371",
+     "27856335",
+     "28429081"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, often older",
+     "intervention": "Grapes, 100% grape juice or whole-grape powder",
+     "comparison": "Placebo or no grapes",
+     "outcome": "Memory, thinking or mood"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "sugar",
+   "label": "Blood sugar",
+   "finding": "Blood sugar: after meals, fasting and HbA1c",
+   "counts": {
+    "all": 1150,
+    "reviews": 4,
+    "trialReviews": 2,
+    "trials": 22,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "19083424",
+     "23564595",
+     "24393750",
+     "25609549",
+     "33893683"
+    ],
+    "citedNotEligible": [
+     "19083424",
+     "23564595",
+     "24393750",
+     "25609549"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Grapes, raisins, 100% grape juice or whole-grape powder",
+     "comparison": "Other snacks, placebo or no grapes",
+     "outcome": "Blood sugar after meals, fasting glucose or HbA1c"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 0,
+     "partly": 2,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "33893683",
+      "title": "The effect of grapes/grape products on glycemic response: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Meta-analysis of RCTs in adults reporting fasting glucose and HbA1c, but it pools grapes with other grape products; whole-grape foods aren't shown analysed separately."
+     },
+     {
+      "pmid": "28145414",
+      "title": "Do grape polyphenols improve metabolic syndrome components? A systematic review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Reviews trials in adults with glycemia outcomes, but the exposure is grape polyphenols, including wine, not specifically grapes, juice or whole-grape powder."
+     }
+    ]
+   }
+  }
+ ]
+}

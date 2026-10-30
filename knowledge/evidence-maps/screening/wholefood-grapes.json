@@ -1,0 +1,132 @@
+{
+ "topic": "wholefood-grapes",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Grapes, raisins, 100% grape juice or whole-grape powder",
+    "comparison": "Placebo, other snacks or no grapes",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "37482483",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of whole grape products versus control on blood pressure, with a subgroup for whole forms (raisins, grape powder)."
+    },
+    {
+     "pmid": "26375022",
+     "fits": "partly",
+     "reason": "Meta-analysis of RCTs on blood pressure, but the exposure is grape polyphenols, which may be extracts or supplements rather than the whole food."
+    }
+   ]
+  },
+  "diabetes": {
+   "question": {
+    "population": "Adults without diabetes",
+    "intervention": "Eating more grapes or raisins",
+    "comparison": "Eating fewer",
+    "outcome": "New type 2 diabetes"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "35028521",
+     "fits": "yes",
+     "reason": "Meta-analysis of prospective cohorts on type 2 diabetes risk; grapes and raisins are reported as their own subtype analysis."
+    },
+    {
+     "pmid": "23990623",
+     "fits": "partly",
+     "reason": "Analyses grapes and raisins separately for new type 2 diabetes, but pools only three cohorts of US health professionals rather than reviewing studies."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Adults, often older",
+    "intervention": "Grapes, 100% grape juice or whole-grape powder",
+    "comparison": "Placebo or no grapes",
+    "outcome": "Memory, thinking or mood"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "34041549",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of grape interventions on cognition and mood in healthy adults and adults with MCI; the abstract doesn't say whether grape extracts were also included."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Grapes, raisins, 100% grape juice or whole-grape powder",
+    "comparison": "Other snacks, placebo or no grapes",
+    "outcome": "Blood sugar after meals, fasting glucose or HbA1c"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "28145414",
+     "fits": "partly",
+     "reason": "Reviews trials in adults with glycemia outcomes, but the exposure is grape polyphenols, including wine, not specifically grapes, juice or whole-grape powder."
+    },
+    {
+     "pmid": "33893683",
+     "fits": "partly",
+     "reason": "Meta-analysis of RCTs in adults reporting fasting glucose and HbA1c, but it pools grapes with other grape products; whole-grape foods aren't shown analysed separately."
+    }
+   ]
+  },
+  "lipids": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Grapes, raisins, 100% grape juice or whole-grape powder (reviews pooling seed extracts count as partly)",
+    "comparison": "Placebo or no grapes",
+    "outcome": "LDL or total cholesterol, or triglycerides"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "31979098",
+     "fits": "partly",
+     "reason": "Lipid RCTs vs placebo match, but grape products, juice and extracts are pooled together, with no separate whole-grape analysis reported."
+    },
+    {
+     "pmid": "28145414",
+     "fits": "partly",
+     "reason": "Reviews lipid outcomes, but the exposure is grape polyphenols in general, including extracts and wine-related products, not grapes themselves."
+    },
+    {
+     "pmid": "31517353",
+     "fits": "partly",
+     "reason": "Adults, RCTs, TC/LDL/TG match, but grape products in any form are pooled, likely including extracts, with no whole-food analysis reported."
+    }
+   ]
+  },
+  "vascular": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Grapes, 100% grape juice or whole-grape powder",
+    "comparison": "Placebo or no grapes",
+    "outcome": "Flow-mediated dilation or artery stiffness"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "37482483",
+     "fits": "yes",
+     "reason": "Pooled RCTs of whole grape products such as raisins and grape powder versus control in adults, with endothelial function as an outcome."
+    },
+    {
+     "pmid": "23894543",
+     "fits": "partly",
+     "reason": "Pools FMD trials in adults versus controls, but the exposure is grape polyphenol supplementation rather than clearly the whole food or juice."
+    }
+   ]
+  }
+ }
+}

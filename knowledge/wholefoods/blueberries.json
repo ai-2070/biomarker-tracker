@@ -21,6 +21,68 @@
     "Measured in the UK food table (CoFID 2021, per 100 g of blueberries): 40 kcal, 9.1 g sugars, 1.5 g fibre, 6 mg vitamin C, 66 mg potassium and 0.94 mg vitamin E. Blueberries are low in vitamin C.",
     "Not shown for blueberries: vitamin K1 (the table has no measured value for them) and manganese (the table doesn't track it at all)."
   ],
+  "history": [
+    {
+      "who": "Cree of northern Manitoba, Canada (as explained by Cree knowledge keepers in a 2025 study)",
+      "use": "Blueberries as a food that keeps people well: the Cree word for blueberry, ininimina, was explained as \"the health of our people lies in those berries\"",
+      "modern": "partly",
+      "note": "Modern studies found some signs of benefit: in trials, arteries widened a little better, and in US cohorts people who ate more blueberries developed type 2 diabetes less often (a link, not proof). Effects on blood pressure, blood fats, blood sugar and memory were small or inconsistent.",
+      "sources": [
+        {
+          "pmid": "40003406",
+          "doi": "10.3390/ijerph22020181",
+          "title": "Cree Food Knowledge and Being Well.",
+          "year": 2025,
+          "studyType": "observational"
+        }
+      ]
+    },
+    {
+      "who": "Native Americans and other peoples (folk medicine, as gathered in a 2016 review)",
+      "use": "Leaves of blueberries and related berries against diabetes symptoms, colds and urinary tract inflammation; lowbush blueberry was used widely for diabetes symptoms",
+      "modern": "not tested",
+      "finding": "Blood sugar and insulin sensitivity",
+      "note": "Blueberry leaves have been tested only in the laboratory (on cells), not in people. The trials on this page used the berries, mostly as freeze-dried powder, and in most of them blood sugar didn't clearly change.",
+      "sources": [
+        {
+          "pmid": "27258314",
+          "doi": "10.3390/antiox5020017",
+          "title": "Berry Leaves: An Alternative Source of Bioactive Natural Products of Nutritional and Medicinal Value.",
+          "year": 2016,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Britain in the Second World War (a story about pilots and bilberry jam)",
+      "use": "Bilberry jam to see better at night. This story is about bilberry, a related European berry, not blueberry, and may have been a deliberate hoax or a superstition",
+      "modern": "partly",
+      "note": "A 2004 review of trials found that bilberry extract didn't improve night vision in healthy eyes. Two blueberry trials (72 and 59 people) found no better night vision or adjustment to the dark, only a faster recovery of sharp sight after a bright flash, which may not matter in everyday life.",
+      "sources": [
+        {
+          "pmid": "35847049",
+          "doi": "10.3389/fphar.2022.909914",
+          "title": "Bilberries: Curative and Miraculous - A Review on Bioactive Constituents and Clinical Research.",
+          "year": 2022,
+          "studyType": "review"
+        },
+        {
+          "pmid": "14711439",
+          "doi": "10.1016/j.survophthal.2003.10.006",
+          "title": "Anthocyanosides of Vaccinium myrtillus (bilberry) for night vision--a systematic review of placebo-controlled trials.",
+          "year": 2004,
+          "studyType": "review"
+        },
+        {
+          "pmid": "25335781",
+          "doi": "10.1021/jf503689c",
+          "title": "Blueberry effects on dark vision and recovery after photobleaching: placebo-controlled crossover studies.",
+          "year": 2014,
+          "studyType": "rct"
+        }
+      ]
+    }
+  ],
   "tableFoods": [
     {
       "id": "14-325",

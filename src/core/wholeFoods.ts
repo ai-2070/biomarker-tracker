@@ -10,8 +10,8 @@ import type { Citation, SafetyId } from "./types";
  * is cited, and nothing is a personal amount or instruction.
  */
 
-export type FoodGroup = "fruit" | "vegetables" | "oils and fats" | "herbs and spices" | "nuts and seeds" | "fish" | "legumes" | "grains" | "drinks" | "sweets";
-export const FOOD_GROUPS: readonly FoodGroup[] = ["fruit", "vegetables", "oils and fats", "herbs and spices", "nuts and seeds", "fish", "legumes", "grains", "drinks", "sweets"];
+export type FoodGroup = "fruit" | "vegetables" | "oils and fats" | "herbs and spices" | "nuts and seeds" | "fish" | "eggs and dairy" | "legumes" | "grains" | "drinks" | "sweets";
+export const FOOD_GROUPS: readonly FoodGroup[] = ["fruit", "vegetables", "oils and fats", "herbs and spices", "nuts and seeds", "fish", "eggs and dairy", "legumes", "grains", "drinks", "sweets"];
 
 export interface WholeFoodDef {
   id: string;
@@ -26,6 +26,12 @@ export interface WholeFoodDef {
    * them the food table measures and which it doesn't. Each point plain and cited in `sources`.
    */
   inIt: string[];
+  /**
+   * Then and now: what people in the past used the food for (Egyptian, Greek, Roman, Chinese, Ayurvedic
+   * physicians…), each set against what modern studies found. Traditional use tested the whole food over
+   * generations, so it can point at effects of compounds no table measures; it can also be wrong.
+   */
+  history?: HistoryUse[];
   /** Foods in the UK food table (CoFID ids) this page is about, with a labelled example portion for the measured nutrients. */
   tableFoods: { id: string; label: string; grams: number }[];
   /** What processing, storage or the form changes: extra virgin vs refined, juice vs whole fruit, fresh vs dried. */
@@ -40,6 +46,25 @@ export interface WholeFoodDef {
   cautions: string[];
   /** What isn't known yet, said plainly. */
   unknowns: string[];
+  sources: Citation[];
+}
+
+/** What modern studies say about a traditional use. */
+/** "harmful": the old use is documented to cause harm (honey for newborns, mad honey); the note says how. */
+export type ModernVerdict = "agrees" | "partly" | "not tested" | "disagrees" | "harmful";
+export const MODERN_VERDICTS: readonly ModernVerdict[] = ["agrees", "partly", "not tested", "disagrees", "harmful"];
+
+export interface HistoryUse {
+  /** Who and when: "Ancient Egypt (Ebers Papyrus, about 1550 BC)", "Ancient Greece (Hippocrates)". */
+  who: string;
+  /** What they used it for, plainly: "Honey on wounds and burns". */
+  use: string;
+  modern: ModernVerdict;
+  /** The finding on this page the verdict rests on (its `outcome` text), when there is one. */
+  finding?: string;
+  /** One or two sentences: what modern studies found, or that nobody has tested it. */
+  note: string;
+  /** Where the historical use is documented (history-of-medicine papers, reviews of traditional use). */
   sources: Citation[];
 }
 
@@ -58,6 +83,20 @@ export function validateWholeFoodDef(v: unknown): string[] {
   if (!strList(v.otherNames)) errs.push("otherNames must be a list of strings");
   if (!strList(v.inIt, 1)) errs.push("inIt needs at least one point");
   if (!strList(v.processing)) errs.push("processing must be a list of strings");
+  if (v.history !== undefined) {
+    if (!Array.isArray(v.history) || v.history.length === 0) errs.push("history, when given, needs at least one use");
+    else {
+      const outcomes = new Set(Array.isArray(v.findings) ? (v.findings as unknown[]).flatMap((f) => (isObj(f) && isStr(f.outcome) ? [f.outcome] : [])) : []);
+      (v.history as unknown[]).forEach((h, i) => {
+        const at = `history ${i + 1}`;
+        if (!isObj(h) || !isStr(h.who) || !isStr(h.use) || !isStr(h.note)) return void errs.push(`${at} needs who, use and note`);
+        if (!MODERN_VERDICTS.includes(h.modern as ModernVerdict)) errs.push(`${at} modern must be one of ${MODERN_VERDICTS.join(", ")}`);
+        if (h.finding !== undefined && !outcomes.has(String(h.finding))) errs.push(`${at} finding must be the outcome of a finding on this page`);
+        if ((h.modern === "agrees" || h.modern === "disagrees") && h.finding === undefined) errs.push(`${at}: "${h.modern}" needs the finding it rests on`);
+        errs.push(...citationErrors(h.sources, at));
+      });
+    }
+  }
   if (!Array.isArray(v.tableFoods) || !v.tableFoods.every((t) => isObj(t) && isStr(t.id) && isStr(t.label) && typeof t.grams === "number" && t.grams > 0 && t.grams <= 1000))
     errs.push("tableFoods need a CoFID id, a label and grams");
   if (!strList(v.markers)) errs.push("markers must be a list of marker ids");
@@ -79,6 +118,7 @@ export function wholeFoodText(f: WholeFoodDef): string[] {
     f.summary,
     f.whatStudiesDid,
     ...f.inIt,
+    ...(f.history ?? []).flatMap((h) => [h.use, h.note]),
     ...f.processing,
     ...f.findings.flatMap((x) => [x.outcome, x.population, x.summary, x.bottomLine ?? "", ...x.whyThisGrade]),
     ...f.visuals.flatMap((x) => [x.title, x.caption]),
@@ -97,6 +137,8 @@ export const wholeFoodPrescribes = (f: WholeFoodDef): string[] => wholeFoodText(
 export function wholeFoodFor(label: string, foods: readonly WholeFoodDef[]): WholeFoodDef | undefined {
   const words = (s: string) => ` ${s.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").replace(/[^\p{L}\p{N}]+/gu, " ").trim()} `;
   const item = words(label);
+  // "Egg-free diet", "No honey", "Sugar-free": about leaving the food out, not eating it.
+  if (/ (free|no|without|avoid|avoiding|less|cut|skip) /.test(item)) return undefined;
   const names = foods
     .flatMap((f) => [f.name, ...f.otherNames].map((n) => ({ f, n: words(n).trim() })))
     .filter((x) => x.n.length >= 3)

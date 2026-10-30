@@ -1,0 +1,677 @@
+{
+  "id": "eggs",
+  "name": "Eggs",
+  "group": "eggs and dairy",
+  "otherNames": ["Egg", "Chicken eggs", "Hen's eggs", "Egg yolk", "Egg white", "Boiled eggs", "Hard-boiled eggs", "Scrambled eggs", "Poached eggs", "Fried eggs", "Omelette", "Huevos", "Eier", "Tojás"],
+  "summary": "Chicken eggs: the white is mostly protein and water, and the yolk holds the fat, the dietary cholesterol, and most of the vitamins and other compounds (choline, lutein and zeaxanthin). In trials, eating more eggs raises LDL cholesterol a little. In large cohort studies, eating up to about an egg a day wasn't clearly linked with heart disease or death overall, but results differ between studies and regions, and some found higher risk, especially in people with type 2 diabetes. These studies show links, not causes.",
+  "inIt": [
+    "An egg is protein in the white and the yolk, plus fat in the yolk. The food table this app uses lists the white (boiled) with no fat at all and the yolk (boiled) with 32.6 g of fat per 100 g.",
+    "Eggs are a major source of dietary cholesterol. A review funded by the British Egg Industry Council gives 177 mg of cholesterol in a medium egg; the food table this app uses doesn't list cholesterol.",
+    "The yolk is rich in choline, mostly as phosphatidylcholine (lecithin): 285 mg per 100 g of egg in the same industry-funded review. Choline isn't in the food table this app uses.",
+    "The yolk holds lutein and zeaxanthin, yellow pigments (carotenoids) that collect in the centre of the retina. How much depends on what the hens are fed: in a French trial, standard eggs had 0.12 mg of lutein each and eggs from hens fed lutein 0.96 mg. Lutein and zeaxanthin aren't in the food table this app uses.",
+    "The food table does list protein, vitamin D, vitamin B12, selenium, iodine, retinol (vitamin A), folate, riboflavin and a small amount of the omega-3 fats EPA and DHA. In it, the vitamin D, the retinol and most of the vitamin B12, iron, zinc, iodine and selenium are in the yolk; the boiled white has no vitamin D or retinol.",
+    "Like every food, eggs hold compounds no food table tracks. Studies of people eating eggs include all of them; studies of single nutrients from eggs (choline or lutein capsules) don't."
+  ],
+  "history": [
+    {
+      "who": "Folk first aid (recorded in recent surveys in Turkey, England and Bangladesh)",
+      "use": "Raw egg or egg white spread on burns",
+      "modern": "not tested",
+      "note": "No trial we found has tested raw egg on burns, and nothing on this page covers it. The survey's authors note that the first aid backed by the literature is cool running water for 20 minutes within 3 hours of the burn, and call for research into the safety of traditional remedies.",
+      "sources": [
+        {
+          "pmid": "41131559",
+          "doi": "10.1186/s13104-025-07546-z",
+          "title": "First aid practices about wounds and burns in rural areas: an example from western Turkey.",
+          "year": 2025,
+          "studyType": "observational"
+        }
+      ]
+    },
+    {
+      "who": "Renaissance France (Ambroise Paré, 1537)",
+      "use": "A dressing of egg yolk, rose oil and turpentine on gunshot wounds, in place of boiling oil",
+      "modern": "not tested",
+      "note": "Paré ran out of boiling oil, and the next morning the soldiers given his mixture had less pain and swelling than those treated with the oil. That chance comparison mostly showed that boiling oil did harm; no trial has tested whether the egg yolk itself helped, and the findings on this page are about eating eggs.",
+      "sources": [
+        {
+          "pmid": "37746595",
+          "doi": "10.1097/as9.0000000000000299",
+          "title": "'Through and Through' History: The Management of Gunshot Wounds From the 14th Century to the Present.",
+          "year": 2023,
+          "studyType": "review"
+        },
+        {
+          "pmid": "39618666",
+          "doi": "10.7759/cureus.72717",
+          "title": "\"I Dressed Him, God Cured Him\": Ambroise Paré, the Father of Surgery.",
+          "year": 2024,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "United States, 1968 to 2015 (American Heart Association, later the Dietary Guidelines for Americans)",
+      "use": "Advice to eat less than 300 mg of dietary cholesterol a day and no more than three whole eggs a week, to protect the heart",
+      "modern": "partly",
+      "finding": "Heart disease and stroke",
+      "note": "The egg limit was dropped in 2002 and the cholesterol limit around 2015 (one history cited here is by a former director of the US egg industry's Egg Nutrition Center). Today's evidence is split: in trials eggs raise LDL cholesterol a little (about 5 to 8 mg/dL), but in large cohort studies up to about an egg a day wasn't clearly linked with heart disease or stroke, with some US studies finding a small higher risk.",
+      "sources": [
+        {
+          "pmid": "26506379",
+          "doi": "10.3390/nu7105429",
+          "title": "The Fifty Year Rehabilitation of the Egg.",
+          "year": 2015,
+          "studyType": "review"
+        },
+        {
+          "pmid": "31838890",
+          "doi": "10.1161/cir.0000000000000743",
+          "title": "Dietary Cholesterol and Cardiovascular Risk: A Science Advisory From the American Heart Association.",
+          "year": 2020,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "tableFoods": [{ "id": "12-940", "label": "1 medium egg, boiled (about 50 g)", "grams": 50 }],
+  "processing": [
+    "Yolk or white: the food table lists the boiled white with protein (13 g per 100 g) but no fat, vitamin D or retinol; the yolk holds the fat and most of the vitamins. Studies of egg whites or yolk-free egg substitutes test something different from whole eggs.",
+    "Cooking makes egg protein easier to digest. In 10 healthy volunteers, 35.10% of the protein in a raw egg meal escaped digestion in the small intestine, compared with 5.73% of the same meal cooked.",
+    "Cooking method changes the measured numbers a little: in the food table, 100 g of egg has 3.2 µg of vitamin D boiled and 1.9 µg fried in sunflower oil, and frying adds fat from the oil (15.7 g of fat per 100 g fried, 9.6 g boiled).",
+    "What the hens eat changes the egg. In the ALGOVUE trial, eggs from hens fed lutein and microalgae had 0.96 mg of lutein and 134.4 mg of DHA (an omega-3 fat) each, against 0.12 mg and 37.6 mg in standard eggs. In an 8-week winter trial in 55 adults, eggs from hens fed extra vitamin D kept blood vitamin D from falling, while it fell in the group eating 2 or fewer eggs a week.",
+    "Raw and lightly cooked eggs can carry Salmonella bacteria. In the UK, eggs with the British Lion mark come from flocks vaccinated against Salmonella under a code of practice, and UK advice counts them as very low risk even raw; other eggs are advised to be cooked until the white and yolk are solid (see 'Who should be careful').",
+    "Choline supplements and lutein capsules are different interventions: the findings on this page come from people eating eggs, and one trial found that a choline supplement raised TMAO while eggs with similar choline didn't."
+  ],
+  "whatStudiesDid": "Cohort studies asked people how often they ate eggs, in food questionnaires, and followed them for years: in three large US cohorts (Nurses' Health Studies and Health Professionals Follow-up Study) for up to 32 years with the questionnaire repeated every few years, comparing at least one egg a day with less than one a month; in the Lifetime Risk Pooling Project (six US cohorts, diet asked about and harmonised across studies) per extra half egg a day; in PURE (21 countries) 7 or more eggs a week against fewer than 1; in the China Kadoorie Biobank daily eaters (usually about 0.76 egg a day) against people who never or rarely ate eggs. Meta-analyses pooled these per extra egg a day. Trials gave people extra eggs on top of their usual diet or in a set diet: 640 mg a day of extra dietary cholesterol from eggs for 30 days (against a placebo with no cholesterol), 2 eggs a day 6 days a week against fewer than 2 eggs a week for 3 to 12 months in people with prediabetes or type 2 diabetes (DIABEGG), 6 eggs a week for 12 weeks, 2 and then 4 egg yolks a day for 5 weeks each, 1 egg a day for 90 days or 2 eggs a day for 4 months in the eye trials, and single breakfasts of 0 to 6 egg yolks or 4 hard-boiled eggs a day for 4 weeks in the TMAO trials.",
+  "markers": ["ldl", "hdl", "total_cholesterol", "triglycerides", "glucose", "hba1c", "crp_hs", "vitamin_d", "b12"],
+  "findings": [
+    {
+      "outcome": "Heart disease and stroke",
+      "population": "Adults without heart disease in long-term cohort studies in the US, Europe and Asia (meta-analyses of up to 3.6 million people)",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people chose how many eggs they ate, and egg eaters differ in other ways. In the US cohorts, people who ate more eggs had a higher BMI, used statins less, and ate more red meat, bacon, other processed meat, refined grains and sugar-sweetened drinks",
+        "Large studies disagree: the 2020 meta-analysis found no link per egg a day (0.98), the 2022 meta-analysis a small higher risk (1.04, at the edge of significance), and the Lifetime Risk Pooling Project a higher risk per half egg a day",
+        "Results vary between studies (heterogeneity 62% to 80%) and by region: no link in US or European cohorts in one meta-analysis, a higher risk in US cohorts in the other, and lower risk in Asian cohorts",
+        "Eggs were counted in food questionnaires, often with the foods eaten alongside them; how well studies separated eggs from those foods differs"
+      ],
+      "summary": "In three large US cohorts (215,618 people followed for up to 32 years), eating at least one egg a day wasn't linked with heart disease and stroke after accounting for updated lifestyle and the foods eaten with eggs (hazard ratio 0.93, 95% confidence interval 0.82 to 1.05, against less than one egg a month). In the same paper's meta-analysis (1,720,108 people), each extra egg a day wasn't linked with cardiovascular disease (relative risk 0.98, 0.93 to 1.03): 1.01 (0.96 to 1.06) in US cohorts, 1.05 (0.92 to 1.19) in European ones and 0.92 (0.85 to 0.99) in Asian ones. In contrast, the Lifetime Risk Pooling Project (29,615 US adults, median 17.5 years) found each extra half egg a day went with higher risk of cardiovascular disease (1.06, 1.03 to 1.10), and each extra 300 mg of dietary cholesterol a day too (1.17, 1.09 to 1.26); the egg link disappeared after adjusting for dietary cholesterol (0.99, 0.93 to 1.05), pointing to the cholesterol in eggs. The 2020 authors suggest that study lacked simultaneous control for foods such as red meat and for BMI. A 2022 meta-analysis (3,601,401 people) found 1.04 (1.00 to 1.08) per extra 50-g egg a day, 1.08 (1.02 to 1.14) in US cohorts and no link in Asian ones. In 461,213 Chinese adults, daily egg eaters had lower risk than non-eaters (0.89, 0.87 to 0.92), and PURE (146,011 people in 21 countries) found no link for 7 or more eggs a week (major cardiovascular disease 0.92, 0.83 to 1.01).",
+      "bottomLine": "Across large cohort studies, eating up to about an egg a day wasn't clearly linked with heart disease or stroke overall. Some US studies found a small higher risk, tied to the cholesterol in eggs; Asian studies found lower risk. These are links, not proof.",
+      "studies": [
+        {
+          "pmid": "32132002",
+          "doi": "10.1136/bmj.m513",
+          "title": "Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies, systematic review, and updated meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 1720108
+        },
+        {
+          "pmid": "30874756",
+          "doi": "10.1001/jama.2019.1572",
+          "title": "Associations of Dietary Cholesterol or Egg Consumption With Incident Cardiovascular Disease and Mortality.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 29615
+        },
+        {
+          "pmid": "35360933",
+          "doi": "10.1161/circulationaha.121.057642",
+          "title": "Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 3601401
+        },
+        {
+          "pmid": "29785957",
+          "doi": "10.1136/heartjnl-2017-312651",
+          "title": "Associations of egg consumption with cardiovascular disease in a cohort study of 0.5 million Chinese adults.",
+          "year": 2018,
+          "studyType": "observational",
+          "n": 461213
+        },
+        {
+          "pmid": "31965140",
+          "doi": "10.1093/ajcn/nqz348",
+          "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 177555
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause",
+      "population": "Adults in long-term cohort studies (meta-analysis of 33 cohorts, 2.2 million people), and international cohorts in 50 countries",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "The 2022 meta-analysis authors rated the certainty of their evidence low to moderate",
+        "Observational, with self-reported egg intake; people who eat more eggs may differ in diet and habits",
+        "Studies disagree: no link overall in two large analyses, but a small higher risk per egg in US-led analyses that also found it for dietary cholesterol"
+      ],
+      "summary": "A 2022 meta-analysis of 33 cohort studies (2,216,720 people, 232,408 deaths) found no link between the highest and lowest egg intakes and death from any cause (relative risk 1.02, 95% confidence interval 0.94 to 1.11), heart and blood vessel disease (1.04, 0.87 to 1.23) or stroke (0.81, 0.64 to 1.02), but a higher risk of cancer death (1.20, 1.04 to 1.39); per extra egg a week, risk of death from any cause was 2% higher and of cancer death 4% higher, and of stroke death 4% lower. The authors rated the certainty low to moderate. In PURE (146,011 people in 21 countries), eating 7 or more eggs a week wasn't linked with death (hazard ratio 1.04, 0.94 to 1.15, against fewer than 1 a week), nor in 31,544 people with vascular disease in two international trials (0.88, 0.62 to 1.24). In contrast, the US Lifetime Risk Pooling Project (29,615 adults) found each extra half egg a day went with higher risk of death (1.08, 1.04 to 1.11), and in 27,078 men in the ATBC study each extra 50-g egg a day went with a hazard ratio of 1.06 for death from any cause.",
+      "bottomLine": "In most large cohort studies, people who ate more eggs didn't die more often overall. Some analyses found a small higher risk, and one meta-analysis found more cancer deaths at the highest intakes. The evidence is low to moderate certainty.",
+      "studies": [
+        {
+          "pmid": "35396834",
+          "doi": "10.1093/advances/nmac040",
+          "title": "Egg Consumption and Risk of All-Cause and Cause-Specific Mortality: A Systematic Review and Dose-Response Meta-analysis of Prospective Studies.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 2216720
+        },
+        {
+          "pmid": "31965140",
+          "doi": "10.1093/ajcn/nqz348",
+          "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 177555
+        },
+        {
+          "pmid": "30874756",
+          "doi": "10.1001/jama.2019.1572",
+          "title": "Associations of Dietary Cholesterol or Egg Consumption With Incident Cardiovascular Disease and Mortality.",
+          "year": 2019,
+          "studyType": "observational",
+          "n": 29615
+        },
+        {
+          "pmid": "35360933",
+          "doi": "10.1161/circulationaha.121.057642",
+          "title": "Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 3601401
+        }
+      ]
+    },
+    {
+      "outcome": "Getting type 2 diabetes",
+      "population": "Adults without diabetes in cohort studies (meta-analyses of 16 cohorts, 589,559 people), in the US, Europe and Asia",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational, with self-reported egg intake",
+        "The results split by region: a higher risk in US studies, consistent between them, and none in European or Asian studies. The authors think differences in how eggs are eaten, and with what, may explain it, but this hasn't been tested",
+        "Overall, results vary a lot between studies (heterogeneity 70%)"
+      ],
+      "summary": "In three large US cohorts (213,798 people, 20,514 new cases of type 2 diabetes), each extra egg a day went with 14% higher risk (95% confidence interval 7% to 20%) after adjusting for updated BMI, lifestyle and diet. In the same paper's meta-analysis of 16 cohort studies (589,559 people), the pooled relative risk per egg a day was 1.07 (0.99 to 1.15) overall, but 1.18 (1.10 to 1.27) in US studies, 0.99 (0.85 to 1.15) in European ones and 0.82 (0.62 to 1.09) in Asian ones. An earlier meta-analysis with 39,610 Swedish men found the same split: per extra 3 eggs a week, 1.18 (1.13 to 1.24) in five US studies and 0.97 (0.90 to 1.05) in seven non-US studies, and no clear link in the Swedish men themselves. Both groups of authors suggest that egg-eating habits and the overall diet around eggs differ between populations.",
+      "bottomLine": "In US cohort studies, people who ate more eggs were more likely to develop type 2 diabetes; in European and Asian studies they weren't. Why isn't known: what eggs are eaten with may differ. These are links, not proof.",
+      "studies": [
+        {
+          "pmid": "32453379",
+          "doi": "10.1093/ajcn/nqaa115",
+          "title": "Egg consumption and risk of type 2 diabetes: findings from 3 large US cohort studies of men and women and a systematic review and meta-analysis of prospective cohort studies.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 589559
+        },
+        {
+          "pmid": "26993632",
+          "doi": "10.1007/s00125-016-3923-6",
+          "title": "Egg consumption and risk of type 2 diabetes: a prospective study and dose-response meta-analysis.",
+          "year": 2016,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "LDL and HDL cholesterol",
+      "population": "Mostly healthy adults in randomised trials of eating more eggs against fewer or none (13 to 28 trials per analysis)",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Many randomised trials, with consistent results and little variation between them in the 2020 meta-analysis (heterogeneity 18% for LDL)",
+        "Lowered: most trials were short (weeks to a few months), and the comparison diets differed",
+        "Some of the work on dietary cholesterol was funded by the egg industry: a 2019 meta-regression by the American Egg Board/Egg Nutrition Center, and a 2015 meta-analysis partly by the same funder. The 2020 egg meta-analysis was funded by a Taiwanese hospital and declared no conflicts",
+        "These are blood fats, not heart attacks: no trial has followed people long enough to count heart events"
+      ],
+      "summary": "A 2018 meta-analysis of 28 trials found that eating eggs raised LDL cholesterol by 5.55 mg/dL (95% confidence interval 3.14 to 7.69), HDL cholesterol by 2.13 mg/dL (1.10 to 3.16) and total cholesterol by 5.60 mg/dL (3.11 to 8.09) compared with low-egg diets (5.55 mg/dL is about 0.14 mmol/L), with no change in the LDL-to-HDL ratio or triglycerides; part of the variation between trials was explained by people's response to dietary cholesterol. A 2020 meta-analysis of trials in healthy people found LDL 8.14 mg/dL (about 0.21 mmol/L) higher (4.46 to 11.82; 13 trials), no clear change in HDL (1.27, −0.28 to 2.83) and a slightly higher LDL-to-HDL ratio (0.14, 0.05 to 0.22), with larger effects in trials over 2 months. Across 55 trials of dietary cholesterol (2,652 people), each extra 100 mg a day was predicted to raise LDL by 1.90 to 4.58 mg/dL depending on the model. People differ: in trials adding 640 mg of cholesterol a day from eggs for 30 days, LDL and HDL didn't rise in 'hyporesponders' but both rose in 'hyperresponders' (40 men and 51 premenopausal women), while the LDL-to-HDL ratio stayed the same in the women and rose in the male hyperresponders. The American Heart Association's 2020 advisory concluded that most trial meta-analyses link cholesterol intakes above current average levels with higher total or LDL cholesterol.",
+      "bottomLine": "In trials, eating more eggs raised LDL cholesterol by about 5 to 8 mg/dL (about 0.14 to 0.21 mmol/L) on average, and HDL a little in some analyses. People differ: in some, blood cholesterol barely moves; in others ('hyperresponders') it rises more.",
+      "studies": [
+        {
+          "pmid": "29111915",
+          "doi": "10.1080/07315724.2017.1366878",
+          "title": "Effects of Egg Consumption on Blood Lipids: A Systematic Review and Meta-Analysis of Randomized Clinical Trials.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32635569",
+          "doi": "10.3390/nu12071995",
+          "title": "Association between Egg Consumption and Cholesterol Concentration: A Systematic Review and Meta-analysis of Randomized Controlled Trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "30596814",
+          "doi": "10.1093/ajcn/nqy273",
+          "title": "Meta-regression analysis of the effects of dietary cholesterol intake on LDL and HDL cholesterol.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 2652
+        },
+        {
+          "pmid": "12672915",
+          "doi": "10.1093/jn/133.4.1036",
+          "title": "Men classified as hypo- or hyperresponders to dietary cholesterol feeding exhibit differences in lipoprotein metabolism.",
+          "year": 2003,
+          "studyType": "rct",
+          "n": 40
+        },
+        {
+          "pmid": "12074253",
+          "doi": "10.1080/07315724.2002.10719218",
+          "title": "Pre-menopausal women, classified as hypo- or hyperresponders, do not alter their LDL/HDL ratio following a high dietary cholesterol challenge.",
+          "year": 2002,
+          "studyType": "rct",
+          "n": 51
+        },
+        {
+          "pmid": "31838890",
+          "doi": "10.1161/cir.0000000000000743",
+          "title": "Dietary Cholesterol and Cardiovascular Risk: A Science Advisory From the American Heart Association.",
+          "year": 2020,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Heart disease in people with type 2 diabetes",
+      "population": "Adults with type 2 diabetes in cohort studies, and adults with prediabetes or type 2 diabetes in randomised trials of up to 12 months",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Cohort results point to higher risk but are imprecise and vary a lot between studies (heterogeneity 65%); in the large US cohorts there was no clear link",
+        "Trials found no change in blood fats, blood sugar or inflammation, but they measured markers for up to 12 months, not heart attacks",
+        "The first DIABEGG trial phase was funded by the Australian Egg Corporation; the follow-up by Australia's National Health and Medical Research Council"
+      ],
+      "summary": "A 2013 meta-analysis of cohort studies found that, in people with diabetes, eating at least one egg a day went with higher cardiovascular risk than eating less than one a week (hazard ratio 1.69, 95% confidence interval 1.09 to 2.62). The 2020 meta-analysis found a pooled relative risk of 1.25 (0.99 to 1.59) per extra egg a day and 1.40 (1.00 to 1.97) for high against low intake in people with type 2 diabetes, with considerable variation between studies; in its own three US cohorts, egg intake wasn't linked with heart disease in people with type 2 diabetes (1.06, 0.81 to 1.39 for at least one egg a day). In the DIABEGG trial, 140 people with prediabetes or type 2 diabetes ate 2 eggs a day 6 days a week or fewer than 2 eggs a week for 3 months, with more unsaturated fats in both diets: HDL, LDL, total cholesterol, triglycerides and blood sugar control didn't differ. Over 12 months (128 people), glucose, HbA1c, blood fats and CRP still didn't differ. A 2017 review of 6 trials in people with or at risk of type 2 diabetes found that 6 to 12 eggs a week didn't change total or LDL cholesterol, triglycerides, fasting glucose, insulin or CRP, and HDL rose in 4 of the 6.",
+      "bottomLine": "Some cohort studies found more heart disease in people with type 2 diabetes who ate more eggs, but results vary and are imprecise. Trials of up to 12 months found no change in their blood fats, blood sugar or CRP. Neither settles the question.",
+      "studies": [
+        {
+          "pmid": "23676423",
+          "doi": "10.3945/ajcn.112.051318",
+          "title": "Egg consumption in relation to risk of cardiovascular disease and diabetes: a systematic review and meta-analysis.",
+          "year": 2013,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32132002",
+          "doi": "10.1136/bmj.m513",
+          "title": "Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies, systematic review, and updated meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 1720108
+        },
+        {
+          "pmid": "25833969",
+          "doi": "10.3945/ajcn.114.096925",
+          "title": "The effect of a high-egg diet on cardiovascular risk factors in people with type 2 diabetes: the Diabetes and Egg (DIABEGG) study-a 3-mo randomized controlled trial.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 140
+        },
+        {
+          "pmid": "29741558",
+          "doi": "10.1093/ajcn/nqy048",
+          "title": "Effect of a high-egg diet on cardiometabolic risk factors in people with type 2 diabetes: the Diabetes and Egg (DIABEGG) Study-randomized weight-loss and follow-up phase.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 128
+        },
+        {
+          "pmid": "28359773",
+          "doi": "10.1016/j.jcjd.2016.12.002",
+          "title": "Impact of Egg Consumption on Cardiovascular Risk Factors in Individuals with Type 2 Diabetes and at Risk for Developing Diabetes: A Systematic Review of Randomized Nutritional Intervention Studies.",
+          "year": 2017,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Lutein in the blood and macular pigment in the eye",
+      "population": "Healthy adults and older adults in small trials (5 randomised trials, 296 people, in the pooled analysis)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small, short trials (weeks to 4 months); one 90-day trial of 100 people found no change in macular pigment",
+        "Macular pigment is a measure in the eye, not a disease: no trial has tested whether eggs prevent age-related macular degeneration",
+        "Two of the trials (24 women; older adults taking statins) weren't described as randomised in their abstracts, and the statin study had no control group",
+        "Several trials used enriched eggs; one was funded by a company making an egg-yolk drink, and two of its authors held a patent on it"
+      ],
+      "summary": "Lutein and zeaxanthin collect in the macula, the centre of the retina, where they may reduce damage from light; more of this macular pigment may lower the risk of age-related macular degeneration, but that hasn't been tested with eggs. A 2021 meta-analysis of 5 randomised trials (296 people) found that eating eggs raised macular pigment optical density (how much yellow pigment sits in the centre of the retina) by 0.037 (95% confidence interval 0.004 to 0.069) and serum lutein by 0.150 µmol/L (0.037 to 0.263), with no variation between trials. In 24 women eating 6 eggs a week for 12 weeks, serum zeaxanthin and macular pigment rose, while serum lutein and cholesterol didn't change. In older adults taking statins, 4 egg yolks a day for 5 weeks raised macular pigment by up to 50% in those who started low. In a 90-day trial of 100 people, lutein-enriched eggs raised serum lutein by 76% but macular pigment didn't change in any group. In the 4-month ALGOVUE trial (99 people), 2 eggs a day raised macular pigment slightly with standard or enriched eggs. In 10 men given 6 mg of lutein from different sources, more of it reached the blood from lutein-enriched eggs than from supplements or spinach.",
+      "bottomLine": "In small trials, eating eggs raised lutein in the blood and slightly increased the yellow pigment at the centre of the retina, which is thought to protect it. No trial has tested whether this prevents eye disease, and one trial found no change.",
+      "studies": [
+        {
+          "pmid": "33491232",
+          "doi": "10.1002/jsfa.11109",
+          "title": "A positive effect of egg consumption on macular pigment and healthy vision: a systematic review and meta-analysis of clinical trials.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 296
+        },
+        {
+          "pmid": "16988128",
+          "doi": "10.1093/jn/136.10.2568",
+          "title": "A 12-wk egg intervention increases serum zeaxanthin and macular pigment optical density in women.",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 24
+        },
+        {
+          "pmid": "19759170",
+          "doi": "10.3945/ajcn.2009.28013",
+          "title": "Consumption of 2 and 4 egg yolks/d for 5 wk increases macular pigment concentrations in older adults with low macular pigment taking cholesterol-lowering statins.",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 52
+        },
+        {
+          "pmid": "24675775",
+          "doi": "10.1371/journal.pone.0092659",
+          "title": "The effect of modified eggs and an egg-yolk based beverage on serum lutein and zeaxanthin concentrations and macular pigment optical density: results from a randomized trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 100
+        },
+        {
+          "pmid": "34684356",
+          "doi": "10.3390/nu13103347",
+          "title": "The ALGOVUE Clinical Trial: Effects of the Daily Consumption of Eggs Enriched with Lutein and Docosahexaenoic Acid on Plasma Composition and Macular Pigment Optical Density.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 99
+        },
+        {
+          "pmid": "15284371",
+          "doi": "10.1093/jn/134.8.1887",
+          "title": "Lutein bioavailability is higher from lutein-enriched eggs than from supplements and spinach in men.",
+          "year": 2004,
+          "studyType": "rct",
+          "n": 10
+        }
+      ]
+    },
+    {
+      "outcome": "TMAO, a gut-bacteria product of choline, in the blood",
+      "population": "Healthy adults and adults with metabolic syndrome in randomised trials (6 trials in the pooled analysis)",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The 2025 meta-analysis authors rated the certainty moderate (NutriGRADE), lowered for imprecision and variation between trials; they declared no funding and no conflicts",
+        "Few, short trials; after single meals of 2 or more egg yolks, TMAO did rise in 6 volunteers",
+        "Whether TMAO itself causes heart disease is debated, so a change in TMAO wouldn't settle what eggs do to the heart"
+      ],
+      "summary": "Eggs are one of the richest food sources of choline. TMAO (trimethylamine N-oxide) is made by gut bacteria and the liver from choline and has been linked with heart disease; whether it causes it is still debated. A 2025 meta-analysis of 6 randomised trials found no clear effect of eating eggs on fasting blood TMAO (−0.08 µmol/L, 95% confidence interval −0.47 to 0.32), choline or betaine, with moderate certainty. In a 4-week trial in 82 healthy young adults, 4 hard-boiled eggs a day didn't raise fasting TMAO or platelet reactivity, while choline bitartrate supplements with similar total choline raised both. After single breakfasts of 0 to 6 egg yolks in 6 volunteers, eating 2 or more raised TMAO in blood and urine in the following hours, with large differences between people, and no change in CRP or oxidised LDL.",
+      "bottomLine": "Eggs are rich in choline, which gut bacteria can turn into TMAO. In trials, eating eggs daily didn't clearly raise fasting TMAO, unlike choline supplements. Whether TMAO itself harms the heart is still debated.",
+      "studies": [
+        {
+          "pmid": "41146117",
+          "doi": "10.1186/s12937-025-01227-0",
+          "title": "Effect of egg consumption on circulating choline, betaine, and trimethylamine n-oxide in adults: a systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "33872583",
+          "doi": "10.1016/j.amjmed.2021.03.016",
+          "title": "Dietary Choline Supplements, but Not Eggs, Raise Fasting TMAO Levels in Participants with Normal Renal Function: A Randomized Clinical Trial.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 82
+        },
+        {
+          "pmid": "24944063",
+          "doi": "10.3945/ajcn.114.087692",
+          "title": "Effect of egg ingestion on trimethylamine-N-oxide production in humans: a randomized, controlled, dose-response study.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 6
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Heart disease and stroke: risk per extra egg a day",
+      "caption": "Relative risks with 95% confidence intervals from a 2020 meta-analysis of cohort studies, for each extra egg a day. Below 1 means lower risk, above 1 higher. Only the Asian cohorts' interval stays below 1; the interval for people with type 2 diabetes just crosses 1. A 2022 meta-analysis with more studies found 1.04 (1.00 to 1.08) overall and 1.08 (1.02 to 1.14) in US cohorts. These are links from observational studies, not proof.",
+      "scale": "ratio",
+      "reference": { "value": 1, "label": "No difference" },
+      "items": [
+        { "label": "All cohorts", "value": 0.98, "low": 0.93, "high": 1.03, "note": "33 risk estimates, 1,720,108 people" },
+        { "label": "US cohorts", "value": 1.01, "low": 0.96, "high": 1.06 },
+        { "label": "European cohorts", "value": 1.05, "low": 0.92, "high": 1.19 },
+        { "label": "Asian cohorts", "value": 0.92, "low": 0.85, "high": 0.99 },
+        { "label": "People with type 2 diabetes", "value": 1.25, "low": 0.99, "high": 1.59, "note": "9 risk estimates, considerable variation between studies" }
+      ],
+      "sources": [
+        {
+          "pmid": "32132002",
+          "doi": "10.1136/bmj.m513",
+          "title": "Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies, systematic review, and updated meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 1720108
+        },
+        {
+          "pmid": "35360933",
+          "doi": "10.1161/circulationaha.121.057642",
+          "title": "Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 3601401
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Trials: change in blood cholesterol with more eggs",
+      "caption": "Mean differences with 95% confidence intervals in mg/dL, eating more eggs against low-egg or no-egg diets, from two meta-analyses of randomised trials (2018: 28 trials; 2020: trials in healthy people only). Above zero means higher. To read in mmol/L, divide by 38.67 (the factor the 2020 authors used): 8 mg/dL is about 0.2 mmol/L. Averages hide large differences between people.",
+      "scale": "linear",
+      "unit": "mg/dL",
+      "reference": { "value": 0, "label": "No change" },
+      "items": [
+        { "label": "LDL cholesterol (2018, 28 trials)", "value": 5.55, "low": 3.14, "high": 7.69 },
+        { "label": "LDL cholesterol (2020, 13 trials)", "value": 8.14, "low": 4.46, "high": 11.82 },
+        { "label": "HDL cholesterol (2018)", "value": 2.13, "low": 1.1, "high": 3.16 },
+        { "label": "HDL cholesterol (2020)", "value": 1.27, "low": -0.28, "high": 2.83 },
+        { "label": "Total cholesterol (2018)", "value": 5.6, "low": 3.11, "high": 8.09 }
+      ],
+      "sources": [
+        {
+          "pmid": "29111915",
+          "doi": "10.1080/07315724.2017.1366878",
+          "title": "Effects of Egg Consumption on Blood Lipids: A Systematic Review and Meta-Analysis of Randomized Clinical Trials.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32635569",
+          "doi": "10.3390/nu12071995",
+          "title": "Association between Egg Consumption and Cholesterol Concentration: A Systematic Review and Meta-analysis of Randomized Controlled Trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "From the yolk to the eye: what's measured and what isn't",
+      "caption": "Steps 1 to 4 were measured in small trials. Step 5 is a hypothesis: no trial has tested whether eating eggs lowers the risk of age-related macular degeneration.",
+      "steps": [
+        { "label": "The yolk holds lutein", "text": "How much depends on the hens' feed: 0.12 mg in a standard egg and 0.96 mg in an enriched one in the ALGOVUE trial." },
+        { "label": "The yolk's fat helps it into the blood", "text": "In 10 men given 6 mg of lutein from different sources, more reached the blood from lutein-enriched eggs than from supplements or spinach." },
+        { "label": "Lutein in the blood rises", "text": "Across 5 trials, eating eggs raised serum lutein by 0.150 µmol/L." },
+        { "label": "Macular pigment rises slightly", "text": "Macular pigment optical density rose by 0.037 on average; one 90-day trial found no change." },
+        { "label": "Less eye disease? Not tested", "text": "Lutein and zeaxanthin in the macula may protect it from light damage, but whether eating eggs lowers the risk of age-related macular degeneration hasn't been studied in trials." }
+      ],
+      "sources": [
+        {
+          "pmid": "34684356",
+          "doi": "10.3390/nu13103347",
+          "title": "The ALGOVUE Clinical Trial: Effects of the Daily Consumption of Eggs Enriched with Lutein and Docosahexaenoic Acid on Plasma Composition and Macular Pigment Optical Density.",
+          "year": 2021,
+          "studyType": "rct",
+          "n": 99
+        },
+        {
+          "pmid": "15284371",
+          "doi": "10.1093/jn/134.8.1887",
+          "title": "Lutein bioavailability is higher from lutein-enriched eggs than from supplements and spinach in men.",
+          "year": 2004,
+          "studyType": "rct",
+          "n": 10
+        },
+        {
+          "pmid": "33491232",
+          "doi": "10.1002/jsfa.11109",
+          "title": "A positive effect of egg consumption on macular pigment and healthy vision: a systematic review and meta-analysis of clinical trials.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 296
+        },
+        {
+          "pmid": "24675775",
+          "doi": "10.1371/journal.pone.0092659",
+          "title": "The effect of modified eggs and an egg-yolk based beverage on serum lutein and zeaxanthin concentrations and macular pigment optical density: results from a randomized trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 100
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Egg allergy",
+      "note": "Egg allergy mostly starts in babies and young children. In a European birth cohort of 12,049 babies, about 1.2% had egg allergy confirmed by age 2 (from 0.07% in Greece to 2.18% in the UK), and half grew out of it within a year. In an Australian cohort, 471 of 5,276 one-year-olds had raw egg allergy, 89% of egg allergies had gone by age 6, and 1.2% of children still had it then. A meta-analysis of 5 trials (1,915 infants) found that egg introduced at 4 to 6 months went with less egg allergy (risk ratio 0.56; moderate certainty). Egg allergy, or a suspected one in a child, is something to discuss with a doctor or an allergy specialist."
+    },
+    {
+      "with": "Pregnancy (raw or undercooked eggs)",
+      "note": "Raw or partly cooked eggs can carry Salmonella, which in severe cases may cause miscarriage or premature labour. UK advice, summarised by the British Nutrition Foundation in 2025, is that eggs with the British Lion mark are very low risk and can be eaten raw or partly cooked in pregnancy, and that all other eggs be cooked until the white and yolk are solid. Outside the UK, the Lion mark doesn't apply, and local advice and safety schemes differ. A midwife or doctor can advise on food safety in pregnancy.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Type 2 diabetes",
+      "note": "Some cohort studies found more heart disease in people with type 2 diabetes who ate more eggs (for example a hazard ratio of 1.69 for at least one egg a day in a 2013 meta-analysis), while others found no clear link, and trials of up to 12 months found no change in blood fats or blood sugar. With diabetes, how eggs fit into the whole diet is worth discussing with a doctor or dietitian.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "Egg industry bodies funded several studies on this page: the DIABEGG trial's first phase (Australian Egg Corporation), the 2019 dietary cholesterol meta-regression (American Egg Board/Egg Nutrition Center), the 2015 dietary cholesterol meta-analysis in part (the same funder), and the review that gives the amounts of cholesterol and choline in an egg (British Egg Industry Council). Industry funding doesn't make a result wrong, but it is worth knowing.",
+    "In the US cohorts, people who ate more eggs also ate more bacon, other processed meat, red meat and refined grains. A link between eggs and disease in such studies may partly be a link with what eggs are eaten with.",
+    "Frying adds fat from the oil, and dishes made with eggs (cakes, quiches, mayonnaise) bring other ingredients; studies mostly counted eggs, not how they were cooked.",
+    "Lutein, choline and omega-3 enriched eggs differ from standard eggs in those compounds; the food table's numbers are for ordinary eggs.",
+    "Choline supplements and lutein capsules are not the same as eggs, and the findings on this page don't apply to them."
+  ],
+  "unknowns": [
+    "Why cohort results differ between the US, Europe and Asia: differences in how many eggs people eat, how they're cooked and what they're eaten with are suspected, but not shown.",
+    "Whether the small rise in LDL cholesterol from eggs changes heart risk over decades: trials measured blood fats for weeks or months, and no trial has counted heart attacks or strokes.",
+    "Whether eggs are riskier for people with type 2 diabetes: cohort results point both ways and trials measured only blood markers, for up to 12 months.",
+    "Who is a 'hyperresponder' to dietary cholesterol: how much extra dietary cholesterol raises a person's blood cholesterol can't be accurately predicted in advance, and trials classified people only after measuring their response.",
+    "Whether lutein from eggs lowers the risk of age-related macular degeneration: trials measured pigment in the eye, not the disease.",
+    "Whether TMAO causes heart disease or only marks it: this is debated, so what TMAO changes would mean is unclear.",
+    "Why one meta-analysis found more cancer deaths with the highest egg intakes: this hasn't been explained, and it is a link from cohort studies.",
+    "Which of the egg's thousands of compounds matter: the food table tracks about 30, not cholesterol, choline, lutein or most others; the rest is nutritional dark matter, captured in studies of people eating eggs but not named."
+  ],
+  "sources": [
+    {
+      "pmid": "32132002",
+      "doi": "10.1136/bmj.m513",
+      "title": "Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies, systematic review, and updated meta-analysis.",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 1720108
+    },
+    {
+      "pmid": "30874756",
+      "doi": "10.1001/jama.2019.1572",
+      "title": "Associations of Dietary Cholesterol or Egg Consumption With Incident Cardiovascular Disease and Mortality.",
+      "year": 2019,
+      "studyType": "observational",
+      "n": 29615
+    },
+    {
+      "pmid": "37375561",
+      "doi": "10.3390/nu15122657",
+      "title": "Eggs: Healthy or Risky? A Review of Evidence from High Quality Studies on Hen's Eggs.",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "34684356",
+      "doi": "10.3390/nu13103347",
+      "title": "The ALGOVUE Clinical Trial: Effects of the Daily Consumption of Eggs Enriched with Lutein and Docosahexaenoic Acid on Plasma Composition and Macular Pigment Optical Density.",
+      "year": 2021,
+      "studyType": "rct",
+      "n": 99
+    },
+    {
+      "pmid": "10564098",
+      "doi": "10.1152/ajpgi.1999.277.5.g935",
+      "title": "Amount and fate of egg protein escaping assimilation in the small intestine of humans.",
+      "year": 1999,
+      "studyType": "rct",
+      "n": 10
+    },
+    {
+      "pmid": "27488236",
+      "doi": "10.3945/ajcn.116.132530",
+      "title": "Vitamin D-enhanced eggs are protective of wintertime serum 25-hydroxyvitamin D in a randomized controlled trial of adults.",
+      "year": 2016,
+      "studyType": "rct",
+      "n": 55
+    },
+    {
+      "pmid": "33872583",
+      "doi": "10.1016/j.amjmed.2021.03.016",
+      "title": "Dietary Choline Supplements, but Not Eggs, Raise Fasting TMAO Levels in Participants with Normal Renal Function: A Randomized Clinical Trial.",
+      "year": 2021,
+      "studyType": "rct",
+      "n": 82
+    },
+    {
+      "pmid": "26109578",
+      "doi": "10.3945/ajcn.114.100305",
+      "title": "Dietary cholesterol and cardiovascular disease: a systematic review and meta-analysis.",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "26514330",
+      "doi": "10.1111/all.12801",
+      "title": "Incidence and natural history of hen's egg allergy in the first 2 years of life-the EuroPrevall birth cohort study.",
+      "year": 2016,
+      "studyType": "observational",
+      "n": 12049
+    },
+    {
+      "pmid": "35597613",
+      "doi": "10.1016/j.jaci.2022.04.008",
+      "title": "The natural history of peanut and egg allergy in children up to age 6 years in the HealthNuts population-based longitudinal study.",
+      "year": 2022,
+      "studyType": "observational",
+      "n": 5276
+    },
+    {
+      "pmid": "27654604",
+      "doi": "10.1001/jama.2016.12623",
+      "title": "Timing of Allergenic Food Introduction to the Infant Diet and Risk of Allergic or Autoimmune Disease: A Systematic Review and Meta-analysis.",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "40618386",
+      "doi": "10.1111/nbu.70016",
+      "title": "Diet in Pregnancy: A Review of Current Challenges and Recommendations. A British Nutrition Foundation Briefing Paper.",
+      "year": 2025,
+      "studyType": "review"
+    }
+  ]
+}
