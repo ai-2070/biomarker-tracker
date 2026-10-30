@@ -2,8 +2,17 @@
   "id": "evoo",
   "name": "Extra virgin olive oil",
   "group": "oils and fats",
-  "otherNames": ["EVOO", "Extra-virgin olive oil", "Virgin olive oil", "Olive oil", "Aceite de oliva virgen extra", "Natives Olivenöl extra", "Extra szűz olívaolaj", "Olívaolaj"],
-  "summary": "Oil pressed from olives without heat or chemical refining, so it keeps more of the olive's own compounds (polyphenols) than refined olive oil. In the PREDIMED trial in Spain, people on a Mediterranean diet with extra virgin olive oil had fewer heart attacks, strokes and heart deaths than people advised to eat less fat. Large cohort studies link more olive oil with fewer deaths, but those studies show links, not causes.",
+  "otherNames": [
+    "EVOO",
+    "Extra-virgin olive oil",
+    "Virgin olive oil",
+    "Olive oil",
+    "Aceite de oliva virgen extra",
+    "Natives Olivenöl extra",
+    "Extra szűz olívaolaj",
+    "Olívaolaj"
+  ],
+  "summary": "The least processed olive oil, so it keeps the olive's own protective compounds (polyphenols). In a large trial, a Mediterranean diet with it cut heart attacks and strokes by about 30%, and it helps protect LDL cholesterol from damage.",
   "inIt": [
     "Almost all of it is fat, mostly the monounsaturated fat oleic acid; the rest of what it's known for is a small fraction of phenolic compounds (polyphenols).",
     "Its polyphenols include hydroxytyrosol and tyrosol and larger molecules they come from (the oleuropein complex, oleacein and oleocanthal). How much an oil has varies a lot: the three oils in the EUROLIVE trial had 2.7, 164 and 366 mg per kg.",
@@ -82,7 +91,13 @@
       ]
     }
   ],
-  "tableFoods": [{ "id": "17-038", "label": "1 tablespoon (about 14 g)", "grams": 14 }],
+  "tableFoods": [
+    {
+      "id": "17-038",
+      "label": "1 tablespoon (about 14 g)",
+      "grams": 14
+    }
+  ],
   "processing": [
     "Extra virgin and virgin olive oil are pressed from olives and not refined. Virgin olive oils are richer in phenolic compounds than refined olive oil: in EUROLIVE the low-polyphenol oil had 2.7 mg per kg and the high one 366 mg per kg.",
     "The 'extra virgin' grade doesn't state polyphenol content: trials have used both low- and high-polyphenol virgin and extra virgin oils, and most bottles don't say how much they have.",
@@ -92,7 +107,17 @@
     "Olive polyphenol extracts and hydroxytyrosol capsules are a separate question from the oil: the evidence on this page comes from people eating olive oil, not from supplements."
   ],
   "whatStudiesDid": "In PREDIMED, 7,447 Spanish adults aged 55 to 80 at high risk of heart disease were assigned to a Mediterranean diet with extra virgin olive oil, a Mediterranean diet with mixed nuts, or a control diet (advice to eat less fat), for a median of 4.8 years. The olive oil group got quarterly diet sessions and free extra virgin olive oil: 1 litre a week for the participant and their household. In the EUROLIVE trial, 200 healthy men in five European countries used 25 mL a day of raw olive oil low, medium or high in polyphenols, each for 3 weeks with 2-week breaks in between. Cohort studies, such as the US Nurses' Health Study and Health Professionals Follow-up Study, asked people every 4 years how much olive oil they used; their highest group used more than 7 g a day (more than half a tablespoon). Meta-analyses compared highest with lowest users, or per extra 10 or 25 g a day. Some cohort analyses also modelled replacing other fats (butter, margarine, mayonnaise) with the same amount of olive oil.",
-  "markers": ["ldl", "hdl", "total_cholesterol", "triglycerides", "bp_systolic", "bp_diastolic", "glucose", "hba1c", "crp_hs"],
+  "markers": [
+    "ldl",
+    "hdl",
+    "total_cholesterol",
+    "triglycerides",
+    "bp_systolic",
+    "bp_diastolic",
+    "glucose",
+    "hba1c",
+    "crp_hs"
+  ],
   "findings": [
     {
       "outcome": "Heart attacks, strokes and deaths from heart disease",
@@ -388,10 +413,25 @@
       "title": "PREDIMED: heart attacks, strokes and heart deaths",
       "caption": "Hazard ratios with 95% confidence intervals from the 2018 re-analysis of the PREDIMED trial in Spain, compared with the low-fat advice group, over a median of 4.8 years. Below 1 means fewer events. Both groups ate a whole Mediterranean diet, so the bars show what the diet with olive oil or nuts did, not the oil or nuts alone.",
       "scale": "ratio",
-      "reference": { "value": 1, "label": "Advice to eat less fat (comparison group)" },
+      "reference": {
+        "value": 1,
+        "label": "Advice to eat less fat (comparison group)"
+      },
       "items": [
-        { "label": "Mediterranean diet with extra virgin olive oil", "value": 0.69, "low": 0.53, "high": 0.91, "note": "96 events in this group (3.8%), 109 in the comparison group (4.4%)" },
-        { "label": "Mediterranean diet with mixed nuts", "value": 0.72, "low": 0.54, "high": 0.95, "note": "83 events (3.4%)" }
+        {
+          "label": "Mediterranean diet with extra virgin olive oil",
+          "value": 0.69,
+          "low": 0.53,
+          "high": 0.91,
+          "note": "96 events in this group (3.8%), 109 in the comparison group (4.4%)"
+        },
+        {
+          "label": "Mediterranean diet with mixed nuts",
+          "value": 0.72,
+          "low": 0.54,
+          "high": 0.95,
+          "note": "83 events (3.4%)"
+        }
       ],
       "sources": [
         {
@@ -409,12 +449,36 @@
       "title": "Cohort studies: risk per extra 25 g of olive oil a day",
       "caption": "Relative risks with 95% confidence intervals from a 2022 meta-analysis of 24 cohort studies and 3 reports from one trial, for every extra 25 g of olive oil a day. Below 1 means lower risk; the cancer interval crosses 1, so no clear link. These are mostly links from observational studies: people who use more olive oil may differ in other ways.",
       "scale": "ratio",
-      "reference": { "value": 1, "label": "No difference" },
+      "reference": {
+        "value": 1,
+        "label": "No difference"
+      },
       "items": [
-        { "label": "Heart and blood vessel disease", "value": 0.84, "low": 0.76, "high": 0.94 },
-        { "label": "Type 2 diabetes", "value": 0.78, "low": 0.69, "high": 0.87, "note": "The only result consistent across studies" },
-        { "label": "Death from any cause", "value": 0.89, "low": 0.85, "high": 0.93 },
-        { "label": "Cancer", "value": 0.94, "low": 0.86, "high": 1.03 }
+        {
+          "label": "Heart and blood vessel disease",
+          "value": 0.84,
+          "low": 0.76,
+          "high": 0.94
+        },
+        {
+          "label": "Type 2 diabetes",
+          "value": 0.78,
+          "low": 0.69,
+          "high": 0.87,
+          "note": "The only result consistent across studies"
+        },
+        {
+          "label": "Death from any cause",
+          "value": 0.89,
+          "low": 0.85,
+          "high": 0.93
+        },
+        {
+          "label": "Cancer",
+          "value": 0.94,
+          "low": 0.86,
+          "high": 1.03
+        }
       ],
       "sources": [
         {
@@ -431,11 +495,26 @@
       "title": "How it's thought to work",
       "caption": "Steps measured in short randomised trials, mostly in healthy men, and in a meta-analysis of trials. They show changes in blood measures, not that these changes explain the fewer heart attacks seen in PREDIMED.",
       "steps": [
-        { "label": "Pressing keeps the polyphenols", "text": "Virgin olive oils are richer in phenolic compounds than refined olive oil. The EUROLIVE trial's oils were alike except for these: 2.7, 164 and 366 mg per kg." },
-        { "label": "They reach the blood's cholesterol carriers", "text": "After 3 weeks of 25 mL a day of polyphenol-rich oil, more olive polyphenol metabolites were found in HDL particles than after polyphenol-poor oil (47 men)." },
-        { "label": "Less oxidised LDL", "text": "Oxidised LDL fell by 3.21 U/L with the high-polyphenol oil and didn't fall with the low one (+1.21 U/L) in 200 men." },
-        { "label": "HDL takes up more cholesterol", "text": "HDL's cholesterol efflux rose by 3.05% after the polyphenol-rich oil and fell by 2.34% after the polyphenol-poor oil." },
-        { "label": "The fat replaces other fats", "text": "Compared with butter, olive oil and other plant oils lowered LDL cholesterol by 0.23 to 0.42 mmol/L across 54 trials." }
+        {
+          "label": "Pressing keeps the polyphenols",
+          "text": "Virgin olive oils are richer in phenolic compounds than refined olive oil. The EUROLIVE trial's oils were alike except for these: 2.7, 164 and 366 mg per kg."
+        },
+        {
+          "label": "They reach the blood's cholesterol carriers",
+          "text": "After 3 weeks of 25 mL a day of polyphenol-rich oil, more olive polyphenol metabolites were found in HDL particles than after polyphenol-poor oil (47 men)."
+        },
+        {
+          "label": "Less oxidised LDL",
+          "text": "Oxidised LDL fell by 3.21 U/L with the high-polyphenol oil and didn't fall with the low one (+1.21 U/L) in 200 men."
+        },
+        {
+          "label": "HDL takes up more cholesterol",
+          "text": "HDL's cholesterol efflux rose by 3.05% after the polyphenol-rich oil and fell by 2.34% after the polyphenol-poor oil."
+        },
+        {
+          "label": "The fat replaces other fats",
+          "text": "Compared with butter, olive oil and other plant oils lowered LDL cholesterol by 0.23 to 0.42 mmol/L across 54 trials."
+        }
       ],
       "sources": [
         {

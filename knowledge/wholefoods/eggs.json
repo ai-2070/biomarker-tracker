@@ -2,8 +2,23 @@
   "id": "eggs",
   "name": "Eggs",
   "group": "eggs and dairy",
-  "otherNames": ["Egg", "Chicken eggs", "Hen's eggs", "Egg yolk", "Egg white", "Boiled eggs", "Hard-boiled eggs", "Scrambled eggs", "Poached eggs", "Fried eggs", "Omelette", "Huevos", "Eier", "Tojás"],
-  "summary": "Chicken eggs: the white is mostly protein and water, and the yolk holds the fat, the dietary cholesterol, and most of the vitamins and other compounds (choline, lutein and zeaxanthin). In trials, eating more eggs raises LDL cholesterol a little. In large cohort studies, eating up to about an egg a day wasn't clearly linked with heart disease or death overall, but results differ between studies and regions, and some found higher risk, especially in people with type 2 diabetes. These studies show links, not causes.",
+  "otherNames": [
+    "Egg",
+    "Chicken eggs",
+    "Hen's eggs",
+    "Egg yolk",
+    "Egg white",
+    "Boiled eggs",
+    "Hard-boiled eggs",
+    "Scrambled eggs",
+    "Poached eggs",
+    "Fried eggs",
+    "Omelette",
+    "Huevos",
+    "Eier",
+    "Tojás"
+  ],
+  "summary": "Protein, with choline and lutein in the yolk; in trials, eggs raised the eye's protective pigment slightly. Eating more raises LDL cholesterol a little, but up to about an egg a day wasn't clearly linked with heart disease in large studies.",
   "inIt": [
     "An egg is protein in the white and the yolk, plus fat in the yolk. The food table this app uses lists the white (boiled) with no fat at all and the yolk (boiled) with 32.6 g of fat per 100 g.",
     "Eggs are a major source of dietary cholesterol. A review funded by the British Egg Industry Council gives 177 mg of cholesterol in a medium egg; the food table this app uses doesn't list cholesterol.",
@@ -74,7 +89,13 @@
       ]
     }
   ],
-  "tableFoods": [{ "id": "12-940", "label": "1 medium egg, boiled (about 50 g)", "grams": 50 }],
+  "tableFoods": [
+    {
+      "id": "12-940",
+      "label": "1 medium egg, boiled (about 50 g)",
+      "grams": 50
+    }
+  ],
   "processing": [
     "Yolk or white: the food table lists the boiled white with protein (13 g per 100 g) but no fat, vitamin D or retinol; the yolk holds the fat and most of the vitamins. Studies of egg whites or yolk-free egg substitutes test something different from whole eggs.",
     "Cooking makes egg protein easier to digest. In 10 healthy volunteers, 35.10% of the protein in a raw egg meal escaped digestion in the small intestine, compared with 5.73% of the same meal cooked.",
@@ -84,7 +105,17 @@
     "Choline supplements and lutein capsules are different interventions: the findings on this page come from people eating eggs, and one trial found that a choline supplement raised TMAO while eggs with similar choline didn't."
   ],
   "whatStudiesDid": "Cohort studies asked people how often they ate eggs, in food questionnaires, and followed them for years: in three large US cohorts (Nurses' Health Studies and Health Professionals Follow-up Study) for up to 32 years with the questionnaire repeated every few years, comparing at least one egg a day with less than one a month; in the Lifetime Risk Pooling Project (six US cohorts, diet asked about and harmonised across studies) per extra half egg a day; in PURE (21 countries) 7 or more eggs a week against fewer than 1; in the China Kadoorie Biobank daily eaters (usually about 0.76 egg a day) against people who never or rarely ate eggs. Meta-analyses pooled these per extra egg a day. Trials gave people extra eggs on top of their usual diet or in a set diet: 640 mg a day of extra dietary cholesterol from eggs for 30 days (against a placebo with no cholesterol), 2 eggs a day 6 days a week against fewer than 2 eggs a week for 3 to 12 months in people with prediabetes or type 2 diabetes (DIABEGG), 6 eggs a week for 12 weeks, 2 and then 4 egg yolks a day for 5 weeks each, 1 egg a day for 90 days or 2 eggs a day for 4 months in the eye trials, and single breakfasts of 0 to 6 egg yolks or 4 hard-boiled eggs a day for 4 weeks in the TMAO trials.",
-  "markers": ["ldl", "hdl", "total_cholesterol", "triglycerides", "glucose", "hba1c", "crp_hs", "vitamin_d", "b12"],
+  "markers": [
+    "ldl",
+    "hdl",
+    "total_cholesterol",
+    "triglycerides",
+    "glucose",
+    "hba1c",
+    "crp_hs",
+    "vitamin_d",
+    "b12"
+  ],
   "findings": [
     {
       "outcome": "Heart disease and stroke",
@@ -442,13 +473,43 @@
       "title": "Heart disease and stroke: risk per extra egg a day",
       "caption": "Relative risks with 95% confidence intervals from a 2020 meta-analysis of cohort studies, for each extra egg a day. Below 1 means lower risk, above 1 higher. Only the Asian cohorts' interval stays below 1; the interval for people with type 2 diabetes just crosses 1. A 2022 meta-analysis with more studies found 1.04 (1.00 to 1.08) overall and 1.08 (1.02 to 1.14) in US cohorts. These are links from observational studies, not proof.",
       "scale": "ratio",
-      "reference": { "value": 1, "label": "No difference" },
+      "reference": {
+        "value": 1,
+        "label": "No difference"
+      },
       "items": [
-        { "label": "All cohorts", "value": 0.98, "low": 0.93, "high": 1.03, "note": "33 risk estimates, 1,720,108 people" },
-        { "label": "US cohorts", "value": 1.01, "low": 0.96, "high": 1.06 },
-        { "label": "European cohorts", "value": 1.05, "low": 0.92, "high": 1.19 },
-        { "label": "Asian cohorts", "value": 0.92, "low": 0.85, "high": 0.99 },
-        { "label": "People with type 2 diabetes", "value": 1.25, "low": 0.99, "high": 1.59, "note": "9 risk estimates, considerable variation between studies" }
+        {
+          "label": "All cohorts",
+          "value": 0.98,
+          "low": 0.93,
+          "high": 1.03,
+          "note": "33 risk estimates, 1,720,108 people"
+        },
+        {
+          "label": "US cohorts",
+          "value": 1.01,
+          "low": 0.96,
+          "high": 1.06
+        },
+        {
+          "label": "European cohorts",
+          "value": 1.05,
+          "low": 0.92,
+          "high": 1.19
+        },
+        {
+          "label": "Asian cohorts",
+          "value": 0.92,
+          "low": 0.85,
+          "high": 0.99
+        },
+        {
+          "label": "People with type 2 diabetes",
+          "value": 1.25,
+          "low": 0.99,
+          "high": 1.59,
+          "note": "9 risk estimates, considerable variation between studies"
+        }
       ],
       "sources": [
         {
@@ -475,13 +536,41 @@
       "caption": "Mean differences with 95% confidence intervals in mg/dL, eating more eggs against low-egg or no-egg diets, from two meta-analyses of randomised trials (2018: 28 trials; 2020: trials in healthy people only). Above zero means higher. To read in mmol/L, divide by 38.67 (the factor the 2020 authors used): 8 mg/dL is about 0.2 mmol/L. Averages hide large differences between people.",
       "scale": "linear",
       "unit": "mg/dL",
-      "reference": { "value": 0, "label": "No change" },
+      "reference": {
+        "value": 0,
+        "label": "No change"
+      },
       "items": [
-        { "label": "LDL cholesterol (2018, 28 trials)", "value": 5.55, "low": 3.14, "high": 7.69 },
-        { "label": "LDL cholesterol (2020, 13 trials)", "value": 8.14, "low": 4.46, "high": 11.82 },
-        { "label": "HDL cholesterol (2018)", "value": 2.13, "low": 1.1, "high": 3.16 },
-        { "label": "HDL cholesterol (2020)", "value": 1.27, "low": -0.28, "high": 2.83 },
-        { "label": "Total cholesterol (2018)", "value": 5.6, "low": 3.11, "high": 8.09 }
+        {
+          "label": "LDL cholesterol (2018, 28 trials)",
+          "value": 5.55,
+          "low": 3.14,
+          "high": 7.69
+        },
+        {
+          "label": "LDL cholesterol (2020, 13 trials)",
+          "value": 8.14,
+          "low": 4.46,
+          "high": 11.82
+        },
+        {
+          "label": "HDL cholesterol (2018)",
+          "value": 2.13,
+          "low": 1.1,
+          "high": 3.16
+        },
+        {
+          "label": "HDL cholesterol (2020)",
+          "value": 1.27,
+          "low": -0.28,
+          "high": 2.83
+        },
+        {
+          "label": "Total cholesterol (2018)",
+          "value": 5.6,
+          "low": 3.11,
+          "high": 8.09
+        }
       ],
       "sources": [
         {
@@ -505,11 +594,26 @@
       "title": "From the yolk to the eye: what's measured and what isn't",
       "caption": "Steps 1 to 4 were measured in small trials. Step 5 is a hypothesis: no trial has tested whether eating eggs lowers the risk of age-related macular degeneration.",
       "steps": [
-        { "label": "The yolk holds lutein", "text": "How much depends on the hens' feed: 0.12 mg in a standard egg and 0.96 mg in an enriched one in the ALGOVUE trial." },
-        { "label": "The yolk's fat helps it into the blood", "text": "In 10 men given 6 mg of lutein from different sources, more reached the blood from lutein-enriched eggs than from supplements or spinach." },
-        { "label": "Lutein in the blood rises", "text": "Across 5 trials, eating eggs raised serum lutein by 0.150 µmol/L." },
-        { "label": "Macular pigment rises slightly", "text": "Macular pigment optical density rose by 0.037 on average; one 90-day trial found no change." },
-        { "label": "Less eye disease? Not tested", "text": "Lutein and zeaxanthin in the macula may protect it from light damage, but whether eating eggs lowers the risk of age-related macular degeneration hasn't been studied in trials." }
+        {
+          "label": "The yolk holds lutein",
+          "text": "How much depends on the hens' feed: 0.12 mg in a standard egg and 0.96 mg in an enriched one in the ALGOVUE trial."
+        },
+        {
+          "label": "The yolk's fat helps it into the blood",
+          "text": "In 10 men given 6 mg of lutein from different sources, more reached the blood from lutein-enriched eggs than from supplements or spinach."
+        },
+        {
+          "label": "Lutein in the blood rises",
+          "text": "Across 5 trials, eating eggs raised serum lutein by 0.150 µmol/L."
+        },
+        {
+          "label": "Macular pigment rises slightly",
+          "text": "Macular pigment optical density rose by 0.037 on average; one 90-day trial found no change."
+        },
+        {
+          "label": "Less eye disease? Not tested",
+          "text": "Lutein and zeaxanthin in the macula may protect it from light damage, but whether eating eggs lowers the risk of age-related macular degeneration hasn't been studied in trials."
+        }
       ],
       "sources": [
         {

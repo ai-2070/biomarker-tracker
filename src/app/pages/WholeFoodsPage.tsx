@@ -159,7 +159,7 @@ export function WholeFoodPage({ id }: { id: string }) {
         <div>
           <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{GROUP_LABEL[f.group]}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{f.name}</h1>
-          {f.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also: {f.otherNames.join(", ")}</p>}
+          {f.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also: {f.otherNames.slice(0, 3).join(", ")}</p>}
         </div>
         <div className="flex flex-wrap gap-2">
           <LinkButton variant="secondary" href={href({ name: "habits", add: f.name, type: "diet", ...(watch ? { marker: watch } : {}) })}>

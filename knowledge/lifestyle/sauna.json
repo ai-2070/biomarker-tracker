@@ -2,8 +2,16 @@
   "id": "sauna",
   "name": "Sauna",
   "category": "heat and cold",
-  "otherNames": ["Sauna bathing", "Finnish sauna", "Dry sauna", "Infrared sauna", "Far-infrared sauna", "Waon therapy", "Heat therapy"],
-  "summary": "Sitting in a hot room for a while: a traditional Finnish sauna, or an infrared one that heats the body more directly. In one large Finnish study, people who used a sauna more often died less often of heart disease and had fewer strokes and less dementia, but that study shows a link, not proof that sauna is the cause. Small trials show that blood pressure is lower for a while after a session.",
+  "otherNames": [
+    "Sauna bathing",
+    "Finnish sauna",
+    "Dry sauna",
+    "Infrared sauna",
+    "Far-infrared sauna",
+    "Waon therapy",
+    "Heat therapy"
+  ],
+  "summary": "In a large Finnish study, people who used a sauna 4 to 7 times a week had fewer heart deaths, strokes and cases of dementia, a link rather than proof. Blood pressure is usually lower for a while afterwards.",
   "howItWorks": [
     "Heat makes the body work to cool down: blood vessels in the skin widen, the heart beats faster and you sweat. In this the strain on the heart resembles moderate exercise.",
     "Right after a session, blood pressure is usually lower than before and arteries are less stiff for a while. Whether this adds up to lasting changes is not known.",
@@ -11,7 +19,12 @@
     "Heat also makes cells produce heat shock proteins, which help protect other proteins. This is shown mainly for hot-water baths; what it means for health in people is not known."
   ],
   "whatStudiesDid": "Most of the evidence comes from one Finnish study (the Kuopio Ischaemic Heart Disease Risk Factor Study, KIHD). Between 1984 and 1989, men aged 42 to 60 filled in a questionnaire on how often and how long they used a sauna, and were followed for about 20 years or more; a later group of men and women aged 53 to 74 was followed for about 15 years. They were compared in three groups: once a week, 2 to 3 times a week and 4 to 7 times a week. Short studies measured people during and after one session (for example 30 minutes at 73 °C) or over 8 weeks of 15-minute sessions after exercise. Heart failure trials used Waon therapy in hospital: a far-infrared dry sauna at 60 °C for 15 minutes, then 30 minutes of rest under a blanket, daily or five times a week, for 10 days to 4 weeks.",
-  "markers": ["bp_systolic", "bp_diastolic", "heart_rate", "crp_hs"],
+  "markers": [
+    "bp_systolic",
+    "bp_diastolic",
+    "heart_rate",
+    "crp_hs"
+  ],
   "findings": [
     {
       "outcome": "Sudden cardiac death, death from heart and blood vessel disease, and death from any cause",
@@ -239,12 +252,39 @@
       "title": "Heart deaths by how often people used a sauna",
       "caption": "Hazard ratios with 95% confidence intervals from the Finnish KIHD study, compared with people who used a sauna once a week, after adjusting for known heart risk factors. Below 1 means fewer deaths in that group. An interval that crosses 1 could be chance. These are links from one observational study: people who use a sauna more often may differ in other ways.",
       "scale": "ratio",
-      "reference": { "value": 1, "label": "Once a week (comparison group)" },
+      "reference": {
+        "value": 1,
+        "label": "Once a week (comparison group)"
+      },
       "items": [
-        { "label": "Sudden cardiac death, 2–3 times a week", "value": 0.78, "low": 0.57, "high": 1.07, "note": "2,315 men aged 42–60, followed 20.7 years (2015)" },
-        { "label": "Sudden cardiac death, 4–7 times a week", "value": 0.37, "low": 0.18, "high": 0.75, "note": "2,315 men aged 42–60, followed 20.7 years (2015)" },
-        { "label": "Death from heart and blood vessel disease, 2–3 times a week", "value": 0.75, "low": 0.52, "high": 1.08, "note": "1,688 men and women aged 53–74, followed 15.0 years; also adjusted for physical activity (2018)" },
-        { "label": "Death from heart and blood vessel disease, 4–7 times a week", "value": 0.23, "low": 0.08, "high": 0.65, "note": "1,688 men and women aged 53–74, followed 15.0 years; also adjusted for physical activity (2018)" }
+        {
+          "label": "Sudden cardiac death, 2–3 times a week",
+          "value": 0.78,
+          "low": 0.57,
+          "high": 1.07,
+          "note": "2,315 men aged 42–60, followed 20.7 years (2015)"
+        },
+        {
+          "label": "Sudden cardiac death, 4–7 times a week",
+          "value": 0.37,
+          "low": 0.18,
+          "high": 0.75,
+          "note": "2,315 men aged 42–60, followed 20.7 years (2015)"
+        },
+        {
+          "label": "Death from heart and blood vessel disease, 2–3 times a week",
+          "value": 0.75,
+          "low": 0.52,
+          "high": 1.08,
+          "note": "1,688 men and women aged 53–74, followed 15.0 years; also adjusted for physical activity (2018)"
+        },
+        {
+          "label": "Death from heart and blood vessel disease, 4–7 times a week",
+          "value": 0.23,
+          "low": 0.08,
+          "high": 0.65,
+          "note": "1,688 men and women aged 53–74, followed 15.0 years; also adjusted for physical activity (2018)"
+        }
       ],
       "sources": [
         {
@@ -270,12 +310,39 @@
       "title": "Other illnesses: 4–7 times a week compared with once a week",
       "caption": "Hazard ratios with 95% confidence intervals from separate analyses of the same Finnish KIHD study, each adjusted for its own set of risk factors. Below 1 means fewer cases among people who used a sauna 4 to 7 times a week. Wide intervals mean the true size of the link is uncertain, and these links don't show that sauna is the cause.",
       "scale": "ratio",
-      "reference": { "value": 1, "label": "Once a week (comparison group)" },
+      "reference": {
+        "value": 1,
+        "label": "Once a week (comparison group)"
+      },
       "items": [
-        { "label": "Dementia", "value": 0.34, "low": 0.16, "high": 0.71, "note": "2,315 men aged 42–60, followed 20.7 years (2017)" },
-        { "label": "Alzheimer's disease", "value": 0.35, "low": 0.14, "high": 0.9, "note": "2,315 men aged 42–60, followed 20.7 years (2017)" },
-        { "label": "Stroke", "value": 0.38, "low": 0.18, "high": 0.81, "note": "1,628 men and women aged 53–74, followed 14.9 years; also adjusted for physical activity (2018)" },
-        { "label": "High blood pressure (new diagnosis)", "value": 0.53, "low": 0.28, "high": 0.98, "note": "1,621 men aged 42–60, followed 24.7 years; fully adjusted (2017)" }
+        {
+          "label": "Dementia",
+          "value": 0.34,
+          "low": 0.16,
+          "high": 0.71,
+          "note": "2,315 men aged 42–60, followed 20.7 years (2017)"
+        },
+        {
+          "label": "Alzheimer's disease",
+          "value": 0.35,
+          "low": 0.14,
+          "high": 0.9,
+          "note": "2,315 men aged 42–60, followed 20.7 years (2017)"
+        },
+        {
+          "label": "Stroke",
+          "value": 0.38,
+          "low": 0.18,
+          "high": 0.81,
+          "note": "1,628 men and women aged 53–74, followed 14.9 years; also adjusted for physical activity (2018)"
+        },
+        {
+          "label": "High blood pressure (new diagnosis)",
+          "value": 0.53,
+          "low": 0.28,
+          "high": 0.98,
+          "note": "1,621 men aged 42–60, followed 24.7 years; fully adjusted (2017)"
+        }
       ],
       "sources": [
         {
@@ -309,12 +376,30 @@
       "title": "What happens in the body during and after a session",
       "caption": "Short-term changes measured in small groups during and after one session. Numbers come from different studies with different sauna types and temperatures. They show how the body responds to heat, not that sauna improves long-term health.",
       "steps": [
-        { "label": "The skin heats up first", "text": "In a far-infrared sauna at 65 °C, skin temperature rose by 7.4 °C within 5 minutes. Core temperature rose more slowly, by 1.4 °C over 45 minutes (12 healthy adults)." },
-        { "label": "Blood vessels in the skin widen", "text": "More blood flows through the skin to carry heat away; this was measured in 6 men in a sauna at about 69 °C." },
-        { "label": "Sweating", "text": "In the 65 °C study people sweated about 1.4 litres an hour, and the liquid part of the blood (plasma) shrank by 11.6%." },
-        { "label": "The heart beats faster", "text": "Heart rate rose throughout the session: from 74 to 153 beats a minute on average in the 65 °C study." },
-        { "label": "Blood pressure during the session", "text": "In 19 adults in a sauna at 93 °C, blood pressure rose steadily during the session. The load on the heart was similar to moderate exercise on a bike (60 to 100 watts)." },
-        { "label": "Afterwards: pressure falls for a while", "text": "Right after a 30-minute session at 73 °C, average blood pressure in 102 adults fell from 137/82 to 130/75 mmHg and arteries were less stiff. Systolic pressure was still lower after 30 minutes' rest." }
+        {
+          "label": "The skin heats up first",
+          "text": "In a far-infrared sauna at 65 °C, skin temperature rose by 7.4 °C within 5 minutes. Core temperature rose more slowly, by 1.4 °C over 45 minutes (12 healthy adults)."
+        },
+        {
+          "label": "Blood vessels in the skin widen",
+          "text": "More blood flows through the skin to carry heat away; this was measured in 6 men in a sauna at about 69 °C."
+        },
+        {
+          "label": "Sweating",
+          "text": "In the 65 °C study people sweated about 1.4 litres an hour, and the liquid part of the blood (plasma) shrank by 11.6%."
+        },
+        {
+          "label": "The heart beats faster",
+          "text": "Heart rate rose throughout the session: from 74 to 153 beats a minute on average in the 65 °C study."
+        },
+        {
+          "label": "Blood pressure during the session",
+          "text": "In 19 adults in a sauna at 93 °C, blood pressure rose steadily during the session. The load on the heart was similar to moderate exercise on a bike (60 to 100 watts)."
+        },
+        {
+          "label": "Afterwards: pressure falls for a while",
+          "text": "Right after a 30-minute session at 73 °C, average blood pressure in 102 adults fell from 137/82 to 130/75 mmHg and arteries were less stiff. Systolic pressure was still lower after 30 minutes' rest."
+        }
       ],
       "sources": [
         {

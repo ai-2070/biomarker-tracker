@@ -2,8 +2,16 @@
   "id": "ginger",
   "name": "Ginger",
   "group": "herbs and spices",
-  "otherNames": ["Ginger root", "Fresh ginger", "Ground ginger", "Ginger powder", "Dried ginger", "Ginger tea", "Zingiber officinale"],
-  "summary": "The root (rhizome) of the ginger plant, eaten fresh, dried and ground, or as tea. In trials, mostly of ground ginger in capsules, it eased nausea in early pregnancy and period pain a little, with mixed results for sickness after surgery or chemotherapy. Small changes in blood sugar, blood fats, blood pressure and CRP come from short trials of low certainty, most of them in Iran.",
+  "otherNames": [
+    "Ginger root",
+    "Fresh ginger",
+    "Ground ginger",
+    "Ginger powder",
+    "Dried ginger",
+    "Ginger tea",
+    "Zingiber officinale"
+  ],
+  "summary": "A spicy root best known for settling the stomach. In small trials it eased nausea in early pregnancy and period pain, and nudged blood sugar and blood pressure down a little.",
   "inIt": [
     "Gingerols, mainly 6-gingerol, are the main pungent compounds of the fresh root. A review links them to ginger's reputed effects on nausea, arthritis and pain; which compounds cause any effect in people is not known.",
     "Shogaols form when gingerols lose water during drying and heating. They give dried ginger its sharper taste. In water the change goes both ways and settles at a balance.",
@@ -20,7 +28,13 @@
       "finding": "Nausea and vomiting in early pregnancy",
       "note": "In small trials, mostly of ground ginger in capsules, ginger eased nausea in early pregnancy compared with a dummy pill, but did not clearly reduce vomiting. For sickness after surgery or during chemotherapy, results were mixed.",
       "sources": [
-        { "pmid": "38997763", "doi": "10.1186/s13020-024-00969-z", "title": "Pharmacological activity and clinical application analysis of traditional Chinese medicine ginger from the perspective of one source and multiple substances.", "year": 2024, "studyType": "review" }
+        {
+          "pmid": "38997763",
+          "doi": "10.1186/s13020-024-00969-z",
+          "title": "Pharmacological activity and clinical application analysis of traditional Chinese medicine ginger from the perspective of one source and multiple substances.",
+          "year": 2024,
+          "studyType": "review"
+        }
       ]
     },
     {
@@ -30,7 +44,13 @@
       "finding": "Knee osteoarthritis pain",
       "note": "Trials of plain ground ginger for knee osteoarthritis are few and small: one blinded trial found no benefit over a dummy pill, and an open-label one found it added a little to a painkiller. The clearer benefits reported in reviews come from concentrated extracts, a different product.",
       "sources": [
-        { "pmid": "17950516", "doi": "10.1016/j.fct.2007.09.085", "title": "Some phytochemical, pharmacological and toxicological properties of ginger (Zingiber officinale Roscoe): a review of recent research.", "year": 2008, "studyType": "review" }
+        {
+          "pmid": "17950516",
+          "doi": "10.1016/j.fct.2007.09.085",
+          "title": "Some phytochemical, pharmacological and toxicological properties of ginger (Zingiber officinale Roscoe): a review of recent research.",
+          "year": 2008,
+          "studyType": "review"
+        }
       ]
     },
     {
@@ -40,7 +60,13 @@
       "finding": "Blood pressure",
       "note": "In short trials, ginger supplements went with blood pressure a few mmHg lower, mostly in people with raised blood pressure or obesity. Certainty is low, and in type 2 diabetes the fall was small.",
       "sources": [
-        { "pmid": "17950516", "doi": "10.1016/j.fct.2007.09.085", "title": "Some phytochemical, pharmacological and toxicological properties of ginger (Zingiber officinale Roscoe): a review of recent research.", "year": 2008, "studyType": "review" }
+        {
+          "pmid": "17950516",
+          "doi": "10.1016/j.fct.2007.09.085",
+          "title": "Some phytochemical, pharmacological and toxicological properties of ginger (Zingiber officinale Roscoe): a review of recent research.",
+          "year": 2008,
+          "studyType": "review"
+        }
       ]
     },
     {
@@ -49,7 +75,13 @@
       "modern": "not tested",
       "note": "No trial in people was found for this page. The Persian texts reasoned from ginger's \"hot and dry\" nature, an idea modern studies don't measure.",
       "sources": [
-        { "pmid": "25866718", "doi": "10.17795/jjnpp-18402", "title": "Ginger from ancient times to the new outlook.", "year": 2015, "studyType": "review" }
+        {
+          "pmid": "25866718",
+          "doi": "10.17795/jjnpp-18402",
+          "title": "Ginger from ancient times to the new outlook.",
+          "year": 2015,
+          "studyType": "review"
+        }
       ]
     },
     {
@@ -58,13 +90,27 @@
       "modern": "not tested",
       "note": "Ginger was found in the hardened plaque on the teeth of 7 people buried at the leprosy hospital of St Leonard in Peterborough, 6 of them with signs of leprosy in their bones. That shows it was eaten or held in the mouth, not whether it helped, and no study in people of ginger for leprosy was found for this page.",
       "sources": [
-        { "pmid": "38291078", "doi": "10.1038/s41598-024-52422-8", "title": "First archaeological evidence for ginger consumption as a potential medicinal ingredient in a late medieval leprosarium at St Leonard, Peterborough, England.", "year": 2024, "studyType": "observational" }
+        {
+          "pmid": "38291078",
+          "doi": "10.1038/s41598-024-52422-8",
+          "title": "First archaeological evidence for ginger consumption as a potential medicinal ingredient in a late medieval leprosarium at St Leonard, Peterborough, England.",
+          "year": 2024,
+          "studyType": "observational"
+        }
       ]
     }
   ],
   "tableFoods": [
-    { "id": "13-890", "label": "A thumb-sized piece (about 10 g)", "grams": 10 },
-    { "id": "13-832", "label": "1 teaspoon ground (about 2 g)", "grams": 2 }
+    {
+      "id": "13-890",
+      "label": "A thumb-sized piece (about 10 g)",
+      "grams": 10
+    },
+    {
+      "id": "13-832",
+      "label": "1 teaspoon ground (about 2 g)",
+      "grams": 2
+    }
   ],
   "processing": [
     "Fresh or dried: drying and heating turn gingerols into shogaols. In one laboratory study moist heat made more shogaol than dry heat (up to 2,991 mg of 6-shogaol per kg of ginger after 360 minutes at 120 °C), and dry heat on ground ginger made more than dry heat on fresh slices.",
@@ -75,7 +121,16 @@
     "Ginger biscuits and crystallised ginger: one pregnancy trial used ginger biscuits (2,500 mg of ginger a day). No trial found for this page tested crystallised (candied) ginger."
   ],
   "whatStudiesDid": "Most trials gave ground (dried) ginger root in capsules, for days or weeks. In early pregnancy, most trials gave 1,000 to 1,950 mg a day of ginger powder in capsules for about 4 days; others used ginger biscuits (2,500 mg a day), syrup, an extract or an essence, and several compared ginger with vitamin B6 rather than a dummy pill. Before surgery, trials gave a fixed amount of at least 1 g. During chemotherapy, ginger was added to the usual anti-sickness medicines: often powdered root at 0.5 to 1.5 g a day for 3 to 5 days, but also concentrated extracts, 6-gingerol capsules and ginger tea. For period pain, women (mostly students in Iran) had 750 to 2,000 mg of crude dry ginger powder a day, usually on the first 3 days of one period. In type 2 diabetes, trials gave 1,200 to 3,000 mg a day for 8 to 12 weeks; 10 of 13 were in Iran. These describe the studies; they are not amounts for anyone to follow.",
-  "markers": ["glucose", "hba1c", "triglycerides", "ldl", "hdl", "crp_hs", "bp_systolic", "bp_diastolic"],
+  "markers": [
+    "glucose",
+    "hba1c",
+    "triglycerides",
+    "ldl",
+    "hdl",
+    "crp_hs",
+    "bp_systolic",
+    "bp_diastolic"
+  ],
   "findings": [
     {
       "outcome": "Nausea and vomiting in early pregnancy",
@@ -447,12 +502,39 @@
       "title": "Nausea and vomiting with ginger compared with a dummy pill",
       "caption": "Ratios with 95% confidence intervals from three reviews. Below 1 means fewer people were sick with ginger. The surgery figures come from 5 small trials; the chemotherapy figures are subgroups (up to 1 g a day for several days), while overall the chemotherapy reviews found no clear difference in nausea or delayed vomiting. Relative risks and odds ratios are not the same measure, so compare bars within each pair only.",
       "scale": "ratio",
-      "reference": { "value": 1, "label": "Dummy pill or usual care (no difference)" },
+      "reference": {
+        "value": 1,
+        "label": "Dummy pill or usual care (no difference)"
+      },
       "items": [
-        { "label": "Nausea or vomiting after surgery (relative risk)", "value": 0.69, "low": 0.54, "high": 0.89, "note": "5 trials, 363 patients, at least 1 g before surgery (2006)" },
-        { "label": "Vomiting after surgery (relative risk)", "value": 0.61, "low": 0.45, "high": 0.84, "note": "5 trials, 363 patients (2006)" },
-        { "label": "Vomiting on the first day of chemotherapy (odds ratio)", "value": 0.4, "low": 0.17, "high": 0.81, "note": "Subgroup: 3 trials, 301 people, 1 g a day or less for more than 3 days (2019)" },
-        { "label": "Vomiting on the first day of chemotherapy, other review (odds ratio)", "value": 0.3, "low": 0.12, "high": 0.79, "note": "Subgroup of a 23-trial review: 1 g a day or less for more than 4 days (2022)" }
+        {
+          "label": "Nausea or vomiting after surgery (relative risk)",
+          "value": 0.69,
+          "low": 0.54,
+          "high": 0.89,
+          "note": "5 trials, 363 patients, at least 1 g before surgery (2006)"
+        },
+        {
+          "label": "Vomiting after surgery (relative risk)",
+          "value": 0.61,
+          "low": 0.45,
+          "high": 0.84,
+          "note": "5 trials, 363 patients (2006)"
+        },
+        {
+          "label": "Vomiting on the first day of chemotherapy (odds ratio)",
+          "value": 0.4,
+          "low": 0.17,
+          "high": 0.81,
+          "note": "Subgroup: 3 trials, 301 people, 1 g a day or less for more than 3 days (2019)"
+        },
+        {
+          "label": "Vomiting on the first day of chemotherapy, other review (odds ratio)",
+          "value": 0.3,
+          "low": 0.12,
+          "high": 0.79,
+          "note": "Subgroup of a 23-trial review: 1 g a day or less for more than 4 days (2022)"
+        }
       ],
       "sources": [
         {
@@ -485,11 +567,32 @@
       "caption": "Mean differences with 95% confidence intervals from a 2026 review of 13 trials in type 2 diabetes (8 to 12 weeks, 1,200 to 3,000 mg of ginger a day, 10 trials in Iran). Below 0 means lower with ginger. Certainty was low for all three; total and LDL cholesterol did not change (very low certainty). The authors judged the changes of limited clinical importance.",
       "scale": "linear",
       "unit": "mg/dL",
-      "reference": { "value": 0, "label": "No difference" },
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
       "items": [
-        { "label": "Fasting blood glucose", "value": -16.27, "low": -25.75, "high": -6.8, "note": "Low certainty" },
-        { "label": "Triglycerides", "value": -17.1, "low": -31.13, "high": -3.07, "note": "Low certainty" },
-        { "label": "HDL cholesterol", "value": 2.13, "low": 0.44, "high": 3.82, "note": "Low certainty; higher HDL is usually seen as better" }
+        {
+          "label": "Fasting blood glucose",
+          "value": -16.27,
+          "low": -25.75,
+          "high": -6.8,
+          "note": "Low certainty"
+        },
+        {
+          "label": "Triglycerides",
+          "value": -17.1,
+          "low": -31.13,
+          "high": -3.07,
+          "note": "Low certainty"
+        },
+        {
+          "label": "HDL cholesterol",
+          "value": 2.13,
+          "low": 0.44,
+          "high": 3.82,
+          "note": "Low certainty; higher HDL is usually seen as better"
+        }
       ],
       "sources": [
         {
@@ -506,10 +609,22 @@
       "title": "From fresh to dried ginger: gingerols become shogaols",
       "caption": "What laboratory chemistry shows happens to ginger's pungent compounds with drying, heating and digestion in mice. It explains why fresh and dried ginger differ; it doesn't show which form works better in people, which no trial found for this page tested.",
       "steps": [
-        { "label": "Fresh root", "text": "Gingerols, mainly 6-gingerol, are the main pungent compounds of fresh ginger." },
-        { "label": "Drying and heating", "text": "Heat makes gingerols lose water and turn into shogaols. In water the change runs both ways; at 100 °C and strong acid (pH 1) it reached a balance within 2 hours." },
-        { "label": "Dried and cooked ginger", "text": "Moist heat made more shogaol than dry heat, up to 2,991 mg of 6-shogaol per kg after 360 minutes at 120 °C. Stir-frying and charring lowered gingerols and raised shogaols." },
-        { "label": "After eating (in mice)", "text": "In mice, 6-paradol is the main breakdown product of 6-shogaol. What happens in people was not measured in these studies." }
+        {
+          "label": "Fresh root",
+          "text": "Gingerols, mainly 6-gingerol, are the main pungent compounds of fresh ginger."
+        },
+        {
+          "label": "Drying and heating",
+          "text": "Heat makes gingerols lose water and turn into shogaols. In water the change runs both ways; at 100 °C and strong acid (pH 1) it reached a balance within 2 hours."
+        },
+        {
+          "label": "Dried and cooked ginger",
+          "text": "Moist heat made more shogaol than dry heat, up to 2,991 mg of 6-shogaol per kg after 360 minutes at 120 °C. Stir-frying and charring lowered gingerols and raised shogaols."
+        },
+        {
+          "label": "After eating (in mice)",
+          "text": "In mice, 6-paradol is the main breakdown product of 6-shogaol. What happens in people was not measured in these studies."
+        }
       ],
       "sources": [
         {
