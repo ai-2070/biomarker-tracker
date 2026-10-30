@@ -1,0 +1,337 @@
+{
+ "topic": "wholefood-beetroot",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "vascular": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Beetroot juice or whole beetroot (nitrate-rich)",
+    "comparison": "Placebo or no beetroot",
+    "outcome": "Flow-mediated dilation or artery stiffness"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "40861662",
+     "fits": "no",
+     "reason": "Beetroot juice vs placebo, but only in peripheral artery disease and outcomes are walking time and blood pressure, not FMD or artery stiffness."
+    },
+    {
+     "pmid": "40128734",
+     "fits": "partly",
+     "reason": "Reports FMD and pulse wave velocity vs control, but the exposure is dietary nitrate in general; beetroot is not analysed on its own."
+    },
+    {
+     "pmid": "25764393",
+     "fits": "partly",
+     "reason": "Placebo-controlled trials on endothelial function, but beetroot is pooled with inorganic nitrate supplements and not shown separately."
+    }
+   ]
+  },
+  "cognition": {
+   "question": {
+    "population": "Adults, often older",
+    "intervention": "Beetroot juice (nitrate-rich)",
+    "comparison": "Placebo",
+    "outcome": "Thinking tests or blood flow in the brain"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41470898",
+     "fits": "yes",
+     "reason": "Systematic review of beetroot juice in healthy adults and athletes that includes cognitive function outcomes; the abstract does not state a placebo comparison."
+    }
+   ]
+  },
+  "sugar": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Beetroot juice or whole beetroot",
+    "comparison": "Placebo or no beetroot",
+    "outcome": "Blood sugar or insulin"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "38760619",
+     "fits": "yes",
+     "reason": "Systematically reviewed human trials of red beetroot products (various forms) on blood sugar in adults with different health conditions, including T2DM, obesity and hypertension."
+    }
+   ]
+  },
+  "recovery": {
+   "question": {
+    "population": "Adults after hard exercise",
+    "intervention": "Beetroot juice",
+    "comparison": "Placebo",
+    "outcome": "Muscle soreness, damage markers or recovery of strength"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41095582",
+     "fits": "no",
+     "reason": "Measures heart and nervous-system recovery (heart rate variability, blood pressure) in postmenopausal women, not muscle soreness, damage markers or strength."
+    },
+    {
+     "pmid": "34151694",
+     "fits": "yes",
+     "reason": "Pools placebo-controlled trials of beetroot juice in adults after exercise, measuring muscle function, soreness and damage markers."
+    },
+    {
+     "pmid": "42583675",
+     "fits": "yes",
+     "reason": "Pools randomised trials comparing beetroot juice with placebo for creatine kinase, strength, jump height and muscle pain after damaging exercise."
+    },
+    {
+     "pmid": "34399653",
+     "fits": "yes",
+     "reason": "Reviews beetroot studies with a placebo or control group, covering soreness, damage markers and strength recovery after muscle-damaging exercise."
+    },
+    {
+     "pmid": "36231323",
+     "fits": "partly",
+     "reason": "Reviews nitrate intake in general, including beets, but the abstract does not analyse beetroot on its own and does not say whether a placebo was used."
+    }
+   ]
+  },
+  "blood-pressure": {
+   "question": {
+    "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+    "intervention": "Beetroot juice or whole beetroot (nitrate-rich); reviews pooling nitrate salts count as partly",
+    "comparison": "Nitrate-depleted juice, placebo or no beetroot",
+    "outcome": "Blood pressure"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41619653",
+     "fits": "no",
+     "reason": "It reviews sodium nitrate salts only and explicitly excludes beetroot juice studies, so beetroot is not the food examined."
+    },
+    {
+     "pmid": "39069465",
+     "fits": "partly",
+     "reason": "Beetroot juice vs placebo/water/no intake on BP matches, but the population is limited to adults with hypertension."
+    },
+    {
+     "pmid": "42815860",
+     "fits": "partly",
+     "reason": "It reviews beetroot extract supplementation in older adults only, a narrower population and possibly an extract rather than the whole food."
+    },
+    {
+     "pmid": "40128734",
+     "fits": "partly",
+     "reason": "It pools dietary nitrate RCTs on BP without a separate beetroot juice analysis reported in the abstract."
+    },
+    {
+     "pmid": "35369064",
+     "fits": "partly",
+     "reason": "Beetroot juice vs control on BP matches, but the population is limited to patients with arterial hypertension."
+    },
+    {
+     "pmid": "36740972",
+     "fits": "partly",
+     "reason": "It pools inorganic nitrate RCTs on BP; beetroot juice is not analysed separately in the abstract."
+    },
+    {
+     "pmid": "29141968",
+     "fits": "yes",
+     "reason": "Meta-analysis of RCTs of beetroot juice vs control groups, including nitrate-depleted juice, on resting SBP and DBP in humans."
+    },
+    {
+     "pmid": "30400267",
+     "fits": "yes",
+     "reason": "Systematic review of RCTs of beetroot juice vs control on BP in healthy, pre-hypertensive and hypertensive people."
+    },
+    {
+     "pmid": "30870330",
+     "fits": "partly",
+     "reason": "It mixes nitrate sources (beetroot juice, lozenges, diet) and is limited to adults with raised BP."
+    },
+    {
+     "pmid": "28319596",
+     "fits": "partly",
+     "reason": "It pools inorganic nitrate and beetroot juice vs placebo on BP without a separate beetroot-only analysis in the abstract."
+    },
+    {
+     "pmid": "29635347",
+     "fits": "no",
+     "reason": "This is an erratum notice, not a systematic review."
+    },
+    {
+     "pmid": "25937622",
+     "fits": "partly",
+     "reason": "Pooled RCTs of beetroot juice vs placebo, but only older participants and mainly 24-h BP variability outcomes."
+    },
+    {
+     "pmid": "23596162",
+     "fits": "partly",
+     "reason": "It pools inorganic nitrate and beetroot juice vs placebo on BP without a separate beetroot-only analysis reported."
+    }
+   ]
+  },
+  "endurance": {
+   "question": {
+    "population": "Healthy adults, from untrained to athletes",
+    "intervention": "Beetroot juice (nitrate-rich)",
+    "comparison": "Nitrate-depleted juice or placebo",
+    "outcome": "Endurance, time to exhaustion, time trials or oxygen uptake"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "41095582",
+     "fits": "partly",
+     "reason": "Beetroot vs comparison with VO2peak among outcomes, but limited to postmenopausal women and focused mainly on autonomic recovery."
+    },
+    {
+     "pmid": "34489239",
+     "fits": "partly",
+     "reason": "Dietary nitrate, usually beetroot juice, on exercise capacity, but in people with chronic respiratory disease, not healthy adults."
+    },
+    {
+     "pmid": "29077028",
+     "fits": "partly",
+     "reason": "Food-based nitrate (beetroot juice) on time to exhaustion in controlled trials, but limited to older adults."
+    },
+    {
+     "pmid": "42931603",
+     "fits": "partly",
+     "reason": "Placebo-controlled nitrate trials with VO2max and a beetroot subgroup, but limited to athletes and pooled with nitrate salts."
+    },
+    {
+     "pmid": "42445795",
+     "fits": "yes",
+     "reason": "Meta-analysis of beetroot juice on VO2max and exercise performance, with subgroups by athlete status."
+    },
+    {
+     "pmid": "42523624",
+     "fits": "yes",
+     "reason": "Placebo-controlled trials of beetroot juice on VO2max/VO2peak in healthy adults, from recreational to trained."
+    },
+    {
+     "pmid": "41470898",
+     "fits": "yes",
+     "reason": "Systematic review of beetroot juice on physical performance, including endurance, in healthy adults and athletes."
+    },
+    {
+     "pmid": "40573069",
+     "fits": "yes",
+     "reason": "Umbrella review of beetroot juice on performance, including time to exhaustion and aerobic endurance, in athletes and healthy adults."
+    },
+    {
+     "pmid": "41010367",
+     "fits": "no",
+     "reason": "Outcomes are muscle strength, power and sprint in females, not endurance or oxygen uptake; nitrate also includes salts."
+    },
+    {
+     "pmid": "34151694",
+     "fits": "no",
+     "reason": "Outcome is exercise-induced muscle damage markers, not endurance performance or oxygen uptake."
+    },
+    {
+     "pmid": "37299456",
+     "fits": "no",
+     "reason": "Outcome is resistance exercise performance (squat, bench press), not endurance or oxygen uptake."
+    },
+    {
+     "pmid": "34965876",
+     "fits": "partly",
+     "reason": "Endurance performance with nitrate-rich foods analysed as a group; beetroot juice is not clearly analysed on its own."
+    },
+    {
+     "pmid": "35580578",
+     "fits": "yes",
+     "reason": "Randomised trials in healthy adults, with a separate beetroot juice subgroup showing effects on exercise performance."
+    },
+    {
+     "pmid": "40085422",
+     "fits": "partly",
+     "reason": "Umbrella review of nitrate vs placebo on time to exhaustion and other outcomes, but beetroot juice is not analysed on its own."
+    },
+    {
+     "pmid": "38004231",
+     "fits": "partly",
+     "reason": "Beetroot juice and sports performance, but it reviews beetroot combined with other supplements rather than vs placebo alone."
+    },
+    {
+     "pmid": "37697072",
+     "fits": "yes",
+     "reason": "Placebo-controlled trials on VO2peak and time to exhaustion, with a separate subset of healthy people taking beetroot juice."
+    },
+    {
+     "pmid": "33554654",
+     "fits": "partly",
+     "reason": "Dietary nitrate from mixed sources, and outcomes are muscular strength and endurance rather than whole-body endurance."
+    },
+    {
+     "pmid": "34243756",
+     "fits": "partly",
+     "reason": "Nitrate vs placebo on endurance and VO2 in healthy adults, but beetroot juice is not analysed separately from other nitrate."
+    },
+    {
+     "pmid": "37167368",
+     "fits": "partly",
+     "reason": "Beetroot-based supplements, but only in healthy males and with muscular endurance and strength outcomes."
+    },
+    {
+     "pmid": "35892115",
+     "fits": "partly",
+     "reason": "Nitrate on endurance time-trial performance, but beetroot juice is not analysed separately from other nitrate sources."
+    },
+    {
+     "pmid": "36678270",
+     "fits": "partly",
+     "reason": "Beetroot versus placebo, but only in combat sports athletes, and the outcomes are mostly muscle force and oxidative metabolism rather than endurance."
+    },
+    {
+     "pmid": "28067808",
+     "fits": "yes",
+     "reason": "Systematically reviews beetroot juice for cardiorespiratory endurance, time to exhaustion and VO2max in athletes, who fall within the target population."
+    },
+    {
+     "pmid": "27600147",
+     "fits": "partly",
+     "reason": "Placebo-controlled time trial and time-to-exhaustion pooling in healthy adults, but it pools all dietary nitrate sources with no separate beetroot analysis."
+    },
+    {
+     "pmid": "35055584",
+     "fits": "no",
+     "reason": "Looks at explosive efforts of 6 seconds or less (sprint and power), not endurance or oxygen uptake."
+    },
+    {
+     "pmid": "32722588",
+     "fits": "no",
+     "reason": "Looks at weightlifting (resistance exercise) performance, not endurance, time trials or oxygen uptake."
+    },
+    {
+     "pmid": "23580439",
+     "fits": "partly",
+     "reason": "Pools time-to-exhaustion and time-trial results in healthy people, but mixes beetroot juice with sodium nitrate and does not analyse beetroot on its own."
+    },
+    {
+     "pmid": "37371924",
+     "fits": "no",
+     "reason": "Looks at short-duration, high-intensity sprint performance, not endurance or oxygen uptake."
+    },
+    {
+     "pmid": "32560317",
+     "fits": "partly",
+     "reason": "Endurance outcomes, but covers nitrate supplements in general rather than beetroot specifically, and only trained endurance athletes in cyclic sports."
+    },
+    {
+     "pmid": "32911636",
+     "fits": "partly",
+     "reason": "Time-trial performance across training levels, but covers dietary nitrates in general with no separate beetroot analysis."
+    },
+    {
+     "pmid": "26772523",
+     "fits": "partly",
+     "reason": "Oxygen uptake against placebo in healthy people, but pools beetroot with nitrate salts and other vegetables rather than analysing beetroot juice on its own."
+    }
+   ]
+  }
+ }
+}

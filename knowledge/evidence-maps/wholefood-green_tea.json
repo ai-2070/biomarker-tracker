@@ -1,0 +1,3726 @@
+{
+ "topic": "wholefood-green_tea",
+ "kind": "wholefood",
+ "wholeFoodId": "green_tea",
+ "name": "green tea",
+ "builtAt": "2026-10-30",
+ "fetchedAt": "2026-10-30",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "mortality": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:mortality OR TITLE_ABS:death)) AND SRC:MED",
+  "cardiovascular": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:stroke OR TITLE_ABS:\"heart disease\")) AND SRC:MED",
+  "blood-pressure": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:hypertension OR TITLE_ABS:hypertensive)) AND SRC:MED",
+  "lipids": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:cholesterol OR TITLE_ABS:\"lipid profile\" OR TITLE_ABS:lipids OR TITLE_ABS:triglycerides OR TITLE_ABS:LDL OR TITLE_ABS:HDL)) AND SRC:MED",
+  "sugar": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:insulin OR TITLE_ABS:glucose OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic OR TITLE_ABS:HbA1c OR TITLE_ABS:\"insulin resistance\")) AND SRC:MED",
+  "weight": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:\"body weight\" OR TITLE_ABS:\"weight loss\" OR TITLE_ABS:\"body mass index\" OR TITLE_ABS:obesity OR TITLE_ABS:adiposity)) AND SRC:MED",
+  "cancer": "((TITLE_ABS:\"green tea\" OR TITLE_ABS:\"Camellia sinensis\" OR TITLE_ABS:matcha OR TITLE_ABS:\"tea consumption\" OR TITLE_ABS:\"tea drinking\") AND (TITLE_ABS:cancer OR TITLE_ABS:neoplasm OR TITLE_ABS:carcinoma OR TITLE_ABS:tumor OR TITLE_ABS:tumour)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating green tea comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 6728,
+  "retrieved": 614,
+  "animal": 8,
+  "retracted": 2,
+  "reviews": 293,
+  "trials": 311,
+  "guidelines": 0
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "mortality",
+   "label": "Death",
+   "finding": "Death from any cause",
+   "counts": {
+    "all": 970,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 0,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "26202661",
+     "doi": "10.1017/s0007114515002329",
+     "title": "Tea consumption and mortality of all cancers, CVD and all causes: a meta-analysis of eighteen prospective cohort studies",
+     "year": 2015,
+     "firstAuthor": "Tang J",
+     "journal": "The British journal of nutrition",
+     "citedBy": 85,
+     "why": "One of the newest meta-analyses on this finding (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "26202661"
+    ],
+    "citedNotChosen": [
+     "16968850",
+     "25900254",
+     "31392470",
+     "27372743",
+     "28135196",
+     "32073596"
+    ],
+    "citedNotEligible": [
+     "16968850",
+     "25900254",
+     "31392470",
+     "27372743",
+     "28135196"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Drinking more green tea (the drink, not extracts)",
+     "comparison": "Drinking less or none",
+     "outcome": "Death from any cause"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 5,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40525136",
+      "title": "Coffee and tea consumption and cardiovascular disease and all-cause and cause-specific mortality in individuals with diabetes mellitus: a meta-analysis of prospective observational studies",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Reports all-cause mortality, but for tea in general with no separate green tea analysis, and only in people with diabetes."
+     },
+     {
+      "pmid": "38938012",
+      "title": "Tea consumption and risk of all-cause, cardiovascular disease, and cancer mortality: a meta-analysis of thirty-eight prospective cohort data sets",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Pools cohorts on all-cause mortality, but for tea in general; the abstract reports no separate green tea analysis."
+     },
+     {
+      "pmid": "34034384",
+      "title": "[A dose-response meta-analysis on the relationship between daily tea intake and cardiovascular mortality based on the GRADE system]",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Covers tea in general, not green tea separately, and reports only cardiovascular death, not death from any cause."
+     },
+     {
+      "pmid": "32073596",
+      "title": "Dose-Response Relation between Tea Consumption and Risk of Cardiovascular Disease and All-Cause Mortality: A Systematic Review and Meta-Analysis of Population-Based Studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Healthy adults and all-cause mortality match, but it analyses tea in general rather than green tea on its own."
+     },
+     {
+      "pmid": "25354990",
+      "title": "Tea consumption and risk of cardiovascular outcomes and total mortality: a systematic review and meta-analysis of prospective observational studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pools cohorts on total mortality, but for tea in general; the abstract reports no separate green tea analysis."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Heart disease and stroke",
+   "finding": "Heart disease and stroke",
+   "counts": {
+    "all": 981,
+    "reviews": 21,
+    "trialReviews": 21,
+    "trials": 13,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "36599267",
+     "doi": "10.1016/j.nut.2022.111936",
+     "title": "Green tea consumption and the risk of stroke: A systematic review and meta-analysis of cohort studies",
+     "year": 2023,
+     "firstAuthor": "Wang ZM",
+     "journal": "Nutrition (Burbank, Los Angeles County, Calif.)",
+     "citedBy": 14,
+     "n": 645393,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "36849317",
+     "doi": "10.1016/j.numecd.2023.01.017",
+     "title": "Green tea consumption and the risk of coronary heart disease: A systematic review and meta-analysis of cohort studies",
+     "year": 2023,
+     "firstAuthor": "Wang ZM",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 7,
+     "n": 772922,
+     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+    },
+    {
+     "pmid": "26318390",
+     "doi": "10.1016/j.ijcard.2014.12.176",
+     "title": "Green tea consumption and risk of cardiovascular and ischemic related diseases: A meta-analysis",
+     "year": 2016,
+     "firstAuthor": "Pang J",
+     "journal": "International journal of cardiology",
+     "citedBy": 86,
+     "n": 259267,
+     "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0,
+    "trials": 2,
+    "inclusions": 2,
+    "reviews": [
+     {
+      "pmid": "36849317",
+      "trials": 1
+     },
+     {
+      "pmid": "26318390",
+      "trials": 1
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "36599267"
+    ],
+    "shared": [
+     {
+      "pmid": "11447078",
+      "title": "Short- and long-term black tea consumption reverses endothelial dysfunction in patients with coronary artery disease",
+      "year": 2001,
+      "n": 66,
+      "inReviews": [
+       "26318390"
+      ]
+     },
+     {
+      "pmid": "32825556",
+      "title": "Acute Epigallocatechin-3-Gallate Supplementation Alters Postprandial Lipids after a Fast-Food Meal in Healthy Young Women: A Randomized, Double-Blind, Placebo-Controlled Crossover Study",
+      "year": 2020,
+      "inReviews": [
+       "36849317"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "36849317",
+     "36599267"
+    ],
+    "citedNotChosen": [
+     "31392470",
+     "16968850",
+     "23780706"
+    ],
+    "citedNotEligible": [
+     "31392470",
+     "16968850"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "26318390",
+      "doi": "10.1016/j.ijcard.2014.12.176",
+      "title": "Green tea consumption and risk of cardiovascular and ischemic related diseases: A meta-analysis",
+      "year": 2016,
+      "firstAuthor": "Pang J",
+      "journal": "International journal of cardiology",
+      "citedBy": 86,
+      "n": 259267,
+      "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Drinking more green tea (the drink, not extracts)",
+     "comparison": "Drinking less or none",
+     "outcome": "Heart disease or stroke"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 6,
+     "partly": 10,
+     "no": 5,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41152040",
+      "title": "Black tea consumption and the risk of coronary heart disease: a systematic review and meta-analysis of cohort studies",
+      "year": 2026,
+      "fits": "no",
+      "reason": "Looks at black tea, not green tea, and coronary heart disease."
+     },
+     {
+      "pmid": "40525136",
+      "title": "Coffee and tea consumption and cardiovascular disease and all-cause and cause-specific mortality in individuals with diabetes mellitus: a meta-analysis of prospective observational studies",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Tea (type not specified) and CVD outcomes, but only in people with diabetes; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "40881917",
+      "title": "Correction: Impact of Green Tea Consumption on the Prevalence of Cardiovascular Outcomes: A Systematic Review",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Correction notice with no review content."
+     },
+     {
+      "pmid": "38938012",
+      "title": "Tea consumption and risk of all-cause, cardiovascular disease, and cancer mortality: a meta-analysis of thirty-eight prospective cohort data sets",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Tea in general and CVD mortality in prospective cohorts; green tea is not analysed separately."
+     },
+     {
+      "pmid": "36704803",
+      "title": "The effects of green tea supplementation on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "Green tea supplementation (mostly extracts) and risk factors such as lipids and blood pressure, not heart disease or stroke."
+     },
+     {
+      "pmid": "34034384",
+      "title": "[A dose-response meta-analysis on the relationship between daily tea intake and cardiovascular mortality based on the GRADE system]",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Daily tea intake and CVD mortality; tea type is not separated, so green tea is not analysed on its own."
+     },
+     {
+      "pmid": "34396859",
+      "title": "Tea intake and cardiovascular disease: an umbrella review",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Umbrella review of tea in general and CVD outcomes; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "32073596",
+      "title": "Dose-Response Relation between Tea Consumption and Risk of Cardiovascular Disease and All-Cause Mortality: A Systematic Review and Meta-Analysis of Population-Based Studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Tea (black and green) and CVD events, stroke and mortality in healthy adults; no separate green tea analysis is reported."
+     },
+     {
+      "pmid": "31943427",
+      "title": "The efficacy of sour tea (Hibiscus sabdariffa L.) on selected cardiovascular disease risk factors: A systematic review and meta-analysis of randomized clinical trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Hibiscus sour tea and risk factors, not green tea and heart disease or stroke."
+     },
+     {
+      "pmid": "25354990",
+      "title": "Tea consumption and risk of cardiovascular outcomes and total mortality: a systematic review and meta-analysis of prospective observational studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Tea in general and CHD, stroke and cardiac death in cohorts; green tea is not analysed separately."
+     },
+     {
+      "pmid": "26024546",
+      "title": "Effect of tea on blood pressure for secondary prevention of cardiovascular disease: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Tea and blood pressure in people with hypertension; the outcome is not heart disease or stroke."
+     },
+     {
+      "pmid": "23780706",
+      "title": "Green and black tea for the primary prevention of cardiovascular disease",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Green tea RCTs in healthy or high-risk adults, analysed apart from black tea, but no trial reported heart disease or stroke events; results are only blood pressure and lipids."
+     },
+     {
+      "pmid": "22843186",
+      "title": "Tea consumption and risk of stroke: a dose-response meta-analysis of prospective studies",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Tea in general and stroke risk; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "19228856",
+      "title": "Green and black tea consumption and risk of stroke: a meta-analysis",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Green and black tea pooled against stroke risk; no separate green tea estimate is reported."
+     },
+     {
+      "pmid": "11549554",
+      "title": "Does tea affect cardiovascular disease? A meta-analysis",
+      "year": 2001,
+      "fits": "partly",
+      "reason": "Tea in general and stroke, MI and CHD; green tea is not analysed separately."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "all": 523,
+    "reviews": 17,
+    "trialReviews": 17,
+    "trials": 19,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32507441",
+     "doi": "10.1016/j.ctim.2020.102430",
+     "title": "The effects of regular consumption of green or black tea beverage on blood pressure in those with elevated blood pressure or hypertension: A systematic review and meta-analysis",
+     "year": 2020,
+     "firstAuthor": "Mahdavi-Roshan M",
+     "journal": "Complementary therapies in medicine",
+     "citedBy": 51,
+     "n": 408,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "25137341",
+     "doi": "10.1017/s0007114514001731",
+     "title": "Effects of tea intake on blood pressure: a meta-analysis of randomised controlled trials",
+     "year": 2014,
+     "firstAuthor": "Liu G",
+     "journal": "The British journal of nutrition",
+     "citedBy": 43,
+     "n": 1476,
+     "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.125,
+    "trials": 24,
+    "inclusions": 27,
+    "reviews": [
+     {
+      "pmid": "32507441",
+      "trials": 6
+     },
+     {
+      "pmid": "25137341",
+      "trials": 21
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "11447078",
+      "title": "Short- and long-term black tea consumption reverses endothelial dysfunction in patients with coronary artery disease",
+      "year": 2001,
+      "n": 66,
+      "inReviews": [
+       "32507441",
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "22749178",
+      "title": "Green tea extract reduces blood pressure, inflammatory biomarkers, and oxidative stress and improves parameters associated with insulin resistance in obese, hypertensive patients",
+      "year": 2012,
+      "inReviews": [
+       "32507441",
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "18710606",
+      "title": "Effects of dietary supplementation with the green tea polyphenol epigallocatechin-3-gallate on insulin resistance and associated metabolic risk factors: randomized controlled trial",
+      "year": 2009,
+      "inReviews": [
+       "32507441",
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "17557985",
+      "title": "A green tea extract high in catechins reduces body fat and cardiovascular risks in humans",
+      "year": 2007,
+      "n": 240,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "23038021",
+      "title": "Short-term effects of polyphenol-rich black tea on blood pressure in men and women",
+      "year": 2013,
+      "n": 111,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "18848434",
+      "title": "Standardized capsule of Camellia sinensis lowers cardiovascular risk factors in a randomized, double-blind, placebo-controlled study",
+      "year": 2009,
+      "n": 111,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "30912296",
+      "title": "Regular consumption of green tea improves pulse pressure and induces regression of left ventricular hypertrophy in hypertensive patients",
+      "year": 2019,
+      "n": 100,
+      "inReviews": [
+       "32507441"
+      ]
+     },
+     {
+      "pmid": "18468736",
+      "title": "Effect of green tea extract on obese women: a randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2008,
+      "n": 100,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "16392704",
+      "title": "Randomized controlled trial for an effect of green tea consumption on insulin resistance and inflammation markers",
+      "year": 2005,
+      "n": 66,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "16277999",
+      "title": "Metabolic effects of green tea and of phases of weight loss",
+      "year": 2006,
+      "n": 46,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "18356827",
+      "title": "Catechin safely improved higher levels of fatness, blood pressure, and cholesterol in children",
+      "year": 2008,
+      "n": 40,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "17892999",
+      "title": "A 6-month randomized pilot study of black tea and cardiovascular risk factors",
+      "year": 2007,
+      "n": 31,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "19008868",
+      "title": "A catechin-rich beverage improves obesity and blood glucose control in patients with type 2 diabetes",
+      "year": 2009,
+      "n": 23,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "11773508",
+      "title": "Regular ingestion of tea does not inhibit in vivo lipid peroxidation in humans",
+      "year": 2002,
+      "n": 22,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "10404946",
+      "title": "Effects on blood pressure of drinking green and black tea",
+      "year": 1999,
+      "n": 20,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "25658240",
+      "title": "Black tea lowers blood pressure and wave reflections in fasted and postprandial conditions in hypertensive patients: a randomised study",
+      "year": 2015,
+      "n": 19,
+      "inReviews": [
+       "32507441"
+      ]
+     },
+     {
+      "pmid": "19516176",
+      "title": "Black tea consumption dose-dependently improves flow-mediated dilation in healthy males",
+      "year": 2009,
+      "n": 19,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "19056646",
+      "title": "Daily consumption of an aqueous green tea extract supplement does not impair liver function or alter cardiovascular disease risk biomarkers in healthy men",
+      "year": 2009,
+      "n": 17,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "20605696",
+      "title": "Green tea minimally affects biomarkers of inflammation in obese subjects with metabolic syndrome",
+      "year": 2011,
+      "inReviews": [
+       "32507441"
+      ]
+     },
+     {
+      "pmid": "17882140",
+      "title": "The effect of caffeine, green tea and tyrosine on thermogenesis and energy intake",
+      "year": 2009,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "22581111",
+      "title": "Effects of green tea supplementation on elements, total antioxidants, lipids, and glucose values in the serum of obese patients",
+      "year": 2012,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "17554248",
+      "title": "Randomized controlled trial for an effect of green tea-extract powder supplementation on glucose abnormalities",
+      "year": 2008,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "9292758",
+      "title": "Effect of black tea drinking on blood lipids, blood pressure and aspects of bowel habit",
+      "year": 1997,
+      "inReviews": [
+       "25137341"
+      ]
+     },
+     {
+      "pmid": "21736785",
+      "title": "Health effects of green tea catechins in overweight and obese men: a randomised controlled cross-over trial",
+      "year": 2011,
+      "inReviews": [
+       "25137341"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1999,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 6,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "32028419",
+     "40497293",
+     "24861099",
+     "23780706"
+    ],
+    "citedNotEligible": [
+     "23780706"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "32507441",
+      "doi": "10.1016/j.ctim.2020.102430",
+      "title": "The effects of regular consumption of green or black tea beverage on blood pressure in those with elevated blood pressure or hypertension: A systematic review and meta-analysis",
+      "year": 2020,
+      "firstAuthor": "Mahdavi-Roshan M",
+      "journal": "Complementary therapies in medicine",
+      "citedBy": 51,
+      "n": 408,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     },
+     {
+      "pmid": "25137341",
+      "doi": "10.1017/s0007114514001731",
+      "title": "Effects of tea intake on blood pressure: a meta-analysis of randomised controlled trials",
+      "year": 2014,
+      "firstAuthor": "Liu G",
+      "journal": "The British journal of nutrition",
+      "citedBy": 43,
+      "n": 1476,
+      "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Green tea as a drink (reviews mixing extract capsules count as partly)",
+     "comparison": "Placebo, water or no tea",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 12,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42694065",
+      "title": "The association between tea consumption and hypertension: a systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Observational studies of tea in general, analysed by tea type; the outcome is a hypertension diagnosis, not blood pressure readings."
+     },
+     {
+      "pmid": "40497293",
+      "title": "Effect of green tea supplementation on blood pressure in adults: a GRADE-assessed systematic review and dose-response meta-analysis of randomised controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Adults, placebo or control and blood pressure match, but the review covers green tea 'supplementation', which likely mixes extracts with the drink."
+     },
+     {
+      "pmid": "38804341",
+      "title": "The Association between Antenatal Tea Drinking and Hypertensive Disorders of Pregnancy: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Covers pregnant women and tea in general, with pregnancy hypertension disorders as the outcome."
+     },
+     {
+      "pmid": "36689359",
+      "title": "Effect of Green Tea on Blood Pressure in Healthy Individuals: A Meta-Analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Healthy adults, RCTs and blood pressure match, but the review calls it green tea 'supplementation', lists EGCG as a search term, and may include extracts."
+     },
+     {
+      "pmid": "38034724",
+      "title": "Effects of green tea catechin on the blood pressure and lipids in overweight and obese population-a meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Tests green tea catechin supplements, not the drink, and only in overweight or obese people."
+     },
+     {
+      "pmid": "35750605",
+      "title": "A comprehensive overview on the effects of green tea on anthropometric measures, blood pressure, glycemic and lipidemic status: An umbrella review and meta meta-analysis study",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Umbrella review of earlier meta-analyses that mix green tea drinks with supplements."
+     },
+     {
+      "pmid": "32028419",
+      "title": "Effect of green tea supplementation on blood pressure: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Blood pressure RCTs of green tea 'supplementation', which likely mix extracts with the drink."
+     },
+     {
+      "pmid": "26024546",
+      "title": "Effect of tea on blood pressure for secondary prevention of cardiovascular disease: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Green and black tea are pooled in adults with high or borderline-high blood pressure, and green tea is not analysed on its own in the abstract."
+     },
+     {
+      "pmid": "25479028",
+      "title": "Effect of green tea supplementation on blood pressure among overweight and obese adults: a systematic review and meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pools green tea with green tea extract against placebo, and only in overweight or obese adults."
+     },
+     {
+      "pmid": "24861099",
+      "title": "Green tea catechins and blood pressure: a systematic review and meta-analysis of randomised controlled trials",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Green tea RCTs on blood pressure that include extract studies, with extracts as a subgroup."
+     },
+     {
+      "pmid": "24675010",
+      "title": "The effect of green tea on blood pressure and lipid profile: a systematic review and meta-analysis of randomized clinical trials",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Green tea RCTs on blood pressure, framed as a dietary supplement, so they likely mix extracts with the drink."
+     },
+     {
+      "pmid": "25176280",
+      "title": "Effect of green tea consumption on blood pressure: a meta-analysis of 13 randomized controlled trials",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Green tea RCTs on blood pressure that likely mix polyphenol or extract products with the drink."
+     },
+     {
+      "pmid": "25079225",
+      "title": "The effect of black tea on blood pressure: a systematic review with meta-analysis of randomized controlled trials",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Studies black tea only, not green tea."
+     },
+     {
+      "pmid": "24742977",
+      "title": "Effect of green tea supplementation on blood pressure among overweight and obese adults: a protocol for a systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "This is a protocol for a planned review, with no studies reviewed yet."
+     },
+     {
+      "pmid": "17420419",
+      "title": "Effect of cocoa and tea intake on blood pressure: a meta-analysis",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Black and green tea are pooled together, and green tea is not analysed on its own."
+     }
+    ]
+   }
+  },
+  {
+   "id": "lipids",
+   "label": "Cholesterol",
+   "finding": "LDL and total cholesterol",
+   "counts": {
+    "all": 899,
+    "reviews": 22,
+    "trialReviews": 22,
+    "trials": 40,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32434539",
+     "doi": "10.1186/s12937-020-00557-5",
+     "title": "Effect of green tea consumption on blood lipids: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Xu R",
+     "journal": "Nutrition journal",
+     "citedBy": 60,
+     "n": 3321,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "28636182",
+     "doi": "10.1002/mnfr.201601122",
+     "title": "Effects of green tea on lipid metabolism in overweight or obese people: A meta-analysis of randomized controlled trials",
+     "year": 2018,
+     "firstAuthor": "Yuan F",
+     "journal": "Molecular nutrition & food research",
+     "citedBy": 26,
+     "n": 1704,
+     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+    },
+    {
+     "pmid": "24675010",
+     "doi": "10.1016/j.numecd.2014.01.016",
+     "title": "The effect of green tea on blood pressure and lipid profile: a systematic review and meta-analysis of randomized clinical trials",
+     "year": 2014,
+     "firstAuthor": "Onakpoya I",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 120,
+     "n": 1536,
+     "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3333333333333333,
+    "trials": 42,
+    "inclusions": 70,
+    "reviews": [
+     {
+      "pmid": "32434539",
+      "trials": 29
+     },
+     {
+      "pmid": "28636182",
+      "trials": 19
+     },
+     {
+      "pmid": "24675010",
+      "trials": 22
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "17557985",
+      "title": "A green tea extract high in catechins reduces body fat and cardiovascular risks in humans",
+      "year": 2007,
+      "n": 240,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "19074207",
+      "title": "Green tea catechin consumption enhances exercise-induced abdominal fat loss in overweight and obese adults",
+      "year": 2009,
+      "n": 132,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "18468736",
+      "title": "Effect of green tea extract on obese women: a randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2008,
+      "n": 100,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "16277999",
+      "title": "Metabolic effects of green tea and of phases of weight loss",
+      "year": 2006,
+      "n": 46,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "22749178",
+      "title": "Green tea extract reduces blood pressure, inflammatory biomarkers, and oxidative stress and improves parameters associated with insulin resistance in obese, hypertensive patients",
+      "year": 2012,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "22581111",
+      "title": "Effects of green tea supplementation on elements, total antioxidants, lipids, and glucose values in the serum of obese patients",
+      "year": 2012,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "18710606",
+      "title": "Effects of dietary supplementation with the green tea polyphenol epigallocatechin-3-gallate on insulin resistance and associated metabolic risk factors: randomized controlled trial",
+      "year": 2009,
+      "inReviews": [
+       "32434539",
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "27806972",
+      "title": "Effects of green tea catechin extract on serum lipids in postmenopausal women: a randomized, placebo-controlled clinical trial",
+      "year": 2016,
+      "n": 936,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "26093535",
+      "title": "Therapeutic effect of high-dose green tea extract on weight reduction: A randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2016,
+      "n": 115,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "18848434",
+      "title": "Standardized capsule of Camellia sinensis lowers cardiovascular risk factors in a randomized, double-blind, placebo-controlled study",
+      "year": 2009,
+      "n": 111,
+      "inReviews": [
+       "32434539",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "20807303",
+      "title": "Green tea improves metabolic biomarkers, not weight or body composition: a pilot study in overweight breast cancer survivors",
+      "year": 2010,
+      "n": 54,
+      "inReviews": [
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "18356827",
+      "title": "Catechin safely improved higher levels of fatness, blood pressure, and cholesterol in children",
+      "year": 2008,
+      "n": 40,
+      "inReviews": [
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "23131813",
+      "title": "Effect of green tea (Camellia sinensis) consumption on the components of metabolic syndrome in elderly",
+      "year": 2012,
+      "n": 24,
+      "inReviews": [
+       "28636182",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "19008868",
+      "title": "A catechin-rich beverage improves obesity and blood glucose control in patients with type 2 diabetes",
+      "year": 2009,
+      "n": 23,
+      "inReviews": [
+       "32434539",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "26773777",
+      "title": "Green tea catechins prevent low-density lipoprotein oxidation via their accumulation in low-density lipoprotein particles in humans",
+      "year": 2016,
+      "n": 19,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "19056646",
+      "title": "Daily consumption of an aqueous green tea extract supplement does not impair liver function or alter cardiovascular disease risk biomarkers in healthy men",
+      "year": 2009,
+      "n": 17,
+      "inReviews": [
+       "32434539",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "24299662",
+      "title": "Effects of dietary supplementation with epigallocatechin-3-gallate on weight loss, energy homeostasis, cardiometabolic risk factors and liver function in obese women: randomised, double-blind, placebo-controlled clinical trial",
+      "year": 2014,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "20605696",
+      "title": "Green tea minimally affects biomarkers of inflammation in obese subjects with metabolic syndrome",
+      "year": 2011,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "16378915",
+      "title": "Effects of Chinese green tea on weight, and hormonal and biochemical profiles in obese patients with polycystic ovary syndrome--a randomized placebo-controlled trial",
+      "year": 2006,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "17554248",
+      "title": "Randomized controlled trial for an effect of green tea-extract powder supplementation on glucose abnormalities",
+      "year": 2008,
+      "inReviews": [
+       "32434539",
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "21736785",
+      "title": "Health effects of green tea catechins in overweight and obese men: a randomised controlled cross-over trial",
+      "year": 2011,
+      "inReviews": [
+       "32434539",
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "12824094",
+      "title": "Cholesterol-lowering effect of a theaflavin-enriched green tea extract: a randomized controlled trial",
+      "year": 2003,
+      "n": 240,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "29415825",
+      "title": "Green tea extract outperforms metformin in lipid profile and glycaemic control in overweight women: A double-blind, placebo-controlled, randomized trial",
+      "year": 2017,
+      "n": 120,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "22246619",
+      "title": "Effect of 2-month controlled green tea intervention on lipoprotein cholesterol, glucose, and hormone levels in healthy postmenopausal women",
+      "year": 2012,
+      "n": 103,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "19594224",
+      "title": "Greenselect Phytosome as an adjunct to a low-calorie diet for treatment of obesity: a clinical trial",
+      "year": 2009,
+      "n": 100,
+      "inReviews": [
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "24614112",
+      "title": "Effects of green tea extract on insulin resistance and glucagon-like peptide 1 in patients with type 2 diabetes and lipid abnormalities: a randomized, double-blinded, and placebo-controlled trial",
+      "year": 2014,
+      "n": 92,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "30400924",
+      "title": "Effects of green tea extract on overweight and obese women with high levels of low density-lipoprotein-cholesterol (LDL-C): a randomised, double-blind, and cross-over placebo-controlled clinical trial",
+      "year": 2018,
+      "n": 90,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "21649457",
+      "title": "Does supplementation with green tea extract improve insulin resistance in obese type 2 diabetics? A randomized, double-blind, and placebo-controlled clinical trial",
+      "year": 2011,
+      "n": 80,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "27062963",
+      "title": "Does supplementation with green tea extract improve acne in post-adolescent women? A randomized, double-blind, and placebo-controlled clinical trial",
+      "year": 2016,
+      "n": 80,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "16392704",
+      "title": "Randomized controlled trial for an effect of green tea consumption on insulin resistance and inflammation markers",
+      "year": 2005,
+      "n": 66,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "18006026",
+      "title": "Effectiveness of green tea on weight reduction in obese Thais: A randomized, controlled trial",
+      "year": 2008,
+      "n": 60,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "23035743",
+      "title": "Minor effects of green tea catechin supplementation on cardiovascular risk markers in active older people: a randomized controlled trial",
+      "year": 2013,
+      "n": 52,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "19838489",
+      "title": "Prospective double-blind crossover study of Camellia sinensis (green tea) in dyslipidemias",
+      "year": 2009,
+      "n": 33,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "10404946",
+      "title": "Effects on blood pressure of drinking green and black tea",
+      "year": 1999,
+      "n": 20,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "9598844",
+      "title": "No effect of consumption of green and black tea on plasma lipid and antioxidant levels and on LDL oxidation in smokers",
+      "year": 1998,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "18455656",
+      "title": "Association between soy and green tea (Camellia sinensis) diminishes hypercholesterolemia and increases total plasma antioxidant potential in dyslipidemic subjects",
+      "year": 2008,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "29384173",
+      "title": "Comparative studies on the hypolipidemic, antioxidant and hepatoprotective activities of catechin-enriched green and oolong tea in a double-blind clinical trial",
+      "year": 2018,
+      "inReviews": [
+       "32434539"
+      ]
+     },
+     {
+      "pmid": "19736596",
+      "title": "A novel green tea meal replacement formula for weight loss among obese individuals: a randomized controlled clinical trial",
+      "year": 2009,
+      "inReviews": [
+       "28636182"
+      ]
+     },
+     {
+      "pmid": "17906192",
+      "title": "The effects of epigallocatechin-3-gallate on thermogenesis and fat oxidation in obese men: a pilot study",
+      "year": 2007,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "20595643",
+      "title": "Green tea supplementation affects body weight, lipids, and lipid peroxidation in obese subjects with metabolic syndrome",
+      "year": 2010,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "17882140",
+      "title": "The effect of caffeine, green tea and tyrosine on thermogenesis and energy intake",
+      "year": 2009,
+      "inReviews": [
+       "24675010"
+      ]
+     },
+     {
+      "pmid": "12960117",
+      "title": "Pharmacokinetics and safety of green tea polyphenols after multiple-dose administration of epigallocatechin gallate and polyphenon E in healthy individuals",
+      "year": 2003,
+      "inReviews": [
+       "24675010"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1998,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 2,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "24675010"
+    ],
+    "citedNotChosen": [
+     "21715508",
+     "22027055",
+     "23780706"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "32434539",
+      "doi": "10.1186/s12937-020-00557-5",
+      "title": "Effect of green tea consumption on blood lipids: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "firstAuthor": "Xu R",
+      "journal": "Nutrition journal",
+      "citedBy": 60,
+      "n": 3321,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     },
+     {
+      "pmid": "28636182",
+      "doi": "10.1002/mnfr.201601122",
+      "title": "Effects of green tea on lipid metabolism in overweight or obese people: A meta-analysis of randomized controlled trials",
+      "year": 2018,
+      "firstAuthor": "Yuan F",
+      "journal": "Molecular nutrition & food research",
+      "citedBy": 26,
+      "n": 1704,
+      "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Green tea as a drink (reviews mixing extract capsules count as partly)",
+     "comparison": "Placebo, water or no tea",
+     "outcome": "LDL or total cholesterol"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 3,
+     "partly": 14,
+     "no": 5,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "41073208",
+      "title": "The Association Between Green Tea Intake and Metabolic Syndrome: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Green tea RCTs on TC/LDL, but only in people with metabolic syndrome, and dosing suggests extracts are included."
+     },
+     {
+      "pmid": "38894639",
+      "title": "Effects of Herbal Tea (Non-Camellia sinensis) on Glucose Homeostasis and Serum Lipids in Type 2 Diabetes Mellitus: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Herbal (non-Camellia sinensis) teas in type 2 diabetes, not green tea."
+     },
+     {
+      "pmid": "37082776",
+      "title": "Effects of green tea on lipid profile in overweight and obese women",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Green tea RCTs on TC/LDL, but limited to overweight and obese women, a narrower population."
+     },
+     {
+      "pmid": "38034724",
+      "title": "Effects of green tea catechin on the blood pressure and lipids in overweight and obese population-a meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Lipid outcomes in overweight/obese adults, but the intervention is a green tea catechin supplement, not the drink."
+     },
+     {
+      "pmid": "36704803",
+      "title": "The effects of green tea supplementation on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Green tea RCTs on TC/LDL, but it centres on supplementation and largely pools green tea extract (GTE) rather than the drink."
+     },
+     {
+      "pmid": "35014893",
+      "title": "Potential therapeutic effects of green tea on obese lipid profile - a systematic review",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Green tea and lipids in obese people only, mixing extract with tea and including animal studies."
+     },
+     {
+      "pmid": "35750605",
+      "title": "A comprehensive overview on the effects of green tea on anthropometric measures, blood pressure, glycemic and lipidemic status: An umbrella review and meta meta-analysis study",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Umbrella review of green tea and lipids, but it mixes green tea with its bioactive supplements."
+     },
+     {
+      "pmid": "34396859",
+      "title": "Tea intake and cardiovascular disease: an umbrella review",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Umbrella review of brewed tea and blood lipids, but it covers tea in general rather than green tea on its own."
+     },
+     {
+      "pmid": "33188386",
+      "title": "Short-Term Tea Consumption Is Not Associated with a Reduction in Blood Lipids or Pressure: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Tea drinks vs placebo on TC/LDL in healthy and at-risk adults, but green and black tea are pooled with no separate green tea analysis reported."
+     },
+     {
+      "pmid": "32578328",
+      "title": "Effects of tea consumption on metabolic syndrome: A systematic review and meta-analysis of randomized clinical trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Tea RCTs with a green tea LDL finding, but limited to metabolic syndrome outcomes and populations."
+     },
+     {
+      "pmid": "32289742",
+      "title": "Effect of green tea extract on lipid profile in patients with type 2 diabetes mellitus: A systematic review and meta-analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Lipid outcomes, but uses green tea extract rather than the drink and is limited to type 2 diabetes."
+     },
+     {
+      "pmid": "31943427",
+      "title": "The efficacy of sour tea (Hibiscus sabdariffa L.) on selected cardiovascular disease risk factors: A systematic review and meta-analysis of randomized clinical trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Sour tea (Hibiscus sabdariffa), not green tea."
+     },
+     {
+      "pmid": "27324590",
+      "title": "Systematic review of green tea epigallocatechin gallate in reducing low-density lipoprotein cholesterol levels of humans",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Healthy adults in RCTs with LDL cholesterol match, but the exposure is green tea EGCG given in measured doses rather than green tea as a drink."
+     },
+     {
+      "pmid": "26318390",
+      "title": "Green tea consumption and risk of cardiovascular and ischemic related diseases: A meta-analysis",
+      "year": 2016,
+      "fits": "no",
+      "reason": "Green tea drinking, but the outcomes are CVD and stroke events, not LDL or total cholesterol."
+     },
+     {
+      "pmid": "24972454",
+      "title": "Black tea consumption and serum cholesterol concentration: Systematic review and meta-analysis of randomized controlled trials",
+      "year": 2015,
+      "fits": "no",
+      "reason": "Black tea, not green tea."
+     },
+     {
+      "pmid": "25237889",
+      "title": "Effect of black tea consumption on blood cholesterol: a meta-analysis of 15 randomized controlled trials",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Black tea, not green tea."
+     },
+     {
+      "pmid": "23780706",
+      "title": "Green and black tea for the primary prevention of cardiovascular disease",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Green tea analysed separately vs placebo/no intervention on TC/LDL in healthy/at-risk adults, but tea extracts are eligible and mixed in."
+     },
+     {
+      "pmid": "22027055",
+      "title": "Green tea catechins decrease total and low-density lipoprotein cholesterol: a systematic review and meta-analysis",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "TC/LDL vs control, but the intervention is green tea catechins (an extract), not the tea drink."
+     },
+     {
+      "pmid": "21715508",
+      "title": "Green tea intake lowers fasting serum total and LDL cholesterol in adults: a meta-analysis of 14 randomized controlled trials",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Adults, RCTs, total and LDL cholesterol match, but green tea drinks and extracts are pooled together, with no separate drink-only analysis reported."
+     }
+    ]
+   }
+  },
+  {
+   "id": "sugar",
+   "label": "Blood sugar",
+   "finding": "Blood sugar and HbA1c",
+   "counts": {
+    "all": 1049,
+    "reviews": 21,
+    "trialReviews": 21,
+    "trials": 55,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32670385",
+     "doi": "10.1186/s12986-020-00469-5",
+     "title": "Effects of green tea consumption on glycemic control: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2020,
+     "firstAuthor": "Xu R",
+     "journal": "Nutrition & metabolism",
+     "citedBy": 29,
+     "n": 2194,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "30591664",
+     "doi": "10.3390/nu11010048",
+     "title": "Effects of Coffee and Tea Consumption on Glucose Metabolism: A Systematic Review and Network Meta-Analysis",
+     "year": 2018,
+     "firstAuthor": "Kondo Y",
+     "journal": "Nutrients",
+     "citedBy": 35,
+     "n": 1898,
+     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.34375,
+    "trials": 32,
+    "inclusions": 43,
+    "reviews": [
+     {
+      "pmid": "32670385",
+      "trials": 24
+     },
+     {
+      "pmid": "30591664",
+      "trials": 19
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "26581683",
+      "title": "Green Tea Extract and Catechol-O-Methyltransferase Genotype Modify Fasting Serum Insulin and Plasma Adiponectin Concentrations in a Randomized Controlled Trial of Overweight and Obese Postmenopausal Women",
+      "year": 2016,
+      "n": 937,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "22246619",
+      "title": "Effect of 2-month controlled green tea intervention on lipoprotein cholesterol, glucose, and hormone levels in healthy postmenopausal women",
+      "year": 2012,
+      "n": 103,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "24614112",
+      "title": "Effects of green tea extract on insulin resistance and glucagon-like peptide 1 in patients with type 2 diabetes and lipid abnormalities: a randomized, double-blinded, and placebo-controlled trial",
+      "year": 2014,
+      "n": 92,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "21649457",
+      "title": "Does supplementation with green tea extract improve insulin resistance in obese type 2 diabetics? A randomized, double-blind, and placebo-controlled clinical trial",
+      "year": 2011,
+      "n": 80,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "27062963",
+      "title": "Does supplementation with green tea extract improve acne in post-adolescent women? A randomized, double-blind, and placebo-controlled clinical trial",
+      "year": 2016,
+      "n": 80,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "16277999",
+      "title": "Metabolic effects of green tea and of phases of weight loss",
+      "year": 2006,
+      "n": 46,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "16378915",
+      "title": "Effects of Chinese green tea on weight, and hormonal and biochemical profiles in obese patients with polycystic ovary syndrome--a randomized placebo-controlled trial",
+      "year": 2006,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "22581111",
+      "title": "Effects of green tea supplementation on elements, total antioxidants, lipids, and glucose values in the serum of obese patients",
+      "year": 2012,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "17554248",
+      "title": "Randomized controlled trial for an effect of green tea-extract powder supplementation on glucose abnormalities",
+      "year": 2008,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "16169629",
+      "title": "Effects of green tea consumption on inflammation, insulin resistance and pulse wave velocity in type 2 diabetes patients",
+      "year": 2006,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "21736785",
+      "title": "Health effects of green tea catechins in overweight and obese men: a randomised controlled cross-over trial",
+      "year": 2011,
+      "inReviews": [
+       "32670385",
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "17557985",
+      "title": "A green tea extract high in catechins reduces body fat and cardiovascular risks in humans",
+      "year": 2007,
+      "n": 240,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "28209333",
+      "title": "Green tea extracts for the prevention of metachronous colorectal polyps among patients who underwent endoscopic removal of colorectal adenomas: A randomized clinical trial",
+      "year": 2018,
+      "n": 143,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "26093535",
+      "title": "Therapeutic effect of high-dose green tea extract on weight reduction: A randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2016,
+      "n": 115,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "18468736",
+      "title": "Effect of green tea extract on obese women: a randomized, double-blind, placebo-controlled clinical trial",
+      "year": 2008,
+      "n": 100,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "16392704",
+      "title": "Randomized controlled trial for an effect of green tea consumption on insulin resistance and inflammation markers",
+      "year": 2005,
+      "n": 66,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "11447078",
+      "title": "Short- and long-term black tea consumption reverses endothelial dysfunction in patients with coronary artery disease",
+      "year": 2001,
+      "n": 66,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "23035743",
+      "title": "Minor effects of green tea catechin supplementation on cardiovascular risk markers in active older people: a randomized controlled trial",
+      "year": 2013,
+      "n": 52,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "17892999",
+      "title": "A 6-month randomized pilot study of black tea and cardiovascular risk factors",
+      "year": 2007,
+      "n": 31,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "23131813",
+      "title": "Effect of green tea (Camellia sinensis) consumption on the components of metabolic syndrome in elderly",
+      "year": 2012,
+      "n": 24,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "19008868",
+      "title": "A catechin-rich beverage improves obesity and blood glucose control in patients with type 2 diabetes",
+      "year": 2009,
+      "n": 23,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "19056646",
+      "title": "Daily consumption of an aqueous green tea extract supplement does not impair liver function or alter cardiovascular disease risk biomarkers in healthy men",
+      "year": 2009,
+      "n": 17,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "21118565",
+      "title": "Does green tea affect postprandial glucose, insulin and satiety in healthy subjects: a randomized controlled trial",
+      "year": 2010,
+      "n": 14,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "15005829",
+      "title": "Effects of green tea on weight maintenance after body-weight loss",
+      "year": 2004,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "24299662",
+      "title": "Effects of dietary supplementation with epigallocatechin-3-gallate on weight loss, energy homeostasis, cardiometabolic risk factors and liver function in obese women: randomised, double-blind, placebo-controlled clinical trial",
+      "year": 2014,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "20605696",
+      "title": "Green tea minimally affects biomarkers of inflammation in obese subjects with metabolic syndrome",
+      "year": 2011,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "22749178",
+      "title": "Green tea extract reduces blood pressure, inflammatory biomarkers, and oxidative stress and improves parameters associated with insulin resistance in obese, hypertensive patients",
+      "year": 2012,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "18710606",
+      "title": "Effects of dietary supplementation with the green tea polyphenol epigallocatechin-3-gallate on insulin resistance and associated metabolic risk factors: randomized controlled trial",
+      "year": 2009,
+      "inReviews": [
+       "32670385"
+      ]
+     },
+     {
+      "pmid": "20595643",
+      "title": "Green tea supplementation affects body weight, lipids, and lipid peroxidation in obese subjects with metabolic syndrome",
+      "year": 2010,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "22198621",
+      "title": "The effect of black tea on risk factors of cardiovascular disease in a normal population",
+      "year": 2012,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "24102055",
+      "title": "Effectiveness of green tea in a randomized human cohort: relevance to diabetes and its complications",
+      "year": 2013,
+      "inReviews": [
+       "30591664"
+      ]
+     },
+     {
+      "pmid": "25918808",
+      "title": "The effect of Ginkgo biloba and Camellia sinensis extracts on psychological state and glycemic control in patients with type 2 diabetes mellitus",
+      "year": 2014,
+      "inReviews": [
+       "30591664"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 6
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 6
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 6
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 4
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "24260170",
+     "title": "Associations of green tea and rock tea consumption with risk of impaired fasting glucose and impaired glucose tolerance in Chinese men and women",
+     "year": 2013,
+     "n": 4808
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "32670385"
+    ],
+    "citedNotChosen": [
+     "23803878",
+     "33285391",
+     "16618952"
+    ],
+    "citedNotEligible": [
+     "16618952"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "30591664",
+      "doi": "10.3390/nu11010048",
+      "title": "Effects of Coffee and Tea Consumption on Glucose Metabolism: A Systematic Review and Network Meta-Analysis",
+      "year": 2018,
+      "firstAuthor": "Kondo Y",
+      "journal": "Nutrients",
+      "citedBy": 35,
+      "n": 1898,
+      "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Green tea as a drink (reviews mixing extract capsules count as partly)",
+     "comparison": "Placebo, water or no tea",
+     "outcome": "Fasting glucose, HbA1c or insulin"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 12,
+     "no": 7,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42228178",
+      "title": "Effects of green tea use on the metabolic profile of postmenopausal women: systematic review and meta-analysis",
+      "year": 2026,
+      "fits": "partly",
+      "reason": "Green tea vs placebo with a blood glucose outcome, but limited to postmenopausal women and includes extracts."
+     },
+     {
+      "pmid": "41073208",
+      "title": "The Association Between Green Tea Intake and Metabolic Syndrome: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Green tea with fasting glucose and HbA1c outcomes, but limited to people with metabolic syndrome; doses suggest extracts."
+     },
+     {
+      "pmid": "38894639",
+      "title": "Effects of Herbal Tea (Non-Camellia sinensis) on Glucose Homeostasis and Serum Lipids in Type 2 Diabetes Mellitus: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Reviews herbal teas that are not Camellia sinensis, so not green tea."
+     },
+     {
+      "pmid": "39809182",
+      "title": "The effect of green tea on patients with type 2 diabetes mellitus: A meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Green tea RCTs with fasting glucose, HbA1c and insulin resistance, but limited to type 2 diabetes."
+     },
+     {
+      "pmid": "39165287",
+      "title": "Association of Herbal Tea and Follicle-Stimulating Hormone, Anthropometric Parameters, and Fasting Blood Glucose Levels Among Polycystic Ovarian Syndrome Women: A Systematic Review and Meta-Analysis of Clinical Trials",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Reviews herbal tea in women with PCOS; green tea is not identified or analysed."
+     },
+     {
+      "pmid": "33216644",
+      "title": "Effects of green tea supplementation on serum concentrations of adiponectin in patients with type 2 diabetes mellitus: a systematic review and meta-analysis",
+      "year": 2023,
+      "fits": "no",
+      "reason": "The outcome is adiponectin, not fasting glucose, HbA1c or insulin."
+     },
+     {
+      "pmid": "36704803",
+      "title": "The effects of green tea supplementation on cardiovascular risk factors: A systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Green tea supplementation, mainly extract, with glycemic markers among cardiovascular risk factors; not the drink alone."
+     },
+     {
+      "pmid": "35750605",
+      "title": "A comprehensive overview on the effects of green tea on anthropometric measures, blood pressure, glycemic and lipidemic status: An umbrella review and meta meta-analysis study",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Umbrella review of green tea and glucose that mixes the drink with supplements and pools meta-analyses, not studies."
+     },
+     {
+      "pmid": "33285391",
+      "title": "Effect of green tea on glycemic control in patients with type 2 diabetes mellitus: A systematic review and meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Green tea with glucose, insulin and HbA1c outcomes, but limited to type 2 diabetes and framed as supplementary intake."
+     },
+     {
+      "pmid": "34966355",
+      "title": "Effects of Tea Consumption on Anthropometric Parameters, Metabolic Indexes and Hormone Levels of Women with Polycystic Ovarian Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "A green tea subgroup vs placebo reports fasting glucose and insulin, but only in women with PCOS and using tea supplements."
+     },
+     {
+      "pmid": "32105058",
+      "title": "Modulation of Glucose Metabolism by Leaf Tea Constituents: A Systematic Review of Recent Clinical and Pre-clinical Findings",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Narrative review of leaf tea RCTs and preclinical studies on glucose metabolism; no pooled analysis and no defined comparison."
+     },
+     {
+      "pmid": "31943427",
+      "title": "The efficacy of sour tea (Hibiscus sabdariffa L.) on selected cardiovascular disease risk factors: A systematic review and meta-analysis of randomized clinical trials",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Reviews sour tea (hibiscus), not green tea."
+     },
+     {
+      "pmid": "31519281",
+      "title": "The effect of green tea on C-reactive protein and biomarkers of oxidative stress in patients with type 2 diabetes mellitus: A systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "The outcomes are CRP and oxidative stress, not glucose, HbA1c or insulin."
+     },
+     {
+      "pmid": "31852132",
+      "title": "Effect of herbal tea on glycemic control in patients with type 2 diabetes: Protocol for a systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "no",
+      "reason": "A protocol for herbal tea in type 2 diabetes, not green tea."
+     },
+     {
+      "pmid": "28868822",
+      "title": "The Effectiveness of Green Tea or Green Tea Extract on Insulin Resistance and Glycemic Control in Type 2 Diabetes Mellitus: A Meta-Analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Mixes green tea and extract vs placebo on glycemic outcomes, and is limited to prediabetes or type 2 diabetes."
+     },
+     {
+      "pmid": "24206044",
+      "title": "Effects of green tea or green tea extract on insulin sensitivity and glycaemic control in populations at risk of type 2 diabetes mellitus: a systematic review and meta-analysis of randomised controlled trials",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Green tea or extract vs placebo in people at risk of type 2 diabetes on glucose, insulin and HbA1c; mixes extracts."
+     },
+     {
+      "pmid": "25052177",
+      "title": "Tea consumption and risk of type 2 diabetes mellitus: a systematic review and meta-analysis update",
+      "year": 2014,
+      "fits": "no",
+      "reason": "The outcome is type 2 diabetes incidence, not fasting glucose, HbA1c or insulin."
+     },
+     {
+      "pmid": "23803878",
+      "title": "Effect of green tea on glucose control and insulin sensitivity: a meta-analysis of 17 randomized controlled trials",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Green tea and green tea extract RCTs on fasting glucose, HbA1c and insulin; mixes extracts with the drink."
+     },
+     {
+      "pmid": "23426037",
+      "title": "Effects of green tea catechins with or without caffeine on glycemic control in adults: a meta-analysis of randomized controlled trials",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Adults, RCTs and outcomes (fasting glucose, insulin, HbA1c) match, but it pools green tea catechin preparations rather than green tea as a drink."
+     }
+    ]
+   }
+  },
+  {
+   "id": "weight",
+   "label": "Body weight",
+   "finding": "Body weight",
+   "counts": {
+    "all": 1446,
+    "reviews": 19,
+    "trialReviews": 19,
+    "trials": 44,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39497467",
+     "doi": "10.1017/s0007114524001867",
+     "title": "Comparative effects of tea and coffee drinking on body weight in adults: a systematic review and network meta-analysis of randomised trials",
+     "year": 2024,
+     "firstAuthor": "Jayedi A",
+     "journal": "The British journal of nutrition",
+     "citedBy": 0,
+     "n": 1710,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "28627214",
+     "doi": "10.20960/nh.753",
+     "title": "Effects of green tea and its epigallocatechin (EGCG) content on body weight and fat mass in humans: a systematic review",
+     "year": 2017,
+     "firstAuthor": "Vázquez Cisneros LC",
+     "journal": "Nutricion hospitalaria",
+     "citedBy": 27,
+     "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+    },
+    {
+     "pmid": "24558988",
+     "doi": "10.3305/nh.2014.29.3.7118",
+     "title": "[Effect of green tea or green tea extract consumption on body weight and body composition; systematic review and meta-analysis]",
+     "year": 2014,
+     "firstAuthor": "Baladia E",
+     "journal": "Nutricion hospitalaria",
+     "citedBy": 18,
+     "n": 301,
+     "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2005,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2009,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2010,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2012,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 4
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 4
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 3
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "23235664"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "39497467",
+      "doi": "10.1017/s0007114524001867",
+      "title": "Comparative effects of tea and coffee drinking on body weight in adults: a systematic review and network meta-analysis of randomised trials",
+      "year": 2024,
+      "firstAuthor": "Jayedi A",
+      "journal": "The British journal of nutrition",
+      "citedBy": 0,
+      "n": 1710,
+      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     },
+     {
+      "pmid": "28627214",
+      "doi": "10.20960/nh.753",
+      "title": "Effects of green tea and its epigallocatechin (EGCG) content on body weight and fat mass in humans: a systematic review",
+      "year": 2017,
+      "firstAuthor": "Vázquez Cisneros LC",
+      "journal": "Nutricion hospitalaria",
+      "citedBy": 27,
+      "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+     },
+     {
+      "pmid": "24558988",
+      "doi": "10.3305/nh.2014.29.3.7118",
+      "title": "[Effect of green tea or green tea extract consumption on body weight and body composition; systematic review and meta-analysis]",
+      "year": 2014,
+      "firstAuthor": "Baladia E",
+      "journal": "Nutricion hospitalaria",
+      "citedBy": 18,
+      "n": 301,
+      "why": "One of the newest meta-analyses on this finding (2014); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Green tea as a drink (reviews of extracts count as partly)",
+     "comparison": "Placebo, water or no tea",
+     "outcome": "Body weight or body fat"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 4,
+     "partly": 12,
+     "no": 3,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "42770106",
+      "title": "Impact of green tea on obesity-related hormones in postmenopausal women: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "fits": "no",
+      "reason": "The outcomes are obesity-related hormones, not body weight or fat, and only postmenopausal women are studied."
+     },
+     {
+      "pmid": "40326418",
+      "title": "Effects of green tea supplementation on obesity indices and adipokines in adults: a grade-assessed systematic review and dose-response meta-analysis of randomised controlled trials",
+      "year": 2025,
+      "fits": "partly",
+      "reason": "Green tea supplementation in adults on weight and fat; the form is a supplement, not specified as the drink."
+     },
+     {
+      "pmid": "39350601",
+      "title": "Does green tea catechin enhance weight-loss effect of exercise training in overweight and obese individuals? a systematic review and meta-analysis of randomized trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Weight and fat vs exercise plus placebo in overweight adults, but uses green tea catechin supplements rather than the drink."
+     },
+     {
+      "pmid": "39165287",
+      "title": "Association of Herbal Tea and Follicle-Stimulating Hormone, Anthropometric Parameters, and Fasting Blood Glucose Levels Among Polycystic Ovarian Syndrome Women: A Systematic Review and Meta-Analysis of Clinical Trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Herbal tea vs placebo on weight in women with PCOS; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "37300478",
+      "title": "The effect of green tea supplementation on the anthropometric outcomes in overweight and obese women: a time and dose-response meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Green tea supplements given in mg doses on weight in overweight women; extract form and only women."
+     },
+     {
+      "pmid": "38031409",
+      "title": "The effects of green tea extract supplementation on body composition, obesity-related hormones and oxidative stress markers: a grade-assessed systematic review and dose-response meta-analysis of randomised controlled trials",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Green tea extract supplements rather than the drink, on body weight and body fat."
+     },
+     {
+      "pmid": "38034724",
+      "title": "Effects of green tea catechin on the blood pressure and lipids in overweight and obese population-a meta-analysis",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Uses a green tea catechin supplement, not the drink; mainly about blood pressure and lipids, with waist circumference the only body fat outcome."
+     },
+     {
+      "pmid": "35504067",
+      "title": "Green tea promotes weight loss in women with polycystic ovary syndrome: Systematic review and meta-analysis",
+      "year": 2022,
+      "fits": "partly",
+      "reason": "Green tea vs placebo with body weight as an outcome, but only in women with PCOS and given as a supplement."
+     },
+     {
+      "pmid": "35014893",
+      "title": "Potential therapeutic effects of green tea on obese lipid profile - a systematic review",
+      "year": 2022,
+      "fits": "no",
+      "reason": "The outcome is blood lipids, not body weight or fat, and animal studies are included."
+     },
+     {
+      "pmid": "34966355",
+      "title": "Effects of Tea Consumption on Anthropometric Parameters, Metabolic Indexes and Hormone Levels of Women with Polycystic Ovarian Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Includes a green tea subgroup on body weight vs placebo, but only in women with PCOS and as tea supplements."
+     },
+     {
+      "pmid": "33207344",
+      "title": "Effect of Green Tea on Anthropometric Indices and Body Composition in Patients with Type 2 Diabetes Mellitus: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Green tea or extract on weight and body fat, but only in people with type 2 diabetes."
+     },
+     {
+      "pmid": "32372444",
+      "title": "The effect of green tea supplementation on obesity: A systematic review and dose-response meta-analysis of randomized controlled trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Green tea supplements and extracts on weight in obese adults, not the drink itself."
+     },
+     {
+      "pmid": "24742977",
+      "title": "Effect of green tea supplementation on blood pressure among overweight and obese adults: a protocol for a systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "A review protocol whose outcome is blood pressure, not body weight or fat."
+     },
+     {
+      "pmid": "19906797",
+      "title": "Effect of green tea catechins with or without caffeine on anthropometric measures: a systematic review and meta-analysis",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Green tea catechin supplements rather than the drink, on weight and waist measures."
+     },
+     {
+      "pmid": "19597519",
+      "title": "The effects of green tea on weight loss and weight maintenance: a meta-analysis",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Catechin or EGCG-caffeine supplements rather than green tea as a drink, on weight loss."
+     }
+    ]
+   }
+  },
+  {
+   "id": "cancer",
+   "label": "Cancer",
+   "finding": "Cancer",
+   "counts": {
+    "all": 3593,
+    "reviews": 105,
+    "trialReviews": 105,
+    "trials": 27,
+    "largeTrials": 4
+   },
+   "chosenReviews": [
+    {
+     "pmid": "40832777",
+     "doi": "10.1142/s0192415x2550065x",
+     "title": "Green Tea and Epigallocatechin Gallate (EGCG) for Cancer Prevention: A Systematic Review and Meta-Analysis",
+     "year": 2025,
+     "firstAuthor": "Zhang Y",
+     "journal": "The American journal of Chinese medicine",
+     "citedBy": 5,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    },
+    {
+     "pmid": "33002099",
+     "doi": "10.1093/advances/nmaa117",
+     "title": "Tea Drinking and Risk of Cancer Incidence: A Meta-Analysis of Prospective Cohort Studies and Evidence Evaluation",
+     "year": 2021,
+     "firstAuthor": "Zhao LG",
+     "journal": "Advances in nutrition (Bethesda, Md.)",
+     "citedBy": 21,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "32118296",
+     "doi": "10.1002/14651858.cd005004.pub3",
+     "title": "Green tea (Camellia sinensis) for the prevention of cancer",
+     "year": 2020,
+     "firstAuthor": "Filippini T",
+     "journal": "The Cochrane database of systematic reviews",
+     "citedBy": 79,
+     "n": 1100000,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.18181818181818182,
+    "trials": 22,
+    "inclusions": 26,
+    "reviews": [
+     {
+      "pmid": "40832777",
+      "trials": 5
+     },
+     {
+      "pmid": "32118296",
+      "trials": 21
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "33002099"
+    ],
+    "shared": [
+     {
+      "pmid": "26051348",
+      "title": "The safety of green tea extract supplementation in postmenopausal women at risk for breast cancer: results of the Minnesota Green Tea Trial",
+      "year": 2015,
+      "n": 1075,
+      "inReviews": [
+       "40832777",
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "16424063",
+      "title": "Chemoprevention of human prostate cancer by oral administration of green tea catechins in volunteers with high-grade prostate intraepithelial neoplasia: a preliminary report from a one-year proof-of-principle study",
+      "year": 2006,
+      "n": 30,
+      "inReviews": [
+       "40832777",
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "24388920",
+      "title": "Results of a phase II randomized, double-blind, placebo-controlled trial of Polyphenon E in women with persistent high-risk HPV infection and low-grade cervical intraepithelial neoplasia",
+      "year": 2014,
+      "inReviews": [
+       "40832777",
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "28969404",
+      "title": "Effect of green tea catechins in patients with high-grade prostatic intraepithelial neoplasia: Results of a short-term double-blind placebo controlled phase II clinical trial",
+      "year": 2017,
+      "inReviews": [
+       "40832777",
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "21851602",
+      "title": "Protocol for minimizing the risk of metachronous adenomas of the colorectum with green tea extract (MIRACLE): a randomised controlled trial of green tea extract versus placebo for nutriprevention of metachronous colon adenomas in the elderly population",
+      "year": 2011,
+      "n": 2534,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "28904061",
+      "title": "A Randomized Controlled Trial of Green Tea Extract Supplementation and Mammographic Density in Postmenopausal Women at Increased Risk of Breast Cancer",
+      "year": 2017,
+      "n": 1075,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "26206423",
+      "title": "The Minnesota Green Tea Trial (MGTT), a randomized controlled trial of the efficacy of green tea extract on biomarkers of breast cancer risk: study rationale, design, methods, and participant characteristics",
+      "year": 2015,
+      "n": 1075,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "28765194",
+      "title": "Effect of Green Tea Supplements on Liver Enzyme Elevation: Results from a Randomized Intervention Study in the United States",
+      "year": 2017,
+      "n": 1075,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "35213393",
+      "title": "Green Tea Extract to Prevent Colorectal Adenomas, Results of a Randomized, Placebo-Controlled Clinical Trial",
+      "year": 2022,
+      "n": 1001,
+      "inReviews": [
+       "40832777"
+      ]
+     },
+     {
+      "pmid": "11890101",
+      "title": "Intervention and follow-up on human esophageal precancerous lesions in Henan, northern China, a high-incidence area for esophageal cancer",
+      "year": 2002,
+      "n": 778,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "28209333",
+      "title": "Green tea extracts for the prevention of metachronous colorectal polyps among patients who underwent endoscopic removal of colorectal adenomas: A randomized clinical trial",
+      "year": 2018,
+      "n": 143,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "18990744",
+      "title": "Green tea extracts for the prevention of metachronous colorectal adenomas: a pilot study",
+      "year": 2008,
+      "n": 136,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "28053292",
+      "title": "Randomized, placebo-controlled trial evaluating the safety of one-year administration of green tea catechins",
+      "year": 2016,
+      "n": 97,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "25873370",
+      "title": "Randomized, Placebo-Controlled Trial of Green Tea Catechins for Prostate Cancer Prevention",
+      "year": 2015,
+      "n": 97,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "27646578",
+      "title": "Effects of ω-3 Fatty Acids and Catechins on Fatty Acid Synthase in the Prostate: A Randomized Controlled Trial",
+      "year": 2016,
+      "n": 89,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "24646362",
+      "title": "Effects of a green tea extract, Polyphenon E, on systemic biomarkers of growth factor signalling in women with hormone receptor-negative breast cancer",
+      "year": 2015,
+      "n": 40,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "19892663",
+      "title": "Phase II randomized, placebo-controlled trial of green tea extract in patients with high-risk oral premalignant lesions",
+      "year": 2009,
+      "n": 28,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "26680603",
+      "title": "Evaluation of breast cancer risk associated with tea consumption by menopausal and estrogen receptor status among Chinese women in Hong Kong",
+      "year": 2016,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "27810483",
+      "title": "Tea, coffee, and caffeinated beverage consumption and risk of epithelial ovarian cancers",
+      "year": 2016,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "30309839",
+      "title": "ProDiet: A Phase II Randomized Placebo-controlled Trial of Green Tea Catechins and Lycopene in Men at Increased Risk of Prostate Cancer",
+      "year": 2018,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "20628004",
+      "title": "Green tea polyphenols and metabolites in prostatectomy tissue: implications for cancer prevention",
+      "year": 2010,
+      "inReviews": [
+       "32118296"
+      ]
+     },
+     {
+      "pmid": "23846486",
+      "title": "A pilot study to evaluate the safety and efficacy of an oral dose of (-)-epigallocatechin-3-gallate-rich polyphenon E in patients with mild to moderate ulcerative colitis",
+      "year": 2013,
+      "inReviews": [
+       "32118296"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1997,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2004,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2005,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2006,
+     "reviews": 2,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2008,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2009,
+     "reviews": 5,
+     "trials": 0
+    },
+    {
+     "year": 2010,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2011,
+     "reviews": 4,
+     "trials": 0
+    },
+    {
+     "year": 2012,
+     "reviews": 9,
+     "trials": 0
+    },
+    {
+     "year": 2013,
+     "reviews": 9,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 16,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 7,
+     "trials": 7
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 3
+    },
+    {
+     "year": 2017,
+     "reviews": 8,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 5,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 5,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 6,
+     "trials": 2
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2025,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "26206423",
+     "title": "The Minnesota Green Tea Trial (MGTT), a randomized controlled trial of the efficacy of green tea extract on biomarkers of breast cancer risk: study rationale, design, methods, and participant characteristics",
+     "year": 2015,
+     "n": 1075
+    },
+    {
+     "pmid": "26359536",
+     "title": "Black Tea Consumption and Risk of Skin Cancer: An 11-Year Prospective Study",
+     "year": 2015,
+     "n": 1325
+    },
+    {
+     "pmid": "26051348",
+     "title": "The safety of green tea extract supplementation in postmenopausal women at risk for breast cancer: results of the Minnesota Green Tea Trial",
+     "year": 2015,
+     "n": 1075
+    },
+    {
+     "pmid": "28904061",
+     "title": "A Randomized Controlled Trial of Green Tea Extract Supplementation and Mammographic Density in Postmenopausal Women at Increased Risk of Breast Cancer",
+     "year": 2017,
+     "n": 1075
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "32118296"
+    ],
+    "citedNotChosen": [
+     "31392470",
+     "16968850"
+    ],
+    "citedNotEligible": [
+     "31392470",
+     "16968850"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "40832777",
+      "doi": "10.1142/s0192415x2550065x",
+      "title": "Green Tea and Epigallocatechin Gallate (EGCG) for Cancer Prevention: A Systematic Review and Meta-Analysis",
+      "year": 2025,
+      "firstAuthor": "Zhang Y",
+      "journal": "The American journal of Chinese medicine",
+      "citedBy": 5,
+      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     },
+     {
+      "pmid": "33002099",
+      "doi": "10.1093/advances/nmaa117",
+      "title": "Tea Drinking and Risk of Cancer Incidence: A Meta-Analysis of Prospective Cohort Studies and Evidence Evaluation",
+      "year": 2021,
+      "firstAuthor": "Zhao LG",
+      "journal": "Advances in nutrition (Bethesda, Md.)",
+      "citedBy": 21,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Drinking more green tea",
+     "comparison": "Drinking less or none",
+     "outcome": "New cancers or cancer deaths"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 32,
+     "partly": 63,
+     "no": 10,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "40643840",
+      "title": "Coffee and tea intake and survival of cancer patients: a systematic review and meta-analysis",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Population is cancer patients and the outcome is survival or progression; tea is pooled with coffee and green tea is not analysed on its own."
+     },
+     {
+      "pmid": "41059289",
+      "title": "A systematic review and meta-analysis of the effects of green tea extracts and polyphenols in female hormone-dependent cancers for benefit-risk evaluation",
+      "year": 2025,
+      "fits": "no",
+      "reason": "Animal studies of green tea extracts and polyphenols measuring tumour growth, not human intake and cancer incidence."
+     },
+     {
+      "pmid": "38938012",
+      "title": "Tea consumption and risk of all-cause, cardiovascular disease, and cancer mortality: a meta-analysis of thirty-eight prospective cohort data sets",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Cancer mortality in prospective cohorts matches, but the exposure is tea in general and green tea is not analysed on its own."
+     },
+     {
+      "pmid": "36036958",
+      "title": "The effect of Green green tea consumption on body mass index, lipoprotein, liver enzymes, and liver cancer: An updated systemic review incorporating a meta-analysis",
+      "year": 2024,
+      "fits": "partly",
+      "reason": "Green tea intake vs no intake matches, but liver cancer is the only cancer outcome."
+     },
+     {
+      "pmid": "37653503",
+      "title": "Association between tea consumption and colorectal cancer: a systematic review and meta-analysis of a population-based study",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Tea in general, with green tea not analysed on its own, and the outcome is limited to colorectal cancer."
+     },
+     {
+      "pmid": "37038314",
+      "title": "Coffee, Green Tea Intake, and the Risk of Hepatocellular Carcinoma: A Systematic Review and Meta-Analysis of Observational Studies",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Green tea intake is analysed separately, but the outcome is limited to hepatocellular carcinoma."
+     },
+     {
+      "pmid": "36678274",
+      "title": "Association between Different Types of Tea Consumption and Risk of Gynecologic Cancer: A Meta-Analysis of Cohort Studies",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Green tea is a subgroup, but the population is women and the outcome is gynecologic cancers only."
+     },
+     {
+      "pmid": "34818954",
+      "title": "Hot Tea Drinking and the Risk of Esophageal Cancer: A Systematic Review and Meta-Analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "The exposure is tea drinking temperature (hot tea), not drinking more vs less green tea."
+     },
+     {
+      "pmid": "35479756",
+      "title": "Hot Tea Consumption and Esophageal Cancer Risk: A Meta-Analysis of Observational Studies",
+      "year": 2022,
+      "fits": "no",
+      "reason": "The exposure is hot tea temperature, not the amount of green tea consumed."
+     },
+     {
+      "pmid": "33744644",
+      "title": "Green tea consumption and risk for esophageal cancer: A systematic review and dose-response meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Dose-response for green tea intake, but the outcome is limited to esophageal cancer."
+     },
+     {
+      "pmid": "32911881",
+      "title": "Green Tea Consumption and Stomach Cancer Risk in Women: A Meta-analysis of Population-Based Cohort Studies",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Green tea consumption in cohorts matches, but the population is women and the outcome is stomach cancer only."
+     },
+     {
+      "pmid": "34311801",
+      "title": "Does coffee, tea and caffeine consumption reduce the risk of incident breast cancer? A systematic review and network meta-analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Combines coffee and tea, only in women, for breast cancer; tea type subgroups are mentioned but green tea results are not clearly reported."
+     },
+     {
+      "pmid": "33016141",
+      "title": "Tea Consumption and the Risk of Endometrial Cancer: An Updated Meta-Analysis",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Tea in general and endometrial cancer, mostly black tea studies; no separate green tea analysis is reported."
+     },
+     {
+      "pmid": "32856842",
+      "title": "The Association between Tea Consumption and Nasopharyngeal Cancer: A Systematic Review and Meta-Analysis",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Tea in general, with green tea not analysed on its own, and the outcome is limited to nasopharyngeal cancer."
+     },
+     {
+      "pmid": "32078065",
+      "title": "Tea consumption and colorectal cancer risk: a meta-analysis of prospective cohort studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Looks at tea in general and colorectal cancer risk; the abstract does not report green tea analysed on its own."
+     },
+     {
+      "pmid": "32667980",
+      "title": "Tea Consumption and Risk of Cancer: An Umbrella Review and Meta-Analysis of Observational Studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Umbrella review of tea in general across cancer types; green tea is not reported on its own."
+     },
+     {
+      "pmid": "31277115",
+      "title": "Green tea consumption and risk of breast cancer: A systematic review and updated meta-analysis of case-control studies",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Green tea consumption matches, but the outcome is limited to breast cancer in case-control studies."
+     },
+     {
+      "pmid": "31577096",
+      "title": "Green tea catechins for chemoprevention of prostate cancer in patients with histologically-proven HG-PIN or ASAP. Concise review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Trials of concentrated green tea catechin extract, not the drink, versus placebo for prostate cancer in men with precancerous lesions."
+     },
+     {
+      "pmid": "30876465",
+      "title": "Association between tea and coffee consumption and brain cancer risk: an updated meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Pools tea versus lower intake for brain cancer only; green tea is not analysed separately from other teas."
+     },
+     {
+      "pmid": "31790152",
+      "title": "Coffee, green tea and liver cancer risk: an evaluation based on a systematic review of epidemiologic evidence among the Japanese population",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Systematically reviews green tea and liver cancer, but covers only one cancer site in the Japanese population."
+     },
+     {
+      "pmid": "30220294",
+      "title": "Tea consumption and risk of breast cancer: A meta-analysis",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Title covers tea in general and breast cancer; no abstract, so a separate green tea analysis cannot be confirmed."
+     },
+     {
+      "pmid": "30572470",
+      "title": "Tea consumption is associated with decreased risk of oral cancer: A comprehensive and dose-response meta-analysis based on 14 case-control studies (MOOSE compliant)",
+      "year": 2018,
+      "fits": "partly",
+      "reason": "Pools tea intake and oral cancer only, with tea type subgroups, and is based on case-control studies only."
+     },
+     {
+      "pmid": "28454105",
+      "title": "Tea consumption and the risk of biliary tract cancer: a systematic review and dose-response meta-analysis of observational studies",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Tea in general versus none for biliary tract cancer; green tea is not analysed on its own in the abstract."
+     },
+     {
+      "pmid": "28287319",
+      "title": "The Effect of Green Tea Consumption on Prostate Cancer Risk and Progression: A Systematic Review",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Reviews green tea consumption and prostate cancer prevention, but covers only one cancer site and also includes treatment outcomes."
+     },
+     {
+      "pmid": "28445129",
+      "title": "Tea consumption and the risk of ovarian cancer: A meta-analysis of epidemiological studies",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Pools tea consumption and ovarian cancer only; green tea is not analysed separately."
+     },
+     {
+      "pmid": "27388462",
+      "title": "Coffee, tea and caffeine intake and the risk of non-melanoma skin cancer: a review of the literature and meta-analysis",
+      "year": 2017,
+      "fits": "partly",
+      "reason": "Tea in general against only non-melanoma skin cancer; green tea evidence was too sparse to analyse."
+     },
+     {
+      "pmid": "26412579",
+      "title": "Green tea and liver cancer risk: A meta-analysis of prospective cohort studies in Asian populations",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Pools cohort studies of green tea drinking versus none or lowest intake, but covers only liver cancer in Asian adults."
+     },
+     {
+      "pmid": "28167914",
+      "title": "Tea Consumption and Risk of Bladder Cancer: A Dose-Response Meta-Analysis",
+      "year": 2016,
+      "fits": "partly",
+      "reason": "Includes a separate green tea analysis of highest versus lowest intake, but the outcome is limited to bladder cancer."
+     },
+     {
+      "pmid": "25996185",
+      "title": "Tea Consumption and Endometrial Cancer Risk: Meta-Analysis of Prospective Cohort Studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Cohort pooling of tea and endometrial cancer only; green tea was explicitly not analysed separately."
+     },
+     {
+      "pmid": "25370683",
+      "title": "Tea consumption and the incidence of cancer: a systematic review and meta-analysis of prospective observational studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Pools prospective studies of tea and cancer incidence at many sites; analyses are mainly of tea overall, with tea type subgroups not clearly reported for green tea."
+     },
+     {
+      "pmid": "26208825",
+      "title": "Tea consumption reduces the incidence of gallbladder cancer based on a meta-analysis of epidemiologic studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Title only: tea and gallbladder cancer, a single site, with no indication that green tea is analysed separately."
+     },
+     {
+      "pmid": "26550420",
+      "title": "Association of tea consumption and the risk of thyroid cancer: a meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Looks at tea in general and thyroid cancer; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "26137276",
+      "title": "Tea consumption and risk of gallbladder cancer: A meta-analysis of epidemiological studies",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, and only gallbladder cancer."
+     },
+     {
+      "pmid": "25733642",
+      "title": "Tea and coffee and risk of endometrial cancer: cohort study and meta-analysis",
+      "year": 2015,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, in women only, and only endometrial cancer."
+     },
+     {
+      "pmid": "25207625",
+      "title": "Consumption of tea and risk for pancreatic cancer: a meta-analysis of published epidemiological studies",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Tea in general with a tea-type subgroup; the outcome is limited to pancreatic cancer."
+     },
+     {
+      "pmid": "25502726",
+      "title": "Tea and coffee consumption and risk of laryngeal cancer: a systematic review meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Tea in general and coffee for laryngeal cancer; green tea is not analysed separately."
+     },
+     {
+      "pmid": "24389399",
+      "title": "Association of tea consumption and the risk of oral cancer: a meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Has a green tea subgroup for highest versus lowest intake, but the outcome is limited to oral cancer."
+     },
+     {
+      "pmid": "24528523",
+      "title": "Tea consumption and prostate cancer: an updated meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Includes a green tea subgroup of highest versus non or lowest intake, but the outcome is limited to prostate cancer."
+     },
+     {
+      "pmid": "25363316",
+      "title": "Tea intake and risk of oral, pharyngeal, and laryngeal carcinoma: a meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Pools tea and oral, pharyngeal and laryngeal cancer only; green tea is not analysed separately."
+     },
+     {
+      "pmid": "24858717",
+      "title": "Relationship between tea consumption and pancreatic cancer risk: a meta-analysis based on prospective cohort studies and case-control studies",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Looks at tea in general and pancreatic cancer; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "24636229",
+      "title": "Tea consumption and the risk of five major cancers: a dose-response meta-analysis of prospective studies",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Looks at tea and five cancers in studies following people over time; only a black tea subgroup is reported, with no separate green tea result."
+     },
+     {
+      "pmid": "25550896",
+      "title": "The association of tea consumption and the risk and progression of prostate cancer: a meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Has a green tea subgroup, but the outcome is only prostate cancer."
+     },
+     {
+      "pmid": "25316242",
+      "title": "Tea drinking and risk of pancreatic cancer",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, and only pancreatic cancer."
+     },
+     {
+      "pmid": "25664021",
+      "title": "Association between tea and coffee consumption and risk of laryngeal cancer: a meta-analysis",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, and only laryngeal cancer."
+     },
+     {
+      "pmid": "25077380",
+      "title": "Meta-analysis of black tea consumption and breast cancer risk: update 2013",
+      "year": 2014,
+      "fits": "no",
+      "reason": "Looks at black tea, not green tea, and breast cancer risk."
+     },
+     {
+      "pmid": "25471334",
+      "title": "Interaction of green tea catechins with breast cancer endocrine treatment: a systematic review",
+      "year": 2014,
+      "fits": "no",
+      "reason": "About green tea catechins interacting with breast cancer endocrine treatment, not drinking tea and new cancers."
+     },
+     {
+      "pmid": "24961728",
+      "title": "Comment on Wang et al. entitled \"association of tea consumption and the risk of oral cancer: a meta-analysis\"",
+      "year": 2014,
+      "fits": "no",
+      "reason": "A comment on a meta-analysis with no abstract, so it is not a systematic review."
+     },
+     {
+      "pmid": "24931920",
+      "title": "Comment on Wang et al. entitled \"association of tea consumption and the risk of oral cancer: a meta-analysis\"",
+      "year": 2014,
+      "fits": "no",
+      "reason": "A comment on a meta-analysis with no abstract, so it is not a systematic review."
+     },
+     {
+      "pmid": "23858521",
+      "title": "Meta-analysis of green tea drinking and the prevalence of gynecological tumors in women",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools green tea drinking versus less or none, but the outcome is limited to ovarian cancer."
+     },
+     {
+      "pmid": "23368908",
+      "title": "Effects of green tea, black tea, and coffee consumption on the risk of esophageal cancer: a systematic review and meta-analysis of observational studies",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools highest versus non or lowest green tea intake separately, but the outcome is limited to oesophageal cancer."
+     },
+     {
+      "pmid": "23909723",
+      "title": "Green tea consumption and risk of esophageal cancer: a meta-analysis of published epidemiological studies",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Pools green tea consumption versus none or least, but the outcome is limited to oesophageal cancer."
+     },
+     {
+      "pmid": "23052791",
+      "title": "A meta-analysis of tea consumption and the risk of bladder cancer",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Includes a green tea subgroup of highest versus lowest intake, but the outcome is limited to bladder cancer."
+     },
+     {
+      "pmid": "23353620",
+      "title": "The association of tea consumption with bladder cancer risk: a meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Includes a separate green tea analysis of high versus low intake, but the outcome is limited to bladder cancer."
+     },
+     {
+      "pmid": "24460331",
+      "title": "Tea consumption, alcohol drinking and physical activity associations with breast cancer risk among Chinese females: a systematic review and meta-analysis",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Looks at tea in general in Chinese women only and breast cancer; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "24521891",
+      "title": "[Relationship of alcohol drinking and tea consumption with the risk of nasopharynx cancer among Chinese population: a meta-analysis]",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Looks at tea in general in Chinese people and nasopharynx cancer; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "23679258",
+      "title": "No association between tea consumption and risk of renal cell carcinoma: a meta-analysis of epidemiological studies",
+      "year": 2013,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, and only renal cell carcinoma."
+     },
+     {
+      "pmid": "22532034",
+      "title": "Green tea and lung cancer: a systematic review",
+      "year": 2013,
+      "fits": "no",
+      "reason": "Includes only phase I trials of green tea extract, a surrogate study and preclinical work; no studies of tea drinking and new lung cancers."
+     },
+     {
+      "pmid": "23170950",
+      "title": "Green tea consumption and risk of esophageal cancer: a meta-analysis of epidemiologic studies",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Pools green tea drinkers versus non-drinkers, but the outcome is limited to oesophageal cancer."
+     },
+     {
+      "pmid": "22967345",
+      "title": "[A Meta-analysis on tea drinking and the risk of lung cancer in Chinese population]",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Tea in general rather than green tea specifically, and only lung cancer in a Chinese population."
+     },
+     {
+      "pmid": "22920932",
+      "title": "Tea consumption and risk of bladder cancer: a meta-analysis",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Includes subgroups by tea type, but the outcome is only bladder cancer rather than cancer overall."
+     },
+     {
+      "pmid": "22440851",
+      "title": "Coffee and tea consumption and the risk of ovarian cancer: a prospective cohort study and updated meta-analysis",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, in women only, and only ovarian cancer."
+     },
+     {
+      "pmid": "22564714",
+      "title": "Green tea for ovarian cancer prevention and treatment: a systematic review of the in vitro, in vivo and epidemiological studies",
+      "year": 2012,
+      "fits": "partly",
+      "reason": "Includes epidemiological studies of green tea intake, but only ovarian cancer in women."
+     },
+     {
+      "pmid": "21667398",
+      "title": "Green tea and black tea consumption and prostate cancer risk: an exploratory meta-analysis of observational studies",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Pools green tea separately as highest versus non or lowest intake, but the outcome is limited to prostate cancer."
+     },
+     {
+      "pmid": "21800977",
+      "title": "Tea consumption and epithelial ovarian cancer risk: a systematic review of observational studies",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Systematic review of tea intake and ovarian cancer only; green tea is not analysed separately from tea in general."
+     },
+     {
+      "pmid": "21595018",
+      "title": "Green and black tea in relation to gynecologic cancers",
+      "year": 2011,
+      "fits": "partly",
+      "reason": "Meta-analyses of green tea intake, but the outcomes are limited to ovarian and endometrial cancers in women."
+     },
+     {
+      "pmid": "20490647",
+      "title": "Tea consumption and risk of ovarian cancer",
+      "year": 2010,
+      "fits": "partly",
+      "reason": "Meta-analysis of green tea intake vs none, but the outcome is limited to ovarian cancer in women rather than cancer overall."
+     },
+     {
+      "pmid": "21218135",
+      "title": "What Should be Taken into Consideration for a Meta-Analysis of Green Tea Consumption and Stomach Cancer Risk?",
+      "year": 2010,
+      "fits": "no",
+      "reason": "A methods commentary on a meta-analysis with no abstract, not a systematic review itself."
+     },
+     {
+      "pmid": "19766982",
+      "title": "Tea consumption and risk of endometrial cancer: a metaanalysis",
+      "year": 2009,
+      "fits": "partly",
+      "reason": "Meta-analysis of tea and endometrial cancer only, with a green tea subgroup; the outcome is limited to one cancer in women."
+     },
+     {
+      "pmid": "17905170",
+      "title": "The association of tea consumption with ovarian cancer risk: A metaanalysis",
+      "year": 2007,
+      "fits": "partly",
+      "reason": "Meta-analysis of tea of all types and ovarian cancer only; green tea is not analysed on its own."
+     },
+     {
+      "pmid": "16311246",
+      "title": "Green tea, black tea and breast cancer risk: a meta-analysis of epidemiological studies",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Pools green tea drinking against none or the lowest intake, but only breast cancer in women."
+     },
+     {
+      "pmid": "16638787",
+      "title": "Green tea, black tea and colorectal cancer risk: a meta-analysis of epidemiologic studies",
+      "year": 2006,
+      "fits": "partly",
+      "reason": "Pools green tea drinking against none or the lowest intake, but only colorectal cancer."
+     },
+     {
+      "pmid": "14987318",
+      "title": "Systematic review: green tea and gastrointestinal cancer risk",
+      "year": 2004,
+      "fits": "partly",
+      "reason": "Green tea consumption matches, but the outcome is limited to gastrointestinal cancers and precancerous lesions."
+     },
+     {
+      "pmid": "11369742",
+      "title": "Are coffee and tea consumption associated with urinary tract cancer risk? A systematic review and meta-analysis",
+      "year": 2001,
+      "fits": "partly",
+      "reason": "Tea in general with no green tea analysis, and only urinary tract cancer."
+     }
+    ]
+   }
+  }
+ ]
+}

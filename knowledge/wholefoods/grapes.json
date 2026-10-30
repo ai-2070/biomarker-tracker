@@ -1,0 +1,718 @@
+{
+  "id": "grapes",
+  "name": "Dark grapes",
+  "group": "fruit",
+  "otherNames": [
+    "grapes",
+    "grape",
+    "red grapes",
+    "black grapes",
+    "purple grapes",
+    "Concord grapes",
+    "Concord grape juice",
+    "raisins",
+    "grape juice",
+    "freeze-dried grape powder"
+  ],
+  "summary": "Red, black and purple grapes, eaten fresh, dried as raisins or pressed into juice. Dark skins hold anthocyanins, which green grapes can't make, and red grape juice has about ten times the resveratrol of white grape juice. But no study of people has shown that dark grapes change health or lifespan more than green grapes: the difference is in their compounds, not in any measured outcome. In US cohorts, people who ate more grapes and raisins (colour not recorded) were less likely to develop type 2 diabetes; small trials of grape products found small, uncertain changes in blood pressure, blood fats and memory.",
+  "inIt": [
+    "Grape polyphenols sit almost entirely in the skin. In a 2002 study of seven table grape varieties (four red, three white), the flesh was almost free of them.",
+    "Anthocyanins, the red, purple and black pigments, are what set dark grapes apart. Red varieties can make them and white (green) varieties cannot. In the four red table grapes studied in 2002, anthocyanins were the main polyphenols, 6.9 to 15.1 mg per 100 g of fresh grapes.",
+    "Green grapes have polyphenols too, of other kinds. In the three white varieties, flavan-3-ols (catechins and procyanidins) were the main ones, 5.2 to 8.1 mg per 100 g. Quercetin compounds are found in both red and white grapes; myricetin compounds only in red ones.",
+    "Darker doesn't always mean more polyphenols in total. In 2002, total polyphenols ranged from 11.5 mg per 100 g (Dominga, a white grape) to 36.1 mg (Flame Seedless, a red one). But a 2026 study found more total polyphenols and flavonoids in Shine Muscat, a green grape, than in the red Crimson Seedless and Red Globe.",
+    "Resveratrol is in grape skins in small amounts, mostly bound to a sugar (piceid). In 36 grape juices, red juices held on average 4.7 mg of resveratrol in all its forms per litre and white juices 0.5 mg. A 150 ml glass of red juice would hold about 0.7 mg (calculated from those averages). In a meta-analysis of resveratrol supplement trials, blood pressure fell only in trials that used 300 mg a day or more, several hundred times as much; resveratrol pills are a different thing from grapes.",
+    "Concord grape juice, made from a dark American grape, is rich in these compounds: one 355 ml daily serving in a trial held 777 mg of polyphenols, 167 mg of them anthocyanins. In another trial, purple grape juice held 138 mg of anthocyanins per litre and white grape juice 1 mg.",
+    "The UK food table (CoFID) measures the basic nutrients. Per 100 g: red grapes 67 kcal, 17 g sugars, 1.3 g fibre and 213 mg potassium; raisins 256 kcal, 62.6 g sugars, 2.7 g fibre and 889 mg potassium; unsweetened grape juice 62 kcal, 16 g sugars and no fibre. It measures none of the anthocyanins, flavan-3-ols, quercetin or resveratrol, and a food has thousands of compounds no table tracks."
+  ],
+  "history": [
+    {
+      "who": "Ayurveda, traditional medicine of the Indian subcontinent",
+      "use": "Fermented grapes, as a tonic called Drakshasava, for tiredness, weakness and heart disease.",
+      "modern": "not tested",
+      "note": "No trial of Drakshasava for weakness or heart disease turned up in the searches for this page. It is a fermented preparation, not fresh grapes, and the grape trials on this page measured blood pressure, blood fats and blood vessel function, not heart disease itself.",
+      "sources": [
+        {
+          "pmid": "31865177",
+          "doi": "10.1016/j.tranon.2019.10.014",
+          "title": "Whole Fruit Phytochemicals Combating Skin Damage and Carcinogenesis.",
+          "year": 2020,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Johanna Brandt's \"grape cure\" (South Africa and the US, book published 1928)",
+      "use": "A diet of grapes promoted as a cure for cancer.",
+      "modern": "not tested",
+      "note": "No trial has tested a grape diet against cancer, and none of the studies on this page measured cancer. The American Cancer Society listed the \"grape cure\" among unproven methods of cancer treatment in 1965 and again in 1974: there is no evidence that it works.",
+      "sources": [
+        {
+          "pmid": "31865177",
+          "doi": "10.1016/j.tranon.2019.10.014",
+          "title": "Whole Fruit Phytochemicals Combating Skin Damage and Carcinogenesis.",
+          "year": 2020,
+          "studyType": "review"
+        },
+        {
+          "doi": "10.3322/canjclin.15.2.91",
+          "title": "Unproven Methods of Cancer Treatment: \"Grape Cure\"",
+          "year": 1965,
+          "studyType": "review"
+        },
+        {
+          "pmid": "4210858",
+          "title": "Unproven methods of cancer management. Grape diet.",
+          "year": 1974,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "The \"French paradox\" (1990s)",
+      "use": "The idea that red wine explains why France had little heart disease despite a high-fat diet; grapes were later promoted on the back of it.",
+      "modern": "not tested",
+      "note": "The French paradox was about wine and alcohol, a different exposure from grapes: wine adds alcohol, and the 1992 paper that named it pointed to alcohol damping down blood platelets. No study has tested whether eating grapes explains it; trials of grapes, grape juice and grape powder found only small, uncertain changes in blood pressure and blood fats, and none measured heart attacks.",
+      "sources": [
+        {
+          "pmid": "31865177",
+          "doi": "10.1016/j.tranon.2019.10.014",
+          "title": "Whole Fruit Phytochemicals Combating Skin Damage and Carcinogenesis.",
+          "year": 2020,
+          "studyType": "review"
+        },
+        {
+          "pmid": "1351198",
+          "doi": "10.1016/0140-6736(92)91277-f",
+          "title": "Wine, alcohol, platelets, and the French paradox for coronary heart disease.",
+          "year": 1992,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "14-323",
+      "label": "A small bunch of red grapes (about 80 g)",
+      "grams": 80
+    },
+    {
+      "id": "14-393",
+      "label": "A small box of raisins (about 30 g)",
+      "grams": 30
+    },
+    {
+      "id": "17-745",
+      "label": "A small glass of grape juice (about 150 ml)",
+      "grams": 150
+    }
+  ],
+  "processing": [
+    "Skin matters most: the polyphenols, including the anthocyanins that make dark grapes dark, are in the skin, not the flesh. Seeds and stems hold polyphenols too, and juice has less of them than the whole fruit. Grape seed extract is a different intervention from eating grapes.",
+    "Raisins are usually not dark grapes. The most common raisins, dark raisins, are usually made from Thompson Seedless, a green grape, so their dark colour doesn't come from dark grapes. Golden raisins are made from white Muscat grapes. Raisins are dried and concentrated: per 100 g the food table lists 62.6 g of sugars and 889 mg of potassium, against 17 g and 213 mg for fresh red grapes.",
+    "Juice has no fibre and more sugar per glass than a bunch of grapes has: the food table gives about 24 g of sugars in 150 ml of unsweetened grape juice and about 14 g in 80 g of red grapes (calculated from its values per 100 g). The table doesn't say which grapes its juice was made from. Many trials used 100% Concord grape juice, a dark juice; white grape juice has far fewer anthocyanins and about a tenth of the resveratrol.",
+    "Many trials used a freeze-dried powder made from fresh red, green and black grapes, seeded and seedless, ground and freeze-dried. It is made under the auspices of the California Table Grape Commission, which also funded some of the research. Because it is a mix of colours, trials of the powder can't say whether dark grapes do more than green ones.",
+    "Grape seed extract, resveratrol supplements and red wine are different exposures from grapes and are not covered by this page's findings. Wine adds alcohol; extracts and pills concentrate a few compounds in amounts no one gets from fruit."
+  ],
+  "whatStudiesDid": "Trials of Concord grape juice gave about 6 to 9 ml per kg of body weight a day (for a 70 kg adult about 420 to 630 ml), or a fixed 355 ml a day, for 2 weeks to 4 months, against a drink matched for sugar and calories but without polyphenols. Trials of freeze-dried grape powder (a mix of red, green and black grapes) gave it for 2 weeks to 6 months; in one, two 36 g packets a day (72 g, said to equal 3 servings of fresh grapes) for 6 months. Raisin trials gave raisins as snacks three times a day for 12 weeks and compared them with processed snacks. One small trial compared a single glass of purple grape juice with sugar-matched white grape juice. The cohort studies asked people how often they ate grapes or raisins, without recording the colour.",
+  "markers": [
+    "bp_systolic",
+    "bp_diastolic",
+    "ldl",
+    "total_cholesterol",
+    "triglycerides",
+    "glucose",
+    "hba1c"
+  ],
+  "findings": [
+    {
+      "outcome": "Type 2 diabetes",
+      "population": "Grapes and raisins in general (colour not recorded): US nurses and male health professionals, 187,382 people followed for up to about 24 years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people who eat more grapes may differ in other ways, even after adjustment",
+        "Diet was reported on questionnaires",
+        "One analysis of three cohorts; the participants were mostly white health professionals in the US",
+        "Grapes and raisins were asked about together, and their colour was not recorded, so it says nothing about dark grapes in particular"
+      ],
+      "summary": "In three US cohorts (66,105 women in the Nurses' Health Study, 85,104 in the Nurses' Health Study II and 36,173 men in the Health Professionals Follow-up Study), 12,198 people developed type 2 diabetes. With each fruit adjusted for the others and for personal, lifestyle and diet factors, every 3 extra servings a week of grapes or raisins went with a hazard ratio of 0.88 (95% confidence interval 0.83 to 0.93). The same increase in fruit juice (apple, orange, grapefruit and other juices) went with a higher risk, 1.08 (1.05 to 1.11). In the full text, swapping 3 servings a week of fruit juice for grapes or raisins went with a 19% lower risk (14% to 24% lower). The study was funded by the US National Institutes of Health. It recorded grapes and raisins together, not their colour.",
+      "bottomLine": "In three large US cohorts, people who ate more grapes and raisins were less likely to develop type 2 diabetes (12% lower risk per 3 servings a week), while fruit juice went with higher risk. This is a link from questionnaires, not proof, and grape colour wasn't recorded.",
+      "studies": [
+        {
+          "pmid": "23990623",
+          "doi": "10.1136/bmj.f5001",
+          "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 187382
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in randomised trials of grape products: freeze-dried whole grape powder (a mix of red, green and black grapes), raisins (usually from green grapes) and Concord grape juice",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The 2023 meta-analysis rated the certainty of the fall in systolic pressure as low (GRADE)",
+        "Results varied between trials (I² 64%), and juice, the darkest product tested, showed no clear effect",
+        "Most trials were small and short; the raisin trials compared raisins with processed snacks, not with no snack",
+        "The powder is made under the auspices of the California Table Grape Commission; the Concord juice blood pressure trial was funded by US National Institutes of Health grants"
+      ],
+      "summary": "A 2023 meta-analysis of 30 randomised trials of grape products found systolic blood pressure 3.17 mmHg lower (95% confidence interval 0.99 to 5.36 lower), rated low certainty, and no clear change in diastolic pressure. Whole grape products (raisins and grape powder) went with 2.69 mmHg lower systolic pressure (0.57 to 4.81 lower); grape juice did not change it clearly. In a crossover trial of 64 adults with high-normal or mildly high blood pressure, 100% Concord grape juice (7 ml per kg a day for 8 weeks) did not change 24-hour blood pressure compared with a matched placebo drink. In a 30-day crossover trial in 24 men with metabolic syndrome, freeze-dried grape powder lowered systolic pressure compared with placebo. In a 12-week trial in 46 adults, systolic pressure fell by 6.0 to 10.2 mmHg with raisin snacks and didn't change with processed snacks; in a 12-week trial in 51 people with type 2 diabetes it was 8.7 mmHg lower with raisins than with processed snacks. No trial compared dark with green grapes.",
+      "bottomLine": "In a meta-analysis of 30 small trials of grape products, systolic blood pressure was about 3 mmHg lower, with low certainty. Raisins and grape powder (a mix of grape colours) went with a fall; grape juice, including dark Concord juice, did not clearly change blood pressure.",
+      "studies": [
+        {
+          "pmid": "37482483",
+          "doi": "10.1016/j.numecd.2023.05.001",
+          "title": "The effect of whole grape products on blood pressure and vascular function: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "20844075",
+          "doi": "10.3945/ajcn.2010.29905",
+          "title": "Effects of Concord grape juice on ambulatory blood pressure in prehypertension and stage 1 hypertension.",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 64
+        },
+        {
+          "pmid": "22810991",
+          "doi": "10.3945/jn.112.162743",
+          "title": "Grape polyphenols reduce blood pressure and increase flow-mediated vasodilation in men with metabolic syndrome.",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 24
+        },
+        {
+          "pmid": "24393750",
+          "doi": "10.3810/pgm.2014.01.2723",
+          "title": "Raisins compared with other snack effects on glycemia and blood pressure: a randomized, controlled trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 46
+        },
+        {
+          "pmid": "25609549",
+          "doi": "10.1080/00913847.2015.998410",
+          "title": "A randomized study of raisins versus alternative snacks on glycemic control and other cardiovascular risk factors in patients with type 2 diabetes mellitus.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 51
+        }
+      ]
+    },
+    {
+      "outcome": "Blood fats (LDL cholesterol, total cholesterol, triglycerides)",
+      "population": "Adults in randomised trials of grape products: freeze-dried grape powder or pomace (the skins and seeds left after pressing), grape juice, and grape seed or skin extracts",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analyses pool grape powder, pomace, juice and extracts; extracts are a different intervention",
+        "In the grape juice trials there was no change in LDL",
+        "Small trials (8 to 50 people each in the 2020 meta-analysis) and some had no dummy placebo",
+        "Results varied between trials (I² 74.7% for HDL); certainty wasn't rated in the abstracts"
+      ],
+      "summary": "A 2020 meta-analysis of 24 randomised trials (1,205 people; full text read) found LDL cholesterol 6.3 mg/dL lower (95% confidence interval 3.0 to 9.5 lower), total cholesterol 7.6 mg/dL lower, triglycerides 14.5 mg/dL lower and HDL 1.4 mg/dL higher with grape products of any kind compared with placebo. Of the trials, 11 tested grape powder or pomace, 5 grape juice and 8 extracts. By type of product, LDL was 6.3 mg/dL lower with whole grape products (grape powder or pomace; 1.6 to 11.0 lower), not clearly changed with grape seed extracts (4.3 lower, 10.9 lower to 2.2 higher) and unchanged with grape juice (0.21 mg/dL higher, 7.6 lower to 8.1 higher). A 2019 meta-analysis of 48 trials of grape products in any form found LDL 5.0 mg/dL lower, total cholesterol 6.2 lower and triglycerides 7.6 lower, with no change in HDL. Neither looked at grape colour.",
+      "bottomLine": "Meta-analyses of grape products found LDL cholesterol about 5 to 6 mg/dL lower, a small change. The fall came from grape powder and pomace; in grape juice trials LDL didn't change, and the pooled results mix in extracts, so the effect of eating grapes is uncertain.",
+      "studies": [
+        {
+          "pmid": "31979098",
+          "doi": "10.3390/jcm9020313",
+          "title": "Impact of Grape Products on Lipid Profile: A Meta-Analysis of Randomized Controlled Studies.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 1205
+        },
+        {
+          "pmid": "31517353",
+          "doi": "10.1039/c9fo01248f",
+          "title": "Effects of grape products on blood lipids: a systematic review and dose-response meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood vessel function (flow-mediated dilation)",
+      "population": "Purple (Concord) grape juice in small studies of people with coronary artery disease and healthy smokers; freeze-dried grape powder (a mix of red, green and black grapes) in men with metabolic syndrome",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "When trials were pooled in a 2023 meta-analysis, there was no clear effect on endothelial function",
+        "The single studies were very small (15 to 26 people) and lasted 2 to 4 weeks; the first had no comparison group",
+        "Flow-mediated dilation is a measure of the blood vessel lining, not a heart attack or stroke",
+        "Who funded these vascular studies isn't stated in the abstracts read; in Concord juice research elsewhere (the memory trials), the juice maker supplied the juice"
+      ],
+      "summary": "In a 1999 study without a comparison group, 15 adults with coronary artery disease drank purple grape juice (about 7.7 ml per kg a day) for 14 days; flow-mediated dilation, how much the arm artery widens, rose from 2.2% to 6.4%, and LDL resisted oxidation longer. In a double-blind crossover trial in 26 healthy smokers, 2 weeks of Concord grape juice improved flow-mediated dilation and artery stiffness compared with placebo, and blunted the worsening right after smoking a cigarette. In 24 men with metabolic syndrome, 30 days of freeze-dried grape powder raised flow-mediated dilation compared with placebo. But a 2023 meta-analysis of 30 trials of grape products found no clear effect on endothelial function overall. No trial measured heart attacks or strokes.",
+      "bottomLine": "Very small, short studies of purple Concord grape juice and of grape powder found that arteries widened better, but when trials were pooled there was no clear effect on blood vessel function. No study measured heart attacks or strokes.",
+      "studies": [
+        {
+          "pmid": "10477529",
+          "doi": "10.1161/01.cir.100.10.1050",
+          "title": "Purple grape juice improves endothelial function and reduces the susceptibility of LDL cholesterol to oxidation in patients with coronary artery disease.",
+          "year": 1999,
+          "studyType": "observational",
+          "n": 15
+        },
+        {
+          "pmid": "24061071",
+          "doi": "10.1093/ajh/hpt176",
+          "title": "Favorable effects of concord grape juice on endothelial function and arterial stiffness in healthy smokers.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 26
+        },
+        {
+          "pmid": "22810991",
+          "doi": "10.3945/jn.112.162743",
+          "title": "Grape polyphenols reduce blood pressure and increase flow-mediated vasodilation in men with metabolic syndrome.",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 24
+        },
+        {
+          "pmid": "37482483",
+          "doi": "10.1016/j.numecd.2023.05.001",
+          "title": "The effect of whole grape products on blood pressure and vascular function: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Memory and thinking",
+      "population": "Concord grape juice in older adults with mild memory decline and in healthy middle-aged mothers; purple vs white grape juice in young adults; freeze-dried grape powder (red, green and blue-black grapes) in older adults with mild memory decline",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Five small trials of grapes themselves, with 10 to 25 people each",
+        "Many different tests: some improved, many didn't, and no meta-analysis was possible",
+        "A 2022 systematic review rated most trials' risk of bias as unclear",
+        "The Concord juice was provided by Welch Foods, and one trial had a Welch's employee as an author"
+      ],
+      "summary": "A 2022 systematic review found 8 randomised trials of grapes and cognition (474 people); 3 of them tested extracts, which are a different intervention. Of the trials of grapes themselves: in 12 older adults with memory decline, 12 weeks of Concord grape juice improved verbal learning but not recall; in 21 such adults, 16 weeks of juice reduced memory interference and changed brain activation on scans; in 25 working mothers, 355 ml of Concord juice a day for 12 weeks improved immediate spatial memory and driving performance in a simulator compared with placebo; and in 10 older adults with mild memory decline, 6 months of grape powder kept brain metabolism stable on PET scans while it fell with placebo, with no difference in test scores. One trial compared dark with green directly: in 20 young adults, a glass of purple grape juice improved reaction time on an attention task and calmness 20 minutes later compared with sugar-matched white grape juice, with no effect on memory. The review authors said differences in design, amounts and tests made the trials hard to compare.",
+      "bottomLine": "A few very small trials of Concord grape juice and grape powder found better scores on some memory or attention tests and no change on others. One trial found purple juice beat white juice on attention 20 minutes later. The evidence is too thin to know whether grapes help thinking.",
+      "studies": [
+        {
+          "pmid": "34041549",
+          "doi": "10.1093/nutrit/nuab025",
+          "title": "The effect of grape interventions on cognitive and mental performance in healthy participants and those with mild cognitive impairment: a systematic review of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "review",
+          "n": 474
+        },
+        {
+          "pmid": "20028599",
+          "doi": "10.1017/S0007114509992364",
+          "title": "Concord grape juice supplementation improves memory function in older adults with mild cognitive impairment.",
+          "year": 2010,
+          "studyType": "rct",
+          "n": 12
+        },
+        {
+          "pmid": "22468945",
+          "doi": "10.1021/jf300277g",
+          "title": "Concord grape juice supplementation and neurocognitive function in human aging.",
+          "year": 2012,
+          "studyType": "rct",
+          "n": 21
+        },
+        {
+          "pmid": "26864371",
+          "doi": "10.3945/ajcn.115.114553",
+          "title": "Concord grape juice, cognitive function, and driving performance: a 12-wk, placebo-controlled, randomized crossover trial in mothers of preteen children.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 25
+        },
+        {
+          "pmid": "27856335",
+          "doi": "10.1016/j.exger.2016.10.004",
+          "title": "Examining the impact of grape consumption on brain metabolism and cognitive function in patients with mild decline in cognition: A double-blinded placebo controlled pilot study.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 10
+        },
+        {
+          "pmid": "28429081",
+          "doi": "10.1007/s00394-017-1454-7",
+          "title": "Cognitive and mood improvements following acute supplementation with purple grape juice in healthy young adults.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 20
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar: after meals, fasting and HbA1c",
+      "population": "Raisins (usually made from green grapes) in healthy adults, people with prediabetes and people with type 2 diabetes; grape products of various kinds in a meta-analysis",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The raisin trials were small (46 and 51 people) and compared raisins with processed snacks, so they show raisins vs those snacks, not raisins vs nothing",
+        "Glycaemic index studies measure one meal, not long-term health",
+        "In the meta-analysis of grape products, fasting glucose was slightly higher, not lower, and HbA1c didn't change",
+        "Who funded the raisin trials isn't stated in the abstracts read"
+      ],
+      "summary": "Glycaemic index studies found raisins raise blood sugar less than glucose: a glycaemic index of about 49 to 62 in healthy, trained and prediabetic adults, and an estimated 66 for Corinthian raisins in healthy people and people with type 2 diabetes. In a 12-week trial in 46 adults, with raisins three times a day blood sugar after meals fell by 13.1 mg/dL and HbA1c by 0.12 percentage points, both more than with processed snacks; fasting glucose didn't change. In a 12-week trial in 51 people with type 2 diabetes, blood sugar after meals was 23% lower with raisins than with processed snacks, while the falls in fasting glucose and HbA1c could be chance. A 2021 meta-analysis of 29 trials of grapes and grape products (1,297 people) found no change in HbA1c or fasting insulin, slightly higher fasting glucose (1.19 mg/dL) and lower insulin resistance (HOMA-IR 0.54 lower).",
+      "bottomLine": "Raisins raise blood sugar less than glucose, and in two small trials raisin snacks went with lower blood sugar after meals than processed snacks did. Across 29 trials of grape products, long-term blood sugar (HbA1c) didn't change. Raisins are usually made from green grapes.",
+      "studies": [
+        {
+          "pmid": "19083424",
+          "doi": "10.1016/j.nutres.2008.02.015",
+          "title": "Raisins are a low to moderate glycemic index food with a correspondingly low insulin index.",
+          "year": 2008,
+          "studyType": "observational",
+          "n": 31
+        },
+        {
+          "pmid": "23564595",
+          "doi": "10.1007/s11130-013-0348-y",
+          "title": "A study of glycemic response to Corinthian raisins in healthy subjects and in type 2 diabetes mellitus patients.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 30
+        },
+        {
+          "pmid": "24393750",
+          "doi": "10.3810/pgm.2014.01.2723",
+          "title": "Raisins compared with other snack effects on glycemia and blood pressure: a randomized, controlled trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 46
+        },
+        {
+          "pmid": "25609549",
+          "doi": "10.1080/00913847.2015.998410",
+          "title": "A randomized study of raisins versus alternative snacks on glycemic control and other cardiovascular risk factors in patients with type 2 diabetes mellitus.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 51
+        },
+        {
+          "pmid": "33893683",
+          "doi": "10.1002/ptr.7135",
+          "title": "The effect of grapes/grape products on glycemic response: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1297
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "ranges",
+      "title": "Polyphenols in red and white table grapes",
+      "caption": "Amounts measured in 2002 in four red table grapes (Red Globe, Flame Seedless, Crimson Seedless, Napoleon) and three white ones (Superior Seedless, Dominga, Moscatel Italica), in mg per 100 g of fresh unpeeled grapes. Anthocyanins were the main polyphenols in the red grapes; flavan-3-ols were the main ones in the white grapes. Almost all of it was in the skin. A newer study found a green grape (Shine Muscat) with more total polyphenols than two red ones, so colour is only part of the story. More of a compound in the fruit doesn't show a health effect.",
+      "unit": "mg per 100 g",
+      "rows": [
+        {
+          "label": "Anthocyanins, red grapes",
+          "low": 6.9,
+          "high": 15.1,
+          "note": "Crimson Seedless lowest, Flame Seedless highest"
+        },
+        {
+          "label": "Flavan-3-ols, white grapes",
+          "low": 5.2,
+          "high": 8.1,
+          "note": "Dominga lowest, Moscatel Italica highest"
+        },
+        {
+          "label": "All polyphenols, all seven grapes",
+          "low": 11.5,
+          "high": 36.1,
+          "note": "Dominga (white) lowest, Flame Seedless (red) highest"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "12236700",
+          "doi": "10.1021/jf0204102",
+          "title": "Varietal differences among the polyphenol profiles of seven table grape cultivars studied by LC-DAD-MS-MS.",
+          "year": 2002,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "41829096",
+          "doi": "10.3390/foods15050823",
+          "title": "Comparative Profiling of Aroma Volatiles and Flavonoid Biosynthesis in Crimson Seedless, Red Globe, and Shine Muscat Table Grapes Using GC-IMS and RNA-Seq.",
+          "year": 2026,
+          "studyType": "in vitro"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Resveratrol in red and white grape juices",
+      "caption": "Average amounts in 36 grape juices, in mg per litre. Most of it is piceid, resveratrol bound to a sugar; the totals add up the four forms measured (calculated from the study's averages). A 150 ml glass of red grape juice holds about 0.7 mg in all. In a meta-analysis of resveratrol supplements, blood pressure fell only in trials using 300 mg a day or more, so juice and pills are not comparable.",
+      "scale": "linear",
+      "unit": "mg/L",
+      "reference": {
+        "value": 0,
+        "label": "None"
+      },
+      "items": [
+        {
+          "label": "Red juices, all forms",
+          "value": 4.73,
+          "note": "trans-piceid 3.38, cis-piceid 0.79, trans-resveratrol 0.50, cis-resveratrol 0.06"
+        },
+        {
+          "label": "Red juices, free trans-resveratrol",
+          "value": 0.5
+        },
+        {
+          "label": "White juices, all forms",
+          "value": 0.49,
+          "note": "trans-piceid 0.18, cis-piceid 0.26, trans-resveratrol 0.05; no cis-resveratrol found"
+        },
+        {
+          "label": "White juices, free trans-resveratrol",
+          "value": 0.05
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "10564012",
+          "doi": "10.1021/jf981024g",
+          "title": "Piceid, the major resveratrol derivative in grape juices.",
+          "year": 1999,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "29359958",
+          "doi": "10.1080/10408398.2017.1422480",
+          "title": "Effect of resveratrol on blood pressure: A systematic review and meta-analysis of randomized, controlled, clinical trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Type 2 diabetes risk: grapes and raisins vs fruit juice",
+      "caption": "Hazard ratios with 95% confidence intervals from three US cohorts (187,382 people), adjusted for personal, lifestyle and diet factors and, for single fruits, for the other fruits. The first three are per 3 extra servings a week. The last is swapping 3 servings a week of fruit juice for grapes or raisins (a 19% lower risk in the full text, shown as 0.81). Grape colour wasn't recorded. Below 1 means fewer people developed type 2 diabetes; these are links from questionnaires, not proof of cause.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "No difference in risk"
+      },
+      "items": [
+        {
+          "label": "Grapes and raisins",
+          "value": 0.88,
+          "low": 0.83,
+          "high": 0.93
+        },
+        {
+          "label": "All whole fruit",
+          "value": 0.98,
+          "low": 0.97,
+          "high": 0.99
+        },
+        {
+          "label": "Fruit juice (apple, orange, grapefruit and other)",
+          "value": 1.08,
+          "low": 1.05,
+          "high": 1.11
+        },
+        {
+          "label": "Grapes or raisins instead of fruit juice",
+          "value": 0.81,
+          "low": 0.76,
+          "high": 0.86,
+          "note": "Substitution analysis, full text"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "23990623",
+          "doi": "10.1136/bmj.f5001",
+          "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 187382
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Young children",
+      "note": "Whole grapes are the right size and shape to block a small child's airway. Doctors have described children who choked on whole grapes, some fatally, and called for wider awareness that grapes and similar round foods are a choking hazard for young children."
+    },
+    {
+      "with": "Diabetes",
+      "note": "The UK food table lists 16 g of sugars per 100 g of unsweetened grape juice (about 24 g in a 150 ml glass), 62.6 g per 100 g of raisins (about 19 g in a 30 g box) and 17 g per 100 g of red grapes (about 14 g in an 80 g bunch). Juice has no fibre. A 355 ml serving of Concord grape juice in one trial held 54 g of sugars. If you are managing blood sugar, talk to your doctor or dietitian about juice and dried fruit.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Kidney disease",
+      "note": "The UK food table lists 889 mg of potassium per 100 g of raisins (about 267 mg in a 30 g box), against 213 mg per 100 g of red grapes and 55 mg per 100 g of grape juice. If you have been told to limit potassium, talk to your doctor or renal dietitian about raisins and other dried fruit.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "Grapes and raisins can poison dogs: in a Swiss series, all 15 dogs with grape or raisin poisoning had severe kidney injury and 8 survived.",
+    "Grapes and grape juice are not a treatment for high blood pressure, high cholesterol, diabetes or memory problems. Anything clearly out of range in your results is worth discussing with your doctor.",
+    "Fruit juice in general went with a higher risk of type 2 diabetes in the large US cohorts, and juice has none of the fruit's fibre."
+  ],
+  "unknowns": [
+    "No study of people has compared dark with green grapes on health outcomes or lifespan. Dark grapes hold anthocyanins that green grapes lack, and red juice has more resveratrol, but whether that changes anything in the body over years is not known. The only head-to-head trial found that a single glass of purple juice beat white juice on an attention test 20 minutes later, in 20 people.",
+    "No study of people has measured grapes and death from any cause, or lifespan. A study in mice found that a high-fat diet with 5% grape powder (a mix of red, green and black grapes) went with longer survival than the same diet without it (hazard ratio 0.715, 100 mice per group); mice are not people.",
+    "The cohort link with less type 2 diabetes is for grapes and raisins together, colour not recorded, and can't show cause.",
+    "Most trials used Concord juice, a freeze-dried powder that mixes grape colours, or raisins usually made from green grapes; very few tested fresh dark grapes as people eat them. Many were small, short and supplied or funded by Welch's or the California Table Grape Commission.",
+    "Resveratrol supplements and red wine are different exposures. Supplement trials use hundreds of milligrams a day, far more than grapes hold, and in an Italian cohort of 783 older adults, the amount of resveratrol from diet (measured in urine) did not go with how many died over 9 years (hazard ratio 0.80, 95% confidence interval 0.54 to 1.17, for the lowest vs highest quarter). Wine adds alcohol.",
+    "It isn't known which compounds explain any effect. The food table measures sugars, fibre and minerals but none of the polyphenols, and a food has thousands of compounds no table tracks."
+  ],
+  "sources": [
+    {
+      "pmid": "12236700",
+      "doi": "10.1021/jf0204102",
+      "title": "Varietal differences among the polyphenol profiles of seven table grape cultivars studied by LC-DAD-MS-MS.",
+      "year": 2002,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "42796935",
+      "doi": "10.3390/nu18182952",
+      "title": "Effects of Grape and Grape-Derived Bioactives on Inflammation and Immune-Driven Mechanisms Within the Context of Cardiometabolic Health and Aging: A Review.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41829096",
+      "doi": "10.3390/foods15050823",
+      "title": "Comparative Profiling of Aroma Volatiles and Flavonoid Biosynthesis in Crimson Seedless, Red Globe, and Shine Muscat Table Grapes Using GC-IMS and RNA-Seq.",
+      "year": 2026,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "10564012",
+      "doi": "10.1021/jf981024g",
+      "title": "Piceid, the major resveratrol derivative in grape juices.",
+      "year": 1999,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "12010007",
+      "doi": "10.1021/jf0112973",
+      "title": "Plant foods and herbal sources of resveratrol.",
+      "year": 2002,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "29359958",
+      "doi": "10.1080/10408398.2017.1422480",
+      "title": "Effect of resveratrol on blood pressure: A systematic review and meta-analysis of randomized, controlled, clinical trials.",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "34041549",
+      "doi": "10.1093/nutrit/nuab025",
+      "title": "The effect of grape interventions on cognitive and mental performance in healthy participants and those with mild cognitive impairment: a systematic review of randomized controlled trials.",
+      "year": 2022,
+      "studyType": "review",
+      "n": 474
+    },
+    {
+      "pmid": "31878160",
+      "doi": "10.3390/nu12010054",
+      "title": "Is Eating Raisins Healthy?",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37173385",
+      "doi": "10.1038/s41598-023-34813-5",
+      "title": "Influence of grape consumption on the human microbiome.",
+      "year": 2023,
+      "studyType": "observational",
+      "n": 29
+    },
+    {
+      "pmid": "27998886",
+      "doi": "10.1136/archdischild-2016-311750",
+      "title": "The choking hazard of grapes: a plea for awareness.",
+      "year": 2017,
+      "studyType": "observational",
+      "n": 3
+    },
+    {
+      "pmid": "26035496",
+      "doi": "10.1097/PEC.0000000000000459",
+      "title": "Fatal and near-fatal grape aspiration in children.",
+      "year": 2015,
+      "studyType": "observational",
+      "n": 3
+    },
+    {
+      "pmid": "32893916",
+      "doi": "10.1111/jvim.15884",
+      "title": "Toxicosis with grapes or raisins causing acute kidney injury and neurological signs in dogs.",
+      "year": 2020,
+      "studyType": "animal",
+      "n": 15
+    },
+    {
+      "pmid": "35804799",
+      "doi": "10.3390/foods11131984",
+      "title": "Consumption of Grapes Modulates Gene Expression, Reduces Non-Alcoholic Fatty Liver Disease, and Extends Longevity in Female C57BL/6J Mice Provided with a High-Fat Western-Pattern Diet.",
+      "year": 2022,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "24819981",
+      "doi": "10.1001/jamainternmed.2014.1582",
+      "title": "Resveratrol levels and all-cause mortality in older community-dwelling adults.",
+      "year": 2014,
+      "studyType": "observational",
+      "n": 783
+    },
+    {
+      "pmid": "23990623",
+      "doi": "10.1136/bmj.f5001",
+      "title": "Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies.",
+      "year": 2013,
+      "studyType": "observational",
+      "n": 187382
+    },
+    {
+      "pmid": "31865177",
+      "doi": "10.1016/j.tranon.2019.10.014",
+      "title": "Whole Fruit Phytochemicals Combating Skin Damage and Carcinogenesis.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "28429081",
+      "doi": "10.1007/s00394-017-1454-7",
+      "title": "Cognitive and mood improvements following acute supplementation with purple grape juice in healthy young adults.",
+      "year": 2017,
+      "studyType": "rct",
+      "n": 20
+    },
+    {
+      "pmid": "26864371",
+      "doi": "10.3945/ajcn.115.114553",
+      "title": "Concord grape juice, cognitive function, and driving performance: a 12-wk, placebo-controlled, randomized crossover trial in mothers of preteen children.",
+      "year": 2016,
+      "studyType": "rct",
+      "n": 25
+    },
+    {
+      "pmid": "31979098",
+      "doi": "10.3390/jcm9020313",
+      "title": "Impact of Grape Products on Lipid Profile: A Meta-Analysis of Randomized Controlled Studies.",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 1205
+    }
+  ]
+}

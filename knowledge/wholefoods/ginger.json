@@ -12,6 +12,56 @@
     "Volatile oils: one analysis of dried Australian ginger found 100 volatile compounds, including 54 terpenoid compounds and 35 related to gingerols, some never reported in ginger before.",
     "The food table (CoFID) lists energy, protein, fat, carbohydrate, fibre, minerals and some vitamins for fresh and ground ginger. It measures none of the compounds above, so the nutrient numbers for ginger say nothing about what ginger is studied for."
   ],
+  "history": [
+    {
+      "who": "Traditional Chinese medicine",
+      "use": "Fresh ginger, called \"the holy medicine of vomiting\", to stop vomiting, including in pregnancy",
+      "modern": "partly",
+      "finding": "Nausea and vomiting in early pregnancy",
+      "note": "In small trials, mostly of ground ginger in capsules, ginger eased nausea in early pregnancy compared with a dummy pill, but did not clearly reduce vomiting. For sickness after surgery or during chemotherapy, results were mixed.",
+      "sources": [
+        { "pmid": "38997763", "doi": "10.1186/s13020-024-00969-z", "title": "Pharmacological activity and clinical application analysis of traditional Chinese medicine ginger from the perspective of one source and multiple substances.", "year": 2024, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Chinese, Ayurvedic and Unani medicine",
+      "use": "Ginger for arthritis, rheumatism and aching muscles",
+      "modern": "partly",
+      "finding": "Knee osteoarthritis pain",
+      "note": "Trials of plain ground ginger for knee osteoarthritis are few and small: one blinded trial found no benefit over a dummy pill, and an open-label one found it added a little to a painkiller. The clearer benefits reported in reviews come from concentrated extracts, a different product.",
+      "sources": [
+        { "pmid": "17950516", "doi": "10.1016/j.fct.2007.09.085", "title": "Some phytochemical, pharmacological and toxicological properties of ginger (Zingiber officinale Roscoe): a review of recent research.", "year": 2008, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Chinese, Ayurvedic and Unani medicine",
+      "use": "Ginger for high blood pressure",
+      "modern": "partly",
+      "finding": "Blood pressure",
+      "note": "In short trials, ginger supplements went with blood pressure a few mmHg lower, mostly in people with raised blood pressure or obesity. Certainty is low, and in type 2 diabetes the fall was small.",
+      "sources": [
+        { "pmid": "17950516", "doi": "10.1016/j.fct.2007.09.085", "title": "Some phytochemical, pharmacological and toxicological properties of ginger (Zingiber officinale Roscoe): a review of recent research.", "year": 2008, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Persia (Iranian traditional medicine)",
+      "use": "Ginger for diarrhoea caused by spoiled food",
+      "modern": "not tested",
+      "note": "No trial in people was found for this page. The Persian texts reasoned from ginger's \"hot and dry\" nature, an idea modern studies don't measure.",
+      "sources": [
+        { "pmid": "25866718", "doi": "10.17795/jjnpp-18402", "title": "Ginger from ancient times to the new outlook.", "year": 2015, "studyType": "review" }
+      ]
+    },
+    {
+      "who": "Medieval England (11th to 13th centuries)",
+      "use": "Ginger in remedies for the mouth, teeth, eyes and voice, and for people with leprosy",
+      "modern": "not tested",
+      "note": "Ginger was found in the hardened plaque on the teeth of 7 people buried at the leprosy hospital of St Leonard in Peterborough, 6 of them with signs of leprosy in their bones. That shows it was eaten or held in the mouth, not whether it helped, and no study in people of ginger for leprosy was found for this page.",
+      "sources": [
+        { "pmid": "38291078", "doi": "10.1038/s41598-024-52422-8", "title": "First archaeological evidence for ginger consumption as a potential medicinal ingredient in a late medieval leprosarium at St Leonard, Peterborough, England.", "year": 2024, "studyType": "observational" }
+      ]
+    }
+  ],
   "tableFoods": [
     { "id": "13-890", "label": "A thumb-sized piece (about 10 g)", "grams": 10 },
     { "id": "13-832", "label": "1 teaspoon ground (about 2 g)", "grams": 2 }

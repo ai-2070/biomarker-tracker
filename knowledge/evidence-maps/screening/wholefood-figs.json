@@ -1,0 +1,22 @@
+{
+ "topic": "wholefood-figs",
+ "by": "Claude Code (opus), titles and abstracts only",
+ "outcomes": {
+  "constipation": {
+   "question": {
+    "population": "Adults or children with constipation",
+    "intervention": "Figs: fresh, dried or fig paste (fig leaf and other Ficus products count as partly)",
+    "comparison": "Placebo or no figs",
+    "outcome": "Bowel movements, stool consistency or constipation symptoms"
+   },
+   "at": "2026-10-30",
+   "decisions": [
+    {
+     "pmid": "36276840",
+     "fits": "partly",
+     "reason": "Fruit review in functional constipation includes fig paste with stool outcomes, but figs are compared with kiwifruit, not placebo or no figs, and are not analysed alone."
+    }
+   ]
+  }
+ }
+}

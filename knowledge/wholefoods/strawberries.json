@@ -20,6 +20,82 @@
     "Other flavonoids such as quercetin and catechin, and fisetin, a flavonol also found in apples, persimmons, grapes, onions and cucumbers. None of these are in the food table. Fisetin is sold as a supplement, but supplement studies aren't evidence about strawberries.",
     "The food table tracks about 30 nutrients for strawberries. A study of people eating the fruit captures everything in it, named or not, which is why this page uses studies of the food itself."
   ],
+  "history": [
+    {
+      "who": "Sweden (the botanist and physician Carl Linnaeus, 1700s, as retold by a British doctor in 1891)",
+      "use": "Eating plenty of strawberries to stay free of gout, as Linnaeus said they kept him; infusions of strawberry fruit and leaves are still a folk remedy for gout",
+      "modern": "not tested",
+      "finding": "Knee osteoarthritis pain",
+      "note": "This is one man's experience, with nothing to compare it with, and gout attacks come and go on their own. No trial has tested strawberries for gout. The nearest is one small trial in knee osteoarthritis, a different joint disease, in which a strawberry drink lowered pain scores.",
+      "sources": [
+        {
+          "pmid": "29834505",
+          "title": "The History and Capabilities of Herbal Simples: XXXII.-Strawberries.",
+          "year": 1891,
+          "studyType": "review"
+        },
+        {
+          "pmid": "40648036",
+          "doi": "10.3390/plants14132027",
+          "title": "A Review of Botany, Phytochemistry, and Biological Activities of Fragaria vesca and Fragaria viridis Widespread in Kazakhstan.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "England in the 1500s and France in the 1800s (doctors and herbalists)",
+      "use": "Dried strawberry leaves as a tea, and the roots and leaves as an astringent against chronic diarrhoea and bleeding",
+      "modern": "not tested",
+      "note": "No study in people has tested strawberry leaves or roots for diarrhoea or bleeding; the leaves have been studied in the laboratory. The trials on this page used the fruit, not the leaves.",
+      "sources": [
+        {
+          "pmid": "29834505",
+          "title": "The History and Capabilities of Herbal Simples: XXXII.-Strawberries.",
+          "year": 1891,
+          "studyType": "review"
+        },
+        {
+          "pmid": "40648036",
+          "doi": "10.3390/plants14132027",
+          "title": "A Review of Botany, Phytochemistry, and Biological Activities of Fragaria vesca and Fragaria viridis Widespread in Kazakhstan.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Folk medicine (uses gathered in a 2025 review of wild strawberries)",
+      "use": "Infusions of strawberry fruit and leaves for high blood pressure",
+      "modern": "disagrees",
+      "finding": "Blood pressure",
+      "note": "A 2025 meta-analysis of 8 trials, rated moderate certainty, found no clear effect of strawberries on blood pressure. Those trials used the fruit, mostly as freeze-dried powder; infusions of the leaves haven't been tested.",
+      "sources": [
+        {
+          "pmid": "40648036",
+          "doi": "10.3390/plants14132027",
+          "title": "A Review of Botany, Phytochemistry, and Biological Activities of Fragaria vesca and Fragaria viridis Widespread in Kazakhstan.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Folk medicine (uses gathered in a 2025 review of wild strawberries)",
+      "use": "Infusions of strawberry fruit and leaves for scurvy and other vitamin deficiencies",
+      "modern": "partly",
+      "note": "Scurvy is caused by too little vitamin C, and fresh strawberries are rich in it (the food table measures it). No study on this page tested strawberries for scurvy, and how much vitamin C an infusion keeps hasn't been measured here.",
+      "sources": [
+        {
+          "pmid": "40648036",
+          "doi": "10.3390/plants14132027",
+          "title": "A Review of Botany, Phytochemistry, and Biological Activities of Fragaria vesca and Fragaria viridis Widespread in Kazakhstan.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
   "tableFoods": [
     {
       "id": "14-324",

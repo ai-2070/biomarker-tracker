@@ -11,6 +11,77 @@
     "The table doesn't tell extra virgin from refined olive oil: its numbers are for olive oil in general. The polyphenols, which differ between grades, aren't in it.",
     "Like every food, it holds compounds no food table tracks. Studies of people eating the oil include all of them; studies of single compounds don't."
   ],
+  "history": [
+    {
+      "who": "Ancient Greece and Rome (Hippocratic writings, Celsus, Dioscorides, Galen)",
+      "use": "Olive oil as part of remedies for many ailments, from ulcers, broken bones and haemorrhoids to fevers, headaches and eye problems",
+      "modern": "not tested",
+      "note": "These remedies mixed olive oil with other ingredients to treat an illness, and none of the findings on this page tests them. The studies here are about people eating olive oil every day, mostly for the heart and blood sugar.",
+      "sources": [
+        {
+          "pmid": "42514588",
+          "doi": "10.3390/plants15142221",
+          "title": "The Ethnobotanical Heritage of Olea europaea L. in Italy: Continuity of a Millenary Mediterranean Tradition.",
+          "year": 2026,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece (Hippocrates, Philostratus, Lucian)",
+      "use": "Olive oil rubbed into athletes' skin with massage, to warm the body, prevent injuries and ease tired muscles",
+      "modern": "not tested",
+      "note": "No trial we found has tested whether olive oil massage prevents sports injuries, and the findings on this page are about eating olive oil, not rubbing it in. Athens supplied the oil free to its sports grounds: a sign of how much people trusted it, not proof that it worked.",
+      "sources": [
+        {
+          "pmid": "22419918",
+          "doi": "10.5114/aoms.2010.17074",
+          "title": "The use of deep friction massage with olive oil as a means of prevention and treatment of sports injuries in ancient times.",
+          "year": 2010,
+          "studyType": "review"
+        },
+        {
+          "pmid": "42514588",
+          "doi": "10.3390/plants15142221",
+          "title": "The Ethnobotanical Heritage of Olea europaea L. in Italy: Continuity of a Millenary Mediterranean Tradition.",
+          "year": 2026,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Greek, Roman and medieval physicians (Dioscorides, Pliny, Maimonides)",
+      "use": "Oil from unripe olives (omphacinon), judged the best oil for medicine, used for the mouth and skin and as a base for ointments",
+      "modern": "partly",
+      "finding": "Oxidised LDL and how well HDL works: high- vs low-polyphenol olive oil",
+      "note": "Modern analyses find more polyphenols, vitamin E (tocopherols) and squalene in oil from unripe olives, and it keeps longer. Its uses for the mouth and skin haven't been tested against ordinary olive oil; the trials on this page compared high- and low-polyphenol oil only for blood measures, where the high-polyphenol oil lowered oxidised LDL.",
+      "sources": [
+        {
+          "pmid": "42620476",
+          "doi": "10.3389/fphar.2026.1885776",
+          "title": "Omphacinon (unripe olive oil) as a traditional Mediterranean medicinal carrier: an ethnopharmacological appraisal.",
+          "year": 2026,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Seven Countries Study (Ancel Keys, from 1958)",
+      "use": "The observation that men eating the traditional diets of Italy, Greece and former Yugoslavia, with plenty of bread, vegetables, fruit and olive oil and little meat and dairy, had less heart disease",
+      "modern": "agrees",
+      "finding": "Heart attacks, strokes and deaths from heart disease",
+      "note": "Keys put the difference down mainly to little saturated fat, and comparing populations couldn't show cause. Decades later the PREDIMED trial found about 30% fewer heart attacks, strokes and heart deaths with a Mediterranean diet with extra virgin olive oil than with low-fat advice, though the whole diet changed and the trial had randomisation problems at some sites.",
+      "sources": [
+        {
+          "pmid": "40278200",
+          "doi": "10.3390/jcdd12040141",
+          "title": "Ancel Keys, the Mediterranean Diet, and the Seven Countries Study: A Review.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
   "tableFoods": [{ "id": "17-038", "label": "1 tablespoon (about 14 g)", "grams": 14 }],
   "processing": [
     "Extra virgin and virgin olive oil are pressed from olives and not refined. Virgin olive oils are richer in phenolic compounds than refined olive oil: in EUROLIVE the low-polyphenol oil had 2.7 mg per kg and the high one 366 mg per kg.",

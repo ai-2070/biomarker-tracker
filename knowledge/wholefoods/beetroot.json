@@ -1,0 +1,976 @@
+{
+  "id": "beetroot",
+  "name": "Beetroot and beetroot juice",
+  "group": "vegetables",
+  "otherNames": [
+    "Beetroot",
+    "Beetroot juice",
+    "Beet",
+    "Beets",
+    "Beet juice",
+    "Red beet",
+    "Beetroot shot",
+    "Beetroot powder"
+  ],
+  "summary": "A root vegetable eaten raw, cooked or pickled, and pressed into juice. Almost all the research is on beetroot juice, often small concentrated 'shots', and it is studied mainly for its inorganic nitrate, which the body can turn into nitric oxide. In short trials the juice went with a few mmHg lower systolic blood pressure and a small gain in endurance tests, but the longest trial (6 months) did not find lower arm blood pressure, and no trial has measured heart attacks, strokes or deaths.",
+  "inIt": [
+    "Beetroot is studied mostly for its inorganic nitrate. In Polish monitoring of 966 vegetable samples from 2012 to 2019, the median nitrate content of beetroot was 1,260 mg per kg, and 3,222 mg per kg at the 95th percentile; beetroot preserves had a median of 1,030 mg per kg. The UK food table (CoFID) doesn't measure nitrate in any food.",
+    "The red colour comes from betalains, pigments that few other vegetables contain; the main one is betanin. In one study, 300 mL of red beet juice held 120 mg of betanin, and 0.5 to 0.9% of the red pigments drunk turned up in the urine 2 to 4 hours later. The food table measures no betalains.",
+    "Beetroot also contains vitamin C, carotenoids, phenolic acids and flavonoids, listed in a 2015 review. Apart from vitamin C and carotene, the food table doesn't measure these.",
+    "What the UK food table (CoFID) measures, per 100 g of raw beetroot: 36 kcal, 7.0 g of sugars, 380 mg of potassium, 150 µg of folate and 5 mg of vitamin C; it has no fibre value for raw beetroot. Per 100 g boiled in unsalted water: 53 kcal, 10.9 g of sugars, 2.6 g of fibre, 302 mg of potassium and 90 µg of folate.",
+    "Beets are one of the foods named as high in oxalate, which can form kidney stones. Reported amounts vary hugely: across 8 websites and apps, the oxalate in beets ranged from 36.9 to 794 mg per 100 g. The food table doesn't measure oxalate.",
+    "Nobody knows how much of beetroot's effect comes from nitrate and how much from its other compounds. A food has thousands of compounds that food tables don't track."
+  ],
+  "history": [
+    {
+      "who": "Ancient Greece and Rome (Dioscorides, Pliny)",
+      "use": "Beet roots used sparingly as medicine, for the bowels: Dioscorides wrote that white beet eased them and dark beet bound them; the leaves were the part people ate",
+      "modern": "not tested",
+      "note": "No human trial we found has tested beet for loose or hard stools; the findings on this page are about beetroot juice. The beets of antiquity were grown mainly for their leaves, and the first coloured picture of a swollen-rooted table beet is a fresco in Rome from 1515 to 1517.",
+      "sources": [
+        {
+          "pmid": "34447400",
+          "doi": "10.3389/fpls.2021.689926",
+          "title": "Evolution of Root Morphology in Table Beet: Historical and Iconographic.",
+          "year": 2021,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Folk medicine in Azerbaijan (Guba district, recorded 2024 to 2025)",
+      "use": "Beetroot added to food 'to cleanse the blood vessels'",
+      "modern": "partly",
+      "finding": "Blood vessel function (flow-mediated dilation) and artery stiffness",
+      "note": "In several small trials beetroot juice or nitrate improved how well arteries widen, but results varied hugely, and the 6-month trial found no change in artery stiffness. 'Cleansing' blood vessels isn't something studies can measure.",
+      "sources": [
+        {
+          "doi": "10.3390/plants15193009",
+          "title": "Traditional Medicinal Plant Knowledge in the Guba District of Azerbaijan: An Ethnobotanical Study",
+          "year": 2026,
+          "studyType": "observational"
+        }
+      ]
+    },
+    {
+      "who": "Folk medicine in Azerbaijan (Guba district, recorded 2024 to 2025)",
+      "use": "Beetroot added to food for diabetes",
+      "modern": "disagrees",
+      "finding": "Blood sugar and insulin",
+      "note": "Small trials of beetroot juice in people with type 2 diabetes found no change in blood sugar, insulin sensitivity or HbA1c. The trials were few, small and short, so a small effect can't be ruled out.",
+      "sources": [
+        {
+          "doi": "10.3390/plants15193009",
+          "title": "Traditional Medicinal Plant Knowledge in the Guba District of Azerbaijan: An Ethnobotanical Study",
+          "year": 2026,
+          "studyType": "observational"
+        }
+      ]
+    },
+    {
+      "who": "Nutrition science, from the mid-20th century",
+      "use": "Nitrate in vegetables, for decades studied mainly as a possible cancer risk, recast once the body was found to turn it into nitric oxide, which widens blood vessels; beetroot juice was then tried for blood pressure",
+      "modern": "partly",
+      "finding": "Blood pressure",
+      "note": "In short trials beetroot juice went with systolic pressure about 3.5 to 5 mmHg lower, but the longest, 6-month trial found no fall in arm blood pressure, and no trial measured heart attacks or strokes. The cancer question hasn't gone away (see the caution on N-nitroso compounds).",
+      "sources": [
+        {
+          "pmid": "23642194",
+          "doi": "10.1146/annurev-nutr-071812-161159",
+          "title": "Novel aspects of dietary nitrate and human health.",
+          "year": 2013,
+          "studyType": "review"
+        },
+        {
+          "pmid": "18167491",
+          "doi": "10.1038/nrd2466",
+          "title": "The nitrate-nitrite-nitric oxide pathway in physiology and therapeutics.",
+          "year": 2008,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-164",
+      "label": "1 small beetroot, raw (about 80 g)",
+      "grams": 80
+    },
+    {
+      "id": "13-633",
+      "label": "80 g cooked",
+      "grams": 80
+    }
+  ],
+  "processing": [
+    "The UK food table has raw, boiled and pickled beetroot, but no beetroot juice, so its numbers don't describe the juice used in most trials.",
+    "Nitrate in juice varies a lot. In 45 lots of 24 beetroot juice products from 21 companies, nitrate varied between lots of the same product by 30% on average (2 to 83%), and about 50-fold between the lowest and highest products. Only 5 products consistently gave at least 5 mmol of nitrate per serving. The authors of a 4-week trial also noted batch-to-batch variation in the nitrate of vegetables and their juices, with trials giving roughly 4 to 24 mmol.",
+    "Many trials used small concentrated 'shots' of juice (70 mL) rather than ordinary juice (about 250 mL). A 6-month trial gave 70 mL of juice (Beet It) with up to 11 mmol of nitrate a day.",
+    "Home-made juice changed on storage in one study: its nitrate was fully broken down after 3 days at 20 °C. Keeping it at 4 °C or −20 °C cut that loss by 78% and 82%, and adding 5% lemon juice prevented it for 3 days at 20 °C. Home-made juice had more nitrite and a higher pH than bought juices.",
+    "Beetroot capsules and powders are a different product. In a study of 50 beetroot-based food supplements, a serving of fresh beetroot gave significantly more nitrate than most daily portions of the supplements; the highest gave 169 mg a day. 64% of the products didn't meet all EU and Polish labelling rules.",
+    "Many trials compared ordinary juice with 'nitrate-depleted' beetroot juice, made by passing juice through a resin that removes nitrate. In one, the real juice held 7.5 mmol of nitrate per 250 mL and the depleted juice 0.002 mmol, with no difference people could taste and no difference in sugar content. Because both still hold the rest of the beetroot, these trials test the nitrate, not the whole juice.",
+    "The red pigments break down in acid, which helps explain why some people pass red urine after beetroot and others don't."
+  ],
+  "whatStudiesDid": "Most trials gave beetroot juice, not the whole root. Blood pressure trials gave between 70 and 250 mL a day for 3 to 60 days in a 2022 meta-analysis; trials in high blood pressure gave about 200 to 800 mg of nitrate a day from juice. A 4-week trial in high blood pressure gave 250 mL a day (about 6.4 mmol, or about 400 mg, of nitrate). The longest trial gave 70 mL of juice (Beet It, up to 11 mmol of nitrate) a day for 6 months. A study of a single large amount gave 500 mL. Exercise trials often gave one 70 mL shot (about 6.4 mmol of nitrate) or several days of juice, with the last drink 2 to 3 hours before the test. A 13-week trial in older adults compared one or two 70 mL shots a day, one every other day, and a placebo. One uncontrolled study gave 100 g of raw beetroot a day for 8 weeks. The comparison was usually nitrate-depleted beetroot juice.",
+  "markers": [
+    "bp_systolic",
+    "bp_diastolic",
+    "vo2max",
+    "resting_hr",
+    "glucose"
+  ],
+  "findings": [
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in randomised trials, healthy or with high blood pressure; most trials lasted from a few hours to a few weeks",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Authors who rated the evidence with GRADE called it moderate (2022, 7 trials in high blood pressure) and low (2024, 11 trials in high blood pressure)",
+        "Mostly small, short crossover trials: the 2013 meta-analysis had 254 people in 16 trials lasting from 2 hours to 15 days",
+        "The longest trial (6 months) found no fall in arm blood pressure, only in central (aortic) systolic pressure",
+        "A 2017 meta-analysis of trials lasting a week or more found the fall only when pressure was measured in the clinic, not with 24-hour or home monitoring (nitrate salts and beetroot juice pooled)",
+        "Some meta-analyses pool sodium or potassium nitrate salts with beetroot juice; the 2017 (Bahadoran), 2022 and 2024 meta-analyses here are of beetroot juice only",
+        "Many trials used juice from one maker (James White Drinks, Beet It); in the 4-week trial, one author was a director of Heartbeet Ltd"
+      ],
+      "summary": "A 2017 meta-analysis of 22 trials of beetroot juice found systolic blood pressure 3.55 mmHg lower (95% confidence interval 2.54 to 4.55 lower) and diastolic 1.32 mmHg lower (0.68 to 1.97 lower) than in comparison groups; the difference was larger in trials of 14 days or more (5.11 vs 2.67 mmHg) and with 500 mL a day than with 70 to 140 mL. In people with high blood pressure, a 2022 meta-analysis of 7 trials (218 people) found systolic pressure 4.95 mmHg lower (1.01 to 8.88 lower) but no clear change in diastolic, and a 2024 meta-analysis of 11 trials (349 people) found clinic systolic pressure 5.31 mmHg lower (3.16 to 7.46 lower) with no clear effect on clinic diastolic or 24-hour pressure. In a 4-week trial in 68 people with high blood pressure, half already on medicines, 250 mL of juice a day lowered home systolic pressure by 8.1 mmHg compared with nitrate-depleted juice, and clinic and 24-hour systolic pressure fell 7.7 mmHg from the start, with no change on placebo; heart rate didn't change. But in the longest trial, 6 months of 70 mL of juice a day in people with or at risk of type 2 diabetes, arm blood pressure didn't differ from placebo; only central systolic pressure was 2.6 mmHg lower. An earlier meta-analysis that pooled nitrate salts with juice found systolic 4.4 mmHg lower, and another found the fall only in clinic readings. No trial measured heart attacks or strokes.",
+      "bottomLine": "In short trials, beetroot juice went with systolic blood pressure about 3.5 to 5 mmHg lower, a little more in people with high blood pressure; diastolic changed less. The longest trial, 6 months, found no fall in arm blood pressure, and no trial measured heart attacks or strokes.",
+      "studies": [
+        {
+          "pmid": "29141968",
+          "doi": "10.3945/an.117.016717",
+          "title": "The Nitrate-Independent Blood Pressure-Lowering Effect of Beetroot Juice: A Systematic Review and Meta-Analysis.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35369064",
+          "doi": "10.3389/fnut.2022.823039",
+          "title": "Nitrate Derived From Beetroot Juice Lowers Blood Pressure in Patients With Arterial Hypertension: A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 218
+        },
+        {
+          "pmid": "39069465",
+          "doi": "10.1016/j.numecd.2024.06.009",
+          "title": "Effects of beetroot juice on blood pressure in hypertension according to European Society of Hypertension Guidelines: A systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 349
+        },
+        {
+          "pmid": "25421976",
+          "doi": "10.1161/hypertensionaha.114.04675",
+          "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 68
+        },
+        {
+          "pmid": "31833569",
+          "doi": "10.1111/bcp.14194",
+          "title": "A randomised, factorial trial to reduce arterial stiffness independently of blood pressure: Proof of concept? The VaSera trial testing dietary nitrate and spironolactone.",
+          "year": 2020,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "23596162",
+          "doi": "10.3945/jn.112.170233",
+          "title": "Inorganic nitrate and beetroot juice supplementation reduces blood pressure in adults: a systematic review and meta-analysis.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 254
+        },
+        {
+          "pmid": "28319596",
+          "doi": "10.1097/hjh.0000000000001305",
+          "title": "Medium-term effects of dietary nitrate supplementation on systolic and diastolic blood pressure in adults: a systematic review and meta-analysis.",
+          "year": 2017,
+          "studyType": "meta-analysis",
+          "n": 325
+        }
+      ]
+    },
+    {
+      "outcome": "Endurance and fitness tests (time to exhaustion, VO₂max)",
+      "population": "Mostly young, healthy, recreationally active men in crossover trials, plus some trained athletes",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The authors of two 2026 meta-analyses of beetroot juice rated the certainty moderate, lowered for inconsistency, possible publication bias and risk of bias",
+        "The effect is small: standardised effect sizes of about 0.2 to 0.3",
+        "No clear effect in well-trained endurance athletes, and few trials included women",
+        "An umbrella review rated most of 20 earlier meta-analyses low to critically low in quality",
+        "Several meta-analyses mix nitrate salts with beetroot juice; in one of 123 studies, nitrate salts were not as effective as beetroot juice",
+        "Most trials used one brand of juice (Beet It), and they measure performance in the lab over minutes, not health"
+      ],
+      "summary": "A 2026 meta-analysis of 38 placebo-controlled trials (703 healthy adults) found beetroot juice raised VO₂max (the most oxygen the body can use) slightly: standardised effect 0.24 (95% confidence interval 0.11 to 0.37), 0.19 (0.07 to 0.31) after adjusting for missing small studies. It was larger in recreationally active people (0.38) and not clear in highly trained athletes (0.07, −0.09 to 0.23); the authors rated the certainty moderate. A 2020 meta-analysis of 80 trials of nitrate (any source) found a small gain in performance (0.17, 0.12 to 0.23), but none in well-trained endurance athletes (0.02) and none clear in the 6 studies of women only. An umbrella review of 20 meta-analyses (2,672 people) found longer time to exhaustion (0.33, 0.19 to 0.47) but no clear change in many other measures; a 2017 meta-analysis found time to exhaustion improved but time-trial results less likely to. A 2022 meta-analysis of 123 studies found nitrate salts were not as effective as beetroot juice or a high-nitrate diet, and that practices harmful to mouth bacteria lowered the effect.",
+      "bottomLine": "In lab tests, beetroot juice went with a small gain in endurance and VO₂max, mostly in recreationally active people. There was no clear gain in well-trained athletes and few trials in women. The authors rated the certainty moderate.",
+      "studies": [
+        {
+          "pmid": "42523624",
+          "doi": "10.3389/fnut.2026.1858216",
+          "title": "Effects of beetroot juice supplementation on maximal oxygen uptake during aerobic exercise: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 703
+        },
+        {
+          "pmid": "42445795",
+          "doi": "10.3389/fnut.2026.1844096",
+          "title": "Effectiveness of beetroot juice on aerobic and anaerobic exercise performance: systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "32936597",
+          "doi": "10.1249/mss.0000000000002363",
+          "title": "Ergogenic Effect of Nitrate Supplementation: A Systematic Review and Meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "40085422",
+          "doi": "10.1007/s40279-025-02194-6",
+          "title": "Dietary Nitrate Supplementation and Exercise Performance: An Umbrella Review of 20 Published Systematic Reviews with Meta-analyses.",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 2672
+        },
+        {
+          "pmid": "27600147",
+          "doi": "10.1007/s40279-016-0617-7",
+          "title": "The Effect of Dietary Nitrate Supplementation on Endurance Exercise Performance in Healthy Adults: A Systematic Review and Meta-Analysis.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35580578",
+          "doi": "10.1093/advances/nmac054",
+          "title": "Factors that Moderate the Effect of Nitrate Ingestion on Exercise Performance in Adults: A Systematic Review with Meta-Analyses and Meta-Regressions.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1705
+        }
+      ]
+    },
+    {
+      "outcome": "Blood vessel function (flow-mediated dilation) and artery stiffness",
+      "population": "Adults in randomised trials: healthy, with high cholesterol, high blood pressure or type 2 diabetes",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The meta-analyses pool nitrate salts with beetroot, and results varied hugely between trials (I² 98% in the 2026 meta-analysis)",
+        "Small trials measuring surrogate outcomes, not heart disease",
+        "Single trials disagree: blood vessel function improved in people with high cholesterol and high blood pressure, but not in type 2 diabetes",
+        "Artery stiffness didn't change in the 6-month trial"
+      ],
+      "summary": "Flow-mediated dilation measures how much an artery widens when blood flow rises. A 2016 meta-analysis of 12 trials (246 people) of nitrate or beetroot found better blood vessel function (standardised effect 0.36, 95% confidence interval 0.16 to 0.56), with smaller effects in older people and those at higher heart risk. A 2026 meta-analysis of 13 trials found better flow-mediated dilation (pooled difference 1.48%, 95% confidence interval 0.70 to 2.27), but results varied hugely between trials. In a 6-week trial in 69 people with high cholesterol, 250 mL of beetroot juice a day raised flow-mediated dilation by 1.1 percentage points while it fell 0.3 on nitrate-depleted juice. The 4-week trial in high blood pressure found about 20% better blood vessel function and less artery stiffness. But a 2-week trial in 27 people with type 2 diabetes found no change in blood vessel function, and the 6-month trial found no change in artery stiffness, though artery wall thickness in the neck (CIMT) was 0.06 mm lower than on placebo.",
+      "bottomLine": "In several small trials, beetroot juice or nitrate improved how well arteries widen, but results varied hugely, one trial in type 2 diabetes found no change, and the 6-month trial found no change in artery stiffness.",
+      "studies": [
+        {
+          "pmid": "25764393",
+          "doi": "10.1007/s00394-015-0872-7",
+          "title": "Effects of inorganic nitrate and beetroot supplementation on endothelial function: a systematic review and meta-analysis.",
+          "year": 2016,
+          "studyType": "meta-analysis",
+          "n": 246
+        },
+        {
+          "pmid": "40679494",
+          "doi": "10.1093/nutrit/nuaf132",
+          "title": "The Impact of Inorganic Nitrate on Endothelial Function: A Systematic Review of Randomized Controlled Trials and Meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "26607938",
+          "doi": "10.3945/ajcn.115.116244",
+          "title": "Dietary nitrate improves vascular function in patients with hypercholesterolemia: a randomized, double-blind, placebo-controlled study.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 69
+        },
+        {
+          "pmid": "25421976",
+          "doi": "10.1161/hypertensionaha.114.04675",
+          "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 68
+        },
+        {
+          "pmid": "23395779",
+          "doi": "10.1016/j.freeradbiomed.2013.01.024",
+          "title": "Effect of dietary nitrate on blood pressure, endothelial function, and insulin sensitivity in type 2 diabetes.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 27
+        },
+        {
+          "pmid": "31833569",
+          "doi": "10.1111/bcp.14194",
+          "title": "A randomised, factorial trial to reduce arterial stiffness independently of blood pressure: Proof of concept? The VaSera trial testing dietary nitrate and spironolactone.",
+          "year": 2020,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "33982797",
+          "doi": "10.1111/bcp.14897",
+          "title": "Dietary nitrate prevents progression of carotid subclinical atherosclerosis through blood pressure-independent mechanisms in patients with or at risk of type 2 diabetes mellitus.",
+          "year": 2021,
+          "studyType": "rct"
+        }
+      ]
+    },
+    {
+      "outcome": "Muscle damage and recovery after hard exercise",
+      "population": "Healthy adults, mostly active men, after exercise that damages muscle (for example repeated sprints or jumps)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only 6 to 7 small trials in each meta-analysis",
+        "All trials in the 2022 meta-analysis were judged to have some concerns about risk of bias",
+        "Results varied between trials (I² up to 81%), and the two meta-analyses disagree about creatine kinase, a blood marker of muscle damage"
+      ],
+      "summary": "A 2022 meta-analysis of 6 trials, all using beetroot juice, found faster recovery of muscle strength 72 hours after exercise (standardised effect 0.54), better jump performance 24 to 72 hours after (0.75 to 1.32), and less tenderness at 48 and 72 hours. Juice didn't change oxidative stress markers or creatine kinase, and CRP (inflammation) was higher than on placebo at 48 hours. A 2026 meta-analysis of 7 trials found creatine kinase 98.67 IU/L lower, strength 8.93% and jump performance 4.72% better than on placebo, with no change in CRP, IL-6 or TNF-α, but results varied a lot between trials.",
+      "bottomLine": "In a few small trials, beetroot juice went with faster recovery of strength and jumping after muscle-damaging exercise. Results for blood markers of muscle damage disagree between meta-analyses, and the trials had some concerns about bias.",
+      "studies": [
+        {
+          "pmid": "34151694",
+          "doi": "10.1080/19390211.2021.1939472",
+          "title": "The Effect of Nitrate-Rich Beetroot Juice on Markers of Exercise-Induced Muscle Damage: A Systematic Review and Meta-Analysis of Human Intervention Trials.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "42583675",
+          "doi": "10.1097/ms9.0000000000005231",
+          "title": "The effect of beetroot juice (BRJ) supplementation on exercise-induced muscle damage (EIMD): a systematic review and dose-response meta-analysis of randomized controlled trials.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and insulin",
+      "population": "Adults with type 2 diabetes, obesity or high blood pressure, and healthy adults, in small trials",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "No meta-analysis; a 2024 systematic review of 20 studies found conflicting results",
+        "The trials are small (27 to 46 people) and short (2 to 12 weeks)",
+        "The one positive study of the raw root had no comparison group"
+      ],
+      "summary": "A 2024 systematic review of 20 studies (18 randomised trials) of beetroot products found conflicting results on blood sugar and couldn't reach a conclusion. In a 2-week crossover trial in 27 people with type 2 diabetes, 250 mL of juice a day (7.5 mmol of nitrate) didn't change insulin sensitivity, measured with a clamp test, compared with nitrate-depleted juice. In a 12-week trial in 46 people with type 2 diabetes, 24 mL of concentrated juice a day didn't change fasting glucose, insulin or HbA1c compared with no juice. A study in which 44 people with type 2 diabetes ate 100 g of raw beetroot a day for 8 weeks found fasting blood sugar 13.53 mg/dL and HbA1c 0.34 percentage points lower, but it had no comparison group. The 4-week blood pressure trial found no change in blood sugar measures.",
+      "bottomLine": "Small trials of beetroot juice in type 2 diabetes found no change in blood sugar, insulin sensitivity or HbA1c. One study of raw beetroot found lower blood sugar, but it had no comparison group, so the effect is unclear.",
+      "studies": [
+        {
+          "pmid": "38760619",
+          "doi": "10.1007/s13668-024-00546-8",
+          "title": "The Impact of Red Beetroot Products on Glycemic Profiles: A Systematic Review of Human Evidence.",
+          "year": 2024,
+          "studyType": "review"
+        },
+        {
+          "pmid": "23395779",
+          "doi": "10.1016/j.freeradbiomed.2013.01.024",
+          "title": "Effect of dietary nitrate on blood pressure, endothelial function, and insulin sensitivity in type 2 diabetes.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 27
+        },
+        {
+          "pmid": "35869311",
+          "doi": "10.1007/s11845-022-03090-y",
+          "title": "Effects of concentrated beetroot juice consumption on glycemic control, blood pressure, and lipid profile in type 2 diabetes patients: randomized clinical trial study.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 46
+        },
+        {
+          "pmid": "34222085",
+          "doi": "10.1007/s40200-021-00798-z",
+          "title": "Effects of raw red beetroot consumption on metabolic markers and cognitive function in type 2 diabetes patients.",
+          "year": 2021,
+          "studyType": "observational",
+          "n": 44
+        },
+        {
+          "pmid": "25421976",
+          "doi": "10.1161/hypertensionaha.114.04675",
+          "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 68
+        }
+      ]
+    },
+    {
+      "outcome": "Thinking and blood flow in the brain",
+      "population": "Adults in small randomised trials, including older adults who were overweight and people with type 2 diabetes",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials: a median of 23 people per trial for thinking and 16 for brain blood flow in the meta-analysis",
+        "The meta-analysis pools nitrate and nitrite salts with beetroot juice",
+        "Many different tests; one trial found faster reaction time in one of five tests"
+      ],
+      "summary": "A 2019 meta-analysis of 13 trials (297 people) of nitrate or nitrite, from beetroot juice or salts, found no effect on thinking (standardised effect 0.06, 95% confidence interval −0.06 to 0.18) or on blood flow in the brain at rest or during tasks. A 13-week trial in 62 overweight older adults found no change in thinking or frontal brain blood flow with any of three amounts of concentrated beetroot juice. In a 2-week trial in 27 people with type 2 diabetes, simple reaction time was 13.9 milliseconds faster on beetroot juice than on nitrate-depleted juice, but four other thinking tests didn't differ.",
+      "bottomLine": "Trials so far haven't found that beetroot juice or nitrate improves thinking or brain blood flow; one small trial found slightly faster reaction time in one of five tests.",
+      "studies": [
+        {
+          "pmid": "29617153",
+          "doi": "10.1080/10408398.2018.1453779",
+          "title": "Effects of inorganic nitrate and nitrite consumption on cognitive function and cerebral blood flow: A systematic review and meta-analysis of randomized clinical trials.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 297
+        },
+        {
+          "pmid": "35268027",
+          "doi": "10.3390/nu14051052",
+          "title": "Incremental Doses of Nitrate-Rich Beetroot Juice Do Not Modify Cognitive Function and Cerebral Blood Flow in Overweight and Obese Older Adults: A 13-Week Pilot Randomised Clinical Trial.",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 62
+        },
+        {
+          "pmid": "24858657",
+          "doi": "10.1016/j.niox.2014.05.003",
+          "title": "Dietary nitrate supplementation improves reaction time in type 2 diabetes: development and application of a novel nitrate-depleted beetroot juice placebo.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 27
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "flow",
+      "title": "From nitrate in beetroot to nitric oxide",
+      "caption": "How the body is thought to turn beetroot nitrate into nitric oxide, a molecule that widens blood vessels. The mouth's bacteria do a key step. Interrupting it blocked the fall in blood pressure in one study, but trials of antibacterial mouthwash give mixed results, so how much everyday mouthwash use matters isn't known.",
+      "steps": [
+        {
+          "label": "Nitrate in the juice",
+          "text": "In a 4-week trial, 250 mL of beetroot juice held about 6.4 mmol of nitrate (1 mmol is 62 mg, so about 400 mg)."
+        },
+        {
+          "label": "Absorbed, then back into the mouth",
+          "text": "Nitrate is absorbed in the upper small intestine. About 25% of the nitrate in the blood is taken up again by the salivary glands into saliva."
+        },
+        {
+          "label": "Bacteria on the tongue",
+          "text": "Bacteria at the back of the tongue turn nitrate in saliva into nitrite."
+        },
+        {
+          "label": "Nitrite becomes nitric oxide",
+          "text": "Swallowed nitrite is absorbed and turned into nitric oxide by several enzymes, more so where oxygen is low or conditions are acidic."
+        },
+        {
+          "label": "Blood pressure falls",
+          "text": "In healthy volunteers, blood pressure was up to 10.4/8 mmHg lower about 3 hours after 500 mL of juice, in step with the rise in blood nitrite. When the conversion in the mouth was interrupted, nitrite didn't rise and blood pressure didn't fall."
+        },
+        {
+          "label": "Mouthwash: mixed results",
+          "text": "Chlorhexidine mouthwash cut the rise in blood nitrite after nitrate, including after beetroot juice in 12 people, though resting blood pressure changes didn't differ. In 19 healthy people not given beetroot, a week of mouthwash raised blood pressure by 2 to 3.5 mmHg; a 2026 meta-analysis of 5 studies found no clear difference."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "25421976",
+          "doi": "10.1161/hypertensionaha.114.04675",
+          "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 68
+        },
+        {
+          "pmid": "22882425",
+          "doi": "10.1111/j.1365-2125.2012.04420.x",
+          "title": "Vascular effects of dietary nitrate (as found in green leafy vegetables and beetroot) via the nitrate-nitrite-nitric oxide pathway.",
+          "year": 2013,
+          "studyType": "review"
+        },
+        {
+          "pmid": "25875121",
+          "doi": "10.3390/nu7042801",
+          "title": "The potential benefits of red beetroot supplementation in health and disease.",
+          "year": 2015,
+          "studyType": "review"
+        },
+        {
+          "pmid": "32576603",
+          "doi": "10.1124/pr.120.019240",
+          "title": "The Noncanonical Pathway for In Vivo Nitric Oxide Generation: The Nitrate-Nitrite-Nitric Oxide Pathway.",
+          "year": 2020,
+          "studyType": "review"
+        },
+        {
+          "pmid": "18250365",
+          "doi": "10.1161/hypertensionaha.107.103523",
+          "title": "Acute blood pressure lowering, vasoprotective, and antiplatelet properties of dietary nitrate via bioconversion to nitrite.",
+          "year": 2008,
+          "studyType": "rct"
+        },
+        {
+          "pmid": "18793740",
+          "doi": "10.1016/j.niox.2008.08.003",
+          "title": "The increase in plasma nitrite after a dietary nitrate load is markedly attenuated by an antibacterial mouthwash.",
+          "year": 2008,
+          "studyType": "observational",
+          "n": 7
+        },
+        {
+          "pmid": "26332900",
+          "doi": "10.1055/s-0035-1554700",
+          "title": "The Effects of Chronic Nitrate Supplementation and the Use of Strong and Weak Antibacterial Agents on Plasma Nitrite Concentration and Exercise Blood Pressure.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 12
+        },
+        {
+          "pmid": "23183324",
+          "doi": "10.1016/j.freeradbiomed.2012.11.013",
+          "title": "Physiological role for nitrate-reducing oral bacteria in blood pressure control.",
+          "year": 2013,
+          "studyType": "observational",
+          "n": 19
+        },
+        {
+          "pmid": "41820203",
+          "doi": "10.1111/idh.70035",
+          "title": "The Effect of Chlorhexidine Mouthwash on Blood Pressure: A Systematic Review and Meta-Analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Blood pressure in trials of beetroot juice",
+      "caption": "Average difference in blood pressure (mmHg) between people drinking beetroot juice and comparison groups, with 95% confidence intervals. Below 0 means lower blood pressure; an interval that crosses 0 could be chance. The 2013 bars pool nitrate salts with juice; the others are beetroot juice only. Most trials lasted days to weeks; the 6-month trial found no difference in arm blood pressure, only in central pressure.",
+      "scale": "linear",
+      "unit": "mmHg",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "Systolic, nitrate salts or juice (16 trials)",
+          "value": -4.4,
+          "low": -5.9,
+          "high": -2.8,
+          "note": "2013 meta-analysis, 254 people"
+        },
+        {
+          "label": "Diastolic, nitrate salts or juice (16 trials)",
+          "value": -1.1,
+          "low": -2.2,
+          "high": 0.1,
+          "note": "2013 meta-analysis"
+        },
+        {
+          "label": "Systolic, juice (22 trials)",
+          "value": -3.55,
+          "low": -4.55,
+          "high": -2.54,
+          "note": "2017 meta-analysis"
+        },
+        {
+          "label": "Diastolic, juice (22 trials)",
+          "value": -1.32,
+          "low": -1.97,
+          "high": -0.68,
+          "note": "2017 meta-analysis"
+        },
+        {
+          "label": "Systolic, juice, high blood pressure (7 trials)",
+          "value": -4.95,
+          "low": -8.88,
+          "high": -1.01,
+          "note": "2022 meta-analysis, 218 people; GRADE moderate"
+        },
+        {
+          "label": "Diastolic, juice, high blood pressure (7 trials)",
+          "value": -0.9,
+          "low": -3.16,
+          "high": 1.36,
+          "note": "2022 meta-analysis"
+        },
+        {
+          "label": "Clinic systolic, juice, high blood pressure (11 trials)",
+          "value": -5.31,
+          "low": -7.46,
+          "high": -3.16,
+          "note": "2024 meta-analysis, 349 people; GRADE low"
+        },
+        {
+          "label": "Home systolic, 4 weeks of juice, high blood pressure",
+          "value": -8.1,
+          "low": -12.4,
+          "high": -3.8,
+          "note": "2015 trial, 68 people"
+        },
+        {
+          "label": "Home diastolic, 4 weeks of juice, high blood pressure",
+          "value": -3.8,
+          "low": -6.9,
+          "high": -0.7,
+          "note": "2015 trial"
+        },
+        {
+          "label": "Central systolic, 6 months of juice (70 mL a day)",
+          "value": -2.6,
+          "low": -4.5,
+          "high": -0.8,
+          "note": "2020 trial; arm blood pressure didn't differ"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "23596162",
+          "doi": "10.3945/jn.112.170233",
+          "title": "Inorganic nitrate and beetroot juice supplementation reduces blood pressure in adults: a systematic review and meta-analysis.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 254
+        },
+        {
+          "pmid": "29141968",
+          "doi": "10.3945/an.117.016717",
+          "title": "The Nitrate-Independent Blood Pressure-Lowering Effect of Beetroot Juice: A Systematic Review and Meta-Analysis.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35369064",
+          "doi": "10.3389/fnut.2022.823039",
+          "title": "Nitrate Derived From Beetroot Juice Lowers Blood Pressure in Patients With Arterial Hypertension: A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 218
+        },
+        {
+          "pmid": "39069465",
+          "doi": "10.1016/j.numecd.2024.06.009",
+          "title": "Effects of beetroot juice on blood pressure in hypertension according to European Society of Hypertension Guidelines: A systematic review and meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 349
+        },
+        {
+          "pmid": "25421976",
+          "doi": "10.1161/hypertensionaha.114.04675",
+          "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study.",
+          "year": 2015,
+          "studyType": "rct",
+          "n": 68
+        },
+        {
+          "pmid": "31833569",
+          "doi": "10.1111/bcp.14194",
+          "title": "A randomised, factorial trial to reduce arterial stiffness independently of blood pressure: Proof of concept? The VaSera trial testing dietary nitrate and spironolactone.",
+          "year": 2020,
+          "studyType": "rct"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Exercise tests in meta-analyses",
+      "caption": "Standardised effect sizes with 95% confidence intervals: how far apart the juice and placebo groups were, in units of how much people varied. Above 0 means better performance; about 0.2 is usually called small. An interval that crosses 0 could be chance. The 2020 and 2025 bars include nitrate from any source; the 2026 bars are beetroot juice only.",
+      "scale": "linear",
+      "unit": "standardised effect size",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "VO₂max, beetroot juice (38 trials)",
+          "value": 0.24,
+          "low": 0.11,
+          "high": 0.37,
+          "note": "2026 meta-analysis, 703 people; GRADE moderate"
+        },
+        {
+          "label": "VO₂max, adjusted for missing small studies",
+          "value": 0.19,
+          "low": 0.07,
+          "high": 0.31,
+          "note": "2026 meta-analysis"
+        },
+        {
+          "label": "VO₂max, highly trained athletes",
+          "value": 0.07,
+          "low": -0.09,
+          "high": 0.23,
+          "note": "2026 meta-analysis, subgroup"
+        },
+        {
+          "label": "Time to exhaustion, nitrate",
+          "value": 0.33,
+          "low": 0.19,
+          "high": 0.47,
+          "note": "2025 umbrella review of 20 meta-analyses"
+        },
+        {
+          "label": "Any performance test, nitrate (80 studies)",
+          "value": 0.174,
+          "low": 0.12,
+          "high": 0.229,
+          "note": "2020 meta-analysis"
+        },
+        {
+          "label": "Well-trained endurance athletes, nitrate",
+          "value": 0.021,
+          "low": -0.103,
+          "high": 0.144,
+          "note": "2020 meta-analysis, 26 studies"
+        },
+        {
+          "label": "Studies of women only, nitrate",
+          "value": 0.116,
+          "low": -0.126,
+          "high": 0.358,
+          "note": "2020 meta-analysis, 6 studies"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "42523624",
+          "doi": "10.3389/fnut.2026.1858216",
+          "title": "Effects of beetroot juice supplementation on maximal oxygen uptake during aerobic exercise: a systematic review and meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 703
+        },
+        {
+          "pmid": "40085422",
+          "doi": "10.1007/s40279-025-02194-6",
+          "title": "Dietary Nitrate Supplementation and Exercise Performance: An Umbrella Review of 20 Published Systematic Reviews with Meta-analyses.",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 2672
+        },
+        {
+          "pmid": "32936597",
+          "doi": "10.1249/mss.0000000000002363",
+          "title": "Ergogenic Effect of Nitrate Supplementation: A Systematic Review and Meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Kidney stones or kidney disease",
+      "note": "Beetroot is one of the foods high in oxalate, which can form kidney stones: in a study of 9 healthy adults, beetroot was among the foods counted as high-risk for oxalate in the urine. The authors of a 4-week beetroot juice trial wrote that people prone to oxalate kidney stones may need to avoid high-nitrate vegetables that also contain oxalate, such as spinach and beetroot. The UK food table also lists 380 mg of potassium per 100 g of raw beetroot. If you've had kidney stones, have kidney disease or have been told to limit potassium, talk to your doctor or renal dietitian.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Blood pressure medicines or low blood pressure",
+      "note": "Beetroot juice can lower blood pressure by a few mmHg. In the 4-week trial, half of the 68 people were already on blood pressure medicines, which they kept the same; the juice was well tolerated with no serious adverse events. That trial lasted only weeks. If you take blood pressure medicines or have low blood pressure, talk to your doctor before drinking beetroot juice regularly."
+    },
+    {
+      "with": "Diabetes",
+      "note": "The UK food table lists 7.0 g of sugars per 100 g of raw beetroot and 10.9 g per 100 g cooked; it has no value for juice. Small trials in type 2 diabetes found juice didn't change blood sugar or HbA1c, but if you are managing blood sugar, talk to your doctor or dietitian about juice.",
+      "safetyId": "diabetes"
+    }
+  ],
+  "cautions": [
+    "Red or pink urine and stools after beetroot (beeturia) are common and harmless. It is said to happen in 10 to 14% of people, more often with iron deficiency; in a study of 100 people given beetroot extract, 4 passed visibly red urine. In the blood pressure trials it was the expected effect, with no other problems reported. Red urine has other causes too, so if it isn't clearly from beetroot, ask a doctor.",
+    "Nitrate and nitrite can form N-nitroso compounds in the body, some of which can cause cancer. In its 2017 re-evaluation of nitrate as a food additive, EFSA (the European Food Safety Authority) kept the acceptable daily intake of 3.7 mg of nitrate per kg of body weight, set in 1997 and 2002, saying it couldn't derive a new value because people's mouths turn very different amounts of nitrate into nitrite. It judged the resulting methaemoglobin not clinically significant and the N-nitroso compounds of low concern, and found that with all food sources counted, average intakes in every age group already exceed this value. The authors of a Polish survey wrote that beetroot high in nitrate could lead to going over it, especially for young children.",
+    "Methaemoglobin, a form of haemoglobin that carries less oxygen and can rise with nitrite, didn't change in the 4-week and 6-week juice trials.",
+    "Beetroot juice is not a treatment for high blood pressure, heart disease or diabetes. Anything clearly out of range in your results is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "No trial has measured heart attacks, strokes or deaths. Trials measured blood pressure, blood vessel tests, blood markers and lab exercise tests, from hours to 6 months.",
+    "Whether the blood pressure effect lasts is not settled: a 4-week trial found no sign of it wearing off, but the longest trial, 6 months, found no fall in arm blood pressure.",
+    "Almost all trials used juice, many of them concentrated shots. Very few tested eating the whole root, raw or cooked, and the one study of raw beetroot here had no comparison group. How cooking or pickling changes nitrate isn't covered by the studies read for this page.",
+    "Trials of sodium or potassium nitrate salts are a different intervention from beetroot, and several meta-analyses pool them. In one of 123 exercise studies, nitrate salts were not as effective as beetroot juice; a 2017 meta-analysis found smaller blood pressure differences in trials that used nitrate-depleted beetroot juice as the placebo, which the authors took as a hint that other compounds in beetroot may also lower blood pressure.",
+    "How much nitrate a glass holds varies about 50-fold between products and by about 30% between batches of the same product, so trial results don't map onto any one bottle.",
+    "Many trials used juice from one maker (James White Drinks, Beet It), and in some trials an author was a director of a company set up around nitrate (Heartbeet Ltd). Most exercise trials were in young men (6 of 80 studies in one meta-analysis were of women only); women, older people and elite athletes are under-studied.",
+    "People's mouth bacteria differ, and antibacterial mouthwash cut the conversion of nitrate to nitrite in small studies. Whether everyday mouthwash use changes beetroot's effects isn't known.",
+    "It isn't known how much of any effect comes from nitrate and how much from betalains or other compounds. The food table measures sugars, fibre, potassium and folate, but no nitrate, betalains or oxalate, and a food has thousands of compounds no table tracks."
+  ],
+  "sources": [
+    {
+      "pmid": "34553880",
+      "doi": "10.32394/rpzh.2021.0175",
+      "title": "Monitoring survey of nitrate content in beetroot, radish and cabbage in Poland.",
+      "year": 2021,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "11714300",
+      "doi": "10.1021/jf010456f",
+      "title": "Betalains--a new class of dietary cationized antioxidants.",
+      "year": 2001,
+      "studyType": "in vitro",
+      "n": 4
+    },
+    {
+      "pmid": "25875121",
+      "doi": "10.3390/nu7042801",
+      "title": "The potential benefits of red beetroot supplementation in health and disease.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25168533",
+      "doi": "10.1016/j.urology.2014.03.053",
+      "title": "Oxalate content of food: a tangled web.",
+      "year": 2014,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "24393738",
+      "doi": "10.1046/j.1440-6047.1999.00038.x",
+      "title": "Oxalate content of foods and its effect on humans.",
+      "year": 1999,
+      "studyType": "review"
+    },
+    {
+      "pmid": "7249530",
+      "doi": "10.1042/cs0600411",
+      "title": "Urine composition in normal subjects after oral ingestion of oxalate-rich foods.",
+      "year": 1981,
+      "studyType": "observational",
+      "n": 9
+    },
+    {
+      "pmid": "30299195",
+      "doi": "10.1123/ijsnem.2018-0223",
+      "title": "What's in Your Beet Juice? Nitrate and Nitrite Content of Beet Juice Products Marketed to Athletes.",
+      "year": 2019,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "37823101",
+      "doi": "10.1002/fsn3.3575",
+      "title": "Content of nitrate and nitrite in commercial and self-made beetroot juices and the effect of storage temperature.",
+      "year": 2023,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "36900534",
+      "doi": "10.3390/foods12051017",
+      "title": "Antioxidant Capacity, Nitrite and Nitrate Content in Beetroot-Based Dietary Supplements.",
+      "year": 2023,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "24858657",
+      "doi": "10.1016/j.niox.2014.05.003",
+      "title": "Dietary nitrate supplementation improves reaction time in type 2 diabetes: development and application of a novel nitrate-depleted beetroot juice placebo.",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 27
+    },
+    {
+      "pmid": "8148871",
+      "doi": "10.1097/00008571-199312000-00004",
+      "title": "Beeturia and the biological fate of beetroot pigments.",
+      "year": 1993,
+      "studyType": "observational",
+      "n": 100
+    },
+    {
+      "pmid": "7493168",
+      "doi": "10.1093/oxfordjournals.qjmed.a068995",
+      "title": "Beeturia and colonic oxalic acid.",
+      "year": 1995,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "25421976",
+      "doi": "10.1161/hypertensionaha.114.04675",
+      "title": "Dietary nitrate provides sustained blood pressure lowering in hypertensive patients: a randomized, phase 2, double-blind, placebo-controlled study.",
+      "year": 2015,
+      "studyType": "rct",
+      "n": 68
+    },
+    {
+      "pmid": "26607938",
+      "doi": "10.3945/ajcn.115.116244",
+      "title": "Dietary nitrate improves vascular function in patients with hypercholesterolemia: a randomized, double-blind, placebo-controlled study.",
+      "year": 2016,
+      "studyType": "rct",
+      "n": 69
+    },
+    {
+      "pmid": "31833569",
+      "doi": "10.1111/bcp.14194",
+      "title": "A randomised, factorial trial to reduce arterial stiffness independently of blood pressure: Proof of concept? The VaSera trial testing dietary nitrate and spironolactone.",
+      "year": 2020,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "35268027",
+      "doi": "10.3390/nu14051052",
+      "title": "Incremental Doses of Nitrate-Rich Beetroot Juice Do Not Modify Cognitive Function and Cerebral Blood Flow in Overweight and Obese Older Adults: A 13-Week Pilot Randomised Clinical Trial.",
+      "year": 2022,
+      "studyType": "rct",
+      "n": 62
+    },
+    {
+      "pmid": "42445795",
+      "doi": "10.3389/fnut.2026.1844096",
+      "title": "Effectiveness of beetroot juice on aerobic and anaerobic exercise performance: systematic review and meta-analysis.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32625505",
+      "doi": "10.2903/j.efsa.2017.4787",
+      "title": "Re-evaluation of sodium nitrate (E 251) and potassium nitrate (E 252) as food additives.",
+      "year": 2017,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "35580578",
+      "doi": "10.1093/advances/nmac054",
+      "title": "Factors that Moderate the Effect of Nitrate Ingestion on Exercise Performance in Adults: A Systematic Review with Meta-Analyses and Meta-Regressions.",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 1705
+    },
+    {
+      "pmid": "29141968",
+      "doi": "10.3945/an.117.016717",
+      "title": "The Nitrate-Independent Blood Pressure-Lowering Effect of Beetroot Juice: A Systematic Review and Meta-Analysis.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "34222085",
+      "doi": "10.1007/s40200-021-00798-z",
+      "title": "Effects of raw red beetroot consumption on metabolic markers and cognitive function in type 2 diabetes patients.",
+      "year": 2021,
+      "studyType": "observational",
+      "n": 44
+    },
+    {
+      "pmid": "42754848",
+      "doi": "10.1186/s12872-026-06572-4",
+      "title": "The effect of antibacterial mouthwash on blood pressure in humans: a scoping review.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23183324",
+      "doi": "10.1016/j.freeradbiomed.2012.11.013",
+      "title": "Physiological role for nitrate-reducing oral bacteria in blood pressure control.",
+      "year": 2013,
+      "studyType": "observational",
+      "n": 19
+    }
+  ]
+}

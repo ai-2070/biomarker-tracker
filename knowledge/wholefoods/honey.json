@@ -1,0 +1,777 @@
+{
+  "id": "honey",
+  "name": "Honey",
+  "group": "sweets",
+  "otherNames": [
+    "Raw honey",
+    "Manuka honey",
+    "Medical-grade honey",
+    "Clover honey",
+    "Runny honey",
+    "Set honey",
+    "Honeys"
+  ],
+  "summary": "A thick, sweet syrup that bees make from flower nectar; it is mostly sugar. In trials, honey eased short-term coughs in children and cold symptoms better than no treatment or usual care, and honey dressings applied to the skin healed partial-thickness burns a few days faster than ordinary dressings. Its effects on blood sugar and blood fats are small and uncertain, and meta-analyses disagree.",
+  "inIt": [
+    "Honey is mainly carbohydrate: mostly fructose and glucose, with about 25 other sugars (oligosaccharides). It also has small amounts of proteins, enzymes, amino acids, minerals, trace elements, vitamins, aroma compounds and polyphenols. What's in it differs with the flowers the bees visited.",
+    "How fast honey raises blood sugar (its glycaemic index) ranges widely, from 32 to 85, depending on the flowers it came from.",
+    "Honey contains an enzyme, glucose oxidase, that makes hydrogen peroxide. In a laboratory study of 8 honeys, the most built up when honey was diluted to 30–50% with water, reaching 1–2 mmol/L, which the authors called very low compared with hydrogen peroxide applied to wounds as an antiseptic.",
+    "Manuka honey from New Zealand is known for methylglyoxal: six manuka honeys held 38 to 761 mg per kg, up to 100 times more than ordinary honeys. It forms in the honey from dihydroxyacetone, a compound in manuka nectar, and rose when manuka honey was stored at 37 °C. Manuka and kanuka honeys also share six phenolic acids.",
+    "The UK food table (CoFID, 'Honey') measures per 100 g: 288 kcal, 76.4 g of carbohydrate, all of it sugars, 0.4 g of protein, no fat and no fibre, 11 mg of sodium and 51 mg of potassium. This app's copy lists total sugars, not fructose and glucose separately, and the table measures none of the polyphenols, enzymes, hydrogen peroxide activity or methylglyoxal.",
+    "Like every food, honey holds compounds no food table tracks, and they differ between honeys. Studies of people eating honey, or having it put on their wounds, include all of them."
+  ],
+  "history": [
+    {
+      "who": "Ancient Egypt (Edwin Smith Papyrus, about 1500 BC)",
+      "use": "Honey and grease on burns, and honey in wound salves",
+      "modern": "agrees",
+      "finding": "Healing of burns, with honey dressings applied to the skin (not eaten)",
+      "note": "Applied to the skin as a dressing, honey healed partial-thickness burns about 4.7 days faster than conventional dressings in a Cochrane review. Early surgery with skin grafts healed burns faster than honey.",
+      "sources": [
+        {
+          "pmid": "23888738",
+          "title": "Burns treatment in ancient times.",
+          "year": 2013,
+          "studyType": "review"
+        },
+        {
+          "pmid": "23997898",
+          "title": "Traditional and modern uses of natural honey in human diseases: a review.",
+          "year": 2013,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Ancient India (Ayurveda: the Charaka and Sushruta texts)",
+      "use": "Honey in dressings to clean sores and help them heal",
+      "modern": "partly",
+      "finding": "Healing of leg ulcers, diabetic foot ulcers and other wounds, with honey applied to the skin (not eaten)",
+      "note": "For leg ulcers, diabetic foot ulcers and other long-lasting wounds, trials of honey dressings are small and their results unclear. One small trial found infected wounds after surgery healed more often with honey than with antiseptic washes.",
+      "sources": [
+        {
+          "pmid": "23888738",
+          "title": "Burns treatment in ancient times.",
+          "year": 2013,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece (Hippocrates)",
+      "use": "Honey for cough and sore throat",
+      "modern": "partly",
+      "finding": "Short-term (acute) cough in children",
+      "note": "Part of it holds up: in children aged 1 year and over with a short-term cough, honey probably reduced coughing more than no treatment or placebo, by about 1 to 1.6 points on a 7-point scale, mostly after one night. Against cough medicines the results were unclear.",
+      "sources": [
+        {
+          "pmid": "23997898",
+          "title": "Traditional and modern uses of natural honey in human diseases: a review.",
+          "year": 2013,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Ancient Greece (Hippocrates, Galen), later Persian medicine",
+      "use": "Honey drinks for the sick: hydromel (honey and water) for thirst, oxymel (honey and vinegar) for pain",
+      "modern": "not tested",
+      "note": "Hydromel here means honey stirred into water, as the review describes it, not fermented honey wine (mead). No study in people of hydromel or of mead, such as Ethiopian tej, was found for this page, only chemistry and laboratory work, and a study of mead would also have to separate out the effects of the alcohol. Oxymel has been tried in 12 clinical trials, mostly mixed with herbs and for other conditions such as asthma, obesity and type 2 diabetes, not for pain; the reviewers called for larger and longer trials.",
+      "sources": [
+        {
+          "pmid": "23997898",
+          "title": "Traditional and modern uses of natural honey in human diseases: a review.",
+          "year": 2013,
+          "studyType": "review"
+        },
+        {
+          "pmid": "38125478",
+          "doi": "10.1016/j.heliyon.2023.e22649",
+          "title": "Oxymel: A systematic review of preclinical and clinical studies.",
+          "year": 2023,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "who": "Muslim communities (tahnik), still practised today",
+      "use": "A little honey (or dates) given to a newborn baby",
+      "modern": "harmful",
+      "note": "A custom rather than a treatment, and no study has tested a benefit. It carries a known risk: honey can hold spores that cause infant botulism, a rare paralysing illness, which is why health authorities advise against honey before 12 months (see Who should be careful). In a survey of 419 mothers in Karachi, Pakistan, 61.6% practised tahnik and 94.75% had never heard of botulism.",
+      "sources": [
+        {
+          "pmid": "41084783",
+          "doi": "10.1080/07370016.2025.2572611",
+          "title": "Cultural Persistence of Tahnik Practice (Use of Honey) Despite Infant Botulism Risk: A Community-Based Study in Pakistan.",
+          "year": 2026,
+          "studyType": "observational"
+        }
+      ]
+    },
+    {
+      "who": "Folk medicine (\"mad honey\", made from rhododendron nectar)",
+      "use": "Mad honey for high blood pressure and sexual problems",
+      "modern": "harmful",
+      "note": "No trial has tested it, and it causes poisoning: its grayanotoxin slows the heart. In a review of 1,199 reported poisonings, 80% had a slow heart rate and 46% complete heart block; no deaths were reported and most people left hospital within 24 hours.",
+      "sources": [
+        {
+          "pmid": "26547022",
+          "doi": "10.1016/j.fct.2015.10.018",
+          "title": "Mad honey intoxication: A systematic review on the 1199 cases.",
+          "year": 2015,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "17-050",
+      "label": "1 tablespoon (about 21 g)",
+      "grams": 21
+    }
+  ],
+  "processing": [
+    "Raw and processed honey: most trials don't say which they used. In a 2023 meta-analysis of 18 blood sugar and blood fat trials, processing wasn't reported in 20 trials; 7 used processed honey, 5 raw honey and 1 both. Raw honey went with larger falls in fasting blood sugar and cholesterol, but that rests on 5 small trials (low certainty).",
+    "Filtering and pasteurising remove most of the pollen from commercial honey, according to the authors of a case report of a child allergic to pollen in artisanal honey.",
+    "Heat changes honey. Heating forms 5-hydroxymethylfurfural (HMF), a breakdown product of sugars; in four honeys it formed faster in a microwave than in a water bath at 90 °C. The activity of diastase, an enzyme used to check honey quality, fell as temperature rose and was zero at 100 °C. Microwave heating removed all the antibacterial activity of raw rapeseed honeys, by inactivating glucose oxidase and the bee protein defensin-1, while warming to 45 or 55 °C did not.",
+    "Manuka honey's methylglyoxal isn't fixed: freshly made manuka honey had little, and it rose during storage. Its phenolic profile also changes with age, and heat treatment can be detected from it.",
+    "Medical-grade honey, used for wounds, is a different product from kitchen honey. A 2025 definition requires it to be organically produced, sterilised with gamma radiation, and to meet clinical safety, production and physicochemical standards; the authors also discuss new requirements under the EU Medical Device Regulation. Gamma radiation at 10 to 30 kGy didn't change the overall antibacterial activity of a honeydew honey, though it reduced defensin-1.",
+    "Ordinary honey isn't sterile. When 29 honey products (medical-grade, supermarket and local beekeepers' honeys) were cultured in a veterinary study, bacteria or fungi grew from 18 of them; the authors concluded that non-sterile honeys may not be suitable for wounds."
+  ],
+  "whatStudiesDid": "In cough trials, children aged 12 months to 18 years with a short-term cough had honey or a comparison (no treatment, placebo or a cough medicine); most were treated for one night only. Trials on blood sugar and blood fats gave 5 to 125 g of honey a day (median 40 g) for 1 to 24 weeks (median 8 weeks); 70% compared honey with the person's usual diet, 15% with sucrose (table sugar) and 6% with high-fructose corn syrup. One trial gave 60 healthy young adults 70 g of honey or 70 g of sucrose a day. Hay fever trials gave a tablespoon a day (36 people) or 1 g per kg of body weight a day for 4 weeks alongside an antihistamine (40 people). Wound and burn trials used honey as a dressing on the skin, compared with other dressings or creams. Trials on mouth sores used honey in the mouth during radiotherapy or chemotherapy.",
+  "markers": [
+    "glucose",
+    "hba1c",
+    "ldl",
+    "hdl",
+    "triglycerides",
+    "total_cholesterol"
+  ],
+  "findings": [
+    {
+      "outcome": "Short-term (acute) cough in children",
+      "population": "Children aged 12 months to 18 years with acute cough, treated at home or in clinics (6 randomised trials, 899 children, in the Cochrane review)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The Cochrane review rated honey against no treatment and against placebo as moderate certainty (GRADE), and against cough medicines as low certainty",
+        "Each comparison rests on 1 or 2 trials",
+        "Most children were treated for one night only",
+        "Two trials were at high risk of performance and detection bias (people knew who had honey); outcomes were parents' ratings of symptoms",
+        "A 2023 systematic review of 10 trials rated the evidence low to very low"
+      ],
+      "summary": "A 2018 Cochrane review of 6 randomised trials (899 children aged 12 months to 18 years) found that honey probably reduces how often children cough more than no treatment (1.05 points lower on a 7-point scale, 95% confidence interval 0.62 to 1.48 lower; 2 trials, 154 children) or placebo (1.62 points lower, 0.22 to 3.02 lower; 2 trials, 402 children), both moderate certainty. Honey may work about as well as the cough medicine dextromethorphan (0.07 points lower, 1.07 lower to 0.94 higher; low certainty) and may be better than the antihistamine diphenhydramine (0.57 points lower, 0.24 to 0.90 lower; 1 trial, 80 children; low certainty). Beyond three days, honey probably had no advantage over placebo or salbutamol. The authors found no strong evidence for or against honey, and noted that most children were treated for one night. A 2023 systematic review of 10 trials rated the evidence low to very low. A 2026 meta-analysis of honey against cough medicines (6 trials, 576 children aged about 3 to 5, followed for up to 3 days) found no clear difference on most outcomes, except less effect of cough on the child's sleep (0.73 points, 0.01 to 1.45); its other favourable results came from post-hoc analyses that the authors called hypothesis-generating.",
+      "bottomLine": "In trials in children aged 1 year and over with a short-term cough, honey probably reduced how often they coughed more than no treatment or placebo, by about 1 to 1.6 points on a 7-point scale. Most children had it for one night only, and against cough medicines the results were unclear.",
+      "studies": [
+        {
+          "pmid": "29633783",
+          "doi": "10.1002/14651858.cd007094.pub5",
+          "title": "Honey for acute cough in children.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 899
+        },
+        {
+          "pmid": "37355498",
+          "doi": "10.1007/s00431-023-05066-1",
+          "title": "Honey for acute cough in children - a systematic review.",
+          "year": 2023,
+          "studyType": "review"
+        },
+        {
+          "pmid": "42671586",
+          "doi": "10.1007/s00431-026-07348-w",
+          "title": "Honey vs. pharmacological treatment for acute cough in children: a systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 576
+        }
+      ]
+    },
+    {
+      "outcome": "Symptoms of colds and other upper respiratory tract infections (nose, throat and upper airways)",
+      "population": "People with upper respiratory tract infections in 14 studies",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The review judged the overall risk of bias as moderate and gave no certainty rating in its abstract",
+        "Most comparisons were against usual care, not a placebo",
+        "In the 2 studies against a placebo there was no clear difference, and their results disagreed (I² 91%)",
+        "The authors called for high-quality placebo-controlled trials"
+      ],
+      "summary": "A 2021 systematic review and meta-analysis of 14 studies found that, compared with usual care, honey improved a combined symptom score (3 studies, 3.96 points lower, 95% confidence interval 2.51 to 5.42 lower), how often people coughed (8 studies, standardised mean difference −0.36, −0.50 to −0.21) and how bad the cough was (5 studies, −0.44, −0.64 to −0.25). A standardised mean difference puts results from different scales on one scale, in standard deviations. The 2 studies that compared honey with a placebo found no clear difference in combined symptoms (−0.63, −1.44 to 0.18), with very different results (I² 91%). The authors judged the risk of bias moderate overall and called for high-quality placebo-controlled trials.",
+      "bottomLine": "In a meta-analysis of 14 studies of colds and other upper airway infections, honey eased cough and other symptoms more than usual care. In the two studies against a placebo there was no clear difference, so how much of the effect is honey itself is uncertain.",
+      "studies": [
+        {
+          "pmid": "32817011",
+          "doi": "10.1136/bmjebm-2020-111336",
+          "title": "Effectiveness of honey for symptomatic relief in upper respiratory tract infections: a systematic review and meta-analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar: fasting glucose and HbA1c (long-term blood sugar)",
+      "population": "Adults and some children in small controlled trials, mostly healthy; about a fifth had type 1 or type 2 diabetes",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The 2023 meta-analysis rated the fall in fasting glucose low certainty (GRADE), because results varied a lot between trials (I² 77%) and there were signs of publication bias",
+        "After correcting for small-study effects, the fall in fasting glucose was no longer clear",
+        "A 2025 updated meta-analysis found higher fasting glucose in trials of 12 weeks or more, and an HbA1c fall that came from a single study",
+        "Small trials: 8 to 72 people each (median 43)",
+        "70% of trials compared honey with the usual diet, not with another sugar",
+        "One author of the 2023 review reported research support from the US National Honey Board, among many funders; the review itself was funded by the Canadian Institutes of Health Research"
+      ],
+      "summary": "A 2023 GRADE-assessed meta-analysis (full text read) of 18 controlled trials (33 comparisons, 1,105 people; 21% had type 1 or type 2 diabetes) found fasting glucose 0.20 mmol/L lower with honey (95% confidence interval 0.04 to 0.37 lower; low certainty), with no clear change in HbA1c, fasting insulin or body weight. After correcting for small-study effects, the fall was no longer clear (0.10 lower, 0.30 lower to 0.09 higher). Trials gave 5 to 125 g of honey a day (median 40 g) for 1 to 24 weeks; 70% compared honey with the usual diet and 15% with sucrose. In subgroups, raw honey (5 trials) went with fasting glucose 1.05 mmol/L lower and clover honey (2 trials) 1.82 mmol/L lower, both low certainty. A 2025 umbrella review with an updated meta-analysis (full text read; 16 honey trials) found HbA1c 0.25 lower (0.05 to 0.45 lower; very low certainty), but this came from one study; trials of 12 weeks or more went with higher fasting glucose, and in its dose analysis fasting glucose was 3.81 mg/dL (about 0.2 mmol/L) higher at 20 g a day.",
+      "bottomLine": "In small trials, honey went with slightly lower fasting blood sugar, about 0.2 mmol/L, but the evidence is low certainty and partly explained by small studies. Long-term blood sugar (HbA1c) didn't clearly change, and a later review found higher fasting sugar in trials of 12 weeks or more.",
+      "studies": [
+        {
+          "pmid": "36379223",
+          "doi": "10.1093/nutrit/nuac086",
+          "title": "Effect of honey on cardiometabolic risk factors: a systematic review and meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 1105
+        },
+        {
+          "pmid": "41261111",
+          "doi": "10.1038/s41387-025-00403-9",
+          "title": "Dosage exploration of the effects of honey and its derivatives on cardiometabolic outcomes: an overview of systematic reviews and GRADE-assessed updated meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood fats (total cholesterol, LDL cholesterol, HDL cholesterol, triglycerides)",
+      "population": "Adults and some children in small controlled trials, mostly healthy, some with diabetes or overweight",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Three meta-analyses disagree: one found small improvements, one no effect, one slightly higher triglycerides",
+        "The 2023 meta-analysis rated the falls in total cholesterol, LDL and triglycerides low certainty (inconsistent and imprecise results); only the small rise in HDL was rated high",
+        "The LDL fall disappeared when any one of 6 trials was left out",
+        "Most trials were poorly reported, so their risk of bias was unclear",
+        "One author of the 2023 review reported research support from the US National Honey Board, among many funders"
+      ],
+      "summary": "The 2023 meta-analysis (full text read; up to 29 trial comparisons) found total cholesterol 0.18 mmol/L lower (95% confidence interval 0.04 to 0.33 lower), LDL cholesterol 0.16 mmol/L lower (0.02 to 0.30 lower) and triglycerides 0.13 mmol/L lower (0.07 to 0.20 lower), all low certainty, and HDL cholesterol 0.07 mmol/L higher (0.04 to 0.10 higher; high certainty). The LDL result was unstable: leaving out any one of 6 trials removed it. In subgroups, raw honey (5 trials) went with total cholesterol 0.61 mmol/L lower and triglycerides 0.27 mmol/L lower, and clover honey (3 trials) with LDL 0.38 mmol/L lower, all low certainty. A 2022 meta-analysis of 23 trials found no effect of honey on total cholesterol, triglycerides, LDL or HDL, with evidence from very low to moderate quality. A 2025 updated meta-analysis (full text read) found triglycerides 8.09 mg/dL (about 0.09 mmol/L) higher with honey (1.22 to 14.9 higher; low certainty). A 2018 trial in 60 healthy young adults reported better blood fats with 70 g of honey a day than with 70 g of sucrose.",
+      "bottomLine": "Meta-analyses disagree. One found slightly lower LDL cholesterol and triglycerides and slightly higher HDL with honey, a few tenths of a mmol/L or less; another found no effect on any blood fat; a third found triglycerides slightly higher.",
+      "studies": [
+        {
+          "pmid": "36379223",
+          "doi": "10.1093/nutrit/nuac086",
+          "title": "Effect of honey on cardiometabolic risk factors: a systematic review and meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 1105
+        },
+        {
+          "pmid": "34218823",
+          "doi": "10.1017/s0007114521002506",
+          "title": "The effect of honey on lipid profiles: a systematic review and meta-analysis of controlled clinical trials.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "41261111",
+          "doi": "10.1038/s41387-025-00403-9",
+          "title": "Dosage exploration of the effects of honey and its derivatives on cardiometabolic outcomes: an overview of systematic reviews and GRADE-assessed updated meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "29908688",
+          "doi": "10.1016/j.clnesp.2018.04.016",
+          "title": "The effect of honey consumption compared with sucrose on lipid profile in young healthy subjects (randomized clinical trial).",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 60
+        }
+      ]
+    },
+    {
+      "outcome": "Healing of burns, with honey dressings applied to the skin (not eaten)",
+      "population": "People with burns in randomised trials, mostly partial-thickness burns (burns that don't go through the whole skin)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "The Cochrane review rated faster healing than conventional dressings as high-quality evidence, but it rests on 2 trials",
+        "Faster healing than silver sulfadiazine cream was rated very low quality by Cochrane and moderate by a 2017 review, and Cochrane found no difference in burns healed within 6 weeks (high quality)",
+        "Early surgery with skin grafts healed burns faster than honey (1 trial, low quality)",
+        "This page grades the burn evidence as a whole moderate. It is about honey dressings on the skin and says nothing about eating honey"
+      ],
+      "summary": "A 2015 Cochrane review of 26 trials of honey on wounds (3,011 people; 11 trials in burns) found high-quality evidence that honey dressings healed partial-thickness burns 4.68 days faster than conventional dressings (95% confidence interval 4.28 to 5.09 days; 2 trials, 992 people). Conventional dressings included polyurethane film, paraffin gauze, soframycin gauze, sterile linen and leaving the burn exposed; whether adverse events or infections differed was unclear. Against silver sulfadiazine cream, burns treated with honey healed 5.12 days faster (0.73 to 9.51; 4 trials, 332 people; very low quality), but the chance of being healed within 6 weeks was the same (risk ratio 1.00, 0.98 to 1.02; 6 trials, 462 people; high quality), with fewer adverse events with honey. Early removal of the burn and skin grafting healed partial- and full-thickness burns 13.6 days faster than honey followed by grafting when needed (9.82 to 17.38; 1 trial, 50 people; low quality). A 2017 review of 9 trials against silver sulfadiazine found healing 5.76 days faster with honey (3.39 to 8.14; moderate quality) and more infected wounds made sterile (risk ratio 2.59).",
+      "bottomLine": "Applied to the skin as a dressing, not eaten: in a Cochrane review, honey healed partial-thickness burns about 4.7 days faster than conventional dressings (high-quality evidence). Against silver sulfadiazine cream the gain was less certain, and early surgery with skin grafts healed burns faster than honey.",
+      "studies": [
+        {
+          "pmid": "25742878",
+          "doi": "10.1002/14651858.cd005083.pub4",
+          "title": "Honey as a topical treatment for wounds.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 3011
+        },
+        {
+          "pmid": "27576926",
+          "doi": "10.1016/j.burns.2016.07.004",
+          "title": "The effects of honey compared to silver sulfadiazine for the treatment of burns: A systematic review of randomized controlled trials.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Healing of leg ulcers, diabetic foot ulcers and other wounds, with honey applied to the skin (not eaten)",
+      "population": "People with long-lasting (chronic) wounds such as venous leg ulcers, diabetic foot ulcers and pressure ulcers, minor cuts, or infected wounds after surgery",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "The Cochrane review rated most of these comparisons low or very low quality, mainly for risk of bias and imprecision",
+        "The one moderate-quality result (infected wounds after surgery) comes from a single trial of 50 people",
+        "A 2024 meta-analysis of chronic wounds rated its evidence very low (risk of bias, inconsistency, publication bias)",
+        "Patients and comparisons differed so much that the Cochrane authors found it difficult to draw overall conclusions"
+      ],
+      "summary": "In the 2015 Cochrane review, the effects of honey compared with other treatments were unclear for venous leg ulcers (2 trials, 476 people; low quality), minor acute wounds (3 trials, 213 people; very low), diabetic foot ulcers (2 trials, 93 people; low), cutaneous leishmaniasis (1 trial, 100 people; low) and mixed chronic wounds (2 trials, 150 people; low). Honey healed infected wounds after surgery more often than antiseptic washes and gauze (risk ratio of healing 1.69, 95% confidence interval 1.10 to 2.61; 1 trial, 50 people; moderate quality), with fewer adverse events. It healed pressure ulcers faster than saline soaks and Fournier's gangrene faster than Eusol soaks, both very low quality. The authors concluded that, beyond burns and infected wounds after surgery, the evidence is of low or very low quality and not a robust basis for decisions. A 2024 meta-analysis of 8 studies of chronic wounds (906 people) found healing time 17.13 days shorter (7.89 to 26.37) and a larger share of each wound healed, but no clear difference in how many wounds healed (risk ratio 2.00, 0.78 to 5.10); honey may have caused more painful discomfort during treatment, and the evidence was very low quality.",
+      "bottomLine": "Applied to the skin, not eaten: for leg ulcers, diabetic foot ulcers and other long-lasting wounds, trials of honey dressings are small and their results unclear. One small trial found infected wounds after surgery healed more often with honey than with antiseptic washes.",
+      "studies": [
+        {
+          "pmid": "25742878",
+          "doi": "10.1002/14651858.cd005083.pub4",
+          "title": "Honey as a topical treatment for wounds.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 3011
+        },
+        {
+          "pmid": "39125335",
+          "doi": "10.3390/nu16152455",
+          "title": "Efficacy and Safety of Honey Dressings in the Management of Chronic Wounds: An Updated Systematic Review and Meta-Analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 906
+        }
+      ]
+    },
+    {
+      "outcome": "Mouth sores from cancer treatment (oral mucositis)",
+      "population": "People having radiotherapy or chemotherapy, mostly for head and neck cancer; one meta-analysis in children",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The international MASCC/ISOO guideline gave honey a 'Suggestion', its weaker level, not a 'Recommendation', and only for head and neck radiotherapy",
+        "The meta-analyses' abstracts give no certainty rating",
+        "Trials were small: 1,276 people in 19 trials, about 67 per trial",
+        "In children, recovery times varied very widely between studies (I² 98%)"
+      ],
+      "summary": "A 2019 meta-analysis of 19 randomised trials (1,276 people having radiotherapy or chemotherapy) found that when honey was used to prevent mouth sores, severe ('intolerable') sores were less common (risk ratio 0.18, 95% confidence interval 0.09 to 0.41), and pain scores were lower in the first month of treatment (3.25 points, 2.09 to 4.41) and at its end (2.32 points, 0.18 to 4.47). A 2022 meta-analysis in children (5 studies, 316 children) found mouth sores of any grade less common with honey (risk ratio 0.19, 0.12 to 0.30) and a shorter recovery time (mean difference 5.10, 0.61 to 9.60), with very mixed recovery results between studies. In 2020 the MASCC/ISOO clinical practice guideline made a new 'Suggestion' for honey, used both in the mouth and swallowed ('combined topical and systemic'), to prevent mouth sores in people with head and neck cancer having radiotherapy with or without chemotherapy.",
+      "bottomLine": "In trials in people having radiotherapy or chemotherapy, mostly for head and neck cancer, honey used in the mouth went with fewer severe mouth sores and less pain. An international cancer-care guideline gives it a 'Suggestion', its weaker level, for head and neck radiotherapy.",
+      "studies": [
+        {
+          "pmid": "30919153",
+          "doi": "10.1007/s00520-019-04722-3",
+          "title": "Prophylactic and therapeutic effects of honey on radiochemotherapy-induced mucositis: a meta-analysis of randomized controlled trials.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 1276
+        },
+        {
+          "pmid": "35341151",
+          "doi": "10.1155/2022/6906439",
+          "title": "Effect of Honey on Pediatric Radio/Chemotherapy-Induced Oral Mucositis (R/CIOM): A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 316
+        },
+        {
+          "pmid": "32056010",
+          "doi": "10.1007/s00520-019-05256-4",
+          "title": "Systematic review of natural and miscellaneous agents, for the management of oral mucositis in cancer patients and clinical practice guidelines - part 2: honey, herbal compounds, saliva stimulants, probiotics, and miscellaneous agents.",
+          "year": 2020,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Honey and how often children cough",
+      "caption": "Average difference in cough frequency, on a 7-point scale rated by parents, between children given honey and children given each comparison, with 95% confidence intervals (Cochrane review, 2018). Below 0 means less coughing with honey. An interval that crosses 0 could be chance. Each bar comes from 1 or 2 trials, and most children were treated for one night. Children were 12 months or older.",
+      "scale": "linear",
+      "unit": "points (7-point scale)",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "Honey vs no treatment",
+          "value": -1.05,
+          "low": -1.48,
+          "high": -0.62,
+          "note": "2 trials, 154 children; moderate certainty"
+        },
+        {
+          "label": "Honey vs placebo",
+          "value": -1.62,
+          "low": -3.02,
+          "high": -0.22,
+          "note": "2 trials, 402 children; moderate certainty"
+        },
+        {
+          "label": "Honey vs diphenhydramine (antihistamine)",
+          "value": -0.57,
+          "low": -0.9,
+          "high": -0.24,
+          "note": "1 trial, 80 children; low certainty"
+        },
+        {
+          "label": "Honey vs dextromethorphan (cough medicine)",
+          "value": -0.07,
+          "low": -1.07,
+          "high": 0.94,
+          "note": "2 trials, 149 children; low certainty"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "29633783",
+          "doi": "10.1002/14651858.cd007094.pub5",
+          "title": "Honey for acute cough in children.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 899
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Healing time with honey dressings on the skin",
+      "caption": "Average difference in days to heal between wounds dressed with honey and each comparison, with 95% confidence intervals. Below 0 means honey healed faster; above 0 means the comparison did. This is honey applied to wounds, not eaten. Quality of evidence differs a lot between bars (in the notes); only the first is rated high.",
+      "scale": "linear",
+      "unit": "days",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "Partial-thickness burns, vs conventional dressings",
+          "value": -4.68,
+          "low": -5.09,
+          "high": -4.28,
+          "note": "Cochrane 2015; 2 trials, 992 people; high quality"
+        },
+        {
+          "label": "Burns, vs silver sulfadiazine cream",
+          "value": -5.12,
+          "low": -9.51,
+          "high": -0.73,
+          "note": "Cochrane 2015; 4 trials, 332 people; very low quality"
+        },
+        {
+          "label": "Burns, vs silver sulfadiazine cream (2017 review)",
+          "value": -5.76,
+          "low": -8.14,
+          "high": -3.39,
+          "note": "9 trials; moderate quality"
+        },
+        {
+          "label": "Burns, honey then grafting vs early surgery and grafting",
+          "value": 13.6,
+          "low": 9.82,
+          "high": 17.38,
+          "note": "Cochrane 2015; 1 trial, 50 people; low quality"
+        },
+        {
+          "label": "Chronic wounds, vs other treatments",
+          "value": -17.13,
+          "low": -26.37,
+          "high": -7.89,
+          "note": "2024 meta-analysis; 8 studies, 906 people; very low quality"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "25742878",
+          "doi": "10.1002/14651858.cd005083.pub4",
+          "title": "Honey as a topical treatment for wounds.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 3011
+        },
+        {
+          "pmid": "27576926",
+          "doi": "10.1016/j.burns.2016.07.004",
+          "title": "The effects of honey compared to silver sulfadiazine for the treatment of burns: A systematic review of randomized controlled trials.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "39125335",
+          "doi": "10.3390/nu16152455",
+          "title": "Efficacy and Safety of Honey Dressings in the Management of Chronic Wounds: An Updated Systematic Review and Meta-Analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 906
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "How honey is thought to act on a wound (laboratory findings)",
+      "caption": "What laboratory studies found about honey's antibacterial activity. This is a hypothesis for why honey dressings may help: it hasn't been shown that these steps explain the healing seen in trials. It is about honey on wounds, not honey eaten.",
+      "steps": [
+        {
+          "label": "A thick sugar solution",
+          "text": "Honey is a viscous, supersaturated sugar solution that bees make from nectar."
+        },
+        {
+          "label": "Hydrogen peroxide when diluted",
+          "text": "Glucose oxidase, an enzyme in honey, makes hydrogen peroxide. In 8 honeys it built up most when diluted to 30–50%, as wound fluid would dilute a dressing, reaching 1–2 mmol/L: very low compared with antiseptic hydrogen peroxide."
+        },
+        {
+          "label": "Methylglyoxal in manuka",
+          "text": "Six manuka honeys held 38 to 761 mg/kg of methylglyoxal, up to 100 times more than ordinary honeys, and still stopped bacteria in lab dishes when diluted to 15–30%."
+        },
+        {
+          "label": "Heat and sterilising",
+          "text": "Microwave heating removed the antibacterial activity of raw honeys; warming to 45 or 55 °C did not. Gamma radiation, used to sterilise medical honey, didn't change a honeydew honey's overall antibacterial activity."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "25742878",
+          "doi": "10.1002/14651858.cd005083.pub4",
+          "title": "Honey as a topical treatment for wounds.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 3011
+        },
+        {
+          "pmid": "12804080",
+          "doi": "10.1089/10755530360623383",
+          "title": "The effect of dilution on the rate of hydrogen peroxide production in honey and its implications for wound healing.",
+          "year": 2003,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "18210383",
+          "doi": "10.1002/mnfr.200700282",
+          "title": "Identification and quantification of methylglyoxal as the dominant antibacterial constituent of Manuka (Leptospermum scoparium) honeys from New Zealand.",
+          "year": 2008,
+          "studyType": "in vitro"
+        },
+        {
+          "pmid": "28946234",
+          "doi": "10.1016/j.foodchem.2017.08.054",
+          "title": "Microwave processing of honey negatively affects honey antibacterial activity by inactivation of bee-derived glucose oxidase and defensin-1.",
+          "year": 2018,
+          "studyType": "in vitro"
+        },
+        {
+          "doi": "10.1007/s00217-016-2725-x",
+          "title": "Effect of gamma radiation on the antibacterial and antibiofilm activity of honeydew honey",
+          "year": 2017,
+          "studyType": "in vitro"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Babies under 12 months",
+      "note": "Honey can carry spores of the bacterium Clostridium botulinum. In a baby's gut they can grow and make toxin, causing infant botulism, a rare paralysing illness. In a 1979 study, C. botulinum was found in 9 of 90 honey samples (10%), and honey was the only food tested that contained it. The US Centers for Disease Control and Prevention (CDC) and other health authorities advise against giving honey to babies younger than 12 months, and a review warns against honey-containing products and honey used as a flavouring for them too. Cases are rare; the median age at onset is 3 to 4 months. The cough trials on this page only included children aged 12 months or older."
+    },
+    {
+      "with": "Diabetes",
+      "note": "Honey is mostly sugar: the UK food table lists 76.4 g of sugars per 100 g, all of its carbohydrate. How fast it raises blood sugar varies with the flowers it came from (glycaemic index 32 to 85). In trials it didn't clearly change HbA1c, but a 2025 review found higher fasting blood sugar in trials lasting 12 weeks or more. If you are managing blood sugar, talk to your doctor or dietitian about honey, including honey used for coughs or mouth sores.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Pollen allergy or allergy to bee products",
+      "note": "Honey rarely causes food allergy, but it can cause severe reactions. A 5-year-old boy sensitised to ragweed and mugwort pollen had anaphylaxis after eating artisanal honey; skin tests were positive to that honey but not to commercial honeys, which the authors put down to more pollen in unfiltered honey. If you have had a reaction to honey or other bee products, or a severe pollen allergy, talk to your doctor."
+    },
+    {
+      "with": "Open wounds, burns or ulcers",
+      "note": "The wound trials used honey dressings, and medical-grade honey is sterilised. Ordinary honey isn't: bacteria or fungi grew from 18 of 29 honey products tested in one study. For a wound, burn or ulcer, talk to your doctor or nurse."
+    }
+  ],
+  "cautions": [
+    "'Mad honey', made from the nectar of some rhododendrons, contains grayanotoxin and causes poisoning. A systematic review of 1,199 reported cases found dizziness, nausea and near-fainting, with a slow heart rate in 80% and complete heart block in 46%; no deaths were reported and most people left hospital within 24 hours. It is used in folk medicine, especially for high blood pressure and sexual problems.",
+    "In the cough trials, 12% of children given honey and 11% given placebo had stomach or gut symptoms (risk ratio 1.91, 95% confidence interval 1.12 to 3.24; moderate certainty). Nervousness, sleeplessness or hyperactivity were reported in 9.3% with honey and 2.7% with dextromethorphan, which could be chance.",
+    "Most health authorities, including the World Health Organization, count honey among free or added sugars, as the authors of the 2023 meta-analysis note. This app doesn't set intake targets.",
+    "Honey is not a treatment for diabetes, high cholesterol or infections. Anything clearly out of range in your results is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "No trial on this page measured heart attacks, strokes, new diabetes or deaths. The blood sugar and blood fat trials lasted 1 to 24 weeks and measured markers.",
+    "Blood pressure results disagree: the 2023 meta-analysis found no clear effect (and slightly lower pressure with more honey), while the 2025 update found systolic pressure 4.24 mmHg higher (2.03 to 6.45 higher; moderate certainty) and diastolic 1.94 mmHg higher (0.40 to 3.48 higher) with honey.",
+    "Most trials don't say which honey they used or whether it was raw or processed, so it isn't known whether some honeys (raw, clover, robinia) really differ from others.",
+    "Whether eating local honey helps hay fever isn't settled: in 36 people a tablespoon a day of locally collected unfiltered honey or nationally collected filtered honey did no better than a honey-flavoured corn syrup, while in 40 people a high amount alongside an antihistamine improved symptoms more than a honey-flavoured corn syrup. Both trials were small.",
+    "Whether manuka honey's methylglyoxal matters when honey is eaten, rather than put on a wound, isn't covered by the trials on this page.",
+    "The antibacterial findings come from laboratory studies. It isn't known how much they explain the faster burn healing seen in trials.",
+    "The food table measures sugars and a few minerals, but none of honey's polyphenols, enzymes or methylglyoxal, and honey holds many compounds no table tracks."
+  ],
+  "sources": [
+    {
+      "pmid": "19155427",
+      "doi": "10.1080/07315724.2008.10719745",
+      "title": "Honey for nutrition and health: a review.",
+      "year": 2008,
+      "studyType": "review"
+    },
+    {
+      "pmid": "12804080",
+      "doi": "10.1089/10755530360623383",
+      "title": "The effect of dilution on the rate of hydrogen peroxide production in honey and its implications for wound healing.",
+      "year": 2003,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "18210383",
+      "doi": "10.1002/mnfr.200700282",
+      "title": "Identification and quantification of methylglyoxal as the dominant antibacterial constituent of Manuka (Leptospermum scoparium) honeys from New Zealand.",
+      "year": 2008,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "19368902",
+      "doi": "10.1016/j.carres.2009.03.020",
+      "title": "The origin of methylglyoxal in New Zealand manuka (Leptospermum scoparium) honey.",
+      "year": 2009,
+      "studyType": "in vitro"
+    },
+    {
+      "doi": "10.1016/j.foodchem.2009.09.074",
+      "title": "Phenolic compounds and methylglyoxal in some New Zealand manuka and kanuka honeys",
+      "year": 2010,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "36379223",
+      "doi": "10.1093/nutrit/nuac086",
+      "title": "Effect of honey on cardiometabolic risk factors: a systematic review and meta-analysis.",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 1105
+    },
+    {
+      "pmid": "41261111",
+      "doi": "10.1038/s41387-025-00403-9",
+      "title": "Dosage exploration of the effects of honey and its derivatives on cardiometabolic outcomes: an overview of systematic reviews and GRADE-assessed updated meta-analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23790927",
+      "doi": "10.1016/j.foodchem.2013.04.025",
+      "title": "Changes of antioxidant activity and formation of 5-hydroxymethylfurfural in honey during thermal and microwave processing.",
+      "year": 2013,
+      "studyType": "in vitro"
+    },
+    {
+      "doi": "10.1016/j.foodchem.2007.04.025",
+      "title": "Honey diastase activity modified by heating",
+      "year": 2008,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "28946234",
+      "doi": "10.1016/j.foodchem.2017.08.054",
+      "title": "Microwave processing of honey negatively affects honey antibacterial activity by inactivation of bee-derived glucose oxidase and defensin-1.",
+      "year": 2018,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "40504399",
+      "doi": "10.12968/jowc.2024.0206",
+      "title": "Medical-grade honey: its definition and refined standards.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "doi": "10.1007/s00217-016-2725-x",
+      "title": "Effect of gamma radiation on the antibacterial and antibiofilm activity of honeydew honey",
+      "year": 2017,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "23962613",
+      "doi": "10.1016/j.tvjl.2013.07.003",
+      "title": "The antimicrobial activity of honey against common equine wound bacterial isolates.",
+      "year": 2014,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "368301",
+      "doi": "10.1016/s0022-3476(79)80863-x",
+      "title": "Honey and other environmental risk factors for infant botulism.",
+      "year": 1979,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "12432974",
+      "doi": "10.1592/phco.22.16.1479.33696",
+      "title": "Association between honey consumption and infant botulism.",
+      "year": 2002,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41964486",
+      "doi": "10.1111/apa.70538",
+      "title": "Infant Botulism and Honey Exposure: Global Epidemiology, Prevention Policies, and Communication Strategies.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33985563",
+      "doi": "10.1186/s13256-021-02823-4",
+      "title": "Anaphylaxis caused by artisanal honey in a child: a case report.",
+      "year": 2021,
+      "studyType": "observational",
+      "n": 1
+    },
+    {
+      "pmid": "26547022",
+      "doi": "10.1016/j.fct.2015.10.018",
+      "title": "Mad honey intoxication: A systematic review on the 1199 cases.",
+      "year": 2015,
+      "studyType": "review",
+      "n": 1199
+    },
+    {
+      "pmid": "18568799",
+      "doi": "10.1080/15563650701666306",
+      "title": "Clinical review of grayanotoxin/mad honey poisoning past and present.",
+      "year": 2008,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29633783",
+      "doi": "10.1002/14651858.cd007094.pub5",
+      "title": "Honey for acute cough in children.",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 899
+    },
+    {
+      "pmid": "11868925",
+      "doi": "10.1016/s1081-1206(10)61996-5",
+      "title": "Effect of ingestion of honey on symptoms of rhinoconjunctivitis.",
+      "year": 2002,
+      "studyType": "rct",
+      "n": 36
+    },
+    {
+      "pmid": "24188941",
+      "doi": "10.5144/0256-4947.2013.469",
+      "title": "Ingestion of honey improves the symptoms of allergic rhinitis: evidence from a randomized placebo-controlled trial in the East coast of Peninsular Malaysia.",
+      "year": 2013,
+      "studyType": "rct",
+      "n": 40
+    }
+  ]
+}

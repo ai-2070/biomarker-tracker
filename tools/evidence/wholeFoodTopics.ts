@@ -40,6 +40,21 @@ const POM_T = w("pomegranate", "punica");
 const GINGER = any("ginger", "Zingiber officinale", "gingerol", "gingerols");
 const GINGER_T = w("ginger", "zingiber");
 const NAUSEA = w("nausea", "vomit", "emesis", "antiemetic", "hyperemesis", "PONV");
+const HONEY = any("honey", "manuka");
+const HONEY_T = w("honey", "manuka");
+const EGG = any("egg", "eggs", "egg consumption", "egg intake", "egg yolk");
+const EGG_T = w("eggs?\\b", "egg yolk");
+const BEET = any("beetroot", "beet juice", "beetroot juice", "beets", "Beta vulgaris", "dietary nitrate", "nitrate-rich");
+const BEET_T = w("beet", "nitrate");
+const TEA = any("green tea", "Camellia sinensis", "matcha", "tea consumption", "tea drinking");
+const TEA_T = w("green tea", "tea\\b", "camellia");
+const KIWI = any("kiwifruit", "kiwi fruit", "kiwi", "Actinidia");
+const KIWI_T = w("kiwi", "actinidia");
+const DEATH = any("mortality", "death");
+const GRAPE = any("grape", "grapes", "raisin", "raisins", "grape juice", "Concord grape", "Vitis vinifera");
+const GRAPE_T = w("grape", "raisin", "vitis");
+/** Grape seed extract, resveratrol and wine are different exposures. */
+const NOT_THE_FRUIT = /\b(seed extract|resveratrol|wine|grapefruit)\b/i;
 
 export const WHOLE_FOOD_TOPICS: TopicDef[] = [
   {
@@ -105,6 +120,115 @@ export const WHOLE_FOOD_TOPICS: TopicDef[] = [
       { id: "carotid", label: "Neck arteries", finding: "Thickening of the neck arteries (carotid intima-media thickness)", query: all(POM, any("carotid", "intima-media", "atherosclerosis", "arterial", "endothelial function", "vascular")), title: [POM_T, w("carotid", "intima", "atheroscler", "arter", "endotheli", "vascular", "cardiovascular")], question: q(ADULTS, "Pomegranate juice or the fruit (seeds/arils)", "Placebo drink or no pomegranate", "Carotid intima-media thickness, atherosclerosis, or blood vessel function") },
       { id: "prostate", label: "Prostate cancer (PSA)", finding: "Prostate cancer: how fast PSA rises after treatment (PSA doubling time)", query: all(POM, any("prostate", "PSA", "prostate-specific antigen")), title: [POM_T, w("prostat", "PSA")], question: q("Men with prostate cancer, or rising PSA after treatment", "Pomegranate juice", "Placebo or no pomegranate", "PSA doubling time, PSA, or prostate cancer progression") },
       { id: "exercise", label: "Exercise recovery", finding: "Muscle damage and soreness after hard exercise", query: all(POM, O.exercise.q), title: [POM_T, O.exercise.t], question: q("Adults, often active or athletes", "Pomegranate juice", "Placebo drink", "Muscle soreness, muscle damage, strength recovery or performance") },
+    ],
+  },
+  {
+    id: "wholefood-honey",
+    kind: "wholefood",
+    wholeFoodId: "honey",
+    name: "honey",
+    terms: [],
+    outcomes: [
+      { id: "cough", label: "Cough in children", finding: "Short-term (acute) cough in children", query: all(HONEY, any("cough", "coughing")), title: [HONEY_T, w("cough")], question: q("Children with a short-term cough", "Honey", "No treatment, placebo or cough medicines", "Cough frequency or severity, or sleep") },
+      { id: "colds", label: "Colds", finding: "Symptoms of colds and other upper respiratory tract infections (nose, throat and upper airways)", query: all(HONEY, any("upper respiratory", "respiratory tract infection", "common cold", "sore throat")), title: [HONEY_T, w("respiratory", "cold", "throat", "cough")], question: q("Children or adults with colds or other upper respiratory infections", "Honey", "Usual care or other treatments", "Symptoms such as cough, sore throat or congestion") },
+      { id: "sugar", label: "Blood sugar", finding: "Blood sugar: fasting glucose and HbA1c (long-term blood sugar)", query: all(HONEY, O.sugar.q), title: [HONEY_T, w("glyc", "glucose", "HbA1c", "diabet", "insulin", "cardiometabolic", "metabolic")], question: q(ADULTS, "Honey eaten as food, often in place of other sugars", "Sugar, other sweeteners, or no honey", "Fasting glucose, HbA1c or insulin") },
+      { id: "lipids", label: "Blood fats", finding: "Blood fats (total cholesterol, LDL cholesterol, HDL cholesterol, triglycerides)", query: all(HONEY, O.lipids.q), title: [HONEY_T, O.lipids.t], question: q(ADULTS, "Honey eaten as food, often in place of other sugars", "Sugar or no honey", "Cholesterol or triglycerides") },
+      { id: "burns", label: "Burns (on the skin)", finding: "Healing of burns, with honey dressings applied to the skin (not eaten)", query: all(HONEY, any("burn", "burns")), title: [HONEY_T, w("burn")], question: q("People with burns", "Honey dressings applied to the skin", "Other dressings, silver sulfadiazine or standard care", "Healing time, healing rate or infection") },
+      { id: "wounds", label: "Wounds (on the skin)", finding: "Healing of leg ulcers, diabetic foot ulcers and other wounds, with honey applied to the skin (not eaten)", query: all(HONEY, any("wound", "wounds", "ulcer", "ulcers", "wound healing")), title: [HONEY_T, w("wound", "ulcer")], question: q("People with leg ulcers, diabetic foot ulcers or other wounds", "Honey applied to the wound", "Other dressings or standard care", "Healing time or healing rate") },
+      { id: "mucositis", label: "Mouth sores in cancer care", finding: "Mouth sores from cancer treatment (oral mucositis)", query: all(HONEY, any("mucositis")), title: [HONEY_T, w("mucositis")], question: q("People having radiotherapy or chemotherapy", "Honey in the mouth", "Placebo, saline or usual care", "Oral mucositis: how often, how severe, or pain") },
+    ],
+  },
+  {
+    id: "wholefood-eggs",
+    kind: "wholefood",
+    wholeFoodId: "eggs",
+    name: "eggs",
+    terms: [],
+    outcomes: [
+      { id: "cardiovascular", label: "Heart disease and stroke", finding: "Heart disease and stroke", query: all(EGG, any("cardiovascular", "coronary", "stroke", "heart disease")), title: [EGG_T, w("cardiovascular", "coronar", "stroke", "heart")], question: q(ADULTS, "Eating more eggs", "Eating fewer eggs", "Heart disease or stroke") },
+      { id: "mortality", label: "Death", finding: "Death from any cause", query: all(EGG, DEATH), title: [EGG_T, w("mortalit", "death")], question: q(ADULTS, "Eating more eggs", "Eating fewer eggs", "Death from any cause") },
+      { id: "diabetes", label: "Type 2 diabetes", finding: "Getting type 2 diabetes", query: all(EGG, any("diabetes", "type 2 diabetes")), title: [EGG_T, w("diabet")], question: q("Adults without diabetes", "Eating more eggs", "Eating fewer eggs", "New type 2 diabetes") },
+      { id: "lipids", label: "Cholesterol", finding: "LDL and HDL cholesterol", query: all(EGG, O.lipids.q), title: [EGG_T, w("lipid", "cholesterol", "LDL", "HDL", "lipoprotein")], question: q(ADULTS, "Eggs (or extra eggs) in the diet", "Fewer or no eggs, or an egg substitute", "LDL or HDL cholesterol") },
+      { id: "diabetes-heart", label: "With diabetes", finding: "Heart disease in people with type 2 diabetes", query: all(EGG, any("diabetes", "diabetic"), any("cardiovascular", "coronary", "heart", "lipid", "cholesterol")), title: [EGG_T, w("diabet")], question: q("People with type 2 diabetes", "Eating more eggs", "Eating fewer eggs", "Heart disease, or heart risk factors such as cholesterol") },
+      { id: "lutein", label: "Lutein and the eye", finding: "Lutein in the blood and macular pigment in the eye", query: all(EGG, any("lutein", "zeaxanthin", "macular pigment", "carotenoids")), title: [EGG_T, w("lutein", "zeaxanthin", "macular", "carotenoid", "vision", "eye")], question: q(ADULTS, "Eggs or egg yolks", "Fewer or no eggs", "Lutein or zeaxanthin in the blood, or macular pigment") },
+      { id: "tmao", label: "TMAO", finding: "TMAO, a gut-bacteria product of choline, in the blood", query: all(EGG, any("TMAO", "trimethylamine", "choline")), title: [EGG_T, w("TMAO", "trimethylamine", "choline")], question: q(ADULTS, "Eggs", "Fewer or no eggs, or choline supplements", "TMAO or choline in the blood") },
+    ],
+  },
+  {
+    id: "wholefood-beetroot",
+    kind: "wholefood",
+    wholeFoodId: "beetroot",
+    name: "beetroot",
+    terms: [],
+    outcomes: [
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", query: all(BEET, O.bp.q), title: [BEET_T, O.bp.t], question: q(ADULTS, "Beetroot juice or whole beetroot (nitrate-rich); reviews pooling nitrate salts count as partly", "Nitrate-depleted juice, placebo or no beetroot", "Blood pressure") },
+      { id: "endurance", label: "Endurance", finding: "Endurance and fitness tests (time to exhaustion, VO₂max)", query: all(BEET, any("exercise performance", "endurance", "time to exhaustion", "time trial", "VO2max", "oxygen uptake", "athletes")), title: [BEET_T, w("exercise", "endurance", "performance", "athlet", "sport", "oxygen", "VO2")], question: q("Healthy adults, from untrained to athletes", "Beetroot juice (nitrate-rich)", "Nitrate-depleted juice or placebo", "Endurance, time to exhaustion, time trials or oxygen uptake") },
+      { id: "vascular", label: "Blood vessels", finding: "Blood vessel function (flow-mediated dilation) and artery stiffness", query: all(BEET, any("endothelial function", "flow-mediated dilation", "arterial stiffness", "vascular function", "pulse wave velocity")), title: [BEET_T, w("endotheli", "vascular", "flow-mediated", "arter", "stiffness")], question: q(ADULTS, "Beetroot juice or whole beetroot (nitrate-rich)", "Placebo or no beetroot", "Flow-mediated dilation or artery stiffness") },
+      { id: "recovery", label: "Muscle recovery", finding: "Muscle damage and recovery after hard exercise", query: all(BEET, any("muscle damage", "muscle soreness", "recovery")), title: [BEET_T, w("muscle", "recover", "soreness", "damage")], question: q("Adults after hard exercise", "Beetroot juice", "Placebo", "Muscle soreness, damage markers or recovery of strength") },
+      { id: "sugar", label: "Blood sugar", finding: "Blood sugar and insulin", query: all(BEET, O.sugar.q), title: [BEET_T, O.sugar.t], question: q(ADULTS, "Beetroot juice or whole beetroot", "Placebo or no beetroot", "Blood sugar or insulin") },
+      { id: "cognition", label: "Thinking and brain blood flow", finding: "Thinking and blood flow in the brain", query: all(BEET, any("cognitive", "cognition", "cerebral blood flow", "brain")), title: [BEET_T, w("cogniti", "cerebral", "brain", "memory")], question: q("Adults, often older", "Beetroot juice (nitrate-rich)", "Placebo", "Thinking tests or blood flow in the brain") },
+    ],
+  },
+  {
+    id: "wholefood-green_tea",
+    kind: "wholefood",
+    wholeFoodId: "green_tea",
+    name: "green tea",
+    terms: [],
+    outcomes: [
+      { id: "mortality", label: "Death", finding: "Death from any cause", query: all(TEA, DEATH), title: [TEA_T, w("mortalit", "death")], question: q(ADULTS, "Drinking more green tea (the drink, not extracts)", "Drinking less or none", "Death from any cause") },
+      { id: "cardiovascular", label: "Heart disease and stroke", finding: "Heart disease and stroke", query: all(TEA, any("cardiovascular", "coronary", "stroke", "heart disease")), title: [TEA_T, w("cardiovascular", "coronar", "stroke", "heart")], question: q(ADULTS, "Drinking more green tea (the drink, not extracts)", "Drinking less or none", "Heart disease or stroke") },
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", query: all(TEA, O.bp.q), title: [TEA_T, O.bp.t], question: q(ADULTS, "Green tea as a drink (reviews mixing extract capsules count as partly)", "Placebo, water or no tea", "Blood pressure") },
+      { id: "lipids", label: "Cholesterol", finding: "LDL and total cholesterol", query: all(TEA, O.lipids.q), title: [TEA_T, O.lipids.t], question: q(ADULTS, "Green tea as a drink (reviews mixing extract capsules count as partly)", "Placebo, water or no tea", "LDL or total cholesterol") },
+      { id: "sugar", label: "Blood sugar", finding: "Blood sugar and HbA1c", query: all(TEA, O.sugar.q), title: [TEA_T, O.sugar.t], question: q(ADULTS, "Green tea as a drink (reviews mixing extract capsules count as partly)", "Placebo, water or no tea", "Fasting glucose, HbA1c or insulin") },
+      { id: "weight", label: "Body weight", finding: "Body weight", query: all(TEA, any("body weight", "weight loss", "body mass index", "obesity", "adiposity")), title: [TEA_T, w("weight", "obes", "adipos", "body composition", "anthropometric")], question: q(ADULTS, "Green tea as a drink (reviews of extracts count as partly)", "Placebo, water or no tea", "Body weight or body fat") },
+      { id: "cancer", label: "Cancer", finding: "Cancer", query: all(TEA, any("cancer", "neoplasm", "carcinoma", "tumor", "tumour")), title: [TEA_T, w("cancer", "neoplas", "carcinoma", "tumou?r")], question: q(ADULTS, "Drinking more green tea", "Drinking less or none", "New cancers or cancer deaths") },
+    ],
+  },
+  {
+    id: "wholefood-kiwi",
+    kind: "wholefood",
+    wholeFoodId: "kiwi",
+    name: "kiwifruit",
+    terms: [],
+    outcomes: [
+      { id: "constipation", label: "Constipation", finding: "Constipation (bowel movements)", query: all(KIWI, any("constipation", "bowel movements", "bowel function", "laxation", "defecation")), title: [w("kiwi", "actinidia", "fruit", "food", "diet"), w("constipat", "bowel", "laxat", "defecat")], question: q("Adults with constipation", "Kiwifruit (whole fruit; powders and extracts count as partly)", "Placebo, psyllium, prunes or usual diet", "Bowel movements a week, stool consistency or symptoms") },
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", query: all(KIWI, O.bp.q), title: [KIWI_T, w("blood pressure", "hypertens", "cardiometabolic", "metabolic", "cardiovascular")], question: q(ADULTS, "Kiwifruit (whole fruit)", "Usual diet or another fruit", "Blood pressure") },
+      { id: "lipids", label: "Blood fats", finding: "Blood fats (LDL cholesterol and triglycerides)", query: all(KIWI, O.lipids.q), title: [KIWI_T, O.lipids.t], question: q(ADULTS, "Kiwifruit (whole fruit)", "Usual diet or another fruit", "LDL cholesterol or triglycerides") },
+      { id: "sugar", label: "Blood sugar", finding: "Blood sugar after a starchy meal", query: all(KIWI, O.sugar.q), title: [KIWI_T, O.sugar.t], question: q(ADULTS, "Kiwifruit eaten with or before a starchy meal", "The same meal without kiwifruit, or another fruit", "Blood sugar after the meal") },
+      { id: "vitamin-c", label: "Vitamin C", finding: "Vitamin C in the blood", query: all(KIWI, any("vitamin C", "ascorbic acid", "ascorbate")), title: [KIWI_T, w("vitamin C", "ascorb")], question: q("Adults", "Kiwifruit (whole fruit)", "No kiwifruit or a vitamin C tablet", "Vitamin C in the blood") },
+      { id: "mood", label: "Mood", finding: "Mood and vitality", query: all(KIWI, any("mood", "vitality", "fatigue", "depression", "psychological", "wellbeing", "well-being")), title: [KIWI_T, w("mood", "vitality", "fatigue", "depress", "psycholog", "well")], question: q("Adults", "Kiwifruit (whole fruit)", "Placebo tablet, vitamin C tablet or no kiwifruit", "Mood, vitality or fatigue") },
+      { id: "sleep", label: "Sleep", finding: "Sleep", query: all(KIWI, any("sleep", "insomnia")), title: [KIWI_T, w("sleep", "insomnia")], question: q("Adults, with or without sleep problems", "Kiwifruit before bed", "No kiwifruit or another fruit", "Sleep onset, duration or quality") },
+      { id: "iron", label: "Iron", finding: "Iron status with an iron-fortified breakfast", query: all(KIWI, any("iron", "ferritin", "anaemia", "anemia")), title: [KIWI_T, w("iron", "ferritin", "an(a)?emi")], question: q("Adults, often women with low iron", "Kiwifruit eaten with iron-containing meals", "The same meals without kiwifruit, or another fruit", "Iron status (ferritin) or iron absorption") },
+    ],
+  },
+  {
+    id: "wholefood-grapes",
+    kind: "wholefood",
+    wholeFoodId: "grapes",
+    name: "grapes",
+    terms: [],
+    outcomes: [
+      { id: "diabetes", label: "Type 2 diabetes", finding: "Type 2 diabetes", query: all(GRAPE, any("diabetes", "type 2 diabetes")), title: [w("grape", "raisin", "fruit"), w("diabet")], excludeTitle: NOT_THE_FRUIT, question: q("Adults without diabetes", "Eating more grapes or raisins", "Eating fewer", "New type 2 diabetes") },
+      { id: "blood-pressure", label: "Blood pressure", finding: "Blood pressure", query: all(GRAPE, O.bp.q), title: [GRAPE_T, w("blood pressure", "hypertens", "vascular", "cardiovascular")], excludeTitle: NOT_THE_FRUIT, question: q(ADULTS, "Grapes, raisins, 100% grape juice or whole-grape powder", "Placebo, other snacks or no grapes", "Blood pressure") },
+      { id: "lipids", label: "Blood fats", finding: "Blood fats (LDL cholesterol, total cholesterol, triglycerides)", query: all(GRAPE, O.lipids.q), title: [GRAPE_T, O.lipids.t], excludeTitle: NOT_THE_FRUIT, question: q(ADULTS, "Grapes, raisins, 100% grape juice or whole-grape powder (reviews pooling seed extracts count as partly)", "Placebo or no grapes", "LDL or total cholesterol, or triglycerides") },
+      { id: "vascular", label: "Blood vessels", finding: "Blood vessel function (flow-mediated dilation)", query: all(GRAPE, any("endothelial function", "flow-mediated dilation", "vascular function", "arterial stiffness")), title: [GRAPE_T, w("endotheli", "vascular", "flow-mediated", "arter")], excludeTitle: NOT_THE_FRUIT, question: q(ADULTS, "Grapes, 100% grape juice or whole-grape powder", "Placebo or no grapes", "Flow-mediated dilation or artery stiffness") },
+      { id: "cognition", label: "Memory and thinking", finding: "Memory and thinking", query: all(GRAPE, O.cognition.q), title: [GRAPE_T, O.cognition.t], excludeTitle: NOT_THE_FRUIT, question: q("Adults, often older", "Grapes, 100% grape juice or whole-grape powder", "Placebo or no grapes", "Memory, thinking or mood") },
+      { id: "sugar", label: "Blood sugar", finding: "Blood sugar: after meals, fasting and HbA1c", query: all(GRAPE, O.sugar.q), title: [GRAPE_T, O.sugar.t], excludeTitle: NOT_THE_FRUIT, question: q(ADULTS, "Grapes, raisins, 100% grape juice or whole-grape powder", "Other snacks, placebo or no grapes", "Blood sugar after meals, fasting glucose or HbA1c") },
+    ],
+  },
+  {
+    id: "wholefood-figs",
+    kind: "wholefood",
+    wholeFoodId: "figs",
+    name: "figs",
+    terms: [],
+    outcomes: [
+      { id: "constipation", label: "Constipation", finding: "Functional constipation", query: all(any("fig", "figs", "Ficus carica", "dried fruit", "dried fruits"), any("constipation", "bowel movements", "laxative", "stool")), title: [w("figs?\\b", "ficus", "dried fruit", "fruit"), w("constipat", "bowel", "laxat", "stool")], question: q("Adults or children with constipation", "Figs: fresh, dried or fig paste (fig leaf and other Ficus products count as partly)", "Placebo or no figs", "Bowel movements, stool consistency or constipation symptoms") },
+      { id: "ibs", label: "IBS with constipation", finding: "Irritable bowel syndrome with constipation (IBS-C)", query: all(any("fig", "figs", "Ficus carica"), any("irritable bowel", "IBS")), title: [w("figs?\\b", "ficus", "fruit"), w("irritable bowel", "IBS")], question: q("Adults with irritable bowel syndrome with constipation", "Dried figs", "Usual diet or placebo", "Symptoms, pain or bowel habits") },
+      { id: "lipids", label: "Blood fats", finding: "Blood fats (LDL cholesterol, triglycerides)", query: all(any("fig", "figs", "Ficus carica", "dried fruit", "dried fruits"), O.lipids.q), title: [w("figs?\\b", "ficus", "dried fruit"), O.lipids.t], question: q(ADULTS, "Dried figs or other dried fruit (reviews of mixed dried fruit count as partly)", "No figs or other snacks", "LDL cholesterol or triglycerides") },
+      { id: "sugar", label: "Blood sugar", finding: "Blood sugar", query: all(any("fig", "figs", "Ficus carica", "dried fruit", "dried fruits"), O.sugar.q), title: [w("figs?\\b", "ficus", "dried fruit"), O.sugar.t], question: q(ADULTS, "Figs or dried figs (fig leaf or extract counts as partly)", "Other snacks or no figs", "Blood sugar, glycaemic response or HbA1c") },
+      { id: "minerals", label: "Minerals in the blood", finding: "Minerals in the blood (calcium, potassium and others)", query: all(any("fig", "figs", "Ficus carica"), any("calcium", "potassium", "magnesium", "minerals", "iron")), title: [w("figs?\\b", "ficus"), w("calcium", "potassium", "magnesium", "mineral", "iron")], question: q("Adults", "Figs or dried figs", "No figs", "Calcium, potassium or other minerals in the blood") },
     ],
   },
   {

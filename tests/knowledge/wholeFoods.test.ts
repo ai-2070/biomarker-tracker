@@ -46,6 +46,23 @@ describe("knowledge base: whole foods", () => {
   });
 });
 
+describe("whole foods: then and now", () => {
+  const src = [{ pmid: "1", title: "A history of honey", year: 2020, studyType: "review" }];
+  const finding = { outcome: "Burns", population: "P", effect: "helps", grade: "moderate", whyThisGrade: ["w"], summary: "S", studies: src };
+  const entry = (history: unknown) => ({ id: "x", name: "X", group: "sweets", otherNames: [], summary: "S", inIt: ["I"], tableFoods: [], processing: [], whatStudiesDid: "W", markers: [], findings: [finding], visuals: [{ kind: "flow", title: "T", caption: "C", steps: [{ label: "a", text: "b" }, { label: "c", text: "d" }], sources: src }], whoShouldBeCareful: [], cautions: [], unknowns: ["U"], sources: src, history });
+
+  it("checks each old use against a finding on the page, with a source", () => {
+    expect(validateWholeFoodDef(entry([{ who: "Ancient Egypt", use: "On burns", modern: "agrees", finding: "Burns", note: "N", sources: src }]))).toEqual([]);
+    expect(validateWholeFoodDef(entry([{ who: "Ancient Greece", use: "For coughs", modern: "not tested", note: "N", sources: src }]))).toEqual([]);
+    // A harmful old use needs no finding: the note says what the harm is.
+    expect(validateWholeFoodDef(entry([{ who: "Folk medicine", use: "Honey for newborns", modern: "harmful", note: "Infant botulism", sources: src }]))).toEqual([]);
+    expect(validateWholeFoodDef(entry([{ who: "W", use: "U", modern: "agrees", note: "N", sources: src }]))).toContain('history 1: "agrees" needs the finding it rests on');
+    expect(validateWholeFoodDef(entry([{ who: "W", use: "U", modern: "partly", finding: "Nothing", note: "N", sources: src }]))).toContain("history 1 finding must be the outcome of a finding on this page");
+    expect(validateWholeFoodDef(entry([{ who: "W", use: "U", modern: "maybe", note: "N", sources: src }]))[0]).toMatch(/modern must be one of/);
+    expect(validateWholeFoodDef(entry([{ who: "W", use: "U", modern: "not tested", note: "N", sources: [] }]))).toContain("history 1 needs at least one source");
+  });
+});
+
 describe("whole foods: linking protocol items", () => {
   const base = { group: "fruit", summary: "S", inIt: ["I"], tableFoods: [], processing: [], whatStudiesDid: "W", markers: [], findings: [], visuals: [], whoShouldBeCareful: [], cautions: [], unknowns: ["U"], sources: [] };
   const foods = [
@@ -59,5 +76,8 @@ describe("whole foods: linking protocol items", () => {
     expect(wholeFoodFor("Frozen blueberries", foods)?.id).toBe("blueberries");
     expect(wholeFoodFor("Blueberry", foods)?.id).toBe("blueberries");
     expect(wholeFoodFor("Sunflower oil", foods)).toBeUndefined();
+    // Leaving a food out isn't eating it.
+    expect(wholeFoodFor("Blueberry-free week", foods)).toBeUndefined();
+    expect(wholeFoodFor("No EVOO on salads", foods)).toBeUndefined();
   });
 });

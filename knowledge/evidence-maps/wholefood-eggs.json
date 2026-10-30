@@ -1,0 +1,2120 @@
+{
+ "topic": "wholefood-eggs",
+ "kind": "wholefood",
+ "wholeFoodId": "eggs",
+ "name": "eggs",
+ "builtAt": "2026-10-30",
+ "fetchedAt": "2026-10-30",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "cardiovascular": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:stroke OR TITLE_ABS:\"heart disease\")) AND SRC:MED",
+  "mortality": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:mortality OR TITLE_ABS:death)) AND SRC:MED",
+  "diabetes": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:diabetes OR TITLE_ABS:\"type 2 diabetes\")) AND SRC:MED",
+  "lipids": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:cholesterol OR TITLE_ABS:\"lipid profile\" OR TITLE_ABS:lipids OR TITLE_ABS:triglycerides OR TITLE_ABS:LDL OR TITLE_ABS:HDL)) AND SRC:MED",
+  "diabetes-heart": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:diabetes OR TITLE_ABS:diabetic) AND (TITLE_ABS:cardiovascular OR TITLE_ABS:coronary OR TITLE_ABS:heart OR TITLE_ABS:lipid OR TITLE_ABS:cholesterol)) AND SRC:MED",
+  "lutein": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:lutein OR TITLE_ABS:zeaxanthin OR TITLE_ABS:\"macular pigment\" OR TITLE_ABS:carotenoids)) AND SRC:MED",
+  "tmao": "((TITLE_ABS:egg OR TITLE_ABS:eggs OR TITLE_ABS:\"egg consumption\" OR TITLE_ABS:\"egg intake\" OR TITLE_ABS:\"egg yolk\") AND (TITLE_ABS:TMAO OR TITLE_ABS:trimethylamine OR TITLE_ABS:choline)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating eggs comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 18072,
+  "retrieved": 575,
+  "animal": 228,
+  "retracted": 0,
+  "reviews": 117,
+  "trials": 223,
+  "guidelines": 7
+ },
+ "guidelines": [
+  {
+   "pmid": "31111809",
+   "doi": "10.1017/s1368980019001034",
+   "title": "National Dietary Guidelines of Greece for children and adolescents: a tool for promoting healthy eating habits",
+   "year": 2019,
+   "journal": "Public health nutrition",
+   "citedBy": 26,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "28870977",
+   "doi": "10.1542/peds.2017-2550",
+   "title": "Recommendations for Prevention and Control of Influenza in Children, 2017 - 2018",
+   "year": 2017,
+   "journal": "Pediatrics",
+   "citedBy": 37,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "27600320",
+   "doi": "10.1542/peds.2016-2527",
+   "title": "Recommendations for Prevention and Control of Influenza in Children, 2016-2017",
+   "year": 2016,
+   "journal": "Pediatrics",
+   "citedBy": 22,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "21890834",
+   "doi": "10.1542/peds.2011-2295",
+   "title": "Recommendations for prevention and control of influenza in children, 2011-2012",
+   "year": 2011,
+   "journal": "Pediatrics",
+   "citedBy": 30,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "22082792",
+   "doi": "10.1016/s1701-2163(16)35087-3",
+   "title": "Advanced reproductive age and fertility",
+   "year": 2011,
+   "journal": "Journal of obstetrics and gynaecology Canada : JOGC = Journal d'obstetrique et gynecologie du Canada : JOGC",
+   "citedBy": 139,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "10599302",
+   "title": "Adult influenza vaccination guideline. SAMA-SA Pulmonology Society Working Group",
+   "year": 1999,
+   "journal": "South African medical journal = Suid-Afrikaanse tydskrif vir geneeskunde",
+   "citedBy": 0,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "cardiovascular",
+   "label": "Heart disease and stroke",
+   "finding": "Heart disease and stroke",
+   "counts": {
+    "all": 1358,
+    "reviews": 15,
+    "trialReviews": 15,
+    "trials": 8,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35524693",
+     "doi": "10.1093/jn/nxac105",
+     "title": "Association of Egg Consumption with Risk of All-Cause and Cardiovascular Disease Mortality: A Systematic Review and Dose-Response Meta-Analysis of Observational Studies",
+     "year": 2022,
+     "firstAuthor": "Ma W",
+     "journal": "The Journal of nutrition",
+     "citedBy": 8,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "32865658",
+     "doi": "10.1007/s00394-020-02345-7",
+     "title": "Egg consumption and cardiovascular risk: a dose-response meta-analysis of prospective cohort studies",
+     "year": 2021,
+     "firstAuthor": "Godos J",
+     "journal": "European journal of nutrition",
+     "citedBy": 36,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "32653422",
+     "doi": "10.1016/j.amjmed.2020.05.046",
+     "title": "Association Between Egg Consumption and Risk of Cardiovascular Outcomes: A Systematic Review and Meta-Analysis",
+     "year": 2021,
+     "firstAuthor": "Krittanawong C",
+     "journal": "The American journal of medicine",
+     "citedBy": 32,
+     "n": 1415839,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2,
+    "trials": 5,
+    "inclusions": 7,
+    "reviews": [
+     {
+      "pmid": "35524693",
+      "trials": 3
+     },
+     {
+      "pmid": "32865658",
+      "trials": 2
+     },
+     {
+      "pmid": "32653422",
+      "trials": 2
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "31965140",
+      "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+      "year": 2020,
+      "n": 177000,
+      "inReviews": [
+       "35524693",
+       "32865658",
+       "32653422"
+      ]
+     },
+     {
+      "pmid": "16988120",
+      "title": "Consumption of one egg per day increases serum lutein and zeaxanthin concentrations in older adults without altering serum lipid and lipoprotein cholesterol concentrations",
+      "year": 2006,
+      "n": 33,
+      "inReviews": [
+       "35524693"
+      ]
+     },
+     {
+      "pmid": "30205602",
+      "title": "Dietary Cholesterol Contained in Whole Eggs Is Not Well Absorbed and Does Not Acutely Affect Plasma Total Cholesterol Concentration in Men and Women: Results from 2 Randomized Controlled Crossover Studies",
+      "year": 2018,
+      "n": 17,
+      "inReviews": [
+       "35524693"
+      ]
+     },
+     {
+      "pmid": "26016861",
+      "title": "Effects of egg consumption on carotenoid absorption from co-consumed, raw vegetables",
+      "year": 2015,
+      "n": 16,
+      "inReviews": [
+       "32653422"
+      ]
+     },
+     {
+      "pmid": "24944063",
+      "title": "Effect of egg ingestion on trimethylamine-N-oxide production in humans: a randomized, controlled, dose-response study",
+      "year": 2014,
+      "inReviews": [
+       "32865658"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 3,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "31965140",
+     "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+     "year": 2020,
+     "n": 177000
+    }
+   ],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "32132002",
+     "30874756",
+     "35360933",
+     "29785957",
+     "31965140"
+    ],
+    "citedNotEligible": [
+     "30874756",
+     "35360933",
+     "29785957",
+     "31965140"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "35524693",
+      "doi": "10.1093/jn/nxac105",
+      "title": "Association of Egg Consumption with Risk of All-Cause and Cardiovascular Disease Mortality: A Systematic Review and Dose-Response Meta-Analysis of Observational Studies",
+      "year": 2022,
+      "firstAuthor": "Ma W",
+      "journal": "The Journal of nutrition",
+      "citedBy": 8,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     },
+     {
+      "pmid": "32865658",
+      "doi": "10.1007/s00394-020-02345-7",
+      "title": "Egg consumption and cardiovascular risk: a dose-response meta-analysis of prospective cohort studies",
+      "year": 2021,
+      "firstAuthor": "Godos J",
+      "journal": "European journal of nutrition",
+      "citedBy": 36,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     },
+     {
+      "pmid": "32653422",
+      "doi": "10.1016/j.amjmed.2020.05.046",
+      "title": "Association Between Egg Consumption and Risk of Cardiovascular Outcomes: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "firstAuthor": "Krittanawong C",
+      "journal": "The American journal of medicine",
+      "citedBy": 32,
+      "n": 1415839,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Eating more eggs",
+     "comparison": "Eating fewer eggs",
+     "outcome": "Heart disease or stroke"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 11,
+     "partly": 2,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "33015124",
+      "title": "Egg Consumption and Stroke Risk: A Systematic Review and Dose-Response Meta-Analysis of Prospective Studies",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Meta-analysis of cohort studies of egg intake that looked at stroke only, not heart disease."
+     },
+     {
+      "pmid": "33330601",
+      "title": "Corrigendum: Egg Consumption and Stroke Risk: A Systematic Review and Dose-Response Meta-Analysis of Prospective Studies",
+      "year": 2020,
+      "fits": "no",
+      "reason": "A correction notice, not a review."
+     },
+     {
+      "pmid": "28359773",
+      "title": "Impact of Egg Consumption on Cardiovascular Risk Factors in Individuals with Type 2 Diabetes and at Risk for Developing Diabetes: A Systematic Review of Randomized Nutritional Intervention Studies",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Review of trials measuring cholesterol and other risk factors, not heart disease or stroke events, in people with or at risk of diabetes."
+     },
+     {
+      "pmid": "24711708",
+      "title": "Egg consumption and cardiovascular disease among diabetic individuals: a systematic review of the literature",
+      "year": 2014,
+      "fits": "partly",
+      "reason": "Systematic review of egg intake and cardiovascular disease limited to people with type 2 diabetes."
+     }
+    ]
+   }
+  },
+  {
+   "id": "mortality",
+   "label": "Death",
+   "finding": "Death from any cause",
+   "counts": {
+    "all": 10161,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 1,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "35360933",
+     "doi": "10.1161/circulationaha.121.057642",
+     "title": "Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis",
+     "year": 2022,
+     "firstAuthor": "Zhao B",
+     "journal": "Circulation",
+     "citedBy": 63,
+     "n": 27078,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "35396834",
+     "doi": "10.1093/advances/nmac040",
+     "title": "Egg Consumption and Risk of All-Cause and Cause-Specific Mortality: A Systematic Review and Dose-Response Meta-analysis of Prospective Studies",
+     "year": 2022,
+     "firstAuthor": "Mousavi SM",
+     "journal": "Advances in nutrition (Bethesda, Md.)",
+     "citedBy": 26,
+     "n": 2216720,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    },
+    {
+     "pmid": "35178575",
+     "doi": "10.1093/nutrit/nuac002",
+     "title": "Egg consumption and risks of all-cause and cause-specific mortality: a dose-response meta-analysis of prospective cohort studies",
+     "year": 2022,
+     "firstAuthor": "Yang PF",
+     "journal": "Nutrition reviews",
+     "citedBy": 12,
+     "n": 1737893,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.14285714285714285,
+    "trials": 7,
+    "inclusions": 8,
+    "reviews": [
+     {
+      "pmid": "35360933",
+      "trials": 2
+     },
+     {
+      "pmid": "35396834",
+      "trials": 6
+     }
+    ],
+    "reviewsWithoutReferences": [
+     "35178575"
+    ],
+    "shared": [
+     {
+      "pmid": "31965140",
+      "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+      "year": 2020,
+      "n": 177000,
+      "inReviews": [
+       "35360933",
+       "35396834"
+      ]
+     },
+     {
+      "pmid": "9430083",
+      "title": "A double-blind, randomized, controlled trial of the effects of two eggs per day in moderately hypercholesterolemic and combined hyperlipidemic subjects taught the NCEP step I diet",
+      "year": 1997,
+      "n": 131,
+      "inReviews": [
+       "35396834"
+      ]
+     },
+     {
+      "pmid": "20598142",
+      "title": "Daily egg consumption in hyperlipidemic adults--effects on endothelial function and cardiovascular risk",
+      "year": 2010,
+      "n": 40,
+      "inReviews": [
+       "35360933"
+      ]
+     },
+     {
+      "pmid": "15447890",
+      "title": "Dietary cholesterol does not increase biomarkers for chronic disease in a pediatric population from northern Mexico",
+      "year": 2004,
+      "n": 36,
+      "inReviews": [
+       "35396834"
+      ]
+     },
+     {
+      "pmid": "15164336",
+      "title": "High intake of cholesterol results in less atherogenic low-density lipoprotein particles in men and women independent of response classification",
+      "year": 2004,
+      "n": 27,
+      "inReviews": [
+       "35396834"
+      ]
+     },
+     {
+      "pmid": "26016861",
+      "title": "Effects of egg consumption on carotenoid absorption from co-consumed, raw vegetables",
+      "year": 2015,
+      "n": 16,
+      "inReviews": [
+       "35396834"
+      ]
+     },
+     {
+      "pmid": "15721501",
+      "title": "Egg consumption and endothelial function: a randomized controlled crossover trial",
+      "year": 2005,
+      "inReviews": [
+       "35396834"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2019,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 7,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "31965140",
+     "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+     "year": 2020,
+     "n": 177000
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "35396834",
+     "35360933"
+    ],
+    "citedNotChosen": [
+     "31965140",
+     "30874756"
+    ],
+    "citedNotEligible": [
+     "31965140",
+     "30874756"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "35178575",
+      "doi": "10.1093/nutrit/nuac002",
+      "title": "Egg consumption and risks of all-cause and cause-specific mortality: a dose-response meta-analysis of prospective cohort studies",
+      "year": 2022,
+      "firstAuthor": "Yang PF",
+      "journal": "Nutrition reviews",
+      "citedBy": 12,
+      "n": 1737893,
+      "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Eating more eggs",
+     "comparison": "Eating fewer eggs",
+     "outcome": "Death from any cause"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 7,
+     "partly": 0,
+     "no": 2,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "36469594",
+      "title": "Letter by Song et al Regarding Article, \"Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis\"",
+      "year": 2022,
+      "fits": "no",
+      "reason": "A letter to the editor with no abstract, not a systematic review."
+     },
+     {
+      "pmid": "36469598",
+      "title": "Response by Zhao et al to Letter Regarding Article, \"Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis\"",
+      "year": 2022,
+      "fits": "no",
+      "reason": "An author reply to a letter with no abstract, not a systematic review."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Type 2 diabetes",
+   "finding": "Getting type 2 diabetes",
+   "counts": {
+    "all": 860,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 8,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33932789",
+     "doi": "10.1016/j.clnu.2021.03.003",
+     "title": "Egg consumption, overall diet quality, and risk of type 2 diabetes and coronary heart disease: A pooling project of US prospective cohorts",
+     "year": 2021,
+     "firstAuthor": "Djoussé L",
+     "journal": "Clinical nutrition (Edinburgh, Scotland)",
+     "citedBy": 15,
+     "n": 103811,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    },
+    {
+     "pmid": "32453379",
+     "doi": "10.1093/ajcn/nqaa115",
+     "title": "Egg consumption and risk of type 2 diabetes: findings from 3 large US cohort studies of men and women and a systematic review and meta-analysis of prospective cohort studies",
+     "year": 2020,
+     "firstAuthor": "Drouin-Chartier JP",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 34,
+     "n": 589559,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "26739035",
+     "doi": "10.3945/ajcn.115.119933",
+     "title": "Egg consumption and risk of type 2 diabetes: a meta-analysis of prospective studies",
+     "year": 2016,
+     "firstAuthor": "Djoussé L",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 52,
+     "n": 219979,
+     "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.2777777777777778,
+    "trials": 9,
+    "inclusions": 14,
+    "reviews": [
+     {
+      "pmid": "33932789",
+      "trials": 5
+     },
+     {
+      "pmid": "32453379",
+      "trials": 6
+     },
+     {
+      "pmid": "26739035",
+      "trials": 3
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "25833969",
+      "title": "The effect of a high-egg diet on cardiovascular risk factors in people with type 2 diabetes: the Diabetes and Egg (DIABEGG) study-a 3-mo randomized controlled trial",
+      "year": 2015,
+      "n": 140,
+      "inReviews": [
+       "33932789",
+       "32453379",
+       "26739035"
+      ]
+     },
+     {
+      "pmid": "24079288",
+      "title": "Effects of carbohydrate restriction and dietary cholesterol provided by eggs on clinical risk factors in metabolic syndrome",
+      "year": 2013,
+      "n": 25,
+      "inReviews": [
+       "33932789",
+       "32453379"
+      ]
+     },
+     {
+      "pmid": "23021013",
+      "title": "Whole egg consumption improves lipoprotein profiles and insulin sensitivity to a greater extent than yolk-free egg substitute in individuals with metabolic syndrome",
+      "year": 2013,
+      "n": 20,
+      "inReviews": [
+       "33932789",
+       "32453379"
+      ]
+     },
+     {
+      "pmid": "24944063",
+      "title": "Effect of egg ingestion on trimethylamine-N-oxide production in humans: a randomized, controlled, dose-response study",
+      "year": 2014,
+      "inReviews": [
+       "32453379",
+       "26739035"
+      ]
+     },
+     {
+      "pmid": "29741558",
+      "title": "Effect of a high-egg diet on cardiometabolic risk factors in people with type 2 diabetes: the Diabetes and Egg (DIABEGG) Study-randomized weight-loss and follow-up phase",
+      "year": 2018,
+      "n": 128,
+      "inReviews": [
+       "32453379"
+      ]
+     },
+     {
+      "pmid": "28146063",
+      "title": "Consuming Two Eggs per Day, as Compared to an Oatmeal Breakfast, Decreases Plasma Ghrelin while Maintaining the LDL/HDL Ratio",
+      "year": 2017,
+      "inReviews": [
+       "33932789"
+      ]
+     },
+     {
+      "pmid": "25970149",
+      "title": "One Egg per Day Improves Inflammation when Compared to an Oatmeal-Based Breakfast without Increasing Other Cardiometabolic Risk Factors in Diabetic Patients",
+      "year": 2015,
+      "inReviews": [
+       "33932789"
+      ]
+     },
+     {
+      "pmid": "18203890",
+      "title": "Dietary cholesterol from eggs increases plasma HDL cholesterol in overweight men consuming a carbohydrate-restricted diet",
+      "year": 2008,
+      "inReviews": [
+       "32453379"
+      ]
+     },
+     {
+      "pmid": "21134328",
+      "title": "Egg consumption as part of an energy-restricted high-protein diet improves blood lipid and blood glucose profiles in individuals with type 2 diabetes",
+      "year": 2011,
+      "inReviews": [
+       "26739035"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2016,
+     "reviews": 3,
+     "trials": 0
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "32453379"
+    ],
+    "citedNotChosen": [
+     "26993632"
+    ],
+    "citedNotEligible": [],
+    "chosenNotCited": [
+     {
+      "pmid": "33932789",
+      "doi": "10.1016/j.clnu.2021.03.003",
+      "title": "Egg consumption, overall diet quality, and risk of type 2 diabetes and coronary heart disease: A pooling project of US prospective cohorts",
+      "year": 2021,
+      "firstAuthor": "Djoussé L",
+      "journal": "Clinical nutrition (Edinburgh, Scotland)",
+      "citedBy": 15,
+      "n": 103811,
+      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     },
+     {
+      "pmid": "26739035",
+      "doi": "10.3945/ajcn.115.119933",
+      "title": "Egg consumption and risk of type 2 diabetes: a meta-analysis of prospective studies",
+      "year": 2016,
+      "firstAuthor": "Djoussé L",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 52,
+      "n": 219979,
+      "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults without diabetes",
+     "intervention": "Eating more eggs",
+     "comparison": "Eating fewer eggs",
+     "outcome": "New type 2 diabetes"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 8,
+     "partly": 0,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "28359773",
+      "title": "Impact of Egg Consumption on Cardiovascular Risk Factors in Individuals with Type 2 Diabetes and at Risk for Developing Diabetes: A Systematic Review of Randomized Nutritional Intervention Studies",
+      "year": 2017,
+      "fits": "no",
+      "reason": "Reviewed trials in people with or at risk of diabetes and measured heart risk factors, not new type 2 diabetes."
+     }
+    ]
+   }
+  },
+  {
+   "id": "lipids",
+   "label": "Cholesterol",
+   "finding": "LDL and HDL cholesterol",
+   "counts": {
+    "all": 5992,
+    "reviews": 9,
+    "trialReviews": 9,
+    "trials": 41,
+    "largeTrials": 1
+   },
+   "chosenReviews": [
+    {
+     "pmid": "32635569",
+     "doi": "10.3390/nu12071995",
+     "title": "Association between Egg Consumption and Cholesterol Concentration: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+     "year": 2020,
+     "firstAuthor": "Li MY",
+     "journal": "Nutrients",
+     "citedBy": 30,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "32524644",
+     "doi": "10.1111/jfbc.13263",
+     "title": "The responses of different dosages of egg consumption on blood lipid profile: An updated systematic review and meta-analysis of randomized clinical trials",
+     "year": 2020,
+     "firstAuthor": "Khalighi Sikaroudi M",
+     "journal": "Journal of food biochemistry",
+     "citedBy": 16,
+     "n": 3185,
+     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+    },
+    {
+     "pmid": "31076323",
+     "doi": "10.1016/j.numecd.2019.04.004",
+     "title": "Impact of whole egg intake on blood pressure, lipids and lipoproteins in middle-aged and older population: A systematic review and meta-analysis of randomized controlled trials",
+     "year": 2019,
+     "firstAuthor": "Wang MX",
+     "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+     "citedBy": 26,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [
+    {
+     "pmid": "31965140",
+     "doi": "10.1093/ajcn/nqz348",
+     "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+     "year": 2020,
+     "firstAuthor": "Dehghan M",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 76,
+     "n": 177000,
+     "why": "A large trial (about 177,000 people) from 2020, as new as the newest review or newer"
+    }
+   ],
+   "overlap": {
+    "cca": 0.32142857142857145,
+    "trials": 42,
+    "inclusions": 69,
+    "reviews": [
+     {
+      "pmid": "32635569",
+      "trials": 26
+     },
+     {
+      "pmid": "32524644",
+      "trials": 33
+     },
+     {
+      "pmid": "31076323",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "16317122",
+      "title": "Maintenance of the LDL cholesterol:HDL cholesterol ratio in an elderly population given a dietary cholesterol challenge",
+      "year": 2005,
+      "n": 42,
+      "inReviews": [
+       "32635569",
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "24352089",
+      "title": "Impact of breakfasts (with or without eggs) on body weight regulation and blood lipids in university students over a 14-week semester",
+      "year": 2013,
+      "n": 39,
+      "inReviews": [
+       "32635569",
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "15164336",
+      "title": "High intake of cholesterol results in less atherogenic low-density lipoprotein particles in men and women independent of response classification",
+      "year": 2004,
+      "n": 27,
+      "inReviews": [
+       "32635569",
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "25833969",
+      "title": "The effect of a high-egg diet on cardiovascular risk factors in people with type 2 diabetes: the Diabetes and Egg (DIABEGG) study-a 3-mo randomized controlled trial",
+      "year": 2015,
+      "n": 140,
+      "inReviews": [
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "23911216",
+      "title": "The influence of consuming an egg or an egg-yolk buttermilk drink for 12 wk on serum lipids, inflammation, and liver function markers in human volunteers",
+      "year": 2013,
+      "n": 97,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "12074253",
+      "title": "Pre-menopausal women, classified as hypo- or hyperresponders, do not alter their LDL/HDL ratio following a high dietary cholesterol challenge",
+      "year": 2002,
+      "n": 51,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "16326171",
+      "title": "Associations between plasma lipid parameters and APOC3 and APOA4 genotypes in a healthy population are independent of dietary cholesterol intake",
+      "year": 2006,
+      "n": 51,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "12672915",
+      "title": "Men classified as hypo- or hyperresponders to dietary cholesterol feeding exhibit differences in lipoprotein metabolism",
+      "year": 2003,
+      "n": 40,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "20598142",
+      "title": "Daily egg consumption in hyperlipidemic adults--effects on endothelial function and cardiovascular risk",
+      "year": 2010,
+      "n": 40,
+      "inReviews": [
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "16988120",
+      "title": "Consumption of one egg per day increases serum lutein and zeaxanthin concentrations in older adults without altering serum lipid and lipoprotein cholesterol concentrations",
+      "year": 2006,
+      "n": 33,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "25497262",
+      "title": "Effects of egg ingestion on endothelial function in adults with coronary artery disease: a randomized, controlled, crossover trial",
+      "year": 2015,
+      "n": 32,
+      "inReviews": [
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "25456153",
+      "title": "Effects of lutein-enriched egg yolk in buttermilk or skimmed milk on serum lipids & lipoproteins of mildly hypercholesterolemic subjects",
+      "year": 2015,
+      "n": 25,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "18726564",
+      "title": "Increased dietary cholesterol does not increase plasma low density lipoprotein when accompanied by an energy-restricted diet and weight loss",
+      "year": 2008,
+      "n": 24,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "15648400",
+      "title": "The effect of ingestion of egg on the serum lipid profile of healthy young Indians",
+      "year": 2004,
+      "n": 22,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "17374661",
+      "title": "Change in plasma lutein after egg consumption is positively associated with plasma cholesterol and lipoprotein size but negatively correlated with body size in postmenopausal women",
+      "year": 2007,
+      "n": 22,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "23021013",
+      "title": "Whole egg consumption improves lipoprotein profiles and insulin sensitivity to a greater extent than yolk-free egg substitute in individuals with metabolic syndrome",
+      "year": 2013,
+      "n": 20,
+      "inReviews": [
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "7749822",
+      "title": "Increases in dietary cholesterol are associated with modest increases in both LDL and HDL cholesterol in healthy young women",
+      "year": 1995,
+      "n": 13,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "12683227",
+      "title": "The effect of ingestion of egg on serum lipid profile in healthy young free-living subjects",
+      "year": 2002,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "18203890",
+      "title": "Dietary cholesterol from eggs increases plasma HDL cholesterol in overweight men consuming a carbohydrate-restricted diet",
+      "year": 2008,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "15721501",
+      "title": "Egg consumption and endothelial function: a randomized controlled crossover trial",
+      "year": 2005,
+      "inReviews": [
+       "32635569",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "8148356",
+      "title": "A dose-response study of the effects of dietary cholesterol on fasting and postprandial lipid and lipoprotein metabolism in healthy young men",
+      "year": 1994,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "6142348",
+      "title": "Ingestion of egg raises plasma low density lipoproteins in free-living subjects",
+      "year": 1984,
+      "inReviews": [
+       "32635569",
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "25970149",
+      "title": "One Egg per Day Improves Inflammation when Compared to an Oatmeal-Based Breakfast without Increasing Other Cardiometabolic Risk Factors in Diabetic Patients",
+      "year": 2015,
+      "inReviews": [
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "21134328",
+      "title": "Egg consumption as part of an energy-restricted high-protein diet improves blood lipid and blood glucose profiles in individuals with type 2 diabetes",
+      "year": 2011,
+      "inReviews": [
+       "32524644",
+       "31076323"
+      ]
+     },
+     {
+      "pmid": "12816878",
+      "title": "Effects of insulin resistance and obesity on lipoproteins and sensitivity to egg feeding",
+      "year": 2003,
+      "n": 197,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "18679412",
+      "title": "Egg breakfast enhances weight loss",
+      "year": 2008,
+      "n": 152,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "9430083",
+      "title": "A double-blind, randomized, controlled trial of the effects of two eggs per day in moderately hypercholesterolemic and combined hyperlipidemic subjects taught the NCEP step I diet",
+      "year": 1997,
+      "n": 131,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "24991045",
+      "title": "Consuming a buttermilk drink containing lutein-enriched egg yolk daily for 1 year increased plasma lutein but did not affect serum lipid or lipoprotein concentrations in adults with early signs of age-related macular degeneration",
+      "year": 2014,
+      "n": 101,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "30073224",
+      "title": "Egg consumption may improve factors associated with glycemic control and insulin sensitivity in adults with pre- and type II diabetes",
+      "year": 2018,
+      "n": 42,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "15447890",
+      "title": "Dietary cholesterol does not increase biomarkers for chronic disease in a pediatric population from northern Mexico",
+      "year": 2004,
+      "n": 36,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "30205602",
+      "title": "Dietary Cholesterol Contained in Whole Eggs Is Not Well Absorbed and Does Not Acutely Affect Plasma Total Cholesterol Concentration in Men and Women: Results from 2 Randomized Controlled Crossover Studies",
+      "year": 2018,
+      "n": 17,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "7293937",
+      "title": "Does egg feeding (i.e., dietary cholesterol) affect plasma cholesterol levels in humans? The results of a double-blind study",
+      "year": 1981,
+      "n": 16,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "30041437",
+      "title": "Effects of a High-Protein Diet Including Whole Eggs on Muscle Composition and Indices of Cardiometabolic Health and Systemic Inflammation in Older Adults with Overweight or Obesity: A Randomized Controlled Trial",
+      "year": 2018,
+      "n": 12,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "11528488",
+      "title": "Effects of palm oil and dietary cholesterol on plasma lipoproteins: results from a dietary crossover trial in free-living subjects",
+      "year": 2001,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "29495288",
+      "title": "Intake of 3 Eggs per Day When Compared to a Choline Bitartrate Supplement, Downregulates Cholesterol Synthesis without Changing the LDL/HDL Ratio",
+      "year": 2018,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "28146063",
+      "title": "Consuming Two Eggs per Day, as Compared to an Oatmeal Breakfast, Decreases Plasma Ghrelin while Maintaining the LDL/HDL Ratio",
+      "year": 2017,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "1432254",
+      "title": "Modified eggs are compatible with a diet that reduces serum cholesterol concentrations in humans",
+      "year": 1992,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "29313753",
+      "title": "Compared to an Oatmeal Breakfast, Two Eggs/Day Increased Plasma Carotenoids and Choline without Increasing Trimethyl Amine N-Oxide Concentrations",
+      "year": 2018,
+      "inReviews": [
+       "32635569"
+      ]
+     },
+     {
+      "pmid": "24673793",
+      "title": "Effects of supplementing n-3 fatty acid enriched eggs and walnuts on cardiovascular disease risk markers in healthy free-living lacto-ovo-vegetarians: a randomized, crossover, free-living intervention study",
+      "year": 2014,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "8901790",
+      "title": "Effects of shrimp consumption on plasma lipoproteins",
+      "year": 1996,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "3028545",
+      "title": "Effect of dietary cholesterol on plasma cholesterol concentration in subjects following reduced fat, high fibre diet",
+      "year": 1987,
+      "inReviews": [
+       "32524644"
+      ]
+     },
+     {
+      "pmid": "19369056",
+      "title": "Eggs distinctly modulate plasma carotenoid and lipoprotein subclasses in adult men following a carbohydrate-restricted diet",
+      "year": 2010,
+      "inReviews": [
+       "32524644"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 1981,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1984,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1986,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 1992,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1993,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 1995,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2001,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2002,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2003,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2008,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 5
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2018,
+     "reviews": 1,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 3
+    },
+    {
+     "year": 2022,
+     "reviews": 4,
+     "trials": 2
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [
+    {
+     "pmid": "31965140",
+     "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+     "year": 2020,
+     "n": 177000
+    }
+   ],
+   "page": {
+    "alsoChosen": [
+     "32635569"
+    ],
+    "citedNotChosen": [
+     "29111915",
+     "30596814",
+     "12672915",
+     "12074253",
+     "31838890"
+    ],
+    "citedNotEligible": [
+     "30596814",
+     "12672915",
+     "12074253",
+     "31838890"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "32524644",
+      "doi": "10.1111/jfbc.13263",
+      "title": "The responses of different dosages of egg consumption on blood lipid profile: An updated systematic review and meta-analysis of randomized clinical trials",
+      "year": 2020,
+      "firstAuthor": "Khalighi Sikaroudi M",
+      "journal": "Journal of food biochemistry",
+      "citedBy": 16,
+      "n": 3185,
+      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     },
+     {
+      "pmid": "31076323",
+      "doi": "10.1016/j.numecd.2019.04.004",
+      "title": "Impact of whole egg intake on blood pressure, lipids and lipoproteins in middle-aged and older population: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "firstAuthor": "Wang MX",
+      "journal": "Nutrition, metabolism, and cardiovascular diseases : NMCD",
+      "citedBy": 26,
+      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     },
+     {
+      "pmid": "31965140",
+      "doi": "10.1093/ajcn/nqz348",
+      "title": "Association of egg intake with blood lipids, cardiovascular disease, and mortality in 177,000 people in 50 countries",
+      "year": 2020,
+      "firstAuthor": "Dehghan M",
+      "journal": "The American journal of clinical nutrition",
+      "citedBy": 76,
+      "n": 177000,
+      "why": "A large trial (about 177,000 people) from 2020, as new as the newest review or newer"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Eggs (or extra eggs) in the diet",
+     "comparison": "Fewer or no eggs, or an egg substitute",
+     "outcome": "LDL or HDL cholesterol"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 4,
+     "partly": 1,
+     "no": 4,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "35360933",
+      "title": "Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis",
+      "year": 2022,
+      "fits": "no",
+      "reason": "This review looks at eggs and dietary cholesterol in relation to death rates, not LDL or HDL cholesterol."
+     },
+     {
+      "pmid": "35711545",
+      "title": "Egg and Dietary Cholesterol Intake and Risk of All-Cause, Cardiovascular, and Cancer Mortality: A Systematic Review and Dose-Response Meta-Analysis of Prospective Cohort Studies",
+      "year": 2022,
+      "fits": "no",
+      "reason": "This review pools cohort studies of egg intake and death rates; LDL and HDL cholesterol are not outcomes."
+     },
+     {
+      "pmid": "36469594",
+      "title": "Letter by Song et al Regarding Article, \"Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis\"",
+      "year": 2022,
+      "fits": "no",
+      "reason": "This is a letter about a mortality meta-analysis, not a systematic review of eggs and LDL or HDL."
+     },
+     {
+      "pmid": "36469598",
+      "title": "Response by Zhao et al to Letter Regarding Article, \"Associations of Dietary Cholesterol, Serum Cholesterol, and Egg Consumption With Overall and Cause-Specific Mortality: Systematic Review and Updated Meta-Analysis\"",
+      "year": 2022,
+      "fits": "no",
+      "reason": "This is an author's reply to a letter about a mortality meta-analysis, not a systematic review of eggs and LDL or HDL."
+     },
+     {
+      "pmid": "11333841",
+      "title": "Dietary cholesterol from eggs increases the ratio of total cholesterol to high-density lipoprotein cholesterol in humans: a meta-analysis",
+      "year": 2001,
+      "fits": "partly",
+      "reason": "Results are pooled per 100 mg of dietary cholesterol (from eggs or other sources), not eggs on their own, and LDL is not reported."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes-heart",
+   "label": "With diabetes",
+   "finding": "Heart disease in people with type 2 diabetes",
+   "counts": {
+    "all": 321,
+    "reviews": 6,
+    "trialReviews": 6,
+    "trials": 6,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "23676423",
+     "doi": "10.3945/ajcn.112.051318",
+     "title": "Egg consumption in relation to risk of cardiovascular disease and diabetes: a systematic review and meta-analysis",
+     "year": 2013,
+     "firstAuthor": "Shin JY",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 189,
+     "why": "One of the newest meta-analyses on this finding (2013); screened as answering the question"
+    },
+    {
+     "pmid": "23643053",
+     "doi": "10.1016/j.atherosclerosis.2013.04.003",
+     "title": "Egg consumption and risk of cardiovascular diseases and diabetes: a meta-analysis",
+     "year": 2013,
+     "firstAuthor": "Li Y",
+     "journal": "Atherosclerosis",
+     "citedBy": 86,
+     "n": 320778,
+     "why": "One of the newest meta-analyses on this finding (2013); screened as answering the question"
+    },
+    {
+     "pmid": "28359773",
+     "doi": "10.1016/j.jcjd.2016.12.002",
+     "title": "Impact of Egg Consumption on Cardiovascular Risk Factors in Individuals with Type 2 Diabetes and at Risk for Developing Diabetes: A Systematic Review of Randomized Nutritional Intervention Studies",
+     "year": 2017,
+     "firstAuthor": "Richard C",
+     "journal": "Canadian journal of diabetes",
+     "citedBy": 36,
+     "why": "One of the newest systematic reviews on this finding (2017); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.14705882352941177,
+    "trials": 17,
+    "inclusions": 22,
+    "reviews": [
+     {
+      "pmid": "23676423",
+      "trials": 10
+     },
+     {
+      "pmid": "23643053",
+      "trials": 2
+     },
+     {
+      "pmid": "28359773",
+      "trials": 10
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "21134328",
+      "title": "Egg consumption as part of an energy-restricted high-protein diet improves blood lipid and blood glucose profiles in individuals with type 2 diabetes",
+      "year": 2011,
+      "inReviews": [
+       "23676423",
+       "23643053",
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "20598142",
+      "title": "Daily egg consumption in hyperlipidemic adults--effects on endothelial function and cardiovascular risk",
+      "year": 2010,
+      "n": 40,
+      "inReviews": [
+       "23676423",
+       "23643053"
+      ]
+     },
+     {
+      "pmid": "19410978",
+      "title": "Carbohydrate restriction (with or without additional dietary cholesterol provided by eggs) reduces insulin resistance and plasma leptin without modifying appetite hormones in adult men",
+      "year": 2009,
+      "inReviews": [
+       "23676423",
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "18203890",
+      "title": "Dietary cholesterol from eggs increases plasma HDL cholesterol in overweight men consuming a carbohydrate-restricted diet",
+      "year": 2008,
+      "inReviews": [
+       "23676423",
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "12816878",
+      "title": "Effects of insulin resistance and obesity on lipoproteins and sensitivity to egg feeding",
+      "year": 2003,
+      "n": 197,
+      "inReviews": [
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "25833969",
+      "title": "The effect of a high-egg diet on cardiovascular risk factors in people with type 2 diabetes: the Diabetes and Egg (DIABEGG) study-a 3-mo randomized controlled trial",
+      "year": 2015,
+      "n": 140,
+      "inReviews": [
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "12074253",
+      "title": "Pre-menopausal women, classified as hypo- or hyperresponders, do not alter their LDL/HDL ratio following a high dietary cholesterol challenge",
+      "year": 2002,
+      "n": 51,
+      "inReviews": [
+       "23676423"
+      ]
+     },
+     {
+      "pmid": "16317122",
+      "title": "Maintenance of the LDL cholesterol:HDL cholesterol ratio in an elderly population given a dietary cholesterol challenge",
+      "year": 2005,
+      "n": 42,
+      "inReviews": [
+       "23676423"
+      ]
+     },
+     {
+      "pmid": "12672915",
+      "title": "Men classified as hypo- or hyperresponders to dietary cholesterol feeding exhibit differences in lipoprotein metabolism",
+      "year": 2003,
+      "n": 40,
+      "inReviews": [
+       "23676423"
+      ]
+     },
+     {
+      "pmid": "16988120",
+      "title": "Consumption of one egg per day increases serum lutein and zeaxanthin concentrations in older adults without altering serum lipid and lipoprotein cholesterol concentrations",
+      "year": 2006,
+      "n": 33,
+      "inReviews": [
+       "23676423"
+      ]
+     },
+     {
+      "pmid": "24079288",
+      "title": "Effects of carbohydrate restriction and dietary cholesterol provided by eggs on clinical risk factors in metabolic syndrome",
+      "year": 2013,
+      "n": 25,
+      "inReviews": [
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "23021013",
+      "title": "Whole egg consumption improves lipoprotein profiles and insulin sensitivity to a greater extent than yolk-free egg substitute in individuals with metabolic syndrome",
+      "year": 2013,
+      "n": 20,
+      "inReviews": [
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "15721501",
+      "title": "Egg consumption and endothelial function: a randomized controlled crossover trial",
+      "year": 2005,
+      "inReviews": [
+       "23676423"
+      ]
+     },
+     {
+      "pmid": "6142348",
+      "title": "Ingestion of egg raises plasma low density lipoproteins in free-living subjects",
+      "year": 1984,
+      "inReviews": [
+       "23676423"
+      ]
+     },
+     {
+      "pmid": "19369056",
+      "title": "Eggs distinctly modulate plasma carotenoid and lipoprotein subclasses in adult men following a carbohydrate-restricted diet",
+      "year": 2010,
+      "inReviews": [
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "25970149",
+      "title": "One Egg per Day Improves Inflammation when Compared to an Oatmeal-Based Breakfast without Increasing Other Cardiometabolic Risk Factors in Diabetic Patients",
+      "year": 2015,
+      "inReviews": [
+       "28359773"
+      ]
+     },
+     {
+      "pmid": "24944063",
+      "title": "Effect of egg ingestion on trimethylamine-N-oxide production in humans: a randomized, controlled, dose-response study",
+      "year": 2014,
+      "inReviews": [
+       "28359773"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2014,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "23676423",
+     "28359773"
+    ],
+    "citedNotChosen": [
+     "32132002",
+     "25833969",
+     "29741558"
+    ],
+    "citedNotEligible": [
+     "32132002",
+     "25833969",
+     "29741558"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "23643053",
+      "doi": "10.1016/j.atherosclerosis.2013.04.003",
+      "title": "Egg consumption and risk of cardiovascular diseases and diabetes: a meta-analysis",
+      "year": 2013,
+      "firstAuthor": "Li Y",
+      "journal": "Atherosclerosis",
+      "citedBy": 86,
+      "n": 320778,
+      "why": "One of the newest meta-analyses on this finding (2013); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "People with type 2 diabetes",
+     "intervention": "Eating more eggs",
+     "comparison": "Eating fewer eggs",
+     "outcome": "Heart disease, or heart risk factors such as cholesterol"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 4,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "33932789",
+      "title": "Egg consumption, overall diet quality, and risk of type 2 diabetes and coronary heart disease: A pooling project of US prospective cohorts",
+      "year": 2021,
+      "fits": "partly",
+      "reason": "Pooled cohorts of egg intake and coronary heart disease, but in general adults with no separate analysis of people with type 2 diabetes."
+     },
+     {
+      "pmid": "32453379",
+      "title": "Egg consumption and risk of type 2 diabetes: findings from 3 large US cohort studies of men and women and a systematic review and meta-analysis of prospective cohort studies",
+      "year": 2020,
+      "fits": "no",
+      "reason": "Looks at egg intake and the risk of getting type 2 diabetes, not heart outcomes in people who already have it."
+     }
+    ]
+   }
+  },
+  {
+   "id": "lutein",
+   "label": "Lutein and the eye",
+   "finding": "Lutein in the blood and macular pigment in the eye",
+   "counts": {
+    "all": 589,
+    "reviews": 1,
+    "trialReviews": 1,
+    "trials": 18,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33491232",
+     "doi": "10.1002/jsfa.11109",
+     "title": "A positive effect of egg consumption on macular pigment and healthy vision: a systematic review and meta-analysis of clinical trials",
+     "year": 2021,
+     "firstAuthor": "Khalighi Sikaroudi M",
+     "journal": "Journal of the science of food and agriculture",
+     "citedBy": 12,
+     "n": 296,
+     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2006,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2007,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "33491232"
+    ],
+    "citedNotChosen": [
+     "16988128",
+     "19759170",
+     "24675775",
+     "34684356",
+     "15284371"
+    ],
+    "citedNotEligible": [
+     "16988128",
+     "19759170",
+     "24675775",
+     "34684356",
+     "15284371"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Eggs or egg yolks",
+     "comparison": "Fewer or no eggs",
+     "outcome": "Lutein or zeaxanthin in the blood, or macular pigment"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "tmao",
+   "label": "TMAO",
+   "finding": "TMAO, a gut-bacteria product of choline, in the blood",
+   "counts": {
+    "all": 637,
+    "reviews": 1,
+    "trialReviews": 1,
+    "trials": 13,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41146117",
+     "doi": "10.1186/s12937-025-01227-0",
+     "title": "Effect of egg consumption on circulating choline, betaine, and trimethylamine n-oxide in adults: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2025,
+     "firstAuthor": "Aryaeian N",
+     "journal": "Nutrition journal",
+     "citedBy": 2,
+     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "41146117"
+    ],
+    "citedNotChosen": [
+     "33872583",
+     "24944063"
+    ],
+    "citedNotEligible": [
+     "33872583",
+     "24944063"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Eggs",
+     "comparison": "Fewer or no eggs, or choline supplements",
+     "outcome": "TMAO or choline in the blood"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 1,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  }
+ ]
+}

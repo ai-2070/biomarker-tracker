@@ -1,0 +1,977 @@
+{
+ "topic": "wholefood-kiwi",
+ "kind": "wholefood",
+ "wholeFoodId": "kiwi",
+ "name": "kiwifruit",
+ "builtAt": "2026-10-30",
+ "fetchedAt": "2026-10-30",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "constipation": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:constipation OR TITLE_ABS:\"bowel movements\" OR TITLE_ABS:\"bowel function\" OR TITLE_ABS:laxation OR TITLE_ABS:defecation)) AND SRC:MED",
+  "blood-pressure": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:\"blood pressure\" OR TITLE_ABS:hypertension OR TITLE_ABS:hypertensive)) AND SRC:MED",
+  "lipids": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:cholesterol OR TITLE_ABS:\"lipid profile\" OR TITLE_ABS:lipids OR TITLE_ABS:triglycerides OR TITLE_ABS:LDL OR TITLE_ABS:HDL)) AND SRC:MED",
+  "sugar": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:insulin OR TITLE_ABS:glucose OR TITLE_ABS:glycemic OR TITLE_ABS:glycaemic OR TITLE_ABS:HbA1c OR TITLE_ABS:\"insulin resistance\")) AND SRC:MED",
+  "vitamin-c": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:\"vitamin C\" OR TITLE_ABS:\"ascorbic acid\" OR TITLE_ABS:ascorbate)) AND SRC:MED",
+  "mood": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:mood OR TITLE_ABS:vitality OR TITLE_ABS:fatigue OR TITLE_ABS:depression OR TITLE_ABS:psychological OR TITLE_ABS:wellbeing OR TITLE_ABS:\"well-being\")) AND SRC:MED",
+  "sleep": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:sleep OR TITLE_ABS:insomnia)) AND SRC:MED",
+  "iron": "((TITLE_ABS:kiwifruit OR TITLE_ABS:\"kiwi fruit\" OR TITLE_ABS:kiwi OR TITLE_ABS:Actinidia) AND (TITLE_ABS:iron OR TITLE_ABS:ferritin OR TITLE_ABS:anaemia OR TITLE_ABS:anemia)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating kiwifruit comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 577,
+  "retrieved": 48,
+  "animal": 0,
+  "retracted": 0,
+  "reviews": 10,
+  "trials": 36,
+  "guidelines": 2
+ },
+ "guidelines": [
+  {
+   "pmid": "41081381",
+   "doi": "10.1111/nmo.70173",
+   "title": "British Dietetic Association Guidelines for the Dietary Management of Chronic Constipation in Adults",
+   "year": 2025,
+   "journal": "Neurogastroenterology and motility",
+   "citedBy": 2,
+   "why": "One of the newest guidelines the findings' searches found"
+  },
+  {
+   "pmid": "41081513",
+   "doi": "10.1111/jhn.70133",
+   "title": "British Dietetic Association Guidelines for the Dietary Management of Chronic Constipation in Adults",
+   "year": 2025,
+   "journal": "Journal of human nutrition and dietetics : the official journal of the British Dietetic Association",
+   "citedBy": 17,
+   "why": "One of the newest guidelines the findings' searches found"
+  }
+ ],
+ "outcomes": [
+  {
+   "id": "constipation",
+   "label": "Constipation",
+   "finding": "Constipation (bowel movements)",
+   "counts": {
+    "all": 44,
+    "reviews": 3,
+    "trialReviews": 3,
+    "trials": 7,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "37905980",
+     "doi": "10.1111/apt.17782",
+     "title": "Systematic review and meta-analysis: Foods, drinks and diets and their effect on chronic constipation in adults",
+     "year": 2024,
+     "firstAuthor": "Van Der Schoot A",
+     "journal": "Alimentary pharmacology & therapeutics",
+     "citedBy": 25,
+     "n": 1714,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "36247043",
+     "doi": "10.1155/2022/7596920",
+     "title": "Kiwifruit and Kiwifruit Extracts for Treatment of Constipation: A Systematic Review and Meta-Analysis",
+     "year": 2022,
+     "firstAuthor": "Eltorki M",
+     "journal": "Canadian journal of gastroenterology & hepatology",
+     "citedBy": 7,
+     "n": 399,
+     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3333333333333333,
+    "trials": 9,
+    "inclusions": 12,
+    "reviews": [
+     {
+      "pmid": "37905980",
+      "trials": 5
+     },
+     {
+      "pmid": "36247043",
+      "trials": 7
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "34074830",
+      "title": "Exploratory Comparative Effectiveness Trial of Green Kiwifruit, Psyllium, or Prunes in US Patients With Chronic Constipation",
+      "year": 2021,
+      "n": 75,
+      "inReviews": [
+       "37905980",
+       "36247043"
+      ]
+     },
+     {
+      "pmid": "31080591",
+      "title": "The effect of 'Zesy002' kiwifruit (Actinidia chinensis var. chinensis) on gut health function: a randomised cross-over clinical trial",
+      "year": 2019,
+      "inReviews": [
+       "37905980",
+       "36247043"
+      ]
+     },
+     {
+      "pmid": "30706488",
+      "title": "Mechanisms underlying effects of kiwifruit on intestinal function shown by MRI in healthy volunteers",
+      "year": 2019,
+      "inReviews": [
+       "37905980",
+       "36247043"
+      ]
+     },
+     {
+      "pmid": "36537785",
+      "title": "Consumption of 2 Green Kiwifruits Daily Improves Constipation and Abdominal Comfort-Results of an International Multicenter Randomized Controlled Trial",
+      "year": 2023,
+      "n": 63,
+      "inReviews": [
+       "37905980"
+      ]
+     },
+     {
+      "pmid": "23758673",
+      "title": "Effects of Kivia powder on gut health in patients with occasional constipation: a randomized, double-blind, placebo-controlled study",
+      "year": 2013,
+      "n": 44,
+      "inReviews": [
+       "36247043"
+      ]
+     },
+     {
+      "pmid": "36235798",
+      "title": "Two Gold Kiwifruit Daily for Effective Treatment of Constipation in Adults-A Randomized Clinical Trial",
+      "year": 2022,
+      "n": 32,
+      "inReviews": [
+       "37905980"
+      ]
+     },
+     {
+      "pmid": "25931419",
+      "title": "Kiwifruit-derived supplements increase stool frequency in healthy adults: a randomized, double-blind, placebo-controlled study",
+      "year": 2015,
+      "n": 19,
+      "inReviews": [
+       "36247043"
+      ]
+     },
+     {
+      "pmid": "26420182",
+      "title": "Encapsulated green kiwifruit extract: a randomised controlled trial investigating alleviation of constipation in otherwise healthy adults",
+      "year": 2015,
+      "inReviews": [
+       "36247043"
+      ]
+     },
+     {
+      "pmid": "29737803",
+      "title": "Efficacy of actinidin-containing kiwifruit extract Zyactinase on constipation: a randomised double-blinded placebo-controlled clinical trial",
+      "year": 2018,
+      "inReviews": [
+       "36247043"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2023,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "37905980",
+     "36247043"
+    ],
+    "citedNotChosen": [
+     "41081381",
+     "36537785",
+     "34074830",
+     "36235798",
+     "37243443",
+     "34136006"
+    ],
+    "citedNotEligible": [
+     "41081381",
+     "36537785",
+     "34074830",
+     "36235798",
+     "34136006"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with constipation",
+     "intervention": "Kiwifruit (whole fruit; powders and extracts count as partly)",
+     "comparison": "Placebo, psyllium, prunes or usual diet",
+     "outcome": "Bowel movements a week, stool consistency or symptoms"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "37243443",
+      "title": "The effect of food, vitamin, or mineral supplements on chronic constipation in adults: A systematic review and meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "fits": "partly",
+      "reason": "Adults with chronic constipation and kiwifruit outcomes match, but only kiwifruit supplements were pooled; whole kiwifruit studies were excluded."
+     }
+    ]
+   }
+  },
+  {
+   "id": "blood-pressure",
+   "label": "Blood pressure",
+   "finding": "Blood pressure",
+   "counts": {
+    "all": 20,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "42657351",
+     "doi": "10.1002/hsr2.73126",
+     "title": "Effects of Kiwifruit Consumption on Blood Pressure in Adults: A Systematic Review and Meta-Analysis",
+     "year": 2026,
+     "firstAuthor": "Mohammadi SG",
+     "journal": "Health science reports",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+    },
+    {
+     "pmid": "30774402",
+     "doi": "10.2147/dmso.s193225",
+     "title": "Effect of kiwifruit on metabolic health in patients with cardiovascular risk factors: a systematic review and meta-analysis",
+     "year": 2019,
+     "firstAuthor": "Suksomboon N",
+     "journal": "Diabetes, metabolic syndrome and obesity : targets and therapy",
+     "citedBy": 7,
+     "n": 489,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.3333333333333333,
+    "trials": 12,
+    "inclusions": 16,
+    "reviews": [
+     {
+      "pmid": "42657351",
+      "trials": 7
+     },
+     {
+      "pmid": "30774402",
+      "trials": 9
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "25483553",
+      "title": "The effect of kiwifruit consumption on blood pressure in subjects with moderately elevated blood pressure: a randomized, controlled study",
+      "year": 2015,
+      "n": 118,
+      "inReviews": [
+       "42657351",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "22258209",
+      "title": "Kiwifruit decreases blood pressure and whole-blood platelet aggregation in male smokers",
+      "year": 2013,
+      "n": 102,
+      "inReviews": [
+       "42657351",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "24655490",
+      "title": "Daily kiwifruit consumption did not improve blood pressure and markers of cardiovascular function in men with hypercholesterolemia",
+      "year": 2014,
+      "n": 85,
+      "inReviews": [
+       "42657351",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "23151354",
+      "title": "Kiwifruit consumption favourably affects plasma lipids in a randomised controlled trial in hypercholesterolaemic men",
+      "year": 2013,
+      "inReviews": [
+       "42657351",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "23758673",
+      "title": "Effects of Kivia powder on gut health in patients with occasional constipation: a randomized, double-blind, placebo-controlled study",
+      "year": 2013,
+      "n": 44,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "35807858",
+      "title": "Metabolic and Blood Pressure Effects of Consuming Two Kiwifruit Daily for 7 Weeks: A Randomised Controlled Trial",
+      "year": 2022,
+      "n": 22,
+      "inReviews": [
+       "42657351"
+      ]
+     },
+     {
+      "pmid": "29084137",
+      "title": "Kiwifruit Non-Sugar Components Reduce Glycaemic Response to Co-Ingested Cereal in Humans",
+      "year": 2017,
+      "n": 20,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "22172428",
+      "title": "Consumption of gold kiwifruit reduces severity and duration of selected upper respiratory tract infection symptoms and increases plasma vitamin C concentration in healthy older adults",
+      "year": 2012,
+      "inReviews": [
+       "42657351"
+      ]
+     },
+     {
+      "pmid": "30126094",
+      "title": "Postprandial Glycaemic, Hormonal and Satiety Responses to Rice and Kiwifruit Preloads in Chinese Adults: A Randomised Controlled Crossover Trial",
+      "year": 2018,
+      "inReviews": [
+       "42657351"
+      ]
+     },
+     {
+      "pmid": "15370099",
+      "title": "Effects of kiwi fruit consumption on platelet aggregation and plasma lipids in healthy human volunteers",
+      "year": 2004,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "24099724",
+      "title": "Inflammatory status modulates plasma lipid and inflammatory marker responses to kiwifruit consumption in hypercholesterolaemic men",
+      "year": 2014,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "24176024",
+      "title": "TaqIB polymorphism in the cholesteryl ester transfer protein (CETP) gene influences lipid responses to the consumption of kiwifruit in hypercholesterolaemic men",
+      "year": 2014,
+      "inReviews": [
+       "30774402"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "42657351",
+     "30774402"
+    ],
+    "citedNotChosen": [
+     "25483553",
+     "22258209",
+     "35807858"
+    ],
+    "citedNotEligible": [
+     "25483553",
+     "22258209",
+     "35807858"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Kiwifruit (whole fruit)",
+     "comparison": "Usual diet or another fruit",
+     "outcome": "Blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "lipids",
+   "label": "Blood fats",
+   "finding": "Blood fats (LDL cholesterol and triglycerides)",
+   "counts": {
+    "all": 54,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "39479621",
+     "doi": "10.1002/fsn3.4385",
+     "title": "The effects of kiwifruit consumption on anthropometric and cardiometabolic indices in adults: A systematic review and meta-analysis",
+     "year": 2024,
+     "firstAuthor": "Pam P",
+     "journal": "Food science & nutrition",
+     "citedBy": 0,
+     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+    },
+    {
+     "pmid": "30774402",
+     "doi": "10.2147/dmso.s193225",
+     "title": "Effect of kiwifruit on metabolic health in patients with cardiovascular risk factors: a systematic review and meta-analysis",
+     "year": 2019,
+     "firstAuthor": "Suksomboon N",
+     "journal": "Diabetes, metabolic syndrome and obesity : targets and therapy",
+     "citedBy": 7,
+     "n": 489,
+     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "overlap": {
+    "cca": 0.4,
+    "trials": 10,
+    "inclusions": 14,
+    "reviews": [
+     {
+      "pmid": "39479621",
+      "trials": 5
+     },
+     {
+      "pmid": "30774402",
+      "trials": 9
+     }
+    ],
+    "reviewsWithoutReferences": [],
+    "shared": [
+     {
+      "pmid": "25483553",
+      "title": "The effect of kiwifruit consumption on blood pressure in subjects with moderately elevated blood pressure: a randomized, controlled study",
+      "year": 2015,
+      "n": 118,
+      "inReviews": [
+       "39479621",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "15370099",
+      "title": "Effects of kiwi fruit consumption on platelet aggregation and plasma lipids in healthy human volunteers",
+      "year": 2004,
+      "inReviews": [
+       "39479621",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "24099724",
+      "title": "Inflammatory status modulates plasma lipid and inflammatory marker responses to kiwifruit consumption in hypercholesterolaemic men",
+      "year": 2014,
+      "inReviews": [
+       "39479621",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "23151354",
+      "title": "Kiwifruit consumption favourably affects plasma lipids in a randomised controlled trial in hypercholesterolaemic men",
+      "year": 2013,
+      "inReviews": [
+       "39479621",
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "22258209",
+      "title": "Kiwifruit decreases blood pressure and whole-blood platelet aggregation in male smokers",
+      "year": 2013,
+      "n": 102,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "24655490",
+      "title": "Daily kiwifruit consumption did not improve blood pressure and markers of cardiovascular function in men with hypercholesterolemia",
+      "year": 2014,
+      "n": 85,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "23758673",
+      "title": "Effects of Kivia powder on gut health in patients with occasional constipation: a randomized, double-blind, placebo-controlled study",
+      "year": 2013,
+      "n": 44,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "29084137",
+      "title": "Kiwifruit Non-Sugar Components Reduce Glycaemic Response to Co-Ingested Cereal in Humans",
+      "year": 2017,
+      "n": 20,
+      "inReviews": [
+       "30774402"
+      ]
+     },
+     {
+      "pmid": "35956366",
+      "title": "Dietary Fibre and Organic Acids in Kiwifruit Suppress Glycaemic Response Equally by Delaying Absorption-A Randomised Crossover Human Trial with Parallel Analysis of 13C-Acetate Uptake",
+      "year": 2022,
+      "inReviews": [
+       "39479621"
+      ]
+     },
+     {
+      "pmid": "24176024",
+      "title": "TaqIB polymorphism in the cholesteryl ester transfer protein (CETP) gene influences lipid responses to the consumption of kiwifruit in hypercholesterolaemic men",
+      "year": 2014,
+      "inReviews": [
+       "30774402"
+      ]
+     }
+    ]
+   },
+   "timeline": [
+    {
+     "year": 2004,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "39479621",
+     "30774402"
+    ],
+    "citedNotChosen": [
+     "15370099",
+     "35807858",
+     "38231672"
+    ],
+    "citedNotEligible": [
+     "15370099",
+     "35807858",
+     "38231672"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Kiwifruit (whole fruit)",
+     "comparison": "Usual diet or another fruit",
+     "outcome": "LDL cholesterol or triglycerides"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 2,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "sugar",
+   "label": "Blood sugar",
+   "finding": "Blood sugar after a starchy meal",
+   "counts": {
+    "all": 131,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 4,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2024,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "30126094",
+     "35956366",
+     "29084137",
+     "35807858",
+     "39479621"
+    ],
+    "citedNotEligible": [
+     "30126094",
+     "35956366",
+     "29084137",
+     "35807858"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
+     "intervention": "Kiwifruit eaten with or before a starchy meal",
+     "comparison": "The same meal without kiwifruit, or another fruit",
+     "outcome": "Blood sugar after the meal"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-10-30",
+    "counts": {
+     "yes": 0,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "39479621",
+      "title": "The effects of kiwifruit consumption on anthropometric and cardiometabolic indices in adults: A systematic review and meta-analysis",
+      "year": 2024,
+      "fits": "no",
+      "reason": "Long-term kiwifruit intake in adults, measuring fasting glucose and other cardiometabolic markers, not blood sugar after a starchy meal eaten with kiwifruit."
+     },
+     {
+      "pmid": "30774402",
+      "title": "Effect of kiwifruit on metabolic health in patients with cardiovascular risk factors: a systematic review and meta-analysis",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Whole kiwifruit in adults with cardiovascular risk factors, with 2-hour post-meal glucose as an eligible outcome, but the trials test long-term intake, not kiwifruit eaten with a starchy meal."
+     }
+    ]
+   }
+  },
+  {
+   "id": "vitamin-c",
+   "label": "Vitamin C",
+   "finding": "Vitamin C in the blood",
+   "counts": {
+    "all": 337,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 6,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2012,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "25191543",
+     "32971991",
+     "38539806"
+    ],
+    "citedNotEligible": [
+     "25191543",
+     "32971991",
+     "38539806"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "mood",
+   "label": "Mood",
+   "finding": "Mood and vitality",
+   "counts": {
+    "all": 44,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 3,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2020,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "32971991",
+     "36235715",
+     "38073290",
+     "40284237"
+    ],
+    "citedNotEligible": [
+     "32971991",
+     "36235715",
+     "38073290",
+     "40284237"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "sleep",
+   "label": "Sleep",
+   "finding": "Sleep",
+   "counts": {
+    "all": 20,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2025,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "21669584",
+     "37242157"
+    ],
+    "citedNotEligible": [
+     "21669584",
+     "37242157"
+    ],
+    "chosenNotCited": []
+   }
+  },
+  {
+   "id": "iron",
+   "label": "Iron",
+   "finding": "Iron status with an iron-fortified breakfast",
+   "counts": {
+    "all": 29,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 2,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2010,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2011,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "20727238"
+    ],
+    "citedNotEligible": [
+     "20727238"
+    ],
+    "chosenNotCited": []
+   }
+  }
+ ]
+}
