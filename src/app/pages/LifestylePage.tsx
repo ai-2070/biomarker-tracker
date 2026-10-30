@@ -19,6 +19,7 @@ import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from ".
 import { BIOMARKER_MAP, LIFESTYLE, LIFESTYLE_MAP } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
+import { ClockNote } from "../components/ClockEvidence";
 
 const CATEGORY_LABEL: Record<LifestyleCategory, string> = {
   movement: "Movement",
@@ -204,6 +205,8 @@ export function LifestyleItemPage({ id }: { id: string }) {
             intro="Outcome by outcome, strongest evidence first. Many lifestyle studies follow people over years rather than assigning them a habit, so a link isn't always cause and effect: the grades say how sure the evidence is."
             findings={l.findings}
           />
+
+          <ClockNote kind="lifestyle" id={l.id} />
 
           <Card className="flex flex-col gap-6">
             <H2 id="pictures">In pictures</H2>

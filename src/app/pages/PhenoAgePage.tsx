@@ -15,6 +15,7 @@ import { BestBefore } from "../components/dashboard/bestBefore";
 import { bodyOnly } from "../knowledge";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
+import { ClockEvidence } from "../components/ClockEvidence";
 
 const LEVINE_URL = "https://pubmed.ncbi.nlm.nih.gov/29676998/";
 
@@ -38,6 +39,7 @@ export function PhenoAgePage() {
         {showExpiration && <BestBefore measurements={all} profile={profile} protocols={protocols} />}
         <AgesChart measurements={all} profile={profile} protocols={protocols} />
         <PaceOfAging measurements={all} profile={profile} protocols={protocols} />
+        <ClockEvidence />
         <h2 className="-mb-2 font-serif text-2xl font-normal">PhenoAge, from blood tests</h2>
         {!latest ? (
           <NeedsMarkers partial={summary.latestPartial} />

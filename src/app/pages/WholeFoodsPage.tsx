@@ -22,6 +22,7 @@ import { useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENT_MAP, WHOLE_FOODS, WHOLE_FOOD_MAP, fullName } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
+import { ClockNote } from "../components/ClockEvidence";
 
 const GROUP_LABEL: Record<FoodGroup, string> = {
   fruit: "Fruit",
@@ -196,6 +197,8 @@ export function WholeFoodPage({ id }: { id: string }) {
             intro="Studies of people eating the food, strongest evidence first. Many follow people over years rather than testing the food in a trial, and people who eat a food often differ in other ways, so the grades say how sure the evidence is."
             findings={f.findings}
           />
+
+          <ClockNote kind="wholefood" id={f.id} />
 
           {f.visuals.length > 0 && (
             <Card className="flex flex-col gap-6">
