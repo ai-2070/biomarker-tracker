@@ -41,7 +41,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
   const [kind, setKind] = useState<Kind>(initialKind ?? (initialMarker && BIOMARKER_MAP.get(initialMarker)?.category === "Body" ? "body" : "blood"));
   const profile = useProfile();
   const today = todayIso();
-  const startMarker = initialMarker && BIOMARKER_MAP.has(initialMarker) ? initialMarker : null;
+  const startMarker = initialMarker && BIOMARKER_MAP.get(initialMarker)?.category !== "Body" && BIOMARKER_MAP.has(initialMarker) ? initialMarker : null;
 
   const [biomarkerId, setBiomarkerId] = useState<string | null>(startMarker);
   const [value, setValue] = useState("");
@@ -61,6 +61,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
   const def = biomarkerId ? BIOMARKER_MAP.get(biomarkerId) : undefined;
 
   function chooseMarker(id: string | null) {
+    if (id && BIOMARKER_MAP.get(id)?.category === "Body") return;
     setBiomarkerId(id);
     setUnit(id ? BIOMARKER_MAP.get(id)!.canonicalUnit : "");
     setWarnings([]);
@@ -69,6 +70,10 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
 
   async function submit(e: FormEvent) {
     e.preventDefault();
+    if (kind !== "blood" || def?.category === "Body") {
+      setErrors({ biomarkerId: "Use Body measurements to enter this reading." });
+      return;
+    }
     const result = validateManualEntry(
       {
         biomarkerId: biomarkerId ?? "",
@@ -181,7 +186,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
         <Card>
           <form onSubmit={submit} noValidate className="flex flex-col gap-5">
             <div id="marker-picker">
-              <BiomarkerPicker value={biomarkerId} onChange={chooseMarker} error={errors.biomarkerId} />
+              <BiomarkerPicker bloodOnly value={biomarkerId} onChange={chooseMarker} error={errors.biomarkerId} />
             </div>
 
             <div className="grid grid-cols-[1fr_9rem] gap-3 sm:grid-cols-[1fr_12rem]">

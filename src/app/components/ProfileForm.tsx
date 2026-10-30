@@ -134,8 +134,8 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
 }
 
 /**
- * Height in cm. The box keeps exactly what's typed (so "1" on the way to "170" stays), and the profile
- * gets a height only once it's a real one (40–260 cm); clearing the box clears it.
+ * Height in cm. Keep intermediate typing in a draft; commit a valid height on blur.
+ * Clearing the box clears the optional profile field at that same boundary.
  */
 function HeightField({ value, onChange }: { value?: number; onChange: (cm: number | undefined) => void }) {
   const [text, setText] = useState(value === undefined ? "" : String(value));
@@ -149,14 +149,13 @@ function HeightField({ value, onChange }: { value?: number; onChange: (cm: numbe
       <Field.Label className={labelStyles}>Height (cm)</Field.Label>
       <Field.Control
         value={text}
-        onValueChange={(v) => {
-          setText(v);
-          const x = Number(v.replace(",", "."));
-          if (!v.trim()) onChange(undefined);
-          else if (Number.isFinite(x) && x >= 40 && x <= 260) onChange(Math.round(x));
-        }}
+        onValueChange={setText}
         onFocus={() => setTyping(true)}
-        onBlur={() => setTyping(false)}
+        onBlur={() => {
+          setTyping(false);
+          if (!text.trim()) onChange(undefined);
+          else if (valid) onChange(Math.round(n));
+        }}
         inputMode="decimal"
         placeholder="e.g. 170"
         className={`${inputStyles} max-w-40`}

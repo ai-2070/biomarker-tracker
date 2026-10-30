@@ -68,7 +68,7 @@ export function HomePage() {
         <WeightFigure ms={bodyMs} />
       </section>
 
-      {blood.draws.length > 0 && (
+      {both.draws.length > 0 && (
         <section className={cardStyles} aria-labelledby="timeline-title">
           <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
             <h2 id="timeline-title" className="font-serif text-2xl font-normal">
@@ -76,7 +76,7 @@ export function HomePage() {
             </h2>
             <p className="text-sm text-ink-2">Blood tests, body measurements and habits. Drag to move through time; point at or tap a blood test to see what was off.</p>
           </div>
-          <Timeline d={blood} protocols={protocols} birthMonth={profile.birthMonth} today={today} body={body.draws} />
+          <Timeline d={{ ...blood, span: both.span }} protocols={protocols} birthMonth={profile.birthMonth} today={today} body={body.draws} />
         </section>
       )}
 
