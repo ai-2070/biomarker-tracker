@@ -2,7 +2,7 @@
  * Evidence maps: how the studies behind a finding were found and chosen, by written rules rather than
  * by hand. A developer tool downloads every matching record from Europe PMC (tools/evidence); the rules
  * here classify each one (study design, people or animals, retracted or not, which outcome), choose the
- * reviews and trials for each outcome, measure how much the chosen reviews overlap, and count what's
+ * reviews and trials for each outcome using current attributed screening, and count what's
  * left at every step. Pure and tested; the app only reads the distilled result.
  */
 
@@ -30,9 +30,9 @@ export function designOf(r: Pick<EvidenceRecord, "pubTypes"> & { title?: string 
   const has = (s: string) => t.some((x) => x.includes(s));
   if (has("guideline")) return "guideline";
   if (has("meta-analysis")) return "meta-analysis";
-  if (has("systematic review")) return "systematic review";
   // The newest reviews aren't tagged yet (PubMed indexes publication types weeks or months later): their title says what they are.
   if (/\bmeta-? ?analy[sz](is|es)\b/i.test(r.title ?? "")) return "meta-analysis";
+  if (has("systematic review")) return "systematic review";
   if (/\bsystematic (literature )?review\b/i.test(r.title ?? "")) return "systematic review";
   if (has("randomized controlled trial") || has("randomised controlled trial")) return "rct";
   return "other";
@@ -61,21 +61,38 @@ export function isTrialReview(r: Pick<EvidenceRecord, "title" | "abstract">): bo
 }
 
 const PEOPLE = "participants|patients|adults|women|men|subjects|individuals|people|persons|children|infants|volunteers|residents|participants";
+const SAMPLE_TENS: Readonly<Record<string, number>> = { twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const SAMPLE_ONES: Readonly<Record<string, number>> = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 };
 
 /**
- * The number of people in a trial, read from its abstract ("25,871 participants", "n = 2157"): the
- * largest such number, ignoring thousands-separators and implausible values. Undefined when none is
- * written; a reading from text, shown as such.
+ * A participant count read from an abstract. Prefer explicit enrollment/randomisation to arm sizes,
+ * event counts or recruitment pools; never treat doses, intervention identifiers or calendar years
+ * as participants. Ambiguous/missing counts can remain unknown.
  */
 export function sampleSize(abstract: string): number | undefined {
-  const nums: number[] = [];
-  const grab = (s: string) => {
-    const n = Number(s.replace(/[,\s  ]/g, ""));
-    if (Number.isFinite(n) && n >= 10 && n <= 5_000_000) nums.push(n);
+  const text = abstract.replace(/\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)(?:[- ](one|two|three|four|five|six|seven|eight|nine))?\b/gi,
+    (_, ten: string, one: string | undefined) => String(SAMPLE_TENS[ten.toLowerCase()]! + (one ? SAMPLE_ONES[one.toLowerCase()]! : 0)));
+  const counts: { n: number; rank: number }[] = [];
+  const number = "(?<![\\w-])(\\d{1,3}(?:[,\\s\\u202f\\u00a0]\\d{3})+|\\d+)";
+  const assigned = /\b(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\b/i;
+  const grab = (m: RegExpMatchArray, rank: number) => {
+    const n = Number(m[1]!.replace(/[,\s  ]/g, ""));
+    const before = text.slice(Math.max(0, m.index! - 45), m.index);
+    const after = text.slice(m.index! + m[0].length, m.index! + m[0].length + 120);
+    const screened = /\b(?:pre-)?screen(?:ed|ing)\b/i.exec(after);
+    const joined = assigned.exec(after);
+    if (rank === 2 && (/(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\s*$/i.test(before) || /^\s*(?:were|was|who were)?\s*(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\b/i.test(after))) rank = 3;
+    if (rank !== 3 && (/\b(?:screened|approached|identified)\s*$/i.test(before) || screened && (!joined || screened.index < joined.index))) return;
+    if (Number.isFinite(n) && n >= 10 && n <= 5_000_000) counts.push({ n, rank });
   };
-  for (const m of abstract.matchAll(new RegExp(`(\\d{1,3}(?:[,\\s\\u202f\\u00a0]\\d{3})+|\\d+)\\s+(?:[a-z-]+\\s+){0,3}(?:${PEOPLE})\\b`, "gi"))) grab(m[1]!);
-  for (const m of abstract.matchAll(/\b[nN]\s*=\s*(\d{1,3}(?:[,\s  ]\d{3})+|\d+)/g)) grab(m[1]!);
-  return nums.length ? Math.max(...nums) : undefined;
+  // Only participant descriptors: arbitrary words here also match doses ("2000 IU in adults").
+  const modifiers = "healthy|older|young|younger|elderly|adult|male|female|pregnant|postmenopausal|community-dwelling|randomi[sz]ed|newborn|participating|preschool|high-risk|nulliparous";
+  for (const m of text.matchAll(new RegExp(`${number}\\s+(?:(?:${modifiers})\\s+){0,3}(?:${PEOPLE})\\b`, "gi"))) grab(m, 2);
+  for (const m of text.matchAll(new RegExp(`${number}\\s+(?:provided consent to participate and\\s+)?(?:were\\s+)?(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\\b`, "gi"))) grab(m, 3);
+  for (const m of text.matchAll(/\b[nN]\s*=\s*(\d{1,3}(?:[,\s  ]\d{3})+|\d+)/g)) grab(m, 1);
+  const rank = Math.max(0, ...counts.map((c) => c.rank));
+  const preferred = counts.filter((c) => c.rank === rank);
+  return preferred.length ? Math.max(...preferred.map((c) => c.n)) : undefined;
 }
 
 export interface Classified extends EvidenceRecord {
@@ -90,7 +107,11 @@ export interface Classified extends EvidenceRecord {
 export function plainText(s: string): string {
   const named: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
   const decode = (t: string) => t.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e: string) => (e[0] === "#" ? String.fromCodePoint(e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1))) : (named[e.toLowerCase()] ?? m)));
-  return decode(decode(s).replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  // Decode encoded formatting too, but remove only actual named tags, never "< 30 ... >".
+  const tags = /<\/?(?:abstract|title|p|div|span|i|b|em|strong|sub|sup|br|a|section|h[1-6]|jats:[a-z-]+)(?:\s+[^<>]*|\/)?>/gi;
+  return decode(decode(s))
+    .replace(/<\/?(?:abstract|title|p|div|section|h[1-6])(?:\s+[^<>]*|\/)?>/gi, " ")
+    .replace(tags, "").replace(/\s+/g, " ").trim();
 }
 
 /**
@@ -208,19 +229,6 @@ export function largeTrialsSince(records: readonly Classified[], outcome: string
     .map((r) => pick(r, `A large trial (about ${(r.n ?? 0).toLocaleString("en-GB")} people) from ${r.year}, as new as the newest review or newer`));
 }
 
-/**
- * How much the chosen reviews draw on the same trials: the corrected covered area (Pieper 2014, PMID
- * 24581293): (N − r) / (r·c − r), N = trial inclusions across reviews, r = distinct trials, c = reviews.
- * 0 means no trial is shared; 1 means every review includes every trial.
- */
-export function coveredArea(included: readonly (readonly string[])[]): { cca: number; trials: number; inclusions: number } | undefined {
-  const c = included.length;
-  const r = new Set(included.flat()).size;
-  const N = included.reduce((s, x) => s + new Set(x).size, 0);
-  if (c < 2 || r === 0) return undefined;
-  return { cca: (N - r) / (r * c - r), trials: r, inclusions: N };
-}
-
 /** Records per year, by design: reviews and trials (people only, not retracted), for a timeline. */
 export function perYear(records: readonly Classified[], outcome?: string): { year: number; reviews: number; trials: number }[] {
   const m = new Map<number, { reviews: number; trials: number }>();
@@ -255,18 +263,13 @@ export interface EvidenceMapOutcome {
   id: string;
   label: string;
   finding?: string;
+  /** Reviews of any study design, rather than only trials (also set per supplement outcome). */
+  anyDesign?: boolean;
   /** `all`: records the outcome's own search found (maps searched claim by claim). */
   counts: { all?: number; reviews: number; trialReviews: number; trials: number; largeTrials: number };
   chosenReviews: Chosen[];
   newerLargeTrials: Chosen[];
-  overlap?: {
-    cca: number;
-    trials: number;
-    inclusions: number;
-    reviews: { pmid: string; trials: number }[];
-    reviewsWithoutReferences: string[];
-    shared: { pmid: string; title: string; year?: number; n?: number; inReviews: string[] }[];
-  };
+  /** Overlap is deliberately omitted: bibliographies don't establish included-study membership. */
   timeline: { year: number; reviews: number; trials: number }[];
   largeTrials: { pmid?: string; title: string; year: number; n: number }[];
   page: { alsoChosen: string[]; citedNotChosen: string[]; citedNotEligible: string[]; chosenNotCited: Chosen[] };
@@ -275,6 +278,9 @@ export interface EvidenceMapOutcome {
     question: Question;
     by: string;
     at: string;
+    /** Old published decisions lack recoverable input/model attribution; not current screening. */
+    provenance?: "current" | "legacy-inputs-unverified";
+    decisions?: Decision[];
     counts: { yes: number; partly: number; no: number; unscreened: number };
     /** Reviews that don't fit (or only partly), with the reason, newest first. */
     left: { pmid: string; title: string; year?: number; fits: "partly" | "no"; reason: string }[];
@@ -321,7 +327,6 @@ export function validateEvidenceMap(v: unknown): string[] {
         if (!c.title || !c.why) e.push(`${o.id}: a chosen study has no title or reason`);
         if (!c.pmid && !c.doi) e.push(`${o.id}: a chosen study has no PMID or DOI`);
       }
-      if (o.overlap && !(o.overlap.cca >= 0 && o.overlap.cca <= 1)) e.push(`${o.id}: overlap must be between 0 and 1`);
       if (o.screening) {
         const sc = o.screening;
         if (!sc.question?.population || !sc.question.intervention || !sc.question.comparison || !sc.question.outcome) e.push(`${o.id}: the screening question is incomplete`);
@@ -331,6 +336,10 @@ export function validateEvidenceMap(v: unknown): string[] {
         // Only reviews that answer the question can be chosen.
         const left = new Set(sc.left.map((r) => r.pmid));
         if (o.chosenReviews.some((c) => c.pmid && left.has(c.pmid))) e.push(`${o.id}: a chosen review was screened out`);
+        if (sc.provenance === "current") {
+          const approved = new Set((sc.decisions ?? []).filter((d) => d.fits === "yes" && d.input && d.by && d.at).map((d) => d.pmid));
+          if (o.chosenReviews.some((c) => !c.pmid || !approved.has(c.pmid))) e.push(`${o.id}: a chosen review has no current attributed approval`);
+        }
       }
     }
   return [...new Set(e)];
@@ -355,6 +364,10 @@ export interface Decision {
   fits: Fit;
   /** One plain sentence: which part matches or differs. */
   reason: string;
+  /** Exact versioned screening inputs; absent on legacy decisions, which must be screened again. */
+  input?: string;
+  by?: string;
+  at?: string;
 }
 
 /**
@@ -362,20 +375,21 @@ export interface Decision {
  * any design: trials, cohort studies, absorption studies, food analyses).
  */
 export type MapKind = "supplement" | "food" | "lifestyle" | "wholefood";
+export type ScreeningMode = MapKind | "any-design";
 
 /** Food, lifestyle and whole-food maps: a search per finding or claim, and reviews of any design (cohorts, absorption studies, trials). */
 export const anyDesignKind = (kind: MapKind | undefined) => kind === "food" || kind === "lifestyle" || kind === "wholefood";
 
-export const questionText = (q: Question, kind: MapKind = "supplement") =>
+export const questionText = (q: Question, kind: ScreeningMode = "supplement") =>
   `Population: ${q.population}\n${kind === "food" ? "Food or exposure" : kind === "lifestyle" ? "Habit or exposure" : kind === "wholefood" ? "Food" : "Intervention"}: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
 
 /** The prompt for one batch of reviews. Abstracts are shortened; the model judges only what it is given. */
-export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], kind: MapKind = "supplement", maxAbstract = 2500): string {
+export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], kind: ScreeningMode = "supplement", maxAbstract = 2500): string {
   const list = reviews
     .filter((r) => r.pmid)
     .map((r) => `PMID ${r.pmid} (${r.year ?? "year unknown"})\nTitle: ${r.title}\nAbstract: ${r.abstract.slice(0, maxAbstract) || "(none)"}`)
     .join("\n\n---\n\n");
-  const food = anyDesignKind(kind);
+  const food = kind === "any-design" || anyDesignKind(kind);
   const habit = kind === "lifestyle";
   const eating = kind === "wholefood";
   return [
@@ -384,14 +398,18 @@ export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, 
     questionText(q, kind),
     "",
     food
-      ? eating
+      ? kind === "any-design"
+        ? 'fits = "yes": the review pooled or systematically reviewed studies of any design, including laboratory or observational studies, matching the population, intervention or exposure, comparison and outcome (a matching separate analysis or subgroup counts).'
+        : eating
         ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) of people eating or drinking the food itself (whole, juice, or dried and powdered whole food) that match the population, comparison and outcome (a separate analysis or subgroup that matches counts).'
         : habit
         ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
         : 'fits = "yes": the review pooled or systematically reviewed studies of any design (trials, cohort studies, absorption or feeding studies, analyses of foods) that match the population, food or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
       : 'fits = "yes": the review pooled randomised trials matching the population, intervention, comparison and outcome (a separate analysis or subgroup that matches counts).',
     food
-      ? eating
+      ? kind === "any-design"
+        ? 'fits = "partly": close, but part of the population, intervention or exposure, comparison or outcome differs.'
+        : eating
         ? 'fits = "partly": close, but one part differs (for example an extract or supplement of the food instead of the food itself, a group of foods where this one is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
         : habit
         ? 'fits = "partly": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
@@ -406,6 +424,17 @@ export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, 
     "",
     list,
   ].join("\n");
+}
+
+/** Canonical input key, collision-free rather than a lossy hash; includes the prompt version and mode. */
+export function screeningInput(q: Question, r: Pick<Classified, "pmid" | "title" | "year" | "abstract" | "design">, kind: ScreeningMode): string {
+  return JSON.stringify(["screening-v1", kind, r.design, q.population, q.intervention, q.comparison, q.outcome, r.pmid, r.year ?? null, r.title, r.abstract, screeningPrompt(q, [r], kind)]);
+}
+
+/** Reuse only decisions with known attribution and the exact inputs the current screen would receive. */
+export function currentDecisions(q: Question, reviews: readonly Classified[], kind: ScreeningMode, decisions: readonly Decision[]): Decision[] {
+  const inputs = new Map(reviews.filter((r) => r.pmid).map((r) => [r.pmid!, screeningInput(q, r, kind)]));
+  return decisions.filter((d) => !!d.by && !!d.at && d.input !== undefined && d.input === inputs.get(d.pmid));
 }
 
 /** The model's answer, checked: only the PMIDs asked about, a known `fits`, a short reason. Anything else is dropped (left unscreened). */

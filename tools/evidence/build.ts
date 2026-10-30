@@ -1,33 +1,15 @@
 /**
  * Evidence map, step 3: from the downloaded records (fetch.ts), classify, choose and compare by the rules
- * in src/core/evidenceMap.ts, fetch the chosen reviews' reference lists (to see which trials they pooled),
+ * in src/core/evidenceMap.ts. Bibliographies cannot establish included-study overlap,
  * and write the distilled map the app reads: knowledge/evidence-maps/<topic>.json.
  * `bun tools/evidence/build.ts vitamin_d`
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { chooseFrom, compareWithPage, coveredArea, largeTrialsSince, perYear, splitByScreening, type Chosen } from "../../src/core/evidenceMap";
-import { CACHE, ROOT, loadTopic } from "./load";
+import { chooseFrom, compareWithPage, currentDecisions, largeTrialsSince, perYear, splitByScreening, type Chosen } from "../../src/core/evidenceMap";
+import { ROOT, loadTopic } from "./load";
 
 const { topic, raw, food, studiesFor, records, eligible: eligibleFor, screening, topicTitle } = loadTopic(process.argv[2]);
-const trialIds = new Set(records.filter((r) => r.design === "rct" && r.pmid).map((r) => r.pmid!));
-
-/** A review's reference list (PMIDs), from Europe PMC, cached. */
-async function references(pmid: string): Promise<string[]> {
-  const file = join(CACHE, `refs-${pmid}.json`);
-  if (existsSync(file)) return JSON.parse(readFileSync(file, "utf8")) as string[];
-  const ids: string[] = [];
-  for (let page = 1; page <= 5; page++) {
-    const res = await fetch(`https://www.ebi.ac.uk/europepmc/webservices/rest/MED/${pmid}/references?format=json&pageSize=1000&page=${page}`);
-    if (!res.ok) break;
-    const j = (await res.json()) as { hitCount?: number; referenceList?: { reference?: { id?: string; source?: string }[] } };
-    const refs = j.referenceList?.reference ?? [];
-    for (const r of refs) if (r.source === "MED" && r.id) ids.push(r.id);
-    if (refs.length < 1000) break;
-  }
-  writeFileSync(file, JSON.stringify(ids));
-  return ids;
-}
 
 const people = records.filter((r) => r.population !== "animal");
 const counts = {
@@ -44,35 +26,24 @@ const counts = {
 const outcomes = [];
 for (const o of topic.outcomes) {
   const eligible = eligibleFor(o.id);
-  // With screening (screen.ts) for this question, choose only from the reviews that answer it.
+  // Missing, legacy or changed inputs stay unscreened; never silently choose from that pool.
+  const mode = food ? topic.kind! : o.anyDesign ? "any-design" : "supplement";
   const screened = screening?.outcomes[o.id];
-  const current = screened && JSON.stringify(screened.question) === JSON.stringify(o.question) ? screened : undefined;
-  const split = current ? splitByScreening(eligible, current.decisions) : undefined;
-  const reasons = new Map(current?.decisions.map((d) => [d.pmid, d]) ?? []);
-  const chosen = chooseFrom(split ? split.yes : eligible, 3, topic.kind === "lifestyle" || topic.kind === "wholefood" ? "on this finding" : food ? "on this claim" : undefined).map((c) => (split ? { ...c, why: `${c.why}; screened as answering the question` } : c));
+  const decisions = currentDecisions(o.question, eligible, mode, screened?.decisions ?? []);
+  const split = splitByScreening(eligible, decisions);
+  if (split.unscreened.length > 0) throw new Error(`${topic.id}/${o.id}: ${split.unscreened.length} eligible reviews need current screening; published map was not replaced`);
+  const reasons = new Map(decisions.map((d) => [d.pmid, d]));
+  const chosen = chooseFrom(split.yes, 3, food || o.anyDesign ? "on this finding (reviews of any study design)" : undefined)
+    .map((c) => ({ ...c, why: `${c.why}; screened as answering the question` }));
   const newestYear = Math.max(0, ...chosen.slice(0, 3).map((c) => c.year ?? 0));
   const newer = newestYear ? largeTrialsSince(records, o.id, newestYear) : [];
-  // Which of the downloaded trials each chosen review lists in its references.
-  const included: { review: string; trials: string[] }[] = [];
-  for (const c of chosen) {
-    if (!c.pmid) continue;
-    const refs = await references(c.pmid);
-    included.push({ review: c.pmid, trials: [...new Set(refs.filter((id) => trialIds.has(id)))] });
-  }
-  const withRefs = included.filter((x) => x.trials.length > 0);
-  const overlap = coveredArea(withRefs.map((x) => x.trials));
-  const trialInfo = new Map(records.filter((r) => r.pmid && trialIds.has(r.pmid)).map((r) => [r.pmid!, r]));
-  const sharedTrials = [...new Set(withRefs.flatMap((x) => x.trials))]
-    .map((id) => {
-      const t = trialInfo.get(id)!;
-      return { pmid: id, title: t.title.replace(/\.$/, ""), year: t.year, ...(t.n !== undefined ? { n: t.n } : {}), inReviews: withRefs.filter((x) => x.trials.includes(id)).map((x) => x.review) };
-    })
-    .sort((a, b) => b.inReviews.length - a.inReviews.length || (b.n ?? 0) - (a.n ?? 0));
+  // Included-study membership is not available. Do not fetch or cache bibliography overlap.
   const cited = studiesFor(o.finding).map((s) => s.pmid).filter((p): p is string => !!p);
   const all = [...chosen, ...newer];
   outcomes.push({
     id: o.id,
     label: o.label,
+    anyDesign: food || !!o.anyDesign,
     ...(o.finding ? { finding: o.finding } : {}),
     counts: {
       ...(raw.outcomeCounts?.[o.id] !== undefined ? { all: raw.outcomeCounts[o.id] } : {}),
@@ -83,31 +54,28 @@ for (const o of topic.outcomes) {
     },
     chosenReviews: chosen,
     newerLargeTrials: newer,
-    overlap: overlap ? { ...overlap, reviews: withRefs.map((x) => ({ pmid: x.review, trials: x.trials.length })), reviewsWithoutReferences: chosen.filter((c) => c.pmid && !withRefs.some((x) => x.review === c.pmid)).map((c) => c.pmid!), shared: sharedTrials.slice(0, 60) } : undefined,
     timeline: perYear(records, o.id),
     largeTrials: records
       .filter((r) => r.design === "rct" && r.population !== "animal" && !r.retracted && r.outcomes.includes(o.id) && (r.n ?? 0) >= 1000 && r.year)
       .sort((a, b) => (a.year ?? 0) - (b.year ?? 0))
       .map((r) => ({ pmid: r.pmid, title: r.title.replace(/\.$/, ""), year: r.year!, n: r.n! })),
     page: compareWithPage(cited, all, eligible),
-    ...(current && split
-      ? {
-          screening: {
-            question: current.question,
-            by: screening!.by,
-            at: current.at,
-            counts: { yes: split.yes.length, partly: split.partly.length, no: split.no.length, unscreened: split.unscreened.length },
-            left: [...split.partly, ...split.no]
-              .sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
-              .map((r) => {
-                const d = reasons.get(r.pmid!)!;
-                return { pmid: r.pmid!, title: r.title.replace(/\.$/, ""), ...(r.year ? { year: r.year } : {}), fits: d.fits as "partly" | "no", reason: d.reason };
-              }),
-          },
-        }
-      : {}),
+    screening: {
+      question: o.question,
+      by: [...new Set(decisions.map((d) => d.by!))].join("; ") || "Not yet screened with current inputs",
+      at: decisions.map((d) => d.at!).sort().at(-1) ?? new Date().toISOString().slice(0, 10),
+      provenance: "current" as const,
+      decisions,
+      counts: { yes: split.yes.length, partly: split.partly.length, no: split.no.length, unscreened: split.unscreened.length },
+      left: [...split.partly, ...split.no]
+        .sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
+        .map((r) => {
+          const d = reasons.get(r.pmid!)!;
+          return { pmid: r.pmid!, title: r.title.replace(/\.$/, ""), ...(r.year ? { year: r.year } : {}), fits: d.fits as "partly" | "no", reason: d.reason };
+        }),
+    },
   });
-  console.log(`${o.id}: ${eligible.length} eligible reviews${split ? ` (${split.yes.length} answer the question, ${split.partly.length} partly, ${split.no.length} not, ${split.unscreened.length} unscreened)` : ""}, chose ${chosen.length}; ${newer.length} newer large trials; overlap ${overlap ? Math.round(overlap.cca * 100) + "%" : "n/a"}`);
+  console.log(`${o.id}: ${eligible.length} eligible reviews (${split.yes.length} answer the question, ${split.partly.length} partly, ${split.no.length} not, ${split.unscreened.length} unscreened), chose ${chosen.length}; ${newer.length} newer large trials`);
 }
 
 const guidelines = people
@@ -132,9 +100,7 @@ const map = {
         "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
         `Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating ${topic.name} comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.`,
         "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-        ...(screening
-          ? [`Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by ${screening.by}. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.`]
-          : []),
+        "Only decisions with matching title, abstract, question and screening mode and known per-decision model attribution may select reviews. Missing, legacy or stale decisions remain unscreened. Current decisions and their provenance are listed per finding; not yet checked by a clinician.",
         "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably.",
       ]
     : topic.kind === "lifestyle"
@@ -144,9 +110,7 @@ const map = {
         "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
         "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
         "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-        ...(screening
-          ? [`Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by ${screening.by}. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.`]
-          : []),
+        "Only decisions with matching title, abstract, question and screening mode and known per-decision model attribution may select reviews. Missing, legacy or stale decisions remain unscreened. Current decisions and their provenance are listed per finding; not yet checked by a clinician.",
         "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably.",
       ]
     : food
@@ -156,9 +120,7 @@ const map = {
         "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
         "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
         "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-        ...(screening
-          ? [`Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by ${screening.by}. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.`]
-          : []),
+        "Only decisions with matching title, abstract, question and screening mode and known per-decision model attribution may select reviews. Missing, legacy or stale decisions remain unscreened. Current decisions and their provenance are listed per claim; not yet checked by a clinician.",
         "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably.",
       ]
     : [
@@ -167,13 +129,11 @@ const map = {
         "An outcome counts when its words are in the title.",
         `Reviews: meta-analyses or systematic reviews of randomised trials of giving ${topic.name}, with ${topic.name} in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.`,
         "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-        ...(screening
-          ? [`Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by ${screening.by}. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.`]
-          : []),
+        "Only decisions with matching title, abstract, question and screening mode and known per-decision model attribution may select reviews. Missing, legacy or stale decisions remain unscreened. Current decisions and their provenance are listed per finding; not yet checked by a clinician.",
         ...(topic.outcomes.some((o) => o.anyDesign)
           ? [`For ${topic.outcomes.filter((o) => o.anyDesign).map((o) => o.label.toLowerCase()).join(", ")}, reviews of any study design count, because that evidence comes from lab or observational studies rather than trials.`]
           : []),
-        `Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded ${topic.name} trials, measured as the corrected covered area (Pieper 2014, PMID 24581293).`,
+        "Overlap is not shown: a bibliography can cite background or excluded trials, so it does not establish which studies a review included or pooled.",
       ],
   counts,
   guidelines,

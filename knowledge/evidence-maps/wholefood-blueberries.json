@@ -21,8 +21,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating blueberries comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 2258,
@@ -38,6 +38,7 @@
   {
    "id": "vascular",
    "label": "Blood vessel function",
+   "anyDesign": true,
    "finding": "Blood vessel function (flow-mediated dilation: how much an artery widens when blood flow increases)",
    "counts": {
     "all": 50,
@@ -56,7 +57,7 @@
      "journal": "Nutrition research (New York, N.Y.)",
      "citedBy": 0,
      "n": 632,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38887319",
@@ -66,7 +67,7 @@
      "firstAuthor": "Deng B",
      "journal": "Frontiers in physiology",
      "citedBy": 9,
-     "why": "One of the newest systematic reviews on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36150681",
@@ -76,284 +77,10 @@
      "firstAuthor": "Martini D",
      "journal": "The Journal of nutritional biochemistry",
      "citedBy": 37,
-     "why": "One of the newest systematic reviews on this finding (2023); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2023); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.41379310344827586,
-    "trials": 29,
-    "inclusions": 41,
-    "reviews": [
-     {
-      "pmid": "38887319",
-      "trials": 15
-     },
-     {
-      "pmid": "36150681",
-      "trials": 26
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "41974068"
-    ],
-    "shared": [
-     {
-      "pmid": "31136659",
-      "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial",
-      "year": 2019,
-      "n": 115,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "34883305",
-      "title": "Blueberry anthocyanin intake attenuates the postprandial cardiometabolic effect of an energy-dense food challenge: Results from a double blind, randomized controlled trial in metabolic syndrome participants",
-      "year": 2022,
-      "n": 45,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "26024297",
-      "title": "Blueberries improve endothelial function, but not blood pressure, in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "n": 44,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "24004888",
-      "title": "Intake and time dependence of blueberry flavonoid-induced improvements in vascular function: a randomized, controlled, double-blind, crossover intervention study with mechanistic insights into biological activity",
-      "year": 2013,
-      "n": 21,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "25263326",
-      "title": "A single serving of blueberry (V. corymbosum) modulates peripheral arterial dysfunction induced by acute cigarette smoking in young volunteers: a randomized-controlled trial",
-      "year": 2014,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "25578927",
-      "title": "Daily blueberry consumption improves blood pressure and arterial stiffness in postmenopausal women with pre- and stage 1-hypertension: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "25150116",
-      "title": "Six weeks daily ingestion of whole blueberry powder increases natural killer cell counts and reduces arterial stiffness in sedentary males and females",
-      "year": 2014,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "25044909",
-      "title": "Impact of processing on the bioavailability and vascular effects of blueberry (poly)phenols",
-      "year": 2014,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "20660279",
-      "title": "Blueberries decrease cardiovascular risk factors in obese men and women with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "23507228",
-      "title": "A single portion of blueberry (Vaccinium corymbosum L) improves protection against DNA damage but not vascular function in healthy male volunteers",
-      "year": 2013,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "22733001",
-      "title": "Effect of a wild blueberry (Vaccinium angustifolium) drink intervention on markers of oxidative stress, inflammation and endothelial function in humans with cardiovascular risk factors",
-      "year": 2013,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "29019364",
-      "title": "A serving of blueberry (V. corymbosum) acutely improves peripheral arterial dysfunction in young smokers and non-smokers: two randomized, controlled, crossover pilot studies",
-      "year": 2017,
-      "inReviews": [
-       "38887319",
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "36972800",
-      "title": "Wild blueberry (poly)phenols can improve vascular function and cognitive performance in healthy older individuals: a double-blind randomized controlled trial",
-      "year": 2023,
-      "n": 61,
-      "inReviews": [
-       "38887319"
-      ]
-     },
-     {
-      "pmid": "36847333",
-      "title": "Daily blueberry consumption for 12 weeks improves endothelial function in postmenopausal women with above-normal blood pressure through reductions in oxidative stress: a randomized controlled trial",
-      "year": 2023,
-      "n": 43,
-      "inReviews": [
-       "38887319"
-      ]
-     },
-     {
-      "pmid": "30699971",
-      "title": "Blueberries Improve Pain, Gait Performance, and Inflammation in Individuals with Symptomatic Knee Osteoarthritis",
-      "year": 2019,
-      "n": 33,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "30669469",
-      "title": "Postprandial Effects of Blueberry (Vaccinium angustifolium) Consumption on Glucose Metabolism, Gastrointestinal Hormone Response, and Perceived Appetite in Healthy Adults: A Randomized, Placebo-Controlled Crossover Trial",
-      "year": 2019,
-      "n": 17,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "23977864",
-      "title": "Effects of exercise with or without blueberries in the diet on cardio-metabolic risk factors: an exploratory pilot study in healthy subjects",
-      "year": 2013,
-      "n": 17,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "20724487",
-      "title": "Bioactives in blueberries improve insulin sensitivity in obese, insulin-resistant men and women",
-      "year": 2010,
-      "n": 17,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "35807742",
-      "title": "Effects of Blueberry Consumption on Cardiovascular Health in Healthy Adults: A Cross-Over Randomised Controlled Trial",
-      "year": 2022,
-      "inReviews": [
-       "38887319"
-      ]
-     },
-     {
-      "pmid": "32747995",
-      "title": "Improved metabolic function and cognitive performance in middle-aged adults following a single dose of wild blueberry",
-      "year": 2021,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "27306892",
-      "title": "Postprandial Inflammatory Responses and Free Fatty Acids in Plasma of Adults Who Consumed a Moderately High-Fat Breakfast with and without Blueberry Powder in a Randomized Placebo-Controlled Trial",
-      "year": 2016,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "22935321",
-      "title": "Consumption of blueberries with a high-carbohydrate, low-fat breakfast decreases postprandial serum markers of oxidation",
-      "year": 2013,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "33781280",
-      "title": "Blueberry supplementation reduces the blood lactate response to running in normobaric hypoxia but has no effect on performance in recreational runners",
-      "year": 2021,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "31629347",
-      "title": "Four Days of Blueberry Powder Supplementation Lowers the Blood Lactate Response to Running But Has No Effect on Time-Trial Performance",
-      "year": 2019,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "29882843",
-      "title": "A Randomized, Double-Blinded, Placebo-Controlled Study to Compare the Safety and Efficacy of Low Dose Enhanced Wild Blueberry Powder and Wild Blueberry Extract (ThinkBlue™) in Maintenance of Episodic and Working Memory in Older Adults",
-      "year": 2018,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "29458842",
-      "title": "Cognitive response to fish oil, blueberry, and combined supplementation in older adults with subjective cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "29019365",
-      "title": "Blueberry supplementation attenuates oxidative stress within monocytes and modulates immune cell levels in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "28059417",
-      "title": "Effects of daily blueberry consumption on circulating biomarkers of oxidative stress, inflammation, and antioxidant defense in postmenopausal women with pre- and stage 1-hypertension: a randomized controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "36150681"
-      ]
-     },
-     {
-      "pmid": "28249119",
-      "title": "Enhanced task-related brain activation and resting perfusion in healthy older adults after chronic blueberry supplementation",
-      "year": 2017,
-      "inReviews": [
-       "36150681"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2013,
@@ -428,11 +155,12 @@
       "firstAuthor": "Martini D",
       "journal": "The Journal of nutritional biochemistry",
       "citedBy": 37,
-      "why": "One of the newest systematic reviews on this finding (2023); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2023); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
@@ -453,6 +181,7 @@
   {
    "id": "blood-pressure",
    "label": "Blood pressure",
+   "anyDesign": true,
    "finding": "Blood pressure",
    "counts": {
     "all": 110,
@@ -470,7 +199,7 @@
      "firstAuthor": "Azari H",
      "journal": "Food & function",
      "citedBy": 8,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34139510",
@@ -480,7 +209,7 @@
      "firstAuthor": "Carvalho MF",
      "journal": "Nutrition research (New York, N.Y.)",
      "citedBy": 14,
-     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "27654329",
@@ -491,210 +220,10 @@
      "journal": "Journal of human hypertension",
      "citedBy": 34,
      "n": 204,
-     "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2017); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.47368421052631576,
-    "trials": 19,
-    "inclusions": 37,
-    "reviews": [
-     {
-      "pmid": "35445669",
-      "trials": 14
-     },
-     {
-      "pmid": "34139510",
-      "trials": 17
-     },
-     {
-      "pmid": "27654329",
-      "trials": 6
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "26024297",
-      "title": "Blueberries improve endothelial function, but not blood pressure, in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "n": 44,
-      "inReviews": [
-       "35445669",
-       "34139510",
-       "27654329"
-      ]
-     },
-     {
-      "pmid": "20724487",
-      "title": "Bioactives in blueberries improve insulin sensitivity in obese, insulin-resistant men and women",
-      "year": 2010,
-      "n": 17,
-      "inReviews": [
-       "35445669",
-       "34139510",
-       "27654329"
-      ]
-     },
-     {
-      "pmid": "22733001",
-      "title": "Effect of a wild blueberry (Vaccinium angustifolium) drink intervention on markers of oxidative stress, inflammation and endothelial function in humans with cardiovascular risk factors",
-      "year": 2013,
-      "inReviews": [
-       "35445669",
-       "34139510",
-       "27654329"
-      ]
-     },
-     {
-      "pmid": "25150116",
-      "title": "Six weeks daily ingestion of whole blueberry powder increases natural killer cell counts and reduces arterial stiffness in sedentary males and females",
-      "year": 2014,
-      "inReviews": [
-       "35445669",
-       "34139510",
-       "27654329"
-      ]
-     },
-     {
-      "pmid": "25578927",
-      "title": "Daily blueberry consumption improves blood pressure and arterial stiffness in postmenopausal women with pre- and stage 1-hypertension: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "inReviews": [
-       "35445669",
-       "34139510",
-       "27654329"
-      ]
-     },
-     {
-      "pmid": "20660279",
-      "title": "Blueberries decrease cardiovascular risk factors in obese men and women with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "35445669",
-       "34139510",
-       "27654329"
-      ]
-     },
-     {
-      "pmid": "31136659",
-      "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial",
-      "year": 2019,
-      "n": 115,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "30699971",
-      "title": "Blueberries Improve Pain, Gait Performance, and Inflammation in Individuals with Symptomatic Knee Osteoarthritis",
-      "year": 2019,
-      "n": 33,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "28283823",
-      "title": "Dietary blueberry improves cognition among older adults in a randomized, double-blind, placebo-controlled trial",
-      "year": 2018,
-      "n": 24,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "23977864",
-      "title": "Effects of exercise with or without blueberries in the diet on cardio-metabolic risk factors: an exploratory pilot study in healthy subjects",
-      "year": 2013,
-      "n": 17,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29882843",
-      "title": "A Randomized, Double-Blinded, Placebo-Controlled Study to Compare the Safety and Efficacy of Low Dose Enhanced Wild Blueberry Powder and Wild Blueberry Extract (ThinkBlue™) in Maintenance of Episodic and Working Memory in Older Adults",
-      "year": 2018,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29458842",
-      "title": "Cognitive response to fish oil, blueberry, and combined supplementation in older adults with subjective cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "24004888",
-      "title": "Intake and time dependence of blueberry flavonoid-induced improvements in vascular function: a randomized, controlled, double-blind, crossover intervention study with mechanistic insights into biological activity",
-      "year": 2013,
-      "n": 21,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "30669469",
-      "title": "Postprandial Effects of Blueberry (Vaccinium angustifolium) Consumption on Glucose Metabolism, Gastrointestinal Hormone Response, and Perceived Appetite in Healthy Adults: A Randomized, Placebo-Controlled Crossover Trial",
-      "year": 2019,
-      "n": 17,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29019364",
-      "title": "A serving of blueberry (V. corymbosum) acutely improves peripheral arterial dysfunction in young smokers and non-smokers: two randomized, controlled, crossover pilot studies",
-      "year": 2017,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "28221821",
-      "title": "Enhanced neural activation with blueberry supplementation in mild cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "30327868",
-      "title": "The effects of acute wild blueberry supplementation on the cognition of 7-10-year-old schoolchildren",
-      "year": 2019,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29019365",
-      "title": "Blueberry supplementation attenuates oxidative stress within monocytes and modulates immune cell levels in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29141041",
-      "title": "Effects of a mixed berry beverage on cognitive functions and cardiometabolic risk markers; A randomized cross-over study in healthy older adults",
-      "year": 2017,
-      "inReviews": [
-       "34139510"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2010,
@@ -763,6 +292,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
@@ -791,6 +321,7 @@
   {
    "id": "sugar",
    "label": "Blood sugar",
+   "anyDesign": true,
    "finding": "Blood sugar and insulin sensitivity",
    "counts": {
     "all": 252,
@@ -808,7 +339,7 @@
      "firstAuthor": "Azari H",
      "journal": "Food & function",
      "citedBy": 8,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34139510",
@@ -818,200 +349,10 @@
      "firstAuthor": "Carvalho MF",
      "journal": "Nutrition research (New York, N.Y.)",
      "citedBy": 14,
-     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.631578947368421,
-    "trials": 19,
-    "inclusions": 31,
-    "reviews": [
-     {
-      "pmid": "35445669",
-      "trials": 14
-     },
-     {
-      "pmid": "34139510",
-      "trials": 17
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "31136659",
-      "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial",
-      "year": 2019,
-      "n": 115,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "26024297",
-      "title": "Blueberries improve endothelial function, but not blood pressure, in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "n": 44,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "30699971",
-      "title": "Blueberries Improve Pain, Gait Performance, and Inflammation in Individuals with Symptomatic Knee Osteoarthritis",
-      "year": 2019,
-      "n": 33,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "28283823",
-      "title": "Dietary blueberry improves cognition among older adults in a randomized, double-blind, placebo-controlled trial",
-      "year": 2018,
-      "n": 24,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "23977864",
-      "title": "Effects of exercise with or without blueberries in the diet on cardio-metabolic risk factors: an exploratory pilot study in healthy subjects",
-      "year": 2013,
-      "n": 17,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "20724487",
-      "title": "Bioactives in blueberries improve insulin sensitivity in obese, insulin-resistant men and women",
-      "year": 2010,
-      "n": 17,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "22733001",
-      "title": "Effect of a wild blueberry (Vaccinium angustifolium) drink intervention on markers of oxidative stress, inflammation and endothelial function in humans with cardiovascular risk factors",
-      "year": 2013,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29882843",
-      "title": "A Randomized, Double-Blinded, Placebo-Controlled Study to Compare the Safety and Efficacy of Low Dose Enhanced Wild Blueberry Powder and Wild Blueberry Extract (ThinkBlue™) in Maintenance of Episodic and Working Memory in Older Adults",
-      "year": 2018,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "25150116",
-      "title": "Six weeks daily ingestion of whole blueberry powder increases natural killer cell counts and reduces arterial stiffness in sedentary males and females",
-      "year": 2014,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "25578927",
-      "title": "Daily blueberry consumption improves blood pressure and arterial stiffness in postmenopausal women with pre- and stage 1-hypertension: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "20660279",
-      "title": "Blueberries decrease cardiovascular risk factors in obese men and women with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29458842",
-      "title": "Cognitive response to fish oil, blueberry, and combined supplementation in older adults with subjective cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "35445669",
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "24004888",
-      "title": "Intake and time dependence of blueberry flavonoid-induced improvements in vascular function: a randomized, controlled, double-blind, crossover intervention study with mechanistic insights into biological activity",
-      "year": 2013,
-      "n": 21,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "30669469",
-      "title": "Postprandial Effects of Blueberry (Vaccinium angustifolium) Consumption on Glucose Metabolism, Gastrointestinal Hormone Response, and Perceived Appetite in Healthy Adults: A Randomized, Placebo-Controlled Crossover Trial",
-      "year": 2019,
-      "n": 17,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29019364",
-      "title": "A serving of blueberry (V. corymbosum) acutely improves peripheral arterial dysfunction in young smokers and non-smokers: two randomized, controlled, crossover pilot studies",
-      "year": 2017,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "28221821",
-      "title": "Enhanced neural activation with blueberry supplementation in mild cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "30327868",
-      "title": "The effects of acute wild blueberry supplementation on the cognition of 7-10-year-old schoolchildren",
-      "year": 2019,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29019365",
-      "title": "Blueberry supplementation attenuates oxidative stress within monocytes and modulates immune cell levels in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "34139510"
-      ]
-     },
-     {
-      "pmid": "29141041",
-      "title": "Effects of a mixed berry beverage on cognitive functions and cardiometabolic risk markers; A randomized cross-over study in healthy older adults",
-      "year": 2017,
-      "inReviews": [
-       "34139510"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2010,
@@ -1075,6 +416,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
@@ -1117,6 +459,7 @@
   {
    "id": "lipids",
    "label": "Cholesterol",
+   "anyDesign": true,
    "finding": "Cholesterol and triglycerides",
    "counts": {
     "all": 140,
@@ -1134,7 +477,7 @@
      "firstAuthor": "Azari H",
      "journal": "Food & function",
      "citedBy": 8,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33066847",
@@ -1144,179 +487,10 @@
      "firstAuthor": "Miraghajani M",
      "journal": "Complementary therapies in medicine",
      "citedBy": 12,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.4117647058823529,
-    "trials": 17,
-    "inclusions": 24,
-    "reviews": [
-     {
-      "pmid": "35445669",
-      "trials": 14
-     },
-     {
-      "pmid": "33066847",
-      "trials": 10
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "30699971",
-      "title": "Blueberries Improve Pain, Gait Performance, and Inflammation in Individuals with Symptomatic Knee Osteoarthritis",
-      "year": 2019,
-      "n": 33,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "23977864",
-      "title": "Effects of exercise with or without blueberries in the diet on cardio-metabolic risk factors: an exploratory pilot study in healthy subjects",
-      "year": 2013,
-      "n": 17,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "20724487",
-      "title": "Bioactives in blueberries improve insulin sensitivity in obese, insulin-resistant men and women",
-      "year": 2010,
-      "n": 17,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "22733001",
-      "title": "Effect of a wild blueberry (Vaccinium angustifolium) drink intervention on markers of oxidative stress, inflammation and endothelial function in humans with cardiovascular risk factors",
-      "year": 2013,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "25150116",
-      "title": "Six weeks daily ingestion of whole blueberry powder increases natural killer cell counts and reduces arterial stiffness in sedentary males and females",
-      "year": 2014,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "25578927",
-      "title": "Daily blueberry consumption improves blood pressure and arterial stiffness in postmenopausal women with pre- and stage 1-hypertension: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "20660279",
-      "title": "Blueberries decrease cardiovascular risk factors in obese men and women with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "35445669",
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "31136659",
-      "title": "Blueberries improve biomarkers of cardiometabolic function in participants with metabolic syndrome-results from a 6-month, double-blind, randomized controlled trial",
-      "year": 2019,
-      "n": 115,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "26024297",
-      "title": "Blueberries improve endothelial function, but not blood pressure, in adults with metabolic syndrome: a randomized, double-blind, placebo-controlled clinical trial",
-      "year": 2015,
-      "n": 44,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "28283823",
-      "title": "Dietary blueberry improves cognition among older adults in a randomized, double-blind, placebo-controlled trial",
-      "year": 2018,
-      "n": 24,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "24004888",
-      "title": "Intake and time dependence of blueberry flavonoid-induced improvements in vascular function: a randomized, controlled, double-blind, crossover intervention study with mechanistic insights into biological activity",
-      "year": 2013,
-      "n": 21,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "30669469",
-      "title": "Postprandial Effects of Blueberry (Vaccinium angustifolium) Consumption on Glucose Metabolism, Gastrointestinal Hormone Response, and Perceived Appetite in Healthy Adults: A Randomized, Placebo-Controlled Crossover Trial",
-      "year": 2019,
-      "n": 17,
-      "inReviews": [
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "29019364",
-      "title": "A serving of blueberry (V. corymbosum) acutely improves peripheral arterial dysfunction in young smokers and non-smokers: two randomized, controlled, crossover pilot studies",
-      "year": 2017,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "29882843",
-      "title": "A Randomized, Double-Blinded, Placebo-Controlled Study to Compare the Safety and Efficacy of Low Dose Enhanced Wild Blueberry Powder and Wild Blueberry Extract (ThinkBlue™) in Maintenance of Episodic and Working Memory in Older Adults",
-      "year": 2018,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "29458842",
-      "title": "Cognitive response to fish oil, blueberry, and combined supplementation in older adults with subjective cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "35445669"
-      ]
-     },
-     {
-      "pmid": "27306892",
-      "title": "Postprandial Inflammatory Responses and Free Fatty Acids in Plasma of Adults Who Consumed a Moderately High-Fat Breakfast with and without Blueberry Powder in a Randomized Placebo-Controlled Trial",
-      "year": 2016,
-      "inReviews": [
-       "33066847"
-      ]
-     },
-     {
-      "pmid": "28059417",
-      "title": "Effects of daily blueberry consumption on circulating biomarkers of oxidative stress, inflammation, and antioxidant defense in postmenopausal women with pre- and stage 1-hypertension: a randomized controlled trial",
-      "year": 2017,
-      "inReviews": [
-       "33066847"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2010,
@@ -1374,6 +548,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
@@ -1402,6 +577,7 @@
   {
    "id": "cognition",
    "label": "Memory and thinking",
+   "anyDesign": true,
    "finding": "Memory and thinking",
    "counts": {
     "all": 189,
@@ -1420,7 +596,7 @@
      "journal": "Nutrition research (New York, N.Y.)",
      "citedBy": 0,
      "n": 632,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35676847",
@@ -1430,7 +606,7 @@
      "firstAuthor": "Soveid N",
      "journal": "CNS & neurological disorders drug targets",
      "citedBy": 8,
-     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30999017",
@@ -1440,140 +616,10 @@
      "firstAuthor": "Travica N",
      "journal": "Brain, behavior, and immunity",
      "citedBy": 79,
-     "why": "One of the newest systematic reviews on this finding (2020); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2020); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.75,
-    "trials": 12,
-    "inclusions": 21,
-    "reviews": [
-     {
-      "pmid": "35676847",
-      "trials": 12
-     },
-     {
-      "pmid": "30999017",
-      "trials": 9
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "41974068"
-    ],
-    "shared": [
-     {
-      "pmid": "28283823",
-      "title": "Dietary blueberry improves cognition among older adults in a randomized, double-blind, placebo-controlled trial",
-      "year": 2018,
-      "n": 24,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "26437830",
-      "title": "Cognitive effects following acute wild blueberry supplementation in 7- to 10-year-old children",
-      "year": 2016,
-      "n": 21,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "25701345",
-      "title": "Effects of a single dose of a flavonoid-rich blueberry drink on memory in 8 to 10 y old children",
-      "year": 2015,
-      "n": 14,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "25909473",
-      "title": "Effects of blueberry supplementation on measures of functional mobility in older adults",
-      "year": 2015,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "29458842",
-      "title": "Cognitive response to fish oil, blueberry, and combined supplementation in older adults with subjective cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "29882843",
-      "title": "A Randomized, Double-Blinded, Placebo-Controlled Study to Compare the Safety and Efficacy of Low Dose Enhanced Wild Blueberry Powder and Wild Blueberry Extract (ThinkBlue™) in Maintenance of Episodic and Working Memory in Older Adults",
-      "year": 2018,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "28249119",
-      "title": "Enhanced task-related brain activation and resting perfusion in healthy older adults after chronic blueberry supplementation",
-      "year": 2017,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "28221821",
-      "title": "Enhanced neural activation with blueberry supplementation in mild cognitive impairment",
-      "year": 2018,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "29026903",
-      "title": "The effect of cognitive demand on performance of an executive function task following wild blueberry supplementation in 7 to 10 years old children",
-      "year": 2017,
-      "inReviews": [
-       "35676847",
-       "30999017"
-      ]
-     },
-     {
-      "pmid": "28230732",
-      "title": "Effects of Acute Blueberry Flavonoids on Mood in Children and Young Adults",
-      "year": 2017,
-      "n": 50,
-      "inReviews": [
-       "35676847"
-      ]
-     },
-     {
-      "pmid": "31698695",
-      "title": "Flavonoid-Rich Mixed Berries Maintain and Improve Cognitive Function Over a 6 h Period in Young Healthy Adults",
-      "year": 2019,
-      "n": 20,
-      "inReviews": [
-       "35676847"
-      ]
-     },
-     {
-      "pmid": "30327868",
-      "title": "The effects of acute wild blueberry supplementation on the cognition of 7-10-year-old schoolchildren",
-      "year": 2019,
-      "inReviews": [
-       "35676847"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2015,
@@ -1665,7 +711,7 @@
       "firstAuthor": "Soveid N",
       "journal": "CNS & neurological disorders drug targets",
       "citedBy": 8,
-      "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30999017",
@@ -1675,11 +721,12 @@
       "firstAuthor": "Travica N",
       "journal": "Brain, behavior, and immunity",
       "citedBy": 79,
-      "why": "One of the newest systematic reviews on this finding (2020); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2020); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Children or adults, often older adults",
      "intervention": "Blueberries: whole, juice or freeze-dried whole-blueberry powder",
@@ -1722,6 +769,7 @@
   {
    "id": "diabetes-risk",
    "label": "Type 2 diabetes risk",
+   "anyDesign": true,
    "finding": "Risk of type 2 diabetes",
    "counts": {
     "all": 137,
@@ -1739,7 +787,7 @@
      "firstAuthor": "Wang PY",
      "journal": "Journal of diabetes investigation",
      "citedBy": 222,
-     "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2016); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "23990623",
@@ -1750,7 +798,7 @@
      "journal": "BMJ (Clinical research ed.)",
      "citedBy": 342,
      "n": 85104,
-     "why": "One of the newest meta-analyses on this finding (2013); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2013); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35028521",
@@ -1761,7 +809,7 @@
      "journal": "BMJ nutrition, prevention & health",
      "citedBy": 88,
      "n": 20,
-     "why": "One of the newest systematic reviews on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1808,7 +856,7 @@
       "firstAuthor": "Wang PY",
       "journal": "Journal of diabetes investigation",
       "citedBy": 222,
-      "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2016); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35028521",
@@ -1819,11 +867,12 @@
       "journal": "BMJ nutrition, prevention & health",
       "citedBy": 88,
       "n": 20,
-      "why": "One of the newest systematic reviews on this finding (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults without diabetes",
      "intervention": "Eating more blueberries",
@@ -1866,6 +915,7 @@
   {
    "id": "exercise",
    "label": "Exercise recovery",
+   "anyDesign": true,
    "finding": "Recovery after hard exercise (berries in general: blueberries, cranberries and bilberries)",
    "counts": {
     "all": 1734,
@@ -1883,7 +933,7 @@
      "firstAuthor": "Prieto Martínez A",
      "journal": "Food & function",
      "citedBy": 9,
-     "why": "One of the newest systematic reviews on this finding (2024); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1978,6 +1028,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, often active or athletes",
      "intervention": "Blueberries or related berries (bilberry, cranberry), as food, juice or whole-fruit powder",

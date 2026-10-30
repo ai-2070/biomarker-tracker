@@ -19,8 +19,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving iron, with iron in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded iron trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 44740,
@@ -91,12 +91,13 @@
   {
    "id": "anaemia-women",
    "label": "Anaemia in women",
+   "anyDesign": false,
    "finding": "Anaemia, haemoglobin and iron stores",
    "counts": {
     "reviews": 358,
     "trialReviews": 87,
     "trials": 960,
-    "largeTrials": 76
+    "largeTrials": 68
    },
    "chosenReviews": [
     {
@@ -108,7 +109,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 39,
      "n": 10996,
-     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "27087396",
@@ -119,7 +120,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 107,
      "n": 8506,
-     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "22161448",
@@ -130,7 +131,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 39,
      "n": 10258,
-     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -144,17 +145,6 @@
      "citedBy": 8,
      "n": 96724,
      "why": "A large trial (about 96,724 people) from 2020, as new as the newest review or newer"
-    },
-    {
-     "pmid": "37088092",
-     "doi": "10.1016/s0140-6736(23)00278-7",
-     "title": "Ferric carboxymaltose versus standard-of-care oral iron to treat second-trimester anaemia in Malawian pregnant women: a randomised controlled trial",
-     "year": 2023,
-     "firstAuthor": "Pasricha SR",
-     "journal": "Lancet (London, England)",
-     "citedBy": 60,
-     "n": 21258,
-     "why": "A large trial (about 21,258 people) from 2023, as new as the newest review or newer"
     },
     {
      "pmid": "30446762",
@@ -175,8 +165,8 @@
      "firstAuthor": "Afolabi BB",
      "journal": "The Lancet. Global health",
      "citedBy": 34,
-     "n": 13724,
-     "why": "A large trial (about 13,724 people) from 2024, as new as the newest review or newer"
+     "n": 1056,
+     "why": "A large trial (about 1,056 people) from 2024, as new as the newest review or newer"
     },
     {
      "pmid": "35562720",
@@ -221,17 +211,6 @@
      "citedBy": 0,
      "n": 4252,
      "why": "A large trial (about 4,252 people) from 2026, as new as the newest review or newer"
-    },
-    {
-     "pmid": "42302886",
-     "doi": "10.1016/j.tjnut.2026.101672",
-     "title": "Bovine Lactoferrin Compared With Ferrous sulfate for Treating Iron-Deficiency Anemia in Bangladeshi Women-A Randomized Controlled Trial",
-     "year": 2026,
-     "firstAuthor": "Huda TM",
-     "journal": "The Journal of nutrition",
-     "citedBy": 0,
-     "n": 3722,
-     "why": "A large trial (about 3,722 people) from 2026, as new as the newest review or newer"
     },
     {
      "pmid": "38829171",
@@ -322,17 +301,6 @@
      "why": "A large trial (about 2,133 people) from 2022, as new as the newest review or newer"
     },
     {
-     "pmid": "41736325",
-     "doi": "10.47391/jpma.22068",
-     "title": "Effect of iron therapy on fatigue symptoms in non-anaemic iron deficient women of reproductive age- A Randomized Controlled Trial",
-     "year": 2026,
-     "firstAuthor": "Sultana N",
-     "journal": "JPMA. The Journal of the Pakistan Medical Association",
-     "citedBy": 0,
-     "n": 2024,
-     "why": "A large trial (about 2,024 people) from 2026, as new as the newest review or newer"
-    },
-    {
      "pmid": "31708151",
      "doi": "10.1016/s2214-109x(19)30427-9",
      "title": "Safety and effectiveness of intravenous iron sucrose versus standard oral iron therapy in pregnant women with moderate-to-severe anaemia in India: a multicentre, open-label, phase 3, randomised, controlled trial",
@@ -375,17 +343,6 @@
      "citedBy": 83,
      "n": 1512,
      "why": "A large trial (about 1,512 people) from 2019, as new as the newest review or newer"
-    },
-    {
-     "pmid": "32848185",
-     "doi": "10.1038/s41598-020-71048-0",
-     "title": "The effects of intravenous iron supplementation on fatigue and general health in non-anemic blood donors with iron deficiency: a randomized placebo-controlled superiority trial",
-     "year": 2020,
-     "firstAuthor": "Keller P",
-     "journal": "Scientific reports",
-     "citedBy": 16,
-     "n": 1487,
-     "why": "A large trial (about 1,487 people) from 2020, as new as the newest review or newer"
     },
     {
      "pmid": "32429481",
@@ -452,17 +409,6 @@
      "citedBy": 7,
      "n": 1300,
      "why": "A large trial (about 1,300 people) from 2025, as new as the newest review or newer"
-    },
-    {
-     "pmid": "41482443",
-     "doi": "10.1016/s2352-3026(25)00315-1",
-     "title": "Intravenous iron for non-anaemic iron deficiency in pregnancy: a multicentre, two-arm, randomised controlled trial",
-     "year": 2026,
-     "firstAuthor": "Wasim T",
-     "journal": "The Lancet. Haematology",
-     "citedBy": 3,
-     "n": 1206,
-     "why": "A large trial (about 1,206 people) from 2026, as new as the newest review or newer"
     },
     {
      "pmid": "38458577",
@@ -542,583 +488,6 @@
      "why": "A large trial (about 1,000 people) from 2023, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.14942528735632185,
-    "trials": 87,
-    "inclusions": 113,
-    "reviews": [
-     {
-      "pmid": "30699468",
-      "trials": 40
-     },
-     {
-      "pmid": "27087396",
-      "trials": 53
-     },
-     {
-      "pmid": "22161448",
-      "trials": 20
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "12736400",
-      "title": "Anemia prophylaxis in adolescent school girls by weekly or daily iron-folate supplementation",
-      "year": 2003,
-      "n": 2088,
-      "inReviews": [
-       "30699468",
-       "27087396",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "11814373",
-      "title": "Weekly vs daily iron and folic acid supplementation in adolescent Nepalese girls",
-      "year": 2002,
-      "n": 209,
-      "inReviews": [
-       "30699468",
-       "27087396",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "8855856",
-      "title": "Randomised study of cognitive effects of iron supplementation in non-anaemic iron-deficient adolescent girls",
-      "year": 1996,
-      "inReviews": [
-       "30699468",
-       "27087396",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "10989766",
-      "title": "Effect of daily and intermittent iron supplementation on iron status of high school girls",
-      "year": 2000,
-      "inReviews": [
-       "30699468",
-       "27087396",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "15164114",
-      "title": "Effectiveness of weekly vitamin A (10,000 IU) and iron (60 mg) supplementation for adolescent boys and girls through schools in rural and urban East Java, Indonesia",
-      "year": 2004,
-      "n": 1042,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "11197758",
-      "title": "The effect of anthelmintic treatment on helminth infection and anaemia",
-      "year": 2001,
-      "n": 553,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "20702745",
-      "title": "Long-term intermittent multiple micronutrient supplementation enhances hemoglobin and micronutrient status more than iron + folic acid supplementation in Bangladeshi rural adolescent girls with nutritional anemia",
-      "year": 2010,
-      "n": 324,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "10721929",
-      "title": "Efficacy and acceptability of two iron supplementation schedules in adolescent school girls in Lima, Peru",
-      "year": 2000,
-      "n": 312,
-      "inReviews": [
-       "30699468",
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "11132373",
-      "title": "The impact of iron supplementation on reinfection with intestinal helminths and Schistosoma mansoni in western Kenya",
-      "year": 2000,
-      "n": 231,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "16630383",
-      "title": "Failure of twice-weekly iron supplementation to increase blood haemoglobin and serum ferritin concentrations: results of a randomized controlled trial",
-      "year": 2006,
-      "n": 200,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "10539778",
-      "title": "Long-term weekly iron supplementation improves and sustains nonpregnant women's iron status as well or better than currently recommended short-term daily supplementation",
-      "year": 1999,
-      "n": 116,
-      "inReviews": [
-       "30699468",
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "16740440",
-      "title": "Weekly iron as a safe alternative to daily supplementation for nonanemic pregnant women",
-      "year": 2006,
-      "n": 116,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "12003652",
-      "title": "A randomised trial in Mali of the effectiveness of weekly iron supplements given by teachers on the haemoglobin concentrations of schoolchildren",
-      "year": 2002,
-      "n": 30,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "15510758",
-      "title": "Efficacy of daily vs. weekly supplementation of iron in schoolchildren with low iron status",
-      "year": 2004,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "11355564",
-      "title": "The effect of different anthelmintic treatment regimens combined with iron supplementation on the nutritional status of schoolchildren in KwaZulu-Natal, South Africa: a randomized controlled trial",
-      "year": 2001,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "11123827",
-      "title": "The impact of weekly iron supplementation on the iron status and growth of adolescent girls in Tanzania",
-      "year": 2000,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "11422959",
-      "title": "Intestinal helminth infections, anaemia and labour productivity of female tea pluckers in Bangladesh",
-      "year": 2001,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "16603147",
-      "title": "Effect of daily versus twice weekly long-term iron supplementation on iron absorption and status in iron-deficient women: a stable isotope study",
-      "year": 2006,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "11814372",
-      "title": "Is weekly iron and folic acid supplementation as effective as daily supplementation for decreasing incidence of anemia in adolescent girls?",
-      "year": 2002,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "17928808",
-      "title": "The effect of weekly iron and vitamin A supplementation on hemoglobin levels and iron status in adolescent schoolgirls in western Kenya",
-      "year": 2009,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "19652922",
-      "title": "Once weekly low-dose iron supplementation effectively improved iron status in adolescent girls",
-      "year": 2010,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "10750067",
-      "title": "Identification of an appropriate strategy to control anemia in adolescent girls of poor communities",
-      "year": 2000,
-      "inReviews": [
-       "30699468",
-       "22161448"
-      ]
-     },
-     {
-      "pmid": "27918586",
-      "title": "Impact of Preconception Micronutrient Supplementation on Anemia and Iron Status during Pregnancy and Postpartum: A Randomized Controlled Trial in Rural Vietnam",
-      "year": 2016,
-      "n": 5011,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "27281806",
-      "title": "Neither Preconceptional Weekly Multiple Micronutrient nor Iron-Folic Acid Supplements Affect Birth Size and Gestational Age Compared with a Folic Acid Supplement Alone in Rural Vietnamese Women: A Randomized Controlled Trial",
-      "year": 2016,
-      "n": 5011,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "28511688",
-      "title": "Predictors of adherence to micronutrient supplementation before and during pregnancy in Vietnam",
-      "year": 2017,
-      "n": 4417,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "25905863",
-      "title": "Multivitamin and iron supplementation to prevent periconceptional anemia in rural tanzanian women: a randomized, controlled trial",
-      "year": 2015,
-      "n": 802,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "18641196",
-      "title": "Weekly may be as efficacious as daily folic acid supplementation in improving folate status and lowering serum homocysteine concentrations in Guatemalan women",
-      "year": 2008,
-      "n": 459,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "19886513",
-      "title": "Micronutrient supplementation may reduce symptoms of depression in Guatemalan women",
-      "year": 2009,
-      "n": 459,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "26695724",
-      "title": "Impact of weekly iron folic acid supplementation with and without vitamin B12 on anaemic adolescent girls: a randomised clinical trial",
-      "year": 2016,
-      "n": 373,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "11424510",
-      "title": "The effect of weekly iron supplementation on anaemia and on iron deficiency among female tea pluckers in Bangladesh",
-      "year": 2001,
-      "n": 280,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "19474138",
-      "title": "Randomized, double-blind, placebo-controlled trial of iron supplementation in female soldiers during military training: effects on iron status, physical performance, and mood",
-      "year": 2009,
-      "n": 219,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "25668261",
-      "title": "Oral iron supplementation after blood donation: a randomized clinical trial",
-      "year": 2015,
-      "n": 215,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "19874572",
-      "title": "Effect of iron supplementation on iron status during the first week after blood donation",
-      "year": 2010,
-      "n": 200,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "7299507",
-      "title": "Effects of iron and ascorbic acid supplementation on hemoglobin level and work efficiency of anemic women",
-      "year": 1981,
-      "n": 196,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "17344500",
-      "title": "Iron treatment normalizes cognitive functioning in young women",
-      "year": 2007,
-      "n": 149,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "12763985",
-      "title": "Iron supplementation for unexplained fatigue in non-anaemic women: double blind randomised placebo controlled trial",
-      "year": 2003,
-      "n": 144,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "2180144",
-      "title": "Prevention of iron deficiency with carbonyl iron in female blood donors",
-      "year": 1990,
-      "n": 99,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "16340950",
-      "title": "Effects of administration of iron, iodine and simultaneous iron-plus-iodine on the thyroid hormone profile in iron-deficient adolescent Iranian girls",
-      "year": 2006,
-      "n": 94,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "24959952",
-      "title": "A study of the effects of latent iron deficiency on measures of cognition: a pilot randomised controlled trial of iron supplementation in young women",
-      "year": 2014,
-      "n": 84,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "22951158",
-      "title": "Heme iron-based dietary intervention for improvement of iron status in young women",
-      "year": 2013,
-      "n": 77,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "3810831",
-      "title": "Carbonyl iron for short-term supplementation in female blood donors",
-      "year": 1987,
-      "n": 75,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "22443058",
-      "title": "[Effect of iron supplementation on iron deficiency anemia of childbearing age women in Shanghai]",
-      "year": 2012,
-      "n": 74,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "7476052",
-      "title": "Effects of long-term moderate exercise on iron status in young women",
-      "year": 1995,
-      "n": 62,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "26289639",
-      "title": "Oral iron supplements increase hepcidin and decrease iron absorption from daily or twice-daily doses in iron-depleted young women",
-      "year": 2015,
-      "n": 54,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "17311950",
-      "title": "Electrolytic iron or ferrous sulfate increase body iron in women with moderate to low iron stores",
-      "year": 2007,
-      "n": 51,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "16968234",
-      "title": "Effect of oral iron supplementation on unstimulated salivary flow rate: a randomized, double-blind, placebo-controlled trial",
-      "year": 2006,
-      "n": 50,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "9572829",
-      "title": "Altered metabolic response of iron-depleted nonanemic women during a 15-km time trial",
-      "year": 1998,
-      "n": 37,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "9459375",
-      "title": "Response of serum transferrin receptor to iron supplementation in iron-depleted, nonanemic women",
-      "year": 1998,
-      "n": 37,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "24714351",
-      "title": "Comparison of two doses of elemental iron in the treatment of latent iron deficiency: efficacy, side effects and blinding capabilities",
-      "year": 2014,
-      "n": 32,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "16835600",
-      "title": "Iron supplementation maintains ventilatory threshold and improves energetic efficiency in iron-deficient nonanemic athletes",
-      "year": 2007,
-      "n": 31,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "25582309",
-      "title": "Effect of daily supplementation with iron and zinc on iron status of childbearing age women",
-      "year": 2015,
-      "n": 28,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "7835330",
-      "title": "Effects of low-dose iron supplementation in women with low serum ferritin concentration",
-      "year": 1994,
-      "n": 27,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "14704300",
-      "title": "Iron supplementation does not affect the susceptibility of LDL to oxidative modification in women with low iron status",
-      "year": 2004,
-      "n": 26,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "7598053",
-      "title": "Efficacy of weekly compared with daily iron supplementation",
-      "year": 1995,
-      "n": 23,
-      "inReviews": [
-       "30699468"
-      ]
-     },
-     {
-      "pmid": "24195864",
-      "title": "Iron supplementation improves energetic efficiency in iron-depleted female rowers",
-      "year": 2014,
-      "n": 21,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "23602244",
-      "title": "Iron supplementation decreases plasma zinc but has no effect on plasma fatty acids in non-anemic women",
-      "year": 2013,
-      "n": 21,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "8107547",
-      "title": "Effects of iron repletion on VO2max, endurance, and blood lactate in women",
-      "year": 1993,
-      "n": 20,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "2733574",
-      "title": "The effects of prelatent/latent iron deficiency on physical work capacity",
-      "year": 1989,
-      "n": 17,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "1442656",
-      "title": "Iron status in exercising women: the effect of oral iron therapy vs increased consumption of muscle foods",
-      "year": 1992,
-      "n": 13,
-      "inReviews": [
-       "27087396"
-      ]
-     },
-     {
-      "pmid": "12540406",
-      "title": "Iron supplementation improves progressive fatigue resistance during dynamic knee extensor exercise in iron-depleted, nonanemic women",
-      "year": 2003,
-      "n": 10,
-      "inReviews": [
-       "27087396"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1970,
@@ -1410,12 +779,6 @@
      "n": 14000
     },
     {
-     "pmid": "17542112",
-     "title": "Effectiveness of intermittent iron treatment of two- to six-year-old Jordanian children with iron-deficiency anemia",
-     "year": 2006,
-     "n": 4400
-    },
-    {
      "pmid": "17158425",
      "title": "Iron deficiency in infancy: applying a physiologic framework for prediction",
      "year": 2006,
@@ -1438,12 +801,6 @@
      "title": "Zinc supplementation improved length growth only in anemic infants in a multi-country trial of iron and zinc supplementation in South-East Asia",
      "year": 2008,
      "n": 2451
-    },
-    {
-     "pmid": "20546462",
-     "title": "A prospective randomized, controlled trial of intravenous versus oral iron for moderate iron deficiency anaemia of pregnancy",
-     "year": 2010,
-     "n": 2654
     },
     {
      "pmid": "20574541",
@@ -1492,12 +849,6 @@
      "title": "Effects of prenatal micronutrient and early food supplementation on maternal hemoglobin, birth weight, and infant mortality among children in Bangladesh: the MINIMat randomized trial",
      "year": 2012,
      "n": 4436
-    },
-    {
-     "pmid": "23222534",
-     "title": "Intravenous ferric carboxymaltose versus standard medical care in the treatment of iron deficiency anemia in patients with chronic kidney disease: a randomized, active-controlled, multi-center study",
-     "year": 2013,
-     "n": 1000
     },
     {
      "pmid": "24089418",
@@ -1650,12 +1001,6 @@
      "n": 1486
     },
     {
-     "pmid": "32848185",
-     "title": "The effects of intravenous iron supplementation on fatigue and general health in non-anemic blood donors with iron deficiency: a randomized placebo-controlled superiority trial",
-     "year": 2020,
-     "n": 1487
-    },
-    {
      "pmid": "33571267",
      "title": "Impact of iron fortification on anaemia and iron deficiency among pre-school children living in Rural Ghana",
      "year": 2021,
@@ -1698,12 +1043,6 @@
      "n": 2133
     },
     {
-     "pmid": "37088092",
-     "title": "Ferric carboxymaltose versus standard-of-care oral iron to treat second-trimester anaemia in Malawian pregnant women: a randomised controlled trial",
-     "year": 2023,
-     "n": 21258
-    },
-    {
      "pmid": "36580029",
      "title": "Benefits of pre-operative oral Sucrosomial® iron supplementation in cardiac surgery: influence of patient's baseline hemoglobin and gender",
      "year": 2023,
@@ -1713,7 +1052,7 @@
      "pmid": "39304237",
      "title": "Intravenous versus oral iron for anaemia among pregnant women in Nigeria (IVON): an open-label, randomised controlled trial",
      "year": 2024,
-     "n": 13724
+     "n": 1056
     },
     {
      "pmid": "38458577",
@@ -1764,12 +1103,6 @@
      "n": 1400
     },
     {
-     "pmid": "42302886",
-     "title": "Bovine Lactoferrin Compared With Ferrous sulfate for Treating Iron-Deficiency Anemia in Bangladeshi Women-A Randomized Controlled Trial",
-     "year": 2026,
-     "n": 3722
-    },
-    {
      "pmid": "41628108",
      "title": "Patients' perceptions of care in a Type 1 hybrid effectiveness-implementation trial on intravenous iron for anaemia in pregnancy in Nigeria",
      "year": 2026,
@@ -1782,12 +1115,6 @@
      "n": 4252
     },
     {
-     "pmid": "41482443",
-     "title": "Intravenous iron for non-anaemic iron deficiency in pregnancy: a multicentre, two-arm, randomised controlled trial",
-     "year": 2026,
-     "n": 1206
-    },
-    {
      "pmid": "42067065",
      "title": "Effect of calcium supplementation in pregnancy on maternal anemia and iron status: secondary analyses of two randomized trials in India and Tanzania",
      "year": 2026,
@@ -1798,12 +1125,6 @@
      "title": "Intravenous Ferric Carboxymaltose in Ischemic vs Nonischemic Heart Failure and Iron Deficiency: Insights From FAIR-HF2",
      "year": 2026,
      "n": 1105
-    },
-    {
-     "pmid": "41736325",
-     "title": "Effect of iron therapy on fatigue symptoms in non-anaemic iron deficient women of reproductive age- A Randomized Controlled Trial",
-     "year": 2026,
-     "n": 2024
     },
     {
      "pmid": "41862001",
@@ -1840,7 +1161,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 39,
       "n": 10996,
-      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "22161448",
@@ -1851,7 +1172,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 39,
       "n": 10258,
-      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "32917925",
@@ -1863,17 +1184,6 @@
       "citedBy": 8,
       "n": 96724,
       "why": "A large trial (about 96,724 people) from 2020, as new as the newest review or newer"
-     },
-     {
-      "pmid": "37088092",
-      "doi": "10.1016/s0140-6736(23)00278-7",
-      "title": "Ferric carboxymaltose versus standard-of-care oral iron to treat second-trimester anaemia in Malawian pregnant women: a randomised controlled trial",
-      "year": 2023,
-      "firstAuthor": "Pasricha SR",
-      "journal": "Lancet (London, England)",
-      "citedBy": 60,
-      "n": 21258,
-      "why": "A large trial (about 21,258 people) from 2023, as new as the newest review or newer"
      },
      {
       "pmid": "30446762",
@@ -1894,8 +1204,8 @@
       "firstAuthor": "Afolabi BB",
       "journal": "The Lancet. Global health",
       "citedBy": 34,
-      "n": 13724,
-      "why": "A large trial (about 13,724 people) from 2024, as new as the newest review or newer"
+      "n": 1056,
+      "why": "A large trial (about 1,056 people) from 2024, as new as the newest review or newer"
      },
      {
       "pmid": "35562720",
@@ -1940,17 +1250,6 @@
       "citedBy": 0,
       "n": 4252,
       "why": "A large trial (about 4,252 people) from 2026, as new as the newest review or newer"
-     },
-     {
-      "pmid": "42302886",
-      "doi": "10.1016/j.tjnut.2026.101672",
-      "title": "Bovine Lactoferrin Compared With Ferrous sulfate for Treating Iron-Deficiency Anemia in Bangladeshi Women-A Randomized Controlled Trial",
-      "year": 2026,
-      "firstAuthor": "Huda TM",
-      "journal": "The Journal of nutrition",
-      "citedBy": 0,
-      "n": 3722,
-      "why": "A large trial (about 3,722 people) from 2026, as new as the newest review or newer"
      },
      {
       "pmid": "38829171",
@@ -2041,17 +1340,6 @@
       "why": "A large trial (about 2,133 people) from 2022, as new as the newest review or newer"
      },
      {
-      "pmid": "41736325",
-      "doi": "10.47391/jpma.22068",
-      "title": "Effect of iron therapy on fatigue symptoms in non-anaemic iron deficient women of reproductive age- A Randomized Controlled Trial",
-      "year": 2026,
-      "firstAuthor": "Sultana N",
-      "journal": "JPMA. The Journal of the Pakistan Medical Association",
-      "citedBy": 0,
-      "n": 2024,
-      "why": "A large trial (about 2,024 people) from 2026, as new as the newest review or newer"
-     },
-     {
       "pmid": "31708151",
       "doi": "10.1016/s2214-109x(19)30427-9",
       "title": "Safety and effectiveness of intravenous iron sucrose versus standard oral iron therapy in pregnant women with moderate-to-severe anaemia in India: a multicentre, open-label, phase 3, randomised, controlled trial",
@@ -2094,17 +1382,6 @@
       "citedBy": 83,
       "n": 1512,
       "why": "A large trial (about 1,512 people) from 2019, as new as the newest review or newer"
-     },
-     {
-      "pmid": "32848185",
-      "doi": "10.1038/s41598-020-71048-0",
-      "title": "The effects of intravenous iron supplementation on fatigue and general health in non-anemic blood donors with iron deficiency: a randomized placebo-controlled superiority trial",
-      "year": 2020,
-      "firstAuthor": "Keller P",
-      "journal": "Scientific reports",
-      "citedBy": 16,
-      "n": 1487,
-      "why": "A large trial (about 1,487 people) from 2020, as new as the newest review or newer"
      },
      {
       "pmid": "32429481",
@@ -2171,17 +1448,6 @@
       "citedBy": 7,
       "n": 1300,
       "why": "A large trial (about 1,300 people) from 2025, as new as the newest review or newer"
-     },
-     {
-      "pmid": "41482443",
-      "doi": "10.1016/s2352-3026(25)00315-1",
-      "title": "Intravenous iron for non-anaemic iron deficiency in pregnancy: a multicentre, two-arm, randomised controlled trial",
-      "year": 2026,
-      "firstAuthor": "Wasim T",
-      "journal": "The Lancet. Haematology",
-      "citedBy": 3,
-      "n": 1206,
-      "why": "A large trial (about 1,206 people) from 2026, as new as the newest review or newer"
      },
      {
       "pmid": "38458577",
@@ -2263,6 +1529,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Women with periods (teenagers and adults, not pregnant)",
      "intervention": "Iron supplements (daily or a few times a week)",
@@ -2872,12 +2139,13 @@
   {
    "id": "pregnancy",
    "label": "Pregnancy",
+   "anyDesign": false,
    "finding": "Anaemia and iron deficiency in pregnancy, and outcomes for the baby",
    "counts": {
     "reviews": 228,
     "trialReviews": 91,
     "trials": 504,
-    "largeTrials": 117
+    "largeTrials": 113
    },
    "chosenReviews": [
     {
@@ -2889,7 +2157,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 27,
      "n": 48971,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31144465",
@@ -2899,7 +2167,7 @@
      "firstAuthor": "Abraha I",
      "journal": "Journal of evidence-based medicine",
      "citedBy": 23,
-     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "26198451",
@@ -2910,7 +2178,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 353,
      "n": 43274,
-     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -2933,8 +2201,8 @@
      "firstAuthor": "Afolabi BB",
      "journal": "The Lancet. Global health",
      "citedBy": 34,
-     "n": 13724,
-     "why": "A large trial (about 13,724 people) from 2024, as new as the newest review or newer"
+     "n": 1056,
+     "why": "A large trial (about 1,056 people) from 2024, as new as the newest review or newer"
     },
     {
      "pmid": "42067065",
@@ -3025,17 +2293,6 @@
      "why": "A large trial (about 1,255 people) from 2025, as new as the newest review or newer"
     },
     {
-     "pmid": "41482443",
-     "doi": "10.1016/s2352-3026(25)00315-1",
-     "title": "Intravenous iron for non-anaemic iron deficiency in pregnancy: a multicentre, two-arm, randomised controlled trial",
-     "year": 2026,
-     "firstAuthor": "Wasim T",
-     "journal": "The Lancet. Haematology",
-     "citedBy": 3,
-     "n": 1206,
-     "why": "A large trial (about 1,206 people) from 2026, as new as the newest review or newer"
-    },
-    {
      "pmid": "41628108",
      "doi": "10.1371/journal.pone.0324578",
      "title": "Patients' perceptions of care in a Type 1 hybrid effectiveness-implementation trial on intravenous iron for anaemia in pregnancy in Nigeria",
@@ -3047,641 +2304,6 @@
      "why": "A large trial (about 1,056 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.41964285714285715,
-    "trials": 168,
-    "inclusions": 309,
-    "reviews": [
-     {
-      "pmid": "39145520",
-      "trials": 167
-     },
-     {
-      "pmid": "31144465",
-      "trials": 17
-     },
-     {
-      "pmid": "26198451",
-      "trials": 125
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "23303315",
-      "title": "Micronutrient supplementation and pregnancy outcomes: double-blind randomized controlled trial in China",
-      "year": 2013,
-      "n": 18775,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "18996930",
-      "title": "Impact of micronutrient supplementation during pregnancy on birth weight, duration of gestation, and perinatal mortality in rural western China: double blind cluster randomised controlled trial",
-      "year": 2008,
-      "n": 5828,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "12637400",
-      "title": "Effects of alternative maternal micronutrient supplements on low birth weight in rural Nepal: double blind randomised community trial",
-      "year": 2003,
-      "n": 4926,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19432567",
-      "title": "Iron supplement in pregnancy and development of gestational diabetes--a randomised placebo-controlled trial",
-      "year": 2009,
-      "n": 599,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "14522736",
-      "title": "Iron supplementation during pregnancy, anemia, and birth weight: a randomized controlled trial",
-      "year": 2003,
-      "n": 513,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "12816784",
-      "title": "Efficacy and tolerability of low-dose iron supplements during pregnancy: a randomized controlled trial",
-      "year": 2003,
-      "n": 430,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "17516958",
-      "title": "A randomised placebo-controlled trial to determine the effect of iron supplementation on pregnancy outcome in pregnant women with haemoglobin > or = 13.2 g/dl",
-      "year": 2007,
-      "n": 370,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "138664",
-      "title": "A prophylactic trial of iron and folic acid supplements in pregnant Burmese women",
-      "year": 1976,
-      "n": 310,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "7901636",
-      "title": "Supplementation with vitamin A and iron for nutritional anaemia in pregnant women in West Java, Indonesia",
-      "year": 1993,
-      "n": 251,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "16458655",
-      "title": "The effects of prophylactic iron given in prenatal supplements on iron status and birth outcomes: a randomized controlled trial",
-      "year": 2006,
-      "n": 218,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "9356536",
-      "title": "Effect of iron supplementation on the iron status of pregnant women: consequences for newborns",
-      "year": 1997,
-      "n": 197,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "8141223",
-      "title": "Maternal erythropoietin in singleton pregnancies: a randomized trial on the effect of oral hematinic supplementation",
-      "year": 1994,
-      "n": 97,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "9351406",
-      "title": "Iron supplementation in pregnancy: is less enough? A randomized, placebo controlled trial of low dose iron supplementation with and without heme iron",
-      "year": 1997,
-      "n": 30,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "22073795",
-      "title": "Impact of prophylactic iron supplementation in healthy pregnant women on maternal iron status and birth outcome",
-      "year": 2011,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "17209188",
-      "title": "Effect of high-dose iron supplements on fractional zinc absorption and status in pregnant women",
-      "year": 2007,
-      "inReviews": [
-       "39145520",
-       "31144465",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "25536256",
-      "title": "Effect of maternal multiple micronutrient vs iron-folic acid supplementation on infant mortality and adverse birth outcomes in rural Bangladesh: the JiVitA-3 randomized trial",
-      "year": 2014,
-      "n": 127282,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19336358",
-      "title": "Effects of maternal multimicronutrient supplementation on the mental development of infants in rural western China: follow-up evaluation of a double-blind, randomized, controlled trial",
-      "year": 2009,
-      "n": 5828,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19778983",
-      "title": "Antenatal and postnatal iron supplementation and childhood mortality in rural Nepal: a prospective follow-up in a randomized, controlled community trial",
-      "year": 2009,
-      "n": 4926,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "14668283",
-      "title": "Effects of maternal micronutrient supplementation on fetal loss and infant mortality: a cluster-randomized trial in Nepal",
-      "year": 2003,
-      "n": 4926,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "18644934",
-      "title": "The effect of maternal micronutrient supplementation on early neonatal morbidity in rural Nepal: a randomised, controlled, community trial",
-      "year": 2008,
-      "n": 3927,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19549749",
-      "title": "Antenatal micronutrient supplementation reduces metabolic syndrome in 6- to 8-year-old children in rural Nepal",
-      "year": 2009,
-      "n": 3524,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "2010577",
-      "title": "A randomized comparison of routine versus selective iron supplementation during pregnancy",
-      "year": 1991,
-      "n": 2912,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "2025036",
-      "title": "Iron supplementation, maternal packed cell volume, and fetal growth",
-      "year": 1991,
-      "n": 2912,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "7631683",
-      "title": "Long-term follow-up of mothers and their infants in a randomized trial on iron prophylaxis during pregnancy",
-      "year": 1995,
-      "n": 2693,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "26063068",
-      "title": "Prenatal Iron Supplementation Reduces Maternal Anemia, Iron Deficiency, and Iron Deficiency Anemia in a Randomized Clinical Trial in Rural China, but Iron Deficiency Remains Widespread in Mothers and Neonates",
-      "year": 2015,
-      "n": 2371,
-      "inReviews": [
-       "39145520",
-       "31144465"
-      ]
-     },
-     {
-      "pmid": "16015266",
-      "title": "Effects of prenatal multimicronutrient supplements on birth weight and perinatal mortality: a randomised, controlled trial in Guinea-Bissau",
-      "year": 2005,
-      "n": 2100,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "21243915",
-      "title": "Effects of maternal micronutrient supplementation on fetal loss and under-2-years child mortality: long-term follow-up of a randomised controlled trial from Guinea-Bissau",
-      "year": 2010,
-      "n": 2100,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19589154",
-      "title": "Assessment of dietary intake among pregnant women in a rural area of western China",
-      "year": 2009,
-      "n": 1420,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "22085869",
-      "title": "No effect of maternal micronutrient supplementation on early childhood growth in rural western China: 30 month follow-up evaluation of a double blind, cluster randomized controlled trial",
-      "year": 2012,
-      "n": 1388,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "23853552",
-      "title": "The effect of intermittent antenatal iron supplementation on maternal and infant outcomes in rural Viet Nam: a cluster randomised trial",
-      "year": 2013,
-      "n": 1258,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "21865563",
-      "title": "Low maternal vitamin B-12 status is associated with offspring insulin resistance regardless of antenatal micronutrient supplementation in rural Nepal",
-      "year": 2011,
-      "n": 1132,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "24438754",
-      "title": "Adapting iron dose supplementation in pregnancy for greater effectiveness on mother and child health: protocol of the ECLIPSES randomized clinical trial",
-      "year": 2014,
-      "n": 878,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "12600867",
-      "title": "Multiple micronutrient supplementation during pregnancy does not lead to greater infant birth size than does iron-only supplementation: a randomized controlled trial in a semirural community in Mexico",
-      "year": 2003,
-      "n": 873,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "23400604",
-      "title": "Effect of iron deficiency anemia in pregnancy on child mental development in rural China",
-      "year": 2013,
-      "n": 850,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "24744317",
-      "title": "Iron-containing micronutrient supplementation of Chinese women with no or mild anemia during pregnancy improved iron status but did not affect perinatal anemia",
-      "year": 2014,
-      "n": 834,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "16600929",
-      "title": "Antenatal supplementation with micronutrients and biochemical indicators of status and subclinical infection in rural Nepal",
-      "year": 2006,
-      "n": 740,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "21177506",
-      "title": "Prenatal micronutrient supplementation and intellectual and motor function in early school-aged children in Nepal",
-      "year": 2010,
-      "n": 676,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "15766997",
-      "title": "Effects of antenatal multiple micronutrient supplementation on birthweight and gestational duration in Nepal: double-blind, randomised controlled trial",
-      "year": 2005,
-      "n": 600,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "7660438",
-      "title": "The response to iron supplementation of pregnant women with the haemoglobin genotype AA or AS",
-      "year": 1995,
-      "n": 497,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "16685054",
-      "title": "Effect of iron supplementation during pregnancy on the intelligence quotient and behavior of children at 4 y of age: long-term follow-up of a randomized controlled trial",
-      "year": 2006,
-      "n": 430,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "15715531",
-      "title": "Iron prophylaxis during pregnancy -- how much iron is needed? A randomized dose- response study of 20-80 mg ferrous iron daily in pregnant women",
-      "year": 2005,
-      "n": 427,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "10878651",
-      "title": "Can iron status be improved in each of the three trimesters? A community-based study",
-      "year": 2000,
-      "n": 425,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "2596434",
-      "title": "Hemoglobin as a predictor of response to iron therapy and its use in screening and prevalence estimates",
-      "year": 1989,
-      "n": 412,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "16424650",
-      "title": "Side effects of oral iron prophylaxis in pregnancy--myth or reality?",
-      "year": 2006,
-      "n": 404,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "22888611",
-      "title": "Impact of twice weekly versus daily iron supplementation during pregnancy on maternal and fetal haematological indices: a randomized clinical trial",
-      "year": 2012,
-      "n": 370,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "10682464",
-      "title": "[Clinical experience with iron supplementation in pregnancy]",
-      "year": 1998,
-      "n": 369,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "18806105",
-      "title": "Retinol and riboflavin supplementation decreases the prevalence of anemia in Chinese pregnant women taking iron and folic Acid supplements",
-      "year": 2008,
-      "n": 366,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19527383",
-      "title": "Effect of education and pill count on hemoglobin status during prenatal care in Nepalese women: a randomized controlled trial",
-      "year": 2009,
-      "n": 320,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "16733739",
-      "title": "Body iron and individual iron prophylaxis in pregnancy--should the iron dose be adjusted according to serum ferritin?",
-      "year": 2006,
-      "n": 301,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "16760504",
-      "title": "Lack of inhibition of the anti-malarial action of sulfadoxine-pyrimethamine by folic acid supplementation when used for intermittent preventive treatment in Gambian primigravidae",
-      "year": 2006,
-      "n": 261,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "19406557",
-      "title": "Iron prophylaxis in pregnancy: intravenous route versus oral route",
-      "year": 2009,
-      "n": 260,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "2696020",
-      "title": "[Therapy and iron supplements with ferritin iron during pregnancy. Randomized prospective study of 458 cases]",
-      "year": 1989,
-      "n": 254,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "17977537",
-      "title": "Iron status markers in nonanemic pregnant women with and without iron supplementation",
-      "year": 2008,
-      "n": 244,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "15777891",
-      "title": "Oral versus high dose parenteral iron supplementation in pregnancy",
-      "year": 2005,
-      "n": 220,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "10842553",
-      "title": "The effectiveness of weekly iron supplementation in pregnant women of rural northern Malawi",
-      "year": 2000,
-      "n": 211,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "1802636",
-      "title": "Iron supplementation during pregnancy. Effect on iron status markers, serum erythropoietin and human placental lactogen. A placebo controlled study in 207 Danish women",
-      "year": 1991,
-      "n": 207,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "10684161",
-      "title": "[Effect of iron supplementation and its frequency during pregnancy]",
-      "year": 1999,
-      "n": 203,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "6881917",
-      "title": "Iron supplements versus placebo during pregnancy: its effects on iron and folate status on mothers and newborns",
-      "year": 1983,
-      "n": 203,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "1971872",
-      "title": "Gastric delivery system for iron supplementation",
-      "year": 1990,
-      "n": 200,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     },
-     {
-      "pmid": "1858501",
-      "title": "Iron supplementation during pregnancy",
-      "year": 1991,
-      "n": 192,
-      "inReviews": [
-       "39145520",
-       "26198451"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1968,
@@ -4061,12 +2683,6 @@
      "title": "Micronutrient supplementation affects maternal-infant feeding interactions and maternal distress in Bangladesh",
      "year": 2009,
      "n": 3300
-    },
-    {
-     "pmid": "20546462",
-     "title": "A prospective randomized, controlled trial of intravenous versus oral iron for moderate iron deficiency anaemia of pregnancy",
-     "year": 2010,
-     "n": 2654
     },
     {
      "pmid": "20053938",
@@ -4507,22 +3123,10 @@
      "n": 1391
     },
     {
-     "pmid": "37088092",
-     "title": "Ferric carboxymaltose versus standard-of-care oral iron to treat second-trimester anaemia in Malawian pregnant women: a randomised controlled trial",
-     "year": 2023,
-     "n": 21258
-    },
-    {
      "pmid": "37336320",
      "title": "Intensified Nutrition Interventions in Antenatal Care Services Increased Consumption of Iron and Folic Acid Supplements and Early Breastfeeding Practices in Burkina Faso: Results of a Cluster-Randomized Program Evaluation",
      "year": 2023,
      "n": 1920
-    },
-    {
-     "pmid": "37076197",
-     "title": "Improving coverage of antenatal iron and folic acid supplementation and malaria prophylaxis through targeted information and home deliveries in Côte d'Ivoire: a cluster randomised controlled trial",
-     "year": 2023,
-     "n": 2021
     },
     {
      "pmid": "37486952",
@@ -4564,7 +3168,7 @@
      "pmid": "39304237",
      "title": "Intravenous versus oral iron for anaemia among pregnant women in Nigeria (IVON): an open-label, randomised controlled trial",
      "year": 2024,
-     "n": 13724
+     "n": 1056
     },
     {
      "pmid": "38417549",
@@ -4621,12 +3225,6 @@
      "n": 4252
     },
     {
-     "pmid": "41482443",
-     "title": "Intravenous iron for non-anaemic iron deficiency in pregnancy: a multicentre, two-arm, randomised controlled trial",
-     "year": 2026,
-     "n": 1206
-    },
-    {
      "pmid": "42067065",
      "title": "Effect of calcium supplementation in pregnancy on maternal anemia and iron status: secondary analyses of two randomized trials in India and Tanzania",
      "year": 2026,
@@ -4648,7 +3246,7 @@
       "firstAuthor": "Abraha I",
       "journal": "Journal of evidence-based medicine",
       "citedBy": 23,
-      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "26198451",
@@ -4659,7 +3257,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 353,
       "n": 43274,
-      "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2015); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40653272",
@@ -4680,8 +3278,8 @@
       "firstAuthor": "Afolabi BB",
       "journal": "The Lancet. Global health",
       "citedBy": 34,
-      "n": 13724,
-      "why": "A large trial (about 13,724 people) from 2024, as new as the newest review or newer"
+      "n": 1056,
+      "why": "A large trial (about 1,056 people) from 2024, as new as the newest review or newer"
      },
      {
       "pmid": "42067065",
@@ -4772,17 +3370,6 @@
       "why": "A large trial (about 1,255 people) from 2025, as new as the newest review or newer"
      },
      {
-      "pmid": "41482443",
-      "doi": "10.1016/s2352-3026(25)00315-1",
-      "title": "Intravenous iron for non-anaemic iron deficiency in pregnancy: a multicentre, two-arm, randomised controlled trial",
-      "year": 2026,
-      "firstAuthor": "Wasim T",
-      "journal": "The Lancet. Haematology",
-      "citedBy": 3,
-      "n": 1206,
-      "why": "A large trial (about 1,206 people) from 2026, as new as the newest review or newer"
-     },
-     {
       "pmid": "41628108",
       "doi": "10.1371/journal.pone.0324578",
       "title": "Patients' perceptions of care in a Type 1 hybrid effectiveness-implementation trial on intravenous iron for anaemia in pregnancy in Nigeria",
@@ -4796,6 +3383,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Pregnant women",
      "intervention": "Oral iron supplements (alone or with folic acid)",
@@ -5363,12 +3951,13 @@
   {
    "id": "fatigue",
    "label": "Tiredness",
+   "anyDesign": false,
    "finding": "Tiredness (fatigue) in people with low iron but no anaemia",
    "counts": {
     "reviews": 31,
     "trialReviews": 10,
     "trials": 120,
-    "largeTrials": 5
+    "largeTrials": 3
    },
    "chosenReviews": [
     {
@@ -5380,21 +3969,10 @@
      "journal": "BMJ open",
      "citedBy": 86,
      "n": 1170,
-     "why": "One of the newest systematic reviews of trials on this outcome (2018); screened as answering the question"
+     "why": "One of the newest systematic reviews of trials on this outcome (2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
-    {
-     "pmid": "41736325",
-     "doi": "10.47391/jpma.22068",
-     "title": "Effect of iron therapy on fatigue symptoms in non-anaemic iron deficient women of reproductive age- A Randomized Controlled Trial",
-     "year": 2026,
-     "firstAuthor": "Sultana N",
-     "journal": "JPMA. The Journal of the Pakistan Medical Association",
-     "citedBy": 0,
-     "n": 2024,
-     "why": "A large trial (about 2,024 people) from 2026, as new as the newest review or newer"
-    },
     {
      "pmid": "37486952",
      "doi": "10.1371/journal.pmed.1004242",
@@ -5416,17 +3994,6 @@
      "citedBy": 20,
      "n": 1897,
      "why": "A large trial (about 1,897 people) from 2023, as new as the newest review or newer"
-    },
-    {
-     "pmid": "32848185",
-     "doi": "10.1038/s41598-020-71048-0",
-     "title": "The effects of intravenous iron supplementation on fatigue and general health in non-anemic blood donors with iron deficiency: a randomized placebo-controlled superiority trial",
-     "year": 2020,
-     "firstAuthor": "Keller P",
-     "journal": "Scientific reports",
-     "citedBy": 16,
-     "n": 1487,
-     "why": "A large trial (about 1,487 people) from 2020, as new as the newest review or newer"
     }
    ],
    "timeline": [
@@ -5614,12 +4181,6 @@
      "n": 1539
     },
     {
-     "pmid": "32848185",
-     "title": "The effects of intravenous iron supplementation on fatigue and general health in non-anemic blood donors with iron deficiency: a randomized placebo-controlled superiority trial",
-     "year": 2020,
-     "n": 1487
-    },
-    {
      "pmid": "37486952",
      "title": "Effect of prenatal micronutrient-fortified balanced energy-protein supplementation on maternal and newborn body composition: A sub-study from the MISAME-III randomized controlled efficacy trial in rural Burkina Faso",
      "year": 2023,
@@ -5630,12 +4191,6 @@
      "title": "Fortified balanced energy-protein supplementation during pregnancy and lactation and infant growth in rural Burkina Faso: A 2 × 2 factorial individually randomized controlled trial",
      "year": 2023,
      "n": 1897
-    },
-    {
-     "pmid": "41736325",
-     "title": "Effect of iron therapy on fatigue symptoms in non-anaemic iron deficient women of reproductive age- A Randomized Controlled Trial",
-     "year": 2026,
-     "n": 2024
     }
    ],
    "page": {
@@ -5651,17 +4206,6 @@
      "12763985"
     ],
     "chosenNotCited": [
-     {
-      "pmid": "41736325",
-      "doi": "10.47391/jpma.22068",
-      "title": "Effect of iron therapy on fatigue symptoms in non-anaemic iron deficient women of reproductive age- A Randomized Controlled Trial",
-      "year": 2026,
-      "firstAuthor": "Sultana N",
-      "journal": "JPMA. The Journal of the Pakistan Medical Association",
-      "citedBy": 0,
-      "n": 2024,
-      "why": "A large trial (about 2,024 people) from 2026, as new as the newest review or newer"
-     },
      {
       "pmid": "37486952",
       "doi": "10.1371/journal.pmed.1004242",
@@ -5683,21 +4227,11 @@
       "citedBy": 20,
       "n": 1897,
       "why": "A large trial (about 1,897 people) from 2023, as new as the newest review or newer"
-     },
-     {
-      "pmid": "32848185",
-      "doi": "10.1038/s41598-020-71048-0",
-      "title": "The effects of intravenous iron supplementation on fatigue and general health in non-anemic blood donors with iron deficiency: a randomized placebo-controlled superiority trial",
-      "year": 2020,
-      "firstAuthor": "Keller P",
-      "journal": "Scientific reports",
-      "citedBy": 16,
-      "n": 1487,
-      "why": "A large trial (about 1,487 people) from 2020, as new as the newest review or newer"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with low iron stores (low ferritin) but no anaemia",
      "intervention": "Iron (by mouth or by drip)",
@@ -5782,6 +4316,7 @@
   {
    "id": "side-effects",
    "label": "Stomach and gut side effects",
+   "anyDesign": false,
    "finding": "Stomach and gut side effects",
    "counts": {
     "reviews": 76,
@@ -5799,7 +4334,7 @@
      "journal": "PloS one",
      "citedBy": 533,
      "n": 6831,
-     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "21942989",
@@ -5810,7 +4345,7 @@
      "journal": "BMC blood disorders",
      "citedBy": 89,
      "n": 2348,
-     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -5859,334 +4394,6 @@
      "why": "A large trial (about 1,000 people) from 2018, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.14285714285714285,
-    "trials": 35,
-    "inclusions": 40,
-    "reviews": [
-     {
-      "pmid": "25700159",
-      "trials": 34
-     },
-     {
-      "pmid": "21942989",
-      "trials": 6
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "19682342",
-      "title": "Large-dose intravenous ferric carboxymaltose injection for iron deficiency anemia in heavy uterine bleeding: a randomized, controlled trial",
-      "year": 2009,
-      "n": 477,
-      "inReviews": [
-       "25700159",
-       "21942989"
-      ]
-     },
-     {
-      "pmid": "18928998",
-      "title": "Ferric carboxymaltose injection in the treatment of postpartum iron deficiency anemia: a randomized controlled clinical trial",
-      "year": 2008,
-      "n": 291,
-      "inReviews": [
-       "25700159",
-       "21942989"
-      ]
-     },
-     {
-      "pmid": "18234203",
-      "title": "Comparative efficacy and safety of intravenous ferric carboxymaltose in the treatment of postpartum iron deficiency anemia",
-      "year": 2008,
-      "n": 227,
-      "inReviews": [
-       "25700159",
-       "21942989"
-      ]
-     },
-     {
-      "pmid": "17666600",
-      "title": "Intravenous ferric carboxymaltose compared with oral iron in the treatment of postpartum anemia: a randomized controlled trial",
-      "year": 2007,
-      "inReviews": [
-       "25700159",
-       "21942989"
-      ]
-     },
-     {
-      "pmid": "18371137",
-      "title": "A novel intravenous iron formulation for treatment of anemia in inflammatory bowel disease: the ferric carboxymaltose (FERINJECT) randomized controlled trial",
-      "year": 2008,
-      "inReviews": [
-       "25700159",
-       "21942989"
-      ]
-     },
-     {
-      "pmid": "12816784",
-      "title": "Efficacy and tolerability of low-dose iron supplements during pregnancy: a randomized controlled trial",
-      "year": 2003,
-      "n": 430,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "24145678",
-      "title": "A randomized, open-label, non-inferiority study of intravenous iron isomaltoside 1,000 (Monofer) compared with oral iron for treatment of anemia in IBD (PROCEED)",
-      "year": 2013,
-      "n": 338,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "19406557",
-      "title": "Iron prophylaxis in pregnancy: intravenous route versus oral route",
-      "year": 2009,
-      "n": 260,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "20929915",
-      "title": "A randomized controlled trial comparing intravenous ferric carboxymaltose with oral iron for treatment of iron deficiency anaemia of non-dialysis-dependent chronic kidney disease patients",
-      "year": 2011,
-      "n": 255,
-      "inReviews": [
-       "21942989"
-      ]
-     },
-     {
-      "pmid": "1971872",
-      "title": "Gastric delivery system for iron supplementation",
-      "year": 1990,
-      "n": 200,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "22777991",
-      "title": "Effect of iron supplementation on fatigue in nonanemic menstruating women with low ferritin: a randomized controlled trial",
-      "year": 2012,
-      "n": 198,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "17296819",
-      "title": "Intravenous ferric gluconate significantly improves response to epoetin alfa versus oral iron or no iron in anemic patients with cancer receiving chemotherapy",
-      "year": 2007,
-      "n": 187,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "15051778",
-      "title": "Intravenous iron optimizes the response to recombinant human erythropoietin in cancer patients with chemotherapy-related anemia: a multicenter, open-label, randomized trial",
-      "year": 2004,
-      "n": 157,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "20962160",
-      "title": "The effects of iron fortification on the gut microbiota in African children: a randomized controlled trial in Cote d'Ivoire",
-      "year": 2010,
-      "n": 139,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "22925176",
-      "title": "Intravenous iron sucrose versus oral iron in treatment of iron deficiency anemia in pregnancy: a randomized clinical trial",
-      "year": 2013,
-      "n": 100,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "15824508",
-      "title": "Comparison of intravenous iron sucrose to oral iron in the treatment of anemic patients with chronic kidney disease not on dialysis",
-      "year": 2005,
-      "n": 96,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "17290563",
-      "title": "Does maternal iron supplementation during the lactation period affect iron status of exclusively breast-fed infants?",
-      "year": 2006,
-      "n": 86,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "3810831",
-      "title": "Carbonyl iron for short-term supplementation in female blood donors",
-      "year": 1987,
-      "n": 75,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "14765861",
-      "title": "Treatment of anaemia after joint replacement. A double-blind, randomised, controlled trial of ferrous sulphate versus placebo",
-      "year": 2004,
-      "n": 72,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "23387416",
-      "title": "A randomized, double-blind clinical study on the safety and tolerability of an iron multi-amino acid chelate preparation in premenopausal women",
-      "year": 2013,
-      "n": 60,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "16316362",
-      "title": "A randomized, controlled trial comparing IV iron sucrose to oral iron in anemic patients with nondialysis-dependent CKD",
-      "year": 2005,
-      "n": 56,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "11904617",
-      "title": "Iron therapy in iron deficiency anemia in pregnancy: intravenous route versus oral route",
-      "year": 2002,
-      "n": 50,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "16279906",
-      "title": "Intravenous iron sucrose versus oral iron supplementation for the treatment of iron deficiency anemia in patients with inflammatory bowel disease--a randomized, controlled, open-label, multicenter study",
-      "year": 2005,
-      "n": 46,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "17035697",
-      "title": "A randomized controlled trial of oral versus intravenous iron in chronic kidney disease",
-      "year": 2006,
-      "n": 39,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "1799918",
-      "title": "Tolerability of iron: a comparison of bis-glycino iron II and ferrous sulfate",
-      "year": 1991,
-      "n": 38,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "19330567",
-      "title": "Intravenous iron sucrose is superior to oral iron sulphate for correcting anaemia and restoring iron stores in IBD patients: A randomized, controlled, evaluator-blind, multicentre study",
-      "year": 2009,
-      "n": 35,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "24899360",
-      "title": "A rapid, simple questionnaire to assess gastrointestinal symptoms after oral ferrous sulphate supplementation",
-      "year": 2014,
-      "n": 10,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "22272750",
-      "title": "Clinical evaluation of iron treatment efficiency among non-anemic but iron-deficient female blood donors: a randomized controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "22290270",
-      "title": "A randomized controlled trial of intravenous or oral iron for posttransplant anemia in kidney transplantation",
-      "year": 2012,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "15931282",
-      "title": "Prevention of iron deficiency anemia in adolescent and adult pregnancies",
-      "year": 2003,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "19245362",
-      "title": "Randomized, double-blind, placebo-controlled trial of effects of enteral iron supplementation on anemia and risk of infection during surgical critical illness",
-      "year": 2009,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "17004982",
-      "title": "Intravenous versus oral iron therapy for postpartum anaemia",
-      "year": 2006,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "21643774",
-      "title": "Efficacy and tolerability of a prolonged release ferrous sulphate formulation in iron deficiency anaemia: a non-inferiority controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "19194189",
-      "title": "The factors that affect milk-to-serum ratio for iron during early lactation",
-      "year": 2009,
-      "inReviews": [
-       "25700159"
-      ]
-     },
-     {
-      "pmid": "18363581",
-      "title": "Short-term ferrous sulfate supplementation in female blood donors",
-      "year": 2008,
-      "inReviews": [
-       "25700159"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1979,
@@ -6415,7 +4622,7 @@
       "journal": "BMC blood disorders",
       "citedBy": 89,
       "n": 2348,
-      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "31708151",
@@ -6464,6 +4671,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults taking iron",
      "intervention": "Oral iron (ferrous sulfate)",
@@ -6681,12 +4889,13 @@
   {
    "id": "every-other-day",
    "label": "Every other day vs daily",
+   "anyDesign": false,
    "finding": "Iron every other day compared with every day",
    "counts": {
     "reviews": 32,
     "trialReviews": 24,
     "trials": 174,
-    "largeTrials": 16
+    "largeTrials": 15
    },
    "chosenReviews": [
     {
@@ -6698,7 +4907,7 @@
      "journal": "BMC pharmacology & toxicology",
      "citedBy": 5,
      "n": 1014,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -6922,12 +5131,6 @@
      "n": 1042
     },
     {
-     "pmid": "17542112",
-     "title": "Effectiveness of intermittent iron treatment of two- to six-year-old Jordanian children with iron-deficiency anemia",
-     "year": 2006,
-     "n": 4400
-    },
-    {
      "pmid": "17920918",
      "title": "Effect of daily zinc supplementation on child mortality in southern Nepal: a community-based, cluster randomised, placebo-controlled trial",
      "year": 2007,
@@ -7023,6 +5226,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults or teenagers with low iron or iron-deficiency anaemia",
      "intervention": "Oral iron every other day (or a few times a week)",
@@ -7205,6 +5409,7 @@
   {
    "id": "bisglycinate",
    "label": "Ferrous bisglycinate",
+   "anyDesign": false,
    "finding": "Ferrous bisglycinate compared with other iron forms",
    "counts": {
     "reviews": 7,
@@ -7221,7 +5426,7 @@
      "firstAuthor": "Fischer JAJ",
      "journal": "Nutrition reviews",
      "citedBy": 27,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -7392,6 +5597,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Anyone taking iron (pregnant women, children, adults)",
      "intervention": "Ferrous bisglycinate",

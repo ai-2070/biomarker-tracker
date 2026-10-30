@@ -21,8 +21,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating strawberries comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 1193,
@@ -38,6 +38,7 @@
   {
    "id": "lipids",
    "label": "Cholesterol",
+   "anyDesign": true,
    "finding": "Blood fats: total and LDL cholesterol",
    "counts": {
     "all": 122,
@@ -55,7 +56,7 @@
      "firstAuthor": "Gao Q",
      "journal": "The British journal of nutrition",
      "citedBy": 6,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31637390",
@@ -65,131 +66,10 @@
      "firstAuthor": "Hadi A",
      "journal": "Food & function",
      "citedBy": 15,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.7272727272727273,
-    "trials": 11,
-    "inclusions": 19,
-    "reviews": [
-     {
-      "pmid": "32238201",
-      "trials": 10
-     },
-     {
-      "pmid": "31637390",
-      "trials": 9
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "24670970",
-      "title": "Freeze-dried strawberries lower serum cholesterol and lipid peroxidation in adults with abdominal adiposity and elevated serum lipids",
-      "year": 2014,
-      "n": 60,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "19013285",
-      "title": "The effect of strawberries in a cholesterol-lowering dietary portfolio",
-      "year": 2008,
-      "n": 28,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "29099521",
-      "title": "Impact of daily strawberry consumption on blood pressure and arterial stiffness in pre- and stage 1-hypertensive postmenopausal women: a randomized controlled trial",
-      "year": 2017,
-      "n": 20,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "28846633",
-      "title": "Strawberries Improve Pain and Inflammation in Obese Adults with Radiographic Evidence of Knee Osteoarthritis",
-      "year": 2017,
-      "n": 17,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "20595645",
-      "title": "Strawberry modulates LDL oxidation and postprandial lipemia in response to high-fat meal in overweight hyperlipidemic men and women",
-      "year": 2010,
-      "n": 14,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "24334868",
-      "title": "Effects of freeze-dried strawberry supplementation on metabolic biomarkers of atherosclerosis in subjects with type 2 diabetes: a randomized double-blind controlled trial",
-      "year": 2013,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "22068016",
-      "title": "Effects of dietary strawberry powder on blood lipids and inflammatory markers in obese human subjects",
-      "year": 2012,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "20797478",
-      "title": "Strawberries decrease atherosclerotic markers in subjects with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "21242652",
-      "title": "Attenuation of meal-induced inflammatory and thrombotic responses in overweight men and women after 6-week daily strawberry (Fragaria) intake. A randomized placebo-controlled trial",
-      "year": 2011,
-      "n": 14,
-      "inReviews": [
-       "32238201"
-      ]
-     },
-     {
-      "pmid": "30382270",
-      "title": "Strawberries decrease circulating levels of tumor necrosis factor and lipid peroxides in obese adults with knee osteoarthritis",
-      "year": 2018,
-      "n": 13,
-      "inReviews": [
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "27464461",
-      "title": "Effects of a dietary strawberry powder on parameters of vascular health in adolescent males",
-      "year": 2016,
-      "inReviews": [
-       "32238201"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2008,
@@ -267,6 +147,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
@@ -287,6 +168,7 @@
   {
    "id": "crp",
    "label": "CRP",
+   "anyDesign": true,
    "finding": "C-reactive protein (CRP), a blood marker of inflammation",
    "counts": {
     "all": 347,
@@ -304,7 +186,7 @@
      "firstAuthor": "Gao Q",
      "journal": "The British journal of nutrition",
      "citedBy": 6,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31637390",
@@ -314,131 +196,10 @@
      "firstAuthor": "Hadi A",
      "journal": "Food & function",
      "citedBy": 15,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.7272727272727273,
-    "trials": 11,
-    "inclusions": 19,
-    "reviews": [
-     {
-      "pmid": "32238201",
-      "trials": 10
-     },
-     {
-      "pmid": "31637390",
-      "trials": 9
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "24670970",
-      "title": "Freeze-dried strawberries lower serum cholesterol and lipid peroxidation in adults with abdominal adiposity and elevated serum lipids",
-      "year": 2014,
-      "n": 60,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "19013285",
-      "title": "The effect of strawberries in a cholesterol-lowering dietary portfolio",
-      "year": 2008,
-      "n": 28,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "29099521",
-      "title": "Impact of daily strawberry consumption on blood pressure and arterial stiffness in pre- and stage 1-hypertensive postmenopausal women: a randomized controlled trial",
-      "year": 2017,
-      "n": 20,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "28846633",
-      "title": "Strawberries Improve Pain and Inflammation in Obese Adults with Radiographic Evidence of Knee Osteoarthritis",
-      "year": 2017,
-      "n": 17,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "20595645",
-      "title": "Strawberry modulates LDL oxidation and postprandial lipemia in response to high-fat meal in overweight hyperlipidemic men and women",
-      "year": 2010,
-      "n": 14,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "24334868",
-      "title": "Effects of freeze-dried strawberry supplementation on metabolic biomarkers of atherosclerosis in subjects with type 2 diabetes: a randomized double-blind controlled trial",
-      "year": 2013,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "22068016",
-      "title": "Effects of dietary strawberry powder on blood lipids and inflammatory markers in obese human subjects",
-      "year": 2012,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "20797478",
-      "title": "Strawberries decrease atherosclerotic markers in subjects with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "21242652",
-      "title": "Attenuation of meal-induced inflammatory and thrombotic responses in overweight men and women after 6-week daily strawberry (Fragaria) intake. A randomized placebo-controlled trial",
-      "year": 2011,
-      "n": 14,
-      "inReviews": [
-       "32238201"
-      ]
-     },
-     {
-      "pmid": "30382270",
-      "title": "Strawberries decrease circulating levels of tumor necrosis factor and lipid peroxides in obese adults with knee osteoarthritis",
-      "year": 2018,
-      "n": 13,
-      "inReviews": [
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "27464461",
-      "title": "Effects of a dietary strawberry powder on parameters of vascular health in adolescent males",
-      "year": 2016,
-      "inReviews": [
-       "32238201"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2011,
@@ -501,6 +262,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
@@ -521,6 +283,7 @@
   {
    "id": "sugar",
    "label": "Blood sugar",
+   "anyDesign": true,
    "finding": "Blood sugar and insulin, fasting and after meals",
    "counts": {
     "all": 301,
@@ -538,7 +301,7 @@
      "firstAuthor": "Gao Q",
      "journal": "The British journal of nutrition",
      "citedBy": 6,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -625,6 +388,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
@@ -645,6 +409,7 @@
   {
    "id": "blood-pressure",
    "label": "Blood pressure",
+   "anyDesign": true,
    "finding": "Blood pressure",
    "counts": {
     "all": 56,
@@ -662,7 +427,7 @@
      "firstAuthor": "Shahraki Jazinaki M",
      "journal": "Avicenna journal of phytomedicine",
      "citedBy": 1,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "32238201",
@@ -672,7 +437,7 @@
      "firstAuthor": "Gao Q",
      "journal": "The British journal of nutrition",
      "citedBy": 6,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31637390",
@@ -682,175 +447,10 @@
      "firstAuthor": "Hadi A",
      "journal": "Food & function",
      "citedBy": 15,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.4,
-    "trials": 15,
-    "inclusions": 27,
-    "reviews": [
-     {
-      "pmid": "40969412",
-      "trials": 8
-     },
-     {
-      "pmid": "32238201",
-      "trials": 10
-     },
-     {
-      "pmid": "31637390",
-      "trials": 9
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "24670970",
-      "title": "Freeze-dried strawberries lower serum cholesterol and lipid peroxidation in adults with abdominal adiposity and elevated serum lipids",
-      "year": 2014,
-      "n": 60,
-      "inReviews": [
-       "40969412",
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "19013285",
-      "title": "The effect of strawberries in a cholesterol-lowering dietary portfolio",
-      "year": 2008,
-      "n": 28,
-      "inReviews": [
-       "40969412",
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "29099521",
-      "title": "Impact of daily strawberry consumption on blood pressure and arterial stiffness in pre- and stage 1-hypertensive postmenopausal women: a randomized controlled trial",
-      "year": 2017,
-      "n": 20,
-      "inReviews": [
-       "40969412",
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "20797478",
-      "title": "Strawberries decrease atherosclerotic markers in subjects with metabolic syndrome",
-      "year": 2010,
-      "inReviews": [
-       "40969412",
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "28846633",
-      "title": "Strawberries Improve Pain and Inflammation in Obese Adults with Radiographic Evidence of Knee Osteoarthritis",
-      "year": 2017,
-      "n": 17,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "20595645",
-      "title": "Strawberry modulates LDL oxidation and postprandial lipemia in response to high-fat meal in overweight hyperlipidemic men and women",
-      "year": 2010,
-      "n": 14,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "24334868",
-      "title": "Effects of freeze-dried strawberry supplementation on metabolic biomarkers of atherosclerosis in subjects with type 2 diabetes: a randomized double-blind controlled trial",
-      "year": 2013,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "22068016",
-      "title": "Effects of dietary strawberry powder on blood lipids and inflammatory markers in obese human subjects",
-      "year": 2012,
-      "inReviews": [
-       "32238201",
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "35512768",
-      "title": "Randomized Double-Blind Controlled Trial of Freeze-Dried Strawberry Powder Supplementation in Adults with Overweight or Obesity and Elevated Cholesterol",
-      "year": 2023,
-      "n": 40,
-      "inReviews": [
-       "40969412"
-      ]
-     },
-     {
-      "pmid": "33758944",
-      "title": "Strawberry Consumption, Cardiometabolic Risk Factors, and Vascular Function: A Randomized Controlled Trial in Adults with Moderate Hypercholesterolemia",
-      "year": 2021,
-      "n": 34,
-      "inReviews": [
-       "40969412"
-      ]
-     },
-     {
-      "pmid": "33922576",
-      "title": "Dietary Strawberries Improve Cardiometabolic Risks in Adults with Obesity and Elevated Serum LDL Cholesterol in a Randomized Controlled Crossover Trial",
-      "year": 2021,
-      "n": 33,
-      "inReviews": [
-       "40969412"
-      ]
-     },
-     {
-      "pmid": "28003205",
-      "title": "Incorporating freeze-dried strawberry powder into a high-fat meal does not alter postprandial vascular function or blood markers of cardiovascular disease risk: a randomized controlled trial",
-      "year": 2017,
-      "n": 17,
-      "inReviews": [
-       "40969412"
-      ]
-     },
-     {
-      "pmid": "21242652",
-      "title": "Attenuation of meal-induced inflammatory and thrombotic responses in overweight men and women after 6-week daily strawberry (Fragaria) intake. A randomized placebo-controlled trial",
-      "year": 2011,
-      "n": 14,
-      "inReviews": [
-       "32238201"
-      ]
-     },
-     {
-      "pmid": "30382270",
-      "title": "Strawberries decrease circulating levels of tumor necrosis factor and lipid peroxides in obese adults with knee osteoarthritis",
-      "year": 2018,
-      "n": 13,
-      "inReviews": [
-       "31637390"
-      ]
-     },
-     {
-      "pmid": "27464461",
-      "title": "Effects of a dietary strawberry powder on parameters of vascular health in adolescent males",
-      "year": 2016,
-      "inReviews": [
-       "32238201"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2017,
@@ -896,6 +496,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Strawberries: whole or freeze-dried whole-strawberry powder",
@@ -916,6 +517,7 @@
   {
    "id": "cognition",
    "label": "Memory and dementia",
+   "anyDesign": true,
    "finding": "Memory, thinking and Alzheimer's dementia",
    "counts": {
     "all": 105,
@@ -966,6 +568,7 @@
   {
    "id": "heart-attack",
    "label": "Heart attacks",
+   "anyDesign": true,
    "finding": "Heart attacks (blueberries and strawberries counted together; berries in general)",
    "counts": {
     "all": 446,
@@ -983,7 +586,7 @@
      "firstAuthor": "Kimble R",
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 72,
-     "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1062,11 +665,12 @@
       "firstAuthor": "Kimble R",
       "journal": "Critical reviews in food science and nutrition",
       "citedBy": 72,
-      "why": "One of the newest meta-analyses on this finding (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2019); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults without heart disease at the start",
      "intervention": "Eating more strawberries or berries (whole food)",
@@ -1158,6 +762,7 @@
   {
    "id": "knee",
    "label": "Knee osteoarthritis",
+   "anyDesign": true,
    "finding": "Knee osteoarthritis pain",
    "counts": {
     "all": 24,

@@ -6,8 +6,8 @@ import { cx } from "./ui";
 
 /**
  * How the evidence behind a nutrient's findings was found: every PubMed record searched, the counts left
- * at each step, and per outcome the reviews and trials chosen by written rules, a timeline, how much the
- * chosen reviews share trials, and how the page's own citations compare. Data from
+ * at each step, and per outcome the reviews and trials chosen by written rules and a timeline,
+ * and how the page's own citations compare. Data from
  * knowledge/evidence-maps (built by tools/evidence), loaded only when this section is shown.
  */
 
@@ -65,9 +65,9 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
         <Step big={n(c.retrieved)} text="are reviews, randomised trials or guidelines: all downloaded" />
         <Step big={`${n(c.reviews)} · ${n(c.trials)}`} text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`} />
         {o.screening ? (
-          <Step big={`${o.screening.counts.yes}`} text={`reviews answer the question (${o.label}), of ${o.counts.trialReviews} the rules found`} />
+          <Step big={`${o.screening.counts.yes}`} text={`${o.screening.provenance === "legacy-inputs-unverified" ? "historically marked as answering" : "reviews answer"} the question (${o.label}), of ${o.counts.trialReviews} the rules found`} />
         ) : (
-          <Step big={`${o.counts.trialReviews}`} text={food ? `systematic reviews (${o.label}), after the rules below` : `reviews of ${map.name} trials (${o.label}), after the rules below`} />
+          <Step big={`${o.counts.trialReviews}`} text={food || o.anyDesign ? `systematic reviews of any study design (${o.label}), after the rules below` : `reviews of ${map.name} trials (${o.label}), after the rules below`} />
         )}
       </ol>
 
@@ -86,7 +86,7 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
         ))}
       </div>
 
-      <Outcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
+      <EvidenceOutcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
 
       <details className="max-w-3xl">
         <summary className="min-h-11 cursor-pointer py-2 font-medium">The rules, and what they can't do yet</summary>
@@ -105,6 +105,7 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
           <li>They don't judge quality (risk of bias), which needs reading each paper's methods.</li>
           <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the {kind === "food" ? "verdicts" : "findings"} on this page do.</li>
           <li>Trial sizes and the number of trials a review pooled are read from abstracts and can be missing or off.</li>
+          <li>Overlap is not shown: citing a trial in a bibliography does not mean a review included or pooled it.</li>
         </ul>
         <p className="mt-3 text-sm text-ink-2">The searches, rules and the code that applies them are in the app's repository, so anyone can run them again and check.</p>
       </details>
@@ -121,9 +122,11 @@ function Step({ big, text }: { big: string; text: string }) {
   );
 }
 
-function Outcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; name: string; food: boolean; kind: MapKind; citedTitles: Record<string, string> }) {
+export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; name: string; food: boolean; kind: MapKind; citedTitles: Record<string, string> }) {
   const claim = kind === "food" ? "claim" : "finding";
   const verdict = kind === "food" ? "verdict" : "finding";
+  const anyDesign = food || !!o.anyDesign;
+  const legacy = o.screening?.provenance === "legacy-inputs-unverified";
   const reviewLetter = (pmid: string) => String.fromCharCode(65 + o.chosenReviews.findIndex((r) => r.pmid === pmid));
   return (
     <div className="flex flex-col gap-6">
@@ -131,12 +134,12 @@ function Outcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; 
         <p className="max-w-3xl">
           {o.counts.all !== undefined && <>{n(o.counts.all)} records match this {claim}'s search. </>}
           {n(o.counts.reviews)} systematic reviews and {n(o.counts.trials)} randomised trials in people fit its words
-          {o.screening ? `; ${o.screening.counts.yes} of the reviews answer the question below` : ""}, and {o.counts.largeTrials} trials had 1,000 people or more.
+          {o.screening ? `; ${o.screening.counts.yes} of the reviews ${legacy ? "were historically marked as answering" : "answer"} the question below` : ""}, and {o.counts.largeTrials} trials had 1,000 people or more.
         </p>
       ) : (
         <p className="max-w-3xl">
           {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have this outcome in their title;{" "}
-          {o.counts.trialReviews} are reviews of {name} trials{o.screening ? ` (${o.screening.counts.yes} of them answer the question below)` : " that fit the question"}, and{" "}
+          {o.counts.trialReviews} are {anyDesign ? `systematic reviews of any study design about ${name}` : `reviews of ${name} trials`}{o.screening ? ` (${o.screening.counts.yes} ${legacy ? "historically marked as answering" : "answer"} the question below)` : " eligible under the rules, not screened against the question"}, and{" "}
           {o.counts.largeTrials} trials had 1,000 people or more.
         </p>
       )}
@@ -146,11 +149,11 @@ function Outcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; 
       <Timeline o={o} />
 
       <section className="flex flex-col gap-2">
-        <h3 className="font-serif text-xl font-normal">Reviews chosen by the rules</h3>
+        <h3 className="font-serif text-xl font-normal">{legacy ? "Historical review selections" : "Reviews chosen by the rules"}</h3>
         {o.chosenReviews.length === 0 && (
           <p className="max-w-3xl rounded-lg bg-sunken p-3 text-sm">
-            <span className="font-medium">{food ? `No systematic review answers this ${claim} yet` : "No review of trials answers this question yet"}</span>
-            {o.counts.trialReviews > 0 ? `: the ${o.counts.trialReviews} the rules found were about a nearby question${o.screening ? " (listed above with the reasons)" : ""}.` : "."}{" "}
+            <span className="font-medium">No {anyDesign ? "systematic review" : "review of trials"} chosen for this question yet</span>
+            {o.screening && o.screening.counts.unscreened > 0 ? `: ${o.screening.counts.unscreened} eligible reviews still need screening with current inputs.` : " The rules and screening have not selected an answering review."}{" "}
             {kind === "food"
               ? "The verdict rests on the studies it cites, such as single absorption studies, trials or studies that follow people over time, so it is less certain."
               : "The finding rests on the studies it cites, such as single trials or studies that follow people over time, so it is less certain."}
@@ -175,8 +178,6 @@ function Outcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; 
         {o.newerLargeTrials.length > 0 && <NewerTrials key={o.id} trials={o.newerLargeTrials} />}
       </section>
 
-      {/* Food claims rest mostly on cohort and absorption studies that aren't downloaded, so shared trials say little there. */}
-      {o.overlap && !food && <Overlap o={o} name={name} letter={reviewLetter} />}
 
       <section className="flex max-w-3xl flex-col gap-2 rounded-lg bg-sunken p-3">
         <h3 className="font-medium">Compared with this page</h3>
@@ -257,11 +258,23 @@ function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]
         ))}
       </dl>
       <p className="text-ink-2">
-        <span className="font-medium text-ink">{yes}</span> {yes === 1 ? "review answers" : "reviews answer"} it, {partly} only partly, {no}{" "}
-        {no === 1 ? "doesn't" : "don't"}
-        {unscreened > 0 ? `, ${unscreened} not checked yet` : ""}. Only the ones that answer it can be chosen below. Checked by {s.by} ({formatDate(s.at)});
-        not yet checked by a clinician.
+        <span className="font-medium text-ink">{yes}</span> {yes === 1 ? "review" : "reviews"} {s.provenance === "legacy-inputs-unverified" ? "historically marked as answering" : "answer"} it, {partly} only partly, {no} not.
+        {unscreened > 0 ? ` ${unscreened} not checked with current inputs.` : ""}{" "}
+        {s.provenance === "legacy-inputs-unverified"
+          ? `Historical selections are retained for inspection. The exact screening inputs and per-decision model provenance were not recorded, so these decisions are not validated for current inputs. Legacy file attribution: ${s.by} (${formatDate(s.at)}); individual attribution is unknown.`
+          : s.decisions?.length
+            ? `Only reviews screened as answering with current inputs can be chosen. Checked by ${s.by} (${formatDate(s.at)}).`
+            : "There are no current screening decisions. Eligible reviews must be screened before selection."}
+        {" "}Not yet checked by a clinician.
       </p>
+      {s.provenance === "current" && s.decisions && s.decisions.length > 0 && (
+        <details>
+          <summary className="min-h-11 cursor-pointer py-2 text-sm font-medium">Each screening decision and its provenance</summary>
+          <ul className="flex flex-col gap-2 text-sm">
+            {s.decisions.map((d) => <li key={d.pmid}>PMID {d.pmid}: {d.fits} — {d.reason} · {d.by} ({d.at})</li>)}
+          </ul>
+        </details>
+      )}
       {s.left.length > 0 && (
         <details>
           <summary className="min-h-11 cursor-pointer py-2 text-sm font-medium">Reviews left out, and why ({s.left.length})</summary>
@@ -385,66 +398,3 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
   );
 }
 
-/** Which trials each chosen review pooled (from its reference list), and the overlap measure. */
-function Overlap({ o, name, letter }: { o: EvidenceMapOutcome; name: string; letter: (pmid: string) => string }) {
-  const ov = o.overlap!;
-  const [all, setAll] = useState(false);
-  const shown = all ? ov.shared : ov.shared.slice(0, 12);
-  const cols = ov.reviews;
-  return (
-    <section className="flex flex-col gap-3">
-      <h3 className="font-serif text-xl font-normal">Do the reviews share their trials?</h3>
-      <p className="max-w-3xl text-ink-2">
-        Reviews that pool the same trials aren't independent confirmations: agreement between them can be one body of evidence counted more
-        than once. Overlap here is <span className="font-medium text-ink">{Math.round(ov.cca * 100)} %</span> ({n(ov.trials)} different trials,{" "}
-        {n(ov.inclusions)} inclusions), measured as the corrected covered area (Pieper 2014; the median in 60 published overviews was 4 %).
-        Trials are matched from each review's reference list.
-      </p>
-      <div className="overflow-x-auto">
-        <table className="text-sm">
-          <caption className="sr-only">Trials pooled by each chosen review</caption>
-          <thead>
-            <tr>
-              <th className="py-1 pr-3 text-left font-medium text-ink-2">Trial</th>
-              {cols.map((c) => (
-                <th key={c.pmid} className="w-10 py-1 text-center font-medium" title={`${c.trials} ${name} trials in its references`}>
-                  {letter(c.pmid)}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-line">
-            {shown.map((t) => (
-              <tr key={t.pmid}>
-                <td className="max-w-[28rem] py-1.5 pr-3">
-                  <a href={`https://pubmed.ncbi.nlm.nih.gov/${t.pmid}/`} target="_blank" rel="noopener noreferrer" className="line-clamp-1 text-ink underline-offset-2 hover:underline" title={t.title}>
-                    {t.title}
-                  </a>
-                  <span className="text-xs text-ink-2">
-                    {t.year}
-                    {t.n ? ` · about ${n(t.n)} people` : ""}
-                  </span>
-                </td>
-                {cols.map((c) => (
-                  <td key={c.pmid} className="text-center">
-                    {t.inReviews.includes(c.pmid) ? (
-                      <span className="inline-block size-3 rounded-full" style={{ background: REVIEW_COLOR }} aria-label="included" />
-                    ) : (
-                      <span className="inline-block size-3 rounded-full border border-line" aria-label="not included" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {ov.shared.length > 12 && !all && (
-        <button type="button" onClick={() => setAll(true)} className="self-start text-sm text-accent">
-          Show all {ov.shared.length} trials
-        </button>
-      )}
-      {ov.reviewsWithoutReferences.length > 0 && <p className="text-sm text-ink-2">Review {ov.reviewsWithoutReferences.map(letter).join(", ")}: no reference list in Europe PMC, so not shown.</p>}
-    </section>
-  );
-}
