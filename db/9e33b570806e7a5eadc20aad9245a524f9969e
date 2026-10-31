@@ -1,0 +1,86 @@
+server/agents.ts
+  h_64425bc75e3f3d 12,164,291-303,319
+server/assistant.ts
+  h_64425bc75e3f3d 5,26,43,103-106,142,165-169,173
+server/bridge.ts
+  h_64425bc75e3f3d 32,84-85,88-89,91,93
+server/healthTools.ts
+  h_64425bc75e3f3d 9,265-268,337-338,376,423
+server/http.ts
+  h_64425bc75e3f3d 7,10,21,75,87-88,130-131,220-221,259,282,285,287,298-308,386-393,405-413
+server/mcp.ts
+  h_64425bc75e3f3d 54-66,70,79-82,101,110,121-124,135-141,299,301
+server/models.ts
+  h_64425bc75e3f3d 48,51,53
+server/profiles.ts
+  h_64425bc75e3f3d 21-22,108,131-155,162-168,175-181,202-234,244-245,248,264-267,271-272,274-291,297-305,308-309,314,328-331,342-345,352,355-359,366-369,379-386,415,417,422,424-427,437,453,461,463-465,471,473,477,479-487
+server/steps.ts
+  h_64425bc75e3f3d 9-11,21-23,26,29-59
+server/store.ts
+  h_64425bc75e3f3d 2,15-28,35-49,111
+server/terminal.ts
+  h_64425bc75e3f3d 5-19
+server/zip.ts
+  h_64425bc75e3f3d 11-14,39-46,55-56,103-104
+src/ai/citations.ts
+  h_64425bc75e3f3d 19,25-38,56-57
+src/app/brain/Brain.tsx
+  h_64425bc75e3f3d 17,177,182,187-188,273,275,278,795
+src/app/brain/logic.ts
+  h_64425bc75e3f3d 42-48,53-68
+src/app/brain/menus.tsx
+  h_64425bc75e3f3d 3,23-27,29,32-45,97,156,160
+src/app/brain/store.ts
+  h_64425bc75e3f3d 25-26,85,91,149-150,154,162-163,168-172,180,182-183,193,195,207-208,210,223,250,272-273,276-280,282-293,296,305,311,318
+src/app/components/CitedAnswer.tsx
+  h_64425bc75e3f3d 7-10
+src/app/components/settings/ModelsSettings.tsx
+  h_64425bc75e3f3d 4,42-43,45,47-48,50-51,53-55,71,83,94,101,119,122-126,137,165-168,191,214,220
+src/core/aiProviders.ts
+  h_64425bc75e3f3d 311-326,334
+tests/ai/assistant-doi-boundaries.test.ts
+  h_64425bc75e3f3d 1-26
+tests/app/assistant-brain.test.ts
+  h_64425bc75e3f3d 1-168
+tests/app/assistant-privacy-regressions.test.ts
+  h_64425bc75e3f3d 1-46
+tests/app/assistant-settings.test.ts
+  h_64425bc75e3f3d 1-134
+tests/app/brainLogic.test.ts
+  h_64425bc75e3f3d 43-44
+tests/core/assistant-provider-policy.test.ts
+  h_64425bc75e3f3d 1-26
+tests/server/agents.test.ts
+  h_64425bc75e3f3d 180
+tests/server/api.test.ts
+  h_64425bc75e3f3d 86-87
+tests/server/assistant-mcp-process.test.ts
+  h_64425bc75e3f3d 1-89
+tests/server/assistant-mcp.test.ts
+  h_64425bc75e3f3d 1-106
+tests/server/assistant-models.test.ts
+  h_64425bc75e3f3d 1-75
+tests/server/assistant-safety-regressions.test.ts
+  h_64425bc75e3f3d 1-107
+tests/server/assistant-terminal.test.ts
+  h_64425bc75e3f3d 1-50
+tests/server/assistant-transport.test.ts
+  h_64425bc75e3f3d 1-109
+tests/server/assistant.test.ts
+  h_64425bc75e3f3d 163-164,188
+tests/server/mcp-defaults.test.ts
+  h_64425bc75e3f3d 77
+tests/server/serverPersistenceFixes.test.ts
+  h_64425bc75e3f3d 1-330
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "db9e33b570806e7a5eadc20aad9245a524f9969e",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
