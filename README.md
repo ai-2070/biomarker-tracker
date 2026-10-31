@@ -142,6 +142,34 @@ Your name and private notes are never sent. Optional Skills and medical MCP serv
 
 <img src="docs/screenshots/phones.png" alt="Three phone screens: the dashboard, a vitamin D chart, and the body page" width="100%">
 
+## Desktop app
+
+Download the installer for your computer from [Releases](https://github.com/ai-2070/biomarker-tracker/releases): Windows `.exe` or `.msi`, macOS `.dmg` (Apple Silicon or Intel), or Linux `.AppImage` / `.deb` (x64). The Tauri v2 app includes its own local server and runtime; Bun and Node are not required for tracking, imports, backups or API-based AI providers. Optional agent programs and MCP servers still need their own installed tools.
+
+Profiles, settings and API keys live in the operating system's local application-data folder, under `io.github.ai-2070.biomarker-tracker` (Windows: `%LOCALAPPDATA%`; macOS: `~/Library/Application Support`; Linux: `${XDG_DATA_HOME:-~/.local/share}`). Set `BT_DATA` to choose another folder. The desktop app uses a separate data folder from `bun run start`. Move existing profiles with the app's backup/import controls. Upgrading the app preserves this folder.
+
+The bundled server listens only on `127.0.0.1:4821` and closes with the app. Opening the app again focuses its existing window. If another program occupies that port, startup reports an error. External research links open in your browser.
+
+### Develop and package the desktop app
+
+Install Bun 1.4.4, Rust stable and the [Tauri platform prerequisites](https://v2.tauri.app/start/prerequisites/), then:
+
+```sh
+bun install --frozen-lockfile
+bun run desktop:dev      # builds the frontend and sidecar, then opens the native window
+bun run desktop:build    # builds installers in src-tauri/target/release/bundle/
+```
+
+Desktop development rebuilds the static frontend on launch; restart it after changes. For frontend hot reload, use the browser development commands below. `desktop:prepare` compiles the Bun server, copies only `dist/`, `knowledge/` and bundled `skills/` as resources, and smoke-tests native sidecar builds against a temporary data folder. App icons derive from `public/favicon.svg`.
+
+### CI and releases
+
+[Desktop packages](.github/workflows/desktop.yml) runs type checks and tests, then builds Windows x64 (NSIS + MSI), Linux x64 (DEB + AppImage), and macOS Apple Silicon + Intel (DMG). Pull requests and pushes to `main` keep installers as workflow artifacts.
+
+To release, set the same version in `package.json`, `src-tauri/Cargo.toml` and `src-tauri/tauri.conf.json`, update the lockfiles, then push a matching tag such as `v0.11.0`. CI creates a draft GitHub release and attaches the installers; publish it after reviewing the assets. Publishing an existing release also builds and attaches packages. You can rerun packaging through **Run workflow**, optionally supplying an existing release tag. Tags must match the application version; tags with a hyphen produce prereleases.
+
+GitHub's built-in token handles release uploads; no personal access token is needed. Installers are unsigned by default. For signed and notarized macOS builds, configure `APPLE_CERTIFICATE` (base64 `.p12`), `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD` (app-specific password), and `APPLE_TEAM_ID` as repository secrets. Unsigned macOS and Windows downloads may require operating-system approval before opening.
+
 ## Quick start
 
 Requires [Bun](https://bun.sh). The optional research servers (MCP) also need Node.js.

@@ -400,14 +400,15 @@ function readBody(req: http.IncomingMessage, raw = false): Promise<unknown> {
 
 export function createServer(port: number): http.Server {
   setBridgePort(port);
-  return http.createServer(async (req, res) => {
+  const server = http.createServer(async (req, res) => {
+    const boundPort = (server.address() as { port: number } | null)?.port ?? port;
     const send = (status: number, value: unknown) => res.writeHead(status, { "content-type": "application/json; charset=utf-8" }).end(JSON.stringify(value));
     res.setHeader("x-content-type-options", "nosniff");
     res.setHeader("referrer-policy", "no-referrer");
-    if (!allowedHost(req.headers.host, port)) return send(403, { error: "Wrong host." });
+    if (!allowedHost(req.headers.host, boundPort)) return send(403, { error: "Wrong host." });
     let url: URL;
     try {
-      url = new URL(req.url ?? "/", `http://127.0.0.1:${port}`);
+      url = new URL(req.url ?? "/", `http://127.0.0.1:${boundPort}`);
       // Decode inside the request boundary, including static paths such as "/%".
       decodeURIComponent(url.pathname);
     } catch {
@@ -462,4 +463,6 @@ export function createServer(port: number): http.Server {
       if (controller) res.off("close", cancel);
     }
   });
+  server.once("listening", () => setBridgePort((server.address() as { port: number }).port));
+  return server;
 }
