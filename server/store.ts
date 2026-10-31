@@ -4,7 +4,8 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ModelChoice, ProviderConfig, ProviderId } from "../src/core/aiProviders";
 
-export const ROOT = path.resolve(import.meta.dirname, "..");
+// Compiled desktop sidecars read bundled files from Tauri's resource directory.
+export const ROOT = process.env.BT_ROOT ? path.resolve(process.env.BT_ROOT) : path.resolve(import.meta.dirname, "..");
 /** BT_DATA lets tests (and the desktop app later) use their own folder. */
 export const DATA = (): string => (process.env.BT_DATA ? path.resolve(process.env.BT_DATA) : path.join(ROOT, "data"));
 export const dataPath = (...p: string[]): string => path.join(DATA(), ...p);
