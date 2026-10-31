@@ -8,7 +8,7 @@ import { niceTicks } from "../../core/scale";
 import { formatValue, fromCanonical, toCanonical } from "../../core/units";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "../../core/types";
 import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
-import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "./timeControls";
+import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth, type SharedTimeView } from "./timeControls";
 import { cx } from "./ui";
 import { FLAG_LABEL, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../format";
 import { habitTypesIn, ofTypes, type ProtocolCategory } from "../../core/protocols";
@@ -66,6 +66,7 @@ export function TrendChart({
   profile,
   protocols = [],
   today,
+  linkedTime,
 }: {
   def: BiomarkerDef;
   measurements: Measurement[];
@@ -76,6 +77,8 @@ export function TrendChart({
   /** Log entries to draw under the chart. */
   protocols?: ProtocolEntry[];
   today: string;
+  /** Optional linked dates, without sharing chart refs, selections or reference ranges. */
+  linkedTime?: SharedTimeView;
 }) {
   // Judged on a week's total (active minutes): weekly totals by default, and the range is for a week.
   const totals = !!def.judgeSumOfDays;
@@ -108,8 +111,8 @@ export function TrendChart({
         });
 
   // The whole time span, with a little room at the ends; at least two weeks.
-  const first = dayNumber(sorted[0]!.date);
-  const last = dayNumber(sorted.at(-1)!.date);
+  const first = dayNumber(linkedTime?.extent.first ?? sorted[0]!.date);
+  const last = dayNumber(linkedTime?.extent.last ?? sorted.at(-1)!.date);
   const span = Math.max(last - first, 14);
   const mid = (first + last) / 2;
   const full = useMemo(() => {
@@ -123,7 +126,7 @@ export function TrendChart({
   const yAxisWidth = suffix ? CHART_LAYOUT.yAxisWidth : 88;
   const plotLeft = yAxisWidth + CHART_LAYOUT.padX;
   const plotWidth = Math.max(width - plotLeft - CHART_LAYOUT.marginRight - CHART_LAYOUT.padX, 1);
-  const t = useTimeView(full, { left: plotLeft, width: plotWidth }, { ref: box, minSpan: 14, drag: "select", onChange: () => setMoved(true) });
+  const t = useTimeView(full, { left: plotLeft, width: plotWidth }, { ref: box, minSpan: 14, drag: "select", onChange: () => setMoved(true), shared: linkedTime });
   const v = t.v;
   const fromIso = isoOfDay(v.from);
   const toIso = isoOfDay(v.to);

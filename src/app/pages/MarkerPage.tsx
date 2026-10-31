@@ -1,31 +1,36 @@
-import { useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { personalRange } from "../../core/personalRange";
 import { markerTerms } from "../../research/papers";
-import { computeTrend, flagLatest, flagMeasurement, isCritical, isOutOfRange, recentAverage, recentTotal, resolveRange, sortByDate } from "../../core/trends";
+import { computeTrend, flagLatest, isCritical, isOutOfRange, recentAverage, recentTotal, resolveRange } from "../../core/trends";
 import { formatValue, listUnits } from "../../core/units";
-import type { BiomarkerDef, Citation, Measurement, Profile } from "../../core/types";
-import { deleteMeasurement } from "../../db/db";
-import { ConfirmDialog } from "../components/ConfirmDialog";
+import type { BiomarkerDef, Citation, Profile } from "../../core/types";
+import { SavedResults } from "../components/SavedResults";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { TrendChart } from "../components/TrendChart";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { LeversPanel, leversHeading } from "../components/LeversPanel";
-import { Fold, FoldGroup, Row, Rows } from "../components/disclosure";
+import { Fold, FoldGroup } from "../components/disclosure";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, FlagBadge, LinkButton, Notice } from "../components/ui";
+import { Card, FlagBadge, LinkButton, Notice } from "../components/ui";
 import { displayUnitFor, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../format";
 import { setDisplayUnit, useDisplayUnits, useMeasurementsFor, useMediaQuery, useProfile, useProtocols } from "../hooks";
-import { activeOn } from "../../core/protocols";
 import { todayIso } from "../../core/dates";
-import type { ProtocolEntry } from "../../core/types";
 import { BIOMARKER_MAP, FITNESS_MAP, LIFESTYLE, WHOLE_FOODS, fullName, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { FitnessPanel } from "../components/dashboard/fitness";
 import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
 import { DunedinScores } from "../components/dashboard/agePace";
 import { NotFound } from "./NotFound";
+import type { SharedTimeView } from "../components/timeControls";
+import { BodyFatComparison, BodyFatMass } from "../components/BodyFatComparison";
 
 export function MarkerPage({ id, section }: { id: string; section?: string }) {
+  return id === "bp_systolic" || id === "bp_diastolic"
+    ? <BloodPressurePage />
+    : <SingleMarkerPage id={id} section={section} />;
+}
+
+function SingleMarkerPage({ id, section }: { id: string; section?: string }) {
   const def = BIOMARKER_MAP.get(id);
   const measurements = useMeasurementsFor(id);
   const profile = useProfile();
@@ -89,6 +94,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
                   <p className="font-serif text-5xl font-normal tabular-nums">
                     {showMeasurement(def, trend.latest, unit)} <span className="text-lg font-normal text-ink-2">{valueUnit(def, unit)}</span>
                   </p>
+                  {def.id === "body_fat" && <BodyFatMass measurement={trend.latest} />}
                 </div>
                 {usual?.recent && latestFlag === "unknown" ? (
                   <span className="rounded-full bg-sunken px-3 py-1 text-ink-2">
@@ -140,6 +146,7 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
             <LifestyleLinks markerId={def.id} />
           </>
         )}
+        {measurements !== undefined && def.id === "body_fat" && <BodyFatComparison measurements={measurements} profile={profile} today={todayIso()} />}
         {/* Fitness tests: where you stand for your age, how to do the test (shown before any result too). */}
         {measurements !== undefined && FITNESS_MAP.has(def.id) && <FitnessPanel id={def.id} ms={measurements} profile={profile} scrollTo={section === "for-your-age"} />}
 
@@ -151,9 +158,9 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
               key={wide ? "wide" : "narrow"}
               defaultOpen={wide}
               title="All results"
-              summary={`${measurements.length} ${measurements.length === 1 ? "result" : "results"}, newest first. Open one for its range, lab and what you were doing then.`}
+              summary={`${measurements.length} ${measurements.length === 1 ? "result" : "results"}, newest first. Edit a reading or select several to delete.`}
             >
-              <MeasurementList def={def} measurements={measurements} unit={unit} profile={profile} protocols={protocols} />
+              <SavedResults key={def.id} measurements={measurements} filterable={false} />
             </Fold>
           </FoldGroup>
         )}
@@ -181,6 +188,113 @@ export function MarkerPage({ id, section }: { id: string; section?: string }) {
             />
           </Fold>
         </FoldGroup>
+        </div>
+      </div>
+    </>
+  );
+}
+
+const PRESSURE_READINGS = [
+  { id: "bp_systolic", label: "Systolic — top number" },
+  { id: "bp_diastolic", label: "Diastolic — bottom number" },
+] as const;
+
+/** Both existing marker URLs show the pair without merging measurements or ranges. */
+function BloodPressurePage() {
+  const systolic = useMeasurementsFor("bp_systolic");
+  const diastolic = useMeasurementsFor("bp_diastolic");
+  const profile = useProfile();
+  const units = useDisplayUnits();
+  const protocols = useProtocols() ?? [];
+  const wide = useMediaQuery("(min-width: 64rem)");
+  const [time, setTime] = useState<Pick<SharedTimeView, "view" | "preset">>({ view: null, preset: "All" });
+  const readings = useMemo(() => PRESSURE_READINGS.map((reading, index) => {
+    const def = BIOMARKER_MAP.get(reading.id)!;
+    const measurements = index === 0 ? systolic : diastolic;
+    const trend = measurements ? computeTrend(measurements) : undefined;
+    const flag = trend && measurements ? flagLatest(def, measurements, profile) : undefined;
+    const range = resolveRange(def, trend?.latest ?? {}, profile);
+    return { ...reading, def, measurements, trend, flag, range, levers: leversHeading(def, flag, protocols, profile) };
+  }), [systolic, diastolic, profile, protocols]);
+  const extent = useMemo(() => {
+    let first = "";
+    let last = "";
+    for (const { trend } of readings) {
+      if (!trend) continue;
+      if (!first || trend.firstDate < first) first = trend.firstDate;
+      if (!last || trend.lastDate > last) last = trend.lastDate;
+    }
+    return first ? { first, last } : undefined;
+  }, [readings]);
+  const allResults = useMemo(() => [...(systolic ?? []), ...(diastolic ?? [])], [systolic, diastolic]);
+  const critical = readings.flatMap(({ def, trend, flag }) => trend && flag && isCritical(flag)
+    ? [{ def, measurement: trend.latest, low: flag === "critical-low" }]
+    : []);
+  const linkedTime: SharedTimeView | undefined = extent
+    ? { extent, ...time, onChange: (view, preset) => setTime({ view, preset }) }
+    : undefined;
+
+  return (
+    <>
+      <CriticalBanner items={critical} />
+      <a href={href({ name: "body" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
+        <span aria-hidden="true">←</span> Body
+      </a>
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div className="flex max-w-3xl flex-col gap-2">
+          <h1 className="font-serif text-3xl font-normal tracking-tight text-balance sm:text-4xl">Blood pressure</h1>
+          <p className="text-ink-2">Systolic is the top number; diastolic is the bottom. Both charts use the same dates, with a separate reference range for each number.</p>
+        </div>
+        <LinkButton href={href({ name: "add", kind: "body" })}>Add measurements</LinkButton>
+      </div>
+      <div className="flex flex-col gap-8">
+        {readings.map(({ id, label, def, measurements, trend, flag, range }) => {
+          const unit = displayUnitFor(def, units[id]);
+          return <section key={id} aria-labelledby={`${id}-heading`} className="flex min-w-0 flex-col gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 id={`${id}-heading`} className="font-serif text-2xl font-normal">{label}</h2>
+              {listUnits(def).length > 1 && <UnitSelect compact label={`Show ${id === "bp_systolic" ? "systolic" : "diastolic"} in`} units={listUnits(def)} value={unit} onChange={(u) => void setDisplayUnit(id, u)} />}
+            </div>
+            <Card className="flex min-w-0 flex-col gap-4">
+              {measurements === undefined ? <p className="text-ink-2">Loading…</p> : !trend || !flag ? (
+                <p className="text-ink-2">No results for {def.name} yet. The other number is shown separately when available.</p>
+              ) : <>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm text-ink-2">Latest result, {formatDate(trend.latest.date)}</p>
+                    <p className="font-serif text-5xl font-normal tabular-nums">{showMeasurement(def, trend.latest, unit)} <span className="text-lg text-ink-2">{valueUnit(def, unit)}</span></p>
+                  </div>
+                  {flag !== "unknown" && <FlagBadge flag={flag} className="text-base" />}
+                </div>
+                <div className="flex max-w-3xl flex-col gap-3">
+                  <TrendSummary def={def} trend={trend} unit={unit} />
+                  {isOutOfRange(flag) && !isCritical(flag) && <Notice tone="warn" title="Outside the reference range">One reading outside the range is not a diagnosis. Discuss repeated high readings, a new change or symptoms with your doctor.</Notice>}
+                </div>
+                <TrendChart def={def} measurements={measurements} range={range} unit={unit} profile={profile} protocols={protocols} today={todayIso()} linkedTime={linkedTime} />
+              </>}
+            </Card>
+          </section>;
+        })}
+        <div className="grid grid-cols-1 items-start gap-x-10 gap-y-0 lg:grid-cols-[minmax(0,1fr)_24rem]">
+          {allResults.length > 0 && <FoldGroup className="min-w-0 max-lg:border-b-0 lg:col-start-2 lg:row-start-1">
+            <Fold key={wide ? "wide" : "narrow"} defaultOpen={wide} title="All blood pressure results" summary={`${allResults.length} readings, with the top and bottom numbers named separately. Edit a reading or select several to delete.`}>
+              <SavedResults measurements={allResults} filterable={false} showMarker />
+            </Fold>
+          </FoldGroup>}
+          <FoldGroup className="min-w-0 lg:col-start-1 lg:row-start-1">
+            {readings.map(({ id, def, range, flag, levers }) => <Fragment key={id}>
+              <Fold defaultOpen title={`What is ${def.name.toLowerCase()}?`} summary={firstSentence(def.summary)}>
+                <About def={def} unit={displayUnitFor(def, units[id])} profile={profile} range={range} />
+                <div className="mt-4"><LifestyleLinks markerId={id} /></div>
+              </Fold>
+              {critical.length === 0 && levers.count > 0 && <Fold title={`${levers.title} — ${id === "bp_systolic" ? "systolic" : "diastolic"}`} summary={`${levers.count} options from research, each graded`} defaultOpen={!!levers.focus}>
+                <LeversPanel def={def} flag={flag} protocols={protocols} />
+              </Fold>}
+            </Fragment>)}
+            <Fold defaultOpen title="Search research" summary="Published studies about blood pressure">
+              <ResearchPanel bare name="Blood pressure" terms={markerTerms("blood pressure")} question="What does research say about what affects blood pressure?" critical={critical.length > 0} />
+            </Fold>
+          </FoldGroup>
         </div>
       </div>
     </>
@@ -219,88 +333,6 @@ function TrendSummary({ def, trend, unit }: { def: BiomarkerDef; trend: NonNulla
   );
 }
 
-function MeasurementList({
-  def,
-  measurements,
-  unit,
-  profile,
-  protocols,
-}: {
-  def: BiomarkerDef;
-  measurements: Measurement[];
-  unit: string;
-  profile: Profile;
-  protocols: ProtocolEntry[];
-}) {
-  const all = sortByDate(measurements).reverse();
-  const [showAll, setShowAll] = useState(false);
-  // Newest first; long lists (daily values from a watch) start short.
-  const rows = showAll ? all : all.slice(0, RESULTS_SHOWN);
-  return (
-    <div>
-      <Rows>
-        {rows.map((m) => {
-          const flag = flagMeasurement(def, m, profile);
-          const r = resolveRange(def, m, profile);
-          const entered = valueUnit(def, unit) && m.originalUnit !== unit ? `${m.qualifier ?? ""}${formatValue(m.originalValue)} ${m.originalUnit}` : undefined;
-          const during = activeOn(protocols, m.date);
-          return (
-            <Row
-              key={m.id}
-              title={
-                <span>
-                  <span className="tabular-nums">{showMeasurement(def, m, unit)}</span> {valueUnit(def, unit)}
-                  <span className="font-normal text-ink-2"> · {formatDate(m.date)}</span>
-                </span>
-              }
-              aside={flag !== "unknown" ? <FlagBadge flag={flag} /> : undefined}
-            >
-              <p className="text-sm text-ink-2">
-                {[
-                  entered && `Entered as ${entered}`,
-                  r && `Range ${showRange(def, r, unit)}${r.source === "lab" ? " (lab)" : ""}`,
-                  m.fasted === true ? "Fasting" : m.fasted === false ? "Not fasting" : undefined,
-                  m.lab,
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}
-              </p>
-              {m.note && <p className="text-sm text-ink-2 italic">{m.note}</p>}
-              {during.length > 0 && (
-                <p className="text-sm text-ink-2">
-                  <span className="font-medium text-ink">At the time: </span>
-                  {during.map((p) => p.label).join(", ")}
-                </p>
-              )}
-              <div>
-                <ConfirmDialog
-                  trigger={<span>Delete this result</span>}
-                  triggerVariant="quiet"
-                  triggerClassName="text-sm -ml-3"
-                  title="Delete this result?"
-                  description={`${def.name} ${showMeasurement(def, m, unit)} ${valueUnit(def, unit)} from ${formatDate(m.date)} will be removed from this device. This cannot be undone.`}
-                  confirmLabel="Delete result"
-                  onConfirm={() => deleteMeasurement(m.id)}
-                />
-              </div>
-            </Row>
-          );
-        })}
-      </Rows>
-      {all.length > RESULTS_SHOWN && (
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <Button variant="secondary" aria-expanded={showAll} onClick={() => setShowAll((v) => !v)}>
-            {showAll ? "Show fewer" : `Show all ${all.length} results`}
-          </Button>
-          {!showAll && <span className="text-sm text-ink-2">Showing the newest {RESULTS_SHOWN}.</span>}
-        </div>
-      )}
-    </div>
-  );
-}
-
-/** How many results the list shows before "Show all". */
-const RESULTS_SHOWN = 10;
 
 function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string; profile: Profile; range: ReturnType<typeof resolveRange> }) {
   const defaultRange = resolveRange(def, {}, profile);

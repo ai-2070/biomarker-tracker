@@ -9,6 +9,7 @@ import { listUnits } from "../../core/units";
 import type { Measurement } from "../../core/types";
 import { addMeasurements } from "../../db/db";
 import { BiomarkerPicker } from "./BiomarkerPicker";
+import { ChoiceGroup } from "./ChoiceGroup";
 import { UnitSelect } from "./UnitSelect";
 import { Button, Card, CheckIcon, LinkButton, Notice, cx, errorStyles, inputStyles, labelStyles } from "./ui";
 import { useAllMeasurements } from "../hooks";
@@ -78,6 +79,8 @@ export function Review({
   const [date, setDate] = useState(report.date ?? "");
   const [dateError, setDateError] = useState<string | undefined>();
   const [lab, setLab] = useState("");
+  const [fasted, setFasted] = useState<"yes" | "no" | "unknown">("unknown");
+  const [note, setNote] = useState("");
   const [rows, setRows] = useState<Row[]>(() =>
     report.rows.map((r, i) => ({
       key: String(i),
@@ -101,7 +104,11 @@ export function Review({
     const checked = included.map((r) => ({
       r,
       v: validateManualEntry(
-        { biomarkerId: r.biomarkerId ?? "", value: r.value, unit: r.unit, date, labLow: r.labLow, labHigh: r.labHigh, lab },
+        {
+          biomarkerId: r.biomarkerId ?? "", value: r.value, unit: r.unit, date, labLow: r.labLow, labHigh: r.labHigh, lab,
+          fasted: kind === "lab" && fasted !== "unknown" ? fasted === "yes" : undefined,
+          note: kind === "lab" ? note : undefined,
+        },
         BIOMARKER_MAP,
         today,
         ocr ? "photo" : "pdf",
@@ -189,6 +196,22 @@ export function Review({
             </Field.Root>
           )}
         </div>
+        {kind === "lab" && (
+          <>
+            <ChoiceGroup<"yes" | "no" | "unknown">
+              label="Were you fasting?"
+              help="No food for at least 8 hours before the test. This applies to all results saved from this report."
+              value={fasted}
+              onChange={setFasted}
+              options={[{ value: "yes", label: "Yes" }, { value: "no", label: "No" }, { value: "unknown", label: "Not sure" }]}
+            />
+            <Field.Root className="flex flex-col gap-1.5">
+              <Field.Label className={labelStyles}>Note (optional)</Field.Label>
+              <Field.Control render={<textarea rows={2} />} value={note} onValueChange={setNote} placeholder="e.g. had a cold that week" className={`${inputStyles} py-2`} />
+              <p className="text-sm text-ink-2">Added to every result saved from this report.</p>
+            </Field.Root>
+          </>
+        )}
         {!report.date && <Notice tone="warn">No sample date was found in the report. Please enter it.</Notice>}
         {report.dateNote && <Notice tone="warn">{report.dateNote}</Notice>}
       </Card>
@@ -207,7 +230,7 @@ export function Review({
         </Card>
       )}
 
-      <div className={cx("flex flex-wrap items-center gap-3", !inChat && "sticky bottom-0 -mx-4 border-t border-line bg-page/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border")}>
+      <div className={cx("flex flex-wrap items-center gap-3", !inChat && "sticky bottom-[calc(3.5rem+env(safe-area-inset-bottom))] -mx-4 border-t border-line bg-page/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border lg:bottom-0")}>
         <Button onClick={() => void save()} disabled={saving || included.length === 0}>
           Save {included.length} {included.length === 1 ? "result" : "results"}
         </Button>

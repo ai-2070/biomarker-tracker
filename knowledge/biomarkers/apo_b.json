@@ -1,0 +1,52 @@
+{
+  "id": "apo_b",
+  "name": "Apolipoprotein B",
+  "abbreviation": "ApoB",
+  "category": "Lipids",
+  "aliases": [
+    "Apolipoprotein B",
+    "Apolipoprotein-B",
+    "Apo B",
+    "ApoB",
+    "Apo-B",
+    "Apolipoprotein B100",
+    "Apolipoprotein B-100",
+    "Apo B100",
+    "Apo B-100",
+    "ApoB100",
+    "ApoB-100"
+  ],
+  "canonicalUnit": "g/L",
+  "conversions": {
+    "g/L": 1,
+    "mg/dL": 0.01,
+    "mg/L": 0.001
+  },
+  "rangeNote": "The app has no universal range for ApoB. It uses the laboratory's range when supplied; clinical targets depend on overall heart risk and are not the same as a laboratory reference range.",
+  "summary": "Apolipoprotein B (ApoB) is a protein on blood particles that can contribute to plaque in artery walls, including low-density lipoprotein (LDL). Its concentration reflects how many of these particles are circulating, rather than just how much cholesterol they carry. It can add information when LDL cholesterol and particle numbers do not agree.",
+  "high": {
+    "meaning": "Higher ApoB generally means more plaque-forming particles and higher long-term risk of heart attack and stroke. It is not a diagnosis; discuss a result above the laboratory's range with your doctor alongside your other risk factors.",
+    "commonCauses": [
+      "Inherited lipid patterns, including familial hypercholesterolaemia or familial combined hyperlipidaemia",
+      "Insulin resistance and type 2 diabetes",
+      "Excess body fat, especially around the abdomen"
+    ]
+  },
+  "low": {
+    "meaning": "Lower ApoB usually means fewer plaque-forming particles and lower risk from those particles. It does not rule out heart disease or risks such as raised lipoprotein(a); discuss an unexpectedly low result or one outside the laboratory's range with your doctor.",
+    "commonCauses": [
+      "Cholesterol-lowering medicines, including statins and ezetimibe",
+      "Dietary changes that reduce the number of ApoB-containing particles"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39256087",
+      "doi": "10.1016/j.jacl.2024.08.013",
+      "title": "Role of apolipoprotein B in the clinical management of cardiovascular risk in adults: An Expert Clinical Consensus from the National Lipid Association.",
+      "year": 2024,
+      "studyType": "guideline"
+    }
+  ]
+}

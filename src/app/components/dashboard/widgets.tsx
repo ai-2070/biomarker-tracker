@@ -207,7 +207,7 @@ export function MarkerRow({ m }: { m: DashboardMarker }) {
   );
 }
 
-/** Marker tiles with sparklines (one line each on phones), flagged ones first. */
+/** Saved-marker tiles (rows on phones), limited to the dashboard's highlights. */
 export function MarkerGrid({
   markers,
   title,
@@ -224,8 +224,8 @@ export function MarkerGrid({
 }) {
   const shown = markers.slice(0, limit);
   return (
-    <section aria-label={title}>
-      <div className={cx("mb-3 flex items-baseline justify-between gap-3", hideTitle && "sr-only")}>
+    <section aria-label={title} className="min-w-0">
+      <div className={cx("mb-3 flex flex-wrap items-baseline justify-between gap-3", hideTitle && "sr-only")}>
         <h2 className="font-serif text-2xl font-normal">{title}</h2>
         {more && (
           <a href={more.href} className="flex items-center gap-1 text-sm font-medium text-accent no-underline hover:underline">
@@ -234,18 +234,10 @@ export function MarkerGrid({
         )}
       </div>
       <ul className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:hidden">
-        {shown.map((m) => (
-          <li key={m.def.id}>
-            <MarkerRow m={m} />
-          </li>
-        ))}
+        {shown.map((m) => <li key={m.def.id}><MarkerRow m={m} /></li>)}
       </ul>
       <ul className="stagger hidden gap-3 sm:grid sm:grid-cols-2 xl:grid-cols-3">
-        {shown.map((m) => (
-          <li key={m.def.id}>
-            <MarkerTile m={m} />
-          </li>
-        ))}
+        {shown.map((m) => <li key={m.def.id}><MarkerTile m={m} /></li>)}
       </ul>
     </section>
   );

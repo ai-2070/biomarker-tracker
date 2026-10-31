@@ -241,7 +241,7 @@ function AppBanners() {
     <>
       {person.example && (
         <p className="animate-fade rounded-xl border border-warn/25 bg-warn-soft px-4 py-2.5 text-sm text-ink">
-          <span className="font-medium">Example profile.</span> Every result here is made up, to show how the app works.
+          <span className="font-medium">Example profile.</span> All data is fictional—not evidence that a habit works.
           {mode === "folders" && (
             <>
               {" "}

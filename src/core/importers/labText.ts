@@ -128,7 +128,8 @@ function parseRange(text: string): { low?: string; high?: string } {
 }
 
 function parseResultLine(line: string, id: string, rest: string, def: BiomarkerDef): ParsedRow | undefined {
-  if (RATIO_WORDS.test(line)) return undefined;
+  // Only a declared ratio marker may consume ratio-labelled results.
+  if (RATIO_WORDS.test(line) && def.canonicalUnit !== "ratio") return undefined;
   const tokens = tokenize(rest);
 
   const valueIdx = tokens.findIndex((t) => parseLabNumber(t) !== undefined);

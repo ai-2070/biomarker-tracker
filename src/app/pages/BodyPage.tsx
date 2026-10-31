@@ -12,12 +12,13 @@ import { CriticalBanner } from "../components/CriticalBanner";
 import { WaistToHeightFigure } from "../components/dashboard/waistToHeight";
 import { FitnessFigure } from "../components/dashboard/fitness";
 import { PlusIcon } from "../components/icons";
-import { Button, Card, LinkButton, Notice } from "../components/ui";
+import { Button, Card, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, lowerFirst } from "../format";
 import { useAllMeasurements, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bodyOnly } from "../knowledge";
 import { href } from "../router";
 import { ActiveTimeFigure, StepsFigure } from "../components/dashboard/activity";
+import { SavedResults } from "../components/SavedResults";
 
 /** Shown as a figure on this page, so not repeated as a tile. */
 const FIGURED = new Set([...FITNESS_FIELDS, "weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes"]);
@@ -30,6 +31,7 @@ export function BodyPage() {
   const profile = useProfile();
   const today = todayIso();
   const [saved, setSaved] = useState(0);
+  const [managing, setManaging] = useState(false);
   const body = useMemo(() => (all ? bodyOnly(all) : undefined), [all]);
   const d = useMemo(
     () => (body && protocols && experiments ? buildDashboard({ measurements: body, protocols, experiments, profile, defs: BIOMARKER_MAP, today }) : undefined),
@@ -37,6 +39,17 @@ export function BodyPage() {
   );
   if (!d || !body || !protocols) return <p className="text-ink-2">Loading…</p>;
   const empty = d.markers.length === 0;
+
+  if (managing) return (
+    <>
+      <CriticalBanner items={d.critical.map((m) => ({ def: m.def, measurement: m.latest, low: m.flag === "critical-low" }))} />
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <PageTitle sub="Edit saved measurements and device readings, or select several to delete.">Manage body results</PageTitle>
+        <Button variant="secondary" onClick={() => setManaging(false)}>Back to Body</Button>
+      </div>
+      <SavedResults measurements={body} />
+    </>
+  );
 
   const form = (
     <Card className="animate-enter">
@@ -61,6 +74,7 @@ export function BodyPage() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          {!empty && <Button variant="secondary" onClick={() => setManaging(true)}>Manage results</Button>}
           <LinkButton variant="secondary" href={href({ name: "device-import" })}>
             Import from a device
           </LinkButton>

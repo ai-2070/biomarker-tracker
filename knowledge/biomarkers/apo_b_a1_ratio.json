@@ -1,0 +1,82 @@
+{
+  "id": "apo_b_a1_ratio",
+  "name": "ApoB / ApoA-I ratio",
+  "abbreviation": "ApoB/ApoA-I",
+  "category": "Lipids",
+  "aliases": [
+    "ApoB / ApoA-I ratio",
+    "Apo B/Apo A1 ratio",
+    "Apo B/Apo A-I ratio",
+    "ApoB/ApoA1 ratio",
+    "ApoB/ApoA-I ratio",
+    "Apolipoprotein B/Apolipoprotein A1 ratio",
+    "Apolipoprotein B/Apolipoprotein A-I ratio",
+    "Apolipoprotein B to apolipoprotein A1 ratio",
+    "ApoB to ApoA-I ratio",
+    "Apo B/Apo A1",
+    "Apo B/Apo A-I",
+    "ApoB/ApoA1",
+    "ApoB/ApoA-I",
+    "ApoB/ApoA-1",
+    "Apolipoprotein B/Apolipoprotein A1",
+    "Apolipoprotein B/Apolipoprotein A-I",
+    "ApoB/ApoA1-Quotient",
+    "ApoB/ApoA-I-Quotient",
+    "Apo B/Apo A1-Quotient",
+    "Apo B/Apo A-I-Quotient",
+    "Apolipoprotein-B/Apolipoprotein-A1-Quotient",
+    "Apolipoprotein-B/Apolipoprotein-A-I-Quotient",
+    "ApoB/ApoA1 arány",
+    "ApoB/ApoA-I arány",
+    "Apolipoprotein B/Apolipoprotein A1 arány",
+    "Apolipoprotein B/Apolipoprotein A-I arány",
+    "ApoB/ApoA1 hányados",
+    "ApoB/ApoA-I hányados"
+  ],
+  "canonicalUnit": "ratio",
+  "conversions": {
+    "ratio": 1
+  },
+  "rangeNote": "The app records the ratio reported by the laboratory; it never silently computes it from separate results. There is no universal app range: the laboratory's range is used when supplied, and interpretation depends on the individual ApoB and ApoA-I results and overall heart risk.",
+  "summary": "This is apolipoprotein B (ApoB) divided by apolipoprotein A-I (ApoA-I), with both proteins expressed in the same mass units. ApoB reflects the number of particles that can contribute to artery plaque, while ApoA-I is the main protein in high-density lipoprotein (HDL). A higher ratio is associated with higher heart attack risk, but it is not a diagnosis or a replacement for looking at both proteins separately.",
+  "high": {
+    "meaning": "A higher ratio means more ApoB relative to ApoA-I. It can reflect high ApoB, low ApoA-I, or both; discuss a result above the laboratory's range with your doctor in the context of the separate results and other heart risk factors.",
+    "commonCauses": [
+      "Higher ApoB, including inherited lipid patterns or insulin resistance",
+      "Lower ApoA-I during inflammation or acute illness",
+      "A combination of higher ApoB and lower ApoA-I"
+    ]
+  },
+  "low": {
+    "meaning": "A lower ratio is generally associated with lower heart attack risk, but a high ApoA-I can make the ratio low even when ApoB is raised. It does not prove that the particle burden is low or that raising ApoA-I would prevent disease; discuss an unexpectedly low result with your doctor.",
+    "commonCauses": [
+      "Lower ApoB, for example during cholesterol-lowering treatment",
+      "Higher ApoA-I relative to ApoB",
+      "A combination of lower ApoB and higher ApoA-I"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "18640459",
+      "doi": "10.1016/S0140-6736(08)61076-4",
+      "title": "Lipids, lipoproteins, and apolipoproteins as risk markers of myocardial infarction in 52 countries (the INTERHEART study): a case-control study.",
+      "year": 2008,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "39256087",
+      "doi": "10.1016/j.jacl.2024.08.013",
+      "title": "Role of apolipoprotein B in the clinical management of cardiovascular risk in adults: An Expert Clinical Consensus from the National Lipid Association.",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "39040119",
+      "doi": "10.3389/fimmu.2024.1417270",
+      "title": "Anti-inflammatory mechanism of Apolipoprotein A-I.",
+      "year": 2024,
+      "studyType": "review"
+    }
+  ]
+}

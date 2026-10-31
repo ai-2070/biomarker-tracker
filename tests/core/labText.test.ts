@@ -43,6 +43,7 @@ describe("German report (synthetic)", () => {
       ["total_cholesterol", "212", "mg/dL", null, "200"],
       ["ldl", "138", "mg/dL", null, "116"],
       ["hdl", "52", "mg/dL", "40", null],
+      ["ldl_hdl_ratio", "2,7", "ratio", null, "3,0"],
       ["triglycerides", "110", "mg/dL", null, "150"],
       ["hba1c", "36", "mmol/mol", "20", "42"],
       ["crp_hs", "<0,6", "mg/L", null, "5,0"],
@@ -55,10 +56,6 @@ describe("German report (synthetic)", () => {
     const lymph = byId(report.rows, "lymphocyte_pct")!;
     expect(lymph.value).toBe("1,9");
     expect(lymph.problems[0]).toMatch(/isn't one this app knows/);
-  });
-
-  it("skips ratio lines", () => {
-    expect(report.rows.some((r) => r.line.includes("Quotient"))).toBe(false);
   });
 
   it("produces values that pass the normal entry validation", () => {

@@ -157,6 +157,27 @@ export async function addMeasurements(ms: Omit<Measurement, "id">[], database = 
   });
 }
 
+/** Replace editable fields while preserving the latest stored identity and provenance. */
+export async function updateMeasurement(id: string, measurement: Omit<Measurement, "id" | "source" | "savedOrder">, database = db): Promise<void> {
+  await database.transaction("rw", database.measurements, async () => {
+    const current = await database.measurements.get(id);
+    if (!current) throw new Error("This result no longer exists.");
+    await database.measurements.put({ ...measurement, id: current.id, source: current.source, savedOrder: current.savedOrder });
+  });
+}
+
+/** Delete only the selected saved results, all or nothing, counting existing rows once. */
+export async function deleteMeasurements(ids: readonly string[], database = db): Promise<number> {
+  const selected = [...new Set(ids)];
+  if (selected.length === 0) return 0;
+  return database.transaction("rw", database.measurements, async () => {
+    const existing = await database.measurements.bulkGet(selected);
+    const count = existing.filter((row) => row !== undefined).length;
+    await database.measurements.bulkDelete(selected);
+    return count;
+  });
+}
+
 /** A reviewed device import replaces each measurement/day; the first overlapping series wins. */
 export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "source">[], database = db): Promise<{ added: number; updated: number }> {
   const incoming = new Map<string, Omit<Measurement, "id" | "source">>();
@@ -192,9 +213,6 @@ export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "sourc
   });
 }
 
-export async function deleteMeasurement(id: string, database = db): Promise<void> {
-  await database.measurements.delete(id);
-}
 
 export async function measurementsFor(biomarkerId: string, database = db): Promise<Measurement[]> {
   return database.measurements.where("[biomarkerId+date]").between([biomarkerId, Dexie.minKey], [biomarkerId, Dexie.maxKey]).toArray();
