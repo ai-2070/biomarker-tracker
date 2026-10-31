@@ -19,6 +19,7 @@ import { addSkill, deleteSkill, getSkill, listSkills, setSkillEnabled } from "./
 import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./store";
 import { generateText } from "ai";
 import { MAX_ZIP_BYTES } from "./zip";
+import { checkClaimEvidence, ClaimEvidenceError } from "./claimEvidence";
 
 export const MAX_BODY = 20 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "dist");
@@ -292,6 +293,14 @@ function photos(v: unknown): NonNullable<ChatMessage["images"]> {
   return out;
 }
 
+route("POST", "/api/claim-evidence", async (_p, body, signal) => {
+  try { return await checkClaimEvidence(body, { signal }); }
+  catch (error) {
+    if (error instanceof ClaimEvidenceError) throw new HttpError(error.status, error.message);
+    throw error;
+  }
+});
+
 route("POST", "/api/assistant", async (_p, body, signal) => {
   if (body.scope !== undefined && body.scope !== "research") throw new HttpError(400, "Unknown assistant scope.");
   if (body.scope === "research") {
@@ -438,7 +447,7 @@ export function createServer(port: number): http.Server {
     }
     const r = routes.find((x) => x.method === method && x.re.test(url.pathname));
     if (!r) return send(404, { error: "Not found." });
-    const controller = url.pathname === "/api/assistant" ? new AbortController() : undefined;
+    const controller = url.pathname === "/api/assistant" || url.pathname === "/api/claim-evidence" ? new AbortController() : undefined;
     const cancel = () => controller?.abort();
     if (controller) res.once("close", cancel);
     try {

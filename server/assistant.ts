@@ -1,5 +1,5 @@
 // The assistant: one model with the health tools, skills and MCP tools.
-import { generateText, isStepCount, type ModelMessage, type ToolSet } from "ai";
+import { generateText, isStepCount, tool, type ModelMessage, type ToolSet } from "ai";
 import { skillIndex } from "../src/core/skills";
 import { providerInfo } from "../src/core/aiProviders";
 import { WEEKDAYS } from "../src/core/plans";
@@ -15,6 +15,8 @@ import { completeProfileDetails, profileDetailsIn } from "../src/core/profileCom
 import { todayIso } from "../src/core/dates";
 import { measurementsIn } from "../src/core/measurementCompletion";
 import { knowledge } from "./knowledge";
+import { z } from "zod";
+import { validateClaimAssessment, type ClaimAssessment } from "../src/core/claimEvidence";
 
 export interface ChatMessage {
   role: "user" | "assistant";
@@ -27,7 +29,7 @@ export type { ToolStep } from "./steps";
 export { studyIdsIn } from "./steps";
 
 export type AssistantReply =
-  | { ok: true; text: string; model: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; /** e.g. answered without the app's tools */ note?: string }
+  | { ok: true; text: string; model: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; claimAssessment?: ClaimAssessment; /** e.g. answered without the app's tools */ note?: string }
   | { ok: false; error: string };
 
 export const MAX_STEPS = 10;
@@ -52,10 +54,10 @@ export function dataPack(snapshot: HealthSnapshot): string {
 }
 
 /** Explicit allowlist, built without a caller's snapshot: no personal or proposal tools. */
-function researchTools(fetchFn?: typeof fetch): ToolSet {
+function researchTools(fetchFn?: typeof fetch, claimReview = false): ToolSet {
   const publicTools = healthTools({ measurements: [], protocols: [], experiments: [], profile: {} }, fetchFn);
   return Object.fromEntries(
-    ["search_research", "get_study", "get_nutrient", "get_whole_food", "get_lifestyle", "find_foods", "read_skill"]
+    (claimReview ? ["search_research", "get_study", "read_skill"] : ["search_research", "get_study", "get_nutrient", "get_whole_food", "get_lifestyle", "find_foods", "read_skill"])
       .map((name) => [name, publicTools[name]!]),
   );
 }
@@ -124,8 +126,9 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
 export async function ask(
   messages: ChatMessage[],
   snapshot: HealthSnapshot,
-  opts: { signal?: AbortSignal; fetchFn?: typeof fetch; researchOnly?: boolean; /** Original typed question, never attached documents. */ userText?: string; /** Tests pass a mock model. */ ready?: Ready } = {},
+  opts: { signal?: AbortSignal; fetchFn?: typeof fetch; researchOnly?: boolean; /** Structured, live-retrieval-only public claim check. */ claimReview?: boolean; /** Original typed question, never attached documents. */ userText?: string; /** Tests pass a mock model. */ ready?: Ready } = {},
 ): Promise<AssistantReply> {
+  if (opts.claimReview) opts = { ...opts, researchOnly: true };
   if (opts.signal?.aborted) return { ok: false, error: "Stopped." };
   // Also enforce isolation for direct callers, before readiness, tools or agent prompt construction.
   if (opts.researchOnly) {
@@ -172,14 +175,70 @@ export async function ask(
 
   const mcp = await assistantTools();
   if (opts.signal?.aborted) return { ok: false, error: "Stopped." };
-  const tools: ToolSet = { ...mcp.tools, ...(opts.researchOnly ? researchTools(opts.fetchFn) : healthTools(snapshot, opts.fetchFn, { userText: opts.userText, requestText })) };
-  const system = systemPrompt({
+  const tools: ToolSet = { ...mcp.tools, ...(opts.researchOnly ? researchTools(opts.fetchFn, opts.claimReview) : healthTools(snapshot, opts.fetchFn, { userText: opts.userText, requestText })) };
+  // Observe actual executions, not a model's claimed search or a proposed tool call.
+  let retrieved = false;
+  let retrievalFailed = false;
+  const retrievedIds = new Set<string>();
+  let claimAssessment: ClaimAssessment | undefined;
+  let submissionError: string | undefined;
+  if (opts.claimReview) {
+    for (const [name, definition] of Object.entries(tools)) {
+      if (!definition.execute || name === "read_skill" || name === "research_tools") continue;
+      const execute = definition.execute;
+      tools[name] = { ...definition, execute: async (input, context) => {
+        try {
+          const output = await execute(input, context);
+          const action = toolStep(name, input);
+          validateToolResult(action, output);
+          const ids = studyIdsFromTool(name, output);
+          const emptySearch = name === "search_research" && !!output && typeof output === "object" &&
+            "studies" in output && Array.isArray(output.studies) && output.studies.length === 0 &&
+            "total" in output && output.total === 0;
+          if (!action.success || (!ids.length && !emptySearch)) retrievalFailed = true;
+          else { retrieved = true; for (const id of ids) retrievedIds.add(id); }
+          return output;
+        } catch (error) {
+          retrievalFailed = true;
+          throw error;
+        }
+      } };
+    }
+  }
+  const retrievalError = () => {
+    const error = retrievalFailed ? "A research source failed or returned unverifiable results. No evidence grade was saved." : "No live research was retrieved. This model cannot create a verified evidence check without the app's research tools.";
+    return !retrieved || retrievalFailed ? { ok: false as const, error } : undefined;
+  };
+  if (opts.claimReview) tools.submit_claim_assessment = tool({
+    description: "Submit the completed evidence assessment after searching live research. This supplies the page's saved result; final chat wording is not used. Use only retrieved study IDs.",
+    inputSchema: z.object({
+      verdict: z.enum(["supported", "mixed", "not supported", "not enough evidence"]),
+      grade: z.enum(["high", "moderate", "low", "very low"]).nullable(),
+      summary: z.string().min(12).max(600),
+      limitations: z.string().min(12).max(800),
+      citations: z.array(z.string()).max(20),
+    }).strict(),
+    execute: async (input) => {
+      const error = retrievalError();
+      if (error) return { error: error.error };
+      try {
+        claimAssessment = validateClaimAssessment(input, [...retrievedIds]);
+        submissionError = undefined;
+        return { recorded: true };
+      } catch (error) {
+        submissionError = error instanceof Error ? error.message : "The assessment could not be validated.";
+        return { error: submissionError };
+      }
+    },
+  });
+  let system = systemPrompt({
     skills: skillIndex(enabledSkills()),
     cautious: !opts.researchOnly && safetyOf(snapshot).length > 0,
     critical: opts.researchOnly ? [] : resultsOverview(snapshot).critical,
     researchOnly: opts.researchOnly,
     mcpServers: mcp.servers,
   });
+  if (opts.claimReview) system += "\n\nFor this claim review, submit the completed result through submit_claim_assessment after retrieving and reading relevant research. Do not put JSON in the final answer: the page saves the tool result, not your prose. Use verdict supported, mixed, not supported, or not enough evidence; use grade null exactly when evidence is insufficient, otherwise high, moderate, low, or very low. Give a concise summary and limitations naming the search scope, population and important limits. Citations must be exact PMID:, PMCID: or DOI: IDs returned by live research tools in this request, never skills or memory. A graded verdict needs relevant retrieved human evidence. A successful search with no relevant evidence can only give not enough evidence with null grade; absence is not a confident negative finding. If the tool returns a validation error, correct the assessment using the retrieved evidence. Once submission succeeds, the check is complete: stop research and end your answer briefly. Do not supply timestamps or model names; code supplies them.";
 
   if (agent && messages.some((m) => m.images?.length)) {
     return { ok: false, error: "Photos can only be sent to models used with an API key or running on this computer, not to agent programs. Choose one in Settings → AI models, or send the question without the photo." };
@@ -196,13 +255,19 @@ export async function ask(
       messages,
       tools,
       dataPack: opts.researchOnly ? () => "Research-only request. No personal data is available. Without the app's research tools, this live evidence check cannot be performed or verified." : () => dataPack(snapshot),
+      ...(opts.claimReview ? { claimReview: true } : {}),
       ...(opts.signal ? { signal: opts.signal } : {}),
     });
     if (!a.ok) return a;
+    if (opts.claimReview) {
+      const error = retrievalError();
+      if (error) return error;
+    }
+    if (opts.claimReview && !claimAssessment) return { ok: false, error: submissionError ?? "The model did not submit its evidence assessment. No new grade was saved." };
     const note = a.usedTools ? undefined : opts.researchOnly
       ? `${providerInfo(agent.provider)!.label} has no access to the app's research tools for this request. This is not a verified live evidence check; no profile or results were supplied and its citations can't be checked.`
       : `${providerInfo(agent.provider)!.label} answered from a summary of your data, without the app's research tools, so its citations can't be checked.`;
-    return { ok: true, text: a.text, model: modelLabel, steps: a.steps, studyIds: a.studyIds, truncated: false, failedServers: mcp.failed, ...(note ? { note } : {}) };
+    return { ok: true, text: a.text, model: opts.claimReview ? `${info?.label ?? agent.provider} · ${a.model ?? `${agent.model || "program default"} (configured; resolved model not reported)`}` : modelLabel, steps: a.steps, studyIds: a.studyIds, truncated: opts.claimReview ? a.truncated ?? false : false, failedServers: mcp.failed, ...(claimAssessment ? { claimAssessment } : {}), ...(note ? { note } : {}) };
   }
   const { model, providerOptions } = r!.ready;
 
@@ -216,9 +281,10 @@ export async function ask(
           : { role: m.role, content: m.content },
       ),
       tools,
-      stopWhen: isStepCount(MAX_STEPS),
+      stopWhen: opts.claimReview ? [isStepCount(MAX_STEPS), () => claimAssessment !== undefined] : isStepCount(MAX_STEPS),
       maxOutputTokens: 8000,
       providerOptions,
+      ...(opts.claimReview ? { maxRetries: 0 } : {}),
       abortSignal: opts.signal ? AbortSignal.any([opts.signal, AbortSignal.timeout(180_000)]) : AbortSignal.timeout(180_000),
     });
     const steps: ToolStep[] = [];
@@ -233,7 +299,14 @@ export async function ask(
       }
       for (const tr of step.toolResults) for (const id of studyIdsFromTool(tr.toolName, tr.output)) ids.add(id);
     }
-    return { ok: true, text: res.text, model: modelLabel, steps, studyIds: [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed };
+    if (opts.claimReview) {
+      const error = retrievalError();
+      if (error) return error;
+    }
+    if (opts.claimReview && !claimAssessment) return { ok: false, error: submissionError ?? "The model did not submit its evidence assessment. No new grade was saved." };
+    const reportedModel = res.response.modelId?.trim();
+    const claimModel = reportedModel ? `${info?.label ?? answeringChoice.provider} · ${reportedModel}` : `${modelLabel} (configured; resolved model not reported)`;
+    return { ok: true, text: res.text, model: opts.claimReview ? claimModel : modelLabel, steps, studyIds: [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed, ...(claimAssessment ? { claimAssessment } : {}) };
   } catch (e) {
     return { ok: false, error: describeModelError(e) };
   }

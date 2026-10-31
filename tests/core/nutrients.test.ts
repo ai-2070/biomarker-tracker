@@ -80,6 +80,21 @@ describe("vitamins and minerals", () => {
     expect(validateNutrientDef({ ...n, simpleGuide })).not.toEqual([]);
     expect(validateNutrientDef({ ...basic, simpleGuide, findings: [finding("A", "helps", "high")] })).not.toEqual([]);
   });
+  it("keeps live checks attached to their exact claim and rejects unsafe metadata", () => {
+    const claim = basic.commonUses![0]!;
+    const simpleGuide = {
+      origin: ["Cultivated algae"], dosage: ["A safety assessment, not a personal dose."],
+      factsReviewedOn: "2026-10-31",
+      claimsSource: { title: "Research notes", url: "https://example.org/notes" },
+      claimTopics: { [claim]: "relaxation" },
+    };
+    expect(validateNutrientDef({ ...basic, simpleGuide })).toEqual([]);
+    for (const claimTopics of [{}, { "A different claim": "relaxation" }, { [claim]: "" }]) {
+      expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimTopics } })).not.toEqual([]);
+    }
+    expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, factsReviewedOn: "2026-02-30" } })).not.toEqual([]);
+    expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimsSource: { title: "Notes", url: "javascript:alert(1)" } } })).not.toEqual([]);
+  });
   it("keeps the source and finding requirements for researched entries", () => {
     expect(validateNutrientDef({ ...n, findings: [] })).not.toEqual([]);
     expect(validateNutrientDef({ ...n, sources: [] })).not.toEqual([]);
