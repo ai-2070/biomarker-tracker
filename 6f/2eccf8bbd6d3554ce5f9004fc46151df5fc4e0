@@ -1,0 +1,34 @@
+src/app/components/LabReview.tsx
+  h_64425bc75e3f3d 128
+src/app/pages/DeviceImportPage.tsx
+  h_64425bc75e3f3d 4,127,237,322,361,380-381,399-400,424,427
+src/app/pdf.ts
+  h_64425bc75e3f3d 47,58-67,73-75,81-83,85
+src/core/importers/deviceFiles.ts
+  h_64425bc75e3f3d 19-29,158-160,192,313,398-404,406,419,421,423-424,429-436,446-447,455,457-476,480-481,484,488-489,500,523-529,558-564,572-573,632-635,654-666,671-672,684-685,691-710,728
+src/core/importers/labText.ts
+  h_64425bc75e3f3d 91,200-201,250,255-261,263-265,269-274
+src/core/importers/screenshot.ts
+  h_64425bc75e3f3d 32,36,60-65,115,121-126,139
+src/core/importers/zipRead.ts
+  h_64425bc75e3f3d 76-77,79-84,86-91,93-98
+tests/app/importFixesPdf.test.ts
+  h_64425bc75e3f3d 1-60
+tests/app/importFixesReview.test.tsx
+  h_64425bc75e3f3d 1-124
+tests/core/importFixes.test.ts
+  h_64425bc75e3f3d 1-177
+tests/core/importFixesZip.test.ts
+  h_64425bc75e3f3d 1-112
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6f2eccf8bbd6d3554ce5f9004fc46151df5fc4e0",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
