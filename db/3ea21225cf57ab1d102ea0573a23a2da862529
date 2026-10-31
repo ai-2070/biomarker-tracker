@@ -1,0 +1,42 @@
+knowledge/nutrients/vitamin_e.json
+  h_64425bc75e3f3d 344,348-352
+src/app/pages/IntakePage.tsx
+  h_64425bc75e3f3d 16-17,35,77,84-90,101-102,299,564-565,568-572,576-577,581,638,668,695,699,701-703,712-713,779-789,795,801-802,827,829-831
+src/app/pages/MealPage.tsx
+  h_64425bc75e3f3d 1,3,6,12,57,66,78-79,81,87-89,92-93,100-121,125-126,128,131,135,137,150,168,179-191
+src/app/pages/NutrientPage.tsx
+  h_64425bc75e3f3d 7,17,47-52,65,71,73,140,177,179,208,311,314
+src/app/pages/PlanPage.tsx
+  h_64425bc75e3f3d 3,8-9,11,31,45-48,70,109,115,119,137,140,338-344,381-384,422,424,432
+src/core/evidence.ts
+  h_64425bc75e3f3d 7
+src/core/intake.ts
+  h_64425bc75e3f3d 2,32,175,191,198-199,270,288,300,401,405-407,460-466,521,523-526
+src/core/lifestyle.ts
+  h_64425bc75e3f3d 94
+src/core/meals.ts
+  h_64425bc75e3f3d 222,224-227,236-239,283-284,288-289,291,340
+src/core/nutrients.ts
+  h_64425bc75e3f3d 105
+src/core/protocols.ts
+  h_64425bc75e3f3d 123-130
+src/core/wholeFoods.ts
+  h_64425bc75e3f3d 74
+tests/app/nutritionEditorReview.test.tsx
+  h_64425bc75e3f3d 1-85
+tests/core/nutritionEditorPersistenceReview.test.ts
+  h_64425bc75e3f3d 1-72
+tests/core/nutritionEditorReview.test.ts
+  h_64425bc75e3f3d 1-99
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "db3ea21225cf57ab1d102ea0573a23a2da862529",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
