@@ -11,6 +11,12 @@
     "preview": "vite preview",
     "server": "bun server/index.ts",
     "start": "bun run build && bun server/index.ts",
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "desktop:prepare": "bun tools/desktop/prepare.ts",
+    "desktop:smoke": "bun tools/desktop/smoke.ts",
+    "desktop:check-version": "bun tools/desktop/check-version.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -40,6 +46,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@tauri-apps/cli": "^2",
     "@types/bun": "^1.4.4",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",

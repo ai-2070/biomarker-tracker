@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Biomarker Tracker",
+  "version": "0.11.0",
+  "identifier": "io.github.ai-2070.biomarker-tracker",
+  "build": {
+    "beforeDevCommand": "bun run desktop:prepare",
+    "beforeBuildCommand": "bun run desktop:prepare",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [],
+    "security": { "capabilities": [] }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb", "appimage", "dmg", "nsis", "msi"],
+    "category": "HealthcareAndFitness",
+    "shortDescription": "Private bloodwork and biomarker tracking",
+    "externalBin": ["binaries/biomarker-server"],
+    "resources": { "resources/": "." },
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
+    "macOS": { "minimumSystemVersion": "12.0" },
+    "windows": { "nsis": { "installMode": "currentUser" } }
+  }
+}

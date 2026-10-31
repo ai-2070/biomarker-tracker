@@ -18,10 +18,6 @@ beforeAll(async () => {
   server = createServer(0);
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", () => r()));
   port = (server.address() as { port: number }).port;
-  // createServer checks the Host against the port it was given; rebuild with the real one.
-  server.close();
-  server = createServer(port);
-  await new Promise<void>((r) => server.listen(port, "127.0.0.1", () => r()));
 });
 afterAll(() => {
   server.close();

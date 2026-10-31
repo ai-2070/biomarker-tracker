@@ -1,4 +1,10 @@
 node_modules
+.cocoindex_code/
+.bun-cache/
+src-tauri/target/
+src-tauri/binaries/
+src-tauri/resources/
+src-tauri/gen/schemas/
 dist
 *.local
 .DS_Store
