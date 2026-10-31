@@ -7,11 +7,13 @@ import { chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMar
 import { durationDays, safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory, type ProtocolField } from "../../core/protocols";
 import { groupByBiomarker } from "../../core/trends";
 import type { Experiment, Measurement, ProtocolEntry } from "../../core/types";
+import type { Plan } from "../../core/plans";
 import { addProtocol, deleteExperiment, deleteHabit, saveHabit, startPlan, watchHabit } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
+import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
 import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useExperiments, useWatchMeasurements, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
@@ -33,6 +35,7 @@ const RETEST_OPTIONS = [
 export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?: string; meal?: string; type?: ProtocolCategory }) {
   const protocols = useProtocols();
   const experiments = useExperiments();
+  const plans = usePlans();
   // Results plus the PhenoAge gap at each complete blood test, so the gap can be watched like a marker.
   const all = useWatchMeasurements(useAllMeasurements());
   const profile = useProfile();
@@ -95,7 +98,7 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
             <ul className="stagger flex flex-col gap-3">
               {g.list.map((h) => (
                 <li key={h.id}>
-                  <HabitCard habit={h} all={all} tested={tested} today={today} />
+                  <HabitCard habit={h} plans={plans} all={all} tested={tested} today={today} />
                 </li>
               ))}
             </ul>
@@ -113,8 +116,9 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
 
 // ---- A habit ------------------------------------------------------------------------------------
 
-function HabitCard({ habit: h, all, tested, today }: { habit: Habit; all: Measurement[]; tested: ReadonlySet<string>; today: string }) {
+function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plans: readonly Plan[] | undefined; all: Measurement[]; tested: ReadonlySet<string>; today: string }) {
   const [mode, setMode] = useState<"view" | "edit" | "watch">("view");
+  const sourcePlan = h.entry?.plan ? plans?.find((p) => p.id === h.entry!.plan!.id) : undefined;
   const days = durationDays(h, today);
   const planned = h.start > today;
 
@@ -138,7 +142,7 @@ function HabitCard({ habit: h, all, tested, today }: { habit: Habit; all: Measur
             <p className="font-medium break-words">{h.label}</p>
           )}
           <p className="text-sm text-ink-2">
-            {CATEGORY_LABEL[h.category]} ·{" "}
+            {h.entry?.plan ? "Protocol" : CATEGORY_LABEL[h.category]} ·{" "}
             {planned ? `starts ${formatDate(h.start)}` : h.end ? `${formatDate(h.start)} – ${formatDate(h.end)}` : `since ${formatDate(h.start)}`}
             {!planned && ` · ${formatDuration(days)}`}
           </p>
@@ -166,6 +170,26 @@ function HabitCard({ habit: h, all, tested, today }: { habit: Habit; all: Measur
         </div>
       </div>
 
+      {h.entry?.plan && (
+        <div className="flex flex-col gap-2 border-t border-line pt-3">
+          <details>
+            <summary className="min-h-11 cursor-pointer content-center text-sm font-medium">
+              Included items ({h.entry.plan.items.length})
+            </summary>
+            <p className="mb-2 text-sm text-ink-2">As recorded when this protocol started; later protocol edits don't change these items.</p>
+            <ul className="flex flex-col divide-y divide-line">
+              {h.entry.plan.items.map((item) => (
+                <li key={item.id} className="min-w-0 py-2 break-words">
+                  <p className="font-medium">{item.label}{item.amount && <span className="font-normal text-ink-2"> · {item.amount}</span>}</p>
+                  <p className="text-sm text-ink-2">{[CATEGORY_LABEL[item.category], TIME_LABEL[whenOf(item).when], whenExtras(item), item.note].filter(Boolean).join(" · ")}</p>
+                </li>
+              ))}
+            </ul>
+          </details>
+          {sourcePlan && <a href={href({ name: "plan", id: sourcePlan.id })} className="min-h-11 self-start content-center text-sm text-ink underline underline-offset-2">Open source protocol</a>}
+          <p className="text-sm text-ink-2">Watched markers compare the whole routine, not which item caused a change.</p>
+        </div>
+      )}
       {mode === "watch" ? (
         <WatchPicker habit={h} all={all} tested={tested} today={today} onDone={() => setMode("view")} />
       ) : h.watch ? (
@@ -259,7 +283,7 @@ function ChangeRow({ r }: { r: MarkerResult }) {
 
 /** A habit that watches nothing yet: one tap on a suggested marker, or pick your own. */
 function WatchSuggestions({ habit: h, tested, today, onPick }: { habit: Habit; tested: ReadonlySet<string>; today: string; onPick: () => void }) {
-  const suggested = suggestMarkers(h.label, (id) => tested.has(id)).filter((id) => tested.has(id)).slice(0, 3);
+  const suggested = suggestMarkers(h.entry ?? h.label, (id) => tested.has(id)).filter((id) => tested.has(id)).slice(0, 3);
   if (!h.entry) return null;
   return (
     <div className="flex flex-wrap items-center gap-2 border-t border-line pt-3 text-sm">
@@ -297,7 +321,7 @@ function WatchPicker({ habit: h, all, tested, today, onDone }: { habit: Habit; a
 
   return (
     <div className="flex flex-col gap-4 border-t border-line pt-3">
-      <MarkerPicker label={h.label} start={h.start} all={all} tested={tested} markerIds={markerIds} onChange={(ids) => (setMarkerIds(ids), setError(null), setRetest((r) => String(Math.max(Number(r), defaultRetestDays(ids)))))} />
+      <MarkerPicker label={h.entry ?? h.label} start={h.start} all={all} tested={tested} markerIds={markerIds} onChange={(ids) => (setMarkerIds(ids), setError(null), setRetest((r) => String(Math.max(Number(r), defaultRetestDays(ids)))))} />
       {error && <p className={errorStyles}>{error}</p>}
       <ChoiceGroup<string> label="Re-test after" help="Markers need time to respond. HbA1c reflects about the last 3 months." value={retest} onChange={setRetest} options={RETEST_OPTIONS} />
       <div className="flex flex-wrap gap-2">
@@ -319,7 +343,7 @@ function MarkerPicker({
   markerIds,
   onChange,
 }: {
-  label: string;
+  label: string | Pick<ProtocolEntry, "label" | "plan">;
   start: string;
   all: Measurement[];
   tested: ReadonlySet<string>;
@@ -332,7 +356,7 @@ function MarkerPicker({
   const markers = tested.has(PHENOAGE_GAP_ID) ? [PHENOAGE_GAP_DEF, ...BIOMARKERS] : BIOMARKERS;
   const pool = markers.filter((d) => showAll || tested.has(d.id) || markerIds.includes(d.id) || suggested.includes(d.id));
   const ordered = [...pool.filter((d) => suggested.includes(d.id)), ...CATEGORY_ORDER.flatMap((c) => pool.filter((d) => d.category === c && !suggested.includes(d.id)))];
-  const draft: Experiment = { id: "draft", change: label, category: "diet", markerIds, start, retestAfterDays: 56 };
+  const draft: Experiment = { id: "draft", change: typeof label === "string" ? label : label.label, category: "diet", markerIds, start, retestAfterDays: 56 };
   const allShown = ordered.length > 0 && ordered.every((d) => markerIds.includes(d.id));
   const chance = chanceNote(markerIds.length);
   return (
@@ -443,7 +467,7 @@ function HabitForm({
     setSaving(true);
     try {
       if (initial) {
-        await saveHabit({ ...r.entry, id: initial.id });
+        await saveHabit({ ...r.entry, id: initial.id, ...(initial.plan ? { plan: initial.plan } : {}) });
       } else {
         const id = await addProtocol(r.entry);
         if (watching) await watchHabit({ ...r.entry, id }, markerIds, Number(retest), today);
@@ -499,14 +523,14 @@ function HabitForm({
             </label>
             {plan?.active ? (
               <p className="text-ink-2">
-                Running since {formatDate(plan.active.since)}. Its items are already habits below; <a href={href({ name: "plan", id: plan.id })}>open the protocol</a> to stop it.
+                Running since {formatDate(plan.active.since)}. Already recorded in Habits below; <a href={href({ name: "plan", id: plan.id })}>open the protocol</a> to stop it.
               </p>
             ) : (
               <>
                 <Field.Root className="flex flex-col gap-1.5 sm:max-w-xs">
                   <Field.Label className={labelStyles}>Start</Field.Label>
                   <Field.Control type="date" value={start} onValueChange={setStart} className={inputStyles} />
-                  <Field.Description className={helpStyles}>Each item becomes a habit from this day. Watch markers on them afterwards.</Field.Description>
+                  <Field.Description className={helpStyles}>Adds one habit named after the protocol, with all items included. Watch markers for the whole routine afterwards.</Field.Description>
                 </Field.Root>
                 <div className="flex flex-wrap gap-2">
                   <Button
@@ -558,21 +582,25 @@ function HabitForm({
           </label>
         ))}
       <Field.Root invalid={!!errors.label} className="flex flex-col gap-1.5">
-        <Field.Label className={labelStyles}>What do you take or change?</Field.Label>
+        <Field.Label className={labelStyles}>{initial?.plan ? "Protocol habit name" : "What do you take or change?"}</Field.Label>
         <Field.Control value={label} onValueChange={setLabel} placeholder="e.g. Vitamin D 2000 IU daily" autoComplete="off" maxLength={100} className={inputStyles} />
-        <Field.Description className={helpStyles}>Include the amount and how often, if it applies.</Field.Description>
+        <Field.Description className={helpStyles}>{initial?.plan ? "Included items stay as recorded when you started." : "Include the amount and how often, if it applies."}</Field.Description>
         <Field.Error match={!!errors.label} className={errorStyles}>
           {errors.label}
         </Field.Error>
       </Field.Root>
 
-      <ChoiceGroup<ProtocolCategory>
-        label="Type"
-        value={category}
-        onChange={setCategory}
-        options={(Object.keys(CATEGORY_LABEL) as ProtocolCategory[]).map((c) => ({ value: c, label: CATEGORY_LABEL[c] }))}
-      />
-      {category === "medication" && <Notice>This is only for your own record. Don't start, stop or change a medicine without talking to your doctor.</Notice>}
+      {!initial?.plan && (
+        <>
+          <ChoiceGroup<ProtocolCategory>
+            label="Type"
+            value={category}
+            onChange={setCategory}
+            options={(Object.keys(CATEGORY_LABEL) as ProtocolCategory[]).map((c) => ({ value: c, label: CATEGORY_LABEL[c] }))}
+          />
+          {category === "medication" && <Notice>This is only for your own record. Don't start, stop or change a medicine without talking to your doctor.</Notice>}
+        </>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Field.Root invalid={!!errors.start} className="flex flex-col gap-1.5">

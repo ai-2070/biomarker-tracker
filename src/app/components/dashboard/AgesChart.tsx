@@ -12,6 +12,7 @@ import { HabitTypes, Toggle, useChartPrefs } from "../chartHabits";
 import { ProtocolLanes } from "../ProtocolLanes";
 import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
 import { Card, cx } from "../ui";
+import { InlineBirthMonth } from "../InlineBirthMonth";
 
 /**
  * The three age estimates over time on one chart, with calendar age as a dashed line. Each series
@@ -79,7 +80,8 @@ export function AgesChart({ measurements, profile, protocols }: { measurements: 
   if (!profile.birthMonth) {
     return (
       <Card>
-        <p className="text-ink-2">Add your month and year of birth (Settings → Your data) to see your ages over time.</p>
+        <p className="text-ink-2">Add your month and year of birth to see your ages over time.</p>
+        <InlineBirthMonth profile={profile} forLabel="ages over time" />
       </Card>
     );
   }

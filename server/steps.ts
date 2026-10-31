@@ -6,6 +6,8 @@ export interface ToolStep {
   /** For MCP tools: the server id. */
   server?: string;
   input: string;
+  /** Only built-in mutation tools, after an actual successful result. */
+  validated?: boolean;
 }
 
 export function toolStep(name: string, input: unknown): ToolStep {
@@ -15,9 +17,24 @@ export function toolStep(name: string, input: unknown): ToolStep {
     if (typeof i.server === "string" && typeof i.tool === "string") return { tool: i.tool, server: i.server, input: JSON.stringify(i.input ?? {}).slice(0, 200) };
   }
   const [server, tool] = name.includes("__") ? name.split("__", 2) : [undefined, name];
-  // Habit and protocol suggestions are kept whole: the page builds the confirm card from them.
-  const max = !server && tool === "propose_habit" ? 2000 : !server && (tool === "propose_protocol" || tool === "propose_meal") ? 30_000 : 200;
-  return { tool: tool!, ...(server ? { server } : {}), input: JSON.stringify(input ?? {}).slice(0, max) };
+  // Action inputs stay whole: the page rechecks the original quotes/proposals before applying them.
+  const mutation = server === undefined && isMutationTool(tool!);
+  const text = JSON.stringify(input ?? {});
+  const max = tool === "save_profile_details" && server === undefined ? 64 * 1024 : mutation ? undefined : 200;
+  return { tool: tool!, ...(server !== undefined ? { server } : {}), input: text.slice(0, max), ...(mutation ? { validated: false } : {}) };
+}
+
+export function isMutationTool(name: string): boolean {
+  return ["save_profile_details", "propose_protocol", "propose_meal", "propose_habit"].includes(name);
+}
+
+/** Failed, missing and unexecuted calls remain false; MCP lookalikes never receive this handshake. */
+export function validateToolResult(step: ToolStep, output: unknown): void {
+  if (step.server !== undefined || !isMutationTool(step.tool)) return;
+  const result = typeof output === "object" && output !== null ? output as Record<string, unknown> : undefined;
+  step.validated = !!result && !("error" in result) && (step.tool === "save_profile_details"
+    ? Array.isArray(result.added) && result.added.length > 0
+    : typeof result.shownToPerson === "object" && result.shownToPerson !== null);
 }
 
 const ID_IN_TEXT = /\b(PMID|PMCID)\s*:?\s*"?(PMC\d+|\d{4,9})\b/gi;

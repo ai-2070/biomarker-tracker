@@ -1,5 +1,6 @@
 import { isIsoDate } from "./dates";
 import { isBirthMonth } from "./phenoageDraws";
+import { validatePlan } from "./plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
 export const BACKUP_APP = "biomarker-tracker";
@@ -67,6 +68,11 @@ function isMeasurement(v: unknown): v is Measurement {
 
 const PROTOCOL_CATEGORIES = new Set(["supplement", "diet", "medication", "lifestyle"]);
 
+/** Reuse the full protocol's id/item rules without requiring fields absent from a started snapshot. */
+function isPlanSnapshot(v: unknown): v is NonNullable<ProtocolEntry["plan"]> {
+  return isObj(v) && validatePlan({ id: v.id, items: v.items, name: "Started protocol", createdAt: "" }).length === 0;
+}
+
 function isProtocol(v: unknown): v is ProtocolEntry {
   return (
     isObj(v) &&
@@ -76,7 +82,8 @@ function isProtocol(v: unknown): v is ProtocolEntry {
     PROTOCOL_CATEGORIES.has(v.category) &&
     isStr(v.start) &&
     isIsoDate(v.start) &&
-    optional(v.end, (e) => isStr(e) && isIsoDate(e))
+    optional(v.end, (e) => isStr(e) && isIsoDate(e)) &&
+    optional(v.plan, isPlanSnapshot)
   );
 }
 
@@ -107,6 +114,7 @@ export function isProfile(v: unknown): v is Profile {
     optional(v.sex, (s) => s === "m" || s === "f") &&
     optional(v.birthMonth, (b) => isStr(b) && isBirthMonth(b)) &&
     optional(v.heightCm, (h) => isNum(h) && h >= 40 && h <= 260) &&
+    optional(v.heightUnit, (u) => u === "cm" || u === "ft/in") &&
     optional(v.country, (c) => isStr(c) && /^([A-Z]{2}|EU27_2020)$/.test(c)) &&
     optional(v.diet, (d) => d === "omnivore" || d === "vegetarian" || d === "vegan" || d === "pescatarian" || d === "other") &&
     optional(v.smoking, (s) => s === "never" || s === "former" || s === "current") &&
@@ -125,6 +133,7 @@ export function cleanProfile(p: Profile): Profile {
   if (p.sex) out.sex = p.sex;
   if (p.birthMonth) out.birthMonth = p.birthMonth;
   if (p.heightCm !== undefined) out.heightCm = p.heightCm;
+  if (p.heightUnit) out.heightUnit = p.heightUnit;
   if (p.country) out.country = p.country;
   if (p.diet) out.diet = p.diet;
   if (p.smoking) out.smoking = p.smoking;

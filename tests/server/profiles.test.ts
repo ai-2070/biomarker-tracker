@@ -84,6 +84,35 @@ describe("profiles: one folder per person", () => {
     expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, meals: [{ ...meal, items: [{ foodId: "11-788", grams: 0 }] }] })).toThrow(/meal is damaged/);
   });
 
+  it("preserves started protocol snapshots through save and zip restore, and rejects corrupted log items", () => {
+    const routine = {
+      id: "routine", label: "Daily routine", category: "lifestyle", start: "2026-10-01",
+      plan: {
+        id: "deleted-source",
+        items: [{
+          id: "warfarin", label: "Warfarin", amount: "as prescribed", category: "medication", when: "evening",
+          withFood: true, days: ["mon", "wed"], note: "Copied from my routine", mealId: "saved-meal",
+        }],
+      },
+    };
+    const p = profiles.createProfile({ person: { name: "Snapshot test" }, protocols: [routine] });
+    expect(profiles.getProfileData(p.id).protocols).toEqual([routine]);
+    const edited = { ...routine, label: "My renamed routine", end: "2026-10-29" };
+    profiles.saveProfileData(p.id, { person: { name: "Snapshot test" }, protocols: [edited] });
+    expect(JSON.parse(fs.readFileSync(path.join(p.folder, "log.json"), "utf8"))).toEqual([edited]);
+    const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
+    expect(profiles.getProfileData(restored.id).protocols).toEqual([edited]);
+    expect(profiles.getProfileData(restored.id).plans).toEqual([]);
+
+    const corrupt = { ...edited, plan: { ...routine.plan, items: [{ ...routine.plan.items[0], when: "lunch" }] } };
+    expect(() => profiles.createProfile({ person: { name: "Broken snapshot" }, protocols: [corrupt] })).toThrow(/protocol list.*damaged/);
+    expect(() => profiles.saveProfileData(p.id, { person: { name: "Snapshot test" }, protocols: [corrupt] })).toThrow(/protocol list.*damaged/);
+    const corruptZip = writeZip(readZip(profiles.backupZip(p.id).data).map((entry) =>
+      entry.name.endsWith("/log.json") ? { ...entry, data: Buffer.from(JSON.stringify([corrupt])) } : entry,
+    ));
+    expect(() => profiles.restoreZip(corruptZip)).toThrow(/protocol list.*damaged/);
+  });
+
   it("backs up to a zip and restores it as a new profile, with files", () => {
     const p = profiles.createProfile({ person: { name: "Dora", diet: "vegan" }, measurements: [m("x", "2025-02-02", 20)], protocols: [{ id: "p", label: "Iron 30 mg", category: "supplement", start: "2025-01-01" }] });
     profiles.addFile(p.id, "report.pdf", pdf, "Lab report");

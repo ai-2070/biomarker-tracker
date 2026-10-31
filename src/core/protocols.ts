@@ -152,18 +152,18 @@ export function safetyNotes(labels: readonly string[]): SafetyNote[] {
   return SAFETY.filter(({ pattern }) => labels.some((l) => pattern.test(l))).map(({ note }) => note);
 }
 
-/** What safetyNotes() should look at: ongoing log entries and the conditions written in the profile. */
+/** What safetyNotes() should look at: ongoing habits (including protocol items) and profile conditions. */
 export function safetyLabels(protocols: readonly ProtocolEntry[], profile: { conditions?: string } = {}): string[] {
-  return [...protocols.filter((p) => !p.end).map((p) => p.label), ...(profile.conditions ? profile.conditions.split(/[,;\n]+/).map((c) => c.trim()).filter(Boolean) : [])];
+  return [...protocols.filter((p) => !p.end).flatMap((p) => [p.label, ...(p.plan?.items.map((i) => i.label) ?? [])]), ...(profile.conditions ? profile.conditions.split(/[,;\n]+/).map((c) => c.trim()).filter(Boolean) : [])];
 }
 
-/** The types of habit present, in the usual order (supplements, diet, medicines, lifestyle). */
-export function habitTypesIn(ps: readonly Pick<ProtocolEntry, "category">[]): ProtocolCategory[] {
-  const present = new Set(ps.map((p) => p.category));
+/** Actual habit/item types present, in the usual order (supplements, diet, medicines, lifestyle). */
+export function habitTypesIn(ps: readonly Pick<ProtocolEntry, "category" | "plan">[]): ProtocolCategory[] {
+  const present = new Set(ps.flatMap((p) => p.plan ? p.plan.items.map((i) => i.category) : [p.category]));
   return PROTOCOL_CATEGORIES.filter((c) => present.has(c));
 }
 
-/** Only habits of the chosen types; `null` means every type. */
-export function ofTypes<T extends Pick<ProtocolEntry, "category">>(ps: readonly T[], types: readonly ProtocolCategory[] | null): T[] {
-  return types === null ? [...ps] : ps.filter((p) => types.includes(p.category));
+/** Habits with any chosen type, including protocol items; each habit appears once. `null` means all. */
+export function ofTypes<T extends Pick<ProtocolEntry, "category" | "plan">>(ps: readonly T[], types: readonly ProtocolCategory[] | null): T[] {
+  return types === null ? [...ps] : ps.filter((p) => p.plan ? p.plan.items.some((i) => types.includes(i.category)) : types.includes(p.category));
 }

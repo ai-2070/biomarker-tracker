@@ -106,7 +106,7 @@ export function PlanPage({ id }: { id: string }) {
               </Button>
             )}
           </div>
-          {plan.active && <p className="text-sm text-ink-2">Changes here don't change the habits already started; stop and start the protocol again to use them.</p>}
+          {plan.active && <p className="text-sm text-ink-2">Changes here don't change what's already recorded in Habits; stop and start the protocol again to use them.</p>}
           {editing === "new" && (
             <ItemForm
               onSave={(item) => {
@@ -364,7 +364,7 @@ function DetailsForm({ plan, onDone }: { plan: Plan; onDone: () => void }) {
   );
 }
 
-/** Start: each item becomes a habit (so what changes can be compared). Stop: those habits end today. */
+/** Start one named habit with an item snapshot; stop keeps the recorded history. */
 function StartStop({ plan }: { plan: Plan }) {
   const today = todayIso();
   const [start, setStart] = useState(today);
@@ -375,17 +375,17 @@ function StartStop({ plan }: { plan: Plan }) {
         <p>
           <span className="font-medium">Running since {formatDate(plan.active.since)}.</span>{" "}
           <span className="text-ink-2">
-            Each item is a habit; watch markers on them in{" "}
+            Watch markers for the whole routine in{" "}
             <a href={href({ name: "habits" })} className="text-ink underline underline-offset-2">
               Habits
             </a>{" "}
-            to see what changes.
+            to see what changes, not which item caused it.
           </span>
         </p>
         <ConfirmDialog
           trigger="Stop protocol"
           title="Stop this protocol?"
-          description="Its habits end today. They stay in Habits, with their results, so you can still see what changed."
+          description="The linked records end today. They stay in Habits, with their results, so you can still see what changed."
           confirmLabel="Stop protocol"
           onConfirm={() => stopPlan(plan, today)}
         />
@@ -395,7 +395,7 @@ function StartStop({ plan }: { plan: Plan }) {
   return (
     <Card className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-ink-2">Start the protocol to add each item to Habits, so you can watch markers and compare before and after.</p>
+        <p className="text-ink-2">Add one habit named after this protocol, with all its items kept as details. Watch markers for the whole routine, not individual items.</p>
         {!open && (
           <Button onClick={() => setOpen(true)} disabled={plan.items.length === 0}>
             Start protocol
@@ -409,7 +409,7 @@ function StartStop({ plan }: { plan: Plan }) {
             <input type="date" value={start} onChange={(e) => setStart(e.target.value)} className={cx(inputStyles, "w-48")} />
           </label>
           <Button onClick={() => void startPlan(plan, start || today).then(() => setOpen(false))}>
-            Add {plan.items.length} {plan.items.length === 1 ? "habit" : "habits"}
+            Add 1 habit
           </Button>
           <Button variant="quiet" onClick={() => setOpen(false)}>
             Cancel
@@ -448,7 +448,7 @@ function Share({ plan }: { plan: Plan }) {
         trigger="Delete"
         triggerVariant="quiet"
         title="Delete this protocol?"
-        description={plan.active ? "Its habits stay in Habits, with their results." : "This can't be undone."}
+        description={plan.active ? "Its recorded history stays in Habits, with all included items and results." : "This can't be undone. Any recorded history in Habits is kept."}
         confirmLabel="Delete protocol"
         onConfirm={async () => {
           await deletePlan(plan.id);

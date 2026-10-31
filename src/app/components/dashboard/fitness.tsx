@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FITNESS_FIELDS } from "../../../core/body";
-import { ageMatch, cutoffsMet, describePlace, normRow, placeAmongYoungest, placeResult, rowWho, type AgeMatch, type FitnessTestDef, type NormResult, type NormSet } from "../../../core/fitnessTests";
+import { ageMatch, cutoffsMet, describePlace, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeResult, rowWho, type AgeMatch, type FitnessTestDef, type NormResult, type NormSet } from "../../../core/fitnessTests";
 import { ageAt } from "../../../core/phenoageDraws";
 import { sortByDate } from "../../../core/trends";
 import type { Measurement, Profile } from "../../../core/types";
@@ -55,7 +55,7 @@ function firstAgeMatch(test: FitnessTestDef, value: number, sex: "m" | "f" | und
 }
 
 function placeFor(test: FitnessTestDef, m: Measurement, profile: Profile): NormResult[] {
-  return placeResult(test, m.value, personAt(profile, m.date));
+  return isDeviceWalkingAverage(m) ? [] : placeResult(test, m.value, personAt(profile, m.date));
 }
 
 /** One test as a figure on the Body page: latest result and where it falls for age and sex. */
@@ -63,11 +63,14 @@ export function FitnessFigure({ ms, id, profile, className }: { ms: Measurement[
   const test = FITNESS_MAP.get(id);
   if (!test) return null;
   const last = latestOf(ms, id);
+  const deviceAverage = !!last && isDeviceWalkingAverage(last);
   const places = last ? placeFor(test, last, profile) : [];
   const first = places[0];
-  const typical = last ? firstAgeMatch(test, last.value, profile.sex) : undefined;
+  const typical = last && !deviceAverage ? firstAgeMatch(test, last.value, profile.sex) : undefined;
   const foot = !last
     ? "Not done yet. How to do it →"
+    : deviceAverage
+      ? `${formatDate(last.date)} · Device daily step average, not a timed gait test`
     : typical
       ? `${capital(describeAgeMatch(typical.m, profile.sex!))} · ${formatDate(last.date)}`
       : first
@@ -76,7 +79,7 @@ export function FitnessFigure({ ms, id, profile, className }: { ms: Measurement[
         ? `${formatDate(last.date)} · add your sex and birth month to compare`
         : `${formatDate(last.date)} · no norms for your age`;
   return (
-    <Figure label={test.name} href={href({ name: "marker", id, section: "for-your-age" })} className={className} foot={foot}>
+    <Figure label={deviceAverage ? "Walking speed (daily average)" : test.name} href={href({ name: "marker", id, section: "for-your-age" })} className={className} foot={foot}>
       {last ? (
         <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
           <span className="font-serif text-4xl leading-none tabular-nums sm:text-5xl">{formatValue(last.value)}</span>
@@ -109,11 +112,12 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
   if (!test) return null;
   const series = sortByDate(ms.filter((m) => m.biomarkerId === id));
   const last = series.at(-1);
+  const deviceAverage = !!last && isDeviceWalkingAverage(last);
   const person = last ? personAt(profile, last.date) : personAt(profile, new Date().toISOString().slice(0, 10));
-  const places = last ? placeResult(test, last.value, person) : [];
-  const met = last ? cutoffsMet(test, last.value, person) : [];
+  const places = last ? placeFor(test, last, profile) : [];
+  const met = last && !deviceAverage ? cutoffsMet(test, last.value, person) : [];
   const sex = profile.sex;
-  const points = profile.birthMonth ? series.map((m) => ({ date: m.date, age: ageAt(profile.birthMonth!, m.date), value: m.value })) : [];
+  const points = profile.birthMonth ? series.filter((m) => !isDeviceWalkingAverage(m)).map((m) => ({ date: m.date, age: ageAt(profile.birthMonth!, m.date), value: m.value })) : [];
   return (
     <Card ref={ref} tabIndex={-1} aria-label={`${test.name} for your age`} className="flex scroll-mt-6 flex-col gap-6 outline-none">
       <div className="max-w-3xl">
@@ -122,7 +126,9 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
       </div>
 
       {last ? (
-        places.length > 0 ? (
+        deviceAverage ? (
+          <p className="text-ink-2">This is a device's daily step-speed average, not the short timed walking test described below. Test percentiles, age equivalents and clinical cut-offs do not apply to this average. Your daily readings are shown in the trend chart above.</p>
+        ) : places.length > 0 ? (
           <ul className="flex flex-col gap-2">
             {places.map((r) => (
               <li key={r.set.label} className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
@@ -151,7 +157,7 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
         </p>
       )}
 
-      {last && sex && <YoungerComparison test={test} value={last.value} sex={sex} own={places} />}
+      {last && sex && !deviceAverage && <YoungerComparison test={test} value={last.value} sex={sex} own={places} />}
 
       {met.map((c) => (
         <Notice key={c.label} tone="warn" title={c.label}>
@@ -336,22 +342,23 @@ export function FitnessForYourAge({ ms, profile }: { ms: Measurement[]; profile:
           const test = FITNESS_MAP.get(id);
           if (!test) return null;
           const last = latestOf(ms, id);
+          const deviceAverage = !!last && isDeviceWalkingAverage(last);
           const place = last ? placeFor(test, last, profile)[0] : undefined;
-          const typical = last ? firstAgeMatch(test, last.value, profile.sex) : undefined;
+          const typical = last && !deviceAverage ? firstAgeMatch(test, last.value, profile.sex) : undefined;
           // Tables of named bands have no middle value: say how it compares with the youngest group instead.
-          const young = last && profile.sex && !typical ? placeAmongYoungest(test, last.value, profile.sex)[0] : undefined;
+          const young = last && !deviceAverage && profile.sex && !typical ? placeAmongYoungest(test, last.value, profile.sex)[0] : undefined;
           return (
             <li key={id}>
               <a
                 href={href({ name: "marker", id, section: "for-your-age" })}
                 className="grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-0.5 py-2 text-ink no-underline hover:bg-sunken sm:grid-cols-[minmax(0,14rem)_6rem_minmax(0,1fr)_minmax(0,1fr)]"
               >
-                <span className="font-medium">{test.name}</span>
+                <span className="font-medium">{deviceAverage ? "Walking speed (daily average)" : test.name}</span>
                 <span className="text-right tabular-nums sm:text-left">
                   {last ? `${formatValue(last.value)}${unitWord(test) ? ` ${unitWord(test)}` : ""}` : <span className="text-ink-2">Not done</span>}
                 </span>
                 <span className="col-span-2 text-sm text-ink-2 sm:col-span-1">
-                  {place ? `${describePlace(place.place, test.higherIsBetter)} for your age` : last ? "No norms for your age" : "How to do it →"}
+                  {deviceAverage ? "Daily step average, not a timed test" : place ? `${describePlace(place.place, test.higherIsBetter)} for your age` : last ? "No norms for your age" : "How to do it →"}
                 </span>
                 <span className="col-span-2 text-sm text-ink-2 sm:col-span-1">
                   {typical ? capital(describeAgeMatch(typical.m, profile.sex!)) : young ? `${describePlace(young.place, test.higherIsBetter)} among ${rowWho(young.row)}` : ""}

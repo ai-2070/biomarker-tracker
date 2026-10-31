@@ -9,6 +9,7 @@ const anna: Profile = {
   sex: "f",
   birthMonth: "1984-04",
   heightCm: 168,
+  heightUnit: "ft/in",
   diet: "vegetarian",
   smoking: "never",
   conditions: "hypothyroidism; chronic kidney disease",
@@ -30,6 +31,7 @@ describe("profile", () => {
     expect(r.ok && r.backup.profile).toEqual({ ...anna, allergies: undefined, name: "Anna Kovacs" } as Profile);
     expect(r.ok && "allergies" in r.backup.profile).toBe(false);
     expect(parseBackup({ ...base, profile: { heightCm: 900 } }).ok).toBe(false);
+    expect(parseBackup({ ...base, profile: { heightUnit: "yards" } }).ok).toBe(false);
     expect(parseBackup({ ...base, profile: { diet: "carnivore" } }).ok).toBe(false);
   });
 

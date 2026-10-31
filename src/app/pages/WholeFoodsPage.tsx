@@ -23,6 +23,9 @@ import { BIOMARKER_MAP, NUTRIENT_MAP, WHOLE_FOODS, WHOLE_FOOD_MAP, fullName } fr
 import { href } from "../router";
 import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
+import names from "../../../knowledge/names.json";
+import { searchKnowledgeNames } from "../../core/knowledgeNames";
+import { KnowledgeName } from "../components/KnowledgeName";
 
 const GROUP_LABEL: Record<FoodGroup, string> = {
   fruit: "Fruit",
@@ -55,6 +58,7 @@ function matches(f: WholeFoodDef, query: string): boolean {
 export function WholeFoodsPage() {
   const [query, setQuery] = useState("");
   const shown = WHOLE_FOODS.filter((f) => matches(f, query));
+  const shownNames = searchKnowledgeNames(names.foods, query);
   const searching = query.trim() !== "";
   return (
     <>
@@ -76,11 +80,11 @@ export function WholeFoodsPage() {
         />
       </div>
 
-      {WHOLE_FOODS.length === 0 ? (
+      {WHOLE_FOODS.length === 0 && names.foods.length === 0 ? (
         <Card>
           <p className="text-ink-2">The foods knowledge base is being written.</p>
         </Card>
-      ) : shown.length === 0 ? (
+      ) : shown.length === 0 && shownNames.length === 0 ? (
         <Card className="flex flex-col items-start gap-3">
           <p className="text-ink-2">Nothing here matches “{query.trim()}”.</p>
           <Button variant="secondary" onClick={() => setQuery("")}>
@@ -105,11 +109,12 @@ export function WholeFoodsPage() {
                 </a>
               </li>
             ))}
+          {shownNames.map(({ name }) => <KnowledgeName key={`name:${name}`} name={name} />)}
         </ul>
       )}
 
       <p className="mt-6 text-sm text-ink-2">
-        Written from the cited studies and checked against their records; grades and wording are a first draft, not yet reviewed by a clinician.
+        For guides with cited studies, grades and wording are a first draft, not yet reviewed by a clinician.
         Most food research follows people over years rather than testing the food in a trial, and the grades say so.
       </p>
     </>

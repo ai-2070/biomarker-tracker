@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ageMatch, cutoffsMet, describePlace, normRow, placeAmongYoungest, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
+import { ageMatch, cutoffsMet, describePlace, fitnessSummary, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "../../src/core/fitnessTests";
 
 const source = { title: "Made-up norms", year: 2020, studyType: "observational" as const };
 
@@ -214,5 +214,21 @@ describe("fitness test norms", () => {
       ["Percentiles", 40, "percentile"],
     ]);
     expect(placeAmongYoungest(test, 30, "f").map((x) => x.set.label)).toEqual(["Bands", "Percentiles", "Mean"]);
+  });
+
+  it("keeps daily walking averages out of timed-test norms and clinical thresholds", () => {
+    const gait: FitnessTestDef = { ...test, id: "gait_speed", unit: "m/s", norms: [meanSd], cutoffs: [{ label: "Slow", below: 0.8, source }] };
+    const daily = { biomarkerId: "gait_speed", date: "2026-03-01", value: 0.7, source: "device" as const };
+    expect(isDeviceWalkingAverage(daily)).toBe(true);
+    const [result] = fitnessSummary([gait], [daily], { sex: "f", ageAt: () => 65 });
+    expect(result).toMatchObject({ latest: 0.7, unit: "m/s", comparedWith: [] });
+    expect(result).not.toHaveProperty("comparedWithYoungest");
+    expect(result).not.toHaveProperty("typicalOfAge");
+    expect(result).not.toHaveProperty("thresholdsMet");
+    const timed = { ...daily, source: "manual" as const };
+    expect(isDeviceWalkingAverage(timed)).toBe(false);
+    const [comparison] = fitnessSummary([gait], [timed], { sex: "f", ageAt: () => 65 });
+    expect(comparison?.thresholdsMet).toEqual(["Slow"]);
+    expect(isDeviceWalkingAverage({ biomarkerId: "grip_strength", source: "device" })).toBe(false);
   });
 });

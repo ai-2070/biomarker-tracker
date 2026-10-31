@@ -54,6 +54,37 @@ describe("heart age inputs from the app's data", () => {
     const stopped: ProtocolEntry[] = [{ ...meds[0]!, end: "2026-01-01" }];
     expect(heartAgeData(profile, ms, stopped, "2026-10-29").from.treatedBp).toBe("no");
   });
+  it("keeps treatment inputs unchanged when medicines become one mixed protocol, at historical dates too", () => {
+    const routine: ProtocolEntry = {
+      id: "routine", label: "Daily routine", category: "lifestyle", start: "2026-09-01", end: "2026-10-10",
+      plan: {
+        id: "source",
+        items: [
+          { id: "bp", label: "Amlodipine", amount: "5 mg", category: "medication", when: "morning", days: ["mon", "wed", "fri"] },
+          { id: "diabetes", label: "Metformin", category: "medication", when: "evening" },
+          { id: "diet", label: "Oats", category: "diet", when: "morning" },
+        ],
+      },
+    };
+    const separate = routine.plan!.items.map((i): ProtocolEntry => ({ id: i.id, label: i.label, category: i.category, start: routine.start, end: routine.end }));
+    for (const date of ["2026-08-31", "2026-09-01", "2026-09-15", "2026-10-10", "2026-10-11", "2026-10-29"]) {
+      const grouped = heartAgeData(profile, ms, [routine], date);
+      expect(grouped).toEqual(heartAgeData(profile, ms, separate, date));
+      const active = date >= routine.start && date <= routine.end!;
+      expect(grouped.input).toMatchObject({ treatedBp: active, diabetes: active });
+      expect(grouped.from).toMatchObject({ treatedBp: active ? "habits" : "no", diabetes: active ? "habits" : "no" });
+    }
+  });
+  it("only infers treatment from items marked as medicines, not a routine name or other item types", () => {
+    const routine: ProtocolEntry = {
+      id: "routine", label: "Amlodipine and metformin notes", category: "medication", start: "2026-01-01",
+      plan: {
+        id: "source",
+        items: [{ id: "notes", label: "Metformin and amlodipine research", category: "lifestyle", when: "any time" }],
+      },
+    };
+    expect(heartAgeData(profile, ms, [routine], "2026-10-29").input).toMatchObject({ treatedBp: false, diabetes: false });
+  });
   it("lists what's missing and marks ages outside 30–74", () => {
     expect(heartAgeData({}, [], [], "2026-10-29").missing).toEqual(["your sex", "your month and year of birth", "your height", "a weight", "a blood pressure reading", "whether you smoke"]);
     expect(heartAgeData({ ...profile, birthMonth: "2000-01" }, ms, [], "2026-10-29").outOfRange).toBe("young");

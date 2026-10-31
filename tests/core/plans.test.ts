@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { NutrientDef } from "../../src/core/nutrients";
-import { habitsForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan, daysLabel, normalizeItem, itemErrors } from "../../src/core/plans";
+import { habitForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan, daysLabel, normalizeItem, itemErrors } from "../../src/core/plans";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "nutrients");
 const nutrients = readdirSync(DIR).map((f) => JSON.parse(readFileSync(join(DIR, f), "utf8")) as NutrientDef);
@@ -99,11 +99,18 @@ describe("protocols", () => {
     expect(planFromProposal({ name: "X", items: [{ label: "A", category: "supplement", when: "noon" }] }, id, "x")).toMatchObject({ ok: false, error: expect.stringMatching(/time/) });
   });
 
-  it("turns each item into a habit with the person's own amount", () => {
-    expect(habitsForPlan(plan, "2026-11-01").slice(0, 2)).toEqual([
-      { label: "Vitamin D3 1000 IU", category: "supplement", start: "2026-11-01" },
-      { label: "Iron bisglycinate", category: "supplement", start: "2026-11-01" },
-    ]);
+  it("starts the whole routine as one named habit and preserves its complete item snapshot", () => {
+    const source: Plan = { ...plan, items: [
+      { ...plan.items[0]!, withFood: true, days: ["fri", "mon"], note: "My own amount" },
+      ...plan.items.slice(1),
+    ] };
+    const habit = habitForPlan(source, "2026-11-01");
+    expect(habit).toMatchObject({ label: "Morning stack", category: "lifestyle", start: "2026-11-01", plan: { id: "p1" } });
+    expect(habit.plan!.items[1]).toMatchObject({ label: "Iron bisglycinate", when: "any time", withFood: true });
+    source.items[0]!.label = "Changed later";
+    source.items[0]!.days!.push("sun");
+    expect(habit.plan!.items[0]).toMatchObject({ label: "Vitamin D3", amount: "1000 IU", days: ["mon", "fri"], withFood: true, note: "My own amount" });
+    expect(habitForPlan({ ...plan, items: [plan.items[1]!] }, "2026-11-01").category).toBe("supplement");
   });
 
   it("keeps 'with a meal' and days of the week apart from the time of day, and reads old 'with meals' items", () => {

@@ -31,9 +31,10 @@ export const HABIT_HINTS: readonly { words: RegExp; markers: readonly string[] }
   { words: /sleep|bedtime|bed time|\bscreens?\b|caffeine|coffee|alcohol|\bbeer\b|\bwine\b/i, markers: ["sleep_duration", "sleep_deep", "sleep_rem"] },
 ];
 
-/** Suggested markers for a habit, the ones with results first. */
-export function suggestMarkers(label: string, hasResults: (id: string) => boolean = () => true): string[] {
-  const ids = [...new Set(HABIT_HINTS.filter((h) => h.words.test(label)).flatMap((h) => h.markers))];
+/** Suggested markers from a habit's name and its started protocol's items, the ones with results first. */
+export function suggestMarkers(habit: string | Pick<ProtocolEntry, "label" | "plan">, hasResults: (id: string) => boolean = () => true): string[] {
+  const labels = typeof habit === "string" ? [habit] : [habit.label, ...(habit.plan?.items.map((i) => i.label) ?? [])];
+  const ids = [...new Set(HABIT_HINTS.filter((h) => labels.some((label) => h.words.test(label))).flatMap((h) => h.markers))];
   return [...ids.filter(hasResults), ...ids.filter((id) => !hasResults(id))];
 }
 

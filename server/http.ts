@@ -315,7 +315,11 @@ route("POST", "/api/assistant", async (_p, body, signal) => {
   // Photos only with the newest question; earlier ones aren't sent again.
   for (const m of messages.slice(0, -1)) delete m.images;
   if (messages.length === 0 || messages[messages.length - 1]!.role !== "user") throw new HttpError(400, "Ask a question.");
-  return ask(messages, snap.snapshot, { signal });
+  if (body.userText !== undefined && (typeof body.userText !== "string" || !body.userText.trim() ||
+    !messages[messages.length - 1]!.content.startsWith(body.userText))) {
+    throw new HttpError(400, "The typed question does not match the latest message.");
+  }
+  return ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}) });
 });
 
 // Security and serving

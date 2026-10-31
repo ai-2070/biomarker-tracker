@@ -13,14 +13,17 @@ import { SafetyNotices } from "../components/SafetyNotices";
 import { todayIso } from "../../core/dates";
 import type { HabitProposal } from "../../core/habitProposal";
 import { defaultRetestDays } from "../../core/habits";
-import { safetyNotes, validateProtocol } from "../../core/protocols";
-import { addProtocol, saveMeal, savePlan, watchHabit } from "../../db/db";
-import { foodById, mealTotals } from "../../core/meals";
+import { safetyLabels, safetyNotes, validateProtocol } from "../../core/protocols";
+import { addProtocol, db as localDb, getProfile, saveMeal, savePlan, watchHabit } from "../../db/db";
+import { foodById, mealSafetyBlock, mealTotals } from "../../core/meals";
 import { formatValue } from "../../core/units";
+import { SAFETY_LIMITS } from "../../core/foods";
+import { LIFE_TABLE_COUNTRIES } from "../../core/lifeTable";
+import { PROFILE_DETAIL_LABELS } from "../../core/profileCompletion";
 import { useFoodDb } from "../foodDb";
 import { itemsByTime, pairWarnings } from "../../core/plans";
 import { formatDate, showMeasurement, valueUnit } from "../format";
-import { useAllMeasurements, useProfile } from "../hooks";
+import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENTS, fullName } from "../knowledge";
 import { uploadFile, useProfiles } from "../profiles";
 import { href } from "../router";
@@ -63,6 +66,7 @@ const TOOL_TEXT: Record<string, string> = {
   get_log: "Read your habits",
   compare_before_after: "Checked what changed in your habits",
   propose_habit: "Suggested a habit for you to confirm",
+  save_profile_details: "Prepared missing profile details from your message",
   search_research: "Searched Europe PMC",
   get_study: "Read a study on Europe PMC",
   get_nutrient: "Read the vitamins and minerals knowledge base",
@@ -367,8 +371,9 @@ function Welcome({ settings, research }: { settings: BrainSettings | undefined; 
       <div>
         <p className="font-serif text-3xl">Ask Brain</p>
         <p className="mt-1 text-ink-2">
-          About your results, your habits and the research. Drop a lab report here, or use the paperclip, to add it to your blood tests.
+          Ask about your results, habits and research. Brain can fill missing profile details you state and draft a meal, protocol or habit when you ask. You review drafts before saving them.
         </p>
+        <p className="mt-2 text-sm text-ink-2">Drop a lab report here, or use the paperclip, to review and add its results.</p>
       </div>
       <ul className="stagger flex flex-col gap-2">
         {SUGGESTIONS.map((s) => (
@@ -463,6 +468,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
       return <p className="text-center text-sm text-ink-2">Stopped. Ask again when you're ready.</p>;
     case "review":
       return <ReviewTurn turn={t} model={model} />;
+    case "profile":
+      return <ProfileTurn turn={t} />;
     case "habit":
       return <HabitTurn turn={t} />;
     case "protocol":
@@ -470,6 +477,52 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
     case "meal":
       return <MealTurn turn={t} />;
   }
+}
+
+const birthMonthFormat = new Intl.DateTimeFormat(undefined, { month: "long", year: "numeric" });
+const PROFILE_VALUE_LABELS: Record<string, string> = {
+  m: "Male", f: "Female", omnivore: "Eats everything", vegetarian: "Vegetarian", vegan: "Vegan",
+  pescatarian: "Pescatarian (fish, no meat)", other: "Other or special diet",
+  never: "Never smoked", former: "Former smoker", current: "Currently smokes",
+};
+
+function ProfileTurn({ turn }: { turn: Extract<Turn, { role: "profile" }> }) {
+  const profile = useProfile();
+  const readings = turn.measurements.flatMap((m) => {
+    const def = BIOMARKER_MAP.get(m.biomarkerId);
+    return def ? [{ m, def, flag: flagMeasurement(def, m, profile) }] : [];
+  });
+  const critical = readings.filter(({ flag }) => isCritical(flag)).map(({ m, def, flag }) => ({ def, measurement: m, low: flag === "critical-low" }));
+  return (
+    <div className="rounded-xl border border-line bg-ok-soft p-3 text-sm">
+      <CriticalBanner items={critical} />
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <p className="flex items-center gap-2 font-medium"><CheckIcon className="size-4 shrink-0 text-ok" />{turn.changes.length ? readings.length ? "Added to your profile and data" : "Added to your profile" : "Saved measurements"}</p>
+        {turn.changes.length > 0 && <a href={href({ name: "data", tab: "data" })} onClick={closeBrain} className="inline-flex min-h-11 items-center font-medium text-ink underline underline-offset-2">Edit profile</a>}
+      </div>
+      <dl className="mt-1 space-y-1 break-words">
+        {turn.changes.map(({ field, value }) => {
+          const shown = field === "heightCm" ? `${formatValue(Number(value))} cm`
+            : field === "birthMonth" ? birthMonthFormat.format(new Date(`${value}-15T12:00:00`))
+            : field === "country" ? LIFE_TABLE_COUNTRIES[String(value)] ?? String(value)
+            : (field === "sex" || field === "diet" || field === "smoking") ? PROFILE_VALUE_LABELS[String(value)] ?? String(value)
+            : String(value);
+          return <div key={field}><dt className="inline font-medium">{PROFILE_DETAIL_LABELS[field]}: </dt><dd className="inline">{shown}</dd></div>;
+        })}
+      </dl>
+      {readings.length > 0 && <>
+        <ul className="mt-2 divide-y divide-line">
+          {readings.map(({ m, def, flag }) => <li key={m.id}>
+            <a href={href({ name: "marker", id: def.id })} onClick={closeBrain} className="flex min-h-11 flex-wrap items-center justify-between gap-x-3 gap-y-1 py-2 text-ink underline underline-offset-2">
+              <span>{fullName(def)}</span>
+              <span className="flex items-center gap-2 tabular-nums">{showMeasurement(def, m, def.canonicalUnit)} {valueUnit(def, def.canonicalUnit)}{flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}</span>
+            </a>
+          </li>)}
+        </ul>
+        <p className="mt-2 text-xs text-ink-2">Saved for {formatDate(readings[0]!.m.date)} from your current statement. Open a result to edit or delete it.</p>
+      </>}
+    </div>
+  );
 }
 
 function StepList({ steps, failed }: { steps: Step[]; failed: { name: string; error: string }[] }) {
@@ -900,8 +953,8 @@ function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) {
 
 
 /**
- * A protocol Brain wrote down from the person's text. They check the items and create it (it opens
- * on the Protocols page, where everything can be edited); nothing is saved before that.
+ * A recorded or requested-recommendation protocol draft. The person checks and creates it; nothing
+ * is saved or started before that. All items remain editable on the Protocols page.
  */
 function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
   const [name, setName] = useState(turn.plan.name);
@@ -941,10 +994,12 @@ function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
   return (
     <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
       <div>
-        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">
-          Protocol from your text · {turn.plan.items.length} {turn.plan.items.length === 1 ? "item" : "items"}
+        <p className="text-sm font-medium">
+          {turn.intent === "recommend" ? "Suggested protocol" : "Protocol from your text"} · {turn.plan.items.length} {turn.plan.items.length === 1 ? "item" : "items"}
         </p>
-        <p className="mt-1 text-sm text-ink-2">Check that every item, time and amount matches what you wrote. You can change anything on the Protocols page afterwards.</p>
+        <p className="mt-1 text-sm text-ink-2">{turn.intent === "recommend"
+          ? "Review this draft. It has no medicines or suggested doses. Creating it does not start it as a habit; you can edit it on the Protocols page."
+          : "Check that every item, time and amount matches what you wrote. You can change anything on the Protocols page afterwards."}</p>
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor={nameId} className="text-sm font-medium">
@@ -993,12 +1048,19 @@ function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
 }
 
 /**
- * A meal Brain wrote down from a recipe. The app's own totals are shown (never the model's); the person
- * saves it and can change it on the Meals page.
+ * A recorded recipe or requested meal idea. Totals and safety checks use the app's food table,
+ * never the model's arithmetic. Saving still requires the person's review.
  */
 function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
-  const db = useFoodDb();
+  const foodDb = useFoodDb();
+  const profile = useProfile();
+  const habits = useProtocols();
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string>();
+  const recommended = turn.intent === "recommend";
+  const safety = safetyNotes(safetyLabels(habits ?? [], profile));
+  const limits = safety.flatMap(({ id }) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+  const blocked = recommended && foodDb ? mealSafetyBlock(turn.meal.items, foodDb, limits) : undefined;
   if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Meal not saved.</p>;
   if (turn.state === "saved") {
     return (
@@ -1012,18 +1074,44 @@ function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
       </div>
     );
   }
-  const t = db ? mealTotals(turn.meal.items, db) : undefined;
+  const t = foodDb ? mealTotals(turn.meal.items, foodDb) : undefined;
   const v = (k: string) => (t?.[k] && t[k]!.measuredIn > 0 ? formatValue(Math.round(t[k]!.amount * 10) / 10) : "–");
+
+  async function save() {
+    if (!foodDb || saving) return;
+    setError(undefined);
+    setSaving(true);
+    try {
+      if (recommended) {
+        // Read again at the click, so a Settings or Habits change cannot leave a stale safe draft.
+        const [currentProfile, currentHabits] = await Promise.all([getProfile(), localDb.protocols.toArray()]);
+        const currentLimits = safetyNotes(safetyLabels(currentHabits, currentProfile))
+          .flatMap(({ id }) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+        const issue = mealSafetyBlock(turn.meal.items, foodDb, currentLimits);
+        if (issue) {
+          setError(`${issue}. Talk to your doctor before changing these foods.`);
+          return;
+        }
+      }
+      await saveMeal(turn.meal);
+      setHabitState(turn.id, "saved");
+    } catch {
+      setError("The meal couldn't be saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
       <div>
-        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">Meal from your recipe · {turn.meal.items.length} foods</p>
-        <p className="mt-0.5 font-medium">{turn.meal.name}</p>
+        <p className="text-sm font-medium">{recommended ? "Suggested meal" : "Meal from your recipe"} · {turn.meal.items.length} foods</p>
+        <p className="mt-0.5 font-medium break-words">{turn.meal.name}</p>
       </div>
       <ul className="flex flex-col gap-0.5 rounded-lg bg-sunken p-2 text-sm">
         {turn.meal.items.map((it, i) => (
           <li key={`${it.foodId}-${i}`} className="flex justify-between gap-2">
-            <span>{db ? (foodById(db, it.foodId)?.name ?? it.foodId) : it.foodId}</span>
+            <span className="min-w-0 break-words">{foodDb ? (foodById(foodDb, it.foodId)?.name ?? it.foodId) : it.foodId}</span>
             <span className="shrink-0 text-ink-2 tabular-nums">{it.grams} g</span>
           </li>
         ))}
@@ -1034,17 +1122,14 @@ function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
           <span className="block text-xs text-ink-2">Worked out by the app from the food table. Vitamins and minerals are on the meal's page.</span>
         </p>
       )}
-      <p className="text-xs text-ink-2">Check that the foods and weights match your recipe; you can change them after saving.</p>
+      <p className="text-xs text-ink-2">{recommended
+        ? "These are example food portions, not a daily target or a complete diet. Review them before saving; you can edit the meal afterwards."
+        : "Check that the foods and weights match your recipe; you can change them after saving."}</p>
+      {recommended && safety.length > 0 && <SafetyNotices notes={safety} />}
+      {blocked && <p role="alert" className="rounded-lg bg-warn-soft p-2 text-sm">{blocked}. Talk to your doctor before changing these foods. This suggestion cannot be saved.</p>}
+      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
       <div className="flex flex-wrap gap-2">
-        <Button
-          disabled={saving}
-          onClick={() => {
-            setSaving(true);
-            void saveMeal(turn.meal)
-              .then(() => setHabitState(turn.id, "saved"))
-              .finally(() => setSaving(false));
-          }}
-        >
+        <Button disabled={saving || !foodDb || !!blocked || (recommended && !habits)} onClick={() => void save()}>
           {saving ? "Saving…" : "Save meal"}
         </Button>
         <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>

@@ -56,12 +56,15 @@ Add results by hand, from a lab report PDF, or from a photo of one. Text recogni
 - **Fitness age** from VO₂max, using healthy-adult averages from the HUNT 3 Fitness Study.
 - **Seven age-related fitness tests** (grip strength, push-ups, chair rises, one-leg stand, walking speed, sitting-rising) placed on published norm tables for your age and sex.
 - The three ages are never averaged into one number, because they estimate different things.
+- Missing your birth month? Enter the month and year and press **Save** directly on the Body or Biological age page. The estimates update together; no day of birth is needed.
 
 ### Body measurements and device import
 
 <img src="docs/screenshots/body.png" alt="Body dashboard: weight, waist, waist-to-height ratio, BMI, blood pressure, resting heart rate, heart rate variability, sleep and blood oxygen" width="100%">
 
 Weight, waist, body fat, blood pressure, resting heart rate, heart rate variability (HRV), blood oxygen, sleep, home blood glucose and VO₂max. Import exports from Apple Health, Fitbit, Google Fit, Samsung Health, Garmin, Oura, Whoop, Withings, Polar, Zepp and Huawei Health, or any CSV or JSON file. Files are read on your computer and never uploaded. No made-up "readiness" or "sleep scores": only what was measured.
+
+Height is in **About** under Settings → Your data, and in the first details step when creating a profile. Choose centimetres or feet and inches. The preference is kept with the profile and in backups; switching units does not change the height used by calculations, which is always stored in centimetres.
 
 Samsung sleep comes from `com.samsung.health.sleep_stage…csv` in the export: light, deep and REM intervals add up to actual time asleep, excluding awake periods. Each session is dated by its final wake-up in the export's recorded time zone, and naps on that date are added. The separate sleep summaries and energy-score inputs are skipped so scores, time in bed and duplicate totals cannot replace actual sleep. Choose the full zip or include the sleep-stage file. Sub-minute intervals are preserved, so a stage total may display a minute differently from Samsung's rounded summary.
 
@@ -70,6 +73,8 @@ Sleep, deep sleep and REM sleep are displayed in hours and minutes throughout th
 Samsung daily steps use only `source_type = -2` in `com.samsung.shealth.step_daily_trend…csv`: Samsung's combined count with phone/watch overlap removed. Separate device totals and the other Samsung step files are not added. Active time uses `active_time` in `com.samsung.shealth.activity.day_summary…csv`, converted explicitly from milliseconds to minutes; overlapping pedometer durations, exercise parts and detail-bin JSON are skipped. Both use `day_time`, not the date a record was created or updated, and newer daily snapshots replace earlier ones.
 
 Samsung's recorded overnight heart rate and HRV come from `shr_value` (beats/minute) and `shrv_value` (milliseconds) in `com.samsung.shealth.vitality_score…csv`. They populate the resting heart-rate and resting HRV cards; ordinary daytime readings stay separate. Energy Scores, scales, baselines and previous averages are still excluded. These are Samsung's during-sleep summaries, not values calculated from daytime averages.
+
+Samsung walking speed uses `speed` from the same combined daily step records, in metres per second, keeping two decimal places. Per-device copies and workout speeds are not mixed in. [Samsung defines this as the average speed of daily steps](https://developer.samsung.com/health/android/data/api-reference/com/samsung/android/sdk/healthdata/HealthConstants.StepDailyTrend.html#SPEED): it is labelled a **daily average**, not a short timed gait test. It appears in the walking-speed history, but timed-test percentiles, age equivalents and clinical cut-offs are not applied to it.
 
 Body fat is imported as a percentage only. Fat-mass columns in kilograms or pounds (including Samsung Health's `body_fat_mass`) are skipped with an explanation, not relabelled as percentages or converted. Samsung's separate `body_fat` percentage is imported normally.
 
@@ -85,7 +90,7 @@ Log supplements, diet changes, medicines and routines, then watch chosen markers
 
 <img src="docs/screenshots/protocol.png" alt="A supplement protocol shown as a daily schedule from morning to bedtime, with warnings about items that interact" width="100%">
 
-- **Protocols:** a supplement stack, diet or routine as a daily schedule, with interaction warnings between items and with your medicines or conditions. Start one as habits in one click.
+- **Protocols:** a supplement stack, diet or routine as a daily schedule, with interaction warnings between items and with your medicines or conditions. Starting one adds one named habit, with all items kept in collapsible details: amounts, timing, days and notes as they were when started. Later protocol edits or deletion don't change that record. Watch markers for the whole routine; a comparison cannot tell which item caused a change. Older runs recorded as separate habits keep their history.
 - **Meals:** build meals from 2,887 foods in the UK CoFID 2021 food table and see what was measured in them, with a note on how much food chemistry those numbers leave out ("nutritional dark matter").
 - **Intake analyzer:** compare a day's meals, foods and supplements with EU (EFSA) reference values. No calorie targets and no weight-loss plans.
 
@@ -99,9 +104,11 @@ Explore whole foods, vitamins, minerals, other supplements and everyday habits. 
 
 Personal interaction warnings come first, and safety findings stay visible. Mixed findings and outcomes without a clear benefit are grouped separately under **Other uses studied**. Expand **Research details & sources** for the full findings, grade explanations and citations; a link to a finding opens its research section automatically. Research entries for nutrients also include food sources, EFSA reference intakes and upper limits, and interactions.
 
-**Basic supplement guides** cover the 15 previously missing supplements in Standard Routine, bringing the library to 35 entries. They explain the ingredient, common uses, forms and cautions, with basic references rather than efficacy verdicts. Except for the astaxanthin pilot below, they are labelled **Benefits not yet reviewed**; common uses are purposes, not proven benefits. Protocol items link to these guides without changing the person's routine.
+**Basic supplement guides** cover the 15 previously missing supplements in Standard Routine, bringing the library to 35 guides. They explain the ingredient, common uses, forms and cautions, with basic references rather than efficacy verdicts. Except for the astaxanthin pilot below, they are labelled **Benefits not yet reviewed**; common uses are purposes, not proven benefits. Protocol items link to these guides without changing the person's routine.
 
 Basic guides set `researchStatus: "not-reviewed"` and `commonUses`, and contain no graded findings or linked evidence claims. Their sources can be general publications or HTTPS public guidance in `basicSources` (such as NIH NCCIH safety pages). Empty findings mean the benefit review has not been done, not that studies found no benefit. These guides do not display unreviewed reference values or deficiency sections.
+
+Additional requested topics are listed by name only: 29 supplements, 37 foods and 8 lifestyle topics. These searchable catalogue names have no descriptions, claims, doses or schedules and do not open empty detail pages. Existing guides are not duplicated or replaced.
 
 **Astaxanthin pilot:** a concise **Potential benefits & common claims** list, phrased as “May…”, with **Check evidence** beside each claim. The page explains its algal origin, amounts and important safety points; ingredient and safety references remain available without AI. It contains no baked-in benefit reviews, verdicts or grades. `simpleGuide` selects this layout; `commonUses` supplies the claims and `findings` stays empty. Other knowledge pages retain their existing layouts.
 
@@ -113,7 +120,11 @@ Each button opens a **research-only Brain conversation** using the person's chos
 
 ### Brain, the optional assistant
 
-A chat window on every page that reads your results through the app's own tested tools, searches the research, and cites only studies it actually retrieved. Every citation is checked, and unknown ones are struck through. Drop a lab report into the chat to add results. It never diagnoses, never suggests medicines or amounts, and puts critical values first with "contact a doctor".
+Brain helps with everyday questions about food, supplements, exercise, sleep and work habits, as well as your saved results. Personal chat leads with practical options and their likely benefits and limits; it does not require a fresh literature search or a complete profile for ordinary guidance. Use **Show evidence** for the separate research-focused conversation. Citations are checked against sources the tools returned. Drop a lab report into the chat to add results. Brain never diagnoses or prescribes medicines or supplement doses, and puts critical values first with "contact a doctor".
+
+In personal chat, code detects common profile facts and explicitly stated current measurements in your newest typed message. “I'm 31, 102 kg, 192 cm tall, man, 27% body fat” can fill blank height/sex fields and save weight/body-fat readings together. “im 27% body fat” also works. Named measurements use the app's marker names and aliases, with the existing unit validation and conversions. A stated “pace of aging” is recorded as a reported DunedinPACE result, not the app's calculated PhenoAge pace. This does not depend on the model calling a save tool. After a successful answer, a receipt shows what was actually saved and links to the results. Current readings use today's date; existing same-day readings are never overwritten or duplicated, and a later day can add a new reading. Existing profile details stay unchanged. Other people's details, quoted examples, attachments, targets and past-tense readings are not silently saved; “don't save this” prevents capture. A stated age does not become a guessed birth date.
+
+Ask Brain to create a **protocol, meal or habit**, or ask for recommendations, and it can show a review card instead of only describing one. Nothing is created or started until you confirm. Recorded routines keep your own amounts; suggested protocols can include example activity durations or frequencies, but never medicines or supplement doses. Suggested meals use real food-table entries, example portions and the app's calculated totals. Safety checks still apply, and critical results block all three kinds of draft. Creation cards need a model or connected agent with access to the app's tools; research-only conversations cannot change personal data.
 
 You choose the model:
 

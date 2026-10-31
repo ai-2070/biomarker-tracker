@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmiTerms, bmrMifflin, bmrMifflinTerms, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
+import { BODY_FIELDS, recentAverage, bmi, bmiTerms, bmrMifflin, bmrMifflinTerms, heightInCm, heightInFeet, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
 import type { Measurement } from "../../src/core/types";
 
 const today = "2026-10-28";
@@ -9,6 +9,30 @@ const m = (biomarkerId: string, date: string, value: number): Measurement => ({ 
 describe("body knowledge", () => {
   it("has a knowledge entry for every body field", () => {
     for (const f of BODY_FIELDS) expect(BIOMARKER_MAP.get(f)?.category, f).toBe("Body");
+  });
+});
+
+describe("profile height units", () => {
+  it("converts feet and inches to cm without losing fractional-centimetre height", () => {
+    expect(heightInCm(5, "ft/in", 11)).toBe(180.34);
+    expect(heightInCm(6, "ft/in")).toBe(182.88);
+    expect(heightInCm(172.5, "cm")).toBe(172.5);
+    expect(heightInFeet(180.34)).toEqual({ feet: 5, inches: 11 });
+  });
+  it("carries rounded inches into feet and keeps both height limits usable", () => {
+    expect(heightInFeet(182.8799)).toEqual({ feet: 6, inches: 0 });
+    for (const cm of [40, 168, 180.34, 192, 260]) {
+      const parts = heightInFeet(cm)!;
+      expect(parts.inches).toBeLessThan(12);
+      expect(heightInCm(parts.feet, "ft/in", parts.inches)).toBeCloseTo(cm, 1);
+    }
+  });
+  it.each([[5, 12], [5, -1], [5.5, 0], [-1, 0], [0, 0], [9, 0], [5, NaN], [Infinity, 0]])("rejects invalid feet/inches: %s / %s", (feet, inches) => {
+    expect(heightInCm(feet, "ft/in", inches)).toBeUndefined();
+  });
+  it.each([39, 261, NaN, Infinity])("rejects invalid cm: %s", (cm) => {
+    expect(heightInCm(cm, "cm")).toBeUndefined();
+    expect(heightInFeet(cm)).toBeUndefined();
   });
 });
 

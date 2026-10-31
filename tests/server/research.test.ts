@@ -48,7 +48,7 @@ const maliciousMessages: ChatMessage[] = [
   { role: "user", content: `  ${question}  `, images: [{ mediaType: "image/jpeg", data: "PRIVATE_NEW_PHOTO" }] },
   { role: "assistant", content: "PRIVATE_TRAILING_ANSWER" },
 ];
-const forbidden = ["get_results", "get_marker", "get_levers", "get_body_summary", "get_biological_age", "get_log", "get_protocols", "get_meals", "compare_before_after", "propose_habit", "propose_protocol", "propose_meal"];
+const forbidden = ["get_results", "get_marker", "get_levers", "get_body_summary", "get_biological_age", "get_log", "get_protocols", "get_meals", "compare_before_after", "save_profile_details", "propose_habit", "propose_protocol", "propose_meal"];
 const fixture = readFileSync(join(import.meta.dirname, "..", "fixtures", "research", "europepmc-ferritin-reviews.json"), "utf8");
 
 beforeEach(() => {
@@ -84,7 +84,7 @@ describe("research-only assistant", () => {
     }) as typeof fetch;
     // Throw on any snapshot access, not merely when it is serialized into a prompt.
     const unreadable = new Proxy(snapshot, { get: () => { throw new Error("Read private snapshot"); } });
-    const result = await ask(maliciousMessages, unreadable, { researchOnly: true, ready: ready(model), fetchFn });
+    const result = await ask(maliciousMessages, unreadable, { researchOnly: true, userText: "PRIVATE_TYPED I am 180 cm tall", ready: ready(model), fetchFn });
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(calls).toBe(2);
@@ -138,7 +138,7 @@ describe("research-only assistant", () => {
       }
     });
     try {
-      const result = await ask(maliciousMessages, snapshot, { researchOnly: true });
+      const result = await ask(maliciousMessages, snapshot, { researchOnly: true, userText: "PRIVATE_TYPED I am 180 cm tall" });
       expect(result.ok).toBe(true);
       if (!result.ok) return;
       expect(result.studyIds).toContain("PMID:87654321");
@@ -207,13 +207,59 @@ describe("research API boundary", () => {
       return answer();
     } });
     vi.mocked(readyModel).mockReturnValue({ ok: true, ready: ready(model) });
-    const response = await post({ scope: "research", snapshot: { measurements: [{ id: "PRIVATE_INVALID" }], profile: snapshot.profile }, messages: maliciousMessages });
+    const response = await post({ scope: "research", userText: { malicious: "PRIVATE_TYPED I am 180 cm tall" }, snapshot: { measurements: [{ id: "PRIVATE_INVALID" }], profile: snapshot.profile }, messages: maliciousMessages });
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({ ok: true });
     expect(users).toEqual([{ role: "user", content: [{ type: "text", text: question }] }]);
     expect(JSON.stringify(prompt)).not.toMatch(/PRIVATE_|1984-04/);
     const personal = await post({ snapshot: { measurements: [{ id: "PRIVATE_INVALID" }] }, messages: [{ role: "user", content: question }] });
     expect(personal.status).toBe(400);
+  });
+
+  it("binds typed personal text before tools execute and ignores attached profile quotes", async () => {
+    let calls = 0;
+    const full = "What is my BMI?\n\nDocument: I am 180 cm tall";
+    const model = new MockLanguageModelV4({ doGenerate: async () => {
+      if (++calls === 1) return {
+        content: [{ type: "tool-call", toolCallId: "profile-api", toolName: "save_profile_details", input: JSON.stringify({ details: [{ field: "heightCm", quote: "I am 180 cm tall" }] }) }],
+        finishReason: { unified: "tool-calls", raw: undefined }, usage, warnings: [],
+      };
+      return answer();
+    } });
+    vi.mocked(readyModel).mockReturnValue({ ok: true, ready: ready(model) });
+    const bad = await post({ snapshot: {}, userText: "I am 180 cm tall", messages: [{ role: "user", content: full }] });
+    expect(bad.status).toBe(400);
+    expect(calls).toBe(0);
+    const response = await post({ snapshot: {}, userText: "What is my BMI?", messages: [{ role: "user", content: full }] });
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ ok: true, steps: [{ tool: "save_profile_details", validated: false }] });
+    expect(calls).toBe(2);
+  });
+
+  it("fills typed profile facts through the API without a save call and keeps birth month out of tool output", async () => {
+    const userText = "I am 180 cm tall. I was born in April 1984. What is my BMI?";
+    let calls = 0;
+    const outputs: unknown[] = [];
+    const actions = [
+      { tool: "get_results", input: {} },
+      { tool: "get_body_summary", input: {} },
+    ];
+    const model = new MockLanguageModelV4({ doGenerate: async (options) => {
+      outputs.push(options.prompt.filter((message) => message.role === "tool"));
+      const action = actions[calls++];
+      return action ? {
+        content: [{ type: "tool-call", toolCallId: `api-${calls}`, toolName: action.tool, input: JSON.stringify(action.input) }],
+        finishReason: { unified: "tool-calls", raw: undefined }, usage, warnings: [],
+      } : answer("The app reports a BMI of 25.");
+    } });
+    vi.mocked(readyModel).mockReturnValue({ ok: true, ready: ready(model) });
+    const response = await post({ userText, messages: [{ role: "user", content: userText }], snapshot: {
+      measurements: [{ id: "w", biomarkerId: "weight", value: 81, originalValue: 81, originalUnit: "kg", date: "2026-10-01", source: "manual" }],
+    } });
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ ok: true, steps: [{ tool: "get_results" }, { tool: "get_body_summary" }] });
+    expect(JSON.stringify(outputs)).toMatch(/bmi\\?":\{\\?"value\\?":25/);
+    expect(JSON.stringify(outputs)).not.toContain("1984-04");
   });
 
   it("cancels model work when an evidence request is disconnected", async () => {

@@ -10,7 +10,7 @@ import { createBackup } from "../core/backup";
 import { todayIso } from "../core/dates";
 import { demoProfile } from "../core/demo";
 import { profilesInFolder, zipStore } from "../core/zipStore";
-import { db, getProfile, importBackup, setOnboarded } from "../db/db";
+import { db, getProfile, importBackup, setOnboarded, LOADED_PROFILE_KEY } from "../db/db";
 import { api } from "./api";
 
 export interface ProfileSummary {
@@ -45,10 +45,8 @@ interface ProfileData {
   settings: Record<string, unknown>;
 }
 
-/** Which folder the data in this browser belongs to. */
-const LOADED_KEY = "loadedProfile";
 /** Settings that belong to this browser, not to a person. */
-const BROWSER_KEYS = new Set(["profile", "onboarded", "ai", LOADED_KEY]);
+const BROWSER_KEYS = new Set(["profile", "onboarded", "ai", LOADED_PROFILE_KEY]);
 
 export interface ProfilesState {
   /** "folders": the local server keeps profiles. "browser": one profile in this browser. */
@@ -64,7 +62,7 @@ export const useProfiles = () => useContext(ProfilesContext);
 export const listProfiles = () => api<{ profiles: ProfileSummary[]; active: string | null; root: string }>("GET", "/api/profiles");
 
 export async function loadedProfileId(): Promise<string | null> {
-  const v = (await db.settings.get(LOADED_KEY))?.value;
+  const v = (await db.settings.get(LOADED_PROFILE_KEY))?.value;
   return typeof v === "string" ? v : null;
 }
 
@@ -99,13 +97,13 @@ export async function loadIntoBrowser(id: string): Promise<void> {
       ...Object.entries(d.settings).map(([key, value]) => ({ key, value })),
       { key: "profile", value: d.person },
       { key: "onboarded", value: true },
-      { key: LOADED_KEY, value: id },
+      { key: LOADED_PROFILE_KEY, value: id },
     ]);
   });
 }
 
 export async function markLoaded(id: string): Promise<void> {
-  await db.settings.put({ key: LOADED_KEY, value: id });
+  await db.settings.put({ key: LOADED_PROFILE_KEY, value: id });
   await db.settings.put({ key: "onboarded", value: true });
 }
 

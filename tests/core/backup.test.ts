@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { BACKUP_VERSION, createBackup, parseBackup } from "../../src/core/backup";
 import { isIsoDate, daysBetween, todayIso } from "../../src/core/dates";
+import { MAX_ITEMS } from "../../src/core/plans";
+import type { ProtocolEntry } from "../../src/core/types";
 import { measurement } from "../helpers";
 
 describe("backup", () => {
@@ -14,10 +16,44 @@ describe("backup", () => {
     },
     new Date("2024-05-01T10:00:00Z"),
   );
+  const routine: ProtocolEntry = {
+    id: "routine", label: "Daily routine", category: "lifestyle", start: "2024-01-01",
+    plan: {
+      id: "source",
+      items: [{
+        id: "item", label: "Oats", amount: "50 g", category: "diet", when: "morning",
+        withFood: true, days: ["mon", "wed", "fri"], note: "My breakfast", mealId: "saved-meal",
+      }],
+    },
+  };
 
   it("round-trips through JSON", () => {
     const r = parseBackup(JSON.parse(JSON.stringify(backup)));
     expect(r).toEqual({ ok: true, backup });
+  });
+
+  it("round-trips a started protocol snapshot with all item metadata without a live source protocol", () => {
+    const grouped = createBackup({ ...backup, protocols: [routine] }, new Date("2024-05-01T10:00:00Z"));
+    const parsed = parseBackup(JSON.parse(JSON.stringify(grouped)));
+    expect(parsed).toEqual({ ok: true, backup: grouped });
+    expect(parsed.ok && parsed.backup.protocols[0]!.plan).toEqual(routine.plan);
+  });
+
+  it("rejects damaged protocol snapshots using the source protocol's item rules", () => {
+    const plan = routine.plan!;
+    const item = plan.items[0]!;
+    const damaged: unknown[] = [
+      null, [], "source", {}, { ...plan, id: "" }, { ...plan, id: 3 }, { ...plan, items: null },
+      { ...plan, items: [null] }, { ...plan, items: [{ ...item, id: "" }] }, { ...plan, items: [{ ...item, label: "" }] },
+      { ...plan, items: [{ ...item, category: "medicine" }] }, { ...plan, items: [{ ...item, when: "lunch" }] },
+      { ...plan, items: [{ ...item, amount: "x".repeat(41) }] }, { ...plan, items: [{ ...item, withFood: "yes" }] },
+      { ...plan, items: [{ ...item, days: ["mon", "mon"] }] }, { ...plan, items: [{ ...item, days: ["someday"] }] },
+      { ...plan, items: [{ ...item, note: "x".repeat(301) }] }, { ...plan, items: [{ ...item, mealId: 3 }] },
+      { ...plan, items: Array.from({ length: MAX_ITEMS + 1 }, (_, i) => ({ ...item, id: `item-${i}` })) },
+    ];
+    for (const snapshot of damaged) {
+      expect(parseBackup({ ...backup, protocols: [{ ...routine, plan: snapshot }] }).ok, JSON.stringify(snapshot)).toBe(false);
+    }
   });
 
   it("stamps app name, version and export time", () => {

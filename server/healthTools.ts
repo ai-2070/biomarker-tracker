@@ -6,10 +6,12 @@ import { parseBackup } from "../src/core/backup";
 import { todayIso } from "../src/core/dates";
 import { selectLevers } from "../src/core/evidence";
 import { analyzeMarker, rcvBand, retestDate } from "../src/core/experiments";
-import { selectFoods } from "../src/core/foods";
+import { SAFETY_LIMITS, selectFoods } from "../src/core/foods";
 import { summarizePhenoAge } from "../src/core/phenoageDraws";
 import { ageAt } from "../src/core/phenoageDraws";
 import { assistantProfile } from "../src/core/profile";
+import { completeProfileDetails, PROFILE_DETAIL_FIELDS } from "../src/core/profileCompletion";
+import { proposalIssue } from "../src/core/assistantProposal";
 import { safetyLabels, safetyNotes } from "../src/core/protocols";
 import { personalRange } from "../src/core/personalRange";
 import { computeTrend, flagLatest, flagMeasurement, groupByBiomarker, isCritical, recentAverage, resolveRange, sortByDate } from "../src/core/trends";
@@ -19,7 +21,7 @@ import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/
 import { bodySummary } from "../src/core/bodySummary";
 import { parseHabitProposal } from "../src/core/habitProposal";
 import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "../src/core/plans";
-import { closestFoods, dailyReference, foodNameNote, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
+import { closestFoods, dailyReference, foodNameNote, mealSafetyBlock, mealTotals, searchFoods, validateMeal, type Meal } from "../src/core/meals";
 import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 import { phenoAgePace } from "../src/core/agePace";
@@ -61,6 +63,26 @@ function rangeOut(range: { low?: number; high?: number; source: string } | undef
 
 export function safetyOf(s: HealthSnapshot): SafetyId[] {
   return safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => n.id);
+}
+
+const WHOLE_PROTOCOL_COMPARISON = "The whole protocol is one change; changes cannot be attributed to one included item.";
+
+/** The same started-habit details for tool callers and agents without tools; source plans may change. */
+export function logOverview(s: HealthSnapshot) {
+  return {
+    habits: s.protocols.map((p) => {
+      const watch = s.experiments.find((e) => e.protocolId === p.id);
+      return {
+        label: p.label,
+        type: p.category,
+        start: p.start,
+        end: p.end ?? "ongoing",
+        ...(p.plan ? { plan: p.plan, comparisonScope: WHOLE_PROTOCOL_COMPARISON } : {}),
+        ...(watch ? { watches: watch.markerIds } : {}),
+      };
+    }),
+    safetyNotes: safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => `${n.title}: ${n.text}`),
+  };
 }
 
 /** Every result the user has, latest per marker. */
@@ -261,6 +283,7 @@ export function experimentResults(s: HealthSnapshot) {
     start: e.start,
     retestFrom: retestDate(e),
     ended: e.end ?? null,
+    ...(s.protocols.some((p) => p.id === e.protocolId && p.plan) ? { comparisonScope: WHOLE_PROTOCOL_COMPARISON } : {}),
     markers: e.markerIds.flatMap((id) => {
       const def = defs.get(id);
       if (!def) return [];
@@ -283,8 +306,31 @@ export function experimentResults(s: HealthSnapshot) {
 const notFound = (q: string) => ({ error: `No marker called "${q}". Use get_results to see which markers the user has.` });
 
 /** The built-in tools for one request. `fetchFn` is injected so tests can run without a network. */
-export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): ToolSet {
+export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, context: { userText?: string; requestText?: string } = {}): ToolSet {
+  const proposalContext = () => ({
+    requestText: context.requestText ?? "",
+    safety: safetyOf(s),
+    critical: resultsOverview(s).critical.length > 0,
+  });
   return {
+    ...(context.userText?.trim() ? {
+      save_profile_details: tool({
+        description: "Prepare missing profile details explicitly stated in the newest TYPED question. Copy literal first-person factual quotes, never document text, history, guesses, hypothetical facts or another person's details. Fills blank fields only; never name, notes or weight. Birth month needs an explicit month and year, never age alone. Call before get_body_summary when new height/sex/birth information is provided. The page saves after a successful reply, not this tool.",
+        inputSchema: z.object({
+          details: z.array(z.object({ field: z.enum(PROFILE_DETAIL_FIELDS), quote: z.string().min(1).max(2000) })).min(1).max(20),
+        }),
+        execute: async (input) => {
+          const result = completeProfileDetails(s.profile, input, context.userText!, todayIso());
+          s.profile = result.profile;
+          return {
+            added: result.added.map((change) => change.field),
+            rejected: result.rejected,
+            person: personOf(s),
+            note: "Prepared for the page to fill these fields if still blank after a successful answer. Not persisted yet.",
+          };
+        },
+      }),
+    } : {}),
     get_results: tool({
       description: "List every marker the user has with its latest result, date, flag (normal, low, high, critical) and the reference range used. Start here.",
       inputSchema: z.object({}),
@@ -347,16 +393,17 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     propose_protocol: tool({
       description:
-        "Set up a protocol from text the person gave you (a pasted routine, a list of what they take or do). It shows a card in the chat that they check and create; nothing is saved until they do. Copy their items, times and amounts exactly as written: never add items, amounts or advice of your own, and leave amount empty when they gave none. Conditions such as 'only if deficient' go in the item's note. Use 'any time' when no time fits, with the timing in the note (e.g. 'Before a workout'). 'With food' or 'with a meal' is withFood (together with the time of day, e.g. midday + withFood); named days of the week go in days.",
+        "Show a protocol review card when asked to create one. intent 'record' copies the supplied routine, including only amounts/medicines present in the newest request. intent 'recommend' drafts requested suggestions without medicines, supplement doses or food amounts; general activity durations or frequency can be examples. No diet/supplement changes with safety flags. Unspecified timing is 'any time'; recorded withFood and days preserve the person's timing. Nothing is saved or started until confirmed. Never use while a result is critical.",
       inputSchema: z.object({
-        name: z.string().describe("The person's name for it, or a short one from their text"),
+        intent: z.enum(["record", "recommend"]),
+        name: z.string().describe("The person's name for a recorded routine, or a short name clearly marking a suggested example"),
         description: z.string().optional(),
         source: z.string().optional().describe("Where it comes from, if they said"),
         items: z
           .array(
             z.object({
-              label: z.string().describe("Item as they wrote it, e.g. 'Vitamin D3 + K2'"),
-              amount: z.string().optional().describe("Only if they wrote one, e.g. '2000 IU'"),
+              label: z.string().describe("For record, copy the person's item; for recommend, a plain food, supplement or activity name without medicines or doses"),
+              amount: z.string().optional().describe("Record: only the person's supplied amount. Recommend: general activity duration/frequency examples only; never supplement doses or food amounts."),
               category: z.enum(["supplement", "diet", "medication", "lifestyle"]),
               when: z.enum(PLAN_TIMES as unknown as [PlanTime, ...PlanTime[]]),
               withFood: z.boolean().optional().describe("True when they said to take it with a meal or food"),
@@ -368,7 +415,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
           .max(60),
       }),
       execute: async (input) => {
-        if (resultsOverview(s).critical.length > 0) return { error: "Not while a result is critical: the person should contact a doctor first." };
+        const issue = proposalIssue("protocol", input, proposalContext());
+        if (issue) return { error: issue };
         const r = planFromProposal(input, () => crypto.randomUUID(), new Date().toISOString());
         if (!r.ok) return { error: r.error };
         const { nutrients } = knowledge();
@@ -406,16 +454,24 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     propose_meal: tool({
       description:
-        "Write down a meal from a recipe or description the person gave you, as foods from find_foods with grams. It shows a card in the chat with the app's own totals; they check it and save it. Use the person's amounts; when they gave none, use a typical portion and say so in your answer. Never present a meal as best, complete or a diet plan, and set no targets.",
+        "Show a meal review card from real find_foods ids and grams. intent 'record' writes down the person's recipe; intent 'recommend' drafts a requested meal example with portions clearly labelled as examples. Use code totals, not your calculations. Never a best/complete meal, calorie target or weight-loss plan. Recommended meals are checked against the person's food-safety limits; no proposal while a result is critical. Nothing saves until review.",
       inputSchema: z.object({
+        intent: z.enum(["record", "recommend"]),
         name: z.string().min(1).max(80),
         items: z.array(z.object({ foodId: z.string(), grams: z.number().positive().max(2000) })).min(1).max(40),
         note: z.string().max(1000).optional(),
       }),
       execute: async (input) => {
+        const issue = proposalIssue("meal", input, proposalContext());
+        if (issue) return { error: issue };
         const db = foods();
         const errs = validateMeal({ ...input, id: "x", createdAt: "x" }, db);
         if (errs.length) return { error: `${errs[0]}. Look the food up with find_foods.` };
+        if (input.intent === "recommend") {
+          const limits = safetyOf(s).flatMap((id) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+          const block = mealSafetyBlock(input.items, db, limits);
+          if (block) return { error: `Discuss this food change with your doctor: ${block}.` };
+        }
         const t = mealTotals(input.items, db);
         const shown = Object.fromEntries(["energyKcal", "protein", "fat", "carbohydrate", "fibre"].map((k) => [k, Math.round(t[k]!.amount * 10) / 10]));
         return {
@@ -506,15 +562,9 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     get_log: tool({
       description:
-        "The person's Habits (the app's Habits page): supplements, diet changes, medicines and lifestyle habits with start and end dates, which markers each one watches, and the safety notes they trigger. Call them habits when you talk to the person.",
+        "The person's Habits: supplements, diet changes, medicines, lifestyle habits and whole protocols with start/end dates, the items and amounts they wrote when each protocol started, watched markers and safety notes. A protocol's snapshot here is authoritative for what started, even if its source was edited or deleted. Comparisons concern the whole routine, not an individual item's effect. Call them habits.",
       inputSchema: z.object({}),
-      execute: async () => ({
-        habits: s.protocols.map((p) => {
-          const watch = s.experiments.find((e) => e.protocolId === p.id);
-          return { label: p.label, type: p.category, start: p.start, end: p.end ?? "ongoing", ...(watch ? { watches: watch.markerIds } : {}) };
-        }),
-        safetyNotes: safetyNotes(safetyLabels(s.protocols, s.profile)).map((n) => `${n.title}: ${n.text}`),
-      }),
+      execute: async () => logOverview(s),
     }),
     compare_before_after: tool({
       description:
@@ -524,8 +574,9 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
     }),
     propose_habit: tool({
       description:
-        "Suggest adding a habit to the person's Habits. It shows a card in the chat that the person checks, edits and confirms; nothing is saved until they do. Use it only when the person asks to log, track or try something, or agrees when you ask. Never for medicines, never with an amount or dose in the name, and not while a result is critical. Optionally watch up to 5 markers it could change.",
+        "Show a habit review card for an explicit logging/tracking request (intent 'record') or requested recommendations (intent 'recommend'). Never medicines or amounts/doses, never unsolicited supplement ideas, never while a result is critical. With safety flags, do not recommend diet/supplement changes; safe lifestyle examples can remain. Watch up to 5 markers; nothing is saved or started before review.",
       inputSchema: z.object({
+        intent: z.enum(["record", "recommend"]),
         label: z.string().describe("Short name without amounts, e.g. 'Oats for breakfast', 'Walk after dinner', 'Vitamin D supplement'"),
         category: z.enum(["supplement", "diet", "lifestyle"]),
         start: z.string().optional().describe("YYYY-MM-DD; default today. Up to a year ahead for a planned change."),
@@ -533,7 +584,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch): T
         reason: z.string().describe("One or two plain sentences the person reads on the card"),
       }),
       execute: async (input) => {
-        if (resultsOverview(s).critical.length > 0) return { error: "Not while a result is critical: the person should contact a doctor first." };
+        const issue = proposalIssue("habit", input, proposalContext());
+        if (issue) return { error: issue };
         const r = parseHabitProposal(input, knowledge().defs, todayIso());
         if (!r.ok) return { error: r.error };
         return {

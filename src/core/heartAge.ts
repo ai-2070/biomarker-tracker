@@ -1,6 +1,7 @@
 import { ageAt } from "./phenoageDraws";
 import { bmi, latestBody } from "./body";
 import { sortByDate } from "./trends";
+import { isActiveOn } from "./protocols";
 import type { Measurement, Profile, ProtocolEntry } from "./types";
 
 /**
@@ -85,10 +86,12 @@ export function heartAgeData(profile: Profile, measurements: readonly Measuremen
   const weight = latestBody(measurements).weight;
   const b = weight ? bmi(weight.value, profile.heightCm) : undefined;
 
-  const activeMeds = protocols.filter((p) => p.category === "medication" && (!p.end || p.end >= today) && p.start <= today);
+  const activeMeds = protocols.filter((p) => isActiveOn(p, today)).flatMap((p) =>
+    p.plan ? p.plan.items.filter((i) => i.category === "medication").map((i) => i.label) : p.category === "medication" ? [p.label] : [],
+  );
   const conditions = profile.conditions ?? "";
-  const treatedBp = activeMeds.some((p) => BP_MEDICINES.test(p.label)) ? "habits" : /(blood pressure|hypertension).{0,30}(medicine|medication|tablet|pill|treat)|antihypertensive/i.test(conditions) ? "profile" : "no";
-  const diabetes = activeMeds.some((p) => DIABETES_MEDICINES.test(p.label)) ? "habits" : /(?<!pre-?)diabet/i.test(conditions) ? "profile" : "no";
+  const treatedBp = activeMeds.some((label) => BP_MEDICINES.test(label)) ? "habits" : /(blood pressure|hypertension).{0,30}(medicine|medication|tablet|pill|treat)|antihypertensive/i.test(conditions) ? "profile" : "no";
+  const diabetes = activeMeds.some((label) => DIABETES_MEDICINES.test(label)) ? "habits" : /(?<!pre-?)diabet/i.test(conditions) ? "profile" : "no";
 
   if (!profile.sex) missing.push("your sex");
   if (!profile.birthMonth) missing.push("your month and year of birth");

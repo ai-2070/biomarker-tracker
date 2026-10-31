@@ -5,6 +5,7 @@ import { formatDate, formatYears } from "../../format";
 import { href } from "../../router";
 import { Card, LinkButton, Notice } from "../ui";
 import { Figure } from "./widgets";
+import { InlineBirthMonth } from "../InlineBirthMonth";
 
 const PAPER_URL = "https://pubmed.ncbi.nlm.nih.gov/18212285/";
 
@@ -25,7 +26,7 @@ export function HeartAgeFigure({ ms, profile, protocols, className }: { ms: Meas
   return (
     <Figure
       label="Heart age"
-      href={`${href({ name: "phenoage" })}`}
+      href={profile.birthMonth ? href({ name: "phenoage" }) : undefined}
       className={className}
       foot={h !== undefined ? `${difference(h, d.input!.age)}. From blood pressure, BMI and smoking (Framingham); an estimate.` : d.outOfRange ? `Only for ages ${AGE_RANGE.min}–${AGE_RANGE.max}.` : `Needs ${d.missing.join(", ")}.`}
     >
@@ -37,6 +38,7 @@ export function HeartAgeFigure({ ms, profile, protocols, className }: { ms: Meas
       ) : (
         <p className="font-serif text-4xl text-ink-2">–</p>
       )}
+      {!profile.birthMonth && <InlineBirthMonth profile={profile} forLabel="heart age" />}
     </Figure>
   );
 }
@@ -50,7 +52,7 @@ export function HeartAgeSection({ ms, profile, protocols }: { ms: Measurement[];
         <h2 className="font-serif text-2xl font-normal">Heart age</h2>
         <p className="text-ink-2">From blood pressure, weight, height, smoking and diabetes: no blood test needed.</p>
       </div>
-      <HeartAgeBody d={d} />
+      <HeartAgeBody d={d} profile={profile} />
       <div className="flex flex-col gap-2 text-sm text-ink-2">
         <p>
           <span className="font-medium text-ink">What it is: </span>
@@ -72,11 +74,12 @@ export function HeartAgeSection({ ms, profile, protocols }: { ms: Measurement[];
   );
 }
 
-function HeartAgeBody({ d }: { d: HeartAgeData }) {
+function HeartAgeBody({ d, profile }: { d: HeartAgeData; profile: Profile }) {
   if (!d.input) {
     return (
       <Notice title="Not enough to calculate it yet">
         <p>It needs {d.missing.join(", ")}.</p>
+        {!profile.birthMonth && <InlineBirthMonth profile={profile} forLabel="heart age" />}
         <div className="mt-3 flex flex-wrap gap-2">
           <LinkButton variant="secondary" href={href({ name: "data" })}>
             Settings → Your data

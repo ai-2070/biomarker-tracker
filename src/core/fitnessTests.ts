@@ -1,4 +1,4 @@
-import type { Citation, EvidenceGrade, Sex } from "./types";
+import type { Citation, EvidenceGrade, Measurement, Sex } from "./types";
 
 /**
  * Functional fitness tests that change with age: push-ups, grip strength, standing up from a chair,
@@ -254,26 +254,32 @@ export function rowWho(row: NormRow): string {
   return `${sex} ${ages}`;
 }
 
+/** Device imports are daily walking averages, not the short timed test used by gait norms. */
+export function isDeviceWalkingAverage(m: { biomarkerId: string; source?: Measurement["source"] }): boolean {
+  return m.biomarkerId === "gait_speed" && m.source === "device";
+}
+
 /**
  * Every fitness test's latest result compared with the norms, for Brain: the same comparisons the
  * page shows, so the model reports them instead of working anything out.
  */
-export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: readonly { biomarkerId: string; date: string; value: number }[], person: { sex?: Sex; ageAt?: (date: string) => number }) {
+export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: readonly { biomarkerId: string; date: string; value: number; source?: Measurement["source"] }[], person: { sex?: Sex; ageAt?: (date: string) => number }) {
   return tests.flatMap((t) => {
     const last = measurements.filter((m) => m.biomarkerId === t.id).sort((a, b) => a.date.localeCompare(b.date)).at(-1);
     if (!last) return [];
     const who = { ...(person.sex ? { sex: person.sex } : {}), ...(person.ageAt ? { age: person.ageAt(last.date) } : {}) };
-    const places = placeResult(t, last.value, who);
-    const met = cutoffsMet(t, last.value, who);
+    const deviceAverage = isDeviceWalkingAverage(last);
+    const places = deviceAverage ? [] : placeResult(t, last.value, who);
+    const met = deviceAverage ? [] : cutoffsMet(t, last.value, who);
     return [
       {
-        test: t.name,
+        test: deviceAverage ? "Walking speed (daily average)" : t.name,
         latest: last.value,
         unit: t.unit,
         date: last.date,
         lowerIsBetter: !t.higherIsBetter,
         comparedWith: places.map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
-        ...(person.sex
+        ...(person.sex && !deviceAverage
           ? {
               comparedWithYoungest: placeAmongYoungest(t, last.value, person.sex).map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
               typicalOfAge: t.norms.flatMap((set) => {
@@ -282,7 +288,9 @@ export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: r
               }),
             }
           : {}),
-        ...(places.length === 0 ? { note: who.sex && who.age !== undefined ? "No norms cover this age and sex." : "Sex and birth month are needed to compare." } : {}),
+        ...(deviceAverage
+          ? { note: "Daily step-speed average, not a timed gait test. Test norms, age equivalents and clinical cut-offs do not apply." }
+          : places.length === 0 ? { note: who.sex && who.age !== undefined ? "No norms cover this age and sex." : "Sex and birth month are needed to compare." } : {}),
         ...(met.length ? { thresholdsMet: met.map((c) => c.label) } : {}),
       },
     ];
