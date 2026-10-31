@@ -17,11 +17,25 @@ server.on("error", (e: NodeJS.ErrnoException) => {
 ensureDefaultServers();
 server.listen(port, "127.0.0.1", () => {
   warmUp();
-  console.log(`\n  Biomarker Tracker is running at http://localhost:${port}\n  Data folder: ${DATA()}\n  Press Ctrl+C to stop.\n`);
+  const address = server.address() as { port: number };
+  if (process.env.BT_DESKTOP === "1") console.log(`BT_READY http://127.0.0.1:${address.port}`);
+  else console.log(`\n  Biomarker Tracker is running at http://localhost:${address.port}\n  Data folder: ${DATA()}\n  Press Ctrl+C to stop.\n`);
 });
 
+let stopping = false;
 const shutdown = () => {
+  if (stopping) return;
+  stopping = true;
+  server.close();
+  // An unresponsive MCP program must not keep the desktop process alive forever.
+  setTimeout(() => process.exit(0), 2000).unref();
   void stopAll().finally(() => process.exit(0));
 };
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
+if (process.env.BT_DESKTOP === "1") {
+  // The native shell owns this pipe. Also stop if it crashes or is force-closed.
+  process.stdin.resume();
+  process.stdin.on("data", shutdown);
+  process.stdin.on("end", shutdown);
+}
