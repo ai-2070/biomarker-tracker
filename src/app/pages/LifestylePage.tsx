@@ -19,6 +19,9 @@ import { BIOMARKER_MAP, LIFESTYLE, LIFESTYLE_MAP } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
+import names from "../../../knowledge/names.json";
+import { searchKnowledgeNames } from "../../core/knowledgeNames";
+import { KnowledgeName } from "../components/KnowledgeName";
 
 const CATEGORY_LABEL: Record<LifestyleCategory, string> = {
   movement: "Movement",
@@ -44,6 +47,7 @@ function matches(l: LifestyleDef, query: string): boolean {
 export function LifestylePage() {
   const [query, setQuery] = useState("");
   const shown = LIFESTYLE.filter((l) => matches(l, query));
+  const shownNames = searchKnowledgeNames(names.lifestyle, query);
   const searching = query.trim() !== "";
 
   return (
@@ -66,11 +70,11 @@ export function LifestylePage() {
         />
       </div>
 
-      {LIFESTYLE.length === 0 ? (
+      {LIFESTYLE.length === 0 && names.lifestyle.length === 0 ? (
         <Card>
           <p className="text-ink-2">The lifestyle knowledge base is being written.</p>
         </Card>
-      ) : shown.length === 0 ? (
+      ) : shown.length === 0 && shownNames.length === 0 ? (
         <Card className="flex flex-col items-start gap-3">
           <p className="text-ink-2">Nothing here matches “{query.trim()}”.</p>
           <Button variant="secondary" onClick={() => setQuery("")}>
@@ -96,11 +100,12 @@ export function LifestylePage() {
                 </a>
               </li>
             ))}
+          {shownNames.map(({ name }) => <KnowledgeName key={`name:${name}`} name={name} />)}
         </ul>
       )}
 
       <p className="mt-6 text-sm text-ink-2">
-        Written from the cited studies and checked against their records; grades and wording are a first draft, not yet reviewed by a clinician.
+        For guides with cited studies, grades and wording are a first draft, not yet reviewed by a clinician.
       </p>
     </>
   );

@@ -2,14 +2,20 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { BrainState } from "../../src/app/brain/store";
 import type * as BrainStore from "../../src/app/brain/store";
 import ferritin from "../../knowledge/biomarkers/ferritin.json";
+import weight from "../../knowledge/biomarkers/weight.json";
+import bodyFat from "../../knowledge/biomarkers/body_fat.json";
+import pace from "../../knowledge/biomarkers/dunedinpace.json";
 import { deferred } from "../helpers";
+import type { Profile } from "../../src/core/types";
+import type { ProfileFillResult } from "../../src/db/db";
 
 const mocks = vi.hoisted(() => ({
   api: vi.fn<(...args: unknown[]) => Promise<unknown>>(),
   measurements: vi.fn<() => Promise<unknown[]>>(),
   rows: vi.fn<() => Promise<unknown[]>>(),
-  profile: vi.fn<() => Promise<{ name: string; birthMonth: string }>>(),
-  setting: vi.fn<() => Promise<undefined>>(),
+  profile: vi.fn<() => Promise<Profile>>(),
+  setting: vi.fn<() => Promise<{ key: string; value: unknown } | undefined>>(),
+  fillProfile: vi.fn<(...args: unknown[]) => Promise<ProfileFillResult>>(),
   readReport: vi.fn<() => Promise<{ text: string; ocr: boolean }>>(),
   shrinkPhoto: vi.fn<() => Promise<{ mediaType: "image/jpeg"; data: string }>>(),
 }));
@@ -19,6 +25,7 @@ vi.mock("react", () => ({ useSyncExternalStore: (_subscribe: unknown, snapshot: 
 vi.mock("../../src/app/api", () => ({ api: mocks.api }));
 vi.mock("../../src/db/db", () => ({
   db: {
+    transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action(),
     measurements: { toArray: mocks.measurements },
     protocols: { toArray: mocks.rows },
     experiments: { toArray: mocks.rows },
@@ -27,10 +34,12 @@ vi.mock("../../src/db/db", () => ({
     settings: { get: mocks.setting },
   },
   getProfile: mocks.profile,
+  fillPersonalDetails: mocks.fillProfile,
+  LOADED_PROFILE_KEY: "loadedProfile",
 }));
 vi.mock("../../src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate" }));
 vi.mock("../../src/app/knowledge", () => ({
-  BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([[ferritin.id, ferritin]]),
+  BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace].map((def) => [def.id, def])),
 }));
 vi.mock("../../src/app/components/LabReview", () => ({
   isPdf: (file: File) => file.type === "application/pdf",
@@ -53,6 +62,7 @@ beforeEach(async () => {
   mocks.rows.mockResolvedValue([]);
   mocks.profile.mockResolvedValue({ name: "PRIVATE_NAME", birthMonth: "1980-01" });
   mocks.setting.mockResolvedValue(undefined);
+  mocks.fillProfile.mockResolvedValue({ profile: {}, added: [], rejected: [], measurementsAdded: [], sameProfile: true });
   mocks.readReport.mockResolvedValue({ text: "", ocr: true });
   mocks.shrinkPhoto.mockResolvedValue({ mediaType: "image/jpeg", data: "PRIVATE_PHOTO" });
   // Reload deliberately: every test needs fresh private thread/request state.
@@ -154,8 +164,8 @@ describe("research Brain thread", () => {
     await brain.addFiles([file, new File(["photo"], "photo.jpg", { type: "image/jpeg" })]);
     expect(read).not.toHaveBeenCalled();
     expect(mocks.readReport).not.toHaveBeenCalled();
-    const steps = [{ tool: "propose_habit", input: JSON.stringify({ label: "Iron-rich breakfast", category: "diet", reason: "You asked to track this.", watchMarkers: ["Ferritin"] }) }];
-    expect(brain.habitTurns(steps, [], "2026-10-30")).toHaveLength(1);
+    const steps = [{ tool: "propose_habit", validated: true, input: JSON.stringify({ intent: "recommend", label: "Iron-rich breakfast", category: "diet", reason: "You asked to track this.", watchMarkers: ["Ferritin"] }) }];
+    expect(brain.habitTurns(steps, [], "2026-10-30", { requestText: "Recommend a breakfast habit", safety: [] })).toHaveLength(1);
     mocks.api.mockResolvedValue({ ...reply(), steps });
     await brain.send("Research model");
     expect(brain.useBrain().attachments).toEqual([]);
@@ -300,4 +310,105 @@ describe("parked personal file reads", () => {
     expect(brain.useBrain().attachments).toMatchObject([{ name: "new.txt", status: "ready", text: "NEW_DOCUMENT" }]);
     expect(brain.useBrain().attachments).toHaveLength(1);
   });
+});
+
+describe("personal Brain profile updates", () => {
+  const profileStep = { tool: "save_profile_details", validated: true, input: JSON.stringify({ details: [{ field: "heightCm", quote: "I'm 180 cm" }] }) };
+
+  it("shows a saved receipt only after persistence, without sending local identity or private fields", async () => {
+    const saved = deferred<ProfileFillResult>();
+    mocks.profile.mockResolvedValue({ name: "PRIVATE_NAME", notes: "PRIVATE_NOTES" });
+    mocks.setting.mockResolvedValue({ key: "loadedProfile", value: "PRIVATE_FOLDER_ID" });
+    mocks.api.mockResolvedValue({ ...reply("Your height can be used for body measurements."), steps: [profileStep] });
+    mocks.fillProfile.mockReturnValue(saved.promise);
+    const sending = brain.send("Model", "I'm 180 cm");
+    await vi.waitFor(() => expect(mocks.fillProfile).toHaveBeenCalledTimes(1));
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user"]);
+    const body = mocks.api.mock.calls[0]?.[2];
+    expect(JSON.stringify(body)).not.toMatch(/PRIVATE_NAME|PRIVATE_NOTES|PRIVATE_FOLDER_ID|identity/);
+    saved.resolve({ profile: { heightCm: 180 }, added: [{ field: "heightCm", value: 180 }], rejected: [], measurementsAdded: [], sameProfile: true });
+    await sending;
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "assistant", "profile"]);
+    expect(brain.useBrain().turns.at(-1)).toMatchObject({ changes: [{ field: "heightCm", value: 180 }] });
+  });
+
+  it.each([
+    { ...profileStep, validated: false },
+    { ...profileStep, validated: undefined },
+    { ...profileStep, server: "external" },
+    { ...profileStep, server: "" },
+    { ...profileStep, input: "not json" },
+  ])("ignores unsuccessful, external and malformed profile steps %#", async (step) => {
+    mocks.api.mockResolvedValue({ ...reply(), steps: [step] });
+    await brain.send("Model", "Explain this result");
+    expect(mocks.fillProfile).not.toHaveBeenCalled();
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "assistant"]);
+  });
+
+  it("keeps the answer and exposes persistence failure without a false saved receipt", async () => {
+    mocks.api.mockResolvedValue({ ...reply("An answer worth keeping"), steps: [profileStep] });
+    mocks.fillProfile.mockRejectedValue(new Error("Disk unavailable"));
+    await brain.send("Model", "I'm 180 cm");
+    expect(brain.useBrain().turns).toEqual([
+      expect.objectContaining({ role: "user" }),
+      expect.objectContaining({ role: "assistant", content: "An answer worth keeping", note: expect.any(String) }),
+    ]);
+  });
+
+  it("drops a response that belongs to a profile replaced while the model was answering", async () => {
+    mocks.api.mockResolvedValue({ ...reply("Old person's answer"), steps: [profileStep] });
+    mocks.fillProfile.mockResolvedValue({ profile: {}, added: [], rejected: [], measurementsAdded: [], sameProfile: false });
+    await brain.send("Model", "I'm 180 cm");
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user"]);
+  });
+
+  it("aborts an in-flight profile write and hides its late response when changing scope", async () => {
+    const saved = deferred<ProfileFillResult>();
+    mocks.api.mockResolvedValue({ ...reply(), steps: [profileStep] });
+    mocks.fillProfile.mockReturnValue(saved.promise);
+    const sending = brain.send("Model", "I'm 180 cm");
+    await vi.waitFor(() => expect(mocks.fillProfile).toHaveBeenCalledTimes(1));
+    const signal = mocks.fillProfile.mock.calls[0]?.[5];
+    brain.askResearchBrain(claim);
+    expect(signal).toBeInstanceOf(AbortSignal);
+    expect(signal).toHaveProperty("aborted", true);
+    saved.resolve({ profile: { heightCm: 180 }, added: [{ field: "heightCm", value: 180 }], rejected: [], measurementsAdded: [], sameProfile: true });
+    await sending;
+    brain.backToMyChat();
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "stopped"]);
+  });
+
+  it("never applies profile tool results in public research", async () => {
+    brain.askResearchBrain(claim);
+    mocks.api.mockResolvedValue({ ...reply(), steps: [profileStep] });
+    await brain.send("Model");
+    expect(mocks.fillProfile).not.toHaveBeenCalled();
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "assistant"]);
+  });
+
+  it("saves explicit profile facts even when a successful answer contains no save tool call", async () => {
+    mocks.fillProfile.mockResolvedValue({
+      profile: { heightCm: 184, sex: "m", diet: "omnivore" },
+      added: [{ field: "heightCm", value: 184 }, { field: "sex", value: "m" }, { field: "diet", value: "omnivore" }],
+      rejected: [], measurementsAdded: [], sameProfile: true,
+    });
+    await brain.send("Model", "I'm 36, 84kg, 184cm tall, man. I usually eat everything. What should I consider if I start lifting?");
+    expect(brain.useBrain().turns.map((turn) => turn.role)).toEqual(["user", "assistant", "profile"]);
+    expect(brain.useBrain().turns.at(-1)).toMatchObject({ changes: [
+      { field: "heightCm", value: 184 }, { field: "sex", value: "m" }, { field: "diet", value: "omnivore" },
+    ] });
+  });
+
+  it("shows a persisted measurement receipt even when there are no new profile fields or save tools", async () => {
+    const measurement = { id: "body-fat", biomarkerId: "body_fat", value: 27, originalValue: 27, originalUnit: "%", date: "2026-10-30", source: "manual" as const };
+    mocks.fillProfile.mockResolvedValue({ profile: {}, added: [], rejected: [], measurementsAdded: [measurement], sameProfile: true });
+    await brain.send("Model", "im 27% body fat");
+    expect(brain.useBrain().turns.map((turn) => turn.role)).toEqual(["user", "assistant", "profile"]);
+    expect(brain.useBrain().turns.at(-1)).toMatchObject({ changes: [], measurements: [measurement] });
+  });
+});
+
+it("does not make a habit draft from an external tool even with an empty server id", () => {
+  const input = JSON.stringify({ intent: "recommend", label: "Walk outdoors", category: "lifestyle", reason: "An example." });
+  expect(brain.habitTurns([{ tool: "propose_habit", input, server: "", validated: true }], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toEqual([]);
 });

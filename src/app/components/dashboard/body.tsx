@@ -20,6 +20,7 @@ import { StudyLink } from "../evidence";
 import { Button, FlagBadge, buttonStyles, cx, errorStyles, inputStyles, labelStyles as formLabel } from "../ui";
 import { Sparkline } from "./Sparkline";
 import { Figure, cardStyles, labelStyles as figureLabel } from "./widgets";
+import { InlineBirthMonth } from "../InlineBirthMonth";
 
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
@@ -190,6 +191,13 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
   const kcal = (v: number) => Math.round(v).toLocaleString("en-GB");
   return (
     <Dialog.Root>
+      {!profile.birthMonth ? (
+        <Figure label="Resting metabolic rate" className={className} foot={missing.length > 1 ? `Also needs your ${missing.filter((item) => item !== "month of birth").join(", ")}.` : undefined}>
+          <p className={cx(big, "text-ink-2")}>–</p>
+          <InlineBirthMonth profile={profile} forLabel="resting metabolic rate" />
+          <Dialog.Trigger className={cx(buttonStyles.quiet, "mt-2")}>About this estimate</Dialog.Trigger>
+        </Figure>
+      ) : (
       <Dialog.Trigger
         className={cx(
           cardStyles,
@@ -215,6 +223,7 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
         </span>
         {terms !== undefined && <span className="text-sm font-medium text-accent">How it's worked out</span>}
       </Dialog.Trigger>
+      )}
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] w-[34rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">

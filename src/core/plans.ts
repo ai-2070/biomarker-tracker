@@ -7,7 +7,7 @@ import type { ProtocolEntry } from "./types";
  * Protocols: a named set of things a person does together (a supplement stack, a diet, exercise,
  * sleep), each with their own amount and time of day, like a published routine they follow. Written
  * by the person (or loaded from a file someone shared); the app never suggests items or amounts. A
- * protocol can be started, which adds each item to Habits so before-and-after comparisons work.
+ * protocol can be started as one habit, so the whole routine can be compared before and after.
  * Stored as `protocols.json` in the profile folder (in code: "plans", because "protocols" already
  * names the Habits log).
  */
@@ -53,7 +53,7 @@ export interface Plan {
   source?: string;
   items: PlanItem[];
   createdAt: string;
-  /** Set while the protocol is running: since when, and the habits it added. */
+  /** The active habit's id; older starts can retain several ids so their history stops safely. */
   active?: { since: string; habitIds: string[] };
 }
 
@@ -221,14 +221,15 @@ export function pairWarnings(p: Plan, nutrients: readonly NutrientDef[]): PairWa
   return out;
 }
 
-/** The habit each item becomes when the protocol starts: its name with the person's amount, and its type. */
-export function habitsForPlan(p: Plan, start: string): Omit<ProtocolEntry, "id">[] {
-  return p.items.map((i) => {
-    const n = normalizeItem(i);
-    const days = daysLabel(n.days);
-    const label = [i.label.trim(), i.amount?.trim(), days && `(${days})`].filter(Boolean).join(" ");
-    return { label: label.length > MAX_LABEL ? `${label.slice(0, MAX_LABEL - 1).trimEnd()}…` : label, category: i.category, start };
-  });
+/** One named habit for the whole protocol, with its items preserved as an independent snapshot. */
+export function habitForPlan(p: Plan, start: string): Omit<ProtocolEntry, "id"> {
+  const category = p.items[0]?.category ?? "lifestyle";
+  return {
+    label: p.name.trim(),
+    category: p.items.every((i) => i.category === category) ? category : "lifestyle",
+    start,
+    plan: { id: p.id, items: p.items.map(normalizeItem) },
+  };
 }
 
 // ---- From Brain: a protocol the person described in text --------------------------------------

@@ -1,4 +1,5 @@
 // Shared data types. See CLAUDE.md "Data model".
+import type { Plan } from "./plans";
 
 export type Sex = "m" | "f";
 
@@ -186,6 +187,8 @@ export interface ProtocolEntry {
   category: "supplement" | "diet" | "medication" | "lifestyle";
   start: string;
   end?: string;
+  /** The protocol as it was when started. Kept even if its source is edited or deleted. */
+  plan?: Pick<Plan, "id" | "items">;
 }
 
 export type EvidenceGrade = "high" | "moderate" | "low" | "very low";
@@ -218,6 +221,7 @@ export interface EvidenceClaim {
 
 export type Diet = "omnivore" | "vegetarian" | "vegan" | "pescatarian" | "other";
 export type Smoking = "never" | "former" | "current";
+export type HeightUnit = "cm" | "ft/in";
 
 /** The person a profile belongs to. */
 export interface Profile {
@@ -228,6 +232,8 @@ export interface Profile {
   /** "YYYY-MM". Used for age (PhenoAge, the assistant). The assistant gets the age, never the month. */
   birthMonth?: string;
   heightCm?: number;
+  /** Preferred height-entry units. The value itself is always kept in heightCm. */
+  heightUnit?: HeightUnit;
   /** Where the person lives, as Eurostat writes it ("HU", "DE", "EL"): picks the life table for "Best before". */
   country?: string;
   diet?: Diet;

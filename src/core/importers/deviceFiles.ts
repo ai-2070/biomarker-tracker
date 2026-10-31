@@ -462,12 +462,14 @@ export interface TableColumn {
 const SAMSUNG_STEPS_REASON = "Phone and watch step records overlap. Steps are read only from the combined daily totals in com.samsung.shealth.step_daily_trend.csv; choose the full Samsung zip or include that file.";
 const SAMSUNG_ACTIVITY_REASON = "Samsung active time is read from com.samsung.shealth.activity.day_summary.csv in milliseconds. Pedometer, exercise parts and detail bins can overlap and aren't added again; choose the full Samsung zip or include the daily activity summary.";
 const SAMSUNG_RESTING_REASON = "Only Samsung's recorded overnight heart rate (shr_value) and HRV (shrv_value) are imported here. Energy Scores, scales, baselines, previous averages and other scoring inputs aren't measurements for these markers.";
+const SAMSUNG_SPEED_REASON = "Daily step speed is read in m/s from the combined records in com.samsung.shealth.step_daily_trend.csv. Per-device and workout speeds aren't mixed with it. This is a daily average, not a timed gait test.";
 
 const SAMSUNG_DAILY_FIELDS = {
   steps: { column: "count", header: "Steps (Samsung combined daily total)", unit: "steps", reason: SAMSUNG_STEPS_REASON },
   active_minutes: { column: "active time", header: "Active time (Samsung daily total)", unit: "min", reason: SAMSUNG_ACTIVITY_REASON },
   resting_hr: { column: "shr value", header: "Overnight heart rate (Samsung)", unit: "bpm", reason: SAMSUNG_RESTING_REASON },
   hrv_resting: { column: "shrv value", header: "Overnight HRV (Samsung)", unit: "ms", reason: SAMSUNG_RESTING_REASON },
+  gait_speed: { column: "speed", header: "Walking speed (Samsung daily step average, not a timed gait test)", unit: "m/s", reason: SAMSUNG_SPEED_REASON },
 } as const;
 
 /** Samsung daily summaries replace snapshots; only the explicitly mapped measured fields are read. */
@@ -475,14 +477,15 @@ function samsungDailyColumns(table: { headers: string[]; data: string[][] }, fie
   const headers = table.headers.map((h) => normalizeHeader(h).toLowerCase());
   const col = (name: string) => headers.findIndex((h) => h === name || h.endsWith(` ${name}`));
   const steps = field === "steps";
+  const combined = steps || field === "gait_speed";
   const config = SAMSUNG_DAILY_FIELDS[field];
   const dayCol = col("day time"), sourceCol = col("source type"), countCol = col(config.column), updateCol = col("update time");
   const skipped: TableColumn = { header: steps ? "Samsung per-device step records" : `${config.header}: unavailable readings`, field: null, unit: "", readings: [], reason: config.reason };
-  if ([dayCol, countCol, ...(steps ? [sourceCol] : [])].includes(-1)) return [skipped];
+  if ([dayCol, countCol, ...(combined ? [sourceCol] : [])].includes(-1)) return [skipped];
   const days = new Map<string, { value: number; updated: number }>();
   let excluded = false;
   for (const row of table.data) {
-    if (steps && row[sourceCol] !== "-2") { excluded = true; continue; }
+    if (combined && row[sourceCol] !== "-2") { excluded = true; continue; }
     // DAY_TIME is a calendar-day label at UTC midnight, not an instant to shift into this computer's zone.
     const rawDate = row[dayCol] ?? "";
     const date = /^\d{13}$/.test(rawDate) ? new Date(Number(rawDate)).toISOString().slice(0, 10) : toIsoDate(rawDate);
@@ -562,7 +565,7 @@ function samsungSleepColumns(table: { headers: string[]; data: string[][] }): Ta
 export function readTable(path: string, table: { headers: string[]; data: string[][] }, monthFirst = false): { columns: TableColumn[]; other: string[]; dated: boolean } {
   const family = fileFamily(path);
   if (/\bcom samsung (health|shealth) step daily trend$/.test(family))
-    return { columns: samsungDailyColumns(table, "steps"), other: [], dated: true };
+    return { columns: [...samsungDailyColumns(table, "steps"), ...samsungDailyColumns(table, "gait_speed")], other: [], dated: true };
   if (/\bcom samsung (health|shealth) activity day summary$/.test(family))
     return { columns: [...samsungDailyColumns(table, "active_minutes"), { header: "Samsung step total", field: null, unit: "", readings: [], reason: SAMSUNG_STEPS_REASON }], other: [], dated: true };
   if (/\bcom samsung (health|shealth) sleep stage$/.test(family))
@@ -729,6 +732,7 @@ export class DailyTally {
     return [...this.bySource.entries()].map(([from, s]) => {
       const sum = DAILY_TOTAL_FIELDS.has(s.field);
       const p = PLAUSIBLE[s.field];
+      const precision = s.field === "gait_speed" ? 100 : 10;
       let dropped = s.dropped;
       const days: DailySeries["days"] = [];
       for (const [date, { sum: total, n }] of [...s.days.entries()].sort(([a], [b]) => a.localeCompare(b))) {
@@ -740,7 +744,7 @@ export class DailyTally {
             continue;
           }
         }
-        days.push({ date, value: Math.round(value * 10) / 10, readings: n });
+        days.push({ date, value: Math.round(value * precision) / precision, readings: n });
       }
       return { field: s.field, unit: s.unit, from, dropped, days };
     });

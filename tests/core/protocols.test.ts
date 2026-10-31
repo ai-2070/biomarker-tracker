@@ -7,10 +7,12 @@ import {
   isActiveOn,
   laneFor,
   MAX_LABEL,
+  safetyLabels,
   safetyNotes,
   sortProtocols,
   validateProtocol,
 } from "../../src/core/protocols";
+import type { ProtocolEntry } from "../../src/core/types";
 
 const today = "2025-06-01";
 
@@ -134,6 +136,24 @@ describe("safetyNotes", () => {
   it("stays quiet for ordinary entries", () => {
     expect(safetyNotes(["Creatine 5 g", "Vitamin D 1000 IU", "Running 3x/week", "Mediterranean diet"])).toEqual([]);
   });
+  it("keeps warnings inside an ongoing protocol snapshot and excludes the whole snapshot when ended", () => {
+    const routine: ProtocolEntry = {
+      id: "routine", label: "My routine", category: "lifestyle", start: "2025-01-01",
+      plan: {
+        id: "source",
+        items: [
+          { id: "warfarin", label: "Warfarin", amount: "as prescribed", category: "medication", when: "evening" },
+          { id: "metformin", label: "Metformin", category: "medication", when: "morning" },
+          { id: "kidney", label: "Kidney disease monitoring", category: "lifestyle", when: "any time" },
+        ],
+      },
+    };
+    const labels = safetyLabels([routine], { conditions: "hypothyroidism; pregnant" });
+    expect(labels).toEqual(["My routine", "Warfarin", "Metformin", "Kidney disease monitoring", "hypothyroidism", "pregnant"]);
+    expect(safetyNotes(labels).map((n) => n.id)).toEqual(["anticoagulant", "diabetes", "pregnancy", "kidney"]);
+    expect(safetyLabels([{ ...routine, end: "2025-05-01" }], { conditions: "pregnant" })).toEqual(["pregnant"]);
+    expect(safetyNotes(safetyLabels([{ ...routine, end: "2025-05-01" }]))).toEqual([]);
+  });
 });
 
 describe("habit types on charts", () => {
@@ -150,5 +170,25 @@ describe("habit types on charts", () => {
     expect(ofTypes(ps, ["diet"]).map((p) => p.id)).toEqual(["b"]);
     expect(ofTypes(ps, null).map((p) => p.id)).toEqual(["a", "b", "c"]);
     expect(ofTypes(ps, [])).toEqual([]);
+  });
+  it("filters a mixed protocol by its actual items without duplicating it or inventing a lifestyle item", () => {
+    const routine: ProtocolEntry = {
+      id: "routine", label: "My routine", category: "lifestyle", start: "2025-01-01",
+      plan: {
+        id: "source",
+        items: [
+          { id: "medicine", label: "Amlodipine", category: "medication", when: "morning" },
+          { id: "food", label: "Oats", category: "diet", when: "morning" },
+          { id: "other-food", label: "Olive oil", category: "diet", when: "midday" },
+        ],
+      },
+    };
+    expect(habitTypesIn([routine])).toEqual(["diet", "medication"]);
+    expect(habitTypesIn([routine, { category: "supplement" }])).toEqual(["supplement", "diet", "medication"]);
+    expect(ofTypes([routine], ["medication"])).toEqual([routine]);
+    expect(ofTypes([routine], ["diet"])).toEqual([routine]);
+    expect(ofTypes([routine], ["medication", "diet"])).toEqual([routine]);
+    expect(ofTypes([routine], ["supplement", "lifestyle"])).toEqual([]);
+    expect(ofTypes([routine], null)).toEqual([routine]);
   });
 });

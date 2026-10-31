@@ -8,7 +8,7 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { CallToolRequestSchema, ListToolsRequestSchema, type Tool } from "@modelcontextprotocol/sdk/types.js";
 import { asSchema, type ToolSet } from "ai";
-import { studyIdsFromTool, toolStep, type ToolStep } from "./steps";
+import { studyIdsFromTool, toolStep, validateToolResult, type ToolStep } from "./steps";
 import { getSecrets, updateSecrets } from "./store";
 
 export const BRIDGE_NAME = "biomarker-tracker";
@@ -82,11 +82,13 @@ async function listTools(tools: ToolSet): Promise<Tool[]> {
 export async function callTool(run: BridgeRun, name: string, input: Record<string, unknown>): Promise<{ text: string; isError: boolean }> {
   const t = run.tools[name];
   if (!t?.execute) return { text: `No tool called ${name}.`, isError: true };
-  run.steps.push(toolStep(name, input));
+  const step = toolStep(name, input);
+  run.steps.push(step);
   try {
     const output: unknown = await t.execute(input, { toolCallId: crypto.randomUUID(), messages: [] } as unknown as Parameters<NonNullable<typeof t.execute>>[1]);
+    validateToolResult(step, output);
     for (const id of studyIdsFromTool(name, output)) run.ids.add(id);
-    return { text: typeof output === "string" ? output : JSON.stringify(output), isError: false };
+    return { text: typeof output === "string" ? output : JSON.stringify(output), isError: step.validated === false };
   } catch (e) {
     return { text: e instanceof Error ? e.message : String(e), isError: true };
   }

@@ -20,6 +20,21 @@ describe("habit marker suggestions", () => {
     expect(suggestMarkers("Steak on Sundays")).toEqual([]);
     expect(suggestMarkers("No coffee with meals")).toEqual(["ferritin", "sleep_duration", "sleep_deep", "sleep_rem"]);
   });
+  it("uses included item labels for a routine, deduplicates hints, and keeps results first", () => {
+    const routine: Pick<ProtocolEntry, "label" | "plan"> = {
+      label: "Vitamin D routine",
+      plan: {
+        id: "source",
+        items: [
+          { id: "d3", label: "Vitamin D3", category: "supplement", when: "morning" },
+          { id: "iron", label: "Iron bisglycinate", category: "supplement", when: "midday" },
+          { id: "oats", label: "Oats", category: "diet", when: "morning" },
+        ],
+      },
+    };
+    expect(suggestMarkers(routine, (id) => id === "ldl")).toEqual(["ldl", "vitamin_d", "ferritin", "hemoglobin", "iron", "transferrin_saturation", "total_cholesterol"]);
+    expect(suggestMarkers(d3)).toEqual(suggestMarkers(d3.label));
+  });
 });
 
 describe("watching a habit", () => {

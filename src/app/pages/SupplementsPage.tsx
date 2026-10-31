@@ -12,6 +12,9 @@ import { displayUnitFor, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENTS, nameInSentence } from "../knowledge";
 import { href } from "../router";
+import names from "../../../knowledge/names.json";
+import { searchKnowledgeNames } from "../../core/knowledgeNames";
+import { KnowledgeName } from "../components/KnowledgeName";
 
 const FILTERS: { value: "all" | NutrientKind; label: string }[] = [
   { value: "all", label: "All" },
@@ -34,6 +37,10 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
   const [query, setQuery] = useState("");
   const inKind = NUTRIENTS.filter((n) => !kind || n.kind === kind);
   const shown = searchNutrients(inKind, query);
+  const inKindNames = names.supplements.filter((n) => !kind || n.kind === kind);
+  const shownNames = searchKnowledgeNames(inKindNames, query);
+  const matchCount = shown.length + shownNames.length;
+  const totalCount = inKind.length + inKindNames.length;
   const searching = query.trim() !== "";
 
   return (
@@ -84,14 +91,14 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
 
 
       <p aria-live="polite" className={cx("mb-3 text-sm text-ink-2", !searching && "sr-only")}>
-        {searching ? `${shown.length} of ${inKind.length} ${shown.length === 1 ? "matches" : "match"} “${query.trim()}”` : ""}
+        {searching ? `${matchCount} of ${totalCount} ${matchCount === 1 ? "matches" : "match"} “${query.trim()}”` : ""}
       </p>
 
-      {NUTRIENTS.length === 0 ? (
+      {NUTRIENTS.length === 0 && names.supplements.length === 0 ? (
         <Card>
           <p className="text-ink-2">The supplements knowledge base is being written.</p>
         </Card>
-      ) : shown.length === 0 ? (
+      ) : matchCount === 0 ? (
         <Card className="flex flex-col items-start gap-3">
           <p className="text-ink-2">
             Nothing here matches “{query.trim()}”. Try a vitamin or mineral, a food (salmon, spinach), a sign (tiredness), or a medicine
@@ -108,6 +115,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
               <NutrientCard n={n} match={match} byMarker={byMarker} safety={safety} profile={profile} />
             </li>
           ))}
+          {shownNames.map(({ name }) => <KnowledgeName key={`name:${name}`} name={name} />)}
         </ul>
       )}
       {!searching && (

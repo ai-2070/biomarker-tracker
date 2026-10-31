@@ -111,7 +111,7 @@ export function bodySummary(
       ? (() => {
           const done = fitnessSummary(tests, measurements, { ...(profile.sex ? { sex: profile.sex } : {}), ...(profile.birthMonth ? { ageAt: (d: string) => ageAt(profile.birthMonth!, d) } : {}) });
           return done.length
-            ? { fitnessTests: { results: done, note: "Compared with published norms for age and sex (a comparison with other people, not a diagnosis or a target). Thresholds are ones doctors use, worth mentioning to a doctor." } }
+            ? { fitnessTests: { results: done, note: "Timed tests are compared with published norms for age and sex, not targets or diagnoses. Device walking averages are not timed tests and have no test-norm comparison. Timed-test thresholds are ones doctors use, worth mentioning to a doctor." } }
             : {};
         })()
       : {}),

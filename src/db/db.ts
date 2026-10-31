@@ -1,9 +1,13 @@
 import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
 import { syncWatch, watchFor } from "../core/habits";
-import { habitsForPlan, type Plan } from "../core/plans";
+import { habitForPlan, type Plan } from "../core/plans";
 import type { Meal } from "../core/meals";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
+import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
+import { completeProfileDetails, type ProfileCompletion } from "../core/profileCompletion";
+import { measurementsIn } from "../core/measurementCompletion";
+import { isBirthMonth } from "../core/phenoageDraws";
+import { todayIso } from "../core/dates";
 
 interface Setting {
   key: string;
@@ -55,23 +59,22 @@ export async function deletePlan(id: string, database = db): Promise<void> {
   await database.plans.delete(id);
 }
 
-/** Starts a protocol: each item becomes a habit from `start`, remembered so stopping can end them. */
+/** Starts the whole protocol as one habit; repeated starts of an active protocol do nothing. */
 export async function startPlan(p: Plan, start: string, database = db): Promise<void> {
   await database.transaction("rw", database.plans, database.protocols, async () => {
-    const habitIds: string[] = [];
-    for (const h of habitsForPlan(p, start)) {
-      const id = newId();
-      await database.protocols.add({ ...h, id });
-      habitIds.push(id);
-    }
-    await database.plans.put({ ...p, active: { since: start, habitIds } });
+    const current = (await database.plans.get(p.id)) ?? p;
+    if (current.active) return;
+    const id = newId();
+    await database.protocols.add({ ...habitForPlan(current, start), id });
+    await database.plans.put({ ...current, active: { since: start, habitIds: [id] } });
   });
 }
 
 /** Stops a protocol: its habits end today (planned ones that hadn't started are removed). */
 export async function stopPlan(p: Plan, today: string, database = db): Promise<void> {
   await database.transaction("rw", database.plans, database.protocols, database.experiments, async () => {
-    for (const id of p.active?.habitIds ?? []) {
+    const current = (await database.plans.get(p.id)) ?? p;
+    for (const id of current.active?.habitIds ?? []) {
       const h = await database.protocols.get(id);
       if (!h || h.end) continue;
       if (h.start > today) {
@@ -82,7 +85,7 @@ export async function stopPlan(p: Plan, today: string, database = db): Promise<v
         for (const e of await database.experiments.filter((x) => x.protocolId === id).toArray()) await database.experiments.put(syncWatch(e, { ...h, end: today }));
       }
     }
-    const { active: _a, ...rest } = p;
+    const { active: _a, ...rest } = current;
     await database.plans.put(rest);
   });
 }
@@ -182,12 +185,16 @@ export async function createExperiment(e: Omit<Experiment, "id" | "protocolId">,
 
 /** End an experiment, and its log entry if that is still open. */
 export async function endExperiment(id: string, date: string, database = db): Promise<void> {
-  await database.transaction("rw", database.experiments, database.protocols, async () => {
+  await database.transaction("rw", database.experiments, database.protocols, database.plans, async () => {
     const e = await database.experiments.get(id);
     if (!e) return;
     await database.experiments.put({ ...e, end: date });
     const p = e.protocolId ? await database.protocols.get(e.protocolId) : undefined;
-    if (p && !p.end) await database.protocols.put({ ...p, end: date < p.start ? p.start : date });
+    if (p && !p.end) {
+      const ended = { ...p, end: date < p.start ? p.start : date };
+      await database.protocols.put(ended);
+      await syncSourcePlanHabit(ended, database);
+    }
   });
 }
 
@@ -197,6 +204,21 @@ export async function deleteExperiment(id: string, database = db): Promise<void>
 }
 
 // Habits: a log entry and, optionally, the markers it watches (an experiment linked to it)
+
+/** Keep a grouped habit's source protocol in step, without changing its saved item snapshot. */
+async function syncSourcePlanHabit(p: ProtocolEntry, database: TrackerDB, removed = false): Promise<void> {
+  if (!p.plan) return;
+  const plan = await database.plans.get(p.plan.id);
+  if (!plan || (plan.active && !plan.active.habitIds.includes(p.id))) return;
+  if (removed || p.end) {
+    if (plan.active) {
+      const { active: _active, ...rest } = plan;
+      await database.plans.put(rest);
+    }
+  } else {
+    await database.plans.put({ ...plan, active: { since: p.start, habitIds: [p.id] } });
+  }
+}
 
 /** Start watching markers for a habit. Replaces an earlier watch of the same entry. */
 export async function watchHabit(p: ProtocolEntry, markerIds: string[], retestAfterDays: number, today: string, database = db): Promise<string> {
@@ -210,19 +232,21 @@ export async function watchHabit(p: ProtocolEntry, markerIds: string[], retestAf
 
 /** Save an edited habit; its watch keeps the same name and dates. */
 export async function saveHabit(p: ProtocolEntry, database = db): Promise<void> {
-  await database.transaction("rw", database.experiments, database.protocols, async () => {
+  await database.transaction("rw", database.experiments, database.protocols, database.plans, async () => {
     await database.protocols.put(p);
     const watches = await database.experiments.filter((e) => e.protocolId === p.id).toArray();
     for (const e of watches) await database.experiments.put(syncWatch(e, p));
+    await syncSourcePlanHabit(p, database);
   });
 }
 
 /** Delete a habit and what it watched. Test results are kept. */
 export async function deleteHabit(h: { entry?: ProtocolEntry; watch?: Experiment }, database = db): Promise<void> {
-  await database.transaction("rw", database.experiments, database.protocols, async () => {
+  await database.transaction("rw", database.experiments, database.protocols, database.plans, async () => {
     if (h.entry) {
       await database.protocols.delete(h.entry.id);
       await database.experiments.filter((e) => e.protocolId === h.entry!.id).delete();
+      await syncSourcePlanHabit(h.entry, database, true);
     }
     if (h.watch) await database.experiments.delete(h.watch.id);
   });
@@ -236,6 +260,19 @@ export async function deleteProtocol(id: string, database = db): Promise<void> {
 
 const PROFILE_KEY = "profile";
 const ONBOARDED_KEY = "onboarded";
+/** The folder represented by the browser's working copy; not part of profile exports. */
+export const LOADED_PROFILE_KEY = "loadedProfile";
+
+export interface ProfileWriteIdentity {
+  id: string | null;
+  /** Used only to distinguish replacements in browser-only mode; never sent to the model. */
+  name?: string;
+}
+
+export interface ProfileFillResult extends ProfileCompletion {
+  sameProfile: boolean;
+  measurementsAdded: Measurement[];
+}
 
 export async function getProfile(database = db): Promise<Profile> {
   const row = await database.settings.get(PROFILE_KEY);
@@ -244,6 +281,64 @@ export async function getProfile(database = db): Promise<Profile> {
 
 export async function setProfile(profile: Profile, database = db): Promise<void> {
   await database.settings.put({ key: PROFILE_KEY, value: profile });
+}
+
+/** Fill the missing birth month without replacing another profile or concurrent profile edits. */
+export async function saveBirthMonth(birthMonth: string, identity: ProfileWriteIdentity, today = todayIso(), database = db): Promise<boolean> {
+  if (!isBirthMonth(birthMonth) || birthMonth > today.slice(0, 7))
+    throw new Error("Enter a valid month and year of birth, not in the future.");
+  return database.transaction("rw", database.settings, async () => {
+    const loaded = (await database.settings.get(LOADED_PROFILE_KEY))?.value;
+    const id = typeof loaded === "string" ? loaded : null;
+    const current = await getProfile(database);
+    if (id !== identity.id || (id === null && current.name !== identity.name) || current.birthMonth) return false;
+    await setProfile({ ...current, birthMonth }, database);
+    return true;
+  });
+}
+
+/** Apply validated quotes to the same profile, re-reading blanks so concurrent Settings edits win. */
+export async function fillPersonalDetails(
+  inputs: readonly unknown[], userText: string, today: string, identity: ProfileWriteIdentity,
+  defs: ReadonlyMap<string, BiomarkerDef>, signal?: AbortSignal, database = db,
+): Promise<ProfileFillResult> {
+  signal?.throwIfAborted();
+  let onAbort: (() => void) | undefined;
+  try {
+    return await database.transaction("rw", database.settings, database.measurements, async () => {
+      const transaction = Dexie.currentTransaction!;
+      onAbort = () => { if (transaction.active) transaction.abort(); };
+      signal?.addEventListener("abort", onAbort, { once: true });
+      signal?.throwIfAborted();
+      const loaded = (await database.settings.get(LOADED_PROFILE_KEY))?.value;
+      const id = typeof loaded === "string" ? loaded : null;
+      const current = await getProfile(database);
+      if (id !== identity.id || (id === null && current.name !== identity.name))
+        return { profile: current, added: [], rejected: [], measurementsAdded: [], sameProfile: false };
+      let profile = current;
+      const added: ProfileCompletion["added"] = [];
+      const rejected: string[] = [];
+      for (const input of inputs) {
+        const result = completeProfileDetails(profile, input, userText, today);
+        profile = result.profile;
+        added.push(...result.added);
+        rejected.push(...result.rejected);
+      }
+      signal?.throwIfAborted();
+      const measurementsAdded: Measurement[] = [];
+      for (const candidate of measurementsIn(userText, today, defs)) {
+        if (await database.measurements.where("[biomarkerId+date]").equals([candidate.biomarkerId, candidate.date]).count()) continue;
+        const measurement = { ...candidate, id: newId() };
+        await database.measurements.add(measurement);
+        measurementsAdded.push(measurement);
+      }
+      signal?.throwIfAborted();
+      if (added.length) await setProfile(profile, database);
+      return { profile, added, rejected, measurementsAdded, sameProfile: true };
+    });
+  } finally {
+    if (onAbort) signal?.removeEventListener("abort", onAbort);
+  }
 }
 
 /**

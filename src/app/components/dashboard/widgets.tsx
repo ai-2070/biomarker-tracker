@@ -25,14 +25,14 @@ export function firstName(p: Profile): string | undefined {
 
 // ---- Key figures ----------------------------------------------------------------------------
 
-export function Figure({ label, href: to, children, foot, className }: { label: string; href: string; children: React.ReactNode; foot?: React.ReactNode; className?: string }) {
-  return (
-    <a href={to} className={cx(cardStyles, className, "group flex min-h-40 flex-col justify-center gap-2 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm")}>
-      <span className={labelStyles}>{label}</span>
-      <div>{children}</div>
-      {foot && <div className="text-sm text-ink-2">{foot}</div>}
-    </a>
-  );
+export function Figure({ label, href: to, children, foot, className }: { label: string; href?: string; children: React.ReactNode; foot?: React.ReactNode; className?: string }) {
+  const styles = cx(cardStyles, className, "flex min-h-40 flex-col justify-center gap-2 text-ink", to && "group no-underline transition-[border-color,box-shadow] duration-200 hover:border-accent/40 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent");
+  const content = <>
+    <span className={labelStyles}>{label}</span>
+    <div>{children}</div>
+    {foot && <div className="text-sm text-ink-2">{foot}</div>}
+  </>;
+  return to ? <a href={to} className={styles}>{content}</a> : <section aria-label={label} className={styles}>{content}</section>;
 }
 
 export function BioAgeFigure({ d, profile, today }: { d: Dashboard; profile: Profile; today: string }) {
@@ -318,7 +318,7 @@ export function HabitsPanel({ protocols, experiments, all: results, today }: { p
                         {SHORT_PHASE[s.phase]}: {s.results.map((x) => shortName(BIOMARKER_MAP.get(x.biomarkerId)!)).join(", ")}
                       </span>
                     ) : (
-                      CATEGORY_LABEL[h.category]
+                      h.entry?.plan ? "Protocol" : CATEGORY_LABEL[h.category]
                     )}
                   </span>
                 </a>

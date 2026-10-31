@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Field } from "@base-ui/react/field";
 import { LIFE_TABLE_COUNTRIES } from "../../core/lifeTable";
-import type { Diet, Profile, Sex, Smoking } from "../../core/types";
+import { heightInCm, heightInFeet } from "../../core/body";
+import type { Diet, HeightUnit, Profile, Sex, Smoking } from "../../core/types";
 import { BirthMonthField } from "./BirthMonthField";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { SimpleSelect } from "./UnitSelect";
@@ -29,6 +30,15 @@ const DIETS: { value: Diet | "unset"; label: string }[] = [
   { value: "other", label: "Other or special diet" },
 ];
 
+const HEIGHT_UNITS: { value: HeightUnit; label: string }[] = [
+  { value: "cm", label: "Centimetres" },
+  { value: "ft/in", label: "Feet and inches" },
+];
+const HEIGHT_PARTS = [
+  { key: "feet", label: "Feet", placeholder: "e.g. 5", inputMode: "numeric" },
+  { key: "inches", label: "Inches", placeholder: "e.g. 11", inputMode: "decimal" },
+] as const;
+
 /** Sets or removes one field. */
 function withField<K extends keyof Profile>(p: Profile, key: K, value: Profile[K] | undefined): Profile {
   const next = { ...p };
@@ -37,7 +47,7 @@ function withField<K extends keyof Profile>(p: Profile, key: K, value: Profile[K
   return next;
 }
 
-/** Name, birth month and sex. */
+/** Name, birth month, sex and height. */
 export function ProfileBasics({ value, onChange, nameRequired }: { value: Profile; onChange: (p: Profile) => void; nameRequired?: boolean }) {
   return (
     <div className="flex flex-col gap-5">
@@ -65,6 +75,7 @@ export function ProfileBasics({ value, onChange, nameRequired }: { value: Profil
           { value: "unset", label: "Prefer not to say" },
         ]}
       />
+      <HeightField value={value.heightCm} unit={value.heightUnit ?? "cm"} onUnitChange={(heightUnit) => onChange({ ...value, heightUnit })} onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))} />
     </div>
   );
 }
@@ -73,7 +84,6 @@ export function ProfileBasics({ value, onChange, nameRequired }: { value: Profil
 export function ProfileDetails({ value, onChange, showNotes }: { value: Profile; onChange: (p: Profile) => void; showNotes?: boolean }) {
   return (
     <div className="flex flex-col gap-5">
-      <HeightField value={value.heightCm} onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))} />
       <SimpleSelect
         label="Country you live in"
         options={COUNTRIES}
@@ -133,35 +143,77 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
   );
 }
 
-/**
- * Height in cm. The box keeps exactly what's typed (so "1" on the way to "170" stays), and the profile
- * gets a height only once it's a real one (40–260 cm); clearing the box clears it.
- */
-function HeightField({ value, onChange }: { value?: number; onChange: (cm: number | undefined) => void }) {
+function imperialFields(cm: number | undefined): { feet: string; inches: string } {
+  const parts = heightInFeet(cm);
+  return { feet: parts ? String(parts.feet) : "", inches: parts ? String(parts.inches) : "" };
+}
+
+/** Keep partial input local; unit changes never convert and overwrite the stored height. */
+function HeightField({ value, unit, onUnitChange, onChange }: { value?: number; unit: HeightUnit; onUnitChange: (unit: HeightUnit) => void; onChange: (cm: number | undefined) => void }) {
   const [text, setText] = useState(value === undefined ? "" : String(value));
+  const [imperial, setImperial] = useState(() => imperialFields(value));
   const [typing, setTyping] = useState(false);
-  const n = Number(text.replace(",", "."));
-  const valid = text.trim() !== "" && Number.isFinite(n) && n >= 40 && n <= 260;
-  // Only after leaving the box: "17" on the way to "170" is not a mistake.
-  const wrong = !typing && text.trim() !== "" && !valid;
+  const cm = unit === "cm"
+    ? heightInCm(Number(text.replace(",", ".")), unit)
+    : heightInCm(Number(imperial.feet.replace(",", ".")), unit, Number(imperial.inches.replace(",", ".")));
+  const hasText = unit === "cm" ? text.trim() !== "" : imperial.feet.trim() !== "" || imperial.inches.trim() !== "";
+  const wrong = !typing && hasText && cm === undefined;
+
+  function changeUnit(next: HeightUnit) {
+    if (next === unit) return;
+    setText(value === undefined ? "" : String(value));
+    setImperial(imperialFields(value));
+    setTyping(false);
+    onUnitChange(next);
+  }
+
+  function saveImperial() {
+    setTyping(false);
+    if (!imperial.feet.trim() && !imperial.inches.trim()) return onChange(undefined);
+    const cm = heightInCm(Number(imperial.feet.replace(",", ".")), "ft/in", Number(imperial.inches.replace(",", ".")));
+    if (cm !== undefined) onChange(cm);
+  }
+
   return (
-    <Field.Root className="flex flex-col gap-1.5" invalid={wrong}>
-      <Field.Label className={labelStyles}>Height (cm)</Field.Label>
-      <Field.Control
-        value={text}
-        onValueChange={(v) => {
-          setText(v);
-          const x = Number(v.replace(",", "."));
-          if (!v.trim()) onChange(undefined);
-          else if (Number.isFinite(x) && x >= 40 && x <= 260) onChange(Math.round(x));
-        }}
-        onFocus={() => setTyping(true)}
-        onBlur={() => setTyping(false)}
-        inputMode="decimal"
-        placeholder="e.g. 170"
-        className={`${inputStyles} max-w-40`}
-      />
-      {wrong && <p className={helpStyles}>Between 40 and 260 cm, so it isn't saved yet.</p>}
-    </Field.Root>
+    <div className="flex flex-col gap-3">
+      <ChoiceGroup<HeightUnit> label="Height units" value={unit} onChange={changeUnit} options={HEIGHT_UNITS} />
+      {unit === "cm" ? (
+        <Field.Root className="flex flex-col gap-1.5" invalid={wrong}>
+          <Field.Label className={labelStyles}>Height (cm)</Field.Label>
+          <Field.Control
+            value={text}
+            onValueChange={(text) => {
+              setText(text);
+              if (!text.trim()) return onChange(undefined);
+              const cm = heightInCm(Number(text.replace(",", ".")), "cm");
+              if (cm !== undefined) onChange(cm);
+            }}
+            onFocus={() => setTyping(true)}
+            onBlur={() => setTyping(false)}
+            inputMode="decimal"
+            placeholder="e.g. 170"
+            className={`${inputStyles} max-w-40`}
+          />
+        </Field.Root>
+      ) : (
+        <div className="grid max-w-xs grid-cols-2 gap-3">
+          {HEIGHT_PARTS.map((part) => (
+            <Field.Root key={part.key} className="flex flex-col gap-1.5" invalid={wrong}>
+              <Field.Label className={labelStyles}>{part.label}</Field.Label>
+              <Field.Control
+                value={imperial[part.key]}
+                onValueChange={(text) => setImperial((current) => ({ ...current, [part.key]: text }))}
+                onFocus={() => setTyping(true)}
+                onBlur={saveImperial}
+                inputMode={part.inputMode}
+                placeholder={part.placeholder}
+                className={inputStyles}
+              />
+            </Field.Root>
+          ))}
+        </div>
+      )}
+      {wrong && <p className={helpStyles} role="alert">{unit === "cm" ? "Between 40 and 260 cm, so it isn't saved yet." : "Check your height and use inches below 12. It isn't saved yet."}</p>}
+    </div>
   );
 }

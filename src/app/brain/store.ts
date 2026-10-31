@@ -1,8 +1,8 @@
 import { useSyncExternalStore } from "react";
 import { parseLabText, type ParsedReport } from "../../core/importers/labText";
 import { assistantProfile } from "../../core/profile";
-import type { Measurement } from "../../core/types";
-import { db, getProfile } from "../../db/db";
+import type { Measurement, Profile } from "../../core/types";
+import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
 import { EXPIRATION_KEY } from "../hooks";
 import { api } from "../api";
 import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
@@ -15,6 +15,10 @@ import { parseHabitProposal, type HabitProposal } from "../../core/habitProposal
 import { planFromProposal, type Plan } from "../../core/plans";
 import { validateMeal, type Meal } from "../../core/meals";
 import { flagLatest, groupByBiomarker, isCritical } from "../../core/trends";
+import { proposalIntent, proposalIssue, type AssistantProposalContext, type ProposalIntent } from "../../core/assistantProposal";
+import { profileDetailsIn, type ProfileDetailChange } from "../../core/profileCompletion";
+import { safetyLabels, safetyNotes } from "../../core/protocols";
+import { measurementsIn } from "../../core/measurementCompletion";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
 
@@ -22,6 +26,7 @@ export interface Step {
   tool: string;
   server?: string;
   input: string;
+  validated?: boolean;
 }
 
 export type Turn =
@@ -29,12 +34,14 @@ export type Turn =
   | { id: string; role: "assistant"; content: string; model: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { id: string; role: "error"; content: string }
   | { id: string; role: "stopped" }
+  /** Actual persisted additions, never a model's claim that a save happened. */
+  | { id: string; role: "profile"; changes: ProfileDetailChange[]; measurements: Measurement[] }
   /** A habit Brain suggested: a card the person edits and confirms (nothing is saved before). */
   | { id: string; role: "habit"; proposal: HabitProposal; state: "open" | "saved" | "dismissed" }
   /** A protocol Brain wrote down from the person's text: a card they check and create. */
-  | { id: string; role: "protocol"; plan: Plan; state: "open" | "saved" | "dismissed" }
+  | { id: string; role: "protocol"; plan: Plan; intent: ProposalIntent; state: "open" | "saved" | "dismissed" }
   /** A meal Brain wrote down from a recipe: a card with the app's totals that the person saves. */
-  | { id: string; role: "meal"; meal: Meal; state: "open" | "saved" | "dismissed" }
+  | { id: string; role: "meal"; meal: Meal; intent: ProposalIntent; state: "open" | "saved" | "dismissed" }
   | {
       id: string;
       role: "review";
@@ -202,7 +209,7 @@ export const setHabitState = (id: string, state: "saved" | "dismissed") =>
  * Habit cards from Brain's propose_habit calls, checked again here (the same rules as the server) and
  * never while a result is critical: then the person should contact a doctor first.
  */
-export function habitTurns(steps: readonly Step[], measurements: readonly Measurement[], today: string): Turn[] {
+export function habitTurns(steps: readonly Step[], measurements: readonly Measurement[], today: string, context: Omit<AssistantProposalContext, "critical">): Turn[] {
   const critical = [...groupByBiomarker(measurements)].some(([id, ms]) => {
     const def = BIOMARKER_MAP.get(id);
     return !!def && isCritical(flagLatest(def, ms));
@@ -210,31 +217,26 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
   if (critical) return [];
   const seen = new Set<string>();
   return steps.flatMap((st): Turn[] => {
-    if (!st.server && st.tool === "propose_protocol") {
-      try {
-        // Real ids: the protocol is saved in the profile, unlike chat turns.
-        const r = planFromProposal(JSON.parse(st.input), () => crypto.randomUUID(), new Date().toISOString());
-        return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, state: "open" }] : [];
-      } catch {
-        return [];
-      }
-    }
-    if (!st.server && st.tool === "propose_meal") {
-      try {
-        const m = JSON.parse(st.input) as { name?: unknown; items?: unknown; note?: unknown };
-        const note = typeof m.note === "string" && m.note.trim() ? { note: m.note.trim() } : {};
-        const meal = { id: crypto.randomUUID(), name: String(m.name ?? "").trim(), items: m.items as Meal["items"], ...note, createdAt: new Date().toISOString() };
-        return validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal, state: "open" }] : [];
-      } catch {
-        return [];
-      }
-    }
-    if (st.server || st.tool !== "propose_habit") return [];
+    if (st.server !== undefined || st.validated !== true) return [];
+    const kind = st.tool === "propose_protocol" ? "protocol" : st.tool === "propose_meal" ? "meal" : st.tool === "propose_habit" ? "habit" : undefined;
+    if (!kind) return [];
     let input: unknown;
     try {
       input = JSON.parse(st.input);
     } catch {
       return [];
+    }
+    const intent = proposalIntent(input);
+    if (!intent || proposalIssue(kind, input, { ...context, critical })) return [];
+    if (kind === "protocol") {
+      const r = planFromProposal(input, () => crypto.randomUUID(), new Date().toISOString());
+      return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, intent, state: "open" }] : [];
+    }
+    if (kind === "meal") {
+      if (!input || typeof input !== "object" || !("name" in input) || !("items" in input)) return [];
+      const note = "note" in input && typeof input.note === "string" && input.note.trim() ? { note: input.note.trim() } : {};
+      const meal = { id: crypto.randomUUID(), name: typeof input.name === "string" ? input.name.trim() : "", items: input.items, ...note, createdAt: new Date().toISOString() };
+      return validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal: meal as Meal, intent, state: "open" }] : [];
     }
     const r = parseHabitProposal(input, BIOMARKER_MAP, today);
     if (!r.ok || seen.has(r.proposal.label.toLowerCase())) return [];
@@ -324,15 +326,19 @@ export async function addFiles(files: File[]): Promise<void> {
 
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
-  const [measurements, protocols, experiments, plans, meals, profile, expiration] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile(), db.settings.get(EXPIRATION_KEY)]);
-  // The name and private notes never leave this page. The expiration date only when it's turned on.
-  return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, expirationDate: expiration?.value === true };
+  return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
+    const [measurements, protocols, experiments, plans, meals, profile, expiration, loaded] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile(), db.settings.get(EXPIRATION_KEY), db.settings.get(LOADED_PROFILE_KEY)]);
+    const identity = { id: typeof loaded?.value === "string" ? loaded.value : null, name: profile.name };
+    // Identity and name stay local. The server turns birth month into an age before a tool returns it.
+    return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, identity, expirationDate: expiration?.value === true };
+  });
 }
 
 /** Sends only this thread's question and, in personal mode, its profile and attachments. */
 export async function send(model: string, text?: string): Promise<void> {
   const scope = state.scope;
   const question = (text ?? state.draft).trim();
+  const questionDate = todayIso();
   const consumeDraft = text === undefined || state.draft.trim() === question;
   const ready = scope === "personal" ? state.attachments.filter((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim())) : [];
   if ((!question && ready.length === 0) || state.busy || (scope === "personal" && state.attachments.some((a) => a.status === "reading"))) return;
@@ -382,18 +388,43 @@ export async function send(model: string, text?: string): Promise<void> {
             : [],
       );
       if (images.length) messages[messages.length - 1] = { ...messages[messages.length - 1]!, images };
-      const { name: _n, ...data } = snap!;
-      body = { messages, snapshot: data };
+      const { name: _n, identity: _identity, ...data } = snap!;
+      body = { messages, snapshot: data, ...(question ? { userText: question } : {}) };
     }
     const r = await api<Reply>("POST", "/api/assistant", body, mine.controller.signal);
     if (!isCurrent(mine)) return;
+    const profileTurns: Turn[] = [];
+    let effectiveProfile: Profile | undefined = snap?.profile;
+    let effectiveMeasurements = snap?.measurements ?? [];
+    let profileSaveError: string | undefined;
+    if (r.ok && snap) {
+      const detected = profileDetailsIn(question, questionDate);
+      const inputs: unknown[] = detected.details.length ? [detected] : [];
+      for (const step of r.steps) {
+        if (step.server !== undefined || step.tool !== "save_profile_details" || step.validated !== true) continue;
+        try { inputs.push(JSON.parse(step.input)); } catch { /* Invalid tool payloads cannot update a profile. */ }
+      }
+      if (inputs.length || measurementsIn(question, questionDate, BIOMARKER_MAP).length) {
+        try {
+          const result = await fillPersonalDetails(inputs, question, questionDate, snap.identity, BIOMARKER_MAP, mine.controller.signal);
+          if (!isCurrent(mine) || !result.sameProfile) return;
+          effectiveProfile = result.profile;
+          effectiveMeasurements = [...effectiveMeasurements, ...result.measurementsAdded];
+          if (result.added.length || result.measurementsAdded.length) profileTurns.push({ id: newId(), role: "profile", changes: result.added, measurements: result.measurementsAdded });
+        } catch {
+          if (!isCurrent(mine)) return;
+          profileSaveError = "Your details couldn't be saved. You can add profile details in Settings and measurements in Add data.";
+        }
+      }
+    }
     set((s) => ({
       turns: [
         ...s.turns,
         ...(r.ok
           ? [
-              { id: newId(), role: "assistant" as const, content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...(r.note ? { note: r.note } : {}) },
-              ...(snap ? habitTurns(r.steps, snap.measurements, todayIso()) : []),
+              { id: newId(), role: "assistant" as const, content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
+              ...profileTurns,
+              ...(snap ? habitTurns(r.steps, effectiveMeasurements, questionDate, { requestText: sent, safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id) }) : []),
             ]
           : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],

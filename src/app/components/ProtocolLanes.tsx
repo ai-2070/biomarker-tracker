@@ -55,7 +55,7 @@ export function ProtocolLanes({
               <span className="block truncate text-sm">
                 {p.label}{" "}
                 <span className="text-ink-2">
-                  · {CATEGORY_LABEL[p.category]}, {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
+                  · {p.plan ? "Protocol" : CATEGORY_LABEL[p.category]}, {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
                 </span>
               </span>
               <span className="relative mt-1 block h-2" style={{ marginLeft: inset.left - 8, marginRight: inset.right - 8 }} aria-hidden="true">

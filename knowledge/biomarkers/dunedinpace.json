@@ -2,7 +2,7 @@
   "id": "dunedinpace",
   "name": "DunedinPACE (pace of aging)",
   "category": "Aging",
-  "aliases": ["DunedinPACE", "Dunedin PACE", "DunedinPACE score", "Pace of aging (DunedinPACE)"],
+  "aliases": ["DunedinPACE", "Dunedin PACE", "DunedinPACE score", "Pace of aging (DunedinPACE)", "Pace of aging", "Pace of ageing"],
   "canonicalUnit": "years/year",
   "conversions": {
     "years/year": 1

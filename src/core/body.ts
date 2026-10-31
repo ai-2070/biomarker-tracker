@@ -1,7 +1,7 @@
 import { isIsoDate } from "./dates";
 import { validateManualEntry } from "./importers/manual";
 import { sortByDate } from "./trends";
-import type { BiomarkerDef, Measurement } from "./types";
+import type { BiomarkerDef, HeightUnit, Measurement } from "./types";
 
 /**
  * Body measurements: weight, waist, body fat, blood pressure, resting heart rate. They are stored
@@ -91,6 +91,21 @@ export const PLAUSIBLE: Record<BodyField, { min: number; max: number }> = {
   gait_speed: { min: 0.1, max: 3 },
   sitting_rising: { min: 0, max: 10 },
 };
+
+/** Profile height in canonical cm; feet and inches are separate entry fields. */
+export function heightInCm(value: number, unit: HeightUnit, inches = 0): number | undefined {
+  if (!Number.isFinite(value)) return undefined;
+  if (unit === "ft/in" && (!Number.isInteger(value) || value < 0 || !Number.isFinite(inches) || inches < 0 || inches >= 12)) return undefined;
+  const cm = unit === "cm" ? value : value * 30.48 + inches * 2.54;
+  return cm >= 40 && cm <= 260 ? Math.round(cm * 100) / 100 : undefined;
+}
+
+/** Height for display in feet and hundredths of an inch, carrying 12 inches into the next foot. */
+export function heightInFeet(cm: number | undefined): { feet: number; inches: number } | undefined {
+  if (cm === undefined || heightInCm(cm, "cm") === undefined) return undefined;
+  const hundredths = Math.round(cm / 2.54 * 100);
+  return { feet: Math.floor(hundredths / 1200), inches: (hundredths % 1200) / 100 };
+}
 
 /** Body mass index, kg/m². Only for adult heights between 100 and 250 cm. */
 export function bmi(weightKg: number, heightCm: number | undefined): number | undefined {

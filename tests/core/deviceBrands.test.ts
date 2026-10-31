@@ -199,6 +199,58 @@ create_time,update_time,source_type,count,day_time
   });
 });
 
+describe("Samsung Health walking speed", () => {
+  const path = "com.samsung.shealth.step_daily_trend.20261030120000.csv";
+
+  it("reads the combined daily speed in m/s, keeps hundredths and replaces older snapshots", () => {
+    const text = `com.samsung.shealth.step_daily_trend,7010053,6
+day_time,source_type,count,speed,update_time
+2026-03-01,-2,5000,1.321,2026-03-05 11:00:00.000
+2026-03-01,-2,4000,1.75,2026-03-05 10:00:00.000
+2026-03-01,0,3000,2.5,2026-03-05 12:00:00.000
+2026-03-01,108,4500,2.8,2026-03-05 12:00:00.000
+${Date.UTC(2026, 2, 2)},-2,6000,1.784,2026-03-05 11:00:00.000
+`;
+    expect(csv(path, text)).toEqual({
+      steps: [["2026-03-01", 5000], ["2026-03-02", 6000]],
+      gait_speed: [["2026-03-01", 1.32], ["2026-03-02", 1.78]],
+    });
+  });
+
+  it("does not substitute per-device or workout speeds when a combined speed is unavailable", () => {
+    expect(csv(path, "day_time,source_type,count,speed\n2026-03-01,0,4000,1.3\n2026-03-01,108,5000,1.4\n")).toEqual({});
+    expect(csv(path, "day_time,source_type,count,gait_speed_avg\n2026-03-01,-2,5000,1.3\n")).toEqual({ steps: [["2026-03-01", 5000]] });
+    expect(csv("com.samsung.shealth.exercise.csv", "start_time,exercise_type,mean_speed,max_speed\n2026-03-01,1002,2.5,3\n")).toEqual({});
+  });
+
+  it("drops missing, zero and implausible speeds without reviving an older snapshot", () => {
+    const text = `day_time,source_type,count,speed,update_time
+2026-03-01,-2,5000,1.321,2026-03-05 11:00:00.000
+2026-03-02,-2,5000,0,2026-03-05 11:00:00.000
+2026-03-02,-2,4000,1.4,2026-03-05 10:00:00.000
+2026-03-03,-2,5000,-1,2026-03-05 11:00:00.000
+2026-03-04,-2,5000,12,2026-03-05 11:00:00.000
+2026-03-05,-2,5000,,2026-03-05 11:00:00.000
+`;
+    expect(csv(path, text).gait_speed).toEqual([["2026-03-01", 1.32]]);
+  });
+
+  it.each([false, true])("does not mix redundant pedometer speeds into a zip import (reversed: %s)", async (reverse) => {
+    const enc = new TextEncoder();
+    const files = [
+      { name: path, data: enc.encode("day_time,source_type,count,speed\n2026-03-01,-2,5000,1.321\n") },
+      { name: "com.samsung.shealth.tracker.pedometer_day_summary.csv", data: enc.encode("day_time,speed,gait_speed_avg,gait_speed_max\n2026-03-01,2.4,2.5,2.9\n") },
+    ];
+    const entries = await zipEntries(new Blob([zipStore(reverse ? files.reverse() : files) as BlobPart]));
+    const speeds = [];
+    for (const entry of entries) {
+      const result = csv(entry.name, await entry.text());
+      if (result.gait_speed) speeds.push(...result.gait_speed);
+    }
+    expect(speeds).toEqual([["2026-03-01", 1.32]]);
+  });
+});
+
 describe("Samsung Health active time", () => {
   it("reads the activity day's milliseconds as minutes, not seconds or scoring inputs", () => {
     const text = `com.samsung.shealth.activity.day_summary,7010053,6
