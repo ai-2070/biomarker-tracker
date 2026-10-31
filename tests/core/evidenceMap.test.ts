@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chooseFrom, chooseReviews, classify, eligibleReviews, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, coveredArea, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "../../src/core/evidenceMap";
+import { chooseFrom, chooseReviews, classify, eligibleReviews, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "../../src/core/evidenceMap";
 
 const OUT = [{ id: "fractures", title: /\bfractur\w*/i }];
 const rec = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: [], mesh: ["Humans"], citedBy: 0, ...o });
@@ -50,13 +50,6 @@ describe("evidence maps", () => {
   it("finds large trials as new as the newest review", () => {
     const trial = (pmid: string, year: number, n: number) => classify(rec({ pmid, year, title: "Vitamin D and incident fractures", abstract: `We enrolled ${n} participants.`, pubTypes: ["Randomized Controlled Trial"] }), OUT);
     expect(largeTrialsSince([trial("big", 2022, 25871), trial("small", 2023, 300), trial("early", 2010, 2256)], "fractures", 2021).map((t) => t.pmid)).toEqual(["big"]);
-  });
-
-  it("measures how much reviews share trials (corrected covered area, Pieper 2014)", () => {
-    // 3 reviews, 4 distinct trials, 8 inclusions: (8 − 4) / (4·3 − 4) = 0.5.
-    expect(coveredArea([["t1", "t2", "t3"], ["t1", "t2", "t4"], ["t1", "t2"]])).toEqual({ cca: 0.5, trials: 4, inclusions: 8 });
-    expect(coveredArea([["t1"], ["t2"]])!.cca).toBe(0);
-    expect(coveredArea([["t1", "t2"]])).toBeUndefined();
   });
 
   it("counts reviews and trials per year, leaving out animals and retractions", () => {

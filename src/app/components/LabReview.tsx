@@ -125,7 +125,7 @@ export function Review({
     let skipped = 0;
     for (const { v } of checked) {
       if (!v.ok) continue;
-      if (isAlreadySaved(existing ?? [], v.measurement)) skipped++;
+      if (isAlreadySaved(existing ?? [], v.measurement) || isAlreadySaved(toSave, v.measurement)) skipped++;
       else toSave.push(v.measurement);
     }
     setSaving(true);

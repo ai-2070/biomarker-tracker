@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { Combobox } from "@base-ui/react/combobox";
 import type { BiomarkerDef } from "../../core/types";
-import { BIOMARKERS, fullName } from "../knowledge";
+import { BIOMARKERS, BLOOD_MARKERS, fullName } from "../knowledge";
 import { CheckIcon, ChevronDownIcon, cx, errorStyles, labelStyles } from "./ui";
 
 function normalize(s: string): string {
@@ -20,18 +20,22 @@ export function BiomarkerPicker({
   value,
   onChange,
   error,
+  bloodOnly = false,
 }: {
   value: string | null;
   onChange: (id: string | null) => void;
   error?: string;
+  /** Only the blood-result form opts in; habit and import pickers retain all markers. */
+  bloodOnly?: boolean;
 }) {
   const inputId = useId();
   const errorId = useId();
-  const selected = value ? (BIOMARKERS.find((d) => d.id === value) ?? null) : null;
+  const items = bloodOnly ? BLOOD_MARKERS : BIOMARKERS;
+  const selected = value ? (items.find((d) => d.id === value) ?? null) : null;
 
   return (
     <Combobox.Root<BiomarkerDef>
-      items={BIOMARKERS as BiomarkerDef[]}
+      items={items as BiomarkerDef[]}
       value={selected}
       onValueChange={(d) => onChange(d?.id ?? null)}
       itemToStringLabel={(d) => fullName(d)}

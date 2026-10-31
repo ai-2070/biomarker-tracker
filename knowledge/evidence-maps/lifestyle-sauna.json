@@ -20,8 +20,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which habit or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 1015,
@@ -47,6 +47,7 @@
   {
    "id": "mortality",
    "label": "Heart deaths and death",
+   "anyDesign": true,
    "finding": "Sudden cardiac death, death from heart and blood vessel disease, and death from any cause",
    "counts": {
     "all": 489,
@@ -120,6 +121,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
      "intervention": "Sauna bathing, or other passive heat (hot baths, heat therapy)",
@@ -176,6 +178,7 @@
   {
    "id": "stroke",
    "label": "Stroke",
+   "anyDesign": true,
    "finding": "Stroke",
    "counts": {
     "all": 81,
@@ -208,6 +211,7 @@
   {
    "id": "dementia",
    "label": "Dementia",
+   "anyDesign": true,
    "finding": "Dementia and Alzheimer's disease",
    "counts": {
     "all": 121,
@@ -245,6 +249,7 @@
   {
    "id": "blood-pressure",
    "label": "Blood pressure",
+   "anyDesign": true,
    "finding": "Blood pressure",
    "counts": {
     "all": 254,
@@ -262,7 +267,7 @@
      "firstAuthor": "Hamaya R",
      "journal": "American journal of preventive cardiology",
      "citedBy": 2,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33866630",
@@ -273,150 +278,10 @@
      "journal": "Experimental physiology",
      "citedBy": 37,
      "n": 10,
-     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.5384615384615384,
-    "trials": 13,
-    "inclusions": 20,
-    "reviews": [
-     {
-      "pmid": "41049507",
-      "trials": 10
-     },
-     {
-      "pmid": "33866630",
-      "trials": 10
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "18922381",
-      "title": "Beneficial effects of Waon therapy on patients with chronic heart failure: results of a prospective multicenter study",
-      "year": 2008,
-      "n": 188,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "27001189",
-      "title": "Waon Therapy for Managing Chronic Heart Failure - Results From a Multicenter Prospective Randomized WAON-CHF Study",
-      "year": 2016,
-      "n": 73,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "33002377",
-      "title": "Leg heat therapy improves perceived physical function but does not enhance walking capacity or vascular function in patients with peripheral artery disease",
-      "year": 2020,
-      "n": 32,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "20884178",
-      "title": "Improvement of autonomic nervous activity by Waon therapy in patients with chronic heart failure",
-      "year": 2011,
-      "n": 27,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "15564698",
-      "title": "Effects of repeated sauna treatment on ventricular arrhythmias in patients with chronic heart failure",
-      "year": 2004,
-      "n": 20,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "21173495",
-      "title": "Effect of Waon therapy on oxidative stress in chronic heart failure",
-      "year": 2011,
-      "n": 20,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "15090706",
-      "title": "Repeated sauna therapy reduces urinary 8-epi-prostaglandin F(2alpha)",
-      "year": 2004,
-      "n": 14,
-      "inReviews": [
-       "41049507",
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "35785965",
-      "title": "Effects of regular sauna bathing in conjunction with exercise on cardiovascular function: a multi-arm, randomized controlled trial",
-      "year": 2022,
-      "n": 47,
-      "inReviews": [
-       "41049507"
-      ]
-     },
-     {
-      "pmid": "35771219",
-      "title": "Effects of home-based leg heat therapy on walking performance in patients with symptomatic peripheral artery disease: a pilot randomized trial",
-      "year": 2022,
-      "n": 34,
-      "inReviews": [
-       "41049507"
-      ]
-     },
-     {
-      "pmid": "37650138",
-      "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial",
-      "year": 2023,
-      "n": 33,
-      "inReviews": [
-       "41049507"
-      ]
-     },
-     {
-      "pmid": "31002283",
-      "title": "Heat therapy vs. supervised exercise therapy for peripheral arterial disease: a 12-wk randomized, controlled trial",
-      "year": 2019,
-      "n": 11,
-      "inReviews": [
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "27286178",
-      "title": "Repeated Warm Water Immersion Induces Similar Cerebrovascular Adaptations to 8 Weeks of Moderate-Intensity Exercise Training in Females",
-      "year": 2016,
-      "inReviews": [
-       "33866630"
-      ]
-     },
-     {
-      "pmid": "27707723",
-      "title": "Acute hot water immersion is protective against impaired vascular function following forearm ischemia-reperfusion in young healthy humans",
-      "year": 2016,
-      "inReviews": [
-       "33866630"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1988,
@@ -494,7 +359,7 @@
       "firstAuthor": "Hamaya R",
       "journal": "American journal of preventive cardiology",
       "citedBy": 2,
-      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33866630",
@@ -505,11 +370,12 @@
       "journal": "Experimental physiology",
       "citedBy": 37,
       "n": 10,
-      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with heart risk factors",
      "intervention": "Sauna bathing, or other passive heat (single sessions or weeks of it)",
@@ -545,6 +411,7 @@
   {
    "id": "inflammation",
    "label": "Inflammation (CRP)",
+   "anyDesign": true,
    "finding": "Inflammation (C-reactive protein, CRP)",
    "counts": {
     "all": 250,
@@ -596,6 +463,7 @@
   {
    "id": "heart-failure",
    "label": "Heart failure (Waon)",
+   "anyDesign": true,
    "finding": "Heart failure symptoms and heart function (Waon therapy, in hospital)",
    "counts": {
     "all": 91,
@@ -614,7 +482,7 @@
      "journal": "Artificial organs",
      "citedBy": 11,
      "n": 506,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30239008",
@@ -624,7 +492,7 @@
      "firstAuthor": "Källström M",
      "journal": "Clinical cardiology",
      "citedBy": 10,
-     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2018); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "29409954",
@@ -634,98 +502,10 @@
      "firstAuthor": "Rocha Conceição LS",
      "journal": "Journal of cardiac failure",
      "citedBy": 9,
-     "why": "One of the newest systematic reviews on this finding (2018); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.8571428571428571,
-    "trials": 7,
-    "inclusions": 13,
-    "reviews": [
-     {
-      "pmid": "32017138",
-      "trials": 7
-     },
-     {
-      "pmid": "30239008",
-      "trials": 6
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "29409954"
-    ],
-    "shared": [
-     {
-      "pmid": "18922381",
-      "title": "Beneficial effects of Waon therapy on patients with chronic heart failure: results of a prospective multicenter study",
-      "year": 2008,
-      "n": 188,
-      "inReviews": [
-       "32017138",
-       "30239008"
-      ]
-     },
-     {
-      "pmid": "27001189",
-      "title": "Waon Therapy for Managing Chronic Heart Failure - Results From a Multicenter Prospective Randomized WAON-CHF Study",
-      "year": 2016,
-      "n": 73,
-      "inReviews": [
-       "32017138",
-       "30239008"
-      ]
-     },
-     {
-      "pmid": "20884178",
-      "title": "Improvement of autonomic nervous activity by Waon therapy in patients with chronic heart failure",
-      "year": 2011,
-      "n": 27,
-      "inReviews": [
-       "32017138",
-       "30239008"
-      ]
-     },
-     {
-      "pmid": "15564698",
-      "title": "Effects of repeated sauna treatment on ventricular arrhythmias in patients with chronic heart failure",
-      "year": 2004,
-      "n": 20,
-      "inReviews": [
-       "32017138",
-       "30239008"
-      ]
-     },
-     {
-      "pmid": "21173495",
-      "title": "Effect of Waon therapy on oxidative stress in chronic heart failure",
-      "year": 2011,
-      "n": 20,
-      "inReviews": [
-       "32017138",
-       "30239008"
-      ]
-     },
-     {
-      "pmid": "19154844",
-      "title": "Safety, acceptance, and physiologic effects of sauna bathing in people with chronic heart failure: a pilot report",
-      "year": 2009,
-      "inReviews": [
-       "32017138",
-       "30239008"
-      ]
-     },
-     {
-      "pmid": "14564334",
-      "title": "Thermal hydrotherapy improves quality of life and hemodynamic function in patients with chronic heart failure",
-      "year": 2003,
-      "n": 15,
-      "inReviews": [
-       "32017138"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -796,7 +576,7 @@
       "journal": "Artificial organs",
       "citedBy": 11,
       "n": 506,
-      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "29409954",
@@ -806,11 +586,12 @@
       "firstAuthor": "Rocha Conceição LS",
       "journal": "Journal of cardiac failure",
       "citedBy": 9,
-      "why": "One of the newest systematic reviews on this finding (2018); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2018); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People with chronic heart failure",
      "intervention": "Waon therapy (a mild far-infrared sauna) or other repeated heat therapy",

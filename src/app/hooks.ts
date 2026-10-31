@@ -91,13 +91,21 @@ const INTAKE_KEY = "intakeList";
 export function useIntakeList(): IntakeItem[] | undefined {
   return useLiveQuery(async () => {
     const v = (await db.settings.get(INTAKE_KEY))?.value;
-    return v !== undefined && validateIntakeItems(v).length === 0 ? (v as IntakeItem[]) : [];
+    // Keep valid legacy oversize lists visible so people can remove entries instead of losing them.
+    return Array.isArray(v) && v.every((item) => validateIntakeItems([item]).length === 0) ? (v as IntakeItem[]) : [];
   }, []);
 }
 
 export async function setIntakeList(items: IntakeItem[]): Promise<void> {
-  if (items.length === 0) await db.settings.delete(INTAKE_KEY);
-  else await db.settings.put({ key: INTAKE_KEY, value: items });
+  await db.transaction("rw", db.settings, async () => {
+    const errors = validateIntakeItems(items);
+    const current = (await db.settings.get(INTAKE_KEY))?.value;
+    const repairing = Array.isArray(current) && current.length > 60 && items.length < current.length &&
+      items.every((item) => validateIntakeItems([item]).length === 0);
+    if (errors.length && !repairing) throw new Error(errors[0]);
+    if (items.length === 0) await db.settings.delete(INTAKE_KEY);
+    else await db.settings.put({ key: INTAKE_KEY, value: items });
+  });
 }
 
 /** The person's results plus their PhenoAge gap at each complete blood test, for habit watches (never stored). */

@@ -21,8 +21,8 @@
   "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 6547,
@@ -93,6 +93,7 @@
   {
    "id": "absorption-haem-iron",
    "label": "Haem vs plant iron",
+   "anyDesign": true,
    "finding": "absorption-haem-iron",
    "counts": {
     "all": 1196,
@@ -280,6 +281,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People (adults or children)",
      "intervention": "Iron from meat and fish (haem iron)",
@@ -343,6 +345,7 @@
   {
    "id": "absorption-phytate",
    "label": "Phytate",
+   "anyDesign": true,
    "finding": "absorption-phytate",
    "counts": {
     "all": 1401,
@@ -361,7 +364,7 @@
      "journal": "The Journal of nutrition",
      "citedBy": 37,
      "n": 236,
-     "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2015); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42163962",
@@ -371,106 +374,10 @@
      "firstAuthor": "Nikolaou A",
      "journal": "Frontiers in nutrition",
      "citedBy": 2,
-     "why": "One of the newest systematic reviews on this claim (2026); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2026); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0,
-    "trials": 9,
-    "inclusions": 9,
-    "reviews": [
-     {
-      "pmid": "26108545",
-      "trials": 7
-     },
-     {
-      "pmid": "42163962",
-      "trials": 2
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "20335626",
-      "title": "Neither a zinc supplement nor phytate-reduced maize nor their combination enhance growth of 6- to 12-month-old Guatemalan infants",
-      "year": 2010,
-      "n": 412,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "12816787",
-      "title": "Effects of weaning cereals with different phytate contents on hemoglobin, iron stores, and serum zinc: a randomized intervention in infants from 6 to 12 mo of age",
-      "year": 2003,
-      "n": 300,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "18469257",
-      "title": "Adaptation in human zinc absorption as influenced by dietary zinc and bioavailability",
-      "year": 2008,
-      "n": 109,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "23843474",
-      "title": "Biofortification of pearl millet with iron and zinc in a randomized controlled trial increases absorption of these minerals above physiologic requirements in young children",
-      "year": 2013,
-      "n": 40,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "19321589",
-      "title": "Meals and dephytinization affect calcium and zinc absorption in Nigerian children with rickets",
-      "year": 2009,
-      "n": 15,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "11110854",
-      "title": "Dietary phytate reduction improves zinc absorption in Malawian children recovering from tuberculosis but not in well children",
-      "year": 2000,
-      "n": 14,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "16400050",
-      "title": "Zinc absorption in Guatemalan schoolchildren fed normal or low-phytate maize",
-      "year": 2006,
-      "inReviews": [
-       "26108545"
-      ]
-     },
-     {
-      "pmid": "32986748",
-      "title": "Efficacy of processed amaranth-containing bread compared to maize bread on hemoglobin, anemia and iron deficiency anemia prevalence among two-to-five year-old anemic children in Southern Ethiopia: A cluster randomized controlled trial",
-      "year": 2020,
-      "inReviews": [
-       "42163962"
-      ]
-     },
-     {
-      "pmid": "29796932",
-      "title": "Low-phytate wholegrain bread instead of high-phytate wholegrain bread in a total diet context did not improve iron status of healthy Swedish females: a 12-week, randomized, parallel-design intervention study",
-      "year": 2019,
-      "inReviews": [
-       "42163962"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1985,
@@ -613,7 +520,7 @@
       "journal": "The Journal of nutrition",
       "citedBy": 37,
       "n": 236,
-      "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2015); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42163962",
@@ -623,11 +530,12 @@
       "firstAuthor": "Nikolaou A",
       "journal": "Frontiers in nutrition",
       "citedBy": 2,
-      "why": "One of the newest systematic reviews on this claim (2026); screened as answering the question"
+      "why": "One of the newest systematic reviews on this claim (2026); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People (adults or children)",
      "intervention": "Phytate (phytic acid) in grains, beans, nuts and seeds, including foods treated to reduce it",
@@ -648,6 +556,7 @@
   {
    "id": "absorption-oxalate-calcium",
    "label": "Calcium from greens",
+   "anyDesign": true,
    "finding": "absorption-oxalate-calcium",
    "counts": {
     "all": 758,
@@ -729,6 +638,7 @@
   {
    "id": "absorption-meal-partners",
    "label": "Meal partners",
+   "anyDesign": true,
    "finding": "absorption-meal-partners",
    "counts": {
     "all": 1218,
@@ -746,7 +656,7 @@
      "firstAuthor": "Abioye AI",
      "journal": "The Journal of nutrition",
      "citedBy": 26,
-     "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "17415954",
@@ -756,7 +666,7 @@
      "firstAuthor": "Conway RE",
      "journal": "International journal of food sciences and nutrition",
      "citedBy": 13,
-     "why": "One of the newest meta-analyses on this claim (2007); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2007); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -1021,7 +931,7 @@
       "firstAuthor": "Abioye AI",
       "journal": "The Journal of nutrition",
       "citedBy": 26,
-      "why": "One of the newest meta-analyses on this claim (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "17415954",
@@ -1031,7 +941,7 @@
       "firstAuthor": "Conway RE",
       "journal": "International journal of food sciences and nutrition",
       "citedBy": 13,
-      "why": "One of the newest meta-analyses on this claim (2007); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2007); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42067065",
@@ -1047,6 +957,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People (adults or children)",
      "intervention": "Meat, vitamin C, tea, coffee or calcium eaten with meals that contain plant iron",
@@ -1124,6 +1035,7 @@
   {
    "id": "absorption-fibre-minerals",
    "label": "Fibre and minerals",
+   "anyDesign": true,
    "finding": "absorption-fibre-minerals",
    "counts": {
     "all": 925,
@@ -1142,7 +1054,7 @@
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 12,
      "n": 21,
-     "why": "One of the newest systematic reviews on this claim (2023); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2023); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1317,6 +1229,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People (adults or children)",
      "intervention": "Dietary fibre (apart from the phytate that often comes with it, where the review separates them)",
@@ -1373,6 +1286,7 @@
   {
    "id": "absorption-protein-quality",
    "label": "Protein quality",
+   "anyDesign": true,
    "finding": "absorption-protein-quality",
    "counts": {
     "all": 340,
@@ -1391,7 +1305,7 @@
      "journal": "Journal of the International Society of Sports Nutrition",
      "citedBy": 0,
      "n": 51,
-     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42617803",
@@ -1402,7 +1316,7 @@
      "journal": "Clinical nutrition ESPEN",
      "citedBy": 0,
      "n": 2363,
-     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41454445",
@@ -1413,7 +1327,7 @@
      "journal": "Journal of dietary supplements",
      "citedBy": 0,
      "n": 261,
-     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41994089",
@@ -1424,76 +1338,10 @@
      "journal": "Frontiers in nutrition",
      "citedBy": 0,
      "n": 1893,
-     "why": "The most comprehensive review on this claim (18 trials, 2026); screened as answering the question"
+     "why": "The most comprehensive review on this claim (18 trials, 2026); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.2,
-    "trials": 5,
-    "inclusions": 6,
-    "reviews": [
-     {
-      "pmid": "41454445",
-      "trials": 3
-     },
-     {
-      "pmid": "41994089",
-      "trials": 3
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "42862730",
-     "42617803"
-    ],
-    "shared": [
-     {
-      "pmid": "24015719",
-      "title": "Whey protein supplementation during resistance training augments lean body mass",
-      "year": 2013,
-      "n": 22,
-      "inReviews": [
-       "41454445",
-       "41994089"
-      ]
-     },
-     {
-      "pmid": "16186072",
-      "title": "Soy isoflavones, body composition, and physical performance",
-      "year": 2005,
-      "n": 202,
-      "inReviews": [
-       "41994089"
-      ]
-     },
-     {
-      "pmid": "12851515",
-      "title": "Isoflavone-rich soy protein prevents loss of hip lean mass but does not prevent the shift in regional fat distribution in perimenopausal women",
-      "year": 2003,
-      "n": 69,
-      "inReviews": [
-       "41994089"
-      ]
-     },
-     {
-      "pmid": "28869573",
-      "title": "Effects of Whey, Soy or Leucine Supplementation with 12 Weeks of Resistance Training on Strength, Body Composition, and Skeletal Muscle and Adipose Tissue Histological Attributes in College-Aged Males",
-      "year": 2017,
-      "n": 17,
-      "inReviews": [
-       "41454445"
-      ]
-     },
-     {
-      "pmid": "16948480",
-      "title": "Effect of whey and soy protein supplementation combined with resistance training in young adults",
-      "year": 2006,
-      "inReviews": [
-       "41454445"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1986,
@@ -1622,7 +1470,7 @@
       "journal": "Journal of the International Society of Sports Nutrition",
       "citedBy": 0,
       "n": 51,
-      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42617803",
@@ -1633,7 +1481,7 @@
       "journal": "Clinical nutrition ESPEN",
       "citedBy": 0,
       "n": 2363,
-      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41454445",
@@ -1644,7 +1492,7 @@
       "journal": "Journal of dietary supplements",
       "citedBy": 0,
       "n": 261,
-      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41994089",
@@ -1655,11 +1503,12 @@
       "journal": "Frontiers in nutrition",
       "citedBy": 0,
       "n": 1893,
-      "why": "The most comprehensive review on this claim (18 trials, 2026); screened as answering the question"
+      "why": "The most comprehensive review on this claim (18 trials, 2026); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults",
      "intervention": "Plant protein (soy, pea, other plant sources or mixed plant foods)",
@@ -1730,6 +1579,7 @@
   {
    "id": "absorption-deficiency-in-practice",
    "label": "Iron and zinc in vegetarians",
+   "anyDesign": true,
    "finding": "absorption-deficiency-in-practice",
    "counts": {
     "all": 1448,
@@ -1747,7 +1597,7 @@
      "firstAuthor": "Haider LM",
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 138,
-     "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2018); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "23595983",
@@ -1757,7 +1607,7 @@
      "firstAuthor": "Foster M",
      "journal": "Journal of the science of food and agriculture",
      "citedBy": 48,
-     "why": "One of the newest meta-analyses on this claim (2013); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2013); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40842789",
@@ -1767,108 +1617,10 @@
      "firstAuthor": "Akinwumi FE",
      "journal": "Cureus",
      "citedBy": 3,
-     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.1111111111111111,
-    "trials": 9,
-    "inclusions": 10,
-    "reviews": [
-     {
-      "pmid": "27880062",
-      "trials": 2
-     },
-     {
-      "pmid": "23595983",
-      "trials": 8
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "40842789"
-    ],
-    "shared": [
-     {
-      "pmid": "12728219",
-      "title": "Comparisons of vegetarian and beef-containing diets on hematological indexes and iron stores during a period of resistive training in older men",
-      "year": 2003,
-      "n": 10,
-      "inReviews": [
-       "27880062",
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "17982706",
-      "title": "The impact of a meat- versus a vegetable-based diet on iron status in women of childbearing age with small iron stores",
-      "year": 2007,
-      "n": 57,
-      "inReviews": [
-       "27880062"
-      ]
-     },
-     {
-      "pmid": "8269890",
-      "title": "Effect of a strict vegan diet on energy and nutrient intakes by Finnish rheumatoid patients",
-      "year": 1993,
-      "n": 43,
-      "inReviews": [
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "8467614",
-      "title": "The influence of fast and vegetarian diet on parameters of nutritional status in patients with rheumatoid arthritis",
-      "year": 1993,
-      "n": 34,
-      "inReviews": [
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "9497185",
-      "title": "Zinc absorption, mineral balance, and blood lipids in women consuming controlled lactoovovegetarian and omnivorous diets for 8 wk",
-      "year": 1998,
-      "n": 21,
-      "inReviews": [
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "1333500",
-      "title": "Zinc and iron utilization in young women consuming a beef-based diet",
-      "year": 1992,
-      "inReviews": [
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "16611387",
-      "title": "Total zinc absorption in young women, but not fractional zinc absorption, differs between vegetarian and meat-based diets with equal phytic acid content",
-      "year": 2006,
-      "inReviews": [
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "1390616",
-      "title": "Bioavailability of energy, nitrogen, fat, zinc, iron and calcium from rural and urban Mexican diets",
-      "year": 1992,
-      "inReviews": [
-       "23595983"
-      ]
-     },
-     {
-      "pmid": "15325679",
-      "title": "Effects of a low-fat vegan diet and a Step II diet on macro- and micronutrient intakes in overweight postmenopausal women",
-      "year": 2004,
-      "inReviews": [
-       "23595983"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -1951,11 +1703,12 @@
       "firstAuthor": "Akinwumi FE",
       "journal": "Cureus",
       "citedBy": 3,
-      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+      "why": "One of the newest systematic reviews on this claim (2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults or children",
      "intervention": "A vegetarian or vegan diet",

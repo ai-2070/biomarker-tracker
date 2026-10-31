@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { todayIso } from "../../core/dates";
-import { MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
+import { MAX_MEAL_ITEMS, MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { formatValue } from "../../core/units";
-import { deleteMeal, newId, saveMeal } from "../../db/db";
+import { deleteMeal, newId, saveMeal, updateMeal } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { Fold, FoldGroup } from "../components/disclosure";
 import { GradeBadge } from "../components/evidence";
 import { AddToProtocol } from "../components/AddToProtocol";
-import { Button, Card, LinkButton, cx, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, LinkButton, Notice, cx, inputStyles, labelStyles } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
 import { useMeals, useProfile } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, NUTRIENT_MAP, nameInSentence } from "../knowledge";
@@ -54,7 +54,7 @@ export function MealPage({ id, example = false }: { id: string; example?: boolea
           {example ? (
             <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{meal.name}</h1>
           ) : (
-            <NameField meal={meal} />
+            <NameField key={meal.id} meal={meal} />
           )}
           {ex && <p className="mt-1 max-w-2xl text-ink-2">{ex.description}</p>}
         </div>
@@ -63,7 +63,7 @@ export function MealPage({ id, example = false }: { id: string; example?: boolea
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <div className="flex flex-col gap-5">
-          <Foods meal={meal} db={db} editable={!example} />
+          <Foods key={meal.id} meal={meal} db={db} editable={!example} />
           {ex && <Evidence claimIds={ex.claimIds} />}
           {!example && <Manage meal={meal} />}
         </div>
@@ -75,49 +75,66 @@ export function MealPage({ id, example = false }: { id: string; example?: boolea
 
 function NameField({ meal }: { meal: Meal }) {
   const [name, setName] = useState(meal.name);
+  const [error, setError] = useState("");
+  useEffect(() => setName(meal.name), [meal.id, meal.name]);
   return (
+    <>
     <input
       aria-label="Meal name"
       value={name}
       maxLength={80}
       onChange={(e) => setName(e.target.value)}
-      onBlur={() => name.trim() && name.trim() !== meal.name && void saveMeal({ ...meal, name: name.trim() })}
+      onBlur={() => {
+        if (name.trim() && name.trim() !== meal.name) void updateMeal(meal.id, (current) => ({ ...current, name: name.trim() })).catch(() => setError("Could not save the meal name. Try again."));
+      }}
       className="-ml-1 w-full rounded-md border border-transparent bg-transparent px-1 font-serif text-3xl tracking-tight hover:border-line focus:border-line-strong focus:outline-none sm:text-4xl"
     />
+      {error && <Notice tone="warn">{error}</Notice>}
+    </>
   );
 }
 
 /** The foods and grams; for the person's meals, a search to add more and grams to change. */
 function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; editable: boolean }) {
   const [query, setQuery] = useState("");
-  const save = (items: MealItem[]) => void saveMeal({ ...meal, items });
+  const [rows, setRows] = useState(() => meal.items.map((item) => ({ key: newId(), item })));
+  const draft = useRef(rows);
+  const pending = useRef(0);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    if (pending.current || JSON.stringify(meal.items) === JSON.stringify(draft.current.map((r) => r.item))) return;
+    const next = meal.items.map((item) => ({ key: newId(), item }));
+    draft.current = next;
+    setRows(next);
+  }, [meal.id, meal.items]);
+  const save = (change: (current: typeof rows) => typeof rows) => {
+    const next = change(draft.current);
+    if (next.length > MAX_MEAL_ITEMS) { setError(`A meal can contain at most ${MAX_MEAL_ITEMS} foods. Remove a food before adding another.`); return; }
+    draft.current = next;
+    setRows(next);
+    setError("");
+    pending.current++;
+    const items = next.map((r) => r.item);
+    void updateMeal(meal.id, (current) => ({ ...current, items }))
+      .catch(() => setError("Could not save the meal changes. Please try again."))
+      .finally(() => { pending.current--; });
+  };
   return (
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">Foods</h2>
-      {meal.items.length === 0 && <p className="text-ink-2">No foods yet. Search the food table below and add them with their weight.</p>}
+      {error && <Notice tone="warn">{error}</Notice>}
+      {rows.length === 0 && <p className="text-ink-2">No foods yet. Search the food table below and add them with their weight.</p>}
       <ul className="flex flex-col divide-y divide-line">
-        {meal.items.map((it, i) => {
+        {rows.map(({ item: it, key }) => {
           const food = db ? foodById(db, it.foodId) : undefined;
           return (
-            <li key={`${it.foodId}-${i}`} className="flex flex-wrap items-center justify-between gap-2 py-2">
+            <li key={key} className="flex flex-wrap items-center justify-between gap-2 py-2">
               <span className="min-w-0 flex-1">{food?.name ?? it.foodId}</span>
               {editable ? (
                 <span className="flex items-center gap-1">
-                  <input
-                    type="number"
-                    inputMode="decimal"
-                    min={1}
-                    max={2000}
-                    aria-label={`Grams of ${food?.name ?? "this food"}`}
-                    defaultValue={it.grams}
-                    onBlur={(e) => {
-                      const g = Number(e.target.value);
-                      if (g > 0 && g <= 2000 && g !== it.grams) save(meal.items.map((x, j) => (j === i ? { ...x, grams: g } : x)));
-                    }}
-                    className={cx(inputStyles, "w-24 text-right")}
-                  />
+                  <GramsField grams={it.grams} label={`Grams of ${food?.name ?? "this food"}`} onSave={(grams) => save((current) => current.map((r) => r.key === key ? { ...r, item: { ...r.item, grams } } : r))} />
                   <span className="text-ink-2">g</span>
-                  <Button variant="quiet" className="min-h-10 text-sm" onClick={() => save(meal.items.filter((_, j) => j !== i))}>
+                  <Button variant="quiet" className="min-h-10 text-sm" onClick={() => save((current) => current.filter((r) => r.key !== key))}>
                     Remove
                   </Button>
                 </span>
@@ -130,6 +147,7 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
       </ul>
       {editable && (
         <div className="flex flex-col gap-2 border-t border-line pt-3">
+          {rows.length >= MAX_MEAL_ITEMS && <p role="status" className="text-sm text-ink-2">A meal can contain at most {MAX_MEAL_ITEMS} foods. Remove a food before adding another.</p>}
           <label className="flex flex-col gap-1.5">
             <span className={labelStyles}>Add a food</span>
             <input
@@ -147,7 +165,7 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
             limit={12}
             action="Add 100 g"
             onPick={(f) => {
-              save([...meal.items, { foodId: f.id, grams: 100 }]);
+              save((current) => [...current, { key: newId(), item: { foodId: f.id, grams: 100 } }]);
               setQuery("");
             }}
           />
@@ -156,6 +174,19 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
       )}
     </Card>
   );
+}
+
+function GramsField({ grams, label, onSave }: { grams: number; label: string; onSave: (grams: number) => void }) {
+  const [value, setValue] = useState(String(grams));
+  useEffect(() => setValue(String(grams)), [grams]);
+  return <input type="number" inputMode="decimal" min={1} max={2000} aria-label={label} value={value}
+    onChange={(e) => setValue(e.target.value)}
+    onBlur={() => {
+      const next = Number(value);
+      if (next >= 1 && next <= 2000) { if (next !== grams) onSave(next); }
+      else setValue(String(grams));
+    }}
+    className={cx(inputStyles, "w-24 text-right")} />;
 }
 
 function coverageNote(t: Total | undefined): string | undefined {

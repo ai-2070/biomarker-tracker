@@ -88,7 +88,7 @@ export default defineConfig({
   server: { proxy: { "/api": { target: "http://127.0.0.1:4820", changeOrigin: true } } },
   test: {
     projects: [
-      { test: { name: "core", include: ["tests/core/**/*.test.ts", "tests/knowledge/**/*.test.ts", "tests/research/**/*.test.ts", "tests/ai/**/*.test.ts", "tests/db/**/*.test.ts", "tests/app/**/*.test.ts"], environment: "node" } },
+      { test: { name: "core", include: ["tests/core/**/*.test.ts", "tests/core/**/*.test.tsx", "tests/knowledge/**/*.test.ts", "tests/research/**/*.test.ts", "tests/ai/**/*.test.ts", "tests/db/**/*.test.ts", "tests/app/**/*.test.ts", "tests/app/**/*.test.tsx"], environment: "node" } },
       // the local server, against a throwaway data folder (never data/)
       { test: { name: "server", include: ["tests/server/**/*.test.ts"], environment: "node", setupFiles: ["tests/server/setup.ts"], isolate: true, testTimeout: 30_000 } },
     ],

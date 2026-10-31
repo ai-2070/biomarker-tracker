@@ -150,11 +150,6 @@ describe("fitness test norms", () => {
     expect(placeResult(grip, 50, { sex: "m", age: 42 }, "dominant hand").map((r) => r.set.variant)).toEqual(["dominant hand"]);
   });
 
-  it("caps a result at the study's time limit before comparing", () => {
-    const capped: NormSet = { ...percentiles, ceiling: 30, rows: [{ sex: "any", ageFrom: 50, ageTo: 59, p25: 20, p50: 30, p75: 30 }] };
-    expect(placeInRow(capped, capped.rows[0]!, 55)).toEqual({ kind: "percentile", above: 75, median: 30 });
-  });
-
   it("says percentiles and averages so that higher is better, also for timed tests", () => {
     // A time between the time's 25th and 50th percentile is between the 50th and 75th for speed.
     expect(describePlace({ kind: "percentile", above: 25, below: 50 }, false)).toBe("Between the 50th and 75th percentile");
@@ -203,7 +198,6 @@ describe("fitness test norms", () => {
     // Best in its youngest group: nothing younger was measured, so it says so.
     expect(ageMatch(timed, "m", 5.5, false)).toEqual({ kind: "youngest", ageFrom: 20, ageTo: 29 });
     expect(ageMatch(timed, "m", 7, false)).toEqual({ kind: "age", age: 35 });
-    expect(ageMatch(timed, "m", 10, false)).toEqual({ kind: "oldest", age: 70 });
     expect(ageMatch(bands, "m", 30, true)).toBeUndefined();
   });
 

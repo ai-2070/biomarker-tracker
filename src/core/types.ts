@@ -97,7 +97,7 @@ export interface BiomarkerDef {
   /** Typical adult ranges in the canonical unit. Labs differ; their own range wins. */
   defaultRanges?: RangeDef[];
   /** Values beyond these (canonical unit) show an urgent "contact a doctor" banner. */
-  criticalRange?: { low?: number; high?: number };
+  criticalRange?: { low?: number; high?: number; lowInclusive?: boolean; highInclusive?: boolean };
   /** Extra context for the range, e.g. "fasting". */
   rangeNote?: string;
   /**
@@ -162,6 +162,8 @@ export interface Experiment {
 
 export interface Measurement {
   id: string;
+  /** Monotonic save order in this profile; disambiguates readings on the same sample date. */
+  savedOrder?: number;
   biomarkerId: string;
   /** In the biomarker's canonical unit. */
   value: number;
@@ -192,7 +194,7 @@ export interface ProtocolEntry {
 }
 
 export type EvidenceGrade = "high" | "moderate" | "low" | "very low";
-export type SafetyId = "anticoagulant" | "diabetes" | "pregnancy" | "kidney";
+export type SafetyId = "anticoagulant" | "antiplatelet" | "diabetes" | "pregnancy" | "kidney";
 
 /** A graded statement about what affects a marker. /knowledge/evidence/*.json */
 export interface EvidenceClaim {

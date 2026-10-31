@@ -1,14 +1,14 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { todayIso } from "../../core/dates";
+import { addDays, todayIso } from "../../core/dates";
 import { interactionsFor } from "../../core/nutrients";
 import { dailyReference, mealNote } from "../../core/meals";
 import { ageAt } from "../../core/phenoageDraws";
 import { formatValue } from "../../core/units";
-import { itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "../../core/plans";
-import { safetyLabels, safetyNotes, type ProtocolCategory } from "../../core/protocols";
+import { MAX_ITEMS, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "../../core/plans";
+import { safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory } from "../../core/protocols";
 import type { SafetyId } from "../../core/types";
-import { deletePlan, newId, savePlan, startPlan, stopPlan } from "../../db/db";
+import { deletePlan, newId, savePlan, updatePlan, startPlan, stopPlan } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { TIME_LABEL, WhenFields, whenExtras, whenFields, whenOf, type WhenValue } from "../components/PlanWhen";
 import { ConfirmDialog } from "../components/ConfirmDialog";
@@ -28,6 +28,7 @@ export function PlanPage({ id }: { id: string }) {
   const profile = useProfile();
   const habits = useProtocols() ?? [];
   const [editing, setEditing] = useState<string | "new" | "details" | null>(null);
+  const [saveError, setSaveError] = useState("");
   if (plans === undefined) return <p className="text-ink-2">Loading…</p>;
   const plan = plans.find((p) => p.id === id);
   if (!plan) return <NotFound />;
@@ -41,7 +42,10 @@ export function PlanPage({ id }: { id: string }) {
   });
   const withYou = [...new Map(linked.flatMap(({ n }) => interactionsFor(n, safety).map((x) => [`${n.id}|${x.with}`, { n, x }] as const))).values()];
   const pairs = pairWarnings(plan, NUTRIENTS);
-  const update = (p: Plan) => void savePlan(p);
+  const update = async (change: (current: Plan) => Plan) => {
+    try { await updatePlan(plan.id, change); setSaveError(""); setEditing(null); }
+    catch (error) { setSaveError(error instanceof Error ? error.message : "Could not save the protocol. Please try again."); }
+  };
 
   return (
     <>
@@ -63,6 +67,7 @@ export function PlanPage({ id }: { id: string }) {
           </Button>
         </div>
       )}
+      {saveError && <Notice tone="warn" className="mb-4">{saveError}</Notice>}
 
       {/* Wide screens: the day on the left; start, checks and sharing beside it. Phones: one column in this order. */}
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem] lg:grid-rows-[auto_1fr] lg:gap-x-8">
@@ -101,17 +106,17 @@ export function PlanPage({ id }: { id: string }) {
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="font-serif text-2xl font-normal">The day</h2>
             {editing !== "new" && (
-              <Button variant="secondary" onClick={() => setEditing("new")}>
+              <Button variant="secondary" disabled={plan.items.length >= MAX_ITEMS} onClick={() => setEditing("new")}>
                 <PlusIcon /> Add an item
               </Button>
             )}
           </div>
           {plan.active && <p className="text-sm text-ink-2">Changes here don't change what's already recorded in Habits; stop and start the protocol again to use them.</p>}
+          {plan.items.length >= MAX_ITEMS && <p role="status" className="text-sm text-ink-2">A protocol can contain at most {MAX_ITEMS} items. Remove an item before adding another.</p>}
           {editing === "new" && (
             <ItemForm
               onSave={(item) => {
-                update({ ...plan, items: [...plan.items, item] });
-                setEditing(null);
+                void update((current) => ({ ...current, items: [...current.items, item] }));
               }}
               onCancel={() => setEditing(null)}
             />
@@ -129,12 +134,10 @@ export function PlanPage({ id }: { id: string }) {
                         <ItemForm
                           initial={item}
                           onSave={(next) => {
-                            update({ ...plan, items: plan.items.map((i) => (i.id === item.id ? next : i)) });
-                            setEditing(null);
+                            void update((current) => ({ ...current, items: current.items.map((i) => (i.id === item.id ? next : i)) }));
                           }}
                           onRemove={() => {
-                            update({ ...plan, items: plan.items.filter((i) => i.id !== item.id) });
-                            setEditing(null);
+                            void update((current) => ({ ...current, items: current.items.filter((i) => i.id !== item.id) }));
                           }}
                           onCancel={() => setEditing(null)}
                         />
@@ -330,9 +333,13 @@ function DetailsForm({ plan, onDone }: { plan: Plan; onDone: () => void }) {
   async function submit(e: FormEvent) {
     e.preventDefault();
     if (!name.trim()) return setError("Give the protocol a name.");
-    const { description: _d, source: _s, ...rest } = plan;
-    await savePlan({ ...rest, name: name.trim(), ...(description.trim() ? { description: description.trim() } : {}), ...(source.trim() ? { source: source.trim() } : {}) });
-    onDone();
+    try {
+      await updatePlan(plan.id, (current) => {
+        const { description: _d, source: _s, ...rest } = current;
+        return { ...rest, name: name.trim(), ...(description.trim() ? { description: description.trim() } : {}), ...(source.trim() ? { source: source.trim() } : {}) };
+      });
+      onDone();
+    } catch (error) { setError(error instanceof Error ? error.message : "Could not save the protocol. Please try again."); }
   }
 
   return (
@@ -369,6 +376,10 @@ function StartStop({ plan }: { plan: Plan }) {
   const today = todayIso();
   const [start, setStart] = useState(today);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState("");
+  const latestStart = addDays(today, 365);
+  const startValidation = validateProtocol({ label: plan.name, category: "lifestyle", start }, today);
+  const startError = startValidation.ok ? undefined : startValidation.errors.start;
   if (plan.active) {
     return (
       <Card className="flex flex-wrap items-center justify-between gap-3">
@@ -406,9 +417,9 @@ function StartStop({ plan }: { plan: Plan }) {
         <div className="flex flex-wrap items-end gap-3">
           <label className="flex flex-col gap-1.5">
             <span className={labelStyles}>Start date</span>
-            <input type="date" value={start} onChange={(e) => setStart(e.target.value)} className={cx(inputStyles, "w-48")} />
+            <input type="date" value={start} max={latestStart} onChange={(e) => setStart(e.target.value)} className={cx(inputStyles, "w-48")} />
           </label>
-          <Button onClick={() => void startPlan(plan, start || today).then(() => setOpen(false))}>
+          <Button disabled={!!startError} onClick={() => void startPlan(plan, start).then(() => { setError(""); setOpen(false); }).catch((e: unknown) => setError(e instanceof Error ? e.message : "Could not start the protocol. Please try again."))}>
             Add 1 habit
           </Button>
           <Button variant="quiet" onClick={() => setOpen(false)}>
@@ -416,6 +427,7 @@ function StartStop({ plan }: { plan: Plan }) {
           </Button>
         </div>
       )}
+      {open && (startError || error) && <Notice tone="warn">{startError || error}</Notice>}
     </Card>
   );
 }

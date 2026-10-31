@@ -18,8 +18,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving omega-3, with omega-3 in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded omega-3 trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 46820,
@@ -87,12 +87,13 @@
   {
    "id": "triglycerides",
    "label": "Triglycerides",
+   "anyDesign": false,
    "finding": "Triglycerides (a blood fat)",
    "counts": {
     "reviews": 94,
     "trialReviews": 25,
     "trials": 570,
-    "largeTrials": 9
+    "largeTrials": 7
    },
    "chosenReviews": [
     {
@@ -103,7 +104,7 @@
      "firstAuthor": "Safaei P",
      "journal": "Systematic reviews",
      "citedBy": 3,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37264945",
@@ -114,7 +115,7 @@
      "journal": "Journal of the American Heart Association",
      "citedBy": 52,
      "n": 72598,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "32073633",
@@ -124,581 +125,10 @@
      "firstAuthor": "Kim MG",
      "journal": "Nutrition reviews",
      "citedBy": 24,
-     "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2020); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.052083333333333336,
-    "trials": 144,
-    "inclusions": 159,
-    "reviews": [
-     {
-      "pmid": "38317191",
-      "trials": 14
-     },
-     {
-      "pmid": "37264945",
-      "trials": 88
-     },
-     {
-      "pmid": "32073633",
-      "trials": 57
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "21865334",
-      "title": "Effect of low doses of long-chain n-3 PUFAs on endothelial function and arterial stiffness: a randomized controlled trial",
-      "year": 2011,
-      "n": 312,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "21862301",
-      "title": "Moderate doses of EPA and DHA from re-esterified triacylglycerols but not from ethyl-esters lower fasting serum triacylglycerols in statin-treated dyslipidemic subjects: Results from a six month randomized controlled trial",
-      "year": 2011,
-      "n": 150,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "19593941",
-      "title": "Omega-3 fatty acid supplements improve the cardiovascular risk profile of subjects with metabolic syndrome, including markers of inflammation and auto-immunity",
-      "year": 2009,
-      "n": 120,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "23888318",
-      "title": "Combined fish oil and high oleic sunflower oil supplements neutralize their individual effects on the lipid profile of healthy men",
-      "year": 2013,
-      "n": 98,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "25123060",
-      "title": "A new, microalgal DHA- and EPA-containing oil lowers triacylglycerols in adults with mild-to-moderate hypertriglyceridemia",
-      "year": 2014,
-      "n": 93,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "27913872",
-      "title": "Treatment for 6 months with fish oil-derived n-3 polyunsaturated fatty acids has neutral effects on glycemic control but improves dyslipidemia in type 2 diabetic patients with abdominal obesity: a randomized, double-blind, placebo-controlled trial",
-      "year": 2017,
-      "n": 64,
-      "inReviews": [
-       "38317191",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "11303007",
-      "title": "An omega-3 polyunsaturated fatty acid concentrate administered for one year decreased triglycerides in simvastatin treated patients with coronary heart disease and persisting hypertriglyceridaemia",
-      "year": 2001,
-      "n": 59,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "25008950",
-      "title": "A double-blind randomized trial of fish oil to lower triglycerides and improve cardiometabolic risk in adolescents",
-      "year": 2014,
-      "n": 42,
-      "inReviews": [
-       "38317191",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "26226139",
-      "title": "Fish Oil Supplements Lower Serum Lipids and Glucose in Correlation with a Reduction in Plasma Fibroblast Growth Factor 21 and Prostaglandin E2 in Nonalcoholic Fatty Liver Disease Associated with Hyperlipidemia: A Randomized Clinical Trial",
-      "year": 2015,
-      "n": 40,
-      "inReviews": [
-       "38317191",
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "25515553",
-      "title": "The impact of polyunsaturated fatty acid-based dietary supplements on disease biomarkers in a metabolic syndrome/diabetes population",
-      "year": 2014,
-      "inReviews": [
-       "38317191",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "12540386",
-      "title": "Randomized controlled trial of the effect of n-3 fatty acid supplementation on the metabolism of apolipoprotein B-100 and chylomicron remnants in men with visceral obesity",
-      "year": 2003,
-      "inReviews": [
-       "38317191",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "24304605",
-      "title": "Enhanced increase of omega-3 index in healthy individuals with response to 4-week n-3 fatty acid supplementation from krill oil versus fish oil",
-      "year": 2013,
-      "inReviews": [
-       "38317191",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "10799369",
-      "title": "Purified eicosapentaenoic and docosahexaenoic acids have differential effects on serum lipids and lipoproteins, LDL particle size, glucose, and insulin in mildly hyperlipidemic men",
-      "year": 2000,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "19394939",
-      "title": "Fish oil supplementation improves endothelial function in normoglycemic offspring of patients with type 2 diabetes",
-      "year": 2009,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "18460481",
-      "title": "A comparison of fish oil, flaxseed oil and hempseed oil supplementation on selected parameters of cardiovascular health in healthy volunteers",
-      "year": 2008,
-      "inReviews": [
-       "37264945",
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "30415637",
-      "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "17398308",
-      "title": "Effects of eicosapentaenoic acid on major coronary events in hypercholesterolaemic patients (JELIS): a randomised open-label, blinded endpoint analysis",
-      "year": 2007,
-      "n": 18645,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "21099130",
-      "title": "Relationships between plasma fatty acid composition and coronary artery disease",
-      "year": 2011,
-      "n": 15534,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "30146932",
-      "title": "Effects of n-3 Fatty Acid Supplements in Diabetes Mellitus",
-      "year": 2018,
-      "n": 15480,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "18667204",
-      "title": "Effects of EPA on coronary artery disease in hypercholesterolemic patients with multiple risk factors: sub-analysis of primary prevention cases from the Japan EPA Lipid Intervention Study (JELIS)",
-      "year": 2008,
-      "n": 14981,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "33190147",
-      "title": "Effect of High-Dose Omega-3 Fatty Acids vs Corn Oil on Major Adverse Cardiovascular Events in Patients at High Cardiovascular Risk: The STRENGTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 13078,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "22686415",
-      "title": "n-3 fatty acids and cardiovascular outcomes in patients with dysglycemia",
-      "year": 2012,
-      "n": 12536,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "23656645",
-      "title": "n-3 fatty acids in patients with multiple cardiovascular risk factors",
-      "year": 2013,
-      "n": 12513,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "30415628",
-      "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
-      "year": 2019,
-      "n": 8179,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "20929341",
-      "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
-      "year": 2010,
-      "n": 4837,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "24638908",
-      "title": "Effect of long-chain ω-3 fatty acids and lutein + zeaxanthin supplements on cardiovascular outcomes: results of the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
-      "year": 2014,
-      "n": 4203,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "21060071",
-      "title": "OMEGA, a randomized, placebo-controlled trial to test the effect of highly purified omega-3 fatty acids on top of modern guideline-adjusted therapy after myocardial infarction",
-      "year": 2010,
-      "n": 3851,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "33191772",
-      "title": "Effects of n-3 Fatty Acid Supplements in Elderly Patients After Myocardial Infarction: A Randomized, Controlled Trial",
-      "year": 2021,
-      "n": 1027,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "9174486",
-      "title": "N-3 fatty acids do not lead to an increased diabetic risk in patients with hyperlipidemia and abnormal glucose tolerance. Italian Fish Oil Multicenter Study",
-      "year": 1997,
-      "n": 935,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "19002433",
-      "title": "Atorvastatin in Factorial with Omega-3 EE90 Risk Reduction in Diabetes (AFORRD): a randomised controlled trial",
-      "year": 2009,
-      "n": 800,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "22819432",
-      "title": "Efficacy and safety of eicosapentaenoic acid ethyl ester (AMR101) therapy in statin-treated patients with persistent high triglycerides (from the ANCHOR study)",
-      "year": 2012,
-      "n": 702,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "21036355",
-      "title": "Impact of atorvastatin and omega-3 ethyl esters 90 on plasma plant sterol concentrations and cholesterol synthesis in type 2 diabetes: a randomised placebo controlled factorial trial",
-      "year": 2010,
-      "n": 658,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "23998969",
-      "title": "A highly bioavailable omega-3 free fatty acid formulation improves the cardiovascular risk profile in high-risk, statin-treated patients with residual hypertriglyceridemia (the ESPRIT trial)",
-      "year": 2013,
-      "n": 647,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "8540453",
-      "title": "Effect of dietary supplementation with n-3 fatty acids on coronary artery bypass graft patency",
-      "year": 1996,
-      "n": 610,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "15755826",
-      "title": "Influence of long-term intervention with dietary counseling, long-chain n-3 fatty acid supplements, or both on circulating markers of endothelial activation in men with long-standing hyperlipidemia",
-      "year": 2005,
-      "n": 563,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "7955181",
-      "title": "Do fish oils prevent restenosis after coronary angioplasty?",
-      "year": 1994,
-      "n": 551,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "10334433",
-      "title": "N-3 fatty acids do not prevent restenosis after coronary angioplasty: results from the CART study. Coronary Angioplasty Restenosis Trial",
-      "year": 1999,
-      "n": 500,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "12075272",
-      "title": "Prevention of postcoronary angioplasty restenosis by omega-3 fatty acids: main results of the Esapent for Prevention of Restenosis ITalian Study (ESPRIT)",
-      "year": 2002,
-      "n": 339,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "18490931",
-      "title": "Inclusion of fish or fish oil in weight-loss diets for young adults: effects on blood lipids",
-      "year": 2008,
-      "n": 324,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "24461313",
-      "title": "Krill oil supplementation lowers serum triglycerides without increasing low-density lipoprotein cholesterol in adults with borderline high or high triglyceride levels",
-      "year": 2014,
-      "n": 300,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "17825687",
-      "title": "Efficacy and tolerability of adding prescription omega-3 fatty acids 4 g/d to simvastatin 40 mg/d in hypertriglyceridemic patients: an 8-week, randomized, double-blind, placebo-controlled study",
-      "year": 2007,
-      "n": 254,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "27600795",
-      "title": "A Randomized, Double-Blind, Placebo-Controlled Clinical Trial to Assess the Efficacy and Safety of Ethyl-Ester Omega-3 Fatty Acid in Taiwanese Hypertriglyceridemic Patients",
-      "year": 2017,
-      "n": 253,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "29781483",
-      "title": "Dose-dependent effects of fish oil on cardio-metabolic biomarkers in healthy middle-aged and elderly Chinese people: a double-blind randomized controlled trial",
-      "year": 2018,
-      "n": 240,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "21683321",
-      "title": "Eicosapentaenoic acid ethyl ester (AMR101) therapy in patients with very high triglyceride levels (from the Multi-center, plAcebo-controlled, Randomized, double-blINd, 12-week study with an open-label Extension [MARINE] trial)",
-      "year": 2011,
-      "n": 229,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "10189324",
-      "title": "The effect of dietary omega-3 fatty acids on coronary atherosclerosis. A randomized, double-blind, placebo-controlled trial",
-      "year": 1999,
-      "n": 223,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "12062374",
-      "title": "Effect of dietary supplementation with omega-3 fatty acids on progression of atherosclerosis in carotid arteries",
-      "year": 2002,
-      "n": 223,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "29223557",
-      "title": "Efficacy and Safety of Adding Omega-3 Fatty Acids in Statin-treated Patients with Residual Hypertriglyceridemia: ROMANTIC (Rosuvastatin-OMAcor iN residual hyperTrIglyCeridemia), a Randomized, Double-blind, and Placebo-controlled Trial",
-      "year": 2018,
-      "n": 201,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "19296875",
-      "title": "Independent and interactive effects of plant sterols and fish oil n-3 long-chain polyunsaturated fatty acids on the plasma lipid profile of mildly hyperlipidaemic Indian adults",
-      "year": 2009,
-      "n": 200,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "28863874",
-      "title": "A randomized controlled trial of eicosapentaenoic acid in patients with coronary heart disease on statins",
-      "year": 2017,
-      "n": 193,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "19172517",
-      "title": "The effects of pitavastatin, eicosapentaenoic acid and combined therapy on platelet-derived microparticles and adiponectin in hyperlipidemic, diabetic patients",
-      "year": 2009,
-      "n": 191,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "20877395",
-      "title": "Prospective randomized comparison between omega-3 fatty acid supplements plus simvastatin versus simvastatin alone in Korean patients with mixed dyslipidemia: lipoprotein profiles and heart rate variability",
-      "year": 2011,
-      "n": 171,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "29289538",
-      "title": "Omega-3 carboxylic acids in patients with severe hypertriglyceridemia: EVOLVE II, a randomized, placebo-controlled trial",
-      "year": 2018,
-      "n": 162,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "1534256",
-      "title": "Docosahexaenoic and eicosapentaenoic acids in plasma phospholipids are divergently associated with high density lipoprotein in humans",
-      "year": 1992,
-      "n": 156,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "12663273",
-      "title": "Plant- and marine-derived n-3 polyunsaturated fatty acids have differential effects on fasting and postprandial blood lipid concentrations and on the susceptibility of LDL to oxidative modification in moderately hyperlipidemic subjects",
-      "year": 2003,
-      "n": 150,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "32805184",
-      "title": "Effects of Fatty Acid Therapy in Addition to Strong Statin on Coronary Plaques in Acute Coronary Syndrome: An Optical Coherence Tomography Study",
-      "year": 2020,
-      "n": 130,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "20803425",
-      "title": "The effects of low dose n-3 fatty acids on serum lipid profiles and insulin resistance of the elderly: a randomized controlled clinical trial",
-      "year": 2010,
-      "n": 124,
-      "inReviews": [
-       "32073633"
-      ]
-     },
-     {
-      "pmid": "30900815",
-      "title": "EPA+DHA, but not ALA, Improved Lipids and Inflammation Status in Hypercholesterolemic Adults: A Randomized, Double-Blind, Placebo-Controlled Trial",
-      "year": 2019,
-      "n": 123,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "24252845",
-      "title": "Determinants of erythrocyte omega-3 fatty acid content in response to fish oil supplementation: a dose-response randomized controlled trial",
-      "year": 2013,
-      "n": 115,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "35067753",
-      "title": "The effects of fish oil plus vitamin D3 intervention on non-alcoholic fatty liver disease: a randomized controlled trial",
-      "year": 2022,
-      "n": 111,
-      "inReviews": [
-       "37264945"
-      ]
-     },
-     {
-      "pmid": "21630032",
-      "title": "The effect of bezafibrate and omega-3 fatty acids on lymphocyte cytokine release and systemic inflammation in patients with isolated hypertriglyceridemia",
-      "year": 2011,
-      "n": 107,
-      "inReviews": [
-       "37264945"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1981,
@@ -963,18 +393,6 @@
      "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
      "year": 2019,
      "n": 8179
-    },
-    {
-     "pmid": "36202740",
-     "title": "Long-term safety and efficacy of MND-2119 (self-emulsifying formulation of highly purified eicosapentaenoic acid ethyl ester) in patients with hypertriglyceridemia: Results from a multicenter, 52-week, open-label study",
-     "year": 2022,
-     "n": 2119
-    },
-    {
-     "pmid": "35871058",
-     "title": "Efficacy and safety of self-emulsifying formulation of highly purified eicosapentaenoic acid ethyl ester (MND-2119) versus highly purified eicosapentaenoic acid ethyl ester in patients with hypertriglyceridemia: Results from a 12-week randomized, double-blind, active-controlled, phase 3 study",
-     "year": 2022,
-     "n": 2119
     }
    ],
    "page": {
@@ -998,7 +416,7 @@
       "firstAuthor": "Safaei P",
       "journal": "Systematic reviews",
       "citedBy": 3,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "32073633",
@@ -1008,11 +426,12 @@
       "firstAuthor": "Kim MG",
       "journal": "Nutrition reviews",
       "citedBy": 24,
-      "why": "One of the newest meta-analyses of trials on this outcome (2020); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2020); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with normal or high triglycerides",
      "intervention": "Omega-3 supplements (fish oil, EPA and/or DHA)",
@@ -1160,6 +579,7 @@
   {
    "id": "cardiovascular",
    "label": "Heart attacks, strokes, deaths",
+   "anyDesign": false,
    "finding": "Heart attacks, strokes and deaths",
    "counts": {
     "reviews": 217,
@@ -1176,7 +596,7 @@
      "firstAuthor": "Yan J",
      "journal": "Cardiovascular drugs and therapy",
      "citedBy": 29,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38869144",
@@ -1187,7 +607,7 @@
      "journal": "European journal of preventive cardiology",
      "citedBy": 21,
      "n": 134144,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39639295",
@@ -1198,7 +618,7 @@
      "journal": "Nutrition journal",
      "citedBy": 4,
      "n": 99830,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31284304",
@@ -1209,7 +629,7 @@
      "journal": "Annals of internal medicine",
      "citedBy": 145,
      "n": 992129,
-     "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -1247,268 +667,6 @@
      "why": "A large trial (about 1,228 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.3055555555555556,
-    "trials": 24,
-    "inclusions": 46,
-    "reviews": [
-     {
-      "pmid": "36103100",
-      "trials": 17
-     },
-     {
-      "pmid": "38869144",
-      "trials": 15
-     },
-     {
-      "pmid": "39639295",
-      "trials": 10
-     },
-     {
-      "pmid": "31284304",
-      "trials": 4
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "30415637",
-      "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "39639295",
-       "31284304"
-      ]
-     },
-     {
-      "pmid": "30415628",
-      "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
-      "year": 2019,
-      "n": 8179,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "39639295",
-       "31284304"
-      ]
-     },
-     {
-      "pmid": "30146932",
-      "title": "Effects of n-3 Fatty Acid Supplements in Diabetes Mellitus",
-      "year": 2018,
-      "n": 15480,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "31284304"
-      ]
-     },
-     {
-      "pmid": "22686415",
-      "title": "n-3 fatty acids and cardiovascular outcomes in patients with dysglycemia",
-      "year": 2012,
-      "n": 12536,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "23656645",
-      "title": "n-3 fatty acids in patients with multiple cardiovascular risk factors",
-      "year": 2013,
-      "n": 12513,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "24638908",
-      "title": "Effect of long-chain ω-3 fatty acids and lutein + zeaxanthin supplements on cardiovascular outcomes: results of the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
-      "year": 2014,
-      "n": 4203,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "21060071",
-      "title": "OMEGA, a randomized, placebo-controlled trial to test the effect of highly purified omega-3 fatty acids on top of modern guideline-adjusted therapy after myocardial infarction",
-      "year": 2010,
-      "n": 3851,
-      "inReviews": [
-       "36103100",
-       "38869144",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "17398308",
-      "title": "Effects of eicosapentaenoic acid on major coronary events in hypercholesterolaemic patients (JELIS): a randomised open-label, blinded endpoint analysis",
-      "year": 2007,
-      "n": 18645,
-      "inReviews": [
-       "38869144",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "33190147",
-      "title": "Effect of High-Dose Omega-3 Fatty Acids vs Corn Oil on Major Adverse Cardiovascular Events in Patients at High Cardiovascular Risk: The STRENGTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 13078,
-      "inReviews": [
-       "36103100",
-       "38869144"
-      ]
-     },
-     {
-      "pmid": "21115589",
-      "title": "Effects of B vitamins and omega 3 fatty acids on cardiovascular diseases: a randomised placebo controlled trial",
-      "year": 2010,
-      "n": 2501,
-      "inReviews": [
-       "36103100",
-       "38869144"
-      ]
-     },
-     {
-      "pmid": "33191772",
-      "title": "Effects of n-3 Fatty Acid Supplements in Elderly Patients After Myocardial Infarction: A Randomized, Controlled Trial",
-      "year": 2021,
-      "n": 1027,
-      "inReviews": [
-       "36103100",
-       "38869144"
-      ]
-     },
-     {
-      "pmid": "23265344",
-      "title": "Omega-3 fatty acids for the prevention of recurrent symptomatic atrial fibrillation: results of the FORWARD (Randomized Trial to Assess Efficacy of PUFA for the Maintenance of Sinus Rhythm in Persistent Atrial Fibrillation) trial",
-      "year": 2013,
-      "n": 586,
-      "inReviews": [
-       "36103100",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "20389249",
-      "title": "A randomized clinical trial on n-3 polyunsaturated fatty acids supplementation and all-cause mortality in elderly men at high cardiovascular risk",
-      "year": 2010,
-      "n": 563,
-      "inReviews": [
-       "38869144",
-       "39639295"
-      ]
-     },
-     {
-      "pmid": "30415629",
-      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "31284304"
-      ]
-     },
-     {
-      "pmid": "20929341",
-      "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
-      "year": 2010,
-      "n": 4837,
-      "inReviews": [
-       "36103100"
-      ]
-     },
-     {
-      "pmid": "23128104",
-      "title": "Fish oil and postoperative atrial fibrillation: the Omega-3 Fatty Acids for Prevention of Post-operative Atrial Fibrillation (OPERA) randomized trial",
-      "year": 2012,
-      "n": 1516,
-      "inReviews": [
-       "36103100"
-      ]
-     },
-     {
-      "pmid": "8840843",
-      "title": "Fish oils and low-molecular-weight heparin for the reduction of restenosis after percutaneous transluminal coronary angioplasty. The EMPAR Study",
-      "year": 1996,
-      "n": 814,
-      "inReviews": [
-       "38869144"
-      ]
-     },
-     {
-      "pmid": "23916928",
-      "title": "A randomized controlled trial to prevent post-operative atrial fibrillation by antioxidant reinforcement",
-      "year": 2013,
-      "n": 203,
-      "inReviews": [
-       "36103100"
-      ]
-     },
-     {
-      "pmid": "15893193",
-      "title": "N-3 Fatty acids for the prevention of atrial fibrillation after coronary artery bypass surgery: a randomized, controlled trial",
-      "year": 2005,
-      "n": 160,
-      "inReviews": [
-       "36103100"
-      ]
-     },
-     {
-      "pmid": "20542512",
-      "title": "Eicosapentaenoic acid (EPA) from highly concentrated n-3 fatty acid ethyl esters is incorporated into advanced atherosclerotic plaques and higher plaque EPA is associated with decreased plaque inflammation and increased stability",
-      "year": 2010,
-      "n": 121,
-      "inReviews": [
-       "36103100"
-      ]
-     },
-     {
-      "pmid": "23602291",
-      "title": "Effects of high dose intravenous fish oil on human atrial electrophysiology: implications for possible anti- and pro-arrhythmic mechanisms in atrial fibrillation",
-      "year": 2013,
-      "n": 88,
-      "inReviews": [
-       "36103100"
-      ]
-     },
-     {
-      "pmid": "32860032",
-      "title": "Effect of icosapent ethyl on progression of coronary atherosclerosis in patients with elevated triglycerides on statin therapy: final results of the EVAPORATE trial",
-      "year": 2020,
-      "n": 80,
-      "inReviews": [
-       "38869144"
-      ]
-     },
-     {
-      "pmid": "31709816",
-      "title": "Supplementation With Vitamin D and Omega-3 Fatty Acids and Incidence of Heart Failure Hospitalization: VITAL-Heart Failure",
-      "year": 2020,
-      "inReviews": [
-       "38869144"
-      ]
-     },
-     {
-      "pmid": "11451717",
-      "title": "Effects of a high-dose concentrate of n-3 fatty acids or corn oil introduced early after an acute myocardial infarction on serum triacylglycerol and HDL cholesterol",
-      "year": 2001,
-      "inReviews": [
-       "39639295"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1988,
@@ -1927,7 +1085,7 @@
      "pmid": "27296091",
      "title": "Cost-effective recruitment methods for a large randomised trial in people with diabetes: A Study of Cardiovascular Events iN Diabetes (ASCEND)",
      "year": 2016,
-     "n": 600000
+     "n": 15480
     },
     {
      "pmid": "29137111",
@@ -2066,7 +1224,7 @@
       "firstAuthor": "Yan J",
       "journal": "Cardiovascular drugs and therapy",
       "citedBy": 29,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38869144",
@@ -2077,7 +1235,7 @@
       "journal": "European journal of preventive cardiology",
       "citedBy": 21,
       "n": 134144,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39639295",
@@ -2088,7 +1246,7 @@
       "journal": "Nutrition journal",
       "citedBy": 4,
       "n": 99830,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "31284304",
@@ -2099,7 +1257,7 @@
       "journal": "Annals of internal medicine",
       "citedBy": 145,
       "n": 992129,
-      "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (277 trials, 2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40569483",
@@ -2137,6 +1295,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
      "intervention": "Omega-3 supplements (fish oil, EPA and/or DHA; prescription icosapent ethyl only with results apart)",
@@ -2571,6 +1730,7 @@
   {
    "id": "atrial-fibrillation",
    "label": "Atrial fibrillation",
+   "anyDesign": false,
    "finding": "Atrial fibrillation (an irregular heartbeat)",
    "counts": {
     "reviews": 29,
@@ -2588,7 +1748,7 @@
      "journal": "Circulation. Arrhythmia and electrophysiology",
      "citedBy": 2,
      "n": 114592,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33910233",
@@ -2598,7 +1758,7 @@
      "firstAuthor": "Lombardi M",
      "journal": "European heart journal. Cardiovascular pharmacotherapy",
      "citedBy": 45,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34057665",
@@ -2609,584 +1769,10 @@
      "journal": "Cardiovascular drugs and therapy",
      "citedBy": 21,
      "n": 83112,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.08441558441558442,
-    "trials": 77,
-    "inclusions": 90,
-    "reviews": [
-     {
-      "pmid": "42517224",
-      "trials": 67
-     },
-     {
-      "pmid": "33910233",
-      "trials": 5
-     },
-     {
-      "pmid": "34057665",
-      "trials": 18
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "33190147",
-      "title": "Effect of High-Dose Omega-3 Fatty Acids vs Corn Oil on Major Adverse Cardiovascular Events in Patients at High Cardiovascular Risk: The STRENGTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 13078,
-      "inReviews": [
-       "42517224",
-       "33910233",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "23656645",
-      "title": "n-3 fatty acids in patients with multiple cardiovascular risk factors",
-      "year": 2013,
-      "n": 12513,
-      "inReviews": [
-       "42517224",
-       "33910233",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "30415628",
-      "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
-      "year": 2019,
-      "n": 8179,
-      "inReviews": [
-       "42517224",
-       "33910233",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "33724323",
-      "title": "Effect of Marine Omega-3 Fatty Acid and Vitamin D Supplementation on Incident Atrial Fibrillation: A Randomized Clinical Trial",
-      "year": 2021,
-      "n": 25119,
-      "inReviews": [
-       "42517224",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "17398308",
-      "title": "Effects of eicosapentaenoic acid on major coronary events in hypercholesterolaemic patients (JELIS): a randomised open-label, blinded endpoint analysis",
-      "year": 2007,
-      "n": 18645,
-      "inReviews": [
-       "42517224",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "30146932",
-      "title": "Effects of n-3 Fatty Acid Supplements in Diabetes Mellitus",
-      "year": 2018,
-      "n": 15480,
-      "inReviews": [
-       "42517224",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "20929341",
-      "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
-      "year": 2010,
-      "n": 4837,
-      "inReviews": [
-       "33910233",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "21060071",
-      "title": "OMEGA, a randomized, placebo-controlled trial to test the effect of highly purified omega-3 fatty acids on top of modern guideline-adjusted therapy after myocardial infarction",
-      "year": 2010,
-      "n": 3851,
-      "inReviews": [
-       "42517224",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "33191772",
-      "title": "Effects of n-3 Fatty Acid Supplements in Elderly Patients After Myocardial Infarction: A Randomized, Controlled Trial",
-      "year": 2021,
-      "n": 1027,
-      "inReviews": [
-       "33910233",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "31986094",
-      "title": "Effects of Omega-3 Fatty Acid Supplements on Arrhythmias",
-      "year": 2020,
-      "inReviews": [
-       "42517224",
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "40347940",
-      "title": "Marine n-3 polyunsaturated fatty acids slow sleep impairment progression by regulating central circadian rhythms in type 2 diabetes",
-      "year": 2025,
-      "n": 27549,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "30415637",
-      "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
-      "year": 2019,
-      "n": 25871,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "22686415",
-      "title": "n-3 fatty acids and cardiovascular outcomes in patients with dysglycemia",
-      "year": 2012,
-      "n": 12536,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "24638908",
-      "title": "Effect of long-chain ω-3 fatty acids and lutein + zeaxanthin supplements on cardiovascular outcomes: results of the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
-      "year": 2014,
-      "n": 4203,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "38873793",
-      "title": "Randomized Trial for Evaluation in Secondary Prevention Efficacy of Combination Therapy-Statin and Eicosapentaenoic Acid (RESPECT-EPA)",
-      "year": 2024,
-      "n": 3884,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "19933935",
-      "title": "Serum long-chain n-3 polyunsaturated fatty acids and risk of hospital diagnosis of atrial fibrillation in men",
-      "year": 2009,
-      "n": 2174,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "33170239",
-      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-      "year": 2020,
-      "n": 2157,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "22365647",
-      "title": "Cardiovascular effects of B-vitamins and/or N-3 fatty acids: the SU.FOL.OM3 trial",
-      "year": 2013,
-      "n": 1863,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "28359749",
-      "title": "Effect of long-term omega 3 polyunsaturated fatty acid supplementation with or without multidomain intervention on cognitive function in elderly adults with memory complaints (MAPT): a randomised, placebo-controlled trial",
-      "year": 2017,
-      "n": 1680,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "23128104",
-      "title": "Fish oil and postoperative atrial fibrillation: the Omega-3 Fatty Acids for Prevention of Post-operative Atrial Fibrillation (OPERA) randomized trial",
-      "year": 2012,
-      "n": 1516,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "20410089",
-      "title": "Effect of 2-y n-3 long-chain polyunsaturated fatty acid supplementation on cognitive function in older people: a randomized, double-blind, controlled trial",
-      "year": 2010,
-      "n": 867,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "30466866",
-      "title": "Eicosapentaenoic acid and aspirin, alone and in combination, for the prevention of colorectal adenomas (seAFOod Polyp Prevention trial): a multicentre, randomised, double-blind, placebo-controlled, 2 × 2 factorial trial",
-      "year": 2018,
-      "n": 709,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "22819432",
-      "title": "Efficacy and safety of eicosapentaenoic acid ethyl ester (AMR101) therapy in statin-treated patients with persistent high triglycerides (from the ANCHOR study)",
-      "year": 2012,
-      "n": 702,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "21078810",
-      "title": "Efficacy and safety of prescription omega-3 fatty acids for the prevention of recurrent symptomatic atrial fibrillation: a randomized controlled trial",
-      "year": 2010,
-      "n": 663,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "8540453",
-      "title": "Effect of dietary supplementation with n-3 fatty acids on coronary artery bypass graft patency",
-      "year": 1996,
-      "n": 610,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "23265344",
-      "title": "Omega-3 fatty acids for the prevention of recurrent symptomatic atrial fibrillation: results of the FORWARD (Randomized Trial to Assess Efficacy of PUFA for the Maintenance of Sinus Rhythm in Persistent Atrial Fibrillation) trial",
-      "year": 2013,
-      "n": 586,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "20389249",
-      "title": "A randomized clinical trial on n-3 polyunsaturated fatty acids supplementation and all-cause mortality in elderly men at high cardiovascular risk",
-      "year": 2010,
-      "n": 563,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "16772624",
-      "title": "Effect of fish oil on ventricular tachyarrhythmia and death in patients with implantable cardioverter defibrillators: the Study on Omega-3 Fatty Acids and Ventricular Arrhythmia (SOFA) randomized trial",
-      "year": 2006,
-      "n": 546,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "26037484",
-      "title": "The Beyond Ageing Project Phase 2--a double-blind, selective prevention, randomised, placebo-controlled trial of omega-3 fatty acids and sertraline in an older age cohort at risk for depression: study protocol for a randomized controlled trial",
-      "year": 2015,
-      "n": 450,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "29722833",
-      "title": "An 18-mo randomized, double-blind, placebo-controlled trial of DHA-rich fish oil to prevent age-related cognitive decline in cognitively normal older adults",
-      "year": 2018,
-      "n": 403,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "21045096",
-      "title": "Docosahexaenoic acid supplementation and cognitive decline in Alzheimer disease: a randomized trial",
-      "year": 2010,
-      "n": 402,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "32281579",
-      "title": "Short-Term Efficacy (at 12 Weeks) and Long-Term Safety (up to 52 Weeks) of Omega-3 Free Fatty Acids (AZD0585) for the Treatment of Japanese Patients With Dyslipidemia - A Randomized, Double-Blind, Placebo-Controlled, Phase III Study",
-      "year": 2020,
-      "n": 383,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "37874103",
-      "title": "Baseline Findings of PreventE4: A Double-Blind Placebo Controlled Clinical Trial Testing High Dose DHA in APOE4 Carriers before the Onset of Dementia",
-      "year": 2023,
-      "n": 368,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "29652551",
-      "title": "n-3 Fatty Acid Supplementation for the Treatment of Dry Eye Disease",
-      "year": 2018,
-      "n": 349,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "21865334",
-      "title": "Effect of low doses of long-chain n-3 PUFAs on endothelial function and arterial stiffness: a randomized controlled trial",
-      "year": 2011,
-      "n": 312,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "35953431",
-      "title": "DHA Supplementation During Pregnancy Enhances Maternal Vagally Mediated Cardiac Autonomic Control in Humans",
-      "year": 2023,
-      "n": 300,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "29246960",
-      "title": "Effect of Eicosapentaenoic and Docosahexaenoic Acids Added to Statin Therapy on Coronary Artery Plaque in Patients With Coronary Artery Disease: A Randomized Clinical Trial",
-      "year": 2017,
-      "n": 285,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "40044083",
-      "title": "Supplementation of medium-chain triglycerides combined with docosahexaenoic acid improves cognitive function in Chinese older adults with mild cognitive impairment: A randomized double-blind, placebo-controlled trial",
-      "year": 2025,
-      "n": 280,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "26714774",
-      "title": "Influence of Obesity on Breast Density Reduction by Omega-3 Fatty Acids: Evidence from a Randomized Clinical Trial",
-      "year": 2016,
-      "n": 266,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "37315924",
-      "title": "A combined DHA-rich fish oil and cocoa flavanols intervention does not improve cognition or brain structure in older adults with memory complaints: results from the CANN randomized, controlled parallel-design study",
-      "year": 2023,
-      "n": 259,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "27865182",
-      "title": "Early initiation of eicosapentaenoic acid and statin treatment is associated with better clinical outcomes than statin alone in patients with acute coronary syndromes: 1-year outcomes of a randomized controlled study",
-      "year": 2017,
-      "n": 241,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "10189324",
-      "title": "The effect of dietary omega-3 fatty acids on coronary atherosclerosis. A randomized, double-blind, placebo-controlled trial",
-      "year": 1999,
-      "n": 223,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "17699287",
-      "title": "N-3 fatty acids as secondary prevention against cardiovascular events in patients who undergo chronic hemodialysis: a randomized, placebo-controlled intervention trial",
-      "year": 2006,
-      "n": 206,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "22550196",
-      "title": "Effect of fish oil supplementation on graft patency and cardiovascular events among patients with new synthetic arteriovenous hemodialysis grafts: a randomized controlled trial",
-      "year": 2012,
-      "n": 201,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "30541065",
-      "title": "Effect of Losartan and Fish Oil on Plasma IL-6 and Mobility in Older Persons. The ENRGISE Pilot Randomized Clinical Trial",
-      "year": 2019,
-      "n": 180,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "34755655",
-      "title": "Omega-3 fatty acids and blood-based biomarkers in Alzheimer's disease and mild cognitive impairment: A randomized placebo-controlled trial",
-      "year": 2022,
-      "n": 163,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "15893193",
-      "title": "N-3 Fatty acids for the prevention of atrial fibrillation after coronary artery bypass surgery: a randomized, controlled trial",
-      "year": 2005,
-      "n": 160,
-      "inReviews": [
-       "34057665"
-      ]
-     },
-     {
-      "pmid": "36986098",
-      "title": "Effects of Concentrated Long-Chain Omega-3 Polyunsaturated Fatty Acid Supplementation on Quality of Life after Radical Prostatectomy: A Phase II Randomized Placebo-Controlled Trial (RCT-EPA)",
-      "year": 2023,
-      "n": 130,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "29321047",
-      "title": "Effects of concentrated long-chain omega-3 polyunsaturated fatty acid supplementation before radical prostatectomy on prostate cancer proliferation, inflammation, and quality of life: study protocol for a phase IIb, randomized, double-blind, placebo-controlled trial",
-      "year": 2018,
-      "n": 130,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "24252845",
-      "title": "Determinants of erythrocyte omega-3 fatty acid content in response to fish oil supplementation: a dose-response randomized controlled trial",
-      "year": 2013,
-      "n": 115,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "25096818",
-      "title": "Omega-3 fatty acids' effect on leptin and adiponectin concentrations in patients with spinal cord injury: A double-blinded randomized clinical trial",
-      "year": 2015,
-      "n": 104,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "39088212",
-      "title": "ω-3 PUFA for Secondary Prevention of White Matter Lesions and Neuronal Integrity Breakdown in Older Adults: A Randomized Clinical Trial",
-      "year": 2024,
-      "n": 102,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "39671538",
-      "title": "High Omega-3, Low Omega-6 Diet With Fish Oil for Men With Prostate Cancer on Active Surveillance: The CAPFISH-3 Randomized Clinical Trial",
-      "year": 2025,
-      "n": 100,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "29579102",
-      "title": "Association between cognitive function and supplementation with omega-3 PUFAs and other nutrients in ≥ 75 years old patients: A randomized multicenter study",
-      "year": 2018,
-      "n": 99,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "37704431",
-      "title": "Effect of Eicosapentaenoic Acid/Docosahexaenoic Acid on Coronary High-Intensity Plaques Detected Using Noncontrast T1-weighted Imaging: The AQUAMARINE EPA/DHA Randomized Study",
-      "year": 2024,
-      "n": 84,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "35361442",
-      "title": "1 Year HIIT and Omega-3 Fatty Acids to Improve Cardiometabolic Risk in Stage-A Heart Failure",
-      "year": 2022,
-      "n": 80,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "32860032",
-      "title": "Effect of icosapent ethyl on progression of coronary atherosclerosis in patients with elevated triglycerides on statin therapy: final results of the EVAPORATE trial",
-      "year": 2020,
-      "n": 80,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "19276620",
-      "title": "Is antioxidant and n-3 supplementation able to improve functional status in poststroke patients? Results from the Nutristroke Trial",
-      "year": 2009,
-      "n": 72,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "37515843",
-      "title": "Omega-3 fatty acid supplements and risk of atrial fibrillation and 'micro-atrial fibrillation': A secondary analysis from the OMEMI trial",
-      "year": 2023,
-      "n": 70,
-      "inReviews": [
-       "42517224"
-      ]
-     },
-     {
-      "pmid": "27233921",
-      "title": "Clinical safety evaluation of marine oil derived from Calanus finmarchicus",
-      "year": 2016,
-      "n": 64,
-      "inReviews": [
-       "42517224"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -3369,7 +1955,7 @@
       "journal": "Circulation. Arrhythmia and electrophysiology",
       "citedBy": 2,
       "n": 114592,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33910233",
@@ -3379,7 +1965,7 @@
       "firstAuthor": "Lombardi M",
       "journal": "European heart journal. Cardiovascular pharmacotherapy",
       "citedBy": 45,
-      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "34057665",
@@ -3390,11 +1976,12 @@
       "journal": "Cardiovascular drugs and therapy",
       "citedBy": 21,
       "n": 83112,
-      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults (not after heart surgery)",
      "intervention": "Omega-3 supplements",
@@ -3465,6 +2052,7 @@
   {
    "id": "bleeding",
    "label": "Bleeding",
+   "anyDesign": false,
    "finding": "Bleeding",
    "counts": {
     "reviews": 5,
@@ -3482,7 +2070,7 @@
      "journal": "Journal of the American Heart Association",
      "citedBy": 37,
      "n": 120643,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -3559,6 +2147,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, including people taking antiplatelet medicines",
      "intervention": "Omega-3 supplements",
@@ -3587,6 +2176,7 @@
   {
    "id": "blood-pressure",
    "label": "Blood pressure",
+   "anyDesign": false,
    "finding": "Blood pressure",
    "counts": {
     "reviews": 24,
@@ -3603,7 +2193,7 @@
      "firstAuthor": "Guo XF",
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 45,
-     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "22345681",
@@ -3614,7 +2204,7 @@
      "journal": "European journal of preventive cardiology",
      "citedBy": 54,
      "n": 1524,
-     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "12172309",
@@ -3624,7 +2214,7 @@
      "firstAuthor": "Geleijnse JM",
      "journal": "Journal of hypertension",
      "citedBy": 420,
-     "why": "One of the newest meta-analyses of trials on this outcome (2002); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2002); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -3640,529 +2230,6 @@
      "why": "A large trial (about 12,279 people) from 2019, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.17857142857142858,
-    "trials": 56,
-    "inclusions": 76,
-    "reviews": [
-     {
-      "pmid": "29993265",
-      "trials": 16
-     },
-     {
-      "pmid": "22345681",
-      "trials": 27
-     },
-     {
-      "pmid": "12172309",
-      "trials": 33
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "9665096",
-      "title": "Effects of highly purified eicosapentaenoic acid and docosahexaenoic acid on hemodynamics in humans",
-      "year": 1998,
-      "n": 224,
-      "inReviews": [
-       "29993265",
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "10454450",
-      "title": "Docosahexaenoic acid but not eicosapentaenoic acid lowers ambulatory blood pressure and heart rate in humans",
-      "year": 1999,
-      "inReviews": [
-       "29993265",
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2137901",
-      "title": "Effect of eicosapentaenoic and docosahexaenoic acids on blood pressure in hypertension. A population-based intervention trial from the Tromsø study",
-      "year": 1990,
-      "n": 156,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "7891046",
-      "title": "Improvement of serum lipids and blood pressure during intervention with n-3 fatty acids was not associated with changes in insulin levels in subjects with combined hyperlipidaemia",
-      "year": 1995,
-      "n": 141,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "1828336",
-      "title": "The effects of low doses of n-3 fatty acid supplementation on blood pressure in hypertensive subjects. A randomized controlled trial",
-      "year": 1991,
-      "n": 33,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "1989427",
-      "title": "Blood pressure lowering in elderly subjects: a double-blind crossover study of omega-3 and omega-6 fatty acids",
-      "year": 1991,
-      "n": 22,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8151606",
-      "title": "Effect of sodium restriction and fish oil supplementation on BP and thrombotic risk factors in patients treated with ACE inhibitors",
-      "year": 1994,
-      "n": 14,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2282101",
-      "title": "Fish oil produces an atherogenic lipid profile in hypertensive men",
-      "year": 1990,
-      "n": 13,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "1971991",
-      "title": "n-3 fatty acids of marine origin lower systolic blood pressure and triglycerides but raise LDL cholesterol compared with n-3 and n-6 fatty acids from plants",
-      "year": 1990,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8450517",
-      "title": "Effects of fish oil, nifedipine and their combination on blood pressure and lipids in primary hypertension",
-      "year": 1993,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8219660",
-      "title": "Different effects of eicosapentaenoic acid and olive oil on blood pressure, intracellular free platelet calcium, and plasma lipids in patients with essential hypertension",
-      "year": 1993,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "3548735",
-      "title": "Effects of a fish oil supplement on serum lipids, blood pressure, bleeding time, haemostatic and rheological variables. A double blind randomised controlled trial in healthy volunteers",
-      "year": 1987,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "10525140",
-      "title": "The influence of low intake of n-3 fatty acids on platelets in elderly people",
-      "year": 1999,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "1409770",
-      "title": "The cumulative dose response effect of eicosapentaenoic and docosahexaenoic acid on blood pressure, plasma lipid profile and diet pattern in mild to moderate essential hypertensive black patients",
-      "year": 1992,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2160490",
-      "title": "Lack of effect of fish oil supplementation on blood pressure in treated hypertensives",
-      "year": 1990,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8820475",
-      "title": "Fish oil as an adjuvant in the treatment of hypertension",
-      "year": 1996,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "7889894",
-      "title": "Effects of a new fish oil concentrate on plasma lipids and lipoproteins in patients with hypertriglyceridaemia",
-      "year": 1994,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8349330",
-      "title": "Effects on blood pressure of omega 3 fats in subjects at increased risk of cardiovascular disease",
-      "year": 1993,
-      "inReviews": [
-       "22345681",
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "18667204",
-      "title": "Effects of EPA on coronary artery disease in hypercholesterolemic patients with multiple risk factors: sub-analysis of primary prevention cases from the Japan EPA Lipid Intervention Study (JELIS)",
-      "year": 2008,
-      "n": 14981,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "1586398",
-      "title": "The effects of nonpharmacologic interventions on blood pressure of persons with high normal levels. Results of the Trials of Hypertension Prevention, Phase I",
-      "year": 1992,
-      "n": 2182,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "10578215",
-      "title": "The long-term effect of advice to eat more fish on blood pressure in men with coronary disease: results from the diet and reinfarction trial",
-      "year": 1999,
-      "n": 2033,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "10189324",
-      "title": "The effect of dietary omega-3 fatty acids on coronary atherosclerosis. A randomized, double-blind, placebo-controlled trial",
-      "year": 1999,
-      "n": 223,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "16469978",
-      "title": "Effects of dietary saturated, monounsaturated, and n-3 fatty acids on blood pressure in healthy subjects",
-      "year": 2006,
-      "n": 162,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "12663273",
-      "title": "Plant- and marine-derived n-3 polyunsaturated fatty acids have differential effects on fasting and postprandial blood lipid concentrations and on the susceptibility of LDL to oxidative modification in moderately hyperlipidemic subjects",
-      "year": 2003,
-      "n": 150,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "27281302",
-      "title": "A randomized, crossover, head-to-head comparison of eicosapentaenoic acid and docosahexaenoic acid supplementation to reduce inflammation markers in men and women: the Comparing EPA to DHA (ComparED) Study",
-      "year": 2016,
-      "n": 106,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "7486485",
-      "title": "Effects of n-3 polyunsaturated fatty acids on glucose homeostasis and blood pressure in essential hypertension. A randomized, controlled trial",
-      "year": 1995,
-      "n": 78,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "18492834",
-      "title": "Fish oil in combination with high or low intakes of linoleic acid lowers plasma triacylglycerols but does not affect other cardiovascular risk markers in healthy men",
-      "year": 2008,
-      "n": 64,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "12399272",
-      "title": "Effects of purified eicosapentaenoic and docosahexaenoic acids on glycemic control, blood pressure, and serum lipids in type 2 diabetic patients with treated hypertension",
-      "year": 2002,
-      "n": 59,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "27778191",
-      "title": "Impact of Adding Eicosapentaenoic Acid to Statin Therapy on Plasma Pentraxin 3 Level in Patients with Stable Coronary Artery Disease: A 6-Month, Randomized Controlled Study",
-      "year": 2017,
-      "n": 53,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "17805229",
-      "title": "Fish oil supplementation improves large arterial elasticity in overweight hypertensive patients",
-      "year": 2008,
-      "n": 52,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "19763135",
-      "title": "Highly purified eicosapentaenoic acid reduces cardio-ankle vascular index in association with decreased serum amyloid A-LDL in metabolic syndrome",
-      "year": 2009,
-      "n": 46,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "17393216",
-      "title": "Dose-dependent effects of docosahexaenoic acid supplementation on blood lipids in statin-treated hyperlipidaemic subjects",
-      "year": 2007,
-      "n": 45,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "2141757",
-      "title": "Dose-response effects of fish-oil supplementation in healthy volunteers",
-      "year": 1990,
-      "n": 45,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "7852747",
-      "title": "Reduction of blood pressure and plasma triglycerides by omega-3 fatty acids in treated hypertensives",
-      "year": 1994,
-      "n": 43,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "17374663",
-      "title": "Low-dose docosahexaenoic acid lowers diastolic blood pressure in middle-aged men and women",
-      "year": 2007,
-      "n": 38,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "17684201",
-      "title": "Docosahexaenoic acid supplementation improves fasting and postprandial lipid profiles in hypertriglyceridemic men",
-      "year": 2007,
-      "n": 34,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "15113713",
-      "title": "Differential eicosapentaenoic acid elevations and altered cardiovascular disease risk factor responses after supplementation with docosahexaenoic acid in postmenopausal women receiving and not receiving hormone replacement therapy",
-      "year": 2004,
-      "n": 18,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "26074314",
-      "title": "Effects of oral eicosapentaenoic acid versus docosahexaenoic acid on human peripheral blood mononuclear cell gene expression",
-      "year": 2015,
-      "n": 18,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "19158225",
-      "title": "DHA supplementation decreases serum C-reactive protein and other markers of inflammation in hypertriglyceridemic men",
-      "year": 2009,
-      "n": 17,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "10676668",
-      "title": "Dietary supplementation with marine omega-3 fatty acids improve systemic large artery endothelial function in subjects with hypercholesterolemia",
-      "year": 2000,
-      "n": 15,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "12145002",
-      "title": "The n-3 fatty acids eicosapentaenoic acid and docosahexaenoic acid increase systemic arterial compliance in humans",
-      "year": 2002,
-      "n": 14,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "14583341",
-      "title": "Effect of eicosapentaenoic acid and docosahexaenoic acid on oxidative stress and inflammatory markers in treated-hypertensive type 2 diabetic subjects",
-      "year": 2003,
-      "n": 12,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "3632762",
-      "title": "Fish oil increases peripheral capillary blood cell velocity in humans",
-      "year": 1987,
-      "n": 11,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2339203",
-      "title": "Unresponsiveness of forearm hemodynamics to omega-3 polyunsaturated fatty acids and aspirin",
-      "year": 1990,
-      "n": 10,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "16512939",
-      "title": "Influence of an algal triacylglycerol containing docosahexaenoic acid (22 : 6n-3) and docosapentaenoic acid (22 : 5n-6) on cardiovascular risk factors in healthy men and women",
-      "year": 2006,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "7587910",
-      "title": "Long-term effect of eicosapentaenoic acid ethyl (EPA-E) on albuminuria of non-insulin dependent diabetic patients",
-      "year": 1995,
-      "inReviews": [
-       "29993265"
-      ]
-     },
-     {
-      "pmid": "16879829",
-      "title": "Age- and dose-dependent effects of an eicosapentaenoic acid-rich oil on cardiovascular risk factors in healthy male subjects",
-      "year": 2007,
-      "inReviews": [
-       "22345681"
-      ]
-     },
-     {
-      "pmid": "8418020",
-      "title": "Marine oils dose-dependently inhibit vasoconstriction of forearm resistance vessels in humans",
-      "year": 1993,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "1413984",
-      "title": "Influence of supplementation with N-3 fatty acids on different coronary risk factors in men--a placebo controlled study",
-      "year": 1992,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2375296",
-      "title": "Fish-oil concentrate: effects on variables related to cardiovascular disease",
-      "year": 1990,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2222942",
-      "title": "Effects of n-3 fatty acids in essential hypertension",
-      "year": 1990,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8427339",
-      "title": "The effect of fish oil supplements on blood pressure",
-      "year": 1993,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "2685958",
-      "title": "Effect of fish oil on blood pressure and blood lipids in men with mild to moderate hypertension",
-      "year": 1989,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "8416666",
-      "title": "The effect of fish oil on blood pressure in mild hypertensive subjects: a randomized crossover trial",
-      "year": 1993,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "3089408",
-      "title": "Effect of dietary supplementation with fish oil on systolic blood pressure in mild essential hypertension",
-      "year": 1986,
-      "inReviews": [
-       "12172309"
-      ]
-     },
-     {
-      "pmid": "9733153",
-      "title": "Effect of medium-term supplementation with a moderate dose of n-3 polyunsaturated fatty acids on blood pressure in mild hypertensive patients",
-      "year": 1998,
-      "inReviews": [
-       "12172309"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1986,
@@ -4418,7 +2485,7 @@
       "firstAuthor": "Guo XF",
       "journal": "Critical reviews in food science and nutrition",
       "citedBy": 45,
-      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "22345681",
@@ -4429,7 +2496,7 @@
       "journal": "European journal of preventive cardiology",
       "citedBy": 54,
       "n": 1524,
-      "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2013); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "12172309",
@@ -4439,7 +2506,7 @@
       "firstAuthor": "Geleijnse JM",
       "journal": "Journal of hypertension",
       "citedBy": 420,
-      "why": "One of the newest meta-analyses of trials on this outcome (2002); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2002); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30882595",
@@ -4455,6 +2522,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with or without high blood pressure",
      "intervention": "Omega-3 supplements",
@@ -4497,6 +2565,7 @@
   {
    "id": "depression",
    "label": "Depression",
+   "anyDesign": false,
    "finding": "Depression",
    "counts": {
     "reviews": 92,
@@ -4514,7 +2583,7 @@
      "journal": "Psychological medicine",
      "citedBy": 4,
      "n": 17437,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37028202",
@@ -4525,7 +2594,7 @@
      "journal": "Prostaglandins, leukotrienes, and essential fatty acids",
      "citedBy": 43,
      "n": 1426,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31647041",
@@ -4536,7 +2605,7 @@
      "journal": "The British journal of psychiatry : the journal of mental science",
      "citedBy": 73,
      "n": 41470,
-     "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "27103682",
@@ -4547,577 +2616,10 @@
      "journal": "The British journal of psychiatry : the journal of mental science",
      "citedBy": 136,
      "n": 6665,
-     "why": "The most comprehensive review of trials on this outcome (35 trials, 2016); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (35 trials, 2016); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.05714285714285714,
-    "trials": 70,
-    "inclusions": 82,
-    "reviews": [
-     {
-      "pmid": "40314175",
-      "trials": 1
-     },
-     {
-      "pmid": "37028202",
-      "trials": 11
-     },
-     {
-      "pmid": "31647041",
-      "trials": 28
-     },
-     {
-      "pmid": "27103682",
-      "trials": 42
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "20584525",
-      "title": "The efficacy of omega-3 supplementation for major depression: a randomized controlled trial",
-      "year": 2011,
-      "n": 432,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "18779287",
-      "title": "Effect of fish-oil supplementation on mental well-being in older subjects: a randomized, double-blind, placebo-controlled trial",
-      "year": 2008,
-      "n": 302,
-      "inReviews": [
-       "31647041",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "17582225",
-      "title": "Omega-3 supplementation in mild to moderate Alzheimer's disease: effects on neuropsychiatric symptoms",
-      "year": 2008,
-      "n": 204,
-      "inReviews": [
-       "31647041",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "19116322",
-      "title": "Ethyl-eicosapentaenoic acid for the treatment of psychological distress and depressive symptoms in middle-aged women: a double-blind, placebo-controlled, randomized clinical trial",
-      "year": 2009,
-      "n": 120,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "22910528",
-      "title": "Eicosapentaenoic acid versus docosahexaenoic acid in mild-to-moderate depression: a randomized, double-blind, placebo-controlled trial",
-      "year": 2013,
-      "n": 62,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "17267927",
-      "title": "Omega-3 fatty acid supplementation in patients with recurrent self-harm. Single-centre double-blind randomised controlled trial",
-      "year": 2007,
-      "n": 49,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "16388069",
-      "title": "Efficacy of ethyl-eicosapentaenoic acid in bipolar depression: randomised double-blind placebo-controlled study",
-      "year": 2006,
-      "n": 26,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "20595646",
-      "title": "Effect of omega-3 fatty acids supplementation on depressive symptoms and on health-related quality of life in the treatment of elderly women with depression: a double-blind, placebo-controlled, randomized clinical trial",
-      "year": 2010,
-      "n": 24,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "25802980",
-      "title": "Inflammation as a predictive biomarker for response to omega-3 fatty acids in major depressive disorder: a proof-of-concept study",
-      "year": 2016,
-      "n": 17,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "22640930",
-      "title": "Omega-3 supplementation lowers inflammation in healthy middle-aged and older adults: a randomized controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "37028202",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "21318452",
-      "title": "The effect of low-dose omega 3 fatty acids on the treatment of mild to moderate depression in the elderly: a double-blind, randomized, placebo-controlled study",
-      "year": 2011,
-      "inReviews": [
-       "31647041",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "21929835",
-      "title": "Effects of n-3 fatty acids, EPA v. DHA, on depressive symptoms, quality of life, memory and executive function in older adults with mild cognitive impairment: a 6-month randomised controlled trial",
-      "year": 2012,
-      "inReviews": [
-       "31647041",
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "30146932",
-      "title": "Effects of n-3 Fatty Acid Supplements in Diabetes Mellitus",
-      "year": 2018,
-      "n": 15480,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "20929341",
-      "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
-      "year": 2010,
-      "n": 4837,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "21060071",
-      "title": "OMEGA, a randomized, placebo-controlled trial to test the effect of highly purified omega-3 fatty acids on top of modern guideline-adjusted therapy after myocardial infarction",
-      "year": 2010,
-      "n": 3851,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "12571649",
-      "title": "Lack of benefit of dietary advice to men with angina: results of a controlled trial",
-      "year": 2003,
-      "n": 3114,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "21115589",
-      "title": "Effects of B vitamins and omega 3 fatty acids on cardiovascular diseases: a randomised placebo controlled trial",
-      "year": 2010,
-      "n": 2501,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "22648722",
-      "title": "Supplementation with B vitamins or n-3 fatty acids and depressive symptoms in cardiovascular disease survivors: ancillary findings from the SUpplementation with FOLate, vitamins B-6 and B-12 and/or OMega-3 fatty acids (SU.FOL.OM3) randomized trial",
-      "year": 2012,
-      "n": 2501,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "20959577",
-      "title": "Effect of DHA supplementation during pregnancy on maternal depression and neurodevelopment of young children: a randomized controlled trial",
-      "year": 2010,
-      "n": 2399,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "28359749",
-      "title": "Effect of long-term omega 3 polyunsaturated fatty acid supplementation with or without multidomain intervention on cognitive function in elderly adults with memory complaints (MAPT): a randomised, placebo-controlled trial",
-      "year": 2017,
-      "n": 1680,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "22030221",
-      "title": "Effects of n-3 fatty acids on depressive symptoms and dispositional optimism after myocardial infarction",
-      "year": 2011,
-      "n": 1030,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "30835307",
-      "title": "Effect of Multinutrient Supplementation and Food-Related Behavioral Activation Therapy on Prevention of Major Depressive Disorder Among Overweight or Obese Adults With Subsyndromal Depressive Symptoms: The MooDFOOD Randomized Clinical Trial",
-      "year": 2019,
-      "n": 1025,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "20410089",
-      "title": "Effect of 2-y n-3 long-chain polyunsaturated fatty acid supplementation on cognitive function in older people: a randomized, double-blind, controlled trial",
-      "year": 2010,
-      "n": 867,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "20488274",
-      "title": "The influence of long-term awareness of hyperlipidemia and of 3 years of dietary counseling on depression, anxiety, and quality of life",
-      "year": 2010,
-      "n": 563,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "20434961",
-      "title": "Beneficial effects of docosahexaenoic acid on cognition in age-related cognitive decline",
-      "year": 2010,
-      "n": 485,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "17490978",
-      "title": "Effects of fish-oil and folate supplementation of pregnant women on maternal and fetal plasma concentrations of docosahexaenoic acid and eicosapentaenoic acid: a European randomized multicenter trial",
-      "year": 2007,
-      "n": 311,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "26175332",
-      "title": "Ethyl-eicosapentaenoic acid treatment in Huntington's disease: A placebo-controlled clinical trial",
-      "year": 2015,
-      "n": 290,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "28121722",
-      "title": "Omega-3 Supplementation and the Neural Correlates of Negative Affect and Impulsivity: A Double-Blind, Randomized, Placebo-Controlled Trial in Midlife Adults",
-      "year": 2017,
-      "n": 272,
-      "inReviews": [
-       "37028202"
-      ]
-     },
-     {
-      "pmid": "22932281",
-      "title": "Incorporation of eicosapentaenoic and docosahexaenoic acids into lipid pools when given as supplements providing doses equivalent to typical intakes of oily fish",
-      "year": 2012,
-      "n": 204,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "25272149",
-      "title": "A double-blind, randomized controlled clinical trial comparing eicosapentaenoic acid versus docosahexaenoic acid for depression",
-      "year": 2015,
-      "n": 196,
-      "inReviews": [
-       "37028202"
-      ]
-     },
-     {
-      "pmid": "19064745",
-      "title": "Randomized controlled trial of ethyl-eicosapentaenoic acid in Huntington disease: the TREND-HD study",
-      "year": 2008,
-      "n": 192,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "24602409",
-      "title": "Omega-3 fatty acids in the prevention of interferon-alpha-induced depression: results from a randomized, controlled trial",
-      "year": 2014,
-      "n": 162,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "19843899",
-      "title": "Omega-3 augmentation of sertraline in treatment of depression in patients with coronary heart disease: a randomized controlled trial",
-      "year": 2009,
-      "n": 122,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "19034052",
-      "title": "Effects of ethyl-eicosapentaenoic acid omega-3 fatty acid supplementation on hot flashes and quality of life among middle-aged women: a double-blind, placebo-controlled, randomized clinical trial",
-      "year": 2009,
-      "n": 120,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "18489927",
-      "title": "Comparison of low-fat versus Mediterranean-style dietary intervention after first myocardial infarction (from The Heart Institute of Spokane Diet Intervention and Evaluation Trial)",
-      "year": 2008,
-      "n": 101,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "26867200",
-      "title": "DHA Supplementation Alone or in Combination with Other Nutrients Does not Modulate Cerebral Hemodynamics or Cognitive Function in Healthy Older Adults",
-      "year": 2016,
-      "n": 86,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "15664306",
-      "title": "Randomised double-blind placebo-controlled trial of fish oil in the treatment of depression",
-      "year": 2005,
-      "n": 77,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "26822516",
-      "title": "Beneficial effects of dietary docosahexaenoic acid intervention on cognitive function and mental health of the oldest elderly in Japanese care facilities and nursing homes",
-      "year": 2017,
-      "n": 75,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "12365878",
-      "title": "A dose-ranging study of the effects of ethyl-eicosapentaenoate in patients with ongoing depression despite apparently adequate treatment with standard drugs",
-      "year": 2002,
-      "n": 70,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "18206247",
-      "title": "Omega-3 fatty acids and supportive psychotherapy for perinatal depression: a randomized placebo-controlled study",
-      "year": 2008,
-      "n": 51,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "20402707",
-      "title": "Randomized, placebo-controlled trial of flax oil in pediatric bipolar disorder",
-      "year": 2010,
-      "n": 51,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "18247193",
-      "title": "Comparison of therapeutic effects of omega-3 fatty acid eicosapentaenoic acid and fluoxetine, separately and in combination, in major depressive disorder",
-      "year": 2008,
-      "n": 48,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "22507886",
-      "title": "ω-3 fatty acid treatment in multiple sclerosis (OFAMS Study): a randomized, double-blind, placebo-controlled trial",
-      "year": 2012,
-      "n": 46,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "18485485",
-      "title": "Depression in Parkinson's disease: a double-blind, randomized, placebo-controlled pilot study of omega-3 fatty-acid supplementation",
-      "year": 2008,
-      "n": 31,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "10232294",
-      "title": "Omega 3 fatty acids in bipolar disorder: a preliminary double-blind, placebo-controlled trial",
-      "year": 1999,
-      "n": 30,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "12888186",
-      "title": "Omega-3 fatty acids in major depressive disorder. A preliminary double-blind, placebo-controlled trial",
-      "year": 2003,
-      "n": 28,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "18247194",
-      "title": "Omega-3 fatty acids as a treatment for perinatal depression: randomized double-blind placebo-controlled trial",
-      "year": 2008,
-      "n": 26,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "20466431",
-      "title": "Eicosapentaenoic acid as an add-on to antidepressant medication for co-morbid major depression in patients with diabetes mellitus: a randomized, double-blind placebo-controlled study",
-      "year": 2010,
-      "n": 25,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "18370571",
-      "title": "Omega-3 fatty acids for major depressive disorder during pregnancy: results from a randomized, double-blind, placebo-controlled trial",
-      "year": 2008,
-      "n": 24,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "19709502",
-      "title": "A double-blind, randomized controlled trial of ethyl-eicosapentaenoate for major depressive disorder",
-      "year": 2009,
-      "n": 19,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "16741212",
-      "title": "Omega-3 treatment of childhood depression: a controlled, double-blind pilot study",
-      "year": 2006,
-      "n": 16,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "16928441",
-      "title": "Omega-3 fatty acids in bipolar disorder: clinical and research considerations",
-      "year": 2006,
-      "n": 10,
-      "inReviews": [
-       "27103682"
-      ]
-     },
-     {
-      "pmid": "30699842",
-      "title": "Nutraceuticals for major depressive disorder- more is not merrier: An 8-week double-blind, randomised, controlled trial",
-      "year": 2019,
-      "inReviews": [
-       "40314175"
-      ]
-     },
-     {
-      "pmid": "21784145",
-      "title": "Omega-3 supplementation lowers inflammation and anxiety in medical students: a randomized controlled trial",
-      "year": 2011,
-      "inReviews": [
-       "37028202"
-      ]
-     },
-     {
-      "pmid": "26305649",
-      "title": "Effect of Omega-3 Fatty Acids, Lutein/Zeaxanthin, or Other Nutrient Supplementation on Cognitive Function: The AREDS2 Randomized Clinical Trial",
-      "year": 2015,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "25451556",
-      "title": "Dietary n-3/long-chain n-3 polyunsaturated fatty acids for prevention of sporadic colorectal tumors: a randomized controlled trial in polypectomized participants",
-      "year": 2015,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "18678826",
-      "title": "Effect of fish oil on cognitive performance in older subjects: a randomized, controlled trial",
-      "year": 2008,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "22182482",
-      "title": "Effect of altering dietary n-6:n-3 PUFA ratio on cardiovascular risk measures in patients treated with statins: a pilot study",
-      "year": 2012,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "19619690",
-      "title": "Efficacy and safety of prescription omega-3-acid ethyl esters for the prevention of recurrent symptomatic atrial fibrillation: a prospective study",
-      "year": 2009,
-      "inReviews": [
-       "31647041"
-      ]
-     },
-     {
-      "pmid": "18573585",
-      "title": "The effects of omega-3 fatty acids monotherapy in Alzheimer's disease and mild cognitive impairment: a preliminary randomized double-blind placebo-controlled study",
-      "year": 2008,
-      "inReviews": [
-       "31647041"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2002,
@@ -5327,7 +2829,7 @@
       "journal": "Psychological medicine",
       "citedBy": 4,
       "n": 17437,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "37028202",
@@ -5338,7 +2840,7 @@
       "journal": "Prostaglandins, leukotrienes, and essential fatty acids",
       "citedBy": 43,
       "n": 1426,
-      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "31647041",
@@ -5349,7 +2851,7 @@
       "journal": "The British journal of psychiatry : the journal of mental science",
       "citedBy": 73,
       "n": 41470,
-      "why": "One of the newest meta-analyses of trials on this outcome (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "27103682",
@@ -5360,11 +2862,12 @@
       "journal": "The British journal of psychiatry : the journal of mental science",
       "citedBy": 136,
       "n": 6665,
-      "why": "The most comprehensive review of trials on this outcome (35 trials, 2016); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (35 trials, 2016); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with depression, or without it (prevention)",
      "intervention": "Omega-3 supplements",
@@ -5533,12 +3036,13 @@
   {
    "id": "preterm",
    "label": "Preterm birth",
+   "anyDesign": false,
    "finding": "Preterm birth (baby born before 37 weeks)",
    "counts": {
     "reviews": 101,
     "trialReviews": 54,
     "trials": 342,
-    "largeTrials": 25
+    "largeTrials": 24
    },
    "chosenReviews": [
     {
@@ -5550,7 +3054,7 @@
      "journal": "Health science reports",
      "citedBy": 0,
      "n": 12294,
-     "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39067112",
@@ -5561,7 +3065,7 @@
      "journal": "Nutrition research (New York, N.Y.)",
      "citedBy": 7,
      "n": 5710,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35348829",
@@ -5572,7 +3076,7 @@
      "journal": "Archives of gynecology and obstetrics",
      "citedBy": 34,
      "n": 21919,
-     "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35104631",
@@ -5583,7 +3087,7 @@
      "journal": "Pharmacological research",
      "citedBy": 42,
      "n": 273523,
-     "why": "The most comprehensive review of trials on this outcome (672 trials, 2022); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (672 trials, 2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -5599,581 +3103,6 @@
      "why": "A large trial (about 2,500 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.07692307692307693,
-    "trials": 65,
-    "inclusions": 80,
-    "reviews": [
-     {
-      "pmid": "41773213",
-      "trials": 18
-     },
-     {
-      "pmid": "39067112",
-      "trials": 16
-     },
-     {
-      "pmid": "35348829",
-      "trials": 42
-     },
-     {
-      "pmid": "35104631",
-      "trials": 4
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "20715595",
-      "title": "Effects of docosahexaenoic acid supplementation during pregnancy on gestational age and size at birth: randomized, double-blind, placebo-controlled trial in Mexico",
-      "year": 2010,
-      "n": 1094,
-      "inReviews": [
-       "41773213",
-       "39067112",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "23426033",
-      "title": "DHA supplementation and pregnancy outcomes",
-      "year": 2013,
-      "n": 350,
-      "inReviews": [
-       "41773213",
-       "39067112",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "31509674",
-      "title": "A Randomized Trial of Prenatal n-3 Fatty Acid Supplementation and Preterm Delivery",
-      "year": 2019,
-      "n": 5517,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "22552037",
-      "title": "Fish-oil supplementation in pregnancy does not reduce the risk of gestational diabetes or preeclampsia",
-      "year": 2012,
-      "n": 2399,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "20959577",
-      "title": "Effect of DHA supplementation during pregnancy on maternal depression and neurodevelopment of young children: a randomized controlled trial",
-      "year": 2010,
-      "n": 2399,
-      "inReviews": [
-       "39067112",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "26413500",
-      "title": "The Effect of Omega-3 Docosahexaenoic Acid Supplementation on Gestational Length: Randomized Trial of Supplementation Compared to Nutrition Education for Increasing n-3 Intake from Foods",
-      "year": 2015,
-      "n": 871,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "20093894",
-      "title": "Omega-3 fatty acid supplementation to prevent recurrent preterm birth: a randomized controlled trial",
-      "year": 2010,
-      "n": 852,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "1349049",
-      "title": "Randomised controlled trial of effect of fish-oil supplementation on pregnancy duration",
-      "year": 1992,
-      "n": 533,
-      "inReviews": [
-       "39067112",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "30967436",
-      "title": "Efficacy of Fish Oil and/or Probiotic Intervention on the Incidence of Gestational Diabetes Mellitus in an At-Risk Group of Overweight and Obese Women: A Randomized, Placebo-Controlled, Double-Blind Clinical Trial",
-      "year": 2019,
-      "n": 439,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "11694666",
-      "title": "Similar effects on infants of n-3 and n-6 fatty acids supplementation to pregnant and lactating women",
-      "year": 2001,
-      "n": 251,
-      "inReviews": [
-       "39067112",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "27055970",
-      "title": "A randomized-controlled clinical trial investigating the effect of omega-3 fatty acids and vitamin E co-supplementation on markers of insulin metabolism and lipid profiles in gestational diabetes",
-      "year": 2016,
-      "n": 60,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "26340264",
-      "title": "Dietary Omega-3 Fatty Acid Supplementation Reduces Inflammation in Obese Pregnant Women: A Randomized Double-Blind Controlled Clinical Trial",
-      "year": 2015,
-      "inReviews": [
-       "41773213",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "19489765",
-      "title": "Fish oil supplementation in pregnancy and lactation may decrease the risk of infant allergy",
-      "year": 2009,
-      "inReviews": [
-       "39067112",
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "37068907",
-      "title": "Identifying women who may benefit from higher dose omega-3 supplementation during pregnancy to reduce their risk of prematurity: exploratory analyses from the ORIP trial",
-      "year": 2023,
-      "n": 5305,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "33668849",
-      "title": "Prenatal Maternal Docosahexaenoic Acid (DHA) Supplementation and Newborn Anthropometry in India: Findings from DHANI",
-      "year": 2021,
-      "n": 3379,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "24626819",
-      "title": "Omega-3 fatty acid supplementation during pregnancy and respiratory symptoms in children",
-      "year": 2014,
-      "n": 1094,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "21178082",
-      "title": "Growth to age 18 months following prenatal supplementation with docosahexaenoic acid differs by maternal gravidity in Mexico",
-      "year": 2011,
-      "n": 739,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "30418579",
-      "title": "Fish Oil Supplementation in Pregnancy Increases Gestational Age, Size for Gestational Age, and Birth Weight in Infants: A Randomized Controlled Trial",
-      "year": 2019,
-      "n": 736,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "28029926",
-      "title": "Fish Oil-Derived Fatty Acids in Pregnancy and Wheeze and Asthma in Offspring",
-      "year": 2016,
-      "n": 736,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "12509593",
-      "title": "Maternal supplementation with very-long-chain n-3 fatty acids during pregnancy and lactation augments children's IQ at 4 years of age",
-      "year": 2003,
-      "n": 590,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "8645644",
-      "title": "Effects of fish oil supplementation in late pregnancy on blood pressure: a randomised controlled trial",
-      "year": 1996,
-      "n": 533,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "17565762",
-      "title": "Effects of a dairy product fortified with multiple micronutrients and omega-3 fatty acids on birth weight and gestation duration in pregnant Chilean women",
-      "year": 2008,
-      "n": 495,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "22348468",
-      "title": "Effects of high-dose fish oil supplementation during early infancy on neurodevelopment and language: a randomised controlled trial",
-      "year": 2012,
-      "n": 420,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "24427279",
-      "title": "Omega-3 fatty acid deficiency in infants before birth identified using a randomized trial of maternal DHA supplementation in pregnancy",
-      "year": 2014,
-      "n": 270,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "29777864",
-      "title": "Effectiveness on maternal and offspring metabolic control of a home-based dietary counseling intervention and DHA supplementation in obese/overweight pregnant women (MIGHT study): A randomized controlled trial-Study protocol",
-      "year": 2018,
-      "n": 250,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "22205307",
-      "title": "Effect of reducing the n-6:n-3 long-chain PUFA ratio during pregnancy and lactation on infant adipose tissue growth within the first year of life: an open-label randomized controlled trial",
-      "year": 2012,
-      "n": 208,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "21178076",
-      "title": "Docosahexaenoic acid supplementation from mid-pregnancy to parturition influenced breast milk fatty acid concentrations at 1 month postpartum in Mexican women",
-      "year": 2011,
-      "n": 174,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "28752418",
-      "title": "The effect of perinatal fish oil supplementation on neurodevelopment and growth of infants: a randomized controlled trial",
-      "year": 2018,
-      "n": 150,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "18446020",
-      "title": "Supplementation with 200 mg/day docosahexaenoic acid from mid-pregnancy through lactation improves the docosahexaenoic acid status of mothers with a habitually low fish intake and of their infants",
-      "year": 2008,
-      "n": 144,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "26091965",
-      "title": "Efficacy of docosahexaenoic acid-enriched formula to enhance maternal and fetal blood docosahexaenoic acid levels: Randomized double-blinded placebo-controlled trial of pregnant women with gestational diabetes mellitus",
-      "year": 2016,
-      "n": 138,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "23531328",
-      "title": "The Mothers, Omega-3, and Mental Health Study: a double-blind, randomized controlled trial",
-      "year": 2013,
-      "n": 126,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "22218160",
-      "title": "Increased intake of oily fish in pregnancy: effects on neonatal immune responses and on clinical outcomes in infants at 6 mo",
-      "year": 2012,
-      "n": 123,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "29460817",
-      "title": "MaFOS-GDM trial: Maternal fish oil supplementation in women with gestational diabetes and cord blood DNA methylation at insulin like growth factor-1 (IGF-1) gene",
-      "year": 2018,
-      "n": 120,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "24925713",
-      "title": "Effect of docosahexaenoic acid-enriched fish oil supplementation in pregnant women with Type 2 diabetes on membrane fatty acids and fetal body composition--double-blinded randomized placebo-controlled trial",
-      "year": 2014,
-      "n": 117,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "25988553",
-      "title": "Effects of Maternal Ω-3 Supplementation on Fatty Acids and on Visual and Cognitive Development",
-      "year": 2015,
-      "n": 110,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "27281302",
-      "title": "A randomized, crossover, head-to-head comparison of eicosapentaenoic acid and docosahexaenoic acid supplementation to reduce inflammation markers in men and women: the Comparing EPA to DHA (ComparED) Study",
-      "year": 2016,
-      "n": 106,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "29259181",
-      "title": "Comparison of the effect of omega-3 supplements and fresh fish on lipid profile: a randomized, open-labeled trial",
-      "year": 2017,
-      "n": 106,
-      "inReviews": [
-       "35104631"
-      ]
-     },
-     {
-      "pmid": "36781129",
-      "title": "Fish oil supplementation during pregnancy and postpartum in mothers with overweight and obesity to improve body composition and metabolic health during infancy: A double-blind randomized controlled trial",
-      "year": 2023,
-      "n": 98,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "14985680",
-      "title": "Effects of n-3 polyunsaturated fatty acid supplementation in pregnancy on maternal and fetal erythrocyte fatty acid composition",
-      "year": 2004,
-      "n": 98,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "17185423",
-      "title": "Cognitive assessment of children at age 2(1/2) years after maternal fish oil supplementation in pregnancy: a randomised controlled trial",
-      "year": 2008,
-      "n": 98,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "18676533",
-      "title": "Effect of supplementing pregnant and lactating mothers with n-3 very-long-chain fatty acids on children's IQ and body mass index at 7 years of age",
-      "year": 2008,
-      "n": 82,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "33572368",
-      "title": "Effect of Omega-3 Supplementation in Pregnant Women with Obesity on Newborn Body Composition, Growth and Length of Gestation: A Randomized Controlled Pilot Study",
-      "year": 2021,
-      "n": 72,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "23496848",
-      "title": "A pilot randomized controlled trial to promote healthful fish consumption during pregnancy: the Food for Thought Study",
-      "year": 2013,
-      "n": 61,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "24973862",
-      "title": "Effects of omega-3 fatty acid supplementation on insulin metabolism and lipid profiles in gestational diabetes: Randomized, double-blind, placebo-controlled trial",
-      "year": 2015,
-      "n": 56,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "25747955",
-      "title": "Omega-3 fatty acid supplementation affects pregnancy outcomes in gestational diabetes: a randomized, double-blind, placebo-controlled trial",
-      "year": 2016,
-      "n": 56,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "12882824",
-      "title": "Scotopic electroretinogram in term infants born of mothers supplemented with docosahexaenoic acid during pregnancy",
-      "year": 2003,
-      "n": 50,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "27290652",
-      "title": "The effect of prenatal docosahexaenoic acid supplementation on infant outcomes in African American women living in low-income environments: A randomized, controlled trial",
-      "year": 2016,
-      "n": 49,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "29031393",
-      "title": "Cytokine distribution in mothers and breastfed children after omega-3 LCPUFAs supplementation during the last trimester of pregnancy and the lactation period: A randomized, controlled trial",
-      "year": 2017,
-      "n": 46,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "28075381",
-      "title": "The n-3 Polyunsaturated Fatty Acids Supplementation Improved the Cognitive Function in the Chinese Elderly with Mild Cognitive Impairment: A Double-Blind Randomized Controlled Trial",
-      "year": 2017,
-      "n": 44,
-      "inReviews": [
-       "35104631"
-      ]
-     },
-     {
-      "pmid": "28378851",
-      "title": "Effect of eicosapentaenoic acid and docosahexaenoic acid supplementation on C-peptide preservation in pregnant women with type-1 diabetes: randomized placebo controlled clinical trial",
-      "year": 2017,
-      "n": 43,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "25415158",
-      "title": "Association between fatty acid supplementation and prenatal stress in African Americans: a randomized controlled trial",
-      "year": 2014,
-      "n": 43,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "29385062",
-      "title": "A Randomized Double-Blinded, Placebo-Controlled Trial Investigating the Effect of Fish Oil Supplementation on Gene Expression Related to Insulin Action, Blood Lipids, and Inflammation in Gestational Diabetes Mellitus-Fish Oil Supplementation and Gestational Diabetes",
-      "year": 2018,
-      "n": 40,
-      "inReviews": [
-       "41773213"
-      ]
-     },
-     {
-      "pmid": "17393217",
-      "title": "A docosahexaenoic acid-functional food during pregnancy benefits infant visual acuity at four but not six months of age",
-      "year": 2007,
-      "n": 30,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "14749231",
-      "title": "Effect of alpha-linolenic acid supplementation during pregnancy on maternal and neonatal polyunsaturated fatty acid status and pregnancy outcome",
-      "year": 2004,
-      "n": 29,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "26247968",
-      "title": "Modification of Docosahexaenoic Acid Composition of Milk from Nursing Women Who Received Alpha Linolenic Acid from Chia Oil during Gestation and Nursing",
-      "year": 2015,
-      "n": 21,
-      "inReviews": [
-       "35348829"
-      ]
-     },
-     {
-      "pmid": "17556695",
-      "title": "Maternal consumption of a docosahexaenoic acid-containing functional food during pregnancy: benefit for infant performance on problem-solving but not on recognition memory tasks at age 9 mo",
-      "year": 2007,
-      "n": 15,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "27154359",
-      "title": "Maternal characteristics influence response to DHA during pregnancy",
-      "year": 2016,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "28574453",
-      "title": "Randomized Controlled Trial of DHA Supplementation during Pregnancy: Child Adiposity Outcomes",
-      "year": 2017,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "27362506",
-      "title": "Prenatal DHA supplementation and infant attention",
-      "year": 2016,
-      "inReviews": [
-       "39067112"
-      ]
-     },
-     {
-      "pmid": "21525247",
-      "title": "Prenatal DHA status and neurological outcome in children at age 5.5 years are positively associated",
-      "year": 2011,
-      "inReviews": [
-       "35348829"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1990,
@@ -6501,12 +3430,6 @@
      "n": 1100
     },
     {
-     "pmid": "40126831",
-     "title": "Docosahexaenoic Acid Supplementation During Pregnancy and Lactation and Infant Morbidity: Findings from DHANI Trial",
-     "year": 2025,
-     "n": 3379
-    },
-    {
      "pmid": "42399225",
      "title": "Oral microbiome modulation mitigates hyperglycemia exacerbation in gestational diabetes mellitus",
      "year": 2026,
@@ -6532,7 +3455,7 @@
       "journal": "Health science reports",
       "citedBy": 0,
       "n": 12294,
-      "why": "One of the newest meta-analyses of trials on this outcome (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39067112",
@@ -6543,7 +3466,7 @@
       "journal": "Nutrition research (New York, N.Y.)",
       "citedBy": 7,
       "n": 5710,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35348829",
@@ -6554,7 +3477,7 @@
       "journal": "Archives of gynecology and obstetrics",
       "citedBy": 34,
       "n": 21919,
-      "why": "One of the newest meta-analyses of trials on this outcome (2023); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2023); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "35104631",
@@ -6565,7 +3488,7 @@
       "journal": "Pharmacological research",
       "citedBy": 42,
       "n": 273523,
-      "why": "The most comprehensive review of trials on this outcome (672 trials, 2022); screened as answering the question"
+      "why": "The most comprehensive review of trials on this outcome (672 trials, 2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42399225",
@@ -6581,6 +3504,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Pregnant women",
      "intervention": "Omega-3 supplements, or foods with added omega-3, during pregnancy",

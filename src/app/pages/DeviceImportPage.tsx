@@ -124,7 +124,7 @@ async function readAppleXml(src: Source, progress: (f: number) => void): Promise
     }
     const text = carry + (value ? decoder.decode(value, { stream: !done }) : decoder.decode());
     const cut = done ? text.length : safeCut(text);
-    for (const r of appleRecords(text.slice(0, cut), skippedTypes)) tally.add(r.key.replace("HKQuantityTypeIdentifier", ""), r.field, r.unit, r.date, r.value, canonicalOf(r.field, r.unit));
+    for (const r of appleRecords(text.slice(0, cut), skippedTypes)) tally.addApple(r, canonicalOf(r.field, r.unit));
     carry = text.slice(cut);
     if (done) break;
   }
@@ -237,7 +237,7 @@ export function DeviceImportPage() {
   const update = (key: string, patch: (r: Row) => Row) => setRead((s) => (s ? { ...s, rows: s.rows.map((r) => (r.key === key ? patch(r) : r)) } : s));
   const importActions = read && (
     <div className="flex flex-wrap gap-2">
-      <Button onClick={() => void save()} disabled={!read.rows.some((r) => r.include)}>
+      <Button onClick={() => void save()} disabled={!read.rows.some((r) => r.include && r.series.days.length > 0)}>
         Save
       </Button>
       <Button variant="quiet" onClick={() => setRead(null)}>
@@ -324,7 +324,7 @@ export function DeviceImportPage() {
           {read.rows.length > 0 && (
             <Card className="flex flex-col gap-3">
               <h2 className="font-serif text-2xl font-normal">Found {read.rows.length === 1 ? "one series" : `${read.rows.length} series`}</h2>
-              <p className="text-ink-2">One value per day: sleep, steps and active minutes are added up; other readings are averaged. Check what each became, change it if needed, and untick what you don't want.</p>
+              <p className="text-ink-2">One value per day: the average of readings, or the total for sleep and activity. Overlapping daily summaries use one file per day, not their sum. Check what each became, change it if needed, and untick what you don't want.</p>
               <p className="text-sm text-ink-2">Saving replaces existing readings for the same measurement and date, including manually entered readings. Other dates are kept.</p>
               <ul className="flex flex-col divide-y divide-line">
                 {read.rows.map((r, i) => (
@@ -373,8 +373,8 @@ export function DeviceImportPage() {
 function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row[]; have: ReadonlySet<string>; onChange: (patch: (r: Row) => Row) => void }) {
   const def = BIOMARKER_MAP.get(r.series.field)!;
   const s = r.series;
-  const first = s.days[0]!;
-  const last = s.days.at(-1)!;
+  const first = s.days[0];
+  const last = s.days.at(-1);
   const already = s.days.filter((d) => have.has(`${s.field}|${d.date}`)).length;
   const matchedUnit = matchUnit(def, s.unit);
   const unitOk = !!matchedUnit;
@@ -393,8 +393,8 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
   return (
     <li className={cx("flex flex-wrap items-start gap-x-4 gap-y-2 py-3", !r.include && "opacity-70")}>
       <Checkbox.Root
-        checked={r.include && unitOk}
-        disabled={!unitOk}
+        checked={r.include && unitOk && s.days.length > 0}
+        disabled={!unitOk || s.days.length === 0}
         onCheckedChange={(include) => onChange((x) => ({ ...x, include }))}
         aria-label={`Import ${s.from} as ${def.name}`}
         className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-md border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
@@ -418,10 +418,11 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
           )}
         </div>
         <p className="text-sm text-ink-2">
-          {s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest{" "}
-          {SLEEP_FIELDS.has(s.field) && matchedUnit ? showValue(def, toCanonical(def, last.value, matchedUnit), def.canonicalUnit) : `${last.value} ${s.unit}`}
+          {first && last ? <>{s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest{" "}
+          {SLEEP_FIELDS.has(s.field) && matchedUnit ? showValue(def, toCanonical(def, last.value, matchedUnit), def.canonicalUnit) : `${last.value} ${s.unit}`}</> : "No usable readings for this measurement and unit. Change the mapping or unit to try again."}
           {already > 0 && ` · ${already} already saved, will be updated`}
           {s.dropped > 0 && ` · ${s.dropped} impossible ${s.dropped === 1 ? "reading" : "readings"} left out`}
+          {!!s.reconciled && ` · ${s.reconciled} overlapping summary or sample ${s.reconciled === 1 ? "row" : "rows"} left out; one summary file is used per day`}
         </p>
         {overlap && (
           <p className="text-sm text-warn">

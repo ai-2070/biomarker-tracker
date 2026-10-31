@@ -62,6 +62,22 @@ const BP_MEDICINES =
   /amlodipine|nifedipine|felodipine|lercanidipine|lisinopril|ramipril|enalapril|perindopril|captopril|quinapril|losartan|valsartan|candesartan|irbesartan|telmisartan|olmesartan|bisoprolol|metoprolol|atenolol|nebivolol|carvedilol|propranolol|hydrochlorothiazide|chlorthalidone|indapamide|spironolactone|doxazosin|blood pressure|antihypertensive|norvasc|zestril|cozaar|diovan|concor/i;
 const DIABETES_MEDICINES = /metformin|insulin|gliclazide|glimepiride|glipizide|sitagliptin|linagliptin|empagliflozin|dapagliflozin|canagliflozin|pioglitazone|jardiance|forxiga|januvia/i;
 
+/** Only affirmative history may change a numerical risk input; uncertain mentions need confirmation. */
+function affirmativeHistory(text: string, pattern: RegExp): boolean | undefined {
+  let uncertain = false;
+  for (const clause of text.split(/[.;,\n]|\bbut\b/i)) {
+    const match = pattern.exec(clause);
+    if (!match) continue;
+    const before = clause.slice(0, match.index);
+    const through = clause.slice(0, match.index + match[0].length);
+    const after = clause.slice(match.index + match[0].length);
+    if (/\b(no|not|without|denies|denied|negative for|untreated)\b/i.test(through) || /^\s*:?\s*(?:(?:is|was)\s+)?(?:no\b|absent\b|ruled out\b|negative\b|denied\b|not (?:present|diagnosed|treated)\b)/i.test(after)) continue;
+    if (/\?|\b(possible|suspected|uncertain|maybe|family history|rule out)\b/i.test(before + after)) uncertain = true;
+    else return true;
+  }
+  return uncertain ? undefined : false;
+}
+
 export interface HeartAgeData {
   input?: HeartAgeInput;
   /** What's needed and missing ("your sex", "a blood pressure reading"…). */
@@ -90,8 +106,14 @@ export function heartAgeData(profile: Profile, measurements: readonly Measuremen
     p.plan ? p.plan.items.filter((i) => i.category === "medication").map((i) => i.label) : p.category === "medication" ? [p.label] : [],
   );
   const conditions = profile.conditions ?? "";
-  const treatedBp = activeMeds.some((label) => BP_MEDICINES.test(label)) ? "habits" : /(blood pressure|hypertension).{0,30}(medicine|medication|tablet|pill|treat)|antihypertensive/i.test(conditions) ? "profile" : "no";
-  const diabetes = activeMeds.some((label) => DIABETES_MEDICINES.test(label)) ? "habits" : /(?<!pre-?)diabet/i.test(conditions) ? "profile" : "no";
+  const bpHistory = affirmativeHistory(conditions, /(blood pressure|hypertension).{0,30}(medicine|medication|tablet|pill|treat)\w*|antihypertensive/i);
+  const diabetesHistory = affirmativeHistory(conditions, /\bdiabet(?:es|ic)\b/i);
+  const bpMedicine = activeMeds.some((label) => affirmativeHistory(label, BP_MEDICINES) === true);
+  const diabetesMedicine = activeMeds.some((label) => affirmativeHistory(label, DIABETES_MEDICINES) === true);
+  const treatedBp = bpMedicine ? "habits" : bpHistory === true ? "profile" : "no";
+  const diabetes = diabetesMedicine ? "habits" : diabetesHistory === true ? "profile" : "no";
+  if (!bpMedicine && bpHistory === undefined) missing.push("confirmation of blood pressure treatment");
+  if (!diabetesMedicine && diabetesHistory === undefined) missing.push("confirmation of diabetes");
 
   if (!profile.sex) missing.push("your sex");
   if (!profile.birthMonth) missing.push("your month and year of birth");
@@ -112,6 +134,6 @@ export function heartAgeData(profile: Profile, measurements: readonly Measuremen
     diabetes: diabetes !== "no",
     bmi: b,
   };
-  const outOfRange = age < AGE_RANGE.min ? "young" : age > AGE_RANGE.max ? "old" : undefined;
+  const outOfRange = age < AGE_RANGE.min ? "young" : age >= AGE_RANGE.max + 1 ? "old" : undefined;
   return { input, missing, from, ...(outOfRange ? { outOfRange } : {}) };
 }

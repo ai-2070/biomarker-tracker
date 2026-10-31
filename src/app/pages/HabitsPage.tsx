@@ -8,7 +8,7 @@ import { durationDays, safetyLabels, safetyNotes, validateProtocol, type Protoco
 import { groupByBiomarker } from "../../core/trends";
 import type { Experiment, Measurement, ProtocolEntry } from "../../core/types";
 import type { Plan } from "../../core/plans";
-import { addProtocol, deleteExperiment, deleteHabit, saveHabit, startPlan, watchHabit } from "../../db/db";
+import { createHabit, deleteExperiment, deleteHabit, saveHabit, startPlan, watchHabit } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
@@ -469,10 +469,11 @@ function HabitForm({
       if (initial) {
         await saveHabit({ ...r.entry, id: initial.id, ...(initial.plan ? { plan: initial.plan } : {}) });
       } else {
-        const id = await addProtocol(r.entry);
-        if (watching) await watchHabit({ ...r.entry, id }, markerIds, Number(retest), today);
+        await createHabit(r.entry, watching ? { markerIds, retestAfterDays: Number(retest), today } : undefined);
       }
       onDone();
+    } catch (error) {
+      setErrors({ label: error instanceof Error ? error.message : "The habit couldn't be saved. Please try again." });
     } finally {
       setSaving(false);
     }

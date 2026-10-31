@@ -7,7 +7,7 @@ import { Button, Card, LinkButton, Notice, PageTitle, buttonStyles, cx } from ".
 import { formatDate } from "../format";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { LoadProfile } from "../components/LoadProfile";
-import { switchProfile, useProfiles, type ProfileSummary } from "../profiles";
+import { deleteProfileFolder, switchProfile, useProfiles, type ProfileSummary } from "../profiles";
 import { href } from "../router";
 
 export function Avatar({ name, size = "md" }: { name?: string; size?: "sm" | "md" }) {
@@ -64,7 +64,7 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
   }
 
   async function remove(p: ProfileSummary) {
-    const r = await api<{ active: string | null }>("DELETE", `/api/profiles/${p.id}`);
+    const r = await deleteProfileFolder(p.id);
     const left = profiles.filter((x) => x.id !== p.id);
     if (p.id === activeId) {
       // The open profile is gone: open another one, or start setup.

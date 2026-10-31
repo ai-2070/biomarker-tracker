@@ -22,8 +22,8 @@
   "A review counts for a claim when the claim's search found it and the claim's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because claims about foods rest on absorption studies, cohort studies and food analyses as well as trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the claim's question (who, which food or exposure, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown for these claims: their reviews mostly pool cohort, absorption and food-analysis studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 9712,
@@ -94,6 +94,7 @@
   {
    "id": "vitamins-b12-animal-only",
    "label": "B12",
+   "anyDesign": true,
    "finding": "vitamins-b12-animal-only",
    "counts": {
     "all": 887,
@@ -112,7 +113,7 @@
      "journal": "Nutrition bulletin",
      "citedBy": 12,
      "n": 12,
-     "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2024); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -192,11 +193,12 @@
       "journal": "Nutrition bulletin",
       "citedBy": 12,
       "n": 12,
-      "why": "One of the newest meta-analyses on this claim (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2024); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "Vegetarian or vegan diets, or plant foods (algae, seaweed, fermented foods) as sources of B12",
@@ -274,6 +276,7 @@
   {
    "id": "vitamins-vitamin-a-retinol",
    "label": "Vitamin A from plants",
+   "anyDesign": true,
    "finding": "vitamins-vitamin-a-retinol",
    "counts": {
     "all": 937,
@@ -450,6 +453,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "Beta-carotene from plant foods",
@@ -492,6 +496,7 @@
   {
    "id": "vitamins-vitamin-d-food",
    "label": "Vitamin D",
+   "anyDesign": true,
    "finding": "vitamins-vitamin-d-food",
    "counts": {
     "all": 524,
@@ -510,7 +515,7 @@
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 5,
      "n": 48626,
-     "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39428613",
@@ -520,7 +525,7 @@
      "firstAuthor": "Devulapalli CS.",
      "journal": "Acta paediatrica (Oslo, Norway : 1992)",
      "citedBy": 10,
-     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40647286",
@@ -530,7 +535,7 @@
      "firstAuthor": "Reis D",
      "journal": "Nutrients",
      "citedBy": 6,
-     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -623,7 +628,7 @@
       "journal": "Critical reviews in food science and nutrition",
       "citedBy": 5,
       "n": 48626,
-      "why": "One of the newest meta-analyses on this claim (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39428613",
@@ -633,7 +638,7 @@
       "firstAuthor": "Devulapalli CS.",
       "journal": "Acta paediatrica (Oslo, Norway : 1992)",
       "citedBy": 10,
-      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+      "why": "One of the newest systematic reviews on this claim (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "40647286",
@@ -643,11 +648,12 @@
       "firstAuthor": "Reis D",
       "journal": "Nutrients",
       "citedBy": 6,
-      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+      "why": "One of the newest systematic reviews on this claim (2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "A vegetarian or vegan diet",
@@ -725,6 +731,7 @@
   {
    "id": "vitamins-vitamin-k2",
    "label": "Vitamin K2",
+   "anyDesign": true,
    "finding": "vitamins-vitamin-k2",
    "counts": {
     "all": 993,
@@ -743,7 +750,7 @@
      "journal": "European journal of nutrition",
      "citedBy": 59,
      "n": 222592,
-     "why": "One of the newest meta-analyses on this claim (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "16801507",
@@ -753,7 +760,7 @@
      "firstAuthor": "Cockayne S",
      "journal": "Archives of internal medicine",
      "citedBy": 225,
-     "why": "One of the newest meta-analyses on this claim (2006); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2006); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "41393956",
@@ -764,90 +771,10 @@
      "journal": "Frontiers in nutrition",
      "citedBy": 4,
      "n": 2327,
-     "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0,
-    "trials": 7,
-    "inclusions": 7,
-    "reviews": [
-     {
-      "pmid": "31119401",
-      "trials": 2
-     },
-     {
-      "pmid": "41393956",
-      "trials": 5
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "16801507"
-    ],
-    "shared": [
-     {
-      "pmid": "24647393",
-      "title": "Dietary intake of vitamin K is inversely associated with mortality risk",
-      "year": 2014,
-      "n": 7216,
-      "inReviews": [
-       "31119401"
-      ]
-     },
-     {
-      "pmid": "25694037",
-      "title": "Menaquinone-7 supplementation improves arterial stiffness in healthy postmenopausal women. A double-blind randomised clinical trial",
-      "year": 2015,
-      "n": 244,
-      "inReviews": [
-       "31119401"
-      ]
-     },
-     {
-      "pmid": "23525894",
-      "title": "Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women",
-      "year": 2013,
-      "n": 244,
-      "inReviews": [
-       "41393956"
-      ]
-     },
-     {
-      "pmid": "33030563",
-      "title": "The effect of vitamin MK-7 on bone mineral density and microarchitecture in postmenopausal women with osteopenia, a 3-year randomized, placebo-controlled clinical trial",
-      "year": 2021,
-      "n": 142,
-      "inReviews": [
-       "41393956"
-      ]
-     },
-     {
-      "pmid": "23140417",
-      "title": "Comparison of menaquinone-4 and menaquinone-7 bioavailability in healthy women",
-      "year": 2012,
-      "inReviews": [
-       "41393956"
-      ]
-     },
-     {
-      "pmid": "19937427",
-      "title": "Vitamin K2 supplementation does not influence bone loss in early menopausal women: a randomised double-blind placebo-controlled trial",
-      "year": 2010,
-      "inReviews": [
-       "41393956"
-      ]
-     },
-     {
-      "pmid": "15242015",
-      "title": "Promotion of bone formation by fermented soybean (Natto) intake in premenopausal women",
-      "year": 2004,
-      "inReviews": [
-       "41393956"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1990,
@@ -1030,7 +957,7 @@
       "journal": "European journal of nutrition",
       "citedBy": 59,
       "n": 222592,
-      "why": "One of the newest meta-analyses on this claim (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "16801507",
@@ -1040,7 +967,7 @@
       "firstAuthor": "Cockayne S",
       "journal": "Archives of internal medicine",
       "citedBy": 225,
-      "why": "One of the newest meta-analyses on this claim (2006); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2006); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41393956",
@@ -1051,11 +978,12 @@
       "journal": "Frontiers in nutrition",
       "citedBy": 4,
       "n": 2327,
-      "why": "One of the newest systematic reviews on this claim (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2025); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults",
      "intervention": "Vitamin K2 (menaquinones) from foods such as cheese, meat and natto, or as supplements",
@@ -1182,6 +1110,7 @@
   {
    "id": "vitamins-omega-3",
    "label": "Omega-3 from plants",
+   "anyDesign": true,
    "finding": "vitamins-omega-3",
    "counts": {
     "all": 2221,
@@ -1200,7 +1129,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 215,
      "n": 162796,
-     "why": "One of the newest meta-analyses on this claim (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2020); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30019766",
@@ -1211,7 +1140,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 148,
      "n": 112059,
-     "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2018); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30521670",
@@ -1222,98 +1151,10 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 129,
      "n": 112059,
-     "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2018); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 1,
-    "trials": 6,
-    "inclusions": 18,
-    "reviews": [
-     {
-      "pmid": "32114706",
-      "trials": 6
-     },
-     {
-      "pmid": "30019766",
-      "trials": 6
-     },
-     {
-      "pmid": "30521670",
-      "trials": 6
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "20929341",
-      "title": "n-3 fatty acids and cardiovascular events after myocardial infarction",
-      "year": 2010,
-      "n": 4837,
-      "inReviews": [
-       "32114706",
-       "30019766",
-       "30521670"
-      ]
-     },
-     {
-      "pmid": "20362710",
-      "title": "Effect of low doses of n-3 fatty acids on cardiovascular diseases in 4,837 post-myocardial infarction patients: design and baseline characteristics of the Alpha Omega Trial",
-      "year": 2010,
-      "n": 4837,
-      "inReviews": [
-       "32114706",
-       "30019766",
-       "30521670"
-      ]
-     },
-     {
-      "pmid": "23774275",
-      "title": "No effect of n-3 fatty acids on high-sensitivity C-reactive protein after myocardial infarction: the Alpha Omega Trial",
-      "year": 2014,
-      "n": 2425,
-      "inReviews": [
-       "32114706",
-       "30019766",
-       "30521670"
-      ]
-     },
-     {
-      "pmid": "22394170",
-      "title": "No effects of n-3 fatty acid supplementation on serum total testosterone levels in older men: the Alpha Omega Trial",
-      "year": 2012,
-      "n": 1850,
-      "inReviews": [
-       "32114706",
-       "30019766",
-       "30521670"
-      ]
-     },
-     {
-      "pmid": "9625397",
-      "title": "Mediterranean dietary pattern in a randomized trial: prolonged survival and possible reduced cancer rate",
-      "year": 1998,
-      "n": 605,
-      "inReviews": [
-       "32114706",
-       "30019766",
-       "30521670"
-      ]
-     },
-     {
-      "pmid": "9310278",
-      "title": "Randomized, double-blind, placebo-controlled trial of fish oil and mustard oil in patients with suspected acute myocardial infarction: the Indian experiment of infarct survival--4",
-      "year": 1997,
-      "n": 122,
-      "inReviews": [
-       "32114706",
-       "30019766",
-       "30521670"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1984,
@@ -1567,7 +1408,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 148,
       "n": 112059,
-      "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2018); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30521670",
@@ -1578,11 +1419,12 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 129,
       "n": 112059,
-      "why": "One of the newest meta-analyses on this claim (2018); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2018); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "Plant omega-3 (ALA from flax, walnuts, rapeseed) or algal oil",
@@ -1737,6 +1579,7 @@
   {
    "id": "vitamins-fewer-b-vitamins",
    "label": "B vitamins",
+   "anyDesign": true,
    "finding": "vitamins-fewer-b-vitamins",
    "counts": {
     "all": 1244,
@@ -1754,7 +1597,7 @@
      "firstAuthor": "Neufingerl N",
      "journal": "Nutrients",
      "citedBy": 314,
-     "why": "One of the newest systematic reviews on this claim (2021); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1868,6 +1711,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "A vegetarian or vegan diet",
@@ -2022,13 +1866,14 @@
   {
    "id": "vitamins-vitamin-c-fruit",
    "label": "Vitamin C",
+   "anyDesign": true,
    "finding": "vitamins-vitamin-c-fruit",
    "counts": {
     "all": 2811,
     "reviews": 12,
     "trialReviews": 12,
     "trials": 73,
-    "largeTrials": 4
+    "largeTrials": 3
    },
    "chosenReviews": [
     {
@@ -2039,7 +1884,7 @@
      "firstAuthor": "Pennant M",
      "journal": "The British journal of nutrition",
      "citedBy": 30,
-     "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+     "why": "One of the newest meta-analyses on this claim (2015); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "21888531",
@@ -2049,250 +1894,10 @@
      "firstAuthor": "Baldrick FR",
      "journal": "Critical reviews in food science and nutrition",
      "citedBy": 78,
-     "why": "One of the newest systematic reviews on this claim (2011); screened as answering the question"
+     "why": "One of the newest systematic reviews on this claim (2011); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0,
-    "trials": 26,
-    "inclusions": 26,
-    "reviews": [
-     {
-      "pmid": "26349405",
-      "trials": 2
-     },
-     {
-      "pmid": "21888531",
-      "trials": 24
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "12076551",
-      "title": "Effects of fruit and vegetable consumption on plasma antioxidant concentrations and blood pressure: a randomised controlled trial",
-      "year": 2002,
-      "n": 690,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "9625397",
-      "title": "Mediterranean dietary pattern in a randomized trial: prolonged survival and possible reduced cancer rate",
-      "year": 1998,
-      "n": 605,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "7797808",
-      "title": "Effect of antioxidant-rich foods on plasma ascorbic acid, cardiac enzyme, and lipid peroxide levels in patients hospitalized with acute myocardial infarction",
-      "year": 1995,
-      "n": 505,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "12702620",
-      "title": "Behavioural counselling to increase consumption of fruit and vegetables in low income adults: randomised trial",
-      "year": 2003,
-      "n": 271,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "17602170",
-      "title": "Impact of multiple genetic polymorphisms on effects of a 4-week blueberry juice intervention on ex vivo induced lymphocytic DNA damage in human volunteers",
-      "year": 2007,
-      "n": 168,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "16766775",
-      "title": "Effects of high fruit-vegetable and/or low-fat intervention on plasma micronutrient levels",
-      "year": 2006,
-      "n": 122,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "17413113",
-      "title": "The contribution of plant foods to the vitamin A supply of lactating women in Vietnam: a randomized controlled trial",
-      "year": 2007,
-      "n": 73,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "22476876",
-      "title": "Impact of the quantity and flavonoid content of fruits and vegetables on markers of intake in adults with an increased risk of cardiovascular disease: the FLAVURS trial",
-      "year": 2013,
-      "n": 59,
-      "inReviews": [
-       "26349405"
-      ]
-     },
-     {
-      "pmid": "17284750",
-      "title": "Watercress supplementation in diet reduces lymphocyte DNA damage and alters blood antioxidant status in healthy adults",
-      "year": 2007,
-      "n": 30,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "11678487",
-      "title": "High vegetable and fruit diet intervention in premenopausal women with cervical intraepithelial neoplasia",
-      "year": 2001,
-      "n": 27,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "16032375",
-      "title": "The effects of cranberry juice consumption on antioxidant status and biomarkers relating to heart disease and cancer in healthy human volunteers",
-      "year": 2006,
-      "n": 20,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "11302008",
-      "title": "Partial resistance of low density lipoprotein to oxidation in vivo after increased intake of berries",
-      "year": 2000,
-      "n": 20,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "15277160",
-      "title": "Supplementation with cactus pear (Opuntia ficus-indica) fruit decreases oxidative stress in healthy humans: a comparative study with vitamin C",
-      "year": 2004,
-      "n": 18,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "14684757",
-      "title": "Orange juice ingestion and supplemental vitamin C are equally effective at reducing plasma lipid peroxidation in healthy adult women",
-      "year": 2003,
-      "n": 11,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "20673378",
-      "title": "Increased potassium intake from fruit and vegetables or supplements does not lower blood pressure or improve vascular function in UK men and women with early hypertension: a randomised controlled trial",
-      "year": 2010,
-      "inReviews": [
-       "26349405"
-      ]
-     },
-     {
-      "pmid": "15277161",
-      "title": "Carotenoid bioavailability is higher from salads ingested with full-fat than with fat-reduced salad dressings as measured with electrochemical detection",
-      "year": 2004,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "15370099",
-      "title": "Effects of kiwi fruit consumption on platelet aggregation and plasma lipids in healthy human volunteers",
-      "year": 2004,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "9459371",
-      "title": "Citrus fruit supplementation reduces lipoprotein oxidation in young men ingesting a diet high in saturated fat: presumptive evidence for an interaction between vitamins C and E in vivo",
-      "year": 1998,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "8019375",
-      "title": "A pilot study on the use of plasma carotenoids and ascorbic acid as markers of compliance to a high fruit and vegetable dietary intervention",
-      "year": 1994,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "8505665",
-      "title": "The bioavailability to humans of ascorbic acid from oranges, orange juice and cooked broccoli is similar to that of synthetic ascorbic acid",
-      "year": 1993,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "17056812",
-      "title": "Supplementation with fruit and vegetable soups and beverages increases plasma carotenoid concentrations but does not alter markers of oxidative stress or cardiovascular risk factors",
-      "year": 2006,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "9264275",
-      "title": "Responsiveness of carotenoids to a high vegetable diet intervention designed to prevent breast cancer recurrence",
-      "year": 1997,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "12395217",
-      "title": "Plasma concentration response to drinks containing beta-carotene as carrot juice or formulated as a water dispersible powder",
-      "year": 2002,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "11385058",
-      "title": "A vegetable/fruit concentrate with high antioxidant capacity has no effect on biomarkers of antioxidant status in male smokers",
-      "year": 2001,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "9925128",
-      "title": "Effect of fruit juice intake on urinary quercetin excretion and biomarkers of antioxidative status",
-      "year": 1999,
-      "inReviews": [
-       "21888531"
-      ]
-     },
-     {
-      "pmid": "9224079",
-      "title": "Randomised controlled trial of effect of fruit and vegetable consumption on plasma concentrations of lipids and antioxidants",
-      "year": 1997,
-      "inReviews": [
-       "21888531"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1993,
@@ -2464,12 +2069,6 @@
      "n": 4358
     },
     {
-     "pmid": "20178625",
-     "title": "Weight loss in individuals with metabolic syndrome given DASH diet counseling when provided a low sodium vegetable juice: a randomized controlled trial",
-     "year": 2010,
-     "n": 1800
-    },
-    {
      "pmid": "21955649",
      "title": "Fruit and vegetable intake and cognitive function in the SU.VI.MAX 2 prospective study",
      "year": 2011,
@@ -2499,7 +2098,7 @@
       "firstAuthor": "Pennant M",
       "journal": "The British journal of nutrition",
       "citedBy": 30,
-      "why": "One of the newest meta-analyses on this claim (2015); screened as answering the question"
+      "why": "One of the newest meta-analyses on this claim (2015); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "21888531",
@@ -2509,11 +2108,12 @@
       "firstAuthor": "Baldrick FR",
       "journal": "Critical reviews in food science and nutrition",
       "citedBy": 78,
-      "why": "One of the newest systematic reviews on this claim (2011); screened as answering the question"
+      "why": "One of the newest systematic reviews on this claim (2011); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "Eating fruit and vegetables",
@@ -2605,6 +2205,7 @@
   {
    "id": "vitamins-folate-plants",
    "label": "Folate",
+   "anyDesign": true,
    "finding": "vitamins-folate-plants",
    "counts": {
     "all": 1166,
@@ -2713,6 +2314,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People",
      "intervention": "Vegetables, legumes, fruit or plant-based diets",

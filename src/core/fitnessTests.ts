@@ -1,3 +1,4 @@
+import { sortByDate } from "./trends";
 import type { Citation, EvidenceGrade, Measurement, Sex } from "./types";
 
 /**
@@ -90,7 +91,7 @@ export type NormPlace =
   /** Between two bands (the table has a gap there). */
   | { kind: "between-bands"; lower: string; upper: string }
   /** `above` / `below` are percentile numbers (25 = 25th); a missing one means past the table's end. */
-  | { kind: "percentile"; above?: number; below?: number; median?: number }
+  | { kind: "percentile"; above?: number; below?: number; median?: number; capped?: boolean }
   | { kind: "mean_sd"; mean: number; sd: number; z: number };
 
 export interface NormResult {
@@ -156,7 +157,7 @@ export function ageMatch(set: NormSet, sex: Sex, value: number, higherIsBetter: 
     const b = rows[i + 1]!;
     if (!better(result, b.typical)) continue;
     // Between a (better) and b: a straight line between their ages, unless b is an open "and over" group.
-    if (b.r.ageTo === undefined) return { kind: "oldest", age: b.r.ageFrom };
+    if (b.r.ageTo === undefined) return result === b.typical ? { kind: "oldest", age: b.r.ageFrom } : undefined;
     const span = a.typical - b.typical;
     const f = span === 0 ? 0 : (a.typical - result) / span;
     return { kind: "age", age: Math.round(mid(a.r) + f * (mid(b.r) - mid(a.r))) };
@@ -208,6 +209,10 @@ export function placeInRow(set: NormSet, row: NormRow, result: number): NormPlac
   if (set.kind === "percentiles") {
     const ps = PERCENTILES.filter((p) => row[p] !== undefined).map((p) => ({ n: Number(p.slice(1)), v: row[p]! }));
     if (ps.length === 0) return undefined;
+    // At a capped test's limit, ties can span much of the population: no strict ranking is known.
+    if (set.ceiling !== undefined && value === set.ceiling && ps.some((p) => p.v === set.ceiling)) {
+      return { kind: "percentile", capped: true, ...(row.p50 !== undefined ? { median: row.p50 } : {}) };
+    }
     let above: number | undefined;
     let below: number | undefined;
     for (const p of ps) {
@@ -265,7 +270,7 @@ export function isDeviceWalkingAverage(m: { biomarkerId: string; source?: Measur
  */
 export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: readonly { biomarkerId: string; date: string; value: number; source?: Measurement["source"] }[], person: { sex?: Sex; ageAt?: (date: string) => number }) {
   return tests.flatMap((t) => {
-    const last = measurements.filter((m) => m.biomarkerId === t.id).sort((a, b) => a.date.localeCompare(b.date)).at(-1);
+    const last = sortByDate(measurements.filter((m) => m.biomarkerId === t.id)).at(-1);
     if (!last) return [];
     const who = { ...(person.sex ? { sex: person.sex } : {}), ...(person.ageAt ? { age: person.ageAt(last.date) } : {}) };
     const deviceAverage = isDeviceWalkingAverage(last);
@@ -310,6 +315,8 @@ export function describePlace(place: NormPlace, higherIsBetter = true): string {
     case "between-bands":
       return `Between ${place.lower.toLowerCase()} and ${place.upper.toLowerCase()}`;
     case "percentile": {
+      if (place.capped) return "Reached the test limit; the table cannot rank results at the limit";
+      if (place.above === undefined && place.below === undefined) return "At the table's reported percentile value; ties prevent a finer ranking";
       const lo = higherIsBetter ? place.above : place.below !== undefined ? 100 - place.below : undefined;
       const hi = higherIsBetter ? place.below : place.above !== undefined ? 100 - place.above : undefined;
       if (lo === undefined) return `Below the ${nth(hi!)} percentile`;

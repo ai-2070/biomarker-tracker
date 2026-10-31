@@ -21,8 +21,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating honey comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 2664,
@@ -48,6 +48,7 @@
   {
    "id": "cough",
    "label": "Cough in children",
+   "anyDesign": true,
    "finding": "Short-term (acute) cough in children",
    "counts": {
     "all": 124,
@@ -66,7 +67,7 @@
      "journal": "European journal of pediatrics",
      "citedBy": 0,
      "n": 576,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "29633783",
@@ -77,7 +78,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 46,
      "n": 899,
-     "why": "One of the newest meta-analyses on this finding (2018); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2018); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "27280298",
@@ -87,113 +88,10 @@
      "firstAuthor": "Nitsche MP",
      "journal": "Medwave",
      "citedBy": 4,
-     "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2016); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.5555555555555556,
-    "trials": 9,
-    "inclusions": 14,
-    "reviews": [
-     {
-      "pmid": "42671586",
-      "trials": 6
-     },
-     {
-      "pmid": "29633783",
-      "trials": 8
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "27280298"
-    ],
-    "shared": [
-     {
-      "pmid": "26859020",
-      "title": "RANDOMISED DOUBLE BLIND STUDY TO COMPARE EFFECTIVENESS OF HONEY, SALBUTAMOL AND PLACEBO IN TREATMENT OF COUGH IN CHILDREN WITH COMMON COLD",
-      "year": 2014,
-      "n": 145,
-      "inReviews": [
-       "42671586",
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "20618098",
-      "title": "A comparison of the effect of honey, dextromethorphan, and diphenhydramine on nightly cough and sleep quality in children and their parents",
-      "year": 2010,
-      "n": 139,
-      "inReviews": [
-       "42671586",
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "25201759",
-      "title": "Effect of multiple honey doses on non-specific acute cough in children. An open randomised study and literature review",
-      "year": 2015,
-      "n": 134,
-      "inReviews": [
-       "42671586",
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "28103276",
-      "title": "Comparison of the Effect of Two Kinds of Iranian Honey and Diphenhydramine on Nocturnal Cough and the Sleep Quality in Coughing Children and Their Parents",
-      "year": 2017,
-      "n": 87,
-      "inReviews": [
-       "42671586",
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "18056558",
-      "title": "Effect of honey, dextromethorphan, and no treatment on nocturnal cough and sleep quality for coughing children and their parents",
-      "year": 2007,
-      "inReviews": [
-       "42671586",
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "22869830",
-      "title": "Effect of honey on nocturnal cough and sleep quality: a double-blind, randomized, placebo-controlled study",
-      "year": 2012,
-      "n": 300,
-      "inReviews": [
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "27457790",
-      "title": "Efficacy and tolerability of a polysaccharide-resin-honey based cough syrup as compared to carbocysteine syrup for children with colds: a randomized, single-blinded, multicenter study",
-      "year": 2017,
-      "n": 150,
-      "inReviews": [
-       "29633783"
-      ]
-     },
-     {
-      "pmid": "36126325",
-      "title": "Effect of Honey on Cough Symptoms in Children with Upper Respiratory Tract Infection: A Randomised Controlled Trial",
-      "year": 2022,
-      "inReviews": [
-       "42671586"
-      ]
-     },
-     {
-      "pmid": "27181342",
-      "title": "Use of honey associated with Ananas comosus (Bromelin) in the treatment of acute irritative cough",
-      "year": 2016,
-      "inReviews": [
-       "29633783"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2007,
@@ -280,11 +178,12 @@
       "firstAuthor": "Nitsche MP",
       "journal": "Medwave",
       "citedBy": 4,
-      "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2016); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Children with a short-term cough",
      "intervention": "Honey",
@@ -320,6 +219,7 @@
   {
    "id": "colds",
    "label": "Colds",
+   "anyDesign": true,
    "finding": "Symptoms of colds and other upper respiratory tract infections (nose, throat and upper airways)",
    "counts": {
     "all": 65,
@@ -337,7 +237,7 @@
      "firstAuthor": "Abuelgasim H",
      "journal": "BMJ evidence-based medicine",
      "citedBy": 45,
-     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "20091616",
@@ -348,7 +248,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 9,
      "n": 108,
-     "why": "One of the newest systematic reviews on this finding (2010); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2010); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -416,11 +316,12 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 9,
       "n": 108,
-      "why": "One of the newest systematic reviews on this finding (2010); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2010); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Children or adults with colds or other upper respiratory infections",
      "intervention": "Honey",
@@ -449,6 +350,7 @@
   {
    "id": "sugar",
    "label": "Blood sugar",
+   "anyDesign": true,
    "finding": "Blood sugar: fasting glucose and HbA1c (long-term blood sugar)",
    "counts": {
     "all": 931,
@@ -467,7 +369,7 @@
      "journal": "Nutrition & diabetes",
      "citedBy": 1,
      "n": 3544,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36379223",
@@ -478,7 +380,7 @@
      "journal": "Nutrition reviews",
      "citedBy": 8,
      "n": 1105,
-     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33552217",
@@ -489,136 +391,10 @@
      "journal": "Evidence-based complementary and alternative medicine : eCAM",
      "citedBy": 8,
      "n": 12,
-     "why": "One of the newest systematic reviews on this finding (2021); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2021); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.5454545454545454,
-    "trials": 11,
-    "inclusions": 23,
-    "reviews": [
-     {
-      "pmid": "41261111",
-      "trials": 8
-     },
-     {
-      "pmid": "36379223",
-      "trials": 8
-     },
-     {
-      "pmid": "33552217",
-      "trials": 7
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "18454257",
-      "title": "Natural honey and cardiovascular risk factors; effects on blood glucose, cholesterol, triacylglycerole, CRP, and body weight compared with sucrose",
-      "year": 2008,
-      "n": 55,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "33552217"
-      ]
-     },
-     {
-      "pmid": "26338891",
-      "title": "Consumption of Honey, Sucrose, and High-Fructose Corn Syrup Produces Similar Metabolic Effects in Glucose-Tolerant and -Intolerant Individuals",
-      "year": 2015,
-      "n": 27,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "33552217"
-      ]
-     },
-     {
-      "pmid": "19627212",
-      "title": "Effect of honey on serum cholesterol and lipid values",
-      "year": 2009,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "33552217"
-      ]
-     },
-     {
-      "pmid": "25226738",
-      "title": "Effects of natural honey on blood glucose and lipid profile in young healthy Pakistani males",
-      "year": 2013,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "33552217"
-      ]
-     },
-     {
-      "pmid": "19817641",
-      "title": "Effects of natural honey consumption in diabetic patients: an 8-week randomized clinical trial",
-      "year": 2009,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "33552217"
-      ]
-     },
-     {
-      "pmid": "31958656",
-      "title": "Honey does not adversely impact blood lipids of adult men and women: a randomized cross-over trial",
-      "year": 2020,
-      "inReviews": [
-       "41261111",
-       "36379223"
-      ]
-     },
-     {
-      "pmid": "29908688",
-      "title": "The effect of honey consumption compared with sucrose on lipid profile in young healthy subjects (randomized clinical trial)",
-      "year": 2018,
-      "inReviews": [
-       "41261111",
-       "36379223"
-      ]
-     },
-     {
-      "pmid": "24605717",
-      "title": "Comparison of glycaemic response to honey and glucose in type 2 diabetes",
-      "year": 2014,
-      "n": 97,
-      "inReviews": [
-       "41261111"
-      ]
-     },
-     {
-      "pmid": "30218286",
-      "title": "The Effects of Probiotic Honey Consumption on Metabolic Status in Patients with Diabetic Nephropathy: a Randomized, Double-Blind, Controlled Trial",
-      "year": 2019,
-      "n": 60,
-      "inReviews": [
-       "33552217"
-      ]
-     },
-     {
-      "pmid": "30368796",
-      "title": "Effect of honey on glucose and insulin concentrations in obese girls",
-      "year": 2019,
-      "inReviews": [
-       "36379223"
-      ]
-     },
-     {
-      "pmid": "15117561",
-      "title": "Natural honey lowers plasma glucose, C-reactive protein, homocysteine, and blood lipids in healthy, diabetic, and hyperlipidemic subjects: comparison with dextrose and sucrose",
-      "year": 2004,
-      "inReviews": [
-       "33552217"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -704,11 +480,12 @@
       "journal": "Evidence-based complementary and alternative medicine : eCAM",
       "citedBy": 8,
       "n": 12,
-      "why": "One of the newest systematic reviews on this finding (2021); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2021); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Honey eaten as food, often in place of other sugars",
@@ -729,6 +506,7 @@
   {
    "id": "lipids",
    "label": "Blood fats",
+   "anyDesign": true,
    "finding": "Blood fats (total cholesterol, LDL cholesterol, HDL cholesterol, triglycerides)",
    "counts": {
     "all": 329,
@@ -747,7 +525,7 @@
      "journal": "Nutrition & diabetes",
      "citedBy": 1,
      "n": 3544,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "36379223",
@@ -758,7 +536,7 @@
      "journal": "Nutrition reviews",
      "citedBy": 8,
      "n": 1105,
-     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "34218823",
@@ -768,163 +546,10 @@
      "firstAuthor": "Gholami Z",
      "journal": "The British journal of nutrition",
      "citedBy": 10,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.5,
-    "trials": 14,
-    "inclusions": 28,
-    "reviews": [
-     {
-      "pmid": "41261111",
-      "trials": 8
-     },
-     {
-      "pmid": "36379223",
-      "trials": 8
-     },
-     {
-      "pmid": "34218823",
-      "trials": 12
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "18454257",
-      "title": "Natural honey and cardiovascular risk factors; effects on blood glucose, cholesterol, triacylglycerole, CRP, and body weight compared with sucrose",
-      "year": 2008,
-      "n": 55,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "26338891",
-      "title": "Consumption of Honey, Sucrose, and High-Fructose Corn Syrup Produces Similar Metabolic Effects in Glucose-Tolerant and -Intolerant Individuals",
-      "year": 2015,
-      "n": 27,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "31958656",
-      "title": "Honey does not adversely impact blood lipids of adult men and women: a randomized cross-over trial",
-      "year": 2020,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "29908688",
-      "title": "The effect of honey consumption compared with sucrose on lipid profile in young healthy subjects (randomized clinical trial)",
-      "year": 2018,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "19627212",
-      "title": "Effect of honey on serum cholesterol and lipid values",
-      "year": 2009,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "25226738",
-      "title": "Effects of natural honey on blood glucose and lipid profile in young healthy Pakistani males",
-      "year": 2013,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "19817641",
-      "title": "Effects of natural honey consumption in diabetic patients: an 8-week randomized clinical trial",
-      "year": 2009,
-      "inReviews": [
-       "41261111",
-       "36379223",
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "11339775",
-      "title": "Metabolic, hormonal and gastric fluid and pH changes after different preoperative feeding regimens",
-      "year": 2001,
-      "n": 375,
-      "inReviews": [
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "24605717",
-      "title": "Comparison of glycaemic response to honey and glucose in type 2 diabetes",
-      "year": 2014,
-      "n": 97,
-      "inReviews": [
-       "41261111"
-      ]
-     },
-     {
-      "pmid": "30218286",
-      "title": "The Effects of Probiotic Honey Consumption on Metabolic Status in Patients with Diabetic Nephropathy: a Randomized, Double-Blind, Controlled Trial",
-      "year": 2019,
-      "n": 60,
-      "inReviews": [
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "30368796",
-      "title": "Effect of honey on glucose and insulin concentrations in obese girls",
-      "year": 2019,
-      "inReviews": [
-       "36379223"
-      ]
-     },
-     {
-      "pmid": "25986159",
-      "title": "The effect of a cinnamon-, chromium- and magnesium-formulated honey on glycaemic control, weight loss and lipid parameters in type 2 diabetes: an open-label cross-over randomised controlled trial",
-      "year": 2016,
-      "inReviews": [
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "23256446",
-      "title": "Metabolic effects of honey in type 1 diabetes mellitus: a randomized crossover pilot study",
-      "year": 2013,
-      "inReviews": [
-       "34218823"
-      ]
-     },
-     {
-      "pmid": "15117561",
-      "title": "Natural honey lowers plasma glucose, C-reactive protein, homocysteine, and blood lipids in healthy, diabetic, and hyperlipidemic subjects: comparison with dextrose and sucrose",
-      "year": 2004,
-      "inReviews": [
-       "34218823"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2004,
@@ -993,6 +618,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Honey eaten as food, often in place of other sugars",
@@ -1013,6 +639,7 @@
   {
    "id": "burns",
    "label": "Burns (on the skin)",
+   "anyDesign": true,
    "finding": "Healing of burns, with honey dressings applied to the skin (not eaten)",
    "counts": {
     "all": 225,
@@ -1030,7 +657,7 @@
      "firstAuthor": "Lindberg T",
      "journal": "Contemporary nurse",
      "citedBy": 18,
-     "why": "One of the newest meta-analyses on this finding (2015); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2015); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "19648986",
@@ -1040,7 +667,7 @@
      "journal": "The New Zealand medical journal",
      "citedBy": 24,
      "n": 624,
-     "why": "One of the newest meta-analyses on this finding (2009); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2009); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "42099328",
@@ -1050,192 +677,10 @@
      "firstAuthor": "Schils M",
      "journal": "Cureus",
      "citedBy": 0,
-     "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+     "why": "One of the newest systematic reviews on this finding (2026); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.2222222222222222,
-    "trials": 18,
-    "inclusions": 22,
-    "reviews": [
-     {
-      "pmid": "27027667",
-      "trials": 5
-     },
-     {
-      "pmid": "42099328",
-      "trials": 17
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "19648986"
-    ],
-    "shared": [
-     {
-      "pmid": "20649832",
-      "title": "Honey compared with silver sulphadiazine in the treatment of superficial partial-thickness burns",
-      "year": 2010,
-      "n": 150,
-      "inReviews": [
-       "27027667",
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "19222654",
-      "title": "Standardized antibacterial honey (Medihoney) with standard therapy in wound care: randomized clinical trial",
-      "year": 2009,
-      "n": 105,
-      "inReviews": [
-       "27027667",
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "9625243",
-      "title": "A prospective randomised clinical and histological study of superficial burn wound healing with honey and silver sulfadiazine",
-      "year": 1998,
-      "n": 84,
-      "inReviews": [
-       "27027667",
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "18752540",
-      "title": "Manuka honey vs. hydrogel--a prospective, open label, multicentre, randomised controlled trial to compare desloughing efficacy and healing outcomes in venous ulcers",
-      "year": 2009,
-      "inReviews": [
-       "27027667",
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "18161896",
-      "title": "Randomized clinical trial of honey-impregnated dressings for venous leg ulcers",
-      "year": 2008,
-      "n": 368,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "22092836",
-      "title": "The effect of honey-coated bandages compared with silver-coated bandages on treatment of malignant wounds-a randomized study",
-      "year": 2011,
-      "n": 134,
-      "inReviews": [
-       "27027667"
-      ]
-     },
-     {
-      "pmid": "18666717",
-      "title": "Bacteriological changes in sloughy venous leg ulcers treated with manuka honey or hydrogel: an RCT",
-      "year": 2008,
-      "n": 108,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "25666002",
-      "title": "Honey and wound dehiscence: a study of surgical wounds in the mandibular bed",
-      "year": 2015,
-      "n": 72,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "26977860",
-      "title": "Topical Application of Honey on Surgical Wounds: A Randomized Clinical Trial",
-      "year": 2016,
-      "n": 52,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "8884013",
-      "title": "Honey dressing versus boiled potato peel in the treatment of burns: a prospective randomized study",
-      "year": 1996,
-      "n": 50,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "27429228",
-      "title": "Effect of Manuka Honey on Eyelid Wound Healing: A Randomized Controlled Trial",
-      "year": 2017,
-      "n": 46,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "8330089",
-      "title": "Honey impregnated gauze versus polyurethane film (OpSite) in the treatment of burns--a prospective randomised study",
-      "year": 1993,
-      "n": 46,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "34187130",
-      "title": "Tualang honey versus steroid impregnated nasal dressing following endoscopic sinus surgery: a randomized controlled trial",
-      "year": 2020,
-      "n": 32,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "18935732",
-      "title": "A comparative study between honey and povidone iodine as dressing solution for Wagner type II diabetic foot ulcers",
-      "year": 2008,
-      "n": 30,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "17413836",
-      "title": "Effectiveness of a honey dressing for healing pressure ulcers",
-      "year": 2007,
-      "n": 11,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "15125017",
-      "title": "The effects of manuka honey on plaque and gingivitis: a pilot study",
-      "year": 2004,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "17708384",
-      "title": "Effects of honey and sugar dressings on wound healing",
-      "year": 2007,
-      "inReviews": [
-       "42099328"
-      ]
-     },
-     {
-      "pmid": "36123843",
-      "title": "A novel therapeutic approach for reducing postoperative inflammatory complications after impacted mandibular third molar removal",
-      "year": 2022,
-      "inReviews": [
-       "42099328"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1993,
@@ -1307,7 +752,7 @@
       "firstAuthor": "Lindberg T",
       "journal": "Contemporary nurse",
       "citedBy": 18,
-      "why": "One of the newest meta-analyses on this finding (2015); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2015); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "19648986",
@@ -1317,7 +762,7 @@
       "journal": "The New Zealand medical journal",
       "citedBy": 24,
       "n": 624,
-      "why": "One of the newest meta-analyses on this finding (2009); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2009); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "42099328",
@@ -1327,11 +772,12 @@
       "firstAuthor": "Schils M",
       "journal": "Cureus",
       "citedBy": 0,
-      "why": "One of the newest systematic reviews on this finding (2026); screened as answering the question"
+      "why": "One of the newest systematic reviews on this finding (2026); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People with burns",
      "intervention": "Honey dressings applied to the skin",
@@ -1352,6 +798,7 @@
   {
    "id": "wounds",
    "label": "Wounds (on the skin)",
+   "anyDesign": true,
    "finding": "Healing of leg ulcers, diabetic foot ulcers and other wounds, with honey applied to the skin (not eaten)",
    "counts": {
     "all": 1291,
@@ -1370,7 +817,7 @@
      "journal": "Frontiers in endocrinology",
      "citedBy": 0,
      "n": 1423,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "39125335",
@@ -1381,7 +828,7 @@
      "journal": "Nutrients",
      "citedBy": 12,
      "n": 906,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38257078",
@@ -1392,7 +839,7 @@
      "journal": "Nutrients",
      "citedBy": 6,
      "n": 353,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "25742878",
@@ -1403,301 +850,10 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 142,
      "n": 3011,
-     "why": "The most comprehensive review on this finding (26 trials, 2015); screened as answering the question"
+     "why": "The most comprehensive review on this finding (26 trials, 2015); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.05555555555555555,
-    "trials": 30,
-    "inclusions": 35,
-    "reviews": [
-     {
-      "pmid": "41928876",
-      "trials": 5
-     },
-     {
-      "pmid": "39125335",
-      "trials": 4
-     },
-     {
-      "pmid": "38257078",
-      "trials": 1
-     },
-     {
-      "pmid": "25742878",
-      "trials": 25
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "22985336",
-      "title": "Manuka honey-impregnated dressings in the treatment of neuropathic diabetic foot ulcers",
-      "year": 2014,
-      "inReviews": [
-       "41928876",
-       "39125335",
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "18161896",
-      "title": "Randomized clinical trial of honey-impregnated dressings for venous leg ulcers",
-      "year": 2008,
-      "n": 368,
-      "inReviews": [
-       "39125335",
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "26454386",
-      "title": "A Randomized, Controlled Clinical Trial of Honey-Impregnated Dressing for Treating Diabetic Foot Ulcer",
-      "year": 2015,
-      "n": 179,
-      "inReviews": [
-       "41928876",
-       "39125335"
-      ]
-     },
-     {
-      "pmid": "18935732",
-      "title": "A comparative study between honey and povidone iodine as dressing solution for Wagner type II diabetic foot ulcers",
-      "year": 2008,
-      "n": 30,
-      "inReviews": [
-       "41928876",
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "36598614",
-      "title": "The value of honey dressings in pilonidal cyst healing: a prospective randomized single-center trial",
-      "year": 2023,
-      "n": 2022,
-      "inReviews": [
-       "39125335"
-      ]
-     },
-     {
-      "pmid": "20649832",
-      "title": "Honey compared with silver sulphadiazine in the treatment of superficial partial-thickness burns",
-      "year": 2010,
-      "n": 150,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "22092836",
-      "title": "The effect of honey-coated bandages compared with silver-coated bandages on treatment of malignant wounds-a randomized study",
-      "year": 2011,
-      "n": 134,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "38425229",
-      "title": "The Influence of Honey and Hydrogel Products Therapy on Healing Time in Diabetic Foot",
-      "year": 2026,
-      "n": 120,
-      "inReviews": [
-       "41928876"
-      ]
-     },
-     {
-      "pmid": "28981445",
-      "title": "Comparison of honey and phenytoin (PHT) cream effects on intensity of pain and episiotomy wound healing in nulliparous women",
-      "year": 2017,
-      "n": 120,
-      "inReviews": [
-       "38257078"
-      ]
-     },
-     {
-      "pmid": "18666717",
-      "title": "Bacteriological changes in sloughy venous leg ulcers treated with manuka honey or hydrogel: an RCT",
-      "year": 2008,
-      "n": 108,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "19222654",
-      "title": "Standardized antibacterial honey (Medihoney) with standard therapy in wound care: randomized clinical trial",
-      "year": 2009,
-      "n": 105,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "16550669",
-      "title": "Honey dressing versus paraffin tulle gras following toenail surgery",
-      "year": 2006,
-      "n": 100,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "17466071",
-      "title": "Effect of topical honey application along with intralesional injection of glucantime in the treatment of cutaneous leishmaniasis",
-      "year": 2007,
-      "n": 100,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "9625243",
-      "title": "A prospective randomised clinical and histological study of superficial burn wound healing with honey and silver sulfadiazine",
-      "year": 1998,
-      "n": 84,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "21904013",
-      "title": "Qualitative bacteriology in malignant wounds--a prospective, randomized, clinical study to compare the effect of honey and silver dressings",
-      "year": 2011,
-      "n": 75,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "21831489",
-      "title": "Randomised controlled feasibility trial on the use of medical grade honey following microvascular free tissue transfer to reduce the incidence of wound infection",
-      "year": 2012,
-      "n": 70,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "8884013",
-      "title": "Honey dressing versus boiled potato peel in the treatment of burns: a prospective randomized study",
-      "year": 1996,
-      "n": 50,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "10630854",
-      "title": "Early tangential excision and skin grafting of moderate burns is superior to honey dressing: a prospective randomised trial",
-      "year": 1999,
-      "n": 50,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "8330089",
-      "title": "Honey impregnated gauze versus polyurethane film (OpSite) in the treatment of burns--a prospective randomised study",
-      "year": 1993,
-      "n": 46,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "23273638",
-      "title": "The effect of Tualang honey in enhancing post tonsillectomy healing process. An open labelled prospective clinical trial",
-      "year": 2013,
-      "n": 35,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "17413836",
-      "title": "Effectiveness of a honey dressing for healing pressure ulcers",
-      "year": 2007,
-      "n": 11,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "23566071",
-      "title": "The efficacy of topical royal jelly on healing of diabetic foot ulcers: a double-blind placebo-controlled clinical trial",
-      "year": 2015,
-      "inReviews": [
-       "41928876"
-      ]
-     },
-     {
-      "pmid": "20646771",
-      "title": "The clinical and cost effectiveness of bee honey dressing in the treatment of diabetic foot ulcers",
-      "year": 2010,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "12562348",
-      "title": "Use of honey as an adjunct in the healing of split-thickness skin graft donor site",
-      "year": 2003,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "7945822",
-      "title": "Honey-impregnated gauze versus amniotic membrane in the treatment of burns",
-      "year": 1994,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "17068655",
-      "title": "Wound healing with honey--a randomised controlled trial",
-      "year": 2006,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "17708384",
-      "title": "Effects of honey and sugar dressings on wound healing",
-      "year": 2007,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "15992237",
-      "title": "Comparison of healing of incised abscess wounds with honey and EUSOL dressing",
-      "year": 2005,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "12673463",
-      "title": "Topical application of honey in the management of radiation mucositis: a preliminary study",
-      "year": 2003,
-      "inReviews": [
-       "25742878"
-      ]
-     },
-     {
-      "pmid": "18752540",
-      "title": "Manuka honey vs. hydrogel--a prospective, open label, multicentre, randomised controlled trial to compare desloughing efficacy and healing outcomes in venous ulcers",
-      "year": 2009,
-      "inReviews": [
-       "25742878"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1998,
@@ -1838,7 +994,7 @@
       "journal": "Frontiers in endocrinology",
       "citedBy": 0,
       "n": 1423,
-      "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38257078",
@@ -1849,11 +1005,12 @@
       "journal": "Nutrients",
       "citedBy": 6,
       "n": 353,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People with leg ulcers, diabetic foot ulcers or other wounds",
      "intervention": "Honey applied to the wound",
@@ -1903,6 +1060,7 @@
   {
    "id": "mucositis",
    "label": "Mouth sores in cancer care",
+   "anyDesign": true,
    "finding": "Mouth sores from cancer treatment (oral mucositis)",
    "counts": {
     "all": 119,
@@ -1921,7 +1079,7 @@
      "journal": "In vivo (Athens, Greece)",
      "citedBy": 4,
      "n": 599,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35341151",
@@ -1932,7 +1090,7 @@
      "journal": "Evidence-based complementary and alternative medicine : eCAM",
      "citedBy": 7,
      "n": 316,
-     "why": "One of the newest meta-analyses on this finding (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "33900311",
@@ -1943,7 +1101,7 @@
      "journal": "Food & function",
      "citedBy": 14,
      "n": 715,
-     "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "30352321",
@@ -1954,163 +1112,10 @@
      "journal": "International journal of nursing studies",
      "citedBy": 51,
      "n": 1265,
-     "why": "The most comprehensive review on this finding (17 trials, 2019); screened as answering the question"
+     "why": "The most comprehensive review on this finding (17 trials, 2019); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.25,
-    "trials": 14,
-    "inclusions": 21,
-    "reviews": [
-     {
-      "pmid": "38688612",
-      "trials": 7
-     },
-     {
-      "pmid": "35341151",
-      "trials": 3
-     },
-     {
-      "pmid": "30352321",
-      "trials": 11
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "33900311"
-    ],
-    "shared": [
-     {
-      "pmid": "20832243",
-      "title": "Effect of topical honey on limitation of radiation-induced oral mucositis: an intervention study",
-      "year": 2010,
-      "n": 20,
-      "inReviews": [
-       "38688612",
-       "35341151",
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "21636188",
-      "title": "A double-blind, placebo-controlled, randomised trial of active manuka honey and standard oral care for radiation-induced oral mucositis",
-      "year": 2012,
-      "n": 131,
-      "inReviews": [
-       "38688612",
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "22475306",
-      "title": "Honey and a mixture of honey, beeswax, and olive oil-propolis extract in treatment of chemotherapy-induced oral mucositis: a randomized controlled pilot study",
-      "year": 2012,
-      "n": 90,
-      "inReviews": [
-       "35341151",
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "24221577",
-      "title": "A randomized placebo-controlled trial of manuka honey for radiation-induced oral mucositis",
-      "year": 2014,
-      "n": 81,
-      "inReviews": [
-       "38688612",
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "18335118",
-      "title": "The effect of topical application of pure honey on radiation-induced mucositis: a randomized clinical trial",
-      "year": 2008,
-      "n": 40,
-      "inReviews": [
-       "38688612",
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "12673463",
-      "title": "Topical application of honey in the management of radiation mucositis: a preliminary study",
-      "year": 2003,
-      "inReviews": [
-       "38688612",
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "9625243",
-      "title": "A prospective randomised clinical and histological study of superficial burn wound healing with honey and silver sulfadiazine",
-      "year": 1998,
-      "n": 84,
-      "inReviews": [
-       "35341151"
-      ]
-     },
-     {
-      "pmid": "25106776",
-      "title": "\"Coffee plus honey\" versus \"topical steroid\" in the treatment of chemotherapy-induced oral mucositis: a randomised controlled trial",
-      "year": 2014,
-      "n": 75,
-      "inReviews": [
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "28244415",
-      "title": "A Randomized Phase 2 Trial of Prophylactic Manuka Honey for the Reduction of Chemoradiation Therapy-Induced Esophagitis During the Treatment of Lung Cancer: Results of NRG Oncology RTOG 1012",
-      "year": 2017,
-      "n": 53,
-      "inReviews": [
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "27050177",
-      "title": "Honey on oral mucositis: A Randomized controlled trial",
-      "year": 2016,
-      "n": 28,
-      "inReviews": [
-       "38688612"
-      ]
-     },
-     {
-      "pmid": "18485252",
-      "title": "Honey as topical prophylaxis against radiochemotherapy-induced mucositis in head and neck cancer",
-      "year": 2009,
-      "n": 13,
-      "inReviews": [
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "29784145",
-      "title": "The effect of the use of thyme honey in minimizing radiation - induced oral mucositis in head and neck cancer patients: A randomized controlled trial",
-      "year": 2018,
-      "inReviews": [
-       "38688612"
-      ]
-     },
-     {
-      "pmid": "19297246",
-      "title": "Evaluating the effects of the essential oils Leptospermum scoparium (manuka) and Kunzea ericoides (kanuka) on radiotherapy induced mucositis: a randomized, placebo controlled feasibility study",
-      "year": 2009,
-      "inReviews": [
-       "30352321"
-      ]
-     },
-     {
-      "pmid": "23520669",
-      "title": "The effect of honey on mucositis induced by chemoradiation in head and neck cancer",
-      "year": 2012,
-      "inReviews": [
-       "30352321"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2003,
@@ -2213,7 +1218,7 @@
       "journal": "In vivo (Athens, Greece)",
       "citedBy": 4,
       "n": 599,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "33900311",
@@ -2224,7 +1229,7 @@
       "journal": "Food & function",
       "citedBy": 14,
       "n": 715,
-      "why": "One of the newest meta-analyses on this finding (2021); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2021); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "30352321",
@@ -2235,11 +1240,12 @@
       "journal": "International journal of nursing studies",
       "citedBy": 51,
       "n": 1265,
-      "why": "The most comprehensive review on this finding (17 trials, 2019); screened as answering the question"
+      "why": "The most comprehensive review on this finding (17 trials, 2019); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People having radiotherapy or chemotherapy",
      "intervention": "Honey in the mouth",

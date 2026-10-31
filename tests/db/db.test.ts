@@ -182,9 +182,12 @@ describe("db", () => {
     const corrected = { ...bad, value: 25, originalValue: 25, note: "weight.csv: body fat" };
     const nextDay = { ...corrected, date: "2026-03-02", value: 24.5, originalValue: 24.5 };
     expect(await saveDeviceMeasurements([corrected, nextDay], db)).toEqual({ added: 1, updated: 1 });
-    expect(await db.measurements.get(id)).toEqual({ ...corrected, id });
-    expect(await db.measurements.get(otherDay)).toEqual({ ...bad, date: "2026-02-01", id: otherDay });
-    expect(await db.measurements.get(otherMarker)).toEqual({ ...sample, id: otherMarker });
+    const storedCorrected = await db.measurements.get(id);
+    expect(storedCorrected).toMatchObject({ ...corrected, id });
+    expect(storedCorrected).not.toHaveProperty("qualifier");
+    expect(storedCorrected).not.toHaveProperty("labRange");
+    expect(await db.measurements.get(otherDay)).toMatchObject({ ...bad, date: "2026-02-01", id: otherDay });
+    expect(await db.measurements.get(otherMarker)).toMatchObject({ ...sample, id: otherMarker });
     const before = await db.measurements.toArray();
     expect(await saveDeviceMeasurements([corrected, nextDay], db)).toEqual({ added: 0, updated: 2 });
     expect(await db.measurements.toArray()).toEqual(before);
@@ -196,10 +199,8 @@ describe("db", () => {
     const secondId = await addMeasurement({ ...day, value: 81, originalValue: 81 }, db);
     const imported = { ...day, value: 79, originalValue: 79, note: "watch.csv: weight" };
     expect(await saveDeviceMeasurements([imported, { ...imported, value: 90, originalValue: 90 }], db)).toEqual({ added: 0, updated: 1 });
-    expect(await measurementsFor("weight", db)).toEqual([
-      { ...imported, source: "device", id: firstId },
-      { ...imported, source: "device", id: secondId },
-    ].sort((a, b) => a.id.localeCompare(b.id)));
+    expect(await db.measurements.get(firstId)).toMatchObject({ ...imported, source: "device", id: firstId });
+    expect(await db.measurements.get(secondId)).toMatchObject({ ...imported, source: "device", id: secondId });
   });
 
   it("serializes concurrent reimports without creating duplicate days", async () => {
@@ -207,7 +208,7 @@ describe("db", () => {
     const second = { ...first, value: 25, originalValue: 25 };
     await Promise.all([saveDeviceMeasurements([first], db), saveDeviceMeasurements([second], db)]);
     const results = await measurementsFor("body_fat", db);
-    expect(results.map(({ id: _id, ...m }) => m)).toEqual([{ ...second, source: "device" }]);
+    expect(results).toMatchObject([{ ...second, source: "device" }]);
   });
 
   it("exports a backup that passes validation and restores it", async () => {

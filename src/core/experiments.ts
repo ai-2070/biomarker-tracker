@@ -59,7 +59,7 @@ export const MIN_PERSONAL = 3;
  * t value for the small samples. Needs MIN_PERSONAL results on each side and some spread.
  */
 export function personalBand(before: readonly number[], after: readonly number[]): ChangeBand | undefined {
-  if (before.length < MIN_PERSONAL || after.length < MIN_PERSONAL || [...before, ...after].some((v) => !(v > 0))) return undefined;
+  if (before.length < MIN_PERSONAL || after.length < MIN_PERSONAL || [...before, ...after].some((v) => !(v > 0) || !Number.isFinite(v))) return undefined;
   const ss = (xs: readonly number[]) => {
     const ls = xs.map(Math.log);
     const mean = ls.reduce((a, b) => a + b, 0) / ls.length;
@@ -161,12 +161,15 @@ export function analyzeMarker(e: Experiment, def: BiomarkerDef, ms: readonly Mea
   const after = afterResults(e, mine);
   const r: MarkerResult = { biomarkerId: def.id, before, after, verdict: "waiting" };
   if (before.length === 0) return { ...r, verdict: "no-baseline" };
+  // A reported limit is not an exact value, even before a follow-up exists.
+  if ([...before, ...after].some((m) => m.qualifier)) return { ...r, verdict: after.length ? "below-limit" : "waiting" };
+  // Log comparisons require positive finite values. Keep the original readings, not invented means.
+  if ([...before, ...after].some((m) => !(m.value > 0) || !Number.isFinite(m.value))) return { ...r, verdict: after.length ? "no-variation-data" : "waiting" };
   r.beforeValue = geometricMean(before.map((m) => m.value));
   if (after.length === 0) return r;
   r.afterValue = geometricMean(after.map((m) => m.value));
   r.change = r.afterValue / r.beforeValue - 1;
-  // "<0.3"-style results can't give a real change.
-  if ([...before, ...after].some((m) => m.qualifier)) return { ...r, verdict: "below-limit" };
+  if (!Number.isFinite(r.change)) return { ...r, change: undefined, verdict: "no-variation-data" };
   const bv = def.biologicalVariation;
   const band = bv ? rcvBand(bv.cvi, before.length, after.length) : personalBand(before.map((m) => m.value), after.map((m) => m.value));
   if (!band) return { ...r, verdict: "no-variation-data" };

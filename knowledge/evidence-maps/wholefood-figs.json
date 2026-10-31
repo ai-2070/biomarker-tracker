@@ -19,8 +19,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating figs comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 1411,
@@ -36,6 +36,7 @@
   {
    "id": "constipation",
    "label": "Constipation",
+   "anyDesign": true,
    "finding": "Functional constipation",
    "counts": {
     "all": 80,
@@ -80,6 +81,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults or children with constipation",
      "intervention": "Figs: fresh, dried or fig paste (fig leaf and other Ficus products count as partly)",
@@ -108,6 +110,7 @@
   {
    "id": "ibs",
    "label": "IBS with constipation",
+   "anyDesign": true,
    "finding": "Irritable bowel syndrome with constipation (IBS-C)",
    "counts": {
     "all": 4,
@@ -144,6 +147,7 @@
   {
    "id": "lipids",
    "label": "Blood fats",
+   "anyDesign": true,
    "finding": "Blood fats (LDL cholesterol, triglycerides)",
    "counts": {
     "all": 351,
@@ -183,6 +187,7 @@
   {
    "id": "sugar",
    "label": "Blood sugar",
+   "anyDesign": true,
    "finding": "Blood sugar",
    "counts": {
     "all": 565,
@@ -244,6 +249,7 @@
   {
    "id": "minerals",
    "label": "Minerals in the blood",
+   "anyDesign": true,
    "finding": "Minerals in the blood (calcium, potassium and others)",
    "counts": {
     "all": 539,

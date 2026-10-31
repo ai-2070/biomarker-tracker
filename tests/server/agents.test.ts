@@ -177,7 +177,7 @@ describe("bridge: the app's tools for agent programs over MCP", () => {
     expect(list.tools[0]!.inputSchema.type).toBe("object");
     const res = await client.callTool({ name: "search_research", arguments: { terms: ["ferritin"] } });
     expect(JSON.stringify(res.content)).toContain("PMID:12345678");
-    expect(run.steps).toEqual([{ tool: "search_research", input: '{"terms":["ferritin"]}' }]);
+    expect(run.steps).toEqual([{ tool: "search_research", input: '{"terms":["ferritin"]}', success: true }]);
     expect([...run.ids]).toEqual(["PMID:12345678"]);
     await client.close();
     closeRun(run);

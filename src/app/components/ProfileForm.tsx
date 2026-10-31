@@ -148,7 +148,7 @@ function imperialFields(cm: number | undefined): { feet: string; inches: string 
   return { feet: parts ? String(parts.feet) : "", inches: parts ? String(parts.inches) : "" };
 }
 
-/** Keep partial input local; unit changes never convert and overwrite the stored height. */
+/** Keep partial input local until blur; unit changes never convert and overwrite the stored height. */
 function HeightField({ value, unit, onUnitChange, onChange }: { value?: number; unit: HeightUnit; onUnitChange: (unit: HeightUnit) => void; onChange: (cm: number | undefined) => void }) {
   const [text, setText] = useState(value === undefined ? "" : String(value));
   const [imperial, setImperial] = useState(() => imperialFields(value));
@@ -182,14 +182,13 @@ function HeightField({ value, unit, onUnitChange, onChange }: { value?: number; 
           <Field.Label className={labelStyles}>Height (cm)</Field.Label>
           <Field.Control
             value={text}
-            onValueChange={(text) => {
-              setText(text);
-              if (!text.trim()) return onChange(undefined);
-              const cm = heightInCm(Number(text.replace(",", ".")), "cm");
-              if (cm !== undefined) onChange(cm);
-            }}
+            onValueChange={setText}
             onFocus={() => setTyping(true)}
-            onBlur={() => setTyping(false)}
+            onBlur={() => {
+              setTyping(false);
+              if (!text.trim()) onChange(undefined);
+              else if (cm !== undefined) onChange(cm);
+            }}
             inputMode="decimal"
             placeholder="e.g. 170"
             className={`${inputStyles} max-w-40`}

@@ -219,12 +219,12 @@ export function mealWeight(items: readonly MealItem[]): number {
  * sex unknown, only a value for all adults is used.
  */
 export function adultReference(n: NutrientDef, person: { sex?: Sex; age?: number }): { amount: number; unit: string; type: "PRI" | "AI"; group: string } | undefined {
+  if (person.age !== undefined && (!Number.isFinite(person.age) || person.age < 18)) return undefined;
   let groups = n.reference.intake.filter((g) => !/^(pregnan|breastfeed)/i.test(g.group));
-  if (person.age !== undefined && groups.some((g) => /\d+ to \d+ years|years and over/.test(g.group))) {
-    const young = person.age < 25;
-    groups = groups.filter((g) => (young ? /18 to 24/.test(g.group) : /25 years and over/.test(g.group)));
-  } else if (groups.some((g) => /years and over/.test(g.group))) {
-    groups = groups.filter((g) => /years and over/.test(g.group));
+  if (groups.some((g) => /\d+ to \d+ years|years and over/.test(g.group))) {
+    // Unknown age cannot select either adult age band.
+    if (person.age === undefined) return undefined;
+    groups = groups.filter((g) => (person.age! < 25 ? /18 to 24/.test(g.group) : /25 years and over/.test(g.group)));
   }
   const word = person.sex === "m" ? /^men\b/i : person.sex === "f" ? /^women\b/i : null;
   let pick = word ? groups.filter((g) => word.test(g.group)) : [];
@@ -233,7 +233,10 @@ export function adultReference(n: NutrientDef, person: { sex?: Sex; age?: number
     const n = pick.filter((g) => re.test(g.group));
     if (n.length) pick = n;
   };
-  if (pick.length > 1 && person.sex === "f") narrow((person.age ?? 0) >= 50 ? /after menopause/i : /before menopause/i);
+  if (pick.length > 1 && person.sex === "f") {
+    if (person.age === undefined && pick.some((g) => /menopause/i.test(g.group))) return undefined;
+    narrow((person.age ?? 0) >= 50 ? /after menopause/i : /before menopause/i);
+  }
   if (pick.length > 1) narrow(/600 mg phytate/);
   if (pick.length === 0) pick = groups.filter((g) => /^adults/i.test(g.group));
   const g = pick[0];
@@ -277,13 +280,15 @@ export function validateExampleMeals(v: unknown, db: FoodDb, claimIds: ReadonlyS
  * per-portion rule as the food lists on marker pages.
  */
 export function mealSafetyBlock(items: readonly MealItem[], db: FoodDb, limits: readonly { nutrient: string; perPortion: number; reason: string }[]): string | undefined {
+  const portions = new Map<string, number>();
+  for (const item of items) portions.set(item.foodId, (portions.get(item.foodId) ?? 0) + item.grams);
   for (const lim of limits) {
     const i = db.keys.indexOf(lim.nutrient);
     if (i < 0) continue;
-    for (const it of items) {
-      const row = db.foods.find((f) => f[0] === it.foodId);
+    for (const [foodId, grams] of portions) {
+      const row = db.foods.find((f) => f[0] === foodId);
       const v = row?.[2][i];
-      if (v !== null && v !== undefined && (v * it.grams) / 100 >= lim.perPortion) return `${row![1]} is ${lim.reason}`;
+      if (v !== null && v !== undefined && (v * grams) / 100 >= lim.perPortion) return `${row![1]} is ${lim.reason}`;
     }
   }
   return undefined;
@@ -332,6 +337,7 @@ export function dailyReference(n: NutrientDef, person: { sex?: Sex; age?: number
   bySex?: { men: { amount: number; unit: string }; women: { amount: number; unit: string } };
   upperLimit?: { amount: number; unit: string; note: string };
 } {
+  if (person.age !== undefined && (!Number.isFinite(person.age) || person.age < 18)) return {};
   const intake = adultReference(n, person);
   let bySex: { men: { amount: number; unit: string }; women: { amount: number; unit: string } } | undefined;
   if (!intake) {

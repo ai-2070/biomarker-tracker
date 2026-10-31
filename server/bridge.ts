@@ -30,7 +30,7 @@ export const bridgeUrl = () => `http://127.0.0.1:${port}/mcp`;
 
 export function openRun(tools: ToolSet, engine?: string): BridgeRun {
   // Hermes stores one stable token: overlapping runs must never retarget it to another scope.
-  if (engine === "hermes" && current.has(engine)) throw new Error("Hermes is still answering another question. Wait for it to finish or choose another model.");
+  if (engine === "hermes" && current.has(engine)) throw new Error("Hermes is already answering a question. Wait for it to finish before asking another.");
   const run: BridgeRun = { token: crypto.randomBytes(32).toString("hex"), tools, steps: [], ids: new Set() };
   runs.set(run.token, run);
   if (engine) current.set(engine, run);
@@ -87,9 +87,11 @@ export async function callTool(run: BridgeRun, name: string, input: Record<strin
   try {
     const output: unknown = await t.execute(input, { toolCallId: crypto.randomUUID(), messages: [] } as unknown as Parameters<NonNullable<typeof t.execute>>[1]);
     validateToolResult(step, output);
+    if (step.server === undefined && ["propose_habit", "propose_protocol", "propose_meal"].includes(name)) step.output = output;
     for (const id of studyIdsFromTool(name, output)) run.ids.add(id);
-    return { text: typeof output === "string" ? output : JSON.stringify(output), isError: step.validated === false };
+    return { text: typeof output === "string" ? output : JSON.stringify(output), isError: !step.success };
   } catch (e) {
+    step.success = false;
     return { text: e instanceof Error ? e.message : String(e), isError: true };
   }
 }

@@ -19,8 +19,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin A and beta-carotene, with vitamin A and beta-carotene in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin A and beta-carotene trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "retrieved": 2228,
@@ -78,6 +78,7 @@
   {
    "id": "lung-cancer",
    "label": "Lung cancer",
+   "anyDesign": false,
    "finding": "Lung cancer (beta-carotene supplements)",
    "counts": {
     "reviews": 11,
@@ -95,7 +96,7 @@
      "journal": "Nutrients",
      "citedBy": 52,
      "n": 167141,
-     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "18689373",
@@ -105,7 +106,7 @@
      "firstAuthor": "Gallicchio L",
      "journal": "The American journal of clinical nutrition",
      "citedBy": 121,
-     "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2008); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "18429004",
@@ -116,153 +117,10 @@
      "journal": "Cancer",
      "citedBy": 67,
      "n": 109394,
-     "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2008); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.2692307692307692,
-    "trials": 13,
-    "inclusions": 20,
-    "reviews": [
-     {
-      "pmid": "35405977",
-      "trials": 5
-     },
-     {
-      "pmid": "18689373",
-      "trials": 11
-     },
-     {
-      "pmid": "18429004",
-      "trials": 4
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "10601381",
-      "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
-      "year": 1999,
-      "n": 39876,
-      "inReviews": [
-       "35405977",
-       "18689373",
-       "18429004"
-      ]
-     },
-     {
-      "pmid": "8602180",
-      "title": "Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease",
-      "year": 1996,
-      "inReviews": [
-       "35405977",
-       "18689373",
-       "18429004"
-      ]
-     },
-     {
-      "pmid": "16896051",
-      "title": "Lung cancer chemoprevention: a randomized, double-blind trial in Linxian, China",
-      "year": 2006,
-      "n": 29584,
-      "inReviews": [
-       "35405977",
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "15572756",
-      "title": "The Beta-Carotene and Retinol Efficacy Trial: incidence of lung cancer and cardiovascular disease mortality during 6-year follow-up after stopping beta-carotene and retinol supplements",
-      "year": 2004,
-      "n": 18314,
-      "inReviews": [
-       "18689373",
-       "18429004"
-      ]
-     },
-     {
-      "pmid": "10977106",
-      "title": "Effects of beta-carotene supplementation on cancer incidence by baseline characteristics in the Physicians' Health Study (United States)",
-      "year": 2000,
-      "inReviews": [
-       "35405977",
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "8901854",
-      "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
-      "year": 1996,
-      "n": 29133,
-      "inReviews": [
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "12114037",
-      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
-      "year": 2002,
-      "n": 20536,
-      "inReviews": [
-       "35405977"
-      ]
-     },
-     {
-      "pmid": "8901853",
-      "title": "Risk factors for lung cancer and for intervention effects in CARET, the Beta-Carotene and Retinol Efficacy Trial",
-      "year": 1996,
-      "n": 18314,
-      "inReviews": [
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "12814997",
-      "title": "The association between lung and prostate cancer risk, and serum micronutrients: results and lessons learned from beta-carotene and retinol efficacy trial",
-      "year": 2003,
-      "n": 18314,
-      "inReviews": [
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "12692110",
-      "title": "Fruits and vegetables are associated with lower lung cancer risk only in the placebo arm of the beta-carotene and retinol efficacy trial (CARET)",
-      "year": 2003,
-      "n": 14120,
-      "inReviews": [
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "9455794",
-      "title": "Vitamin A and cancer prevention II: comparison of the effects of retinol and beta-carotene",
-      "year": 1998,
-      "n": 512,
-      "inReviews": [
-       "18689373"
-      ]
-     },
-     {
-      "pmid": "8391063",
-      "title": "Adjuvant treatment of stage I lung cancer with high-dose vitamin A",
-      "year": 1993,
-      "n": 307,
-      "inReviews": [
-       "18429004"
-      ]
-     },
-     {
-      "pmid": "15229119",
-      "title": "Development of a comprehensive dietary antioxidant index and application to lung cancer risk in a cohort of male smokers",
-      "year": 2004,
-      "inReviews": [
-       "18689373"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1988,
@@ -519,7 +377,7 @@
       "journal": "Nutrients",
       "citedBy": 52,
       "n": 167141,
-      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "18689373",
@@ -529,7 +387,7 @@
       "firstAuthor": "Gallicchio L",
       "journal": "The American journal of clinical nutrition",
       "citedBy": 121,
-      "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2008); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "18429004",
@@ -540,11 +398,12 @@
       "journal": "Cancer",
       "citedBy": 67,
       "n": 109394,
-      "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2008); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, including smokers, former smokers and people exposed to asbestos",
      "intervention": "Beta-carotene supplements (alone or with other vitamins)",
@@ -565,6 +424,7 @@
   {
    "id": "cancer",
    "label": "Cancer overall",
+   "anyDesign": false,
    "finding": "Cancer overall and other cancer types (beta-carotene supplements)",
    "counts": {
     "reviews": 73,
@@ -582,7 +442,7 @@
      "journal": "Nutrients",
      "citedBy": 52,
      "n": 167141,
-     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "28244289",
@@ -592,7 +452,7 @@
      "firstAuthor": "Park SJ",
      "journal": "Journal of Korean medical science",
      "citedBy": 18,
-     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "21981610",
@@ -603,7 +463,7 @@
      "journal": "Nutrition and cancer",
      "citedBy": 21,
      "n": 40544,
-     "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35727272",
@@ -614,404 +474,10 @@
      "journal": "JAMA",
      "citedBy": 107,
      "n": 739803,
-     "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); screened as answering the question"
+     "why": "The most comprehensive review of trials on this outcome (27 trials, 2022); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.08130081300813008,
-    "trials": 41,
-    "inclusions": 51,
-    "reviews": [
-     {
-      "pmid": "35405977",
-      "trials": 5
-     },
-     {
-      "pmid": "28244289",
-      "trials": 5
-     },
-     {
-      "pmid": "21981610",
-      "trials": 38
-     },
-     {
-      "pmid": "35727272",
-      "trials": 3
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "10601381",
-      "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
-      "year": 1999,
-      "n": 39876,
-      "inReviews": [
-       "35405977",
-       "28244289",
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "10977106",
-      "title": "Effects of beta-carotene supplementation on cancer incidence by baseline characteristics in the Physicians' Health Study (United States)",
-      "year": 2000,
-      "inReviews": [
-       "35405977",
-       "28244289",
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8602180",
-      "title": "Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease",
-      "year": 1996,
-      "inReviews": [
-       "35405977",
-       "21981610",
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "16896051",
-      "title": "Lung cancer chemoprevention: a randomized, double-blind trial in Linxian, China",
-      "year": 2006,
-      "n": 29584,
-      "inReviews": [
-       "35405977",
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "12114037",
-      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
-      "year": 2002,
-      "n": 20536,
-      "inReviews": [
-       "35405977",
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8901853",
-      "title": "Risk factors for lung cancer and for intervention effects in CARET, the Beta-Carotene and Retinol Efficacy Trial",
-      "year": 1996,
-      "n": 18314,
-      "inReviews": [
-       "28244289",
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "14534715",
-      "title": "beta-carotene supplementation in patients radically treated for stage I-II head and neck cancer: results of a randomized trial",
-      "year": 2003,
-      "n": 110,
-      "inReviews": [
-       "28244289",
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "7495242",
-      "title": "The Linxian trials: mortality rates by vitamin-mineral intervention group",
-      "year": 1995,
-      "n": 30000,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8360931",
-      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
-      "year": 1993,
-      "n": 29584,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "17686823",
-      "title": "Chemoprevention of primary liver cancer: a randomized, double-blind trial in Linxian, China",
-      "year": 2007,
-      "n": 29450,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8901854",
-      "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
-      "year": 1996,
-      "n": 29133,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "10391561",
-      "title": "The effects of supplementation with alpha-tocopherol and beta-carotene on the incidence and mortality of carcinoma of the pancreas in a randomized, controlled trial",
-      "year": 1999,
-      "n": 29133,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "10528024",
-      "title": "Serum alpha-tocopherol and subsequent risk of lung cancer among male smokers",
-      "year": 1999,
-      "n": 29102,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "15572756",
-      "title": "The Beta-Carotene and Retinol Efficacy Trial: incidence of lung cancer and cardiovascular disease mortality during 6-year follow-up after stopping beta-carotene and retinol supplements",
-      "year": 2004,
-      "n": 18314,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "10547552",
-      "title": "Beta-carotene supplementation for patients with low baseline levels and decreased risks of total and prostate carcinoma",
-      "year": 1999,
-      "n": 14916,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "9521168",
-      "title": "Prostate cancer and supplementation with alpha-tocopherol and beta-carotene: incidence and mortality in a controlled trial",
-      "year": 1998,
-      "n": 14573,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "10541446",
-      "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
-      "year": 1999,
-      "n": 12735,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "11718454",
-      "title": "Effect of two years' supplementation with natural antioxidants on vitamin and trace element status biomarkers: preliminary data of the SU.VI.MAX study",
-      "year": 2001,
-      "n": 12735,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "1844268",
-      "title": "CARET, the beta-carotene and retinol efficacy trial to prevent lung cancer in high-risk populations",
-      "year": 1991,
-      "n": 8129,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "15800922",
-      "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
-      "year": 2005,
-      "n": 5141,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "9367069",
-      "title": "Effect of retinol in preventing squamous cell skin cancer in moderate-risk subjects: a randomized, double-blind, controlled trial. Southwest Skin Cancer Prevention Study Group",
-      "year": 1997,
-      "n": 2297,
-      "inReviews": [
-       "35727272"
-      ]
-     },
-     {
-      "pmid": "9548624",
-      "title": "Gastric cancer and premalignant lesions in atrophic gastritis: a controlled trial on the effect of supplementation with alpha-tocopherol and beta-carotene. The Helsinki Gastritis Study Group",
-      "year": 1998,
-      "n": 2132,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "17227997",
-      "title": "Chemoprevention of precancerous gastric lesions with antioxidant vitamin supplementation: a randomized trial in a high-risk population",
-      "year": 2007,
-      "n": 1980,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8348063",
-      "title": "The Carotene and Retinol Efficacy Trial (CARET) to prevent lung cancer in high-risk populations: pilot study with cigarette smokers",
-      "year": 1993,
-      "n": 1029,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "15812073",
-      "title": "A randomized trial of antioxidant vitamins to prevent second primary cancers in head and neck cancer patients",
-      "year": 2005,
-      "n": 540,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "11875728",
-      "title": "Randomised beta-carotene supplementation and incidence of cancer and cardiovascular disease in women: is the association modified by baseline plasma level?",
-      "year": 2002,
-      "n": 513,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "9197524",
-      "title": "A randomized controlled trial for chemoprevention of gastric cancer in high-risk Japanese population; study design, feasibility and protocol modification",
-      "year": 1997,
-      "n": 397,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "11245451",
-      "title": "Randomized trial of supplemental beta-carotene to prevent second head and neck cancer",
-      "year": 2001,
-      "n": 264,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "11142528",
-      "title": "Effects of supplemental alpha-tocopherol and beta-carotene on urinary tract cancer: incidence and mortality in a controlled trial (Finland)",
-      "year": 2000,
-      "n": 169,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "19075276",
-      "title": "Randomized trial of 13-cis retinoic acid compared with retinyl palmitate with or without beta-carotene in oral premalignancy",
-      "year": 2009,
-      "n": 162,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "10782653",
-      "title": "Effects of supplemental alpha-tocopherol and beta-carotene on colorectal cancer: results from a controlled trial (Finland)",
-      "year": 2000,
-      "n": 135,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "17265529",
-      "title": "Effects of alpha-tocopherol and beta-carotene supplementation on upper aerodigestive tract cancers in a large, randomized controlled trial",
-      "year": 2007,
-      "n": 65,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "16027437",
-      "title": "Randomized trial of antioxidant vitamins to prevent acute adverse effects of radiation therapy in head and neck cancer patients",
-      "year": 2005,
-      "inReviews": [
-       "28244289"
-      ]
-     },
-     {
-      "pmid": "3073436",
-      "title": "A double-blind randomized trial with beta-carotene and retinol in persons at high risk of lung cancer due to occupational asbestos exposures and/or cigarette smoking",
-      "year": 1988,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8348062",
-      "title": "The Carotene and Retinol Efficacy Trial (CARET) to prevent lung cancer in high-risk populations: pilot study with asbestos-exposed workers",
-      "year": 1993,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "7495243",
-      "title": "Effects of alpha-tocopherol and beta-carotene supplements on cancer incidence in the Alpha-Tocopherol Beta-Carotene Cancer Prevention Study",
-      "year": 1995,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "12296509",
-      "title": "Effects of alpha-tocopherol and beta-carotene supplementation on gastric cancer incidence in male smokers (ATBC Study, Finland)",
-      "year": 2002,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "8015747",
-      "title": "Micronutrient supplementation trials and the reduction of cancer and cerebrovascular incidence and mortality",
-      "year": 1994,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "9610790",
-      "title": "Strategies for recruitment to a population-based lung cancer prevention trial: the CARET experience with heavy smokers. Beta-Carotene and Retinol Efficacy Trial",
-      "year": 1998,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "16841333",
-      "title": "Antioxidant vitamins supplementation and mortality: a randomized trial in head and neck cancer patients",
-      "year": 2006,
-      "inReviews": [
-       "21981610"
-      ]
-     },
-     {
-      "pmid": "11815895",
-      "title": "The Roche European American Cataract Trial (REACT): a randomized clinical trial to investigate the efficacy of an oral antioxidant micronutrient mixture to slow progression of age-related cataract",
-      "year": 2002,
-      "inReviews": [
-       "35727272"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1978,
@@ -1566,7 +1032,7 @@
       "journal": "Nutrients",
       "citedBy": 52,
       "n": 167141,
-      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "28244289",
@@ -1576,7 +1042,7 @@
       "firstAuthor": "Park SJ",
       "journal": "Journal of Korean medical science",
       "citedBy": 18,
-      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "21981610",
@@ -1587,11 +1053,12 @@
       "journal": "Nutrition and cancer",
       "citedBy": 21,
       "n": 40544,
-      "why": "One of the newest meta-analyses of trials on this outcome (2011); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2011); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults in general or older adults (not a group defined by one illness, such as people in intensive care, on dialysis or with cancer)",
      "intervention": "Beta-carotene supplements (alone or with other vitamins)",
@@ -1676,12 +1143,13 @@
   {
    "id": "mortality",
    "label": "Death from any cause",
+   "anyDesign": false,
    "finding": "Death from any cause",
    "counts": {
     "reviews": 43,
     "trialReviews": 11,
     "trials": 81,
-    "largeTrials": 49
+    "largeTrials": 48
    },
    "chosenReviews": [
     {
@@ -1693,7 +1161,7 @@
      "journal": "PloS one",
      "citedBy": 108,
      "n": 241883,
-     "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2013); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "22419320",
@@ -1704,7 +1172,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 309,
      "n": 296707,
-     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "18425980",
@@ -1715,7 +1183,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 185,
      "n": 232550,
-     "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2008); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -1786,17 +1254,6 @@
      "why": "A large trial (about 6,048 people) from 2014, as new as the newest review or newer"
     },
     {
-     "pmid": "38643780",
-     "doi": "10.1016/s2213-2600(24)00073-0",
-     "title": "Early postnatal high-dose fat-soluble enteral vitamin A supplementation for moderate or severe bronchopulmonary dysplasia or death in extremely low birthweight infants (NeoVitaA): a multicentre, randomised, parallel-group, double-blind, placebo-controlled, investigator-initiated phase 3 trial",
-     "year": 2024,
-     "firstAuthor": "Meyer S",
-     "journal": "The Lancet. Respiratory medicine",
-     "citedBy": 25,
-     "n": 3066,
-     "why": "A large trial (about 3,066 people) from 2024, as new as the newest review or newer"
-    },
-    {
      "pmid": "30715451",
      "doi": "10.1093/jpids/piy142",
      "title": "Maternal Priming: Bacillus Calmette-Guérin (BCG) Vaccine Scarring in Mothers Enhances the Survival of Their Child With a BCG Vaccine Scar",
@@ -1819,636 +1276,6 @@
      "why": "A large trial (about 2,173 people) from 2013, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.4375,
-    "trials": 184,
-    "inclusions": 345,
-    "reviews": [
-     {
-      "pmid": "24040282",
-      "trials": 15
-     },
-     {
-      "pmid": "22419320",
-      "trials": 184
-     },
-     {
-      "pmid": "18425980",
-      "trials": 146
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "8360931",
-      "title": "Nutrition intervention trials in Linxian, China: supplementation with specific vitamin/mineral combinations, cancer incidence, and disease-specific mortality in the general population",
-      "year": 1993,
-      "n": 29584,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12114037",
-      "title": "MRC/BHF Heart Protection Study of antioxidant vitamin supplementation in 20,536 high-risk individuals: a randomised placebo-controlled trial",
-      "year": 2002,
-      "n": 20536,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "15572756",
-      "title": "The Beta-Carotene and Retinol Efficacy Trial: incidence of lung cancer and cardiovascular disease mortality during 6-year follow-up after stopping beta-carotene and retinol supplements",
-      "year": 2004,
-      "n": 18314,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12824908",
-      "title": "The effect of 5-year vitamin C supplementation on serum pepsinogen level and Helicobacter pylori infection",
-      "year": 2003,
-      "n": 635,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "2862315",
-      "title": "No effect of riboflavine, retinol, and zinc on prevalence of precancerous lesions of oesophagus. Randomised double-blind intervention study in high-risk population of China",
-      "year": 1985,
-      "n": 610,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8512476",
-      "title": "A randomized trial of vitamin A and vitamin E supplementation for retinitis pigmentosa",
-      "year": 1993,
-      "n": 601,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12465157",
-      "title": "Supplementary vitamin E does not affect the loss of cartilage volume in knee osteoarthritis: a 2 year double blind randomized placebo controlled study",
-      "year": 2002,
-      "n": 136,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9267584",
-      "title": "Effect of micronutrient supplementation on infection in institutionalized elderly subjects: a controlled trial",
-      "year": 1997,
-      "n": 81,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "1471582",
-      "title": "Impact of vitamin A supplementation on the incidence of infection in elderly nursing-home residents: a randomized controlled trial",
-      "year": 1992,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11106679",
-      "title": "Chemoprevention of gastric dysplasia: randomized trial of antioxidant supplements and anti-helicobacter pylori therapy",
-      "year": 2000,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11815895",
-      "title": "The Roche European American Cataract Trial (REACT): a randomized clinical trial to investigate the efficacy of an oral antioxidant micronutrient mixture to slow progression of age-related cataract",
-      "year": 2002,
-      "inReviews": [
-       "24040282",
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10601381",
-      "title": "Beta-carotene supplementation and incidence of cancer and cardiovascular disease: the Women's Health Study",
-      "year": 1999,
-      "n": 39876,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "7495242",
-      "title": "The Linxian trials: mortality rates by vitamin-mineral intervention group",
-      "year": 1995,
-      "n": 30000,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8137333",
-      "title": "Prevention of esophageal cancer: the nutrition intervention trials in Linxian, China. Linxian Nutrition Intervention Trials Study Group",
-      "year": 1994,
-      "n": 29584,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8901854",
-      "title": "Alpha-Tocopherol and beta-carotene supplements and lung cancer incidence in the alpha-tocopherol, beta-carotene cancer prevention study: effects of base-line characteristics and study compliance",
-      "year": 1996,
-      "n": 29133,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10391561",
-      "title": "The effects of supplementation with alpha-tocopherol and beta-carotene on the incidence and mortality of carcinoma of the pancreas in a randomized, controlled trial",
-      "year": 1999,
-      "n": 29133,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11427217",
-      "title": "Alpha-tocopherol (vitamin E) and beta-carotene supplementation does not affect the risk for large abdominal aortic aneurysm in a controlled trial",
-      "year": 2001,
-      "n": 29133,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10528024",
-      "title": "Serum alpha-tocopherol and subsequent risk of lung cancer among male smokers",
-      "year": 1999,
-      "n": 29102,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11063155",
-      "title": "Implications of serum pepsinogen I in early endoscopic diagnosis of gastric cancer and dysplasia. Helsinki Gastritis Study Group",
-      "year": 2000,
-      "n": 22436,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "2345836",
-      "title": "Cost and efficiency in clinical trials: the U.S. Physicians' Health Study",
-      "year": 1990,
-      "n": 22071,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8901853",
-      "title": "Risk factors for lung cancer and for intervention effects in CARET, the Beta-Carotene and Retinol Efficacy Trial",
-      "year": 1996,
-      "n": 18314,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8365195",
-      "title": "Statistical design and monitoring of the Carotene and Retinol Efficacy Trial (CARET)",
-      "year": 1993,
-      "n": 18000,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10329064",
-      "title": "MRC/BHF Heart Protection Study of cholesterol-lowering therapy and of antioxidant vitamin supplementation in a wide range of patients at increased risk of coronary heart disease death: early safety and efficacy experience",
-      "year": 1999,
-      "n": 15454,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11171873",
-      "title": "Intake of vegetables rich in carotenoids and risk of coronary heart disease in men: The Physicians' Health Study",
-      "year": 2001,
-      "n": 15220,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "20104528",
-      "title": "Incidence of cancers, ischemic cardiovascular diseases and mortality during 5-year follow-up after stopping antioxidant vitamins and minerals supplements: a postintervention follow-up in the SU.VI.MAX Study",
-      "year": 2010,
-      "n": 12741,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "16115341",
-      "title": "Antioxidant status and risk of cancer in the SU.VI.MAX study: is the effect of supplementation dependent on baseline levels?",
-      "year": 2005,
-      "n": 12741,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "16032784",
-      "title": "Alterations of the lipid profile after 7.5 years of low-dose antioxidant supplementation in the SU.VI.MAX Study",
-      "year": 2005,
-      "n": 12741,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10541446",
-      "title": "\"The SU.VI.MAX Study\": a primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers. SUpplementation on VItamines et Minéraux AntioXydants",
-      "year": 1999,
-      "n": 12735,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11718454",
-      "title": "Effect of two years' supplementation with natural antioxidants on vitamin and trace element status biomarkers: preliminary data of the SU.VI.MAX study",
-      "year": 2001,
-      "n": 12735,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9683310",
-      "title": "A primary prevention trial using nutritional doses of antioxidant vitamins and minerals in cardiovascular diseases and cancers in a general population: the SU.VI.MAX study--design, methods, and participant characteristics. SUpplementation en VItamines et Minéraux AntioXydants",
-      "year": 1998,
-      "n": 12735,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "1844268",
-      "title": "CARET, the beta-carotene and retinol efficacy trial to prevent lung cancer in high-risk populations",
-      "year": 1991,
-      "n": 8129,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8520707",
-      "title": "A secondary prevention trial of antioxidant vitamins and cardiovascular disease in women. Rationale, design, and methods. The WACS Research Group",
-      "year": 1995,
-      "n": 8000,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "1958856",
-      "title": "CARET, the beta-carotene and retinol efficacy trial to prevent lung cancer in asbestos-exposed workers and in smokers",
-      "year": 1991,
-      "n": 6105,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "15800922",
-      "title": "Antioxidant vitamin and mineral supplementation and prostate cancer prevention in the SU.VI.MAX trial",
-      "year": 2005,
-      "n": 5141,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "15671258",
-      "title": "Predictors of lung cancer among asbestos-exposed men in the {beta}-carotene and retinol efficacy trial",
-      "year": 2005,
-      "n": 4060,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8137335",
-      "title": "The beta-carotene and retinol efficacy trial (CARET) for chemoprevention of lung cancer in high risk populations: smokers and asbestos-exposed workers",
-      "year": 1994,
-      "n": 4010,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "14639794",
-      "title": "Relationship between soup consumption, folate, beta-carotene, and vitamin C status in a French adult population",
-      "year": 2003,
-      "n": 2874,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9367069",
-      "title": "Effect of retinol in preventing squamous cell skin cancer in moderate-risk subjects: a randomized, double-blind, controlled trial. Southwest Skin Cancer Prevention Study Group",
-      "year": 1997,
-      "n": 2297,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "10232634",
-      "title": "Effects of long-term intake of retinol on selected clinical and laboratory indexes",
-      "year": 1999,
-      "n": 2297,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9548624",
-      "title": "Gastric cancer and premalignant lesions in atrophic gastritis: a controlled trial on the effect of supplementation with alpha-tocopherol and beta-carotene. The Helsinki Gastritis Study Group",
-      "year": 1998,
-      "n": 2132,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "17227997",
-      "title": "Chemoprevention of precancerous gastric lesions with antioxidant vitamin supplementation: a randomized trial in a high-risk population",
-      "year": 2007,
-      "n": 1980,
-      "inReviews": [
-       "24040282",
-       "22419320"
-      ]
-     },
-     {
-      "pmid": "2666024",
-      "title": "The Skin Cancer Prevention Study: design of a clinical trial of beta-carotene among persons at high risk for nonmelanoma skin cancer",
-      "year": 1989,
-      "n": 1805,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "7851112",
-      "title": "The Nambour Skin Cancer and Actinic Eye Disease Prevention Trial: design and baseline characteristics of participants",
-      "year": 1994,
-      "n": 1626,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10525141",
-      "title": "The effect of alpha-tocopherol and beta-carotene supplementation on symptoms and progression of intermittent claudication in a controlled trial",
-      "year": 1999,
-      "n": 1484,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "7848119",
-      "title": "Migraine and subsequent risk of stroke in the Physicians' Health Study",
-      "year": 1995,
-      "n": 1479,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12611611",
-      "title": "Association of selenium with thyroid volume and echostructure in 35- to 60-year-old French adults",
-      "year": 2003,
-      "n": 1108,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "15229304",
-      "title": "A randomized trial of multivitamin supplements and HIV disease progression and mortality",
-      "year": 2004,
-      "n": 1078,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9541437",
-      "title": "Retinal vascular changes following supplementation with alpha-tocopherol or beta-carotene",
-      "year": 1998,
-      "n": 1072,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10634823",
-      "title": "Controlled trial of alpha-tocopherol and beta-carotene supplements on stroke incidence and mortality in male smokers",
-      "year": 2000,
-      "n": 1057,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9591958",
-      "title": "Six-year supplementation with alpha-tocopherol and beta-carotene and age-related maculopathy",
-      "year": 1998,
-      "n": 941,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12759389",
-      "title": "Neoplastic and antineoplastic effects of beta-carotene on colorectal adenoma recurrence: results of a randomized trial",
-      "year": 2003,
-      "n": 864,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "8275193",
-      "title": "Chemoprevention of oral leukoplakia and chronic esophagitis in an area of high incidence of oral and esophageal cancer",
-      "year": 1993,
-      "n": 532,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11875728",
-      "title": "Randomised beta-carotene supplementation and incidence of cancer and cardiovascular disease in women: is the association modified by baseline plasma level?",
-      "year": 2002,
-      "n": 513,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "10407503",
-      "title": "Antioxidants, but not B-group vitamins increase the resistance of low-density lipoprotein to oxidation: a randomized, factorial design, placebo-controlled trial",
-      "year": 1999,
-      "n": 509,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "11054628",
-      "title": "Effective and safe modification of multiple atherosclerotic risk factors in patients with peripheral arterial disease",
-      "year": 2000,
-      "n": 468,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "14748940",
-      "title": "Long-term vitamin C supplementation has no markedly favourable effect on serum lipids in middle-aged Japanese subjects",
-      "year": 2004,
-      "n": 439,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12468560",
-      "title": "Lack of long-term effect of vitamin C supplementation on blood pressure",
-      "year": 2002,
-      "n": 439,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "12805247",
-      "title": "Effect of five-year supplementation of vitamin C on serum vitamin C concentration and consumption of vegetables and fruits in middle-aged Japanese: a randomized controlled trial",
-      "year": 2003,
-      "n": 439,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9799882",
-      "title": "Incidence of cataract operations in Finnish male smokers unaffected by alpha tocopherol or beta carotene supplements",
-      "year": 1998,
-      "n": 425,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     },
-     {
-      "pmid": "9920356",
-      "title": "Increased tendency towards gingival bleeding caused by joint effect of alpha-tocopherol supplementation and acetylsalicylic acid",
-      "year": 1998,
-      "n": 409,
-      "inReviews": [
-       "22419320",
-       "18425980"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1986,
@@ -2924,12 +1751,6 @@
      "title": "Maternal Priming: Bacillus Calmette-Guérin (BCG) Vaccine Scarring in Mothers Enhances the Survival of Their Child With a BCG Vaccine Scar",
      "year": 2020,
      "n": 2213
-    },
-    {
-     "pmid": "38643780",
-     "title": "Early postnatal high-dose fat-soluble enteral vitamin A supplementation for moderate or severe bronchopulmonary dysplasia or death in extremely low birthweight infants (NeoVitaA): a multicentre, randomised, parallel-group, double-blind, placebo-controlled, investigator-initiated phase 3 trial",
-     "year": 2024,
-     "n": 3066
     }
    ],
    "page": {
@@ -2952,7 +1773,7 @@
       "journal": "PloS one",
       "citedBy": 108,
       "n": 241883,
-      "why": "One of the newest meta-analyses of trials on this outcome (2013); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2013); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "18425980",
@@ -2963,7 +1784,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 185,
       "n": 232550,
-      "why": "One of the newest meta-analyses of trials on this outcome (2008); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2008); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "29934384",
@@ -3032,17 +1853,6 @@
       "why": "A large trial (about 6,048 people) from 2014, as new as the newest review or newer"
      },
      {
-      "pmid": "38643780",
-      "doi": "10.1016/s2213-2600(24)00073-0",
-      "title": "Early postnatal high-dose fat-soluble enteral vitamin A supplementation for moderate or severe bronchopulmonary dysplasia or death in extremely low birthweight infants (NeoVitaA): a multicentre, randomised, parallel-group, double-blind, placebo-controlled, investigator-initiated phase 3 trial",
-      "year": 2024,
-      "firstAuthor": "Meyer S",
-      "journal": "The Lancet. Respiratory medicine",
-      "citedBy": 25,
-      "n": 3066,
-      "why": "A large trial (about 3,066 people) from 2024, as new as the newest review or newer"
-     },
-     {
       "pmid": "30715451",
       "doi": "10.1093/jpids/piy142",
       "title": "Maternal Priming: Bacillus Calmette-Guérin (BCG) Vaccine Scarring in Mothers Enhances the Survival of Their Child With a BCG Vaccine Scar",
@@ -3067,6 +1877,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with various diseases",
      "intervention": "Beta-carotene or vitamin A supplements (alone or with other antioxidants, with results for them apart)",
@@ -3130,12 +1941,13 @@
   {
    "id": "children",
    "label": "Young children",
+   "anyDesign": false,
    "finding": "Death and illness in young children",
    "counts": {
     "reviews": 115,
     "trialReviews": 46,
     "trials": 387,
-    "largeTrials": 90
+    "largeTrials": 84
    },
    "chosenReviews": [
     {
@@ -3147,7 +1959,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 68,
      "n": 1223856,
-     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "35584136",
@@ -3158,7 +1970,7 @@
      "journal": "PloS one",
      "citedBy": 1,
      "n": 1046829,
-     "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "28282701",
@@ -3169,7 +1981,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 178,
      "n": 1223856,
-     "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -3183,17 +1995,6 @@
      "citedBy": 5,
      "n": 5399,
      "why": "A large trial (about 5,399 people) from 2024, as new as the newest review or newer"
-    },
-    {
-     "pmid": "38643780",
-     "doi": "10.1016/s2213-2600(24)00073-0",
-     "title": "Early postnatal high-dose fat-soluble enteral vitamin A supplementation for moderate or severe bronchopulmonary dysplasia or death in extremely low birthweight infants (NeoVitaA): a multicentre, randomised, parallel-group, double-blind, placebo-controlled, investigator-initiated phase 3 trial",
-     "year": 2024,
-     "firstAuthor": "Meyer S",
-     "journal": "The Lancet. Respiratory medicine",
-     "citedBy": 25,
-     "n": 3066,
-     "why": "A large trial (about 3,066 people) from 2024, as new as the newest review or newer"
     },
     {
      "pmid": "40387380",
@@ -3218,644 +2019,6 @@
      "why": "A large trial (about 2,308 people) from 2026, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.5319148936170213,
-    "trials": 94,
-    "inclusions": 194,
-    "reviews": [
-     {
-      "pmid": "35294044",
-      "trials": 91
-     },
-     {
-      "pmid": "35584136",
-      "trials": 18
-     },
-     {
-      "pmid": "28282701",
-      "trials": 85
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "8772901",
-      "title": "Effect of vitamin A supplementation to mother and infant on morbidity in infancy",
-      "year": 1996,
-      "n": 200000,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "9002334",
-      "title": "Impact of nutrition education and mega-dose vitamin A supplementation on the health of children in Nepal",
-      "year": 1996,
-      "n": 40000,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "1353192",
-      "title": "Vitamin A supplementation and child survival",
-      "year": 1992,
-      "n": 28753,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "1676467",
-      "title": "Efficacy of vitamin A in reducing preschool child mortality in Nepal",
-      "year": 1991,
-      "n": 28630,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "2871418",
-      "title": "Impact of vitamin A supplementation on childhood mortality. A randomised controlled community trial",
-      "year": 1986,
-      "n": 25939,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "8100345",
-      "title": "Vitamin A supplementation in northern Ghana: effects on clinic attendances, hospital admissions, and child mortality. Ghana VAST Study Team",
-      "year": 1993,
-      "n": 21906,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "2205798",
-      "title": "Reduced mortality among children in southern India receiving a small weekly dose of vitamin A",
-      "year": 1990,
-      "n": 15419,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "1978164",
-      "title": "Effect of massive dose vitamin A on morbidity and mortality in Indian children",
-      "year": 1990,
-      "n": 8084,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "25136048",
-      "title": "High-dose vitamin A with vaccination after 6 months of age: a randomized trial",
-      "year": 2014,
-      "n": 7587,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "23498849",
-      "title": "Vitamin A supplementation every 6 months with retinol in 1 million pre-school children in north India: DEVTA, a cluster-randomised trial",
-      "year": 2013,
-      "n": 2584,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "12649946",
-      "title": "Effect of vitamin A supplementation on childhood morbidity and mortality",
-      "year": 2002,
-      "n": 1520,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "8632216",
-      "title": "Vitamin A supplementation fails to reduce incidence of acute respiratory illness and diarrhea in preschool-age Indonesian children",
-      "year": 1996,
-      "n": 1407,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7913157",
-      "title": "Effect of vitamin A supplementation on diarrhoea and acute lower-respiratory-tract infections in young children in Brazil",
-      "year": 1994,
-      "n": 1240,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "9228962",
-      "title": "Randomised trial of effect of vitamin A supplementation on antibody response to measles vaccine in Guinea-Bissau, west Africa",
-      "year": 1997,
-      "n": 462,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "9687551",
-      "title": "Vitamin A supplementation but not deworming improves growth of malnourished preschool children in eastern Zaire",
-      "year": 1998,
-      "n": 358,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "17684522",
-      "title": "Effect of vitamin A supplementation on immune function of well-nourished children suffering from vitamin A deficiency in China",
-      "year": 2008,
-      "n": 105,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7661232",
-      "title": "Child morbidity and mortality following vitamin A supplementation in Ghana: time since dosing, number of doses, and time of year",
-      "year": 1995,
-      "inReviews": [
-       "35294044",
-       "35584136",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "24330422",
-      "title": "Impact of vitamin A with zinc supplementation on malaria morbidity in Ghana",
-      "year": 2013,
-      "n": 200000,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "9345118",
-      "title": "Measles incidence, case fatality, and delayed mortality in children with or without vitamin A supplementation in rural Ghana",
-      "year": 1997,
-      "n": 25443,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "8615363",
-      "title": "Effect of vitamin A supplementation on the growth of young children in northern Ghana",
-      "year": 1996,
-      "n": 25000,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "3277608",
-      "title": "Impact of vitamin A supplementation on xerophthalmia. A randomized controlled community trial",
-      "year": 1988,
-      "n": 25000,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7702031",
-      "title": "Vitamin A supplementation and childhood malaria in northern Ghana",
-      "year": 1995,
-      "n": 21906,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "8102720",
-      "title": "Vitamin A supplementation and increased prevalence of childhood diarrhoea and acute respiratory infections",
-      "year": 1993,
-      "n": 11124,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "21884606",
-      "title": "The impact of different doses of vitamin A supplementation on male and female mortality. A randomised trial from Guinea-Bissau",
-      "year": 2011,
-      "n": 8626,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "19640958",
-      "title": "Does vitamin A supplementation interact with routine vaccinations? An analysis of the Ghana Vitamin A Supplementation Trial",
-      "year": 2009,
-      "n": 6656,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7499080",
-      "title": "Impact of vitamin A supplementation on prevalence and incidence of xerophthalmia in Nepal",
-      "year": 1995,
-      "n": 4766,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "23498850",
-      "title": "Population deworming every 6 months with albendazole in 1 million pre-school children in North India: DEVTA, a cluster-randomised trial",
-      "year": 2013,
-      "n": 2576,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "22234907",
-      "title": "Vitamin A supplementation in preschool children and risk of hearing loss as adolescents and young adults in rural Nepal: randomised trial cohort follow-up study",
-      "year": 2012,
-      "n": 2378,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "8593380",
-      "title": "Plasma retinol level, vitamin A supplementation and acute respiratory infections in children of 1-5 years old in a developing country. Respiratory Diseases Working Group",
-      "year": 1995,
-      "n": 2000,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "23680441",
-      "title": "High-dose vitamin A supplementation administered with vaccinations after 6 months of age: sex-differential adverse reactions and morbidity",
-      "year": 2013,
-      "n": 1673,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "15220940",
-      "title": "Complex interactions with infection and diet may explain seasonal growth responses to vitamin A in preschool aged Indonesian children",
-      "year": 2004,
-      "n": 1405,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "10597985",
-      "title": "Respiratory infections reduce the growth response to vitamin A supplementation in a randomized controlled trial",
-      "year": 1999,
-      "n": 1405,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "3189214",
-      "title": "Vitamin A supplementation and growth: a randomized community trial",
-      "year": 1988,
-      "n": 980,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "9023463",
-      "title": "The impact of vitamin A supplementation on physical growth of children is dependent on season",
-      "year": 1997,
-      "n": 900,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "22414819",
-      "title": "Zinc combined with vitamin A reduces upper respiratory tract infection morbidity in a randomised trial in preschool children in Indonesia",
-      "year": 2012,
-      "n": 826,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "11498488",
-      "title": "Simultaneous zinc and vitamin A supplementation in Bangladeshi children: randomised double blind controlled trial",
-      "year": 2001,
-      "n": 800,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "17468087",
-      "title": "Zinc-iron, but not zinc-alone supplementation, increased linear growth of stunted infants with low haemoglobin",
-      "year": 2007,
-      "n": 800,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "16522919",
-      "title": "A double-blind, randomized, clinical trial of the effect of vitamin A and zinc supplementation on diarrheal disease and respiratory tract infections in children in Mexico City, Mexico",
-      "year": 2006,
-      "n": 736,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "19623197",
-      "title": "Interaction of zinc or vitamin A supplementation and specific parasite infections on Mexican infants' growth: a randomized clinical trial",
-      "year": 2009,
-      "n": 584,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "10421302",
-      "title": "Effect of vitamin A supplementation on morbidity due to Plasmodium falciparum in young children in Papua New Guinea: a randomised trial",
-      "year": 1999,
-      "n": 520,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "21760916",
-      "title": "Malaria parasitaemia among infants and its association with breastfeeding peer counselling and vitamin A supplementation: a secondary analysis of a cluster randomized trial",
-      "year": 2011,
-      "n": 483,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "10390287",
-      "title": "The beneficial effects of weekly low-dose vitamin A supplementation on acute lower respiratory infections and diarrhea in Ecuadorian children",
-      "year": 1999,
-      "n": 400,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "12744873",
-      "title": "Effect of Vitamin A supplementation on the immune response to measles vaccination",
-      "year": 2003,
-      "n": 395,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7752754",
-      "title": "Reduced seroconversion to measles in infants given vitamin A with measles vaccination",
-      "year": 1995,
-      "n": 336,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7861247",
-      "title": "Vitamin A supplementation does not improve growth of preschool children: a randomized, double-blind field trial in south India",
-      "year": 1995,
-      "n": 310,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7762534",
-      "title": "Vitamin A supplementation and morbidity among preschool children in south India",
-      "year": 1995,
-      "n": 309,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "1729457",
-      "title": "Depressed immune response to tetanus in children with vitamin A deficiency",
-      "year": 1992,
-      "n": 236,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "22336361",
-      "title": "[Effects of vitamin A, vitamin A plus iron and multiple micronutrient-fortified seasoning powder on iron metabolic homeostasis]",
-      "year": 2011,
-      "n": 226,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "3067695",
-      "title": "Vitamin A status of children with a history of respiratory syncytial virus infection in infancy",
-      "year": 1988,
-      "n": 206,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "17298703",
-      "title": "Supplementation with vitamin A reduces watery diarrhoea and respiratory infections in Mexican children",
-      "year": 2007,
-      "n": 188,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "17041847",
-      "title": "Impact of vitamin A on selected gastrointestinal pathogen infections and associated diarrheal episodes among children in Mexico City, Mexico",
-      "year": 2006,
-      "n": 188,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "20298571",
-      "title": "Effect on longitudinal growth and anemia of zinc or multiple micronutrients added to vitamin A: a randomized controlled trial in children aged 6-24 months",
-      "year": 2010,
-      "n": 187,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7957792",
-      "title": "Effect of vitamin A supplementation on diarrhoea and acute respiratory tract infection in children. A double blind placebo controlled trial in a Calcutta slum community",
-      "year": 1994,
-      "n": 174,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "12500659",
-      "title": "Effect of micronutrient supplementation on the growth of preschool children in China",
-      "year": 2002,
-      "n": 156,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "25411289",
-      "title": "Biofortified orange maize is as efficacious as a vitamin A supplement in Zambian children even in the presence of high liver reserves of vitamin A: a community-based, randomized placebo-controlled trial",
-      "year": 2014,
-      "n": 140,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "7496940",
-      "title": "Effect of vitamin A supplementation on immunoglobulin G subclass responses to tetanus toxoid in children",
-      "year": 1994,
-      "n": 139,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "2296931",
-      "title": "Vitamin A intervention: short-term effects of a single, oral, massive dose on iron metabolism",
-      "year": 1990,
-      "n": 134,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "8436094",
-      "title": "Impact of large-dose vitamin A supplementation on childhood diarrhoea, respiratory disease and growth",
-      "year": 1993,
-      "n": 98,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "15661475",
-      "title": "Effect of periodic vitamin A supplementation on mortality and morbidity of human immunodeficiency virus-infected children in Uganda: A controlled clinical trial",
-      "year": 2005,
-      "n": 94,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     },
-     {
-      "pmid": "2220978",
-      "title": "Response of Bitot's spots in preschool children to vitamin A treatment",
-      "year": 1990,
-      "n": 88,
-      "inReviews": [
-       "35294044",
-       "28282701"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1976,
@@ -4147,22 +2310,10 @@
      "n": 30000
     },
     {
-     "pmid": "8593380",
-     "title": "Plasma retinol level, vitamin A supplementation and acute respiratory infections in children of 1-5 years old in a developing country. Respiratory Diseases Working Group",
-     "year": 1995,
-     "n": 2000
-    },
-    {
      "pmid": "7503047",
      "title": "Dietary vitamin C and beta-carotene and risk of death in middle-aged men. The Western Electric Study",
      "year": 1995,
      "n": 1556
-    },
-    {
-     "pmid": "7752011",
-     "title": "Clinical trial of vitamin A as adjuvant treatment for lower respiratory tract infections",
-     "year": 1995,
-     "n": 200000
     },
     {
      "pmid": "7598058",
@@ -4187,12 +2338,6 @@
      "title": "Effect of vitamin A supplementation on the growth of young children in northern Ghana",
      "year": 1996,
      "n": 25000
-    },
-    {
-     "pmid": "8772901",
-     "title": "Effect of vitamin A supplementation to mother and infant on morbidity in infancy",
-     "year": 1996,
-     "n": 200000
     },
     {
      "pmid": "9345118",
@@ -4423,12 +2568,6 @@
      "n": 125257
     },
     {
-     "pmid": "21411606",
-     "title": "Vitamin A modifies the intestinal chemokine and cytokine responses to norovirus infection in Mexican children",
-     "year": 2011,
-     "n": 45000
-    },
-    {
      "pmid": "21294931",
      "title": "The effect of high-dose vitamin A supplementation at birth on measles incidence during the first 12 months of life in boys and girls: an unplanned study within a randomised trial",
      "year": 2011,
@@ -4481,12 +2620,6 @@
      "title": "High-dose vitamin A supplementation administered with vaccinations after 6 months of age: sex-differential adverse reactions and morbidity",
      "year": 2013,
      "n": 1673
-    },
-    {
-     "pmid": "24330422",
-     "title": "Impact of vitamin A with zinc supplementation on malaria morbidity in Ghana",
-     "year": 2013,
-     "n": 200000
     },
     {
      "pmid": "23714325",
@@ -4591,12 +2724,6 @@
      "n": 2213
     },
     {
-     "pmid": "38643780",
-     "title": "Early postnatal high-dose fat-soluble enteral vitamin A supplementation for moderate or severe bronchopulmonary dysplasia or death in extremely low birthweight infants (NeoVitaA): a multicentre, randomised, parallel-group, double-blind, placebo-controlled, investigator-initiated phase 3 trial",
-     "year": 2024,
-     "n": 3066
-    },
-    {
      "pmid": "39008999",
      "title": "HIV-1 infection kinetics, drug resistance, and long-term safety of pre-exposure prophylaxis with emtricitabine plus tenofovir alafenamide (DISCOVER): week 144 open-label extension of a randomised, controlled, phase 3 trial",
      "year": 2024,
@@ -4631,7 +2758,7 @@
       "journal": "PloS one",
       "citedBy": 1,
       "n": 1046829,
-      "why": "One of the newest meta-analyses of trials on this outcome (2022); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2022); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "28282701",
@@ -4642,7 +2769,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 178,
       "n": 1223856,
-      "why": "One of the newest meta-analyses of trials on this outcome (2017); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2017); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "39008999",
@@ -4654,17 +2781,6 @@
       "citedBy": 5,
       "n": 5399,
       "why": "A large trial (about 5,399 people) from 2024, as new as the newest review or newer"
-     },
-     {
-      "pmid": "38643780",
-      "doi": "10.1016/s2213-2600(24)00073-0",
-      "title": "Early postnatal high-dose fat-soluble enteral vitamin A supplementation for moderate or severe bronchopulmonary dysplasia or death in extremely low birthweight infants (NeoVitaA): a multicentre, randomised, parallel-group, double-blind, placebo-controlled, investigator-initiated phase 3 trial",
-      "year": 2024,
-      "firstAuthor": "Meyer S",
-      "journal": "The Lancet. Respiratory medicine",
-      "citedBy": 25,
-      "n": 3066,
-      "why": "A large trial (about 3,066 people) from 2024, as new as the newest review or newer"
      },
      {
       "pmid": "40387380",
@@ -4691,6 +2807,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Children aged 6 months to 5 years, mostly in low- and middle-income countries",
      "intervention": "Vitamin A supplements",
@@ -4978,6 +3095,7 @@
   {
    "id": "birth-defects",
    "label": "Birth defects",
+   "anyDesign": false,
    "finding": "Birth defects (preformed vitamin A in early pregnancy)",
    "counts": {
     "reviews": 28,
@@ -5303,6 +3421,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Pregnant women",
      "intervention": "Preformed vitamin A (retinol) supplements in early pregnancy",

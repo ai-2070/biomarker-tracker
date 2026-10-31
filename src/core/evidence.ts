@@ -4,7 +4,7 @@ import type { EvidenceClaim, EvidenceGrade, SafetyId } from "./types";
 const GRADES: readonly EvidenceGrade[] = ["high", "moderate", "low", "very low"];
 const KINDS = new Set(["food", "diet", "supplement", "habit"]);
 const DIRECTIONS = new Set(["increase", "decrease", "no effect", "mixed"]);
-const SAFETY_IDS = new Set(["anticoagulant", "diabetes", "pregnancy", "kidney"]);
+const SAFETY_IDS = new Set(["anticoagulant", "antiplatelet", "diabetes", "pregnancy", "kidney"]);
 const STUDY_TYPES = new Set(["meta-analysis", "rct", "observational", "animal", "in vitro", "review", "guideline"]);
 
 type Obj = Record<string, unknown>;
