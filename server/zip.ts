@@ -8,6 +8,10 @@ export interface ZipEntry {
   modified?: Date;
 }
 
+/** Shared with the restore HTTP body limit; both directions support the same bounded archive. */
+export const MAX_ZIP_BYTES = 200 * 1024 * 1024;
+export const MAX_ZIP_EXPANDED_BYTES = 500 * 1024 * 1024;
+
 const CRC_TABLE = (() => {
   const t = new Uint32Array(256);
   for (let n = 0; n < 256; n++) {
@@ -32,6 +36,14 @@ function dosTime(d: Date): { time: number; date: number } {
 }
 
 export function writeZip(entries: ZipEntry[]): Buffer {
+  if (entries.length > 65535) throw new Error("The zip contains too many files (maximum 65,535).");
+  let expanded = 0;
+  let archiveSize = 22;
+  for (const e of entries) {
+    expanded += e.data.length;
+    if (expanded > MAX_ZIP_EXPANDED_BYTES) throw new Error("The profile exceeds the 500 MB expanded backup limit. Keep some attachments separately before backing up.");
+    if (Buffer.byteLength(e.name, "utf8") > 65535) throw new Error("A zip file name is too long.");
+  }
   const parts: Buffer[] = [];
   const central: Buffer[] = [];
   let offset = 0;
@@ -40,6 +52,8 @@ export function writeZip(entries: ZipEntry[]): Buffer {
     const packed = zlib.deflateRawSync(e.data);
     const store = packed.length >= e.data.length;
     const body = store ? e.data : packed;
+    archiveSize += 76 + name.length * 2 + body.length;
+    if (archiveSize > MAX_ZIP_BYTES) throw new Error("The profile exceeds the 200 MB backup limit. Keep some attachments separately before backing up.");
     const crc = crc32(e.data);
     const { time, date } = dosTime(e.modified ?? new Date());
     const local = Buffer.alloc(30);
@@ -86,7 +100,8 @@ export function safeEntryName(name: string): boolean {
 }
 
 /** Reads a zip. Throws on anything damaged, unsupported or unsafe. Folder entries are skipped. */
-export function readZip(buf: Buffer, maxTotal = 500 * 1024 * 1024): ZipEntry[] {
+export function readZip(buf: Buffer, maxTotal = MAX_ZIP_EXPANDED_BYTES): ZipEntry[] {
+  if (buf.length > MAX_ZIP_BYTES) throw new Error("The zip exceeds the 200 MB upload limit.");
   let end = -1;
   for (let i = buf.length - 22; i >= Math.max(0, buf.length - 22 - 65535); i--) {
     if (buf.readUInt32LE(i) === 0x06054b50) {

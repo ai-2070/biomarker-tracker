@@ -1,5 +1,6 @@
 import { dayNumber, isIsoDate } from "./dates";
 import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE, phenoAge, type PhenoAgeInputs, type PhenoAgeMarker } from "./phenoage";
+import { sortByDate } from "./trends";
 import type { Measurement } from "./types";
 
 const BIRTH_MONTH = /^(\d{4})-(\d{2})$/;
@@ -51,10 +52,10 @@ const isPhenoMarker = (id: string): id is PhenoAgeMarker => (PHENOAGE_MARKERS as
  */
 export function summarizePhenoAge(measurements: readonly Measurement[], birthMonth?: string): PhenoAgeSummary {
   const byDate = new Map<string, Partial<Record<PhenoAgeMarker, Measurement>>>();
-  for (const m of measurements) {
+  for (const m of sortByDate(measurements)) {
     if (!isPhenoMarker(m.biomarkerId) || !isIsoDate(m.date)) continue;
     const day = byDate.get(m.date) ?? {};
-    // Two results for the same marker on one day: the later entry wins.
+    // Two results for the same marker on one day: the later persisted save wins.
     day[m.biomarkerId] = m;
     byDate.set(m.date, day);
   }

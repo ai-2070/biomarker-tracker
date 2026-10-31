@@ -1,8 +1,9 @@
 import Dexie, { type EntityTable } from "dexie";
 import { createBackup, type Backup } from "../core/backup";
 import { syncWatch, watchFor } from "../core/habits";
-import { habitForPlan, type Plan } from "../core/plans";
-import type { Meal } from "../core/meals";
+import { habitForPlan, validatePlan, type Plan } from "../core/plans";
+import { validateMeal, type Meal } from "../core/meals";
+import { validateProtocol } from "../core/protocols";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
 import { completeProfileDetails, type ProfileCompletion } from "../core/profileCompletion";
 import { measurementsIn } from "../core/measurementCompletion";
@@ -40,6 +41,13 @@ export class TrackerDB extends Dexie {
     // v5 had a table of logged days for Daily intake; v6 drops it (the analyzer keeps one list in settings).
     this.version(5).stores({ intake: "id, date" });
     this.version(6).stores({ intake: null });
+    // v7: save order, not random UUID order, breaks ties on the same sample date.
+    this.version(7).stores({ measurements: "id, biomarkerId, date, [biomarkerId+date], savedOrder" }).upgrade(async (tx) => {
+      const rows = await tx.table<Measurement>("measurements").toArray();
+      let order = rows.reduce((max, m) => Math.max(max, m.savedOrder ?? 0), 0);
+      for (const row of rows) if (row.savedOrder === undefined) row.savedOrder = ++order;
+      await tx.table<Measurement>("measurements").bulkPut(rows);
+    });
   }
 }
 
@@ -52,7 +60,20 @@ export function newId(): string {
 // Protocols
 
 export async function savePlan(p: Plan, database = db): Promise<void> {
+  const errors = validatePlan(p);
+  if (errors.length) throw new Error(errors[0]);
   await database.plans.put(p);
+}
+
+/** Apply a field edit to the latest stored protocol, not a stale React snapshot. */
+export async function updatePlan(id: string, change: (current: Plan) => Plan, database = db): Promise<void> {
+  await database.transaction("rw", database.plans, async () => {
+    const current = await database.plans.get(id);
+    if (!current) throw new Error("This protocol no longer exists.");
+    const next = change(current);
+    if (next.id !== id) throw new Error("A protocol edit cannot change its identity.");
+    await savePlan(next, database);
+  });
 }
 
 export async function deletePlan(id: string, database = db): Promise<void> {
@@ -62,10 +83,16 @@ export async function deletePlan(id: string, database = db): Promise<void> {
 /** Starts the whole protocol as one habit; repeated starts of an active protocol do nothing. */
 export async function startPlan(p: Plan, start: string, database = db): Promise<void> {
   await database.transaction("rw", database.plans, database.protocols, async () => {
-    const current = (await database.plans.get(p.id)) ?? p;
+    const current = await database.plans.get(p.id);
+    if (!current) throw new Error("This protocol no longer exists.");
     if (current.active) return;
+    const errors = validatePlan(current);
+    if (errors.length) throw new Error(errors[0]);
+    const habit = habitForPlan(current, start);
+    const checked = validateProtocol(habit, todayIso());
+    if (!checked.ok) throw new Error(Object.values(checked.errors)[0]);
     const id = newId();
-    await database.protocols.add({ ...habitForPlan(current, start), id });
+    await database.protocols.add({ ...habit, id });
     await database.plans.put({ ...current, active: { since: start, habitIds: [id] } });
   });
 }
@@ -93,7 +120,20 @@ export async function stopPlan(p: Plan, today: string, database = db): Promise<v
 // Meals
 
 export async function saveMeal(m: Meal, database = db): Promise<void> {
+  const errors = validateMeal(m);
+  if (errors.length) throw new Error(errors[0]);
   await database.meals.put(m);
+}
+
+/** Serialize edits against the latest meal so blur/delete cannot revert another edit. */
+export async function updateMeal(id: string, change: (current: Meal) => Meal, database = db): Promise<void> {
+  await database.transaction("rw", database.meals, async () => {
+    const current = await database.meals.get(id);
+    if (!current) throw new Error("This meal no longer exists.");
+    const next = change(current);
+    if (next.id !== id) throw new Error("A meal edit cannot change its identity.");
+    await saveMeal(next, database);
+  });
 }
 
 export async function deleteMeal(id: string, database = db): Promise<void> {
@@ -103,16 +143,18 @@ export async function deleteMeal(id: string, database = db): Promise<void> {
 // Measurements
 
 export async function addMeasurement(m: Omit<Measurement, "id">, database = db): Promise<string> {
-  const id = newId();
-  await database.measurements.add({ ...m, id });
-  return id;
+  const [row] = await addMeasurements([m], database);
+  return row!.id;
 }
 
 /** Save several results at once; all or nothing. */
 export async function addMeasurements(ms: Omit<Measurement, "id">[], database = db): Promise<Measurement[]> {
-  const rows = ms.map((m) => ({ ...m, id: newId() }));
-  await database.measurements.bulkAdd(rows);
-  return rows;
+  return database.transaction("rw", database.measurements, async () => {
+    let order = (await database.measurements.orderBy("savedOrder").last())?.savedOrder ?? 0;
+    const rows = ms.map((m) => ({ ...m, id: newId(), savedOrder: ++order }));
+    await database.measurements.bulkAdd(rows);
+    return rows;
+  });
 }
 
 /** A reviewed device import replaces each measurement/day; the first overlapping series wins. */
@@ -124,23 +166,24 @@ export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "sourc
   }
   return database.transaction("rw", database.measurements, async () => {
     const existing = await database.measurements.where("[biomarkerId+date]").anyOf([...incoming.values()].map((m) => [m.biomarkerId, m.date])).toArray();
-    const ids = new Map<string, string[]>();
+    const matchesByDay = new Map<string, Measurement[]>();
     for (const m of existing) {
       const key = `${m.biomarkerId}|${m.date}`;
-      const matches = ids.get(key) ?? [];
-      matches.push(m.id);
-      ids.set(key, matches);
+      const matches = matchesByDay.get(key) ?? [];
+      matches.push(m);
+      matchesByDay.set(key, matches);
     }
     const rows: Measurement[] = [];
+    let order = (await database.measurements.orderBy("savedOrder").last())?.savedOrder ?? 0;
     let added = 0;
     let updated = 0;
     for (const [key, m] of incoming) {
-      const matches = ids.get(key);
+      const matches = matchesByDay.get(key);
       if (matches) {
-        for (const id of matches) rows.push({ ...m, source: "device", id });
+        for (const previous of matches) rows.push({ ...m, source: "device", id: previous.id, savedOrder: previous.savedOrder ?? ++order });
         updated++;
       } else {
-        rows.push({ ...m, source: "device", id: newId() });
+        rows.push({ ...m, source: "device", id: newId(), savedOrder: ++order });
         added++;
       }
     }
@@ -163,6 +206,19 @@ export async function addProtocol(p: Omit<ProtocolEntry, "id">, database = db): 
   const id = newId();
   await database.protocols.add({ ...p, id });
   return id;
+}
+
+/** A habit and its initial watch are one operation, including on quota/write failure. */
+export async function createHabit(
+  p: Omit<ProtocolEntry, "id">,
+  watch?: { markerIds: string[]; retestAfterDays: number; today: string },
+  database = db,
+): Promise<string> {
+  return database.transaction("rw", database.protocols, database.experiments, async () => {
+    const id = await addProtocol(p, database);
+    if (watch) await watchHabit({ ...p, id }, watch.markerIds, watch.retestAfterDays, watch.today, database);
+    return id;
+  });
 }
 
 /** Replace an entry. Uses put so that clearing `end` really removes it. */
@@ -328,9 +384,8 @@ export async function fillPersonalDetails(
       const measurementsAdded: Measurement[] = [];
       for (const candidate of measurementsIn(userText, today, defs)) {
         if (await database.measurements.where("[biomarkerId+date]").equals([candidate.biomarkerId, candidate.date]).count()) continue;
-        const measurement = { ...candidate, id: newId() };
-        await database.measurements.add(measurement);
-        measurementsAdded.push(measurement);
+        const [measurement] = await addMeasurements([candidate], database);
+        measurementsAdded.push(measurement!);
       }
       signal?.throwIfAborted();
       if (added.length) await setProfile(profile, database);
@@ -377,11 +432,15 @@ export type ImportMode = "merge" | "replace";
  * "replace" deletes everything first.
  */
 export async function importBackup(backup: Backup, mode: ImportMode, database = db): Promise<void> {
-  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.settings], async () => {
+  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings], async () => {
     if (mode === "replace") {
       await database.measurements.clear();
       await database.protocols.clear();
       await database.experiments.clear();
+      await database.plans.clear();
+      await database.meals.clear();
+      const personal = (await database.settings.toArray()).filter((s) => !["ai", "loadedProfile", "onboarded"].includes(s.key));
+      await database.settings.bulkDelete(personal.map((s) => s.key));
       await database.measurements.bulkPut(backup.measurements);
       await database.protocols.bulkPut(backup.protocols);
       await database.experiments.bulkPut(backup.experiments);

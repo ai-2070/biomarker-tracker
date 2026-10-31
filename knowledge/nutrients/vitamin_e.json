@@ -341,9 +341,14 @@
   ],
   "interactions": [
     {
-      "with": "Blood thinners and antiplatelet medicines (warfarin, apixaban, rivaroxaban, clopidogrel, aspirin and others)",
+      "with": "Blood thinners (warfarin, apixaban, rivaroxaban and others)",
       "note": "Vitamin E at high amounts makes blood clot less well and can add to the bleeding risk of these medicines. EFSA's upper limit doesn't apply to people taking them. Discuss any vitamin E supplement with your doctor or pharmacist.",
       "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Antiplatelet medicines (clopidogrel, aspirin and others)",
+      "note": "Vitamin E at high amounts makes blood clot less well and can add to the bleeding risk of these medicines. EFSA's upper limit doesn't apply to people taking them. Discuss any vitamin E supplement with your doctor or pharmacist.",
+      "safetyId": "antiplatelet"
     },
     {
       "with": "Low vitamin K or poor vitamin K absorption",

@@ -27,6 +27,8 @@ export interface Step {
   server?: string;
   input: string;
   validated?: boolean;
+  output?: unknown;
+  success?: boolean;
 }
 
 export type Turn =
@@ -90,7 +92,7 @@ export interface BrainState {
 }
 
 type Reply =
-  | { ok: true; text: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
+  | { ok: true; text: string; model?: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   | { ok: false; error: string };
 
 type Thread = Pick<BrainState, "draft" | "turns" | "busy" | "attachments" | "pending"> & { researchContext?: string };
@@ -217,26 +219,28 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
   if (critical) return [];
   const seen = new Set<string>();
   return steps.flatMap((st): Turn[] => {
-    if (st.server !== undefined || st.validated !== true) return [];
+    if (st.server !== undefined || st.validated !== true || st.success !== true || !st.output || typeof st.output !== "object") return [];
     const kind = st.tool === "propose_protocol" ? "protocol" : st.tool === "propose_meal" ? "meal" : st.tool === "propose_habit" ? "habit" : undefined;
     if (!kind) return [];
-    let input: unknown;
+    const output = st.output as { intent?: unknown; plan?: unknown; meal?: unknown; shownToPerson?: unknown };
+    const intent = proposalIntent(output);
+    if (!intent) return [];
+    const proposal = kind === "protocol" ? output.plan : kind === "meal" ? output.meal : output.shownToPerson;
+    if (!proposal || typeof proposal !== "object") return [];
+    const fields = proposal as Record<string, unknown>;
+    const input = { ...fields, intent, ...(kind === "habit" ? { watchMarkers: fields.markerIds } : {}) };
+    if (proposalIssue(kind, input, { ...context, critical })) return [];
     try {
-      input = JSON.parse(st.input);
+      if (kind === "protocol") {
+        const r = planFromProposal(input, () => crypto.randomUUID(), new Date().toISOString());
+        return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, intent, state: "open" }] : [];
+      }
+      if (kind === "meal") {
+        const meal = output.meal as Meal;
+        return validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal: { ...meal, id: crypto.randomUUID() }, intent, state: "open" }] : [];
+      }
     } catch {
       return [];
-    }
-    const intent = proposalIntent(input);
-    if (!intent || proposalIssue(kind, input, { ...context, critical })) return [];
-    if (kind === "protocol") {
-      const r = planFromProposal(input, () => crypto.randomUUID(), new Date().toISOString());
-      return r.ok ? [{ id: newId(), role: "protocol", plan: r.plan, intent, state: "open" }] : [];
-    }
-    if (kind === "meal") {
-      if (!input || typeof input !== "object" || !("name" in input) || !("items" in input)) return [];
-      const note = "note" in input && typeof input.note === "string" && input.note.trim() ? { note: input.note.trim() } : {};
-      const meal = { id: crypto.randomUUID(), name: typeof input.name === "string" ? input.name.trim() : "", items: input.items, ...note, createdAt: new Date().toISOString() };
-      return validateMeal(meal).length === 0 ? [{ id: newId(), role: "meal", meal: meal as Meal, intent, state: "open" }] : [];
     }
     const r = parseHabitProposal(input, BIOMARKER_MAP, today);
     if (!r.ok || seen.has(r.proposal.label.toLowerCase())) return [];
@@ -318,6 +322,7 @@ export async function addFiles(files: File[]): Promise<void> {
         attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined, ...(isImage(file) ? { photo: file, sendPhoto: false } : {}) } : a)),
       }));
     } catch (e) {
+      if (epochs.personal !== epoch) return;
       const error = e instanceof Error ? e.message : "This file couldn't be read.";
       update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "error", error } : a)) }));
     }
@@ -342,6 +347,11 @@ export async function send(model: string, text?: string): Promise<void> {
   const consumeDraft = text === undefined || state.draft.trim() === question;
   const ready = scope === "personal" ? state.attachments.filter((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim())) : [];
   if ((!question && ready.length === 0) || state.busy || (scope === "personal" && state.attachments.some((a) => a.status === "reading"))) return;
+  const photos = ready.filter((a) => a.sendPhoto && a.photo);
+  if (photos.length > 4) {
+    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: "Send up to 4 photos at a time. Untick or remove extra photos and try again; your attachments are still here." }] }));
+    return;
+  }
   // Claim the request before any await: Stop/scope changes also cancel snapshot and photo preparation.
   const mine: Request = { controller: new AbortController(), scope, epoch: epochs[scope], submitted: false };
   request = mine;
@@ -350,7 +360,6 @@ export async function send(model: string, text?: string): Promise<void> {
   try {
     const snap = scope === "personal" ? await snapshot() : undefined;
     if (!isCurrent(mine)) return;
-    const photos = ready.filter((a) => a.sendPhoto && a.photo);
     const images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
     if (!isCurrent(mine)) return;
     let sent: string;
@@ -364,7 +373,7 @@ export async function send(model: string, text?: string): Promise<void> {
     } else {
       sent = questionWithFiles(
         question || (photos.length ? "Please look at the attached photo." : ""),
-        ready.filter((a) => !a.sendPhoto).map((d) => ({ name: d.name, text: redactName(d.text ?? "", snap?.name) })),
+        ready.filter((a) => !a.sendPhoto).map((d) => ({ name: redactName(d.name, snap?.name), text: redactName(d.text ?? "", snap?.name) })),
       );
     }
     const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
@@ -378,11 +387,10 @@ export async function send(model: string, text?: string): Promise<void> {
     if (scope === "research") {
       body = { scope: "research", messages: [{ role: "user", content: sent }] };
     } else {
+      const priorPhotoNote = "\n\n[A photo was sent with this question; it isn't sent again.]";
       const messages: { role: string; content: string; images?: typeof images }[] = [...priorTurns, user].flatMap((t) =>
         t.role === "user"
-          ? [{ role: "user", content: t.photos && t.id !== user.id ? `${t.sent}
-
-[A photo was sent with this question; it isn't sent again.]` : t.sent }]
+          ? [{ role: "user", content: t.photos && t.id !== user.id && t.sent.length + priorPhotoNote.length <= 20_000 ? t.sent + priorPhotoNote : t.sent }]
           : t.role === "assistant"
             ? [{ role: "assistant", content: t.content }]
             : [],
@@ -422,7 +430,7 @@ export async function send(model: string, text?: string): Promise<void> {
         ...s.turns,
         ...(r.ok
           ? [
-              { id: newId(), role: "assistant" as const, content: r.text, model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
+              { id: newId(), role: "assistant" as const, content: r.text, model: r.model ?? model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
               ...profileTurns,
               ...(snap ? habitTurns(r.steps, effectiveMeasurements, questionDate, { requestText: sent, safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id) }) : []),
             ]

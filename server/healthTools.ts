@@ -7,6 +7,7 @@ import { todayIso } from "../src/core/dates";
 import { selectLevers } from "../src/core/evidence";
 import { analyzeMarker, rcvBand, retestDate } from "../src/core/experiments";
 import { SAFETY_LIMITS, selectFoods } from "../src/core/foods";
+import { chanceNote, pickedAfterResults } from "../src/core/habits";
 import { summarizePhenoAge } from "../src/core/phenoageDraws";
 import { ageAt } from "../src/core/phenoageDraws";
 import { assistantProfile } from "../src/core/profile";
@@ -284,6 +285,10 @@ export function experimentResults(s: HealthSnapshot) {
     retestFrom: retestDate(e),
     ended: e.end ?? null,
     ...(s.protocols.some((p) => p.id === e.protocolId && p.plan) ? { comparisonScope: WHOLE_PROTOCOL_COMPARISON } : {}),
+    chosenOn: e.chosenOn ?? null,
+    pickedAfterResults: pickedAfterResults(e),
+    interpretation: pickedAfterResults(e) ? "A hint, not a test: these markers were selected after follow-up results were available." : e.chosenOn ? "Markers were selected before follow-up results were available." : "When these markers were selected is not recorded.",
+    caution: chanceNote(e.markerIds.length) ?? null,
     markers: e.markerIds.flatMap((id) => {
       const def = defs.get(id);
       if (!def) return [];
@@ -377,6 +382,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
                 ...(i.amount ? { amountTheyWrote: i.amount } : {}),
                 type: i.category,
                 when: i.when,
+                days: i.days?.length ? i.days : WEEKDAYS,
+                withFood: i.withFood ?? false,
                 ...(i.note ? { note: i.note } : {}),
                 ...(n ? {
                   nutrient: n.name,
@@ -421,7 +428,9 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         if (!r.ok) return { error: r.error };
         const { nutrients } = knowledge();
         return {
+          intent: input.intent,
           shownToPerson: { name: r.plan.name, items: r.plan.items.length },
+          plan: r.plan,
           interactionsBetweenItems: pairWarnings(r.plan, nutrients),
           note: "A card is shown in the chat. Nothing is saved until the person creates it; they can edit it afterwards on the Protocols page.",
         };
@@ -475,7 +484,9 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         const t = mealTotals(input.items, db);
         const shown = Object.fromEntries(["energyKcal", "protein", "fat", "carbohydrate", "fibre"].map((k) => [k, Math.round(t[k]!.amount * 10) / 10]));
         return {
+          intent: input.intent,
           shownToPerson: { name: input.name, foods: input.items.length },
+          meal: { ...input, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
           appTotals: shown,
           note: "A card is shown in the chat with the full totals. Nothing is saved until the person saves it. Report these totals rather than calculating your own.",
         };
@@ -589,6 +600,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         const r = parseHabitProposal(input, knowledge().defs, todayIso());
         if (!r.ok) return { error: r.error };
         return {
+          intent: input.intent,
           shownToPerson: r.proposal,
           ...(r.unknownMarkers.length ? { markersNotFound: r.unknownMarkers } : {}),
           note: "A card is shown in the chat. Nothing is saved until the person confirms it; tell them they can edit it first.",

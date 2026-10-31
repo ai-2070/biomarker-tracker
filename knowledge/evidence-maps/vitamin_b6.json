@@ -18,8 +18,8 @@
   "An outcome counts when its words are in the title.",
   "Reviews: meta-analyses or systematic reviews of randomised trials of giving vitamin B6, with vitamin B6 in the title, or in the abstract of a review of several supplements (not reviews of blood levels in observational studies; reviews without an abstract are kept for screening), and not about another group of people (such as sepsis, intensive care or surgery; each outcome's list is in the search definition). Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most trials pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, what was given, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap: the chosen reviews' reference lists (from Europe PMC) matched against the downloaded vitamin B6 trials, measured as the corrected covered area (Pieper 2014, PMID 24581293)."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 20412,
@@ -54,6 +54,7 @@
   {
    "id": "nausea",
    "label": "Nausea in pregnancy",
+   "anyDesign": false,
    "finding": "Nausea and vomiting in early pregnancy",
    "counts": {
     "reviews": 25,
@@ -201,6 +202,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Pregnant women with nausea and vomiting",
      "intervention": "Vitamin B6 (pyridoxine), alone or with doxylamine",
@@ -229,6 +231,7 @@
   {
    "id": "pregnancy",
    "label": "Pregnancy outcomes",
+   "anyDesign": false,
    "finding": "Pregnancy outcomes such as pre-eclampsia, birth weight and Apgar scores",
    "counts": {
     "reviews": 32,
@@ -246,7 +249,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 32,
      "n": 1646,
-     "why": "One of the newest meta-analyses of trials on this outcome (2015); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2015); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "22742602",
@@ -256,7 +259,7 @@
      "firstAuthor": "Dror DK",
      "journal": "Paediatric and perinatal epidemiology",
      "citedBy": 74,
-     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "16625530",
@@ -267,7 +270,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 11,
      "n": 1646,
-     "why": "One of the newest meta-analyses of trials on this outcome (2006); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2006); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -294,66 +297,6 @@
      "why": "A large trial (about 1,729 people) from 2023, as new as the newest review or newer"
     }
    ],
-   "overlap": {
-    "cca": 0.625,
-    "trials": 4,
-    "inclusions": 9,
-    "reviews": [
-     {
-      "pmid": "26039815",
-      "trials": 4
-     },
-     {
-      "pmid": "22742602",
-      "trials": 2
-     },
-     {
-      "pmid": "16625530",
-      "trials": 3
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "6726466",
-      "title": "Effect of maternal pyridoxine X HCl supplementation on the vitamin B-6 status of mother and infant and on pregnancy outcome",
-      "year": 1984,
-      "inReviews": [
-       "26039815",
-       "22742602",
-       "16625530"
-      ]
-     },
-     {
-      "pmid": "998549",
-      "title": "Adequacy of vitamin B6 supplementation during pregnancy: a prospective study",
-      "year": 1976,
-      "inReviews": [
-       "26039815",
-       "22742602",
-       "16625530"
-      ]
-     },
-     {
-      "pmid": "1503068",
-      "title": "Vitamin B-6 status of breast-fed neonates: influence of pyridoxine supplementation on mothers and neonates",
-      "year": 1992,
-      "inReviews": [
-       "26039815",
-       "16625530"
-      ]
-     },
-     {
-      "pmid": "22189065",
-      "title": "Vitamin B₆ supplementation in pregnant women with nausea and vomiting",
-      "year": 2012,
-      "n": 60,
-      "inReviews": [
-       "26039815"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 1976,
@@ -545,7 +488,7 @@
       "firstAuthor": "Dror DK",
       "journal": "Paediatric and perinatal epidemiology",
       "citedBy": 74,
-      "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "16625530",
@@ -556,7 +499,7 @@
       "journal": "The Cochrane database of systematic reviews",
       "citedBy": 11,
       "n": 1646,
-      "why": "One of the newest meta-analyses of trials on this outcome (2006); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2006); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "28052111",
@@ -583,6 +526,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Pregnant women",
      "intervention": "Vitamin B6 supplements during pregnancy or labour",
@@ -603,6 +547,7 @@
   {
    "id": "pms",
    "label": "Premenstrual symptoms",
+   "anyDesign": false,
    "finding": "Premenstrual symptoms (PMS)",
    "counts": {
     "reviews": 5,
@@ -619,7 +564,7 @@
      "firstAuthor": "Macdougall M.",
      "journal": "The Western journal of medicine",
      "citedBy": 0,
-     "why": "One of the newest meta-analyses of trials on this outcome (2000); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2000); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "19923637",
@@ -628,7 +573,7 @@
      "firstAuthor": "Whelan AM",
      "journal": "The Canadian journal of clinical pharmacology = Journal canadien de pharmacologie clinique",
      "citedBy": 27,
-     "why": "One of the newest systematic reviews of trials on this outcome (2009); screened as answering the question"
+     "why": "One of the newest systematic reviews of trials on this outcome (2009); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -732,7 +677,7 @@
       "firstAuthor": "Macdougall M.",
       "journal": "The Western journal of medicine",
       "citedBy": 0,
-      "why": "One of the newest meta-analyses of trials on this outcome (2000); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2000); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "19923637",
@@ -741,11 +686,12 @@
       "firstAuthor": "Whelan AM",
       "journal": "The Canadian journal of clinical pharmacology = Journal canadien de pharmacologie clinique",
       "citedBy": 27,
-      "why": "One of the newest systematic reviews of trials on this outcome (2009); screened as answering the question"
+      "why": "One of the newest systematic reviews of trials on this outcome (2009); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Women with premenstrual syndrome",
      "intervention": "Vitamin B6 (alone or with magnesium)",
@@ -766,12 +712,13 @@
   {
    "id": "cardiovascular",
    "label": "Heart, stroke and death",
+   "anyDesign": false,
    "finding": "Heart attacks, strokes and death",
    "counts": {
     "reviews": 19,
     "trialReviews": 11,
     "trials": 54,
-    "largeTrials": 24
+    "largeTrials": 23
    },
    "chosenReviews": [
     {
@@ -783,7 +730,7 @@
      "journal": "The American journal of clinical nutrition",
      "citedBy": 12,
      "n": 76664,
-     "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "31284304",
@@ -794,7 +741,7 @@
      "journal": "Annals of internal medicine",
      "citedBy": 145,
      "n": 992129,
-     "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "27453118",
@@ -805,7 +752,7 @@
      "journal": "Zhonghua liu xing bing xue za zhi = Zhonghua liuxingbingxue zazhi",
      "citedBy": 3,
      "n": 26395,
-     "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2016); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [
@@ -984,12 +931,6 @@
      "n": 5218
     },
     {
-     "pmid": "15608435",
-     "title": "Sustained homocysteine-lowering effect over time of folic acid-based multivitamin therapy in stroke patients despite increasing folate status in the population",
-     "year": 2005,
-     "n": 2002
-    },
-    {
      "pmid": "16531614",
      "title": "Homocysteine lowering and cardiovascular events after acute myocardial infarction",
      "year": 2006,
@@ -1124,7 +1065,7 @@
       "journal": "The American journal of clinical nutrition",
       "citedBy": 12,
       "n": 76664,
-      "why": "One of the newest meta-analyses of trials on this outcome (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2024); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "31284304",
@@ -1135,7 +1076,7 @@
       "journal": "Annals of internal medicine",
       "citedBy": 145,
       "n": 992129,
-      "why": "One of the newest meta-analyses of trials on this outcome (2019); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2019); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "27453118",
@@ -1146,7 +1087,7 @@
       "journal": "Zhonghua liu xing bing xue za zhi = Zhonghua liuxingbingxue zazhi",
       "citedBy": 3,
       "n": 26395,
-      "why": "One of the newest meta-analyses of trials on this outcome (2016); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2016); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "41176280",
@@ -1162,6 +1103,7 @@
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults with or without heart disease",
      "intervention": "Vitamin B6, alone or with folic acid and B12",
@@ -1225,6 +1167,7 @@
   {
    "id": "cognition",
    "label": "Memory and mood",
+   "anyDesign": false,
    "finding": "Memory, thinking and mood in older people",
    "counts": {
     "reviews": 17,
@@ -1242,7 +1185,7 @@
      "journal": "Nutrition reviews",
      "citedBy": 3,
      "n": 5275,
-     "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "22232016",
@@ -1252,7 +1195,7 @@
      "firstAuthor": "Ford AH",
      "journal": "Journal of Alzheimer's disease : JAD",
      "citedBy": 83,
-     "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+     "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "14584010",
@@ -1263,7 +1206,7 @@
      "journal": "The Cochrane database of systematic reviews",
      "citedBy": 73,
      "n": 211,
-     "why": "One of the newest systematic reviews of trials on this outcome (2003); screened as answering the question"
+     "why": "One of the newest systematic reviews of trials on this outcome (2003); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
@@ -1408,7 +1351,7 @@
       "journal": "Nutrition reviews",
       "citedBy": 3,
       "n": 5275,
-      "why": "One of the newest meta-analyses of trials on this outcome (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "22232016",
@@ -1418,11 +1361,12 @@
       "firstAuthor": "Ford AH",
       "journal": "Journal of Alzheimer's disease : JAD",
       "citedBy": 83,
-      "why": "One of the newest meta-analyses of trials on this outcome (2012); screened as answering the question"
+      "why": "One of the newest meta-analyses of trials on this outcome (2012); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Older adults, with or without mild memory problems",
      "intervention": "Vitamin B6, alone or with B12 and folic acid",
@@ -1479,6 +1423,7 @@
   {
    "id": "neuropathy",
    "label": "Nerve damage",
+   "anyDesign": false,
    "finding": "Nerve damage (peripheral neuropathy) from long-term high intakes",
    "counts": {
     "reviews": 8,
@@ -1577,6 +1522,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "People taking vitamin B6 supplements for months or years",
      "intervention": "Vitamin B6 supplements, especially at high amounts",

@@ -113,7 +113,7 @@ export const FINDING_LINE = { min: 15, max: 120 } as const;
 const STUDY_TYPES = new Set(["meta-analysis", "rct", "observational", "animal", "in vitro", "review", "guideline"]);
 const GRADES = new Set(["high", "moderate", "low", "very low"]);
 const EFFECTS = new Set(["helps", "no clear effect", "harms", "mixed"]);
-const SAFETY_IDS = new Set(["anticoagulant", "diabetes", "pregnancy", "kidney"]);
+const SAFETY_IDS = new Set(["anticoagulant", "antiplatelet", "diabetes", "pregnancy", "kidney"]);
 const UNITS = new Set(["µg", "mg", "g"]);
 
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);

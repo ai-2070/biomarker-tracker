@@ -1,7 +1,6 @@
 import type { Dashboard, DashboardMarker } from "../../../core/dashboard";
 import type { ExperimentPhase } from "../../../core/experiments";
 import { habitsOf, summarizeWatch } from "../../../core/habits";
-import { ageAt } from "../../../core/phenoageDraws";
 import { isCritical } from "../../../core/trends";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../../../core/types";
 import { openBrain } from "../../brain/store";
@@ -35,7 +34,7 @@ export function Figure({ label, href: to, children, foot, className }: { label: 
   return to ? <a href={to} className={styles}>{content}</a> : <section aria-label={label} className={styles}>{content}</section>;
 }
 
-export function BioAgeFigure({ d, profile, today }: { d: Dashboard; profile: Profile; today: string }) {
+export function BioAgeFigure({ d, profile }: { d: Dashboard; profile: Profile; today: string }) {
   const last = d.bioAge.at(-1);
   if (!last || !profile.birthMonth) {
     return (
@@ -50,7 +49,7 @@ export function BioAgeFigure({ d, profile, today }: { d: Dashboard; profile: Pro
     );
   }
   const diff = last.difference;
-  const age = ageAt(profile.birthMonth, today);
+  const age = last.age;
   const pts = d.bioAge.slice(-10);
   const vals = pts.flatMap((p) => [p.age, p.phenoAge]);
   const lo = Math.min(...vals) - 1;
@@ -76,6 +75,7 @@ export function BioAgeFigure({ d, profile, today }: { d: Dashboard; profile: Pro
                 than your age ({formatYears(age)})
               </>
             )}
+            <span className="text-ink-2"> · at the test on {formatDate(last.date)}</span>
             {last.approximate && <span className="text-ink-2"> · approximate</span>}
           </p>
         </div>

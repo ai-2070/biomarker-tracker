@@ -21,8 +21,8 @@
   "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
   "Reviews: meta-analyses or systematic reviews of any design, because much of what is known about eating pomegranate comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
   "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
-  "Screening: each eligible review's title and abstract was read against the finding's question (who, which food, compared with what, what was measured) by Claude Code (opus), titles and abstracts only. Reviews of extracts or supplements instead of the food count only as partly. Only reviews that answer it can be chosen; the others are listed with the reason. The decisions are kept in the repository and have not yet been checked by a clinician.",
-  "Overlap between the chosen reviews isn't shown: many pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+  "Historical screening decisions and review choices are retained. Exact screening inputs and per-decision model provenance were not recorded, so they are not validated for current inputs. Legacy file attribution is shown per outcome; these decisions need fresh screening before a new build may select them.",
+  "Overlap is not shown: a bibliography can cite background or excluded trials and cannot establish which studies a review included or pooled."
  ],
  "counts": {
   "all": 1993,
@@ -38,6 +38,7 @@
   {
    "id": "blood-pressure",
    "label": "Blood pressure",
+   "anyDesign": true,
    "finding": "Blood pressure",
    "counts": {
     "all": 121,
@@ -55,7 +56,7 @@
      "firstAuthor": "Bahari H",
      "journal": "Phytotherapy research : PTR",
      "citedBy": 9,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37461211",
@@ -66,7 +67,7 @@
      "journal": "Phytotherapy research : PTR",
      "citedBy": 5,
      "n": 573,
-     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "27888156",
@@ -76,172 +77,10 @@
      "firstAuthor": "Sahebkar A",
      "journal": "Pharmacological research",
      "citedBy": 75,
-     "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2017); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.4,
-    "trials": 15,
-    "inclusions": 27,
-    "reviews": [
-     {
-      "pmid": "38410857",
-      "trials": 13
-     },
-     {
-      "pmid": "37461211",
-      "trials": 10
-     },
-     {
-      "pmid": "27888156",
-      "trials": 4
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "24593225",
-      "title": "Does Pomegranate intake attenuate cardiovascular risk factors in hemodialysis patients?",
-      "year": 2014,
-      "n": 101,
-      "inReviews": [
-       "38410857",
-       "37461211",
-       "27888156"
-      ]
-     },
-     {
-      "pmid": "22648092",
-      "title": "Effects of pomegranate juice supplementation on pulse wave velocity and blood pressure in healthy young and middle-aged men and women",
-      "year": 2012,
-      "n": 51,
-      "inReviews": [
-       "38410857",
-       "37461211",
-       "27888156"
-      ]
-     },
-     {
-      "pmid": "16169367",
-      "title": "Effects of pomegranate juice consumption on myocardial perfusion in patients with coronary heart disease",
-      "year": 2005,
-      "n": 45,
-      "inReviews": [
-       "38410857",
-       "37461211",
-       "27888156"
-      ]
-     },
-     {
-      "pmid": "32767710",
-      "title": "The effect of concentrated pomegranate juice consumption on risk factors of cardiovascular diseases in women with polycystic ovary syndrome: A randomized controlled trial",
-      "year": 2021,
-      "n": 44,
-      "inReviews": [
-       "38410857",
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "28303364",
-      "title": "Effects of Pomegranate Juice on Cardiovascular Risk Factors in Patients with Metabolic Syndrome: a Double-Blinded, Randomized Crossover Controlled Trial",
-      "year": 2017,
-      "n": 30,
-      "inReviews": [
-       "38410857",
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "31646650",
-      "title": "Pomegranate juice improves cardiometabolic risk factors, biomarkers of oxidative stress and inflammation in hemodialysis patients: a randomized crossover trial",
-      "year": 2020,
-      "inReviews": [
-       "38410857",
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "31713129",
-      "title": "The effect of synbiotics pomegranate juice on cardiovascular risk factors in PCOS patients: a randomized, triple-blinded, controlled trial",
-      "year": 2020,
-      "inReviews": [
-       "38410857",
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "33523763",
-      "title": "Short-Term Consumption of Pomegranate Juice Alleviates Some Metabolic Disturbances in Overweight Patients with Dyslipidemia",
-      "year": 2021,
-      "inReviews": [
-       "38410857",
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "30661697",
-      "title": "Effects of pomegranate juice consumption on blood pressure and lipid profile in patients with type 2 diabetes: A single-blind randomized clinical trial",
-      "year": 2019,
-      "inReviews": [
-       "38410857",
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "19766760",
-      "title": "Effects of consumption of pomegranate juice on carotid intima-media thickness in men and women at moderate risk for coronary heart disease",
-      "year": 2009,
-      "n": 146,
-      "inReviews": [
-       "27888156"
-      ]
-     },
-     {
-      "pmid": "30538082",
-      "title": "Effect of synbiotic pomegranate juice on glycemic, sex hormone profile and anthropometric indices in PCOS: A randomized, triple blind, controlled trial",
-      "year": 2019,
-      "n": 92,
-      "inReviews": [
-       "37461211"
-      ]
-     },
-     {
-      "pmid": "37605174",
-      "title": "Pomegranate (Punica granatum L.) peel extract ameliorates metabolic syndrome risk factors in patients with non-alcoholic fatty liver disease: a randomized double-blind clinical trial",
-      "year": 2023,
-      "n": 39,
-      "inReviews": [
-       "38410857"
-      ]
-     },
-     {
-      "pmid": "34498307",
-      "title": "The effect of pomegranate extract on anthropometric indices, serum lipids, glycemic indicators, and blood pressure in patients with nonalcoholic fatty liver disease: A randomized double-blind clinical trial",
-      "year": 2021,
-      "inReviews": [
-       "38410857"
-      ]
-     },
-     {
-      "pmid": "23093401",
-      "title": "Acute effects of pomegranate extract on postprandial lipaemia, vascular function and blood pressure",
-      "year": 2012,
-      "inReviews": [
-       "38410857"
-      ]
-     },
-     {
-      "pmid": "25826143",
-      "title": "Effects of Pomegranate Extract Supplementation on Cardiovascular Risk Factors and Physical Function in Hemodialysis Patients",
-      "year": 2015,
-      "inReviews": [
-       "38410857"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2012,
@@ -288,6 +127,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Pomegranate juice or the fruit (seeds/arils)",
@@ -308,6 +148,7 @@
   {
    "id": "lipids",
    "label": "Blood fats",
+   "anyDesign": true,
    "finding": "Blood fats (LDL cholesterol, HDL cholesterol, triglycerides)",
    "counts": {
     "all": 341,
@@ -326,7 +167,7 @@
      "journal": "Avicenna journal of phytomedicine",
      "citedBy": 0,
      "n": 663,
-     "why": "One of the newest meta-analyses on this finding (2026); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2026); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "26857863",
@@ -337,152 +178,10 @@
      "journal": "Phytomedicine : international journal of phytotherapy and phytopharmacology",
      "citedBy": 37,
      "n": 545,
-     "why": "One of the newest meta-analyses on this finding (2016); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2016); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.21428571428571427,
-    "trials": 14,
-    "inclusions": 17,
-    "reviews": [
-     {
-      "pmid": "42153011",
-      "trials": 10
-     },
-     {
-      "pmid": "26857863",
-      "trials": 7
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "24593225",
-      "title": "Does Pomegranate intake attenuate cardiovascular risk factors in hemodialysis patients?",
-      "year": 2014,
-      "n": 101,
-      "inReviews": [
-       "42153011",
-       "26857863"
-      ]
-     },
-     {
-      "pmid": "16169367",
-      "title": "Effects of pomegranate juice consumption on myocardial perfusion in patients with coronary heart disease",
-      "year": 2005,
-      "n": 45,
-      "inReviews": [
-       "42153011",
-       "26857863"
-      ]
-     },
-     {
-      "pmid": "21811060",
-      "title": "Effect of pomegranate juice on insulin secretion and sensitivity in patients with obesity",
-      "year": 2011,
-      "n": 10,
-      "inReviews": [
-       "42153011",
-       "26857863"
-      ]
-     },
-     {
-      "pmid": "19766760",
-      "title": "Effects of consumption of pomegranate juice on carotid intima-media thickness in men and women at moderate risk for coronary heart disease",
-      "year": 2009,
-      "n": 146,
-      "inReviews": [
-       "26857863"
-      ]
-     },
-     {
-      "pmid": "32767710",
-      "title": "The effect of concentrated pomegranate juice consumption on risk factors of cardiovascular diseases in women with polycystic ovary syndrome: A randomized controlled trial",
-      "year": 2021,
-      "n": 44,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "28303364",
-      "title": "Effects of Pomegranate Juice on Cardiovascular Risk Factors in Patients with Metabolic Syndrome: a Double-Blinded, Randomized Crossover Controlled Trial",
-      "year": 2017,
-      "n": 30,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "22044195",
-      "title": "Effect of pomegranate seed oil on serum TNF-α level in dyslipidemic patients",
-      "year": 2012,
-      "n": 26,
-      "inReviews": [
-       "26857863"
-      ]
-     },
-     {
-      "pmid": "24401239",
-      "title": "Pomegranate extract (POMx) decreases the atherogenicity of serum and of human monocyte-derived macrophages (HMDM) in simvastatin-treated hypercholesterolemic patients: a double-blinded, placebo-controlled, randomized, prospective pilot study",
-      "year": 2014,
-      "n": 12,
-      "inReviews": [
-       "26857863"
-      ]
-     },
-     {
-      "pmid": "26778544",
-      "title": "Effects of pomegranate juice in circulating parameters, cytokines, and oxidative stress markers in endurance-based athletes: A randomized controlled trial",
-      "year": 2016,
-      "n": 11,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "33523763",
-      "title": "Short-Term Consumption of Pomegranate Juice Alleviates Some Metabolic Disturbances in Overweight Patients with Dyslipidemia",
-      "year": 2021,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "30661697",
-      "title": "Effects of pomegranate juice consumption on blood pressure and lipid profile in patients with type 2 diabetes: A single-blind randomized clinical trial",
-      "year": 2019,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "31646650",
-      "title": "Pomegranate juice improves cardiometabolic risk factors, biomarkers of oxidative stress and inflammation in hemodialysis patients: a randomized crossover trial",
-      "year": 2020,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "31713129",
-      "title": "The effect of synbiotics pomegranate juice on cardiovascular risk factors in PCOS patients: a randomized, triple-blinded, controlled trial",
-      "year": 2020,
-      "inReviews": [
-       "42153011"
-      ]
-     },
-     {
-      "pmid": "20334708",
-      "title": "Effect of pomegranate seed oil on hyperlipidaemic subjects: a double-blind placebo-controlled clinical trial",
-      "year": 2010,
-      "inReviews": [
-       "26857863"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2014,
@@ -549,6 +248,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Pomegranate juice or the fruit (seeds/arils)",
@@ -626,6 +326,7 @@
   {
    "id": "crp",
    "label": "CRP",
+   "anyDesign": true,
    "finding": "Inflammation: C-reactive protein (CRP)",
    "counts": {
     "all": 908,
@@ -644,7 +345,7 @@
      "journal": "Phytotherapy research : PTR",
      "citedBy": 1,
      "n": 696,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "37507609",
@@ -654,7 +355,7 @@
      "firstAuthor": "Bahari H",
      "journal": "Inflammopharmacology",
      "citedBy": 15,
-     "why": "One of the newest meta-analyses on this finding (2023); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2023); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "32147056",
@@ -665,185 +366,10 @@
      "journal": "Complementary therapies in medicine",
      "citedBy": 35,
      "n": 572,
-     "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.29411764705882354,
-    "trials": 17,
-    "inclusions": 22,
-    "reviews": [
-     {
-      "pmid": "37507609",
-      "trials": 15
-     },
-     {
-      "pmid": "32147056",
-      "trials": 7
-     }
-    ],
-    "reviewsWithoutReferences": [
-     "38553998"
-    ],
-    "shared": [
-     {
-      "pmid": "19766760",
-      "title": "Effects of consumption of pomegranate juice on carotid intima-media thickness in men and women at moderate risk for coronary heart disease",
-      "year": 2009,
-      "n": 146,
-      "inReviews": [
-       "37507609",
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "26850805",
-      "title": "Effects of pomegranate extract supplementation on inflammation in overweight and obese individuals: A randomized controlled clinical trial",
-      "year": 2016,
-      "n": 48,
-      "inReviews": [
-       "37507609",
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "28303364",
-      "title": "Effects of Pomegranate Juice on Cardiovascular Risk Factors in Patients with Metabolic Syndrome: a Double-Blinded, Randomized Crossover Controlled Trial",
-      "year": 2017,
-      "n": 30,
-      "inReviews": [
-       "37507609",
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "25255587",
-      "title": "Effect of pomegranate juice supplementation on matrix metalloproteinases 2 and 9 following exhaustive exercise in young healthy males",
-      "year": 2014,
-      "n": 28,
-      "inReviews": [
-       "37507609",
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "22044195",
-      "title": "Effect of pomegranate seed oil on serum TNF-α level in dyslipidemic patients",
-      "year": 2012,
-      "n": 26,
-      "inReviews": [
-       "37507609",
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "22609423",
-      "title": "One year of pomegranate juice intake decreases oxidative stress, inflammation, and incidence of infections in hemodialysis patients: a randomized placebo-controlled trial",
-      "year": 2012,
-      "n": 101,
-      "inReviews": [
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "32839797",
-      "title": "Effects of pomegranate peel extract and vitamin E on the inflammatory status and endothelial function in hemodialysis patients: a randomized controlled clinical trial",
-      "year": 2020,
-      "n": 100,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "30538082",
-      "title": "Effect of synbiotic pomegranate juice on glycemic, sex hormone profile and anthropometric indices in PCOS: A randomized, triple blind, controlled trial",
-      "year": 2019,
-      "n": 92,
-      "inReviews": [
-       "32147056"
-      ]
-     },
-     {
-      "pmid": "27633135",
-      "title": "Effects of pomegranate juice consumption on oxidative stress in patients with type 2 diabetes: a single-blind, randomized clinical trial",
-      "year": 2017,
-      "n": 65,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "27577177",
-      "title": "Pomegranate extract alleviates disease activity and some blood biomarkers of inflammation and oxidative stress in Rheumatoid Arthritis patients",
-      "year": 2017,
-      "n": 55,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "36654481",
-      "title": "The effect of concentrated pomegranate juice on biomarkers of inflammation, oxidative stress, and sex hormones in overweight and obese women with polycystic ovary syndrome: A randomized controlled trial",
-      "year": 2023,
-      "n": 44,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "35229548",
-      "title": "A prospective, randomized, double-blind, placebo-controlled trial of polyphenols on the outcomes of inflammatory factors and oxidative stress in patients with type 2 diabetes mellitus",
-      "year": 2022,
-      "n": 30,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "24401239",
-      "title": "Pomegranate extract (POMx) decreases the atherogenicity of serum and of human monocyte-derived macrophages (HMDM) in simvastatin-treated hypercholesterolemic patients: a double-blinded, placebo-controlled, randomized, prospective pilot study",
-      "year": 2014,
-      "n": 12,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "30041701",
-      "title": "The impact of supplementation with pomegranate fruit (Punica granatum L.) juice on selected antioxidant parameters and markers of iron metabolism in rowers",
-      "year": 2018,
-      "n": 10,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "31646650",
-      "title": "Pomegranate juice improves cardiometabolic risk factors, biomarkers of oxidative stress and inflammation in hemodialysis patients: a randomized crossover trial",
-      "year": 2020,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "31713129",
-      "title": "The effect of synbiotics pomegranate juice on cardiovascular risk factors in PCOS patients: a randomized, triple-blinded, controlled trial",
-      "year": 2020,
-      "inReviews": [
-       "37507609"
-      ]
-     },
-     {
-      "pmid": "25826143",
-      "title": "Effects of Pomegranate Extract Supplementation on Cardiovascular Risk Factors and Physical Function in Hemodialysis Patients",
-      "year": 2015,
-      "inReviews": [
-       "37507609"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2012,
@@ -901,11 +427,12 @@
       "journal": "Complementary therapies in medicine",
       "citedBy": 35,
       "n": 572,
-      "why": "One of the newest meta-analyses on this finding (2020); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2020); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Pomegranate juice or the fruit (seeds/arils)",
@@ -941,6 +468,7 @@
   {
    "id": "sugar",
    "label": "Blood sugar",
+   "anyDesign": true,
    "finding": "Blood sugar: fasting glucose and HbA1c (long-term blood sugar)",
    "counts": {
     "all": 329,
@@ -959,7 +487,7 @@
      "journal": "Phytotherapy research : PTR",
      "citedBy": 2,
      "n": 673,
-     "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "38194826",
@@ -969,7 +497,7 @@
      "firstAuthor": "Bahari H",
      "journal": "Diabetes & metabolic syndrome",
      "citedBy": 8,
-     "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "28985741",
@@ -980,7 +508,7 @@
      "journal": "Nutrition journal",
      "citedBy": 19,
      "n": 538,
-     "why": "One of the newest meta-analyses on this finding (2017); screened as answering the question"
+     "why": "One of the newest meta-analyses on this finding (2017); historical screening, exact inputs/model attribution unverified"
     },
     {
      "pmid": "40847381",
@@ -991,228 +519,10 @@
      "journal": "BMC nutrition",
      "citedBy": 1,
      "n": 1500,
-     "why": "The most comprehensive review on this finding (34 trials, 2025); screened as answering the question"
+     "why": "The most comprehensive review on this finding (34 trials, 2025); historical screening, exact inputs/model attribution unverified"
     }
    ],
    "newerLargeTrials": [],
-   "overlap": {
-    "cca": 0.45614035087719296,
-    "trials": 19,
-    "inclusions": 45,
-    "reviews": [
-     {
-      "pmid": "39499092",
-      "trials": 9
-     },
-     {
-      "pmid": "38194826",
-      "trials": 15
-     },
-     {
-      "pmid": "28985741",
-      "trials": 8
-     },
-     {
-      "pmid": "40847381",
-      "trials": 13
-     }
-    ],
-    "reviewsWithoutReferences": [],
-    "shared": [
-     {
-      "pmid": "26850805",
-      "title": "Effects of pomegranate extract supplementation on inflammation in overweight and obese individuals: A randomized controlled clinical trial",
-      "year": 2016,
-      "n": 48,
-      "inReviews": [
-       "39499092",
-       "38194826",
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "28303364",
-      "title": "Effects of Pomegranate Juice on Cardiovascular Risk Factors in Patients with Metabolic Syndrome: a Double-Blinded, Randomized Crossover Controlled Trial",
-      "year": 2017,
-      "n": 30,
-      "inReviews": [
-       "39499092",
-       "38194826",
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "20334708",
-      "title": "Effect of pomegranate seed oil on hyperlipidaemic subjects: a double-blind placebo-controlled clinical trial",
-      "year": 2010,
-      "inReviews": [
-       "39499092",
-       "38194826",
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "30538082",
-      "title": "Effect of synbiotic pomegranate juice on glycemic, sex hormone profile and anthropometric indices in PCOS: A randomized, triple blind, controlled trial",
-      "year": 2019,
-      "n": 92,
-      "inReviews": [
-       "39499092",
-       "38194826",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "16169367",
-      "title": "Effects of pomegranate juice consumption on myocardial perfusion in patients with coronary heart disease",
-      "year": 2005,
-      "n": 45,
-      "inReviews": [
-       "38194826",
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "30945297",
-      "title": "Effect of pomegranate seed oil supplementation on the GLUT-4 gene expression and glycemic control in obese people with type 2 diabetes: A randomized controlled clinical trial",
-      "year": 2019,
-      "n": 26,
-      "inReviews": [
-       "39499092",
-       "38194826",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "26778544",
-      "title": "Effects of pomegranate juice in circulating parameters, cytokines, and oxidative stress markers in endurance-based athletes: A randomized controlled trial",
-      "year": 2016,
-      "n": 11,
-      "inReviews": [
-       "38194826",
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "21811060",
-      "title": "Effect of pomegranate juice on insulin secretion and sensitivity in patients with obesity",
-      "year": 2011,
-      "n": 10,
-      "inReviews": [
-       "38194826",
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "34498307",
-      "title": "The effect of pomegranate extract on anthropometric indices, serum lipids, glycemic indicators, and blood pressure in patients with nonalcoholic fatty liver disease: A randomized double-blind clinical trial",
-      "year": 2021,
-      "inReviews": [
-       "39499092",
-       "38194826",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "27633135",
-      "title": "Effects of pomegranate juice consumption on oxidative stress in patients with type 2 diabetes: a single-blind, randomized clinical trial",
-      "year": 2017,
-      "n": 65,
-      "inReviews": [
-       "28985741",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "32767710",
-      "title": "The effect of concentrated pomegranate juice consumption on risk factors of cardiovascular diseases in women with polycystic ovary syndrome: A randomized controlled trial",
-      "year": 2021,
-      "n": 44,
-      "inReviews": [
-       "39499092",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "36654481",
-      "title": "The effect of concentrated pomegranate juice on biomarkers of inflammation, oxidative stress, and sex hormones in overweight and obese women with polycystic ovary syndrome: A randomized controlled trial",
-      "year": 2023,
-      "n": 44,
-      "inReviews": [
-       "39499092",
-       "38194826"
-      ]
-     },
-     {
-      "pmid": "37605174",
-      "title": "Pomegranate (Punica granatum L.) peel extract ameliorates metabolic syndrome risk factors in patients with non-alcoholic fatty liver disease: a randomized double-blind clinical trial",
-      "year": 2023,
-      "n": 39,
-      "inReviews": [
-       "39499092",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "33302270",
-      "title": "Efficacy of Pomegranate Seed Powder on Glucose and Lipid Metabolism in Patients with Type 2 Diabetes: A Prospective Randomized Double-Blind Placebo-Controlled Clinical Trial",
-      "year": 2021,
-      "inReviews": [
-       "38194826",
-       "40847381"
-      ]
-     },
-     {
-      "pmid": "35229548",
-      "title": "A prospective, randomized, double-blind, placebo-controlled trial of polyphenols on the outcomes of inflammatory factors and oxidative stress in patients with type 2 diabetes mellitus",
-      "year": 2022,
-      "n": 30,
-      "inReviews": [
-       "38194826"
-      ]
-     },
-     {
-      "pmid": "29957104",
-      "title": "Pomegranate Juice Increases Sirtuin1 Protein in Peripheral Blood Mononuclear Cell from Patients with Type 2 Diabetes: A Randomized Placebo Controlled Clinical Trial",
-      "year": 2018,
-      "n": 22,
-      "inReviews": [
-       "38194826"
-      ]
-     },
-     {
-      "pmid": "29021286",
-      "title": "Pomegranate juice, but not an extract, confers a lower glycemic response on a high-glycemic index food: randomized, crossover, controlled trials in healthy subjects",
-      "year": 2017,
-      "n": 16,
-      "inReviews": [
-       "38194826"
-      ]
-     },
-     {
-      "pmid": "33523763",
-      "title": "Short-Term Consumption of Pomegranate Juice Alleviates Some Metabolic Disturbances in Overweight Patients with Dyslipidemia",
-      "year": 2021,
-      "inReviews": [
-       "38194826"
-      ]
-     },
-     {
-      "pmid": "19834314",
-      "title": "The effects of polyphenol-containing antioxidants on oxidative stress and lipid peroxidation in Type 2 diabetes mellitus without complications",
-      "year": 2010,
-      "inReviews": [
-       "28985741"
-      ]
-     }
-    ]
-   },
    "timeline": [
     {
      "year": 2011,
@@ -1288,7 +598,7 @@
       "journal": "Phytotherapy research : PTR",
       "citedBy": 2,
       "n": 673,
-      "why": "One of the newest meta-analyses on this finding (2025); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2025); historical screening, exact inputs/model attribution unverified"
      },
      {
       "pmid": "38194826",
@@ -1298,11 +608,12 @@
       "firstAuthor": "Bahari H",
       "journal": "Diabetes & metabolic syndrome",
       "citedBy": 8,
-      "why": "One of the newest meta-analyses on this finding (2024); screened as answering the question"
+      "why": "One of the newest meta-analyses on this finding (2024); historical screening, exact inputs/model attribution unverified"
      }
     ]
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Pomegranate juice or the fruit (seeds/arils)",
@@ -1359,6 +670,7 @@
   {
    "id": "carotid",
    "label": "Neck arteries",
+   "anyDesign": true,
    "finding": "Thickening of the neck arteries (carotid intima-media thickness)",
    "counts": {
     "all": 186,
@@ -1430,6 +742,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, healthy or with risk factors (reviews limited to one illness count as partly)",
      "intervention": "Pomegranate juice or the fruit (seeds/arils)",
@@ -1472,6 +785,7 @@
   {
    "id": "prostate",
    "label": "Prostate cancer (PSA)",
+   "anyDesign": true,
    "finding": "Prostate cancer: how fast PSA rises after treatment (PSA doubling time)",
    "counts": {
     "all": 131,
@@ -1525,6 +839,7 @@
   {
    "id": "exercise",
    "label": "Exercise recovery",
+   "anyDesign": true,
    "finding": "Muscle damage and soreness after hard exercise",
    "counts": {
     "all": 591,
@@ -1609,6 +924,7 @@
     "chosenNotCited": []
    },
    "screening": {
+    "provenance": "legacy-inputs-unverified",
     "question": {
      "population": "Adults, often active or athletes",
      "intervention": "Pomegranate juice",

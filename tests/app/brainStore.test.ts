@@ -164,7 +164,7 @@ describe("research Brain thread", () => {
     await brain.addFiles([file, new File(["photo"], "photo.jpg", { type: "image/jpeg" })]);
     expect(read).not.toHaveBeenCalled();
     expect(mocks.readReport).not.toHaveBeenCalled();
-    const steps = [{ tool: "propose_habit", validated: true, input: JSON.stringify({ intent: "recommend", label: "Iron-rich breakfast", category: "diet", reason: "You asked to track this.", watchMarkers: ["Ferritin"] }) }];
+    const steps = [{ tool: "propose_habit", validated: true, success: true, input: "{}", output: { intent: "recommend", shownToPerson: { label: "Iron-rich breakfast", category: "diet", start: "2026-10-30", reason: "You asked to track this.", markerIds: ["ferritin"] } } }];
     expect(brain.habitTurns(steps, [], "2026-10-30", { requestText: "Recommend a breakfast habit", safety: [] })).toHaveLength(1);
     mocks.api.mockResolvedValue({ ...reply(), steps });
     await brain.send("Research model");
@@ -409,6 +409,7 @@ describe("personal Brain profile updates", () => {
 });
 
 it("does not make a habit draft from an external tool even with an empty server id", () => {
-  const input = JSON.stringify({ intent: "recommend", label: "Walk outdoors", category: "lifestyle", reason: "An example." });
-  expect(brain.habitTurns([{ tool: "propose_habit", input, server: "", validated: true }], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toEqual([]);
+  const step = { tool: "propose_habit", input: "{}", server: "", validated: true, success: true, output: { intent: "recommend", shownToPerson: { label: "Walk outdoors", category: "lifestyle", start: "2026-10-30", reason: "An example.", markerIds: [] } } };
+  expect(brain.habitTurns([{ ...step, server: undefined }], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toHaveLength(1);
+  expect(brain.habitTurns([step], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toEqual([]);
 });

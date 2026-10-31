@@ -1,3 +1,4 @@
+import { DAILY_TOTAL_FIELDS, type BodyField } from "./body";
 import { dayNumber, isIsoDate, todayIso } from "./dates";
 import { ageAt, isBirthMonth } from "./phenoageDraws";
 import type { BiomarkerDef, Measurement, Profile } from "./types";
@@ -59,10 +60,22 @@ export type Flag = "normal" | "low" | "high" | "critical-low" | "critical-high" 
 export function flagValue(
   value: number,
   range: { low?: number; high?: number } | undefined,
-  critical?: { low?: number; high?: number },
+  critical?: { low?: number; high?: number; lowInclusive?: boolean; highInclusive?: boolean },
+  qualifier?: Measurement["qualifier"],
 ): Flag {
-  if (critical?.low !== undefined && value < critical.low) return "critical-low";
-  if (critical?.high !== undefined && value > critical.high) return "critical-high";
+  if (!Number.isFinite(value)) return "unknown";
+  if (qualifier === "<") {
+    if (critical?.low !== undefined && value <= critical.low) return "critical-low";
+    if (range?.low !== undefined && value <= range.low) return "low";
+    return "unknown";
+  }
+  if (qualifier === ">") {
+    if (critical?.high !== undefined && value >= critical.high) return "critical-high";
+    if (range?.high !== undefined && value >= range.high) return "high";
+    return "unknown";
+  }
+  if (critical?.low !== undefined && (value < critical.low || (critical.lowInclusive && value === critical.low))) return "critical-low";
+  if (critical?.high !== undefined && (value > critical.high || (critical.highInclusive && value === critical.high))) return "critical-high";
   if (!range || (range.low === undefined && range.high === undefined)) return "unknown";
   if (range.low !== undefined && value < range.low) return "low";
   if (range.high !== undefined && value > range.high) return "high";
@@ -74,13 +87,13 @@ export function flagValue(
  * flagged when it's critical: use `flagLatest` for the marker as a whole.
  */
 export function flagMeasurement(def: BiomarkerDef, m: Measurement, profile: Profile = {}): Flag {
-  if (def.judgeAverageOfDays || def.judgeSumOfDays) return flagValue(m.value, undefined, def.criticalRange);
-  return flagValue(m.value, resolveRange(def, m, profile), def.criticalRange);
+  if (def.judgeAverageOfDays || def.judgeSumOfDays) return flagValue(m.value, undefined, def.criticalRange, m.qualifier);
+  return flagValue(m.value, resolveRange(def, m, profile), def.criticalRange, m.qualifier);
 }
 
 /**
- * Average of the readings in the `days` days up to the latest one (e.g. the last week of sleep), when
- * there are at least `min` of them; otherwise undefined.
+ * Average of daily observations in the `days` days up to the latest one, with at least `min`
+ * distinct dates. Sleep pieces, steps and active minutes add up per day; other readings average.
  */
 export function recentAverage(series: readonly Measurement[], days = 7, min = 3): { value: number; count: number; from: string; to: string } | undefined {
   const sorted = sortByDate(series);
@@ -88,8 +101,19 @@ export function recentAverage(series: readonly Measurement[], days = 7, min = 3)
   if (!last) return undefined;
   const from = new Date(Date.parse(last.date) - (days - 1) * 86_400_000).toISOString().slice(0, 10);
   const recent = sorted.filter((m) => m.date >= from);
-  if (recent.length < min) return undefined;
-  return { value: recent.reduce((s, m) => s + m.value, 0) / recent.length, count: recent.length, from, to: last.date };
+  if (recent.some((m) => m.qualifier || !Number.isFinite(m.value))) return undefined;
+  const daily = new Map<string, { sum: number; count: number }>();
+  for (const m of recent) {
+    const day = daily.get(m.date) ?? { sum: 0, count: 0 };
+    day.sum += m.value;
+    day.count++;
+    daily.set(m.date, day);
+  }
+  if (daily.size < min) return undefined;
+  const total = DAILY_TOTAL_FIELDS.has(last.biomarkerId as BodyField);
+  let sum = 0;
+  for (const day of daily.values()) sum += total ? day.sum : day.sum / day.count;
+  return { value: sum / daily.size, count: daily.size, from, to: last.date };
 }
 
 /**
@@ -103,6 +127,7 @@ export function recentTotal(series: readonly Measurement[], days = 7, min = 4): 
   if (!last) return undefined;
   const from = new Date(Date.parse(last.date) - (days - 1) * 86_400_000).toISOString().slice(0, 10);
   const recent = sorted.filter((m) => m.date >= from);
+  if (recent.some((m) => m.qualifier || !Number.isFinite(m.value))) return undefined;
   const covered = new Set(recent.map((m) => m.date)).size;
   if (covered < min) return undefined;
   return { value: recent.reduce((s, m) => s + m.value, 0), days: covered, from, to: last.date };
@@ -135,9 +160,9 @@ export function isOutOfRange(flag: Flag): boolean {
   return flag !== "normal" && flag !== "unknown";
 }
 
-/** Oldest first; same-day entries keep their insertion order. */
-export function sortByDate<T extends Pick<Measurement, "date">>(ms: readonly T[]): T[] {
-  return [...ms].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+/** Oldest first, then persisted save order; legacy rows with no order retain their input order. */
+export function sortByDate<T extends Pick<Measurement, "date"> & { savedOrder?: number }>(ms: readonly T[]): T[] {
+  return [...ms].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : (a.savedOrder ?? 0) - (b.savedOrder ?? 0)));
 }
 
 export interface Trend {
@@ -195,10 +220,10 @@ export function computeTrend(measurements: readonly Measurement[]): Trend | unde
   return trend;
 }
 
-/** True if `existing` already has this marker on this date with the same value. */
-export function isAlreadySaved(existing: readonly Measurement[], m: Pick<Measurement, "biomarkerId" | "date" | "value">): boolean {
+/** Same canonical observation, including the distinction between an exact value and a bound. */
+export function isAlreadySaved(existing: readonly Pick<Measurement, "biomarkerId" | "date" | "value" | "qualifier">[], m: Pick<Measurement, "biomarkerId" | "date" | "value" | "qualifier">): boolean {
   return existing.some(
-    (e) => e.biomarkerId === m.biomarkerId && e.date === m.date && Math.abs(e.value - m.value) <= 1e-9 * Math.max(1, Math.abs(m.value)),
+    (e) => e.biomarkerId === m.biomarkerId && e.date === m.date && e.qualifier === m.qualifier && Math.abs(e.value - m.value) <= 1e-9 * Math.max(1, Math.abs(m.value)),
   );
 }
 

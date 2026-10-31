@@ -8,6 +8,10 @@ export interface ToolStep {
   input: string;
   /** Only built-in mutation tools, after an actual successful result. */
   validated?: boolean;
+  /** An actual completed tool result, never a model's proposed call alone. */
+  success?: boolean;
+  /** Server proposal result; a confirmation card requires a successful validated result. */
+  output?: unknown;
 }
 
 export function toolStep(name: string, input: unknown): ToolStep {
@@ -30,22 +34,50 @@ export function isMutationTool(name: string): boolean {
 
 /** Failed, missing and unexecuted calls remain false; MCP lookalikes never receive this handshake. */
 export function validateToolResult(step: ToolStep, output: unknown): void {
-  if (step.server !== undefined || !isMutationTool(step.tool)) return;
   const result = typeof output === "object" && output !== null ? output as Record<string, unknown> : undefined;
-  step.validated = !!result && !("error" in result) && (step.tool === "save_profile_details"
+  step.success = !result || (!("error" in result) && result.isError !== true);
+  if (step.server !== undefined || !isMutationTool(step.tool)) return;
+  step.validated = step.success && !!result && (step.tool === "save_profile_details"
     ? Array.isArray(result.added) && result.added.length > 0
     : typeof result.shownToPerson === "object" && result.shownToPerson !== null);
+  step.success = step.validated;
+  if (step.validated && step.tool !== "save_profile_details") step.output = output;
 }
 
-const ID_IN_TEXT = /\b(PMID|PMCID)\s*:?\s*"?(PMC\d+|\d{4,9})\b/gi;
-const PMID_FIELD = /"(pmid|pmcid|PMID|PMCID)"\s*:\s*"?(PMC\d+|\d{4,9})"?/g;
-
-/** Every study ID that appeared in a tool result: the only ones the answer may cite. */
+/** Collect identifiers only from structured study records, never prose or echoed errors. */
 export function studyIdsIn(value: unknown): string[] {
-  const text = typeof value === "string" ? value : JSON.stringify(value ?? "");
   const ids = new Set<string>();
-  for (const m of text.matchAll(ID_IN_TEXT)) ids.add(normalizeId(m[1]!, m[2]!));
-  for (const m of text.matchAll(PMID_FIELD)) ids.add(normalizeId(m[1]!, m[2]!));
+  const visit = (node: unknown): void => {
+    if (Array.isArray(node)) {
+      for (const item of node) visit(item);
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    const record = node as Record<string, unknown>;
+    if ("error" in record || record.isError === true) return;
+    if (typeof record.title === "string" && record.title.trim()) {
+      for (const kind of ["pmid", "pmcid", "doi"] as const) {
+        const v = record[kind] ?? record[kind.toUpperCase()];
+        if (typeof v !== "string" && typeof v !== "number") continue;
+        const text = String(v).trim();
+        if ((kind === "pmid" && /^\d{4,9}$/.test(text)) || (kind === "pmcid" && /^(?:PMC)?\d+$/i.test(text)) || (kind === "doi" && /^10\.\d{4,9}\/\S+$/i.test(text))) ids.add(normalizeId(kind, text));
+      }
+      if (typeof record.id === "string") {
+        const match = /^(PMID|PMCID|DOI):(PMC\d+|\d{4,9}|10\.\d{4,9}\/\S+)$/i.exec(record.id);
+        if (match) ids.add(normalizeId(match[1]!, match[2]!));
+      }
+    }
+    for (const [key, child] of Object.entries(record)) {
+      if (key === "instructions" || key === "input" || key === "arguments") continue;
+      // MCP text blocks may contain JSON study records. Plain text cannot establish authority.
+      if (key === "text" && record.type === "text" && typeof child === "string") {
+        try { visit(JSON.parse(child)); } catch { /* Unstructured text is not a retrieved record. */ }
+      } else visit(child);
+    }
+  };
+  if (typeof value === "string") {
+    try { visit(JSON.parse(value)); } catch { /* Unstructured text is not a retrieved record. */ }
+  } else visit(value);
   return [...ids];
 }
 

@@ -9,7 +9,7 @@
     "kPa": 7.50062
   },
   "defaultRanges": [{ "low": 60, "high": 89 }],
-  "criticalRange": { "high": 120 },
+  "criticalRange": { "high": 120, "highInclusive": true },
   "rangeNote": "European guidelines (2024): below 70 is non-elevated, 70–89 elevated, 90 or more on repeated readings is high blood pressure. US guidelines start at 80. Home readings run lower than clinic ones.",
   "summary": "The bottom number of a blood pressure reading: the pressure in your arteries between heartbeats.",
   "high": {

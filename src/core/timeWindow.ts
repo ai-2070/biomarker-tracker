@@ -74,14 +74,18 @@ export function timeTicks(w: TimeWindow): Tick[] {
     y += 1;
   }
   const ticks: Tick[] = [];
-  for (let guard = 0; guard < 400; guard++) {
-    if (m % step === 0) {
-      const date = `${y}-${String(m + 1).padStart(2, "0")}-01`;
-      const day = dayNumber(date);
-      if (day > w.to) break;
-      if (day >= w.from) ticks.push({ date, day, kind: m === 0 ? "year" : "month" });
-    }
-    m += 1;
+  // Start at the next aligned month, then advance by the emitted interval.
+  m = Math.ceil(m / step) * step;
+  if (m > 11) {
+    m = 0;
+    y += 1;
+  }
+  for (;;) {
+    const date = `${y}-${String(m + 1).padStart(2, "0")}-01`;
+    const day = dayNumber(date);
+    if (day > w.to) break;
+    if (day >= w.from) ticks.push({ date, day, kind: m === 0 ? "year" : "month" });
+    m += step;
     if (m > 11) {
       m = 0;
       y += 1;

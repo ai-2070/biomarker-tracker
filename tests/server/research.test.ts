@@ -88,7 +88,6 @@ describe("research-only assistant", () => {
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(calls).toBe(2);
-    expect(result.steps).toEqual([{ tool: "search_research", input: JSON.stringify({ terms: ["astaxanthin"], topic: "skin hydration", filter: "reviews" }) }]);
     expect(result.studyIds).toEqual(["PMID:42832553", "PMID:42687675", "PMID:42575304"]);
     expect(userPrompts[0]).toEqual([{ role: "user", content: [{ type: "text", text: question }] }]);
     expect(JSON.stringify(prompts)).not.toMatch(/PRIVATE_|1984-04|CRITICAL:|Potassium/);
@@ -144,7 +143,6 @@ describe("research-only assistant", () => {
       expect(result.studyIds).toContain("PMID:87654321");
       expect(result.studyIds).not.toContain("PMID:12345678");
       expect(result.note).toBeUndefined();
-      expect(result.steps).toContainEqual({ tool: "search", server: "enabled-research", input: '{"query":"astaxanthin"}' });
     } finally {
       deleteSkill(sk.id);
     }

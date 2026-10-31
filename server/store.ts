@@ -1,4 +1,5 @@
 // Settings and secrets on disk, in the data folder (git-ignored). Secrets never go to the page.
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import type { ModelChoice, ProviderConfig, ProviderId } from "../src/core/aiProviders";
@@ -11,17 +12,41 @@ export const dataPath = (...p: string[]): string => path.join(DATA(), ...p);
 export function readJSON<T>(file: string, fallback: T): T {
   try {
     return JSON.parse(fs.readFileSync(file, "utf8")) as T;
-  } catch {
-    return fallback;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return fallback;
+    throw error;
+  }
+}
+
+/** Persist directory-entry changes on systems that support directory fsync. */
+export function syncDirectory(dir: string): void {
+  if (process.platform === "win32") return;
+  const directory = fs.openSync(dir, "r");
+  try {
+    fs.fsyncSync(directory);
+  } finally {
+    fs.closeSync(directory);
   }
 }
 
 /** Write via a temporary file, so a crash never leaves half a file. */
 export function writeJSON(file: string, value: unknown): void {
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  const tmp = `${file}.${process.pid}.tmp`;
-  fs.writeFileSync(tmp, JSON.stringify(value, null, 2));
-  fs.renameSync(tmp, file);
+  const tmp = `${file}.${process.pid}.${crypto.randomUUID()}.tmp`;
+  // Exclusive creation prevents reuse of a stale, potentially public temporary file.
+  const fd = fs.openSync(tmp, "wx", 0o600);
+  try {
+    try {
+      fs.writeFileSync(fd, JSON.stringify(value, null, 2));
+      fs.fsyncSync(fd);
+    } finally {
+      fs.closeSync(fd);
+    }
+    fs.renameSync(tmp, file);
+    syncDirectory(path.dirname(file));
+  } finally {
+    fs.rmSync(tmp, { force: true });
+  }
 }
 
 export interface McpServerConfig {
@@ -83,10 +108,5 @@ export function updateSecrets(fn: (s: Secrets) => void): void {
   const s = getSecrets();
   fn(s);
   writeJSON(SECRETS(), s);
-  // Only the owner can read it, where the system supports that.
-  try {
-    fs.chmodSync(SECRETS(), 0o600);
-  } catch {
-    /* not supported on this system */
-  }
+  // writeJSON creates the replacement with 0600 before writing any secret bytes.
 }

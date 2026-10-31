@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { Popover } from "@base-ui/react/popover";
-import { EFFORT_LABEL, GROUP_LABEL, PROVIDERS, canUse, providerInfo, type Effort, type ModelChoice, type ProviderConfig, type ProviderInfo } from "../../core/aiProviders";
+import { EFFORT_LABEL, GROUP_LABEL, PROVIDERS, canUse, modelEfforts, providerInfo, type Effort, type ModelChoice, type ProviderConfig, type ProviderInfo } from "../../core/aiProviders";
 import { api } from "../api";
 import { OnOff } from "../components/settings/SkillsSettings";
 import { ToolsIcon } from "../components/icons";
@@ -20,24 +20,29 @@ export interface BrainSettings {
 // Kept between openings, so Brain shows the model straight away (and is refreshed in the background).
 let lastSettings: BrainSettings | null | undefined;
 
-export function useBrainSettings(active: boolean): { settings: BrainSettings | null | undefined; reload: () => void } {
-  const [settings, setSettingsState] = useState<BrainSettings | null | undefined>(lastSettings);
-  const setSettings = (s: BrainSettings | null) => {
-    lastSettings = s;
-    setSettingsState(s);
-  };
-  const [tick, setTick] = useState(0);
+export function useBrainSettings(active: boolean): { settings: BrainSettings | null | undefined; fresh: boolean; reload: () => void } {
+  const [settings, setSettings] = useState<BrainSettings | null | undefined>(lastSettings);
+  const [request, setRequest] = useState({ active });
+  const [loaded, setLoaded] = useState<typeof request>();
+  if (request.active !== active) setRequest({ active });
   useEffect(() => {
-    if (!active) return;
+    if (!request.active) return;
     let alive = true;
     api<BrainSettings>("GET", "/api/settings")
-      .then((s) => alive && setSettings(s))
-      .catch(() => alive && setSettings(null));
-    return () => {
-      alive = false;
-    };
-  }, [active, tick]);
-  return { settings, reload: useCallback(() => setTick((t) => t + 1), []) };
+      .then((s) => {
+        if (!alive) return;
+        lastSettings = s;
+        setSettings(s);
+        setLoaded(request);
+      })
+      .catch(() => {
+        if (!alive) return;
+        setSettings(null);
+        setLoaded(request);
+      });
+    return () => { alive = false; };
+  }, [request]);
+  return { settings, fresh: active && request.active === active && loaded === request, reload: useCallback(() => setRequest({ active: true }), []) };
 }
 
 /** Leaves Brain for a settings tab (to set up a model, skills or sources). */
@@ -89,6 +94,7 @@ export function ModelMenu({ settings, onChange }: { settings: BrainSettings; onC
   const [error, setError] = useState<string | null>(null);
   const current = settings.assistant;
   const info = providerInfo(current.provider);
+  const efforts = modelEfforts(current.provider, current.model);
   const providers = usableProviders(settings);
 
   async function choose(choice: ModelChoice) {
@@ -147,11 +153,11 @@ export function ModelMenu({ settings, onChange }: { settings: BrainSettings; onC
           </div>
         );
       })}
-      {info && info.efforts.length > 0 && (
+      {info && efforts.length > 0 && (
         <div className="mt-1 border-t border-line pt-1">
           <p className={sectionLabel}>Effort</p>
           <div role="group" aria-label="Effort" className="flex flex-wrap gap-1 px-1.5 pb-1.5">
-            {([undefined, ...info.efforts] as (Effort | undefined)[]).map((e) => {
+            {([undefined, ...efforts] as (Effort | undefined)[]).map((e) => {
               const on = current.effort === e;
               return (
                 <button
