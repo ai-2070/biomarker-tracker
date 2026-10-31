@@ -89,7 +89,7 @@ const jsonLines = (out: string): Record<string, unknown>[] =>
 
 const lastLines = (s: string, n = 600) => s.trim().slice(-n);
 
-type Parsed = { ok: true; text: string; tools?: string[] } | { ok: false; error: string };
+type Parsed = { ok: true; text: string; tools?: string[]; model?: string; truncated?: boolean } | { ok: false; error: string };
 
 // ---- The prompt -------------------------------------------------------------------------------
 
@@ -133,11 +133,15 @@ export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: str
 }
 
 export function parseClaude(out: string, stderr: string): Parsed {
-  const result = jsonLines(out).findLast((l) => l.type === "result");
+  const lines = jsonLines(out);
+  const result = lines.findLast((l) => l.type === "result");
   if (!result) return { ok: false, error: `Claude Code stopped without an answer. ${lastLines(stderr || out)}`.trim() };
   const text = typeof result.result === "string" ? result.result : "";
   if (result.is_error || result.subtype !== "success") return { ok: false, error: `Claude Code: ${text || String(result.subtype ?? "error")}`.slice(0, 600) };
-  return { ok: true, text };
+  const usageModels = result.modelUsage && typeof result.modelUsage === "object" ? Object.keys(result.modelUsage).filter((name) => name.length > 0 && name.length <= 200) : [];
+  const message = lines.findLast((line) => line.type === "assistant" && typeof line.message === "object" && line.message !== null)?.message as { model?: unknown; stop_reason?: unknown } | undefined;
+  const model = usageModels.length ? usageModels.join(", ") : typeof message?.model === "string" ? message.model : undefined;
+  return { ok: true, text, ...(model ? { model } : {}), ...(message?.stop_reason === "max_tokens" ? { truncated: true } : {}) };
 }
 
 // ---- Codex ------------------------------------------------------------------------------------
@@ -183,7 +187,7 @@ export function parseHermes(out: string, stderr: string): Parsed {
   const text = typeof result?.text === "string" ? result.text : lines.filter((l) => l.type === "text" && typeof l.text === "string").map((l) => l.text as string).join("");
   if (result?.exit_code && result.exit_code !== 0) return { ok: false, error: `Hermes: ${text || `failed (exit ${String(result.exit_code)})`}`.slice(0, 600) };
   if (!text) return { ok: false, error: `Hermes stopped without an answer. ${lastLines(stderr || out)}`.trim() };
-  return { ok: true, text };
+  return { ok: true, text, ...(typeof result?.model === "string" && result.model.trim() ? { model: result.model.trim() } : {}), ...(result?.finish_reason === "length" || result?.stop_reason === "max_tokens" ? { truncated: true } : {}) };
 }
 
 let hermesCache: { at: number; connected: boolean } | null = null;
@@ -272,10 +276,12 @@ export interface AgentRequest {
   tools: ToolSet;
   /** The user's data as text, for agents without the bridge. */
   dataPack: () => string;
+  /** Claim reviews must never silently start another program run after a failure. */
+  claimReview?: boolean;
   signal?: AbortSignal;
 }
 
-export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean } | { ok: false; error: string };
+export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean; model?: string; truncated?: boolean } | { ok: false; error: string };
 
 export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const { provider } = req;
@@ -332,13 +338,13 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
       };
       let p = await once(false);
       // Without OpenClaw's Gateway running, answer here instead.
-      if (!p.ok && p.gatewayDown && !req.signal?.aborted) p = await once(true);
+      if (!req.claimReview && !p.ok && p.gatewayDown && !req.signal?.aborted) p = await once(true);
       parsed = p;
     }
     if (req.signal?.aborted) return { ok: false, error: "Stopped." };
     if (!parsed.ok) return parsed;
     const steps = run ? run.steps : (parsed.tools ?? []).map((t) => ({ tool: t, server: info.label, input: "" }));
-    return { ok: true, text: parsed.text, steps, studyIds: run ? [...run.ids] : [], usedTools: bridged };
+    return { ok: true, text: parsed.text, steps, studyIds: run ? [...run.ids] : [], usedTools: bridged, ...(parsed.model ? { model: parsed.model } : {}), ...(parsed.truncated ? { truncated: true } : {}) };
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : "The agent could not answer." };
   } finally {

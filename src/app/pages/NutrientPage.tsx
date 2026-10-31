@@ -93,7 +93,7 @@ export function NutrientPage({ id }: { id: string }) {
             <p className="text-sm text-ink-2">Shown because of something in your habits or profile.</p>
           </div>
         )}
-        {n.simpleGuide ? <SupplementGuide n={n} guide={n.simpleGuide} /> : (
+        {n.simpleGuide ? <SupplementGuide n={n} guide={n.simpleGuide} critical={critical} reference={<Reference n={n} bare />} /> : (
           <>
 
         <Card className="flex flex-col gap-4">
@@ -288,11 +288,11 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
   const byMarker = groupByBiomarker(all);
   const ref = basic ? undefined : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
   const links = (n.simpleGuide ? [
+    ["origin", "What it is & roles in your body"],
     ["uses", "Potential benefits & common claims"],
-    ["origin", "What it is & where it comes from"],
+    ["low-high", "Too little, too much"],
     ["dosage-safety", "Dosage & safety"],
-    n.forms.length > 0 && ["forms", "Supplement forms"],
-    ["sources", "Ingredient & safety sources"],
+    ["research", "Research"],
   ] : [
     basic ? ["uses", "Common uses"] : ["trials", "Main uses & potential benefits"],
     hasInteractions && ["interactions", "Interactions and cautions"],
@@ -495,16 +495,18 @@ function Foods({ n, safety }: { n: NutrientDef; safety: SafetyId[] }) {
   );
 }
 
-function Reference({ n }: { n: NutrientDef }) {
+function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
   const r = n.reference;
   const types = [...new Set(r.intake.map((x) => x.type))];
+  const Box = bare ? "div" : Card;
   return (
-    <Card className="flex flex-col gap-3">
+    <Box className="flex flex-col gap-3">
       <div>
-        <H2>Reference intakes and upper limit</H2>
+        {bare ? <h3 className="font-semibold">Reference intakes and upper limit</h3> : <H2>Reference intakes and upper limit</H2>}
         <p className="mt-1 text-ink-2">
-          Set by the European Food Safety Authority (EFSA) for healthy adults, from food and supplements together unless it says otherwise.
-          They describe groups of people, not a target or a dose for you.
+          {bare && r.intake.length === 0
+            ? "No daily reference intake is listed for this ingredient. A safety assessment is not a recommended intake or a general upper limit."
+            : "Set by the European Food Safety Authority (EFSA) for healthy adults, from food and supplements together unless it says otherwise. They describe groups of people, not a target or a dose for you."}
         </p>
       </div>
       {r.intake.length > 0 && (
@@ -547,7 +549,7 @@ function Reference({ n }: { n: NutrientDef }) {
           )}
         </p>
         <p className="mt-1 text-ink-2">{r.upperLimit ? r.upperLimit.note : r.noUpperLimit}</p>
-        <p className="mt-1 text-sm text-ink-2">The highest daily intake over a long time that is unlikely to cause harm in healthy adults.</p>
+        {(!bare || r.upperLimit) && <p className="mt-1 text-sm text-ink-2">The highest daily intake over a long time that is unlikely to cause harm in healthy adults.</p>}
       </div>
       <details>
         <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Sources</summary>
@@ -559,7 +561,7 @@ function Reference({ n }: { n: NutrientDef }) {
           ))}
         </ul>
       </details>
-    </Card>
+    </Box>
   );
 }
 

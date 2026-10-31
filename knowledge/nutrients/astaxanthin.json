@@ -6,16 +6,25 @@
   "researchStatus": "not-reviewed",
   "summary": "Astaxanthin is a red-orange carotenoid pigment found in algae and pink seafood. It acts as an antioxidant, and a common supplement source is an extract of cultivated freshwater microalgae.",
   "commonUses": [
-    "May help skin retain moisture",
-    "May support skin elasticity",
-    "May offer mild protection against UV-related skin stress",
-    "May help with eye strain from prolonged screen use",
-    "May support exercise endurance",
-    "May help recovery after exercise",
-    "May support memory and thinking",
-    "May help maintain healthy blood fat levels"
+    "May ease eye strain and focusing fatigue",
+    "May make eyes look more rested",
+    "May give skin a subtle warm or pink tone",
+    "May reduce UV-related skin stress",
+    "May help protect light-sensitive cells in the retina"
   ],
   "simpleGuide": {
+    "factsReviewedOn": "2026-10-31",
+    "claimsSource": {
+      "title": "Research notes supplied for this guide",
+      "url": "https://docs.google.com/document/d/1az7PR_ltXslEyPk3LZuud0OPTKQg58VTL64_GVDd-3E/edit"
+    },
+    "claimTopics": {
+      "May ease eye strain and focusing fatigue": "eye strain",
+      "May make eyes look more rested": "eye appearance",
+      "May give skin a subtle warm or pink tone": "skin colour",
+      "May reduce UV-related skin stress": "ultraviolet skin",
+      "May help protect light-sensitive cells in the retina": "retina"
+    },
     "origin": [
       "The freshwater microalga Haematococcus pluvialis makes astaxanthin when stressed by conditions such as strong light or a shortage of nutrients. Its cells build up the red pigment, which helps protect the algae.",
       "Astaxanthin also travels through aquatic food chains and contributes to the pink or red colour of salmon, trout, shrimp and krill. The usual supplement source is cultivated algae, rather than an extract of those foods. Unlike beta-carotene, it is not converted into vitamin A."
@@ -27,7 +36,7 @@
   },
   "roles": ["A carotenoid pigment with antioxidant activity; it is not an essential nutrient and is not converted into vitamin A."],
   "status": {"biomarkerIds": [], "note": "There is no routine clinical deficiency test for astaxanthin."},
-  "low": {"signs": [], "atRisk": []},
+  "low": {"signs": [], "atRisk": [], "note": "Astaxanthin is not an essential nutrient. No deficiency condition or required intake has been established."},
   "high": {"signs": [], "note": "Safety depends on the ingredient, amount, age and other ingredients in the product."},
   "foodSources": {"examples": ["Salmon and trout", "Shrimp, crab and krill"], "note": "Eating these foods is different from taking an isolated astaxanthin supplement."},
   "forms": [

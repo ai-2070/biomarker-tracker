@@ -32,7 +32,8 @@ describe("example profile (made-up data)", () => {
     const dates = demo.measurements.map((m) => m.date).sort();
     expect(dates.at(-1)! < today).toBe(true);
     expect(dates[0]! <= addDays(today, -4 * 365)).toBe(true);
-    for (const m of demo.measurements) expect(flagMeasurement(def(m.biomarkerId), m, demo.person), `${m.biomarkerId} ${m.date}`).not.toMatch(/critical/);
+    const defs = loadDefs();
+    for (const m of demo.measurements) expect(flagMeasurement(defs.get(m.biomarkerId)!, m, demo.person), `${m.biomarkerId} ${m.date}`).not.toMatch(/critical/);
   });
 
   it("tells its stories: low ferritin during, and recovery after, the iron supplement", () => {

@@ -1,4 +1,5 @@
 import type { Citation, EvidenceGrade, SafetyId } from "./types";
+import { isIsoDate } from "./dates";
 
 /**
  * The vitamins and minerals knowledge base (/knowledge/nutrients/*.json), shown under Supplementation.
@@ -72,12 +73,17 @@ export interface NutrientDef {
   simpleGuide?: {
     origin: string[];
     dosage: string[];
+    /** Stable facts are reviewed apart from live, locally cached benefit checks. */
+    factsReviewedOn?: string;
+    claimsSource?: { title: string; url: string };
+    /** Explicit outcome words for inexpensive PubMed metadata checks, keyed by the claim text. */
+    claimTopics?: Record<string, string>;
   };
   /** Its main jobs in the body, short phrases. */
   roles: string[];
   /** How status is measured. `biomarkerIds` are markers in this app (may be empty). */
   status: { biomarkerIds: string[]; note: string };
-  low: { signs: string[]; atRisk: string[] };
+  low: { signs: string[]; atRisk: string[]; note?: string };
   high: { signs: string[]; note: string };
   /** Foods rich in it, in words; `cofidNutrient` links to measured amounts in /knowledge/foods. */
   foodSources: { examples: string[]; cofidNutrient?: string; note?: string };
@@ -172,6 +178,17 @@ export function validateNutrientDef(v: unknown): string[] {
     if (!basic) errs.push("simpleGuide belongs only to basic supplement guides");
     if (!isObj(v.simpleGuide) || !strList(v.simpleGuide.origin, 1) || !strList(v.simpleGuide.dosage, 1))
       errs.push("simpleGuide needs origin and dosage descriptions");
+    else {
+      if (v.simpleGuide.factsReviewedOn !== undefined && (typeof v.simpleGuide.factsReviewedOn !== "string" || !isIsoDate(v.simpleGuide.factsReviewedOn)))
+        errs.push("simpleGuide factsReviewedOn must be an ISO date");
+      if (v.simpleGuide.claimsSource !== undefined && (!isObj(v.simpleGuide.claimsSource) || !isStr(v.simpleGuide.claimsSource.title) || !isHttpsUrl(v.simpleGuide.claimsSource.url)))
+        errs.push("simpleGuide claimsSource needs a title and HTTPS URL");
+      const topics = v.simpleGuide.claimTopics;
+      if (topics !== undefined && (!isObj(topics) || !Array.isArray(v.commonUses) ||
+        Object.keys(topics).length !== v.commonUses.length ||
+        !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(topics, claim) && isStr(topics[claim]))))
+        errs.push("simpleGuide claimTopics must name each common claim exactly once");
+    }
   }
   if (basic && v.kind !== "supplement") errs.push("basic guides are for other supplements, not vitamins or minerals");
   if ((basic || v.commonUses !== undefined) && !strList(v.commonUses, basic ? 1 : 0)) errs.push("commonUses must list the purposes of a basic guide");
@@ -184,6 +201,7 @@ export function validateNutrientDef(v: unknown): string[] {
   if (!strList(v.roles, 1)) errs.push("roles needs at least one entry");
   if (!isObj(v.status) || !strList(v.status.biomarkerIds) || !isStr(v.status.note)) errs.push("status needs biomarkerIds and a note");
   if (!isObj(v.low) || !strList(v.low.signs, basic ? 0 : 1) || !strList(v.low.atRisk, basic ? 0 : 1)) errs.push("low needs signs and atRisk");
+  if (isObj(v.low) && v.low.note !== undefined && !isStr(v.low.note)) errs.push("low note must be a description");
   if (!isObj(v.high) || !strList(v.high.signs) || !isStr(v.high.note)) errs.push("high needs signs and a note");
   if (!isObj(v.foodSources) || !strList(v.foodSources.examples, basic ? 0 : 1)) errs.push("foodSources needs examples");
   if (!Array.isArray(v.forms) || !v.forms.every((f) => isObj(f) && isStr(f.name) && isStr(f.note))) errs.push("forms need a name and a note each");
@@ -228,6 +246,7 @@ export function nutrientText(n: NutrientDef): string[] {
     n.status.note,
     ...n.low.signs,
     ...n.low.atRisk,
+    n.low.note ?? "",
     ...n.high.signs,
     n.high.note,
     ...n.foodSources.examples,

@@ -1,0 +1,28 @@
+name: Astaxanthin metadata watch
+on:
+  schedule:
+    - cron: '23 8 3 * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: astaxanthin-claim-watch
+  cancel-in-progress: false
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: '1.4.4'
+      - name: Discover public PubMed metadata only
+        run: bun tools/claims/watch.ts --output "$RUNNER_TEMP/astaxanthin-watch.json"
+      - name: Open an issue only for new signals or an annual facts review reminder
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bun tools/claims/publish.ts "$RUNNER_TEMP/astaxanthin-watch.json"
