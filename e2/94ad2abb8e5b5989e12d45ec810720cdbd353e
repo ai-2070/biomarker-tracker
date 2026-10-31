@@ -1,0 +1,62 @@
+server/http.ts
+  s_c7c122eb863b9a::t_a6053f4294d541 466-467
+  s_c7c122eb863b9a::t_259d2f61cd92da 403-404,408,411
+tools/desktop/check-version.ts
+  s_c7c122eb863b9a::t_a6053f4294d541 1-12
+src-tauri/tauri.conf.json
+  s_c7c122eb863b9a::t_a6053f4294d541 1-26
+tools/desktop/smoke.ts
+  s_c7c122eb863b9a::t_e1fbc5ba80b7e9 8,62-74,79
+  s_c7c122eb863b9a::t_cfc275a513cec0 1-7,9-61,75-78,80-88
+.gitignore
+  s_c7c122eb863b9a::t_259d2f61cd92da 2,4-7
+  s_c7c122eb863b9a::t_75386abfe7a250 3
+src-tauri/Cargo.toml
+  s_c7c122eb863b9a::t_a6053f4294d541 1-20
+.github/workflows/desktop.yml
+  s_c7c122eb863b9a::t_75386abfe7a250 70-71
+  s_c7c122eb863b9a::t_e1fbc5ba80b7e9 21
+  s_c7c122eb863b9a::t_299739fe00dc4a 120-122,130-139
+  s_c7c122eb863b9a::t_cfc275a513cec0 1-20,22-69,72-119,123-129,140-141,143-145
+  s_c7c122eb863b9a::t_2b31b922878e73 142
+src-tauri/src/main.rs
+  s_c7c122eb863b9a::t_e1fbc5ba80b7e9 43-46,113
+  s_c7c122eb863b9a::t_4a43c11396da1b 145-149
+  s_c7c122eb863b9a::t_9a0a0cf78f88a6 1-5,7-14,16-42,47-101,103-112,114-144,150-169
+  s_c7c122eb863b9a::t_aa61185d66871c 6,15,102
+server/index.ts
+  s_c7c122eb863b9a::t_259d2f61cd92da 20-22,25,27-31,36-41
+src-tauri/build.rs
+  s_c7c122eb863b9a::t_a6053f4294d541 1-3
+tools/desktop/prepare.ts
+  s_c7c122eb863b9a::t_a6053f4294d541 1-34
+  s_c7c122eb863b9a::t_75386abfe7a250 35
+server/store.ts
+  s_c7c122eb863b9a::t_259d2f61cd92da 7-8
+README.md
+  s_c7c122eb863b9a::t_75386abfe7a250 145-148,150-172
+  s_c7c122eb863b9a::t_d1569b72cc5b3e 149
+package.json
+  s_c7c122eb863b9a::t_84e060d9802fc3 49
+  s_c7c122eb863b9a::t_259d2f61cd92da 14-19
+bun.lock
+  s_c7c122eb863b9a::t_29a6f556d8a140 33,192-215
+src-tauri/Cargo.lock
+  s_c7c122eb863b9a::t_4b9ab2703ccf12 1-5053
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e294ad2abb8e5b5989e12d45ec810720cdbd353e",
+  "prompts": {},
+  "sessions": {
+    "s_c7c122eb863b9a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a193aa-16db-7380-9ebe-b2bd11f07fcd",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
