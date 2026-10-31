@@ -1,0 +1,66 @@
+{
+  "id": "apo_a1",
+  "name": "Apolipoprotein A-I",
+  "abbreviation": "ApoA-I",
+  "category": "Lipids",
+  "aliases": [
+    "Apolipoprotein A-I",
+    "Apolipoprotein A1",
+    "Apolipoprotein A-1",
+    "Apo A1",
+    "Apo A-I",
+    "Apo A-1",
+    "ApoA1",
+    "ApoA-I",
+    "ApoA-1",
+    "Apolipoprotein-A-I",
+    "Apolipoprotein-A1",
+    "Apolipoprotein A I"
+  ],
+  "canonicalUnit": "g/L",
+  "conversions": {
+    "g/L": 1,
+    "mg/dL": 0.01,
+    "mg/L": 0.001
+  },
+  "rangeNote": "The app has no universal range for ApoA-I. It uses the laboratory's range when supplied; interpretation also depends on the rest of the lipid results and overall heart risk.",
+  "summary": "Apolipoprotein A-I (ApoA-I) is the main protein in high-density lipoprotein (HDL), which helps move cholesterol out of cells. The test measures the amount of this protein, not how well HDL works. A higher result does not by itself prove protection from heart disease.",
+  "high": {
+    "meaning": "Higher ApoA-I is often seen alongside higher HDL, but more is not automatically better. Raising ApoA-I has not been shown to reliably prevent heart attacks; discuss a result outside the laboratory's range with your doctor.",
+    "commonCauses": [
+      "Differences in the production and breakdown of HDL particles",
+      "Alcohol use, which can raise ApoA-I without making alcohol a way to protect the heart"
+    ]
+  },
+  "low": {
+    "meaning": "Lower ApoA-I can accompany a less favourable lipid pattern or inflammation. It does not diagnose heart disease or identify a cause on its own; discuss a result below the laboratory's range with your doctor.",
+    "commonCauses": [
+      "Inflammation or acute illness",
+      "Genetic differences affecting ApoA-I production and HDL metabolism"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "39040119",
+      "doi": "10.3389/fimmu.2024.1417270",
+      "title": "Anti-inflammatory mechanism of Apolipoprotein A-I.",
+      "year": 2024,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38587254",
+      "doi": "10.1056/NEJMoa2400969",
+      "title": "Apolipoprotein A1 Infusions and Cardiovascular Outcomes after Acute Myocardial Infarction.",
+      "year": 2024,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "21343206",
+      "doi": "10.1136/bmj.d636",
+      "title": "Effect of alcohol consumption on biological markers associated with risk of coronary heart disease: systematic review and meta-analysis of interventional studies.",
+      "year": 2011,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

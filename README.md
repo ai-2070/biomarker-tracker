@@ -38,12 +38,19 @@ Lab portals show one test at a time, and every lab prints the same marker differ
 
 Add results by hand, from a lab report PDF, or from a photo of one. Text recognition runs on your device (English, German and Hungarian), and you check every value on a review screen before anything is saved. Markers are recognised in English, German, Hungarian, French, Spanish and Italian, and converted to one unit, so results from different labs line up on one chart.
 
+The review for PDFs and photos includes the sample date, lab name, **Were you fasting?** (Yes / No / Not sure), and an optional note. Fasting status and the note apply to every selected result saved from that report.
+
 <img src="docs/screenshots/marker.png" alt="Ferritin chart from 2022 to 2026 with the reference range shaded, two low results marked, and range, zoom and habit controls" width="100%">
 
-- 37 blood markers: full blood count, lipids, glucose and HbA1c, liver, kidney, thyroid, iron, vitamin D, B12, folate, CRP and electrolytes. Each has a plain-language explanation, what is known to raise or lower it, and cited sources.
+- 42 standard blood markers: full blood count, lipids (including ApoA-I, ApoB, ApoB/ApoA-I ratio, LDL/HDL ratio and non-HDL cholesterol), glucose and HbA1c, liver, kidney, thyroid, iron, vitamin D, B12, folate, CRP and electrolytes. Each has a plain-language explanation, what is known to raise or lower it, and cited sources.
+- **All results** shows the complete blood catalogue by category, even for an empty profile. Unmeasured markers say **No results yet** and open their explanation page. The five extended lipid markers stay visible without readings. The Blood dashboard keeps a compact set of saved readings instead of listing unmeasured markers.
+- **Find a marker:** search by name, abbreviation or lab spelling, and filter by category such as Lipids, Kidney or **Aging (DunedinPACE)**. Combine these with All / Out of range / In range / **No results**; counts reflect the current search and category. Saved readings without a range assessment remain under All, not No results or In range. Clear filters resets the whole view.
 - Charts you can explore: zoom, drag across a period to see its average and change, and overlay the habits you were following at the time.
 - Out-of-range flags against your lab's own range. Values far outside it (a lost decimal point) are flagged, and critical values show "contact a doctor" first.
 - A research panel on every marker page that searches Europe PMC and PubMed.
+- **Edit and bulk delete:** choose **Manage results** on Blood tests or Body, or edit directly in a marker's result history. Search by marker, lab or note and filter by date. Select individual readings or all matching results, including those beyond the first page; deletion requires confirmation and keeps original report files. Edits preserve result IDs and import sources, and charts and profile folders update with the changes.
+
+The five extended lipid markers work with manual entry, PDF/photo review, charts and doctor reports. ApoA-I and ApoB support g/L, mg/dL and mg/L; non-HDL supports mmol/L and mg/dL. The two ratios are dimensionless and can be read from reports without a printed unit. These entries use your lab's supplied range rather than a universal app threshold. Ratios and non-HDL are recorded as reported, not silently calculated from other results.
 
 <img src="docs/screenshots/blood-tests.png" alt="Blood tests dashboard: biological age, markers in range, markers to watch, a timeline of every blood test, and tiles for each marker" width="100%">
 
@@ -64,6 +71,12 @@ Add results by hand, from a lab report PDF, or from a photo of one. Text recogni
 
 Weight, waist, body fat, blood pressure, resting heart rate, heart rate variability (HRV), blood oxygen, sleep, home blood glucose and VO₂max. Import exports from Apple Health, Fitbit, Google Fit, Samsung Health, Garmin, Oura, Whoop, Withings, Polar, Zepp and Huawei Health, or any CSV or JSON file. Files are read on your computer and never uploaded. No made-up "readiness" or "sleep scores": only what was measured.
 
+**Body-fat groups:** the Body fat page keeps its existing history chart and adds a separate comparison with your reading marked. The main guide uses sex and age at the reading (20–79 years), with Below / Within / Above / Well above guide bands. These are provisional, BMI-derived reference ranges, not diagnoses. An expandable five-category reference—essential fat, athletes, fitness, average and obesity—is sex-specific but not age-adjusted, and does not assess athletic fitness. Missing details or unsupported ages never produce invented age bands. Weight and BMI do not gain classification bands.
+
+**Estimated fat mass:** directly below the latest body-fat percentage, see the calculated amount in kg and lb. It uses an exact weight from the same day where available, otherwise the nearest within 30 days, with the weight's date shown. It respects your weight display-unit preference. Distant weights and bounded percentages are not silently combined, and the estimate is never saved as a new measurement.
+
+Both systolic and diastolic marker links open one **Blood pressure** page. It shows the top and bottom numbers in separate charts, with linked date controls but independent units, reference ranges and flags. Both explanations and the shared editable results list stay on that page. If one number has no readings, the other is still shown; a critical value in either number puts the urgent warning first.
+
 Height is in **About** under Settings → Your data, and in the first details step when creating a profile. Choose centimetres or feet and inches. The preference is kept with the profile and in backups; switching units does not change the height used by calculations, which is always stored in centimetres.
 
 Samsung sleep comes from `com.samsung.health.sleep_stage…csv` in the export: light, deep and REM intervals add up to actual time asleep, excluding awake periods. Each session is dated by its final wake-up in the export's recorded time zone, and naps on that date are added. The separate sleep summaries and energy-score inputs are skipped so scores, time in bed and duplicate totals cannot replace actual sleep. Choose the full zip or include the sleep-stage file. Sub-minute intervals are preserved, so a stage total may display a minute differently from Samsung's rounded summary.
@@ -79,6 +92,16 @@ Samsung walking speed uses `speed` from the same combined daily step records, in
 Body fat is imported as a percentage only. Fat-mass columns in kilograms or pounds (including Samsung Health's `body_fat_mass`) are skipped with an explanation, not relabelled as percentages or converted. Samsung's separate `body_fat` percentage is imported normally.
 
 Re-importing device files updates existing readings for the same measurement and date, including manually entered readings, rather than skipping them. New dates are added and dates absent from the import are kept. The review marks readings that will be updated, and saving reports the update count. Save, Choose other files and Cancel are available above and below the review. If selected series overlap, the first one listed is used for those days. Re-importing a corrected Samsung export can therefore repair previously incorrect values without deleting them first.
+
+### A report for your doctor
+
+In **Settings → Your data → Doctor-ready report**, choose the dates and measurements to share, create a preview, then press **Print / save as PDF** and select your browser's **Save as PDF** destination. Only the report is printed, not Settings or the app navigation. It works locally without AI, a server or an external PDF service. You can also ask **Brain** where to export a report for your doctor; it explains these steps rather than claiming to create or send the PDF itself.
+
+The summary shows only the latest result, date, reference range and flag for each selected measurement, separated into **Blood tests** and **Body measurements**. Body measurements use the same groups and order as the Body page, including adjacent systolic and diastolic blood pressure readings. Reading details contain black-and-white charts of **every selected reading within the dates**, including daily device history, without a value-by-value list. Reported limits use arrows rather than exact-value dots; readings are never averaged or removed.
+
+Optional profile information includes the latest recorded weight on or before the report end, with its date and unit, even if weight is not selected for a chart. With profile details included, **BMI and the Mifflin–St Jeor resting metabolic rate estimate appear both in Profile information and under Body measurements → Size and composition**. The top shows the values; Size and composition adds the equation, inputs and limits. They are calculated figures, not additional saved readings; the equation uses age at the weight reading and is not a calorie target. These fields are omitted when profile details are off.
+
+Source and fasting context remain beside each chart. Logged medicines, supplements and habits are optional; grouped protocols retain their recorded item lists. Weekly activity references are not presented as daily ranges. Private profile/result/protocol-item notes are excluded unless selected. Example data stays clearly labelled on every printed page, and changes are not presented as evidence that a habit caused them. The report header includes the app logo, name and an embedded GitHub QR code containing only the public repository URL. This handout is not a backup or a verified laboratory report.
 
 ### Habits and self-experiments
 

@@ -24,7 +24,7 @@ import { BIOMARKER_MAP, bloodOnly } from "../knowledge";
 import { useProfiles } from "../profiles";
 import { href } from "../router";
 
-/** The blood tests dashboard: biological age, what's in range, the timeline of tests and every marker. */
+/** The blood tests dashboard: biological age, what's in range, the timeline and saved-marker highlights. */
 export function BloodDashboardPage() {
   const all = useAllMeasurements();
   const protocols = useProtocols();
@@ -82,8 +82,8 @@ export function BloodDashboardPage() {
         <Timeline d={d} protocols={protocols} birthMonth={profile.birthMonth} today={today} />
       </section>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <MarkerGrid markers={d.markers} title="Markers" more={{ href: href({ name: "overview" }), label: `All ${d.markers.length} blood markers` }} />
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <MarkerGrid markers={d.markers} title="Markers" more={{ href: href({ name: "overview" }), label: "Results list" }} />
         <aside className="flex flex-col gap-4">
           <HabitsPanel protocols={protocols} experiments={experiments ?? []} all={blood} today={today} />
           <AskPanel d={d} />
@@ -102,6 +102,7 @@ export function EmptyBlood() {
       <header>
         <h1 className="font-serif text-4xl font-normal tracking-tight sm:text-5xl">Blood tests</h1>
         <p className="mt-1 text-ink-2">Add your first blood test and this fills in: biological age, what's in range, and a timeline over the years.</p>
+        <LinkButton variant="secondary" href={href({ name: "overview" })} className="mt-4">All results</LinkButton>
       </header>
       <div className="stagger grid gap-3 sm:grid-cols-3">
         <a href={href({ name: "import" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>

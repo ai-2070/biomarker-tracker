@@ -7,8 +7,8 @@ const TABS: readonly SettingsTab[] = ["data", "models", "skills", "mcp", "appear
 
 export type SoonSection = "devices";
 
-/** Which blood test markers the list shows: all, only out of range, or only in range. */
-export type ResultsFilter = "out" | "in";
+/** Optional blood-result filters; no filter shows the complete catalogue. */
+export type ResultsFilter = "out" | "in" | "empty";
 
 export type Route =
   | { name: "dashboard" }
@@ -52,7 +52,7 @@ export function parseHash(hash: string): Route {
   if (parts.length === 0) return { name: "dashboard" };
   if (parts[0] === "results" && parts.length === 1) {
     const show = params.get("show");
-    return show === "out" || show === "in" ? { name: "overview", show } : { name: "overview" };
+    return show === "out" || show === "in" || show === "empty" ? { name: "overview", show } : { name: "overview" };
   }
   if (parts[0] === "soon" && parts[1] === "devices" && parts.length === 2) return { name: "soon", section: "devices" };
   if (parts[0] === "blood" && parts.length === 1) return { name: "blood" };

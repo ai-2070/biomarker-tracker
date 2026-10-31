@@ -1,0 +1,54 @@
+{
+  "id": "non_hdl_cholesterol",
+  "name": "Non-HDL cholesterol",
+  "abbreviation": "Non-HDL-C",
+  "category": "Lipids",
+  "aliases": [
+    "Non-HDL cholesterol",
+    "Non HDL cholesterol",
+    "Non-HDL-C",
+    "Non HDL-C",
+    "Non-HDL",
+    "Non HDL",
+    "Non-HDL-Cholesterin",
+    "Non HDL Cholesterin",
+    "Nicht-HDL-Cholesterin",
+    "Nicht HDL Cholesterin",
+    "Non-HDL-koleszterin",
+    "Non HDL koleszterin",
+    "Nem-HDL-koleszterin",
+    "Nem HDL koleszterin"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.02586
+  },
+  "rangeNote": "There is no universal app range: non-HDL cholesterol targets depend on overall cardiovascular risk. A laboratory range is used when supplied. The app records reported non-HDL results only and does not silently calculate them from total and HDL cholesterol results.",
+  "summary": "Non-HDL cholesterol is total cholesterol minus HDL cholesterol, with both values in the same units. It includes cholesterol in LDL and other particles that can contribute to plaque in artery walls. It can help describe risk that LDL cholesterol alone may miss, especially when triglycerides are high.",
+  "high": {
+    "meaning": "A higher non-HDL result means more cholesterol in particles that can contribute to artery disease. Discuss a result outside your laboratory's range with your doctor; its importance depends on your overall heart risk.",
+    "commonCauses": [
+      "Higher LDL cholesterol, including inherited high cholesterol",
+      "More cholesterol in triglyceride-rich particles and their remnants",
+      "Lipid changes associated with insulin resistance or diabetes"
+    ]
+  },
+  "low": {
+    "meaning": "Lower non-HDL cholesterol generally means less cholesterol in particles that contribute to artery disease. It does not rule out cardiovascular risk from other causes.",
+    "commonCauses": [
+      "Cholesterol-lowering medicines",
+      "Inherited differences that lower cholesterol in LDL and other non-HDL particles"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "31504418",
+      "doi": "10.1093/eurheartj/ehz455",
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+      "year": 2020,
+      "studyType": "guideline"
+    }
+  ]
+}

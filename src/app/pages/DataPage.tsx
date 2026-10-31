@@ -7,6 +7,7 @@ import { deleteEverything, exportAll, getProfile, importBackup, setProfile, type
 import { api } from "../api";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
+import { DoctorReportExport } from "../components/DoctorReportExport";
 import { Button, Card, LinkButton, Notice, buttonStyles, cx, errorStyles } from "../components/ui";
 import { useAllMeasurements } from "../hooks";
 import { fileUrl, uploadFile, useProfiles, type StoredFile } from "../profiles";
@@ -24,6 +25,7 @@ export function DataSettings() {
   return (
     <div className="flex flex-col gap-5">
       {saved && <PersonCard key={replacement?.revision ?? 0} initial={replacement?.profile ?? saved} nameRequired={folders} />}
+      {saved && all && <DoctorReportExport profile={saved} measurements={all} />}
       {folders && <FilesCard profileId={active.id} />}
       {folders && (
         <Card className="flex flex-col gap-3">

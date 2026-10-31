@@ -61,6 +61,14 @@ export interface TimeView {
   };
 }
 
+/** A shared date window; each chart still owns its pointer geometry and selection. */
+export interface SharedTimeView {
+  extent: { first: string; last: string };
+  view: TimeWindow | null;
+  preset: string;
+  onChange: (view: TimeWindow | null, preset: string) => void;
+}
+
 /**
  * `plot` gives the plot area inside the element, in pixels from its left edge: where dragging and
  * the zoom anchor are measured. `onChange` runs whenever the window changes (e.g. to close a tooltip).
@@ -70,7 +78,7 @@ export interface TimeView {
 export function useTimeView(
   full: TimeWindow,
   plot: { left: number; width: number },
-  opts: { minSpan?: number; onChange?: () => void; ref?: RefObject<HTMLDivElement | null>; drag?: "pan" | "select" } = {},
+  opts: { minSpan?: number; onChange?: () => void; ref?: RefObject<HTMLDivElement | null>; drag?: "pan" | "select"; shared?: SharedTimeView } = {},
 ): TimeView {
   const minSpan = opts.minSpan ?? MIN_SPAN_DAYS;
   const mode = opts.drag ?? "pan";
@@ -82,18 +90,28 @@ export function useTimeView(
   const drag = useRef<{ x: number; w: TimeWindow; moved: boolean; day: number } | null>(null);
   const suppressClick = useRef(false);
   // Reconcile immediately, including the render before the effect commits new bounds.
-  const v = view ? clampWindow(view, full, minSpan) : full;
+  const currentView = opts.shared ? opts.shared.view : view;
+  const v = currentView ? clampWindow(currentView, full, minSpan) : full;
   const zoomed = v.to - v.from < full.to - full.from - 1;
   useEffect(() => {
     setView((previous) => previous ? clampWindow(previous, full, minSpan) : null);
     setSelection(null);
     drag.current = null;
   }, [full.from, full.to, minSpan]);
+  useEffect(() => {
+    if (opts.shared) {
+      setSelection(null);
+      opts.onChange?.();
+    }
+  }, [opts.shared?.view?.from, opts.shared?.view?.to]);
   const width = Math.max(plot.width, 1);
 
   const show = (w: TimeWindow | null, label: string | null = null) => {
-    setView(w);
-    setPreset(label ?? "");
+    if (opts.shared) opts.shared.onChange(w, label ?? "");
+    else {
+      setView(w);
+      setPreset(label ?? "");
+    }
     opts.onChange?.();
   };
   /** The day under a pointer, kept inside the plot. */
@@ -131,7 +149,7 @@ export function useTimeView(
   return {
     v,
     full,
-    preset,
+    preset: opts.shared ? opts.shared.preset : preset,
     zoomed,
     minSpan,
     show,
