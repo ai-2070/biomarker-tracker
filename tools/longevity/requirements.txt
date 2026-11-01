@@ -2,5 +2,5 @@
 numpy==1.26.4
 scipy==1.12.0
 pandas==2.3.3
-scikit-learn==1.6.1
+scikit-learn==1.9.1
 lifelines==0.30.3
