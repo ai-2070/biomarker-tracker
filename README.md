@@ -256,10 +256,11 @@ Python 3.10 and Bun were exercised. Downloads are public aggregate tables from E
 
 ### Rebuild the mortality research model (developer only)
 
-The app ships fitted parameters and needs neither Python nor a research connection to use them. Reproduction uses Python 3.10 (tested), Bun and the pinned numerical libraries:
+The app ships fitted parameters and needs neither Python nor a research connection to use them. The fitting environment requires Python 3.12+, Bun and the pinned numerical libraries. The shipped fit records its original library versions in `tools/longevity/evaluation.json`:
 
 ```bash
 python -m pip install -r tools/longevity/requirements.txt
+python -B -m unittest discover -s tools/longevity -p "test_*.py"
 python tools/longevity/train.py
 ```
 
