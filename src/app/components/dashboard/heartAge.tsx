@@ -6,6 +6,7 @@ import { href } from "../../router";
 import { Card, LinkButton, Notice } from "../ui";
 import { Figure } from "./widgets";
 import { InlineBirthMonth } from "../InlineBirthMonth";
+import { PaperLink } from "../PaperLink";
 
 const PAPER_URL = "https://pubmed.ncbi.nlm.nih.gov/18212285/";
 
@@ -58,9 +59,9 @@ export function HeartAgeSection({ ms, profile, protocols }: { ms: Measurement[];
           <span className="font-medium text-ink">What it is: </span>
           the age of someone with normal risk factors (blood pressure 125, BMI 22.5, not smoking, no diabetes) who has the same predicted
           risk of a heart attack, stroke or similar in the next 10 years. It uses the Framingham Heart Study's office-based equation (
-          <a href={PAPER_URL} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-2 hover:underline">
+          <PaperLink href={PAPER_URL} source={{ authors: "D'Agostino et al.", journal: "Circulation", year: 2008 }} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-2 hover:underline">
             D'Agostino et al., Circulation 2008
-          </a>
+          </PaperLink>
           ), with BMI in place of cholesterol.
         </p>
         <p>

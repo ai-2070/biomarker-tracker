@@ -26,6 +26,7 @@ import { ClockNote } from "../components/ClockEvidence";
 import names from "../../../knowledge/names.json";
 import { searchKnowledgeNames } from "../../core/knowledgeNames";
 import { KnowledgeName } from "../components/KnowledgeName";
+import { PaperLink } from "../components/PaperLink";
 
 const GROUP_LABEL: Record<FoodGroup, string> = {
   fruit: "Fruit",
@@ -319,9 +320,9 @@ function SourceLine({ src }: { src: LoreSource | Citation }) {
     return (
       <>
         <span>{src.kind === "ancient text" ? "Text: " : "Source: "}</span>
-        <a href={url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+        <PaperLink href={url} source={{ title: src.title, authors: src.author, kind: src.kind === "ancient text" ? "Ancient text" : "Scholarship" }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
           {src.title}
-        </a>
+        </PaperLink>
         {[src.author, src.when].filter(Boolean).length > 0 && <span> ({[src.author, src.when].filter(Boolean).join(", ")})</span>}
       </>
     );

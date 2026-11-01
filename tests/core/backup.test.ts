@@ -32,6 +32,42 @@ describe("backup", () => {
     expect(r).toEqual({ ok: true, backup });
   });
 
+  it("round-trips source-local sleep windows, naps and supplied offsets without filling missing offsets", () => {
+    const sleep = measurement({
+      biomarkerId: "sleep_duration", date: "2026-10-25", value: 8, originalUnit: "h", source: "device",
+      sleepSessions: [
+        { start: "2026-10-24T23:15:00.125", end: "2026-10-25T07:30:00", kind: "asleep", source: "Synthetic watch", startOffsetMinutes: 120, endOffsetMinutes: 60 },
+        { start: "2026-10-25T14:00:00", end: "2026-10-25T14:45:00", kind: "in-bed", source: "Synthetic watch" },
+      ],
+    });
+    const data = createBackup({ ...backup, measurements: [sleep] }, new Date("2026-11-01T12:00:00Z"));
+    const parsed = parseBackup(JSON.parse(JSON.stringify(data)));
+    expect(parsed).toEqual({ ok: true, backup: data });
+    if (!parsed.ok) throw new Error(parsed.error);
+    expect(parsed.backup.measurements[0]!.sleepSessions![1]).not.toHaveProperty("startOffsetMinutes");
+    expect(parsed.backup.measurements[0]!.sleepSessions![1]).not.toHaveProperty("endOffsetMinutes");
+    expect(parsed.backup.measurements[0]!.sleepSessions![0]!.start).toBe("2026-10-24T23:15:00.125");
+  });
+
+  it("rejects damaged or misplaced sleep timing instead of retaining unchecked nested arrays", () => {
+    const session = { start: "2026-10-24T23:00:00", end: "2026-10-25T07:00:00", kind: "asleep" };
+    const sleep = { ...m, biomarkerId: "sleep_duration", date: "2026-10-25", qualifier: undefined };
+    const damaged: unknown[] = [
+      null, {}, [], [null], new Array(1), Array(65).fill(session),
+      [{ ...session, start: "2026-10-24T23:00:00Z" }], [{ ...session, end: "2026-10-26T07:00:00" }],
+      [{ ...session, kind: ["asleep"] }], [{ ...session, endOffsetMinutes: "60" }],
+    ];
+    for (const sleepSessions of damaged) {
+      expect(parseBackup({ ...backup, measurements: [m, { ...sleep, sleepSessions }] })).toMatchObject({
+        ok: false, error: expect.stringMatching(/number 2.*damaged/),
+      });
+    }
+    for (const biomarkerId of ["sleep_deep", "sleep_rem", "resting_hr"]) {
+      expect(parseBackup({ ...backup, measurements: [{ ...sleep, biomarkerId, sleepSessions: [session] }] }).ok).toBe(false);
+    }
+    expect(parseBackup({ ...backup, measurements: [sleep] }).ok).toBe(true);
+  });
+
   it("round-trips a started protocol snapshot with all item metadata without a live source protocol", () => {
     const grouped = createBackup({ ...backup, protocols: [routine] }, new Date("2024-05-01T10:00:00Z"));
     const parsed = parseBackup(JSON.parse(JSON.stringify(grouped)));

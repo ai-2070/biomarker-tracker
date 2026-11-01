@@ -3,6 +3,7 @@ import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutco
 import { formatDate } from "../format";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";
+import { PaperLink as PreviewPaperLink } from "./PaperLink";
 
 /**
  * How the evidence behind a nutrient's findings was found: every PubMed record searched, the counts left
@@ -30,12 +31,12 @@ const n = (x: number) => x.toLocaleString("en-GB");
 const REVIEW_COLOR = "var(--color-age-heart)";
 const TRIAL_COLOR = "var(--color-age-blood)";
 
-function PaperLink({ c }: { c: Pick<Chosen, "pmid" | "doi" | "title"> }) {
+function PaperLink({ c }: { c: Pick<Chosen, "pmid" | "doi" | "title" | "year" | "firstAuthor" | "journal" | "n"> }) {
   const url = c.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}/` : `https://doi.org/${c.doi}`;
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+    <PreviewPaperLink href={url} source={{ title: c.title, year: c.year, authors: c.firstAuthor, journal: c.journal, n: c.n }} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
       {c.title}
-    </a>
+    </PreviewPaperLink>
   );
 }
 
@@ -187,9 +188,9 @@ export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: Evide
             <ul className="flex flex-col gap-1 text-sm">
               {[...o.page.alsoChosen, ...o.page.citedNotChosen].map((p) => (
                 <li key={p}>
-                  <a href={`https://pubmed.ncbi.nlm.nih.gov/${p}/`} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+                  <PreviewPaperLink href={`https://pubmed.ncbi.nlm.nih.gov/${p}/`} source={{ title: citedTitles[p] }} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
                     {citedTitles[p] ?? `PMID ${p}`}
-                  </a>{" "}
+                  </PreviewPaperLink>{" "}
                   <span className="text-ink-2">· {o.page.alsoChosen.includes(p) ? "also chosen by the rules" : "not chosen by the rules"}</span>
                 </li>
               ))}
@@ -281,9 +282,9 @@ function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]
           <ul className="flex flex-col gap-2.5">
             {s.left.map((r) => (
               <li key={r.pmid} className="text-sm">
-                <a href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+                <PreviewPaperLink href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`} source={{ title: r.title, year: r.year }} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
                   {r.title}
-                </a>
+                </PreviewPaperLink>
                 <span className="text-ink-2"> · {r.year}</span>
                 <span className="block text-ink-2">
                   <span className="font-medium text-ink">{r.fits === "partly" ? "Partly: " : "Not this question: "}</span>

@@ -1,7 +1,8 @@
 import { coverage, type FoodDb } from "../../core/meals";
 import type { Citation } from "../../core/types";
-import { StudyLink } from "./evidence";
+import { STUDY_LABEL, StudyLink } from "./evidence";
 import { Card } from "./ui";
+import { PaperLink } from "./PaperLink";
 
 /**
  * Nutritional dark matter: what no food table can tell you. Shown in full on the Meals page and as a
@@ -18,10 +19,11 @@ const SOURCES: Record<string, Citation> = {
 };
 
 function Ref({ id, n }: { id: keyof typeof SOURCES; n: number }) {
+  const s = SOURCES[id]!;
   return (
-    <a href={SOURCES[id]!.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${SOURCES[id]!.pmid}/` : `https://doi.org/${SOURCES[id]!.doi}`} target="_blank" rel="noopener noreferrer" className="align-super text-xs text-ink-2 no-underline hover:text-ink">
+    <PaperLink href={s.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${s.pmid}/` : `https://doi.org/${s.doi}`} source={{ title: s.title, year: s.year, kind: STUDY_LABEL[s.studyType], n: s.n }} target="_blank" rel="noopener noreferrer" className="align-super text-xs text-ink-2 no-underline hover:text-ink">
       [{n}]
-    </a>
+    </PaperLink>
   );
 }
 

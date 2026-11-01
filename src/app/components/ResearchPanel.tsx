@@ -5,6 +5,7 @@ import { searchPapers, type Paper, type SearchFilter, type SearchResult } from "
 import { askBrain, openBrain } from "../brain/store";
 import { BrainIcon } from "./icons";
 import { ChoiceGroup } from "./ChoiceGroup";
+import { PaperLink } from "./PaperLink";
 import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
 
 const KIND_LABEL: Record<Paper["kind"], string> = {
@@ -147,9 +148,9 @@ function PaperItem({ paper: p, canAsk }: { paper: Paper; canAsk: boolean }) {
         {p.openAccess && <span className="rounded-full bg-ok-soft px-2 py-0.5 font-medium text-ok">Free full text</span>}
       </p>
       <h3 className="mt-1 font-medium">
-        <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+        <PaperLink href={p.url} source={p} className="text-ink underline-offset-2 hover:underline">
           {p.title}
-        </a>
+        </PaperLink>
       </h3>
       {p.authors && <p className="truncate text-sm text-ink-2">{p.authors}</p>}
       {p.abstract && (

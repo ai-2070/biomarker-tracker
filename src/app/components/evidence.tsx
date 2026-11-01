@@ -1,5 +1,6 @@
 import type { Citation, EvidenceGrade } from "../../core/types";
 import { cx } from "./ui";
+import { PaperLink } from "./PaperLink";
 
 /** Evidence grades as dots and a word, never colour alone. */
 export const GRADE: Record<EvidenceGrade, { dots: string; label: string }> = {
@@ -48,9 +49,9 @@ export function StudyLink({ s }: { s: Citation }) {
   const url = s.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${s.pmid}/` : `https://doi.org/${s.doi}`;
   return (
     <>
-      <a href={url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+      <PaperLink href={url} source={{ title: s.title, year: s.year, kind: STUDY_LABEL[s.studyType], n: s.n }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
         {s.title}
-      </a>{" "}
+      </PaperLink>{" "}
       ({s.year}, {STUDY_LABEL[s.studyType]}
       {s.n ? `, ${s.n.toLocaleString("en-GB")} people` : ""})
     </>

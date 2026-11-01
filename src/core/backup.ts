@@ -1,6 +1,7 @@
 import { isIsoDate } from "./dates";
 import { isBirthMonth } from "./phenoageDraws";
 import { validatePlan } from "./plans";
+import { validSleepSessions } from "./sleepSessions";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
 export const BACKUP_APP = "biomarker-tracker";
@@ -63,7 +64,8 @@ function isMeasurement(v: unknown): v is Measurement {
     optional(v.lab, isStr) &&
     optional(v.labRange, isRange) &&
     optional(v.fasted, (f) => typeof f === "boolean") &&
-    optional(v.note, isStr)
+    optional(v.note, isStr) &&
+    (v.sleepSessions === undefined || validSleepSessions(v.sleepSessions, v.biomarkerId, v.date))
   );
 }
 

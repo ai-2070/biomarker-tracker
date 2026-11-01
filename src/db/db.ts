@@ -10,6 +10,8 @@ import { measurementsIn } from "../core/measurementCompletion";
 import { isBirthMonth } from "../core/phenoageDraws";
 import { todayIso } from "../core/dates";
 import { LIFE_TABLE_COUNTRIES } from "../core/lifeTable";
+import { validSleepSessions } from "../core/sleepSessions";
+import { exampleSleepUpdates } from "../core/demo";
 
 interface Setting {
   key: string;
@@ -143,6 +145,29 @@ export async function deleteMeal(id: string, database = db): Promise<void> {
 
 // Measurements
 
+/** One-time fictional-example upgrade; never synthesizes data for a real profile or imported rows. */
+export async function ensureExampleSleepData(database = db): Promise<number> {
+  return database.transaction("rw", database.settings, database.measurements, async () => {
+    const key = "exampleSleepDataVersion";
+    if ((await database.settings.get(key))?.value === 1) return 0;
+    const profile = await getProfile(database);
+    if (profile.example !== true) return 0;
+    const current = await database.measurements.toArray();
+    const updates = exampleSleepUpdates(profile, current);
+    const ids = new Set(current.map((m) => m.id));
+    let order = (await database.measurements.orderBy("savedOrder").last())?.savedOrder ?? 0;
+    for (const m of updates) if (!ids.has(m.id)) m.savedOrder = ++order;
+    if (updates.length) await database.measurements.bulkPut(updates);
+    await database.settings.put({ key, value: 1 });
+    return updates.length;
+  });
+}
+
+function checkSleepSessions(m: Pick<Measurement, "biomarkerId" | "date" | "sleepSessions">): void {
+  if (m.sleepSessions !== undefined && !validSleepSessions(m.sleepSessions, m.biomarkerId, m.date))
+    throw new Error("This result has damaged or mismatched sleep timing.");
+}
+
 export async function addMeasurement(m: Omit<Measurement, "id">, database = db): Promise<string> {
   const [row] = await addMeasurements([m], database);
   return row!.id;
@@ -150,6 +175,7 @@ export async function addMeasurement(m: Omit<Measurement, "id">, database = db):
 
 /** Save several results at once; all or nothing. */
 export async function addMeasurements(ms: Omit<Measurement, "id">[], database = db): Promise<Measurement[]> {
+  ms.forEach(checkSleepSessions);
   return database.transaction("rw", database.measurements, async () => {
     let order = (await database.measurements.orderBy("savedOrder").last())?.savedOrder ?? 0;
     const rows = ms.map((m) => ({ ...m, id: newId(), savedOrder: ++order }));
@@ -163,7 +189,25 @@ export async function updateMeasurement(id: string, measurement: Omit<Measuremen
   await database.transaction("rw", database.measurements, async () => {
     const current = await database.measurements.get(id);
     if (!current) throw new Error("This result no longer exists.");
-    await database.measurements.put({ ...measurement, id: current.id, source: current.source, savedOrder: current.savedOrder });
+    // Timing describes the imported reading, not an independently editable diary entry.
+    const { sleepSessions: submittedTiming, ...editable } = measurement;
+    const storedTiming = validSleepSessions(current.sleepSessions, current.biomarkerId, current.date) ? current.sleepSessions : undefined;
+    if (submittedTiming !== undefined && (
+      !validSleepSessions(submittedTiming, current.biomarkerId, current.date) || !storedTiming ||
+      submittedTiming.length !== storedTiming.length || !submittedTiming.every((session, index) => {
+        const stored = storedTiming[index]!;
+        return session.start === stored.start && session.end === stored.end && session.kind === stored.kind &&
+          session.source === stored.source && session.startOffsetMinutes === stored.startOffsetMinutes &&
+          session.endOffsetMinutes === stored.endOffsetMinutes;
+      })
+    )) throw new Error("Sleep timing can only be changed by importing device data.");
+    const sameReading = current.biomarkerId === measurement.biomarkerId && current.date === measurement.date &&
+      current.value === measurement.value && current.qualifier === measurement.qualifier;
+    const sleepSessions = sameReading ? storedTiming : undefined;
+    await database.measurements.put({
+      ...editable, ...(sleepSessions ? { sleepSessions } : {}),
+      id: current.id, source: current.source, savedOrder: current.savedOrder,
+    });
   });
 }
 
@@ -183,6 +227,7 @@ export async function deleteMeasurements(ids: readonly string[], database = db):
 export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "source">[], database = db): Promise<{ added: number; updated: number }> {
   const incoming = new Map<string, Omit<Measurement, "id" | "source">>();
   for (const m of ms) {
+    checkSleepSessions(m);
     const key = `${m.biomarkerId}|${m.date}`;
     if (!incoming.has(key)) incoming.set(key, m);
   }
@@ -465,6 +510,7 @@ export type ImportMode = "merge" | "replace";
  * "replace" deletes everything first.
  */
 export async function importBackup(backup: Backup, mode: ImportMode, database = db): Promise<void> {
+  backup.measurements.forEach(checkSleepSessions);
   await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings], async () => {
     if (mode === "replace") {
       await database.measurements.clear();

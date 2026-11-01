@@ -16,6 +16,7 @@ import { bodyOnly } from "../knowledge";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
 import { ClockEvidence } from "../components/ClockEvidence";
+import { PaperLink } from "../components/PaperLink";
 
 const LEVINE_URL = "https://pubmed.ncbi.nlm.nih.gov/29676998/";
 
@@ -240,9 +241,9 @@ function Explanation({ profile }: { profile: Profile }) {
       </p>
       <p className="text-sm text-ink-2">
         Source:{" "}
-        <a href={LEVINE_URL} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+        <PaperLink href={LEVINE_URL} source={{ title: "An epigenetic biomarker of aging for lifespan and healthspan", authors: "Levine et al.", journal: "Aging", year: 2018 }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
           An epigenetic biomarker of aging for lifespan and healthspan
-        </a>{" "}
+        </PaperLink>{" "}
         (Levine et al., Aging, 2018). The clinical formula is in Table 1 and the supplement.
       </p>
     </Card>

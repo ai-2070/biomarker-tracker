@@ -1,5 +1,7 @@
 import { DAILY_TOTAL_FIELDS, PLAUSIBLE, SLEEP_FIELDS, type BodyField } from "../body";
 import { isIsoDate } from "../dates";
+import { sleepLocalTime, validSleepSessions } from "../sleepSessions";
+import type { SleepSession } from "../types";
 
 /**
  * Reading export files from watches, rings and phone apps (Google Takeout Fit, Samsung Health,
@@ -394,6 +396,91 @@ export function sleepDateColumn(headers: string[], data: string[][] = [], monthF
   return headers.findIndex((h, i) => /date of sleep|wake ?(onset|up|time)|sleep ?end|^end ?(time|date)?$/i.test(normalizeHeader(h)) && holdsDates(i));
 }
 
+interface SleepStamp {
+  local: string;
+  offset?: number;
+}
+
+/** Never let Date.parse interpret an offsetless timestamp in the importing computer's zone. */
+function sleepStamp(raw: string, offset?: number, localEpoch = false): SleepStamp | undefined {
+  const value = raw.trim();
+  if (localEpoch && /^\d{13}$/.test(value)) return { local: new Date(Number(value)).toISOString().slice(0, 23), ...(offset !== undefined ? { offset } : {}) };
+  const match = /^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?\s*(Z|[+-]\d{2}:?\d{2})?$/.exec(value);
+  if (!match) return undefined;
+  const local = `${match[1]}T${match[2]}:${match[3] ?? "00"}${match[4] ? `.${match[4].padEnd(3, "0")}` : ""}`;
+  if (sleepLocalTime(local) === undefined) return undefined;
+  const zone = match[5];
+  if (zone === "Z") {
+    if (offset === undefined) return undefined; // UTC is not evidence of the person's local clock.
+    return { local: new Date(sleepLocalTime(local)! + offset * 60_000).toISOString().slice(0, 23), offset };
+  }
+  if (zone) {
+    const minutes = (Number(zone.slice(1, 3)) * 60 + Number(zone.slice(-2))) * (zone[0] === "-" ? -1 : 1);
+    if (Number(zone.slice(-2)) > 59 || Math.abs(minutes) > 840) return undefined;
+    return { local, offset: minutes };
+  }
+  return { local, ...(offset !== undefined ? { offset } : {}) };
+}
+
+function sleepOffset(raw: string): number | undefined {
+  if (raw.trim() === "Z" || raw.trim() === "UTC") return 0;
+  const match = /^(?:UTC)?([+-])(\d{2}):?(\d{2})$/.exec(raw.trim());
+  if (!match) return undefined;
+  const minutes = (Number(match[2]) * 60 + Number(match[3])) * (match[1] === "-" ? -1 : 1);
+  return Number(match[3]) <= 59 && Math.abs(minutes) <= 840 ? minutes : undefined;
+}
+
+function recordedSession(start: SleepStamp | undefined, end: SleepStamp | undefined, kind: SleepSession["kind"], source: string): SleepSession | undefined {
+  if (!start || !end) return undefined;
+  const session: SleepSession = {
+    start: start.local, end: end.local, kind, source,
+    ...(start.offset !== undefined ? { startOffsetMinutes: start.offset } : {}),
+    ...(end.offset !== undefined ? { endOffsetMinutes: end.offset } : {}),
+  };
+  return validSleepSessions([session], "sleep_duration", end.local.slice(0, 10)) ? session : undefined;
+}
+
+/** Only explicit dated session columns qualify; totals alone never manufacture a bedtime. */
+function tableSleepSessions(table: { headers: string[]; data: string[][] }, family: string): (SleepSession | undefined)[] {
+  const headers = table.headers.map((h) => normalizeHeader(h).toLowerCase());
+  const find = (pattern: RegExp) => headers.findIndex((h) => pattern.test(h));
+  const localStart = find(/^(sleep start(?: time| date)?|sleep onset|bedtime start|start(?: time| date)?|sleep start timestamp) local$/);
+  const localEnd = find(/^(sleep end(?: time| date)?|wake onset|bedtime end|end(?: time| date)?|sleep end timestamp) local$/);
+  const plainStart = find(/^(sleep start(?: time| date)?|sleep onset|bedtime start|start(?: time| date)?)$/);
+  const plainEnd = find(/^(sleep end(?: time| date)?|wake onset|bedtime end|end(?: time| date)?)$/);
+  const startCol = localStart >= 0 ? localStart : plainStart >= 0 ? plainStart : find(/^(sleep start(?: time| timestamp)?|start time) (gmt|utc)$/);
+  const endCol = localEnd >= 0 ? localEnd : plainEnd >= 0 ? plainEnd : find(/^(sleep end(?: time| timestamp)?|end time) (gmt|utc)$/);
+  if (startCol < 0 || endCol < 0) return [];
+  const commonOffset = find(/^(time offset|zone offset|utc offset)$/);
+  const startOffset = find(/^start (?:time )?zone offset$/), endOffset = find(/^end (?:time )?zone offset$/);
+  const kind = /bedtime/.test(headers[startCol]!) ? "in-bed" : "session";
+  const source = /fitbit/.test(family) || (headers.includes("date of sleep") && headers.includes("minutes asleep")) ? "Fitbit" :
+    /oura/.test(family) || (headers.includes("bedtime start") && headers.includes("bedtime end")) ? "Oura" :
+    /whoop/.test(family) || (headers.includes("sleep onset") && headers.includes("wake onset")) ? "WHOOP" :
+    /garmin|di connect/.test(family) || headers.some((h) => /^sleep start timestamp (local|gmt|utc)$/.test(h)) ? "Garmin" :
+    /health connect/.test(family) ? "Health Connect" : "Device export";
+  const stamp = (row: string[], col: number, offsetCol: number) => {
+    const offset = sleepOffset(row[offsetCol >= 0 ? offsetCol : commonOffset] ?? "");
+    let raw = row[col] ?? "";
+    if (/\b(gmt|utc)$/.test(headers[col]!) || /health connect/.test(family)) {
+      if (offset === undefined) return undefined;
+      if (/^\d{13}$/.test(raw)) raw = new Date(Number(raw)).toISOString();
+      else if (!/Z$|[+-]\d{2}:?\d{2}$/.test(raw)) raw += "Z";
+      const utc = sleepStamp(raw, 0);
+      if (!utc) return undefined;
+      const instant = sleepLocalTime(utc.local)! - (utc.offset ?? 0) * 60_000;
+      return { local: new Date(instant + offset * 60_000).toISOString().slice(0, 23), offset };
+    }
+    return sleepStamp(raw, offset, /local$/.test(headers[col]!));
+  };
+  return table.data.map((row) => recordedSession(stamp(row, startCol, startOffset), stamp(row, endCol, endOffset), kind, source));
+}
+
+function uniqueSleepSessions(sessions: readonly SleepSession[], date: string): SleepSession[] | undefined {
+  const unique = [...new Map(sessions.map((session) => [JSON.stringify(session), session])).values()];
+  return validSleepSessions(unique, "sleep_duration", date) ? unique : undefined;
+}
+
 // ---- Dates ----------------------------------------------------------------------------------------
 
 /** The calendar day of a date or timestamp as the file writes it. */
@@ -439,6 +526,9 @@ interface DeviceReading {
   /** Full file path and date-only granularity survive joining overlapping exports. */
   source?: string;
   daily?: boolean;
+  sleepSessions?: SleepSession[];
+  /** Internal interval identity also reconciles repeated stage columns without storing timings on them. */
+  sleepKey?: string;
 }
 
 export interface DailySeries {
@@ -447,7 +537,7 @@ export interface DailySeries {
   /** Where it came from: a column name or an Apple Health type. */
   from: string;
   /** One value per day: the average of that day's readings, in the file's unit. */
-  days: { date: string; value: number; readings: number }[];
+  days: { date: string; value: number; readings: number; sleepSessions?: SleepSession[] }[];
   /** Readings outside what a body can show (typos, sensor errors), left out. */
   dropped: number;
   /** Overlapping exports reconciled before a daily total was calculated. */
@@ -476,7 +566,14 @@ export function dailyAverages(field: BodyField, unit: string, from: string, read
       const source = summaries.map((r) => r.source!).sort().at(-1);
       const selected = source ? rows.filter((r) => r.daily && r.source === source) : rows;
       reconciled += rows.length - selected.length;
-      for (const r of selected) tally.add(from, field, unit, r.date, r.value, toCanonical);
+      const timed = new Set<string>();
+      for (const r of selected) {
+        // Repeated exports of the same explicit interval are not a second nap.
+        const key = r.sleepKey ? JSON.stringify([r.date, r.value, r.sleepKey]) : r.sleepSessions?.length ? JSON.stringify([r.date, r.value, r.sleepSessions]) : undefined;
+        if (key && timed.has(key)) { reconciled++; continue; }
+        if (key) timed.add(key);
+        tally.add(from, field, unit, r.date, r.value, toCanonical, r.sleepSessions);
+      }
     }
   } else for (const r of readings) tally.add(from, field, unit, r.date, r.value, toCanonical);
   const series = tally.series()[0] ?? { field, unit, from, days: [], dropped: 0 };
@@ -484,16 +581,20 @@ export function dailyAverages(field: BodyField, unit: string, from: string, read
 }
 
 /** Readings of one column of a CSV table, by day. */
-export function columnReadings(data: string[][], dateCol: number, g: ColumnGuess, monthFirst = false): DeviceReading[] {
+export function columnReadings(data: string[][], dateCol: number, g: ColumnGuess, monthFirst = false, sessions: readonly (SleepSession | undefined)[] = [], fallbackDateCol = dateCol): DeviceReading[] {
   const out: DeviceReading[] = [];
-  for (const row of data) {
-    const date = toIsoDate(row[dateCol] ?? "", monthFirst);
+  for (const [index, row] of data.entries()) {
+    const session = sessions[index];
+    const date = (g.field && SLEEP_FIELDS.has(g.field) ? session?.end.slice(0, 10) : undefined) ??
+      toIsoDate(row[dateCol] ?? "", monthFirst) ?? toIsoDate(row[fallbackDateCol] ?? "", monthFirst);
     const v = toNumber(row[g.index] ?? "", g.field === "steps");
     if (!date || v === undefined) continue;
     // Blood oxygen as a fraction (0.97) becomes a percentage.
     const value = g.field === "spo2" && v > 0 && v <= 1 ? v * 100 : v * (g.scale ?? 1);
     const daily = /^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}\.?$|^\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4}$/.test((row[dateCol] ?? "").trim());
-    out.push({ date, value, ...(g.field && DAILY_TOTAL_FIELDS.has(g.field) ? { daily } : {}) });
+    out.push({ date, value, ...(g.field && DAILY_TOTAL_FIELDS.has(g.field) ? { daily } : {}),
+      ...(g.field && SLEEP_FIELDS.has(g.field) && session ? { sleepKey: JSON.stringify(session) } : {}),
+      ...(g.field === "sleep_duration" && session ? { sleepSessions: [session] } : {}) });
   }
   return out;
 }
@@ -561,12 +662,16 @@ function samsungSleepColumns(table: { headers: string[]; data: string[][] }): Ta
   const startCol = col("start time"), endCol = col("end time"), idCol = col("sleep id"), stageCol = col("stage"), offsetCol = col("time offset");
   const skipped: TableColumn = { header: "Samsung sleep stages", field: null, unit: "", readings: [], reason: "Some Samsung sleep sessions have missing or invalid stages, times or time-zone offsets and were left out." };
   if ([startCol, endCol, idCol, stageCol, offsetCol].includes(-1)) return [skipped];
-  const sessions = new Map<string, { end: number; offset: number; minutes: [number, number, number]; valid: boolean }>();
+  const sessions = new Map<string, { end: number; offset: number; minutes: [number, number, number]; valid: boolean; startAsleep: number; endAsleep: number; startOffset: number; endOffset: number }>();
+  const seen = new Set<string>();
   let missingId = false;
   for (const row of table.data) {
     const id = row[idCol];
     if (!id) { missingId = true; continue; }
-    const session = sessions.get(id) ?? { end: -Infinity, offset: 0, minutes: [0, 0, 0], valid: true };
+    const key = JSON.stringify([id, row[startCol], row[endCol], row[stageCol], row[offsetCol]]);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const session = sessions.get(id) ?? { end: -Infinity, offset: 0, minutes: [0, 0, 0], valid: true, startAsleep: Infinity, endAsleep: -Infinity, startOffset: 0, endOffset: 0 };
     sessions.set(id, session);
     const start = Date.parse(`${(row[startCol] ?? "").replace(" ", "T")}Z`);
     const end = Date.parse(`${(row[endCol] ?? "").replace(" ", "T")}Z`);
@@ -581,6 +686,9 @@ function samsungSleepColumns(table: { headers: string[]; data: string[][] }): Ta
       session.offset = (Number(offset[2]) * 60 + Number(offset[3])) * (offset[1] === "-" ? -1 : 1);
     }
     if (stage === 40001) continue;
+    const offsetMinutes = (Number(offset[2]) * 60 + Number(offset[3])) * (offset[1] === "-" ? -1 : 1);
+    if (start < session.startAsleep) { session.startAsleep = start; session.startOffset = offsetMinutes; }
+    if (end > session.endAsleep) { session.endAsleep = end; session.endOffset = offsetMinutes; }
     const minutes = (end - start) / 60_000;
     session.minutes[0] += minutes;
     if (stage === 40003) session.minutes[1] += minutes;
@@ -596,8 +704,15 @@ function samsungSleepColumns(table: { headers: string[]; data: string[][] }): Ta
     if (!session.valid) { invalid = true; continue; }
     if (session.minutes[0] === 0) continue;
     const date = new Date(session.end + session.offset * 60_000).toISOString().slice(0, 10);
+    const timing = recordedSession(
+      { local: new Date(session.startAsleep + session.startOffset * 60_000).toISOString().slice(0, 23), offset: session.startOffset },
+      { local: new Date(session.endAsleep + session.endOffset * 60_000).toISOString().slice(0, 23), offset: session.endOffset },
+      "asleep", "Samsung Health",
+    );
     session.minutes.forEach((value, i) => {
-      if (value > 0) columns[i]!.readings.push({ date, value });
+      if (value > 0) columns[i]!.readings.push({ date, value,
+        ...(timing ? { sleepKey: JSON.stringify(timing) } : {}),
+        ...(i === 0 && timing && timing.end.slice(0, 10) === date ? { sleepSessions: [timing] } : {}) });
     });
   }
   if (invalid) columns.push(skipped);
@@ -627,6 +742,8 @@ export function readTable(path: string, table: { headers: string[]; data: string
   const dateCol = findDateColumn(t.headers, t.data, monthFirst);
   if (dateCol === -1) return { columns: [], other: [], dated: false };
   const sleepCol = sleepDateColumn(t.headers, t.data, monthFirst);
+  const sleepFallbackCol = t.headers.findIndex((h) => /^(date of sleep|date|day|calendar date|summary date)$/i.test(normalizeHeader(h)));
+  const sessions = tableSleepSessions(t, family);
   const columns: TableColumn[] = [];
   const other: string[] = [];
   t.headers.forEach((h, i) => {
@@ -638,7 +755,8 @@ export function readTable(path: string, table: { headers: string[]; data: string
       return void columns.push({ header: h, field: null, unit: "", readings: [], reason: SAMSUNG_STEPS_REASON });
     if (g.field === "active_minutes" && /\bcom samsung (health|shealth)\b/.test(family))
       return void columns.push({ header: h, field: null, unit: "", readings: [], reason: SAMSUNG_ACTIVITY_REASON });
-    const readings = columnReadings(t.data, SLEEP_FIELDS.has(g.field) && sleepCol !== -1 ? sleepCol : dateCol, g, monthFirst);
+    const readings = columnReadings(t.data, SLEEP_FIELDS.has(g.field) && sleepCol !== -1 ? sleepCol : dateCol, g, monthFirst, sessions,
+      SLEEP_FIELDS.has(g.field) ? sleepFallbackCol : dateCol);
     if (DAILY_TOTAL_FIELDS.has(g.field)) {
       const hasSampleTime = t.headers.some((header, col) => col !== dateCol && /^(time|timestamp|start time|start date)$/i.test(header));
       for (const r of readings) {
@@ -689,7 +807,7 @@ export interface AppleReading {
   date: string;
   value: number;
   /** Sleep interval, retained across XML chunks until its whole session is known. */
-  sleep?: { start: number; end: number; source: string };
+  sleep?: { start: number; end: number; source: string; startStamp: SleepStamp; endStamp: SleepStamp; stage: "asleep" | "awake" | "in-bed"; provenance: string };
 }
 
 /**
@@ -729,12 +847,6 @@ export function appleRecords(xml: string, skipped: Map<string, string>): AppleRe
   return out;
 }
 
-/** "2026-03-01 23:10:00 +0100" as a time. */
-function appleTime(s: string | undefined): number {
-  const m = /^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) ([+-]\d{2})(\d{2})$/.exec(s ?? "");
-  return m ? Date.parse(`${m[1]}T${m[2]}${m[3]}:${m[4]}`) : NaN;
-}
-
 /**
  * One piece of a night from Apple Health, in hours, dated by when it ended (the morning). Each phone,
  * watch or app that records sleep is kept apart ("Sleep (Apple Watch)"), so the same night isn't
@@ -742,14 +854,26 @@ function appleTime(s: string | undefined): number {
  */
 function appleSleep(tag: string): AppleReading[] {
   const stage = (attr(tag, "value") ?? "").replace("HKCategoryValueSleepAnalysis", "");
-  if (!/^Asleep/.test(stage)) return []; // InBed and Awake aren't sleep
-  const end = attr(tag, "endDate");
-  const hours = (appleTime(end) - appleTime(attr(tag, "startDate"))) / 3_600_000;
-  const date = toIsoDate(end ?? "");
-  if (!date || !(hours > 0)) return [];
+  if (!/^Asleep/.test(stage) && stage !== "Awake" && stage !== "InBed") return [];
+  const startStamp = sleepStamp(attr(tag, "startDate") ?? ""), endStamp = sleepStamp(attr(tag, "endDate") ?? "");
+  if (!startStamp || !endStamp) return [];
+  const start = sleepLocalTime(startStamp.local)! - (startStamp.offset ?? 0) * 60_000;
+  const end = sleepLocalTime(endStamp.local)! - (endStamp.offset ?? 0) * 60_000;
+  const hours = (end - start) / 3_600_000;
+  const date = endStamp.local.slice(0, 10);
+  if (!(hours > 0) || hours > 36) return [];
   const source = attr(tag, "sourceName") ?? "Apple Health";
-  const sleep = { start: appleTime(attr(tag, "startDate")), end: appleTime(end), source };
-  const out: AppleReading[] = [{ key: `Sleep (${source})`, field: "sleep_duration", unit: "h", date, value: hours, sleep }];
+  const sourceKey = `${source}|${attr(tag, "device") ?? ""}`;
+  // A stable pseudonymous source id distinguishes devices without retaining their owner's name.
+  let hash = 2166136261;
+  for (const char of sourceKey) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+  const device = /watch/i.test(source) ? "Watch" : /iphone/i.test(source) ? "iPhone" : "source";
+  const sleep: NonNullable<AppleReading["sleep"]> = {
+    start, end, source: sourceKey, startStamp, endStamp,
+    stage: stage === "InBed" ? "in-bed" : stage === "Awake" ? "awake" : "asleep",
+    provenance: `Apple Health (${device} ${(hash >>> 0).toString(16)})`,
+  };
+  const out: AppleReading[] = [{ key: `Sleep (${source})`, field: "sleep_duration", unit: "h", date, value: sleep.stage === "asleep" ? hours : 0, sleep }];
   if (stage === "AsleepDeep") out.push({ key: `Deep sleep (${source})`, field: "sleep_deep", unit: "h", date, value: hours, sleep });
   if (stage === "AsleepREM") out.push({ key: `REM sleep (${source})`, field: "sleep_rem", unit: "h", date, value: hours, sleep });
   return out;
@@ -770,7 +894,7 @@ export function safeCut(xml: string): number {
  * keeps only a sum and a count per source and day.
  */
 export class DailyTally {
-  private readonly bySource = new Map<string, { field: BodyField; unit: string; toCanonical: (v: number) => number; offset: number; factor: number; days: Map<string, { sum: number; n: number }>; dropped: number }>();
+  private readonly bySource = new Map<string, { field: BodyField; unit: string; toCanonical: (v: number) => number; offset: number; factor: number; days: Map<string, { sum: number; n: number; sleepSessions?: SleepSession[] }>; dropped: number }>();
   private readonly sleep = new Map<string, AppleReading[]>();
 
   /** Keeps sleep sessions apart by device, including sessions crossing an XML chunk or midnight. */
@@ -784,7 +908,7 @@ export class DailyTally {
     this.sleep.set(reading.sleep.source, rows);
   }
 
-  add(from: string, field: BodyField, unit: string, date: string, value: number, toCanonical: (v: number) => number): void {
+  add(from: string, field: BodyField, unit: string, date: string, value: number, toCanonical: (v: number) => number, sleepSessions?: readonly SleepSession[]): void {
     let s = this.bySource.get(from);
     if (!s) {
       const offset = toCanonical(0);
@@ -799,22 +923,30 @@ export class DailyTally {
       s.dropped++;
       return;
     }
-    const d = s.days.get(date) ?? { sum: 0, n: 0 };
+    const d: { sum: number; n: number; sleepSessions?: SleepSession[] } = s.days.get(date) ?? { sum: 0, n: 0 };
     // Convert each sample into the first sample's unit before combining mixed-unit exports.
     d.sum += (c - s.offset) / s.factor;
     d.n++;
+    if (field === "sleep_duration" && sleepSessions && validSleepSessions(sleepSessions, field, date)) (d.sleepSessions ??= []).push(...sleepSessions);
     s.days.set(date, d);
   }
 
   series(): DailySeries[] {
     const sleepTally = new DailyTally();
     for (const rows of this.sleep.values()) {
-      const ordered = [...rows].sort((a, b) => a.sleep!.start - b.sleep!.start);
+      const unique = new Map(rows.map((r) => [JSON.stringify([r.field, r.sleep!.start, r.sleep!.end, r.sleep!.stage]), r]));
+      const ordered = [...unique.values()].sort((a, b) => a.sleep!.start - b.sleep!.start);
       let session: AppleReading[] = [];
       let end = -Infinity;
-      let date = "";
       const flush = () => {
-        for (const r of session) sleepTally.add(r.key, r.field, r.unit, date, r.value, (v) => v);
+        const asleep = session.filter((r) => r.sleep!.stage === "asleep");
+        if (!asleep.length) return;
+        const first = asleep.reduce((a, b) => a.sleep!.start <= b.sleep!.start ? a : b).sleep!;
+        const last = asleep.reduce((a, b) => a.sleep!.end >= b.sleep!.end ? a : b).sleep!;
+        const date = last.endStamp.local.slice(0, 10);
+        const timing = recordedSession(first.startStamp, last.endStamp, "asleep", first.provenance);
+        for (const r of asleep) sleepTally.add(r.key, r.field, r.unit, date, r.value, (v) => v,
+          r.field === "sleep_duration" && timing && timing.end.slice(0, 10) === date ? [timing] : undefined);
       };
       for (const r of ordered) {
         if (session.length && r.sleep!.start > end) {
@@ -822,7 +954,6 @@ export class DailyTally {
           session = [];
         }
         session.push(r);
-        if (session.length === 1 || r.sleep!.end >= end) date = r.date;
         end = Math.max(session.length === 1 ? -Infinity : end, r.sleep!.end);
       }
       flush();
@@ -833,7 +964,7 @@ export class DailyTally {
       const precision = s.field === "gait_speed" ? 100 : 10;
       let dropped = s.dropped;
       const days: DailySeries["days"] = [];
-      for (const [date, { sum: total, n }] of [...s.days.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+      for (const [date, { sum: total, n, sleepSessions }] of [...s.days.entries()].sort(([a], [b]) => a.localeCompare(b))) {
         const value = sum ? total : total / n;
         if (sum) {
           const c = s.toCanonical(value);
@@ -842,7 +973,8 @@ export class DailyTally {
             continue;
           }
         }
-        days.push({ date, value: Math.round(value * precision) / precision, readings: n });
+        const timing = s.field === "sleep_duration" && sleepSessions ? uniqueSleepSessions(sleepSessions, date) : undefined;
+        days.push({ date, value: Math.round(value * precision) / precision, readings: n, ...(timing ? { sleepSessions: timing } : {}) });
       }
       return { field: s.field, unit: s.unit, from, dropped, days };
     }).concat(sleepTally.bySource.size ? sleepTally.series() : []);
