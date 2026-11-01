@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
 import type { Measurement } from "../../core/types";
@@ -13,7 +13,7 @@ import { ConfirmDialog } from "./ConfirmDialog";
 import { MeasurementEditor } from "./MeasurementEditor";
 import { Button, CheckIcon, FlagBadge, inputStyles, labelStyles } from "./ui";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const SOURCE: Record<Measurement["source"], string> = {
   manual: "Typed in", pdf: "Lab PDF", csv: "CSV import", photo: "Photo or scan", device: "Device import",
 };
@@ -27,7 +27,8 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
   const [search, setSearch] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [limit, setLimit] = useState(PAGE_SIZE);
+  const [page, setPage] = useState(0);
+  const top = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [editing, setEditing] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -43,12 +44,21 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
     })).reverse();
   }, [measurements, search, from, to]);
   const selectedIds = filtered.filter((m) => selected.has(m.id)).map((m) => m.id);
-  const rows = filtered.slice(0, limit);
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, pageCount - 1);
+  if (currentPage !== page) setPage(currentPage);
+  const offset = currentPage * PAGE_SIZE;
+  const rows = filtered.slice(offset, offset + PAGE_SIZE);
+
+  function showPage(next: number) {
+    setPage(next);
+    top.current?.scrollIntoView({ block: "start" });
+  }
 
   function filter(change: () => void) {
     change();
     setSelected(new Set());
-    setLimit(PAGE_SIZE);
+    setPage(0);
     setMessage("");
     setError("");
   }
@@ -71,7 +81,7 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
   }
 
   return (
-    <div className="flex min-w-0 flex-col gap-3">
+    <div ref={top} className="flex min-w-0 scroll-mt-24 flex-col gap-3">
       {filterable && (
         <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_10rem_10rem]">
           <Field.Root className="flex min-w-0 flex-col gap-1.5">
@@ -117,7 +127,7 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
         <p className="py-3 text-ink-2">{measurements.length === 0 ? "No saved results." : "No results match these filters."}</p>
       ) : (
         <>
-          <p className="text-sm text-ink-2">Showing {rows.length} of {filtered.length} results, newest first. Select all includes matching results not shown below.</p>
+          <p className="text-sm text-ink-2">Showing {offset + 1}–{offset + rows.length} of {filtered.length} results, newest first. Select all includes matching results on every page.</p>
           <ul className="divide-y divide-line">
             {rows.map((m) => {
               const def = BIOMARKER_MAP.get(m.biomarkerId)!;
@@ -176,7 +186,13 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
               );
             })}
           </ul>
-          {rows.length < filtered.length && <Button variant="secondary" className="self-start" disabled={deleting} onClick={() => setLimit((current) => current + PAGE_SIZE)}>Show more results</Button>}
+          {pageCount > 1 && (
+            <nav aria-label="Saved result pages" className="flex flex-wrap items-center justify-between gap-2">
+              <Button variant="secondary" disabled={currentPage === 0 || deleting || editing !== null} onClick={() => showPage(currentPage - 1)}>Previous</Button>
+              <span className="text-sm text-ink-2" aria-live="polite">Page {currentPage + 1} of {pageCount}</span>
+              <Button variant="secondary" disabled={currentPage + 1 === pageCount || deleting || editing !== null} onClick={() => showPage(currentPage + 1)}>Next</Button>
+            </nav>
+          )}
         </>
       )}
     </div>

@@ -23,6 +23,8 @@ import { DunedinScores } from "../components/dashboard/agePace";
 import { NotFound } from "./NotFound";
 import type { SharedTimeView } from "../components/timeControls";
 import { BodyFatComparison, BodyFatMass, BodyFatReferenceBadge } from "../components/BodyFatComparison";
+import { PaperLink } from "../components/PaperLink";
+import { SleepTimingSection } from "../components/SleepTimingPanel";
 
 export function MarkerPage({ id, section }: { id: string; section?: string }) {
   return id === "bp_systolic" || id === "bp_diastolic"
@@ -145,10 +147,11 @@ function SingleMarkerPage({ id, section }: { id: string; section?: string }) {
             </Card>
             {def.id === "waist" && <WaistToHeightPanel ms={measurements} profile={profile} scrollTo={section === "waist-to-height"} />}
             {def.id === "dunedinpace" && <DunedinScores results={measurements} />}
-            <LifestyleLinks markerId={def.id} />
+            {def.id !== "sleep_duration" && <LifestyleLinks markerId={def.id} />}
           </>
         )}
         {measurements !== undefined && def.id === "body_fat" && <BodyFatComparison measurements={measurements} profile={profile} today={todayIso()} />}
+        {def.id === "sleep_duration" && <SleepTimingSection />}
         {/* Fitness tests: where you stand for your age, how to do the test (shown before any result too). */}
         {measurements !== undefined && FITNESS_MAP.has(def.id) && <FitnessPanel id={def.id} ms={measurements} profile={profile} scrollTo={section === "for-your-age"} />}
 
@@ -432,9 +435,9 @@ function SourceLink({ source: s }: { source: Citation }) {
   const url = s.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${s.pmid}/` : `https://doi.org/${s.doi}`;
   return (
     <>
-      <a href={url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+      <PaperLink href={url} source={{ title: s.title, year: s.year, kind: STUDY_LABEL[s.studyType], n: s.n }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
         {s.title}
-      </a>{" "}
+      </PaperLink>{" "}
       ({s.year}, {STUDY_LABEL[s.studyType]})
     </>
   );

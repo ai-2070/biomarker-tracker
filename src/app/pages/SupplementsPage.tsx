@@ -15,6 +15,7 @@ import { href } from "../router";
 import names from "../../../knowledge/names.json";
 import { searchKnowledgeNames } from "../../core/knowledgeNames";
 import { KnowledgeName } from "../components/KnowledgeName";
+import { PaperLink } from "../components/PaperLink";
 
 const FILTERS: { value: "all" | NutrientKind; label: string }[] = [
   { value: "all", label: "All" },
@@ -129,9 +130,9 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
           <li>
             <span className="text-ink">Food and a supplement are different things.</span> Food tables track about 150 nutrients, but foods are
             estimated to hold more than 26,000 distinct chemicals, most of them never studied: researchers call this nutritional dark matter (
-            <a href="https://doi.org/10.1038/s43016-019-0005-1" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+            <PaperLink href="https://doi.org/10.1038/s43016-019-0005-1" source={{ title: "The unmapped chemical complexity of our diet", year: 2019, authors: "Barabási et al.", kind: "Review" }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
               Barabási 2019
-            </a>
+            </PaperLink>
             ). A supplement gives one nutrient on its own, without everything that comes with it in food, so findings for one don't carry over to
             the other. Diets rich in beta-carotene went with less lung cancer, yet beta-carotene pills raised lung cancer in smokers. That's why
             they're graded separately here.{" "}

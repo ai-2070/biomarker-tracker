@@ -113,6 +113,63 @@ describe("profiles: one folder per person", () => {
     expect(() => profiles.restoreZip(corruptZip)).toThrow(/protocol list.*damaged/);
   });
 
+  it("preserves source-local sleep windows through folder saves and zip restore, with no inferred offsets", () => {
+    const sleep = {
+      id: "sleep", savedOrder: 7, biomarkerId: "sleep_duration", date: "2026-10-25",
+      value: 8, originalValue: 480, originalUnit: "min", source: "device",
+      sleepSessions: [
+        { start: "2026-10-24T23:15:00.125", end: "2026-10-25T07:30:00", kind: "asleep", source: "Synthetic watch", startOffsetMinutes: 120, endOffsetMinutes: 60 },
+        { start: "2026-10-25T14:00:00", end: "2026-10-25T14:30:00", kind: "session", source: "Synthetic watch" },
+      ],
+    };
+    const p = profiles.createProfile({ person: { name: "Sleep fixture" }, measurements: [sleep] });
+    expect(JSON.parse(fs.readFileSync(path.join(p.folder, "results.json"), "utf8"))).toEqual([sleep]);
+    expect(profiles.getProfileData(p.id).measurements).toEqual([sleep]);
+    const edited = { ...sleep, note: "Source-local timestamps kept" };
+    profiles.saveProfileData(p.id, { person: { name: "Sleep fixture" }, measurements: [edited] });
+    const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
+    expect(profiles.getProfileData(restored.id).measurements).toEqual([edited]);
+    const nap = profiles.getProfileData(restored.id).measurements[0]!.sleepSessions![1]!;
+    expect(nap).not.toHaveProperty("startOffsetMinutes");
+    expect(nap).not.toHaveProperty("endOffsetMinutes");
+
+    const { sleepSessions: _sessions, ...durationOnly } = edited;
+    profiles.saveProfileData(p.id, { person: { name: "Sleep fixture" }, measurements: [durationOnly] });
+    expect(profiles.getProfileData(p.id).measurements).toEqual([durationOnly]);
+    expect(profiles.getProfileData(profiles.restoreZip(profiles.backupZip(p.id).data).id).measurements).toEqual([durationOnly]);
+  });
+
+  it("rejects corrupt sleep metadata on profile creation, save, disk read and zip restore without replacing valid history", () => {
+    const session = { start: "2026-10-24T23:00:00", end: "2026-10-25T07:00:00", kind: "asleep" };
+    const sleep = { ...m("sleep", "2026-10-25", 8), biomarkerId: "sleep_duration", originalUnit: "h", sleepSessions: [session] };
+    const p = profiles.createProfile({ person: { name: "Timing validation" }, measurements: [sleep] });
+    const zip = profiles.backupZip(p.id).data;
+    const invalid = [
+      { ...sleep, sleepSessions: [] },
+      { ...sleep, sleepSessions: [null] },
+      { ...sleep, biomarkerId: "sleep_deep" },
+      { ...sleep, date: "2026-10-26" },
+      { ...sleep, sleepSessions: [{ ...session, startOffsetMinutes: 841 }] },
+    ];
+    for (const damaged of invalid) {
+      expect(() => profiles.createProfile({ person: { name: "Broken timing" }, measurements: [damaged] })).toThrow(/Measurement.*damaged/);
+      expect(() => profiles.saveProfileData(p.id, { person: { name: "Timing validation" }, measurements: [damaged] })).toThrow(/Measurement.*damaged/);
+      expect(profiles.getProfileData(p.id).measurements).toEqual([sleep]);
+      const corruptZip = writeZip(readZip(zip).map((entry) =>
+        entry.name.endsWith("/results.json") ? { ...entry, data: Buffer.from(JSON.stringify([damaged])) } : entry,
+      ));
+      expect(() => profiles.restoreZip(corruptZip)).toThrow(/Measurement.*damaged/);
+    }
+    const results = path.join(p.folder, "results.json");
+    fs.writeFileSync(results, JSON.stringify([invalid[0]]));
+    try {
+      expect(() => profiles.getProfileData(p.id)).toThrow(/damaged/);
+      expect(() => profiles.backupZip(p.id)).toThrow(/damaged/);
+    } finally {
+      fs.writeFileSync(results, JSON.stringify([sleep]));
+    }
+  });
+
   it("backs up to a zip and restores it as a new profile, with files", () => {
     const p = profiles.createProfile({ person: { name: "Dora", diet: "vegan" }, measurements: [m("x", "2025-02-02", 20)], protocols: [{ id: "p", label: "Iron 30 mg", category: "supplement", start: "2025-01-01" }] });
     profiles.addFile(p.id, "report.pdf", pdf, "Lab report");

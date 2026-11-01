@@ -5,6 +5,8 @@ import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "..
 import { analyzeMarker } from "../../src/core/experiments";
 import { summarizePhenoAge } from "../../src/core/phenoageDraws";
 import { isActiveOn } from "../../src/core/protocols";
+import { validSleepSessions, sleepLocalTime } from "../../src/core/sleepSessions";
+import { buildSleepTiming, pairSleepCardiac } from "../../src/core/sleepTiming";
 import { flagMeasurement, groupByBiomarker } from "../../src/core/trends";
 import { def, loadDefs } from "../helpers";
 
@@ -79,5 +81,47 @@ describe("example profile (made-up data)", () => {
     expect(demo.protocols.some((p) => p.id === e.protocolId)).toBe(true);
     const r = analyzeMarker(e, def("ldl"), groupByBiomarker(demo.measurements).get("ldl")!);
     expect(r.verdict).toBe("fall");
+  });
+});
+
+describe("made-up example sleep timing", () => {
+  it("adds deterministic recorded windows to the new daily watch readings without changing hours", () => {
+    const daily = series("sleep_duration").filter((m) => m.source === "device");
+    expect(daily).toHaveLength(70);
+    expect(daily.every((m) => validSleepSessions(m.sleepSessions, m.biomarkerId, m.date))).toBe(true);
+    for (const m of daily) {
+      const window = m.sleepSessions![0]!;
+      expect(window).toMatchObject({ kind: "asleep", source: "Example watch" });
+      expect(window).not.toHaveProperty("startOffsetMinutes");
+      expect(window).not.toHaveProperty("endOffsetMinutes");
+      expect(window.start).not.toMatch(/Z|[+-]\d{2}:\d{2}$/);
+      expect(window.end.slice(0, 10)).toBe(m.date);
+      expect((sleepLocalTime(window.end)! - sleepLocalTime(window.start)!) / 3_600_000).toBeCloseTo(m.value, 10);
+      expect(m.originalValue).toBe(m.value);
+    }
+    expect(new Set(daily.map((m) => m.sleepSessions![0]!.end.slice(11, 16))).size).toBeGreaterThan(10);
+    expect(demoProfile(today).measurements.filter((m) => m.biomarkerId === "sleep_duration" && m.source === "device")).toEqual(daily);
+    expect(demo.measurements.filter((m) => m.biomarkerId !== "sleep_duration").every((m) => m.sleepSessions === undefined)).toBe(true);
+    // The older monthly sample nights remain duration-only.
+    expect(series("sleep_duration").filter((m) => m.source !== "device").every((m) => m.sleepSessions === undefined)).toBe(true);
+  });
+
+  it("gives the fictional sleep comparison matching resting pulse and resting HRV on every nightly date", () => {
+    const timing = buildSleepTiming(demo.measurements, { today });
+    const dates = timing.nights.map((night) => night.date);
+    for (const metric of ["resting_hr", "hrv_resting"] as const) {
+      expect(pairSleepCardiac(timing.nights, demo.measurements, metric, "midpoint").points.map((point) => point.date)).toEqual(dates);
+    }
+    const resting = series("resting_hr");
+    expect(new Set(resting.map((m) => m.date)).size).toBe(resting.length);
+  });
+
+  it("keeps generated windows valid across calendar and offset-transition dates without guessed offsets", () => {
+    for (const end of ["2026-01-01", "2026-03-30", "2026-10-26"]) {
+      const example = demoProfile(end);
+      const daily = example.measurements.filter((m) => m.biomarkerId === "sleep_duration" && m.source === "device");
+      expect(buildSleepTiming(daily, { today: end }).nights).toHaveLength(70);
+      expect(daily.every((m) => validSleepSessions(m.sleepSessions, m.biomarkerId, m.date))).toBe(true);
+    }
   });
 });

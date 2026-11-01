@@ -47,9 +47,11 @@ describe("import review data regressions", () => {
     }
     expect(carry).toBe("");
     const series = Object.fromEntries(tally.series().map((s) => [s.from, s.days]));
-    expect(series["Sleep (Watch)"]).toEqual([{ date: "2026-03-02", value: 9, readings: 3 }]);
+    expect(series["Sleep (Watch)"]!.map(({ date, value, readings }) => ({ date, value, readings }))).toEqual([{ date: "2026-03-02", value: 9, readings: 3 }]);
     expect(series["Deep sleep (Watch)"]).toEqual([{ date: "2026-03-02", value: 7.5, readings: 1 }]);
-    expect(series["Sleep (Phone)"]).toEqual([{ date: "2026-03-01", value: 1, readings: 1 }]);
+    expect(series["Sleep (Phone)"]!.map(({ date, value, readings }) => ({ date, value, readings }))).toEqual([{ date: "2026-03-01", value: 1, readings: 1 }]);
+    expect(series["Sleep (Watch)"]![0]!.sleepSessions).toHaveLength(2);
+    expect(JSON.parse(JSON.stringify(series))).toEqual(series);
     expect(tally.series()).toEqual(tally.series());
   });
 

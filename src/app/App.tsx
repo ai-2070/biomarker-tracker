@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
-import { db, deleteEverything, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
+import { db, deleteEverything, ensureExampleSleepData, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
 import { api, type ServerStatus } from "./api";
 import { AppShell, PlainShell } from "./components/AppShell";
 import { Notice } from "./components/ui";
@@ -52,7 +52,11 @@ async function boot(): Promise<Boot> {
     () => null,
   );
   const existing = await db.measurements.count();
-  if (!server) return (await isOnboarded()) ? { state: "ready", mode: "browser", profiles: [], activeId: null } : { state: "setup", mode: "browser", existing };
+  if (!server) {
+    if (!(await isOnboarded())) return { state: "setup", mode: "browser", existing };
+    await ensureExampleSleepData();
+    return { state: "ready", mode: "browser", profiles: [], activeId: null };
+  }
 
   await claimWorkingCopy();
   const { profiles, active, root } = await listProfiles();
@@ -68,6 +72,7 @@ async function boot(): Promise<Boot> {
   }
   if (!active) return { state: "choose", profiles, root };
   if (loaded !== active) await loadIntoBrowser(active);
+  await ensureExampleSleepData();
   startSaving(active);
   return { state: "ready", mode: "folders", profiles, activeId: active, root };
 }

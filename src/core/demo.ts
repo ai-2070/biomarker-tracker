@@ -4,7 +4,7 @@
  * an iron supplement, vitamin D that dips in winter until D3 is started, and LDL that falls during a
  * diet experiment. Same input date, same data (a seeded random generator adds small wobbles).
  */
-import { addDays } from "./dates";
+import { addDays, isIsoDate } from "./dates";
 import type { Plan } from "./plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
@@ -93,6 +93,37 @@ const NIGHTLY_DAYS = 70;
  */
 export function demoBodyMeasurements(today: string): Measurement[] {
   return demoProfile(today).measurements.filter((m) => BODY_IDS.has(m.biomarkerId));
+}
+
+const EXAMPLE_NIGHTLY_FIELDS: Record<string, true | undefined> = {
+  sleep_duration: true, hrv: true, hrv_resting: true, steps: true, active_minutes: true,
+};
+
+/** Upgrade only untouched, recognizable fictional watch readings from an older example. */
+export function exampleSleepUpdates(profile: Profile, measurements: readonly Measurement[]): Measurement[] {
+  if (profile.example !== true) return [];
+  const originalWatch = measurements.filter((m) => /^example-\d+$/.test(m.id) && EXAMPLE_NIGHTLY_FIELDS[m.biomarkerId] &&
+    m.source === "device" && isIsoDate(m.date) && m.originalUnit === DEMO_UNITS[m.biomarkerId] && m.originalValue === m.value &&
+    m.qualifier === undefined && m.note === undefined && m.lab === undefined && m.labRange === undefined && m.fasted === undefined);
+  const watch = originalWatch.filter((m) => m.biomarkerId === "sleep_duration" &&
+    (m.sleepSessions === undefined || m.sleepSessions.every((session) => session.source === "Example watch")));
+  if (!watch.length) return [];
+  const last = originalWatch.reduce((latest, m) => m.date > latest ? m.date : latest, watch[0]!.date);
+  const original = demoProfile(addDays(last, 1)).measurements;
+  const expected = new Map(original.filter((m) => m.biomarkerId === "sleep_duration" && m.source === "device").map((m) => [m.date, m]));
+  const dates = new Set<string>();
+  const updates: Measurement[] = [];
+  for (const m of watch) {
+    const match = expected.get(m.date);
+    if (!match || m.value !== match.value) continue;
+    dates.add(m.date);
+    if (m.sleepSessions === undefined) updates.push({ ...m, sleepSessions: match.sleepSessions });
+  }
+  const restingDates = new Set(measurements.filter((m) => m.biomarkerId === "resting_hr").map((m) => m.date));
+  for (const m of original) {
+    if (m.id.startsWith("example-sleep-rhr-") && dates.has(m.date) && !restingDates.has(m.date)) updates.push(m);
+  }
+  return updates;
 }
 
 export function demoProfile(today: string): DemoData {
@@ -237,16 +268,37 @@ export function demoProfile(today: string): DemoData {
   // judges sleep on a week's average and shows HRV against this person's own usual range.
   for (let d = NIGHTLY_DAYS; d >= 1; d--) {
     const date = addDays(today, -d);
-    const night = (biomarkerId: string, value: number) => {
+    const night = (biomarkerId: string, value: number, extra: Partial<Measurement> = {}) => {
       n += 1;
-      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "device" });
+      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "device", ...extra });
     };
-    night("sleep_duration", wobble(7.3, 0.08, 0.05));
+    const sleepHours = wobble(7.3, 0.08, 0.05);
+    // Invented watch windows for this newly generated example only; preserve the existing hours
+    // and random sequence. Real duration-only readings never get reconstructed this way.
+    const wake = Date.parse(`${date}T07:00:00Z`) + (((NIGHTLY_DAYS - d) * 13) % 61 - 30) * 60_000;
+    night("sleep_duration", sleepHours, {
+      sleepSessions: [{
+        start: new Date(wake - Math.round(sleepHours * 3_600_000)).toISOString().slice(0, 19),
+        end: new Date(wake).toISOString().slice(0, 19),
+        kind: "asleep",
+        source: "Example watch",
+      }],
+    });
     night("hrv", Math.round(wobble(39, 0.25, 1)));
     night("hrv_resting", Math.round(wobble(48, 0.2, 1)));
     // Steps and active minutes every day: about 210 active minutes a week, above the WHO's 150.
     night("steps", wobble(8400, 0.25, 1));
     night("active_minutes", wobble(30, 0.45, 1));
+  }
+
+  // Fictional daily resting pulse makes the sleep comparison usable without inventing a relationship.
+  const restingDates = new Set(measurements.filter((m) => m.biomarkerId === "resting_hr").map((m) => m.date));
+  for (let i = 0; i < NIGHTLY_DAYS; i++) {
+    const date = addDays(today, -NIGHTLY_DAYS + i);
+    if (restingDates.has(date)) continue;
+    const value = 60 + (i * 7) % 9;
+    measurements.push({ id: `example-sleep-rhr-${date}`, biomarkerId: "resting_hr", date, value, originalValue: value,
+      originalUnit: "bpm", source: "device", note: "Fictional example watch · resting heart rate" });
   }
 
   const protocols: ProtocolEntry[] = [

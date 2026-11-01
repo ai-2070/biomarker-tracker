@@ -7,6 +7,7 @@ import { formatDate, formatYears } from "../../format";
 import { href } from "../../router";
 import { Card, LinkButton, Notice } from "../ui";
 import { Figure } from "./widgets";
+import { PaperLink } from "../PaperLink";
 
 const PAPER_URL = "https://pubmed.ncbi.nlm.nih.gov/23691196/";
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
@@ -105,9 +106,9 @@ export function FitnessAgeSection({ ms, profile }: { ms: Measurement[]; profile:
         <p>
           <span className="font-medium text-ink">Source: </span>
           treadmill tests of 3,816 healthy adults aged 20–90 in the HUNT 3 Fitness Study, Norway (
-          <a href={PAPER_URL} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-2 hover:underline">
+          <PaperLink href={PAPER_URL} source={{ title: "Aerobic capacity reference data in 3816 healthy men and women 20-90 years", authors: "Loe et al.", journal: "PLoS One", year: 2013, n: 3816 }} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-2 hover:underline">
             Loe et al., PLoS One 2013
-          </a>
+          </PaperLink>
           ). Group averages are placed at the middle of each age group and joined with straight lines.
         </p>
         <p>

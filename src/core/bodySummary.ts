@@ -5,6 +5,7 @@ import { ageAt } from "./phenoageDraws";
 import { personalRange } from "./personalRange";
 import { flagLatest, recentTotal, resolveRange, sortByDate } from "./trends";
 import { fitnessSummary, type FitnessTestDef } from "./fitnessTests";
+import { buildSleepTiming, pairSleepCardiac, sleepClock, type SleepCardiacMetric } from "./sleepTiming";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
 
 const r1 = (v: number) => Math.round(v * 10) / 10;
@@ -34,6 +35,17 @@ export function bodySummary(
   const sys30 = series("bp_systolic").filter((m) => bp && m.date >= shift(bp.systolic.date, -29) && m.date <= bp.systolic.date);
   const dia30 = series("bp_diastolic").filter((m) => bp && m.date >= shift(bp.systolic.date, -29) && m.date <= bp.systolic.date);
   const h = heartAgeData(profile, measurements, protocols, today);
+  const sleepFrom = shift(today, -29);
+  const sleep = buildSleepTiming(measurements, { from: sleepFrom, to: today, today });
+  const lastSleep = sleep.nights.at(-1);
+  const cardiacPairs = (metric: SleepCardiacMetric) => {
+    const paired = pairSleepCardiac(sleep.nights, measurements, metric, "midpoint");
+    return {
+      sameWakeDatePairs: paired.points.length,
+      consecutiveNightShiftPairs: paired.points.reduce((count, p) => count + (p.sleep.midpointShiftMinutes === undefined ? 0 : 1), 0),
+      excludedNights: paired.excluded,
+    };
+  };
   const latestOf = (id: string) => {
     const s = series(id);
     const last = s.at(-1);
@@ -90,6 +102,40 @@ export function bodySummary(
     ...opt("sleepHours", latestOf("sleep_duration")),
     ...opt("deepSleepHours", latestOf("sleep_deep")),
     ...opt("remSleepHours", latestOf("sleep_rem")),
+    sleepTiming: {
+      from: sleepFrom,
+      to: today,
+      nightsWithTiming: sleep.nights.length,
+      durationOnlyNights: sleep.durationOnlyNights,
+      invalidNights: sleep.invalidNights,
+      regularity: sleep.regularity,
+      ...(lastSleep ? {
+        latest: {
+          date: lastSleep.date,
+          kind: lastSleep.main.kind,
+          ...(lastSleep.main.source ? { source: lastSleep.main.source } : {}),
+          startClock: sleepClock(lastSleep.start),
+          endClock: sleepClock(lastSleep.end),
+          midpointClock: sleepClock(lastSleep.midpoint),
+          startHours: lastSleep.start,
+          endHours: lastSleep.end,
+          midpointHours: lastSleep.midpoint,
+          sessionCount: lastSleep.windows.length,
+        },
+      } : {}),
+      cardiacPairs: {
+        restingHeartRate: cardiacPairs("resting_hr"),
+        restingHrv: cardiacPairs("hrv_resting"),
+      },
+      notes: [
+        "Source-local recorded windows, not bedtimes inferred from hours slept. The longest session is principal; naps are not averaged into it. In-bed and generic session bounds are not the exact moment of falling asleep.",
+        "Regularity is the average absolute shortest clock shift in minutes between consecutive waking dates with the same window kind and a known unchanged source. Individual shifts are signed: later positive, earlier negative. No score, threshold or ideal bedtime.",
+        "Clock midpoints are halfway between local-clock bounds, not elapsed-time midpoints across offset changes. Recorded offsets affect longest-session selection only when both are known.",
+        "Cardiac counts match only the exact waking date and only resting heart rate or resting RMSSD HRV; missing dates are not carried. Same-date readings need not cover the same sleep window. No correlation or causal effect is calculated; alcohol, illness, training, medicines and device differences can affect both.",
+        ...(sleep.regularity.pairs ? [] : ["No eligible adjacent-night pairs: at least two consecutive waking dates with valid timing, the same kind and a known unchanged source are needed. Missing shift values are unavailable, not zero."]),
+        "Duration-only saved nights need device-file re-import to obtain recorded timing; old real profiles are never filled with guessed times.",
+      ],
+    },
     ...opt("vo2maxMlKgMin", latestOf("vo2max")),
     ...opt("dailySteps", (() => {
       const s = latestOf("steps");

@@ -9,6 +9,7 @@ import { Fold, FoldGroup } from "./disclosure";
 import { StudyLink } from "./evidence";
 import { InlineBirthMonth } from "./InlineBirthMonth";
 import { Card, cx } from "./ui";
+import { PaperLink } from "./PaperLink";
 
 const BODY_FAT = BIOMARKER_MAP.get("body_fat")!;
 const WEIGHT = BIOMARKER_MAP.get("weight")!;
@@ -101,7 +102,7 @@ export function BodyFatComparison({ measurements, profile, today }: { measuremen
             {!adult && <p className="text-ink-2">The adult reference is shown for information only. No personal group is assigned without an adult age.</p>}
             <FitnessReferenceChart ranges={FITNESS_FAT_RANGES[sex]} value={adult ? result.value : undefined} selected={result.fitness?.id} />
           </> : <p className="text-ink-2">Add sex in Settings to see the appropriate reference. No male or female range is assumed.</p>}
-          <p className="max-w-3xl text-sm text-ink-2">Published whole-number ranges have small gaps. A decimal value between them is left unclassified rather than inventing a cut-off. This is a common ACE-attributed reference, not a validated age-specific clinical standard. <a href={FITNESS_SOURCE} target="_blank" rel="noreferrer">Reference table and limitations (Healthline, 2025)</a>.</p>
+          <p className="max-w-3xl text-sm text-ink-2">Published whole-number ranges have small gaps. A decimal value between them is left unclassified rather than inventing a cut-off. This is a common ACE-attributed reference, not a validated age-specific clinical standard. <PaperLink href={FITNESS_SOURCE} source={{ title: "Reference table and limitations", authors: "Healthline", year: 2025 }} target="_blank" rel="noreferrer">Reference table and limitations (Healthline, 2025)</PaperLink>.</p>
         </div>
       </Fold>
       <Fold title="Sources and measurement limits" summary="How the references were made, and why a reading is only an estimate.">

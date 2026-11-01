@@ -12,6 +12,7 @@ import { SafetyNotices } from "./SafetyNotices";
 import { Chip, Row, Rows } from "./disclosure";
 import { GradeBadge } from "./evidence";
 import { cx } from "./ui";
+import { PaperLink } from "./PaperLink";
 
 const KIND: Record<EvidenceClaim["kind"], string> = {
   food: "Food",
@@ -191,9 +192,9 @@ function StudyLink({ s }: { s: Citation }) {
   };
   return (
     <>
-      <a href={url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+      <PaperLink href={url} source={{ title: s.title, year: s.year, kind: type[s.studyType], n: s.n }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
         {s.title}
-      </a>{" "}
+      </PaperLink>{" "}
       ({s.year}, {type[s.studyType]}
       {s.n ? `, ${s.n.toLocaleString()} people` : ""})
     </>

@@ -9,6 +9,7 @@ import { BIOMARKER_MAP } from "../../knowledge";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
 import { Card, cx } from "../ui";
+import { PaperLink } from "../PaperLink";
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
 const label = "font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase";
@@ -136,17 +137,17 @@ export function DunedinScores({ results }: { results: readonly { date: string; v
       {s.bestThree ? (
         <p>
           <span className="font-medium">Leaderboard score:</span> {two(s.bestThree.value)}, the average of your best 3 of those tests, as the{" "}
-          <a href={RO_URL} target="_blank" rel="noopener noreferrer" className="text-accent">
+          <PaperLink href={RO_URL} source={{ title: "DunedinPACE leaderboard", authors: "Rejuvenation Olympics" }} target="_blank" rel="noopener noreferrer" className="text-accent">
             Rejuvenation Olympics
-          </a>{" "}
+          </PaperLink>{" "}
           ranks people (lower is better; its leaders average about 0.50).
         </p>
       ) : (
         <p className="text-ink-2">
           A leaderboard score (the{" "}
-          <a href={RO_URL} target="_blank" rel="noopener noreferrer" className="text-accent">
+          <PaperLink href={RO_URL} source={{ title: "DunedinPACE leaderboard", authors: "Rejuvenation Olympics" }} target="_blank" rel="noopener noreferrer" className="text-accent">
             Rejuvenation Olympics
-          </a>{" "}
+          </PaperLink>{" "}
           rule: the best 3 tests within 2 years) needs 3 tests in 2 years.
         </p>
       )}

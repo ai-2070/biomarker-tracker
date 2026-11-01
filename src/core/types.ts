@@ -162,6 +162,20 @@ export interface Experiment {
   chosenOn?: string;
 }
 
+/** Recorded local sleep-window bounds. Local ISO timestamps have no guessed time zone. */
+export interface SleepSession {
+  /** YYYY-MM-DDTHH:mm:ss[.SSS], in the source's local clock. */
+  start: string;
+  end: string;
+  /** Minutes east of UTC, only when the source supplies them (may differ across daylight saving). */
+  startOffsetMinutes?: number;
+  endOffsetMinutes?: number;
+  /** A session or in-bed boundary must not be described as the exact moment of falling asleep. */
+  kind: "asleep" | "in-bed" | "session";
+  /** Stable device/provider label, when known; not the person's name. */
+  source?: string;
+}
+
 export interface Measurement {
   id: string;
   /** Monotonic save order in this profile; disambiguates readings on the same sample date. */
@@ -183,6 +197,8 @@ export interface Measurement {
   /** "device": read from a watch or phone app's export file. */
   source: "manual" | "pdf" | "csv" | "photo" | "device";
   note?: string;
+  /** Imported sleep windows on the waking date; only on sleep_duration. Never inferred from hours. */
+  sleepSessions?: SleepSession[];
 }
 
 export interface ProtocolEntry {

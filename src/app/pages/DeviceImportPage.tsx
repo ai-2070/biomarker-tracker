@@ -13,8 +13,10 @@ import {
   safeCut,
   tableOf,
   type DailySeries,
+  type TableColumn,
 } from "../../core/importers/deviceFiles";
 import { zipEntries } from "../../core/importers/zipRead";
+import { validSleepSessions } from "../../core/sleepSessions";
 import type { Measurement } from "../../core/types";
 import { listUnits, matchUnit, toCanonical } from "../../core/units";
 import { saveDeviceMeasurements } from "../../db/db";
@@ -84,7 +86,7 @@ interface Candidate {
   unit: string;
   file: string;
   files: number;
-  readings: { date: string; value: number }[];
+  readings: TableColumn["readings"];
 }
 
 /** Adds a table's columns to the candidates. False when nothing in it is a body measurement. */
@@ -225,6 +227,7 @@ export function DeviceImportPage() {
           originalValue: d.value,
           originalUnit: unit,
           date: d.date,
+          ...(validSleepSessions(d.sleepSessions, def.id, d.date) ? { sleepSessions: d.sleepSessions } : {}),
           note: `${r.file}: ${r.series.from}${d.readings > 1 ? `, ${DAILY_TOTAL_FIELDS.has(r.series.field) ? "total" : "average"} of ${d.readings} readings` : ""}`,
         });
       }
@@ -326,6 +329,9 @@ export function DeviceImportPage() {
               <h2 className="font-serif text-2xl font-normal">Found {read.rows.length === 1 ? "one series" : `${read.rows.length} series`}</h2>
               <p className="text-ink-2">One value per day: the average of readings, or the total for sleep and activity. Overlapping daily summaries use one file per day, not their sum. Check what each became, change it if needed, and untick what you don't want.</p>
               <p className="text-sm text-ink-2">Saving replaces existing readings for the same measurement and date, including manually entered readings. Other dates are kept.</p>
+              {read.rows.some((r) => r.series.field === "sleep_duration") && (
+                <p className="text-sm text-ink-2">Sleep timings keep the export's local clock, not this computer's time zone. Stage-based asleep bounds, in-bed windows and other session estimates are kept distinct. Missing offsets stay unknown; a duration alone never becomes a guessed bedtime.</p>
+              )}
               <ul className="flex flex-col divide-y divide-line">
                 {read.rows.map((r, i) => (
                   <SeriesRow key={r.key} row={r} earlier={read.rows.slice(0, i)} have={have} onChange={(patch) => update(r.key, patch)} />
@@ -390,6 +396,10 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
         .map((o) => ({ o, n: o.series.days.filter((d) => dates.has(d.date)).length }))
         .find((x) => x.n > 0)
     : undefined;
+  const timingDays = s.days.filter((d) => validSleepSessions(d.sleepSessions, s.field, d.date));
+  const timingSessions = timingDays.flatMap((d) => d.sleepSessions!);
+  const timingKinds = [...new Set(timingSessions.map((session) => session.kind === "asleep" ? "asleep bounds" : session.kind === "in-bed" ? "in-bed windows" : "session estimates"))];
+  const unknownOffsets = timingSessions.filter((session) => session.startOffsetMinutes === undefined || session.endOffsetMinutes === undefined).length;
   return (
     <li className={cx("flex flex-wrap items-start gap-x-4 gap-y-2 py-3", !r.include && "opacity-70")}>
       <Checkbox.Root
@@ -424,6 +434,13 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
           {s.dropped > 0 && ` · ${s.dropped} impossible ${s.dropped === 1 ? "reading" : "readings"} left out`}
           {!!s.reconciled && ` · ${s.reconciled} overlapping summary or sample ${s.reconciled === 1 ? "row" : "rows"} left out; one summary file is used per day`}
         </p>
+        {s.field === "sleep_duration" && (
+          <p className="text-sm text-ink-2">
+            {timingDays.length > 0
+              ? `${timingDays.length} ${timingDays.length === 1 ? "night" : "nights"} with timing · ${timingSessions.length} recorded ${timingSessions.length === 1 ? "window" : "windows"} (${timingKinds.join(", ")})${unknownOffsets ? ` · ${unknownOffsets} with unknown time-zone offsets` : " · source offsets recorded"}. Naps stay separate.`
+              : "Duration only: no usable dated sleep start and end in this series. Sleep duration will still be saved."}
+          </p>
+        )}
         {overlap && (
           <p className="text-sm text-warn">
             Overlaps with "{overlap.o.series.from}" above on {overlap.n} {overlap.n === 1 ? "day" : "days"}; on those days the one above is used. If they measure

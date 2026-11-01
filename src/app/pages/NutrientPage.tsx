@@ -22,6 +22,7 @@ import { href } from "../router";
 import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
 import { SupplementGuide } from "../components/SupplementGuide";
+import { PaperLink } from "../components/PaperLink";
 
 
 const INTAKE_TYPE = {
@@ -261,7 +262,7 @@ export function NutrientPage({ id }: { id: string }) {
             <ul className="flex flex-col gap-1 text-sm text-ink-2">
               {n.basicSources.map((s) => (
                 <li key={s.url}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">{s.title}</a> ({s.year})
+                  <PaperLink href={s.url} source={{ title: s.title, year: s.year }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">{s.title}</PaperLink> ({s.year})
                 </li>
               ))}
             </ul>

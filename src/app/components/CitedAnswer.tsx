@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { checkCitations } from "../../ai/citations";
 import { cx } from "./ui";
+import { PaperLink } from "./PaperLink";
 
 /** Where a verified citation links to. */
 function citeUrl(id: string): string {
@@ -23,7 +24,7 @@ function line(text: string, allowed: ReadonlySet<string>, key: string): ReactNod
     s.type === "text" ? (
       inline(s.text, `${key}-${i}`)
     ) : s.valid ? (
-      <a
+      <PaperLink
         key={`${key}-${i}`}
         href={citeUrl(s.id)}
         target="_blank"
@@ -31,7 +32,7 @@ function line(text: string, allowed: ReadonlySet<string>, key: string): ReactNod
         className="mx-0.5 inline-flex items-center rounded bg-accent-soft px-1.5 font-mono text-xs text-accent no-underline"
       >
         {s.id}
-      </a>
+      </PaperLink>
     ) : (
       <span key={`${key}-${i}`} title="Not one of the studies the assistant retrieved" className="mx-0.5 inline-flex items-center rounded bg-danger-soft px-1.5 font-mono text-xs text-danger line-through">
         {s.id}
