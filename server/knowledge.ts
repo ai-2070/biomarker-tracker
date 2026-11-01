@@ -10,20 +10,36 @@ import { validateWholeFoodDef, wholeFoodFor, type WholeFoodDef } from "../src/co
 import type { FoodDb } from "../src/core/meals";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../src/core/types";
 import { ROOT } from "./store";
-import type { LifeTableFile } from "../src/core/lifeTable";
+import { validateLifeTables, type LifeTableFile } from "../src/core/lifeTable";
+import { validateMortalityModels, type MortalityModelFile } from "../src/core/mortalityModel";
 
 let tables: LifeTableFile | null | undefined;
-/** Eurostat life tables (knowledge/lifetables), read once; null when the file is missing. */
+/** Official country life tables, read once; invalid or missing files fail closed. */
 export function lifeTables(): LifeTableFile | undefined {
   if (tables === undefined) {
     try {
-      tables = JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "lifetables", "eurostat.json"), "utf8")) as LifeTableFile;
+      const value: unknown = JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "lifetables", "countries.json"), "utf8"));
+      tables = validateLifeTables(value).length === 0 ? value as LifeTableFile : null;
     } catch {
       tables = null;
     }
   }
   return tables ?? undefined;
 }
+let mortality: MortalityModelFile | null | undefined;
+/** Offline-fitted public-cohort coefficients. Invalid/missing files never become guessed parameters. */
+export function mortalityModels(): MortalityModelFile | undefined {
+  if (mortality === undefined) {
+    try {
+      const value: unknown = JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "models", "mortality.json"), "utf8"));
+      mortality = validateMortalityModels(value).length === 0 ? value as MortalityModelFile : null;
+    } catch {
+      mortality = null;
+    }
+  }
+  return mortality ?? undefined;
+}
+
 
 function readAll(dir: string): unknown[] {
   return fs

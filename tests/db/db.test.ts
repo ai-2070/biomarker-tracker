@@ -32,6 +32,7 @@ import {
   fillPersonalDetails,
   LOADED_PROFILE_KEY,
   saveBirthMonth,
+  saveCountry,
 } from "../../src/db/db";
 
 let db: TrackerDB;
@@ -164,6 +165,32 @@ describe("db", () => {
     await setProfile({ name: "Person" }, db);
     await expect(saveBirthMonth(birthMonth, { id: null, name: "Person" }, "2026-10-30", db)).rejects.toThrow();
     expect(await getProfile(db)).toEqual({ name: "Person" });
+  });
+
+  it("saves a missing country once while preserving concurrent profile edits", async () => {
+    await setProfile({ name: "Person", heightCm: 192, notes: "New private note", conditions: "asthma" }, db);
+    const results = await Promise.all([
+      saveCountry("US", { id: null, name: "Person" }, db),
+      saveCountry("GB", { id: null, name: "Person" }, db),
+    ]);
+    expect(results).toEqual([true, false]);
+    expect(await getProfile(db)).toEqual({ name: "Person", heightCm: 192, notes: "New private note", conditions: "asthma", country: "US" });
+  });
+  it("refuses a country save after switching profiles and never replaces a saved country", async () => {
+    await db.settings.put({ key: LOADED_PROFILE_KEY, value: "other-folder" });
+    await setProfile({ name: "Other", country: "AT" }, db);
+    expect(await saveCountry("US", { id: "original-folder" }, db)).toBe(false);
+    expect(await saveCountry("US", { id: "other-folder" }, db)).toBe(false);
+    await db.settings.delete(LOADED_PROFILE_KEY);
+    await setProfile({ name: "Replacement" }, db);
+    expect(await saveCountry("CA", { id: null, name: "Original" }, db)).toBe(false);
+    expect(await getProfile(db)).toEqual({ name: "Replacement" });
+  });
+  it("repairs unsupported legacy countries but rejects unknown choices", async () => {
+    await setProfile({ name: "Person", country: "ZZ" }, db);
+    await expect(saveCountry("constructor", { id: null, name: "Person" }, db)).rejects.toThrow();
+    expect(await saveCountry("NZ", { id: null, name: "Person" }, db)).toBe(true);
+    expect((await getProfile(db)).country).toBe("NZ");
   });
 
   it("stores and queries measurements per biomarker, sorted by date", async () => {

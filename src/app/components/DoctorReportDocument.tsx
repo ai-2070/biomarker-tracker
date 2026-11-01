@@ -96,7 +96,7 @@ export function DoctorReportDocument({ report, units }: { report: DoctorReport; 
                   <th scope="row">{series.def.name}{series.def.category !== "Body" && <span className="doctor-report-secondary">{series.def.category}</span>}</th>
                   <td>{readingText(series, series.latest, unit)}</td>
                   <td>{formatDate(series.latest.date)}</td>
-                  <td>{series.def.judgeSumOfDays ? "Weekly reference only; no daily comparison" : showRange(series.def, series.latestRange, unit) || "Not available"}{series.latestRange && <span className="doctor-report-secondary">{({ lab: "Laboratory", default: "General reference", personal: "Personal usual range" })[series.latestRange.source]}</span>}</td>
+                  <td>{series.def.judgeSumOfDays ? "Weekly reference only; no daily comparison" : showRange(series.def, series.latestRange, unit) || "Not available"}{series.latestRange && <span className="doctor-report-secondary">{series.latestRange.comparisonOnly ? "Population comparison only; not clinical limits" : ({ lab: "Laboratory", default: "General reference", personal: "Personal usual range" })[series.latestRange.source]}</span>}</td>
                   <td>{series.latestFlag === "unknown" ? "Not assessed" : FLAG_LABEL[series.latestFlag]}</td>
                 </tr>;
               })}</tbody>
@@ -114,7 +114,7 @@ export function DoctorReportDocument({ report, units }: { report: DoctorReport; 
             </div>}
           </div>)}
         </section>)}
-        <p className="doctor-report-small">Flags reflect the app's available reference ranges, not a diagnosis. “Not assessed” is not a normal result: a range may be unavailable, the reading may be bounded, or the marker may need several days of readings.</p>
+        <p className="doctor-report-small">Flags reflect the app's available clinical reference ranges, not a diagnosis. “Not assessed” is not a normal result: a range may be unavailable or for population comparison only, the reading may be bounded, or the marker may need several days of readings.</p>
       </section>
 
       <section>

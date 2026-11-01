@@ -1,0 +1,4423 @@
+{
+  "modelVersion": "nhanes-1999-2006-cox-v1",
+  "fittedOn": "2026-11-01",
+  "versions": {
+    "numpy": "1.26.3",
+    "scipy": "1.12.0",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "lifelines": "0.30.0",
+    "python": "3.10.11",
+    "bun": "1.4.4"
+  },
+  "command": "python tools/longevity/train.py --cache <local-cohort-cache>",
+  "commandKind": "Portable reproduction recipe, not a machine-local invocation",
+  "codeSha256": {
+    "tools/longevity/train.py": "bf8109a9359866bfddfc9d1a0eda7b74bc0297ba22f55e0de920a374194f0949",
+    "tools/longevity/features.ts": "5c44040e8d427504a4307b152851df691c244c5921365b355156e951d01f0600",
+    "src/core/mortalityModel.ts": "99cbec512146cb11af55a68032d4f9ca2524c7cb46d5fa84073353cd2cecc3a5",
+    "src/core/phenoage.ts": "41f45fa0238e1944e268141ec429017f3d9c3f662c9c418686b47b722cdd1d4d"
+  },
+  "seed": 20261101,
+  "sourceManifest": [
+    {
+      "year": 1999,
+      "name": "DEMO",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/DEMO.xpt",
+      "bytes": 11500560,
+      "sha256": "a17bd1ebfd6007b8dc93f16259cb090678eb6c467a39363b7e932bba15febf89",
+      "kind": "xpt",
+      "filename": "DEMO.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "BMX",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BMX.xpt",
+      "bytes": 2827840,
+      "sha256": "6b9bc4d998c0004fc42b213cc7f5bf347df937707f46d6d25fab926723a60500",
+      "kind": "xpt",
+      "filename": "BMX.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "LAB18",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB18.xpt",
+      "bytes": 2223120,
+      "sha256": "36dc6f02045ceb61e146885bb04400fd580c9c35cc3bfc4269e314f0e06fe9c0",
+      "kind": "xpt",
+      "filename": "LAB18.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "LAB25",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB25.xpt",
+      "bytes": 1487520,
+      "sha256": "f69ef53e50fb3eea6a9e03b0e1167f201ecdb6ad485793002f4f7bee100fbd45",
+      "kind": "xpt",
+      "filename": "LAB25.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "LAB11",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB11.xpt",
+      "bytes": 469040,
+      "sha256": "9ed9904dfc804b50c2c08b763b43d7df702913fc010c0f877e10f9f195ee183a",
+      "kind": "xpt",
+      "filename": "LAB11.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "SMQ",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SMQ.xpt",
+      "bytes": 1733760,
+      "sha256": "fb1505ea08e310a5cb703ccae0e220aede3da812674e9e53f832fe76e31c2ce3",
+      "kind": "xpt",
+      "filename": "SMQ.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "PAQ",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PAQ.xpt",
+      "bytes": 1547280,
+      "sha256": "e256a0fe7fdc99fcd7fd23245b82b2aea84586ed3a65767c08b10ee68f96b8fa",
+      "kind": "xpt",
+      "filename": "PAQ.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "PAQIAF",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PAQIAF.xpt",
+      "bytes": 520720,
+      "sha256": "092b0161df373d0b3b36d9c090cb2e9ea1a63125908bf5db35c57ddea3019c60",
+      "kind": "xpt",
+      "filename": "PAQIAF.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "DXX",
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/1999/datafiles/dxx.xpt",
+      "bytes": 24737440,
+      "sha256": "9567c94c4a2efd3bb67817f051bec4e778c648c9a2dd222a894fe0ca78598d37",
+      "kind": "xpt",
+      "filename": "DXX.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "DEMO_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.xpt",
+      "bytes": 3273520,
+      "sha256": "6458dc2307cee244ab6ba26f70ec78c7b842ffc68e668bc43f0ab6b9737937d9",
+      "kind": "xpt",
+      "filename": "DEMO_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "BMX_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.xpt",
+      "bytes": 2183680,
+      "sha256": "55715d4387960f88e48a2adf44da0b270a83290b1edf7c8e4ecc0eb2c29c59cf",
+      "kind": "xpt",
+      "filename": "BMX_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "L40_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L40_B.xpt",
+      "bytes": 2448480,
+      "sha256": "16f907f3a945cc24d053a9492a3f90edd3e0335f70ba047bbd9952ba6a00e182",
+      "kind": "xpt",
+      "filename": "L40_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "L25_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L25_B.xpt",
+      "bytes": 1671760,
+      "sha256": "4bce7e5622c4b79b9965d7869875e05dae547c4b222fd89db47b8efb430b85f3",
+      "kind": "xpt",
+      "filename": "L25_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "L11_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L11_B.xpt",
+      "bytes": 446240,
+      "sha256": "1a78e83a59aaa4a04aeb8ed7abeaeb4b87e9950601ac428c52fae9ce53e9bbbc",
+      "kind": "xpt",
+      "filename": "L11_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "SMQ_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.xpt",
+      "bytes": 2073680,
+      "sha256": "179d7ad46de9478824d475de0e6425f474b34dd4798066a552acd31b89f07fde",
+      "kind": "xpt",
+      "filename": "SMQ_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "PAQ_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQ_B.xpt",
+      "bytes": 1699520,
+      "sha256": "c03073bb2e50ac4a97b588947fd4b4783a3b5c43da07a9d9a53f0879ec0b9229",
+      "kind": "xpt",
+      "filename": "PAQ_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "PAQIAF_B",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQIAF_B.xpt",
+      "bytes": 754400,
+      "sha256": "f2b0e6581e060cf58e2506b0a9e9becaaaf43da53e8162742777941d651cd20f",
+      "kind": "xpt",
+      "filename": "PAQIAF_B.xpt"
+    },
+    {
+      "year": 2001,
+      "name": "DXX_B",
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2001/datafiles/dxx_b.xpt",
+      "bytes": 32695200,
+      "sha256": "6eeb2dabff1fc4a33df2dfe2b46e86eb6f0986319f238f1cb8066e7d695852f6",
+      "kind": "xpt",
+      "filename": "DXX_B.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "DEMO_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DEMO_C.xpt",
+      "bytes": 3569840,
+      "sha256": "2a2fdb88263337bfa06f0516bfb419631595f0a0ee88fb96069bed13d1857c6f",
+      "kind": "xpt",
+      "filename": "DEMO_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "BMX_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.xpt",
+      "bytes": 2551120,
+      "sha256": "b3d3e431b5964ea8b5807035044322fcf32f3878d814d4a844204e51c793f090",
+      "kind": "xpt",
+      "filename": "BMX_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "L40_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L40_C.xpt",
+      "bytes": 2074960,
+      "sha256": "a5642b8aa6e90ee0961562572f7152d47df67a318dd41cb164e3a2fe4aaaae4d",
+      "kind": "xpt",
+      "filename": "L40_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "L25_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L25_C.xpt",
+      "bytes": 1545760,
+      "sha256": "3231a8c24179b37014ddb7b6ec1afaa30295dcb14a917af30666be1e8ad9fb6e",
+      "kind": "xpt",
+      "filename": "L25_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "L11_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L11_C.xpt",
+      "bytes": 295040,
+      "sha256": "f8941c4561d166fe68c16194108269ba00b4bfbe2aa10b20d5bfbc0c7e521760",
+      "kind": "xpt",
+      "filename": "L11_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "SMQ_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.xpt",
+      "bytes": 1932320,
+      "sha256": "fbfe1e4b286ab43fdc3fd84c3830bb241b8b5ca84b3ab5902b8808e4136efc2c",
+      "kind": "xpt",
+      "filename": "SMQ_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "PAQ_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQ_C.xpt",
+      "bytes": 1488000,
+      "sha256": "085928dcff32acc98efc8d1d30eeceb022b56d6ab565e0572251a325a576c765",
+      "kind": "xpt",
+      "filename": "PAQ_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "PAQIAF_C",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQIAF_C.xpt",
+      "bytes": 722320,
+      "sha256": "51e7648d91f3c3be158aa43d2d6732d93f9c8aa0f6fddef7d31eb24402c71904",
+      "kind": "xpt",
+      "filename": "PAQIAF_C.xpt"
+    },
+    {
+      "year": 2003,
+      "name": "DXX_C",
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2003/datafiles/dxx_c.xpt",
+      "bytes": 30371680,
+      "sha256": "8840fcaa518d7ee0c3c64e826dfb512cf0ac9be5cd00b1895a9782cb885c91df",
+      "kind": "xpt",
+      "filename": "DXX_C.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "DEMO_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/DEMO_D.xpt",
+      "bytes": 3566560,
+      "sha256": "bf9cc79cce501b2fbe5aa8d5b403b618548d02d4aefeb528335cdd9f4c40a3af",
+      "kind": "xpt",
+      "filename": "DEMO_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "BMX_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BMX_D.xpt",
+      "bytes": 2153760,
+      "sha256": "a52909be94cf825ba8a65477a9528603576fd5fbf3abadd72549a3f15c88566e",
+      "kind": "xpt",
+      "filename": "BMX_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "BIOPRO_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BIOPRO_D.xpt",
+      "bytes": 2072000,
+      "sha256": "6de916025812b78db1b81e62f77d94d83ed8b046d9d5c8a9d584f7caec120310",
+      "kind": "xpt",
+      "filename": "BIOPRO_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "CBC_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CBC_D.xpt",
+      "bytes": 1589600,
+      "sha256": "06c68d5d40146dd606ffeb038dee1295f9a9f63009033bd78a14e0636717aad7",
+      "kind": "xpt",
+      "filename": "CBC_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "CRP_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CRP_D.xpt",
+      "bytes": 152080,
+      "sha256": "4afe7cc036d3268601dc77ba1d3d9b85bbec80c2bc0670ec554550001aa0498b",
+      "kind": "xpt",
+      "filename": "CRP_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "SMQ_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/SMQ_D.xpt",
+      "bytes": 2578880,
+      "sha256": "ef82433aca1a36ba2310a624ccdbaf195e2a258a88af0f284ef2a58d36be3011",
+      "kind": "xpt",
+      "filename": "SMQ_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "PAQ_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PAQ_D.xpt",
+      "bytes": 1511360,
+      "sha256": "a2c21b90a964aaa08a854d66526b29a1a7ad009d8a26c3cc9a8c18bf70f0c0aa",
+      "kind": "xpt",
+      "filename": "PAQ_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "PAQIAF_D",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PAQIAF_D.xpt",
+      "bytes": 797680,
+      "sha256": "486c8e7a73367be5a5efdab125ad659d4f5775a5f7143ec91882db0c819fcc96",
+      "kind": "xpt",
+      "filename": "PAQIAF_D.xpt"
+    },
+    {
+      "year": 2005,
+      "name": "DXX_D",
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2005/datafiles/dxx_d.xpt",
+      "bytes": 29517840,
+      "sha256": "f5122f3660a0a90601e3f6d865a82091a80db099dd8db4efb861c6cb5310710b",
+      "kind": "xpt",
+      "filename": "DXX_D.xpt"
+    },
+    {
+      "year": 1999,
+      "name": "NHANES_1999_2000_MORT_2019_PUBLIC",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_1999_2000_MORT_2019_PUBLIC.dat",
+      "bytes": 487666,
+      "sha256": "562bd367107add0b2b40fed36a062d8b194fca31e11aab897a0efad4bebc8b26",
+      "kind": "mortality",
+      "filename": "1999_2000.dat"
+    },
+    {
+      "year": 2001,
+      "name": "NHANES_2001_2002_MORT_2019_PUBLIC",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_2001_2002_MORT_2019_PUBLIC.dat",
+      "bytes": 540362,
+      "sha256": "2788c8c8a02995ea5686882b5fe65b4b9cd415016031525f8a3c1a3646c47f1b",
+      "kind": "mortality",
+      "filename": "2001_2002.dat"
+    },
+    {
+      "year": 2003,
+      "name": "NHANES_2003_2004_MORT_2019_PUBLIC",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_2003_2004_MORT_2019_PUBLIC.dat",
+      "bytes": 495722,
+      "sha256": "639f6b3292a55b112fbfc842954af3d8d32bcce287cd8ae49319e5aca1c033c0",
+      "kind": "mortality",
+      "filename": "2003_2004.dat"
+    },
+    {
+      "year": 2005,
+      "name": "NHANES_2005_2006_MORT_2019_PUBLIC",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_2005_2006_MORT_2019_PUBLIC.dat",
+      "bytes": 506774,
+      "sha256": "69388ea13a4f395f29d9d21bc51941b9759003490d4b00f6ff12a1bc5f8dba5c",
+      "kind": "mortality",
+      "filename": "2005_2006.dat"
+    }
+  ],
+  "primaryDocumentation": {
+    "mortalityDescription": "https://www.cdc.gov/nchs/data/datalinkage/public-use-linked-mortality-file-description.pdf",
+    "mortalityDictionary": "https://www.cdc.gov/nchs/data/datalinkage/public-use-linked-mortality-files-data-dictionary.pdf",
+    "mortalityReader": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/R_ReadInProgramAllSurveys.R",
+    "weights": "https://wwwn.cdc.gov/nchs/nhanes/tutorials/Weighting.aspx",
+    "surveyVariance": "https://wwwn.cdc.gov/nchs/nhanes/tutorials/varianceestimation.aspx",
+    "dxa": "https://wwwn.cdc.gov/nchs/nhanes/dxa/dxa.aspx",
+    "dxaTechnical": "https://wwwn.cdc.gov/nchs/data/nhanes/public/1999/documents/dxa_techdoc.pdf",
+    "dxa2005": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2005/datafiles/dxx_d.htm"
+  },
+  "primaryComponentCodebooks": [
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/DEMO.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BMX.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB18.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB25.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB11.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SMQ.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PAQ.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PAQIAF.htm",
+    "https://wwwn.cdc.gov/nchs/data/nhanes/public/1999/datafiles/dxx.pdf",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L40_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L25_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L11_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQ_B.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQIAF_B.htm",
+    "https://wwwn.cdc.gov/nchs/data/nhanes/public/2001/datafiles/dxx_b.pdf",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DEMO_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L40_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L25_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L11_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQ_C.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQIAF_C.htm",
+    "https://wwwn.cdc.gov/nchs/data/nhanes/public/2003/datafiles/dxx_c.pdf",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/DEMO_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BMX_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BIOPRO_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CBC_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CRP_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/SMQ_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PAQ_D.htm",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PAQIAF_D.htm",
+    "https://wwwn.cdc.gov/nchs/data/nhanes/public/2005/datafiles/dxx_d.htm"
+  ],
+  "preparation": {
+    "1999": {
+      "sourcePeople": 9965,
+      "baseEligible": 4058,
+      "sequentialExclusions": {
+        "notMecExamined": 683,
+        "outsideBloodAge20To84": 4955,
+        "reportedPregnancy": 257,
+        "notMortalityEligible": 3,
+        "invalidWeightOrDesign": 0,
+        "unknownSmokingOrSex": 9
+      },
+      "baseDeaths10": 618,
+      "earlyCensoredBefore10": 0,
+      "zeroFollowupMonths": 0,
+      "clinicalComplete": 3749,
+      "activityKnown": 4051,
+      "activityZero": 2062,
+      "activityUnableModerate": 156,
+      "activityUnableVigorous": 182,
+      "activityConflictingScreens": 0,
+      "activityYesIncomplete": 2,
+      "heightCommentNotStraight": 19,
+      "crp001Native": 95,
+      "dxaCompleteAllFiveAge20To69": 3300,
+      "dxaMeasuredAllRegionsAge20To69": 2564,
+      "designStrata": 13,
+      "designPsus": 27
+    },
+    "2001": {
+      "sourcePeople": 11039,
+      "baseEligible": 4556,
+      "sequentialExclusions": {
+        "notMecExamined": 562,
+        "outsideBloodAge20To84": 5613,
+        "reportedPregnancy": 296,
+        "notMortalityEligible": 5,
+        "invalidWeightOrDesign": 0,
+        "unknownSmokingOrSex": 7
+      },
+      "baseDeaths10": 634,
+      "earlyCensoredBefore10": 0,
+      "zeroFollowupMonths": 0,
+      "clinicalComplete": 4252,
+      "activityKnown": 4550,
+      "activityZero": 1953,
+      "activityUnableModerate": 124,
+      "activityUnableVigorous": 189,
+      "activityConflictingScreens": 0,
+      "activityYesIncomplete": 4,
+      "heightCommentNotStraight": 63,
+      "crp001Native": 112,
+      "dxaCompleteAllFiveAge20To69": 3653,
+      "dxaMeasuredAllRegionsAge20To69": 2960,
+      "designStrata": 15,
+      "designPsus": 30
+    },
+    "2003": {
+      "sourcePeople": 10122,
+      "baseEligible": 4319,
+      "sequentialExclusions": {
+        "notMecExamined": 479,
+        "outsideBloodAge20To84": 5089,
+        "reportedPregnancy": 219,
+        "notMortalityEligible": 10,
+        "invalidWeightOrDesign": 0,
+        "unknownSmokingOrSex": 6
+      },
+      "baseDeaths10": 636,
+      "earlyCensoredBefore10": 0,
+      "zeroFollowupMonths": 1,
+      "clinicalComplete": 4052,
+      "activityKnown": 4312,
+      "activityZero": 1775,
+      "activityUnableModerate": 156,
+      "activityUnableVigorous": 211,
+      "activityConflictingScreens": 0,
+      "activityYesIncomplete": 6,
+      "heightCommentNotStraight": 145,
+      "crp001Native": 71,
+      "dxaCompleteAllFiveAge20To69": 3441,
+      "dxaMeasuredAllRegionsAge20To69": 2696,
+      "designStrata": 15,
+      "designPsus": 30
+    },
+    "2005": {
+      "sourcePeople": 10348,
+      "baseEligible": 4296,
+      "sequentialExclusions": {
+        "notMecExamined": 398,
+        "outsideBloodAge20To84": 5325,
+        "reportedPregnancy": 325,
+        "notMortalityEligible": 2,
+        "invalidWeightOrDesign": 0,
+        "unknownSmokingOrSex": 2
+      },
+      "baseDeaths10": 546,
+      "earlyCensoredBefore10": 0,
+      "zeroFollowupMonths": 0,
+      "clinicalComplete": 3995,
+      "activityKnown": 4293,
+      "activityZero": 1642,
+      "activityUnableModerate": 119,
+      "activityUnableVigorous": 174,
+      "activityConflictingScreens": 0,
+      "activityYesIncomplete": 3,
+      "heightCommentNotStraight": 191,
+      "crp001Native": 89,
+      "dxaCompleteAllFiveAge20To69": 3580,
+      "dxaMeasuredAllRegionsAge20To69": 2473,
+      "designStrata": 15,
+      "designPsus": 30
+    },
+    "xptMetadata": {
+      "DEMO": {
+        "rows": 9965,
+        "columns": [
+          "SEQN",
+          "SDDSRVYR",
+          "RIDSTATR",
+          "RIDEXMON",
+          "RIAGENDR",
+          "RIDAGEYR",
+          "RIDAGEMN",
+          "RIDAGEEX",
+          "RIDRETH1",
+          "RIDRETH2",
+          "DMQMILIT",
+          "DMDBORN",
+          "DMDCITZN",
+          "DMDYRSUS",
+          "DMDEDUC3",
+          "DMDEDUC2",
+          "DMDEDUC",
+          "DMDSCHOL",
+          "DMDMARTL",
+          "DMDHHSIZ",
+          "INDHHINC",
+          "INDFMINC",
+          "INDFMPIR",
+          "RIDEXPRG",
+          "RIDPREG",
+          "DMDHRGND",
+          "DMDHRAGE",
+          "DMDHRBRN",
+          "DMDHREDU",
+          "DMDHRMAR",
+          "DMDHSEDU",
+          "WTINT2YR",
+          "WTINT4YR",
+          "WTMEC2YR",
+          "WTMEC4YR",
+          "SDMVPSU",
+          "SDMVSTRA",
+          "SDJ1REPN",
+          "DMAETHN",
+          "DMARACE",
+          "WTMREP01",
+          "WTMREP02",
+          "WTMREP03",
+          "WTMREP04",
+          "WTMREP05",
+          "WTMREP06",
+          "WTMREP07",
+          "WTMREP08",
+          "WTMREP09",
+          "WTMREP10",
+          "WTMREP11",
+          "WTMREP12",
+          "WTMREP13",
+          "WTMREP14",
+          "WTMREP15",
+          "WTMREP16",
+          "WTMREP17",
+          "WTMREP18",
+          "WTMREP19",
+          "WTMREP20",
+          "WTMREP21",
+          "WTMREP22",
+          "WTMREP23",
+          "WTMREP24",
+          "WTMREP25",
+          "WTMREP26",
+          "WTMREP27",
+          "WTMREP28",
+          "WTMREP29",
+          "WTMREP30",
+          "WTMREP31",
+          "WTMREP32",
+          "WTMREP33",
+          "WTMREP34",
+          "WTMREP35",
+          "WTMREP36",
+          "WTMREP37",
+          "WTMREP38",
+          "WTMREP39",
+          "WTMREP40",
+          "WTMREP41",
+          "WTMREP42",
+          "WTMREP43",
+          "WTMREP44",
+          "WTMREP45",
+          "WTMREP46",
+          "WTMREP47",
+          "WTMREP48",
+          "WTMREP49",
+          "WTMREP50",
+          "WTMREP51",
+          "WTMREP52",
+          "WTIREP01",
+          "WTIREP02",
+          "WTIREP03",
+          "WTIREP04",
+          "WTIREP05",
+          "WTIREP06",
+          "WTIREP07",
+          "WTIREP08",
+          "WTIREP09",
+          "WTIREP10",
+          "WTIREP11",
+          "WTIREP12",
+          "WTIREP13",
+          "WTIREP14",
+          "WTIREP15",
+          "WTIREP16",
+          "WTIREP17",
+          "WTIREP18",
+          "WTIREP19",
+          "WTIREP20",
+          "WTIREP21",
+          "WTIREP22",
+          "WTIREP23",
+          "WTIREP24",
+          "WTIREP25",
+          "WTIREP26",
+          "WTIREP27",
+          "WTIREP28",
+          "WTIREP29",
+          "WTIREP30",
+          "WTIREP31",
+          "WTIREP32",
+          "WTIREP33",
+          "WTIREP34",
+          "WTIREP35",
+          "WTIREP36",
+          "WTIREP37",
+          "WTIREP38",
+          "WTIREP39",
+          "WTIREP40",
+          "WTIREP41",
+          "WTIREP42",
+          "WTIREP43",
+          "WTIREP44",
+          "WTIREP45",
+          "WTIREP46",
+          "WTIREP47",
+          "WTIREP48",
+          "WTIREP49",
+          "WTIREP50",
+          "WTIREP51",
+          "WTIREP52"
+        ],
+        "exactZeroDecoderCorrections": 57018
+      },
+      "BMX": {
+        "rows": 9282,
+        "columns": [
+          "SEQN",
+          "BMAEXLEN",
+          "BMAEXSTS",
+          "BMAEXCMT",
+          "BMXWT",
+          "BMIWT",
+          "BMXRECUM",
+          "BMIRECUM",
+          "BMXHEAD",
+          "BMIHEAD",
+          "BMXHT",
+          "BMIHT",
+          "BMXBMI",
+          "BMXLEG",
+          "BMILEG",
+          "BMXCALF",
+          "BMICALF",
+          "BMXARML",
+          "BMIARML",
+          "BMXARMC",
+          "BMIARMC",
+          "BMXWAIST",
+          "BMIWAIST",
+          "BMXTHICR",
+          "BMITHICR",
+          "BMXTRI",
+          "BMITRI",
+          "BMXSUB",
+          "BMISUB",
+          "BMAAMP",
+          "BMAUREXT",
+          "BMAUPREL",
+          "BMAULEXT",
+          "BMAUPLEL",
+          "BMALOREX",
+          "BMALORKN",
+          "BMALLEXT",
+          "BMALLKNE"
+        ],
+        "exactZeroDecoderCorrections": 56
+      },
+      "LAB18": {
+        "rows": 6758,
+        "columns": [
+          "SEQN",
+          "LBXSAL",
+          "LBDSALSI",
+          "LBXSATSI",
+          "LBXSASSI",
+          "LBXSAPSI",
+          "LBXSBU",
+          "LBDSBUSI",
+          "LBXSCA",
+          "LBDSCASI",
+          "LBXSCH",
+          "LBDSCHSI",
+          "LBXSC3SI",
+          "LBXSGTSI",
+          "LBXSGL",
+          "LBDSGLSI",
+          "LBXSIR",
+          "LBDSIRSI",
+          "LBXSLDSI",
+          "LBXSPH",
+          "LBDSPHSI",
+          "LBXSTB",
+          "LBDSTBSI",
+          "LBXSTP",
+          "LBDSTPSI",
+          "LBXSTR",
+          "LBDSTRSI",
+          "LBXSUA",
+          "LBDSUASI",
+          "LBXSCR",
+          "LBDSCRSI",
+          "LBXSNASI",
+          "LBXSKSI",
+          "LBXSCLSI",
+          "LBXSOSSI",
+          "LBXSGB",
+          "LBDSGBSI",
+          "LBXFSH",
+          "LBDFSHSI",
+          "LBXLH",
+          "LBDLHSI"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "LAB25": {
+        "rows": 8832,
+        "columns": [
+          "SEQN",
+          "LBXWBCSI",
+          "LBXLYPCT",
+          "LBXMOPCT",
+          "LBXNEPCT",
+          "LBXEOPCT",
+          "LBXBAPCT",
+          "LBDLYMNO",
+          "LBDMONO",
+          "LBDNENO",
+          "LBDEONO",
+          "LBDBANO",
+          "LBXRBCSI",
+          "LBXHGB",
+          "LBXHCT",
+          "LBXMCVSI",
+          "LBXMCHSI",
+          "LBXMC",
+          "LBXRDW",
+          "LBXPLTSI",
+          "LBXMPSI"
+        ],
+        "exactZeroDecoderCorrections": 5539
+      },
+      "LAB11": {
+        "rows": 8344,
+        "columns": [
+          "SEQN",
+          "LBXCRP",
+          "LBXHP1",
+          "LBXFB",
+          "LBDFBSI",
+          "LBXBAP",
+          "URXNT"
+        ],
+        "exactZeroDecoderCorrections": 2
+      },
+      "SMQ": {
+        "rows": 4880,
+        "columns": [
+          "SEQN",
+          "SMQ020",
+          "SMD030",
+          "SMQ040",
+          "SMQ050Q",
+          "SMQ050U",
+          "SMD055",
+          "SMD057",
+          "SMD070",
+          "SMD075",
+          "SMD080",
+          "SMD090",
+          "SMD100BR",
+          "SMD100FL",
+          "SMD100MN",
+          "SMD100LN",
+          "SMD100TR",
+          "SMD100NI",
+          "SMD100CO",
+          "SMQ120",
+          "SMD130",
+          "SMQ140",
+          "SMQ143",
+          "SMQ145",
+          "SMQ150",
+          "SMD160",
+          "SMQ170",
+          "SMQ173",
+          "SMQ175",
+          "SMQ180",
+          "SMD190",
+          "SMQ200",
+          "SMD203",
+          "SMQ205",
+          "SMQ210",
+          "SMD220",
+          "SMQ230",
+          "SMD233",
+          "SMD235"
+        ],
+        "exactZeroDecoderCorrections": 1386
+      },
+      "PAQ": {
+        "rows": 9188,
+        "columns": [
+          "SEQN",
+          "PAD020",
+          "PAQ050Q",
+          "PAQ050U",
+          "PAD080",
+          "PAQ100",
+          "PAD120",
+          "PAD160",
+          "PAQ180",
+          "PAD200",
+          "PAD320",
+          "PAD440",
+          "PAD460",
+          "PAQ480",
+          "PAQ500",
+          "PAQ520",
+          "PAQ540",
+          "PAQ560",
+          "PAD570",
+          "PAQ580",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 2314
+      },
+      "PAQIAF": {
+        "rows": 9266,
+        "columns": [
+          "SEQN",
+          "PADACTIV",
+          "PADLEVEL",
+          "PADTIMES",
+          "PADDURAT",
+          "PADMETS",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "DXX": {
+        "rows": 31175,
+        "columns": [
+          "SEQN",
+          "_MULT_",
+          "DXAEXSTS",
+          "DXITOT",
+          "DXIHE",
+          "DXXHEA",
+          "DXAHEBV",
+          "DXXHEBMC",
+          "DXXHEBMD",
+          "DXAHETV",
+          "DXXHEFAT",
+          "DXDHELE",
+          "DXXHELI",
+          "DXDHETOT",
+          "DXDHEPF",
+          "DXILA",
+          "DXXLAA",
+          "DXALABV",
+          "DXXLABMC",
+          "DXXLABMD",
+          "DXALATV",
+          "DXXLAFAT",
+          "DXDLALE",
+          "DXXLALI",
+          "DXDLATOT",
+          "DXDLAPF",
+          "DXILL",
+          "DXXLLA",
+          "DXALLBV",
+          "DXXLLBMC",
+          "DXXLLBMD",
+          "DXALLTV",
+          "DXXLLFAT",
+          "DXDLLLE",
+          "DXXLLLI",
+          "DXDLLTOT",
+          "DXDLLPF",
+          "DXIRA",
+          "DXXRAA",
+          "DXARABV",
+          "DXXRABMC",
+          "DXXRABMD",
+          "DXARATV",
+          "DXXRAFAT",
+          "DXDRALE",
+          "DXXRALI",
+          "DXDRATOT",
+          "DXDRAPF",
+          "DXIRL",
+          "DXXRLA",
+          "DXARLBV",
+          "DXXRLBMC",
+          "DXXRLBMD",
+          "DXARLTV",
+          "DXXRLFAT",
+          "DXDRLLE",
+          "DXXRLLI",
+          "DXDRLTOT",
+          "DXDRLPF",
+          "DXILR",
+          "DXXLRA",
+          "DXXLRBMC",
+          "DXXLRBMD",
+          "DXIRR",
+          "DXXRRA",
+          "DXXRRBMC",
+          "DXXRRBMD",
+          "DXITS",
+          "DXXTSA",
+          "DXXTSBMC",
+          "DXXTSBMD",
+          "DXILS",
+          "DXXLSA",
+          "DXXLSBMC",
+          "DXXLSBMD",
+          "DXIPE",
+          "DXXPEA",
+          "DXXPEBMC",
+          "DXXPEBMD",
+          "DXITR",
+          "DXDTRA",
+          "DXATRBV",
+          "DXDTRBMC",
+          "DXDTRBMD",
+          "DXATRTV",
+          "DXXTRFAT",
+          "DXDTRLE",
+          "DXXTRLI",
+          "DXDTRTOT",
+          "DXDTRPF",
+          "DXDSTA",
+          "DXDSTBMC",
+          "DXDSTBMD",
+          "DXDSTFAT",
+          "DXDSTLE",
+          "DXDSTLI",
+          "DXDSTTOT",
+          "DXDSTPF",
+          "DXDTOA",
+          "DXDTOBMC",
+          "DXDTOBMD",
+          "DXDTOFAT",
+          "DXDTOLE",
+          "DXDTOLI",
+          "DXDTOTOT",
+          "DXDTOPF"
+        ],
+        "exactZeroDecoderCorrections": 608245
+      },
+      "DEMO_B": {
+        "rows": 11039,
+        "columns": [
+          "SEQN",
+          "SDDSRVYR",
+          "RIDSTATR",
+          "RIDEXMON",
+          "RIAGENDR",
+          "RIDAGEYR",
+          "RIDAGEMN",
+          "RIDAGEEX",
+          "RIDRETH1",
+          "RIDRETH2",
+          "DMQMILIT",
+          "DMDBORN",
+          "DMDCITZN",
+          "DMDYRSUS",
+          "DMDEDUC3",
+          "DMDEDUC2",
+          "DMDEDUC",
+          "DMDSCHOL",
+          "DMDMARTL",
+          "DMDHHSIZ",
+          "INDHHINC",
+          "INDFMINC",
+          "INDFMPIR",
+          "RIDEXPRG",
+          "RIDPREG",
+          "DMDHRGND",
+          "DMDHRAGE",
+          "DMDHRBRN",
+          "DMDHREDU",
+          "DMDHRMAR",
+          "DMDHSEDU",
+          "WTINT2YR",
+          "WTINT4YR",
+          "WTMEC2YR",
+          "WTMEC4YR",
+          "SDMVPSU",
+          "SDMVSTRA"
+        ],
+        "exactZeroDecoderCorrections": 2123
+      },
+      "BMX_B": {
+        "rows": 10477,
+        "columns": [
+          "SEQN",
+          "BMXWT",
+          "BMIWT",
+          "BMXRECUM",
+          "BMIRECUM",
+          "BMXHEAD",
+          "BMIHEAD",
+          "BMXHT",
+          "BMIHT",
+          "BMXBMI",
+          "BMXLEG",
+          "BMILEG",
+          "BMXCALF",
+          "BMICALF",
+          "BMXARML",
+          "BMIARML",
+          "BMXARMC",
+          "BMIARMC",
+          "BMXWAIST",
+          "BMIWAIST",
+          "BMXTHICR",
+          "BMITHICR",
+          "BMXTRI",
+          "BMITRI",
+          "BMXSUB",
+          "BMISUB"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "L40_B": {
+        "rows": 7445,
+        "columns": [
+          "SEQN",
+          "LBXSAL",
+          "LBDSALSI",
+          "LBXSATSI",
+          "LBXSASSI",
+          "LBDSAPSI",
+          "LBXSBU",
+          "LBDSBUSI",
+          "LBXSCA",
+          "LBDSCASI",
+          "LBXSCH",
+          "LBDSCHSI",
+          "LBXSC3SI",
+          "LBXSGTSI",
+          "LBXSGL",
+          "LBDSGLSI",
+          "LBXSIR",
+          "LBDSIRSI",
+          "LBDSLDSI",
+          "LBDSPH",
+          "LBDSPHSI",
+          "LBDSTB",
+          "LBDSTBSI",
+          "LBXSTP",
+          "LBDSTPSI",
+          "LBXSTR",
+          "LBDSTRSI",
+          "LBXSUA",
+          "LBDSUASI",
+          "LBDSCR",
+          "LBDSCRSI",
+          "LBXSNASI",
+          "LBXSKSI",
+          "LBXSCLSI",
+          "LBXSOSSI",
+          "LBXSGB",
+          "LBDSGBSI",
+          "LBXFSH",
+          "LBDFSHSI",
+          "LBXLH",
+          "LBDLHSI"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "L25_B": {
+        "rows": 9929,
+        "columns": [
+          "SEQN",
+          "LBXWBCSI",
+          "LBXLYPCT",
+          "LBXMOPCT",
+          "LBXNEPCT",
+          "LBXEOPCT",
+          "LBXBAPCT",
+          "LBDLYMNO",
+          "LBDMONO",
+          "LBDNENO",
+          "LBDEONO",
+          "LBDBANO",
+          "LBXRBCSI",
+          "LBXHGB",
+          "LBXHCT",
+          "LBXMCVSI",
+          "LBXMCHSI",
+          "LBXMC",
+          "LBXRDW",
+          "LBXPLTSI",
+          "LBXMPSI"
+        ],
+        "exactZeroDecoderCorrections": 6470
+      },
+      "L11_B": {
+        "rows": 9262,
+        "columns": [
+          "SEQN",
+          "LBXCRP",
+          "LBXFB",
+          "LBDFBSI",
+          "LBDBAP",
+          "URDNT"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "SMQ_B": {
+        "rows": 5411,
+        "columns": [
+          "SEQN",
+          "SMQ020",
+          "SMD030",
+          "SMQ040",
+          "SMQ050Q",
+          "SMQ050U",
+          "SMD055",
+          "SMD057",
+          "SMD070",
+          "SMD075",
+          "SMQ077",
+          "SMD080",
+          "SMD090",
+          "SMD092",
+          "SMDUPCA",
+          "SMD100BR",
+          "SMD100FL",
+          "SMD100MN",
+          "SMD100LN",
+          "SMD100TR",
+          "SMD100NI",
+          "SMD100CO",
+          "SMQ120",
+          "SMD130",
+          "SMQ140",
+          "SMQ143",
+          "SMQ145",
+          "SMQ150",
+          "SMD160",
+          "SMQ170",
+          "SMQ173",
+          "SMQ175",
+          "SMQ180",
+          "SMD190",
+          "SMQ200",
+          "SMD203",
+          "SMQ205",
+          "SMQ210",
+          "SMD220",
+          "SMQ230",
+          "SMD233",
+          "SMD235"
+        ],
+        "exactZeroDecoderCorrections": 1599
+      },
+      "PAQ_B": {
+        "rows": 10094,
+        "columns": [
+          "SEQN",
+          "PAD020",
+          "PAQ050Q",
+          "PAQ050U",
+          "PAD080",
+          "PAQ100",
+          "PAD120",
+          "PAD160",
+          "PAQ180",
+          "PAD200",
+          "PAD320",
+          "PAD440",
+          "PAD460",
+          "PAD480",
+          "PAQ500",
+          "PAQ520",
+          "PAQ540",
+          "PAQ560",
+          "PAD590",
+          "PAD600",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 2277
+      },
+      "PAQIAF_B": {
+        "rows": 13439,
+        "columns": [
+          "SEQN",
+          "PADACTIV",
+          "PADLEVEL",
+          "PADTIMES",
+          "PADDURAT",
+          "PADMETS",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "DXX_B": {
+        "rows": 41210,
+        "columns": [
+          "SEQN",
+          "_MULT_",
+          "DXAEXSTS",
+          "DXITOT",
+          "DXIHE",
+          "DXXHEA",
+          "DXAHEBV",
+          "DXXHEBMC",
+          "DXXHEBMD",
+          "DXAHETV",
+          "DXXHEFAT",
+          "DXDHELE",
+          "DXXHELI",
+          "DXDHETOT",
+          "DXDHEPF",
+          "DXILA",
+          "DXXLAA",
+          "DXALABV",
+          "DXXLABMC",
+          "DXXLABMD",
+          "DXALATV",
+          "DXXLAFAT",
+          "DXDLALE",
+          "DXXLALI",
+          "DXDLATOT",
+          "DXDLAPF",
+          "DXILL",
+          "DXXLLA",
+          "DXALLBV",
+          "DXXLLBMC",
+          "DXXLLBMD",
+          "DXALLTV",
+          "DXXLLFAT",
+          "DXDLLLE",
+          "DXXLLLI",
+          "DXDLLTOT",
+          "DXDLLPF",
+          "DXIRA",
+          "DXXRAA",
+          "DXARABV",
+          "DXXRABMC",
+          "DXXRABMD",
+          "DXARATV",
+          "DXXRAFAT",
+          "DXDRALE",
+          "DXXRALI",
+          "DXDRATOT",
+          "DXDRAPF",
+          "DXIRL",
+          "DXXRLA",
+          "DXARLBV",
+          "DXXRLBMC",
+          "DXXRLBMD",
+          "DXARLTV",
+          "DXXRLFAT",
+          "DXDRLLE",
+          "DXXRLLI",
+          "DXDRLTOT",
+          "DXDRLPF",
+          "DXILR",
+          "DXXLRA",
+          "DXXLRBMC",
+          "DXXLRBMD",
+          "DXIRR",
+          "DXXRRA",
+          "DXXRRBMC",
+          "DXXRRBMD",
+          "DXITS",
+          "DXXTSA",
+          "DXXTSBMC",
+          "DXXTSBMD",
+          "DXILS",
+          "DXXLSA",
+          "DXXLSBMC",
+          "DXXLSBMD",
+          "DXIPE",
+          "DXXPEA",
+          "DXXPEBMC",
+          "DXXPEBMD",
+          "DXITR",
+          "DXDTRA",
+          "DXATRBV",
+          "DXDTRBMC",
+          "DXDTRBMD",
+          "DXATRTV",
+          "DXXTRFAT",
+          "DXDTRLE",
+          "DXXTRLI",
+          "DXDTRTOT",
+          "DXDTRPF",
+          "DXDSTA",
+          "DXDSTBMC",
+          "DXDSTBMD",
+          "DXDSTFAT",
+          "DXDSTLE",
+          "DXDSTLI",
+          "DXDSTTOT",
+          "DXDSTPF",
+          "DXDTOA",
+          "DXDTOBMC",
+          "DXDTOBMD",
+          "DXDTOFAT",
+          "DXDTOLE",
+          "DXDTOLI",
+          "DXDTOTOT",
+          "DXDTOPF"
+        ],
+        "exactZeroDecoderCorrections": 824255
+      },
+      "DEMO_C": {
+        "rows": 10122,
+        "columns": [
+          "SEQN",
+          "SDDSRVYR",
+          "RIDSTATR",
+          "RIDEXMON",
+          "RIAGENDR",
+          "RIDAGEYR",
+          "RIDAGEMN",
+          "RIDAGEEX",
+          "RIDRETH1",
+          "RIDRETH2",
+          "DMQMILIT",
+          "DMDBORN",
+          "DMDCITZN",
+          "DMDYRSUS",
+          "DMDEDUC3",
+          "DMDEDUC2",
+          "DMDEDUC",
+          "DMDSCHOL",
+          "DMDMARTL",
+          "DMDHHSIZ",
+          "INDHHINC",
+          "INDFMINC",
+          "INDFMPIR",
+          "RIDEXPRG",
+          "DMDHRGND",
+          "DMDHRAGE",
+          "DMDHRBRN",
+          "DMDHREDU",
+          "DMDHRMAR",
+          "DMDHSEDU",
+          "SIALANG",
+          "SIAPROXY",
+          "SIAINTRP",
+          "FIALANG",
+          "FIAPROXY",
+          "FIAINTRP",
+          "MIALANG",
+          "MIAPROXY",
+          "MIAINTRP",
+          "AIALANG",
+          "WTINT2YR",
+          "WTMEC2YR",
+          "SDMVPSU",
+          "SDMVSTRA"
+        ],
+        "exactZeroDecoderCorrections": 1410
+      },
+      "BMX_C": {
+        "rows": 9643,
+        "columns": [
+          "SEQN",
+          "BMDSTATS",
+          "BMDRECUF",
+          "BMDSUBF",
+          "BMDTHICF",
+          "BMDLEGF",
+          "BMDARMLF",
+          "BMDCALFF",
+          "BMXWT",
+          "BMIWT",
+          "BMXRECUM",
+          "BMIRECUM",
+          "BMXHEAD",
+          "BMIHEAD",
+          "BMXHT",
+          "BMIHT",
+          "BMXBMI",
+          "BMXLEG",
+          "BMILEG",
+          "BMXCALF",
+          "BMICALF",
+          "BMXARML",
+          "BMIARML",
+          "BMXARMC",
+          "BMIARMC",
+          "BMXWAIST",
+          "BMIWAIST",
+          "BMXTHICR",
+          "BMITHICR",
+          "BMXTRI",
+          "BMITRI",
+          "BMXSUB",
+          "BMISUB"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "L40_C": {
+        "rows": 6990,
+        "columns": [
+          "SEQN",
+          "LBXSAL",
+          "LBDSALSI",
+          "LBXSATSI",
+          "LBXSASSI",
+          "LBXSAPSI",
+          "LBXSBU",
+          "LBDSBUSI",
+          "LBXSCA",
+          "LBDSCASI",
+          "LBXSCH",
+          "LBDSCHSI",
+          "LBXSC3SI",
+          "LBXSGTSI",
+          "LBXSGL",
+          "LBDSGLSI",
+          "LBXSIR",
+          "LBDSIRSI",
+          "LBXSLDSI",
+          "LBXSPH",
+          "LBDSPHSI",
+          "LBXSTB",
+          "LBDSTBSI",
+          "LBXSTP",
+          "LBDSTPSI",
+          "LBXSTR",
+          "LBDSTRSI",
+          "LBXSUA",
+          "LBDSUASI",
+          "LBXSCR",
+          "LBDSCRSI",
+          "LBXSNASI",
+          "LBXSKSI",
+          "LBXSCLSI",
+          "LBXSOSSI",
+          "LBXSGB",
+          "LBDSGBSI"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "L25_C": {
+        "rows": 9179,
+        "columns": [
+          "SEQN",
+          "LBXWBCSI",
+          "LBXLYPCT",
+          "LBXMOPCT",
+          "LBXNEPCT",
+          "LBXEOPCT",
+          "LBXBAPCT",
+          "LBDLYMNO",
+          "LBDMONO",
+          "LBDNENO",
+          "LBDEONO",
+          "LBDBANO",
+          "LBXRBCSI",
+          "LBXHGB",
+          "LBXHCT",
+          "LBXMCVSI",
+          "LBXMCHSI",
+          "LBXMC",
+          "LBXRDW",
+          "LBXPLTSI",
+          "LBXMPSI"
+        ],
+        "exactZeroDecoderCorrections": 5843
+      },
+      "L11_C": {
+        "rows": 9179,
+        "columns": [
+          "SEQN",
+          "LBXCRP",
+          "LBXBAP",
+          "LBXPT21"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "SMQ_C": {
+        "rows": 5041,
+        "columns": [
+          "SEQN",
+          "SMQ020",
+          "SMD030",
+          "SMQ040",
+          "SMQ050Q",
+          "SMQ050U",
+          "SMD055",
+          "SMD057",
+          "SMD070",
+          "SMD075",
+          "SMQ077",
+          "SMD641",
+          "SMD650",
+          "SMD093",
+          "SMDUPCA",
+          "SMD100BR",
+          "SMD100FL",
+          "SMD100MN",
+          "SMD100LN",
+          "SMD100TR",
+          "SMD100NI",
+          "SMD100CO",
+          "SMQ120",
+          "SMD130",
+          "SMQ140",
+          "SMQ143",
+          "SMQ145",
+          "SMQ150",
+          "SMD160",
+          "SMQ170",
+          "SMQ173",
+          "SMQ175",
+          "SMQ180",
+          "SMD190",
+          "SMQ200",
+          "SMD203",
+          "SMQ205",
+          "SMQ210",
+          "SMD220",
+          "SMQ230",
+          "SMD233",
+          "SMD235"
+        ],
+        "exactZeroDecoderCorrections": 1691
+      },
+      "PAQ_C": {
+        "rows": 9278,
+        "columns": [
+          "SEQN",
+          "PAD020",
+          "PAQ050Q",
+          "PAQ050U",
+          "PAD080",
+          "PAQ100",
+          "PAD120",
+          "PAD160",
+          "PAQ180",
+          "PAD200",
+          "PAD320",
+          "PAD440",
+          "PAD460",
+          "PAQ500",
+          "PAQ520",
+          "PAQ540",
+          "PAQ560",
+          "PAD590",
+          "PAD600",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 3714
+      },
+      "PAQIAF_C": {
+        "rows": 12867,
+        "columns": [
+          "SEQN",
+          "PADACTIV",
+          "PADLEVEL",
+          "PADTIMES",
+          "PADDURAT",
+          "PADMETS",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "DXX_C": {
+        "rows": 38280,
+        "columns": [
+          "SEQN",
+          "_MULT_",
+          "DXAEXSTS",
+          "DXITOT",
+          "DXIHE",
+          "DXXHEA",
+          "DXAHEBV",
+          "DXXHEBMC",
+          "DXXHEBMD",
+          "DXAHETV",
+          "DXXHEFAT",
+          "DXDHELE",
+          "DXXHELI",
+          "DXDHETOT",
+          "DXDHEPF",
+          "DXILA",
+          "DXXLAA",
+          "DXALABV",
+          "DXXLABMC",
+          "DXXLABMD",
+          "DXALATV",
+          "DXXLAFAT",
+          "DXDLALE",
+          "DXXLALI",
+          "DXDLATOT",
+          "DXDLAPF",
+          "DXILL",
+          "DXXLLA",
+          "DXALLBV",
+          "DXXLLBMC",
+          "DXXLLBMD",
+          "DXALLTV",
+          "DXXLLFAT",
+          "DXDLLLE",
+          "DXXLLLI",
+          "DXDLLTOT",
+          "DXDLLPF",
+          "DXIRA",
+          "DXXRAA",
+          "DXARABV",
+          "DXXRABMC",
+          "DXXRABMD",
+          "DXARATV",
+          "DXXRAFAT",
+          "DXDRALE",
+          "DXXRALI",
+          "DXDRATOT",
+          "DXDRAPF",
+          "DXIRL",
+          "DXXRLA",
+          "DXARLBV",
+          "DXXRLBMC",
+          "DXXRLBMD",
+          "DXARLTV",
+          "DXXRLFAT",
+          "DXDRLLE",
+          "DXXRLLI",
+          "DXDRLTOT",
+          "DXDRLPF",
+          "DXILR",
+          "DXXLRA",
+          "DXXLRBMC",
+          "DXXLRBMD",
+          "DXIRR",
+          "DXXRRA",
+          "DXXRRBMC",
+          "DXXRRBMD",
+          "DXITS",
+          "DXXTSA",
+          "DXXTSBMC",
+          "DXXTSBMD",
+          "DXILS",
+          "DXXLSA",
+          "DXXLSBMC",
+          "DXXLSBMD",
+          "DXIPE",
+          "DXXPEA",
+          "DXXPEBMC",
+          "DXXPEBMD",
+          "DXITR",
+          "DXDTRA",
+          "DXATRBV",
+          "DXDTRBMC",
+          "DXDTRBMD",
+          "DXATRTV",
+          "DXXTRFAT",
+          "DXDTRLE",
+          "DXXTRLI",
+          "DXDTRTOT",
+          "DXDTRPF",
+          "DXDSTA",
+          "DXDSTBMC",
+          "DXDSTBMD",
+          "DXDSTFAT",
+          "DXDSTLE",
+          "DXDSTLI",
+          "DXDSTTOT",
+          "DXDSTPF",
+          "DXDTOA",
+          "DXDTOBMC",
+          "DXDTOBMD",
+          "DXDTOFAT",
+          "DXDTOLE",
+          "DXDTOLI",
+          "DXDTOTOT",
+          "DXDTOPF"
+        ],
+        "exactZeroDecoderCorrections": 761920
+      },
+      "DEMO_D": {
+        "rows": 10348,
+        "columns": [
+          "SEQN",
+          "SDDSRVYR",
+          "RIDSTATR",
+          "RIDEXMON",
+          "RIAGENDR",
+          "RIDAGEYR",
+          "RIDAGEMN",
+          "RIDAGEEX",
+          "RIDRETH1",
+          "DMQMILIT",
+          "DMDBORN",
+          "DMDCITZN",
+          "DMDYRSUS",
+          "DMDEDUC3",
+          "DMDEDUC2",
+          "DMDSCHOL",
+          "DMDMARTL",
+          "DMDHHSIZ",
+          "DMDFMSIZ",
+          "INDHHINC",
+          "INDFMINC",
+          "INDFMPIR",
+          "RIDEXPRG",
+          "DMDHRGND",
+          "DMDHRAGE",
+          "DMDHRBRN",
+          "DMDHREDU",
+          "DMDHRMAR",
+          "DMDHSEDU",
+          "SIALANG",
+          "SIAPROXY",
+          "SIAINTRP",
+          "FIALANG",
+          "FIAPROXY",
+          "FIAINTRP",
+          "MIALANG",
+          "MIAPROXY",
+          "MIAINTRP",
+          "AIALANG",
+          "WTINT2YR",
+          "WTMEC2YR",
+          "SDMVPSU",
+          "SDMVSTRA"
+        ],
+        "exactZeroDecoderCorrections": 1300
+      },
+      "BMX_D": {
+        "rows": 9950,
+        "columns": [
+          "SEQN",
+          "BMDSTATS",
+          "BMXWT",
+          "BMIWT",
+          "BMXRECUM",
+          "BMIRECUM",
+          "BMXHEAD",
+          "BMIHEAD",
+          "BMXHT",
+          "BMIHT",
+          "BMXBMI",
+          "BMXLEG",
+          "BMILEG",
+          "BMXCALF",
+          "BMICALF",
+          "BMXARML",
+          "BMIARML",
+          "BMXARMC",
+          "BMIARMC",
+          "BMXWAIST",
+          "BMIWAIST",
+          "BMXTHICR",
+          "BMITHICR",
+          "BMXTRI",
+          "BMITRI",
+          "BMXSUB",
+          "BMISUB"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "BIOPRO_D": {
+        "rows": 6980,
+        "columns": [
+          "SEQN",
+          "LBXSAL",
+          "LBDSALSI",
+          "LBXSATSI",
+          "LBXSASSI",
+          "LBXSAPSI",
+          "LBXSBU",
+          "LBDSBUSI",
+          "LBXSCA",
+          "LBDSCASI",
+          "LBXSCH",
+          "LBDSCHSI",
+          "LBXSC3SI",
+          "LBXSCR",
+          "LBDSCRSI",
+          "LBXSGTSI",
+          "LBXSGL",
+          "LBDSGLSI",
+          "LBXSIR",
+          "LBDSIRSI",
+          "LBXSLDSI",
+          "LBXSPH",
+          "LBDSPHSI",
+          "LBXSTB",
+          "LBDSTBSI",
+          "LBXSTP",
+          "LBDSTPSI",
+          "LBXSTR",
+          "LBDSTRSI",
+          "LBXSUA",
+          "LBDSUASI",
+          "LBXSNASI",
+          "LBXSKSI",
+          "LBXSCLSI",
+          "LBXSOSSI",
+          "LBXSGB",
+          "LBDSGBSI"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "CBC_D": {
+        "rows": 9440,
+        "columns": [
+          "SEQN",
+          "LBXWBCSI",
+          "LBXLYPCT",
+          "LBXMOPCT",
+          "LBXNEPCT",
+          "LBXEOPCT",
+          "LBXBAPCT",
+          "LBDLYMNO",
+          "LBDMONO",
+          "LBDNENO",
+          "LBDEONO",
+          "LBDBANO",
+          "LBXRBCSI",
+          "LBXHGB",
+          "LBXHCT",
+          "LBXMCVSI",
+          "LBXMCHSI",
+          "LBXMC",
+          "LBXRDW",
+          "LBXPLTSI",
+          "LBXMPSI"
+        ],
+        "exactZeroDecoderCorrections": 5679
+      },
+      "CRP_D": {
+        "rows": 9440,
+        "columns": [
+          "SEQN",
+          "LBXCRP"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "SMQ_D": {
+        "rows": 7186,
+        "columns": [
+          "SEQN",
+          "SMQ020",
+          "SMD030",
+          "SMQ040",
+          "SMQ050Q",
+          "SMQ050U",
+          "SMD055",
+          "SMD057",
+          "SMD070",
+          "SMD075",
+          "SMQ077",
+          "SMD641",
+          "SMD650",
+          "SMD093",
+          "SMDUPCA",
+          "SMD100BR",
+          "SMD100FL",
+          "SMD100MN",
+          "SMD100LN",
+          "SMD100TR",
+          "SMD100NI",
+          "SMD100CO",
+          "SMQ620",
+          "SMD630",
+          "SMQ660",
+          "SMQ664M",
+          "SMQ664C",
+          "SMQ664W",
+          "SMQ664B",
+          "SMQ664O",
+          "SMQ666M",
+          "SMQ666C",
+          "SMQ666K",
+          "SMQ666W",
+          "SMQ666B",
+          "SMQ666S",
+          "SMQ666O",
+          "SMQ670",
+          "SMAQUEX2"
+        ],
+        "exactZeroDecoderCorrections": 1147
+      },
+      "PAQ_D": {
+        "rows": 9424,
+        "columns": [
+          "SEQN",
+          "PAD020",
+          "PAQ050Q",
+          "PAQ050U",
+          "PAD080",
+          "PAQ100",
+          "PAD120",
+          "PAD160",
+          "PAQ180",
+          "PAD200",
+          "PAD320",
+          "PAD440",
+          "PAD460",
+          "PAQ500",
+          "PAQ520",
+          "PAQ540",
+          "PAQ560",
+          "PAD590",
+          "PAD600",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 4030
+      },
+      "PAQIAF_D": {
+        "rows": 14212,
+        "columns": [
+          "SEQN",
+          "PADACTIV",
+          "PADLEVEL",
+          "PADTIMES",
+          "PADDURAT",
+          "PADMETS",
+          "PAAQUEX"
+        ],
+        "exactZeroDecoderCorrections": 0
+      },
+      "DXX_D": {
+        "rows": 34465,
+        "columns": [
+          "SEQN",
+          "_MULT_",
+          "DXAEXSTS",
+          "DXITOTST",
+          "DXITOTBN",
+          "DXIHE",
+          "DXXHEA",
+          "DXAHEBV",
+          "DXXHEBMC",
+          "DXXHEBMD",
+          "DXAHETV",
+          "DXXHEFAT",
+          "DXDHELE",
+          "DXXHELI",
+          "DXDHETOT",
+          "DXDHEPF",
+          "DXILA",
+          "DXXLAA",
+          "DXALABV",
+          "DXXLABMC",
+          "DXXLABMD",
+          "DXALATV",
+          "DXXLAFAT",
+          "DXDLALE",
+          "DXXLALI",
+          "DXDLATOT",
+          "DXDLAPF",
+          "DXILL",
+          "DXXLLA",
+          "DXALLBV",
+          "DXXLLBMC",
+          "DXXLLBMD",
+          "DXALLTV",
+          "DXXLLFAT",
+          "DXDLLLE",
+          "DXXLLLI",
+          "DXDLLTOT",
+          "DXDLLPF",
+          "DXIRA",
+          "DXXRAA",
+          "DXARABV",
+          "DXXRABMC",
+          "DXXRABMD",
+          "DXARATV",
+          "DXXRAFAT",
+          "DXDRALE",
+          "DXXRALI",
+          "DXDRATOT",
+          "DXDRAPF",
+          "DXIRL",
+          "DXXRLA",
+          "DXARLBV",
+          "DXXRLBMC",
+          "DXXRLBMD",
+          "DXARLTV",
+          "DXXRLFAT",
+          "DXDRLLE",
+          "DXXRLLI",
+          "DXDRLTOT",
+          "DXDRLPF",
+          "DXILR",
+          "DXXLRA",
+          "DXXLRBMC",
+          "DXXLRBMD",
+          "DXIRR",
+          "DXXRRA",
+          "DXXRRBMC",
+          "DXXRRBMD",
+          "DXITS",
+          "DXXTSA",
+          "DXXTSBMC",
+          "DXXTSBMD",
+          "DXILS",
+          "DXXLSA",
+          "DXXLSBMC",
+          "DXXLSBMD",
+          "DXIPE",
+          "DXXPEA",
+          "DXXPEBMC",
+          "DXXPEBMD",
+          "DXITR",
+          "DXDTRA",
+          "DXATRBV",
+          "DXDTRBMC",
+          "DXDTRBMD",
+          "DXATRTV",
+          "DXXTRFAT",
+          "DXDTRLE",
+          "DXXTRLI",
+          "DXDTRTOT",
+          "DXDTRPF",
+          "DXDSTA",
+          "DXDSTBMC",
+          "DXDSTBMD",
+          "DXDSTFAT",
+          "DXDSTLE",
+          "DXDSTLI",
+          "DXDSTTOT",
+          "DXDSTPF",
+          "DXDTOA",
+          "DXDTOBMC",
+          "DXDTOBMD",
+          "DXDTOFAT",
+          "DXDTOLE",
+          "DXDTOLI",
+          "DXDTOTOT",
+          "DXDTOPF"
+        ],
+        "exactZeroDecoderCorrections": 679190
+      }
+    }
+  },
+  "variants": {
+    "body": {
+      "penalty": 0.001,
+      "developmentCvFirstImputation": [
+        {
+          "penalty": 0.001,
+          "weightedBrier": 0.04617199526263731,
+          "weightedAucDescriptiveOnly": 0.7988849283862368
+        },
+        {
+          "penalty": 0.01,
+          "weightedBrier": 0.04642389105167499,
+          "weightedAucDescriptiveOnly": 0.7975797632979871
+        },
+        {
+          "penalty": 0.1,
+          "weightedBrier": 0.048265254122227465,
+          "weightedAucDescriptiveOnly": 0.7861728300692292
+        }
+      ],
+      "imputationFits": 5,
+      "trainingPeopleByCycle": {
+        "1999": 3226,
+        "2001": 3596,
+        "2003": 3326
+      },
+      "trainingDeathsByCycle": {
+        "1999": 241,
+        "2001": 238,
+        "2003": 228
+      },
+      "trainingFoldPeople": {
+        "0": 3504,
+        "1": 3278,
+        "2": 3366
+      },
+      "trainingFoldDeaths": {
+        "0": 251,
+        "1": 230,
+        "2": 226
+      },
+      "developmentEarlyCensored": 0,
+      "holdoutEarlyCensored": 0,
+      "availabilityExclusionsFromBaseBySplit": {
+        "development": {
+          "basePeople": 12933,
+          "notInVariant": 2785,
+          "missingBodyFatOrOutsideAge": 2539,
+          "missingWaistToHeight": 671,
+          "missingClinicalInputs": 0,
+          "missingActivity": 0
+        },
+        "holdout": {
+          "basePeople": 4296,
+          "notInVariant": 842,
+          "missingBodyFatOrOutsideAge": 716,
+          "missingWaistToHeight": 226,
+          "missingClinicalInputs": 0,
+          "missingActivity": 0
+        }
+      },
+      "heldout": {
+        "people": 3454,
+        "deaths": 193,
+        "auc": 0.8365173560258656,
+        "brier": 0.036867376494727155,
+        "weightedEventRate": 0.042167583837058285,
+        "weightedMeanPrediction": 0.05680662937644464
+      },
+      "ageSexComparison": {
+        "people": 3454,
+        "deaths": 193,
+        "auc": 0.7887800288896955,
+        "brier": 0.0384051777991188,
+        "weightedEventRate": 0.042167583837058285,
+        "weightedMeanPrediction": 0.05545829986004197
+      },
+      "accepted": true,
+      "gate": "Weighted Brier strictly lower AND weighted AUC at least age/sex-only; prespecified; no CI significance gate and no holdout retuning",
+      "pairedBootstrap": {
+        "method": "200 seeded Rao-Wu rescaled PSU-within-stratum resamples; paired fixed-model metrics; percentile 95% intervals",
+        "replicates": 200,
+        "seed": 20261101,
+        "brierImprovement95": [
+          0.0008768145492693627,
+          0.002271675443644548
+        ],
+        "aucImprovement95": [
+          0.031679148005654384,
+          0.06399074828551453
+        ],
+        "modelBrier95": [
+          0.028631721398727293,
+          0.0443141425422831
+        ],
+        "comparisonBrier95": [
+          0.02983208313139746,
+          0.04608965821542365
+        ],
+        "scope": "Holdout sampling uncertainty conditional on development fits and released imputations, not training uncertainty or an individual/lifetime confidence interval"
+      },
+      "calibrationByWeightedRiskFifth": [
+        {
+          "riskFifth": 1,
+          "people": 746,
+          "deaths": 2,
+          "weightedMeanPrediction": 0.006241267809320949,
+          "weightedObservedRisk": 0.0036289070071761774
+        },
+        {
+          "riskFifth": 2,
+          "people": 645,
+          "deaths": 8,
+          "weightedMeanPrediction": 0.015150123331083178,
+          "weightedObservedRisk": 0.009339320734346943
+        },
+        {
+          "riskFifth": 3,
+          "people": 611,
+          "deaths": 11,
+          "weightedMeanPrediction": 0.031144511041116818,
+          "weightedObservedRisk": 0.01388840820898901
+        },
+        {
+          "riskFifth": 4,
+          "people": 642,
+          "deaths": 32,
+          "weightedMeanPrediction": 0.062125302922927304,
+          "weightedObservedRisk": 0.03749164848763342
+        },
+        {
+          "riskFifth": 5,
+          "people": 810,
+          "deaths": 140,
+          "weightedMeanPrediction": 0.16941812329446174,
+          "weightedObservedRisk": 0.14653621377885764
+        }
+      ],
+      "coefficientUncertainty": [
+        {
+          "feature": "age10",
+          "pooledCoefficientDescriptiveOnly": 0.7959299946611184,
+          "withinClusterVariance": 0.005730816323528721,
+          "betweenImputationVariance": 1.144244458668962e-06,
+          "rubinStandardError": 0.07571122385009453,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.6433440494352186,
+            0.9485159398870181
+          ]
+        },
+        {
+          "feature": "male",
+          "pooledCoefficientDescriptiveOnly": 0.14947013753741129,
+          "withinClusterVariance": 0.024563090402215087,
+          "betweenImputationVariance": 0.00029975510397403307,
+          "rubinStandardError": 0.15786955541517156,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.16869504472289942,
+            0.467635319797722
+          ]
+        },
+        {
+          "feature": "age10_male",
+          "pooledCoefficientDescriptiveOnly": -0.027469084088037665,
+          "withinClusterVariance": 0.00800151491850993,
+          "betweenImputationVariance": 1.7442906178459027e-06,
+          "rubinStandardError": 0.08946288653543069,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.2077696843223458,
+            0.15283151614627047
+          ]
+        },
+        {
+          "feature": "smoking_former",
+          "pooledCoefficientDescriptiveOnly": 0.4917986003643297,
+          "withinClusterVariance": 0.014222909185487864,
+          "betweenImputationVariance": 1.3111616022789998e-06,
+          "rubinStandardError": 0.11926643525908955,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.2514328945640393,
+            0.7321643061646201
+          ]
+        },
+        {
+          "feature": "smoking_current",
+          "pooledCoefficientDescriptiveOnly": 1.1080485008536534,
+          "withinClusterVariance": 0.014115991877392185,
+          "betweenImputationVariance": 2.5157446006429737e-06,
+          "rubinStandardError": 0.11882344369236635,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.8685755858906818,
+            1.3475214158166249
+          ]
+        },
+        {
+          "feature": "body_fat10",
+          "pooledCoefficientDescriptiveOnly": -0.41149800300225603,
+          "withinClusterVariance": 0.02097473262142089,
+          "betweenImputationVariance": 0.0010306695685733819,
+          "rubinStandardError": 0.14903535185890945,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.7118590179092665,
+            -0.11113698809524553
+          ]
+        },
+        {
+          "feature": "body_fat10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.11600851323241632,
+          "withinClusterVariance": 0.004814466627411905,
+          "betweenImputationVariance": 0.0003279540132480841,
+          "rubinStandardError": 0.07216655349474302,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.029433618313276205,
+            0.26145064477810886
+          ]
+        },
+        {
+          "feature": "body_fat10_male",
+          "pooledCoefficientDescriptiveOnly": 0.3590377076052108,
+          "withinClusterVariance": 0.03892514080707442,
+          "betweenImputationVariance": 0.0015558425819043593,
+          "rubinStandardError": 0.20197067090387072,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.04800743260800949,
+            0.7660828478184312
+          ]
+        },
+        {
+          "feature": "waist_height10",
+          "pooledCoefficientDescriptiveOnly": 0.09821276460705469,
+          "withinClusterVariance": 0.011393975509835303,
+          "betweenImputationVariance": 3.957362703250334e-05,
+          "rubinStandardError": 0.10696477860620432,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.11736058131880706,
+            0.31378611053291644
+          ]
+        },
+        {
+          "feature": "waist_height10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.07412387641287639,
+          "withinClusterVariance": 0.0008513838073228398,
+          "betweenImputationVariance": 1.0263159446058665e-05,
+          "rubinStandardError": 0.029388766538562146,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.01489470941131564,
+            0.13335304341443716
+          ]
+        }
+      ],
+      "coefficientUncertaintyMethod": "Per-imputation lifelines PSU-cluster robust sandwich SE; Rubin within/between variances; t df capped at development PSU-minus-stratum df. Approximate with tied times; not full survey Taylor variance. Pooled coefficients are descriptive only: app predictions pool five risks, not coefficients.",
+      "developmentWeightSum": 165664080.0338613,
+      "developmentWeightMean": 16324.800949335959,
+      "holdoutWeightSum": 173732721.086494,
+      "holdoutWeightMean": 50298.99278705675,
+      "developmentAgeRange": [
+        20.0,
+        69.0
+      ],
+      "developmentZeroMonthDeaths": 0,
+      "holdoutZeroMonthDeaths": 0,
+      "syntheticInferenceOracles": [
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "never",
+            "bodyFat": 18,
+            "waistToHeight": 0.45,
+            "phenoAgeGap": -3,
+            "activityWeekly": 240
+          },
+          "lifelinesRisk10": 0.010129849486758147,
+          "lifelinesPerImputationRisk10": [
+            0.010235523702467608,
+            0.010021696379870049,
+            0.010148544584837715,
+            0.010088080673323785,
+            0.010155402093291577
+          ],
+          "lifelinesComparisonRisk10": 0.018696193702387842
+        },
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "current",
+            "bodyFat": 32,
+            "waistToHeight": 0.63,
+            "phenoAgeGap": 10,
+            "activityWeekly": 0
+          },
+          "lifelinesRisk10": 0.03182138834199355,
+          "lifelinesPerImputationRisk10": [
+            0.03173249598209649,
+            0.03192268069319759,
+            0.03182815080348367,
+            0.031888351705118057,
+            0.03173526252607195
+          ],
+          "lifelinesComparisonRisk10": 0.018696193702387842
+        },
+        {
+          "input": {
+            "age": 65,
+            "sex": "f",
+            "smoking": "never",
+            "bodyFat": 30,
+            "waistToHeight": 0.5,
+            "phenoAgeGap": -2,
+            "activityWeekly": 120
+          },
+          "lifelinesRisk10": 0.09703598142735785,
+          "lifelinesPerImputationRisk10": [
+            0.09801679530382723,
+            0.09612428651425398,
+            0.09728710847319988,
+            0.09832584460036953,
+            0.09542587224513865
+          ],
+          "lifelinesComparisonRisk10": 0.1489087942649222
+        },
+        {
+          "input": {
+            "age": 50,
+            "sex": "f",
+            "smoking": "former",
+            "bodyFat": 40,
+            "waistToHeight": 0.6,
+            "phenoAgeGap": 7,
+            "activityWeekly": 80
+          },
+          "lifelinesRisk10": 0.043733298419129166,
+          "lifelinesPerImputationRisk10": [
+            0.04338422245110196,
+            0.04403852671542363,
+            0.043905989148475544,
+            0.043819617170605896,
+            0.04351813661003878
+          ],
+          "lifelinesComparisonRisk10": 0.04560426346556712
+        }
+      ],
+      "syntheticOracleMethod": "Four parent-specified invented inputs, not cohort records. Canonical shared design bridge; actual fitted lifelines predict_survival_function(times=[10]); average five risks for DXA variants. No exported equation or TS inference used as oracle.",
+      "subgroupsDescriptiveOnly": {
+        "female": {
+          "people": 1698,
+          "deaths": 73,
+          "auc": 0.824345472677592,
+          "brier": 0.03129128792157783,
+          "weightedEventRate": 0.03430509660957165,
+          "weightedMeanPrediction": 0.045693452107878556
+        },
+        "male": {
+          "people": 1756,
+          "deaths": 120,
+          "auc": 0.842702409058264,
+          "brier": 0.0425083806658282,
+          "weightedEventRate": 0.050121604413247034,
+          "weightedMeanPrediction": 0.06804918381290688
+        },
+        "age20To49": {
+          "people": 2234,
+          "deaths": 41,
+          "auc": 0.7712598736641855,
+          "brier": 0.01594182749731317,
+          "weightedEventRate": 0.01649451100537431,
+          "weightedMeanPrediction": 0.025294620641819827
+        },
+        "age50AndOver": {
+          "people": 1220,
+          "deaths": 152,
+          "auc": 0.769130797989779,
+          "brier": 0.07906387219938406,
+          "weightedEventRate": 0.09393748997435361,
+          "weightedMeanPrediction": 0.12035078496251941
+        }
+      },
+      "zeroTimeSensitivity": {
+        "reason": "No zero-month development deaths in this variant; replacement cannot change its fit"
+      }
+    },
+    "body_activity": {
+      "penalty": 0.001,
+      "developmentCvFirstImputation": [
+        {
+          "penalty": 0.001,
+          "weightedBrier": 0.045615640314554506,
+          "weightedAucDescriptiveOnly": 0.8043232049263264
+        },
+        {
+          "penalty": 0.01,
+          "weightedBrier": 0.045894230837056176,
+          "weightedAucDescriptiveOnly": 0.8031387776455223
+        },
+        {
+          "penalty": 0.1,
+          "weightedBrier": 0.047830811249386526,
+          "weightedAucDescriptiveOnly": 0.7923622511410829
+        }
+      ],
+      "imputationFits": 5,
+      "trainingPeopleByCycle": {
+        "1999": 3221,
+        "2001": 3590,
+        "2003": 3319
+      },
+      "trainingDeathsByCycle": {
+        "1999": 239,
+        "2001": 236,
+        "2003": 228
+      },
+      "trainingFoldPeople": {
+        "0": 3496,
+        "1": 3274,
+        "2": 3360
+      },
+      "trainingFoldDeaths": {
+        "0": 249,
+        "1": 229,
+        "2": 225
+      },
+      "developmentEarlyCensored": 0,
+      "holdoutEarlyCensored": 0,
+      "availabilityExclusionsFromBaseBySplit": {
+        "development": {
+          "basePeople": 12933,
+          "notInVariant": 2803,
+          "missingBodyFatOrOutsideAge": 2539,
+          "missingWaistToHeight": 671,
+          "missingClinicalInputs": 0,
+          "missingActivity": 20
+        },
+        "holdout": {
+          "basePeople": 4296,
+          "notInVariant": 845,
+          "missingBodyFatOrOutsideAge": 716,
+          "missingWaistToHeight": 226,
+          "missingClinicalInputs": 0,
+          "missingActivity": 3
+        }
+      },
+      "heldout": {
+        "people": 3451,
+        "deaths": 193,
+        "auc": 0.8373735965268586,
+        "brier": 0.036748561119437584,
+        "weightedEventRate": 0.042184643069598,
+        "weightedMeanPrediction": 0.05573881767212554
+      },
+      "ageSexComparison": {
+        "people": 3451,
+        "deaths": 193,
+        "auc": 0.7888250658554966,
+        "brier": 0.03840397443906018,
+        "weightedEventRate": 0.042184643069598,
+        "weightedMeanPrediction": 0.05513118627933721
+      },
+      "accepted": true,
+      "gate": "Weighted Brier strictly lower AND weighted AUC at least age/sex-only; prespecified; no CI significance gate and no holdout retuning",
+      "pairedBootstrap": {
+        "method": "200 seeded Rao-Wu rescaled PSU-within-stratum resamples; paired fixed-model metrics; percentile 95% intervals",
+        "replicates": 200,
+        "seed": 20261101,
+        "brierImprovement95": [
+          0.0009194068491466867,
+          0.002447370624316649
+        ],
+        "aucImprovement95": [
+          0.031456541109576755,
+          0.06523614966722348
+        ],
+        "modelBrier95": [
+          0.028540895271780466,
+          0.044461271681358855
+        ],
+        "comparisonBrier95": [
+          0.029835007506534585,
+          0.046097644202449335
+        ],
+        "scope": "Holdout sampling uncertainty conditional on development fits and released imputations, not training uncertainty or an individual/lifetime confidence interval"
+      },
+      "calibrationByWeightedRiskFifth": [
+        {
+          "riskFifth": 1,
+          "people": 732,
+          "deaths": 3,
+          "weightedMeanPrediction": 0.005772375606201269,
+          "weightedObservedRisk": 0.0064740438910899185
+        },
+        {
+          "riskFifth": 2,
+          "people": 626,
+          "deaths": 7,
+          "weightedMeanPrediction": 0.014247288382464201,
+          "weightedObservedRisk": 0.006510109040919991
+        },
+        {
+          "riskFifth": 3,
+          "people": 627,
+          "deaths": 10,
+          "weightedMeanPrediction": 0.02931359443437965,
+          "weightedObservedRisk": 0.015013596562545622
+        },
+        {
+          "riskFifth": 4,
+          "people": 645,
+          "deaths": 27,
+          "weightedMeanPrediction": 0.060037879731734564,
+          "weightedObservedRisk": 0.03232063696997133
+        },
+        {
+          "riskFifth": 5,
+          "people": 821,
+          "deaths": 146,
+          "weightedMeanPrediction": 0.16933402648396093,
+          "weightedObservedRisk": 0.1506001047083642
+        }
+      ],
+      "coefficientUncertainty": [
+        {
+          "feature": "age10",
+          "pooledCoefficientDescriptiveOnly": 0.7869680025575312,
+          "withinClusterVariance": 0.005697125631511515,
+          "betweenImputationVariance": 8.253555656798427e-07,
+          "rubinStandardError": 0.07548586661217006,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.6348362350005896,
+            0.9390997701144728
+          ]
+        },
+        {
+          "feature": "male",
+          "pooledCoefficientDescriptiveOnly": 0.11902055507117079,
+          "withinClusterVariance": 0.025467370666020967,
+          "betweenImputationVariance": 0.00040291144780711067,
+          "rubinStandardError": 0.1610927198956846,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.2056404883556612,
+            0.4436815984980028
+          ]
+        },
+        {
+          "feature": "age10_male",
+          "pooledCoefficientDescriptiveOnly": -0.013323255890225327,
+          "withinClusterVariance": 0.007901155518806371,
+          "betweenImputationVariance": 1.040458287329645e-06,
+          "rubinStandardError": 0.08889546708776082,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.19248029737116168,
+            0.16583378559071105
+          ]
+        },
+        {
+          "feature": "smoking_former",
+          "pooledCoefficientDescriptiveOnly": 0.5078428361325262,
+          "withinClusterVariance": 0.013741869663000412,
+          "betweenImputationVariance": 7.877836794518843e-07,
+          "rubinStandardError": 0.11722975306386922,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.27158179357870194,
+            0.7441038786863505
+          ]
+        },
+        {
+          "feature": "smoking_current",
+          "pooledCoefficientDescriptiveOnly": 1.0549823130949285,
+          "withinClusterVariance": 0.01323454336948624,
+          "betweenImputationVariance": 4.893904778676562e-06,
+          "rubinStandardError": 0.11506700680568975,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.8230799992117896,
+            1.2868846269780674
+          ]
+        },
+        {
+          "feature": "body_fat10",
+          "pooledCoefficientDescriptiveOnly": -0.440685225800879,
+          "withinClusterVariance": 0.021678993583653175,
+          "betweenImputationVariance": 0.001060261912122775,
+          "rubinStandardError": 0.1514968906552227,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.7460071461700617,
+            -0.13536330543169622
+          ]
+        },
+        {
+          "feature": "body_fat10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.10506426841346043,
+          "withinClusterVariance": 0.0048514725503356285,
+          "betweenImputationVariance": 0.0003374862781243801,
+          "rubinStandardError": 0.07250142125562012,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.04105274475771316,
+            0.25118128158463404
+          ]
+        },
+        {
+          "feature": "body_fat10_male",
+          "pooledCoefficientDescriptiveOnly": 0.3516575282280188,
+          "withinClusterVariance": 0.03756666045749468,
+          "betweenImputationVariance": 0.0014792592270364672,
+          "rubinStandardError": 0.1983476027834429,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.048085797991705814,
+            0.7514008544477435
+          ]
+        },
+        {
+          "feature": "waist_height10",
+          "pooledCoefficientDescriptiveOnly": 0.08742922122518082,
+          "withinClusterVariance": 0.011115904968939067,
+          "betweenImputationVariance": 7.799997878665124e-05,
+          "rubinStandardError": 0.10587494955598821,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.12594771857612638,
+            0.30080616102648805
+          ]
+        },
+        {
+          "feature": "waist_height10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.07411648751813994,
+          "withinClusterVariance": 0.0008017188398366763,
+          "betweenImputationVariance": 1.0466497760636465e-05,
+          "rubinStandardError": 0.02853556793108278,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.016606829320787983,
+            0.13162614571549192
+          ]
+        },
+        {
+          "feature": "activity_log",
+          "pooledCoefficientDescriptiveOnly": -0.35499263366472167,
+          "withinClusterVariance": 0.0056191537168829,
+          "betweenImputationVariance": 1.1300069056187573e-06,
+          "rubinStandardError": 0.07497005885798438,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.5060848590015679,
+            -0.2039004083278755
+          ]
+        }
+      ],
+      "coefficientUncertaintyMethod": "Per-imputation lifelines PSU-cluster robust sandwich SE; Rubin within/between variances; t df capped at development PSU-minus-stratum df. Approximate with tied times; not full survey Taylor variance. Pooled coefficients are descriptive only: app predictions pool five risks, not coefficients.",
+      "developmentWeightSum": 165457399.685958,
+      "developmentWeightMean": 16333.405694566436,
+      "holdoutWeightSum": 173662464.550629,
+      "holdoutWeightMean": 50322.360055238765,
+      "developmentAgeRange": [
+        20.0,
+        69.0
+      ],
+      "developmentZeroMonthDeaths": 0,
+      "holdoutZeroMonthDeaths": 0,
+      "syntheticInferenceOracles": [
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "never",
+            "bodyFat": 18,
+            "waistToHeight": 0.45,
+            "phenoAgeGap": -3,
+            "activityWeekly": 240
+          },
+          "lifelinesRisk10": 0.008961195702101698,
+          "lifelinesPerImputationRisk10": [
+            0.009070745807843283,
+            0.008866932203396405,
+            0.008961294858545021,
+            0.008941791212597305,
+            0.008965214428126478
+          ],
+          "lifelinesComparisonRisk10": 0.018072798445735727
+        },
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "current",
+            "bodyFat": 32,
+            "waistToHeight": 0.63,
+            "phenoAgeGap": 10,
+            "activityWeekly": 0
+          },
+          "lifelinesRisk10": 0.03537400641824837,
+          "lifelinesPerImputationRisk10": [
+            0.03524020324185251,
+            0.035455007903519964,
+            0.035431159179621585,
+            0.03541958411628676,
+            0.03532407764996104
+          ],
+          "lifelinesComparisonRisk10": 0.018072798445735727
+        },
+        {
+          "input": {
+            "age": 65,
+            "sex": "f",
+            "smoking": "never",
+            "bodyFat": 30,
+            "waistToHeight": 0.5,
+            "phenoAgeGap": -2,
+            "activityWeekly": 120
+          },
+          "lifelinesRisk10": 0.09710212750328559,
+          "lifelinesPerImputationRisk10": [
+            0.09807756592952233,
+            0.09619710232394463,
+            0.09742879155897022,
+            0.09844655344714504,
+            0.09536062425684577
+          ],
+          "lifelinesComparisonRisk10": 0.14825941830555178
+        },
+        {
+          "input": {
+            "age": 50,
+            "sex": "f",
+            "smoking": "former",
+            "bodyFat": 40,
+            "waistToHeight": 0.6,
+            "phenoAgeGap": 7,
+            "activityWeekly": 80
+          },
+          "lifelinesRisk10": 0.04530837956626863,
+          "lifelinesPerImputationRisk10": [
+            0.045031635974651874,
+            0.045682718077979856,
+            0.04536819968252315,
+            0.04551822472020006,
+            0.044941119375988214
+          ],
+          "lifelinesComparisonRisk10": 0.045573710987278915
+        }
+      ],
+      "syntheticOracleMethod": "Four parent-specified invented inputs, not cohort records. Canonical shared design bridge; actual fitted lifelines predict_survival_function(times=[10]); average five risks for DXA variants. No exported equation or TS inference used as oracle.",
+      "subgroupsDescriptiveOnly": {
+        "female": {
+          "people": 1698,
+          "deaths": 73,
+          "auc": 0.824191835660788,
+          "brier": 0.031198839927599618,
+          "weightedEventRate": 0.03430509660957165,
+          "weightedMeanPrediction": 0.04513538002655492
+        },
+        "male": {
+          "people": 1753,
+          "deaths": 120,
+          "auc": 0.844931606351107,
+          "brier": 0.04236746190281144,
+          "weightedEventRate": 0.0501624113657761,
+          "weightedMeanPrediction": 0.06647443159463699
+        },
+        "age20To49": {
+          "people": 2232,
+          "deaths": 41,
+          "auc": 0.7743289652174494,
+          "brier": 0.015853573717230316,
+          "weightedEventRate": 0.01650202297047831,
+          "weightedMeanPrediction": 0.024574870255988215
+        },
+        "age50AndOver": {
+          "people": 1219,
+          "deaths": 152,
+          "auc": 0.7658222984131628,
+          "brier": 0.07887696795249151,
+          "weightedEventRate": 0.09396585964789499,
+          "weightedMeanPrediction": 0.11857146887210876
+        }
+      },
+      "zeroTimeSensitivity": {
+        "reason": "No zero-month development deaths in this variant; replacement cannot change its fit"
+      }
+    },
+    "clinical": {
+      "penalty": 0.001,
+      "developmentCvFirstImputation": [
+        {
+          "penalty": 0.001,
+          "weightedBrier": 0.04211868774585129,
+          "weightedAucDescriptiveOnly": 0.8208090241449089
+        },
+        {
+          "penalty": 0.01,
+          "weightedBrier": 0.04241586287166655,
+          "weightedAucDescriptiveOnly": 0.8208215991796083
+        },
+        {
+          "penalty": 0.1,
+          "weightedBrier": 0.04444572811454795,
+          "weightedAucDescriptiveOnly": 0.8137286510771394
+        }
+      ],
+      "imputationFits": 5,
+      "trainingPeopleByCycle": {
+        "1999": 3021,
+        "2001": 3403,
+        "2003": 3160
+      },
+      "trainingDeathsByCycle": {
+        "1999": 206,
+        "2001": 216,
+        "2003": 211
+      },
+      "trainingFoldPeople": {
+        "0": 3315,
+        "1": 3081,
+        "2": 3188
+      },
+      "trainingFoldDeaths": {
+        "0": 224,
+        "1": 199,
+        "2": 210
+      },
+      "developmentEarlyCensored": 0,
+      "holdoutEarlyCensored": 0,
+      "availabilityExclusionsFromBaseBySplit": {
+        "development": {
+          "basePeople": 12933,
+          "notInVariant": 3349,
+          "missingBodyFatOrOutsideAge": 2539,
+          "missingWaistToHeight": 671,
+          "missingClinicalInputs": 880,
+          "missingActivity": 0
+        },
+        "holdout": {
+          "basePeople": 4296,
+          "notInVariant": 1033,
+          "missingBodyFatOrOutsideAge": 716,
+          "missingWaistToHeight": 226,
+          "missingClinicalInputs": 301,
+          "missingActivity": 0
+        }
+      },
+      "heldout": {
+        "people": 3263,
+        "deaths": 180,
+        "auc": 0.8537778224925453,
+        "brier": 0.03514135877694083,
+        "weightedEventRate": 0.04209543576521036,
+        "weightedMeanPrediction": 0.05536356723863205
+      },
+      "ageSexComparison": {
+        "people": 3263,
+        "deaths": 180,
+        "auc": 0.7902653966595133,
+        "brier": 0.038277529949368325,
+        "weightedEventRate": 0.04209543576521036,
+        "weightedMeanPrediction": 0.053466137502201735
+      },
+      "accepted": true,
+      "gate": "Weighted Brier strictly lower AND weighted AUC at least age/sex-only; prespecified; no CI significance gate and no holdout retuning",
+      "pairedBootstrap": {
+        "method": "200 seeded Rao-Wu rescaled PSU-within-stratum resamples; paired fixed-model metrics; percentile 95% intervals",
+        "replicates": 200,
+        "seed": 20261101,
+        "brierImprovement95": [
+          0.0023679209675428557,
+          0.003946994770123017
+        ],
+        "aucImprovement95": [
+          0.05183901864294048,
+          0.07785223603472735
+        ],
+        "modelBrier95": [
+          0.02771534610058173,
+          0.04219609631095313
+        ],
+        "comparisonBrier95": [
+          0.030287355356447325,
+          0.04592433742135258
+        ],
+        "scope": "Holdout sampling uncertainty conditional on development fits and released imputations, not training uncertainty or an individual/lifetime confidence interval"
+      },
+      "calibrationByWeightedRiskFifth": [
+        {
+          "riskFifth": 1,
+          "people": 697,
+          "deaths": 4,
+          "weightedMeanPrediction": 0.005851699816871652,
+          "weightedObservedRisk": 0.009685249158552452
+        },
+        {
+          "riskFifth": 2,
+          "people": 600,
+          "deaths": 3,
+          "weightedMeanPrediction": 0.013960139640612126,
+          "weightedObservedRisk": 0.001924732806466169
+        },
+        {
+          "riskFifth": 3,
+          "people": 586,
+          "deaths": 9,
+          "weightedMeanPrediction": 0.0286634013270292,
+          "weightedObservedRisk": 0.013014233885878562
+        },
+        {
+          "riskFifth": 4,
+          "people": 598,
+          "deaths": 23,
+          "weightedMeanPrediction": 0.05747131217031751,
+          "weightedObservedRisk": 0.026555691959378132
+        },
+        {
+          "riskFifth": 5,
+          "people": 782,
+          "deaths": 141,
+          "weightedMeanPrediction": 0.17085433847834297,
+          "weightedObservedRisk": 0.15927364534409272
+        }
+      ],
+      "coefficientUncertainty": [
+        {
+          "feature": "age10",
+          "pooledCoefficientDescriptiveOnly": 0.7662328920029562,
+          "withinClusterVariance": 0.0063312973676255225,
+          "betweenImputationVariance": 2.3818722742958847e-06,
+          "rubinStandardError": 0.07958740864203757,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.6058350096523847,
+            0.9266307743535277
+          ]
+        },
+        {
+          "feature": "male",
+          "pooledCoefficientDescriptiveOnly": 0.2556216417452091,
+          "withinClusterVariance": 0.032859113568223006,
+          "betweenImputationVariance": 0.0015088704826186061,
+          "rubinStandardError": 0.1861981690225909,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.11963610968008898,
+            0.6308793931705072
+          ]
+        },
+        {
+          "feature": "age10_male",
+          "pooledCoefficientDescriptiveOnly": -0.025034977604832327,
+          "withinClusterVariance": 0.009838418563328953,
+          "betweenImputationVariance": 2.300203711221049e-06,
+          "rubinStandardError": 0.09920271572785908,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.22496491373005198,
+            0.1748949585203873
+          ]
+        },
+        {
+          "feature": "smoking_former",
+          "pooledCoefficientDescriptiveOnly": 0.5541279905901983,
+          "withinClusterVariance": 0.016232565796387377,
+          "betweenImputationVariance": 3.781360995648824e-06,
+          "rubinStandardError": 0.12742489328848644,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.2973199930569656,
+            0.810935988123431
+          ]
+        },
+        {
+          "feature": "smoking_current",
+          "pooledCoefficientDescriptiveOnly": 1.0753355340387336,
+          "withinClusterVariance": 0.01448936108508649,
+          "betweenImputationVariance": 1.3703522322776543e-05,
+          "rubinStandardError": 0.12044004862118672,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.832604565928856,
+            1.318066502148611
+          ]
+        },
+        {
+          "feature": "body_fat10",
+          "pooledCoefficientDescriptiveOnly": -0.2823065081040789,
+          "withinClusterVariance": 0.02721733005177791,
+          "betweenImputationVariance": 0.0015533262640245716,
+          "rubinStandardError": 0.17053246485231893,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.625992107384761,
+            0.06137909117660312
+          ]
+        },
+        {
+          "feature": "body_fat10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.10663967539557635,
+          "withinClusterVariance": 0.006433881644199502,
+          "betweenImputationVariance": 0.0003073735820927222,
+          "rubinStandardError": 0.08247866356040676,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.05958514835382768,
+            0.2728644991449804
+          ]
+        },
+        {
+          "feature": "body_fat10_male",
+          "pooledCoefficientDescriptiveOnly": 0.43493727778066865,
+          "withinClusterVariance": 0.04212239885475362,
+          "betweenImputationVariance": 0.0010536272984505816,
+          "rubinStandardError": 0.2082948669864294,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.015146557876889122,
+            0.8547279976844482
+          ]
+        },
+        {
+          "feature": "waist_height10",
+          "pooledCoefficientDescriptiveOnly": 0.013383098313975406,
+          "withinClusterVariance": 0.015001451536916236,
+          "betweenImputationVariance": 0.00033942205712971223,
+          "rubinStandardError": 0.12413201845403099,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.2367885460661134,
+            0.2635547426940642
+          ]
+        },
+        {
+          "feature": "waist_height10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.053922627325031294,
+          "withinClusterVariance": 0.0009979235539425404,
+          "betweenImputationVariance": 8.469361753394242e-06,
+          "rubinStandardError": 0.03175038248661917,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.010066063870832781,
+            0.11791131852089537
+          ]
+        },
+        {
+          "feature": "pheno_gap10",
+          "pooledCoefficientDescriptiveOnly": 0.33305128318174526,
+          "withinClusterVariance": 0.000575507506797381,
+          "betweenImputationVariance": 5.230709789415605e-07,
+          "rubinStandardError": 0.02400281633417443,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.2846767855552735,
+            0.38142578080821704
+          ]
+        }
+      ],
+      "coefficientUncertaintyMethod": "Per-imputation lifelines PSU-cluster robust sandwich SE; Rubin within/between variances; t df capped at development PSU-minus-stratum df. Approximate with tied times; not full survey Taylor variance. Pooled coefficients are descriptive only: app predictions pool five risks, not coefficients.",
+      "developmentWeightSum": 157900171.09540534,
+      "developmentWeightMean": 16475.393478235113,
+      "holdoutWeightSum": 165037010.02263,
+      "holdoutWeightMean": 50578.3052475115,
+      "developmentAgeRange": [
+        20.0,
+        69.0
+      ],
+      "developmentZeroMonthDeaths": 0,
+      "holdoutZeroMonthDeaths": 0,
+      "syntheticInferenceOracles": [
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "never",
+            "bodyFat": 18,
+            "waistToHeight": 0.45,
+            "phenoAgeGap": -3,
+            "activityWeekly": 240
+          },
+          "lifelinesRisk10": 0.009331280676470132,
+          "lifelinesPerImputationRisk10": [
+            0.009515054063815698,
+            0.009244066690139774,
+            0.00934892442049895,
+            0.009261300024794972,
+            0.009287058183101271
+          ],
+          "lifelinesComparisonRisk10": 0.017296446055171555
+        },
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "current",
+            "bodyFat": 32,
+            "waistToHeight": 0.63,
+            "phenoAgeGap": 10,
+            "activityWeekly": 0
+          },
+          "lifelinesRisk10": 0.04879017457784627,
+          "lifelinesPerImputationRisk10": [
+            0.04847429345147425,
+            0.048966276633671146,
+            0.048926151508145055,
+            0.04877897585745228,
+            0.04880517543848861
+          ],
+          "lifelinesComparisonRisk10": 0.017296446055171555
+        },
+        {
+          "input": {
+            "age": 65,
+            "sex": "f",
+            "smoking": "never",
+            "bodyFat": 30,
+            "waistToHeight": 0.5,
+            "phenoAgeGap": -2,
+            "activityWeekly": 120
+          },
+          "lifelinesRisk10": 0.09436998670542249,
+          "lifelinesPerImputationRisk10": [
+            0.09674259818752651,
+            0.09476298409194983,
+            0.09602682198065804,
+            0.09368405133954405,
+            0.09063347792743404
+          ],
+          "lifelinesComparisonRisk10": 0.13646094870102865
+        },
+        {
+          "input": {
+            "age": 50,
+            "sex": "f",
+            "smoking": "former",
+            "bodyFat": 40,
+            "waistToHeight": 0.6,
+            "phenoAgeGap": 7,
+            "activityWeekly": 80
+          },
+          "lifelinesRisk10": 0.06403348083057155,
+          "lifelinesPerImputationRisk10": [
+            0.06391152928439947,
+            0.06471675420126943,
+            0.06427051323775046,
+            0.0640968716033512,
+            0.06317173582608715
+          ],
+          "lifelinesComparisonRisk10": 0.04190234117969316
+        }
+      ],
+      "syntheticOracleMethod": "Four parent-specified invented inputs, not cohort records. Canonical shared design bridge; actual fitted lifelines predict_survival_function(times=[10]); average five risks for DXA variants. No exported equation or TS inference used as oracle.",
+      "subgroupsDescriptiveOnly": {
+        "female": {
+          "people": 1599,
+          "deaths": 69,
+          "auc": 0.849509974172701,
+          "brier": 0.029899149862611843,
+          "weightedEventRate": 0.03416958021370042,
+          "weightedMeanPrediction": 0.042342905024326555
+        },
+        "male": {
+          "people": 1664,
+          "deaths": 111,
+          "auc": 0.855472574900221,
+          "brier": 0.040447014816334434,
+          "weightedEventRate": 0.050117218960322236,
+          "weightedMeanPrediction": 0.06854182019329834
+        },
+        "age20To49": {
+          "people": 2086,
+          "deaths": 37,
+          "auc": 0.7757445406870828,
+          "brier": 0.015116204358435406,
+          "weightedEventRate": 0.016025447958625157,
+          "weightedMeanPrediction": 0.02391048551374431
+        },
+        "age50AndOver": {
+          "people": 1177,
+          "deaths": 143,
+          "auc": 0.7981953083857414,
+          "brier": 0.07406125244212315,
+          "weightedEventRate": 0.09276376680925248,
+          "weightedMeanPrediction": 0.11649421175659248
+        }
+      },
+      "zeroTimeSensitivity": {
+        "reason": "No zero-month development deaths in this variant; replacement cannot change its fit"
+      }
+    },
+    "clinical_activity": {
+      "penalty": 0.001,
+      "developmentCvFirstImputation": [
+        {
+          "penalty": 0.001,
+          "weightedBrier": 0.04162410829807866,
+          "weightedAucDescriptiveOnly": 0.8250670297143115
+        },
+        {
+          "penalty": 0.01,
+          "weightedBrier": 0.04192518256843005,
+          "weightedAucDescriptiveOnly": 0.8249108252850322
+        },
+        {
+          "penalty": 0.1,
+          "weightedBrier": 0.04401198156359828,
+          "weightedAucDescriptiveOnly": 0.8183849216771233
+        }
+      ],
+      "imputationFits": 5,
+      "trainingPeopleByCycle": {
+        "1999": 3016,
+        "2001": 3397,
+        "2003": 3153
+      },
+      "trainingDeathsByCycle": {
+        "1999": 204,
+        "2001": 214,
+        "2003": 211
+      },
+      "trainingFoldPeople": {
+        "0": 3307,
+        "1": 3077,
+        "2": 3182
+      },
+      "trainingFoldDeaths": {
+        "0": 222,
+        "1": 198,
+        "2": 209
+      },
+      "developmentEarlyCensored": 0,
+      "holdoutEarlyCensored": 0,
+      "availabilityExclusionsFromBaseBySplit": {
+        "development": {
+          "basePeople": 12933,
+          "notInVariant": 3367,
+          "missingBodyFatOrOutsideAge": 2539,
+          "missingWaistToHeight": 671,
+          "missingClinicalInputs": 880,
+          "missingActivity": 20
+        },
+        "holdout": {
+          "basePeople": 4296,
+          "notInVariant": 1036,
+          "missingBodyFatOrOutsideAge": 716,
+          "missingWaistToHeight": 226,
+          "missingClinicalInputs": 301,
+          "missingActivity": 3
+        }
+      },
+      "heldout": {
+        "people": 3260,
+        "deaths": 180,
+        "auc": 0.8536148585539756,
+        "brier": 0.035128690742336446,
+        "weightedEventRate": 0.04211336349567775,
+        "weightedMeanPrediction": 0.05447017748546102
+      },
+      "ageSexComparison": {
+        "people": 3260,
+        "deaths": 180,
+        "auc": 0.7901942515056439,
+        "brier": 0.03827922967787688,
+        "weightedEventRate": 0.04211336349567775,
+        "weightedMeanPrediction": 0.0531196518092808
+      },
+      "accepted": true,
+      "gate": "Weighted Brier strictly lower AND weighted AUC at least age/sex-only; prespecified; no CI significance gate and no holdout retuning",
+      "pairedBootstrap": {
+        "method": "200 seeded Rao-Wu rescaled PSU-within-stratum resamples; paired fixed-model metrics; percentile 95% intervals",
+        "replicates": 200,
+        "seed": 20261101,
+        "brierImprovement95": [
+          0.00251953203220602,
+          0.003894562580649446
+        ],
+        "aucImprovement95": [
+          0.05095915516104272,
+          0.07839706576478284
+        ],
+        "modelBrier95": [
+          0.027524779924768997,
+          0.04232305200666883
+        ],
+        "comparisonBrier95": [
+          0.030279445406178135,
+          0.045940704339897394
+        ],
+        "scope": "Holdout sampling uncertainty conditional on development fits and released imputations, not training uncertainty or an individual/lifetime confidence interval"
+      },
+      "calibrationByWeightedRiskFifth": [
+        {
+          "riskFifth": 1,
+          "people": 687,
+          "deaths": 4,
+          "weightedMeanPrediction": 0.005474781144578455,
+          "weightedObservedRisk": 0.00762297482117811
+        },
+        {
+          "riskFifth": 2,
+          "people": 596,
+          "deaths": 4,
+          "weightedMeanPrediction": 0.013308811479709783,
+          "weightedObservedRisk": 0.00461880416863324
+        },
+        {
+          "riskFifth": 3,
+          "people": 586,
+          "deaths": 9,
+          "weightedMeanPrediction": 0.02719832123538253,
+          "weightedObservedRisk": 0.013797180101580318
+        },
+        {
+          "riskFifth": 4,
+          "people": 599,
+          "deaths": 17,
+          "weightedMeanPrediction": 0.05591355088172474,
+          "weightedObservedRisk": 0.021271373292671147
+        },
+        {
+          "riskFifth": 5,
+          "people": 792,
+          "deaths": 146,
+          "weightedMeanPrediction": 0.17037973309071786,
+          "weightedObservedRisk": 0.16314771270846748
+        }
+      ],
+      "coefficientUncertainty": [
+        {
+          "feature": "age10",
+          "pooledCoefficientDescriptiveOnly": 0.7569980359504828,
+          "withinClusterVariance": 0.006285554981187736,
+          "betweenImputationVariance": 2.7125199155557906e-06,
+          "rubinStandardError": 0.07930201766087924,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.5971753213280835,
+            0.916820750572882
+          ]
+        },
+        {
+          "feature": "male",
+          "pooledCoefficientDescriptiveOnly": 0.22687199137702505,
+          "withinClusterVariance": 0.03364345891071836,
+          "betweenImputationVariance": 0.0017487814133146868,
+          "rubinStandardError": 0.18905553841846578,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.15414440966398105,
+            0.6078883924180312
+          ]
+        },
+        {
+          "feature": "age10_male",
+          "pooledCoefficientDescriptiveOnly": -0.008596767679112906,
+          "withinClusterVariance": 0.009646349992587608,
+          "betweenImputationVariance": 3.64373919084517e-06,
+          "rubinStandardError": 0.0982380907775422,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.20658262996233503,
+            0.18938909460410921
+          ]
+        },
+        {
+          "feature": "smoking_former",
+          "pooledCoefficientDescriptiveOnly": 0.5691815754422758,
+          "withinClusterVariance": 0.01610607957606449,
+          "betweenImputationVariance": 2.2867402788758404e-06,
+          "rubinStandardError": 0.12692054075049924,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.3133900336579057,
+            0.8249731172266459
+          ]
+        },
+        {
+          "feature": "smoking_current",
+          "pooledCoefficientDescriptiveOnly": 1.039802147288403,
+          "withinClusterVariance": 0.014502163549939823,
+          "betweenImputationVariance": 2.0326133895444602e-05,
+          "rubinStandardError": 0.12052615861552361,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.7968976358884934,
+            1.2827066586883125
+          ]
+        },
+        {
+          "feature": "body_fat10",
+          "pooledCoefficientDescriptiveOnly": -0.31539259888079696,
+          "withinClusterVariance": 0.02739569093951849,
+          "betweenImputationVariance": 0.0017034187790602314,
+          "rubinStandardError": 0.1715802828835259,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.6611899366407435,
+            0.03040473887914963
+          ]
+        },
+        {
+          "feature": "body_fat10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.10200951382696746,
+          "withinClusterVariance": 0.00618973505973026,
+          "betweenImputationVariance": 0.0003551625577609034,
+          "rubinStandardError": 0.08133836812380332,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.06191719547938629,
+            0.2659362231333212
+          ]
+        },
+        {
+          "feature": "body_fat10_male",
+          "pooledCoefficientDescriptiveOnly": 0.4258299372393301,
+          "withinClusterVariance": 0.040617091211459434,
+          "betweenImputationVariance": 0.0014575891798486451,
+          "rubinStandardError": 0.20583050849492115,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.011005805519975875,
+            0.8406540689586843
+          ]
+        },
+        {
+          "feature": "waist_height10",
+          "pooledCoefficientDescriptiveOnly": 0.01028257086755736,
+          "withinClusterVariance": 0.01477583770420258,
+          "betweenImputationVariance": 0.0004410652962405931,
+          "rubinStandardError": 0.12371384748560402,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.23904630530408466,
+            0.25961144703919936
+          ]
+        },
+        {
+          "feature": "waist_height10_sq",
+          "pooledCoefficientDescriptiveOnly": 0.05346813550796727,
+          "withinClusterVariance": 0.0009408871787719778,
+          "betweenImputationVariance": 8.515077315132177e-06,
+          "rubinStandardError": 0.0308399946749369,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.008685789616188357,
+            0.11562206063212291
+          ]
+        },
+        {
+          "feature": "pheno_gap10",
+          "pooledCoefficientDescriptiveOnly": 0.32548988918338656,
+          "withinClusterVariance": 0.0006118959380845999,
+          "betweenImputationVariance": 7.295444791052684e-07,
+          "rubinStandardError": 0.024754219669776024,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.27560103764241894,
+            0.3753787407243542
+          ]
+        },
+        {
+          "feature": "activity_log",
+          "pooledCoefficientDescriptiveOnly": -0.2933895703880266,
+          "withinClusterVariance": 0.0067521882427089884,
+          "betweenImputationVariance": 1.8351653866780755e-06,
+          "rubinStandardError": 0.08218509865646571,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.4590227529503632,
+            -0.12775638782568996
+          ]
+        }
+      ],
+      "coefficientUncertaintyMethod": "Per-imputation lifelines PSU-cluster robust sandwich SE; Rubin within/between variances; t df capped at development PSU-minus-stratum df. Approximate with tied times; not full survey Taylor variance. Pooled coefficients are descriptive only: app predictions pool five risks, not coefficients.",
+      "developmentWeightSum": 157693490.747502,
+      "developmentWeightMean": 16484.78891360046,
+      "holdoutWeightSum": 164966753.486765,
+      "holdoutWeightMean": 50603.29861557209,
+      "developmentAgeRange": [
+        20.0,
+        69.0
+      ],
+      "developmentZeroMonthDeaths": 0,
+      "holdoutZeroMonthDeaths": 0,
+      "syntheticInferenceOracles": [
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "never",
+            "bodyFat": 18,
+            "waistToHeight": 0.45,
+            "phenoAgeGap": -3,
+            "activityWeekly": 240
+          },
+          "lifelinesRisk10": 0.008443578698324395,
+          "lifelinesPerImputationRisk10": [
+            0.00862482488616434,
+            0.008365063815021445,
+            0.008447762000332704,
+            0.008391030161800206,
+            0.008389212628303278
+          ],
+          "lifelinesComparisonRisk10": 0.016650007516907706
+        },
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "current",
+            "bodyFat": 32,
+            "waistToHeight": 0.63,
+            "phenoAgeGap": 10,
+            "activityWeekly": 0
+          },
+          "lifelinesRisk10": 0.0525260805283718,
+          "lifelinesPerImputationRisk10": [
+            0.0521540924416396,
+            0.05268005140944987,
+            0.05274777878553982,
+            0.05246565064905462,
+            0.05258282935617509
+          ],
+          "lifelinesComparisonRisk10": 0.016650007516907706
+        },
+        {
+          "input": {
+            "age": 65,
+            "sex": "f",
+            "smoking": "never",
+            "bodyFat": 30,
+            "waistToHeight": 0.5,
+            "phenoAgeGap": -2,
+            "activityWeekly": 120
+          },
+          "lifelinesRisk10": 0.0934687123850538,
+          "lifelinesPerImputationRisk10": [
+            0.09584967234551922,
+            0.09387541309039571,
+            0.09526299136771377,
+            0.0927332637638314,
+            0.08962222135780895
+          ],
+          "lifelinesComparisonRisk10": 0.13576480004110758
+        },
+        {
+          "input": {
+            "age": 50,
+            "sex": "f",
+            "smoking": "former",
+            "bodyFat": 40,
+            "waistToHeight": 0.6,
+            "phenoAgeGap": 7,
+            "activityWeekly": 80
+          },
+          "lifelinesRisk10": 0.06514377293595837,
+          "lifelinesPerImputationRisk10": [
+            0.06518163757211781,
+            0.06592924904394482,
+            0.06520605972812665,
+            0.06534937713817945,
+            0.0640525411974231
+          ],
+          "lifelinesComparisonRisk10": 0.04186791209264418
+        }
+      ],
+      "syntheticOracleMethod": "Four parent-specified invented inputs, not cohort records. Canonical shared design bridge; actual fitted lifelines predict_survival_function(times=[10]); average five risks for DXA variants. No exported equation or TS inference used as oracle.",
+      "subgroupsDescriptiveOnly": {
+        "female": {
+          "people": 1599,
+          "deaths": 69,
+          "auc": 0.8457932929737111,
+          "brier": 0.02983280655112431,
+          "weightedEventRate": 0.03416958021370042,
+          "weightedMeanPrediction": 0.041876544199151454
+        },
+        "male": {
+          "people": 1661,
+          "deaths": 111,
+          "auc": 0.8572180155814172,
+          "brier": 0.04049326675564521,
+          "weightedEventRate": 0.05016018395299309,
+          "weightedMeanPrediction": 0.06722716019294728
+        },
+        "age20To49": {
+          "people": 2084,
+          "deaths": 37,
+          "auc": 0.7772381524978257,
+          "brier": 0.015068288148618209,
+          "weightedEventRate": 0.016033226686714443,
+          "weightedMeanPrediction": 0.02337182770266489
+        },
+        "age50AndOver": {
+          "people": 1176,
+          "deaths": 143,
+          "auc": 0.7959301636013025,
+          "brier": 0.07411026485652614,
+          "weightedEventRate": 0.09279254509122381,
+          "weightedMeanPrediction": 0.11490080051127571
+        }
+      },
+      "zeroTimeSensitivity": {
+        "reason": "No zero-month development deaths in this variant; replacement cannot change its fit"
+      }
+    },
+    "blood": {
+      "penalty": 0.001,
+      "developmentCvFirstImputation": [
+        {
+          "penalty": 0.001,
+          "weightedBrier": 0.06085164111458072,
+          "weightedAucDescriptiveOnly": 0.8762737628690285
+        },
+        {
+          "penalty": 0.01,
+          "weightedBrier": 0.061662128692110456,
+          "weightedAucDescriptiveOnly": 0.8749351677705509
+        },
+        {
+          "penalty": 0.1,
+          "weightedBrier": 0.06781007472742553,
+          "weightedAucDescriptiveOnly": 0.8695643970510647
+        }
+      ],
+      "imputationFits": 1,
+      "trainingPeopleByCycle": {
+        "1999": 3749,
+        "2001": 4252,
+        "2003": 4052
+      },
+      "trainingDeathsByCycle": {
+        "1999": 535,
+        "2001": 568,
+        "2003": 580
+      },
+      "trainingFoldPeople": {
+        "0": 4126,
+        "1": 3938,
+        "2": 3989
+      },
+      "trainingFoldDeaths": {
+        "0": 563,
+        "1": 550,
+        "2": 570
+      },
+      "developmentEarlyCensored": 0,
+      "holdoutEarlyCensored": 0,
+      "availabilityExclusionsFromBaseBySplit": {
+        "development": {
+          "basePeople": 12933,
+          "notInVariant": 880,
+          "missingBodyFatOrOutsideAge": 0,
+          "missingWaistToHeight": 0,
+          "missingClinicalInputs": 880,
+          "missingActivity": 0
+        },
+        "holdout": {
+          "basePeople": 4296,
+          "notInVariant": 301,
+          "missingBodyFatOrOutsideAge": 0,
+          "missingWaistToHeight": 0,
+          "missingClinicalInputs": 301,
+          "missingActivity": 0
+        }
+      },
+      "heldout": {
+        "people": 3995,
+        "deaths": 491,
+        "auc": 0.8971588529238376,
+        "brier": 0.0551866859019586,
+        "weightedEventRate": 0.08596106664302808,
+        "weightedMeanPrediction": 0.10064693806797631
+      },
+      "ageSexComparison": {
+        "people": 3995,
+        "deaths": 491,
+        "auc": 0.8669503134361417,
+        "brier": 0.06000716729193369,
+        "weightedEventRate": 0.08596106664302808,
+        "weightedMeanPrediction": 0.0973257847518027
+      },
+      "accepted": true,
+      "gate": "Weighted Brier strictly lower AND weighted AUC at least age/sex-only; prespecified; no CI significance gate and no holdout retuning",
+      "pairedBootstrap": {
+        "method": "200 seeded Rao-Wu rescaled PSU-within-stratum resamples; paired fixed-model metrics; percentile 95% intervals",
+        "replicates": 200,
+        "seed": 20261101,
+        "brierImprovement95": [
+          0.0039045811179436547,
+          0.005860149277037535
+        ],
+        "aucImprovement95": [
+          0.024805908495443847,
+          0.035998229960774314
+        ],
+        "modelBrier95": [
+          0.045482452164876085,
+          0.06308156613439266
+        ],
+        "comparisonBrier95": [
+          0.049780025872810774,
+          0.06804215031137442
+        ],
+        "scope": "Holdout sampling uncertainty conditional on development fits and released imputations, not training uncertainty or an individual/lifetime confidence interval"
+      },
+      "calibrationByWeightedRiskFifth": [
+        {
+          "riskFifth": 1,
+          "people": 782,
+          "deaths": 4,
+          "weightedMeanPrediction": 0.005606133697999772,
+          "weightedObservedRisk": 0.0061362710988636365
+        },
+        {
+          "riskFifth": 2,
+          "people": 713,
+          "deaths": 6,
+          "weightedMeanPrediction": 0.015635347845099148,
+          "weightedObservedRisk": 0.005799317542935248
+        },
+        {
+          "riskFifth": 3,
+          "people": 645,
+          "deaths": 15,
+          "weightedMeanPrediction": 0.03739818537421761,
+          "weightedObservedRisk": 0.018320986225584292
+        },
+        {
+          "riskFifth": 4,
+          "people": 732,
+          "deaths": 59,
+          "weightedMeanPrediction": 0.09132925407787819,
+          "weightedObservedRisk": 0.06474465657066679
+        },
+        {
+          "riskFifth": 5,
+          "people": 1123,
+          "deaths": 407,
+          "weightedMeanPrediction": 0.35327124701024093,
+          "weightedObservedRisk": 0.334817506078258
+        }
+      ],
+      "coefficientUncertainty": [
+        {
+          "feature": "age10",
+          "pooledCoefficientDescriptiveOnly": 0.9062330325207396,
+          "withinClusterVariance": 0.0011957716506105283,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.034579931327440895,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.8365417603535987,
+            0.9759243046878805
+          ]
+        },
+        {
+          "feature": "male",
+          "pooledCoefficientDescriptiveOnly": 0.38340267502050984,
+          "withinClusterVariance": 0.009694179585065273,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.09845902490409537,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.1849715492635454,
+            0.5818338007774743
+          ]
+        },
+        {
+          "feature": "age10_male",
+          "pooledCoefficientDescriptiveOnly": -0.04075039344603378,
+          "withinClusterVariance": 0.0021941052122913317,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.04684127680039616,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.13515278364286762,
+            0.05365199675080006
+          ]
+        },
+        {
+          "feature": "smoking_former",
+          "pooledCoefficientDescriptiveOnly": 0.3608597929023344,
+          "withinClusterVariance": 0.005194964361418652,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.07207610118075652,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.21559995601687384,
+            0.5061196297877949
+          ]
+        },
+        {
+          "feature": "smoking_current",
+          "pooledCoefficientDescriptiveOnly": 0.9664641956666916,
+          "withinClusterVariance": 0.0071224042192764144,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.08439433760197668,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.7963785845793835,
+            1.1365498067539996
+          ]
+        },
+        {
+          "feature": "pheno_gap10",
+          "pooledCoefficientDescriptiveOnly": 0.33968210383452035,
+          "withinClusterVariance": 0.00041092434254175783,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.02027126889323305,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.29882804590611345,
+            0.38053616176292726
+          ]
+        }
+      ],
+      "coefficientUncertaintyMethod": "Per-imputation lifelines PSU-cluster robust sandwich SE; Rubin within/between variances; t df capped at development PSU-minus-stratum df. Approximate with tied times; not full survey Taylor variance. Pooled coefficients are descriptive only: app predictions pool five risks, not coefficients.",
+      "developmentWeightSum": 181897184.864022,
+      "developmentWeightMean": 15091.444857215796,
+      "holdoutWeightSum": 189034001.14039803,
+      "holdoutWeightMean": 47317.64734427986,
+      "developmentAgeRange": [
+        20.0,
+        84.0
+      ],
+      "developmentZeroMonthDeaths": 0,
+      "holdoutZeroMonthDeaths": 0,
+      "syntheticInferenceOracles": [
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "never",
+            "bodyFat": 18,
+            "waistToHeight": 0.45,
+            "phenoAgeGap": -3,
+            "activityWeekly": 240
+          },
+          "lifelinesRisk10": 0.009967663802212146,
+          "lifelinesPerImputationRisk10": [
+            0.009967663802212146
+          ],
+          "lifelinesComparisonRisk10": 0.016125076468647692
+        },
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "current",
+            "bodyFat": 32,
+            "waistToHeight": 0.63,
+            "phenoAgeGap": 10,
+            "activityWeekly": 0
+          },
+          "lifelinesRisk10": 0.040124843164769164,
+          "lifelinesPerImputationRisk10": [
+            0.040124843164769164
+          ],
+          "lifelinesComparisonRisk10": 0.016125076468647692
+        },
+        {
+          "input": {
+            "age": 65,
+            "sex": "f",
+            "smoking": "never",
+            "bodyFat": 30,
+            "waistToHeight": 0.5,
+            "phenoAgeGap": -2,
+            "activityWeekly": 120
+          },
+          "lifelinesRisk10": 0.1327310317942837,
+          "lifelinesPerImputationRisk10": [
+            0.1327310317942837
+          ],
+          "lifelinesComparisonRisk10": 0.15417957647304237
+        },
+        {
+          "input": {
+            "age": 50,
+            "sex": "f",
+            "smoking": "former",
+            "bodyFat": 40,
+            "waistToHeight": 0.6,
+            "phenoAgeGap": 7,
+            "activityWeekly": 80
+          },
+          "lifelinesRisk10": 0.06875185826954888,
+          "lifelinesPerImputationRisk10": [
+            0.06875185826954888
+          ],
+          "lifelinesComparisonRisk10": 0.04342988135948589
+        }
+      ],
+      "syntheticOracleMethod": "Four parent-specified invented inputs, not cohort records. Canonical shared design bridge; actual fitted lifelines predict_survival_function(times=[10]); average five risks for DXA variants. No exported equation or TS inference used as oracle.",
+      "subgroupsDescriptiveOnly": {
+        "female": {
+          "people": 1916,
+          "deaths": 199,
+          "auc": 0.9031923129408852,
+          "brier": 0.051804245435355285,
+          "weightedEventRate": 0.08138089310774635,
+          "weightedMeanPrediction": 0.0865935334183297
+        },
+        "male": {
+          "people": 2079,
+          "deaths": 292,
+          "auc": 0.8922561104865977,
+          "brier": 0.05864640186255624,
+          "weightedEventRate": 0.09064587917373731,
+          "weightedMeanPrediction": 0.115021407876737
+        },
+        "age20To49": {
+          "people": 2145,
+          "deaths": 42,
+          "auc": 0.7840510981010496,
+          "brier": 0.016028002108786896,
+          "weightedEventRate": 0.017004754961894804,
+          "weightedMeanPrediction": 0.022621657394147465
+        },
+        "age50AndOver": {
+          "people": 1850,
+          "deaths": 449,
+          "auc": 0.8413902167194245,
+          "brier": 0.11129704729069169,
+          "weightedEventRate": 0.18476836029208563,
+          "weightedMeanPrediction": 0.21244913037836471
+        }
+      },
+      "zeroTimeSensitivity": {
+        "reason": "No zero-month development deaths in this variant; replacement cannot change its fit"
+      }
+    },
+    "blood_activity": {
+      "penalty": 0.001,
+      "developmentCvFirstImputation": [
+        {
+          "penalty": 0.001,
+          "weightedBrier": 0.060092097492443514,
+          "weightedAucDescriptiveOnly": 0.8796967004182381
+        },
+        {
+          "penalty": 0.01,
+          "weightedBrier": 0.060854515830494706,
+          "weightedAucDescriptiveOnly": 0.8784957913544211
+        },
+        {
+          "penalty": 0.1,
+          "weightedBrier": 0.06693998183367707,
+          "weightedAucDescriptiveOnly": 0.8733437456106936
+        }
+      ],
+      "imputationFits": 1,
+      "trainingPeopleByCycle": {
+        "1999": 3743,
+        "2001": 4246,
+        "2003": 4045
+      },
+      "trainingDeathsByCycle": {
+        "1999": 533,
+        "2001": 566,
+        "2003": 580
+      },
+      "trainingFoldPeople": {
+        "0": 4117,
+        "1": 3934,
+        "2": 3983
+      },
+      "trainingFoldDeaths": {
+        "0": 561,
+        "1": 549,
+        "2": 569
+      },
+      "developmentEarlyCensored": 0,
+      "holdoutEarlyCensored": 0,
+      "availabilityExclusionsFromBaseBySplit": {
+        "development": {
+          "basePeople": 12933,
+          "notInVariant": 899,
+          "missingBodyFatOrOutsideAge": 0,
+          "missingWaistToHeight": 0,
+          "missingClinicalInputs": 880,
+          "missingActivity": 20
+        },
+        "holdout": {
+          "basePeople": 4296,
+          "notInVariant": 304,
+          "missingBodyFatOrOutsideAge": 0,
+          "missingWaistToHeight": 0,
+          "missingClinicalInputs": 301,
+          "missingActivity": 3
+        }
+      },
+      "heldout": {
+        "people": 3992,
+        "deaths": 491,
+        "auc": 0.8970634922527002,
+        "brier": 0.055268418568329016,
+        "weightedEventRate": 0.08599302688373053,
+        "weightedMeanPrediction": 0.0996510001147336
+      },
+      "ageSexComparison": {
+        "people": 3992,
+        "deaths": 491,
+        "auc": 0.8668927021626267,
+        "brier": 0.06001812623477449,
+        "weightedEventRate": 0.08599302688373053,
+        "weightedMeanPrediction": 0.0970107909824495
+      },
+      "accepted": true,
+      "gate": "Weighted Brier strictly lower AND weighted AUC at least age/sex-only; prespecified; no CI significance gate and no holdout retuning",
+      "pairedBootstrap": {
+        "method": "200 seeded Rao-Wu rescaled PSU-within-stratum resamples; paired fixed-model metrics; percentile 95% intervals",
+        "replicates": 200,
+        "seed": 20261101,
+        "brierImprovement95": [
+          0.0036044462666993036,
+          0.005831203784917253
+        ],
+        "aucImprovement95": [
+          0.024890749445604092,
+          0.03642992197296072
+        ],
+        "modelBrier95": [
+          0.045303689387160354,
+          0.06335644724155222
+        ],
+        "comparisonBrier95": [
+          0.04979880262317949,
+          0.06804964750357702
+        ],
+        "scope": "Holdout sampling uncertainty conditional on development fits and released imputations, not training uncertainty or an individual/lifetime confidence interval"
+      },
+      "calibrationByWeightedRiskFifth": [
+        {
+          "riskFifth": 1,
+          "people": 770,
+          "deaths": 4,
+          "weightedMeanPrediction": 0.00513756810721462,
+          "weightedObservedRisk": 0.006130038776595558
+        },
+        {
+          "riskFifth": 2,
+          "people": 700,
+          "deaths": 7,
+          "weightedMeanPrediction": 0.014749890563901778,
+          "weightedObservedRisk": 0.006911377221745989
+        },
+        {
+          "riskFifth": 3,
+          "people": 653,
+          "deaths": 13,
+          "weightedMeanPrediction": 0.035757127603563775,
+          "weightedObservedRisk": 0.018427353931958962
+        },
+        {
+          "riskFifth": 4,
+          "people": 731,
+          "deaths": 52,
+          "weightedMeanPrediction": 0.08910501354035785,
+          "weightedObservedRisk": 0.06499282126829518
+        },
+        {
+          "riskFifth": 5,
+          "people": 1138,
+          "deaths": 415,
+          "weightedMeanPrediction": 0.35335962620279,
+          "weightedObservedRisk": 0.3333505943613616
+        }
+      ],
+      "coefficientUncertainty": [
+        {
+          "feature": "age10",
+          "pooledCoefficientDescriptiveOnly": 0.8864206701429954,
+          "withinClusterVariance": 0.0011996221663767139,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.03463556216342841,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.8166172813931181,
+            0.9562240588928728
+          ]
+        },
+        {
+          "feature": "male",
+          "pooledCoefficientDescriptiveOnly": 0.4064215777190625,
+          "withinClusterVariance": 0.009462960046925484,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.09727774692562263,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.21037116129096434,
+            0.6024719941471607
+          ]
+        },
+        {
+          "feature": "age10_male",
+          "pooledCoefficientDescriptiveOnly": -0.01906166717775871,
+          "withinClusterVariance": 0.001975347022230169,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.04444487622021428,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.10863442936077343,
+            0.070511095005256
+          ]
+        },
+        {
+          "feature": "smoking_former",
+          "pooledCoefficientDescriptiveOnly": 0.36534054635431246,
+          "withinClusterVariance": 0.005647373781314404,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.07514901051453973,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.21388766765226244,
+            0.5167934250563625
+          ]
+        },
+        {
+          "feature": "smoking_current",
+          "pooledCoefficientDescriptiveOnly": 0.9159560231899639,
+          "withinClusterVariance": 0.0074200333848542,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.08613961565304433,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.7423530353180532,
+            1.0895590110618747
+          ]
+        },
+        {
+          "feature": "pheno_gap10",
+          "pooledCoefficientDescriptiveOnly": 0.33126270029883775,
+          "withinClusterVariance": 0.00041239948186919166,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.020307621275501266,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            0.29033537895811845,
+            0.37219002163955706
+          ]
+        },
+        {
+          "feature": "activity_log",
+          "pooledCoefficientDescriptiveOnly": -0.35417734127957584,
+          "withinClusterVariance": 0.0022615812080684673,
+          "betweenImputationVariance": 0.0,
+          "rubinStandardError": 0.04755608486900985,
+          "degreesOfFreedom": 44.0,
+          "coefficient95": [
+            -0.4500203324766058,
+            -0.2583343500825459
+          ]
+        }
+      ],
+      "coefficientUncertaintyMethod": "Per-imputation lifelines PSU-cluster robust sandwich SE; Rubin within/between variances; t df capped at development PSU-minus-stratum df. Approximate with tied times; not full survey Taylor variance. Pooled coefficients are descriptive only: app predictions pool five risks, not coefficients.",
+      "developmentWeightSum": 181686568.95874065,
+      "developmentWeightMean": 15097.770397103262,
+      "holdoutWeightSum": 188963744.60453302,
+      "holdoutWeightMean": 47335.607365864984,
+      "developmentAgeRange": [
+        20.0,
+        84.0
+      ],
+      "developmentZeroMonthDeaths": 0,
+      "holdoutZeroMonthDeaths": 0,
+      "syntheticInferenceOracles": [
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "never",
+            "bodyFat": 18,
+            "waistToHeight": 0.45,
+            "phenoAgeGap": -3,
+            "activityWeekly": 240
+          },
+          "lifelinesRisk10": 0.008531196770083849,
+          "lifelinesPerImputationRisk10": [
+            0.008531196770083849
+          ],
+          "lifelinesComparisonRisk10": 0.015691823380605263
+        },
+        {
+          "input": {
+            "age": 31,
+            "sex": "m",
+            "smoking": "current",
+            "bodyFat": 32,
+            "waistToHeight": 0.63,
+            "phenoAgeGap": 10,
+            "activityWeekly": 0
+          },
+          "lifelinesRisk10": 0.045151176870558474,
+          "lifelinesPerImputationRisk10": [
+            0.045151176870558474
+          ],
+          "lifelinesComparisonRisk10": 0.015691823380605263
+        },
+        {
+          "input": {
+            "age": 65,
+            "sex": "f",
+            "smoking": "never",
+            "bodyFat": 30,
+            "waistToHeight": 0.5,
+            "phenoAgeGap": -2,
+            "activityWeekly": 120
+          },
+          "lifelinesRisk10": 0.12363195748968603,
+          "lifelinesPerImputationRisk10": [
+            0.12363195748968603
+          ],
+          "lifelinesComparisonRisk10": 0.1539954754132139
+        },
+        {
+          "input": {
+            "age": 50,
+            "sex": "f",
+            "smoking": "former",
+            "bodyFat": 40,
+            "waistToHeight": 0.6,
+            "phenoAgeGap": 7,
+            "activityWeekly": 80
+          },
+          "lifelinesRisk10": 0.06923750627126801,
+          "lifelinesPerImputationRisk10": [
+            0.06923750627126801
+          ],
+          "lifelinesComparisonRisk10": 0.04340868596546299
+        }
+      ],
+      "syntheticOracleMethod": "Four parent-specified invented inputs, not cohort records. Canonical shared design bridge; actual fitted lifelines predict_survival_function(times=[10]); average five risks for DXA variants. No exported equation or TS inference used as oracle.",
+      "subgroupsDescriptiveOnly": {
+        "female": {
+          "people": 1916,
+          "deaths": 199,
+          "auc": 0.902682441036069,
+          "brier": 0.05139406501718914,
+          "weightedEventRate": 0.08138089310774635,
+          "weightedMeanPrediction": 0.08554958974473527
+        },
+        "male": {
+          "people": 2076,
+          "deaths": 292,
+          "auc": 0.892331951119482,
+          "brier": 0.05923426747294382,
+          "weightedEventRate": 0.09071407916819293,
+          "weightedMeanPrediction": 0.11408542436931109
+        },
+        "age20To49": {
+          "people": 2143,
+          "deaths": 42,
+          "auc": 0.7881126615507696,
+          "brier": 0.01597220908120139,
+          "weightedEventRate": 0.01701283361198382,
+          "weightedMeanPrediction": 0.02215691583954627
+        },
+        "age50AndOver": {
+          "people": 1849,
+          "deaths": 449,
+          "auc": 0.8389971906820317,
+          "brier": 0.11156170019684224,
+          "weightedEventRate": 0.1848097193158013,
+          "weightedMeanPrediction": 0.21066415806514258
+        }
+      },
+      "zeroTimeSensitivity": {
+        "reason": "No zero-month development deaths in this variant; replacement cannot change its fit"
+      }
+    }
+  },
+  "protocol": {
+    "split": "Development NHANES 1999-2000/2001-2002/2003-2004; temporal holdout 2005-2006; no holdout tuning",
+    "folds": "int.from_bytes(SHA256('bt-mortality-v1|<year>|<SEQN>')[0:8], 'big') % 3, assigned before eligibility/imputation; identical across MI",
+    "penalty": "L2 values 0.001,0.01,0.1; choose minimum pooled out-of-fold MEC-weighted ten-year Brier on first imputation only; refit all five when body fat is required",
+    "weights": "Development: 2/3*WTMEC4YR for 1999-2002, 1/3*WTMEC2YR for 2003-2004; holdout WTMEC2YR. Normalize mean one separately in each fit, only for penalty scaling; evaluate using original weights",
+    "surveyDesign": "Retain full demographic strata/PSU maps before domain restriction; PSU nested in original disjoint SDMVSTRA. Cluster-robust fitted SE; 200 paired Rao-Wu within-stratum PSU bootstrap replicates on holdout, including empty domain PSUs",
+    "endpoint": "All-cause death MORTSTAT==1 and PERMTH_EXM<=120; fit min(PERMTH_EXM,120)/12; keep early censored for Cox; exclude alive <120 only from binary evaluation; death after120 is a ten-year survivor",
+    "zeroTime": "Zero released follow-up retained; only Cox time changes zero to0.5month, an analyst convention not CDC guidance; sensitivity at0.1 and1month if any development zero-time deaths",
+    "cox": "lifelines0.30.0 weighted partial likelihood, Efron ties, Breslow cumulative baseline hazard; ridge penalizes standardized features internally. Export params_ on original design scale plus actual _norm_mean centering and baseline cumulative hazard at10years; equation checked against native fitted predictions",
+    "solver": "Uniform deterministic initial Newton step0.25, precision1e-8, max500; all convergence warnings fatal. Default step0.95 failed in clinical development folds; the same fold at0.25 converged in9iterations without changing data or model",
+    "imputation": "Five independent DXA Cox fits on identical participant splits; no averaged body-fat values and no stacked independent duplicates; risk predictions averaged, coefficient uncertainty uses within/between-imputation Rubin rules",
+    "activity": "PAD320 moderate/PAD200 vigorous:2No or3Unable->zero;1Yes requires all matching records valid. Missing/refused/unknown stay missing. Sum every legitimate detail row; actual(M30+V30)*7/30, vigorous once; inability/inconsistency flags retained in aggregate metadata, not fitted extra predictors",
+    "creatinine": "1999 standardizedmg/dL=1.013*LBXSCR+0.147;2001 released LBDSCR unchanged;2003 LBXSCR unchanged;2005=-0.016+0.978*LBXSCR;then*88.4umol/L. Original native columns retained only in local memory",
+    "crp": "Native LBXCRPmg/dL*10 to bridge canonicalmg/L; bridge PhenoAge converts internally.0.01 positive native values retained: documented floor in2003/2005, qualification uncertain in1999/2001",
+    "transforms": "All medical PhenoAge/design calculations delegated via captured local Bun stdin/stdout to features.ts; no formula transcription in Python",
+    "rawPredictorRanges": "Development-only min/max across five imputations when applicable; age omitted because ageFrom/ageTo defines domain; no heldout-based clipping or exclusions",
+    "inferencePriority": "clinical_activity>clinical>body_activity>body>blood_activity>blood is input-coverage preference, not per-person accuracy ranking",
+    "transportZeroCorrection": "Synthetic eight zero-byte IBM SAS double decodes as5.397605346934028e-79 in pandas2.2.3; normalize only exact decoder sentinel to0 at XPT import; count corrections per source"
+  },
+  "summary": {
+    "accepted": [
+      "body",
+      "body_activity",
+      "clinical",
+      "clinical_activity",
+      "blood",
+      "blood_activity"
+    ],
+    "failed": [],
+    "noLifetimeValidation": true
+  }
+}

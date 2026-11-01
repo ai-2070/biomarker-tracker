@@ -1,10 +1,8 @@
 /**
- * "Best before": what official life tables say about people of your age and sex in your country. A
- * population figure, never a prediction for one person. From a period life table (Eurostat): lx is
- * how many of 100,000 born are still alive at each exact age, at one year's death rates.
- *
- * Between whole ages survivors are joined by straight lines; past 95 (the table's open group) they
- * fall at a constant rate, 1 / (life expectancy at 95), a standard approximation.
+ * Official period life tables: population figures, never predictions for one person.
+ * lx is how many of 100,000 born survive to each exact age at the reporting period's death rates.
+ * Between whole ages survivors are joined by straight lines. Past 95 they fall at a constant rate,
+ * 1 / life expectancy at 95; this approximation preserves the source's remaining mean at 95.
  */
 
 export interface LifeTable {
@@ -14,20 +12,40 @@ export interface LifeTable {
   e95: number;
 }
 
-export interface LifeTableFile {
-  source: string;
+export interface LifeTableSource {
+  name: string;
   url: string;
   retrieved: string;
-  note: string;
-  countries: Record<string, { name: string; year: number; tables: Partial<Record<"f" | "m" | "t", LifeTable>> }>;
+  period: { from: number; to: number };
+  note?: string;
 }
 
-/** Countries with Eurostat life tables (codes as Eurostat writes them: EL is Greece). */
+export interface LifeTableCountry {
+  name: string;
+  source: LifeTableSource;
+  tables: Partial<Record<"f" | "m" | "t", LifeTable>>;
+}
+
+export interface LifeTableFile {
+  note: string;
+  countries: Record<string, LifeTableCountry>;
+}
+
+export interface ResolvedLifeTable {
+  table: LifeTable;
+  name: string;
+  country: string;
+  sex: "f" | "m" | "t";
+  source: LifeTableSource;
+}
+
+/** Country codes retain Eurostat's EL for Greece. GB is the whole United Kingdom. */
 export const LIFE_TABLE_COUNTRIES: Readonly<Record<string, string>> = {
   AT: "Austria", BE: "Belgium", BG: "Bulgaria", HR: "Croatia", CY: "Cyprus", CZ: "Czechia", DK: "Denmark", EE: "Estonia", FI: "Finland",
   FR: "France", DE: "Germany", EL: "Greece", HU: "Hungary", IS: "Iceland", IE: "Ireland", IT: "Italy", LV: "Latvia", LI: "Liechtenstein",
   LT: "Lithuania", LU: "Luxembourg", MT: "Malta", NL: "Netherlands", NO: "Norway", PL: "Poland", PT: "Portugal", RO: "Romania", SK: "Slovakia",
   SI: "Slovenia", ES: "Spain", SE: "Sweden", CH: "Switzerland", EU27_2020: "the European Union (average)",
+  US: "United States", GB: "United Kingdom", CA: "Canada", AU: "Australia", NZ: "New Zealand", JP: "Japan",
 };
 
 const TOP = 95;
@@ -92,6 +110,57 @@ export function bestBefore(t: LifeTable, age: number): BestBefore {
     expectancy: remainingYears(t, age),
   };
 }
+export interface PopulationSurvivalPoint {
+  age: number;
+  alivePercent: number;
+  tailApproximation: boolean;
+}
+
+/** Of 100 people alive at this age, how many survive to each later age at the period's rates. */
+export function populationSurvival(t: LifeTable, age: number): PopulationSurvivalPoint[] {
+  const alive = survivors(t, age);
+  if (!Number.isFinite(age) || age < 0 || !Number.isFinite(alive) || alive <= 0) return [];
+  const end = Math.ceil(ageWhenLeft(t, age, 0.01));
+  if (!Number.isFinite(end)) return [];
+  const point = (a: number): PopulationSurvivalPoint => ({
+    age: a,
+    alivePercent: survivors(t, a) / alive * 100,
+    tailApproximation: a > TOP,
+  });
+  const points = [point(age)];
+  for (let a = Math.floor(age) + 1; a <= end; a++) points.push(point(a));
+  return points;
+}
+
+/** An annual source and a three-year source must not be presented as the same reporting period. */
+export function lifeTablePeriod(period: LifeTableSource["period"]): string {
+  return period.from === period.to ? String(period.from) : `${period.from}–${period.to}`;
+}
+
+export interface CountryLifeComparison {
+  country: string;
+  name: string;
+  source: LifeTableSource;
+  meanRemainingYears: number;
+}
+
+/** Compare the same age and sex, never substituting another sex or an invented combined table. */
+export function compareLifeTables(file: LifeTableFile, age: number, sex: "f" | "m" | undefined) {
+  const rows: CountryLifeComparison[] = [];
+  const missingSex: { country: string; name: string }[] = [];
+  if (!Number.isFinite(age) || age < 0) return { rows, missingSex, maxRemainingYears: 0 };
+  for (const [country, entry] of Object.entries(file.countries)) {
+    const table = entry.tables[sex ?? "t"];
+    if (!table) {
+      missingSex.push({ country, name: entry.name });
+      continue;
+    }
+    rows.push({ country, name: entry.name, source: entry.source, meanRemainingYears: remainingYears(table, age) });
+  }
+  rows.sort((a, b) => b.meanRemainingYears - a.meanRemainingYears || a.name.localeCompare(b.name));
+  return { rows, missingSex, maxRemainingYears: rows[0]?.meanRemainingYears ?? 0 };
+}
+
 
 const YEAR_MS = 365.2425 * 86_400_000;
 
@@ -120,52 +189,53 @@ export function bestBeforeMoments(t: LifeTable, birthMonth: string, today: strin
 }
 
 /** The table for a person: by sex, or both sexes together when sex isn't known. */
-export function tableFor(file: LifeTableFile, country: string | undefined, sex: "m" | "f" | undefined): { table: LifeTable; year: number; name: string; sex: "f" | "m" | "t" } | undefined {
-  const c = country ? file.countries[country] : undefined;
+export function tableFor(file: LifeTableFile, country: string | undefined, sex: "m" | "f" | undefined): ResolvedLifeTable | undefined {
+  if (!country || !Object.hasOwn(file.countries, country)) return undefined;
+  const c = file.countries[country];
   if (!c) return undefined;
   const key = sex ?? "t";
   const table = c.tables[key];
-  return table ? { table, year: c.year, name: c.name, sex: key } : undefined;
+  return table ? { table, country, source: c.source, name: c.name, sex: key } : undefined;
 }
 
 /** Problems with a life table file; empty means valid. */
 export function validateLifeTables(v: unknown): string[] {
-  const f = v as Partial<LifeTableFile>;
   const errs: string[] = [];
-  if (!f || typeof f !== "object" || !f.countries) return ["no countries"];
+  if (!v || typeof v !== "object") return ["no countries"];
+  const f = v as Partial<LifeTableFile>;
+  if (!f.countries || typeof f.countries !== "object" || Array.isArray(f.countries) || Object.keys(f.countries).length === 0) return ["no countries"];
   for (const [code, c] of Object.entries(f.countries)) {
-    if (!LIFE_TABLE_COUNTRIES[code]) errs.push(`${code}: unknown country`);
+    if (!Object.hasOwn(LIFE_TABLE_COUNTRIES, code)) errs.push(`${code}: unknown country`);
+    if (!c || typeof c !== "object") {
+      errs.push(`${code}: invalid country`);
+      continue;
+    }
+    const s = c.source;
+    if (typeof c.name !== "string" || !c.name.trim() || !s || typeof s.name !== "string" || !s.name.trim()
+      || typeof s.url !== "string" || !s.url.startsWith("https://")
+      || typeof s.retrieved !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(s.retrieved)
+      || !s.period || !Number.isInteger(s.period.from) || !Number.isInteger(s.period.to)
+      || s.period.from < 1900 || s.period.to < s.period.from || s.period.to > 2200) errs.push(`${code}: invalid source metadata`);
+    if (!c.tables || typeof c.tables !== "object" || !c.tables.f || !c.tables.m) {
+      errs.push(`${code}: needs female and male tables`);
+      continue;
+    }
     for (const [sex, t] of Object.entries(c.tables)) {
-      if (!t || t.lx.length !== TOP + 1) errs.push(`${code}/${sex}: needs survivors at ages 0 to 95`);
+      if (!["f", "m", "t"].includes(sex)) errs.push(`${code}/${sex}: unknown sex`);
+      if (!t || !Array.isArray(t.lx) || t.lx.length !== TOP + 1) errs.push(`${code}/${sex}: needs survivors at ages 0 to 95`);
+      else if (t.lx.some((x) => !Number.isFinite(x) || x <= 0) || Math.abs(t.lx[0]! - 100_000) > 0.001) errs.push(`${code}/${sex}: invalid survivor counts`);
       else if (t.lx.some((x, i) => i > 0 && x > t.lx[i - 1]!)) errs.push(`${code}/${sex}: survivors can't rise with age`);
-      if (!t || !(t.e95 > 0 && t.e95 < 10)) errs.push(`${code}/${sex}: life expectancy at 95 looks wrong`);
+      if (!t || !Number.isFinite(t.e95) || !(t.e95 > 0 && t.e95 < 10)) errs.push(`${code}/${sex}: life expectancy at 95 looks wrong`);
     }
   }
   return errs;
 }
 
-// ---- With your blood tests: the life table read at your PhenoAge -----------------------------------
 
 /**
- * How much older or younger your PhenoAge runs than your age: the average difference over your most
- * recent tests (up to `maxTests` within `windowYears` of the latest), so one unusual test (an
- * infection raising CRP) moves it less.
- */
-export function phenoAgeShift(draws: readonly { date: string; age: number; phenoAge: number }[], windowYears = 2, maxTests = 3): { shift: number; tests: number; from: string; to: string } | undefined {
-  const sorted = [...draws].sort((a, b) => a.date.localeCompare(b.date));
-  const last = sorted.at(-1);
-  if (!last) return undefined;
-  const since = new Date(Date.parse(last.date) - windowYears * YEAR_MS).toISOString().slice(0, 10);
-  const used = sorted.filter((d) => d.date >= since).slice(-maxTests);
-  const shift = used.reduce((s, d) => s + (d.phenoAge - d.age), 0) / used.length;
-  return { shift, tests: used.length, from: used[0]!.date, to: last.date };
-}
-
-/**
- * The best-before range read at your PhenoAge instead of your age. PhenoAge is "the expected age within
- * the population that corresponds to a person's estimated mortality risk" (Liu et al. 2018), so people
- * like you, by your blood tests, are people of your PhenoAge: their remaining years are added to your age.
- * Assumes your difference stays the same from here on.
+ * Read the table at a comparison age, then add its remaining years to calendar age.
+ * Keeping the age gap constant is an unvalidated lifetime-transport assumption, not
+ * an individual survival forecast or a confidence interval from a fitted model.
  */
 export function bestBeforeWithShift(t: LifeTable, birthMonth: string, today: string, shift: number) {
   const age = ageAtMoment(birthMonth, Date.parse(`${today}T00:00:00Z`));

@@ -1,0 +1,1885 @@
+{
+  "version": "nhanes-1999-2006-cox-v1",
+  "fittedOn": "2026-11-01",
+  "horizonYears": 10,
+  "method": "MEC-weighted ridge Cox with fixed shared transforms; development 1999-2004; deterministic three-fold development-only Brier penalty selection; untouched 2005-2006 temporal holdout gate. Five separately fitted DXA imputations pooled on ten-year probability, not coefficients. Age/sex comparison on the same development participants.",
+  "sources": [
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/DEMO.xpt",
+      "sha256": "a17bd1ebfd6007b8dc93f16259cb090678eb6c467a39363b7e932bba15febf89",
+      "bytes": 11500560
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BMX.xpt",
+      "sha256": "6b9bc4d998c0004fc42b213cc7f5bf347df937707f46d6d25fab926723a60500",
+      "bytes": 2827840
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB18.xpt",
+      "sha256": "36dc6f02045ceb61e146885bb04400fd580c9c35cc3bfc4269e314f0e06fe9c0",
+      "bytes": 2223120
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB25.xpt",
+      "sha256": "f69ef53e50fb3eea6a9e03b0e1167f201ecdb6ad485793002f4f7bee100fbd45",
+      "bytes": 1487520
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB11.xpt",
+      "sha256": "9ed9904dfc804b50c2c08b763b43d7df702913fc010c0f877e10f9f195ee183a",
+      "bytes": 469040
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SMQ.xpt",
+      "sha256": "fb1505ea08e310a5cb703ccae0e220aede3da812674e9e53f832fe76e31c2ce3",
+      "bytes": 1733760
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PAQ.xpt",
+      "sha256": "e256a0fe7fdc99fcd7fd23245b82b2aea84586ed3a65767c08b10ee68f96b8fa",
+      "bytes": 1547280
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PAQIAF.xpt",
+      "sha256": "092b0161df373d0b3b36d9c090cb2e9ea1a63125908bf5db35c57ddea3019c60",
+      "bytes": 520720
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/1999/datafiles/dxx.xpt",
+      "sha256": "9567c94c4a2efd3bb67817f051bec4e778c648c9a2dd222a894fe0ca78598d37",
+      "bytes": 24737440
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.xpt",
+      "sha256": "6458dc2307cee244ab6ba26f70ec78c7b842ffc68e668bc43f0ab6b9737937d9",
+      "bytes": 3273520
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.xpt",
+      "sha256": "55715d4387960f88e48a2adf44da0b270a83290b1edf7c8e4ecc0eb2c29c59cf",
+      "bytes": 2183680
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L40_B.xpt",
+      "sha256": "16f907f3a945cc24d053a9492a3f90edd3e0335f70ba047bbd9952ba6a00e182",
+      "bytes": 2448480
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L25_B.xpt",
+      "sha256": "4bce7e5622c4b79b9965d7869875e05dae547c4b222fd89db47b8efb430b85f3",
+      "bytes": 1671760
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L11_B.xpt",
+      "sha256": "1a78e83a59aaa4a04aeb8ed7abeaeb4b87e9950601ac428c52fae9ce53e9bbbc",
+      "bytes": 446240
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.xpt",
+      "sha256": "179d7ad46de9478824d475de0e6425f474b34dd4798066a552acd31b89f07fde",
+      "bytes": 2073680
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQ_B.xpt",
+      "sha256": "c03073bb2e50ac4a97b588947fd4b4783a3b5c43da07a9d9a53f0879ec0b9229",
+      "bytes": 1699520
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQIAF_B.xpt",
+      "sha256": "f2b0e6581e060cf58e2506b0a9e9becaaaf43da53e8162742777941d651cd20f",
+      "bytes": 754400
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2001/datafiles/dxx_b.xpt",
+      "sha256": "6eeb2dabff1fc4a33df2dfe2b46e86eb6f0986319f238f1cb8066e7d695852f6",
+      "bytes": 32695200
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DEMO_C.xpt",
+      "sha256": "2a2fdb88263337bfa06f0516bfb419631595f0a0ee88fb96069bed13d1857c6f",
+      "bytes": 3569840
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.xpt",
+      "sha256": "b3d3e431b5964ea8b5807035044322fcf32f3878d814d4a844204e51c793f090",
+      "bytes": 2551120
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L40_C.xpt",
+      "sha256": "a5642b8aa6e90ee0961562572f7152d47df67a318dd41cb164e3a2fe4aaaae4d",
+      "bytes": 2074960
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L25_C.xpt",
+      "sha256": "3231a8c24179b37014ddb7b6ec1afaa30295dcb14a917af30666be1e8ad9fb6e",
+      "bytes": 1545760
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L11_C.xpt",
+      "sha256": "f8941c4561d166fe68c16194108269ba00b4bfbe2aa10b20d5bfbc0c7e521760",
+      "bytes": 295040
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.xpt",
+      "sha256": "fbfe1e4b286ab43fdc3fd84c3830bb241b8b5ca84b3ab5902b8808e4136efc2c",
+      "bytes": 1932320
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQ_C.xpt",
+      "sha256": "085928dcff32acc98efc8d1d30eeceb022b56d6ab565e0572251a325a576c765",
+      "bytes": 1488000
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQIAF_C.xpt",
+      "sha256": "51e7648d91f3c3be158aa43d2d6732d93f9c8aa0f6fddef7d31eb24402c71904",
+      "bytes": 722320
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2003/datafiles/dxx_c.xpt",
+      "sha256": "8840fcaa518d7ee0c3c64e826dfb512cf0ac9be5cd00b1895a9782cb885c91df",
+      "bytes": 30371680
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/DEMO_D.xpt",
+      "sha256": "bf9cc79cce501b2fbe5aa8d5b403b618548d02d4aefeb528335cdd9f4c40a3af",
+      "bytes": 3566560
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BMX_D.xpt",
+      "sha256": "a52909be94cf825ba8a65477a9528603576fd5fbf3abadd72549a3f15c88566e",
+      "bytes": 2153760
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BIOPRO_D.xpt",
+      "sha256": "6de916025812b78db1b81e62f77d94d83ed8b046d9d5c8a9d584f7caec120310",
+      "bytes": 2072000
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CBC_D.xpt",
+      "sha256": "06c68d5d40146dd606ffeb038dee1295f9a9f63009033bd78a14e0636717aad7",
+      "bytes": 1589600
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CRP_D.xpt",
+      "sha256": "4afe7cc036d3268601dc77ba1d3d9b85bbec80c2bc0670ec554550001aa0498b",
+      "bytes": 152080
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/SMQ_D.xpt",
+      "sha256": "ef82433aca1a36ba2310a624ccdbaf195e2a258a88af0f284ef2a58d36be3011",
+      "bytes": 2578880
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PAQ_D.xpt",
+      "sha256": "a2c21b90a964aaa08a854d66526b29a1a7ad009d8a26c3cc9a8c18bf70f0c0aa",
+      "bytes": 1511360
+    },
+    {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PAQIAF_D.xpt",
+      "sha256": "486c8e7a73367be5a5efdab125ad659d4f5775a5f7143ec91882db0c819fcc96",
+      "bytes": 797680
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhanes/public/2005/datafiles/dxx_d.xpt",
+      "sha256": "f5122f3660a0a90601e3f6d865a82091a80db099dd8db4efb861c6cb5310710b",
+      "bytes": 29517840
+    },
+    {
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_1999_2000_MORT_2019_PUBLIC.dat",
+      "sha256": "562bd367107add0b2b40fed36a062d8b194fca31e11aab897a0efad4bebc8b26",
+      "bytes": 487666
+    },
+    {
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_2001_2002_MORT_2019_PUBLIC.dat",
+      "sha256": "2788c8c8a02995ea5686882b5fe65b4b9cd415016031525f8a3c1a3646c47f1b",
+      "bytes": 540362
+    },
+    {
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_2003_2004_MORT_2019_PUBLIC.dat",
+      "sha256": "639f6b3292a55b112fbfc842954af3d8d32bcce287cd8ae49319e5aca1c033c0",
+      "bytes": 495722
+    },
+    {
+      "url": "https://ftp.cdc.gov/pub/health_statistics/NCHS/datalinkage/linked_mortality/NHANES_2005_2006_MORT_2019_PUBLIC.dat",
+      "sha256": "69388ea13a4f395f29d9d21bc51941b9759003490d4b00f6ff12a1bc5f8dba5c",
+      "bytes": 506774
+    }
+  ],
+  "limitations": [
+    "Ten-year heldout metrics do not validate an individual lifespan, a date of death, another country, or persistence of a risk-age difference over life.",
+    "Associations are not causal effects: changing one input is not evidence of added years. Country life tables remain a separate population reference.",
+    "Public-use mortality follow-up times can be perturbed; vital status is not. Ten-year labels use inclusive 120 months and are approximate.",
+    "Complete-case eligible adults are not a nationally representative sample merely because MEC weights are used; no eligibility/nonresponse adjustment was supplied for this analysis.",
+    "Body-fat models cover screening ages 20-69 because 2005-2006 DXA excludes older adults; blood-only models cover 20-84, excluding top-coded 85+. App ages are continuous approximations from birth month.",
+    "DXA values already include CDC calibration and five released imputations; home body-fat estimates have not been calibrated to DXA. Extreme supplemental imputations are excluded.",
+    "Leisure activity is recalled actual moderate-or-harder minutes in bouts of at least ten minutes over the previous 30 days; vigorous minutes counted once. Device total active time is not interchangeable.",
+    "PhenoAge uses calibrated creatinine and non-fasting standard-chemistry serum glucose, not a fasting diagnostic glucose test. CRP floor values retain positive detection-limit substitutions.",
+    "Per-imputation coefficient SEs are PSU-cluster robust approximations, not full survey Taylor variance, and tied public follow-up months affect sandwich accuracy. Holdout paired PSU bootstrap intervals condition on trained models.",
+    "The holdout gate requires point-metric improvement only; passing is not proof of a statistically significant improvement. No per-person or lifetime confidence band is available.",
+    "App carry-forward windows, recent activity summaries, questionnaire-to-device transfer, and application to other assays or repeated readings were not validated by this baseline-exam analysis."
+  ],
+  "unavailableInputs": [
+    "Compatible overnight resting RMSSD",
+    "DunedinPACE (released DunedinPoAm is different)",
+    "Compatible strength, balance and timed walking tests",
+    "Device daily walking speed as a timed fitness test"
+  ],
+  "models": [
+    {
+      "id": "body",
+      "label": "Body measurements and smoking",
+      "priority": 30,
+      "required": [
+        "age",
+        "sex",
+        "smoking",
+        "bodyFat",
+        "waistToHeight"
+      ],
+      "ageFrom": 20,
+      "ageTo": 70,
+      "ranges": {
+        "bodyFat": [
+          8.9,
+          58.4
+        ],
+        "waistToHeight": [
+          0.36073329390892966,
+          1.011015911872705
+        ]
+      },
+      "fits": [
+        {
+          "baselineHazard10": 0.03388222428833205,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6082282223098149,
+              "coefficient": 0.796891709858441
+            },
+            {
+              "feature": "male",
+              "mean": 0.5026606227828143,
+              "coefficient": 0.13240035407334083
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3252759164367363,
+              "coefficient": -0.028335993051026187
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22891210090658257,
+              "coefficient": 0.4915700650272617
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.26359873866771777,
+              "coefficient": 1.108669143506423
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3927640914465905,
+              "coefficient": -0.45448569594097105
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.964102532518723,
+              "coefficient": 0.13931300769504398
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11734134804887662,
+              "coefficient": 0.41118591997974946
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506678917299611,
+              "coefficient": 0.1044831325665949
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4226579108619908,
+              "coefficient": 0.07037249037832188
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.033925888682181354,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6082282223098149,
+              "coefficient": 0.795318859657861
+            },
+            {
+              "feature": "male",
+              "mean": 0.5026606227828143,
+              "coefficient": 0.16748985989162005
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3252759164367363,
+              "coefficient": -0.026814997814183537
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22891210090658257,
+              "coefficient": 0.4905373399730915
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.26359873866771777,
+              "coefficient": 1.107867087656679
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3936243594797005,
+              "coefficient": -0.36631444592350915
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9651773945605044,
+              "coefficient": 0.09173952402913621
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11759065825778478,
+              "coefficient": 0.30543961026517086
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506678917299611,
+              "coefficient": 0.09021941628358178
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4226579108619908,
+              "coefficient": 0.0785474590003176
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03392517470001105,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6082282223098149,
+              "coefficient": 0.7956024433636647
+            },
+            {
+              "feature": "male",
+              "mean": 0.5026606227828143,
+              "coefficient": 0.143993231843271
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3252759164367363,
+              "coefficient": -0.027235912010487872
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22891210090658257,
+              "coefficient": 0.491516824671641
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.26359873866771777,
+              "coefficient": 1.1062496073920274
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39375443437130464,
+              "coefficient": -0.4067358712755658
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9631971028774142,
+              "coefficient": 0.10714083724041791
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11658060701616081,
+              "coefficient": 0.33932644455854766
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506678917299611,
+              "coefficient": 0.10162625979470791
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4226579108619908,
+              "coefficient": 0.07586647109925966
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03390588518508715,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6082282223098149,
+              "coefficient": 0.7971776546852755
+            },
+            {
+              "feature": "male",
+              "mean": 0.5026606227828143,
+              "coefficient": 0.13526107856644606
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3252759164367363,
+              "coefficient": -0.029173842241546805
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22891210090658257,
+              "coefficient": 0.4916962033884053
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.26359873866771777,
+              "coefficient": 1.10707235737948
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39377906976744187,
+              "coefficient": -0.4246283725476962
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9659339672841941,
+              "coefficient": 0.11578838960145083
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11630370516357903,
+              "coefficient": 0.372679919391464
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506678917299611,
+              "coefficient": 0.10195021964421828
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4226579108619908,
+              "coefficient": 0.07377070941908825
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.033887482559887425,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6082282223098149,
+              "coefficient": 0.7946593057403495
+            },
+            {
+              "feature": "male",
+              "mean": 0.5026606227828143,
+              "coefficient": 0.16820616331237848
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3252759164367363,
+              "coefficient": -0.025784675322943925
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22891210090658257,
+              "coefficient": 0.493672568761249
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.26359873866771777,
+              "coefficient": 1.1103843083336582
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39276507686243595,
+              "coefficient": -0.4053256293235382
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9632662199448169,
+              "coefficient": 0.1260608075960326
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11662987780843516,
+              "coefficient": 0.36655664383112196
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506678917299611,
+              "coefficient": 0.09278479474617056
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4226579108619908,
+              "coefficient": 0.07206225216739456
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "baselineHazard10": 0.03773536222814406,
+        "terms": [
+          {
+            "feature": "age10",
+            "mean": -0.6082282223098149,
+            "coefficient": 0.8264134310620638
+          },
+          {
+            "feature": "male",
+            "mean": 0.5026606227828143,
+            "coefficient": 0.5315988939159354
+          },
+          {
+            "feature": "age10_male",
+            "mean": -0.3252759164367363,
+            "coefficient": -0.07004182200419908
+          }
+        ]
+      },
+      "evaluation": {
+        "trainingPeople": 10148,
+        "trainingDeaths": 707,
+        "testPeople": 3454,
+        "testDeaths": 193,
+        "testDescription": "Untouched NHANES 2005-2006 temporal holdout; observed public-use 120-month outcomes; MEC-weighted",
+        "auc": 0.8365173560258656,
+        "brier": 0.036867376494727155,
+        "baselineAuc": 0.7887800288896955,
+        "baselineBrier": 0.0384051777991188,
+        "weightedObservedRisk10": 0.042167583837058285,
+        "weightedMeanPredictedRisk10": 0.05680662937644464,
+        "baselineWeightedMeanPredictedRisk10": 0.05545829986004197,
+        "accepted": true
+      }
+    },
+    {
+      "id": "body_activity",
+      "label": "Body measurements, smoking and leisure exercise",
+      "priority": 40,
+      "required": [
+        "age",
+        "sex",
+        "smoking",
+        "bodyFat",
+        "waistToHeight",
+        "activityWeekly"
+      ],
+      "ageFrom": 20,
+      "ageTo": 70,
+      "ranges": {
+        "bodyFat": [
+          8.9,
+          58.4
+        ],
+        "waistToHeight": [
+          0.36073329390892966,
+          1.011015911872705
+        ],
+        "activityWeekly": [
+          0.0,
+          7868.0
+        ]
+      },
+      "fits": [
+        {
+          "baselineHazard10": 0.03328572613263047,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6085587364264561,
+              "coefficient": 0.7876945422961458
+            },
+            {
+              "feature": "male",
+              "mean": 0.5023692003948668,
+              "coefficient": 0.09920717932341505
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3253405725567621,
+              "coefficient": -0.013651186946219597
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22862783810463969,
+              "coefficient": 0.5076697441044475
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2636722606120434,
+              "coefficient": 1.0550474875882008
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39298815399802567,
+              "coefficient": -0.4827106421661145
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9641839190523198,
+              "coefficient": 0.12551873918182302
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11729417571569593,
+              "coefficient": 0.39408488104397066
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506293763813318,
+              "coefficient": 0.09713898968703501
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4225769078895953,
+              "coefficient": 0.07043473837035223
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5247723254067296,
+              "coefficient": -0.35472470264937456
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03331958181400224,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6085587364264561,
+              "coefficient": 0.7863551989700394
+            },
+            {
+              "feature": "male",
+              "mean": 0.5023692003948668,
+              "coefficient": 0.1361740008264495
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3253405725567621,
+              "coefficient": -0.0123231603572438
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22862783810463969,
+              "coefficient": 0.5066316147837361
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2636722606120434,
+              "coefficient": 1.0543044063803257
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39387068114511353,
+              "coefficient": -0.39292944069596
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9652872556762092,
+              "coefficient": 0.07800967206011708
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11752221125370188,
+              "coefficient": 0.29037754297058016
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506293763813318,
+              "coefficient": 0.08031898392274205
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4225769078895953,
+              "coefficient": 0.07896444707979461
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5247723254067296,
+              "coefficient": -0.35549508444331496
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03331111521131045,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6085587364264561,
+              "coefficient": 0.7869758881124006
+            },
+            {
+              "feature": "male",
+              "mean": 0.5023692003948668,
+              "coefficient": 0.11547895931526886
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3253405725567621,
+              "coefficient": -0.013849184842225009
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22862783810463969,
+              "coefficient": 0.5079438834781659
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2636722606120434,
+              "coefficient": 1.0540541919025772
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39403356367226067,
+              "coefficient": -0.4414607181594898
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9633284106614017,
+              "coefficient": 0.1023491624907396
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11647285291214217,
+              "coefficient": 0.3499137943079534
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506293763813318,
+              "coefficient": 0.08756588617931549
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4225769078895953,
+              "coefficient": 0.07502476420202837
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5247723254067296,
+              "coefficient": -0.3557344354865116
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03331018883350092,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6085587364264561,
+              "coefficient": 0.7880004839647361
+            },
+            {
+              "feature": "male",
+              "mean": 0.5023692003948668,
+              "coefficient": 0.10099002751948626
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3253405725567621,
+              "coefficient": -0.014572555955724863
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22862783810463969,
+              "coefficient": 0.5078439536165789
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2636722606120434,
+              "coefficient": 1.0528318417962317
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39402862783810466,
+              "coefficient": -0.4526868497429211
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9660371470878577,
+              "coefficient": 0.10109489207711121
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11623198420533071,
+              "coefficient": 0.3533949203708392
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506293763813318,
+              "coefficient": 0.09510000515599705
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4225769078895953,
+              "coefficient": 0.07403613671403544
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5247723254067296,
+              "coefficient": -0.35576322462435056
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03328099589072453,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6085587364264561,
+              "coefficient": 0.7858138994443342
+            },
+            {
+              "feature": "male",
+              "mean": 0.5023692003948668,
+              "coefficient": 0.14325260837123432
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3253405725567621,
+              "coefficient": -0.012220191349713382
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.22862783810463969,
+              "coefficient": 0.5091249846797027
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2636722606120434,
+              "coefficient": 1.0586736378073074
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3930256663376111,
+              "coefficient": -0.4336384782399095
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.963396298124383,
+              "coefficient": 0.11834887625751132
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11653998025666337,
+              "coefficient": 0.37051650244675066
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7506293763813318,
+              "coefficient": 0.07702224118081455
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4225769078895953,
+              "coefficient": 0.07212235122448903
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5247723254067296,
+              "coefficient": -0.35324572112005653
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "baselineHazard10": 0.03734953324810228,
+        "terms": [
+          {
+            "feature": "age10",
+            "mean": -0.6085587364264561,
+            "coefficient": 0.8237097568630718
+          },
+          {
+            "feature": "male",
+            "mean": 0.5023692003948668,
+            "coefficient": 0.5189460509481679
+          },
+          {
+            "feature": "age10_male",
+            "mean": -0.3253405725567621,
+            "coefficient": -0.05634359263765964
+          }
+        ]
+      },
+      "evaluation": {
+        "trainingPeople": 10130,
+        "trainingDeaths": 703,
+        "testPeople": 3451,
+        "testDeaths": 193,
+        "testDescription": "Untouched NHANES 2005-2006 temporal holdout; observed public-use 120-month outcomes; MEC-weighted",
+        "auc": 0.8373735965268586,
+        "brier": 0.036748561119437584,
+        "baselineAuc": 0.7888250658554966,
+        "baselineBrier": 0.03840397443906018,
+        "weightedObservedRisk10": 0.042184643069598,
+        "weightedMeanPredictedRisk10": 0.05573881767212554,
+        "baselineWeightedMeanPredictedRisk10": 0.05513118627933721,
+        "accepted": true
+      }
+    },
+    {
+      "id": "clinical",
+      "label": "Blood and body measurements with smoking",
+      "priority": 50,
+      "required": [
+        "age",
+        "sex",
+        "smoking",
+        "bodyFat",
+        "waistToHeight",
+        "phenoAgeGap"
+      ],
+      "ageFrom": 20,
+      "ageTo": 70,
+      "ranges": {
+        "bodyFat": [
+          8.9,
+          58.4
+        ],
+        "waistToHeight": [
+          0.36073329390892966,
+          1.011015911872705
+        ],
+        "phenoAgeGap": [
+          -23.35878546697569,
+          131.4990170991491
+        ]
+      },
+      "fits": [
+        {
+          "baselineHazard10": 0.030717332552090176,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6070638564273789,
+              "coefficient": 0.7678375050323358
+            },
+            {
+              "feature": "male",
+              "mean": 0.5052170283806344,
+              "coefficient": 0.2114391193714432
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3237896494156928,
+              "coefficient": -0.025680983848824078
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23080133555926544,
+              "coefficient": 0.5526546394370776
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2626252086811352,
+              "coefficient": 1.072311630963873
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3896170701168615,
+              "coefficient": -0.342228308764953
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9558398685308848,
+              "coefficient": 0.12336180951211913
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11688021702838064,
+              "coefficient": 0.46962543864930556
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504891369021311,
+              "coefficient": 0.036841526499143594
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4149666885152734,
+              "coefficient": 0.049848108566912575
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5970494030224957,
+              "coefficient": 0.33235866078390613
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.030720362688783996,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6070638564273789,
+              "coefficient": 0.7669626738398176
+            },
+            {
+              "feature": "male",
+              "mean": 0.5052170283806344,
+              "coefficient": 0.2531471338347199
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3237896494156928,
+              "coefficient": -0.025615134669143544
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23080133555926544,
+              "coefficient": 0.5524248611239867
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2626252086811352,
+              "coefficient": 1.0739280674151104
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3912938230383973,
+              "coefficient": -0.2555658449151944
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9583500626043406,
+              "coefficient": 0.0827731820120126
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11675709515859767,
+              "coefficient": 0.38749127779369563
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504891369021311,
+              "coefficient": 0.016121950537328095
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4149666885152734,
+              "coefficient": 0.05705826290074226
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5970494030224957,
+              "coefficient": 0.333525548729418
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.0307195749168218,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6070638564273789,
+              "coefficient": 0.7672016934196226
+            },
+            {
+              "feature": "male",
+              "mean": 0.5052170283806344,
+              "coefficient": 0.2326431630045231
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3237896494156928,
+              "coefficient": -0.02692247553354668
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23080133555926544,
+              "coefficient": 0.554125092250096
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2626252086811352,
+              "coefficient": 1.0733132582704543
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3911258347245409,
+              "coefficient": -0.30251518632221497
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9546198977462438,
+              "coefficient": 0.10535479976507282
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11577003338898163,
+              "coefficient": 0.44564437683432945
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504891369021311,
+              "coefficient": 0.020520597612215936
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4149666885152734,
+              "coefficient": 0.054516024659840394
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5970494030224957,
+              "coefficient": 0.3336133486421532
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.030729961260047085,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6070638564273789,
+              "coefficient": 0.7646953016837642
+            },
+            {
+              "feature": "male",
+              "mean": 0.5052170283806344,
+              "coefficient": 0.26672546665976665
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3237896494156928,
+              "coefficient": -0.023342469099428716
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23080133555926544,
+              "coefficient": 0.5541365733848228
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2626252086811352,
+              "coefficient": 1.0754984729623047
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3912573038397329,
+              "coefficient": -0.2616940713373869
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9574544970784642,
+              "coefficient": 0.09775700024878914
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11554465776293822,
+              "coefficient": 0.41802702631501076
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504891369021311,
+              "coefficient": 0.006547834345093224
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4149666885152734,
+              "coefficient": 0.05597043462202523
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5970494030224957,
+              "coefficient": 0.33216786548032456
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.030637165653500116,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6070638564273789,
+              "coefficient": 0.7644672860392406
+            },
+            {
+              "feature": "male",
+              "mean": 0.5052170283806344,
+              "coefficient": 0.3141533258555926
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3237896494156928,
+              "coefficient": -0.023613824873218614
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23080133555926544,
+              "coefficient": 0.5572987867550087
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2626252086811352,
+              "coefficient": 1.0816262405819255
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39085559265442404,
+              "coefficient": -0.24952912918064532
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9556040901502505,
+              "coefficient": 0.12395158543988803
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11570429883138562,
+              "coefficient": 0.4538982693110017
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504891369021311,
+              "coefficient": -0.013116417423903817
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4149666885152734,
+              "coefficient": 0.052220305875636
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5970494030224957,
+              "coefficient": 0.3335909922729245
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "baselineHazard10": 0.035294406480828384,
+        "terms": [
+          {
+            "feature": "age10",
+            "mean": -0.6070638564273789,
+            "coefficient": 0.8212211225012946
+          },
+          {
+            "feature": "male",
+            "mean": 0.5052170283806344,
+            "coefficient": 0.5753488264041225
+          },
+          {
+            "feature": "age10_male",
+            "mean": -0.3237896494156928,
+            "coefficient": -0.04606074855600974
+          }
+        ]
+      },
+      "evaluation": {
+        "trainingPeople": 9584,
+        "trainingDeaths": 633,
+        "testPeople": 3263,
+        "testDeaths": 180,
+        "testDescription": "Untouched NHANES 2005-2006 temporal holdout; observed public-use 120-month outcomes; MEC-weighted",
+        "auc": 0.8537778224925453,
+        "brier": 0.03514135877694083,
+        "baselineAuc": 0.7902653966595133,
+        "baselineBrier": 0.038277529949368325,
+        "weightedObservedRisk10": 0.04209543576521036,
+        "weightedMeanPredictedRisk10": 0.05536356723863205,
+        "baselineWeightedMeanPredictedRisk10": 0.053466137502201735,
+        "accepted": true
+      }
+    },
+    {
+      "id": "clinical_activity",
+      "label": "Blood, body, smoking and leisure exercise",
+      "priority": 60,
+      "required": [
+        "age",
+        "sex",
+        "smoking",
+        "bodyFat",
+        "waistToHeight",
+        "phenoAgeGap",
+        "activityWeekly"
+      ],
+      "ageFrom": 20,
+      "ageTo": 70,
+      "ranges": {
+        "bodyFat": [
+          8.9,
+          58.4
+        ],
+        "waistToHeight": [
+          0.36073329390892966,
+          1.011015911872705
+        ],
+        "phenoAgeGap": [
+          -23.35878546697569,
+          131.4990170991491
+        ],
+        "activityWeekly": [
+          0.0,
+          7868.0
+        ]
+      },
+      "fits": [
+        {
+          "baselineHazard10": 0.030223093953848573,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6074116663182103,
+              "coefficient": 0.7583466239888137
+            },
+            {
+              "feature": "male",
+              "mean": 0.5049132343717332,
+              "coefficient": 0.17902144182671487
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3238553209282876,
+              "coefficient": -0.008689520293489822
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23050386786535648,
+              "coefficient": 0.568141761336321
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.262701233535438,
+              "coefficient": 1.0355911808243539
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.389848421492787,
+              "coefficient": -0.3749362919156775
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9559105059586034,
+              "coefficient": 0.11535535493995862
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11682939577670917,
+              "coefficient": 0.4497032810715361
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504480143777199,
+              "coefficient": 0.03775308534731823
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4148664374058644,
+              "coefficient": 0.049554053360751915
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5976239639970634,
+              "coefficient": 0.3248500731470403
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5302055852355572,
+              "coefficient": -0.2946130860518068
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03021773001706705,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6074116663182103,
+              "coefficient": 0.7577672383353086
+            },
+            {
+              "feature": "male",
+              "mean": 0.5049132343717332,
+              "coefficient": 0.22331261664195934
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3238553209282876,
+              "coefficient": -0.00888812644113747
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23050386786535648,
+              "coefficient": 0.567525160365613
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.262701233535438,
+              "coefficient": 1.0382369771697852
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3915502822496341,
+              "coefficient": -0.28698642740616065
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9584535542546518,
+              "coefficient": 0.07626828860900083
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11668304411457245,
+              "coefficient": 0.3726787012487749
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504480143777199,
+              "coefficient": 0.014153170551263463
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4148664374058644,
+              "coefficient": 0.05672220623928828
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5976239639970634,
+              "coefficient": 0.3261918849677187
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5302055852355572,
+              "coefficient": -0.2933268672027458
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03020671453545436,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6074116663182103,
+              "coefficient": 0.7584230023055754
+            },
+            {
+              "feature": "male",
+              "mean": 0.5049132343717332,
+              "coefficient": 0.2048201712614088
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3238553209282876,
+              "coefficient": -0.011441194928903884
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23050386786535648,
+              "coefficient": 0.5695079542964439
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.262701233535438,
+              "coefficient": 1.0386919752524375
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.39141647501568055,
+              "coefficient": -0.3422190103821364
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.954742807861175,
+              "coefficient": 0.10712982343710184
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11565440100355427,
+              "coefficient": 0.4553619289970099
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504480143777199,
+              "coefficient": 0.013970576036317411
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4148664374058644,
+              "coefficient": 0.05329854844787388
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5976239639970634,
+              "coefficient": 0.32614519415892984
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5302055852355572,
+              "coefficient": -0.2944578711854426
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.030248795231573564,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6074116663182103,
+              "coefficient": 0.7549681756971872
+            },
+            {
+              "feature": "male",
+              "mean": 0.5049132343717332,
+              "coefficient": 0.2361421216278069
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3238553209282876,
+              "coefficient": -0.006214720215136931
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23050386786535648,
+              "coefficient": 0.5692693637899888
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.262701233535438,
+              "coefficient": 1.0389921007809653
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3915168304411457,
+              "coefficient": -0.29196707168375624
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9575478047250681,
+              "coefficient": 0.08941056199343289
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11546727994982228,
+              "coefficient": 0.39774581797717207
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504480143777199,
+              "coefficient": 0.006323996863645137
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4148664374058644,
+              "coefficient": 0.055855042412178556
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5976239639970634,
+              "coefficient": 0.32431591725284564
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5302055852355572,
+              "coefficient": -0.2933271543503597
+            }
+          ]
+        },
+        {
+          "baselineHazard10": 0.03013368553696161,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.6074116663182103,
+              "coefficient": 0.755485139425529
+            },
+            {
+              "feature": "male",
+              "mean": 0.5049132343717332,
+              "coefficient": 0.2910636055272353
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.3238553209282876,
+              "coefficient": -0.007750276516896432
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.23050386786535648,
+              "coefficient": 0.5714636374230122
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.262701233535438,
+              "coefficient": 1.0474985024144718
+            },
+            {
+              "feature": "body_fat10",
+              "mean": 0.3911279531674681,
+              "coefficient": -0.2808541930162538
+            },
+            {
+              "feature": "body_fat10_sq",
+              "mean": 0.9557274200292702,
+              "coefficient": 0.12188354015534311
+            },
+            {
+              "feature": "body_fat10_male",
+              "mean": -0.11560735939786745,
+              "coefficient": 0.4536599569021578
+            },
+            {
+              "feature": "waist_height10",
+              "mean": 0.7504480143777199,
+              "coefficient": -0.02078797446075744
+            },
+            {
+              "feature": "waist_height10_sq",
+              "mean": 1.4148664374058644,
+              "coefficient": 0.05191082707974373
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5976239639970634,
+              "coefficient": 0.32594637639039825
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5302055852355572,
+              "coefficient": -0.29122287314977785
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "baselineHazard10": 0.03488911446799833,
+        "terms": [
+          {
+            "feature": "age10",
+            "mean": -0.6074116663182103,
+            "coefficient": 0.8181092733548384
+          },
+          {
+            "feature": "male",
+            "mean": 0.5049132343717332,
+            "coefficient": 0.561208135648964
+          },
+          {
+            "feature": "age10_male",
+            "mean": -0.3238553209282876,
+            "coefficient": -0.030613254152916748
+          }
+        ]
+      },
+      "evaluation": {
+        "trainingPeople": 9566,
+        "trainingDeaths": 629,
+        "testPeople": 3260,
+        "testDeaths": 180,
+        "testDescription": "Untouched NHANES 2005-2006 temporal holdout; observed public-use 120-month outcomes; MEC-weighted",
+        "auc": 0.8536148585539756,
+        "brier": 0.035128690742336446,
+        "baselineAuc": 0.7901942515056439,
+        "baselineBrier": 0.03827922967787688,
+        "weightedObservedRisk10": 0.04211336349567775,
+        "weightedMeanPredictedRisk10": 0.05447017748546102,
+        "baselineWeightedMeanPredictedRisk10": 0.0531196518092808,
+        "accepted": true
+      }
+    },
+    {
+      "id": "blood",
+      "label": "Blood measurements and smoking",
+      "priority": 10,
+      "required": [
+        "age",
+        "sex",
+        "smoking",
+        "phenoAgeGap"
+      ],
+      "ageFrom": 20,
+      "ageTo": 85,
+      "ranges": {
+        "phenoAgeGap": [
+          -23.35878546697569,
+          133.04301631094987
+        ]
+      },
+      "fits": [
+        {
+          "baselineHazard10": 0.05332933448045004,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.02521363975773665,
+              "coefficient": 0.9062330325207396
+            },
+            {
+              "feature": "male",
+              "mean": 0.5058491661826932,
+              "coefficient": 0.38340267502050984
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.027619679747780644,
+              "coefficient": -0.04075039344603378
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.2656600016593379,
+              "coefficient": 0.3608597929023344
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2324732431759728,
+              "coefficient": 0.9664641956666916
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5403475614773887,
+              "coefficient": 0.33968210383452035
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "baselineHazard10": 0.05856952781102262,
+        "terms": [
+          {
+            "feature": "age10",
+            "mean": -0.02521363975773665,
+            "coefficient": 0.8849386190503091
+          },
+          {
+            "feature": "male",
+            "mean": 0.5058491661826932,
+            "coefficient": 0.5890858916116085
+          },
+          {
+            "feature": "age10_male",
+            "mean": -0.027619679747780644,
+            "coefficient": -0.0460653493970965
+          }
+        ]
+      },
+      "evaluation": {
+        "trainingPeople": 12053,
+        "trainingDeaths": 1683,
+        "testPeople": 3995,
+        "testDeaths": 491,
+        "testDescription": "Untouched NHANES 2005-2006 temporal holdout; observed public-use 120-month outcomes; MEC-weighted",
+        "auc": 0.8971588529238376,
+        "brier": 0.0551866859019586,
+        "baselineAuc": 0.8669503134361417,
+        "baselineBrier": 0.06000716729193369,
+        "weightedObservedRisk10": 0.08596106664302808,
+        "weightedMeanPredictedRisk10": 0.10064693806797631,
+        "baselineWeightedMeanPredictedRisk10": 0.0973257847518027,
+        "accepted": true
+      }
+    },
+    {
+      "id": "blood_activity",
+      "label": "Blood measurements, smoking and leisure exercise",
+      "priority": 20,
+      "required": [
+        "age",
+        "sex",
+        "smoking",
+        "phenoAgeGap",
+        "activityWeekly"
+      ],
+      "ageFrom": 20,
+      "ageTo": 85,
+      "ranges": {
+        "phenoAgeGap": [
+          -23.35878546697569,
+          133.04301631094987
+        ],
+        "activityWeekly": [
+          0.0,
+          7868.0
+        ]
+      },
+      "fits": [
+        {
+          "baselineHazard10": 0.05264100119273269,
+          "terms": [
+            {
+              "feature": "age10",
+              "mean": -0.024813029749044365,
+              "coefficient": 0.8864206701429954
+            },
+            {
+              "feature": "male",
+              "mean": 0.5055675585840119,
+              "coefficient": 0.4064215777190625
+            },
+            {
+              "feature": "age10_male",
+              "mean": -0.027422303473491793,
+              "coefficient": -0.01906166717775871
+            },
+            {
+              "feature": "smoking_former",
+              "mean": 0.2654146584676749,
+              "coefficient": 0.36534054635431246
+            },
+            {
+              "feature": "smoking_current",
+              "mean": 0.2325078942994848,
+              "coefficient": 0.9159560231899639
+            },
+            {
+              "feature": "pheno_gap10",
+              "mean": -0.5407548557040205,
+              "coefficient": 0.33126270029883775
+            },
+            {
+              "feature": "activity_log",
+              "mean": 0.5044883794389867,
+              "coefficient": -0.35417734127957584
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "baselineHazard10": 0.058121198607279184,
+        "terms": [
+          {
+            "feature": "age10",
+            "mean": -0.024813029749044365,
+            "coefficient": 0.8844043430317992
+          },
+          {
+            "feature": "male",
+            "mean": 0.5055675585840119,
+            "coefficient": 0.5748860659415159
+          },
+          {
+            "feature": "age10_male",
+            "mean": -0.027422303473491793,
+            "coefficient": -0.03881718209690646
+          }
+        ]
+      },
+      "evaluation": {
+        "trainingPeople": 12034,
+        "trainingDeaths": 1679,
+        "testPeople": 3992,
+        "testDeaths": 491,
+        "testDescription": "Untouched NHANES 2005-2006 temporal holdout; observed public-use 120-month outcomes; MEC-weighted",
+        "auc": 0.8970634922527002,
+        "brier": 0.055268418568329016,
+        "baselineAuc": 0.8668927021626267,
+        "baselineBrier": 0.06001812623477449,
+        "weightedObservedRisk10": 0.08599302688373053,
+        "weightedMeanPredictedRisk10": 0.0996510001147336,
+        "baselineWeightedMeanPredictedRisk10": 0.0970107909824495,
+        "accepted": true
+      }
+    }
+  ]
+}

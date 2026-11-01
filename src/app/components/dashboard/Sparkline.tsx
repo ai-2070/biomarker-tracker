@@ -19,7 +19,7 @@ export function Sparkline({ series, range, tone }: { series: readonly Measuremen
   const stroke = tone === "danger" ? "stroke-danger" : tone === "warn" ? "stroke-warn" : "stroke-chart-line";
   return (
     <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="block h-11 w-full" aria-hidden="true">
-      {range && <rect x={0} y={Math.max(0, bandTop)} width={W} height={Math.max(0, Math.min(H, bandBottom) - Math.max(0, bandTop))} className="fill-chart-band/12" />}
+      {range && <rect x={0} y={Math.max(0, bandTop)} width={W} height={Math.max(0, Math.min(H, bandBottom) - Math.max(0, bandTop))} className={range.comparisonOnly ? "fill-line-strong/30" : "fill-chart-band/12"} />}
       <polyline
         points={pts.map((m, i) => `${x(i)},${y(m.value)}`).join(" ")}
         fill="none"

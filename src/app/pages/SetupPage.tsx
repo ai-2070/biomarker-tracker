@@ -29,10 +29,11 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
     setStep(steps[index + d]!);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const nameOk = !!person.name?.trim();
+  const basicsOk = !!(person.name?.trim() && person.birthMonth && person.sex && person.heightCm);
 
   /** Creates the profile, then opens the app at `to`. */
   async function finish(to: string) {
+    if (!basicsOk || busy) return;
     setBusy(true);
     setError(null);
     try {
@@ -119,7 +120,7 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
       )}
 
       {step === "person" && (
-        <StepCard title={first ? "Who is this profile for?" : "New profile"} sub="You can change all of this later in Settings.">
+        <StepCard title={first ? "Who is this profile for?" : "New profile"} sub="All fields are required. Age and sex help us choose reference ranges; height is used for body calculations. You can change these later in Settings.">
           {!first && mode === "folders" && (
             <div className="flex flex-col gap-3 rounded-xl border border-line bg-sunken p-4">
               <p className="text-ink-2">
@@ -132,8 +133,8 @@ export function SetupPage({ mode, first, existingResults, folderRoot }: { mode: 
               <ExampleProfileButton mode={mode} label="Add an example profile" />
             </div>
           )}
-          <ProfileBasics value={person} onChange={setPerson} nameRequired />
-          <Nav onBack={index > 0 ? () => go(-1) : undefined} onNext={() => go(1)} nextDisabled={!nameOk} hint={nameOk ? undefined : "Add a name to continue."} />
+          <ProfileBasics value={person} onChange={setPerson} required />
+          <Nav onBack={index > 0 ? () => go(-1) : undefined} onNext={() => { if (basicsOk) go(1); }} nextDisabled={!basicsOk} hint={basicsOk ? undefined : "Complete the required details to continue."} />
         </StepCard>
       )}
 

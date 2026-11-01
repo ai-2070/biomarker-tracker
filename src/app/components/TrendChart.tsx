@@ -157,8 +157,8 @@ export function TrendChart({
   const sel = t.selection;
   const selStats = sel ? statsBetween(readings, isoOfDay(sel.from), isoOfDay(sel.to)) : undefined;
   const shaded = habit && prefs.habits ? shownHabits.find((p) => p.id === habit) : undefined;
-  const showOutKey = hasRange && band && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
-  const summary = `Chart of ${def.name} in ${suffix || "hours and minutes"}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} ${totals ? "totals" : "averages"}`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.source === "personal" ? "Your usual range" : "Latest reference range"} ${rangeText}` : ""}.`;
+  const showOutKey = hasRange && band && !range!.comparisonOnly && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
+  const summary = `Chart of ${def.name} in ${suffix || "hours and minutes"}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} ${totals ? "totals" : "averages"}`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.comparisonOnly ? "Published comparison interval" : range?.source === "personal" ? "Your usual range" : "Latest reference range"} ${rangeText}` : ""}.`;
   const withUnit = (x: number) => `${showValue(def, x, unit)} ${suffix}`.trim();
 
   return (
@@ -185,7 +185,7 @@ export function TrendChart({
         )}
         {hasRange && (
           <Toggle on={prefs.band} onChange={(on) => setPrefs({ band: on })}>
-            {range!.source === "personal" ? "Usual range" : "Range"}
+            {range!.comparisonOnly ? "Comparison" : range!.source === "personal" ? "Usual range" : "Range"}
           </Toggle>
         )}
         {band && (
@@ -221,8 +221,8 @@ export function TrendChart({
                 {...(range?.from ? { x1: Math.max(Date.parse(range.from), v.from * DAY_MS) } : {})}
                 y1={low ?? yMin}
                 y2={high ?? yMax}
-                fill="var(--color-chart-band)"
-                fillOpacity={0.1}
+                fill={range?.comparisonOnly ? "var(--color-line-strong)" : "var(--color-chart-band)"}
+                fillOpacity={range?.comparisonOnly ? 0.3 : 0.1}
                 stroke="none"
                 ifOverflow="hidden"
               />
@@ -353,8 +353,10 @@ export function TrendChart({
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           {band && rangeText && (
             <span className="flex items-center gap-1.5">
-              <span aria-hidden="true" className="inline-block h-3 w-5 rounded-sm bg-chart-band/15" />
-              {range?.source === "personal"
+              <span aria-hidden="true" className={cx("inline-block h-3 w-5 rounded-sm", range?.comparisonOnly ? "bg-line-strong/30" : "bg-chart-band/15")} />
+              {range?.comparisonOnly
+                ? "Population comparison (not clinical limits)"
+                : range?.source === "personal"
                 ? "Your usual range (from your own readings)"
                 : `Reference range (${range?.source === "lab" ? "from your lab" : def.judgeAverageOfDays ? `checked against the ${def.judgeAverageOfDays}-day average` : totals ? "advice for a week's total" : "typical adult"})`}
             </span>

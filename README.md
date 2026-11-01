@@ -65,17 +65,31 @@ The five extended lipid markers work with manual entry, PDF/photo review, charts
 - The three ages are never averaged into one number, because they estimate different things.
 - Missing your birth month? Enter the month and year and press **Save** directly on the Body or Biological age page. The estimates update together; no day of birth is needed.
 
+**Country population reference (always available):** the Biological age page shows a survival curve, median age reached, average remaining years and the middle-half age range for people alive at your current age. The curve marks **Your age** and has a table view. It uses the country in Settings; if missing, choose it on the page and press **Save**. Your health readings do not change this reference. It assumes the source period's death rates stay constant, not that they predict your future.
+
+**Country population reference** sits immediately above **Heart age**. Within it, **Population survival from your current age** comes first, followed by **Compare countries**, ranking all available tables by average remaining life at the same age and sex, with your saved country highlighted. The zero-based bars cover 37 countries plus the EU average; scroll to see the full list. Each row shows its reporting period, with source links and population limits available below. Missing combined-sex tables are named rather than replaced with invented averages. Different periods and source populations mean this is not a same-year healthcare ranking or a prediction of what moving country would do. When enabled, **Expiration date** is mounted separately at the top of the page, above the Ages chart.
+
+Official tables cover 31 EU/EFTA countries and the EU average (Eurostat), plus the **United States, United Kingdom, Canada, Australia, New Zealand and Japan** from their national statistical or health offices. Every country displays its own source, reporting period and limitations. Where the publisher supplies only female/male tables, the app asks for sex rather than inventing an average. Japan's source covers Japanese nationals in Japan; provisional-data notes are retained.
+
+**Expiration date (optional, experimental):** turn it on in **Settings → Appearance** to add exact calendar dates. When compatible readings are available, a separately labelled projection uses jointly fitted mortality risk from body fat, waist-to-height, smoking and/or clinical PhenoAge. The country statistics and chart remain available even when dates are off. Body-fat variants cover ages 20–69; blood-only variants cover 20–84. This works without AI.
+
+These coefficients come from public NHANES examinations and linked mortality, not weights added up from unrelated papers. The ten-year score was tested on a later, untouched survey wave, but overpredicted average mortality; the card shows predicted versus observed rates. **A lifetime date, individual risk or benefit from changing one input has not been clinically validated.** Its date range is a population spread, not a personal confidence interval.
+
+Active time is used only after you confirm that the saved minutes are actual moderate-or-harder leisure exercise in sessions of at least ten minutes, with vigorous minutes counted once—not generic all-day activity, zone points or doubled intensity minutes. It requires at least 21 daily totals in the last 30 days; missing days are not zero. Resting HRV, DunedinPACE and functional tests remain visible as **not included**, because compatible joint training data was not available. No weights are guessed for them.
+
 ### Body measurements and device import
 
 <img src="docs/screenshots/body.png" alt="Body dashboard: weight, waist, waist-to-height ratio, BMI, blood pressure, resting heart rate, heart rate variability, sleep and blood oxygen" width="100%">
 
 Weight, waist, body fat, blood pressure, resting heart rate, heart rate variability (HRV), blood oxygen, sleep, home blood glucose and VO₂max. Import exports from Apple Health, Fitbit, Google Fit, Samsung Health, Garmin, Oura, Whoop, Withings, Polar, Zepp and Huawei Health, or any CSV or JSON file. Files are read on your computer and never uploaded. No made-up "readiness" or "sleep scores": only what was measured.
 
-**Body-fat groups:** the Body fat page keeps its existing history chart and adds a separate comparison with your reading marked. The main guide uses sex and age at the reading (20–79 years), with Below / Within / Above / Well above guide bands. These are provisional, BMI-derived reference ranges, not diagnoses. An expandable five-category reference—essential fat, athletes, fitness, average and obesity—is sex-specific but not age-adjusted, and does not assess athletic fitness. Missing details or unsupported ages never produce invented age bands. Weight and BMI do not gain classification bands.
+**Body-fat comparisons:** the Body fat page keeps its existing history chart and adds a separate comparison with your reading marked. The main reference uses sex and age at the reading (20–79 years), with neutral Below reference / Within reference / Above reference / Above reference (upper band) labels. These provisional, BMI-derived values are not minimum and maximum healthy body-fat levels. A position outside them alone does not produce a clinical Low/High/Normal badge, a “To watch” warning or a doctor alert; explicit laboratory ranges and critical limits still apply. Brain and doctor reports receive the same comparison-only distinction. An expandable five-category reference—essential fat, athletes, fitness, average and obesity—is sex-specific but not age-adjusted, and does not assess athletic fitness. Missing details or unsupported ages never produce invented age bands. Weight and BMI do not gain classification bands.
 
 **Estimated fat mass:** directly below the latest body-fat percentage, see the calculated amount in kg and lb. It uses an exact weight from the same day where available, otherwise the nearest within 30 days, with the weight's date shown. It respects your weight display-unit preference. Distant weights and bounded percentages are not silently combined, and the estimate is never saved as a new measurement.
 
 Both systolic and diastolic marker links open one **Blood pressure** page. It shows the top and bottom numbers in separate charts, with linked date controls but independent units, reference ranges and flags. Both explanations and the shared editable results list stay on that page. If one number has no readings, the other is still shown; a critical value in either number puts the urgent warning first.
+
+**New-profile setup** requires a name, birth month and year, sex and a valid height before continuing. Age and sex help select appropriate reference ranges and age-related estimates; height is used for body calculations. Incomplete or future birth dates and invalid height drafts cannot reuse an earlier valid entry to get past setup. Existing profiles and restored backups remain usable with missing details.
 
 Height is in **About** under Settings → Your data, and in the first details step when creating a profile. Choose centimetres or feet and inches. The preference is kept with the profile and in backups; switching units does not change the height used by calculations, which is always stored in centimetres.
 
@@ -218,6 +232,26 @@ bun run build      # typecheck and static build in dist/
 ```
 
 Use `bun run test`, not `bun test`: the second one starts Bun's own test runner instead of Vitest.
+
+### Rebuild official population tables (developer only)
+
+```bash
+python -m pip install -r tools/lifetables/requirements.txt
+bun tools/lifetables/build.ts
+```
+
+Python 3.10 and Bun were exercised. Downloads are public aggregate tables from Eurostat, CDC/NCHS, ONS, Statistics Canada, ABS, Stats NZ and Japan's MHLW; no app profiles are read. Source files are cached in the OS temporary folder (`BT_LIFETABLE_CACHE` overrides it). The national importers pin reviewed releases and verify population, columns and exact-age rows. The builder validates every supported country before publishing `knowledge/lifetables/countries.json`. Original survivor counts and remaining life expectancy at 95 are retained, normalized to 100,000 births; the app approximates survival beyond 95. Updating these population tables does not refit the US mortality model.
+
+### Rebuild the mortality research model (developer only)
+
+The app ships fitted parameters and needs neither Python nor a research connection to use them. Reproduction uses Python 3.10 (tested), Bun and the pinned numerical libraries:
+
+```bash
+python -m pip install -r tools/longevity/requirements.txt
+python tools/longevity/train.py
+```
+
+The default raw-data cache is in the OS temporary folder. An optional `--cache` must point outside the repository. The tool fetches only pinned public CDC NHANES/NCHS files, never reads app profiles, and exports aggregate parameters to `knowledge/models/mortality.json` and evaluation/provenance to `tools/longevity/evaluation.json`. Source hashes record the numerical fit; the published command is a portable recipe, not a machine-specific invocation. Coefficients are jointly fitted, five DXA imputation versions are kept separate, and penalty selection never uses the holdout. Passing the Brier/AUC gate is not lifetime-date validation.
 
 ## How it's built
 

@@ -85,6 +85,18 @@ export async function setShowExpirationDate(on: boolean): Promise<void> {
   else await db.settings.delete(EXPIRATION_KEY);
 }
 
+/** Only opt in when saved daily active minutes match the mortality cohort's leisure-exercise definition. */
+export const MORTALITY_ACTIVITY_KEY = "mortalityActivityIsLeisure";
+
+export function useMortalityActivityLeisure(): boolean | undefined {
+  return useLiveQuery(async () => (await db.settings.get(MORTALITY_ACTIVITY_KEY))?.value === true, []);
+}
+
+export async function setMortalityActivityLeisure(on: boolean): Promise<void> {
+  if (on) await db.settings.put({ key: MORTALITY_ACTIVITY_KEY, value: true });
+  else await db.settings.delete(MORTALITY_ACTIVITY_KEY);
+}
+
 const INTAKE_KEY = "intakeList";
 
 /** The Daily intake analyzer's list: one per profile, kept in its settings (not a diary). */

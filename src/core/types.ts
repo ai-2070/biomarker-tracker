@@ -96,6 +96,8 @@ export interface BiomarkerDef {
   conversions: Record<string, Conversion>;
   /** Typical adult ranges in the canonical unit. Labs differ; their own range wins. */
   defaultRanges?: RangeDef[];
+  /** Default ranges are descriptive comparisons, not clinical flag limits. Lab and critical limits still apply. */
+  comparisonOnly?: boolean;
   /** Values beyond these (canonical unit) show an urgent "contact a doctor" banner. */
   criticalRange?: { low?: number; high?: number; lowInclusive?: boolean; highInclusive?: boolean };
   /** Extra context for the range, e.g. "fasting". */

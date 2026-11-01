@@ -37,7 +37,7 @@ vi.mock("../../src/db/db", () => ({
   fillPersonalDetails: mocks.fillProfile,
   LOADED_PROFILE_KEY: "loadedProfile",
 }));
-vi.mock("../../src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate" }));
+vi.mock("../../src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../src/app/knowledge", () => ({
   BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace].map((def) => [def.id, def])),
 }));

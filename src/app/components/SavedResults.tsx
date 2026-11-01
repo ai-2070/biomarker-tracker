@@ -164,7 +164,7 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
                       <summary className="flex min-h-11 cursor-pointer items-center text-sm font-medium text-ink-2">Details</summary>
                       <div className="flex flex-col gap-2 text-sm text-ink-2">
                         {entered && <p>Entered as {entered}</p>}
-                        {range && <p>Range {showRange(def, range, unit)}{range.source === "lab" ? " (lab)" : ""}</p>}
+                        {range && <p>{range.comparisonOnly ? "Population comparison (not clinical limits)" : "Range"} {showRange(def, range, unit)}{range.source === "lab" ? " (lab)" : ""}</p>}
                         {m.fasted !== undefined && <p>{m.fasted ? "Fasting" : "Not fasting"}</p>}
                         {m.note && <p className="break-words italic">{m.note}</p>}
                         {during.length > 0 && <p>At the time: {during.map((p) => p.label).join(", ")}</p>}

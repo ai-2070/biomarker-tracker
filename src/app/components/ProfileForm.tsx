@@ -48,22 +48,29 @@ function withField<K extends keyof Profile>(p: Profile, key: K, value: Profile[K
 }
 
 /** Name, birth month, sex and height. */
-export function ProfileBasics({ value, onChange, nameRequired }: { value: Profile; onChange: (p: Profile) => void; nameRequired?: boolean }) {
+export function ProfileBasics({ value, onChange, nameRequired, required = false }: { value: Profile; onChange: (p: Profile) => void; nameRequired?: boolean; required?: boolean }) {
   return (
     <div className="flex flex-col gap-5">
       <Field.Root className="flex flex-col gap-1.5">
-        <Field.Label className={labelStyles}>Name{!nameRequired && <span className="font-normal text-ink-2"> (optional)</span>}</Field.Label>
+        <Field.Label className={labelStyles}>Name{!(nameRequired || required) && <span className="font-normal text-ink-2"> (optional)</span>}</Field.Label>
         <Field.Control
           value={value.name ?? ""}
           onValueChange={(name) => onChange(withField(value, "name", name.slice(0, 80)))}
           placeholder="e.g. Anna, or Dad"
           autoComplete="off"
           className={`${inputStyles} sm:max-w-sm`}
+          required={required}
         />
         <Field.Description className={helpStyles}>Shown in the app so you can tell profiles apart. Never sent to an AI model.</Field.Description>
       </Field.Root>
-      {/* Keyed so it picks up a value that arrives after it first rendered. */}
-      <BirthMonthField key={value.birthMonth ?? "none"} value={value.birthMonth} onChange={(birthMonth) => onChange({ ...value, birthMonth })} />
+      {/* Keep partial setup input mounted; Settings can receive a saved birth month later. */}
+      <BirthMonthField
+        key={required ? "setup" : value.birthMonth ?? "none"}
+        value={value.birthMonth}
+        help="Used for age-specific reference ranges and age estimates. Only the month and year are kept."
+        onValidityChange={required ? (valid) => { if (!valid) onChange(withField(value, "birthMonth", undefined)); } : undefined}
+        onChange={(birthMonth) => onChange({ ...value, birthMonth })}
+      />
       <ChoiceGroup<SexChoice>
         label="Sex for reference ranges"
         help="Some markers, like ferritin and haemoglobin, have different typical ranges for women and men."
@@ -72,10 +79,10 @@ export function ProfileBasics({ value, onChange, nameRequired }: { value: Profil
         options={[
           { value: "f", label: "Female" },
           { value: "m", label: "Male" },
-          { value: "unset", label: "Prefer not to say" },
+          ...(!required ? [{ value: "unset" as const, label: "Prefer not to say" }] : []),
         ]}
       />
-      <HeightField value={value.heightCm} unit={value.heightUnit ?? "cm"} onUnitChange={(heightUnit) => onChange({ ...value, heightUnit })} onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))} />
+      <HeightField value={value.heightCm} unit={value.heightUnit ?? "cm"} onUnitChange={(heightUnit) => onChange({ ...value, heightUnit })} onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))} onDraftChange={required ? (heightCm) => onChange(withField(value, "heightCm", heightCm)) : undefined} />
     </div>
   );
 }
@@ -148,8 +155,8 @@ function imperialFields(cm: number | undefined): { feet: string; inches: string 
   return { feet: parts ? String(parts.feet) : "", inches: parts ? String(parts.inches) : "" };
 }
 
-/** Keep partial input local until blur; unit changes never convert and overwrite the stored height. */
-function HeightField({ value, unit, onUnitChange, onChange }: { value?: number; unit: HeightUnit; onUnitChange: (unit: HeightUnit) => void; onChange: (cm: number | undefined) => void }) {
+/** Settings save on blur; setup also validates its unsaved draft as it is typed. Unit changes preserve the stored height. */
+function HeightField({ value, unit, onUnitChange, onChange, onDraftChange }: { value?: number; unit: HeightUnit; onUnitChange: (unit: HeightUnit) => void; onChange: (cm: number | undefined) => void; onDraftChange?: (cm: number | undefined) => void }) {
   const [text, setText] = useState(value === undefined ? "" : String(value));
   const [imperial, setImperial] = useState(() => imperialFields(value));
   const [typing, setTyping] = useState(false);
@@ -182,7 +189,10 @@ function HeightField({ value, unit, onUnitChange, onChange }: { value?: number; 
           <Field.Label className={labelStyles}>Height (cm)</Field.Label>
           <Field.Control
             value={text}
-            onValueChange={setText}
+            onValueChange={(text) => {
+              setText(text);
+              onDraftChange?.(heightInCm(Number(text.replace(",", ".")), "cm"));
+            }}
             onFocus={() => setTyping(true)}
             onBlur={() => {
               setTyping(false);
@@ -201,7 +211,11 @@ function HeightField({ value, unit, onUnitChange, onChange }: { value?: number; 
               <Field.Label className={labelStyles}>{part.label}</Field.Label>
               <Field.Control
                 value={imperial[part.key]}
-                onValueChange={(text) => setImperial((current) => ({ ...current, [part.key]: text }))}
+                onValueChange={(text) => {
+                  const next = { ...imperial, [part.key]: text };
+                  setImperial(next);
+                  onDraftChange?.(heightInCm(Number(next.feet.replace(",", ".")), "ft/in", Number(next.inches.replace(",", "."))));
+                }}
                 onFocus={() => setTyping(true)}
                 onBlur={saveImperial}
                 inputMode={part.inputMode}

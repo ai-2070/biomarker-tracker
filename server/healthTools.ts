@@ -8,8 +8,7 @@ import { selectLevers } from "../src/core/evidence";
 import { analyzeMarker, rcvBand, retestDate } from "../src/core/experiments";
 import { SAFETY_LIMITS, selectFoods } from "../src/core/foods";
 import { chanceNote, pickedAfterResults } from "../src/core/habits";
-import { summarizePhenoAge } from "../src/core/phenoageDraws";
-import { ageAt } from "../src/core/phenoageDraws";
+import { ageAt, isBirthMonth, summarizePhenoAge } from "../src/core/phenoageDraws";
 import { assistantProfile } from "../src/core/profile";
 import { completeProfileDetails, PROFILE_DETAIL_FIELDS } from "../src/core/profileCompletion";
 import { proposalIssue } from "../src/core/assistantProposal";
@@ -26,8 +25,9 @@ import { closestFoods, dailyReference, foodNameNote, mealSafetyBlock, mealTotals
 import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
 import { phenoAgePace } from "../src/core/agePace";
-import { bestBeforeMoments, bestBeforeWithShift, phenoAgeShift, tableFor } from "../src/core/lifeTable";
-import { lifeTables } from "./knowledge";
+import { ageAtMoment, bestBefore, bestBeforeMoments, lifeTablePeriod, populationSurvival, tableFor, type ResolvedLifeTable } from "../src/core/lifeTable";
+import { mortalityProjection } from "../src/core/mortalityProjection";
+import { lifeTables, mortalityModels } from "./knowledge";
 
 export interface HealthSnapshot {
   measurements: Measurement[];
@@ -40,6 +40,8 @@ export interface HealthSnapshot {
   meals?: Meal[];
   /** The expiration date is turned on in Settings (off by default). */
   expirationDate?: boolean;
+  /** Explicit compatibility confirmation; all-day device active time is not silently treated as leisure exercise. */
+  mortalityActivityIsLeisure?: boolean;
 }
 
 /** Validate what the page sent, with the same checks as a backup file. */
@@ -53,13 +55,13 @@ export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot 
   const meals = Array.isArray(o.meals) ? o.meals : [];
   if (meals.length > 1000 || meals.some((m) => validateMeal(m).length > 0)) return { ok: false, error: "The meals are damaged." };
   // Name and private notes are dropped here too, even if a page sent them.
-  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[], meals: meals as Meal[], expirationDate: o.expirationDate === true } };
+  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[], meals: meals as Meal[], expirationDate: o.expirationDate === true, mortalityActivityIsLeisure: o.mortalityActivityIsLeisure === true } };
 }
 
 const r = (n: number | undefined) => (n === undefined ? undefined : roundForDisplay(n));
 
-function rangeOut(range: { low?: number; high?: number; source: string } | undefined) {
-  return range ? { low: r(range.low), high: r(range.high), source: range.source === "lab" ? "lab's own range" : "typical adult range" } : null;
+function rangeOut(range: { low?: number; high?: number; source: string; comparisonOnly?: boolean } | undefined) {
+  return range ? { low: r(range.low), high: r(range.high), source: range.comparisonOnly ? "published population comparison" : range.source === "lab" ? "lab's own range" : "typical adult range", ...(range.comparisonOnly ? { comparisonOnly: true, note: "For comparison only, not clinical low/high limits or minimum/maximum healthy body fat." } : {}) } : null;
 }
 
 export function safetyOf(s: HealthSnapshot): SafetyId[] {
@@ -218,6 +220,7 @@ export function biologicalAge(s: HealthSnapshot) {
   const sum = summarizePhenoAge(s.measurements, s.profile.birthMonth);
   const pace = phenoAgePace(sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined).map((d) => ({ date: d.date, years: d.phenoAge!, approximate: d.approximate.length > 0 })));
   const dunedin = s.measurements.filter((m) => m.biomarkerId === "dunedinpace").sort((a, b) => a.date.localeCompare(b.date));
+  const reference = populationTableFor(s);
   return {
     draws: sum.draws.map((d) => ({
       date: d.date,
@@ -246,34 +249,91 @@ export function biologicalAge(s: HealthSnapshot) {
           about: "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
         }
       : "No DunedinPACE result recorded (it needs a DNA methylation test, not a routine blood test).",
+    countryPopulationReference: typeof reference === "string" ? reference : countryPopulationReference(reference),
     expirationDate: !s.expirationDate
       ? "Turned off in Settings (it's off by default). Don't estimate it or a date of death; say it can be turned on in Settings → Appearance if the person asks."
-      : bestBeforeFor(s, sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined).map((d) => ({ date: d.date, age: d.age!, phenoAge: d.phenoAge! }))),
+      : typeof reference === "string" ? reference : bestBeforeFor(s, reference),
   };
 }
 
-/** The app's "Expiration date" figures (Biological age page), computed the same way, so the model reports these instead of guessing. */
-function bestBeforeFor(s: HealthSnapshot, draws: { date: string; age: number; phenoAge: number }[]) {
+interface PopulationTable {
+  found: ResolvedLifeTable;
+  currentAge: number;
+  note: string;
+}
+
+/** Resolve genuine missing inputs once, independently of the exact-date preference. */
+function populationTableFor(s: HealthSnapshot): PopulationTable | string {
   const p = s.profile;
-  if (!p.birthMonth) return "Needs the person's month and year of birth.";
+  if (!p.birthMonth || !isBirthMonth(p.birthMonth)) return "Needs the person's valid month and year of birth.";
+  const currentAge = ageAtMoment(p.birthMonth, Date.parse(`${todayIso()}T00:00:00Z`));
+  if (!(currentAge >= 0)) return "Month and year of birth cannot be in the future.";
   const file = lifeTables();
-  const found = file ? tableFor(file, p.country, p.sex) : undefined;
-  if (!found) return "Needs the country the person lives in (Settings → Your data), for its life table.";
+  if (!file) return "The country life tables could not be loaded or validated; no population statistics are guessed.";
+  const country = p.country ? file.countries[p.country] : undefined;
+  if (!country) return "Needs a supported country the person lives in (Settings → Your data), for its population life table.";
+  const found = tableFor(file, p.country, p.sex);
+  if (!found) return !p.sex
+    ? `Needs the person's sex in Settings; ${country.name} has no both-sex life table. The saved country does not need changing.`
+    : `No life table is available for the saved sex in ${country.name}; no other sex's figures are substituted.`;
+  return { found, currentAge, note: file.note };
+}
+
+/** Public conditional survival only: no fitted model, shifted age or calendar death dates. */
+function countryPopulationReference({ found, currentAge, note }: PopulationTable) {
+  const population = bestBefore(found.table, currentAge);
+  return {
+    country: found.country,
+    countryName: found.name,
+    sex: found.sex,
+    currentAge,
+    source: found.source,
+    medianAge: population.median,
+    middleHalfAges: [population.quarter, population.threeQuarters],
+    averageRemainingYears: population.expectancy,
+    survivalByAge: populationSurvival(found.table, currentAge),
+    limits: [
+      "Conditional on being alive at the current calendar age, using this country's period death rates. These are population statistics, not a personal prediction, risk percentile or individual confidence interval.",
+      "Period life tables hold the reporting period's death rates constant; they do not predict future changes in mortality.",
+      "Past age 95, survival uses an exponential tail approximation based on the source's remaining life expectancy at 95.",
+      note,
+    ],
+  };
+}
+
+/** Opt-in exact-date/experimental figures; never called when expiration dates are off. */
+function bestBeforeFor(s: HealthSnapshot, { found }: PopulationTable) {
+  const p = s.profile;
   const today = todayIso();
-  const shift = phenoAgeShift(draws);
-  const plain = bestBeforeMoments(found.table, p.birthMonth, today);
-  const mine = shift ? bestBeforeWithShift(found.table, p.birthMonth, today, shift.shift) : undefined;
+  const models = mortalityModels();
+  const projection = models ? mortalityProjection(found.table, p, s.measurements, today, models, s.mortalityActivityIsLeisure === true) : undefined;
+  const plain = projection?.plain ?? bestBeforeMoments(found.table, p.birthMonth!, today);
+  const mine = projection?.adjusted;
   const head = mine ?? plain;
+  const prediction = projection?.prediction;
+  const selected = prediction?.model;
   const d = (ms: number) => new Date(ms).toISOString().slice(0, 10);
   return {
+    headline: mine ? "Experimental fitted-risk lifetime projection" : "Country population reference",
     medianDate: d(head.medianAt),
     aQuarterDieBefore: d(head.quarterAt),
     aQuarterLivePast: d(head.threeQuartersAt),
     averageRemainingYears: Math.round(head.expectancy * 10) / 10,
-    ...(mine && shift ? { comparedWith: `people aged ${Math.round(mine.comparedAge * 10) / 10} (PhenoAge ${Math.round(shift.shift * 10) / 10} years from age, average of ${shift.tests} tests)`, averagePersonMedianDate: d(plain.medianAt) } : { comparedWith: "people of the same age" }),
-    lifeTable: `Eurostat ${found.name} ${found.year}, ${found.sex === "f" ? "women" : found.sex === "m" ? "men" : "both sexes"}`,
-    about:
-      "A population figure, not a prediction of this person's death: half of the people compared with live past the median date. Read at PhenoAge when blood tests allow (Liu et al. 2018, PMID 30596641: PhenoAge is the age whose average mortality risk matches the person's), assuming the difference stays the same. Period life table. Other risks (smoking, fitness, heart risk) are not added in, because they overlap. Never say it is when they will die.",
+    populationReference: { medianDate: d(plain.medianAt), aQuarterDieBefore: d(plain.quarterAt), aQuarterLivePast: d(plain.threeQuartersAt) },
+    fittedTenYearMortality: prediction?.status === "ok" && prediction.risk10 !== undefined && selected ? {
+      percent: r(prediction.risk10 * 100),
+      model: selected.label,
+      version: models!.version,
+      riskEquivalentAge: prediction.riskAgeBound ? `${prediction.riskAgeBound} the model's ${selected.ageFrom}–${selected.ageTo - 1} age range; no exact lifetime extrapolation` : r(prediction.riskAge),
+      heldOutEvaluation: selected.evaluation,
+      includedInputs: projection!.included,
+      limits: models!.limitations,
+    } : { notShown: prediction?.reasons ?? ["The offline-fitted models could not be loaded; no coefficients are guessed."] },
+    notUsed: projection?.notUsed ?? [],
+    assumptions: projection?.cautions ?? [],
+    lifeTable: `${found.source.name}: ${found.name}, ${lifeTablePeriod(found.source.period)}, ${found.sex === "f" ? "women" : found.sex === "m" ? "men" : "both sexes"}`,
+    source: found.source,
+    about: "The country reference is a population life table, not this person's predicted death. A separately fitted US cohort score estimates ten-year all-cause mortality; it is not the original PhenoAge equation or heart-attack risk. The experimental lifetime projection reads the country table at a fitted risk-equivalent age and assumes that age gap persists. This transfer between countries and from ten years to lifetime has NOT been validated. The displayed date range is the middle half of the shifted population, NOT an individual confidence interval. HRV, DunedinPACE and functional tests have no weights in this model. Never invent weights, add years from separate studies, estimate a date when off, or say this is when the person will die.",
   };
 }
 
@@ -567,7 +627,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       },
     }),
     get_biological_age: tool({
-      description: "PhenoAge for each blood test that had all 9 markers, how fast PhenoAge changes per calendar year (with its uncertainty), and any DunedinPACE (DNA test) results, all computed or recorded by the app.",
+      description: "App-computed PhenoAge history and pace, recorded DunedinPACE, and (only when turned on) the country life-table reference and experimental jointly fitted mortality projection, with included/excluded inputs, held-out calibration and limits. Never invent missing weights or a date when off.",
       inputSchema: z.object({}),
       execute: async () => biologicalAge(s),
     }),
