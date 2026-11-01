@@ -1,0 +1,26 @@
+tools/longevity/test_train.py
+  s_06782ce09c7218::t_688ae0b48e4ccd 1-65,67-70,72-110
+  s_06782ce09c7218::t_81c5fbeb6e0155 66,71
+tools/longevity/requirements.txt
+  s_06782ce09c7218::t_b9af5f3e029d45 1-2
+  s_06782ce09c7218::t_562bd867e10d21 4
+README.md
+  s_06782ce09c7218::t_b9af5f3e029d45 259
+  s_06782ce09c7218::t_688ae0b48e4ccd 263
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6da6963342755040e31babd823fee8da999426cb",
+  "prompts": {},
+  "sessions": {
+    "s_06782ce09c7218": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a198ea-25f7-7b80-8cf0-beb991137d55",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
