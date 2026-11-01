@@ -22,7 +22,7 @@ import { WaistToHeightPanel } from "../components/dashboard/waistToHeight";
 import { DunedinScores } from "../components/dashboard/agePace";
 import { NotFound } from "./NotFound";
 import type { SharedTimeView } from "../components/timeControls";
-import { BodyFatComparison, BodyFatMass } from "../components/BodyFatComparison";
+import { BodyFatComparison, BodyFatMass, BodyFatReferenceBadge } from "../components/BodyFatComparison";
 
 export function MarkerPage({ id, section }: { id: string; section?: string }) {
   return id === "bp_systolic" || id === "bp_diastolic"
@@ -96,7 +96,9 @@ function SingleMarkerPage({ id, section }: { id: string; section?: string }) {
                   </p>
                   {def.id === "body_fat" && <BodyFatMass measurement={trend.latest} />}
                 </div>
-                {usual?.recent && latestFlag === "unknown" ? (
+                {def.id === "body_fat" && def.comparisonOnly && range?.source !== "lab" && !isCritical(latestFlag) ? (
+                  <BodyFatReferenceBadge measurement={trend.latest} profile={profile} />
+                ) : usual?.recent && latestFlag === "unknown" ? (
                   <span className="rounded-full bg-sunken px-3 py-1 text-ink-2">
                     {usual.recent.position === "within" ? "Within your usual range" : usual.recent.position === "below" ? "Lower than usual" : "Higher than usual"}
                   </span>
@@ -349,17 +351,19 @@ function About({ def, unit, profile, range }: { def: BiomarkerDef; unit: string;
       <p>{def.summary}</p>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Meaning title="If it's high" meaning={def.high.meaning} causes={def.high.commonCauses} />
-        <Meaning title="If it's low" meaning={def.low.meaning} causes={def.low.commonCauses} />
+        <Meaning title={def.comparisonOnly ? "Higher values" : "If it's high"} meaning={def.high.meaning} causes={def.high.commonCauses} />
+        <Meaning title={def.comparisonOnly ? "Very low values" : "If it's low"} meaning={def.low.meaning} causes={def.low.commonCauses} />
       </div>
 
       <div className="rounded-lg bg-sunken p-3 text-ink-2">
         <p>
-          <span className="font-medium text-ink">Reference range: </span>
+          <span className="font-medium text-ink">{def.comparisonOnly && range?.source !== "lab" ? "Population comparison: " : "Reference range: "}</span>
           {range?.source === "lab"
             ? `your latest result uses your lab's range, ${showRange(def, range, unit)}.`
             : def.personalRange
               ? "there is no useful range for everyone. Once you have 2 weeks of readings, your own usual range is shown: the middle two-thirds of your readings over the previous 60 days."
+              : defaultRange?.comparisonOnly
+                ? `${showRange(def, defaultRange, unit)} is shown for comparison only, not as clinical low/high limits.`
               : defaultRange
                 ? def.category === "Body"
                   ? `the usual adult range used here is ${showRange(def, defaultRange, unit)}${def.judgeSumOfDays ? ` over ${def.judgeSumOfDays} days` : ""}.`

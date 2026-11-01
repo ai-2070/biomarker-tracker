@@ -9,6 +9,7 @@ import { completeProfileDetails, type ProfileCompletion } from "../core/profileC
 import { measurementsIn } from "../core/measurementCompletion";
 import { isBirthMonth } from "../core/phenoageDraws";
 import { todayIso } from "../core/dates";
+import { LIFE_TABLE_COUNTRIES } from "../core/lifeTable";
 
 interface Setting {
   key: string;
@@ -367,6 +368,20 @@ export async function saveBirthMonth(birthMonth: string, identity: ProfileWriteI
     const current = await getProfile(database);
     if (id !== identity.id || (id === null && current.name !== identity.name) || current.birthMonth) return false;
     await setProfile({ ...current, birthMonth }, database);
+    return true;
+  });
+}
+
+/** Fill a missing country, preserving concurrent edits and refusing a switched profile. */
+export async function saveCountry(country: string, identity: ProfileWriteIdentity, database = db): Promise<boolean> {
+  if (!Object.hasOwn(LIFE_TABLE_COUNTRIES, country)) throw new Error("Choose a supported country.");
+  return database.transaction("rw", database.settings, async () => {
+    const loaded = (await database.settings.get(LOADED_PROFILE_KEY))?.value;
+    const id = typeof loaded === "string" ? loaded : null;
+    const current = await getProfile(database);
+    if (id !== identity.id || (id === null && current.name !== identity.name)
+      || (current.country && Object.hasOwn(LIFE_TABLE_COUNTRIES, current.country))) return false;
+    await setProfile({ ...current, country }, database);
     return true;
   });
 }

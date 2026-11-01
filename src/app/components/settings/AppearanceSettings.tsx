@@ -31,7 +31,7 @@ export function AppearanceSettings() {
       <h2 className="font-serif text-2xl font-normal">Expiration date</h2>
       <ChoiceGroup<"on" | "off">
         label="Show the expiration date"
-        help="On the Biological age page: the date by which half of the people like you have died, from official life tables and your blood tests. A population figure, not a prediction. Off unless you turn it on; kept with this profile. Brain only mentions it when it's on."
+        help="Country population statistics and the survival chart are always available on Biological age. This switch adds exact calendar dates and, when compatible readings allow, an experimental fitted-risk projection that has not been validated. Off by default; kept with this profile. Brain only provides dates when it's on."
         value={expiration ? "on" : "off"}
         onChange={(v) => void setShowExpirationDate(v === "on")}
         options={[

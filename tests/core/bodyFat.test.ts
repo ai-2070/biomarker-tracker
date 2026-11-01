@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { bodyFatBand, bodyFatComparison, bodyFatGuide, fatMassAt, fitnessFatBand } from "../../src/core/bodyFat";
 import type { Measurement, Profile } from "../../src/core/types";
+import { flagLatest, flagMeasurement, flagValue, isOutOfRange, resolveRange } from "../../src/core/trends";
+import { isBiomarkerDef } from "../../src/core/knowledge";
+import { def } from "../helpers";
 
 const reading = (biomarkerId: string, value: number, date = "2026-10-24"): Measurement => ({
   id: `${biomarkerId}-${date}-${value}`, biomarkerId, value, date, originalValue: value,
@@ -121,5 +124,43 @@ describe("estimated fat mass", () => {
     expect(fatMassAt(fat, [reading("weight", 0), reading("weight", Infinity), reading("waist", 100)])).toBeUndefined();
     expect(fatMassAt(reading("weight", 20), [reading("weight", 100)])).toBeUndefined();
     expect(fatMassAt({ ...fat, date: "invalid" }, [reading("weight", 100)])).toBeUndefined();
+  });
+});
+
+describe("body-fat comparisons are not clinical limits", () => {
+  const fat = def("body_fat");
+  const woman: Profile = { sex: "f", birthMonth: "1980-03" };
+  it("retains the published comparison without calling a woman's 17% clinically low", () => {
+    const result = reading("body_fat", 17);
+    const range = resolveRange(fat, result, woman);
+    expect(range).toMatchObject({ low: 23, high: 34, comparisonOnly: true });
+    expect(bodyFatComparison([result], woman, result.date).band).toBe("below");
+    expect(flagMeasurement(fat, result, woman)).toBe("unknown");
+    expect(isOutOfRange(flagLatest(fat, [result], woman))).toBe(false);
+  });
+  it("does not call an in-reference value clinically normal or an upper-band value clinically high", () => {
+    const profile: Profile = { sex: "m", birthMonth: "1995-03" };
+    expect(bodyFatComparison([reading("body_fat", 18)], profile, "2026-10-24").band).toBe("within");
+    expect(flagLatest(fat, [reading("body_fat", 18)], profile)).toBe("unknown");
+    expect(flagLatest(fat, [reading("body_fat", 30)], profile)).toBe("unknown");
+  });
+  it("still assesses explicit laboratory ranges", () => {
+    const result = { ...reading("body_fat", 17), labRange: { low: 20, high: 35 } };
+    expect(resolveRange(fat, result, woman)).toEqual({ low: 20, high: 35, source: "lab" });
+    expect(flagMeasurement(fat, result, woman)).toBe("low");
+    expect(flagMeasurement(fat, { ...result, value: 25 }, woman)).toBe("normal");
+  });
+  it("preserves configured critical limits, including bounded readings", () => {
+    const critical = { low: 3, high: 60 };
+    const comparison = { low: 8, high: 20, comparisonOnly: true };
+    expect(flagValue(2, comparison, critical)).toBe("critical-low");
+    expect(flagValue(65, comparison, critical)).toBe("critical-high");
+    expect(flagValue(3, comparison, critical, "<")).toBe("critical-low");
+    expect(flagValue(60, comparison, critical, ">")).toBe("critical-high");
+    expect(flagValue(7, comparison, critical, "<")).toBe("unknown");
+  });
+  it("rejects truthy non-boolean comparison metadata rather than disabling clinical flags", () => {
+    expect(isBiomarkerDef({ ...fat, comparisonOnly: "yes" })).toBe(false);
+    expect(isBiomarkerDef({ ...fat, comparisonOnly: false })).toBe(true);
   });
 });

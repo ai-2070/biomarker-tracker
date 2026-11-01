@@ -20,12 +20,15 @@ const groupedFlag = (def: BiomarkerDef, ms: Measurement[], profile = {}, total =
 describe("review chart and form regressions", () => {
 
   it("classifies historical averages at the historical age, not the latest range", () => {
-    const def = BIOMARKER_MAP.get("body_fat")!;
-    const readings = [measurement(def.id, "2019-10-07", 21), measurement(def.id, "2019-10-08", 21), measurement(def.id, "2026-10-29", 21)];
-    const profile = { birthMonth: "1984-01", sex: "m" as const };
+    const def = BIOMARKER_MAP.get("sleep_duration")!;
+    const readings = [
+      ...["2019-10-07", "2019-10-08", "2019-10-09"].map((date) => measurement(def.id, date, 8.5)),
+      ...["2026-10-26", "2026-10-27", "2026-10-28"].map((date) => measurement(def.id, date, 8.5)),
+    ];
+    const profile = { birthMonth: "1955-01", sex: "m" as const };
     const points = groupReadings(readings, "week");
-    expect(aggregateFlag(def, points[0]!, readings, profile, false)).toBe("high");
-    expect(aggregateFlag(def, points[1]!, readings, profile, false)).toBe("normal");
+    expect(aggregateFlag(def, points[0]!, readings, profile, false)).toBe("normal");
+    expect(aggregateFlag(def, points[1]!, readings, profile, false)).toBe("high");
   });
 
   it("does not apply one contributor's lab range or fasting state to a mixed bucket", () => {

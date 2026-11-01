@@ -10,7 +10,8 @@ import { HeartAgeSection } from "../components/dashboard/heartAge";
 import { FitnessAgeSection } from "../components/dashboard/fitnessAge";
 import { AgesChart } from "../components/dashboard/AgesChart";
 import { PaceOfAging } from "../components/dashboard/agePace";
-import { BestBefore } from "../components/dashboard/bestBefore";
+import { CountryPopulationReference } from "../components/dashboard/CountryPopulationReference";
+import { ExpirationDate } from "../components/dashboard/ExpirationDate";
 import { bodyOnly } from "../knowledge";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
@@ -35,7 +36,7 @@ export function PhenoAgePage() {
         Biological age
       </PageTitle>
       <div className="flex flex-col gap-5">
-        {showExpiration && <BestBefore measurements={all} profile={profile} protocols={protocols} />}
+        {showExpiration && <ExpirationDate measurements={all} profile={profile} />}
         <AgesChart measurements={all} profile={profile} protocols={protocols} />
         <PaceOfAging measurements={all} profile={profile} protocols={protocols} />
         <ClockEvidence />
@@ -67,6 +68,7 @@ export function PhenoAgePage() {
           </>
         )}
         <Explanation profile={profile} />
+        <CountryPopulationReference profile={profile} />
         <HeartAgeSection ms={bodyOnly(all)} profile={profile} protocols={protocols} />
         <FitnessAgeSection ms={bodyOnly(all)} profile={profile} />
         <FitnessForYourAge ms={bodyOnly(all)} profile={profile} />

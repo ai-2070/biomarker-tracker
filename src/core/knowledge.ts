@@ -84,6 +84,7 @@ export function validateBiomarkerDef(v: unknown): string[] {
     }
   }
   if (v.criticalRange !== undefined && !isObj(v.criticalRange)) errs.push("criticalRange must be an object");
+  if (v.comparisonOnly !== undefined && typeof v.comparisonOnly !== "boolean") errs.push("comparisonOnly must be true or false");
   if (v.judgeAverageOfDays !== undefined && !(isNum(v.judgeAverageOfDays) && v.judgeAverageOfDays >= 2)) errs.push("judgeAverageOfDays must be a number of days (2 or more)");
   if (v.judgeSumOfDays !== undefined && !(isNum(v.judgeSumOfDays) && v.judgeSumOfDays >= 2)) errs.push("judgeSumOfDays must be a number of days (2 or more)");
   if (v.judgeSumOfDays !== undefined && v.judgeAverageOfDays !== undefined) errs.push("a marker is judged on an average or on a total, not both");

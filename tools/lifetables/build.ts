@@ -1,13 +1,13 @@
 /**
- * Life tables for the "Best before" range: survivors at each exact age (lx, out of 100,000 born) and
- * life expectancy at 95 (for ages past the table's open 95+ group), by sex, for every EU and EFTA
- * country and the EU average, latest year available. From Eurostat's demo_mlifetable. A developer
- * tool (`bun tools/lifetables/build.ts`): the app ships only knowledge/lifetables/eurostat.json and
- * never calls Eurostat.
+ * Developer-only official period life tables. Eurostat covers EU/EFTA; release-pinned national
+ * importers cover the US, UK, Canada, Australia, New Zealand and Japan. The app ships the validated
+ * countries.json artifact and makes no calls to these statistical offices.
  */
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
-
+import { spawn } from "node:child_process";
+import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import { LIFE_TABLE_COUNTRIES, validateLifeTables, type LifeTableCountry, type LifeTableFile } from "../../src/core/lifeTable";
 const ROOT = join(import.meta.dirname, "..", "..");
 const API = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_mlifetable";
 const GEOS: Record<string, string> = {
@@ -40,7 +40,7 @@ function valueAt(d: JsonStat, codes: Record<string, string>): number | undefined
 
 /** Download all supported countries or fail before the caller can publish a replacement. */
 export async function collectCountries(fetcher: typeof fetch = fetch, geos: Record<string, string> = GEOS) {
-  const countries: Record<string, { name: string; year: number; tables: Record<string, { lx: number[]; e95: number }> }> = {};
+  const countries: Record<string, LifeTableCountry> = {};
   for (const [geo, name] of Object.entries(geos)) {
     // The last 3 years: the newest one isn't always complete for every age (the Netherlands, 2024).
     const params = new URLSearchParams({ geo, lastTimePeriod: "3", format: "JSON", lang: "EN" });
@@ -68,23 +68,52 @@ export async function collectCountries(fetcher: typeof fetch = fetch, geos: Reco
       }
     }
     if (!year) throw new Error(`${geo}: no complete table; existing artifact was not replaced`);
-    countries[geo] = { name, year, tables };
+    countries[geo] = {
+      name,
+      source: {
+        name: "Eurostat",
+        url: "https://ec.europa.eu/eurostat/databrowser/view/demo_mlifetable/default/table",
+        retrieved: new Date().toISOString().slice(0, 10),
+        period: { from: year, to: year },
+      },
+      tables,
+    };
     console.log(geo, year, Object.keys(tables).join(","));
   }
   return countries;
 }
 
 if (import.meta.main) {
-  const countries = await collectCountries();
-
-  const out = {
-    source: "Eurostat, Life table by age and sex (demo_mlifetable)",
-    url: "https://ec.europa.eu/eurostat/databrowser/view/demo_mlifetable/default/table",
-    retrieved: new Date().toISOString().slice(0, 10),
-    note: "lx: survivors at each exact age 0 to 95 out of 100,000 born, for the year's death rates (a period life table). e95: life expectancy at 95.",
-    countries,
+  const cache = resolve(process.env.BT_LIFETABLE_CACHE ?? join(tmpdir(), "biomarker-life-tables"));
+  const output = join(cache, "national.json");
+  const national = spawn(process.env.PYTHON ?? "python", [
+    join(import.meta.dirname, "national.py"),
+    "--cache", cache,
+    "--output", output,
+  ], { stdio: "inherit" });
+  const completed = new Promise<number>((resolve, reject) => {
+    national.once("error", reject);
+    national.once("close", (code) => resolve(code ?? 1));
+  });
+  const [countries, exit] = await Promise.all([collectCountries(), completed]);
+  if (exit !== 0) throw new Error(`National table import failed (${exit}); existing artifact was not replaced`);
+  const additions = JSON.parse(readFileSync(output, "utf8")) as Record<string, LifeTableCountry>;
+  for (const code of Object.keys(additions)) {
+    if (countries[code]) throw new Error(`Duplicate country ${code}; existing artifact was not replaced`);
+  }
+  const out: LifeTableFile = {
+    note: "Official period life tables, normalized to 100,000 births. lx contains survivors at exact ages 0–95; e95 is the source's remaining mean at 95. The app joins whole ages linearly and approximates survival after 95 exponentially. Rates are held constant at the source reporting period; this is not an individual prediction.",
+    countries: { ...countries, ...additions },
   };
+  const errors = validateLifeTables(out);
+  for (const code of Object.keys(LIFE_TABLE_COUNTRIES)) {
+    if (!out.countries[code]) errors.push(`${code}: missing supported country`);
+  }
+  if (errors.length) throw new Error(`${errors.join("; ")}; existing artifact was not replaced`);
+  const destination = join(ROOT, "knowledge", "lifetables", "countries.json");
   mkdirSync(join(ROOT, "knowledge", "lifetables"), { recursive: true });
-  writeFileSync(join(ROOT, "knowledge", "lifetables", "eurostat.json"), JSON.stringify(out));
-  console.log("saved", Object.keys(countries).length, "countries");
+  const staging = `${destination}.tmp-${process.pid}`;
+  writeFileSync(staging, JSON.stringify(out));
+  renameSync(staging, destination);
+  console.log("saved", Object.keys(out.countries).length, "country references");
 }

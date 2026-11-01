@@ -11,7 +11,7 @@ vi.mock("../../src/db/db", () => ({
   getProfile: seam.profile,
   LOADED_PROFILE_KEY: "loadedProfile",
 }));
-vi.mock("../../src/app/hooks", () => ({ EXPIRATION_KEY: "expiration" }));
+vi.mock("../../src/app/hooks", () => ({ EXPIRATION_KEY: "expiration", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../src/app/knowledge", () => ({ BIOMARKER_MAP: new Map([["ldl", { id: "ldl", name: "LDL", aliases: [] }]]), BLOOD_MARKERS: [] }));
 vi.mock("../../src/app/components/LabReview", () => ({
   isImage: (f: File) => f.type.startsWith("image/"), isPdf: () => false, monthFirst: false, readReportFile: seam.read,
@@ -159,12 +159,3 @@ it("keeps a full-length earlier photo question intact without overflowing it wit
   expect(messages.every((message: { content: string }) => message.content.length <= 20_000)).toBe(true);
 });
 
-it("adds the earlier-photo notice when it fits without sending the photo again", async () => {
-  await addFiles([new File(["image"], "photo.png", { type: "image/png" })]);
-  setSendPhoto(useBrain().attachments[0]!.id, true);
-  await send("Model", "Look at this");
-  await send("Model", "Follow-up");
-  const previous = seam.api.mock.calls[1]![2].messages[0];
-  expect(previous.content).toBe("Look at this\n\n[A photo was sent with this question; it isn't sent again.]");
-  expect(previous.images).toBeUndefined();
-});

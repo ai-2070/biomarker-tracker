@@ -95,7 +95,7 @@ describe("evidence review: life-table publication prerequisites", () => {
     const countries = await collectCountries(fetcher, { HU: "Hungary", NL: "Netherlands" });
     expect(Object.keys(countries)).toEqual(["HU", "NL"]);
     for (const country of Object.values(countries)) {
-      expect(country.year).toBe(2024);
+      expect(country.source.period).toEqual({ from: 2024, to: 2024 });
       expect(Object.keys(country.tables)).toEqual(["f", "m", "t"]);
       expect(country.tables.f!.lx).toHaveLength(96);
       expect(country.tables.f!.e95).toBe(3);

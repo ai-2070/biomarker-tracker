@@ -6,6 +6,8 @@ import type { BiomarkerDef, Measurement, Profile } from "./types";
 export interface ResolvedRange {
   low?: number;
   high?: number;
+  /** A descriptive population interval, not a limit for clinical low/high/normal flags. */
+  comparisonOnly?: boolean;
   /** Where the range came from: the lab's own report, our typical adult range, or the person's own usual range (HRV). */
   source: "lab" | "default" | "personal";
 }
@@ -44,7 +46,8 @@ export function resolveRange(
   const bySex = profile.sex ? ranges.filter((r) => r.sex === profile.sex) : [];
   const general = ranges.filter((r) => r.sex === undefined);
   const pick = bySex.length ? bySex : general.length ? general : ranges;
-  if (pick.length === 1) return { low: pick[0]!.low, high: pick[0]!.high, source: "default" };
+  const comparison = def.comparisonOnly ? { comparisonOnly: true } : undefined;
+  if (pick.length === 1) return { low: pick[0]!.low, high: pick[0]!.high, source: "default", ...comparison };
 
   const lows = pick.map((r) => r.low).filter((v): v is number => v !== undefined);
   const highs = pick.map((r) => r.high).filter((v): v is number => v !== undefined);
@@ -52,6 +55,7 @@ export function resolveRange(
     low: lows.length ? Math.min(...lows) : undefined,
     high: highs.length ? Math.max(...highs) : undefined,
     source: "default",
+    ...comparison,
   };
 }
 
@@ -59,11 +63,12 @@ export type Flag = "normal" | "low" | "high" | "critical-low" | "critical-high" 
 
 export function flagValue(
   value: number,
-  range: { low?: number; high?: number } | undefined,
+  range: { low?: number; high?: number; comparisonOnly?: boolean } | undefined,
   critical?: { low?: number; high?: number; lowInclusive?: boolean; highInclusive?: boolean },
   qualifier?: Measurement["qualifier"],
 ): Flag {
   if (!Number.isFinite(value)) return "unknown";
+  if (range?.comparisonOnly) range = undefined;
   if (qualifier === "<") {
     if (critical?.low !== undefined && value <= critical.low) return "critical-low";
     if (range?.low !== undefined && value <= range.low) return "low";

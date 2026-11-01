@@ -47,7 +47,7 @@ export function bodySummary(
       latest: r1(last.value),
       date: last.date,
       ...(week ? { lastWeekAverage: r1(week.value), lastWeekReadings: week.count } : {}),
-      ...(range ? { range: { low: range.low, high: range.high }, ...(def?.judgeAverageOfDays ? { rangeCheckedAgainst: "the last week's average, not one night" } : {}) } : {}),
+      ...(range ? { range: { low: range.low, high: range.high, ...(range.comparisonOnly ? { comparisonOnly: true } : {}) }, ...(range.comparisonOnly ? { rangeUse: "Population comparison only, not clinical low/high limits or minimum/maximum healthy body fat." } : {}), ...(def?.judgeAverageOfDays ? { rangeCheckedAgainst: "the last week's average, not one night" } : {}) } : {}),
       ...(flag && flag !== "unknown" ? { flag } : {}),
       ...(usual
         ? {

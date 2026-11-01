@@ -3,7 +3,7 @@ import { parseLabText, type ParsedReport } from "../../core/importers/labText";
 import { assistantProfile } from "../../core/profile";
 import type { Measurement, Profile } from "../../core/types";
 import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
-import { EXPIRATION_KEY } from "../hooks";
+import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
 import { api } from "../api";
 import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
@@ -332,10 +332,10 @@ export async function addFiles(files: File[]): Promise<void> {
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
   return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
-    const [measurements, protocols, experiments, plans, meals, profile, expiration, loaded] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile(), db.settings.get(EXPIRATION_KEY), db.settings.get(LOADED_PROFILE_KEY)]);
+    const [measurements, protocols, experiments, plans, meals, profile, expiration, loaded, activity] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile(), db.settings.get(EXPIRATION_KEY), db.settings.get(LOADED_PROFILE_KEY), db.settings.get(MORTALITY_ACTIVITY_KEY)]);
     const identity = { id: typeof loaded?.value === "string" ? loaded.value : null, name: profile.name };
     // Identity and name stay local. The server turns birth month into an age before a tool returns it.
-    return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, identity, expirationDate: expiration?.value === true };
+    return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, identity, expirationDate: expiration?.value === true, mortalityActivityIsLeisure: activity?.value === true };
   });
 }
 

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { ageAtMoment, ageWhenLeft, bestBefore, bestBeforeMoments, bestBeforeWithShift, phenoAgeShift, birthMoment, momentAtAge, remainingYears, survivors, tableFor, validateLifeTables, type LifeTable, type LifeTableFile } from "../../src/core/lifeTable";
+import { ageAtMoment, ageWhenLeft, bestBefore, bestBeforeMoments, bestBeforeWithShift, birthMoment, lifeTablePeriod, momentAtAge, populationSurvival, remainingYears, survivors, tableFor, validateLifeTables, type LifeTable, type LifeTableFile } from "../../src/core/lifeTable";
 
 /** A made-up table: nobody dies before 60, then survivors fall by 2,000 a year to 95, e95 = 3 years. */
 const lx = Array.from({ length: 96 }, (_, a) => (a <= 60 ? 100_000 : 100_000 - (a - 60) * 2_000));
@@ -41,16 +41,41 @@ describe("life tables", () => {
     // The same day gives the same moments, to the millisecond.
     expect(bestBeforeMoments(t, "1966-01", "2026-01-16").medianAt).toBe(m.medianAt);
   });
+  it("conditions the chart on being alive now, rather than counting earlier deaths", () => {
+    const curve = populationSurvival(t, 80);
+    expect(curve[0]).toEqual({ age: 80, alivePercent: 100, tailApproximation: false });
+    expect(curve.find((p) => p.age === 85)?.alivePercent).toBeCloseTo(100 * 50_000 / 60_000, 8);
+    expect(curve.find((p) => p.age === 95)?.alivePercent).toBe(50);
+    expect(populationSurvival(t, 60).find((p) => p.age === 85)?.alivePercent).toBe(50);
+  });
+  it("keeps fractional current age and marks the exponential tail without a discontinuity", () => {
+    const curve = populationSurvival(t, 80.5);
+    expect(curve[0]).toMatchObject({ age: 80.5, alivePercent: 100 });
+    expect(curve.find((p) => p.age === 81)?.alivePercent).toBeCloseTo(100 * 58_000 / 59_000, 8);
+    expect(curve.find((p) => p.age === 95)?.tailApproximation).toBe(false);
+    expect(curve.find((p) => p.age === 96)).toMatchObject({ tailApproximation: true });
+    expect(curve.find((p) => p.age === 96)?.alivePercent).toBeCloseTo(100 * 30_000 * Math.exp(-1 / 3) / 59_000, 8);
+    expect(curve.at(-1)!.alivePercent).toBeLessThanOrEqual(1);
+    expect(curve.every((p, i) => p.alivePercent >= 0 && p.alivePercent <= 100 && (i === 0 || p.alivePercent <= curve[i - 1]!.alivePercent))).toBe(true);
+    expect(populationSurvival(t, 95.5).every((p) => p.tailApproximation)).toBe(true);
+  });
+  it.each([-1, NaN, Infinity])("does not chart an invalid current age: %s", (age) => {
+    expect(populationSurvival(t, age)).toEqual([]);
+  });
+  it("distinguishes annual and multi-year reporting periods", () => {
+    expect(lifeTablePeriod({ from: 2024, to: 2024 })).toBe("2024");
+    expect(lifeTablePeriod({ from: 2022, to: 2024 })).toBe("2022–2024");
+  });
 });
 
-describe("the shipped Eurostat tables", () => {
-  const file = JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "knowledge", "lifetables", "eurostat.json"), "utf8")) as LifeTableFile;
-  it("are valid, for every EU and EFTA country and the EU average", () => {
+describe("the shipped official population tables", () => {
+  const file = JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "knowledge", "lifetables", "countries.json"), "utf8")) as LifeTableFile;
+  it("validates the source periods and survivor distributions used for country references", () => {
     expect(validateLifeTables(file)).toEqual([]);
-    expect(Object.keys(file.countries).length).toBe(32);
     expect(tableFor(file, "HU", "f")).toMatchObject({ name: "Hungary", sex: "f" });
     expect(tableFor(file, "HU", undefined)?.sex).toBe("t");
     expect(tableFor(file, "XX", "f")).toBeUndefined();
+    expect(tableFor(file, "constructor", "f")).toBeUndefined();
   });
   it("give plausible numbers: women outlive men, and remaining expectancy at 0 matches life expectancy at birth", () => {
     const f = tableFor(file, "EU27_2020", "f")!.table;
@@ -61,22 +86,43 @@ describe("the shipped Eurostat tables", () => {
     expect(remainingYears(f, 0)).toBeLessThan(88);
     expect(remainingYears(m, 0)).toBeGreaterThan(74);
   });
+  it.each([
+    ["US", "f", 81.44568634033203, 20.830663681030273],
+    ["US", "m", 76.52825164794922, 18.358739852905273],
+    ["US", "t", 78.97103118896484, 19.661439895629883],
+    ["GB", "f", 83.02, 21.16], ["GB", "m", 79.12, 18.73],
+    ["CA", "f", 84.29, 22.45], ["CA", "m", 80.03, 19.75], ["CA", "t", 82.16, 21.15],
+    ["AU", "f", 85.1047, 22.71761], ["AU", "m", 81.06156, 20.1023],
+    ["NZ", "f", 83.45, 21.55], ["NZ", "m", 80.12, 19.43],
+    ["JP", "f", 87.33, 24.52], ["JP", "m", 81.35, 19.68],
+  ] as const)("reconstructs %s/%s published remaining means at birth and 65", (code, sex, e0, e65) => {
+    // Native ex values from the official workbooks/CSVs; integrating the app's
+    // linear lx and source e95 is approximate, not an invented replacement table.
+    const found = tableFor(file, code, sex === "t" ? undefined : sex)!;
+    expect(Math.abs(remainingYears(found.table, 0) - e0)).toBeLessThan(0.1);
+    expect(Math.abs(remainingYears(found.table, 65) - e65)).toBeLessThan(0.1);
+  });
+  it.each(["GB", "AU", "NZ", "JP"])("does not invent a combined-sex distribution for %s", (code) => {
+    expect(tableFor(file, code, undefined)).toBeUndefined();
+    expect(bestBefore(tableFor(file, code, "f")!.table, 65).median).toBeGreaterThan(65);
+  });
+  it("rejects missing sources, missing sexes and broken numerical distributions", () => {
+    const malformed = (change: (copy: LifeTableFile) => void) => {
+      const copy = structuredClone(file);
+      change(copy);
+      return validateLifeTables(copy);
+    };
+    expect(validateLifeTables({ countries: {} })).toEqual(["no countries"]);
+    expect(malformed((copy) => { copy.countries.US!.source.period = { from: 2025, to: 2024 }; })).not.toEqual([]);
+    expect(malformed((copy) => { delete copy.countries.US!.tables.m; })).not.toEqual([]);
+    expect(malformed((copy) => { copy.countries.US!.tables.f!.lx[20] = NaN; })).not.toEqual([]);
+    expect(malformed((copy) => { copy.countries.US!.tables.f!.lx[20] = 100_001; })).not.toEqual([]);
+    expect(malformed((copy) => { copy.countries.US!.tables.f!.e95 = Infinity; })).not.toEqual([]);
+  });
 });
 
-describe("with your blood tests", () => {
-  it("averages the PhenoAge difference over the latest tests within 2 years", () => {
-    const draws = [
-      { date: "2022-01-01", age: 40, phenoAge: 50 },
-      { date: "2025-03-01", age: 43, phenoAge: 40 },
-      { date: "2025-09-01", age: 43.5, phenoAge: 41.5 },
-      { date: "2026-03-01", age: 44, phenoAge: 42 },
-    ];
-    // Differences −3, −2 and −2: the 2022 test is more than 2 years before the latest.
-    expect(phenoAgeShift(draws)).toMatchObject({ tests: 3, from: "2025-03-01", to: "2026-03-01" });
-    expect(phenoAgeShift(draws)!.shift).toBeCloseTo(-7 / 3, 9);
-    expect(phenoAgeShift([])).toBeUndefined();
-  });
-  it("reads the table at your PhenoAge and adds those remaining years to your age", () => {
+describe("risk-equivalent age projection", () => {
+  it("reads the table at a comparison age and adds those remaining years to calendar age", () => {
     const plain = bestBeforeMoments(t, "1966-01", "2026-01-16");
     const younger = bestBeforeWithShift(t, "1966-01", "2026-01-16", -10);
     // Compared with people aged about 50: in this table nobody dies before 60, so the median comes 10 years later.
