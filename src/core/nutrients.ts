@@ -1,3 +1,4 @@
+import { CLAIM_CATEGORIES, type ClaimCategory } from "./claimEvidence";
 import type { Citation, EvidenceGrade, SafetyId } from "./types";
 import { isIsoDate } from "./dates";
 
@@ -78,6 +79,10 @@ export interface NutrientDef {
     claimsSource?: { title: string; url: string };
     /** Explicit outcome words for inexpensive PubMed metadata checks, keyed by the claim text. */
     claimTopics?: Record<string, string>;
+    /** Display grouping only; never an evidence grade or a benefit score. */
+    claimCategories?: Record<string, ClaimCategory>;
+    /** Neutral row labels; the underlying claim text remains the saved-check identity. */
+    claimLabels?: Record<string, string>;
   };
   /** Its main jobs in the body, short phrases. */
   roles: string[];
@@ -188,6 +193,17 @@ export function validateNutrientDef(v: unknown): string[] {
         Object.keys(topics).length !== v.commonUses.length ||
         !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(topics, claim) && isStr(topics[claim]))))
         errs.push("simpleGuide claimTopics must name each common claim exactly once");
+      const categories = v.simpleGuide.claimCategories;
+      if (categories !== undefined && (!isObj(categories) || !Array.isArray(v.commonUses) ||
+        Object.keys(categories).length !== v.commonUses.length ||
+        !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(categories, claim) &&
+          typeof categories[claim] === "string" && CLAIM_CATEGORIES.includes(categories[claim] as ClaimCategory))))
+        errs.push("simpleGuide claimCategories must group each common claim exactly once");
+      const labels = v.simpleGuide.claimLabels;
+      if (labels !== undefined && (!isObj(labels) || !Array.isArray(v.commonUses) ||
+        Object.keys(labels).length !== v.commonUses.length ||
+        !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(labels, claim) && isStr(labels[claim]))))
+        errs.push("simpleGuide claimLabels must label each common claim exactly once");
     }
   }
   if (basic && v.kind !== "supplement") errs.push("basic guides are for other supplements, not vitamins or minerals");

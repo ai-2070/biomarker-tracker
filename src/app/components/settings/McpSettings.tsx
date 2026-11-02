@@ -240,7 +240,8 @@ export function McpSettings() {
       <Notice>
         MCP servers give the assistant extra research tools: literature, clinical trials, medicine labels, genes, medical terms, food data. The
         ready-made ones are added and switched on from the start. They run on this computer; the first start downloads them, which can take a
-        minute. When the assistant uses one, only its search terms go to that service, not your results.
+        minute. When Brain calls a source, it receives the tool inputs Brain provides and can contact external services. Source descriptions are not a verified or enforced list of the websites they can contact.
+        These switches control the extra MCP tools. Built-in study search and newer-record checks are separate.
       </Notice>
       {!data.npx && (
         <Notice tone="warn" title="Node.js isn't installed">

@@ -260,10 +260,18 @@ function AppBanners() {
     </>
   );
 }
+function AppFooter() {
+  return (
+    <footer className="mt-14 space-y-2 border-t border-line pt-5 text-sm text-ink-2">
+      <p className="font-medium text-ink">Not medical advice. For information and personal record-keeping, not for diagnosis or treatment. Not yet reviewed by a clinician.</p>
+      <p>Your profile stays on this computer. Search terms go to the research sources you’ve switched on (<a href={href({ name: "data", tab: "mcp" })} className="text-accent underline underline-offset-2">see research sources in Settings</a>). What you ask goes only to the AI model of your choice, which stays on your computer if you use a local one.</p>
+    </footer>
+  );
+}
+
 
 /** The working app: sidebar on large screens, top bar and bottom tabs on small ones. */
 export function AppShell({ route, wide, children }: { route: Route; wide: boolean; children: ReactNode }) {
-  const { mode } = useProfiles();
   return (
     <div className="min-h-dvh">
       <SkipLink />
@@ -275,13 +283,7 @@ export function AppShell({ route, wide, children }: { route: Route; wide: boolea
             <AppBanners />
           </div>
           {children}
-          <footer className="mt-14 border-t border-line pt-5 text-sm text-ink-2">
-            <p className="font-medium text-ink">Not medical advice. Not a medical device.</p>
-            <p>
-              {mode === "folders" ? "Each profile is kept in a folder on this computer." : "Your data stays in this browser."} It's only sent to an AI model when
-              you ask Brain. Free and open source.
-            </p>
-          </footer>
+          <AppFooter />
         </main>
       </div>
       <BottomTabs route={route} />
@@ -317,9 +319,7 @@ export function PlainShell({ children }: { children: ReactNode }) {
       </header>
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-4xl px-4 py-6 outline-none sm:px-6 sm:py-8">
         {children}
-        <footer className="mt-14 border-t border-line pt-5 text-sm text-ink-2">
-          <p className="font-medium text-ink">Not medical advice. Not a medical device.</p>
-        </footer>
+        <AppFooter />
       </main>
     </div>
   );

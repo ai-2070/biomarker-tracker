@@ -3,6 +3,9 @@ import { checkCitations, normalizeId } from "../ai/citations";
 
 export type ClaimVerdict = "supported" | "mixed" | "not supported" | "not enough evidence";
 
+export const CLAIM_CATEGORIES = ["health", "longevity", "appearance"] as const;
+export type ClaimCategory = typeof CLAIM_CATEGORIES[number];
+
 /** Public claim only: never a profile, measurement, conversation or attachment. */
 export interface ClaimRequest {
   nutrientId: string;

@@ -33,8 +33,8 @@ export function AboutSettings() {
           </div>
         </div>
         <p className="text-ink-2">
-          A free, open-source app to track blood tests over the years, understand them in plain language, see biological age, and explore what research
-          says about each marker. Everything is kept on this computer.
+          A free, open-source, local-first app for tracking blood tests and body measurements, following habits and protocols, and building meals.
+          Explore biological-age estimates, a knowledge base covering foods, supplements and lifestyle, and optional AI evidence checks. Your profile stays on this computer.
         </p>
         <div className="flex flex-wrap gap-2">
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className={cx(buttonStyles.primary, "no-underline")}>
@@ -53,16 +53,19 @@ export function AboutSettings() {
         <h2 className="font-serif text-2xl font-normal">Good to know</h2>
         <dl className="grid gap-x-4 gap-y-3 text-sm sm:grid-cols-[10rem_1fr]">
           <dt className="font-medium">Licence</dt>
-          <dd className="text-ink-2">MIT. Free to use, change and share.</dd>
+          <dd className="text-ink-2">App code: MIT. Third-party data, publications and research-server software retain their own terms.</dd>
           <dt className="font-medium">Your data</dt>
-          <dd className="text-ink-2">Kept in profile folders on this computer. No account, no tracking, no analytics.</dd>
-          <dt className="font-medium">Data sources</dt>
-          <dd className="text-ink-2">
-            Research from Europe PMC and PubMed. Food values from McCance and Widdowson's CoFID 2021 (Open Government Licence). Test-to-test variation from
-            the EFLM Biological Variation Database. Biological age: PhenoAge (Levine et al., 2018).
+          <dd className="text-ink-2">Kept in profile folders on this computer. No account, no tracking, no analytics. See <a href={`${REPO_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-2">Privacy &amp; research sources</a> for what is sent out.</dd>
+          <dt className="font-medium">Medical notice</dt>
+          <dd className="text-ink-2">Not medical advice. Not yet reviewed by a clinician.</dd>
+          <dt className="font-medium">Documents</dt>
+          <dd>
+            <ul className="flex flex-col text-sm sm:pointer-fine:gap-2">
+              <li><a href={`${REPO_URL}/blob/main/DATA-LICENSES.md`} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0">Data licences &amp; redistribution</a></li>
+              <li><a href={`${REPO_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0">Privacy &amp; research sources</a></li>
+              <li><a href={`${REPO_URL}/blob/main/MEDICAL-DISCLOSURE.md`} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0">Full medical disclosure</a></li>
+            </ul>
           </dd>
-          <dt className="font-medium">Not medical advice</dt>
-          <dd className="text-ink-2">Not a medical device. It explains; it doesn't diagnose or prescribe. Talk to your doctor about your results.</dd>
         </dl>
       </Card>
     </div>
