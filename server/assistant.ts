@@ -17,6 +17,7 @@ import { measurementsIn } from "../src/core/measurementCompletion";
 import { knowledge } from "./knowledge";
 import { z } from "zod";
 import { validateClaimAssessment, type ClaimAssessment } from "../src/core/claimEvidence";
+import type { ClaimSearchSession } from "./claimSearchSession";
 
 export interface ChatMessage {
   role: "user" | "assistant";
@@ -128,7 +129,7 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
 export async function ask(
   messages: ChatMessage[],
   snapshot: HealthSnapshot,
-  opts: { signal?: AbortSignal; fetchFn?: typeof fetch; researchOnly?: boolean; /** Structured, live-retrieval-only public claim check. */ claimReview?: boolean; /** Original typed question, never attached documents. */ userText?: string; /** Tests pass a mock model. */ ready?: Ready } = {},
+  opts: { signal?: AbortSignal; fetchFn?: typeof fetch; researchOnly?: boolean; /** Structured, live-retrieval-only public claim check. */ claimReview?: boolean; claimSession?: ClaimSearchSession; /** Original typed question, never attached documents. */ userText?: string; /** Tests pass a mock model. */ ready?: Ready } = {},
 ): Promise<AssistantReply> {
   if (opts.claimReview) opts = { ...opts, researchOnly: true };
   if (opts.signal?.aborted) return { ok: false, error: "Stopped." };
@@ -175,16 +176,17 @@ export async function ask(
     if (!check.ok) return { ok: false, error: check.reason };
   }
 
-  const mcp = await assistantTools();
+  const mcp = opts.claimSession ? { tools: {}, servers: [], failed: [] } : await assistantTools();
   if (opts.signal?.aborted) return { ok: false, error: "Stopped." };
-  const tools: ToolSet = { ...mcp.tools, ...(opts.researchOnly ? researchTools(opts.fetchFn, opts.claimReview) : healthTools(snapshot, opts.fetchFn, { userText: opts.userText, requestText })) };
+  const tools: ToolSet = opts.claimSession ? { ...opts.claimSession.tools } : { ...mcp.tools, ...(opts.researchOnly ? researchTools(opts.fetchFn, opts.claimReview) : healthTools(snapshot, opts.fetchFn, { userText: opts.userText, requestText })) };
   // Observe actual executions, not a model's claimed search or a proposed tool call.
   let retrieved = false;
   let retrievalFailed = false;
   const retrievedIds = new Set<string>();
   let claimAssessment: ClaimAssessment | undefined;
+  const completedAssessment = () => opts.claimSession?.assessment ?? claimAssessment;
   let submissionError: string | undefined;
-  if (opts.claimReview) {
+  if (opts.claimReview && !opts.claimSession) {
     for (const [name, definition] of Object.entries(tools)) {
       if (!definition.execute || name === "read_skill" || name === "research_tools") continue;
       const execute = definition.execute;
@@ -208,10 +210,11 @@ export async function ask(
     }
   }
   const retrievalError = () => {
+    if (opts.claimSession) return undefined;
     const error = retrievalFailed ? "A research source failed or returned unverifiable results. No evidence grade was saved." : "No live research was retrieved. This model cannot create a verified evidence check without the app's research tools.";
     return !retrieved || retrievalFailed ? { ok: false as const, error } : undefined;
   };
-  if (opts.claimReview) tools.submit_claim_assessment = tool({
+  if (opts.claimReview && !opts.claimSession) tools.submit_claim_assessment = tool({
     description: "Submit the completed evidence assessment after searching live research. This supplies the page's saved result; final chat wording is not used. Use only retrieved study IDs.",
     inputSchema: z.object({
       verdict: z.enum(["supported", "mixed", "not supported", "not enough evidence"]),
@@ -242,6 +245,8 @@ export async function ask(
   });
   if (opts.claimReview) system += "\n\nFor this claim review, submit the completed result through submit_claim_assessment after retrieving and reading relevant research. Do not put JSON in the final answer: the page saves the tool result, not your prose. Use verdict supported, mixed, not supported, or not enough evidence; use grade null exactly when evidence is insufficient, otherwise high, moderate, low, or very low. Give a concise summary and limitations naming the search scope, population and important limits. Citations must be exact PMID:, PMCID: or DOI: IDs returned by live research tools in this request, never skills or memory. A graded verdict needs relevant retrieved human evidence. A successful search with no relevant evidence can only give not enough evidence with null grade; absence is not a confident negative finding. If the tool returns a validation error, correct the assessment using the retrieved evidence. Once submission succeeds, the check is complete: stop research and end your answer briefly. Do not supply timestamps or model names; code supplies them.";
 
+  if (opts.claimSession) system += `\n\nThe following audited workflow takes precedence over the generic claim-review instructions above:\n${opts.claimSession.prompt}`;
+
   if (agent && messages.some((m) => m.images?.length)) {
     return { ok: false, error: "Photos can only be sent to models used with an API key or running on this computer, not to agent programs. Choose one in Settings → AI models, or send the question without the photo." };
   }
@@ -258,6 +263,7 @@ export async function ask(
       tools,
       dataPack: opts.researchOnly ? () => "Research-only request. No personal data is available. Without the app's research tools, this live evidence check cannot be performed or verified." : () => dataPack(snapshot),
       ...(opts.claimReview ? { claimReview: true } : {}),
+      ...(opts.claimSession ? { budget: { timeoutMs: opts.claimSession.research.depth === "deep" ? 600_000 : 240_000, maxTurns: opts.claimSession.research.depth === "deep" ? 36 : 18 } } : {}),
       ...(opts.signal ? { signal: opts.signal } : {}),
     });
     if (!a.ok) return a;
@@ -265,11 +271,11 @@ export async function ask(
       const error = retrievalError();
       if (error) return error;
     }
-    if (opts.claimReview && !claimAssessment) return { ok: false, error: submissionError ?? "The model did not submit its evidence assessment. No new grade was saved." };
+    if (opts.claimReview && !completedAssessment()) return { ok: false, error: submissionError ?? "The model did not submit its evidence assessment. No new grade was saved." };
     const note = a.usedTools ? undefined : opts.researchOnly
       ? `${providerInfo(agent.provider)!.label} has no access to the app's research tools for this request. This is not a verified live evidence check; no profile or results were supplied and its citations can't be checked.`
       : `${providerInfo(agent.provider)!.label} answered from a summary of your data, without the app's research tools, so its citations can't be checked.`;
-    return { ok: true, text: a.text, model: opts.claimReview ? `${info?.label ?? agent.provider} · ${a.model ?? `${agent.model || "program default"} (configured; resolved model not reported)`}` : modelLabel, steps: a.steps, studyIds: a.studyIds, truncated: opts.claimReview ? a.truncated ?? false : false, failedServers: mcp.failed, ...(claimAssessment ? { claimAssessment } : {}), ...(note ? { note } : {}) };
+    return { ok: true, text: a.text, model: opts.claimReview ? `${info?.label ?? agent.provider} · ${a.model ?? `${agent.model || "program default"} (configured; resolved model not reported)`}` : modelLabel, steps: a.steps, studyIds: opts.claimSession ? [...opts.claimSession.papers.keys()] : a.studyIds, truncated: opts.claimReview ? a.truncated ?? false : false, failedServers: mcp.failed, ...(completedAssessment() ? { claimAssessment: completedAssessment() } : {}), ...(note ? { note } : {}) };
   }
   const { model, providerOptions } = r!.ready;
 
@@ -283,11 +289,11 @@ export async function ask(
           : { role: m.role, content: m.content },
       ),
       tools,
-      stopWhen: opts.claimReview ? [isStepCount(MAX_STEPS), () => claimAssessment !== undefined] : isStepCount(MAX_STEPS),
-      maxOutputTokens: 8000,
+      stopWhen: opts.claimReview ? [isStepCount(opts.claimSession?.research.depth === "deep" ? 28 : opts.claimSession ? 16 : MAX_STEPS), () => completedAssessment() !== undefined] : isStepCount(MAX_STEPS),
+      maxOutputTokens: opts.claimSession?.research.depth === "deep" ? 16000 : 8000,
       providerOptions,
       ...(opts.claimReview ? { maxRetries: 0 } : {}),
-      abortSignal: opts.signal ? AbortSignal.any([opts.signal, AbortSignal.timeout(180_000)]) : AbortSignal.timeout(180_000),
+      abortSignal: opts.signal ? AbortSignal.any([opts.signal, AbortSignal.timeout(opts.claimSession?.research.depth === "deep" ? 480_000 : 180_000)]) : AbortSignal.timeout(opts.claimSession?.research.depth === "deep" ? 480_000 : 180_000),
     });
     const steps: ToolStep[] = [];
     const ids = new Set<string>();
@@ -305,10 +311,10 @@ export async function ask(
       const error = retrievalError();
       if (error) return error;
     }
-    if (opts.claimReview && !claimAssessment) return { ok: false, error: submissionError ?? "The model did not submit its evidence assessment. No new grade was saved." };
+    if (opts.claimReview && !completedAssessment()) return { ok: false, error: submissionError ?? "The model did not submit its evidence assessment. No new grade was saved." };
     const reportedModel = res.response.modelId?.trim();
     const claimModel = reportedModel ? `${info?.label ?? answeringChoice.provider} · ${reportedModel}` : `${modelLabel} (configured; resolved model not reported)`;
-    return { ok: true, text: res.text, model: opts.claimReview ? claimModel : modelLabel, steps, studyIds: [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed, ...(claimAssessment ? { claimAssessment } : {}) };
+    return { ok: true, text: res.text, model: opts.claimReview ? claimModel : modelLabel, steps, studyIds: opts.claimSession ? [...opts.claimSession.papers.keys()] : [...ids], truncated: res.finishReason === "length", failedServers: mcp.failed, ...(completedAssessment() ? { claimAssessment: completedAssessment() } : {}) };
   } catch (e) {
     return { ok: false, error: describeModelError(e) };
   }

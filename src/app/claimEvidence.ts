@@ -1,6 +1,6 @@
 import Dexie from "dexie";
 import { useLiveQuery } from "dexie-react-hooks";
-import { CLAIM_CATEGORIES, validateClaimAssessment, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimRequest, type ClaimUpdate } from "../core/claimEvidence";
+import { CLAIM_CATEGORIES, claimRunKey, validateClaimAssessment, validateClaimResearch, publicInterventionId, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimDepth, type ClaimRequest, type ClaimUpdate } from "../core/claimEvidence";
 import { db, LOADED_PROFILE_KEY, type TrackerDB } from "../db/db";
 import { countNewClaimStudies } from "../research/claimUpdates";
 import { api } from "./api";
@@ -20,6 +20,10 @@ export interface ClaimEvidenceCache {
   checks: ClaimCheck[];
   customTopics: CustomClaimTopic[];
   updates: ClaimRecordUpdate[];
+  /** Failed attempts keep their audit without replacing a successful assessment. */
+  attempts?: ClaimCheck[];
+  /** Completed results archived in full when a rerun replaces them. */
+  history?: ClaimCheck[];
 }
 interface Identity { loaded: string | null; browser: string; epoch: number }
 export interface ClaimEvidenceSnapshot {
@@ -35,14 +39,18 @@ function timestamp(value: unknown, now: Date): value is string {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value) || !Number.isFinite(Date.parse(value))) return false;
   return new Date(value).toISOString() === (value.length === 20 ? `${value.slice(0, -1)}.000Z` : value) && Date.parse(value) <= now.getTime() + 300_000;
 }
-const requestIsValid = (value: unknown): value is ClaimRequest => object(value) && value.nutrientId === "astaxanthin" && text(value.claim, 180) && text(value.topic, 100);
+const requestIsValid = (value: unknown): value is ClaimRequest => object(value) && publicInterventionId(value.nutrientId) && text(value.claim, 180) && text(value.topic, 100);
 export const sameClaim = (a: ClaimRequest, b: ClaimRequest): boolean => a.nutrientId === b.nutrientId && a.claim === b.claim && a.topic === b.topic;
 
 /** Reject malformed, future-dated or unsupported cache records rather than inventing a result. */
 export function validClaimCheck(value: unknown, now = new Date()): value is ClaimCheck {
-  if (!object(value) || !requestIsValid(value) || value.version !== 1 || !timestamp(value.checkedAt, now) || !text(value.model, 200) || !Array.isArray(value.citations)) return false;
+  if (!object(value) || !requestIsValid(value) || (value.version !== 1 && value.version !== 2) || !timestamp(value.checkedAt, now) || !text(value.model, 200) || !Array.isArray(value.citations)) return false;
   try {
-    validateClaimAssessment({ verdict: value.verdict, grade: value.grade, summary: value.summary, limitations: value.limitations, citations: value.citations }, value.citations);
+    const assessment = validateClaimAssessment({ verdict: value.verdict, grade: value.grade, summary: value.summary, limitations: value.limitations, citations: value.citations }, value.citations);
+    if (value.version === 2) {
+      if (!object(value.research)) return false;
+      validateClaimResearch(value.research as unknown as NonNullable<ClaimCheck["research"]>, assessment);
+    }
     return true;
   } catch { return false; }
 }
@@ -59,6 +67,8 @@ function parseCache(value: unknown, now: Date): { cache: ClaimEvidenceCache; dam
   const checks: ClaimCheck[] = [];
   const customTopics: CustomClaimTopic[] = [];
   const updates: ClaimRecordUpdate[] = [];
+  const attempts: ClaimCheck[] = [];
+  const history: ClaimCheck[] = [];
   let damaged = value.checks.length > 100 || value.customTopics.length > 30 || value.updates.length > 100;
   for (const check of value.checks.slice(0, 100)) {
     if (!validClaimCheck(check, now) || checks.some((c) => sameClaim(c, check))) { damaged = true; continue; }
@@ -76,7 +86,27 @@ function parseCache(value: unknown, now: Date): { cache: ClaimEvidenceCache; dam
     if (!validUpdate(update, now) || !checks.some((c) => sameClaim(c, update.request) && c.checkedAt === update.forCheckedAt) || updates.some((u) => sameClaim(u.request, update.request))) { damaged = true; continue; }
     updates.push(update);
   }
-  return { cache: { version: 1, checks, customTopics, updates }, damaged };
+  if (value.attempts !== undefined) {
+    if (!Array.isArray(value.attempts)) damaged = true;
+    else for (const attempt of value.attempts.slice(0, 100)) {
+      if (!validClaimCheck(attempt, now) || attempt.research?.status !== "search_failed" || attempts.some((c) => sameClaim(c, attempt))) { damaged = true; continue; }
+      attempts.push(attempt);
+    }
+  }
+  if (value.history !== undefined) {
+    if (!Array.isArray(value.history)) damaged = true;
+    else {
+      const seen = new Set(checks.map(claimRunKey));
+      for (const entry of value.history) {
+        if (!validClaimCheck(entry, now) || entry.research?.status === "search_failed") { damaged = true; continue; }
+        const key = claimRunKey(entry);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        history.push(entry);
+      }
+    }
+  }
+  return { cache: { version: 1, checks, customTopics, updates, ...(value.attempts !== undefined ? { attempts } : {}), ...(value.history !== undefined ? { history } : {}) }, damaged };
 }
 
 
@@ -151,7 +181,7 @@ async function withOwner<T>(options: Options, work: (owner: Identity, signal: Ab
 }
 
 /** Explicit action only. Sends just the public claim, not Brain's conversation or a profile. */
-export async function checkClaimEvidence(request: ClaimRequest, options: Options & { custom?: boolean; category?: ClaimCategory } = {}): Promise<ClaimCheck> {
+export async function checkClaimEvidence(request: ClaimRequest, options: Options & { custom?: boolean; category?: ClaimCategory; depth?: ClaimDepth } = {}): Promise<ClaimCheck> {
   if (!requestIsValid(request)) throw new Error("This research topic is not valid.");
   if (options.category !== undefined && !CLAIM_CATEGORIES.includes(options.category)) throw new Error("Choose Health, Longevity or Appearance.");
   const publicRequest = { nutrientId: request.nutrientId, claim: request.claim, topic: request.topic };
@@ -168,13 +198,24 @@ export async function checkClaimEvidence(request: ClaimRequest, options: Options
         }
       });
     }
-    const result: unknown = await api("POST", "/api/claim-evidence", publicRequest, signal);
+    const result: unknown = await api("POST", "/api/claim-evidence", { ...publicRequest, ...(options.depth ? { depth: options.depth } : {}) }, signal);
     const now = options.now ?? new Date();
     if (!validClaimCheck(result, now) || !sameClaim(result, request)) throw new Error("Brain returned an incomplete evidence check. Your previous check has been kept; try again.");
     await writeIfCurrent(owner, signal, database, now, (cache) => {
+      if (result.research?.status === "search_failed") {
+        cache.attempts = [...(cache.attempts ?? []).filter((c) => !sameClaim(c, request)), result];
+        return;
+      }
       const previous = cache.checks.find((c) => sameClaim(c, request));
-      if (previous && previous.checkedAt > result.checkedAt) return;
+      const archive = (entry: ClaimCheck) => {
+        const key = claimRunKey(entry);
+        if (!cache.history?.some((item) => claimRunKey(item) === key)) cache.history = [...(cache.history ?? []), entry];
+      };
+      if (previous && claimRunKey(previous) === claimRunKey(result)) return;
+      if (previous && Date.parse(previous.checkedAt) > Date.parse(result.checkedAt)) { archive(result); return; }
+      if (previous) archive(previous);
       cache.checks = [...cache.checks.filter((c) => !sameClaim(c, request)), result];
+      if (cache.attempts) cache.attempts = cache.attempts.filter((c) => !sameClaim(c, request) || Date.parse(c.checkedAt) > Date.parse(result.checkedAt));
       cache.updates = cache.updates.filter((u) => !sameClaim(u.request, request));
     });
     return result;

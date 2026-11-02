@@ -1,19 +1,20 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { CLAIM_CATEGORIES, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimRequest } from "../../core/claimEvidence";
+import { CLAIM_CATEGORIES, claimCheckLabel, claimGradeChange, claimRunKey, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimDepth, type ClaimResearch, type ClaimRequest } from "../../core/claimEvidence";
 import type { NutrientDef } from "../../core/nutrients";
 import { useServerStatus } from "../api";
 import { checkClaimEvidence, refreshClaimUpdates, sameClaim, useClaimEvidence, type ClaimRecordUpdate } from "../claimEvidence";
 import { formatDate } from "../format";
 import { href } from "../router";
 import { CitedAnswer } from "./CitedAnswer";
-import { GradeBadge } from "./evidence";
+import { GRADE, GradeBadge } from "./evidence";
 import { SimpleSelect } from "./UnitSelect";
 import { Button, Card, inputStyles } from "./ui";
 
 const keyFor = (request: ClaimRequest) => JSON.stringify([request.nutrientId, request.claim, request.topic]);
-const verdictLabel = { supported: "Supported", mixed: "Mixed findings", "not supported": "Not supported", "not enough evidence": "Not enough evidence" };
 const categoryLabel: Record<ClaimCategory, string> = { health: "Health", longevity: "Longevity", appearance: "Appearance" };
 const categoryOptions = CLAIM_CATEGORIES.map((value) => ({ value, label: categoryLabel[value] }));
+const gradeName = (check: ClaimCheck) => check.grade ? GRADE[check.grade].label : "Not graded";
+const budgetName = (check: ClaimCheck) => check.research?.depth === "deep" ? "Deep" : check.research?.depth === "quick" ? "Quick" : "Unknown";
 type CategorizedClaim = ClaimRequest & { category: ClaimCategory; label: string };
 
 /** Claim-by-claim research; neither opening the page nor detecting a new paper calls a model. */
@@ -59,7 +60,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedKey, identityKey]);
 
-  async function run(request: CategorizedClaim, customTopic = false) {
+  async function run(request: CategorizedClaim, customTopic = false, depth: ClaimDepth = "quick") {
     if (!snapshot || snapshot.error || critical || activeRef.current) return;
     const key = keyFor(request);
     const controller = new AbortController();
@@ -67,7 +68,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
     setActive({ key, controller });
     setErrors((previous) => ({ ...previous, [key]: "" }));
     try {
-      await checkClaimEvidence(request, { signal: controller.signal, expectedIdentity: snapshot.identity, custom: customTopic, category: customTopic ? request.category : undefined });
+      await checkClaimEvidence(request, { signal: controller.signal, expectedIdentity: snapshot.identity, custom: customTopic, category: customTopic ? request.category : undefined, depth });
     } catch (error) {
       const message = controller.signal.aborted ? "Check cancelled. Any saved check has been kept." : server === null
         ? "Could not reach the local server. Start it to check evidence; saved checks remain available here."
@@ -82,45 +83,72 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
   return (
     <Card id="uses" className="scroll-mt-24">
       <h2 className="font-serif text-2xl font-normal">Potential benefits &amp; common claims</h2>
-      <p className="mt-2 text-sm text-ink-2">People explore astaxanthin for several purposes, including eye comfort and skin appearance. These are proposed uses, not established benefits; the evidence differs by claim.</p>
+      <p className="mt-2 text-sm text-ink-2">People explore {n.name.toLowerCase()} for several purposes. These are proposed uses, not established benefits; the evidence differs by claim.</p>
       <p className="mt-2 text-sm text-ink-2">Check any statement with Brain. Your saved assessment, confidence and sources appear alongside it; nothing is checked automatically.</p>
       {critical && <p className="mt-3 text-sm font-medium">Contact a doctor about the critical result first. Evidence checks are not available here right now.</p>}
       {!critical && server === null && <p className="mt-3 text-sm text-ink-2">New checks need the local server. Saved results can still be read offline.</p>}
       {!critical && server && !server.ready.ok && <p className="mt-3 text-sm text-ink-2">{server.ready.reason ?? "Set up a model in Settings to check evidence."} <a href={href({ name: "data", tab: "models" })} className="underline underline-offset-2">AI model settings</a></p>}
       {snapshot?.damaged && <p role="status" className="mt-3 text-sm text-ink-2">Some saved evidence data was invalid and is not shown. Check the affected claims again.</p>}
       {snapshot?.error && <p role="alert" className="mt-3 text-sm text-danger">{snapshot.error}</p>}
-      {CLAIM_CATEGORIES.map((group) => (
-        <section key={group} aria-labelledby={`${inputId}-${group}`} className="mt-5 border-t border-line pt-4">
-          <h3 id={`${inputId}-${group}`} className="font-semibold">{categoryLabel[group]}</h3>
-          {group === "longevity" && <p className="mt-1 text-sm text-ink-2">Proposed aging-related uses do not establish life extension.</p>}
-          <ul className="mt-2 divide-y divide-line">
-            {requests.filter((request) => request.category === group).map((request) => {
-              const key = keyFor(request);
-              const check = snapshot?.cache.checks.find((c) => sameClaim(c, request));
-              const update = snapshot?.cache.updates.find((u) => sameClaim(u.request, request) && u.forCheckedAt === check?.checkedAt);
-              const busy = active?.key === key;
-              return (
-                <li key={key} className="py-4 first:pt-2 last:pb-0">
-                  <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-4">
-                    <div className="min-w-0">
-                      <h4 className="font-medium break-words">{request.label}</h4>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2" aria-live="polite">
-                        {busy ? <span>Checking evidence…</span> : check ? <><span className="font-medium text-ink">{verdictLabel[check.verdict]}</span>{check.grade ? <GradeBadge grade={check.grade} short /> : <span>No evidence grade</span>}</> : <span>Not checked yet</span>}
+      {CLAIM_CATEGORIES.map((group) => {
+        const groupRequests = requests.filter((request) => request.category === group);
+        return (
+          <section key={group} aria-labelledby={`${inputId}-${group}`} className="mt-8">
+            <header className="rounded-lg bg-sunken px-3 py-3 sm:px-4">
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 id={`${inputId}-${group}`} className="text-lg font-semibold">{categoryLabel[group]}</h3>
+                <span className="shrink-0 text-xs text-ink-2">{groupRequests.length} {groupRequests.length === 1 ? "claim" : "claims"}</span>
+              </div>
+              {group === "longevity" && <p className="mt-1 text-sm text-ink-2">Proposed aging-related uses do not establish life extension.</p>}
+            </header>
+            <ul className="divide-y divide-line px-1 sm:px-4">
+              {groupRequests.map((request) => {
+                const key = keyFor(request);
+                const check = snapshot?.cache.checks.find((c) => sameClaim(c, request));
+                const failed = snapshot?.cache.attempts?.find((c) => sameClaim(c, request));
+                const latest = failed ?? check;
+                const history = (snapshot?.cache.history ?? []).filter((entry) => sameClaim(entry, request)).sort((a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt));
+                const deepLabel = check?.research?.depth === "deep" || failed?.research?.depth === "deep" || history.some((entry) => entry.research?.depth === "deep") ? "Rerun deeper check" : "Run deeper check";
+                const update = snapshot?.cache.updates.find((u) => sameClaim(u.request, request) && u.forCheckedAt === check?.checkedAt);
+                const busy = active?.key === key;
+                return (
+                  <li key={key} className="py-4 last:pb-0">
+                    <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-4">
+                      <div className="min-w-0">
+                        <h4 className="font-medium break-words">{request.label}</h4>
+                        {check && <CheckRecency check={check} previous={history[0]} />}
+                        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2" aria-live="polite">
+                          {busy ? <span>Searching and screening evidence…</span> : latest ? <><span className="font-medium text-ink">{claimCheckLabel(latest)}</span>{latest.grade && latest.research?.status !== "indirect_only" && <GradeBadge grade={latest.grade} short />}</> : <span>Not checked yet</span>}
+                        </div>
+                        {latest?.research ? <p className="mt-1 text-xs text-ink-2">{latest.research.retrieved} retrieved · {latest.research.screened} screened · {latest.research.included} included</p> : check ? <p className="mt-1 text-xs text-ink-2">Legacy check · search coverage unverified. Recheck to record searches and screening.</p> : null}
                       </div>
+                      {busy ? <Button variant="secondary" onClick={() => active?.controller.abort()}>Cancel check</Button> : <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
+                        <Button variant="secondary" disabled={!!active || !snapshot || !!snapshot.error || critical} aria-label={`${latest ? "Rerun quick check" : "Check evidence"}: ${request.label}`} onClick={() => void run(request)}>{failed ? "Retry search" : check ? "Rerun quick check" : "Check evidence"}</Button>
+                        {latest && <Button variant="secondary" className="py-2" disabled={!!active || !snapshot || !!snapshot.error || critical} aria-label={`${deepLabel}: ${request.label}`} onClick={() => void run(request, false, "deep")}>
+                          <span className="flex flex-col items-center gap-0.5 whitespace-normal">
+                            <span>{deepLabel}</span>
+                            <span className="text-xs font-normal text-ink-2">More papers, longer abstracts</span>
+                          </span>
+                        </Button>}
+                      </div>}
                     </div>
-                    {busy ? <Button variant="secondary" onClick={() => active?.controller.abort()}>Cancel check</Button> : (
-                      <Button variant="secondary" className="shrink-0" disabled={!!active || !snapshot || !!snapshot.error || critical} aria-label={`${check ? "Recheck" : "Check evidence"}: ${request.label}`} onClick={() => void run(request)}>{check ? "Recheck" : "Check evidence"}</Button>
-                    )}
-                  </div>
-                  {check && <SavedCheck check={check} update={update} discovering={discovering.includes(key)} />}
-                  {errors[key] && <p role="alert" className="mt-2 text-sm text-ink-2">{errors[key]}</p>}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      ))}
-      <form className="mt-5 border-t border-line pt-4" onSubmit={(event) => {
+                    {failed?.research && <div className="mt-3 text-sm text-ink-2"><p role="status">{failed.research.error}</p><ResearchAudit research={failed.research} /><CheckProvenance check={failed} /></div>}
+                    {failed && check && <p className="mt-3 text-sm font-medium">Previous saved assessment</p>}
+                    {check && <SavedCheck check={check} update={update} discovering={discovering.includes(key)} />}
+                    {history.length > 0 && <CheckHistory history={history} />}
+                    {errors[key] && <p role="alert" className="mt-2 text-sm text-ink-2">{errors[key]}</p>}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        );
+      })}
+      <details className="mt-6 text-sm text-ink-2">
+        <summary className="min-h-11 cursor-pointer py-3">About deeper checks</summary>
+        <p>Quick and deep checks use the provider, model and reasoning effort selected in Settings. Deeper checks retrieve more papers, read longer abstracts, allow more follow-up searches and model turns, and have a longer time limit. They may take longer and cost more.</p>
+      </details>
+      <form className="mt-8 border-t border-line pt-6" onSubmit={(event) => {
         event.preventDefault();
         const value = publicClaimTopic(topic);
         if (!value) { setTopicError("Use a short public topic, such as sleep, without personal details."); return; }
@@ -143,7 +171,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
       <details className="mt-3 text-sm text-ink-2">
         <summary className="min-h-11 cursor-pointer py-3">About these checks &amp; newer-record signals</summary>
         <div className="flex flex-col gap-2 pb-1">
-          <p>AI assessments are saved with the date and the model that answered. They are not clinician-reviewed. No grade means the evidence could not be graded, not strong evidence against the claim.</p>
+          <p>AI assessments are saved with the date, model, searches and screening decisions. They are not clinician-reviewed. Search failure and incomplete screening are inconclusive. “No evidence found” requires a complete, error-free search ladder and screening; it is not proof of no effect.</p>
           <p>For saved checks, PubMed is checked at most once a day for matching newer review or trial records. Counts are discovery signals, not verified human evidence or changed verdicts. Recheck explicitly to ask Brain again.</p>
           <p>The search starts on the next UTC day after the assessment. It misses additions on the assessment day, records not yet indexed, and studies without matching words or design labels. Only the supplement and public topic are sent; your profile, chat and files are not.</p>
         </div>
@@ -156,7 +184,6 @@ function SavedCheck({ check, update, discovering }: { check: ClaimCheck; update?
   const awaitingWindow = update?.result && check.checkedAt.slice(0, 10) === update.result.checkedAt.slice(0, 10);
   return (
     <div className="mt-2 min-w-0 text-sm text-ink-2">
-      <p className="break-words">Locally saved AI check · <time dateTime={check.checkedAt}>{formatDate(check.checkedAt.slice(0, 10))}</time> · Model: {check.model}</p>
       {awaitingWindow ? <p className="mt-1">New-record checks start after the assessment day (UTC).</p> : update?.result ? (
         <p className="mt-1"><a href={`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(update.result.query)}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{update.result.count === 0 ? "No matching newer records" : `${update.result.count} matching newer ${update.result.count === 1 ? "record" : "records"}`}</a> · checked {formatDate(update.result.checkedAt.slice(0, 10))}{update.result.count > 0 && ". Recheck to reassess the evidence."}</p>
       ) : discovering ? <p className="mt-1" role="status">Looking for matching newer records…</p> : update && <p className="mt-1">New-record signal unknown · {update.error ? "lookup unavailable" : "last lookup did not finish"} ({formatDate(update.attemptedAt.slice(0, 10))}). Your evidence check is unchanged.</p>}
@@ -166,6 +193,67 @@ function SavedCheck({ check, update, discovering }: { check: ClaimCheck; update?
           <CitedAnswer text={`${check.summary}\n\n**Limits**\n${check.limitations}${check.citations.length ? `\n\n**Retrieved source links**\n${check.citations.map((id) => `[${id}]`).join(" ")}` : "\n\nNo citable sources were returned."}`} allowed={new Set(check.citations)} />
         </div>
       </details>
+      {check.research && <ResearchAudit research={check.research} />}
+      <CheckProvenance check={check} />
     </div>
   );
+}
+
+function CheckRecency({ check, previous }: { check: ClaimCheck; previous?: ClaimCheck }) {
+  const change = previous ? claimGradeChange(check, previous) : undefined;
+  return <div className="mt-2 flex flex-col gap-1 text-sm">
+    <p className="font-medium text-ink">Last checked <time dateTime={check.checkedAt}>{formatDate(check.checkedAt.slice(0, 10))}</time></p>
+    {previous && <p className="text-xs text-ink-2">Previous: <time dateTime={previous.checkedAt}>{formatDate(previous.checkedAt.slice(0, 10))}</time> ({budgetName(previous).toLowerCase()}, {gradeName(previous)})</p>}
+    {change && <p role="status" className="font-medium text-ink">Was {gradeName(previous!)}, now {gradeName(check)}</p>}
+  </div>;
+}
+
+function CheckHistory({ history }: { history: ClaimCheck[] }) {
+  return <details className="mt-3 text-sm">
+    <summary className="min-h-11 cursor-pointer py-3 font-medium text-ink">Check history ({history.length})</summary>
+    <p className="mb-2 text-xs text-ink-2">Earlier assessments are kept in full. Grade changes may reflect new evidence, search coverage or model assessment.</p>
+    <ol className="divide-y divide-line">
+      {history.map((entry) => <li key={claimRunKey(entry)}>
+        <details className="py-2">
+          <summary className="min-h-11 cursor-pointer py-2 text-ink">
+            <span className="font-medium"><time dateTime={entry.checkedAt}>{formatDate(entry.checkedAt.slice(0, 10))}</time> · {budgetName(entry)} · {gradeName(entry)}</span>
+            <span className="mt-1 block text-xs text-ink-2">{entry.research ? `${entry.research.retrieved} retrieved · ${entry.research.screened} screened · ${entry.research.included} included` : "Counts unavailable (legacy check)"}</span>
+          </summary>
+          <SavedCheck check={entry} discovering={false} />
+        </details>
+      </li>)}
+    </ol>
+  </details>;
+}
+
+function CheckProvenance({ check }: { check: ClaimCheck }) {
+  const budget = check.research?.depth === "deep" ? "Deep" : check.research?.depth === "quick" ? "Quick" : "Unknown (legacy check)";
+  return <footer className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-line pt-3 text-xs text-ink-2">
+    <span className="min-w-0 break-words">Model: {check.model}</span>
+    <span className="font-medium text-ink">Budget: {budget}</span>
+    <span>Locally saved · <time dateTime={check.checkedAt}>{formatDate(check.checkedAt.slice(0, 10))}</time></span>
+  </footer>;
+}
+
+function ResearchAudit({ research }: { research: ClaimResearch }) {
+  return <details className="mt-1 text-sm text-ink-2">
+    <summary className="min-h-11 cursor-pointer py-3 font-medium text-ink">Searches &amp; screening ({research.depth} check)</summary>
+    <ol className="flex list-decimal flex-col gap-3 pl-5">
+      {research.queries.map((query, i) => <li key={i}>
+        <p className="font-medium text-ink">{query.rung} · {query.resultCount === null ? "count unavailable" : `${query.resultCount} results`} · relevance</p>
+        <p className="break-words">{query.query}</p>
+        {query.error && <p>Search error: {query.error}</p>}
+      </li>)}
+    </ol>
+    {research.records.length > 0 && <ul className="mt-4 divide-y divide-line">
+      {research.records.map((record) => {
+        const screen = research.screening.find((item) => item.id === record.id);
+        return <li key={record.id} className="py-3">
+          <p className="font-medium text-ink">{record.title}</p>
+          <p>{record.id} · {screen ? screen.decision === "exclude" ? "Excluded" : screen.decision === "direct" ? "Direct" : "Indirect" : "Not screened"}</p>
+          {screen && <><p>{screen.reason}</p><p className="mt-1 text-xs">{screen.route} · {screen.formulation} · {screen.evidence.replace(/_/g, " ")}</p></>}
+        </li>;
+      })}
+    </ul>}
+  </details>;
 }

@@ -239,6 +239,59 @@ body {
   }
 }
 
+/* Source previews open from the citation, then resolve the text in reading order.
+   Only the small preview is filtered; the page behind it stays untouched. */
+.paper-preview {
+  transition: opacity 140ms ease-out;
+}
+.paper-preview[data-starting-style],
+.paper-preview[data-ending-style] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .paper-preview {
+    --preview-x: 0px;
+    --preview-y: 8px;
+    transition: opacity 220ms ease-out, scale 320ms var(--ease-soft), translate 320ms var(--ease-soft);
+  }
+  .paper-preview[data-side="bottom"] { --preview-y: -8px; }
+  .paper-preview[data-side="left"] { --preview-x: 8px; --preview-y: 0px; }
+  .paper-preview[data-side="right"] { --preview-x: -8px; --preview-y: 0px; }
+  .paper-preview[data-starting-style] {
+    scale: 0.96;
+    translate: var(--preview-x) var(--preview-y);
+  }
+  .paper-preview[data-ending-style] {
+    scale: 0.98;
+    translate: var(--preview-x) var(--preview-y);
+    transition-duration: 140ms;
+  }
+  .paper-preview-content > * {
+    animation: paper-preview-text 300ms var(--ease-soft) backwards;
+  }
+  .paper-preview-content > :nth-child(2) { animation-delay: 30ms; }
+  .paper-preview-content > :nth-child(3) { animation-delay: 60ms; }
+  .paper-preview-content > :nth-child(4) { animation-delay: 90ms; }
+  .paper-preview-content > :nth-child(n + 5) { animation-delay: 120ms; }
+  /* Finish any text entrance immediately on dismissal, including a quick hover. */
+  .paper-preview[data-ending-style] .paper-preview-content > * {
+    animation: none;
+  }
+  @keyframes paper-preview-text {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+      filter: blur(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;

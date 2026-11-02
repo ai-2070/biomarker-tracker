@@ -278,6 +278,7 @@ export interface AgentRequest {
   dataPack: () => string;
   /** Claim reviews must never silently start another program run after a failure. */
   claimReview?: boolean;
+  budget?: { timeoutMs: number; maxTurns: number };
   signal?: AbortSignal;
 }
 
@@ -319,21 +320,23 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         mcpFile = path.join(dir, "mcp.json");
         fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
       }
-      const r = await runProgram("claude", claudeArgs({ model, effort, systemFile, mcpFile }), { cwd: dir, input: question, signal: req.signal });
+      const args = claudeArgs({ model, effort, systemFile, mcpFile });
+      if (req.budget) args.push("--max-turns", String(req.budget.maxTurns));
+      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
-      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, timeoutMs: req.budget?.timeoutMs, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
       parsed = parseCodex(r.stdout, r.stderr);
       if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {
-      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
+      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
       parsed = parseHermes(r.stdout, r.stderr);
     } else {
       const messageFile = path.join(dir, "message.md");
       fs.writeFileSync(messageFile, `<instructions>\n${system}\n</instructions>\n\n${question}`);
       const sessionKey = `biomarker-tracker-${crypto.randomBytes(6).toString("hex")}`;
       const once = async (local: boolean) => {
-        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal });
+        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
         return parseOpenClaw(r.stdout, r.stderr);
       };
       let p = await once(false);

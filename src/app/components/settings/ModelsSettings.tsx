@@ -206,6 +206,7 @@ export function ModelsSettings() {
         )}
 
         <ModelPicker info={info} value={model} onChange={setModel} loaded={loaded} />
+        <p className="text-sm text-ink-2">Deep checks use the same model with a larger search budget. Weaker models may miss more, so pick a stronger one for important claims.</p>
 
         {info.profileLabel && (
           <ProfilePicker label={info.profileLabel} value={cfg.profile ?? ""} onChange={(profile) => setCfg({ ...cfg, profile })} loaded={loaded} installed={installed} />
