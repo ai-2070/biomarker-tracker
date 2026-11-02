@@ -29,7 +29,7 @@ export function PaperLink({ href, source, children, ...props }: Props) {
       </PreviewCard.Trigger>
       <PreviewCard.Portal>
         <PreviewCard.Positioner side="top" align="start" sideOffset={10} collisionPadding={12} className="z-[80] outline-none">
-          <PreviewCard.Popup id={previewId} role="region" aria-labelledby={headingId} className="max-h-[min(32rem,70vh,var(--available-height))] w-[26rem] max-w-[calc(100vw-24px)] origin-[var(--transform-origin)] overflow-y-auto rounded-xl border border-line bg-surface text-left text-ink shadow-lg transition-[opacity,scale] duration-200 ease-[var(--ease-soft)] data-ending-style:opacity-0 data-ending-style:duration-150 data-starting-style:opacity-0 motion-safe:data-ending-style:scale-[0.98] motion-safe:data-starting-style:scale-[0.98] motion-reduce:transition-none">
+          <PreviewCard.Popup id={previewId} role="region" aria-labelledby={headingId} className="paper-preview max-h-[min(32rem,70vh,var(--available-height))] w-[26rem] max-w-[calc(100vw-24px)] origin-[var(--transform-origin)] overflow-y-auto rounded-xl border border-line bg-surface text-left text-ink shadow-lg">
             <PaperPreview key={href} href={href} source={source} headingId={headingId} />
           </PreviewCard.Popup>
         </PreviewCard.Positioner>
@@ -57,7 +57,7 @@ function PaperPreview({ href, source, headingId }: { href: string; source?: Pape
   const authors = source?.authors ?? paper?.authors;
   const abstract = source?.abstract ?? paper?.abstract;
   return (
-    <div className="flex flex-col gap-3 p-4 text-sm leading-relaxed">
+    <div className="paper-preview-content flex flex-col gap-3 p-4 text-sm leading-relaxed">
       <h3 id={headingId} className="text-base leading-snug font-semibold [overflow-wrap:anywhere]">{title}</h3>
       {meta && <p className="text-ink-2">{meta}</p>}
       {authors && <p className="text-ink-2">{authors}</p>}

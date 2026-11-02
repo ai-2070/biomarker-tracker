@@ -1,6 +1,6 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { publicClaimTopic, type ClaimCheck, type ClaimRequest } from "../../src/core/claimEvidence";
+import { publicClaimTopic, claimSearchQuery, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "../../src/core/claimEvidence";
 import { db, deleteEverything } from "../../src/db/db";
 import { browserData } from "../../src/app/profiles";
 import { CLAIM_EVIDENCE_KEY, checkClaimEvidence, readClaimEvidence, refreshClaimUpdates, validClaimCheck } from "../../src/app/claimEvidence";
@@ -12,6 +12,15 @@ const request: ClaimRequest = { nutrientId: "astaxanthin", claim: "May help with
 const check: ClaimCheck = { ...request, version: 1, verdict: "mixed", grade: "low", summary: "Small studies reported mixed findings [PMID:12345678].", limitations: "The trials were small and short, so important uncertainty remains.", citations: ["PMID:12345678"], checkedAt: "2026-10-30T10:00:00.000Z", model: "actual-serving-model" };
 async function seed(result = check) {
   await db.settings.put({ key: CLAIM_EVIDENCE_KEY, value: { version: 1, checks: [result], customTopics: [], updates: [] } });
+}
+function auditedCheck(depth: ClaimDepth, checkedAt: string, grade: ClaimCheck["grade"] = "low"): ClaimCheck {
+  const plan = { intervention: "test intervention", outcome: "test outcome", interventionSynonyms: [], outcomeSynonyms: [], route: "any" as const };
+  return { ...check, version: 2, checkedAt, grade, research: {
+    depth, status: "evidence_found", plan, retrieved: 1, screened: 1, included: 1,
+    records: [{ id: "PMID:12345678", title: "Synthetic human trial" }],
+    screening: [{ id: "PMID:12345678", decision: "direct", reason: "Synthetic matching intervention and outcome.", route: "oral", formulation: "alone", evidence: "human_trial" }],
+    queries: (["reviews", "trials", "broad"] as const).map((rung) => ({ rung, query: claimSearchQuery(plan, rung), source: "europepmc", sort: "relevance", resultCount: 1, ids: ["PMID:12345678"] })),
+  } };
 }
 function deferred<T>() {
   let resolve!: (value: T) => void;
@@ -28,6 +37,80 @@ beforeEach(async () => {
 afterEach(async () => { vi.unstubAllGlobals(); vi.restoreAllMocks(); await db.delete(); });
 
 describe("local claim evidence", () => {
+  it("keeps the deep result when a quick rerun a month later becomes primary, including full audits through reopening and backup", async () => {
+    const deep = auditedCheck("deep", "2026-11-02T10:00:00.000Z");
+    const quick = auditedCheck("quick", "2026-12-02T10:00:00.000Z", "moderate");
+    const later = new Date("2026-12-02T12:00:00.000Z");
+    await seed(deep);
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json(quick)));
+    await checkClaimEvidence(request, { now: later, depth: "quick" });
+    db.close(); await db.open();
+    const state = (await readClaimEvidence(db, later)).cache;
+    expect(state.checks).toEqual([quick]);
+    expect(state.history).toEqual([deep]);
+    expect((await browserData()).settings[CLAIM_EVIDENCE_KEY]).toMatchObject({ checks: [quick], history: [deep] });
+    await db.settings.put({ key: CLAIM_EVIDENCE_KEY, value: JSON.parse(JSON.stringify(state)) });
+    expect((await readClaimEvidence(db, later)).cache.history).toEqual([deep]);
+  });
+  it("retains every replaced result without changing an archived snapshot", async () => {
+    const first = auditedCheck("deep", "2026-10-01T10:00:00.000Z");
+    const second = auditedCheck("quick", "2026-10-15T10:00:00.000Z", "moderate");
+    const third = auditedCheck("deep", now.toISOString(), "high");
+    await seed(first);
+    const fetcher = vi.fn().mockResolvedValueOnce(Response.json(second)).mockResolvedValueOnce(Response.json(third));
+    vi.stubGlobal("fetch", fetcher);
+    await checkClaimEvidence(request, { now }); await checkClaimEvidence(request, { now });
+    const state = (await readClaimEvidence(db, now)).cache;
+    expect(state.checks).toEqual([third]); expect(state.history).toEqual([first, second]);
+  });
+  it("archives out-of-order results and deduplicates retried responses without replacing a newer primary", async () => {
+    const newest = auditedCheck("quick", now.toISOString(), "moderate");
+    const delayed = auditedCheck("deep", "2026-10-15T10:00:00.000Z");
+    await seed(newest);
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json(delayed)));
+    await checkClaimEvidence(request, { now }); await checkClaimEvidence(request, { now });
+    const state = (await readClaimEvidence(db, now)).cache;
+    expect(state.checks).toEqual([newest]); expect(state.history).toEqual([delayed]);
+  });
+  it("keeps same-timestamp quick and deep results distinct and ignores identical response duplicates", async () => {
+    const deep = auditedCheck("deep", now.toISOString());
+    const quick = auditedCheck("quick", now.toISOString(), "moderate");
+    await seed(deep);
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json(quick)));
+    await checkClaimEvidence(request, { now }); await checkClaimEvidence(request, { now });
+    const state = (await readClaimEvidence(db, now)).cache;
+    expect(state.checks).toEqual([quick]); expect(state.history).toEqual([deep]);
+  });
+  it("preserves valid history when another archived record is corrupt", async () => {
+    const older = auditedCheck("deep", "2026-10-01T10:00:00.000Z");
+    await db.settings.put({ key: CLAIM_EVIDENCE_KEY, value: { version: 1, checks: [check], customTopics: [], updates: [], history: [older, null, { ...older, checkedAt: "2030-01-01T00:00:00.000Z" }] } });
+    const result = await readClaimEvidence(db, now);
+    expect(result.damaged).toBe(true); expect(result.cache.history).toEqual([older]); expect(result.cache.checks).toEqual([check]);
+  });
+  it("saves audited failed attempts without replacing the successful assessment", async () => {
+    await seed();
+    const failed: ClaimCheck = { ...check, version: 2, checkedAt: now.toISOString(), verdict: "not enough evidence", grade: null, citations: [], summary: "No verified assessment is available from this check.", research: { depth: "quick", status: "search_failed", queries: [], records: [], screening: [], retrieved: 0, screened: 0, included: 0, error: "Search timed out. Retry." } };
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json(failed)));
+    expect(await checkClaimEvidence(request, { now })).toEqual(failed);
+    const snapshot = await readClaimEvidence(db, now);
+    expect(snapshot.cache.checks).toEqual([check]);
+    expect(snapshot.cache.attempts).toEqual([failed]);
+  });
+  it("runs a non-KB public intervention through the custom-topic path and records clean absence", async () => {
+    const request = { nutrientId: "zorbafluxium-fictional", claim: "test outcome", topic: "test outcome" };
+    const plan = { intervention: "zorbafluxium fictional", outcome: "test outcome", interventionSynonyms: [], outcomeSynonyms: [], route: "any" as const };
+    const result: ClaimCheck = { ...check, ...request, version: 2, checkedAt: now.toISOString(), verdict: "not enough evidence", grade: null, citations: [], summary: "No verified assessment is available from this check.", research: { depth: "quick", status: "no_evidence", plan, records: [], screening: [], retrieved: 0, screened: 0, included: 0, queries: (["reviews", "trials", "broad"] as const).map((rung) => ({ rung, query: claimSearchQuery(plan, rung), source: "europepmc", sort: "relevance", resultCount: 0, ids: [] })) } };
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json(result)));
+    await checkClaimEvidence(request, { now, custom: true, category: "health" });
+    expect((await readClaimEvidence(db, now)).cache.customTopics).toContainEqual({ ...request, category: "health" });
+  });
+  it("sends only the depth option so model selection stays in Settings", async () => {
+    const fetcher = vi.fn(async () => Response.json(check));
+    vi.stubGlobal("fetch", fetcher);
+    await checkClaimEvidence(request, { now, depth: "deep" });
+    const [, init] = fetcher.mock.calls[0]! as unknown as [string, RequestInit];
+    expect(JSON.parse(String(init.body))).toEqual({ ...request, depth: "deep" });
+  });
   it("starts unchecked and persists a validated, public-only POST with actual model provenance", async () => {
     expect((await readClaimEvidence(db, now)).cache.checks).toEqual([]);
     const fetcher = vi.fn(async () => Response.json(check));

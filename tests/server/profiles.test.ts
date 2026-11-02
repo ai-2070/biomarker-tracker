@@ -55,6 +55,17 @@ describe("profiles: one folder per person", () => {
     expect(d.measurements).toHaveLength(1);
     expect(d.settings).toEqual({ displayUnits: { ferritin: "ng/mL" } });
   });
+  it("preserves evidence history beyond the ordinary settings limit through folder saves and backup restores", () => {
+    const p = profiles.createProfile({ person: { name: "History fixture" } });
+    const history = { version: 1, checks: [], customTopics: [], updates: [], history: [{ summary: "Synthetic retained research audit. ".repeat(9000) }] };
+    expect(JSON.stringify(history).length).toBeGreaterThan(200_000);
+    profiles.saveProfileData(p.id, { person: { name: "History fixture" }, settings: { claimEvidence: history } });
+    expect(profiles.getProfileData(p.id).settings.claimEvidence).toEqual(history);
+    const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
+    expect(profiles.getProfileData(restored.id).settings.claimEvidence).toEqual(history);
+    expect(() => profiles.saveProfileData(p.id, { person: { name: "History fixture" }, settings: { unrelated: "x".repeat(200_001) } })).toThrow(/Too many settings/);
+    expect(profiles.getProfileData(p.id).settings.claimEvidence).toEqual(history);
+  });
 
   it("keeps scanned files with safe, dated names and never overwrites", () => {
     const p = profiles.createProfile({ person: { name: "Cara" } });

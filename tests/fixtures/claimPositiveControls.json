@@ -1,0 +1,23 @@
+[
+  {
+    "intervention": "psyllium",
+    "outcome": "LDL cholesterol",
+    "expectedGrades": ["low", "moderate", "high"],
+    "reference": "https://pubmed.ncbi.nlm.nih.gov/30239559/",
+    "reason": "Established meta-analyses of randomized trials; the abstract-only quick check may downgrade certainty. It must retrieve and assess direct human evidence."
+  },
+  {
+    "intervention": "creatine",
+    "outcome": "muscle strength",
+    "expectedGrades": ["low", "moderate", "high"],
+    "reference": "https://pubmed.ncbi.nlm.nih.gov/41328071/",
+    "reason": "Established systematic reviews and meta-analyses of strength outcomes. No particular publication must be retrieved."
+  },
+  {
+    "intervention": "caffeine",
+    "outcome": "endurance exercise performance",
+    "expectedGrades": ["low", "moderate", "high"],
+    "reference": "https://pubmed.ncbi.nlm.nih.gov/36615805/",
+    "reason": "Established meta-analyses of randomized performance trials. Outcomes and study quality still require screening."
+  }
+]
