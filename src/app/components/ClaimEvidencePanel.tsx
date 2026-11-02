@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { publicClaimTopic, type ClaimCheck, type ClaimRequest } from "../../core/claimEvidence";
+import { CLAIM_CATEGORIES, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimRequest } from "../../core/claimEvidence";
 import type { NutrientDef } from "../../core/nutrients";
 import { useServerStatus } from "../api";
 import { checkClaimEvidence, refreshClaimUpdates, sameClaim, useClaimEvidence, type ClaimRecordUpdate } from "../claimEvidence";
@@ -7,10 +7,14 @@ import { formatDate } from "../format";
 import { href } from "../router";
 import { CitedAnswer } from "./CitedAnswer";
 import { GradeBadge } from "./evidence";
+import { SimpleSelect } from "./UnitSelect";
 import { Button, Card, inputStyles } from "./ui";
 
 const keyFor = (request: ClaimRequest) => JSON.stringify([request.nutrientId, request.claim, request.topic]);
 const verdictLabel = { supported: "Supported", mixed: "Mixed findings", "not supported": "Not supported", "not enough evidence": "Not enough evidence" };
+const categoryLabel: Record<ClaimCategory, string> = { health: "Health", longevity: "Longevity", appearance: "Appearance" };
+const categoryOptions = CLAIM_CATEGORIES.map((value) => ({ value, label: categoryLabel[value] }));
+type CategorizedClaim = ClaimRequest & { category: ClaimCategory; label: string };
 
 /** Claim-by-claim research; neither opening the page nor detecting a new paper calls a model. */
 export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; guide: NonNullable<NutrientDef["simpleGuide"]>; critical: boolean }) {
@@ -21,13 +25,15 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [topic, setTopic] = useState("");
   const [topicError, setTopicError] = useState("");
+  const [category, setCategory] = useState<ClaimCategory>("health");
   const [discovering, setDiscovering] = useState<string[]>([]);
   const inputId = useId();
-  const staticRequests = (n.commonUses ?? []).flatMap((claim) => {
+  const staticRequests: CategorizedClaim[] = (n.commonUses ?? []).flatMap((claim) => {
     const topic = guide.claimTopics?.[claim];
-    return topic ? [{ nutrientId: n.id, claim, topic }] : [];
+    return topic ? [{ nutrientId: n.id, claim, topic, category: guide.claimCategories?.[claim] ?? "health", label: guide.claimLabels?.[claim] ?? claim }] : [];
   });
-  const custom = snapshot?.cache.customTopics.filter((r) => r.nutrientId === n.id && !staticRequests.some((s) => sameClaim(s, r))) ?? [];
+  const custom = snapshot?.cache.customTopics.filter((r) => r.nutrientId === n.id && !staticRequests.some((s) => sameClaim(s, r)))
+    .map((r): CategorizedClaim => ({ ...r, category: r.category ?? "health", label: r.claim })) ?? [];
   const requests = [...staticRequests, ...custom];
   // Depend on successful checks, not record-count writes, to avoid a refresh/render loop.
   const checkedKey = snapshot?.cache.checks.filter((c) => requests.some((r) => sameClaim(r, c))).map((c) => `${keyFor(c)}:${c.checkedAt}`).join("|") ?? "";
@@ -53,7 +59,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedKey, identityKey]);
 
-  async function run(request: ClaimRequest, customTopic = false) {
+  async function run(request: CategorizedClaim, customTopic = false) {
     if (!snapshot || snapshot.error || critical || activeRef.current) return;
     const key = keyFor(request);
     const controller = new AbortController();
@@ -61,7 +67,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
     setActive({ key, controller });
     setErrors((previous) => ({ ...previous, [key]: "" }));
     try {
-      await checkClaimEvidence(request, { signal: controller.signal, expectedIdentity: snapshot.identity, custom: customTopic });
+      await checkClaimEvidence(request, { signal: controller.signal, expectedIdentity: snapshot.identity, custom: customTopic, category: customTopic ? request.category : undefined });
     } catch (error) {
       const message = controller.signal.aborted ? "Check cancelled. Any saved check has been kept." : server === null
         ? "Could not reach the local server. Start it to check evidence; saved checks remain available here."
@@ -74,52 +80,62 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
   }
 
   return (
-    <Card id="uses" className="scroll-mt-6">
+    <Card id="uses" className="scroll-mt-24">
       <h2 className="font-serif text-2xl font-normal">Potential benefits &amp; common claims</h2>
-      <p className="mt-2 text-sm text-ink-2">Check a claim with your chosen Brain model and research sources. The result stays in this profile, including when you are offline.</p>
+      <p className="mt-2 text-sm text-ink-2">People explore astaxanthin for several purposes, including eye comfort and skin appearance. These are proposed uses, not established benefits; the evidence differs by claim.</p>
+      <p className="mt-2 text-sm text-ink-2">Check any statement with Brain. Your saved assessment, confidence and sources appear alongside it; nothing is checked automatically.</p>
       {critical && <p className="mt-3 text-sm font-medium">Contact a doctor about the critical result first. Evidence checks are not available here right now.</p>}
       {!critical && server === null && <p className="mt-3 text-sm text-ink-2">New checks need the local server. Saved results can still be read offline.</p>}
       {!critical && server && !server.ready.ok && <p className="mt-3 text-sm text-ink-2">{server.ready.reason ?? "Set up a model in Settings to check evidence."} <a href={href({ name: "data", tab: "models" })} className="underline underline-offset-2">AI model settings</a></p>}
       {snapshot?.damaged && <p role="status" className="mt-3 text-sm text-ink-2">Some saved evidence data was invalid and is not shown. Check the affected claims again.</p>}
       {snapshot?.error && <p role="alert" className="mt-3 text-sm text-danger">{snapshot.error}</p>}
-      <ul className="mt-4 divide-y divide-line">
-        {requests.map((request) => {
-          const key = keyFor(request);
-          const check = snapshot?.cache.checks.find((c) => sameClaim(c, request));
-          const update = snapshot?.cache.updates.find((u) => sameClaim(u.request, request) && u.forCheckedAt === check?.checkedAt);
-          const busy = active?.key === key;
-          return (
-            <li key={key} className="py-4 first:pt-0 last:pb-0">
-              <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-medium break-words">{request.claim}</h3>
-                  <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2" aria-live="polite">
-                    {busy ? <span>Checking evidence…</span> : check ? <><span className="font-medium text-ink">{verdictLabel[check.verdict]}</span>{check.grade ? <GradeBadge grade={check.grade} short /> : <span>No evidence grade</span>}</> : <span>Not checked yet</span>}
+      {CLAIM_CATEGORIES.map((group) => (
+        <section key={group} aria-labelledby={`${inputId}-${group}`} className="mt-5 border-t border-line pt-4">
+          <h3 id={`${inputId}-${group}`} className="font-semibold">{categoryLabel[group]}</h3>
+          {group === "longevity" && <p className="mt-1 text-sm text-ink-2">Proposed aging-related uses do not establish life extension.</p>}
+          <ul className="mt-2 divide-y divide-line">
+            {requests.filter((request) => request.category === group).map((request) => {
+              const key = keyFor(request);
+              const check = snapshot?.cache.checks.find((c) => sameClaim(c, request));
+              const update = snapshot?.cache.updates.find((u) => sameClaim(u.request, request) && u.forCheckedAt === check?.checkedAt);
+              const busy = active?.key === key;
+              return (
+                <li key={key} className="py-4 first:pt-2 last:pb-0">
+                  <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-4">
+                    <div className="min-w-0">
+                      <h4 className="font-medium break-words">{request.label}</h4>
+                      <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2" aria-live="polite">
+                        {busy ? <span>Checking evidence…</span> : check ? <><span className="font-medium text-ink">{verdictLabel[check.verdict]}</span>{check.grade ? <GradeBadge grade={check.grade} short /> : <span>No evidence grade</span>}</> : <span>Not checked yet</span>}
+                      </div>
+                    </div>
+                    {busy ? <Button variant="secondary" onClick={() => active?.controller.abort()}>Cancel check</Button> : (
+                      <Button variant="secondary" className="shrink-0" disabled={!!active || !snapshot || !!snapshot.error || critical} aria-label={`${check ? "Recheck" : "Check evidence"}: ${request.label}`} onClick={() => void run(request)}>{check ? "Recheck" : "Check evidence"}</Button>
+                    )}
                   </div>
-                </div>
-                {busy ? <Button variant="secondary" onClick={() => active?.controller.abort()}>Cancel check</Button> : (
-                  <Button variant="secondary" className="shrink-0" disabled={!!active || !snapshot || !!snapshot.error || critical} aria-label={`${check ? "Recheck" : "Check evidence"}: ${request.claim}`} onClick={() => void run(request)}>{check ? "Recheck" : "Check evidence"}</Button>
-                )}
-              </div>
-              {check && <SavedCheck check={check} update={update} discovering={discovering.includes(key)} />}
-              {errors[key] && <p role="alert" className="mt-2 text-sm text-ink-2">{errors[key]}</p>}
-            </li>
-          );
-        })}
-      </ul>
+                  {check && <SavedCheck check={check} update={update} discovering={discovering.includes(key)} />}
+                  {errors[key] && <p role="alert" className="mt-2 text-sm text-ink-2">{errors[key]}</p>}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
       <form className="mt-5 border-t border-line pt-4" onSubmit={(event) => {
         event.preventDefault();
         const value = publicClaimTopic(topic);
         if (!value) { setTopicError("Use a short public topic, such as sleep, without personal details."); return; }
         setTopicError("");
-        const request = { nutrientId: n.id, claim: value, topic: value };
+        const request = { nutrientId: n.id, claim: value, topic: value, category, label: value };
         setTopic("");
         void run(request, true);
       }}>
-        <label htmlFor={inputId} className="font-medium">Check something else</label>
-        <p id={`${inputId}-help`} className="mt-1 text-sm text-ink-2">A public research topic only, such as sleep. Do not include your name, results or medical history.</p>
-        <div className="mt-2 flex flex-col gap-2 sm:flex-row">
-          <input id={inputId} className={inputStyles} value={topic} onChange={(event) => setTopic(event.target.value)} maxLength={100} placeholder="e.g. sleep" aria-describedby={`${inputId}-help${topicError ? ` ${inputId}-error` : ""}`} aria-invalid={!!topicError} disabled={!!active || !snapshot || !!snapshot.error || critical} />
+        <h3 className="font-medium">Check something else</h3>
+        <p id={`${inputId}-help`} className="mt-1 text-sm text-ink-2">A public research topic only, such as sleep. Do not include your name, results or medical history. Older topics without a category stay under Health.</p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-[9rem_minmax(0,1fr)_auto] sm:items-end">
+          <SimpleSelect label="Category" options={categoryOptions} value={category} onChange={(value) => setCategory(value as ClaimCategory)} disabled={!!active || !snapshot || !!snapshot.error || critical} className="min-w-0" />
+          <label htmlFor={inputId} className="flex min-w-0 flex-col gap-1.5 text-sm font-medium">Public topic
+            <input id={inputId} className={inputStyles} value={topic} onChange={(event) => setTopic(event.target.value)} maxLength={100} placeholder="e.g. sleep" aria-describedby={`${inputId}-help${topicError ? ` ${inputId}-error` : ""}`} aria-invalid={!!topicError} disabled={!!active || !snapshot || !!snapshot.error || critical} />
+          </label>
           <Button type="submit" variant="secondary" disabled={!!active || !topic.trim() || !snapshot || !!snapshot.error || critical}>Add &amp; check</Button>
         </div>
         {topicError && <p id={`${inputId}-error`} role="alert" className="mt-2 text-sm text-danger">{topicError}</p>}

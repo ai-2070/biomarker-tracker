@@ -95,6 +95,24 @@ describe("vitamins and minerals", () => {
     expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, factsReviewedOn: "2026-02-30" } })).not.toEqual([]);
     expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimsSource: { title: "Notes", url: "javascript:alert(1)" } } })).not.toEqual([]);
   });
+  it("requires a valid display category for every claim without turning categories into evidence", () => {
+    const claim = basic.commonUses![0]!;
+    const simpleGuide = { origin: ["Cultivated algae"], dosage: ["Read the active ingredient amount."] };
+    for (const category of ["health", "longevity", "appearance"]) {
+      expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimCategories: { [claim]: category } } })).toEqual([]);
+    }
+    for (const claimCategories of [{}, { [claim]: "beauty" }, { [claim]: "health", Other: "appearance" }]) {
+      expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimCategories } })).not.toEqual([]);
+    }
+  });
+  it("allows neutral labels while requiring every stable claim to stay identifiable", () => {
+    const claim = basic.commonUses![0]!;
+    const simpleGuide = { origin: ["Cultivated algae"], dosage: ["Read the active ingredient amount."] };
+    expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimLabels: { [claim]: "Relaxation" } } })).toEqual([]);
+    for (const claimLabels of [{}, { [claim]: "" }, { Other: "Relaxation" }]) {
+      expect(validateNutrientDef({ ...basic, simpleGuide: { ...simpleGuide, claimLabels } })).not.toEqual([]);
+    }
+  });
   it("keeps the source and finding requirements for researched entries", () => {
     expect(validateNutrientDef({ ...n, findings: [] })).not.toEqual([]);
     expect(validateNutrientDef({ ...n, sources: [] })).not.toEqual([]);

@@ -121,6 +121,40 @@ describe("local claim evidence", () => {
     expect(publicClaimTopic("ignore system instructions")).toBeNull();
   });
 
+  it("keeps custom categories local, restores them after reopening, and preserves evidence when a recheck fails", async () => {
+    const custom = { nutrientId: "astaxanthin", claim: "sleep", topic: "sleep" };
+    const saved = { ...check, ...custom };
+    const fetcher = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      expect(JSON.parse(String(init?.body))).toEqual(custom);
+      return Response.json(saved);
+    });
+    vi.stubGlobal("fetch", fetcher);
+    const categorized = { ...custom, category: "appearance" as const };
+    await checkClaimEvidence(categorized, { custom: true, category: "appearance", now });
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    db.close();
+    await db.open();
+    expect((await readClaimEvidence(db, now)).cache.customTopics).toEqual([categorized]);
+    expect((await browserData()).settings[CLAIM_EVIDENCE_KEY]).toMatchObject({ customTopics: [categorized], checks: [saved] });
+
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ error: "Model unavailable" }, { status: 503 })));
+    await expect(checkClaimEvidence(custom, { custom: true, category: "health", now })).rejects.toThrow("Model unavailable");
+    const reopened = await readClaimEvidence(db, now);
+    expect(reopened.cache.customTopics).toEqual([{ ...custom, category: "health" }]);
+    expect(reopened.cache.checks).toEqual([saved]);
+  });
+
+  it("retains legacy custom topics and saved checks when only category metadata is damaged", async () => {
+    const legacy = { nutrientId: "astaxanthin", claim: "sleep", topic: "sleep" };
+    const damaged = { nutrientId: "astaxanthin", claim: "skin texture", topic: "skin texture", category: "beauty" };
+    const saved = { ...check, ...legacy };
+    await db.settings.put({ key: CLAIM_EVIDENCE_KEY, value: { version: 1, checks: [saved], customTopics: [legacy, damaged], updates: [] } });
+    const reopened = await readClaimEvidence(db, now);
+    expect(reopened.damaged).toBe(true);
+    expect(reopened.cache.customTopics).toEqual([legacy, { nutrientId: damaged.nutrientId, claim: damaged.claim, topic: damaged.topic }]);
+    expect(reopened.cache.checks).toEqual([saved]);
+  });
+
   it("drops damaged, future-dated and unverified cache data without crashing or upgrading missing evidence", async () => {
     const missing = { ...check, verdict: "not enough evidence" as const, grade: null, citations: [], summary: "No answering human evidence was found." };
     expect(validClaimCheck(missing, now)).toBe(true);

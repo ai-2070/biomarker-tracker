@@ -1,0 +1,235 @@
+{
+  "startedAt": "2026-11-01T23:59:17.794Z",
+  "completedAt": "2026-11-02T00:01:19.757Z",
+  "runtime": {
+    "node": "v24.19.0",
+    "bun": "1.4.4"
+  },
+  "method": "Bun isolated exact-version install --ignore-scripts; manifest-selected bin launched directly with Node; MCP initialize/tools/list/callTool over stdio; hostname-only diagnostics_channel+http(s)+TLS preload. One synthetic read-only tool call per package where initialization permits.",
+  "isolation": "Per-package fresh HOME/USERPROFILE/APPDATA/LOCALAPPDATA/XDG directories and cwd outside repo; environment explicit allowlist without credentials, app settings, proxies or AI keys; lifecycle scripts disabled during install.",
+  "installationObservation": "Bun is native: Node preload cannot observe installation DNS/HTTP. Installation hosts are unobserved, not assumed from registry configuration. Registry configured to https://registry.npmjs.org, install traffic never counted as query traffic.",
+  "blindSpots": [
+    "Node preload is not an OS firewall/packet trace: native dependencies/processes, arbitrary raw sockets, DNS resolution, pre-existing connections or other runtimes can bypass it. Node subprocesses inheriting NODE_OPTIONS were instrumented, but that does not establish complete subprocess coverage.",
+    "Bun native install/download traffic is not observed. registry.npmjs.org was configured, not witnessed as an installation host; do not report it as an observed host.",
+    "Only one tool per package was queried. In particular BioMCP article_search was explicitly restricted to Europe PMC instead of its default federation. Other tools, providers, full-text/download paths and failures/retries can contact other destinations.",
+    "Redirect-created Node requests/TLS connections are captured where they traverse these APIs. No distinct redirect destination was observed; this is not a proof that no redirect occurred.",
+    "Isolated environment has CI=true and DO_NOT_TRACK=1, no keys and fresh config; behavior with user credentials, other configuration, npm/npx installation lifecycle scripts, long-running usage or production defaults may differ.",
+    "No browser Network trace can establish server-side MCP destinations. This receipt observes direct package processes, not the full application or third-party retention policies.",
+    "An initial preload syntax error prevented first launches before MCP initialization; those unsuccessful harness attempts are retained in raw runs and are not package failures. Preload was fixed before discovery/query evidence.",
+    "PubMed, ClinicalTrials and openFDA manifests match pinned npm versions, but their initialize self-reported version is 0.13.18; both observed versions are retained rather than treating the handshake as package version evidence."
+  ],
+  "packages": [
+    {
+      "id": "pubmed",
+      "package": "@cyanheads/pubmed-mcp-server",
+      "pinnedVersion": "2.11.1",
+      "manifestVersion": "2.11.1",
+      "handshakeVersion": {
+        "name": "pubmed-mcp-server",
+        "title": "pubmed-mcp-server",
+        "version": "0.13.18"
+      },
+      "tool": "pubmed_search_articles",
+      "arguments": {
+        "query": "walking",
+        "maxResults": 1,
+        "summaryCount": 0
+      },
+      "success": true,
+      "observations": [
+        {
+          "time": "2026-11-02T00:00:38.686Z",
+          "phase": "query",
+          "hostname": "eutils.ncbi.nlm.nih.gov",
+          "method": "undici:request:create"
+        },
+        {
+          "time": "2026-11-02T00:00:38.689Z",
+          "phase": "query",
+          "hostname": "eutils.ncbi.nlm.nih.gov",
+          "method": "tls.connect"
+        }
+      ],
+      "cleanupSucceeded": true
+    },
+    {
+      "id": "clinicaltrials",
+      "package": "clinicaltrialsgov-mcp-server",
+      "pinnedVersion": "2.10.2",
+      "manifestVersion": "2.10.2",
+      "handshakeVersion": {
+        "name": "clinicaltrialsgov-mcp-server",
+        "title": "clinicaltrialsgov-mcp-server",
+        "version": "0.13.18"
+      },
+      "tool": "clinicaltrials_get_study_count",
+      "arguments": {
+        "query": "walking"
+      },
+      "success": true,
+      "observations": [
+        {
+          "time": "2026-11-02T00:00:39.831Z",
+          "phase": "query",
+          "hostname": "clinicaltrials.gov",
+          "method": "undici:request:create"
+        },
+        {
+          "time": "2026-11-02T00:00:39.835Z",
+          "phase": "query",
+          "hostname": "clinicaltrials.gov",
+          "method": "tls.connect"
+        }
+      ],
+      "cleanupSucceeded": true
+    },
+    {
+      "id": "openfda",
+      "package": "@cyanheads/openfda-mcp-server",
+      "pinnedVersion": "0.9.1",
+      "manifestVersion": "0.9.1",
+      "handshakeVersion": {
+        "name": "openfda-mcp-server",
+        "title": "openfda-mcp-server",
+        "version": "0.13.18"
+      },
+      "tool": "openfda_search_recalls",
+      "arguments": {
+        "category": "food",
+        "search": "product_description:apple",
+        "limit": 1
+      },
+      "success": true,
+      "observations": [
+        {
+          "time": "2026-11-02T00:01:18.265Z",
+          "phase": "query",
+          "hostname": "api.fda.gov",
+          "method": "undici:request:create"
+        },
+        {
+          "time": "2026-11-02T00:01:18.268Z",
+          "phase": "query",
+          "hostname": "api.fda.gov",
+          "method": "tls.connect"
+        }
+      ],
+      "cleanupSucceeded": true
+    },
+    {
+      "id": "biomcp",
+      "package": "biomcp",
+      "pinnedVersion": "1.6.0",
+      "manifestVersion": "1.6.0",
+      "handshakeVersion": {
+        "name": "biomcp",
+        "version": "1.6.0"
+      },
+      "tool": "article_search",
+      "arguments": {
+        "query": "walking",
+        "source": "europepmc",
+        "limit": 1
+      },
+      "success": true,
+      "observations": [
+        {
+          "time": "2026-11-02T00:00:40.527Z",
+          "phase": "query",
+          "hostname": "www.ebi.ac.uk",
+          "method": "undici:request:create"
+        },
+        {
+          "time": "2026-11-02T00:00:40.531Z",
+          "phase": "query",
+          "hostname": "www.ebi.ac.uk",
+          "method": "tls.connect"
+        }
+      ],
+      "cleanupSucceeded": true
+    },
+    {
+      "id": "terminologies",
+      "package": "medical-terminologies-mcp",
+      "pinnedVersion": "2.4.0",
+      "manifestVersion": "2.4.0",
+      "handshakeVersion": {
+        "name": "medical-terminologies-mcp",
+        "title": "Medical Terminologies MCP",
+        "icons": [
+          {
+            "src": "https://raw.githubusercontent.com/SidneyBissoli/medical-terminologies-mcp/main/assets/icon-dark.png",
+            "mimeType": "image/png",
+            "sizes": [
+              "512x512"
+            ],
+            "theme": "dark"
+          },
+          {
+            "src": "https://raw.githubusercontent.com/SidneyBissoli/medical-terminologies-mcp/main/assets/icon-light.png",
+            "mimeType": "image/png",
+            "sizes": [
+              "512x512"
+            ],
+            "theme": "light"
+          }
+        ],
+        "version": "2.4.0",
+        "websiteUrl": "https://medical.sidneybissoli.com"
+      },
+      "tool": "mesh_search",
+      "arguments": {
+        "query": "walking",
+        "max_results": 1
+      },
+      "success": true,
+      "observations": [
+        {
+          "time": "2026-11-02T00:00:41.570Z",
+          "phase": "query",
+          "hostname": "id.nlm.nih.gov",
+          "method": "undici:request:create"
+        },
+        {
+          "time": "2026-11-02T00:00:41.574Z",
+          "phase": "query",
+          "hostname": "id.nlm.nih.gov",
+          "method": "tls.connect"
+        }
+      ],
+      "cleanupSucceeded": true
+    },
+    {
+      "id": "nutrition",
+      "package": "wellness-nourish",
+      "pinnedVersion": "0.8.3",
+      "manifestVersion": "0.8.3",
+      "handshakeVersion": {
+        "name": "nourish-mcp",
+        "version": "0.8.3"
+      },
+      "tool": "nourish_search_food",
+      "arguments": {
+        "query": "apple",
+        "limit": 1
+      },
+      "success": true,
+      "observations": [
+        {
+          "time": "2026-11-02T00:00:46.365Z",
+          "phase": "query",
+          "hostname": "api.nal.usda.gov",
+          "method": "undici:request:create"
+        },
+        {
+          "time": "2026-11-02T00:00:46.369Z",
+          "phase": "query",
+          "hostname": "api.nal.usda.gov",
+          "method": "tls.connect"
+        }
+      ],
+      "cleanupSucceeded": true
+    }
+  ],
+  "temporaryExecutionRemoved": true
+}

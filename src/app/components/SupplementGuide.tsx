@@ -48,24 +48,27 @@ export function SupplementGuide({ n, guide, critical, reference }: { n: Nutrient
       </Card>
       )}
 
-      <Card id="low-high" className="grid scroll-mt-6 gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-2">
-          <h2 className="font-serif text-2xl font-normal">Too little</h2>
-          {n.low.note && <p className="text-ink-2">{n.low.note}</p>}
-          {n.low.signs.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.low.signs.map((text) => <li key={text}>{text}</li>)}</ul>}
-          {n.low.atRisk.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.low.atRisk.map((text) => <li key={text}>{text}</li>)}</ul>}
-        </div>
-        <div className="flex flex-col gap-2">
-          <h2 className="font-serif text-2xl font-normal">Too much</h2>
-          <p className="text-ink-2">{n.high.note}</p>
-          {n.high.signs.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.high.signs.map((text) => <li key={text}>{text}</li>)}</ul>}
-        </div>
-      </Card>
 
       <Card id="dosage-safety" className="flex scroll-mt-6 flex-col gap-4">
         <h2 className="font-serif text-2xl font-normal">Dosage &amp; safety</h2>
         {guide.dosage.map((text) => <p key={text}>{text}</p>)}
         {reference}
+        <details id="low-high">
+          <summary className="min-h-11 cursor-pointer py-2 font-semibold">Requirement &amp; excess</summary>
+          <div className="mt-2 grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <h3 className="font-semibold">Too little</h3>
+              {n.low.note && <p className="text-ink-2">{n.low.note}</p>}
+              {n.low.signs.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.low.signs.map((text) => <li key={text}>{text}</li>)}</ul>}
+              {n.low.atRisk.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.low.atRisk.map((text) => <li key={text}>{text}</li>)}</ul>}
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="font-semibold">Too much</h3>
+              <p className="text-ink-2">{n.high.note}</p>
+              {n.high.signs.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.high.signs.map((text) => <li key={text}>{text}</li>)}</ul>}
+            </div>
+          </div>
+        </details>
         {n.interactions.length > 0 && (
           <dl className="flex flex-col gap-3">
             {n.interactions.map((interaction) => (
@@ -103,8 +106,10 @@ export function SupplementGuide({ n, guide, critical, reference }: { n: Nutrient
         </details>
       </Card>
 
-      <span id="research" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-      <ResearchPanel name={n.name} terms={[n.name]} topic="supplementation" question={`What does research say about ${n.name.toLowerCase()} supplements?`} critical={critical} />
+      <Card id="research" className="flex scroll-mt-24 flex-col gap-3">
+        <h2 className="font-serif text-2xl font-normal">Research</h2>
+        <ResearchPanel bare name={n.name} terms={[n.name]} topic="supplementation" question={`What does research say about ${n.name.toLowerCase()} supplements?`} critical={critical} />
+      </Card>
     </>
   );
 }

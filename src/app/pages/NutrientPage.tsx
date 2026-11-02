@@ -289,9 +289,8 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
   const byMarker = groupByBiomarker(all);
   const ref = basic ? undefined : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
   const links = (n.simpleGuide ? [
-    ["origin", "What it is & roles in your body"],
+    ["origin", "What it is"],
     ["uses", "Potential benefits & common claims"],
-    ["low-high", "Too little, too much"],
     ["dosage-safety", "Dosage & safety"],
     ["research", "Research"],
   ] : [

@@ -159,7 +159,11 @@ Basic guides set `researchStatus: "not-reviewed"` and `commonUses`, and contain 
 
 Additional requested topics are listed by name only: 29 supplements, 32 foods and 8 lifestyle topics. These searchable catalogue names have no descriptions, claims, doses or schedules and do not open empty detail pages. Existing guides are not duplicated or replaced.
 
-**Astaxanthin pilot:** a layered guide in this order: what it is, origin and roles; **Potential benefits & common claims**; **Too little / Too much**; **Dosage & safety** with reference intakes and upper-limit context; an existing evidence map if available; then **Research → Search studies**. Its five claims come from the supplied research notes, not baked-in efficacy findings. `simpleGuide` keeps separately dated stable facts, the claim source and outcome search words. No Astaxanthin map existed in the repository/history, so none is created or shown.
+**Astaxanthin pilot:** four sections in order: **What it is**, **Potential benefits & common claims**, **Dosage & safety**, and **Research → Search studies**. Proposed uses and personal evidence checks share one section rather than duplicate lists. Requirement/excess, forms and provenance are folded into Dosage & safety. Safety statements retain their documented basis and never become personalised dosing advice. No Astaxanthin evidence map is generated.
+
+**Grouped statements, not scores:** the combined section groups proposed uses under **Health, Longevity and Appearance**. Rows use neutral topic labels, with the introduction explaining that they are proposed uses, not established benefits. Each statement has its own Check evidence action and saved assessment. Neutral display labels do not change the underlying claim identities, so existing checks remain attached. Numerical potential and confidence scores are removed; background references remain in the nutrient data.
+
+**Evidence confidence comes only from personal checks.** There are no bundled verdicts or confidence grades. Before a check the statement says **Not checked yet**. Validated saved AI assessments supply qualitative grades (very low, low, moderate or high); insufficient evidence stays ungraded, not zero. Checks do not combine into category-wide grades or turn skin/marker results into lifespan evidence. **Check something else** remains available with a public-topic input and a category choice. Custom categories stay local to the profile and are not sent to the model; older uncategorized topics remain under Health. Opening the page never calls a model, and there is no scheduled AI reassessment. Other entries remain unchanged.
 
 **Check evidence** runs the person's configured Brain model, skills and research sources through `POST /api/claim-evidence`, sending only the public supplement/claim/topic. After live retrieval the model submits its verdict, evidence grade (or no grade when evidence is insufficient), summary, limitations and citations through `submit_claim_assessment`. That structured submission is validated before saving; final chat prose or Markdown is not parsed as JSON. The app stamps the date and serving model; unresolved agent model aliases are labelled as configured. Missing submissions, failed retrieval, invalid fields and unreturned citations cannot become saved grades. Results and custom **Check something else** topics live in the profile's local `claimEvidence` setting, included in folder sync/backups; cached results remain readable without a model, and failed/cancelled rechecks preserve the previous result. Legacy JSON backups keep their existing narrower contract.
  
@@ -289,7 +293,10 @@ The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and desi
 - The production build ships a Content Security Policy whose `connect-src` allows only the app itself, Europe PMC and PubMed.
 - The page never calls an AI model. The local server does, only when you ask a question, and only to the provider you set up.
 - Lab reports, photos and device exports are read on your computer. Photos are sent to a model only if you tick "Send the photo itself", and location data is removed first.
-- MCP servers you switch on receive search terms, not your results.
+- The footer links directly to the research-source toggles in Settings. MCP tools can receive model-selected inputs and contact other services; source descriptions are not an enforced host allowlist. Built-in study search and newer-record checks are separate from these switches.
+
+- [PRIVACY.md](PRIVACY.md) records local versus external data flows, first-run defaults, the personal-data search-query rule, observed synthetic-query hosts, static additional destinations and audit limits.
+- [DATA-LICENSES.md](DATA-LICENSES.md) lists bundled datasets/models, source terms, redistribution status and verification dates, including restricted and unverified rights. Settings → About links to the GitHub document rather than displaying the full inventory. Regenerate it with `bun tools/data-licenses.ts` after updating `src/app/dataLicenses.json`.
 
 ## Status and roadmap
 
@@ -301,4 +308,8 @@ In active development, private for now. Next on the roadmap:
 
 ## Disclaimer
 
-Biomarker Tracker is for information and personal record-keeping. It is not medical advice, not a medical device, and not a substitute for a doctor. Reference ranges, evidence grades and estimates such as biological age are general, may not apply to you, and have not yet been reviewed by a clinician. Talk to your doctor about any result that worries you, and before changing medicines or supplements.
+Not medical advice. For information and personal record-keeping, not for diagnosis or treatment. Not yet reviewed by a clinician. The app is not a substitute for a doctor. Reference ranges, evidence grades and estimates such as biological age are general and may not apply to you. Talk to your doctor about any result that worries you, and before changing medicines or supplements.
+
+The main app and the setup/profile-selection screens share the same two-paragraph footer: the information-only and clinician-review notice, followed by the local-profile, research-search and chosen-AI-model privacy explanation.
+
+Settings → About keeps a short medical-advice and clinician-review notice, a privacy cross-reference explaining where to check what leaves the computer, and GitHub links to [DATA-LICENSES.md](DATA-LICENSES.md), [PRIVACY.md](PRIVACY.md) and [MEDICAL-DISCLOSURE.md](MEDICAL-DISCLOSURE.md). Desktop document links are compact and top-aligned; touch targets remain larger. The footer carries the full purpose wording. The [HTML medical disclosure](public/medical-disclosure.html) remains bundled for offline access; keep it aligned with the Markdown wording.

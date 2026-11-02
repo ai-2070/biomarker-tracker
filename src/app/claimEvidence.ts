@@ -1,6 +1,6 @@
 import Dexie from "dexie";
 import { useLiveQuery } from "dexie-react-hooks";
-import { validateClaimAssessment, publicClaimTopic, type ClaimCheck, type ClaimRequest, type ClaimUpdate } from "../core/claimEvidence";
+import { CLAIM_CATEGORIES, validateClaimAssessment, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimRequest, type ClaimUpdate } from "../core/claimEvidence";
 import { db, LOADED_PROFILE_KEY, type TrackerDB } from "../db/db";
 import { countNewClaimStudies } from "../research/claimUpdates";
 import { api } from "./api";
@@ -14,10 +14,11 @@ export interface ClaimRecordUpdate {
   result?: ClaimUpdate;
   error?: string;
 }
+interface CustomClaimTopic extends ClaimRequest { category?: ClaimCategory }
 export interface ClaimEvidenceCache {
   version: 1;
   checks: ClaimCheck[];
-  customTopics: ClaimRequest[];
+  customTopics: CustomClaimTopic[];
   updates: ClaimRecordUpdate[];
 }
 interface Identity { loaded: string | null; browser: string; epoch: number }
@@ -56,7 +57,7 @@ function parseCache(value: unknown, now: Date): { cache: ClaimEvidenceCache; dam
   if (value === undefined) return { cache: empty(), damaged: false };
   if (!object(value) || value.version !== 1 || !Array.isArray(value.checks) || !Array.isArray(value.customTopics) || !Array.isArray(value.updates)) return { cache: empty(), damaged: true };
   const checks: ClaimCheck[] = [];
-  const customTopics: ClaimRequest[] = [];
+  const customTopics: CustomClaimTopic[] = [];
   const updates: ClaimRecordUpdate[] = [];
   let damaged = value.checks.length > 100 || value.customTopics.length > 30 || value.updates.length > 100;
   for (const check of value.checks.slice(0, 100)) {
@@ -65,7 +66,11 @@ function parseCache(value: unknown, now: Date): { cache: ClaimEvidenceCache; dam
   }
   for (const topic of value.customTopics.slice(0, 30)) {
     if (!requestIsValid(topic) || topic.claim !== topic.topic || !publicClaimTopic(topic.topic) || customTopics.some((c) => sameClaim(c, topic))) { damaged = true; continue; }
-    customTopics.push(topic);
+    const category = (topic as CustomClaimTopic).category;
+    if (category !== undefined && !CLAIM_CATEGORIES.includes(category)) {
+      damaged = true;
+      customTopics.push({ nutrientId: topic.nutrientId, claim: topic.claim, topic: topic.topic });
+    } else customTopics.push(topic);
   }
   for (const update of value.updates.slice(0, 100)) {
     if (!validUpdate(update, now) || !checks.some((c) => sameClaim(c, update.request) && c.checkedAt === update.forCheckedAt) || updates.some((u) => sameClaim(u.request, update.request))) { damaged = true; continue; }
@@ -146,16 +151,20 @@ async function withOwner<T>(options: Options, work: (owner: Identity, signal: Ab
 }
 
 /** Explicit action only. Sends just the public claim, not Brain's conversation or a profile. */
-export async function checkClaimEvidence(request: ClaimRequest, options: Options & { custom?: boolean } = {}): Promise<ClaimCheck> {
+export async function checkClaimEvidence(request: ClaimRequest, options: Options & { custom?: boolean; category?: ClaimCategory } = {}): Promise<ClaimCheck> {
   if (!requestIsValid(request)) throw new Error("This research topic is not valid.");
+  if (options.category !== undefined && !CLAIM_CATEGORIES.includes(options.category)) throw new Error("Choose Health, Longevity or Appearance.");
   const publicRequest = { nutrientId: request.nutrientId, claim: request.claim, topic: request.topic };
   return withOwner(options, async (owner, signal, database) => {
     if (options.custom) {
       if (request.claim !== request.topic || publicClaimTopic(request.topic) !== request.topic) throw new Error("Use a short public topic, without personal details, such as sleep.");
       await writeIfCurrent(owner, signal, database, options.now ?? new Date(), (cache) => {
-        if (!cache.customTopics.some((c) => sameClaim(c, request))) {
+        const previous = cache.customTopics.find((c) => sameClaim(c, request));
+        if (previous) {
+          if (options.category !== undefined) previous.category = options.category;
+        } else {
           if (cache.customTopics.length >= 30) throw new Error("You can keep up to 30 custom topics.");
-          cache.customTopics.push(publicRequest);
+          cache.customTopics.push(options.category === undefined ? publicRequest : { ...publicRequest, category: options.category });
         }
       });
     }
