@@ -1,0 +1,19 @@
+package.json
+  s_d3db9ebe8d99bd::t_f5d51e12345bf8 24-28,37,40,48,51,54-56,59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2019585fecf269868e90e93ff64ee60d4e8362a9",
+  "prompts": {},
+  "sessions": {
+    "s_d3db9ebe8d99bd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "de341db3-73ea-4f45-882b-d0b5974fdcc3",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
