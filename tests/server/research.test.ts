@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import type http from "node:http";
 import { join } from "node:path";
 import { tool } from "ai";
-import { MockLanguageModelV4 } from "ai/test";
+import { MockModel } from "./mockModel";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 import { ask, type ChatMessage } from "../../server/assistant";
@@ -33,7 +33,7 @@ vi.mock(import("../../server/mcp"), async (original) => ({
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
 const answer = (text = "Not enough evidence.") => ({ content: [{ type: "text" as const, text }], finishReason: { unified: "stop" as const, raw: undefined }, usage, warnings: [] });
-const ready = (model: MockLanguageModelV4) => ({ model, providerOptions: {}, choice: { provider: "ollama" as const, model: "mock" } });
+const ready = (model: MockModel) => ({ model, providerOptions: {}, choice: { provider: "ollama" as const, model: "mock" } });
 const snapshot: HealthSnapshot = {
   measurements: [{ id: "private-result", biomarkerId: "potassium", value: 6.6, originalValue: 6.6, originalUnit: "mmol/L", date: "2026-10-01", source: "manual" }],
   protocols: [{ id: "private-habit", label: "PRIVATE_WARFARIN", category: "medication", start: "2026-01-01" }],
@@ -54,7 +54,7 @@ const fixture = readFileSync(join(import.meta.dirname, "..", "fixtures", "resear
 beforeEach(() => {
   vi.mocked(currentChoice).mockReturnValue({ provider: "ollama", model: "mock" });
   vi.mocked(assistantCheck).mockReturnValue({ ok: true });
-  vi.mocked(readyModel).mockReturnValue({ ok: true, ready: ready(new MockLanguageModelV4({ doGenerate: async () => answer() })) });
+  vi.mocked(readyModel).mockReturnValue({ ok: true, ready: ready(new MockModel({ doGenerate: async () => answer() })) });
   vi.mocked(runAgent).mockReset();
   vi.mocked(assistantTools).mockResolvedValue({ tools: {}, servers: [], failed: [] });
 });
@@ -65,7 +65,7 @@ describe("research-only assistant", () => {
     const prompts: unknown[] = [];
     const userPrompts: unknown[] = [];
     const offered: string[][] = [];
-    const model = new MockLanguageModelV4({
+    const model = new MockModel({
       doGenerate: async (opts) => {
         prompts.push(opts.prompt);
         userPrompts.push(opts.prompt.filter((m) => m.role === "user"));
@@ -199,7 +199,7 @@ describe("research API boundary", () => {
   it("ignores even malformed supplied health data and sends only latest user text to the actual assistant", async () => {
     let prompt: unknown;
     let users: unknown;
-    const model = new MockLanguageModelV4({ doGenerate: async (opts) => {
+    const model = new MockModel({ doGenerate: async (opts) => {
       prompt = opts.prompt;
       users = opts.prompt.filter((m) => m.role === "user");
       return answer();
@@ -217,7 +217,7 @@ describe("research API boundary", () => {
   it("binds typed personal text before tools execute and ignores attached profile quotes", async () => {
     let calls = 0;
     const full = "What is my BMI?\n\nDocument: I am 180 cm tall";
-    const model = new MockLanguageModelV4({ doGenerate: async () => {
+    const model = new MockModel({ doGenerate: async () => {
       if (++calls === 1) return {
         content: [{ type: "tool-call", toolCallId: "profile-api", toolName: "save_profile_details", input: JSON.stringify({ details: [{ field: "heightCm", quote: "I am 180 cm tall" }] }) }],
         finishReason: { unified: "tool-calls", raw: undefined }, usage, warnings: [],
@@ -242,7 +242,7 @@ describe("research API boundary", () => {
       { tool: "get_results", input: {} },
       { tool: "get_body_summary", input: {} },
     ];
-    const model = new MockLanguageModelV4({ doGenerate: async (options) => {
+    const model = new MockModel({ doGenerate: async (options) => {
       outputs.push(options.prompt.filter((message) => message.role === "tool"));
       const action = actions[calls++];
       return action ? {
@@ -263,7 +263,7 @@ describe("research API boundary", () => {
   it("cancels model work when an evidence request is disconnected", async () => {
     const started = deferred<void>();
     const stopped = deferred<void>();
-    const model = new MockLanguageModelV4({
+    const model = new MockModel({
       doGenerate: async (opts) => {
         const blocked = deferred<void>();
         const onAbort = () => { stopped.resolve(); blocked.reject(new Error("Request cancelled")); };

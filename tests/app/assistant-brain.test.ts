@@ -6,6 +6,8 @@ const seam = vi.hoisted(() => ({
 }));
 vi.mock("react", async (original) => ({ ...await original<typeof React>(), useSyncExternalStore: (_subscribe: unknown, snapshot: () => unknown) => snapshot() }));
 vi.mock("../../src/app/api", () => ({ api: seam.api }));
+// The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
+vi.mock("../../src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => seam.api("POST", "/api/assistant", body, signal, onUpdate) }));
 vi.mock("../../src/db/db", () => ({
   db: { ...Object.fromEntries(["measurements", "protocols", "experiments", "plans", "meals", "settings"].map((name) => [name, { toArray: async () => [], get: async () => undefined }])), transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action() },
   getProfile: seam.profile,

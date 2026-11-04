@@ -128,3 +128,16 @@ describe("assistant input", () => {
     expect(r2.status).toBe(400);
   });
 });
+
+describe("partial profile saves over HTTP", () => {
+  it("saves the changed parts, and needs the page's header like every change", async () => {
+    const created = (await (await call("POST", "/api/profiles", { person: { name: "Patch" } })).json()) as { profile: { id: string } };
+    const id = created.profile.id;
+    const row = { id: "m1", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" };
+    const ok = await call("PATCH", `/api/profiles/${id}/data`, { parts: { measurements: [row] } });
+    expect(await ok.json()).toEqual({ ok: true, written: ["measurements"] });
+    expect(((await (await call("GET", `/api/profiles/${id}/data`)).json()) as { measurements: unknown[] }).measurements).toHaveLength(1);
+    expect((await call("PATCH", `/api/profiles/${id}/data`, { parts: { measurements: [] } }, { "x-bt": "" })).status).toBe(403);
+    expect((await call("PATCH", `/api/profiles/${id}/data`, { parts: [] })).status).toBe(400);
+  });
+});

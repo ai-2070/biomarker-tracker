@@ -2,7 +2,6 @@
 // Each question starts the program once, without its own file, shell or web tools where it allows that.
 // Claude Code, Codex and Hermes (once connected) reach the app's tools through the bridge (bridge.ts),
 // so their answers can be checked like any other. OpenClaw gets a summary of the data in the prompt.
-import { spawn, type ChildProcess } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
@@ -11,25 +10,22 @@ import type { ToolSet } from "ai";
 import { providerInfo, type Effort, type ProviderId } from "../src/core/aiProviders";
 import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
 import { which } from "./which";
+import { killTree, spawnTree } from "./processTree";
 
 export { which } from "./which";
 import type { ToolStep } from "./steps";
+import type { OnEvent } from "./brain/events";
 
 export type AgentId = Extract<ProviderId, "claude-code" | "codex" | "hermes" | "openclaw">;
 export const isAgent = (id: string): id is AgentId => providerInfo(id)?.kind === "agent";
 
 const IS_WIN = process.platform === "win32";
+/** Same as the assistant's limit (brain/ask.ts): no step or turn limit, 10 minutes per question. */
 const TIMEOUT_MS = 10 * 60_000;
 
 export function agentInstalled(id: string): boolean {
   const cmd = providerInfo(id)?.command;
   return !!cmd && !!which(cmd);
-}
-
-function killTree(child: ChildProcess): void {
-  if (!child.pid) return;
-  if (IS_WIN) spawn("taskkill", ["/pid", String(child.pid), "/t", "/f"], { stdio: "ignore" });
-  else child.kill("SIGTERM");
 }
 
 interface Done {
@@ -38,14 +34,19 @@ interface Done {
   stderr: string;
 }
 
-/** Runs a program to the end: input on stdin, stops on abort or after the time limit. */
-function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number }): Promise<Done> {
+/**
+ * Runs a program to the end: input on stdin, stops on abort or after the time limit. The program runs in its
+ * own process group, so stopping it also stops anything it started; whatever it leaves running when it exits
+ * on its own is stopped too (a leftover helper would otherwise hold the output pipe open).
+ */
+export function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number; onLine?: (line: string) => void; graceMs?: number }): Promise<Done> {
   const exe = which(cmd);
   if (!exe) return Promise.resolve({ code: -1, stdout: "", stderr: `The \`${cmd}\` command wasn't found.` });
+  if (opts.signal?.aborted) return Promise.resolve({ code: null, stdout: "", stderr: "Stopped." });
   // .cmd/.bat (npm installs on Windows) only run through cmd.exe. Our arguments contain no quotes or spaces
   // except file paths, which Node quotes.
   const viaCmd = IS_WIN && /\.(cmd|bat)$/i.test(exe);
-  const child = spawn(viaCmd ? "cmd.exe" : exe, viaCmd ? ["/d", "/c", exe, ...args] : args, {
+  const child = spawnTree(viaCmd ? "cmd.exe" : exe, viaCmd ? ["/d", "/c", exe, ...args] : args, {
     cwd: opts.cwd,
     env: { ...process.env, ...opts.env, PYTHONIOENCODING: "utf-8" },
     stdio: ["pipe", "pipe", "pipe"],
@@ -53,17 +54,31 @@ function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: Node
   });
   let stdout = "";
   let stderr = "";
-  child.stdout.setEncoding("utf8").on("data", (d: string) => stdout.length < 5_000_000 && (stdout += d));
-  child.stderr.setEncoding("utf8").on("data", (d: string) => stderr.length < 200_000 && (stderr += d));
-  child.stdin.on("error", () => {});
-  child.stdin.end(opts.input ?? "");
-  const stop = () => killTree(child);
+  let partial = "";
+  child.stdout!.setEncoding("utf8").on("data", (d: string) => {
+    if (stdout.length < 5_000_000) stdout += d;
+    if (!opts.onLine) return;
+    partial += d;
+    const lines = partial.split(/\r?\n/);
+    partial = lines.pop() ?? "";
+    for (const line of lines) if (line.trim()) opts.onLine(line);
+  });
+  child.stderr!.setEncoding("utf8").on("data", (d: string) => stderr.length < 200_000 && (stderr += d));
+  child.stdin!.on("error", () => {});
+  child.stdin!.end(opts.input ?? "");
+  const stop = () => void killTree(child, opts.graceMs);
   opts.signal?.addEventListener("abort", stop);
   const timer = setTimeout(stop, opts.timeoutMs ?? TIMEOUT_MS);
+  // Its own work is done: stop anything it left behind, so the pipes close.
+  child.once("exit", () => void killTree(child, opts.graceMs));
   return new Promise((resolve) => {
+    let done = false;
     const finish = (code: number | null) => {
+      if (done) return;
+      done = true;
       clearTimeout(timer);
       opts.signal?.removeEventListener("abort", stop);
+      if (opts.onLine && partial.trim()) opts.onLine(partial);
       resolve({ code, stdout, stderr });
     };
     child.on("close", finish);
@@ -123,7 +138,8 @@ export const NO_TOOLS_NOTE = [
 // ---- Claude Code ------------------------------------------------------------------------------
 
 export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: string; mcpFile?: string }): string[] {
-  const args = ["-p", "--output-format", "stream-json", "--verbose", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
+  // --include-partial-messages: the answer's text arrives as it is written (streamed to the page).
+  const args = ["-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
   if (o.mcpFile) args.push("--mcp-config", o.mcpFile, "--strict-mcp-config", "--allowedTools", "mcp__bt");
   if (o.model) args.push("--model", o.model);
   if (o.effort) args.push("--effort", o.effort);
@@ -142,6 +158,58 @@ export function parseClaude(out: string, stderr: string): Parsed {
   const message = lines.findLast((line) => line.type === "assistant" && typeof line.message === "object" && line.message !== null)?.message as { model?: unknown; stop_reason?: unknown } | undefined;
   const model = usageModels.length ? usageModels.join(", ") : typeof message?.model === "string" ? message.model : undefined;
   return { ok: true, text, ...(model ? { model } : {}), ...(message?.stop_reason === "max_tokens" ? { truncated: true } : {}) };
+}
+
+const record = (line: string): Record<string, unknown> | undefined => {
+  try {
+    const v = JSON.parse(line) as unknown;
+    return typeof v === "object" && v !== null && !Array.isArray(v) ? (v as Record<string, unknown>) : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+/**
+ * Claude Code's answer text as it is written: `stream_event` text deltas (--include-partial-messages), or a
+ * whole assistant message's text when it wasn't streamed. Sub-agent output and tool calls are left out (the
+ * bridge reports the app's tools as they run).
+ */
+export function claudeLines(emit: OnEvent): (line: string) => void {
+  const streamed = new Set<string>();
+  return (line) => {
+    const ev = record(line);
+    if (!ev || ev.parent_tool_use_id) return;
+    if (ev.type === "stream_event") {
+      const e = ev.event as { type?: string; message?: { id?: string }; delta?: { type?: string; text?: unknown } } | undefined;
+      if (e?.type === "message_start" && typeof e.message?.id === "string") streamed.add(e.message.id);
+      if (e?.type === "content_block_delta" && e.delta?.type === "text_delta" && typeof e.delta.text === "string") emit({ kind: "text", text: e.delta.text });
+    } else if (ev.type === "assistant") {
+      const message = ev.message as { id?: string; content?: { type?: string; text?: unknown }[] } | undefined;
+      if (!message || (typeof message.id === "string" && streamed.has(message.id))) return;
+      for (const block of message.content ?? []) if (block.type === "text" && typeof block.text === "string" && block.text) emit({ kind: "text", text: block.text });
+    }
+  };
+}
+
+/** Codex writes whole messages, not deltas: each agent message is passed on when it is done. */
+export function codexLines(emit: OnEvent): (line: string) => void {
+  let said = false;
+  return (line) => {
+    const ev = record(line);
+    const item = ev?.item as { type?: string; text?: unknown } | undefined;
+    if (ev?.type === "item.completed" && item?.type === "agent_message" && typeof item.text === "string" && item.text) {
+      emit({ kind: "text", text: (said ? "\n\n" : "") + item.text });
+      said = true;
+    } else if (ev?.type === "item.started" && item?.type === "reasoning") emit({ kind: "status", text: "Thinking…" });
+  };
+}
+
+/** Hermes streams its text in `text` lines. */
+export function hermesLines(emit: OnEvent): (line: string) => void {
+  return (line) => {
+    const ev = record(line);
+    if (ev?.type === "text" && typeof ev.text === "string" && ev.text) emit({ kind: "text", text: ev.text });
+  };
 }
 
 // ---- Codex ------------------------------------------------------------------------------------
@@ -269,8 +337,10 @@ export interface AgentRequest {
   model: string;
   effort?: Effort;
   profile?: string;
-  /** The assistant's rules (systemPrompt in assistant.ts). */
+  /** The assistant's stable rules (brain/prompt.ts). */
   system: string;
+  /** This request's part of the prompt (critical results, cautions, the date), after the stable rules. */
+  context?: string;
   messages: AgentMessage[];
   /** The app's tools, offered through the bridge. */
   tools: ToolSet;
@@ -278,8 +348,9 @@ export interface AgentRequest {
   dataPack: () => string;
   /** Claim reviews must never silently start another program run after a failure. */
   claimReview?: boolean;
-  budget?: { timeoutMs: number; maxTurns: number };
   signal?: AbortSignal;
+  /** The answer's text and the app's tool calls as they happen. */
+  onEvent?: OnEvent;
 }
 
 export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean; model?: string; truncated?: boolean } | { ok: false; error: string };
@@ -291,7 +362,9 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
   const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
   if (req.signal?.aborted) return { ok: false, error: "Stopped." };
-  const system = req.system + (bridged ? BRIDGE_NOTE : `${NO_TOOLS_NOTE}\n\nThe user's data:\n${req.dataPack()}`);
+  // Stable rules and the tools note first, then this request's part and data (prompt cache: the program's
+  // provider reads the unchanged start from its cache).
+  const system = [req.system + (bridged ? BRIDGE_NOTE : NO_TOOLS_NOTE), req.context, bridged ? "" : `The user's data:\n${req.dataPack()}`].filter(Boolean).join("\n\n");
   const question = conversationText(req.messages);
   const model = req.model.trim() || undefined;
   const effort = req.effort;
@@ -299,7 +372,7 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   // An empty folder to work in, so the agent doesn't pick up project files or instructions.
   let run: BridgeRun | undefined;
   try {
-    run = bridged ? openRun(req.tools, provider) : undefined;
+    run = bridged ? openRun(req.tools, provider, req.onEvent) : undefined;
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
@@ -310,6 +383,8 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
     if (run) closeRun(run);
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
+  const emit: OnEvent = req.onEvent ?? (() => {});
+  emit({ kind: "status", text: `${info.label} is working…` });
   try {
     let parsed: Parsed;
     if (provider === "claude-code") {
@@ -321,22 +396,21 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
       }
       const args = claudeArgs({ model, effort, systemFile, mcpFile });
-      if (req.budget) args.push("--max-turns", String(req.budget.maxTurns));
-      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
+      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal, onLine: claudeLines(emit) });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
-      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, timeoutMs: req.budget?.timeoutMs, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {}, onLine: codexLines(emit) });
       parsed = parseCodex(r.stdout, r.stderr);
       if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {
-      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
+      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, onLine: hermesLines(emit) });
       parsed = parseHermes(r.stdout, r.stderr);
     } else {
       const messageFile = path.join(dir, "message.md");
       fs.writeFileSync(messageFile, `<instructions>\n${system}\n</instructions>\n\n${question}`);
       const sessionKey = `biomarker-tracker-${crypto.randomBytes(6).toString("hex")}`;
       const once = async (local: boolean) => {
-        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
+        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal });
         return parseOpenClaw(r.stdout, r.stderr);
       };
       let p = await once(false);

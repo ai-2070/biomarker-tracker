@@ -31,5 +31,7 @@ if (path.relative(root, resources).replaceAll("\\", "/") !== "src-tauri/resource
 fs.rmSync(resources, { recursive: true, force: true });
 fs.mkdirSync(resources, { recursive: true });
 for (const dir of ["dist", "knowledge", "skills"]) fs.cpSync(path.join(root, dir), path.join(resources, dir), { recursive: true });
+// Brain's eve runtime (opt-in engine), at the same place relative to BT_ROOT as in the repository.
+fs.cpSync(path.join(root, "runtime/eve/.output"), path.join(resources, "runtime/eve/.output"), { recursive: true });
 console.log(`Desktop resources and ${target} sidecar are ready.`);
 if (target === host) run(["run", "desktop:smoke"]);

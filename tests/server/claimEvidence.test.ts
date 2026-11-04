@@ -1,7 +1,7 @@
 import http from "node:http";
 import { once } from "node:events";
 import { APICallError } from "ai";
-import { MockLanguageModelV4 } from "ai/test";
+import { MockModel } from "./mockModel";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ask } from "../../server/assistant";
 import { runAgent } from "../../server/agents";
@@ -27,7 +27,7 @@ const call = (toolName: string, input: unknown) => ({ content: [{ type: "tool-ca
 const finish = () => ({ content: [{ type: "text" as const, text: "Done." }], finishReason: { unified: "stop" as const, raw: undefined }, usage, warnings: [], response: { id: "response", timestamp: new Date(), modelId: "actual-serving-model" } });
 function scripted(value: unknown = assessment, screening: unknown = screen, extra = false) {
   const actions = [call("prepare_claim_search", plan), ...(extra ? [call("search_research", { ...plan, route: undefined, filter: "all" })] : []), call("screen_claim_records", { records: [screening] }), call("submit_claim_assessment", value)];
-  const model = new MockLanguageModelV4({ doGenerate: async () => actions.shift() ?? finish() });
+  const model = new MockModel({ doGenerate: async () => actions.shift() ?? finish() });
   vi.mocked(readyModel).mockReturnValue({ ok: true, ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "configured-alias" } } });
   return model;
 }
@@ -122,7 +122,7 @@ describe("audited claim workflow", () => {
   });
   it("does not retry an unavailable SDK model or fabricate completed searches", async () => {
     let calls = 0;
-    const model = new MockLanguageModelV4({ doGenerate: async () => { calls++; throw new APICallError({ message: "Synthetic unavailable", url: "http://127.0.0.1/model", requestBodyValues: {}, statusCode: 503, isRetryable: true }); } });
+    const model = new MockModel({ doGenerate: async () => { calls++; throw new APICallError({ message: "Synthetic unavailable", url: "http://127.0.0.1/model", requestBodyValues: {}, statusCode: 503, isRetryable: true }); } });
     vi.mocked(readyModel).mockReturnValue({ ok: true, ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "configured" } } });
     const result = await checkClaimEvidence(request);
     expect(calls).toBe(1); expect(result.research!.queries).toEqual([]); expect(result.research!.status).toBe("search_failed");
@@ -139,11 +139,12 @@ describe("configured model and deeper budgets", () => {
     { provider: "claude-code", model: "haiku", effort: "low" },
     { provider: "codex", model: "selected-codex-model", effort: "medium" },
     { provider: "hermes", model: "selected-hermes-model", effort: "high" },
-  ] as const)("preserves $provider model and effort while increasing deep-check budgets", async (choice) => {
+  ] as const)("preserves $provider model and effort, with no turn limit and the shared 10-minute limit", async (choice) => {
     vi.mocked(currentChoice).mockReturnValue(choice);
     vi.mocked(runAgent).mockImplementation(async (req) => {
       expect(req.provider).toBe(choice.provider); expect(req.model).toBe(choice.model); expect(req.effort).toBe(choice.effort);
-      expect(req.budget).toEqual({ maxTurns: 36, timeoutMs: 600_000 });
+      expect(req).not.toHaveProperty("budget");
+      expect(req.signal).toBeInstanceOf(AbortSignal);
       expect(req.tools.get_nutrient).toBeUndefined(); expect(req.tools.use_research_tool).toBeUndefined(); expect(req.dataPack()).toContain("No personal data");
       const run = openRun(req.tools, req.provider);
       try {
@@ -165,7 +166,7 @@ describe("configured model and deeper budgets", () => {
     vi.mocked(readyModel).mockClear();
     const result = await checkClaimEvidence({ ...request, depth: "deep" }, { fetchFn: fakeFetch });
     expect(result.research?.status).toBe("evidence_found");
-    expect(readyModel).toHaveBeenCalledWith();
+    expect(readyModel).toHaveBeenCalledWith({ cacheKey: "biomarker-tracker-claim" });
     expect(currentChoice()).toEqual(choice);
   });
   it("does not trust an agent's invented tool steps", async () => {

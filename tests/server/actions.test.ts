@@ -1,5 +1,5 @@
 import { tool, type ToolSet } from "ai";
-import { MockLanguageModelV4 } from "ai/test";
+import { MockModel } from "./mockModel";
 import { describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 import { ask } from "../../server/assistant";
@@ -19,7 +19,7 @@ const call = (tools: ToolSet, name: string, input: unknown) => tools[name]!.exec
 /** A scripted model still executes the real SDK tool loop and its actual handlers. */
 function scripted(calls: { tool: string; input: unknown }[], prompts: unknown[] = []) {
   let next = 0;
-  const model = new MockLanguageModelV4({ doGenerate: async (options) => {
+  const model = new MockModel({ doGenerate: async (options) => {
     prompts.push(options.prompt);
     const action = calls[next++];
     return {
@@ -48,8 +48,11 @@ describe("profile detail preparation", () => {
     expect(await call(tools, "get_body_summary", {})).toMatchObject({ bmi: { value: 25 } });
   });
 
-  it("does not offer profile completion without typed text or accept document/history quotes or overwrites", async () => {
-    expect(healthTools(empty()).save_profile_details).toBeUndefined();
+  it("does not complete the profile without typed text or accept document/history quotes or overwrites", async () => {
+    // Offered on every turn (the tool list stays the same for the prompt cache), but it refuses without typed text.
+    const untyped = empty();
+    expect(await call(healthTools(untyped), "save_profile_details", { details: [{ field: "heightCm", quote: "I am 180 cm tall" }] })).toMatchObject({ added: [], error: expect.stringMatching(/typed/) });
+    expect(untyped.profile).toEqual({});
     const snapshot = empty();
     snapshot.profile.heightCm = 170;
     const tools = healthTools(snapshot, undefined, { userText: "What is my BMI?", requestText: "What is my BMI?\nDocument: I am 180 cm tall. I am male." });
@@ -132,7 +135,7 @@ describe("result-driven mutation validation", () => {
 
   it("matches parallel results by call id instead of validating every call to the same tool", async () => {
     let turn = 0;
-    const model = new MockLanguageModelV4({ doGenerate: async () => {
+    const model = new MockModel({ doGenerate: async () => {
       const first = turn++ === 0;
       return {
         content: first ? [

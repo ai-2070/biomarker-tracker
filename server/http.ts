@@ -20,6 +20,10 @@ import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./
 import { generateText } from "ai";
 import { MAX_ZIP_BYTES } from "./zip";
 import { checkClaimEvidence, ClaimEvidenceError } from "./claimEvidence";
+import type { OnEvent } from "./brain/events";
+import { streamAnswer } from "./uistream";
+import { handleEveBridge } from "./eve/bridge";
+import { eveBuilt, setEveBridgePort, stopEve } from "./eve/host";
 
 export const MAX_BODY = 20 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "dist");
@@ -33,7 +37,14 @@ class HttpError extends Error {
 }
 
 type Json = Record<string, unknown>;
-type Handler = (params: string[], body: Json, signal?: AbortSignal) => Promise<unknown> | unknown;
+type Handler = (params: string[], body: Json, signal: AbortSignal | undefined, req: http.IncomingMessage) => Promise<unknown> | unknown;
+
+/** A handler's answer that is streamed (server-sent events) instead of sent as JSON. */
+class Streamed {
+  constructor(readonly run: (onEvent: OnEvent) => Promise<unknown>) {}
+}
+/** The page asks for a stream; other callers (scripts, older pages) still get one JSON reply. */
+const wantsStream = (req: http.IncomingMessage) => /\btext\/event-stream\b/.test(req.headers.accept ?? "");
 const routes: { method: string; re: RegExp; fn: Handler }[] = [];
 const route = (method: string, pattern: string, fn: Handler) => routes.push({ method, re: new RegExp(`^${pattern}$`), fn });
 
@@ -63,7 +74,20 @@ route("GET", "/api/settings", async () => {
     /** False while the default (Claude Code, Opus) is in use because nothing was saved yet. */
     chosen: !!s.assistant,
     ready: assistantCheck(),
+    eve: { on: s.eve === true, built: eveBuilt() },
   };
+});
+
+/** eve as the engine for API and local models (preview). Switching it off stops the runtime. */
+route("PUT", "/api/settings/eve", async (_p, body) => {
+  if (typeof body.on !== "boolean") throw new HttpError(400, "Say whether eve should be on.");
+  if (body.on && !eveBuilt()) throw new HttpError(400, "The eve runtime isn't built on this computer. Run `bun run eve:build` first.");
+  updateSettings((s) => {
+    if (body.on) s.eve = true;
+    else delete s.eve;
+  });
+  if (!body.on) await stopEve();
+  return { ok: true, eve: { on: body.on === true, built: eveBuilt() } };
 });
 
 /** Models (or profiles) that are loaded rather than listed in the app: local servers, Hermes, OpenClaw. */
@@ -214,6 +238,12 @@ route("PUT", `/api/profiles/${ID}/data`, ([id], body) => {
   profiles.saveProfileData(id!, body);
   return { ok: true };
 });
+// Only the parts that changed since the page's last acknowledged save (src/app/profiles.ts).
+route("PATCH", `/api/profiles/${ID}/data`, ([id], body) => {
+  const parts = body.parts;
+  if (typeof parts !== "object" || parts === null || Array.isArray(parts)) throw new HttpError(400, "Send the changed parts of the profile.");
+  return { ok: true, ...profiles.saveProfileParts(id!, parts as Record<string, unknown>) };
+});
 route("DELETE", `/api/profiles/${ID}`, ([id]) => {
   profiles.deleteProfile(id!);
   return { ok: true, active: profiles.activeProfile() };
@@ -301,7 +331,7 @@ route("POST", "/api/claim-evidence", async (_p, body, signal) => {
   }
 });
 
-route("POST", "/api/assistant", async (_p, body, signal) => {
+route("POST", "/api/assistant", async (_p, body, signal, req) => {
   if (body.scope !== undefined && body.scope !== "research") throw new HttpError(400, "Unknown assistant scope.");
   if (body.scope === "research") {
     // Do not parse or retain snapshot/history/photos, even when a caller supplies them.
@@ -309,7 +339,8 @@ route("POST", "/api/assistant", async (_p, body, signal) => {
     const latest = raw.filter((m): m is Json => typeof m === "object" && m !== null && m.role === "user").at(-1);
     const question = str(latest?.content, 20_000)?.trim();
     if (!question) throw new HttpError(400, "Ask a question.");
-    return ask([{ role: "user", content: question }], { measurements: [], protocols: [], experiments: [], profile: {} }, { researchOnly: true, signal });
+    const research = (onEvent?: OnEvent) => ask([{ role: "user", content: question }], { measurements: [], protocols: [], experiments: [], profile: {} }, { researchOnly: true, signal, ...(onEvent ? { onEvent } : {}) });
+    return wantsStream(req) ? new Streamed(research) : research();
   }
   const snap = parseSnapshot(body.snapshot);
   if (!snap.ok) throw new HttpError(400, snap.error);
@@ -331,7 +362,8 @@ route("POST", "/api/assistant", async (_p, body, signal) => {
     !messages[messages.length - 1]!.content.startsWith(body.userText))) {
     throw new HttpError(400, "The typed question does not match the latest message.");
   }
-  return ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}) });
+  const personal = (onEvent?: OnEvent) => ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}), ...(onEvent ? { onEvent } : {}) });
+  return wantsStream(req) ? new Streamed(personal) : personal();
 });
 
 // Security and serving
@@ -425,6 +457,15 @@ export function createServer(port: number): http.Server {
         return;
       }
     }
+    // The eve runtime this server started calls back here, with its own token (eve/bridge.ts).
+    if (url.pathname.startsWith("/eve-bridge/")) {
+      try {
+        return await handleEveBridge(req, res, url, method === "POST" ? await readBody(req) : {});
+      } catch (e) {
+        if (!res.headersSent) send(e instanceof HttpError ? e.status : 400, { error: e instanceof Error ? e.message : "Bad request." });
+        return;
+      }
+    }
     if (!url.pathname.startsWith("/api/")) {
       if (method !== "GET") return send(405, { error: "Not allowed." });
       try {
@@ -453,7 +494,9 @@ export function createServer(port: number): http.Server {
     if (controller) res.once("close", cancel);
     try {
       const body = method === "GET" ? {} : await readBody(req);
-      const result = await r.fn(r.re.exec(url.pathname)!.slice(1), body, controller?.signal);
+      const result = await r.fn(r.re.exec(url.pathname)!.slice(1), body, controller?.signal, req);
+      // Checks failed before this point are JSON errors with a status; once streaming, errors are chunks.
+      if (result instanceof Streamed) return await streamAnswer(res, result.run);
       if (!res.destroyed) send(200, result);
     } catch (e) {
       if (res.destroyed) return;
@@ -463,6 +506,10 @@ export function createServer(port: number): http.Server {
       if (controller) res.off("close", cancel);
     }
   });
-  server.once("listening", () => setBridgePort((server.address() as { port: number }).port));
+  server.once("listening", () => {
+    const listening = (server.address() as { port: number }).port;
+    setBridgePort(listening);
+    setEveBridgePort(listening);
+  });
   return server;
 }

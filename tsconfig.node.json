@@ -29,6 +29,12 @@
     "tests",
     "vite.config.ts",
     "server",
-    "tools"
+    "tools",
+    "runtime/eve/agent",
+    "runtime/eve/launch.mjs"
+  ],
+  "exclude": [
+    "runtime/eve/.output",
+    "runtime/eve/.eve"
   ]
 }

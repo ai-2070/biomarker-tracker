@@ -39,6 +39,8 @@ jobs:
       - name: Check release and application versions
         run: bun run desktop:check-version "$RELEASE_TAG"
       - run: bun run typecheck
+      # Built first so the end-to-end eve tests run (they're skipped without the runtime).
+      - run: bun run eve:build
       - run: bun run test
 
   release:
@@ -86,12 +88,13 @@ jobs:
           - os: ubuntu-24.04
             target: x86_64-unknown-linux-gnu
             bundles: deb,appimage
+          # app: the .app.tar.gz the updater installs; dmg: the installer people download.
           - os: macos-latest
             target: aarch64-apple-darwin
-            bundles: dmg
+            bundles: app,dmg
           - os: macos-15-intel
             target: x86_64-apple-darwin
-            bundles: dmg
+            bundles: app,dmg
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     steps:
@@ -133,13 +136,33 @@ jobs:
               printf '%s<<BT_APPLE_VALUE\n%s\nBT_APPLE_VALUE\n' "$name" "${!name}" >> "$GITHUB_ENV"
             fi
           done
+      # Signed updates (src-tauri/src/updater.rs, docs/desktop.md). Without the key, builds still work but
+      # can't be installed as updates; a release must have it.
+      - name: Updater signing
+        shell: bash
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+        run: |
+          if [[ -n "$TAURI_SIGNING_PRIVATE_KEY" ]]; then
+            echo "BT_UPDATER=1" >> "$GITHUB_ENV"
+            echo "BT_UPDATER_ARGS=--config src-tauri/tauri.updater.conf.json" >> "$GITHUB_ENV"
+          elif [[ -n "$RELEASE_TAG" ]]; then
+            echo "::error::A release needs the TAURI_SIGNING_PRIVATE_KEY secret, or installed apps can't update to it."
+            exit 1
+          else
+            echo "::warning::No TAURI_SIGNING_PRIVATE_KEY secret: these installers can't be used as updates."
+          fi
       - name: Build installers and attach release assets
         uses: tauri-apps/tauri-action@1deb371b0cd8bd54025b384f1cd735e725c4060f # v1.0.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           tauriScript: bun run tauri
-          args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} -- --locked
+          args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} ${{ env.BT_UPDATER_ARGS }} -- --locked
           releaseId: ${{ needs.release.outputs.id }}
           uploadWorkflowArtifacts: true
-          uploadUpdaterJson: false
+          # latest.json on the release: what installed apps check (plugins.updater.endpoints).
+          uploadUpdaterJson: ${{ env.BT_UPDATER == '1' }}
+          updaterJsonPreferNsis: true
