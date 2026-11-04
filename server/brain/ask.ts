@@ -20,6 +20,7 @@ import type { ToolStep } from "../steps";
 import { runAgentQuestion } from "./agentRun";
 import { runApiModel } from "./apiModel";
 import { cacheKey } from "./cache";
+import type { OnEvent } from "./events";
 import { ClaimReview } from "./claimReview";
 import { promptParts } from "./prompt";
 import { EMPTY_SNAPSHOT, requestTools } from "./tools";
@@ -49,6 +50,8 @@ export interface AskOptions {
   userText?: string;
   /** Tests pass a mock model. */
   ready?: Ready;
+  /** Text, tool calls and status as they happen (the streamed answer). The reply is still returned whole. */
+  onEvent?: OnEvent;
 }
 
 const STOPPED = { ok: false, error: "Stopped." } as const;
@@ -139,12 +142,12 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
     if (messages.some((m) => m.images?.length)) {
       return { ok: false, error: "Photos can only be sent to models used with an API key or running on this computer, not to agent programs. Choose one in Settings → AI models, or send the question without the photo." };
     }
-    return runAgentQuestion({ agent, parts, messages, tools, snapshot, researchOnly: !!opts.researchOnly, claim, failedServers: servers.failed, signal, userSignal: opts.signal });
+    return runAgentQuestion({ agent, parts, messages, tools, snapshot, researchOnly: !!opts.researchOnly, claim, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
   }
 
   if (!ready) return { ok: false, error: "Set up a model first." };
   const info = providerInfo(ready.choice.provider);
   const label = info?.models.find((m) => m.id === ready.choice.model)?.label ?? (ready.choice.model || "default model");
   const modelLabel = `${info?.label ?? ready.choice.provider} · ${label.replace(/ \(fastest\)$/, "")}`;
-  return runApiModel({ ready, parts, messages: modelMessages(messages), tools, key, claim, modelLabel, maxOutputTokens: opts.claimSession?.research.depth === "deep" ? 16_000 : 8000, failedServers: servers.failed, signal, userSignal: opts.signal });
+  return runApiModel({ ready, parts, messages: modelMessages(messages), tools, key, claim, modelLabel, maxOutputTokens: opts.claimSession?.research.depth === "deep" ? 16_000 : 8000, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
 }

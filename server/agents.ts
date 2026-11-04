@@ -14,6 +14,7 @@ import { killTree, spawnTree } from "./processTree";
 
 export { which } from "./which";
 import type { ToolStep } from "./steps";
+import type { OnEvent } from "./brain/events";
 
 export type AgentId = Extract<ProviderId, "claude-code" | "codex" | "hermes" | "openclaw">;
 export const isAgent = (id: string): id is AgentId => providerInfo(id)?.kind === "agent";
@@ -137,7 +138,8 @@ export const NO_TOOLS_NOTE = [
 // ---- Claude Code ------------------------------------------------------------------------------
 
 export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: string; mcpFile?: string }): string[] {
-  const args = ["-p", "--output-format", "stream-json", "--verbose", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
+  // --include-partial-messages: the answer's text arrives as it is written (streamed to the page).
+  const args = ["-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
   if (o.mcpFile) args.push("--mcp-config", o.mcpFile, "--strict-mcp-config", "--allowedTools", "mcp__bt");
   if (o.model) args.push("--model", o.model);
   if (o.effort) args.push("--effort", o.effort);
@@ -156,6 +158,58 @@ export function parseClaude(out: string, stderr: string): Parsed {
   const message = lines.findLast((line) => line.type === "assistant" && typeof line.message === "object" && line.message !== null)?.message as { model?: unknown; stop_reason?: unknown } | undefined;
   const model = usageModels.length ? usageModels.join(", ") : typeof message?.model === "string" ? message.model : undefined;
   return { ok: true, text, ...(model ? { model } : {}), ...(message?.stop_reason === "max_tokens" ? { truncated: true } : {}) };
+}
+
+const record = (line: string): Record<string, unknown> | undefined => {
+  try {
+    const v = JSON.parse(line) as unknown;
+    return typeof v === "object" && v !== null && !Array.isArray(v) ? (v as Record<string, unknown>) : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+/**
+ * Claude Code's answer text as it is written: `stream_event` text deltas (--include-partial-messages), or a
+ * whole assistant message's text when it wasn't streamed. Sub-agent output and tool calls are left out (the
+ * bridge reports the app's tools as they run).
+ */
+export function claudeLines(emit: OnEvent): (line: string) => void {
+  const streamed = new Set<string>();
+  return (line) => {
+    const ev = record(line);
+    if (!ev || ev.parent_tool_use_id) return;
+    if (ev.type === "stream_event") {
+      const e = ev.event as { type?: string; message?: { id?: string }; delta?: { type?: string; text?: unknown } } | undefined;
+      if (e?.type === "message_start" && typeof e.message?.id === "string") streamed.add(e.message.id);
+      if (e?.type === "content_block_delta" && e.delta?.type === "text_delta" && typeof e.delta.text === "string") emit({ kind: "text", text: e.delta.text });
+    } else if (ev.type === "assistant") {
+      const message = ev.message as { id?: string; content?: { type?: string; text?: unknown }[] } | undefined;
+      if (!message || (typeof message.id === "string" && streamed.has(message.id))) return;
+      for (const block of message.content ?? []) if (block.type === "text" && typeof block.text === "string" && block.text) emit({ kind: "text", text: block.text });
+    }
+  };
+}
+
+/** Codex writes whole messages, not deltas: each agent message is passed on when it is done. */
+export function codexLines(emit: OnEvent): (line: string) => void {
+  let said = false;
+  return (line) => {
+    const ev = record(line);
+    const item = ev?.item as { type?: string; text?: unknown } | undefined;
+    if (ev?.type === "item.completed" && item?.type === "agent_message" && typeof item.text === "string" && item.text) {
+      emit({ kind: "text", text: (said ? "\n\n" : "") + item.text });
+      said = true;
+    } else if (ev?.type === "item.started" && item?.type === "reasoning") emit({ kind: "status", text: "Thinking…" });
+  };
+}
+
+/** Hermes streams its text in `text` lines. */
+export function hermesLines(emit: OnEvent): (line: string) => void {
+  return (line) => {
+    const ev = record(line);
+    if (ev?.type === "text" && typeof ev.text === "string" && ev.text) emit({ kind: "text", text: ev.text });
+  };
 }
 
 // ---- Codex ------------------------------------------------------------------------------------
@@ -295,6 +349,8 @@ export interface AgentRequest {
   /** Claim reviews must never silently start another program run after a failure. */
   claimReview?: boolean;
   signal?: AbortSignal;
+  /** The answer's text and the app's tool calls as they happen. */
+  onEvent?: OnEvent;
 }
 
 export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean; model?: string; truncated?: boolean } | { ok: false; error: string };
@@ -316,7 +372,7 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   // An empty folder to work in, so the agent doesn't pick up project files or instructions.
   let run: BridgeRun | undefined;
   try {
-    run = bridged ? openRun(req.tools, provider) : undefined;
+    run = bridged ? openRun(req.tools, provider, req.onEvent) : undefined;
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
@@ -327,6 +383,8 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
     if (run) closeRun(run);
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
+  const emit: OnEvent = req.onEvent ?? (() => {});
+  emit({ kind: "status", text: `${info.label} is working…` });
   try {
     let parsed: Parsed;
     if (provider === "claude-code") {
@@ -338,14 +396,14 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
       }
       const args = claudeArgs({ model, effort, systemFile, mcpFile });
-      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal });
+      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal, onLine: claudeLines(emit) });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
-      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {}, onLine: codexLines(emit) });
       parsed = parseCodex(r.stdout, r.stderr);
       if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {
-      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
+      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, onLine: hermesLines(emit) });
       parsed = parseHermes(r.stdout, r.stderr);
     } else {
       const messageFile = path.join(dir, "message.md");

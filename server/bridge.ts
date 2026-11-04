@@ -9,6 +9,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { CallToolRequestSchema, ListToolsRequestSchema, type Tool } from "@modelcontextprotocol/sdk/types.js";
 import { asSchema, type ToolSet } from "ai";
 import { studyIdsFromTool, toolStep, validateToolResult, type ToolStep } from "./steps";
+import { toolFinished, toolStarted, type OnEvent } from "./brain/events";
 import { getSecrets, updateSecrets } from "./store";
 
 export const BRIDGE_NAME = "biomarker-tracker";
@@ -18,6 +19,8 @@ export interface BridgeRun {
   tools: ToolSet;
   steps: ToolStep[];
   ids: Set<string>;
+  /** Tool calls as they happen (the streamed answer). */
+  onEvent?: OnEvent;
 }
 
 const runs = new Map<string, BridgeRun>();
@@ -28,10 +31,10 @@ let port = 4820;
 export const setBridgePort = (p: number) => (port = p);
 export const bridgeUrl = () => `http://127.0.0.1:${port}/mcp`;
 
-export function openRun(tools: ToolSet, engine?: string): BridgeRun {
+export function openRun(tools: ToolSet, engine?: string, onEvent?: OnEvent): BridgeRun {
   // Hermes stores one stable token: overlapping runs must never retarget it to another scope.
   if (engine === "hermes" && current.has(engine)) throw new Error("Hermes is already answering a question. Wait for it to finish before asking another.");
-  const run: BridgeRun = { token: crypto.randomBytes(32).toString("hex"), tools, steps: [], ids: new Set() };
+  const run: BridgeRun = { token: crypto.randomBytes(32).toString("hex"), tools, steps: [], ids: new Set(), ...(onEvent ? { onEvent } : {}) };
   runs.set(run.token, run);
   if (engine) current.set(engine, run);
   return run;
@@ -84,14 +87,18 @@ export async function callTool(run: BridgeRun, name: string, input: Record<strin
   if (!t?.execute) return { text: `No tool called ${name}.`, isError: true };
   const step = toolStep(name, input);
   run.steps.push(step);
+  const callId = crypto.randomUUID();
+  run.onEvent?.(toolStarted(callId, name, input));
   try {
-    const output: unknown = await t.execute(input, { toolCallId: crypto.randomUUID(), messages: [] } as unknown as Parameters<NonNullable<typeof t.execute>>[1]);
+    const output: unknown = await t.execute(input, { toolCallId: callId, messages: [] } as unknown as Parameters<NonNullable<typeof t.execute>>[1]);
     validateToolResult(step, output);
     if (step.server === undefined && ["propose_habit", "propose_protocol", "propose_meal"].includes(name)) step.output = output;
     for (const id of studyIdsFromTool(name, output)) run.ids.add(id);
+    run.onEvent?.(toolFinished(callId, name, input, output));
     return { text: typeof output === "string" ? output : JSON.stringify(output), isError: !step.success };
   } catch (e) {
     step.success = false;
+    run.onEvent?.(toolFinished(callId, name, input, undefined, true));
     return { text: e instanceof Error ? e.message : String(e), isError: true };
   }
 }
