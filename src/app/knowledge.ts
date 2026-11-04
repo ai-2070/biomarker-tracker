@@ -2,8 +2,8 @@ import { TOPICS, validateComparisonTopic, type ComparisonTopicFile } from "../co
 import { validateFitnessTest, type FitnessTestDef } from "../core/fitnessTests";
 import { validateNutrientDef, type NutrientDef } from "../core/nutrients";
 import { validateEvidenceClaim } from "../core/evidence";
-import { validateBiomarkerDef } from "../core/knowledge";
-import type { BiomarkerCategory, BiomarkerDef, EvidenceClaim, FoodTable } from "../core/types";
+import { CATEGORY_ORDER, validateBiomarkerDef } from "../core/knowledge";
+import type { BiomarkerDef, EvidenceClaim, FoodTable } from "../core/types";
 import foodTable from "../../knowledge/foods/cofid-foods.json";
 import { lowerFirst } from "./format";
 import { validateLifestyleDef, type LifestyleDef } from "../core/lifestyle";
@@ -31,19 +31,7 @@ function load(): BiomarkerDef[] {
 export const BIOMARKERS: readonly BiomarkerDef[] = load();
 export const BIOMARKER_MAP: ReadonlyMap<string, BiomarkerDef> = new Map(BIOMARKERS.map((d) => [d.id, d]));
 
-export const CATEGORY_ORDER: readonly BiomarkerCategory[] = [
-  "Blood count",
-  "Metabolic",
-  "Lipids",
-  "Kidney",
-  "Liver",
-  "Thyroid",
-  "Iron & vitamins",
-  "Electrolytes",
-  "Inflammation",
-  "Aging",
-  "Body",
-];
+export { CATEGORY_ORDER };
 
 /** Body measurements (weight, waist, blood pressure…) are markers too, but not blood tests. */
 export const isBodyMarker = (def: BiomarkerDef): boolean => def.category === "Body";

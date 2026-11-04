@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { MockLanguageModelV4 } from "ai/test";
 import { describe, expect, it } from "vitest";
 import { ask, dataPack, studyIdsIn } from "../../server/assistant";
-import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, safetyOf, type HealthSnapshot } from "../../server/healthTools";
+import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, safetyOf, testSummaryFor, type HealthSnapshot } from "../../server/healthTools";
 import { findMarker } from "../../server/knowledge";
 import { toolStep } from "../../server/steps";
 import type { Measurement, ProtocolEntry } from "../../src/core/types";
@@ -31,6 +31,32 @@ describe("health tools", () => {
     const o = resultsOverview(snapshot);
     expect(o.critical).toEqual(["Potassium"]);
     expect(o.markers.find((x) => x.marker === "ferritin")).toMatchObject({ flag: "low", latest: "14 µg/L" });
+  });
+
+  it("gives the app's test summary: critical first, explanations from the marker files, doctor questions", async () => {
+    const out = (await healthTools(snapshot).get_test_summary!.execute!({}, { toolCallId: "t", messages: [] } as never)) as ReturnType<typeof testSummaryFor> & { critical: { name: string }[] };
+    expect(out).toMatchObject({ date: "2024-05-12", otherTestDates: ["2024-01-10"] });
+    expect(out.critical.map((c) => c.name)).toEqual(["Potassium"]);
+    expect(out).toHaveProperty("criticalNote");
+    const ferritin = (out as { outsideRange: { results: { marker: string; whatItUsuallyMeans?: string; outsideOnTestsInARow?: number }[] }[] }).outsideRange.flatMap((g) => g.results).find((x) => x.marker === "ferritin")!;
+    expect(ferritin.whatItUsuallyMeans).toBe(findMarker("ferritin")!.low.meaning);
+    expect(ferritin.outsideOnTestsInARow).toBe(2);
+    expect((out as { questionsForTheDoctor: string[] }).questionsForTheDoctor.at(-1)).toMatch(/next test/);
+    const earlier = (await healthTools(snapshot).get_test_summary!.execute!({ date: "2024-01-10" }, { toolCallId: "t", messages: [] } as never)) as { date: string };
+    expect(earlier.date).toBe("2024-01-10");
+    expect(JSON.parse(dataPack(snapshot)).latestTestSummary.date).toBe("2024-05-12");
+  });
+
+  it("gives the app's year summary, saying when there are too few tests for a trend", async () => {
+    const out = (await healthTools(snapshot).get_year_summary!.execute!({ year: 2024 }, { toolCallId: "t", messages: [] } as never)) as { tests: string[]; measured: { markers: { marker: string; trend: unknown; versusBefore: unknown }[] }[]; questionsForTheDoctor: string[] };
+    expect(out.tests).toEqual(["2024-01-10", "2024-05-12"]);
+    const ferritin = out.measured.flatMap((g) => g.markers).find((x) => x.marker === "ferritin")!;
+    expect(ferritin.trend).toMatch(/not enough results/);
+    expect(ferritin.versusBefore).toBe("nothing earlier to compare with");
+    expect(out.questionsForTheDoctor.at(-1)).toMatch(/How often/);
+    const rolling = (await healthTools(snapshot).get_year_summary!.execute!({}, { toolCallId: "t", messages: [] } as never)) as { tests: string[]; note?: string };
+    expect(rolling.tests).toEqual([]);
+    expect(rolling.note).toMatch(/No blood test/);
   });
 
   it("finds markers by alias", () => {

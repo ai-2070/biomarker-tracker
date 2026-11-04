@@ -1,0 +1,93 @@
+{
+  "id": "calcium",
+  "name": "Calcium (total)",
+  "abbreviation": "Ca",
+  "category": "Electrolytes",
+  "aliases": [
+    "Calcium",
+    "Total calcium",
+    "Calcium, total",
+    "Calcium total",
+    "Serum calcium",
+    "Gesamtcalcium",
+    "Calcium gesamt",
+    "Kalzium",
+    "Gesamtkalzium",
+    "Kalcium",
+    "Összkalcium",
+    "Össz-kalcium",
+    "Calcémie",
+    "Calcium total sérique",
+    "Calcio",
+    "Calcio total",
+    "Calcio totale",
+    "Calcemia"
+  ],
+  "loinc": [
+    "2000-8",
+    "17861-6"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.2495,
+    "mg/L": 0.02495,
+    "mEq/L": 0.5
+  },
+  "defaultRanges": [
+    {
+      "low": 2.1,
+      "high": 2.6
+    }
+  ],
+  "criticalRange": {
+    "low": 1.8,
+    "high": 3.5
+  },
+  "rangeNote": "About half of the calcium in blood is carried by albumin, a blood protein. When albumin is low, total calcium reads low even if the active (free) calcium is normal, so the result is read together with albumin. Some labs also report a corrected calcium or measure the free (ionised) calcium directly.",
+  "summary": "Calcium keeps bones and teeth strong and is needed for nerves, muscles and the heart to work. This test measures all the calcium in blood: the part attached to proteins and the free, active part. The body keeps it in a narrow range.",
+  "high": {
+    "meaning": "A mildly high calcium often causes no symptoms. Higher levels can cause thirst, passing a lot of urine, constipation, tiredness and confusion. Lasting high calcium is most often from an overactive parathyroid gland or, less often, cancer, and needs a doctor to find the cause.",
+    "commonCauses": [
+      "Overactive parathyroid gland (primary hyperparathyroidism)",
+      "Some cancers",
+      "Large amounts of calcium, vitamin D or vitamin A supplements",
+      "Water pills (thiazide diuretics) and some other medicines",
+      "Dehydration or a tight tourniquet during the blood draw"
+    ]
+  },
+  "low": {
+    "meaning": "A low total calcium often just reflects a low albumin, the protein that carries much of it. A truly low calcium can cause tingling around the mouth or in the fingers, muscle cramps and, when severe, heart rhythm problems.",
+    "commonCauses": [
+      "Low albumin (the active calcium may still be normal)",
+      "Low vitamin D",
+      "Low magnesium",
+      "After neck surgery on the thyroid or parathyroid glands",
+      "Reduced kidney function",
+      "Some bone medicines, such as denosumab or bisphosphonate infusions"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "36282253",
+      "doi": "10.1001/jama.2022.18331",
+      "title": "Hypercalcemia: A Review",
+      "year": 2022,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27935815",
+      "doi": "10.1530/ec-16-0056",
+      "title": "SOCIETY FOR ENDOCRINOLOGY ENDOCRINE EMERGENCY GUIDANCE: Emergency management of acute hypocalcaemia in adult patients",
+      "year": 2016,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "25678727",
+      "title": "Harmonising adult and paediatric reference intervals in australia and new zealand: an evidence-based approach for establishing a first panel of chemistry analytes",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

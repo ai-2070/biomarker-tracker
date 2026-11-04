@@ -55,6 +55,7 @@ export function BloodDashboardPage() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          <LinkButton href={href({ name: "test-summary" })}>Summary of the latest test</LinkButton>
           <LinkButton variant="secondary" href={href({ name: "overview" })}>
             All results
           </LinkButton>

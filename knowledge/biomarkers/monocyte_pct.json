@@ -1,0 +1,71 @@
+{
+  "id": "monocyte_pct",
+  "name": "Monocytes (%)",
+  "category": "Blood count",
+  "aliases": [
+    "Monocytes %",
+    "Monocytes (%)",
+    "Monocyte %",
+    "MONO%",
+    "MO%",
+    "Monozyten %",
+    "Monocyta %",
+    "Monocita %",
+    "Monocitos %",
+    "Monociti %"
+  ],
+  "loinc": [
+    "5905-5"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "low": 2,
+      "high": 10
+    }
+  ],
+  "rangeNote": "A percentage depends on the total white cell count. The absolute monocyte count (cells per litre) is often more useful.",
+  "summary": "Monocytes are white blood cells that clear away germs and damaged cells and help control inflammation. This value is their share of all white cells.",
+  "high": {
+    "meaning": "A higher share of monocytes is common while recovering from an infection and with long-lasting infections or inflammation. A share that stays raised for months is worth discussing with your doctor.",
+    "commonCauses": [
+      "Recovery after an infection",
+      "Long-lasting infections, such as tuberculosis",
+      "Inflammatory conditions, such as inflammatory bowel disease or rheumatic disease",
+      "Blood disorders such as chronic myelomonocytic leukaemia (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A lower share often just means other white cells, usually neutrophils, have risen. On its own it rarely means much.",
+    "commonCauses": [
+      "Other white cells raised, for example by a bacterial infection",
+      "Steroid medicines",
+      "Treatments that slow the bone marrow, such as chemotherapy"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "33880680",
+      "doi": "10.1007/s11899-021-00618-4",
+      "title": "Differential Diagnosis and Workup of Monocytosis: A Systematic Approach to a Common Hematologic Finding",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11087187",
+      "title": "Leukocytosis: basics of clinical assessment",
+      "year": 2000,
+      "studyType": "review"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "uric_acid",
+  "name": "Uric acid",
+  "category": "Metabolic",
+  "aliases": [
+    "Uric acid",
+    "Urate",
+    "Serum uric acid",
+    "Serum urate",
+    "Uric acid (urate)",
+    "Harnsäure",
+    "Húgysav",
+    "Acide urique",
+    "Uricémie",
+    "Ácido úrico",
+    "Acido urico",
+    "Uricemia",
+    "Urinezuur"
+  ],
+  "loinc": [
+    "14933-6",
+    "3084-1"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1,
+    "mmol/L": 1000,
+    "mg/dL": 59.48,
+    "mg/L": 5.948
+  },
+  "defaultRanges": [
+    {
+      "low": 208,
+      "high": 428,
+      "sex": "m"
+    },
+    {
+      "low": 155,
+      "high": 357,
+      "sex": "f",
+      "ageTo": 50
+    },
+    {
+      "low": 208,
+      "high": 428,
+      "sex": "f",
+      "ageFrom": 50
+    }
+  ],
+  "rangeNote": "Typical ranges: 3.5–7.2 mg/dL (208–428 µmol/L) for men and women after menopause, 2.6–6.0 mg/dL (155–357 µmol/L) for women before menopause. The app uses age 50 as a rough stand-in for menopause. Levels can rise after a large meal, alcohol or hard exercise.",
+  "summary": "Uric acid (urate) is a waste product made when the body breaks down purines, substances found in its own cells and in many foods. The kidneys remove most of it.",
+  "high": {
+    "meaning": "A high uric acid can form crystals in joints (gout) or kidney stones, though many people with a high level never develop either. Studies also link high uric acid with heart and kidney disease, but they have not shown that uric acid itself causes these.",
+    "commonCauses": [
+      "Reduced kidney function",
+      "Water pills (diuretics) and some other medicines",
+      "Alcohol, especially beer and spirits",
+      "Foods rich in purines, such as red meat, organ meats and some seafood",
+      "Sugary drinks sweetened with fructose",
+      "Excess body weight",
+      "Inherited tendency"
+    ]
+  },
+  "low": {
+    "meaning": "A low uric acid rarely causes problems by itself. It most often comes from medicines that lower it.",
+    "commonCauses": [
+      "Medicines that lower uric acid, such as those used for gout",
+      "Some other medicines, such as SGLT2 inhibitor diabetes medicines",
+      "Pregnancy",
+      "Rare inherited kidney or enzyme conditions"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "24867507",
+      "title": "Is it time to revise the normal range of serum uric acid levels?",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "28592419",
+      "doi": "10.1136/bmj.j2376",
+      "title": "Serum uric acid levels and multiple health outcomes: umbrella review of evidence from observational studies, randomised controlled trials, and Mendelian randomisation studies",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27457514",
+      "doi": "10.1136/annrheumdis-2016-209707",
+      "title": "2016 updated EULAR evidence-based recommendations for the management of gout",
+      "year": 2017,
+      "studyType": "guideline"
+    }
+  ]
+}

@@ -20,6 +20,12 @@ export function normalizeOcrText(text: string): string {
         .replace(/(?<=[x×*]\s?10)\s?["'*°^74A]?\s?(9|12)(?=\s?\/\s?[lL]\b)/g, "^$1")
         // Litre read as a capital i: "G/I" "mmol/I" (no unit ends in /I).
         .replace(/(?<=\/)I\b/g, "l")
+        // Dotless ı from the language models; no supported lab language uses it.
+        .replace(/ı/g, "i")
+        // Femtolitre read as a pound sign or É: "91.9 £L".
+        .replace(/(?<=\d[\s.,]*)[£É]L\b/g, "fL")
+        // RDW read as ROW at the start of a result line.
+        .replace(/^(\s*)R[O0]W(?=\s+[\s\S]*\d)/, "$1RDW")
         // A space inside a decimal: "5 .2" "5. 2"
         .replace(/(?<=\d) ?([.,]) ?(?=\d)/g, "$1")
         .replace(/[ \t]{2,}/g, "  ")

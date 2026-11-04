@@ -28,6 +28,16 @@ describe("normalizeOcrText", () => {
     expect(fixed.rows[0]).toMatchObject({ biomarkerId: "wbc", value: "5,6", problems: [] });
   });
 
+  it("fixes dotless i, femtolitres read as £L and RDW read as ROW", () => {
+    expect(normalizeOcrText("Serum Natrıum  140.0  mmol/L")).toBe("Serum Natrium  140.0  mmol/L");
+    expect(normalizeOcrText("MCV  91.9  £L  82.0-95.0")).toBe("MCV  91.9  fL  82.0-95.0");
+    expect(normalizeOcrText("MPV  7.8  ÉL")).toBe("MPV  7.8  fL");
+    expect(normalizeOcrText("ROW  13.3  %  11.5-14.5")).toBe("RDW  13.3  %  11.5-14.5");
+    // Only next to a number, and only at the start of a result line.
+    expect(normalizeOcrText("ÉL")).toBe("ÉL");
+    expect(normalizeOcrText("ROW")).toBe("ROW");
+  });
+
   it("leaves words alone", () => {
     expect(normalizeOcrText("Total cholesterol  Ok")).toBe("Total cholesterol  Ok");
     expect(normalizeOcrText("Folate  Oxford Lab")).toBe("Folate  Oxford Lab");

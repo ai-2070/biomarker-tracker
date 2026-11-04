@@ -1,0 +1,111 @@
+{
+  "id": "calcium_ionized",
+  "name": "Ionised calcium",
+  "abbreviation": "iCa",
+  "category": "Electrolytes",
+  "aliases": [
+    "Ionised calcium",
+    "Ionized calcium",
+    "Free calcium",
+    "iCa",
+    "Ca++",
+    "Ca2+",
+    "Ionised Ca",
+    "Ionized Ca",
+    "Free Ca",
+    "Calcium ionised",
+    "Calcium ionized",
+    "Calcium, ionised",
+    "Calcium, ionized",
+    "Calcium (ionised)",
+    "Calcium (ionized)",
+    "Calcium free",
+    "Calcium ionisiert",
+    "Calcium, ionisiert",
+    "Calcium (ionisiert)",
+    "Ionisiertes Calcium",
+    "Freies Calcium",
+    "Kalzium ionisiert",
+    "Ionisiertes Kalzium",
+    "Ca ionisiert",
+    "Ionizált kalcium",
+    "Ionizált Ca",
+    "Kalcium ionizált",
+    "Ca ionizált",
+    "Calcium ionisé",
+    "Calcium libre",
+    "Calcémie ionisée",
+    "Calcio iónico",
+    "Calcio ionizado",
+    "Calcio ionizzato"
+  ],
+  "loinc": [
+    "1995-0",
+    "1994-3",
+    "19072-8",
+    "47598-8",
+    "17863-2"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.2495,
+    "mEq/L": 0.5
+  },
+  "defaultRanges": [
+    {
+      "low": 1.18,
+      "high": 1.32
+    }
+  ],
+  "rangeNote": "The range shown is a Norwegian hospital lab's (1.18–1.32 mmol/L at pH 7.4); its authors note newer work suggesting slightly lower limits, and other labs use somewhat different ones. The lab's own range matters most. Many labs report the value adjusted to a standard blood acidity (pH 7.4).",
+  "summary": "Ionised calcium is the free, active part of the calcium in blood, the part nerves, muscles and the heart actually use. Unlike total calcium, it is measured directly and doesn't depend on albumin, the protein that carries the rest. It is sensitive to the blood's acidity (pH), so the lab handles the sample in a special way: sealed from air and measured quickly, often on a blood gas machine.",
+  "high": {
+    "meaning": "A high ionised calcium means the active calcium really is high. Mild rises often cause no symptoms; higher levels can cause thirst, constipation, tiredness and confusion. A doctor usually looks for the cause, often with a parathyroid hormone test.",
+    "commonCauses": [
+      "Overactive parathyroid gland (primary hyperparathyroidism)",
+      "Some cancers",
+      "Large amounts of calcium, vitamin D or vitamin A supplements",
+      "Water pills (thiazide diuretics) and some other medicines",
+      "Acid build-up in the blood",
+      "Sample left standing too long before testing"
+    ]
+  },
+  "low": {
+    "meaning": "A low ionised calcium means the active calcium really is low. It can cause tingling around the mouth or in the fingers, muscle cramps and, when severe, heart rhythm problems. It is common in people who are seriously ill in hospital.",
+    "commonCauses": [
+      "Low vitamin D",
+      "Low magnesium",
+      "After neck surgery on the thyroid or parathyroid glands",
+      "Reduced kidney function",
+      "Fast breathing or other causes of less acid in the blood",
+      "Large blood transfusions (the preservative binds calcium)",
+      "Sample exposed to air or collected with too much anticoagulant"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "21238441",
+      "doi": "10.1016/j.cca.2011.01.004",
+      "title": "Ionized calcium",
+      "year": 2011,
+      "studyType": "review"
+    },
+    {
+      "pmid": "18924910",
+      "doi": "10.1155/s1463924691000391",
+      "title": "IFCC recommendation on sampling, transport and storage for the determination of the concentration of ionized calcium in whole blood, plasma and serum",
+      "year": 1991,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29627804",
+      "doi": "10.1136/bmjopen-2017-017703",
+      "title": "Should total calcium be adjusted for albumin? A retrospective observational study of laboratory data from central Norway",
+      "year": 2018,
+      "studyType": "observational",
+      "n": 6549
+    }
+  ]
+}

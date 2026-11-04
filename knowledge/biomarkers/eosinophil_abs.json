@@ -1,0 +1,90 @@
+{
+  "id": "eosinophil_abs",
+  "name": "Eosinophils (absolute count)",
+  "abbreviation": "AEC",
+  "category": "Blood count",
+  "aliases": [
+    "Eosinophils #",
+    "Eosinophils#",
+    "Eosinophils (absolute)",
+    "Eosinophils absolute",
+    "Eosinophils, absolute",
+    "Eosinophils abs",
+    "Absolute eosinophil count",
+    "Absolute eosinophils",
+    "Eosinophil count",
+    "AEC",
+    "EOS#",
+    "EO#",
+    "Eosinophile absolut",
+    "Eosinophile abs",
+    "Eosinophile Granulozyten absolut",
+    "Eosinophile Granulozyten abs",
+    "Eozinofil absz",
+    "Eozinofil abszolút",
+    "Eosinophil absz",
+    "Eosinophil abszolút",
+    "Eozinofil granulocita absz"
+  ],
+  "loinc": [
+    "711-2",
+    "26449-9"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1,
+    "cells/µL": 0.001
+  },
+  "defaultRanges": [
+    {
+      "high": 0.5
+    }
+  ],
+  "rangeNote": "There is no meaningful lower limit: many healthy people have almost no eosinophils in their blood.",
+  "summary": "Eosinophils are white blood cells involved in allergies and in fighting parasites such as worms. This value is how many are in a set volume of blood.",
+  "high": {
+    "meaning": "A mildly high count is common with allergies, asthma or eczema. A count above 1.5 is called hypereosinophilia and should be checked by a doctor, especially if it lasts.",
+    "commonCauses": [
+      "Allergies, hay fever or asthma",
+      "Eczema and other skin conditions",
+      "Reactions to medicines",
+      "Parasitic worm infections, for example after travel",
+      "Autoimmune conditions",
+      "Blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low or zero count is common and usually means nothing. It is often seen with stress, acute illness or steroid medicines.",
+    "commonCauses": [
+      "Normal variation",
+      "Acute stress or illness",
+      "Steroid medicines"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "42677931",
+      "doi": "10.1111/ejh.70299",
+      "title": "Eosinophilia and Hypereosinophilia: A Practical Approach to Navigating a Broad Differential Diagnosis.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22460074",
+      "doi": "10.1016/j.jaci.2012.02.019",
+      "title": "Contemporary consensus proposal on criteria and classification of eosinophilic disorders and related syndromes.",
+      "year": 2012,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis.",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

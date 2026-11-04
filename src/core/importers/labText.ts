@@ -43,10 +43,39 @@ interface AliasEntry {
   id: string;
 }
 
+/**
+ * A test name as the parser compares it: lower case, accents and OCR's dotless "ı" removed, runs of spaces
+ * squeezed, and no space before "(" or "%" or after "(". So "Thrombocyta szam" matches "Thrombocyta szám",
+ * and "Neutrophil (pero) %" matches "Neutrophil(pero)%". `at[i]` is the index in `name` of folded character i.
+ */
+export function foldLabName(name: string): { text: string; at: number[] } {
+  const src = name.normalize("NFC");
+  let text = "";
+  const at: number[] = [];
+  for (let i = 0; i < src.length; i++) {
+    const c = src[i]!;
+    if (/\s/.test(c)) {
+      if (text !== "" && !text.endsWith(" ") && !text.endsWith("(")) {
+        text += " ";
+        at.push(i);
+      }
+      continue;
+    }
+    if ((c === "(" || c === "%") && text.endsWith(" ")) {
+      text = text.slice(0, -1);
+      at.pop();
+    }
+    const bare = c === "ı" ? "i" : c.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+    text += bare.length === 1 ? bare : c.toLowerCase().length === 1 ? c.toLowerCase() : c;
+    at.push(i);
+  }
+  return { text, at };
+}
+
 function buildAliases(defs: readonly BiomarkerDef[]): AliasEntry[] {
   const out: AliasEntry[] = [];
   for (const d of defs) {
-    for (const a of new Set([d.name, ...d.aliases])) out.push({ alias: a.toLowerCase(), id: d.id });
+    for (const a of new Set([d.name, ...d.aliases].map((n) => foldLabName(n).text))) out.push({ alias: a, id: d.id });
   }
   // Longest first, so "LDL-Cholesterin" wins over "LDL".
   return out.sort((a, b) => b.alias.length - a.alias.length);
@@ -56,21 +85,28 @@ const LETTER = /\p{L}/u;
 const RATIO_WORDS = /\b(ratio|quotient|index|arány|rapport|cociente|rapporto|verhältnis)\b/iu;
 const FLAG_TOKEN = /^([HLN+\-*!↑↓]|\(?[HL]\)?|high|low|hoch|niedrig|magas|alacsony)$/i;
 
-/** Strip list bullets, test codes and leading symbols from a line. */
+/** Strip list bullets, test codes and leading symbols (also OCR specks read as punctuation) from a line. */
 function lineBody(line: string): string {
-  return line.replace(/^[\s*•·\-–>]+/, "").replace(/^\d{2,6}\s+(?=\p{L})/u, "");
+  return line.replace(/^[\s*•·\-–>,;:!'"‘’“”©]+/, "").replace(/^\d{2,6}\s+(?=\p{L})/u, "");
 }
 
+/**
+ * Where the sample came from, printed before the test name: "Serum Kalium", "S-Kalium", "P-Glukose".
+ * Blood specimens only. Urine ("Vizelet", "U-") is never stripped, so urine tests don't match blood markers.
+ */
+const BLOOD_SPECIMEN = /^(?:serum|szérum|szerum|plasma|plazma|vollblut|whole blood|blood|vér)(?=[\s.:-])[\s.:-]*|^(?:s|se|p|pl|fs|fp|b|fb)\s*-\s*(?=\p{L})/iu;
+
 function matchAlias(body: string, aliases: readonly AliasEntry[]): { id: string; rest: string } | undefined {
-  const lower = body.toLowerCase();
+  const folded = foldLabName(body);
   for (const { alias, id } of aliases) {
-    if (!lower.startsWith(alias)) continue;
-    const next = body.charAt(alias.length);
+    if (!folded.text.startsWith(alias)) continue;
+    const next = folded.text.charAt(alias.length);
     // "K" must not match "Kreatinin"; "Hb" must not match "HbA1c".
     if (next && LETTER.test(next)) continue;
-    return { id, rest: body.slice(alias.length) };
+    return { id, rest: body.normalize("NFC").slice(folded.at[alias.length] ?? body.length) };
   }
-  return undefined;
+  const specimen = BLOOD_SPECIMEN.exec(body);
+  return specimen && specimen[0].length < body.length ? matchAlias(body.slice(specimen[0].length), aliases) : undefined;
 }
 
 /** Split a numeric token from a unit or flag glued to it: "5.4mmol/L", "142H". */
@@ -103,6 +139,20 @@ export function candidateUnits(def: BiomarkerDef, printed: string): string[] {
   return Object.keys(def.conversions).filter((u) => normalizeUnit(u.replace(/\s*\(.*\)$/, "")) === want);
 }
 
+/**
+ * A unit cut off by a narrow report column, "ml/min/1" for "mL/min/1.73m²": the units of `def` it is the start of,
+ * when they all convert the same way. Only for printed units with a "/" and at least 6 characters, so short
+ * fragments like "mg/" never guess between mg/L and mg/dL.
+ */
+export function truncatedUnit(def: BiomarkerDef, printed: string): string | undefined {
+  const want = normalizeUnit(printed.replace(/^[([]|[)\].,]$/g, ""));
+  if (want.length < 6 || !want.includes("/")) return undefined;
+  const units = Object.keys(def.conversions).filter((u) => normalizeUnit(u).startsWith(want));
+  if (units.length === 0) return undefined;
+  const same = new Set(units.map((u) => JSON.stringify(def.conversions[u])));
+  return same.size === 1 ? (units.includes(def.canonicalUnit) ? def.canonicalUnit : units[0]) : undefined;
+}
+
 /** Pick between same-looking units when the test name says which one is meant. */
 function unitHint(id: string, line: string, units: string[]): string | undefined {
   if (id === "urea") {
@@ -128,8 +178,9 @@ function parseRange(text: string): { low?: string; high?: string } {
 }
 
 function parseResultLine(line: string, id: string, rest: string, def: BiomarkerDef): ParsedRow | undefined {
-  // Only a declared ratio marker may consume ratio-labelled results.
-  if (RATIO_WORDS.test(line) && def.canonicalUnit !== "ratio") return undefined;
+  // Only a declared ratio marker may consume ratio-labelled results. Checked after the matched name, so a
+  // marker whose own name says ratio ("Albumin/creatinine ratio") is allowed, but "Albumin/Globulin ratio" isn't albumin.
+  if (RATIO_WORDS.test(rest) && def.canonicalUnit !== "ratio") return undefined;
   const tokens = tokenize(rest);
 
   const valueIdx = tokens.findIndex((t) => parseLabNumber(t) !== undefined);
@@ -160,7 +211,13 @@ function parseResultLine(line: string, id: string, rest: string, def: BiomarkerD
       row.unit = hinted;
       row.notes.push(`Read as ${hinted} based on the test name.`);
     } else if (units.length > 1) row.problems.push(`"${unitText}" could mean ${units.join(" or ")}. Choose the right one.`);
-    else row.problems.push(`The unit "${unitText}" isn't one this app knows for ${def.name}. It may be a different test.`);
+    else {
+      const cut = truncatedUnit(def, unitText);
+      if (cut) {
+        row.unit = cut;
+        row.notes.push(`The unit "${unitText}" looks cut off; read as ${cut}.`);
+      } else row.problems.push(`The unit "${unitText}" isn't one this app knows for ${def.name}. It may be a different test.`);
+    }
   } else if (Object.keys(def.conversions).length === 1) {
     row.unit = def.canonicalUnit;
     row.notes.push(`No unit printed; assumed ${def.canonicalUnit}.`);
@@ -172,6 +229,12 @@ function parseResultLine(line: string, id: string, rest: string, def: BiomarkerD
   const range = parseRange(rangeText);
   if (range.low) row.labLow = range.low;
   if (range.high) row.labHigh = range.high;
+  // "5 4 mmol/L" (a lost decimal point) or "8 140.0 mmol/L" (a speck read as a digit): which number is the
+  // result can't be known, so the person checks it. Only one extra number, so "low high" range columns are left alone.
+  const beforeUnit = unitIdx >= 0 ? after.slice(0, unitIdx).filter((t) => parseLabNumber(t) !== undefined) : [];
+  if (beforeUnit.length === 1) {
+    row.problems.push(`Two numbers were read before the unit ("${row.value} ${beforeUnit[0]}"). A decimal point may be missing, or a mark on the page was read as a digit. Check the value against the report.`);
+  }
   const problem = decimalProblem(row);
   if (problem) row.problems.push(problem);
   return row;
@@ -276,6 +339,44 @@ function findSampleDate(lines: readonly string[], monthFirst: boolean): FoundDat
   return fallback;
 }
 
+/** Blood tests named like a urine test: under a urine heading, "Kreatinin" is urine creatinine. */
+const URINE_TWIN: Readonly<Record<string, string>> = { creatinine: "urine_creatinine", albumin: "urine_albumin" };
+
+/** Percentages and absolute counts share bare names ("Lymphozyten"); the unit tells them apart. */
+const UNIT_TWIN: Readonly<Record<string, string>> = Object.fromEntries(
+  ["neutrophil", "lymphocyte", "monocyte", "eosinophil", "basophil"].flatMap((c) => [[`${c}_pct`, `${c}_abs`], [`${c}_abs`, `${c}_pct`]]),
+);
+
+/** One result line for the marker its name matched, moved to the twin marker that its heading or unit points to. */
+function readRow(line: string, hit: { id: string; rest: string }, urine: boolean, byId: ReadonlyMap<string, BiomarkerDef>): ParsedRow | undefined {
+  let id = hit.id;
+  let movedToUrine = false;
+  const twin = URINE_TWIN[id];
+  if (urine && twin && byId.has(twin)) {
+    id = twin;
+    movedToUrine = true;
+  }
+  let row = parseResultLine(line, id, hit.rest, byId.get(id)!);
+  const unitTwin = row && !row.unit && row.unitText ? byId.get(UNIT_TWIN[id] ?? "") : undefined;
+  if (row && unitTwin && candidateUnits(unitTwin, row.unitText!).length > 0) {
+    const other = parseResultLine(line, unitTwin.id, hit.rest, unitTwin);
+    if (other?.unit) {
+      other.notes.push(`Read as ${unitTwin.name} because of its unit, ${other.unitText}.`);
+      row = other;
+    }
+  }
+  if (!row) return undefined;
+  if (movedToUrine) row.notes.unshift("Read as a urine test because it's listed under a urine heading.");
+  else if (urine && byId.get(row.biomarkerId)!.category !== "Urine") {
+    row.problems.push("This row is under a urine heading in the report, so it is probably a urine test, not a blood test. Tick it only if you're sure it's from blood.");
+  }
+  return row;
+}
+
+// Matched against folded headings (lower case, no accents).
+const URINE_SECTION = /^(?:vizelet|urine|urinalysis|urin|harn|spontanurin|sammelurin)(?!\p{L})/u;
+const BLOOD_SECTION = /^(?:verkep|verkemia|klinikai kemia|kemia|serum|szerum|plasma|blood|haematology|hematology|hematologia|blutbild|klinische chemie|chemistry|biochemistry)(?!\p{L})/u;
+
 export interface ParseOptions {
   /** Read 05/12/2024 as May 12 (US style). Default: day first. */
   monthFirst?: boolean;
@@ -288,16 +389,23 @@ export function parseLabText(text: string, defs: readonly BiomarkerDef[], option
 
   const rows: ParsedRow[] = [];
   const unmatched: string[] = [];
+  let urine = false;
   for (const line of lines) {
     if (BIRTH_WORDS.test(line)) continue;
     const body = lineBody(line);
+    // Section headings: rows under a urine heading are urine tests even when named like blood tests.
+    if (!/\d/.test(body)) {
+      const heading = foldLabName(body).text;
+      if (URINE_SECTION.test(heading)) urine = true;
+      else if (BLOOD_SECTION.test(heading)) urine = false;
+    }
     const hit = matchAlias(body, aliases);
     if (!hit) {
       // Remember lines that look like "Name 12.3 unit" so the user knows what was skipped.
-      if (/^\p{L}[\p{L}\s().,-]{1,40}\s+[<>]?\d+(?:[.,]\d+)?\s+\S/u.test(body) && !findDate(body)) unmatched.push(line);
+      if (/^\p{L}[\p{L}\s().,%-]{1,40}\s+[<>]?\d+(?:[.,]\d+)?\s+\S/u.test(body) && !findDate(body)) unmatched.push(line);
       continue;
     }
-    const row = parseResultLine(line, hit.id, hit.rest, byId.get(hit.id)!);
+    const row = readRow(line, hit, urine, byId);
     if (row) rows.push(row);
   }
 

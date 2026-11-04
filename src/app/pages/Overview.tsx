@@ -20,7 +20,7 @@ const NO_RESULTS: readonly Measurement[] = [];
 const CATEGORY_OPTIONS = [
   { value: "all", label: "All categories" },
   ...CATEGORY_ORDER.filter((category) => BLOOD_MARKERS.some((def) => def.category === category))
-    .map((category) => ({ value: category, label: category === "Aging" ? "Aging (DunedinPACE)" : category })),
+    .map((category) => ({ value: category, label: category === "Aging" ? "Aging (DunedinPACE)" : category === "Urine" ? "Urine tests" : category })),
 ];
 
 function normalizeSearch(text: string): string {
