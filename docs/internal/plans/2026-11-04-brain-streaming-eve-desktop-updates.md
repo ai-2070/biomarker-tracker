@@ -100,3 +100,23 @@ Commit and push the plan on a new branch.
 
 - Persisting Brain conversations across reloads and re-attaching to a running answer (eve's durable runs make this possible later).
 - Component clean-ups from the review (Base UI folds/tabs, `Brain.tsx` split beyond what streaming touches).
+
+## Ledger
+
+| Phase | Commit | Notes |
+| --- | --- | --- |
+| 0 Plan | Plan: Brain streaming, no step limit, process trees, eve and desktop updates | This file. |
+| 1 Failing test | Restore attachments in their saved order… | Also deterministic backup zips. |
+| 2 Process trees | Stop agent programs together with everything they start | Real-process tests; desktop shell waits 5 s. |
+| 3 Workflow and cache | Brain: no step limit, one 10-minute limit, a cache-friendly prompt… | `server/brain/`. |
+| 4 Streaming | Stream Brain's answers with the AI SDK UI message stream | Checked by hand with the installed Claude Code. |
+| 5 Partial saves | Profile saves send only the parts that changed | |
+| 6 Desktop updates | Desktop app: signed updates from GitHub Releases | Key at `~/.tauri/biomarker-tracker.key` (not committed). |
+| 7 eve | eve as an opt-in engine for API-key and local models (preview) | Built runtime tested end to end with a mock model. |
+| 8 Docs | CLAUDE.md, this ledger | |
+
+Still needs the user:
+
+- Add the repository secret `TAURI_SIGNING_PRIVATE_KEY` (`gh secret set TAURI_SIGNING_PRIVATE_KEY < ~/.tauri/biomarker-tracker.key`) and keep a backup of the key.
+- Make the repository public (or host `latest.json` elsewhere) before installed apps can find updates.
+- eve with a real provider (an API key or a local model) hasn't been tried here; only a mock model.
