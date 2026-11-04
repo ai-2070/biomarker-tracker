@@ -4,6 +4,7 @@ import { ensureDefaultServers, stopAll, warmUp } from "./mcp";
 import { createServer } from "./http";
 import { DATA } from "./store";
 import { killAllTrees, stopTreesOnExit } from "./processTree";
+import { stopEve } from "./eve/host";
 
 const i = process.argv.indexOf("--port");
 const port = Number(i > 0 ? process.argv[i + 1] : process.env.BT_PORT || 4820);
@@ -35,7 +36,7 @@ const shutdown = () => {
   // SIGKILLs any process group still owned).
   // The desktop shell waits 5 s before it kills the server, so finish well before that.
   setTimeout(() => process.exit(0), 2500).unref();
-  void Promise.allSettled([stopAll(), killAllTrees(1500)]).finally(() => process.exit(0));
+  void Promise.allSettled([stopAll(), stopEve(), killAllTrees(1500)]).finally(() => process.exit(0));
 };
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);

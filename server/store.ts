@@ -72,6 +72,8 @@ export interface Settings {
   mcpSeeded?: boolean;
   /** The profile (folder in data/profiles) the app has open. */
   activeProfile?: string;
+  /** API and local models answer in eve (preview, opt-in); off by default. */
+  eve?: boolean;
 }
 
 export interface Secrets {
