@@ -254,6 +254,9 @@ describe("server persistence review regressions", () => {
     }
     const restored = profiles.restoreZip(profiles.backupZip(source.id).data);
     expect(profiles.listFiles(restored.id).map((file) => file.originalName)).toEqual(kept.map((file) => file.originalName));
+    // The zip's entry order depends on the file system; the saved files.json order must win.
+    const reversed = profiles.restoreZip(writeZip(readZip(profiles.backupZip(source.id).data).reverse()));
+    expect(profiles.listFiles(reversed.id).map((file) => file.originalName)).toEqual(kept.map((file) => file.originalName));
     for (const file of profiles.listFiles(restored.id)) {
       expect(() => fileUrl(restored.id, file.name)).not.toThrow();
       expect(profiles.readFile(restored.id, file.name).data).toEqual(pdf);
@@ -326,5 +329,21 @@ describe("server persistence review regressions", () => {
     expect(started.unref).toHaveBeenCalledOnce();
     expect(started.listenerCount("error")).toBe(1);
     expect(() => started.emit("error", new Error("late file manager failure"))).not.toThrow();
+  });
+});
+
+describe("backup zips", () => {
+  it("are the same for the same folder, whatever order the file system lists it in", () => {
+    const source = profiles.createProfile({ person: { name: "Order" } });
+    for (const name of ["zeta.pdf", "alpha.pdf", "mid.pdf"]) profiles.addFile(source.id, name, pdf);
+    const names = () => readZip(profiles.backupZip(source.id).data).map((entry) => entry.name);
+    const listed = names();
+    const original = fs.readdirSync;
+    const spy = vi.spyOn(fs, "readdirSync").mockImplementation(((...args: Parameters<typeof original>) => [...(original(...args) as unknown[])].reverse()) as typeof original);
+    try {
+      expect(names()).toEqual(listed);
+    } finally {
+      spy.mockRestore();
+    }
   });
 });

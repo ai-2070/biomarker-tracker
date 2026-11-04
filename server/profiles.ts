@@ -419,7 +419,8 @@ export function backupZip(id: string): { data: Buffer; fileName: string } {
   const entries: ZipEntry[] = [];
   let expanded = 0;
   const walk = (rel: string) => {
-    for (const e of fs.readdirSync(path.join(dir, rel), { withFileTypes: true })) {
+    // Sorted, so the same folder always gives the same zip.
+    for (const e of fs.readdirSync(path.join(dir, rel), { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))) {
       const r = rel ? `${rel}/${e.name}` : e.name;
       if (e.isDirectory()) walk(r);
       else if (e.isFile() && !e.name.endsWith(".tmp") && !e.name.startsWith(".save-")) {
@@ -465,15 +466,19 @@ export function restoreZip(zip: Buffer): ProfileSummary {
   const index = json("files.json", []);
   if (!Array.isArray(index) || index.some((f) => !f || typeof f !== "object" || typeof f.name !== "string" || (f.originalName !== undefined && typeof f.originalName !== "string"))) throw new ProfileError(400, "files.json in the backup is damaged.");
   const listed = index as Partial<StoredFile>[];
-  const attachments: { originalName: string; data: Buffer; note?: string }[] = [];
+  const attachments: { originalName: string; data: Buffer; note?: string; order: number; name: string }[] = [];
   for (const e of entries) {
     if (!e.name.startsWith(`${prefix}files/`)) continue;
     const name = e.name.slice(`${prefix}files/`.length);
     if (name.includes("/") || !FILE_TYPES[path.extname(name).toLowerCase()]) continue;
-    const info = listed.find((f) => f.name === name);
-    attachments.push({ originalName: info?.originalName || name, data: e.data, ...(typeof info?.note === "string" ? { note: info.note } : {}) });
+    const order = listed.findIndex((f) => f.name === name);
+    const info = order >= 0 ? listed[order] : undefined;
+    attachments.push({ originalName: info?.originalName || name, data: e.data, ...(typeof info?.note === "string" ? { note: info.note } : {}), order: order >= 0 ? order : Number.MAX_SAFE_INTEGER, name });
   }
-  return createCompleteProfile(input, attachments);
+  // Keep the saved order from files.json, not the order the zip happens to list files in
+  // (that depends on the file system). Unlisted files follow, by name.
+  attachments.sort((a, b) => a.order - b.order || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+  return createCompleteProfile(input, attachments.map(({ order: _order, name: _name, ...a }) => a));
 }
 
 /** Opens the profile's folder in the computer's file manager. */
