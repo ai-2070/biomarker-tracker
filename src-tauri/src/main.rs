@@ -31,7 +31,7 @@ impl ServerProcess {
         if let Some(mut child) = self.child.lock().unwrap().take() {
             let _ = child.write(b"shutdown\n");
             if let Some(stopped) = self.stopped.lock().unwrap().take() {
-                let _ = stopped.recv_timeout(Duration::from_secs(3));
+                let _ = stopped.recv_timeout(Duration::from_secs(5));
             }
             // Also clears any remaining MCP/agent descendants in the process group.
             let _ = child.kill();

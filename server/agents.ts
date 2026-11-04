@@ -2,7 +2,6 @@
 // Each question starts the program once, without its own file, shell or web tools where it allows that.
 // Claude Code, Codex and Hermes (once connected) reach the app's tools through the bridge (bridge.ts),
 // so their answers can be checked like any other. OpenClaw gets a summary of the data in the prompt.
-import { spawn, type ChildProcess } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
@@ -11,6 +10,7 @@ import type { ToolSet } from "ai";
 import { providerInfo, type Effort, type ProviderId } from "../src/core/aiProviders";
 import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
 import { which } from "./which";
+import { killTree, spawnTree } from "./processTree";
 
 export { which } from "./which";
 import type { ToolStep } from "./steps";
@@ -26,26 +26,25 @@ export function agentInstalled(id: string): boolean {
   return !!cmd && !!which(cmd);
 }
 
-function killTree(child: ChildProcess): void {
-  if (!child.pid) return;
-  if (IS_WIN) spawn("taskkill", ["/pid", String(child.pid), "/t", "/f"], { stdio: "ignore" });
-  else child.kill("SIGTERM");
-}
-
 interface Done {
   code: number | null;
   stdout: string;
   stderr: string;
 }
 
-/** Runs a program to the end: input on stdin, stops on abort or after the time limit. */
-function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number }): Promise<Done> {
+/**
+ * Runs a program to the end: input on stdin, stops on abort or after the time limit. The program runs in its
+ * own process group, so stopping it also stops anything it started; whatever it leaves running when it exits
+ * on its own is stopped too (a leftover helper would otherwise hold the output pipe open).
+ */
+export function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number; onLine?: (line: string) => void; graceMs?: number }): Promise<Done> {
   const exe = which(cmd);
   if (!exe) return Promise.resolve({ code: -1, stdout: "", stderr: `The \`${cmd}\` command wasn't found.` });
+  if (opts.signal?.aborted) return Promise.resolve({ code: null, stdout: "", stderr: "Stopped." });
   // .cmd/.bat (npm installs on Windows) only run through cmd.exe. Our arguments contain no quotes or spaces
   // except file paths, which Node quotes.
   const viaCmd = IS_WIN && /\.(cmd|bat)$/i.test(exe);
-  const child = spawn(viaCmd ? "cmd.exe" : exe, viaCmd ? ["/d", "/c", exe, ...args] : args, {
+  const child = spawnTree(viaCmd ? "cmd.exe" : exe, viaCmd ? ["/d", "/c", exe, ...args] : args, {
     cwd: opts.cwd,
     env: { ...process.env, ...opts.env, PYTHONIOENCODING: "utf-8" },
     stdio: ["pipe", "pipe", "pipe"],
@@ -53,17 +52,31 @@ function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: Node
   });
   let stdout = "";
   let stderr = "";
-  child.stdout.setEncoding("utf8").on("data", (d: string) => stdout.length < 5_000_000 && (stdout += d));
-  child.stderr.setEncoding("utf8").on("data", (d: string) => stderr.length < 200_000 && (stderr += d));
-  child.stdin.on("error", () => {});
-  child.stdin.end(opts.input ?? "");
-  const stop = () => killTree(child);
+  let partial = "";
+  child.stdout!.setEncoding("utf8").on("data", (d: string) => {
+    if (stdout.length < 5_000_000) stdout += d;
+    if (!opts.onLine) return;
+    partial += d;
+    const lines = partial.split(/\r?\n/);
+    partial = lines.pop() ?? "";
+    for (const line of lines) if (line.trim()) opts.onLine(line);
+  });
+  child.stderr!.setEncoding("utf8").on("data", (d: string) => stderr.length < 200_000 && (stderr += d));
+  child.stdin!.on("error", () => {});
+  child.stdin!.end(opts.input ?? "");
+  const stop = () => void killTree(child, opts.graceMs);
   opts.signal?.addEventListener("abort", stop);
   const timer = setTimeout(stop, opts.timeoutMs ?? TIMEOUT_MS);
+  // Its own work is done: stop anything it left behind, so the pipes close.
+  child.once("exit", () => void killTree(child, opts.graceMs));
   return new Promise((resolve) => {
+    let done = false;
     const finish = (code: number | null) => {
+      if (done) return;
+      done = true;
       clearTimeout(timer);
       opts.signal?.removeEventListener("abort", stop);
+      if (opts.onLine && partial.trim()) opts.onLine(partial);
       resolve({ code, stdout, stderr });
     };
     child.on("close", finish);
