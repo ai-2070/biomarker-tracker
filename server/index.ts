@@ -3,6 +3,7 @@
 import { ensureDefaultServers, stopAll, warmUp } from "./mcp";
 import { createServer } from "./http";
 import { DATA } from "./store";
+import { killAllTrees, stopTreesOnExit } from "./processTree";
 
 const i = process.argv.indexOf("--port");
 const port = Number(i > 0 ? process.argv[i + 1] : process.env.BT_PORT || 4820);
@@ -15,6 +16,9 @@ server.on("error", (e: NodeJS.ErrnoException) => {
 });
 // The ready-made research servers are added on first start and started in the background.
 ensureDefaultServers();
+// Agent programs run in their own process groups: they never get the terminal's Ctrl+C or the desktop
+// shell's group kill, so the server stops them itself, also when it exits without a graceful shutdown.
+stopTreesOnExit();
 server.listen(port, "127.0.0.1", () => {
   warmUp();
   const address = server.address() as { port: number };
@@ -27,9 +31,11 @@ const shutdown = () => {
   if (stopping) return;
   stopping = true;
   server.close();
-  // An unresponsive MCP program must not keep the desktop process alive forever.
-  setTimeout(() => process.exit(0), 2000).unref();
-  void stopAll().finally(() => process.exit(0));
+  // An unresponsive program must not keep the desktop process alive forever (the exit hook then
+  // SIGKILLs any process group still owned).
+  // The desktop shell waits 5 s before it kills the server, so finish well before that.
+  setTimeout(() => process.exit(0), 2500).unref();
+  void Promise.allSettled([stopAll(), killAllTrees(1500)]).finally(() => process.exit(0));
 };
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
