@@ -1,0 +1,25 @@
+CLAUDE.md
+  s_c9f041a2ab1815::t_e4426073cde08d 234
+package.json
+  s_c9f041a2ab1815::t_e4426073cde08d 41
+runtime/eve/package.json
+  s_c9f041a2ab1815::t_e4426073cde08d 7
+bun.lock
+  s_c9f041a2ab1815::t_536a84c5026d1c 24,333-334,373-374,395,413,427-428,463-464,467-468,541-543,567-568,609,671-672,675-676,727-728,731-732,735,737,739,741,743,745,747,749,751,753,755,757,759,761,763,765
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aa968125c647173baa8c5eac7d5289768b9dbfa4",
+  "prompts": {},
+  "sessions": {
+    "s_c9f041a2ab1815": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5ec6d363-b5a4-4e13-a710-9cdce9f78ae0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
