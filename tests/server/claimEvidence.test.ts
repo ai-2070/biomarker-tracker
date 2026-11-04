@@ -139,11 +139,12 @@ describe("configured model and deeper budgets", () => {
     { provider: "claude-code", model: "haiku", effort: "low" },
     { provider: "codex", model: "selected-codex-model", effort: "medium" },
     { provider: "hermes", model: "selected-hermes-model", effort: "high" },
-  ] as const)("preserves $provider model and effort while increasing deep-check budgets", async (choice) => {
+  ] as const)("preserves $provider model and effort, with no turn limit and the shared 10-minute limit", async (choice) => {
     vi.mocked(currentChoice).mockReturnValue(choice);
     vi.mocked(runAgent).mockImplementation(async (req) => {
       expect(req.provider).toBe(choice.provider); expect(req.model).toBe(choice.model); expect(req.effort).toBe(choice.effort);
-      expect(req.budget).toEqual({ maxTurns: 36, timeoutMs: 600_000 });
+      expect(req).not.toHaveProperty("budget");
+      expect(req.signal).toBeInstanceOf(AbortSignal);
       expect(req.tools.get_nutrient).toBeUndefined(); expect(req.tools.use_research_tool).toBeUndefined(); expect(req.dataPack()).toContain("No personal data");
       const run = openRun(req.tools, req.provider);
       try {
@@ -165,7 +166,7 @@ describe("configured model and deeper budgets", () => {
     vi.mocked(readyModel).mockClear();
     const result = await checkClaimEvidence({ ...request, depth: "deep" }, { fetchFn: fakeFetch });
     expect(result.research?.status).toBe("evidence_found");
-    expect(readyModel).toHaveBeenCalledWith();
+    expect(readyModel).toHaveBeenCalledWith({ cacheKey: "biomarker-tracker-claim" });
     expect(currentChoice()).toEqual(choice);
   });
   it("does not trust an agent's invented tool steps", async () => {
