@@ -53,7 +53,9 @@ describe("profile persistence review repairs", () => {
     const saves: { person: { name: string } }[] = [];
     vi.stubGlobal("fetch", vi.fn(async (url, init) => {
       if (String(url).endsWith("/restore")) return Response.json({ error: "damaged ZIP" }, { status: 400 });
-      saves.push(JSON.parse(init.body));
+      // A full save, or after the first one only the changed parts.
+      const body = JSON.parse(init.body);
+      saves.push(body.parts ?? body);
       return Response.json({ ok: true });
     }));
     stop = startSaving("a");
@@ -98,7 +100,7 @@ describe("profile persistence review repairs", () => {
       active += 1;
       maximumActive = Math.max(maximumActive, active);
       if (++calls === 1) { firstStarted.resolve(); await releaseFirst.promise; }
-      writes.push(body.measurements.length);
+      writes.push((body.parts ?? body).measurements.length);
       active -= 1;
       return Response.json({ ok: true });
     }));
@@ -168,5 +170,47 @@ describe("profile persistence review repairs", () => {
     expect((await db.settings.get("intakeList"))?.value).toEqual(current.slice(0, 62));
     await setIntakeList(current.slice(0, 60));
     expect((await db.settings.get("intakeList"))?.value).toEqual(current.slice(0, 60));
+  });
+});
+
+describe("saves send only what changed", () => {
+  it("sends everything first, then only the changed part, and nothing when nothing changed", async () => {
+    await seedA();
+    const requests: { method: string; body: Record<string, unknown> }[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (_url, init) => {
+      requests.push({ method: init.method, body: JSON.parse(init.body) });
+      return Response.json({ ok: true });
+    }));
+    stop = startSaving("a");
+    await flushSaving();
+    expect(requests).toHaveLength(1);
+    expect(requests[0]).toMatchObject({ method: "PUT", body: { person: { name: "A" }, measurements: [row] } });
+    await db.measurements.put({ ...row, id: "m2", date: "2026-02-01" });
+    await flushSaving();
+    expect(requests).toHaveLength(2);
+    expect(requests[1]!.method).toBe("PATCH");
+    expect(Object.keys(requests[1]!.body.parts as object)).toEqual(["measurements"]);
+    expect((requests[1]!.body.parts as { measurements: unknown[] }).measurements).toHaveLength(2);
+    await flushSaving();
+    expect(requests).toHaveLength(2);
+  });
+
+  it("after a failed save, sends everything again", async () => {
+    await seedA();
+    const requests: { method: string; body: Record<string, unknown> }[] = [];
+    let fail = false;
+    vi.stubGlobal("fetch", vi.fn(async (_url, init) => {
+      requests.push({ method: init.method, body: JSON.parse(init.body) });
+      return fail ? Response.json({ error: "disk full" }, { status: 500 }) : Response.json({ ok: true });
+    }));
+    stop = startSaving("a");
+    await flushSaving();
+    fail = true;
+    await db.settings.put({ key: "profile", value: { name: "A2" } });
+    await expect(flushSaving()).rejects.toThrow("disk full");
+    expect(requests[1]).toMatchObject({ method: "PATCH", body: { parts: { person: { name: "A2" } } } });
+    fail = false;
+    await flushSaving();
+    expect(requests.at(-1)).toMatchObject({ method: "PUT", body: { person: { name: "A2" }, measurements: [row] } });
   });
 });

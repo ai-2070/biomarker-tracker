@@ -180,6 +180,18 @@ interface Saver {
   dirty: boolean;
   inFlight?: Promise<void>;
   unsubscribe: () => void;
+  /** Each part as the folder last acknowledged it; unknown (send everything) at first and after a failure. */
+  saved?: Record<string, string>;
+}
+
+/** Each part of the working copy as text, to tell which parts changed since the last save. */
+export function profileParts(data: ProfileData): Record<string, string> {
+  return Object.fromEntries(Object.entries(data).map(([part, value]) => [part, JSON.stringify(value)]));
+}
+
+/** The parts that differ from what the folder has. */
+export function changedParts(now: Record<string, string>, saved: Record<string, string>): string[] {
+  return Object.keys(now).filter((part) => now[part] !== saved[part]);
 }
 let syncing: Saver | null = null;
 
@@ -192,12 +204,24 @@ async function push(): Promise<void> {
     while (syncing === s && s.dirty) {
       s.dirty = false;
       setStatus("saving");
-      await api("PUT", `/api/profiles/${s.id}/data`, await browserData(s.id));
+      const data = await browserData(s.id);
+      const now = profileParts(data);
+      if (!s.saved) {
+        // The first save after loading, or after a failure: the whole working copy (reconciliation).
+        await api("PUT", `/api/profiles/${s.id}/data`, data);
+      } else {
+        // Otherwise only what changed: years of daily device readings aren't re-sent for one new result.
+        const changed = changedParts(now, s.saved);
+        if (changed.length) await api("PATCH", `/api/profiles/${s.id}/data`, { parts: Object.fromEntries(changed.map((part) => [part, data[part as keyof ProfileData]])) });
+      }
+      s.saved = now;
     }
     if (syncing === s) setStatus("saved");
   })().catch((error: unknown) => {
     if (syncing === s) {
       s.dirty = true;
+      // The folder may have part of a save, or none: the next attempt sends everything.
+      s.saved = undefined;
       setStatus("error");
       clearTimeout(s.timer);
       s.timer = setTimeout(() => void push().catch(() => {}), 5000);
