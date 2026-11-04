@@ -1,0 +1,64 @@
+server/brain/agentRun.ts
+  s_c9f041a2ab1815::t_b73314dd438d23 12,37-38
+  s_c9f041a2ab1815::t_374aa550f46b59 1-11,13-36,39-65
+tests/server/claimEvidence.test.ts
+  s_c9f041a2ab1815::t_f4c09f5d8b0ec2 169
+  s_c9f041a2ab1815::t_eba0b357007c8d 142,146-147
+server/brain/prompt.ts
+  s_c9f041a2ab1815::t_acc8d43c02257c 1-99,101,106
+  s_c9f041a2ab1815::t_c5909e1f66f868 100,102-105
+tests/server/brainWorkflow.test.ts
+  s_c9f041a2ab1815::t_3ea657e27eb84b 1-59,63-147
+  s_c9f041a2ab1815::t_c50188167c1f02 60-62
+  s_c9f041a2ab1815::t_f064530c80aa3f 148-170
+tests/server/fakeAgents.ts
+  s_c9f041a2ab1815::t_f064530c80aa3f 1-43
+server/mcp.ts
+  s_c9f041a2ab1815::t_497a38f5c3b2ac 160-162
+server/brain/apiModel.ts
+  s_c9f041a2ab1815::t_6d37e52c4bbf69 1-23,26-40,43-77
+  s_c9f041a2ab1815::t_6d0e87a66f3264 24-25,41
+  s_c9f041a2ab1815::t_672d64ea983ca6 42
+server/brain/cache.ts
+  s_c9f041a2ab1815::t_3261829feb1836 1-11,13-15,19-28,30-41,43-46,49-51
+  s_c9f041a2ab1815::t_672d64ea983ca6 12,16-18,29,42,47-48
+server/agents.ts
+  s_c9f041a2ab1815::t_c5909e1f66f868 22,341,344,348,355
+  s_c9f041a2ab1815::t_b73314dd438d23 286,288-289,309-311
+server/brain/tools.ts
+  s_c9f041a2ab1815::t_678102d80e586c 1-32
+server/brain/ask.ts
+  s_c9f041a2ab1815::t_f4c09f5d8b0ec2 107-110,113-116,145-149
+  s_c9f041a2ab1815::t_d6557c23bb46c6 1-106,111-112,117-144,150
+server/brain/claimReview.ts
+  s_c9f041a2ab1815::t_5d63d50e029288 1-108
+server/assistant.ts
+  s_c9f041a2ab1815::t_6279a9d20445d4 1-3,5-6,8-10,15
+server/healthTools.ts
+  s_c9f041a2ab1815::t_497a38f5c3b2ac 462-463,469-470
+server/models.ts
+  s_c9f041a2ab1815::t_672d64ea983ca6 11,16
+  s_c9f041a2ab1815::t_1de0a0d8294b50 35-39,59-60,77-87,97
+tests/server/actions.test.ts
+  s_c9f041a2ab1815::t_f4c09f5d8b0ec2 51-55
+tests/fixtures/agents/fake-claude.cjs
+  s_c9f041a2ab1815::t_e8d64f575c436b 1-19
+server/brain/dataPack.ts
+  s_c9f041a2ab1815::t_c5909e1f66f868 1-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a7065d36d3ca7fde7ef568894a437b6845344f68",
+  "prompts": {},
+  "sessions": {
+    "s_c9f041a2ab1815": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5ec6d363-b5a4-4e13-a710-9cdce9f78ae0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
