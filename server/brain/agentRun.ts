@@ -8,6 +8,7 @@ import type { HealthSnapshot } from "../healthTools";
 import { getSettings } from "../store";
 import type { AssistantReply, ChatMessage } from "./ask";
 import type { ClaimReview } from "./claimReview";
+import type { OnEvent } from "./events";
 import { dataPack } from "./dataPack";
 import type { PromptParts } from "./prompt";
 
@@ -22,6 +23,7 @@ export async function runAgentQuestion(o: {
   failedServers: { name: string; error: string }[];
   signal: AbortSignal;
   userSignal?: AbortSignal;
+  onEvent?: OnEvent;
 }): Promise<AssistantReply> {
   const { agent } = o;
   if (!isAgent(agent.provider)) return { ok: false, error: "This model isn't an agent program." };
@@ -41,6 +43,7 @@ export async function runAgentQuestion(o: {
     dataPack: o.researchOnly ? () => "Research-only request. No personal data is available. Without the app's research tools, this live evidence check cannot be performed or verified." : () => dataPack(o.snapshot),
     ...(o.claim ? { claimReview: true } : {}),
     signal: o.signal,
+    ...(o.onEvent ? { onEvent: o.onEvent } : {}),
   });
   if (!a.ok) return o.userSignal?.aborted ? { ok: false, error: "Stopped." } : a;
   if (o.claim) {

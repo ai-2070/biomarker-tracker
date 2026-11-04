@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { MockLanguageModelV4 } from "ai/test";
+import { MockModel } from "./mockModel";
 import { describe, expect, it } from "vitest";
 import { ask, dataPack, studyIdsIn } from "../../server/assistant";
 import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, safetyOf, testSummaryFor, type HealthSnapshot } from "../../server/healthTools";
@@ -243,7 +243,7 @@ describe("assistant", () => {
   it("runs a tool and returns the answer, the steps and the citable IDs", async () => {
     let call = 0;
     const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
-    const model = new MockLanguageModelV4({
+    const model = new MockModel({
       doGenerate: async () => {
         call++;
         if (call === 1) {
@@ -269,7 +269,7 @@ describe("assistant", () => {
   it("sends a photo to the model as an image, with the rules for photos", async () => {
     const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
     let prompt: unknown;
-    const model = new MockLanguageModelV4({
+    const model = new MockModel({
       doGenerate: async (opts) => {
         prompt = opts.prompt;
         return { content: [{ type: "text", text: "I can see a person standing." }], finishReason: { unified: "stop", raw: undefined }, usage, warnings: [] };
@@ -285,7 +285,7 @@ describe("assistant", () => {
   });
 
   it("explains model errors without leaking keys", async () => {
-    const model = new MockLanguageModelV4({
+    const model = new MockModel({
       doGenerate: async () => {
         throw Object.assign(new Error("bad key sk-abcdefghijklmnop"), { statusCode: 401 });
       },

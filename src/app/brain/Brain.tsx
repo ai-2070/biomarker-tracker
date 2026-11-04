@@ -413,7 +413,7 @@ function Conversation({ turns, busy, model }: { turns: Turn[]; busy: boolean; mo
           <TurnView turn={t} allowed={allowed} model={model} />
         </li>
       ))}
-      {busy && (
+      {busy && !turns.some((t) => t.role === "live") && (
         <li role="status" className="flex animate-enter items-center gap-3 text-ink-2">
           <span aria-hidden="true" className="flex gap-1">
             <span className="size-2 animate-dot rounded-full bg-accent" />
@@ -462,6 +462,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
           <StepList steps={t.steps} failed={t.failedServers} />
         </div>
       );
+    case "live":
+      return <LiveTurn turn={t} allowed={allowed} />;
     case "error":
       return (
         <p role="alert" className="rounded-xl border border-danger/40 bg-danger-soft p-3 text-sm">
@@ -481,6 +483,44 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
     case "meal":
       return <MealTurn turn={t} />;
   }
+}
+
+/** The answer while it streams. Citations count as checked only once a tool in this answer returned them. */
+function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live" }>; allowed: ReadonlySet<string> }) {
+  const checked = new Set([...allowed, ...turn.studyIds]);
+  const status = turn.status ?? (turn.text ? "Writing…" : "Brain is looking things up. This can take a few minutes…");
+  return (
+    <div className="flex flex-col gap-2" aria-busy="true">
+      <p className="flex items-center gap-2 text-sm">
+        <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent">
+          <BrainIcon className="size-3.5" />
+        </span>
+        <span className="font-medium">Brain</span>
+        <span className="truncate font-mono text-[11px] text-ink-2">{turn.model}</span>
+      </p>
+      {/* Not read out word by word; the status line below says what is happening. */}
+      {turn.text && <div aria-live="off"><CitedAnswer text={turn.text} allowed={checked} /></div>}
+      {turn.steps.length > 0 && (
+        <ul aria-live="off" className="flex flex-col gap-1 border-l-2 border-line pl-3 text-sm text-ink-2">
+          {turn.steps.map((step, i) => (
+            <li key={i} className="flex items-baseline gap-2">
+              <span aria-hidden="true" className={step.success === undefined ? "text-accent" : step.success ? "text-ok" : "text-warn"}>{step.success === undefined ? "•" : step.success ? "✓" : "!"}</span>
+              <span>{step.server ? `Using ${step.server}: ${step.tool}` : (TOOL_TEXT[step.tool] ?? step.tool)}</span>
+              <span className="sr-only">{step.success === undefined ? "running" : step.success ? "done" : "didn't work"}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p role="status" className="flex items-center gap-3 text-sm text-ink-2">
+        <span aria-hidden="true" className="flex gap-1">
+          <span className="size-2 animate-dot rounded-full bg-accent" />
+          <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:160ms]" />
+          <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:320ms]" />
+        </span>
+        {status}
+      </p>
+    </div>
+  );
 }
 
 const birthMonthFormat = new Intl.DateTimeFormat(undefined, { month: "long", year: "numeric" });

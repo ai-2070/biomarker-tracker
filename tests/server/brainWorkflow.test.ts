@@ -1,4 +1,4 @@
-import { MockLanguageModelV4 } from "ai/test";
+import { MockModel } from "./mockModel";
 import { describe, expect, it } from "vitest";
 import { ask, ASSISTANT_TIMEOUT_MS, promptParts } from "../../server/assistant";
 import { cacheKey, cacheLayout } from "../../server/brain/cache";
@@ -13,13 +13,13 @@ const m = (id: string, biomarkerId: string, date: string, value: number): Measur
 const calm: HealthSnapshot = { measurements: [m("f1", "ferritin", "2024-05-12", 40)], protocols: [], experiments: [], profile: { sex: "f" } };
 const critical: HealthSnapshot = { measurements: [m("k1", "potassium", "2024-05-12", 6.6)], protocols: [{ id: "p", label: "Warfarin", category: "medication", start: "2024-01-01" }], experiments: [], profile: {} };
 
-type Call = Parameters<MockLanguageModelV4["doGenerate"]>[0];
+type Call = Parameters<MockModel["doGenerate"]>[0];
 
 /** A model that calls get_results `toolCalls` times, then answers; records every call it receives. */
 function model(toolCalls = 0, provider: ProviderId = "ollama") {
   const calls: Call[] = [];
   let n = 0;
-  const mock = new MockLanguageModelV4({
+  const mock = new MockModel({
     doGenerate: async (options) => {
       calls.push(options);
       if (n++ < toolCalls) {
@@ -54,7 +54,7 @@ describe("no step limit, one 10-minute limit", () => {
 
   it("says Stopped. when the person stops, not that the service was slow", async () => {
     const controller = new AbortController();
-    const slow = new MockLanguageModelV4({
+    const slow = new MockModel({
       doGenerate: async (options) => {
         controller.abort();
         // The person's stop reaches the model call through the combined signal.

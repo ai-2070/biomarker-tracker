@@ -20,6 +20,8 @@ import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./
 import { generateText } from "ai";
 import { MAX_ZIP_BYTES } from "./zip";
 import { checkClaimEvidence, ClaimEvidenceError } from "./claimEvidence";
+import type { OnEvent } from "./brain/events";
+import { streamAnswer } from "./uistream";
 
 export const MAX_BODY = 20 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "dist");
@@ -33,7 +35,14 @@ class HttpError extends Error {
 }
 
 type Json = Record<string, unknown>;
-type Handler = (params: string[], body: Json, signal?: AbortSignal) => Promise<unknown> | unknown;
+type Handler = (params: string[], body: Json, signal: AbortSignal | undefined, req: http.IncomingMessage) => Promise<unknown> | unknown;
+
+/** A handler's answer that is streamed (server-sent events) instead of sent as JSON. */
+class Streamed {
+  constructor(readonly run: (onEvent: OnEvent) => Promise<unknown>) {}
+}
+/** The page asks for a stream; other callers (scripts, older pages) still get one JSON reply. */
+const wantsStream = (req: http.IncomingMessage) => /\btext\/event-stream\b/.test(req.headers.accept ?? "");
 const routes: { method: string; re: RegExp; fn: Handler }[] = [];
 const route = (method: string, pattern: string, fn: Handler) => routes.push({ method, re: new RegExp(`^${pattern}$`), fn });
 
@@ -301,7 +310,7 @@ route("POST", "/api/claim-evidence", async (_p, body, signal) => {
   }
 });
 
-route("POST", "/api/assistant", async (_p, body, signal) => {
+route("POST", "/api/assistant", async (_p, body, signal, req) => {
   if (body.scope !== undefined && body.scope !== "research") throw new HttpError(400, "Unknown assistant scope.");
   if (body.scope === "research") {
     // Do not parse or retain snapshot/history/photos, even when a caller supplies them.
@@ -309,7 +318,8 @@ route("POST", "/api/assistant", async (_p, body, signal) => {
     const latest = raw.filter((m): m is Json => typeof m === "object" && m !== null && m.role === "user").at(-1);
     const question = str(latest?.content, 20_000)?.trim();
     if (!question) throw new HttpError(400, "Ask a question.");
-    return ask([{ role: "user", content: question }], { measurements: [], protocols: [], experiments: [], profile: {} }, { researchOnly: true, signal });
+    const research = (onEvent?: OnEvent) => ask([{ role: "user", content: question }], { measurements: [], protocols: [], experiments: [], profile: {} }, { researchOnly: true, signal, ...(onEvent ? { onEvent } : {}) });
+    return wantsStream(req) ? new Streamed(research) : research();
   }
   const snap = parseSnapshot(body.snapshot);
   if (!snap.ok) throw new HttpError(400, snap.error);
@@ -331,7 +341,8 @@ route("POST", "/api/assistant", async (_p, body, signal) => {
     !messages[messages.length - 1]!.content.startsWith(body.userText))) {
     throw new HttpError(400, "The typed question does not match the latest message.");
   }
-  return ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}) });
+  const personal = (onEvent?: OnEvent) => ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}), ...(onEvent ? { onEvent } : {}) });
+  return wantsStream(req) ? new Streamed(personal) : personal();
 });
 
 // Security and serving
@@ -453,7 +464,9 @@ export function createServer(port: number): http.Server {
     if (controller) res.once("close", cancel);
     try {
       const body = method === "GET" ? {} : await readBody(req);
-      const result = await r.fn(r.re.exec(url.pathname)!.slice(1), body, controller?.signal);
+      const result = await r.fn(r.re.exec(url.pathname)!.slice(1), body, controller?.signal, req);
+      // Checks failed before this point are JSON errors with a status; once streaming, errors are chunks.
+      if (result instanceof Streamed) return await streamAnswer(res, result.run);
       if (!res.destroyed) send(200, result);
     } catch (e) {
       if (res.destroyed) return;

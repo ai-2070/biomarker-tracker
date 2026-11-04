@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { tool } from "ai";
-import { MockLanguageModelV4 } from "ai/test";
+import { MockModel } from "./mockModel";
 import { z } from "zod";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ask, dataPack } from "../../server/assistant";
@@ -94,7 +94,7 @@ describe("assistant safety regressions", () => {
 
   it("carries actual model attribution and failed proposal outcome through the SDK loop", async () => {
     let calls = 0;
-    const model = new MockLanguageModelV4({ doGenerate: async () => ++calls === 1
+    const model = new MockModel({ doGenerate: async () => ++calls === 1
       ? { content: [{ type: "tool-call", toolCallId: "invalid-meal", toolName: "propose_meal", input: JSON.stringify({ intent: "record", name: "Unknown", items: [{ foodId: "missing", grams: 50 }] }) }], finishReason: { unified: "tool-calls", raw: undefined }, usage, warnings: [] }
       : { content: [{ type: "text", text: "That food was not found." }], finishReason: { unified: "stop", raw: undefined }, usage, warnings: [] } });
     const reply = await ask([{ role: "user", content: "Write my recipe" }], snapshot, { ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "actual-model" } } });
