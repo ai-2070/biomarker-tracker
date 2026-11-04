@@ -1,0 +1,31 @@
+server/index.ts
+  s_c9f041a2ab1815::t_296b9796dd4d00 6,19-21,34-35
+  s_c9f041a2ab1815::t_257e09e48bc20a 36-38
+server/processTree.ts
+  s_c9f041a2ab1815::t_123e70f3687201 55-57
+  s_c9f041a2ab1815::t_f93883892cf674 1-54,58-116
+server/agents.ts
+  s_c9f041a2ab1815::t_123e70f3687201 13,35-40,43,47,55-67,70-71,73,75-76,79
+src-tauri/src/main.rs
+  s_c9f041a2ab1815::t_ac8701414b7cc1 34
+tests/server/processTree.test.ts
+  s_c9f041a2ab1815::t_7b3f0ca262eac1 24-26,49,117
+  s_c9f041a2ab1815::t_a9443836158a79 1-17,28-48,50-116,118-166
+  s_c9f041a2ab1815::t_83c1452695df60 18-23,27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bcbd250ea15744c276133dc04222e0e073e60325",
+  "prompts": {},
+  "sessions": {
+    "s_c9f041a2ab1815": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5ec6d363-b5a4-4e13-a710-9cdce9f78ae0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
