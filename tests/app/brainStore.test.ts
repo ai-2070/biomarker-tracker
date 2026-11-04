@@ -23,6 +23,8 @@ const mocks = vi.hoisted(() => ({
 // Exercise the real external store without mounting a UI or loading OCR/PDF workers.
 vi.mock("react", () => ({ useSyncExternalStore: (_subscribe: unknown, snapshot: () => BrainState) => snapshot() }));
 vi.mock("../../src/app/api", () => ({ api: mocks.api }));
+// The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
+vi.mock("../../src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => mocks.api("POST", "/api/assistant", body, signal, onUpdate) }));
 vi.mock("../../src/db/db", () => ({
   db: {
     transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action(),
@@ -247,7 +249,7 @@ describe("research preparation and response races", () => {
     oldReply.resolve(reply("OLD_RESEARCH_ANSWER"));
     await researchSending;
     expect(brain.useBrain().busy).toBe(true);
-    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user"]);
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "live"]);
     personalReply.resolve(reply("PRIVATE_ANSWER"));
     await personalSending;
     expect(brain.useBrain().busy).toBe(false);
@@ -323,7 +325,7 @@ describe("personal Brain profile updates", () => {
     mocks.fillProfile.mockReturnValue(saved.promise);
     const sending = brain.send("Model", "I'm 180 cm");
     await vi.waitFor(() => expect(mocks.fillProfile).toHaveBeenCalledTimes(1));
-    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user"]);
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "live"]);
     const body = mocks.api.mock.calls[0]?.[2];
     expect(JSON.stringify(body)).not.toMatch(/PRIVATE_NAME|PRIVATE_NOTES|PRIVATE_FOLDER_ID|identity/);
     saved.resolve({ profile: { heightCm: 180 }, added: [{ field: "heightCm", value: 180 }], rejected: [], measurementsAdded: [], sameProfile: true });
@@ -412,4 +414,62 @@ it("does not make a habit draft from an external tool even with an empty server 
   const step = { tool: "propose_habit", input: "{}", server: "", validated: true, success: true, output: { intent: "recommend", shownToPerson: { label: "Walk outdoors", category: "lifestyle", start: "2026-10-30", reason: "An example.", markerIds: [] } } };
   expect(brain.habitTurns([{ ...step, server: undefined }], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toHaveLength(1);
   expect(brain.habitTurns([step], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toEqual([]);
+});
+
+describe("the streamed answer", () => {
+  type Update = (live: { text: string; steps: unknown[]; studyIds: string[]; status?: string }) => void;
+
+  it("fills a live turn as the answer streams, then replaces it with the checked answer", async () => {
+    const answered = deferred<unknown>();
+    let update: Update | undefined;
+    mocks.api.mockImplementation(async (...args: unknown[]) => {
+      update = args[4] as Update;
+      return answered.promise;
+    });
+    const sending = brain.send("Personal model", "How is my ferritin?");
+    await vi.waitFor(() => expect(update).toBeDefined());
+    update!({ text: "Your ferritin ", steps: [{ tool: "get_results", input: "{}", success: true }], studyIds: [], status: "Working…" });
+    const live = brain.useBrain().turns.find((t) => t.role === "live");
+    expect(live).toMatchObject({ role: "live", model: "Personal model", text: "Your ferritin ", status: "Working…" });
+    expect(brain.useBrain().busy).toBe(true);
+    answered.resolve(reply("Your ferritin is fine."));
+    await sending;
+    const turns = brain.useBrain().turns;
+    expect(turns.map((t) => t.role)).toEqual(["user", "assistant"]);
+    expect(turns[1]).toMatchObject({ content: "Your ferritin is fine.", studyIds: ["PMID:123"] });
+    // Only real turns go back to the model next time.
+    await brain.send("Personal model", "And now?");
+    const history = (mocks.api.mock.calls.at(-1)?.[2] as { messages: { role: string }[] }).messages.map((m) => m.role);
+    expect(history).toEqual(["user", "assistant", "user"]);
+  });
+
+  it("drops the half-written answer when the stream fails, and says why", async () => {
+    mocks.api.mockImplementation(async (...args: unknown[]) => {
+      (args[4] as Update)({ text: "Partial", steps: [], studyIds: [] });
+      throw new Error("The AI service is having problems.");
+    });
+    await brain.send("Personal model", "Hi");
+    const turns = brain.useBrain().turns;
+    expect(turns.map((t) => t.role)).toEqual(["user", "error"]);
+    expect(turns[1]).toMatchObject({ content: "The AI service is having problems." });
+    expect(brain.useBrain().busy).toBe(false);
+  });
+
+  it("drops the half-written answer when the person stops", async () => {
+    let update: Update | undefined;
+    mocks.api.mockImplementation((...args: unknown[]) => {
+      update = args[4] as Update;
+      const signal = args[3] as AbortSignal;
+      return new Promise((_, reject) => signal.addEventListener("abort", () => reject(new DOMException("Aborted", "AbortError"))));
+    });
+    const sending = brain.send("Personal model", "Hi");
+    await vi.waitFor(() => expect(update).toBeDefined());
+    update!({ text: "Partial", steps: [], studyIds: [] });
+    brain.stop();
+    await sending;
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "stopped"]);
+    // A late update after Stop changes nothing.
+    update!({ text: "Late", steps: [], studyIds: [] });
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "stopped"]);
+  });
 });

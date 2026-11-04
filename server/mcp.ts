@@ -157,7 +157,9 @@ export function researchTools(byServer: Map<string, ToolSet>): ToolSet {
   const serverIds = [...byServer.keys()];
   return {
     research_tools: tool({
-      description: `List the tools of one connected research server (${serverIds.join(", ")}), with what each needs. Call this before use_research_tool.`,
+      // The ids are in the system prompt's server list; keeping them out of the description keeps the tool
+      // definitions the same while servers start or fail (prompt cache).
+      description: "List the tools of one connected research server (ids are in the research server list), with what each needs. Call this before use_research_tool.",
       inputSchema: z.object({ server: z.string().describe("Server id") }),
       execute: async ({ server }) => {
         const set = byServer.get(server);

@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "bun run typecheck && vite build",
+    "build": "bun run typecheck && vite build && bun run eve:build",
+    "eve:build": "bun tools/eve/build.ts",
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
     "preview": "vite preview",
     "server": "bun server/index.ts",
@@ -37,6 +38,7 @@
     "ai": "^7.0.162",
     "dexie": "^4.4.7",
     "dexie-react-hooks": "^4.4.0",
+    "eve": "1.0.0-rc.3",
     "pdfjs-dist": "^6.5.438",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

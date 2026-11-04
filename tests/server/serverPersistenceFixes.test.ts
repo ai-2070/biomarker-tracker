@@ -254,6 +254,9 @@ describe("server persistence review regressions", () => {
     }
     const restored = profiles.restoreZip(profiles.backupZip(source.id).data);
     expect(profiles.listFiles(restored.id).map((file) => file.originalName)).toEqual(kept.map((file) => file.originalName));
+    // The zip's entry order depends on the file system; the saved files.json order must win.
+    const reversed = profiles.restoreZip(writeZip(readZip(profiles.backupZip(source.id).data).reverse()));
+    expect(profiles.listFiles(reversed.id).map((file) => file.originalName)).toEqual(kept.map((file) => file.originalName));
     for (const file of profiles.listFiles(restored.id)) {
       expect(() => fileUrl(restored.id, file.name)).not.toThrow();
       expect(profiles.readFile(restored.id, file.name).data).toEqual(pdf);
@@ -326,5 +329,51 @@ describe("server persistence review regressions", () => {
     expect(started.unref).toHaveBeenCalledOnce();
     expect(started.listenerCount("error")).toBe(1);
     expect(() => started.emit("error", new Error("late file manager failure"))).not.toThrow();
+  });
+});
+
+describe("backup zips", () => {
+  it("are the same for the same folder, whatever order the file system lists it in", () => {
+    const source = profiles.createProfile({ person: { name: "Order" } });
+    for (const name of ["zeta.pdf", "alpha.pdf", "mid.pdf"]) profiles.addFile(source.id, name, pdf);
+    const names = () => readZip(profiles.backupZip(source.id).data).map((entry) => entry.name);
+    const listed = names();
+    const original = fs.readdirSync;
+    const spy = vi.spyOn(fs, "readdirSync").mockImplementation(((...args: Parameters<typeof original>) => [...(original(...args) as unknown[])].reverse()) as typeof original);
+    try {
+      expect(names()).toEqual(listed);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+});
+
+describe("partial profile saves", () => {
+  const row = { id: "m1", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" as const };
+  const fileOf = (id: string, name: string) => path.join(profiles.PROFILES(), id, name);
+
+  it("rewrites only the changed files, merged with what is on disk", () => {
+    const p = profiles.createProfile({ person: { name: "Partial" }, measurements: [row], protocols: [{ id: "h1", label: "Walk", category: "lifestyle", start: "2026-01-01" }] });
+    const log = fileOf(p.id, "log.json");
+    const before = fs.readFileSync(log, "utf8");
+    const stamp = new Date("2020-01-01T00:00:00Z");
+    fs.utimesSync(log, stamp, stamp);
+    expect(profiles.saveProfileParts(p.id, { measurements: [row, { ...row, id: "m2", date: "2026-02-01" }] })).toEqual({ written: ["measurements"] });
+    const data = profiles.getProfileData(p.id);
+    expect(data.measurements.map((m) => m.id)).toEqual(["m1", "m2"]);
+    expect(data.protocols.map((h) => h.id)).toEqual(["h1"]);
+    expect(data.person.name).toBe("Partial");
+    // The untouched habit log wasn't rewritten.
+    expect(fs.statSync(log).mtime.getTime()).toBe(stamp.getTime());
+    expect(fs.readFileSync(log, "utf8")).toBe(before);
+  });
+
+  it("checks the merged profile like a full save, and writes nothing when it fails", () => {
+    const p = profiles.createProfile({ person: { name: "Strict" }, measurements: [row] });
+    expect(() => profiles.saveProfileParts(p.id, { measurements: [row, row] })).toThrow(/duplicate IDs/);
+    expect(() => profiles.saveProfileParts(p.id, { person: { name: "" } })).toThrow(/needs a name/);
+    expect(() => profiles.saveProfileParts(p.id, { secrets: {} })).toThrow(/Unknown part/);
+    expect(profiles.getProfileData(p.id).measurements).toEqual([row]);
+    expect(profiles.saveProfileParts(p.id, {})).toEqual({ written: [] });
   });
 });

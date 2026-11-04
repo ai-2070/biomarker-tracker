@@ -6,6 +6,7 @@ import { api } from "../../api";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { SimpleSelect } from "../UnitSelect";
 import { Button, Card, CheckIcon, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../ui";
+import { OnOff } from "./SkillsSettings";
 
 interface SettingsResponse {
   providers: ProviderInfo[];
@@ -17,6 +18,8 @@ interface SettingsResponse {
   /** False while the default (Claude Code, Opus) is in use because nothing was saved. */
   chosen: boolean;
   ready: { ok: boolean; reason?: string };
+  /** eve as the engine for API-key and local models (preview). */
+  eve: { on: boolean; built: boolean };
 }
 
 type Listed = { id: string; label: string };
@@ -237,6 +240,8 @@ export function ModelsSettings() {
             </div>
           </div>
         )}
+
+        {!isAgent && <EveSetting eve={data.eve ?? { on: false, built: false }} onChange={(eve) => setData({ ...data, eve })} />}
 
         {info.id === "custom" && (
           <ChoiceGroup<Region>
@@ -548,6 +553,43 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
           {note.text}
         </p>
       )}
+    </div>
+  );
+}
+
+/**
+ * eve (preview): API-key and local models answer inside eve, Vercel's framework for durable agents, run as a
+ * private process on this computer. Same rules, tools, model and checks; questions with photos and evidence
+ * checks keep the built-in loop.
+ */
+function EveSetting({ eve, onChange }: { eve: SettingsResponse["eve"]; onChange: (eve: SettingsResponse["eve"]) => void }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  async function toggle(on: boolean) {
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await api<{ eve: SettingsResponse["eve"] }>("PUT", "/api/settings/eve", { on });
+      onChange(r.eve);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Couldn't change this setting.");
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <div className="flex flex-col gap-2 rounded-lg border border-line p-3">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="font-medium">Run in eve (preview)</p>
+          <p className="text-sm text-ink-2">
+            Brain answers inside eve, a framework for long-running agents, as a private process on this computer. Same model, rules, tools and citation checks. In-progress answers are kept in the app's data folder and deleted when each answer ends. Questions with photos and evidence checks use the usual way.
+          </p>
+          {!eve.built && <p className="mt-1 text-sm text-warn">Not available in this copy: the eve runtime isn't built (bun run eve:build).</p>}
+        </div>
+        <OnOff checked={eve.on} onChange={(on) => void (busy ? undefined : toggle(on))} label="Run in eve (preview)" />
+      </div>
+      {error && <p role="alert" className={errorStyles}>{error}</p>}
     </div>
   );
 }

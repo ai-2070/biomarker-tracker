@@ -8,11 +8,12 @@ import { DEFAULT_CHOICE, canUse, providerInfo, type ModelChoice, type UseCheck }
 import { agentInstalled } from "./agents";
 import { zdrFetch } from "./openrouter";
 import { getSecrets, getSettings } from "./store";
+import type { ProviderOptions } from "./brain/cache";
 
 export interface Ready {
   model: LanguageModel;
   /** Per-provider options, e.g. telling OpenAI not to store anything. */
-  providerOptions: Record<string, Record<string, string | boolean | number>>;
+  providerOptions: ProviderOptions;
   choice: ModelChoice;
 }
 
@@ -31,8 +32,11 @@ export function assistantCheck(): UseCheck {
   return check;
 }
 
-/** The model to use, or why it can't be used. Never builds a model the ZDR rule refuses. */
-export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: string } {
+/**
+ * The model to use, or why it can't be used. Never builds a model the ZDR rule refuses. `cacheKey` names the
+ * stable prompt (see brain/cache.ts) for providers that take it in the request body.
+ */
+export function readyModel(opts: { cacheKey?: string } = {}): { ok: true; ready: Ready } | { ok: false; reason: string } {
   const check = assistantCheck();
   if (!check.ok) return check;
   const s = getSettings();
@@ -52,8 +56,8 @@ export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: 
     case "mistral":
       return { ok: true, ready: { model: createMistral({ apiKey: key, baseURL: "https://api.mistral.ai/v1" })(choice.model), providerOptions: effort ? { mistral: { reasoningEffort: effort } } : {}, choice } };
     case "openrouter": {
-      // Zero data retention is requested on every call (see openrouter.ts).
-      const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch(fetch, effort ? { reasoning: { effort } } : {}) });
+      // Zero data retention is requested on every call (see openrouter.ts), plus prompt caching (openRouterCache).
+      const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch(fetch, { ...(effort ? { reasoning: { effort } } : {}), ...openRouterCache(choice.model, opts.cacheKey) }) });
       return { ok: true, ready: { model: p.chatModel(choice.model), providerOptions: {}, choice } };
     }
     case "claude-code":
@@ -70,6 +74,17 @@ export function readyModel(): { ok: true; ready: Ready } | { ok: false; reason: 
   }
 }
 
+/**
+ * OpenRouter's prompt-cache fields: a stable session for the same prompt, and a cache point for Anthropic
+ * models (other providers there cache automatically). The key is a hash of the rules, never personal data.
+ */
+export function openRouterCache(model: string, cacheKey?: string): Record<string, unknown> {
+  return {
+    ...(cacheKey ? { session_id: cacheKey.slice(0, 256) } : {}),
+    ...(/^~?anthropic\//i.test(model) ? { cache_control: { type: "ephemeral" } } : {}),
+  };
+}
+
 /** Plain-language message for a failed model call. Never includes keys. */
 export function describeModelError(e: unknown): string {
   const status = typeof e === "object" && e !== null && "statusCode" in e ? Number((e as { statusCode: unknown }).statusCode) : undefined;
@@ -79,6 +94,6 @@ export function describeModelError(e: unknown): string {
   if (status && status >= 500) return "The AI service is having problems. Try again later.";
   const msg = e instanceof Error ? e.message : String(e);
   if (/ECONNREFUSED|fetch failed|ENOTFOUND/i.test(msg)) return "Couldn't reach the AI service. If it's a local model, check that it's running.";
-  if (/abort|timed? ?out/i.test(msg)) return "The AI service took too long to answer.";
+  if (/abort|timed? ?out/i.test(msg)) return "The AI service took too long to answer (the limit is 10 minutes).";
   return `The AI service returned an error: ${msg.replace(/sk-[A-Za-z0-9_-]{8,}/g, "[key]").slice(0, 200)}`;
 }

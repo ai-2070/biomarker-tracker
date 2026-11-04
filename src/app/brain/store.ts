@@ -4,7 +4,7 @@ import { assistantProfile } from "../../core/profile";
 import type { Measurement, Profile } from "../../core/types";
 import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
 import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
-import { api } from "../api";
+import type { LiveAnswer } from "./stream";
 import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
@@ -34,6 +34,8 @@ export interface Step {
 export type Turn =
   | { id: string; role: "user"; content: string; /** what went to the model, with file text */ sent: string; files: string[]; /** photos sent with it (not kept) */ photos?: number }
   | { id: string; role: "assistant"; content: string; model: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
+  /** The answer while it streams: replaced by the final turn (or an error) when the reply arrives. */
+  | ({ id: string; role: "live"; model: string } & LiveAnswer)
   | { id: string; role: "error"; content: string }
   | { id: string; role: "stopped" }
   /** Actual persisted additions, never a model's claim that a save happened. */
@@ -135,7 +137,8 @@ function cancelRequest() {
   request = null;
   setThread(mine.scope, (s) => ({
     busy: false,
-    ...(mine.submitted ? { turns: [...s.turns, { id: newId(), role: "stopped" as const }] } : {}),
+    // A half-written answer isn't kept: it was never checked.
+    ...(mine.submitted ? { turns: [...s.turns.filter((t) => t.role !== "live"), { id: newId(), role: "stopped" as const }] } : {}),
   }));
 }
 
@@ -421,7 +424,21 @@ export async function send(model: string, text?: string): Promise<void> {
       const { name: _n, identity: _identity, ...data } = snap!;
       body = { messages, snapshot: data, ...(question ? { userText: question } : {}) };
     }
-    const r = await api<Reply>("POST", "/api/assistant", body, mine.controller.signal);
+    // The answer streams into a live turn; the verified reply replaces it below.
+    const liveId = newId();
+    set((s) => ({ turns: [...s.turns, { id: liveId, role: "live", model, text: "", steps: [], studyIds: [] }] }));
+    const dropLive = () => setThread(scope, (s) => ({ turns: s.turns.filter((t) => t.id !== liveId) }));
+    let r: Reply;
+    try {
+      // Loaded with the first question: the AI SDK's stream reader isn't needed before that.
+      const { streamAssistant } = await import("./stream");
+      r = await streamAssistant<Reply>(body, mine.controller.signal, (live) => {
+        if (isCurrent(mine)) setThread(scope, (s) => ({ turns: s.turns.map((t) => (t.id === liveId ? { ...t, ...live } : t)) }));
+      });
+    } catch (e) {
+      if (isCurrent(mine)) dropLive();
+      throw e;
+    }
     if (!isCurrent(mine)) return;
     const profileTurns: Turn[] = [];
     let effectiveProfile: Profile | undefined = snap?.profile;
@@ -437,7 +454,9 @@ export async function send(model: string, text?: string): Promise<void> {
       if (inputs.length || measurementsIn(question, questionDate, BIOMARKER_MAP).length) {
         try {
           const result = await fillPersonalDetails(inputs, question, questionDate, snap.identity, BIOMARKER_MAP, mine.controller.signal);
-          if (!isCurrent(mine) || !result.sameProfile) return;
+          if (!isCurrent(mine)) return;
+          // Another profile was opened while Brain answered: this answer isn't about the open one.
+          if (!result.sameProfile) return dropLive();
           effectiveProfile = result.profile;
           effectiveMeasurements = [...effectiveMeasurements, ...result.measurementsAdded];
           if (result.added.length || result.measurementsAdded.length) profileTurns.push({ id: newId(), role: "profile", changes: result.added, measurements: result.measurementsAdded });
@@ -449,7 +468,7 @@ export async function send(model: string, text?: string): Promise<void> {
     }
     set((s) => ({
       turns: [
-        ...s.turns,
+        ...s.turns.filter((t) => t.id !== liveId),
         ...(r.ok
           ? [
               { id: newId(), role: "assistant" as const, content: r.text, model: r.model ?? model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
@@ -461,7 +480,7 @@ export async function send(model: string, text?: string): Promise<void> {
     }));
   } catch (e) {
     if (!isCurrent(mine)) return;
-    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: e instanceof Error ? e.message : "Something went wrong." }] }));
+    set((s) => ({ turns: [...s.turns.filter((t) => t.role !== "live"), { id: newId(), role: "error", content: e instanceof Error ? e.message : "Something went wrong." }] }));
   } finally {
     if (request === mine) {
       request = null;
