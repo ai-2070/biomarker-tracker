@@ -1,0 +1,41 @@
+src-tauri/src/updater.rs
+  s_c9f041a2ab1815::t_dcda0457e150db 1-64,69-191
+  s_c9f041a2ab1815::t_56db33d3570e28 65-68
+.github/workflows/desktop.yml
+  s_c9f041a2ab1815::t_ae376cc9250f36 89,92,95,137-152,157-158,161,164-166
+tests/server/desktopUpdates.test.ts
+  s_c9f041a2ab1815::t_bfc9325c2e1e8c 1-51,54-55
+  s_c9f041a2ab1815::t_6fdb4d166a7f7d 52-53
+src-tauri/tauri.updater.conf.json
+  s_c9f041a2ab1815::t_ae376cc9250f36 1-4
+CLAUDE.md
+  s_c9f041a2ab1815::t_551a6c1d77db09 23
+docs/desktop.md
+  s_c9f041a2ab1815::t_551a6c1d77db09 1-53
+src-tauri/src/main.rs
+  s_c9f041a2ab1815::t_1b56e79dc9ab96 10,18-19,22-23,46,52-57,75,80,116-126,130,153,160,168
+src-tauri/tauri.conf.json
+  s_c9f041a2ab1815::t_56153584f3eea7 17,29-30
+  s_c9f041a2ab1815::t_65d98c0a651ac4 25-28,31
+src-tauri/Cargo.toml
+  s_c9f041a2ab1815::t_ffb7d52807fe8a 19
+  s_c9f041a2ab1815::t_1dd58465047f9b 18
+src-tauri/Cargo.lock
+  s_c9f041a2ab1815::t_91561439ecfb07 232,239,471-476,518-527,551,564,1013-1022,1281-1291,1311,1314,1569-1583,1603,1607,1910-1939,2128-2133,2228-2239,2417-2428,2503-2508,2535-2548,2941,2947-2949,2954,2992-3005,3034-3106,3122-3130,3188-3210,3442-3451,3576-3581,3645-3665,3687,3697,3730-3740,3764,3981-4014,4025,4048,4236-4245,4459-4464,4500-4505,4768-4776,4941-4951,4979-4987,5021-5036,5047,5078-5083,5096-5101,5114-5119,5126-5131,5144-5149,5162-5167,5180-5185,5198-5203,5268,5314-5323,5438-5443,5477-5492
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a7a0cc92c2f9f8fc79773578e31973f0325329b7",
+  "prompts": {},
+  "sessions": {
+    "s_c9f041a2ab1815": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5ec6d363-b5a4-4e13-a710-9cdce9f78ae0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
