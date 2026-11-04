@@ -19,6 +19,7 @@ export type AgentId = Extract<ProviderId, "claude-code" | "codex" | "hermes" | "
 export const isAgent = (id: string): id is AgentId => providerInfo(id)?.kind === "agent";
 
 const IS_WIN = process.platform === "win32";
+/** Same as the assistant's limit (brain/ask.ts): no step or turn limit, 10 minutes per question. */
 const TIMEOUT_MS = 10 * 60_000;
 
 export function agentInstalled(id: string): boolean {
@@ -282,8 +283,10 @@ export interface AgentRequest {
   model: string;
   effort?: Effort;
   profile?: string;
-  /** The assistant's rules (systemPrompt in assistant.ts). */
+  /** The assistant's stable rules (brain/prompt.ts). */
   system: string;
+  /** This request's part of the prompt (critical results, cautions, the date), after the stable rules. */
+  context?: string;
   messages: AgentMessage[];
   /** The app's tools, offered through the bridge. */
   tools: ToolSet;
@@ -291,7 +294,6 @@ export interface AgentRequest {
   dataPack: () => string;
   /** Claim reviews must never silently start another program run after a failure. */
   claimReview?: boolean;
-  budget?: { timeoutMs: number; maxTurns: number };
   signal?: AbortSignal;
 }
 
@@ -304,7 +306,9 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
   const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
   if (req.signal?.aborted) return { ok: false, error: "Stopped." };
-  const system = req.system + (bridged ? BRIDGE_NOTE : `${NO_TOOLS_NOTE}\n\nThe user's data:\n${req.dataPack()}`);
+  // Stable rules and the tools note first, then this request's part and data (prompt cache: the program's
+  // provider reads the unchanged start from its cache).
+  const system = [req.system + (bridged ? BRIDGE_NOTE : NO_TOOLS_NOTE), req.context, bridged ? "" : `The user's data:\n${req.dataPack()}`].filter(Boolean).join("\n\n");
   const question = conversationText(req.messages);
   const model = req.model.trim() || undefined;
   const effort = req.effort;
@@ -334,22 +338,21 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
       }
       const args = claudeArgs({ model, effort, systemFile, mcpFile });
-      if (req.budget) args.push("--max-turns", String(req.budget.maxTurns));
-      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
+      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
-      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, timeoutMs: req.budget?.timeoutMs, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {} });
       parsed = parseCodex(r.stdout, r.stderr);
       if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {
-      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
+      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal });
       parsed = parseHermes(r.stdout, r.stderr);
     } else {
       const messageFile = path.join(dir, "message.md");
       fs.writeFileSync(messageFile, `<instructions>\n${system}\n</instructions>\n\n${question}`);
       const sessionKey = `biomarker-tracker-${crypto.randomBytes(6).toString("hex")}`;
       const once = async (local: boolean) => {
-        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal, timeoutMs: req.budget?.timeoutMs });
+        const r = await runProgram("openclaw", openclawArgs({ model, effort, profile, messageFile, sessionKey, local }), { cwd: dir, signal: req.signal });
         return parseOpenClaw(r.stdout, r.stderr);
       };
       let p = await once(false);

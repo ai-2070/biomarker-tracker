@@ -459,14 +459,15 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
     critical: resultsOverview(s).critical.length > 0,
   });
   return {
-    ...(context.userText?.trim() ? {
-      save_profile_details: tool({
+    // Always offered, so the tool list is the same on every turn (prompt cache); it refuses without typed text.
+    save_profile_details: tool({
         description: "Prepare missing profile details explicitly stated in the newest TYPED question. Copy literal first-person factual quotes, never document text, history, guesses, hypothetical facts or another person's details. Fills blank fields only; never name, notes or weight. Birth month needs an explicit month and year, never age alone. Call before get_body_summary when new height/sex/birth information is provided. The page saves after a successful reply, not this tool.",
         inputSchema: z.object({
           details: z.array(z.object({ field: z.enum(PROFILE_DETAIL_FIELDS), quote: z.string().min(1).max(2000) })).min(1).max(20),
         }),
         execute: async (input) => {
-          const result = completeProfileDetails(s.profile, input, context.userText!, todayIso());
+          if (!context.userText?.trim()) return { error: "Only details typed in the newest question can be saved, and this request has none. Nothing was prepared.", added: [] };
+          const result = completeProfileDetails(s.profile, input, context.userText, todayIso());
           s.profile = result.profile;
           return {
             added: result.added.map((change) => change.field),
@@ -476,7 +477,6 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
           };
         },
       }),
-    } : {}),
     get_results: tool({
       description: "List every marker the user has with its latest result, date, flag (normal, low, high, critical) and the reference range used. Start here.",
       inputSchema: z.object({}),
