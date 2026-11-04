@@ -4,6 +4,6 @@
   "type": "module",
   "description": "Brain's eve runtime (opt-in engine). eve finds the project by this declaration; packages resolve from the root install.",
   "dependencies": {
-    "eve": "1.0.0-rc.3"
+    "eve": "1.0.0-rc.2"
   }
 }
