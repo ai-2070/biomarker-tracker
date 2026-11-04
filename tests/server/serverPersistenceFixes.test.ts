@@ -347,3 +347,33 @@ describe("backup zips", () => {
     }
   });
 });
+
+describe("partial profile saves", () => {
+  const row = { id: "m1", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" as const };
+  const fileOf = (id: string, name: string) => path.join(profiles.PROFILES(), id, name);
+
+  it("rewrites only the changed files, merged with what is on disk", () => {
+    const p = profiles.createProfile({ person: { name: "Partial" }, measurements: [row], protocols: [{ id: "h1", label: "Walk", category: "lifestyle", start: "2026-01-01" }] });
+    const log = fileOf(p.id, "log.json");
+    const before = fs.readFileSync(log, "utf8");
+    const stamp = new Date("2020-01-01T00:00:00Z");
+    fs.utimesSync(log, stamp, stamp);
+    expect(profiles.saveProfileParts(p.id, { measurements: [row, { ...row, id: "m2", date: "2026-02-01" }] })).toEqual({ written: ["measurements"] });
+    const data = profiles.getProfileData(p.id);
+    expect(data.measurements.map((m) => m.id)).toEqual(["m1", "m2"]);
+    expect(data.protocols.map((h) => h.id)).toEqual(["h1"]);
+    expect(data.person.name).toBe("Partial");
+    // The untouched habit log wasn't rewritten.
+    expect(fs.statSync(log).mtime.getTime()).toBe(stamp.getTime());
+    expect(fs.readFileSync(log, "utf8")).toBe(before);
+  });
+
+  it("checks the merged profile like a full save, and writes nothing when it fails", () => {
+    const p = profiles.createProfile({ person: { name: "Strict" }, measurements: [row] });
+    expect(() => profiles.saveProfileParts(p.id, { measurements: [row, row] })).toThrow(/duplicate IDs/);
+    expect(() => profiles.saveProfileParts(p.id, { person: { name: "" } })).toThrow(/needs a name/);
+    expect(() => profiles.saveProfileParts(p.id, { secrets: {} })).toThrow(/Unknown part/);
+    expect(profiles.getProfileData(p.id).measurements).toEqual([row]);
+    expect(profiles.saveProfileParts(p.id, {})).toEqual({ written: [] });
+  });
+});

@@ -201,7 +201,11 @@ function validSettings(v: unknown): Record<string, unknown> {
   return out;
 }
 
-function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "settings"> & { settings?: Record<string, unknown> }): void {
+/**
+ * Writes a profile generation. `only` limits the write to those component files (a partial save); profile.json
+ * is always written. Every file is still journalled, so a crash rolls back to the previous generation.
+ */
+function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "settings"> & { settings?: Record<string, unknown> }, only?: ReadonlySet<string>): void {
   recoverSave(dir);
   const next: Record<(typeof SNAPSHOT_FILES)[number], unknown> = {
     "results.json": data.measurements,
@@ -227,7 +231,7 @@ function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "setti
   }
   writeJSON(path.join(dir, JOURNAL), { previous });
   try {
-    for (const name of SNAPSHOT_FILES) writeJSON(path.join(dir, name), next[name]);
+    for (const name of SNAPSHOT_FILES) if (!only || only.has(name) || name === "profile.json") writeJSON(path.join(dir, name), next[name]);
     // Removing the journal commits the complete generation. A crash before this rolls back.
     fs.unlinkSync(path.join(dir, JOURNAL));
     syncDirectory(dir);
@@ -318,6 +322,37 @@ export function saveProfileData(id: string, input: DataInput): void {
   const data = validateData(input);
   if (!data.person.name) throw new ProfileError(400, "A profile needs a name.");
   writeAll(dir, readMeta(dir)!, { ...data, settings: validSettings(input.settings) });
+}
+
+/** The parts of a profile the page can send on their own, and the file each one is kept in. */
+export const PROFILE_PARTS = {
+  person: "profile.json",
+  measurements: "results.json",
+  protocols: "log.json",
+  experiments: "experiments.json",
+  plans: "protocols.json",
+  meals: "meals.json",
+  settings: "settings.json",
+} as const;
+export type ProfilePart = keyof typeof PROFILE_PARTS;
+
+/**
+ * Saves only the parts that changed. The merged profile is checked exactly like a full save (the parts depend
+ * on each other, e.g. unique ids and the person's name); only the changed files are rewritten.
+ */
+export function saveProfileParts(id: string, parts: Record<string, unknown>): { written: ProfilePart[] } {
+  const dir = dirOf(id);
+  const names = Object.keys(parts);
+  const unknown = names.find((n) => !(n in PROFILE_PARTS));
+  if (unknown) throw new ProfileError(400, `Unknown part of a profile: ${unknown.slice(0, 40)}.`);
+  if (names.length === 0) return { written: [] };
+  const current = getProfileData(id); // Never merge into a generation whose existing source cannot be read.
+  const input: DataInput = { ...current, ...parts };
+  const data = validateData(input);
+  if (!data.person.name) throw new ProfileError(400, "A profile needs a name.");
+  const written = names as ProfilePart[];
+  writeAll(dir, readMeta(dir)!, { ...data, settings: validSettings(input.settings) }, new Set(written.map((n) => PROFILE_PARTS[n])));
+  return { written };
 }
 
 export function deleteProfile(id: string): void {

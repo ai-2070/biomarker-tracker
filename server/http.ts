@@ -223,6 +223,12 @@ route("PUT", `/api/profiles/${ID}/data`, ([id], body) => {
   profiles.saveProfileData(id!, body);
   return { ok: true };
 });
+// Only the parts that changed since the page's last acknowledged save (src/app/profiles.ts).
+route("PATCH", `/api/profiles/${ID}/data`, ([id], body) => {
+  const parts = body.parts;
+  if (typeof parts !== "object" || parts === null || Array.isArray(parts)) throw new HttpError(400, "Send the changed parts of the profile.");
+  return { ok: true, ...profiles.saveProfileParts(id!, parts as Record<string, unknown>) };
+});
 route("DELETE", `/api/profiles/${ID}`, ([id]) => {
   profiles.deleteProfile(id!);
   return { ok: true, active: profiles.activeProfile() };
