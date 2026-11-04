@@ -24,6 +24,8 @@ import { ProfilesContext, claimWorkingCopy, createProfile, hasBrowserData, listP
 import { href, useRoute, type Route } from "./router";
 
 // The chart library is large; load it only when a marker page is opened.
+const PeriodSummaryPage = lazy(() => import("./pages/PeriodSummaryPage").then((m) => ({ default: m.PeriodSummaryPage })));
+const TestSummaryPage = lazy(() => import("./pages/TestSummaryPage").then((m) => ({ default: m.TestSummaryPage })));
 const MarkerPage = lazy(() => import("./pages/MarkerPage").then((m) => ({ default: m.MarkerPage })));
 const SupplementsPage = lazy(() => import("./pages/SupplementsPage").then((m) => ({ default: m.SupplementsPage })));
 const WholeFoodsPage = lazy(() => import("./pages/WholeFoodsPage").then((m) => ({ default: m.WholeFoodsPage })));
@@ -137,6 +139,10 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <HomePage />;
     case "blood":
       return <BloodDashboardPage />;
+    case "test-summary":
+      return <TestSummaryPage date={route.date} />;
+    case "period-summary":
+      return <PeriodSummaryPage year={route.year} />;
     case "body":
       return <BodyPage />;
     case "device-import":

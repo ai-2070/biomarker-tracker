@@ -14,6 +14,10 @@ export type Route =
   | { name: "dashboard" }
   /** The blood tests dashboard. */
   | { name: "blood" }
+  /** A summary of one blood test (the latest without a date). */
+  | { name: "test-summary"; date?: string }
+  /** A year of blood tests: the last 12 months, or a calendar year. */
+  | { name: "period-summary"; year?: number }
   /** Body measurements; `add` opens the entry form. */
   | { name: "body" }
   /** Reading export files from watches, rings and phone apps. */
@@ -56,6 +60,14 @@ export function parseHash(hash: string): Route {
   }
   if (parts[0] === "soon" && parts[1] === "devices" && parts.length === 2) return { name: "soon", section: "devices" };
   if (parts[0] === "blood" && parts.length === 1) return { name: "blood" };
+  if (parts[0] === "blood" && parts[1] === "summary" && parts[2] === "year" && parts.length === 3) {
+    const year = Number(params.get("year"));
+    return Number.isInteger(year) && year >= 1900 && year <= 2999 ? { name: "period-summary", year } : { name: "period-summary" };
+  }
+  if (parts[0] === "blood" && parts[1] === "summary" && parts.length === 2) {
+    const date = params.get("date");
+    return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? { name: "test-summary", date } : { name: "test-summary" };
+  }
   if (parts[0] === "body" && parts[1] === "import" && parts.length === 2) return { name: "device-import" };
   if ((parts[0] === "body" && parts.length === 1) || (parts[0] === "soon" && parts[1] === "body" && parts.length === 2)) return params.has("add") ? { name: "add", kind: "body" } : { name: "body" };
   if (parts[0] === "add" && parts.length === 1) {
@@ -128,6 +140,10 @@ export function href(route: Route): string {
       return `#/soon/${route.section}`;
     case "blood":
       return "#/blood";
+    case "test-summary":
+      return route.date ? `#/blood/summary?date=${route.date}` : "#/blood/summary";
+    case "period-summary":
+      return route.year ? `#/blood/summary/year?year=${route.year}` : "#/blood/summary/year";
     case "body":
       return "#/body";
     case "device-import":

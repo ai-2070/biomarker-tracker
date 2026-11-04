@@ -1,0 +1,132 @@
+{
+  "id": "neutrophil_abs",
+  "name": "Neutrophils (absolute count)",
+  "abbreviation": "ANC",
+  "category": "Blood count",
+  "aliases": [
+    "Neutrophils #",
+    "Neutrophils#",
+    "Neutrophils (absolute)",
+    "Neutrophils absolute",
+    "Neutrophils, absolute",
+    "Neutrophils abs",
+    "Absolute neutrophil count",
+    "Absolute neutrophils",
+    "Neutrophil count",
+    "ANC",
+    "NEUT#",
+    "NE#",
+    "Neutrophile absolut",
+    "Neutrophile abs",
+    "Neutrophile Granulozyten absolut",
+    "Neutrophile Granulozyten abs",
+    "Neutrofil absz",
+    "Neutrofil abszolút",
+    "Neutrofil granulocita absz",
+    "Neutrofil granulocita abszolút",
+    "Neutrophil absz",
+    "Neutrophil abszolút"
+  ],
+  "loinc": [
+    "751-8",
+    "26499-4"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1,
+    "cells/µL": 0.001
+  },
+  "defaultRanges": [
+    {
+      "low": 1.5,
+      "high": 7
+    }
+  ],
+  "criticalRange": {
+    "low": 0.5
+  },
+  "rangeNote": "Many healthy people with African or Middle Eastern family roots carry a common gene variant (called Duffy-null) that makes their usual neutrophil count lower, sometimes below this range, without more infections. Separate ranges for them exist, so ask which range fits you.",
+  "summary": "Neutrophils are the most common white blood cells and the first to respond to bacterial infections. This value is how many are in a set volume of blood, which says more than their percentage.",
+  "high": {
+    "meaning": "A high count is most often a short-term reaction to infection, inflammation or stress. It usually settles once the cause passes.",
+    "commonCauses": [
+      "Bacterial infection",
+      "Inflammation",
+      "Physical or emotional stress, or hard exercise",
+      "Smoking",
+      "Steroid medicines",
+      "Pregnancy",
+      "After spleen removal",
+      "Blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A mildly low count is common after viral infections or with some medicines, and can be normal for some people. A very low count (below 0.5) makes serious infections more likely, so a fever at such a count needs urgent medical care.",
+    "commonCauses": [
+      "Recent viral infection",
+      "Some medicines",
+      "Natural variation (Duffy-null), common in people of African or Middle Eastern descent",
+      "Low vitamin B12 or folate",
+      "Immune conditions",
+      "Bone marrow problems (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 14.6,
+    "ciLow": 6.3,
+    "ciHigh": 26,
+    "studies": 7,
+    "analyte": "Neutrophils",
+    "matrix": "Whole blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-04"
+  },
+  "sources": [
+    {
+      "pmid": "26554885",
+      "doi": "10.1097/moh.0000000000000208",
+      "title": "How I diagnose and treat neutropenia.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "42366919",
+      "doi": "10.1111/bjh.70640",
+      "title": "Diagnosis and management of neutropenia in adults: Expert guidance.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "31255364",
+      "doi": "10.1016/j.blre.2019.06.003",
+      "title": "Benign ethnic neutropenia.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37338884",
+      "doi": "10.1001/jama.2023.7467",
+      "title": "Development of Duffy Null-Specific Absolute Neutrophil Count Reference Ranges.",
+      "year": 2023,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "8881919",
+      "doi": "10.1136/jcp.49.8.664",
+      "title": "Ethnic and sex differences in the total and differential white cell count and platelet count.",
+      "year": 1996,
+      "studyType": "observational"
+    }
+  ]
+}

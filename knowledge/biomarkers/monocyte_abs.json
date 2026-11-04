@@ -1,0 +1,96 @@
+{
+  "id": "monocyte_abs",
+  "name": "Monocytes (absolute count)",
+  "category": "Blood count",
+  "aliases": [
+    "Monocytes #",
+    "Monocytes#",
+    "Monocytes (absolute)",
+    "Monocytes absolute",
+    "Monocytes, absolute",
+    "Monocytes abs",
+    "Absolute monocyte count",
+    "Absolute monocytes",
+    "Monocyte count",
+    "MONO#",
+    "MO#",
+    "Monozyten absolut",
+    "Monozyten abs",
+    "Monocita absz",
+    "Monocita abszolút",
+    "Monocyta absz",
+    "Monocyta abszolút"
+  ],
+  "loinc": [
+    "742-7",
+    "26484-6"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1,
+    "cells/µL": 0.001
+  },
+  "defaultRanges": [
+    {
+      "high": 0.88
+    }
+  ],
+  "rangeNote": "Labs usually print a lower limit too. A slightly low monocyte count on its own is rarely meaningful.",
+  "summary": "Monocytes are white blood cells that clean up germs and damaged cells and help control inflammation. This value is how many are in a set volume of blood.",
+  "high": {
+    "meaning": "A high count is most often seen while recovering from an infection or with long-lasting inflammation. A count that stays high without a clear reason is worth discussing with a doctor.",
+    "commonCauses": [
+      "Recovery from an infection",
+      "Long-lasting infections such as tuberculosis",
+      "Autoimmune or inflammatory conditions",
+      "After spleen removal",
+      "Blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low count is uncommon and often temporary, for example with steroid medicines or acute stress. Some rare bone marrow and immune conditions also lower it.",
+    "commonCauses": [
+      "Steroid medicines",
+      "Acute stress or illness",
+      "Some cancer treatments",
+      "Bone marrow or inherited immune conditions (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 13.3,
+    "ciLow": 13.1,
+    "ciHigh": 19.3,
+    "studies": 5,
+    "analyte": "Monocytes",
+    "matrix": "Whole blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-04"
+  },
+  "sources": [
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "34773576",
+      "doi": "10.1007/s11899-021-00660-2",
+      "title": "Myeloproliferative Neoplasms with Monocytosis.",
+      "year": 2022,
+      "studyType": "review"
+    },
+    {
+      "pmid": "8881919",
+      "doi": "10.1136/jcp.49.8.664",
+      "title": "Ethnic and sex differences in the total and differential white cell count and platelet count.",
+      "year": 1996,
+      "studyType": "observational"
+    }
+  ]
+}

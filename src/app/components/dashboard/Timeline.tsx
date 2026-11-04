@@ -342,9 +342,15 @@ export function Timeline({
               {cAge.length ? ` · biological age ${cAge.map((p) => formatYears(p.phenoAge) + (p.approximate ? " (approx.)" : "")).join(", ")}` : ""}
             </p>
             {cOut.length > 0 ? <p className={cx("mt-1", cCrit ? "text-danger" : "text-warn")}>Out of range: {cOut.join(", ")}</p> : <p className="mt-1 text-ink-2">Everything in range</p>}
-            <a href={href({ name: "overview" })} className="mt-2 inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline">
-              View blood tests
-            </a>
+            <span className="mt-2 flex flex-wrap gap-x-4">
+              {/* The timeline's tests are blood tests only (body days are a separate row). */}
+              <a href={href({ name: "test-summary", date: c.draws.at(-1)!.date })} className="inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline">
+                Summary of this test
+              </a>
+              <a href={href({ name: "overview" })} className="inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline">
+                View blood tests
+              </a>
+            </span>
           </div>
         )}
       </div>

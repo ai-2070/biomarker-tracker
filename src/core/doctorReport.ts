@@ -74,6 +74,8 @@ export interface DoctorReport {
   logs: ProtocolEntry[];
   includeLog: boolean;
   includeNotes: boolean;
+  /** Questions from the test summary (`testSummary.ts`) of the latest blood test in the period, when chosen. */
+  questions?: { testDate: string; items: string[] };
 }
 
 export interface DoctorReportInput {

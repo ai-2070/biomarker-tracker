@@ -1,0 +1,98 @@
+{
+  "id": "basophil_abs",
+  "name": "Basophils (absolute count)",
+  "category": "Blood count",
+  "aliases": [
+    "Basophils #",
+    "Basophils#",
+    "Basophils (absolute)",
+    "Basophils absolute",
+    "Basophils, absolute",
+    "Basophils abs",
+    "Absolute basophil count",
+    "Absolute basophils",
+    "Basophil count",
+    "BASO#",
+    "BA#",
+    "Basophile absolut",
+    "Basophile abs",
+    "Basophile Granulozyten absolut",
+    "Basophile Granulozyten abs",
+    "Basofil absz",
+    "Basofil abszolút",
+    "Bazofil absz",
+    "Bazofil abszolút",
+    "Basophil absz",
+    "Basophil abszolút"
+  ],
+  "loinc": [
+    "704-7",
+    "26444-0"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1,
+    "cells/µL": 0.001
+  },
+  "defaultRanges": [
+    {
+      "high": 0.1
+    }
+  ],
+  "rangeNote": "Basophils are the rarest white cells, so such small counts are hard to measure exactly; analysers sometimes count other cells as basophils. There is no meaningful lower limit.",
+  "summary": "Basophils are the rarest white blood cells. They release histamine and take part in allergic reactions. This value is how many are in a set volume of blood.",
+  "high": {
+    "meaning": "A slightly high count can be a counting error or linked to allergies or inflammation, and a repeat test may be normal. A count that stays high is worth discussing with a doctor, because some blood disorders raise it.",
+    "commonCauses": [
+      "Counting error by the analyser (a false high)",
+      "Allergic reactions",
+      "Long-lasting inflammation",
+      "Blood disorders such as chronic myeloid leukaemia (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low or zero count is common and usually means nothing, because so few basophils circulate.",
+    "commonCauses": [
+      "Normal variation",
+      "Acute stress or illness",
+      "Steroid medicines"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 12.6,
+    "ciLow": 11.4,
+    "ciHigh": 32,
+    "studies": 5,
+    "analyte": "Basophils",
+    "matrix": "Whole blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-04"
+  },
+  "sources": [
+    {
+      "pmid": "31841278",
+      "doi": "10.1111/ijlh.13146",
+      "title": "How I investigate basophilia in daily practice.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "8881919",
+      "doi": "10.1136/jcp.49.8.664",
+      "title": "Ethnic and sex differences in the total and differential white cell count and platelet count.",
+      "year": 1996,
+      "studyType": "observational"
+    }
+  ]
+}

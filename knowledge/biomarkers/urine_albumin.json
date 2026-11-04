@@ -1,0 +1,90 @@
+{
+  "id": "urine_albumin",
+  "name": "Urine albumin",
+  "category": "Urine",
+  "aliases": [
+    "Urine albumin",
+    "Urinary albumin",
+    "Albumin, urine",
+    "Albumin (urine)",
+    "Urine microalbumin",
+    "Microalbumin, urine",
+    "Microalbumin (urine)",
+    "Microalbumin",
+    "Albumin im Urin",
+    "Albumin (Urin)",
+    "Albumin, Urin",
+    "Urin-Albumin",
+    "Mikroalbumin im Urin",
+    "Mikroalbumin (Urin)",
+    "Mikroalbumin",
+    "Microalbumin vizeletben",
+    "Mikroalbumin vizeletben",
+    "Albumin vizeletben",
+    "Vizelet albumin",
+    "Vizelet mikroalbumin",
+    "Vizelet microalbumin",
+    "Albumin (vizelet)",
+    "Viz. albumin"
+  ],
+  "loinc": [
+    "14957-5",
+    "1754-1"
+  ],
+  "canonicalUnit": "mg/L",
+  "conversions": {
+    "mg/L": 1,
+    "µg/mL": 1,
+    "mg/dL": 10
+  },
+  "defaultRanges": [
+    {
+      "high": 20
+    }
+  ],
+  "rangeNote": "Below about 20 mg/L is the usual screening limit in a first-morning urine sample; labs vary. A concentration depends on how much you drank, so the albumin-to-creatinine ratio (UACR) from the same sample is the preferred result. Hard exercise, fever, infection and menstruation can raise it, and a raised result is usually confirmed with repeat tests.",
+  "summary": "Albumin is a blood protein. Healthy kidneys let very little of it into the urine; small amounts are sometimes called \"microalbumin\". This result is the amount per litre of urine, so it also depends on how dilute the sample is.",
+  "high": {
+    "meaning": "More albumin in the urine can be an early sign of kidney damage, but a single concentration can also be high because the urine is concentrated. The albumin-to-creatinine ratio and repeat tests show whether it is lasting. Discuss a raised result with your doctor.",
+    "commonCauses": [
+      "Concentrated urine (drinking little before the sample)",
+      "Hard exercise in the day before the sample",
+      "Fever, infection (including a urinary infection) or acute illness",
+      "Menstrual blood in the sample",
+      "Diabetes or high blood sugar",
+      "High blood pressure",
+      "Chronic kidney disease"
+    ]
+  },
+  "low": {
+    "meaning": "A low or undetectable result is normal: healthy kidneys keep almost all albumin in the blood. Very dilute urine can also make it look lower.",
+    "commonCauses": [
+      "Normal kidney filtering",
+      "Dilute urine after drinking a lot"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "19211710",
+      "doi": "10.1681/asn.2008060655",
+      "title": "Screening for albuminuria identifies individuals at increased renal risk.",
+      "year": 2009,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "38490803",
+      "doi": "10.1016/j.kint.2023.10.018",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "19028824",
+      "doi": "10.1373/clinchem.2008.106567",
+      "title": "Current issues in measurement and reporting of urinary albumin excretion.",
+      "year": 2009,
+      "studyType": "review"
+    }
+  ]
+}

@@ -202,6 +202,28 @@ export const toggleBrain = () => (state.open ? closeBrain() : openBrain());
 export const setDraft = (draft: string) => set({ draft, pending: undefined });
 export const removeAttachment = (id: string) => setThread("personal", (s) => ({ attachments: s.attachments.filter((a) => a.id !== id) }));
 export const setSendPhoto = (id: string, on: boolean) => setThread("personal", (s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, sendPhoto: on } : a)) }));
+/**
+ * A photo that became a review card, put back into the composer as a picture, so the person can also ask
+ * about the photo itself. It is only sent once they tick "Send the photo itself" on it, as for any photo.
+ */
+export function attachReviewPhoto(turnId: string): void {
+  const turn = threads.personal.turns.find((t) => t.id === turnId);
+  if (turn?.role !== "review" || !turn.file || !isImage(turn.file)) return;
+  const file = turn.file;
+  if (threads.personal.attachments.some((a) => a.photo === file)) return;
+  setThread("personal", (s) => ({
+    attachments: [...s.attachments, { id: newId(), name: file.name, size: file.size, status: "ready", text: "", photo: file, sendPhoto: false }],
+  }));
+  if (state.scope === "personal") set((s) => ({ focusTick: s.focusTick + 1 }));
+}
+
+/** Lab results pasted as text (three rows or more) become a review card, like a dropped report. */
+export function addPastedLabText(text: string): boolean {
+  if (state.scope !== "personal") return false;
+  if (parseLabText(text, BLOOD_MARKERS, { monthFirst }).rows.length < 3) return false;
+  void addFiles([new File([text], "Pasted lab results.txt", { type: "text/plain" })]);
+  return true;
+}
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
 export const setHabitState = (id: string, state: "saved" | "dismissed") =>

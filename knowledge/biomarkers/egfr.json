@@ -15,7 +15,9 @@
     "Becsült GFR",
     "DFG estimé",
     "Filtrado glomerular estimado",
-    "Velocità di filtrazione glomerulare"
+    "Velocità di filtrazione glomerulare",
+    "CKD-EPI",
+    "CKD-EPI eGFR"
   ],
   "loinc": [
     "98979-8",

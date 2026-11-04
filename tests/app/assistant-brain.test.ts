@@ -18,7 +18,7 @@ vi.mock("../../src/app/components/LabReview", () => ({
 }));
 vi.mock("../../src/core/importers/labText", () => ({ parseLabText: seam.parse }));
 vi.mock("../../src/app/brain/photo", () => ({ shrinkPhoto: seam.shrink }));
-import { addFiles, habitTurns, newConversation, send, setDraft, setSendPhoto, stop, useBrain } from "../../src/app/brain/store";
+import { addFiles, addPastedLabText, attachReviewPhoto, habitTurns, newConversation, send, setDraft, setSendPhoto, stop, useBrain } from "../../src/app/brain/store";
 
 function deferred<T>() {
   let resolve!: (value: T) => void;
@@ -159,3 +159,31 @@ it("keeps a full-length earlier photo question intact without overflowing it wit
   expect(messages.every((message: { content: string }) => message.content.length <= 20_000)).toBe(true);
 });
 
+
+describe("lab results pasted or photographed into Brain", () => {
+  const rows = (n: number) => ({ rows: Array.from({ length: n }, (_, i) => ({ biomarkerId: `m${i}` })), unmatched: [] });
+
+  it("turns pasted lab rows into a review card instead of a message", async () => {
+    seam.parse.mockReturnValue(rows(3));
+    expect(addPastedLabText("Serum Natrium 140 mmol/L\nSerum Kalium 4.6 mmol/L\nRDW 13.3 %")).toBe(true);
+    await vi.waitFor(() => expect(useBrain().turns).toMatchObject([{ role: "review", fileName: "Pasted lab results.txt", state: "open" }]));
+    expect(useBrain().draft).toBe("");
+    expect(seam.api).not.toHaveBeenCalled();
+  });
+
+  it("leaves ordinary pasted text in the question box", () => {
+    seam.parse.mockReturnValue(rows(2));
+    expect(addPastedLabText("My ferritin was 18 last spring and 30 now")).toBe(false);
+  });
+
+  it("lets the person also attach a photo that became a review card, unticked until they choose", async () => {
+    seam.read.mockResolvedValue({ text: "Ferritin 30", ocr: true });
+    seam.parse.mockReturnValue(rows(1));
+    await addFiles([new File(["image"], "report.jpg", { type: "image/jpeg" })]);
+    const card = useBrain().turns[0]!;
+    attachReviewPhoto(card.id);
+    attachReviewPhoto(card.id);
+    expect(useBrain().attachments).toMatchObject([{ name: "report.jpg", status: "ready", sendPhoto: false }]);
+    expect(useBrain().turns).toMatchObject([{ role: "review", state: "open" }]);
+  });
+});

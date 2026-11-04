@@ -1,0 +1,72 @@
+{
+  "id": "basophil_pct",
+  "name": "Basophils (%)",
+  "category": "Blood count",
+  "aliases": [
+    "Basophils %",
+    "Basophils (%)",
+    "Basophil %",
+    "BASO%",
+    "BA%",
+    "Basophile %",
+    "Basophile Granulozyten %",
+    "Bazofil %",
+    "Basophil granulocyta %",
+    "Bazofil granulocita %",
+    "Basophiles %",
+    "Basófilos %",
+    "Basofili %"
+  ],
+  "loinc": [
+    "706-2"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "high": 2
+    }
+  ],
+  "rangeNote": "No lower limit is used: basophils are the rarest white cells and 0 % is normal. Because there are so few, small changes are often chance.",
+  "summary": "Basophils are the rarest white blood cells. They release histamine and take part in allergic reactions and inflammation. This value is their share of all white cells.",
+  "high": {
+    "meaning": "A slightly higher share is usually a reaction to allergies or long-lasting inflammation. A share that stays clearly raised, especially with other changes in the blood count, is worth discussing with your doctor, because rarely it comes from a bone marrow condition.",
+    "commonCauses": [
+      "Allergies",
+      "Long-lasting inflammation, such as inflammatory bowel disease",
+      "Underactive thyroid",
+      "Bone marrow conditions such as chronic myeloid leukaemia (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low share means nothing on its own. Basophils are so few that a result of 0 % is common in healthy people.",
+    "commonCauses": [
+      "Natural variation",
+      "Acute stress or illness",
+      "Steroid medicines"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "30570986",
+      "title": "Basophilia",
+      "year": 2024,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11087187",
+      "title": "Leukocytosis: basics of clinical assessment",
+      "year": 2000,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

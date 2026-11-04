@@ -4,9 +4,11 @@ import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
 import { addDays, todayIso } from "../../core/dates";
 import { buildDoctorReport, type DoctorReport } from "../../core/doctorReport";
+import { buildTestSummary } from "../../core/testSummary";
 import type { Measurement, Profile } from "../../core/types";
 import { useDisplayUnits, useProtocols } from "../hooks";
-import { BIOMARKER_MAP, CATEGORY_ORDER, fullName } from "../knowledge";
+import { BIOMARKER_MAP, CATEGORY_ORDER, NUTRIENTS, fullName } from "../knowledge";
+import { formatDate } from "../format";
 import { DoctorReportDocument, DOCTOR_REPORT_PRINT_CSS } from "./DoctorReportDocument";
 import { Button, Card, CheckIcon, Notice, inputStyles, labelStyles } from "./ui";
 
@@ -21,6 +23,7 @@ export function DoctorReportExport({ measurements, profile }: { measurements: Me
   const [includeProfile, setIncludeProfile] = useState(true);
   const [includeLog, setIncludeLog] = useState(true);
   const [includeNotes, setIncludeNotes] = useState(false);
+  const [includeQuestions, setIncludeQuestions] = useState(true);
   const [selection, setSelection] = useState<Set<string> | undefined>();
   const [report, setReport] = useState<DoctorReport | null>(null);
   const [error, setError] = useState("");
@@ -50,9 +53,15 @@ export function DoctorReportExport({ measurements, profile }: { measurements: Me
     if (!protocols) return;
     setError("");
     try {
-      setReport(buildDoctorReport({ measurements, protocols, profile, defs: BIOMARKER_MAP, generatedOn: todayIso(), options: {
+      const built = buildDoctorReport({ measurements, protocols, profile, defs: BIOMARKER_MAP, generatedOn: todayIso(), options: {
         from, to, markerIds: chosen.map((def) => def.id), includeProfile, includeLog, includeNotes,
-      } }));
+      } });
+      // Questions from the latest blood test in the period, the same ones as on the Test summary page.
+      const lastTest = measurements.filter((m) => m.date >= from && m.date <= to && BIOMARKER_MAP.get(m.biomarkerId)?.category !== "Body").map((m) => m.date).sort().at(-1);
+      const summary = includeQuestions && lastTest
+        ? buildTestSummary({ measurements: measurements.filter((m) => m.date <= lastTest), defs: BIOMARKER_MAP, profile, protocols, nutrients: NUTRIENTS, date: lastTest, categoryOrder: CATEGORY_ORDER, formatDate })
+        : undefined;
+      setReport(summary ? { ...built, questions: { testDate: summary.date, items: summary.questions } } : built);
     } catch (cause) {
       setReport(null);
       setError(cause instanceof Error ? cause.message : "Couldn't create this report. Check the dates and try again.");
@@ -98,6 +107,7 @@ export function DoctorReportExport({ measurements, profile }: { measurements: Me
           <ReportCheck checked={includeProfile} onChange={(value) => change(() => setIncludeProfile(value))}>Include profile details, latest weight, BMI, resting metabolic rate, conditions and allergies</ReportCheck>
           <ReportCheck checked={includeLog} onChange={(value) => change(() => setIncludeLog(value))}>Include logged medicines, supplements and habits</ReportCheck>
           <ReportCheck checked={includeNotes} onChange={(value) => change(() => setIncludeNotes(value))}>Include notes from the profile, results and protocol items</ReportCheck>
+          <ReportCheck checked={includeQuestions} onChange={(value) => change(() => setIncludeQuestions(value))}>Include questions to discuss, from the latest blood test in this period</ReportCheck>
           <p className="ml-9 max-w-3xl text-sm text-ink-2">The summary shows the latest result. Black-and-white charts include every selected blood and body reading within these dates, without a list of all values. Choose fewer markers or a shorter period to keep the report focused.</p>
         </div>
         <details className="border-y border-line py-1">

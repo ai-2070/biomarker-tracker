@@ -1,0 +1,101 @@
+{
+  "id": "lymphocyte_abs",
+  "name": "Lymphocytes (absolute count)",
+  "abbreviation": "ALC",
+  "category": "Blood count",
+  "aliases": [
+    "Lymphocytes #",
+    "Lymphocytes#",
+    "Lymphocytes (absolute)",
+    "Lymphocytes absolute",
+    "Lymphocytes, absolute",
+    "Lymphocytes abs",
+    "Absolute lymphocyte count",
+    "Absolute lymphocytes",
+    "Lymphocyte count",
+    "ALC",
+    "LYM#",
+    "LYMPH#",
+    "LY#",
+    "Lymphozyten absolut",
+    "Lymphozyten abs",
+    "Limfocita absz",
+    "Limfocita abszolút",
+    "Lymphocyta absz",
+    "Lymphocyta abszolút"
+  ],
+  "loinc": [
+    "731-0",
+    "26474-7"
+  ],
+  "canonicalUnit": "10^9/L",
+  "conversions": {
+    "10^9/L": 1,
+    "10^3/µL": 1,
+    "G/L": 1,
+    "/nL": 1,
+    "cells/µL": 0.001
+  },
+  "defaultRanges": [
+    {
+      "low": 1.1,
+      "high": 4.5
+    }
+  ],
+  "summary": "Lymphocytes are white blood cells that fight viruses and make antibodies. This value is how many are in a set volume of blood.",
+  "high": {
+    "meaning": "A high count is common during or after viral infections and usually goes back down on its own. A count that stays high is worth discussing with a doctor.",
+    "commonCauses": [
+      "Viral infections",
+      "Recovery after an infection",
+      "Whooping cough",
+      "Smoking",
+      "Some blood disorders (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low count often follows acute illness, stress or steroid medicines and recovers later. In a large Danish study, people with a low count had more infections.",
+    "commonCauses": [
+      "Acute illness or stress",
+      "Recent viral infection",
+      "Steroid medicines",
+      "Medicines or treatments that dampen the immune system",
+      "Older age",
+      "Immune conditions (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 10.9,
+    "ciLow": 9.8,
+    "ciHigh": 14.7,
+    "studies": 7,
+    "analyte": "Lymphocytes",
+    "matrix": "Whole blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-04"
+  },
+  "sources": [
+    {
+      "pmid": "30383787",
+      "doi": "10.1371/journal.pmed.1002685",
+      "title": "Lymphopenia and risk of infection and infection-related death in 98,344 individuals from a prospective Danish population-based study.",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "8881919",
+      "doi": "10.1136/jcp.49.8.664",
+      "title": "Ethnic and sex differences in the total and differential white cell count and platelet count.",
+      "year": 1996,
+      "studyType": "observational"
+    }
+  ]
+}

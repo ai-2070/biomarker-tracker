@@ -15,6 +15,9 @@ import { proposalIssue } from "../src/core/assistantProposal";
 import { safetyLabels, safetyNotes } from "../src/core/protocols";
 import { personalRange } from "../src/core/personalRange";
 import { computeTrend, flagLatest, flagMeasurement, groupByBiomarker, isCritical, recentAverage, resolveRange, sortByDate } from "../src/core/trends";
+import { buildTestSummary, rangeText, valueText, type SummaryResult } from "../src/core/testSummary";
+import { CATEGORY_ORDER } from "../src/core/knowledge";
+import { buildPeriodSummary } from "../src/core/periodSummary";
 import { roundForDisplay } from "../src/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "../src/core/types";
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "../src/research/papers";
@@ -370,6 +373,84 @@ export function experimentResults(s: HealthSnapshot) {
 
 const notFound = (q: string) => ({ error: `No marker called "${q}". Use get_results to see which markers the user has.` });
 
+/** The app's year summary (the page shows the same), compact for the model. */
+export function yearSummaryFor(s: HealthSnapshot, year?: number) {
+  const { defs } = knowledge();
+  const today = todayIso();
+  const t = buildPeriodSummary({ measurements: s.measurements, defs, profile: s.profile, categoryOrder: CATEGORY_ORDER, period: year ? { kind: "year", year, today } : { kind: "rolling", end: today } });
+  const unit = (id: string) => defs.get(id)!.canonicalUnit;
+  return {
+    period: { from: t.from, to: t.to },
+    comparedWith: t.previous,
+    tests: t.tests,
+    testsInPeriodBefore: t.previousTests,
+    ...(t.tests.length === 0 ? { note: "No blood test in this period: only the last result of each marker and its age are known." } : {}),
+    measured: t.groups.map((g) => ({
+      category: g.category,
+      markers: g.markers.map((m) => ({
+        marker: m.id,
+        name: m.name,
+        results: m.results.map((x) => `${x.date}: ${valueText(x, unit(m.id))}`),
+        outsideRange: m.outside,
+        latestFlag: m.lastFlag,
+        ...(m.versusBefore ? {
+          versusBefore: {
+            now: `${r(m.versusBefore.now)} ${unit(m.id)} (${m.versusBefore.nNow === 1 ? "one result" : `geometric mean of ${m.versusBefore.nNow}`})`,
+            before: `${r(m.versusBefore.before)} ${unit(m.id)} (${m.versusBefore.beforeDate ? `last earlier result, ${m.versusBefore.beforeDate}` : m.versusBefore.nBefore === 1 ? "one result in the period before" : `geometric mean of ${m.versusBefore.nBefore} in the period before`})`,
+            changePercent: r(m.versusBefore.changePercent),
+            beyondNormalVariation: m.versusBefore.beyondNormalVariation ?? "unknown (no published or personal variation)",
+          },
+        } : { versusBefore: "nothing earlier to compare with" }),
+        trend: m.trend
+          ? { verdict: m.trend.verdict, percentPerYear: r(m.trend.percentPerYear), interval95: [r(m.trend.low), r(m.trend.high)], tests: m.trend.tests, since: m.trend.from }
+          : "not enough results for a trend (needs 3 over a year or more)",
+      })),
+    })),
+    notMeasured: t.notMeasured.map((n) => ({ name: n.name, last: `${n.last.date}: ${valueText(n.last, unit(n.id))}`, flag: n.lastFlag, monthsOld: n.monthsOld })),
+    questionsForTheDoctor: t.questions,
+    limits: t.limits,
+    howToUse: "Explain these facts plainly. Say when a change can't be told apart from normal variation; never describe a trend that isn't returned, never fill in missing months, and never say what the person has, what causes it or what to take. A critical latest result comes first: contact a doctor. End with the questions for the doctor.",
+  };
+}
+
+/** The app's summary of one blood test (the page shows the same), compact for the model. */
+export function testSummaryFor(s: HealthSnapshot, date?: string) {
+  const { defs, nutrients } = knowledge();
+  const t = buildTestSummary({ measurements: s.measurements, defs, profile: s.profile, protocols: s.protocols, nutrients, categoryOrder: CATEGORY_ORDER, ...(date ? { date } : {}) });
+  if (!t) return { error: "There are no blood tests yet." };
+  const item = (x: SummaryResult) => {
+    const unit = defs.get(x.id)!.canonicalUnit;
+    return {
+      marker: x.id,
+      name: x.name,
+      result: valueText(x.measurement, unit),
+      flag: x.flag,
+      range: rangeText(x.range, unit) ?? null,
+      rangeFrom: x.range?.source ?? null,
+      ...(x.meaning ? { whatItUsuallyMeans: x.meaning } : {}),
+      ...(x.commonCauses.length ? { commonCauses: x.commonCauses } : {}),
+      ...(x.previous ? { previous: { date: x.previous.date, result: `${r(x.previous.value)} ${unit}`, flag: x.previous.flag } } : {}),
+      ...(x.change ? { change: x.change, beyondNormalVariation: x.beyondNormalVariation ?? "unknown (no published variation)" } : {}),
+      ...(x.streak >= 2 ? { outsideOnTestsInARow: x.streak, since: x.streakFrom } : {}),
+    };
+  };
+  return {
+    date: t.date,
+    otherTestDates: t.dates.filter((d) => d !== t.date),
+    results: t.results,
+    inRange: t.inRange,
+    critical: t.critical.map(item),
+    ...(t.critical.length ? { criticalNote: "Critical results come first: tell the person to contact a doctor (urgently if unwell) before any other commentary, and keep the rest brief." } : {}),
+    outsideRange: t.outOfRange.map((g) => ({ category: g.category, results: g.items.map(item) })),
+    backInRange: t.backInRange.map((x) => ({ name: x.name, result: valueText(x.measurement, defs.get(x.id)!.canonicalUnit), previous: x.previous!.date })),
+    withoutRange: t.notAssessed.map((x) => x.name),
+    thingsThatCanSkewResults: t.cautions.map((c) => ({ text: c.text, markers: c.markers, ...(c.habit ? { fromHabit: c.habit } : {}) })),
+    questionsForTheDoctor: t.questions,
+    limits: t.limits,
+    howToUse: "Explain these facts in plain language. You may say which results are usually read together and what they measure, but never say what the person has, what is causing their results, or what to take; never change the app's flags or numbers. End with the questions for the doctor.",
+  };
+}
+
 /** The built-in tools for one request. `fetchFn` is injected so tests can run without a network. */
 export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, context: { userText?: string; requestText?: string } = {}): ToolSet {
   const proposalContext = () => ({
@@ -408,6 +489,18 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         const def = findMarker(marker);
         return def ? markerDetail(s, def) : notFound(marker);
       },
+    }),
+    get_test_summary: tool({
+      description:
+        "The app's summary of one blood test: critical results, results outside the range grouped by body system with what each usually means and common causes (from the app's marker files), change since the previous result judged against normal test-to-test variation, results back in range, results without a range, things that can skew readings (fasting, supplements in the log, photo-read values) and questions for the doctor. Use when asked to analyse, summarise or explain test results. Without a date: the latest test.",
+      inputSchema: z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("ISO date of the test, e.g. 2026-09-29") }),
+      execute: async ({ date }) => testSummaryFor(s, date),
+    }),
+    get_year_summary: tool({
+      description:
+        "The app's summary of a year of blood tests, for people who test a few times a year: per marker the results in the period, how many were outside the range, the period's results vs the period before (or the last earlier result) judged against normal test-to-test variation, a trend only with 3+ results over a year or more, markers not measured with the age of their last result, and doctor questions. Without a year: the last 12 months vs the 12 before.",
+      inputSchema: z.object({ year: z.number().int().min(1900).max(2999).optional().describe("Calendar year, e.g. 2025") }),
+      execute: async ({ year }) => yearSummaryFor(s, year),
     }),
     get_levers: tool({
       description: "Graded evidence on what can raise or lower a marker (foods, diet, supplements, habits), with measured food amounts. Safety filters for the user's log are already applied.",

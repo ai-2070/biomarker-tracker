@@ -74,6 +74,8 @@ export type BiomarkerCategory =
   | "Metabolic"
   | "Lipids"
   | "Kidney"
+  /** Lab tests on a urine sample (albumin-to-creatinine ratio…). Imported only from rows that name urine or sit under a urine heading. */
+  | "Urine"
   | "Liver"
   | "Thyroid"
   | "Iron & vitamins"

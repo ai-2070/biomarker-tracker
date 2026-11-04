@@ -1,0 +1,78 @@
+{
+  "id": "urine_creatinine",
+  "name": "Urine creatinine",
+  "category": "Urine",
+  "aliases": [
+    "Urine creatinine",
+    "Urinary creatinine",
+    "Creatinine, urine",
+    "Creatinine (urine)",
+    "Creatinine urine",
+    "Kreatinin im Urin",
+    "Kreatinin (Urin)",
+    "Kreatinin, Urin",
+    "Urin-Kreatinin",
+    "Urinkreatinin",
+    "Vizelet kreatinin",
+    "Vizelet creatinin",
+    "Vizelet creatinine",
+    "Kreatinin (vizelet)",
+    "Kreatinin vizeletben",
+    "Viz. kreatinin",
+    "Viz. kreat."
+  ],
+  "loinc": [
+    "2161-8",
+    "14683-7"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "µmol/L": 0.001,
+    "mg/dL": 0.08842,
+    "g/L": 8.842
+  },
+  "rangeNote": "There is no single normal range for a spot urine sample, because it depends mostly on how much you drank. In a large US survey (NHANES III, ages 6–90), 8 in 10 random samples were between about 3 and 21 mmol/L (34–237 mg/dL); men, younger adults and people with more muscle tend to be higher. The lab's own range is used when it gives one.",
+  "summary": "Creatinine is a waste product from muscles that the kidneys pass into the urine at a fairly steady rate. In a spot urine sample it mainly shows how concentrated the urine is, so labs use it to correct other urine results, such as albumin, for dilution.",
+  "high": {
+    "meaning": "A high urine creatinine usually means concentrated urine, for example in a first-morning sample or after drinking little. On its own it says little about kidney health.",
+    "commonCauses": [
+      "Concentrated urine (first-morning sample, drinking little, sweating)",
+      "High muscle mass",
+      "A large meat meal",
+      "Creatine supplements"
+    ]
+  },
+  "low": {
+    "meaning": "A low urine creatinine usually means dilute urine after drinking a lot. Very dilute samples can make other urine results less reliable, so a lab may ask for a new sample.",
+    "commonCauses": [
+      "Dilute urine after drinking a lot",
+      "Low muscle mass",
+      "Older age"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "15687057",
+      "doi": "10.1289/ehp.7337",
+      "title": "Urinary creatinine concentrations in the U.S. population: implications for urinary biologic monitoring measurements.",
+      "year": 2005,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "19028824",
+      "doi": "10.1373/clinchem.2008.106567",
+      "title": "Current issues in measurement and reporting of urinary albumin excretion.",
+      "year": 2009,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38490803",
+      "doi": "10.1016/j.kint.2023.10.018",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.",
+      "year": 2024,
+      "studyType": "guideline"
+    }
+  ]
+}

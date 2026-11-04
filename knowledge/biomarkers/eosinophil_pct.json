@@ -1,0 +1,75 @@
+{
+  "id": "eosinophil_pct",
+  "name": "Eosinophils (%)",
+  "category": "Blood count",
+  "aliases": [
+    "Eosinophils %",
+    "Eosinophils (%)",
+    "Eosinophil %",
+    "EOS%",
+    "EO%",
+    "Eosinophile %",
+    "Eosinophile Granulozyten %",
+    "Eozinofil %",
+    "Eosinofil %",
+    "Eosinophil granulocyta %",
+    "Eozinofil granulocita %",
+    "Éosinophiles %",
+    "Eosinófilos %",
+    "Eosinofili %"
+  ],
+  "loinc": [
+    "713-8"
+  ],
+  "canonicalUnit": "%",
+  "conversions": {
+    "%": 1
+  },
+  "defaultRanges": [
+    {
+      "high": 6
+    }
+  ],
+  "rangeNote": "No lower limit is used: many healthy people have 0–1 %. A percentage depends on the total white cell count, so doctors usually judge eosinophils by the absolute count (cells per litre).",
+  "summary": "Eosinophils are white blood cells involved in allergies and in fighting parasites such as worms. This value is their share of all white cells.",
+  "high": {
+    "meaning": "A higher share of eosinophils is most often linked to allergies, asthma, eczema or a reaction to a medicine. Parasite infections are a common cause in people who have lived or travelled where they are frequent. Rarely, it comes from a blood disorder.",
+    "commonCauses": [
+      "Allergies, such as hay fever",
+      "Asthma or eczema",
+      "Reactions to a medicine",
+      "Parasite infections, such as worms",
+      "Blood or bone marrow conditions (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low share usually means nothing. Eosinophils are few to begin with, and 0 % is common in healthy people.",
+    "commonCauses": [
+      "Natural variation",
+      "Acute stress or illness",
+      "Steroid medicines"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "31757229",
+      "doi": "10.1016/j.mcna.2019.08.005",
+      "title": "Approach to Patients with Eosinophilia",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26760415",
+      "title": "Evaluation of Patients with Leukocytosis",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11087187",
+      "title": "Leukocytosis: basics of clinical assessment",
+      "year": 2000,
+      "studyType": "review"
+    }
+  ]
+}

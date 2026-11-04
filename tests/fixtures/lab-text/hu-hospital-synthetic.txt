@@ -1,0 +1,41 @@
+Státusz
+RR: 128/80Hgmm   P: 70/min   Ts: 70kg
+Egyéb vizsgálatok
+1000 Központi labor
+2025.03.14 09:15 - (MINTA) Belgyógy. labor
+Érték   Egység   Referencia tartom.
+Serum Natrium   141.0   mmol/L   133.0-145.0
+Serum Kalium   4.2   mmol/L   3.4-5.0
+Serum Calcium   2.40   mmol/L   2.20-2.55
+Albuminra korrigált CA szint   2.38   mmol/L   2.15-2.55
+Serum CRP (ultr.sens.)   1.2   mg/L   <5.0
+Serum Glucose   5.1   mmol/L   4.1-6.0
+Serum Carbamid   5.6   mmol/L   2.8-8.1
+Serum Creatinin   78   umol/L   44-80
+CKD-epi   88   ml/min/1   L   >90
+Serum Húgysav   300   umol/L   143-339
+Serum Albumin   45   g/L   35-52
+Vérkép
+Fehérvérsejtszám   6.10   G/L   4.00-9.00
+Vvt szám   4.40   T/L   3.80-4.50
+Haemoglobin   135.0   g/L   120.0-161.0   (1)
+Haematokrit   0.41   L/L   0.38-0.47
+MCV   90.0   fL   82.0-95.0
+MCH   30.1   pg   27.0-32.0   (2)
+MCHC   335.0   g/L   290.0-354.0   (3)
+RDW   12.9   %   11.5-14.5
+Thrombocyta szám   240   G/L   150-400
+MPV   9.1   fL   7.2-11.1
+Neutrophil(pero)%   58.0   %   40.0-65.0
+Lymphocyta %   31.0   %   25.0-40.0
+Monocyta %   6.0   %   3.0-7.0
+Neutrofil absz   3.54   G/L   2.20-7.90
+Limfocita absz   1.89   G/L   1.10-4.50
+Vizelet általános üledékkel
+fajsúly   1.015   umol/l   1.005-1.030
+bilirubin   negatív
+Glükóz   0.3   mmol/L   <0.8
+Microalbumin vizeletben   3.10   mg/L   <20.00
+Viz. alb.-kreat. hányad   0.4   mg/mmol   <3.5
+Kreatinin   9.10   mmol/L   2.47-19.20
+Vizelet Creatinin   9.10   mmol/L   2.47-19.20

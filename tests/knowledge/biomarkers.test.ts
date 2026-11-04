@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { foldLabName } from "../../src/core/importers/labText";
 import { validateBiomarkerDef } from "../../src/core/knowledge";
 import type { BiomarkerDef } from "../../src/core/types";
 import { loadKnowledgeFiles } from "../helpers";
@@ -25,7 +26,8 @@ describe("knowledge base: biomarkers", () => {
     const clashes: string[] = [];
     for (const { json } of files) {
       const d = json as BiomarkerDef;
-      for (const a of new Set([d.name, ...d.aliases].map((s) => s.toLowerCase()))) {
+      // Compared as the importer compares them: case, accents and spacing ignored.
+      for (const a of new Set([d.name, ...d.aliases].map((s) => foldLabName(s).text))) {
         const prev = owner.get(a);
         if (prev && prev !== d.id) clashes.push(`"${a}": ${prev} and ${d.id}`);
         owner.set(a, d.id);

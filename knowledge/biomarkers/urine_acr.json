@@ -1,0 +1,104 @@
+{
+  "id": "urine_acr",
+  "name": "Urine albumin-to-creatinine ratio",
+  "abbreviation": "UACR",
+  "category": "Urine",
+  "aliases": [
+    "Urine albumin-to-creatinine ratio",
+    "Urine albumin/creatinine ratio",
+    "Urine albumin creatinine ratio",
+    "Urinary albumin-to-creatinine ratio",
+    "Urinary albumin/creatinine ratio",
+    "Albumin-to-creatinine ratio",
+    "Albumin/creatinine ratio",
+    "Albumin creatinine ratio",
+    "Albumin/creatinine",
+    "Microalbumin/creatinine ratio",
+    "Microalbumin-to-creatinine ratio",
+    "Microalbumin creatinine ratio",
+    "Microalbumin/creatinine",
+    "UACR",
+    "ACR",
+    "Albumin/Kreatinin-Quotient (Urin)",
+    "Albumin/Kreatinin-Quotient",
+    "Albumin-Kreatinin-Quotient",
+    "Albumin/Kreatinin-Ratio",
+    "Albumin-Kreatinin-Ratio",
+    "Albumin/Kreatinin-Verhältnis",
+    "Albumin/Kreatinin im Urin",
+    "Albumin/Kreatinin",
+    "Mikroalbumin/Kreatinin-Quotient",
+    "Mikroalbumin/Kreatinin-Ratio",
+    "Mikroalbumin/Kreatinin",
+    "Viz. alb.-kreat. hányad",
+    "Viz. alb.-kreat. hányados",
+    "Vizelet albumin/kreatinin hányados",
+    "Vizelet albumin/kreatinin arány",
+    "Vizelet albumin-kreatinin hányados",
+    "Vizelet albumin-kreatinin arány",
+    "Albumin/kreatinin arány",
+    "Albumin/kreatinin hányados",
+    "Albumin-kreatinin arány",
+    "Albumin-kreatinin hányados",
+    "Mikroalbumin/kreatinin arány",
+    "Mikroalbumin/kreatinin hányados"
+  ],
+  "loinc": [
+    "9318-7",
+    "14959-1"
+  ],
+  "canonicalUnit": "mg/mmol",
+  "conversions": {
+    "mg/mmol": 1,
+    "mg/g": 0.1131,
+    "µg/mg": 0.1131
+  },
+  "defaultRanges": [
+    {
+      "high": 3
+    }
+  ],
+  "rangeNote": "KDIGO groups: below 3 mg/mmol (30 mg/g) is normal to mildly increased (A1); 3–30 mg/mmol (30–300 mg/g) is moderately increased (A2); above 30 mg/mmol (300 mg/g) is severely increased (A3). Measured in a first-morning or random spot urine sample. Hard exercise, fever, infection, high blood sugar and menstruation can raise it for a while, so a raised result is usually confirmed with repeat tests over 3 months.",
+  "summary": "This test compares the amount of albumin, a blood protein, in your urine with the amount of creatinine, a waste product. Healthy kidneys let very little albumin through, and the ratio corrects for how dilute the sample is. With eGFR (estimated glomerular filtration rate), it is the main test used to look for kidney damage.",
+  "high": {
+    "meaning": "A higher ratio means more albumin is leaking into the urine. A ratio of 3–30 mg/mmol is called moderately increased; above 30 is severely increased. When it stays raised for 3 months or more, it is a sign of kidney damage and is linked to higher heart and kidney risk, even when eGFR is normal. Discuss a raised result with your doctor.",
+    "commonCauses": [
+      "Hard exercise in the day before the sample",
+      "Fever, infection (including a urinary infection) or acute illness",
+      "Menstrual blood in the sample",
+      "Diabetes or high blood sugar",
+      "High blood pressure",
+      "Chronic kidney disease"
+    ]
+  },
+  "low": {
+    "meaning": "A low ratio is normal: healthy kidneys keep almost all albumin in the blood. There is no lower limit to worry about.",
+    "commonCauses": [
+      "Normal kidney filtering"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "38490803",
+      "doi": "10.1016/j.kint.2023.10.018",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.",
+      "year": 2024,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "20483451",
+      "doi": "10.1016/s0140-6736(10)60674-5",
+      "title": "Association of estimated glomerular filtration rate and albuminuria with all-cause and cardiovascular mortality in general population cohorts: a collaborative meta-analysis.",
+      "year": 2010,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "19028824",
+      "doi": "10.1373/clinchem.2008.106567",
+      "title": "Current issues in measurement and reporting of urinary albumin excretion.",
+      "year": 2009,
+      "studyType": "review"
+    }
+  ]
+}

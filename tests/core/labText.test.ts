@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { candidateUnits, findDate, parseLabText, type ParsedRow } from "../../src/core/importers/labText";
+import { candidateUnits, findDate, foldLabName, parseLabText, truncatedUnit, type ParsedRow } from "../../src/core/importers/labText";
 import { piecesToLines } from "../../src/core/importers/pdfText";
 import { validateManualEntry } from "../../src/core/importers/manual";
 import { def, loadDefs } from "../helpers";
@@ -31,6 +31,7 @@ describe("German report (synthetic)", () => {
       ["mch", "30,2", "pg", "27", "33"],
       ["mchc", "34,0", "g/dL", "32", "36"],
       ["platelets", "245", "G/L", "150", "370"],
+      ["lymphocyte_abs", "1,9", "G/L", "1,1", "4,5"],
       ["sodium", "140", "mmol/L", "135", "145"],
       ["potassium", "5,4", "mmol/L", "3,5", "5,1"],
       ["creatinine", "0,98", "mg/dL", "0,70", "1,20"],
@@ -52,9 +53,16 @@ describe("German report (synthetic)", () => {
     ]);
   });
 
-  it("flags absolute lymphocytes instead of saving them as a percentage", () => {
-    const lymph = byId(report.rows, "lymphocyte_pct")!;
+  it("reads a bare 'Lymphozyten' with a cell-count unit as the absolute count, never as a percentage", () => {
+    expect(byId(report.rows, "lymphocyte_pct")).toBeUndefined();
+    const lymph = byId(report.rows, "lymphocyte_abs")!;
     expect(lymph.value).toBe("1,9");
+    expect(lymph.notes.join(" ")).toMatch(/because of its unit/);
+  });
+
+  it("still flags a count unit when no absolute-count marker is loaded", () => {
+    const pctOnly = defs.filter((d) => d.id !== "lymphocyte_abs");
+    const lymph = byId(parseLabText(fixture("de-synthetic.txt"), pctOnly).rows, "lymphocyte_pct")!;
     expect(lymph.problems[0]).toMatch(/isn't one this app knows/);
   });
 
@@ -91,6 +99,135 @@ describe("Hungarian report (synthetic)", () => {
       ["vitamin_d", "48", "nmol/L", "75", "250"],
       ["alp", "64", "U/L", "35", "105"],
     ]);
+  });
+});
+
+describe("Hungarian hospital report (synthetic, layout of a real clinic printout)", () => {
+  const report = parseLabText(fixture("hu-hospital-synthetic.txt"), defs);
+  const ok = report.rows.filter((r) => r.problems.length === 0);
+
+  it("reads every result the app tracks, past Serum prefixes and Latin/Hungarian names", () => {
+    expect(ok.map(brief)).toEqual([
+      ["sodium", "141.0", "mmol/L", "133.0", "145.0"],
+      ["potassium", "4.2", "mmol/L", "3.4", "5.0"],
+      ["calcium", "2.40", "mmol/L", "2.20", "2.55"],
+      ["calcium_corrected", "2.38", "mmol/L", "2.15", "2.55"],
+      ["crp_hs", "1.2", "mg/L", null, "5.0"],
+      ["glucose", "5.1", "mmol/L", "4.1", "6.0"],
+      ["urea", "5.6", "mmol/L", "2.8", "8.1"],
+      ["creatinine", "78", "µmol/L", "44", "80"],
+      ["egfr", "88", "mL/min/1.73m²", "90", null],
+      ["uric_acid", "300", "µmol/L", "143", "339"],
+      ["albumin", "45", "g/L", "35", "52"],
+      ["wbc", "6.10", "G/L", "4.00", "9.00"],
+      ["rbc", "4.40", "T/L", "3.80", "4.50"],
+      ["hemoglobin", "135.0", "g/L", "120.0", "161.0"],
+      ["hematocrit", "0.41", "L/L", "0.38", "0.47"],
+      ["mcv", "90.0", "fL", "82.0", "95.0"],
+      ["mch", "30.1", "pg", "27.0", "32.0"],
+      ["mchc", "335.0", "g/L", "290.0", "354.0"],
+      ["rdw", "12.9", "%", "11.5", "14.5"],
+      ["platelets", "240", "G/L", "150", "400"],
+      ["mpv", "9.1", "fL", "7.2", "11.1"],
+      ["neutrophil_pct", "58.0", "%", "40.0", "65.0"],
+      ["lymphocyte_pct", "31.0", "%", "25.0", "40.0"],
+      ["monocyte_pct", "6.0", "%", "3.0", "7.0"],
+      ["neutrophil_abs", "3.54", "G/L", "2.20", "7.90"],
+      ["lymphocyte_abs", "1.89", "G/L", "1.10", "4.50"],
+      ["urine_albumin", "3.10", "mg/L", null, "20.00"],
+      ["urine_acr", "0.4", "mg/mmol", null, "3.5"],
+      ["urine_creatinine", "9.10", "mmol/L", "2.47", "19.20"],
+      ["urine_creatinine", "9.10", "mmol/L", "2.47", "19.20"],
+    ]);
+  });
+
+  it("says when a unit was cut off by the column", () => {
+    expect(byId(report.rows, "egfr")!.notes.join(" ")).toMatch(/cut off/);
+  });
+
+  it("doesn't take corrected calcium for albumin, or absolute counts for percentages", () => {
+    expect(report.rows.filter((r) => r.biomarkerId === "albumin")).toHaveLength(1);
+    expect(report.rows.filter((r) => r.biomarkerId === "neutrophil_pct")).toHaveLength(1);
+    expect(report.rows.filter((r) => r.biomarkerId === "lymphocyte_pct")).toHaveLength(1);
+  });
+
+  it("reads creatinine under a urine heading as urine creatinine, never as blood", () => {
+    const urine = report.rows.filter((r) => r.biomarkerId === "urine_creatinine");
+    expect(urine.map((r) => r.line)).toEqual(["Kreatinin   9.10   mmol/L   2.47-19.20", "Vizelet Creatinin   9.10   mmol/L   2.47-19.20"]);
+    expect(urine[0]!.notes.join(" ")).toMatch(/urine heading/);
+    expect(report.rows.filter((r) => r.biomarkerId === "creatinine")).toHaveLength(1);
+  });
+
+  it("unticks a blood test name under a urine heading when no urine test of that name exists", () => {
+    const glucose = report.rows.filter((r) => r.biomarkerId === "glucose");
+    expect(glucose.map((r) => [r.value, r.problems.some((p) => /urine heading/.test(p))])).toEqual([["5.1", false], ["0.3", true]]);
+  });
+
+  it("lists tests the app doesn't track", () => {
+    expect(report.unmatched).toEqual(["fajsúly   1.015   umol/l   1.005-1.030"]);
+  });
+
+  it("uses the dated lab line", () => {
+    expect(report.date).toBe("2025-03-14");
+  });
+});
+
+describe("names as photos and labs print them", () => {
+  it("ignores accents, OCR's dotless i and spacing around brackets and percent signs", () => {
+    const r = parseLabText(["Serum Natrıum   139   mmol/L", "Thrombocyta szam   210   G/L", "Neutrophil (pero) %   61.0   %"].join("\n"), defs);
+    expect(r.rows.map(brief)).toEqual([
+      ["sodium", "139", "mmol/L", null, null],
+      ["platelets", "210", "G/L", null, null],
+      ["neutrophil_pct", "61.0", "%", null, null],
+    ]);
+  });
+
+  it("strips blood specimen prefixes but not urine ones", () => {
+    const r = parseLabText(["S-Kalium   4.1   mmol/L", "P-Glukose   5.0   mmol/L", "Plasma Sodium   140   mmol/L", "U-Kreatinin   8.0   mmol/L", "Urine creatinine   8.0   mmol/L"].join("\n"), defs);
+    // "U-Kreatinin" isn't read as blood creatinine; "Urine creatinine" is its own urine test.
+    expect(r.rows.map((x) => x.biomarkerId)).toEqual(["potassium", "glucose", "sodium", "urine_creatinine"]);
+  });
+
+  it("keeps foldLabName's positions pointing into the original text", () => {
+    const f = foldLabName("Neutrophil (pero)  %");
+    expect(f.text).toBe("neutrophil(pero)%");
+    expect(f.at.length).toBe(f.text.length);
+    expect("Neutrophil (pero)  %"[f.at[f.text.indexOf("%")]!]).toBe("%");
+    expect(foldLabName("Fehérvérsejtszám").text).toBe("feherversejtszam");
+  });
+});
+
+describe("ratio names", () => {
+  it("reads a marker whose own name is a ratio, but not a ratio that merely starts with a marker's name", () => {
+    const r = parseLabText(["Albumin/creatinine ratio   2.1   mg/mmol   <3.0", "Albumin/Globulin ratio   1.4", "Cholesterol/HDL ratio   4.1"].join("\n"), defs);
+    expect(r.rows.map(brief)).toEqual([["urine_acr", "2.1", "mg/mmol", null, "3.0"]]);
+  });
+});
+
+describe("two numbers before the unit", () => {
+  it("unticks a lost decimal point or a speck read as a digit", () => {
+    const r = parseLabText(["Serum Glucose   5 4   mmol/L   4.1-6.0", "Serum Natrium   8 140.0   mmol/L   133.0-145.0"].join("\n"), defs);
+    expect(r.rows.map((x) => [x.biomarkerId, x.problems.some((p) => /Two numbers/.test(p))])).toEqual([
+      ["glucose", true],
+      ["sodium", true],
+    ]);
+  });
+
+  it("leaves low and high range columns alone", () => {
+    const r = parseLabText("Sodium   140   135   145   mmol/L", defs);
+    expect(r.rows[0]!.problems).toEqual([]);
+  });
+});
+
+describe("truncatedUnit", () => {
+  it("reads a unit cut off by the column when every match converts the same", () => {
+    expect(truncatedUnit(def("egfr"), "ml/min/1")).toBe("mL/min/1.73m²");
+  });
+
+  it("doesn't guess from short or ambiguous fragments", () => {
+    expect(truncatedUnit(def("crp_hs"), "mg/")).toBeUndefined();
+    expect(truncatedUnit(def("creatinine"), "mmol")).toBeUndefined();
+    expect(truncatedUnit(def("urea"), "mg/dL")).toBeUndefined();
   });
 });
 

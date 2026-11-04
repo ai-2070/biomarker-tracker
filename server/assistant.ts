@@ -5,7 +5,7 @@ import { providerInfo } from "../src/core/aiProviders";
 import { WEEKDAYS } from "../src/core/plans";
 import { isAgent, runAgent } from "./agents";
 import { setIdleTools } from "./bridge";
-import { biologicalAge, experimentResults, healthTools, logOverview, resultsOverview, safetyOf, type HealthSnapshot } from "./healthTools";
+import { biologicalAge, experimentResults, healthTools, logOverview, resultsOverview, safetyOf, testSummaryFor, type HealthSnapshot } from "./healthTools";
 import { assistantTools } from "./mcp";
 import { assistantCheck, currentChoice, describeModelError, readyModel, type Ready } from "./models";
 import { getSettings } from "./store";
@@ -43,6 +43,7 @@ export function dataPack(snapshot: HealthSnapshot): string {
   return JSON.stringify(
     {
       results: resultsOverview(snapshot),
+      latestTestSummary: testSummaryFor(snapshot),
       biologicalAge: biologicalAge(snapshot),
       ...logOverview(snapshot),
       experiments: experimentResults(snapshot),
@@ -85,6 +86,8 @@ export function systemPrompt(opts: { skills: string; cautious: boolean; critical
     "- A normal personal conversation is not an evidence-check session. Use the app's knowledge tools for relevant benefits and cautions; a fresh paper search is not required for every answer. Search when the person asks for evidence or current research, a disputed claim needs checking, or the available knowledge cannot support an important claim. Cite only sources returned by tools; never invent references or pretend a search happened.",
     "- For requested suggestions, explain what an option is commonly used for, the benefit someone might reasonably expect, who it may suit and the main limitation. Separate established benefits from possible ones. Uncertainty should calibrate the answer, not turn every option into 'nothing works'. Be clear when evidence is genuinely missing.",
     "- To read or summarize a specific study the user names, look it up with get_study using its ID, and cite it by that ID.",
+    "- When asked to analyse, summarise or explain a blood test (\"what do my results mean?\"), call get_test_summary and explain it: critical results first (contact a doctor, nothing else first), then results outside the range by body system with what each usually means, what changed since the previous test, results back in range, and things that can skew readings. You may explain which results are usually read together and what they measure (for example creatinine, eGFR and urea are all read for kidney filtration). Never say or imply what the person has, what is causing their results or that they don't have something; don't rank likely conditions or name a diagnosis as theirs. Finish with the summary's questions for the doctor (shortened or adapted is fine) and mention the page Blood tests → Summary of the latest test.",
+    "- For questions about a longer period (\"how was my year?\", \"what changed since last year?\"), call get_year_summary (a calendar year, or by default the last 12 months). Most people test a few times a year: say plainly when there were no or few tests, when a change is within normal test-to-test variation, and that a trend needs 3 results over a year or more. Never invent a trend, average over missing months or treat an old result as current; give its age.",
     "- The person's supplements, diet changes, medicines and lifestyle changes are their Habits (get_log); what changed for habits that watch markers comes from compare_before_after. Say \"habits\", not \"log\" or \"experiments\".",
     "- The person's protocols (sets of supplements, foods, exercise… they follow) come from get_protocols. Existing amounts are their own entries: never change them or recommend personal doses. Explain research (get_nutrient) and interactions without turning reference values into instructions.",
     "- A protocol started as one habit keeps its included items and their own amounts in get_log (or the habits in your data summary). That snapshot records what they started, even if get_protocols now differs or the source was deleted. Any watched change concerns the whole routine; never attribute it to an individual included item.",

@@ -1,0 +1,79 @@
+{
+  "id": "mpv",
+  "name": "Mean platelet volume",
+  "abbreviation": "MPV",
+  "category": "Blood count",
+  "aliases": [
+    "MPV",
+    "Mean platelet volume",
+    "Mittleres Thrombozytenvolumen",
+    "Mittleres Plättchenvolumen",
+    "Átlagos thrombocyta térfogat",
+    "Átlagos trombocita térfogat",
+    "Volume plaquettaire moyen",
+    "VPM",
+    "Volumen plaquetario medio",
+    "Volume piastrinico medio"
+  ],
+  "loinc": [
+    "32623-1"
+  ],
+  "canonicalUnit": "fL",
+  "conversions": {
+    "fL": 1,
+    "µm³": 1
+  },
+  "rangeNote": "MPV depends on the analyser, the tube and how long the sample waited, so the app uses only your lab's own range. Results from different labs are hard to compare.",
+  "summary": "MPV is the average size of your platelets, the cell fragments that help blood clot. It is mostly read together with the platelet count. On its own it is not used to diagnose any illness.",
+  "high": {
+    "meaning": "Larger platelets are often younger ones. MPV tends to rise when the platelet count is low and the bone marrow makes new platelets quickly. A slightly high value on its own usually means little.",
+    "commonCauses": [
+      "Low platelet count with fast platelet turnover, for example from immune causes",
+      "A sample that waited a long time before testing",
+      "Inherited conditions with large platelets (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "Smaller platelets on their own usually mean little. A low MPV is mainly of interest together with a low platelet count.",
+    "commonCauses": [
+      "Natural variation and differences between analysers",
+      "Low platelet production by the bone marrow",
+      "Inherited conditions with small platelets (rare)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 2.3,
+    "ciLow": 2.2,
+    "ciHigh": 4.3,
+    "studies": 4,
+    "analyte": "Mean platelet volume (MPV)",
+    "matrix": "Whole Blood",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-04"
+  },
+  "sources": [
+    {
+      "pmid": "27686008",
+      "doi": "10.1080/09537104.2016.1224828",
+      "title": "New roles for mean platelet volume measurement in the clinical practice?",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22936787",
+      "doi": "10.1177/1076029612458147",
+      "title": "Mean platelet volume as a diagnostic marker for cardiovascular disease: drawbacks of preanalytical conditions and measuring techniques",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29194040",
+      "doi": "10.1515/cclm-2017-0730",
+      "title": "Effect of preanalytical and analytical variables on the clinical utility of mean platelet volume",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -13,7 +13,11 @@
     "Vérlemezke",
     "Plaquettes",
     "Plaquetas",
-    "Piastrine"
+    "Piastrine",
+    "Thrombocyta",
+    "Thrombocyta szám",
+    "Thrombocytaszám",
+    "Trombocitaszám"
   ],
   "loinc": [
     "777-3"

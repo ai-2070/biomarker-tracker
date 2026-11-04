@@ -1,5 +1,5 @@
 import { normalizeUnit } from "./units";
-import type { BiomarkerDef, Conversion } from "./types";
+import type { BiomarkerCategory, BiomarkerDef, Conversion } from "./types";
 
 const STUDY_TYPES = new Set([
   "meta-analysis",
@@ -11,11 +11,13 @@ const STUDY_TYPES = new Set([
   "guideline",
 ]);
 
-const CATEGORIES = new Set([
+/** Every marker category, in the order lists show them. */
+export const CATEGORY_ORDER: readonly BiomarkerCategory[] = [
   "Blood count",
   "Metabolic",
   "Lipids",
   "Kidney",
+  "Urine",
   "Liver",
   "Thyroid",
   "Iron & vitamins",
@@ -23,7 +25,8 @@ const CATEGORIES = new Set([
   "Inflammation",
   "Aging",
   "Body",
-]);
+];
+const CATEGORIES = new Set<string>(CATEGORY_ORDER);
 
 type Obj = Record<string, unknown>;
 const isObj = (v: unknown): v is Obj => typeof v === "object" && v !== null && !Array.isArray(v);

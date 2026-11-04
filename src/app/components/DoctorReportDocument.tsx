@@ -168,6 +168,11 @@ export function DoctorReportDocument({ report, units }: { report: DoctorReport; 
           </div>)}
         </>}
       </section>
+      {report.questions && <section>
+        <h2>Questions to discuss</h2>
+        <p>Written by the app from the blood test on {formatDate(report.questions.testDate)} (results outside their range and notes from the person's log), for the person to ask. They are questions, not findings.</p>
+        <ol className="doctor-report-questions">{report.questions.items.map((q) => <li key={q}>{q}</li>)}</ol>
+      </section>}
       <p className="doctor-report-provenance">This report contains only the selected data and may be incomplete. Profile details, when included, also use the most recent weight on or before the report end. Missing information is not a negative finding. Bring original laboratory reports and a current medicine and supplement list to the appointment. No AI interpretation or combined health score was generated. BMI and resting metabolic rate use the app's calculations.</p>
         </td></tr></tbody>
       </table>
@@ -181,6 +186,8 @@ export const DOCTOR_REPORT_PRINT_CSS = `
 .doctor-report-document .doctor-report-running { display: none; }
 .doctor-report-document { color: #12161b; background: #fff; font-family: var(--font-sans, Arial, sans-serif); font-size: 14px; line-height: 1.5; padding: 28px; overflow-wrap: anywhere; color-scheme: light; }
 .doctor-report-document *, .doctor-report-document *::before, .doctor-report-document *::after { box-sizing: border-box; }
+.doctor-report-document .doctor-report-questions { list-style: decimal; padding-left: 24px; margin: 8px 0 0; }
+.doctor-report-document .doctor-report-questions li { margin: 4px 0; break-inside: avoid; }
 .doctor-report-document h1 { font-family: var(--font-serif, Georgia, serif); font-size: 32px; font-weight: 400; line-height: 1.15; margin: 0 0 16px; }
 .doctor-report-document h2 { font-size: 19px; font-weight: 650; line-height: 1.3; margin: 30px 0 10px; }
 .doctor-report-document h3 { font-size: 15px; font-weight: 650; margin: 20px 0 6px; }

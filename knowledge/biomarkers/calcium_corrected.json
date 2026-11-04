@@ -1,0 +1,107 @@
+{
+  "id": "calcium_corrected",
+  "name": "Corrected calcium",
+  "category": "Electrolytes",
+  "aliases": [
+    "Corrected calcium",
+    "Adjusted calcium",
+    "Albumin-adjusted calcium",
+    "Albumin adjusted calcium",
+    "Albumin-corrected calcium",
+    "Albumin corrected calcium",
+    "Calcium corrected",
+    "Calcium, corrected",
+    "Calcium (corrected)",
+    "Calcium corrected for albumin",
+    "Calcium adjusted",
+    "Calcium, adjusted",
+    "Calcium (adjusted)",
+    "Calcium (albumin adjusted)",
+    "Calcium (albumin corrected)",
+    "Calcium korrigiert",
+    "Calcium (korrigiert)",
+    "Korrigiertes Calcium",
+    "Calcium albuminkorrigiert",
+    "Albuminkorrigiertes Calcium",
+    "Kalzium korrigiert",
+    "Korrigiertes Kalzium",
+    "Albuminra korrigált CA szint",
+    "Albuminra korrigált Ca",
+    "Albuminra korrigált kalcium",
+    "Korrigált kalcium",
+    "Korrigált Ca",
+    "Ca korrigált",
+    "Calcium corrigé",
+    "Calcémie corrigée",
+    "Calcio corregido",
+    "Calcio corretto"
+  ],
+  "loinc": [
+    "29265-6",
+    "46099-8"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.2495,
+    "mg/L": 0.02495,
+    "mEq/L": 0.5
+  },
+  "defaultRanges": [
+    {
+      "low": 2.1,
+      "high": 2.6
+    }
+  ],
+  "criticalRange": {
+    "low": 1.8,
+    "high": 3.5
+  },
+  "rangeNote": "This is the lab's own estimate, worked out from total calcium and albumin; the app shows it as reported and never calculates it. Labs use different formulas, and the estimate can be wrong when albumin is very low, in kidney disease or during serious illness. A large Norwegian study found that common formulas were no better than plain total calcium at matching the free calcium. Free (ionised) calcium, measured directly, is the more reliable test when the answer matters.",
+  "summary": "Corrected (or adjusted) calcium is an estimate of what your total calcium would be if your albumin, the protein that carries much of it, were normal. It is meant to show whether a low or high total calcium is real or just follows albumin.",
+  "high": {
+    "meaning": "A high corrected calcium suggests the active calcium is really high. Mild rises often cause no symptoms; higher levels can cause thirst, constipation, tiredness and confusion. A doctor usually checks the cause, often with a parathyroid hormone test.",
+    "commonCauses": [
+      "Overactive parathyroid gland (primary hyperparathyroidism)",
+      "Some cancers",
+      "Large amounts of calcium, vitamin D or vitamin A supplements",
+      "Water pills (thiazide diuretics) and some other medicines",
+      "Dehydration"
+    ]
+  },
+  "low": {
+    "meaning": "A low corrected calcium suggests the active calcium is really low, which can cause tingling, muscle cramps and, when severe, heart rhythm problems. Because the formula is only an estimate, a doctor may check free (ionised) calcium.",
+    "commonCauses": [
+      "Low vitamin D",
+      "Low magnesium",
+      "After neck surgery on the thyroid or parathyroid glands",
+      "Reduced kidney function",
+      "Some bone medicines, such as denosumab or bisphosphonate infusions"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "4758544",
+      "doi": "10.1136/bmj.4.5893.643",
+      "title": "Interpretation of serum calcium in patients with abnormal serum proteins",
+      "year": 1973,
+      "studyType": "observational",
+      "n": 200
+    },
+    {
+      "pmid": "29627804",
+      "doi": "10.1136/bmjopen-2017-017703",
+      "title": "Should total calcium be adjusted for albumin? A retrospective observational study of laboratory data from central Norway",
+      "year": 2018,
+      "studyType": "observational",
+      "n": 6549
+    },
+    {
+      "pmid": "25678727",
+      "title": "Harmonising adult and paediatric reference intervals in australia and new zealand: an evidence-based approach for establishing a first panel of chemistry analytes",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

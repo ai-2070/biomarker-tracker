@@ -7,7 +7,7 @@ import type { Measurement } from "../../core/types";
 import { CitedAnswer } from "../components/CitedAnswer";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { BrainIcon, CloseIcon, FileIcon, NewChatIcon, PaperclipIcon, SendIcon, StopIcon } from "../components/icons";
-import { Review } from "../components/LabReview";
+import { Review, isImage } from "../components/LabReview";
 import { Button, CheckIcon, FlagBadge, cx, inputStyles } from "../components/ui";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { todayIso } from "../../core/dates";
@@ -31,6 +31,8 @@ import { INTERACTIVE_SELECTOR, brainShortcut } from "./logic";
 import { ModelMenu, ToolsMenu, goToSettings, modelLabel, useBrainSettings, type BrainSettings } from "./menus";
 import {
   addFiles,
+  addPastedLabText,
+  attachReviewPhoto,
   backToMyChat,
   closeBrain,
   newConversation,
@@ -60,6 +62,8 @@ const SUGGESTIONS = [
 const TOOL_TEXT: Record<string, string> = {
   get_results: "Looked at your results",
   get_marker: "Read a marker's history and knowledge entry",
+  get_test_summary: "Read the app's summary of a blood test",
+  get_year_summary: "Read the app's summary of a year of blood tests",
   get_levers: "Checked evidence-graded diet and habit levers",
   get_biological_age: "Checked your biological age estimate",
   get_body_summary: "Read the app's body calculations (BMI, heart age, averages)",
@@ -575,6 +579,14 @@ function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; 
         <span className="shrink-0 text-ink-2">· read on this computer</span>
       </p>
       <Review fileName={turn.fileName} ocr={turn.ocr} report={turn.report} inChat kind={turn.kind ?? "lab"} onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
+      {turn.file && isImage(turn.file) && (
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 px-1 text-sm text-ink-2">
+          <span>Text recognition can miss rows.</span>
+          <Button variant="quiet" onClick={() => attachReviewPhoto(turn.id)}>
+            Ask Brain about the photo itself
+          </Button>
+        </p>
+      )}
     </div>
   );
 }
@@ -768,7 +780,10 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
             if (files.length) {
               e.preventDefault();
               if (!research) void addFiles(files);
+              return;
             }
+            // Lab result rows copied from a report or website: checked and saved in a review card.
+            if (!research && addPastedLabText(e.clipboardData.getData("text/plain"))) e.preventDefault();
           }}
           placeholder={brain.busy ? "Brain is working…" : research ? "Ask about the evidence" : hasDocs ? "What should Brain do with this file?" : "Ask about your results, or drop a lab report"}
           className="block max-h-42 min-h-11 w-full resize-none bg-transparent px-3 pt-3 pb-1 text-base text-ink outline-none placeholder:text-ink-2"

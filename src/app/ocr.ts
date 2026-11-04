@@ -3,6 +3,7 @@
 // (see ocrAssets in vite.config.ts), so nothing is downloaded from elsewhere and no image leaves the device.
 import type Tesseract from "tesseract.js";
 import { normalizeOcrText } from "../core/importers/ocrText";
+import { cleanScan, looksLikePaper } from "../core/importers/scanClean";
 
 export type OcrProgress = (fraction: number, stage: string) => void;
 
@@ -39,11 +40,44 @@ function getWorker(): Promise<Tesseract.Worker> {
   return worker;
 }
 
-/** Recognises the text in a canvas. */
+/**
+ * A cleaned copy of a page for recognition: black print on white, without fold lines, streaks or specks
+ * (see scanClean.ts). Undefined for images that aren't a light page with dark print, such as dark-mode screenshots.
+ */
+function cleanedCopy(canvas: HTMLCanvasElement): HTMLCanvasElement | undefined {
+  const { width: w, height: h } = canvas;
+  if (w === 0 || h === 0) return undefined;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  if (!ctx) return undefined;
+  const data = ctx.getImageData(0, 0, w, h);
+  const gray = new Uint8ClampedArray(w * h);
+  for (let i = 0; i < w * h; i++) gray[i] = 0.299 * data.data[i * 4]! + 0.587 * data.data[i * 4 + 1]! + 0.114 * data.data[i * 4 + 2]!;
+  if (!looksLikePaper(gray)) return undefined;
+  const clean = cleanScan(gray, w, h);
+  const out = ctx.createImageData(w, h);
+  for (let i = 0; i < w * h; i++) {
+    out.data[i * 4] = out.data[i * 4 + 1] = out.data[i * 4 + 2] = clean[i]!;
+    out.data[i * 4 + 3] = 255;
+  }
+  const copy = document.createElement("canvas");
+  copy.width = w;
+  copy.height = h;
+  copy.getContext("2d")!.putImageData(out, 0, 0);
+  return copy;
+}
+
+const hasText = (text: string) => text.replace(/\s/g, "").length >= 20;
+
+/** Recognises the text in a canvas. Pages are cleaned first; if that leaves no text, the original is read. */
 export async function recognize(canvas: HTMLCanvasElement, progress?: OcrProgress): Promise<string> {
   onProgress = progress ?? null;
   try {
     const w = await getWorker();
+    const clean = cleanedCopy(canvas);
+    if (clean) {
+      const r = await w.recognize(clean);
+      if (hasText(r.data.text)) return normalizeOcrText(r.data.text);
+    }
     const r = await w.recognize(canvas);
     return normalizeOcrText(r.data.text);
   } finally {

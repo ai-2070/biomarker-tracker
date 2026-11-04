@@ -1,0 +1,107 @@
+{
+  "id": "phosphate",
+  "name": "Phosphate",
+  "category": "Electrolytes",
+  "aliases": [
+    "Phosphate",
+    "Phosphorus",
+    "Inorganic phosphate",
+    "Inorganic phosphorus",
+    "Phosphate (inorganic)",
+    "Phosphorus (inorganic)",
+    "Serum phosphate",
+    "PO4",
+    "PHOS",
+    "Phosphat",
+    "Anorganisches Phosphat",
+    "Phosphor",
+    "Foszfát",
+    "Foszfor",
+    "Szervetlen foszfát",
+    "Szervetlen foszfor",
+    "Phosphore",
+    "Phosphatémie",
+    "Fósforo",
+    "Fósforo inorgánico",
+    "Fosfato",
+    "Fosforo inorganico",
+    "Fosfatemia"
+  ],
+  "loinc": [
+    "14879-1",
+    "2777-1"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.3229,
+    "mg/L": 0.03229
+  },
+  "defaultRanges": [
+    {
+      "low": 0.75,
+      "high": 1.5,
+      "ageFrom": 20
+    }
+  ],
+  "criticalRange": {
+    "low": 0.3
+  },
+  "rangeNote": "Children and teenagers normally have higher phosphate, so this adult range starts at age 20. Phosphate also changes with meals and time of day. A sample that was damaged or left standing before it reached the lab can read falsely high.",
+  "summary": "Phosphate is a mineral that, with calcium, builds bones and teeth. Every cell also uses it to store and move energy. Labs may call it phosphorus; it is the same test.",
+  "high": {
+    "meaning": "A high phosphate is most often linked to reduced kidney function, because the kidneys remove extra phosphate. In long-term kidney disease, a lasting high level is linked to calcium deposits in blood vessels. A single high result can also come from the sample itself.",
+    "commonCauses": [
+      "Reduced kidney function",
+      "Damaged blood sample (haemolysis) or a delay before testing",
+      "Underactive parathyroid glands",
+      "Large amounts of vitamin D",
+      "Phosphate-containing laxatives or enemas"
+    ]
+  },
+  "low": {
+    "meaning": "A mildly low phosphate often causes no symptoms. A very low level can cause muscle weakness and, rarely, breathing or heart problems. It matters most when the body's stores are also low.",
+    "commonCauses": [
+      "Eating again after a long period of very little food (refeeding)",
+      "Heavy alcohol use",
+      "Low vitamin D",
+      "Overactive parathyroid gland",
+      "Antacids that bind phosphate",
+      "Some intravenous iron treatments"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 7.7,
+    "ciLow": 5.7,
+    "ciHigh": 8.6,
+    "studies": 16,
+    "analyte": "Phosphate",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-04"
+  },
+  "sources": [
+    {
+      "pmid": "16194637",
+      "doi": "10.1016/j.amjmed.2005.02.014",
+      "title": "Hypophosphatemia: an update on its etiology and treatment",
+      "year": 2005,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25287933",
+      "doi": "10.2215/cjn.09750913",
+      "title": "Renal control of calcium, phosphate, and magnesium homeostasis",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25678727",
+      "title": "Harmonising adult and paediatric reference intervals in australia and new zealand: an evidence-based approach for establishing a first panel of chemistry analytes",
+      "year": 2014,
+      "studyType": "guideline"
+    }
+  ]
+}

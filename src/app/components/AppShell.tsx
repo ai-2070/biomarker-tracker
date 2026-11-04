@@ -26,7 +26,7 @@ const BLOOD: NavItem = {
   to: { name: "blood" },
   icon: DropIcon,
   // Add data covers blood, body and devices, so it doesn't belong to Blood tests (lab report import does).
-  active: (r) => r.name === "blood" || r.name === "overview" || (r.name === "marker" && !isBodyRoute(r)) || r.name === "import",
+  active: (r) => r.name === "blood" || r.name === "test-summary" || r.name === "period-summary" || r.name === "overview" || (r.name === "marker" && !isBodyRoute(r)) || r.name === "import",
 };
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
