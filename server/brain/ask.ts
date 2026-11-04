@@ -19,6 +19,8 @@ import { enabledSkills } from "../skills";
 import type { ToolStep } from "../steps";
 import { runAgentQuestion } from "./agentRun";
 import { runApiModel } from "./apiModel";
+import { runEveQuestion } from "../eve/run";
+import { getSettings } from "../store";
 import { cacheKey } from "./cache";
 import type { OnEvent } from "./events";
 import { ClaimReview } from "./claimReview";
@@ -52,6 +54,8 @@ export interface AskOptions {
   ready?: Ready;
   /** Text, tool calls and status as they happen (the streamed answer). The reply is still returned whole. */
   onEvent?: OnEvent;
+  /** API and local models: the built-in loop, or eve (Settings → AI models). Defaults to the setting. */
+  engine?: "builtin" | "eve";
 }
 
 const STOPPED = { ok: false, error: "Stopped." } as const;
@@ -149,5 +153,10 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   const info = providerInfo(ready.choice.provider);
   const label = info?.models.find((m) => m.id === ready.choice.model)?.label ?? (ready.choice.model || "default model");
   const modelLabel = `${info?.label ?? ready.choice.provider} · ${label.replace(/ \(fastest\)$/, "")}`;
+  // eve (opt-in) for ordinary questions; claim checks and photos keep the built-in loop.
+  const engine = opts.engine ?? (getSettings().eve === true ? "eve" : "builtin");
+  if (engine === "eve" && !claim && !messages.some((m) => m.images?.length)) {
+    return runEveQuestion({ ready, parts, messages, tools, key, modelLabel, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
+  }
   return runApiModel({ ready, parts, messages: modelMessages(messages), tools, key, claim, modelLabel, maxOutputTokens: opts.claimSession?.research.depth === "deep" ? 16_000 : 8000, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
 }

@@ -39,6 +39,8 @@ jobs:
       - name: Check release and application versions
         run: bun run desktop:check-version "$RELEASE_TAG"
       - run: bun run typecheck
+      # Built first so the end-to-end eve tests run (they're skipped without the runtime).
+      - run: bun run eve:build
       - run: bun run test
 
   release:

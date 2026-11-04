@@ -72,7 +72,7 @@ function tokenOf(req: http.IncomingMessage, url: URL): string {
   return m ? m[1]! : (url.searchParams.get("token") ?? "");
 }
 
-async function listTools(tools: ToolSet): Promise<Tool[]> {
+export async function listTools(tools: ToolSet): Promise<Tool[]> {
   const out: Tool[] = [];
   for (const [name, t] of Object.entries(tools)) {
     const schema = (await asSchema(t.inputSchema).jsonSchema) as Tool["inputSchema"];

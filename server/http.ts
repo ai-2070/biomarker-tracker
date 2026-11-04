@@ -22,6 +22,8 @@ import { MAX_ZIP_BYTES } from "./zip";
 import { checkClaimEvidence, ClaimEvidenceError } from "./claimEvidence";
 import type { OnEvent } from "./brain/events";
 import { streamAnswer } from "./uistream";
+import { handleEveBridge } from "./eve/bridge";
+import { eveBuilt, setEveBridgePort, stopEve } from "./eve/host";
 
 export const MAX_BODY = 20 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "dist");
@@ -72,7 +74,20 @@ route("GET", "/api/settings", async () => {
     /** False while the default (Claude Code, Opus) is in use because nothing was saved yet. */
     chosen: !!s.assistant,
     ready: assistantCheck(),
+    eve: { on: s.eve === true, built: eveBuilt() },
   };
+});
+
+/** eve as the engine for API and local models (preview). Switching it off stops the runtime. */
+route("PUT", "/api/settings/eve", async (_p, body) => {
+  if (typeof body.on !== "boolean") throw new HttpError(400, "Say whether eve should be on.");
+  if (body.on && !eveBuilt()) throw new HttpError(400, "The eve runtime isn't built on this computer. Run `bun run eve:build` first.");
+  updateSettings((s) => {
+    if (body.on) s.eve = true;
+    else delete s.eve;
+  });
+  if (!body.on) await stopEve();
+  return { ok: true, eve: { on: body.on === true, built: eveBuilt() } };
 });
 
 /** Models (or profiles) that are loaded rather than listed in the app: local servers, Hermes, OpenClaw. */
@@ -442,6 +457,15 @@ export function createServer(port: number): http.Server {
         return;
       }
     }
+    // The eve runtime this server started calls back here, with its own token (eve/bridge.ts).
+    if (url.pathname.startsWith("/eve-bridge/")) {
+      try {
+        return await handleEveBridge(req, res, url, method === "POST" ? await readBody(req) : {});
+      } catch (e) {
+        if (!res.headersSent) send(e instanceof HttpError ? e.status : 400, { error: e instanceof Error ? e.message : "Bad request." });
+        return;
+      }
+    }
     if (!url.pathname.startsWith("/api/")) {
       if (method !== "GET") return send(405, { error: "Not allowed." });
       try {
@@ -482,6 +506,10 @@ export function createServer(port: number): http.Server {
       if (controller) res.off("close", cancel);
     }
   });
-  server.once("listening", () => setBridgePort((server.address() as { port: number }).port));
+  server.once("listening", () => {
+    const listening = (server.address() as { port: number }).port;
+    setBridgePort(listening);
+    setEveBridgePort(listening);
+  });
   return server;
 }
