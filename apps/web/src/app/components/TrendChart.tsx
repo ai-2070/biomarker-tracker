@@ -1,17 +1,17 @@
 import { useMemo, useRef, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } from "recharts";
-import { groupReadings, groupingsFor, pointsForWindow, statsBetween, type Grouping } from "@bt/core/chartSeries";
-import { dayNumber } from "@bt/core/dates";
-import { timeTicks } from "@bt/core/timeWindow";
-import { flagMeasurement, isOutOfRange, paddedDomain, sortByDate, type Flag, type ResolvedRange } from "@bt/core/trends";
-import { niceTicks } from "@bt/core/scale";
-import { formatValue, fromCanonical, toCanonical } from "@bt/core/units";
-import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
+import { groupReadings, groupingsFor, pointsForWindow, statsBetween, type Grouping } from "@bt/shared/core/chartSeries";
+import { dayNumber } from "@bt/shared/core/dates";
+import { timeTicks } from "@bt/shared/core/timeWindow";
+import { flagMeasurement, isOutOfRange, paddedDomain, sortByDate, type Flag, type ResolvedRange } from "@bt/shared/core/trends";
+import { niceTicks } from "@bt/shared/core/scale";
+import { formatValue, fromCanonical, toCanonical } from "@bt/shared/core/units";
+import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
 import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth, type SharedTimeView } from "./timeControls";
 import { cx } from "./ui";
 import { FLAG_LABEL, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../format";
-import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/core/protocols";
+import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/shared/core/protocols";
 import { HabitTypes, Toggle, useChartPrefs } from "./chartHabits";
 import { aggregateFlag } from "./chartAggregate";
 

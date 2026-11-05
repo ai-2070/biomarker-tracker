@@ -1,6 +1,6 @@
-import type { ResolvedRange } from "@bt/core/trends";
-import { paddedDomain } from "@bt/core/trends";
-import type { Measurement } from "@bt/core/types";
+import type { ResolvedRange } from "@bt/shared/core/trends";
+import { paddedDomain } from "@bt/shared/core/trends";
+import type { Measurement } from "@bt/shared/core/types";
 
 /**
  * One marker's recent results with its reference range as a band. Shape only: the value and its

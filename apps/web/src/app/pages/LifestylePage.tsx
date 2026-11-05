@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { LIFESTYLE_CATEGORIES, type LifestyleCategory, type LifestyleDef } from "@bt/core/lifestyle";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
-import { computeTrend, flagLatest, groupByBiomarker } from "@bt/core/trends";
-import type { SafetyId } from "@bt/core/types";
+import { LIFESTYLE_CATEGORIES, type LifestyleCategory, type LifestyleDef } from "@bt/shared/core/lifestyle";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { computeTrend, flagLatest, groupByBiomarker } from "@bt/shared/core/trends";
+import type { SafetyId } from "@bt/shared/core/types";
 import { AddToProtocol } from "../components/AddToProtocol";
 import { Findings } from "../components/findings";
 import { StudyLink } from "../components/evidence";
@@ -20,7 +20,7 @@ import { href } from "../router";
 import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
 import names from "../../../../../knowledge/names.json";
-import { searchKnowledgeNames } from "@bt/core/knowledgeNames";
+import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
 import { KnowledgeName } from "../components/KnowledgeName";
 
 const CATEGORY_LABEL: Record<LifestyleCategory, string> = {

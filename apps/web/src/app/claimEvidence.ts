@@ -1,9 +1,9 @@
 import Dexie from "dexie";
 import { useLiveQuery } from "dexie-react-hooks";
-import { CLAIM_CATEGORIES, claimRunKey, validateClaimAssessment, validateClaimResearch, publicInterventionId, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimDepth, type ClaimRequest, type ClaimUpdate } from "@bt/core/claimEvidence";
+import { CLAIM_CATEGORIES, claimRunKey, validateClaimAssessment, validateClaimResearch, publicInterventionId, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimDepth, type ClaimRequest, type ClaimUpdate } from "@bt/shared/core/claimEvidence";
 import { db, LOADED_PROFILE_KEY, type TrackerDB } from "../db/db";
-import { countNewClaimStudies } from "@bt/research/claimUpdates";
-import { api } from "./api";
+import { countNewClaimStudies } from "@bt/shared/research/claimUpdates";
+import { localServer } from "./api";
 
 export const CLAIM_EVIDENCE_KEY = "claimEvidence";
 
@@ -198,7 +198,8 @@ export async function checkClaimEvidence(request: ClaimRequest, options: Options
         }
       });
     }
-    const result: unknown = await api("POST", "/api/claim-evidence", { ...publicRequest, ...(options.depth ? { depth: options.depth } : {}) }, signal);
+    // The server checks the answer as well; it is validated again here before anything is saved.
+    const result: unknown = await localServer.claimEvidence.check.mutate({ ...publicRequest, ...(options.depth ? { depth: options.depth } : {}) }, { signal });
     const now = options.now ?? new Date();
     if (!validClaimCheck(result, now) || !sameClaim(result, request)) throw new Error("Brain returned an incomplete evidence check. Your previous check has been kept; try again.");
     await writeIfCurrent(owner, signal, database, now, (cache) => {

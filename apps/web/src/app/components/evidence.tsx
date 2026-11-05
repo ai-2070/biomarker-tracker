@@ -1,4 +1,4 @@
-import type { Citation, EvidenceGrade } from "@bt/core/types";
+import type { Citation, EvidenceGrade } from "@bt/shared/core/types";
 import { cx } from "./ui";
 import { PaperLink } from "./PaperLink";
 

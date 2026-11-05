@@ -11,8 +11,8 @@ import {
   type LifestyleVisual,
   type RangesVisual,
   type SpectrumVisual,
-} from "@bt/core/lifestyle";
-import { formatValue } from "@bt/core/units";
+} from "@bt/shared/core/lifestyle";
+import { formatValue } from "@bt/shared/core/units";
 import { StudyLink } from "./evidence";
 import { cx } from "./ui";
 

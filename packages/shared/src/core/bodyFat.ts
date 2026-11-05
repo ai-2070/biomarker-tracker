@@ -1,5 +1,5 @@
-import bodyFatDef from "../../../knowledge/biomarkers/body_fat.json";
-import weightDef from "../../../knowledge/biomarkers/weight.json";
+import bodyFatDef from "../../../../knowledge/biomarkers/body_fat.json";
+import weightDef from "../../../../knowledge/biomarkers/weight.json";
 import { dayNumber, isIsoDate } from "./dates";
 import { ageAt, isBirthMonth } from "./phenoageDraws";
 import { computeTrend } from "./trends";

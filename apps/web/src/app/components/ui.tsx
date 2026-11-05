@@ -1,5 +1,5 @@
 import type { ComponentProps, ReactNode } from "react";
-import type { Flag } from "@bt/core/trends";
+import type { Flag } from "@bt/shared/core/trends";
 import { FLAG_LABEL } from "../format";
 
 export function cx(...parts: (string | false | null | undefined)[]): string {

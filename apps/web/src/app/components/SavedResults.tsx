@@ -1,10 +1,10 @@
 import { useId, useMemo, useRef, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import type { Measurement } from "@bt/core/types";
-import { activeOn } from "@bt/core/protocols";
-import { flagMeasurement, resolveRange, sortByDate } from "@bt/core/trends";
-import { formatValue } from "@bt/core/units";
+import type { Measurement } from "@bt/shared/core/types";
+import { activeOn } from "@bt/shared/core/protocols";
+import { flagMeasurement, resolveRange, sortByDate } from "@bt/shared/core/trends";
+import { formatValue } from "@bt/shared/core/units";
 import { deleteMeasurements } from "../../db/db";
 import { displayUnitFor, formatDate, showMeasurement, showRange, valueUnit } from "../format";
 import { useDisplayUnits, useProfile, useProtocols } from "../hooks";

@@ -1,5 +1,5 @@
 import type { EvidenceGrade } from "./types";
-import { checkCitations, normalizeId } from "@bt/ai/citations";
+import { checkCitations, normalizeId } from "../ai/citations";
 
 export type ClaimVerdict = "supported" | "mixed" | "not supported" | "not enough evidence";
 

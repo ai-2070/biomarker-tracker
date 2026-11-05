@@ -1,33 +1,16 @@
 import { useEffect, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { EFFORT_LABEL, GROUP_LABEL, canUse, modelEfforts, type Effort, type ModelChoice, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "@bt/core/aiProviders";
-import { api } from "../../api";
+import { EFFORT_LABEL, GROUP_LABEL, canUse, modelEfforts, type Effort, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "@bt/shared/core/aiProviders";
+import { localServer } from "../../api";
+import type { AgentProgram, LoadedModelSource, ModelList, SettingsInfo } from "@bt/shared/api/types";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { SimpleSelect } from "../UnitSelect";
 import { Button, Card, CheckIcon, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../ui";
 import { OnOff } from "./SkillsSettings";
 
-interface SettingsResponse {
-  providers: ProviderInfo[];
-  configs: Partial<Record<ProviderId, ProviderConfig>>;
-  hasKey: Record<string, boolean>;
-  installed: Record<string, boolean>;
-  hermesConnected: boolean;
-  assistant: ModelChoice;
-  /** False while the default (Claude Code, Opus) is in use because nothing was saved. */
-  chosen: boolean;
-  ready: { ok: boolean; reason?: string };
-  /** eve as the engine for API-key and local models (preview). */
-  eve: { on: boolean; built: boolean };
-}
-
-type Listed = { id: string; label: string };
-interface LoadedList {
-  models: Listed[];
-  profiles?: Listed[];
-  error?: string;
-}
+type SettingsResponse = SettingsInfo;
+type LoadedList = ModelList;
 
 const REGION_TEXT: Record<ProviderInfo["region"], string> = {
   EU: "EU",
@@ -49,7 +32,7 @@ function useLoadedList(info: ProviderInfo, installed: boolean, revision: number)
   useEffect(() => {
     if (!wanted || cached?.revision === revision) return;
     let alive = true;
-    void api<LoadedList>("GET", `/api/settings/models/${info.id}`).then(
+    void (info.id === "openrouter" ? localServer.settings.openRouterModels.query() : localServer.settings.loadedModels.query({ source: info.id as LoadedModelSource })).then(
       (list) => alive && setLists((x) => ({ ...x, [info.id]: { revision, list } })),
       (e: unknown) => alive && setLists((x) => ({ ...x, [info.id]: { revision, list: { models: [], error: e instanceof Error ? e.message : "Couldn't load the list." } } })),
     );
@@ -75,7 +58,7 @@ export function ModelsSettings() {
 
   async function load(keepSelection = false) {
     try {
-      const d = await api<SettingsResponse>("GET", "/api/settings");
+      const d = await localServer.settings.get.query();
       setData(d);
       if (!keepSelection) {
         setProvider(d.assistant.provider);
@@ -118,9 +101,9 @@ export function ModelsSettings() {
     setSaving(true);
     setMessage(null);
     try {
-      await api("PUT", `/api/settings/provider/${provider}`, { ...cfg, ...(key.trim() ? { key: key.trim() } : {}) });
+      await localServer.settings.setProvider.mutate({ id: provider, ...cfg, ...(key.trim() ? { key: key.trim() } : {}) });
       setDiscoveryRevision((r) => r + 1);
-      await api("PUT", "/api/settings/assistant", { provider, model, ...(effort ? { effort } : {}) });
+      await localServer.settings.setAssistant.mutate({ provider, model, ...(effort ? { effort } : {}) });
       setKey("");
       const savedSettings = await load(true);
       if (savedSettings) {
@@ -136,7 +119,7 @@ export function ModelsSettings() {
   }
 
   async function removeKey() {
-    await api("PUT", `/api/settings/provider/${provider}`, { key: null });
+    await localServer.settings.setProvider.mutate({ id: provider, key: null });
     setDiscoveryRevision((r) => r + 1);
     await load(true);
     setMessage({ tone: "info", text: "Key removed." });
@@ -146,8 +129,8 @@ export function ModelsSettings() {
     setConnecting(true);
     setMessage(null);
     try {
-      const r = await api<{ ok: boolean; error?: string }>("POST", "/api/settings/hermes", { connect });
-      setMessage(r.ok ? { tone: "info", text: connect ? "Hermes now has the app's tools." : "Removed the app's tools from Hermes." } : { tone: "danger", text: r.error ?? "It didn't work." });
+      const r = await localServer.settings.connectHermes.mutate({ connect });
+      setMessage(r.ok ? { tone: "info", text: connect ? "Hermes now has the app's tools." : "Removed the app's tools from Hermes." } : { tone: "danger", text: r.error });
       await load(true);
     } finally {
       setConnecting(false);
@@ -158,7 +141,7 @@ export function ModelsSettings() {
     setTesting(true);
     setMessage(null);
     try {
-      const r = await api<{ ok: boolean; reply?: string; error?: string }>("POST", "/api/settings/test");
+      const r = await localServer.settings.test.mutate();
       setMessage(r.ok ? { tone: "info", text: `It works. The model answered: "${r.reply}"` } : { tone: "danger", text: r.error ?? "It didn't work." });
     } finally {
       setTesting(false);
@@ -446,7 +429,7 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
     setBusy(action);
     setNote(null);
     try {
-      const r = await api<{ ok: boolean; error?: string }>("POST", `/api/agents/${info.id}/${action}`);
+      const r = await localServer.agents.openTerminal.mutate({ id: info.id as AgentProgram, action });
       setNote(
         r.ok
           ? { tone: "info", text: action === "install" ? "A terminal window opened with the installer. When it has finished, sign in (step 2), then press Check again." : "A terminal window opened. Sign in there, then close it." }
@@ -569,7 +552,7 @@ function EveSetting({ eve, onChange }: { eve: SettingsResponse["eve"]; onChange:
     setBusy(true);
     setError(null);
     try {
-      const r = await api<{ eve: SettingsResponse["eve"] }>("PUT", "/api/settings/eve", { on });
+      const r = await localServer.settings.setEve.mutate({ on });
       onChange(r.eve);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't change this setting.");

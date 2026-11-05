@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ProtocolCategory } from "@bt/core/protocols";
+import type { ProtocolCategory } from "@bt/shared/core/protocols";
 import { cx } from "./ui";
 
 /** Chart choices remembered per chart in this browser (a convenience; nothing depends on it). */

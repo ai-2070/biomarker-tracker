@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { buildDoctorReport, groupDoctorReportSeries, type DoctorReportInput } from "@bt/core/doctorReport";
-import type { BiomarkerDef, Measurement, ProtocolEntry } from "@bt/core/types";
+import { buildDoctorReport, groupDoctorReportSeries, type DoctorReportInput } from "@bt/shared/core/doctorReport";
+import type { BiomarkerDef, Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 const marker = (id: string, extra: Partial<BiomarkerDef> = {}): BiomarkerDef => ({
   id, name: id, category: "Metabolic", aliases: [], canonicalUnit: "mmol/L", conversions: {},

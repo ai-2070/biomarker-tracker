@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import { PERCENTILES, normRow, rowSpan, type NormRow, type NormSet } from "@bt/core/fitnessTests";
-import type { Sex } from "@bt/core/types";
-import { formatValue } from "@bt/core/units";
+import { PERCENTILES, normRow, rowSpan, type NormRow, type NormSet } from "@bt/shared/core/fitnessTests";
+import type { Sex } from "@bt/shared/core/types";
+import { formatValue } from "@bt/shared/core/units";
 import { formatDate } from "../format";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";

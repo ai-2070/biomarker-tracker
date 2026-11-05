@@ -3,49 +3,18 @@
 // Without the server (a static copy of the app) there is one profile, kept in this browser.
 import { createContext, useContext, useSyncExternalStore } from "react";
 import { liveQuery } from "dexie";
-import type { Plan } from "@bt/core/plans";
-import type { Meal } from "@bt/core/meals";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
-import { createBackup, parseBackup } from "@bt/core/backup";
-import { todayIso } from "@bt/core/dates";
-import { demoProfile } from "@bt/core/demo";
-import { profilesInFolder, zipStore } from "@bt/core/zipStore";
+import type { Profile } from "@bt/shared/core/types";
+import { createBackup, parseBackup } from "@bt/shared/core/backup";
+import { todayIso } from "@bt/shared/core/dates";
+import { demoProfile } from "@bt/shared/core/demo";
+import { profilesInFolder, zipStore } from "@bt/shared/core/zipStore";
 import { db, deleteEverything, getProfile, importBackup, setOnboarded, LOADED_PROFILE_KEY } from "../db/db";
-import { api } from "./api";
-import { validatePlan } from "@bt/core/plans";
-import { validateMeal } from "@bt/core/meals";
+import { localServer } from "./api";
+import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
+import { validatePlan } from "@bt/shared/core/plans";
+import { validateMeal } from "@bt/shared/core/meals";
 
-export interface ProfileSummary {
-  id: string;
-  person: Profile;
-  createdAt: string;
-  updatedAt: string;
-  results: number;
-  lastResult: string | null;
-  files: number;
-  folder: string;
-}
-
-export interface StoredFile {
-  name: string;
-  originalName: string;
-  size: number;
-  type: string;
-  addedAt: string;
-  note?: string;
-}
-
-interface ProfileData {
-  person: Profile;
-  measurements: Measurement[];
-  protocols: ProtocolEntry[];
-  experiments: Experiment[];
-  /** The Protocols page (protocols.json in the folder). */
-  plans: Plan[];
-  /** Meals (meals.json). */
-  meals: Meal[];
-  settings: Record<string, unknown>;
-}
+export type { ProfileSummary, StoredFile };
 
 /** Settings that belong to this browser, not to a person. */
 const BROWSER_KEYS = new Set(["profile", "onboarded", "ai", LOADED_PROFILE_KEY]);
@@ -61,7 +30,7 @@ export interface ProfilesState {
 export const ProfilesContext = createContext<ProfilesState>({ mode: "browser", profiles: [], active: null, refresh: async () => {} });
 export const useProfiles = () => useContext(ProfilesContext);
 
-export const listProfiles = () => api<{ profiles: ProfileSummary[]; active: string | null; root: string }>("GET", "/api/profiles");
+export const listProfiles = () => localServer.profiles.list.query();
 
 export async function loadedProfileId(): Promise<string | null> {
   const v = (await db.settings.get(LOADED_PROFILE_KEY))?.value;
@@ -115,7 +84,7 @@ export async function hasBrowserData(): Promise<boolean> {
 
 /** Replaces this browser's copy with a profile from its folder. */
 export async function loadIntoBrowser(id: string): Promise<void> {
-  const d = await api<ProfileData>("GET", `/api/profiles/${id}/data`);
+  const d = await localServer.profiles.data.query({ id });
   const checked = parseBackup(createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()));
   if (!checked.ok) throw new Error(checked.error);
   for (const [label, rows, validate] of [["protocols", d.plans ?? [], validatePlan], ["meals", d.meals ?? [], validateMeal]] as const) {
@@ -208,11 +177,11 @@ async function push(): Promise<void> {
       const now = profileParts(data);
       if (!s.saved) {
         // The first save after loading, or after a failure: the whole working copy (reconciliation).
-        await api("PUT", `/api/profiles/${s.id}/data`, data);
+        await localServer.profiles.save.mutate({ id: s.id, data });
       } else {
         // Otherwise only what changed: years of daily device readings aren't re-sent for one new result.
         const changed = changedParts(now, s.saved);
-        if (changed.length) await api("PATCH", `/api/profiles/${s.id}/data`, { parts: Object.fromEntries(changed.map((part) => [part, data[part as keyof ProfileData]])) });
+        if (changed.length) await localServer.profiles.saveParts.mutate({ id: s.id, parts: Object.fromEntries(changed.map((part) => [part, data[part as keyof ProfileData]])) });
       }
       s.saved = now;
     }
@@ -277,7 +246,7 @@ export async function flushSaving(): Promise<void> {
 /** Opens another profile: saves this one, loads the other, and starts the page fresh. */
 export async function switchProfile(id: string, to = "#/"): Promise<void> {
   await flushSaving();
-  await api("PUT", "/api/profiles/active", { id });
+  await localServer.profiles.setActive.mutate({ id });
   await loadIntoBrowser(id);
   startSaving(id);
   location.hash = to;
@@ -288,7 +257,7 @@ export async function switchProfile(id: string, to = "#/"): Promise<void> {
 export async function deleteProfileFolder(id: string): Promise<{ active: string | null }> {
   const open = (await loadedProfileId()) === id;
   if (open) await flushSaving();
-  const result = await api<{ active: string | null }>("DELETE", `/api/profiles/${id}`);
+  const result = await localServer.profiles.remove.mutate({ id });
   if (open) {
     stopSaving();
     await deleteEverything();
@@ -300,7 +269,7 @@ export async function deleteProfileFolder(id: string): Promise<{ active: string 
 export async function createProfile(person: Profile, opts: { fromBrowser?: boolean } = {}): Promise<ProfileSummary> {
   await flushSaving();
   const data = opts.fromBrowser ? { ...(await browserData()), person } : { person };
-  const { profile } = await api<{ profile: ProfileSummary }>("POST", "/api/profiles", data);
+  const { profile } = await localServer.profiles.create.mutate(data);
   if (opts.fromBrowser) {
     await flushSaving();
     const previous = syncing?.id;
@@ -334,14 +303,14 @@ async function openLoaded(id: string, to: string): Promise<void> {
 }
 
 /**
- * Creates a profile filled with made-up example data (packages/core/src/demo.ts) and opens it.
+ * Creates a profile filled with made-up example data (packages/shared/src/core/demo.ts) and opens it.
  * In a browser-only copy of the app it replaces what is in this browser, so only offer it there when it's empty.
  */
 export async function createExampleProfile(mode: "folders" | "browser", to = "#/"): Promise<void> {
   const d = demoProfile(todayIso());
   if (mode === "folders") {
     await flushSaving();
-    const { profile } = await api<{ profile: ProfileSummary }>("POST", "/api/profiles", d);
+    const { profile } = await localServer.profiles.create.mutate(d);
     await openLoaded(profile.id, to);
     return;
   }

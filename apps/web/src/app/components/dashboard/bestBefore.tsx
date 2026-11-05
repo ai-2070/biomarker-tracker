@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { todayIso } from "@bt/core/dates";
-import { bestBeforeMoments, lifeTablePeriod, type ResolvedLifeTable } from "@bt/core/lifeTable";
-import { validateMortalityModels, type MortalityModelFile } from "@bt/core/mortalityModel";
-import { mortalityProjection, type ProjectionInput } from "@bt/core/mortalityProjection";
-import { isBirthMonth } from "@bt/core/phenoageDraws";
-import type { Measurement, Profile } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import { bestBeforeMoments, lifeTablePeriod, type ResolvedLifeTable } from "@bt/shared/core/lifeTable";
+import { validateMortalityModels, type MortalityModelFile } from "@bt/shared/core/mortalityModel";
+import { mortalityProjection, type ProjectionInput } from "@bt/shared/core/mortalityProjection";
+import { isBirthMonth } from "@bt/shared/core/phenoageDraws";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { Popover } from "@base-ui/react/popover";
 import { EGG_ODDS } from "../../easterEggs";
 import { formatDate } from "../../format";

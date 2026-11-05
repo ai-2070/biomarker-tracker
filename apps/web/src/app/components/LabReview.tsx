@@ -1,12 +1,12 @@
 import { useId, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { todayIso } from "@bt/core/dates";
-import type { ParsedReport } from "@bt/core/importers/labText";
-import { validateManualEntry } from "@bt/core/importers/manual";
-import { isAlreadySaved } from "@bt/core/trends";
-import { listUnits } from "@bt/core/units";
-import type { Measurement } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import type { ParsedReport } from "@bt/shared/core/importers/labText";
+import { validateManualEntry } from "@bt/shared/core/importers/manual";
+import { isAlreadySaved } from "@bt/shared/core/trends";
+import { listUnits } from "@bt/shared/core/units";
+import type { Measurement } from "@bt/shared/core/types";
 import { addMeasurements } from "../../db/db";
 import { BiomarkerPicker } from "./BiomarkerPicker";
 import { ChoiceGroup } from "./ChoiceGroup";

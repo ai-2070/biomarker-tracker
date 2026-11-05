@@ -4,7 +4,7 @@ import { createMistral } from "@ai-sdk/mistral";
 import { createOpenAI } from "@ai-sdk/openai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import type { LanguageModel } from "ai";
-import { DEFAULT_CHOICE, canUse, providerInfo, type ModelChoice, type UseCheck } from "@bt/core/aiProviders";
+import { DEFAULT_CHOICE, canUse, providerInfo, type ModelChoice, type UseCheck } from "@bt/shared/core/aiProviders";
 import { agentInstalled } from "./agents";
 import { zdrFetch } from "./openrouter";
 import { getSecrets, getSettings } from "./store";

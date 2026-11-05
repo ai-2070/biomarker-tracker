@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { CLAIM_CATEGORIES, claimCheckLabel, claimGradeChange, claimRunKey, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimDepth, type ClaimResearch, type ClaimRequest } from "@bt/core/claimEvidence";
-import type { NutrientDef } from "@bt/core/nutrients";
+import { CLAIM_CATEGORIES, claimCheckLabel, claimGradeChange, claimRunKey, publicClaimTopic, type ClaimCategory, type ClaimCheck, type ClaimDepth, type ClaimResearch, type ClaimRequest } from "@bt/shared/core/claimEvidence";
+import type { NutrientDef } from "@bt/shared/core/nutrients";
 import { useServerStatus } from "../api";
 import { checkClaimEvidence, refreshClaimUpdates, sameClaim, useClaimEvidence, type ClaimRecordUpdate } from "../claimEvidence";
 import { formatDate } from "../format";

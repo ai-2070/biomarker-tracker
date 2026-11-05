@@ -1,6 +1,6 @@
-import { todayIso } from "@bt/core/dates";
-import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData, type HeartAgeData } from "@bt/core/heartAge";
-import type { Measurement, Profile, ProtocolEntry } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData, type HeartAgeData } from "@bt/shared/core/heartAge";
+import type { Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { formatDate, formatYears } from "../../format";
 import { href } from "../../router";
 import { Card, LinkButton, Notice } from "../ui";

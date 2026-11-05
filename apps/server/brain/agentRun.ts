@@ -2,7 +2,7 @@
 // program fresh, so nothing of the conversation is kept in the program's own folders; the stable system
 // prompt is its prefix. Bridged programs reach the app's tools; the others get a data summary.
 import type { ToolSet } from "ai";
-import { providerInfo, type ModelChoice } from "@bt/core/aiProviders";
+import { providerInfo, type ModelChoice } from "@bt/shared/core/aiProviders";
 import { isAgent, runAgent } from "../agents";
 import type { HealthSnapshot } from "../healthTools";
 import { getSettings } from "../store";

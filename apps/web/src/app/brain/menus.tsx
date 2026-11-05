@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { Popover } from "@base-ui/react/popover";
-import { EFFORT_LABEL, GROUP_LABEL, PROVIDERS, canUse, modelEfforts, providerInfo, type Effort, type ModelChoice, type ProviderConfig, type ProviderInfo } from "@bt/core/aiProviders";
-import { api } from "../api";
+import { EFFORT_LABEL, GROUP_LABEL, PROVIDERS, canUse, modelEfforts, providerInfo, type Effort, type ModelChoice, type ProviderConfig, type ProviderInfo } from "@bt/shared/core/aiProviders";
+import { localServer } from "../api";
 import { OnOff } from "../components/settings/SkillsSettings";
 import { ToolsIcon } from "../components/icons";
 import { CheckIcon, ChevronDownIcon, cx } from "../components/ui";
@@ -28,7 +28,7 @@ export function useBrainSettings(active: boolean): { settings: BrainSettings | n
   useEffect(() => {
     if (!request.active) return;
     let alive = true;
-    api<BrainSettings>("GET", "/api/settings")
+    localServer.settings.get.query()
       .then((s) => {
         if (!alive) return;
         lastSettings = s;
@@ -100,7 +100,7 @@ export function ModelMenu({ settings, onChange }: { settings: BrainSettings; onC
   async function choose(choice: ModelChoice) {
     setError(null);
     try {
-      await api("PUT", "/api/settings/assistant", choice);
+      await localServer.settings.setAssistant.mutate(choice);
       onChange();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't change the model.");
@@ -214,8 +214,8 @@ export function ToolsMenu({ active }: { active: boolean }) {
   useEffect(() => {
     if (!active) return;
     let alive = true;
-    api<{ skills: SkillRow[] }>("GET", "/api/skills").then((r) => alive && setSkills(r.skills), () => alive && setSkills([]));
-    api<{ servers: ServerRow[] }>("GET", "/api/mcp").then((r) => alive && setServers(r.servers), () => alive && setServers([]));
+    localServer.skills.list.query().then((r) => alive && setSkills(r.skills), () => alive && setSkills([]));
+    localServer.mcp.list.query().then((r) => alive && setServers(r.servers), () => alive && setServers([]));
     return () => {
       alive = false;
     };
@@ -224,8 +224,8 @@ export function ToolsMenu({ active }: { active: boolean }) {
   const skillsOn = skills?.filter((s) => s.enabled).length ?? 0;
   const serversOn = servers?.filter((s) => s.enabled).length ?? 0;
 
-  async function toggle(path: string, enabled: boolean) {
-    await api("PUT", path, { enabled }).catch(() => undefined);
+  async function toggle(kind: "skill" | "server", id: string, enabled: boolean) {
+    await (kind === "skill" ? localServer.skills.setEnabled.mutate({ id, enabled }) : localServer.mcp.update.mutate({ id, enabled })).catch(() => undefined);
     setTick((t) => t + 1);
   }
 
@@ -250,7 +250,7 @@ export function ToolsMenu({ active }: { active: boolean }) {
             <p className="truncate text-sm">{s.name}</p>
             {s.description && <p className="line-clamp-1 text-xs text-ink-2">{s.description}</p>}
           </div>
-          <OnOff checked={s.enabled} onChange={(v) => void toggle(`/api/skills/${s.id}`, v)} label={`Use the skill ${s.name}`} />
+          <OnOff checked={s.enabled} onChange={(v) => void toggle("skill", s.id, v)} label={`Use the skill ${s.name}`} />
         </div>
       ))}
       <p className={cx(sectionLabel, "mt-1 border-t border-line pt-2")}>Research sources</p>
@@ -261,7 +261,7 @@ export function ToolsMenu({ active }: { active: boolean }) {
             <p className="truncate text-sm">{s.name}</p>
             <p className={cx("text-xs", s.error ? "text-warn" : "text-ink-2")}>{!s.enabled ? "Off" : s.error ? "Couldn't start" : s.running ? "Ready" : "Starts when needed"}</p>
           </div>
-          <OnOff checked={s.enabled} onChange={(v) => void toggle(`/api/mcp/${s.id}`, v)} label={`Search ${s.name}`} />
+          <OnOff checked={s.enabled} onChange={(v) => void toggle("server", s.id, v)} label={`Search ${s.name}`} />
         </div>
       ))}
       <div className="mt-1 flex flex-col border-t border-line pt-1">

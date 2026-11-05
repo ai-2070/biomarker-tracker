@@ -1,6 +1,6 @@
 import { useEffect, useId, useState, type ComponentProps } from "react";
 import { PreviewCard } from "@base-ui/react/preview-card";
-import type { Paper } from "@bt/research/papers";
+import type { Paper } from "@bt/shared/research/papers";
 import { loadPaperPreview, paperPreviewId } from "../paperPreviews";
 
 /** Public bibliographic details only; never a profile or an AI-generated summary. */

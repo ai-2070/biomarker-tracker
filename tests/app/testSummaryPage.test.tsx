@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import type { Measurement, ProtocolEntry } from "@bt/core/types";
+import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 const state = vi.hoisted(() => ({ all: [] as Measurement[], protocols: [] as ProtocolEntry[] }));
 vi.mock("../../apps/web/src/app/hooks", () => ({

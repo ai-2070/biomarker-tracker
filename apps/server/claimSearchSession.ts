@@ -1,7 +1,7 @@
 import { tool, type ToolSet } from "ai";
 import { z } from "zod";
-import { claimSearchQuery, completeClaimLadder, publicClaimTopic, validateClaimAssessment, validateClaimResearch, type ClaimAssessment, type ClaimDepth, type ClaimResearch, type ClaimSearchPlan, type ClaimSearchRung } from "@bt/core/claimEvidence";
-import { EUROPE_PMC, parseEuropePmc, studyQuery, type Paper } from "@bt/research/papers";
+import { claimSearchQuery, completeClaimLadder, publicClaimTopic, validateClaimAssessment, validateClaimResearch, type ClaimAssessment, type ClaimDepth, type ClaimResearch, type ClaimSearchPlan, type ClaimSearchRung } from "@bt/shared/core/claimEvidence";
+import { EUROPE_PMC, parseEuropePmc, studyQuery, type Paper } from "@bt/shared/research/papers";
 
 const synonyms = z.array(z.string().min(2).max(100)).max(6);
 const screeningSchema = z.object({

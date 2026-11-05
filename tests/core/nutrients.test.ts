@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findingCounts, interactionsFor, searchNutrients, sortFindings, strongestBenefit, validateNutrientDef, type NutrientDef, type NutrientFinding } from "@bt/core/nutrients";
+import { findingCounts, interactionsFor, searchNutrients, sortFindings, strongestBenefit, validateNutrientDef, type NutrientDef, type NutrientFinding } from "@bt/shared/core/nutrients";
 
 const study = { pmid: "1", title: "A trial", year: 2020, studyType: "rct" as const };
 const finding = (outcome: string, effect: NutrientFinding["effect"], grade: NutrientFinding["grade"]): NutrientFinding => ({

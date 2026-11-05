@@ -94,13 +94,14 @@ describe("assistant transport limits", () => {
     updateSettings((settings) => { settings.providers.ollama = { baseURL: "http://[::1]:11434/v1" }; });
     const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ data: [{ id: "local-model" }] }), { status: 200 }));
     try {
-      const response = await request("GET", "/api/settings/models/ollama");
+      const models = (input: unknown) => request("GET", `/api/trpc/settings.loadedModels?input=${encodeURIComponent(JSON.stringify(input))}`);
+      const response = await models({ source: "ollama" });
       expect(response.status).toBe(200);
-      expect(JSON.parse(response.text)).toEqual({ models: [{ id: "local-model", label: "local-model" }] });
+      expect(JSON.parse(response.text).result.data).toEqual({ models: [{ id: "local-model", label: "local-model" }] });
       expect(fetchMock).toHaveBeenCalledWith("http://[::1]:11434/v1/models", expect.any(Object));
       updateSettings((settings) => { settings.providers.ollama = { baseURL: "http://remote.invalid/v1" }; });
       fetchMock.mockClear();
-      expect(JSON.parse((await request("GET", "/api/settings/models/ollama")).text).error).toMatch(/must run on this computer/);
+      expect(JSON.parse((await models({ source: "ollama" })).text).result.data.error).toMatch(/must run on this computer/);
       expect(fetchMock).not.toHaveBeenCalled();
     } finally {
       fetchMock.mockRestore();

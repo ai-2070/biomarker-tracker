@@ -2,7 +2,10 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import type { ModelChoice, ProviderConfig, ProviderId } from "@bt/core/aiProviders";
+import type { ModelChoice, ProviderConfig, ProviderId } from "@bt/shared/core/aiProviders";
+import type { McpServerConfig } from "@bt/shared/api/types";
+
+export type { McpServerConfig };
 
 // The repository root (knowledge/, skills/, data/). Compiled desktop sidecars read bundled files from Tauri's resource directory.
 export const ROOT = process.env.BT_ROOT ? path.resolve(process.env.BT_ROOT) : path.resolve(import.meta.dirname, "..", "..");
@@ -50,17 +53,6 @@ export function writeJSON(file: string, value: unknown): void {
   }
 }
 
-export interface McpServerConfig {
-  id: string;
-  name: string;
-  /** Set for ready-made servers. */
-  presetId?: string;
-  command: string;
-  args: string[];
-  /** Non-secret environment values. Secret ones are in secrets.mcpEnv. */
-  env: Record<string, string>;
-  enabled: boolean;
-}
 
 export interface Settings {
   assistant?: ModelChoice;

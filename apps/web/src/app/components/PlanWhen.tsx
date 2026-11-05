@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
-import { PLAN_TIMES, WEEKDAYS, daysLabel, normalizeItem, type PlanItem, type PlanTime, type Weekday } from "@bt/core/plans";
+import { PLAN_TIMES, WEEKDAYS, daysLabel, normalizeItem, type PlanItem, type PlanTime, type Weekday } from "@bt/shared/core/plans";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { CheckIcon, cx, labelStyles } from "./ui";
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { checkCitations } from "@bt/ai/citations";
+import { checkCitations } from "@bt/shared/ai/citations";
 import { cx } from "./ui";
 import { PaperLink } from "./PaperLink";
 

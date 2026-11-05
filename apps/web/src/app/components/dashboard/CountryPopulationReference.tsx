@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceDot, ReferenceLine, Tooltip, XAxis, YAxis } from "recharts";
-import { todayIso } from "@bt/core/dates";
-import { ageAtMoment, bestBefore, LIFE_TABLE_COUNTRIES, lifeTablePeriod, populationSurvival, tableFor, type PopulationSurvivalPoint } from "@bt/core/lifeTable";
-import { isBirthMonth } from "@bt/core/phenoageDraws";
-import type { Profile } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import { ageAtMoment, bestBefore, LIFE_TABLE_COUNTRIES, lifeTablePeriod, populationSurvival, tableFor, type PopulationSurvivalPoint } from "@bt/shared/core/lifeTable";
+import { isBirthMonth } from "@bt/shared/core/phenoageDraws";
+import type { Profile } from "@bt/shared/core/types";
 import { href } from "../../router";
 import { useLifeTables } from "../../lifeTables";
 import { InlineBirthMonth } from "../InlineBirthMonth";

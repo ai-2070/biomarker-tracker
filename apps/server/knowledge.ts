@@ -1,17 +1,17 @@
 // The knowledge base, read from disk once (the page bundles the same files with Vite).
 import fs from "node:fs";
 import path from "node:path";
-import { validateEvidenceClaim } from "@bt/core/evidence";
-import { validateBiomarkerDef } from "@bt/core/knowledge";
-import { validateFitnessTest, type FitnessTestDef } from "@bt/core/fitnessTests";
-import { validateNutrientDef, type NutrientDef } from "@bt/core/nutrients";
-import { validateLifestyleDef, type LifestyleDef } from "@bt/core/lifestyle";
-import { validateWholeFoodDef, wholeFoodFor, type WholeFoodDef } from "@bt/core/wholeFoods";
-import type { FoodDb } from "@bt/core/meals";
-import type { BiomarkerDef, EvidenceClaim, FoodTable } from "@bt/core/types";
+import { validateEvidenceClaim } from "@bt/shared/core/evidence";
+import { validateBiomarkerDef } from "@bt/shared/core/knowledge";
+import { validateFitnessTest, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
+import { validateNutrientDef, type NutrientDef } from "@bt/shared/core/nutrients";
+import { validateLifestyleDef, type LifestyleDef } from "@bt/shared/core/lifestyle";
+import { validateWholeFoodDef, wholeFoodFor, type WholeFoodDef } from "@bt/shared/core/wholeFoods";
+import type { FoodDb } from "@bt/shared/core/meals";
+import type { BiomarkerDef, EvidenceClaim, FoodTable } from "@bt/shared/core/types";
 import { ROOT } from "./store";
-import { validateLifeTables, type LifeTableFile } from "@bt/core/lifeTable";
-import { validateMortalityModels, type MortalityModelFile } from "@bt/core/mortalityModel";
+import { validateLifeTables, type LifeTableFile } from "@bt/shared/core/lifeTable";
+import { validateMortalityModels, type MortalityModelFile } from "@bt/shared/core/mortalityModel";
 
 let tables: LifeTableFile | null | undefined;
 /** Official country life tables, read once; invalid or missing files fail closed. */

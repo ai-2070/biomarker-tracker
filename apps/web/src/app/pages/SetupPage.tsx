@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { cleanProfile } from "@bt/core/backup";
-import type { Profile } from "@bt/core/types";
+import { cleanProfile } from "@bt/shared/core/backup";
+import type { Profile } from "@bt/shared/core/types";
 import { setOnboarded, setProfile } from "../../db/db";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { LoadProfile } from "../components/LoadProfile";

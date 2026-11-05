@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkCitations, normalizeId } from "@bt/ai/citations";
+import { checkCitations, normalizeId } from "@bt/shared/ai/citations";
 
 describe("assistant DOI prose boundaries", () => {
   it("checks a retrieved DOI surrounded by prose parentheses and preserves the closing punctuation", () => {

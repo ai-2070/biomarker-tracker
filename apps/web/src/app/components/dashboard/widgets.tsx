@@ -1,8 +1,8 @@
-import type { Dashboard, DashboardMarker } from "@bt/core/dashboard";
-import type { ExperimentPhase } from "@bt/core/experiments";
-import { habitsOf, summarizeWatch } from "@bt/core/habits";
-import { isCritical } from "@bt/core/trends";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
+import type { Dashboard, DashboardMarker } from "@bt/shared/core/dashboard";
+import type { ExperimentPhase } from "@bt/shared/core/experiments";
+import { habitsOf, summarizeWatch } from "@bt/shared/core/habits";
+import { isCritical } from "@bt/shared/core/trends";
+import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { openBrain } from "../../brain/store";
 import { CATEGORY_LABEL, displayUnitFor, formatChange, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../../format";
 import { useDisplayUnits, useWatchMeasurements } from "../../hooks";

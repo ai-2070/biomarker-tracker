@@ -4,7 +4,7 @@
  * words), reviews of any design count (most of what is known about habits comes from studies that follow
  * people over years), and the question asks about a habit or exposure.
  */
-import type { Question } from "@bt/core/evidenceMap";
+import type { Question } from "@bt/shared/core/evidenceMap";
 import type { TopicDef } from "./topics";
 
 /** Any of these words or word starts in a title, any case. */

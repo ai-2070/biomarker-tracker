@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chooseFrom, chooseReviews, classify, eligibleReviews, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "@bt/core/evidenceMap";
+import { chooseFrom, chooseReviews, classify, eligibleReviews, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "@bt/shared/core/evidenceMap";
 
 const OUT = [{ id: "fractures", title: /\bfractur\w*/i }];
 const rec = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: [], mesh: ["Humans"], citedBy: 0, ...o });

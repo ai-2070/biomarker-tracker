@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import type { ComparisonClaim, ComparisonTopic, Verdict } from "@bt/core/foodComparison";
+import type { ComparisonClaim, ComparisonTopic, Verdict } from "@bt/shared/core/foodComparison";
 import { FOOD_COMPARISON } from "../knowledge";
 import { EvidenceMap, hasEvidenceMap } from "./EvidenceMap";
 import { GradeBadge, StudyLink } from "./evidence";

@@ -1,13 +1,14 @@
-// MCP servers: ready-made medical ones (packages/core/src/mcpPresets.ts) or the user's own.
+// MCP servers: ready-made medical ones (packages/shared/src/core/mcpPresets.ts) or the user's own.
 // Started on first use; their tools are handed to the assistant.
 import { createMCPClient } from "@ai-sdk/mcp";
 import { StdioClientTransport, getDefaultEnvironment } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { asSchema, tool, type ToolSet } from "ai";
 import { z } from "zod";
 import crypto from "node:crypto";
-import { MCP_PRESETS, mcpPreset, presetArgs, type McpPreset } from "@bt/core/mcpPresets";
+import { MCP_PRESETS, mcpPreset, presetArgs, type McpPreset } from "@bt/shared/core/mcpPresets";
 import { getSecrets, getSettings, updateSecrets, updateSettings, type McpServerConfig } from "./store";
 import { which } from "./which";
+import type { McpServerListing } from "@bt/shared/api/types";
 
 /** How long a question waits for a server that is still starting (it keeps starting in the background). */
 const START_WAIT_MS = 45_000;
@@ -211,21 +212,8 @@ export function ensureDefaultServers(npx = hasNpx()): void {
   });
 }
 
-export interface ServerListing {
-  id: string;
-  name: string;
-  presetId?: string;
-  command: string;
-  args: string[];
-  enabled: boolean;
-  running: boolean;
-  error?: string;
-  /** Which secret values are set (never the values). */
-  secretsSet: string[];
-  env: Record<string, string>;
-}
 
-export function listServers(): ServerListing[] {
+export function listServers(): McpServerListing[] {
   const secrets = getSecrets().mcpEnv;
   return getSettings().mcp.map((s) => {
     const err = lastError.get(s.id);

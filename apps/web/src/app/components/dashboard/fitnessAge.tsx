@@ -1,8 +1,8 @@
-import { todayIso } from "@bt/core/dates";
-import { HUNT_VO2MAX, fitnessAge, vo2maxForAge } from "@bt/core/fitnessAge";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { sortByDate } from "@bt/core/trends";
-import type { Measurement, Profile } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import { HUNT_VO2MAX, fitnessAge, vo2maxForAge } from "@bt/shared/core/fitnessAge";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { formatDate, formatYears } from "../../format";
 import { href } from "../../router";
 import { Card, LinkButton, Notice } from "../ui";

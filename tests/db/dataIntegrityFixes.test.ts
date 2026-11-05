@@ -1,12 +1,12 @@
 import "fake-indexeddb/auto";
 import Dexie from "dexie";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { createBackup, parseBackup } from "@bt/core/backup";
-import { dayNumber, todayIso } from "@bt/core/dates";
-import type { Plan } from "@bt/core/plans";
-import type { Meal } from "@bt/core/meals";
-import { profilesInFolder } from "@bt/core/zipStore";
-import { sortByDate } from "@bt/core/trends";
+import { createBackup, parseBackup } from "@bt/shared/core/backup";
+import { dayNumber, todayIso } from "@bt/shared/core/dates";
+import type { Plan } from "@bt/shared/core/plans";
+import type { Meal } from "@bt/shared/core/meals";
+import { profilesInFolder } from "@bt/shared/core/zipStore";
+import { sortByDate } from "@bt/shared/core/trends";
 import { addMeasurement, addMeasurements, createHabit, getProfile, importBackup, saveMeal, savePlan, startPlan, stopPlan, TrackerDB, updateMeal, updatePlan } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;

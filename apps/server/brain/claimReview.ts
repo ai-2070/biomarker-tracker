@@ -2,7 +2,7 @@
 // the assessment the model submitted through a tool. The page saves only that submission, never prose.
 import { tool, type ToolSet } from "ai";
 import { z } from "zod";
-import { validateClaimAssessment, type ClaimAssessment } from "@bt/core/claimEvidence";
+import { validateClaimAssessment, type ClaimAssessment } from "@bt/shared/core/claimEvidence";
 import type { ClaimSearchSession } from "../claimSearchSession";
 import { studyIdsFromTool, toolStep, validateToolResult } from "../steps";
 

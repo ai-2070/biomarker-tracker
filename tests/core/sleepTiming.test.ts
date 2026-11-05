@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { dayNumber } from "@bt/core/dates";
-import { buildSleepTiming, pairSleepCardiac, sleepClock, type SleepCardiacMetric } from "@bt/core/sleepTiming";
-import type { Measurement, SleepSession } from "@bt/core/types";
+import { dayNumber } from "@bt/shared/core/dates";
+import { buildSleepTiming, pairSleepCardiac, sleepClock, type SleepCardiacMetric } from "@bt/shared/core/sleepTiming";
+import type { Measurement, SleepSession } from "@bt/shared/core/types";
 
 function session(start: string, end: string, extra: Partial<SleepSession> = {}): SleepSession {
   return { start, end, kind: "asleep", source: "Watch A", ...extra };

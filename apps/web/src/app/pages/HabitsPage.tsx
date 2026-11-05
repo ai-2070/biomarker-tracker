@@ -1,13 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { todayIso } from "@bt/core/dates";
-import { BASELINE_WINDOW_DAYS, beforeResults, retestDate, type MarkerResult } from "@bt/core/experiments";
-import { chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, type Habit } from "@bt/core/habits";
-import { durationDays, safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory, type ProtocolField } from "@bt/core/protocols";
-import { groupByBiomarker } from "@bt/core/trends";
-import type { Experiment, Measurement, ProtocolEntry } from "@bt/core/types";
-import type { Plan } from "@bt/core/plans";
+import { todayIso } from "@bt/shared/core/dates";
+import { BASELINE_WINDOW_DAYS, beforeResults, retestDate, type MarkerResult } from "@bt/shared/core/experiments";
+import { chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, type Habit } from "@bt/shared/core/habits";
+import { durationDays, safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory, type ProtocolField } from "@bt/shared/core/protocols";
+import { groupByBiomarker } from "@bt/shared/core/trends";
+import type { Experiment, Measurement, ProtocolEntry } from "@bt/shared/core/types";
+import type { Plan } from "@bt/shared/core/plans";
 import { createHabit, deleteExperiment, deleteHabit, saveHabit, startPlan, watchHabit } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
@@ -20,7 +20,7 @@ import { useAllMeasurements, useExperiments, useWatchMeasurements, useMeals, use
 import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, WATCH_DEFS, shortName, watchDef } from "../knowledge";
 import { href } from "../router";
 import { MarkerChoice, PhaseBadge } from "./ExperimentsPage";
-import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/core/phenoageWatch";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
 
 const RETEST_OPTIONS = [
   { value: "28", label: "4 weeks" },

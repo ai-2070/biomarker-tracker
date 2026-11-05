@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { buildDashboard, type Dashboard } from "@bt/core/dashboard";
-import { todayIso } from "@bt/core/dates";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
-import { isCritical } from "@bt/core/trends";
-import type { Profile } from "@bt/core/types";
+import { buildDashboard, type Dashboard } from "@bt/shared/core/dashboard";
+import { todayIso } from "@bt/shared/core/dates";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { isCritical } from "@bt/shared/core/trends";
+import type { Profile } from "@bt/shared/core/types";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { BloodPressureFigure, BodySummaryList, SummaryValue, WeightFigure, summaryRow } from "../components/dashboard/body";
 import { Sparkline } from "../components/dashboard/Sparkline";

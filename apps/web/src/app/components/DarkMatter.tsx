@@ -1,5 +1,5 @@
-import { coverage, type FoodDb } from "@bt/core/meals";
-import type { Citation } from "@bt/core/types";
+import { coverage, type FoodDb } from "@bt/shared/core/meals";
+import type { Citation } from "@bt/shared/core/types";
 import { STUDY_LABEL, StudyLink } from "./evidence";
 import { Card } from "./ui";
 import { PaperLink } from "./PaperLink";

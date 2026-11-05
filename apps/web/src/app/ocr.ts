@@ -2,8 +2,8 @@
 // The engine and the English, German and Hungarian language files are served by the app itself
 // (see ocrAssets in apps/web/vite.config.ts), so nothing is downloaded from elsewhere and no image leaves the device.
 import type Tesseract from "tesseract.js";
-import { normalizeOcrText } from "@bt/core/importers/ocrText";
-import { cleanScan, looksLikePaper } from "@bt/core/importers/scanClean";
+import { normalizeOcrText } from "@bt/shared/core/importers/ocrText";
+import { cleanScan, looksLikePaper } from "@bt/shared/core/importers/scanClean";
 
 export type OcrProgress = (fraction: number, stage: string) => void;
 

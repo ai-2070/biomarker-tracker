@@ -2,10 +2,10 @@ import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "rea
 import { createPortal } from "react-dom";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { addDays, todayIso } from "@bt/core/dates";
-import { buildDoctorReport, type DoctorReport } from "@bt/core/doctorReport";
-import { buildTestSummary } from "@bt/core/testSummary";
-import type { Measurement, Profile } from "@bt/core/types";
+import { addDays, todayIso } from "@bt/shared/core/dates";
+import { buildDoctorReport, type DoctorReport } from "@bt/shared/core/doctorReport";
+import { buildTestSummary } from "@bt/shared/core/testSummary";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { useDisplayUnits, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, CATEGORY_ORDER, NUTRIENTS, fullName } from "../knowledge";
 import { formatDate } from "../format";

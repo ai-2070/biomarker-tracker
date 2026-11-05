@@ -10,8 +10,8 @@ import { parseCodex } from "../../apps/server/agents";
 import { callTool, closeRun, openRun, runFor, stableToken } from "../../apps/server/bridge";
 import { experimentResults, healthTools, type HealthSnapshot } from "../../apps/server/healthTools";
 import { studyIdsFromTool, toolStep } from "../../apps/server/steps";
-import { checkCitations } from "@bt/ai/citations";
-import { planFromProposal, WEEKDAYS } from "@bt/core/plans";
+import { checkCitations } from "@bt/shared/ai/citations";
+import { planFromProposal, WEEKDAYS } from "@bt/shared/core/plans";
 
 let dir: string;
 beforeEach(() => { dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-assistant-safety-")); vi.stubEnv("BT_DATA", dir); });

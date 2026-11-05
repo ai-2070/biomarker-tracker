@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Field } from "@base-ui/react/field";
-import { parseLabText, type ParsedReport } from "@bt/core/importers/labText";
-import { flagMeasurement, isCritical } from "@bt/core/trends";
-import type { Measurement } from "@bt/core/types";
+import { parseLabText, type ParsedReport } from "@bt/shared/core/importers/labText";
+import { flagMeasurement, isCritical } from "@bt/shared/core/trends";
+import type { Measurement } from "@bt/shared/core/types";
 import { uploadFile, useProfiles } from "../profiles";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { Button, Card, FlagBadge, LinkButton, Notice, PageTitle, inputStyles } from "../components/ui";

@@ -4,10 +4,10 @@ import type * as ReactModule from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DeviceImportPage } from "../../apps/web/src/app/pages/DeviceImportPage";
 import { Review } from "../../apps/web/src/app/components/LabReview";
-import { parseLabText } from "@bt/core/importers/labText";
+import { parseLabText } from "@bt/shared/core/importers/labText";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
 import { db } from "../../apps/web/src/db/db";
-import type { Measurement } from "@bt/core/types";
+import type { Measurement } from "@bt/shared/core/types";
 
 // Exercise the real review event handlers and IndexedDB writes without a browser DOM.
 // Hooks are an explicit state harness; the browser smoke still covers Base UI interaction.

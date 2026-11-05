@@ -1,10 +1,10 @@
 import { useId, useMemo, useRef, useState } from "react";
-import type { Dashboard, DrawSummary } from "@bt/core/dashboard";
-import { dayNumber } from "@bt/core/dates";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/core/protocols";
-import { timeTicks } from "@bt/core/timeWindow";
-import type { ProtocolEntry } from "@bt/core/types";
+import type { Dashboard, DrawSummary } from "@bt/shared/core/dashboard";
+import { dayNumber } from "@bt/shared/core/dates";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/shared/core/protocols";
+import { timeTicks } from "@bt/shared/core/timeWindow";
+import type { ProtocolEntry } from "@bt/shared/core/types";
 import { formatDate, formatYears } from "../../format";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";

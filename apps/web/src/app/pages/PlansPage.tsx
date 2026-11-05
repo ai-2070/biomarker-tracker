@@ -1,6 +1,6 @@
 import { useRef, useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { planFromFile, type Plan } from "@bt/core/plans";
+import { planFromFile, type Plan } from "@bt/shared/core/plans";
 import { newId, savePlan } from "../../db/db";
 import { PlusIcon } from "../components/icons";
 import { Button, Card, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";

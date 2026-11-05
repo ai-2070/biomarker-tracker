@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { ExampleMeal, FoodDb } from "@bt/core/meals";
+import type { ExampleMeal, FoodDb } from "@bt/shared/core/meals";
 import examples from "../../../../knowledge/meals/examples.json";
 
 /**

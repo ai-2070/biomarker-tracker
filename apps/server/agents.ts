@@ -7,7 +7,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import type { ToolSet } from "ai";
-import { providerInfo, type Effort, type ProviderId } from "@bt/core/aiProviders";
+import { providerInfo, type Effort, type ProviderId } from "@bt/shared/core/aiProviders";
 import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
 import { which } from "./which";
 import { killTree, spawnTree } from "./processTree";

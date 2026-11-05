@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { clockFindingsAbout, clockPrescribes, validateClockFile, type ClockFile } from "@bt/core/clocks";
+import { clockFindingsAbout, clockPrescribes, validateClockFile, type ClockFile } from "@bt/shared/core/clocks";
 
 const K = join(import.meta.dirname, "..", "..", "knowledge");
 const FILE = join(K, "clocks", "interventions.json");

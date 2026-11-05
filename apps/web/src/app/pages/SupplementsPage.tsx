@@ -1,10 +1,10 @@
 import { Toggle } from "@base-ui/react/toggle";
 import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { useState } from "react";
-import { interactionsFor, searchNutrients, type NutrientDef, type NutrientKind, type NutrientMatch } from "@bt/core/nutrients";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
-import { computeTrend, flagLatest, groupByBiomarker } from "@bt/core/trends";
-import type { Measurement, Profile, SafetyId } from "@bt/core/types";
+import { interactionsFor, searchNutrients, type NutrientDef, type NutrientKind, type NutrientMatch } from "@bt/shared/core/nutrients";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { computeTrend, flagLatest, groupByBiomarker } from "@bt/shared/core/trends";
+import type { Measurement, Profile, SafetyId } from "@bt/shared/core/types";
 import { GradeBadge } from "../components/evidence";
 import { SearchIcon } from "../components/icons";
 import { Button, Card, FlagBadge, PageTitle, cx, inputStyles } from "../components/ui";
@@ -13,7 +13,7 @@ import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from ".
 import { BIOMARKER_MAP, NUTRIENTS, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import names from "../../../../../knowledge/names.json";
-import { searchKnowledgeNames } from "@bt/core/knowledgeNames";
+import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
 import { KnowledgeName } from "../components/KnowledgeName";
 import { PaperLink } from "../components/PaperLink";
 

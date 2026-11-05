@@ -14,10 +14,13 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
-import { cleanProfile, isProfile, parseBackup } from "@bt/core/backup";
-import { validatePlan, type Plan } from "@bt/core/plans";
-import { validateMeal, type Meal } from "@bt/core/meals";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
+import { cleanProfile, isProfile, parseBackup } from "@bt/shared/core/backup";
+import { validatePlan, type Plan } from "@bt/shared/core/plans";
+import { validateMeal, type Meal } from "@bt/shared/core/meals";
+import type { Measurement, Profile } from "@bt/shared/core/types";
+import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
+
+export type { ProfileData, ProfileSummary, StoredFile };
 import { dataPath, getSettings, readJSON, syncDirectory, updateSettings, writeJSON } from "./store";
 import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip, type ZipEntry } from "./zip";
 
@@ -52,38 +55,8 @@ interface ProfileFile {
   person: Profile;
 }
 
-export interface StoredFile {
-  name: string;
-  originalName: string;
-  size: number;
-  type: string;
-  addedAt: string;
-  /** e.g. "Lab report, 12 results imported". */
-  note?: string;
-}
 
-export interface ProfileData {
-  person: Profile;
-  measurements: Measurement[];
-  protocols: ProtocolEntry[];
-  experiments: Experiment[];
-  /** The Protocols page (protocols.json). */
-  plans: Plan[];
-  /** Meals (meals.json). */
-  meals: Meal[];
-  settings: Record<string, unknown>;
-}
 
-export interface ProfileSummary {
-  id: string;
-  person: Profile;
-  createdAt: string;
-  updatedAt: string;
-  results: number;
-  lastResult: string | null;
-  files: number;
-  folder: string;
-}
 
 const README = `This folder is one Biomarker Tracker profile: everything about one person.
 

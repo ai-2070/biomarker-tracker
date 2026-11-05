@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { LIFE_TABLE_COUNTRIES } from "@bt/core/lifeTable";
-import type { Profile } from "@bt/core/types";
+import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
+import type { Profile } from "@bt/shared/core/types";
 import { saveCountry } from "../../db/db";
 import { useProfiles } from "../profiles";
 import { SimpleSelect } from "./UnitSelect";

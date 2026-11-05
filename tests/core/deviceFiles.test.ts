@@ -11,7 +11,7 @@ import {
   safeCut,
   tableOf,
   toIsoDate,
-} from "@bt/core/importers/deviceFiles";
+} from "@bt/shared/core/importers/deviceFiles";
 
 // Synthetic files shaped like real exports; no real person's data.
 

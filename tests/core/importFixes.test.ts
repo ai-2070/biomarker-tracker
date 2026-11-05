@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { DailyTally, appleRecords, dailyAverages, jsonTable, parseCsv, readTable, safeCut, tableOf, toIsoDate } from "@bt/core/importers/deviceFiles";
-import { durationHours, parseHealthScreenshot } from "@bt/core/importers/screenshot";
-import { parseLabText } from "@bt/core/importers/labText";
-import { validateManualEntry } from "@bt/core/importers/manual";
+import { DailyTally, appleRecords, dailyAverages, jsonTable, parseCsv, readTable, safeCut, tableOf, toIsoDate } from "@bt/shared/core/importers/deviceFiles";
+import { durationHours, parseHealthScreenshot } from "@bt/shared/core/importers/screenshot";
+import { parseLabText } from "@bt/shared/core/importers/labText";
+import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { loadDefs } from "../helpers";
-import { matchUnit, toCanonical } from "@bt/core/units";
+import { matchUnit, toCanonical } from "@bt/shared/core/units";
 
 const defs = loadDefs();
 const canonical = (field: string, unit: string) => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Field } from "@base-ui/react/field";
-import { LIFE_TABLE_COUNTRIES } from "@bt/core/lifeTable";
-import { heightInCm, heightInFeet } from "@bt/core/body";
-import type { Diet, HeightUnit, Profile, Sex, Smoking } from "@bt/core/types";
+import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
+import { heightInCm, heightInFeet } from "@bt/shared/core/body";
+import type { Diet, HeightUnit, Profile, Sex, Smoking } from "@bt/shared/core/types";
 import { BirthMonthField } from "./BirthMonthField";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { SimpleSelect } from "./UnitSelect";

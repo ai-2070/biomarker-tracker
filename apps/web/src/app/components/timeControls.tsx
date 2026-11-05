@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent, type PointerEvent, type ReactNode, type RefObject } from "react";
-import { MIN_SPAN_DAYS, centerWindow, clampWindow, panWindow, presetWindow, zoomWindow, type TimeWindow } from "@bt/core/timeWindow";
+import { MIN_SPAN_DAYS, centerWindow, clampWindow, panWindow, presetWindow, zoomWindow, type TimeWindow } from "@bt/shared/core/timeWindow";
 import { MinusIcon, PlusIcon } from "./icons";
 import { cx } from "./ui";
 

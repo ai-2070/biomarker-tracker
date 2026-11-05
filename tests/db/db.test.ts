@@ -1,12 +1,12 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { parseBackup } from "@bt/core/backup";
-import { demoProfile } from "@bt/core/demo";
+import { parseBackup } from "@bt/shared/core/backup";
+import { demoProfile } from "@bt/shared/core/demo";
 import weight from "../../knowledge/biomarkers/weight.json";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";
-import type { BiomarkerDef } from "@bt/core/types";
-import { profileDetailsIn } from "@bt/core/profileCompletion";
+import type { BiomarkerDef } from "@bt/shared/core/types";
+import { profileDetailsIn } from "@bt/shared/core/profileCompletion";
 import {
   addMeasurement,
   addProtocol,

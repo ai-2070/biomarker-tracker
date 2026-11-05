@@ -6,7 +6,7 @@ import { ask, dataPack, studyIdsIn } from "../../apps/server/assistant";
 import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, safetyOf, testSummaryFor, type HealthSnapshot } from "../../apps/server/healthTools";
 import { findMarker } from "../../apps/server/knowledge";
 import { toolStep } from "../../apps/server/steps";
-import type { Measurement, ProtocolEntry } from "@bt/core/types";
+import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 const m = (id: string, biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
   id, biomarkerId, date, value, originalValue: value, originalUnit: "x", source: "manual", ...extra,

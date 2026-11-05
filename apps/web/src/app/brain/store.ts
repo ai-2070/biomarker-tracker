@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from "react";
-import { parseLabText, type ParsedReport } from "@bt/core/importers/labText";
-import { assistantProfile } from "@bt/core/profile";
-import type { Measurement, Profile } from "@bt/core/types";
+import { parseLabText, type ParsedReport } from "@bt/shared/core/importers/labText";
+import { assistantProfile } from "@bt/shared/core/profile";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
 import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
 import type { LiveAnswer } from "./stream";
@@ -9,16 +9,16 @@ import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
 import { shrinkPhoto } from "./photo";
-import { parseHealthScreenshot } from "@bt/core/importers/screenshot";
-import { todayIso } from "@bt/core/dates";
-import { parseHabitProposal, type HabitProposal } from "@bt/core/habitProposal";
-import { planFromProposal, type Plan } from "@bt/core/plans";
-import { validateMeal, type Meal } from "@bt/core/meals";
-import { flagLatest, groupByBiomarker, isCritical } from "@bt/core/trends";
-import { proposalIntent, proposalIssue, type AssistantProposalContext, type ProposalIntent } from "@bt/core/assistantProposal";
-import { profileDetailsIn, type ProfileDetailChange } from "@bt/core/profileCompletion";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
-import { measurementsIn } from "@bt/core/measurementCompletion";
+import { parseHealthScreenshot } from "@bt/shared/core/importers/screenshot";
+import { todayIso } from "@bt/shared/core/dates";
+import { parseHabitProposal, type HabitProposal } from "@bt/shared/core/habitProposal";
+import { planFromProposal, type Plan } from "@bt/shared/core/plans";
+import { validateMeal, type Meal } from "@bt/shared/core/meals";
+import { flagLatest, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
+import { proposalIntent, proposalIssue, type AssistantProposalContext, type ProposalIntent } from "@bt/shared/core/assistantProposal";
+import { profileDetailsIn, type ProfileDetailChange } from "@bt/shared/core/profileCompletion";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { measurementsIn } from "@bt/shared/core/measurementCompletion";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
 

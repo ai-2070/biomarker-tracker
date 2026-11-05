@@ -1,7 +1,7 @@
-import { groupDoctorReportSeries, type DoctorReport, type DoctorReportSeries } from "@bt/core/doctorReport";
-import type { Measurement } from "@bt/core/types";
-import { formatValue } from "@bt/core/units";
-import { BODY_GROUPS } from "@bt/core/body";
+import { groupDoctorReportSeries, type DoctorReport, type DoctorReportSeries } from "@bt/shared/core/doctorReport";
+import type { Measurement } from "@bt/shared/core/types";
+import { formatValue } from "@bt/shared/core/units";
+import { BODY_GROUPS } from "@bt/shared/core/body";
 import { CATEGORY_LABEL, displayUnitFor, FLAG_LABEL, formatDate, showMeasurement, showRange, valueUnit } from "../format";
 import { TIME_LABEL, whenExtras } from "./PlanWhen";
 import { DoctorReportChart } from "./DoctorReportChart";

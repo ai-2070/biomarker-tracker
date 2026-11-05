@@ -3,9 +3,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { aggregateFlag } from "../../apps/web/src/app/components/chartAggregate";
 import type { TimeView } from "../../apps/web/src/app/components/timeControls";
-import { groupReadings } from "@bt/core/chartSeries";
-import { dayNumber } from "@bt/core/dates";
-import type { BiomarkerDef, Measurement } from "@bt/core/types";
+import { groupReadings } from "@bt/shared/core/chartSeries";
+import { dayNumber } from "@bt/shared/core/dates";
+import type { BiomarkerDef, Measurement } from "@bt/shared/core/types";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
 
 const measurement = (id: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({

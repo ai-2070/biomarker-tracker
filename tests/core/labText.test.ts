@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { candidateUnits, findDate, foldLabName, parseLabText, truncatedUnit, type ParsedRow } from "@bt/core/importers/labText";
-import { piecesToLines } from "@bt/core/importers/pdfText";
-import { validateManualEntry } from "@bt/core/importers/manual";
+import { candidateUnits, findDate, foldLabName, parseLabText, truncatedUnit, type ParsedRow } from "@bt/shared/core/importers/labText";
+import { piecesToLines } from "@bt/shared/core/importers/pdfText";
+import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { def, loadDefs } from "../helpers";
 
 const defs = [...loadDefs().values()];

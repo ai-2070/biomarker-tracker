@@ -1,8 +1,8 @@
 // Opens a visible terminal window that runs one command, so the person sees what runs and can answer
-// questions (installers and sign-ins are interactive). Only fixed commands from packages/core/src/aiProviders.ts.
+// questions (installers and sign-ins are interactive). Only fixed commands from packages/shared/src/core/aiProviders.ts.
 import { spawn } from "node:child_process";
 import { which } from "./which";
-import { providerInfo, type ProviderId } from "@bt/core/aiProviders";
+import { providerInfo, type ProviderId } from "@bt/shared/core/aiProviders";
 
 /** Resolve exactly the installed command, then quote it for the terminal's shell. */
 export function openAgentSignIn(provider: ProviderId): { ok: true } | { ok: false; error: string } {

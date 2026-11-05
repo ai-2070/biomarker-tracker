@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import type { Profile } from "@bt/core/types";
+import type { Profile } from "@bt/shared/core/types";
 import { saveBirthMonth } from "../../db/db";
 import { useProfiles } from "../profiles";
 import { BirthMonthField } from "./BirthMonthField";

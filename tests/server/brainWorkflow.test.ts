@@ -5,8 +5,8 @@ import { cacheKey, cacheLayout } from "../../apps/server/brain/cache";
 import { requestTools } from "../../apps/server/brain/tools";
 import type { HealthSnapshot } from "../../apps/server/healthTools";
 import { openRouterCache, type Ready } from "../../apps/server/models";
-import type { ProviderId } from "@bt/core/aiProviders";
-import type { Measurement } from "@bt/core/types";
+import type { ProviderId } from "@bt/shared/core/aiProviders";
+import type { Measurement } from "@bt/shared/core/types";
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
 const m = (id: string, biomarkerId: string, date: string, value: number): Measurement => ({ id, biomarkerId, date, value, originalValue: value, originalUnit: "x", source: "manual" });

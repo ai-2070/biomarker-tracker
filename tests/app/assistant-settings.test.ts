@@ -1,7 +1,7 @@
 import { beforeEach, expect, it, vi } from "vitest";
 import type * as React from "react";
 import type { ReactElement, ReactNode } from "react";
-import { PROVIDERS } from "@bt/core/aiProviders";
+import { PROVIDERS } from "@bt/shared/core/aiProviders";
 
 // A synchronous hook host exercises these components' actual state/effect logic without a DOM dependency.
 const host = vi.hoisted(() => ({ slots: [] as unknown[], cursor: 0, effects: [] as (() => void)[], dirty: false, api: vi.fn() }));
@@ -26,7 +26,7 @@ vi.mock("react", async (original) => ({
   },
   useCallback: (callback: unknown) => callback,
 }));
-vi.mock("../../apps/web/src/app/api", () => ({ api: host.api }));
+vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(host.api));
 vi.mock("../../apps/web/src/app/brain/store", () => ({ closeBrain: vi.fn() }));
 import { ModelsSettings } from "../../apps/web/src/app/components/settings/ModelsSettings";
 import { useBrainSettings } from "../../apps/web/src/app/brain/menus";
@@ -68,10 +68,10 @@ beforeEach(() => {
 it("blocks saved-only testing for an edited connection and reloads discovery after saving", async () => {
   let current = structuredClone(settings);
   let models = [{ id: "old", label: "Old endpoint model" }];
-  host.api.mockImplementation(async (method: string, path: string, body?: { baseURL: string }) => {
-    if (path === "/api/settings/models/ollama") return { models };
-    if (method === "PUT" && path.endsWith("/ollama")) {
-      current.configs.ollama = { baseURL: body!.baseURL.trim() };
+  host.api.mockImplementation(async (_kind: string, path: string, input?: { id?: string; source?: string; baseURL: string }) => {
+    if (path === "settings.loadedModels" && input?.source === "ollama") return { models };
+    if (path === "settings.setProvider" && input?.id === "ollama") {
+      current.configs.ollama = { baseURL: input.baseURL.trim() };
       models = [{ id: "new", label: "New endpoint model" }];
     }
     return structuredClone(current);
@@ -97,7 +97,7 @@ it("blocks saved-only testing for an edited connection and reloads discovery aft
   expect(picker).toBeDefined();
   expect(button(tree, "Test").props.disabled).toBe(false);
   expect(elements(tree).some((e) => e.props.value === "http://127.0.0.1:21434/v1")).toBe(true);
-  expect(host.api.mock.calls.filter((call) => call[1] === "/api/settings/models/ollama")).toHaveLength(2);
+  expect(host.api.mock.calls.filter((call) => call[1] === "settings.loadedModels")).toHaveLength(2);
 });
 
 it("does not treat a replacement API key as saved", async () => {
@@ -110,7 +110,7 @@ it("does not treat a replacement API key as saved", async () => {
   (key.props.onValueChange as (v: string) => void)("replacement-secret");
   tree = render(ModelsSettings);
   expect(button(tree, "Test").props.disabled).toBe(true);
-  expect(host.api.mock.calls.some((call) => call[1] === "/api/settings/test")).toBe(false);
+  expect(host.api.mock.calls.some((call) => call[1] === "settings.test")).toBe(false);
 });
 
 it("requires a fresh settings reply for every opening, including cached readiness", async () => {

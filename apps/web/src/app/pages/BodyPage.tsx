@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
-import { buildDashboard } from "@bt/core/dashboard";
-import { DEMO_BODY_IDS, demoBodyMeasurements } from "@bt/core/demo";
+import { buildDashboard } from "@bt/shared/core/dashboard";
+import { DEMO_BODY_IDS, demoBodyMeasurements } from "@bt/shared/core/demo";
 import { addMeasurements } from "../../db/db";
-import { todayIso } from "@bt/core/dates";
+import { todayIso } from "@bt/shared/core/dates";
 import { BloodPressureFigure, BmiFigure, BmrFigure, BodyEntryForm, GlucoseFigure, LatestFigure, WaistFigure, WeightFigure, inBodyOrder } from "../components/dashboard/body";
-import { BODY_GROUPS, FITNESS_FIELDS } from "@bt/core/body";
+import { BODY_GROUPS, FITNESS_FIELDS } from "@bt/shared/core/body";
 import { HabitsPanel, MarkerGrid, cardStyles } from "../components/dashboard/widgets";
 import { HeartAgeFigure } from "../components/dashboard/heartAge";
 import { FitnessAgeFigure } from "../components/dashboard/fitnessAge";

@@ -10,7 +10,7 @@ import { spawn } from "node:child_process";
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { anyDesignKind } from "@bt/core/evidenceMap";
+import { anyDesignKind } from "@bt/shared/core/evidenceMap";
 import { SCREENING_DIR, loadTopic, type ScreeningFile } from "./load";
 import { screenOutcome } from "./screening";
 

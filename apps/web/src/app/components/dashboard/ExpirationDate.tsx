@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react";
-import { todayIso } from "@bt/core/dates";
-import { ageAtMoment, tableFor } from "@bt/core/lifeTable";
-import { isBirthMonth } from "@bt/core/phenoageDraws";
-import type { Measurement, Profile } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import { ageAtMoment, tableFor } from "@bt/shared/core/lifeTable";
+import { isBirthMonth } from "@bt/shared/core/phenoageDraws";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { useLifeTables } from "../../lifeTables";
 import { Card } from "../ui";
 

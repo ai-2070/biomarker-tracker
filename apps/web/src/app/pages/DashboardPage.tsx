@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { buildDashboard } from "@bt/core/dashboard";
-import { todayIso } from "@bt/core/dates";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
+import { buildDashboard } from "@bt/shared/core/dashboard";
+import { todayIso } from "@bt/shared/core/dates";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { Timeline } from "../components/dashboard/Timeline";
 import {

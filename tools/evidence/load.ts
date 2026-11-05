@@ -1,12 +1,12 @@
 /** Shared by build.ts and screen.ts: a topic's downloaded records (fetch.ts), classified, one per paper. */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { anyDesignKind, classify, eligibleReviews, type Decision, type EvidenceRecord, type Question } from "@bt/core/evidenceMap";
-import type { ComparisonTopicFile } from "@bt/core/foodComparison";
-import type { NutrientDef } from "@bt/core/nutrients";
-import type { LifestyleDef } from "@bt/core/lifestyle";
-import type { WholeFoodDef } from "@bt/core/wholeFoods";
-import type { Citation } from "@bt/core/types";
+import { anyDesignKind, classify, eligibleReviews, type Decision, type EvidenceRecord, type Question } from "@bt/shared/core/evidenceMap";
+import type { ComparisonTopicFile } from "@bt/shared/core/foodComparison";
+import type { NutrientDef } from "@bt/shared/core/nutrients";
+import type { LifestyleDef } from "@bt/shared/core/lifestyle";
+import type { WholeFoodDef } from "@bt/shared/core/wholeFoods";
+import type { Citation } from "@bt/shared/core/types";
 import { TOPICS } from "./topics";
 
 export const ROOT = join(import.meta.dirname, "..", "..");

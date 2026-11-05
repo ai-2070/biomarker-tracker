@@ -1,6 +1,6 @@
-import { groupReadings } from "@bt/core/chartSeries";
-import { flagLatest, recentAverage, recentTotal, sortByDate } from "@bt/core/trends";
-import type { Measurement, Profile } from "@bt/core/types";
+import { groupReadings } from "@bt/shared/core/chartSeries";
+import { flagLatest, recentAverage, recentTotal, sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { formatDate } from "../../format";
 import { BIOMARKER_MAP } from "../../knowledge";
 import { href } from "../../router";

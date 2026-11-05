@@ -5,6 +5,7 @@
     "": {
       "name": "biomarker-tracker",
       "devDependencies": {
+        "@trpc/client": "^11.24.0",
         "@types/bun": "^1.4.4",
         "@types/node": "^26.6.6",
         "@types/react": "^19.3.0",
@@ -20,7 +21,7 @@
     "apps/desktop": {
       "name": "@bt/desktop",
       "dependencies": {
-        "@bt/core": "workspace:*",
+        "@bt/shared": "workspace:*",
       },
       "devDependencies": {
         "@tauri-apps/cli": "^2",
@@ -46,11 +47,10 @@
         "@ai-sdk/mistral": "^4.0.79",
         "@ai-sdk/openai": "^4.0.108",
         "@ai-sdk/openai-compatible": "^3.0.84",
-        "@bt/ai": "workspace:*",
-        "@bt/core": "workspace:*",
         "@bt/eve": "workspace:*",
-        "@bt/research": "workspace:*",
+        "@bt/shared": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.32.2",
+        "@trpc/server": "^11.24.0",
         "ai": "^7.0.162",
         "eve": "1.0.0-rc.2",
         "zod": "^4.6.7",
@@ -64,15 +64,14 @@
       "name": "@bt/web",
       "dependencies": {
         "@base-ui/react": "^1.9.0",
-        "@bt/ai": "workspace:*",
-        "@bt/core": "workspace:*",
-        "@bt/research": "workspace:*",
+        "@bt/shared": "workspace:*",
         "@fontsource-variable/inter": "^5.3.0",
         "@fontsource-variable/kode-mono": "^5.3.0",
         "@fontsource/instrument-serif": "^5.3.0",
         "@tesseract.js-data/deu": "1.0.0",
         "@tesseract.js-data/eng": "1.0.0",
         "@tesseract.js-data/hun": "1.0.0",
+        "@trpc/client": "^11.24.0",
         "ai": "^7.0.162",
         "dexie": "^4.4.7",
         "dexie-react-hooks": "^4.4.0",
@@ -93,25 +92,11 @@
         "vite": "^8.3.5",
       },
     },
-    "packages/ai": {
-      "name": "@bt/ai",
-      "devDependencies": {
-        "typescript": "^7.0.2",
-      },
-    },
-    "packages/core": {
-      "name": "@bt/core",
+    "packages/shared": {
+      "name": "@bt/shared",
       "dependencies": {
-        "@bt/ai": "workspace:*",
-      },
-      "devDependencies": {
-        "typescript": "^7.0.2",
-      },
-    },
-    "packages/research": {
-      "name": "@bt/research",
-      "dependencies": {
-        "@bt/core": "workspace:*",
+        "@trpc/server": "^11.24.0",
+        "zod": "^4.6.7",
       },
       "devDependencies": {
         "typescript": "^7.0.2",
@@ -141,17 +126,13 @@
 
     "@base-ui/utils": ["@base-ui/utils@0.5.0", "", { "dependencies": { "@babel/runtime": "^7.29.7 || ^8.0.0", "@floating-ui/utils": "^0.2.12", "reselect": "^5.3.0", "use-sync-external-store": "^1.7.0" }, "peerDependencies": { "@types/react": "^17 || ^18 || ^19", "react": "^17 || ^18 || ^19", "react-dom": "^17 || ^18 || ^19" }, "optionalPeers": ["@types/react"] }, "sha512-dYGGcEttjkYiMoa5nHm8vLaJ2UcuTWxo3BFAwOYXeRg/q7UVVvA6cacEIXEs3FgBfK1CGtW1ptElqs7wsx+t9A=="],
 
-    "@bt/ai": ["@bt/ai@workspace:packages/ai"],
-
-    "@bt/core": ["@bt/core@workspace:packages/core"],
-
     "@bt/desktop": ["@bt/desktop@workspace:apps/desktop"],
 
     "@bt/eve": ["@bt/eve@workspace:apps/eve"],
 
-    "@bt/research": ["@bt/research@workspace:packages/research"],
-
     "@bt/server": ["@bt/server@workspace:apps/server"],
+
+    "@bt/shared": ["@bt/shared@workspace:packages/shared"],
 
     "@bt/web": ["@bt/web@workspace:apps/web"],
 
@@ -306,6 +287,10 @@
     "@tesseract.js-data/eng": ["@tesseract.js-data/eng@1.0.0", "", {}, "sha512-mbTumm6KQPUHyzTPQaF3ObXYnx0SqqfV2nabqFVQBwD6Kl7PhGSLSzOlfFTWy0P3BjghaSKA2W9GB19Jk+ZcTg=="],
 
     "@tesseract.js-data/hun": ["@tesseract.js-data/hun@1.0.0", "", {}, "sha512-HoMZ/9ULBzp6WBFLz8H3dBfeO9OK5E5kUL17oQp9wRbslXqpYdxeXMX2WLHrdZzeuGCGu+CByoMWKkDbX+BvqQ=="],
+
+    "@trpc/client": ["@trpc/client@11.24.0", "", { "peerDependencies": { "@trpc/server": "11.24.0", "typescript": ">=5.7.2" } }, "sha512-D9zoHnF/LGL5SpVnDaSO3b9ymF0jgfnawxtU7HkDjVbcmXeWiAGnJT6fD2UTfEmP63+i57VE49RQqRO0Ig7WJg=="],
+
+    "@trpc/server": ["@trpc/server@11.24.0", "", { "peerDependencies": { "@types/aws-lambda": "*", "@types/express": "*", "@types/ws": "*", "fastify": "*", "next": "*", "typescript": ">=5.7.2" }, "optionalPeers": ["@types/aws-lambda", "@types/express", "@types/ws", "fastify", "next"] }, "sha512-CxpaiIY58ItaLpGxwYTxHHYx5evRAJ4B2Eq94axvg28nwihDgjQIUiLG8T49DZ/t4R2tPHHdeLkF6t0kyjD5YQ=="],
 
     "@turbo/darwin-64": ["@turbo/darwin-64@2.11.10", "", { "os": "darwin", "cpu": "x64" }, "sha512-By4idRap5+nLnMuRzLB4qkOPRlvNdyY1ne4VJYDyUoUB11H94k7uif9mbe3JT8JSNXs1D68uMcBj6hJ/jMQRvA=="],
 

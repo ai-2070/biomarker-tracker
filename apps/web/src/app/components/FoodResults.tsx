@@ -1,4 +1,4 @@
-import { closestFoods, foodNameNote, searchFoods, type FoodDb } from "@bt/core/meals";
+import { closestFoods, foodNameNote, searchFoods, type FoodDb } from "@bt/shared/core/meals";
 
 /**
  * Food search results (the meal builder and the intake analyzer). When no food has every word, it says the
