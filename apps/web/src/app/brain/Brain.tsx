@@ -34,6 +34,8 @@ import {
   addFiles,
   addPastedLabText,
   backToMyChat,
+  keepReportFiles,
+  picturesToResend,
   closeBrain,
   newConversation,
   openBrain,
@@ -441,7 +443,7 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
           ))}
           {t.photos ? (
             <span className="rounded-lg border border-line px-2 py-1 text-xs text-ink-2">
-              {t.photos} {t.photos === 1 ? "picture" : "pictures"} sent to Brain
+              {t.photos} {t.photos === 1 ? "picture" : "pictures"} {t.photosAgain ? "sent again so Brain can look again" : "sent to Brain"}
             </span>
           ) : null}
         </div>
@@ -602,18 +604,9 @@ function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; 
   const { mode, active } = useProfiles();
 
   async function saved(list: Measurement[], skipped: number, date: string) {
-    const kept: string[] = [];
-    let keepError: string | undefined;
-    if (mode === "folders" && active) {
-      for (const file of turn.files) {
-        try {
-          kept.push((await uploadFile(active.id, file, `${turn.kind === "body" ? "Body measurements" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`)).originalName);
-        } catch (e) {
-          keepError = e instanceof Error ? e.message : "unknown error";
-        }
-      }
-    }
-    updateTurn(turn.id, { state: "saved", saved: list, skipped, date, ...(kept.length ? { kept: kept.join(", ") } : {}), ...(keepError ? { keepError } : {}) });
+    const note = `${turn.kind === "body" ? "Body measurements" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`;
+    const { kept, errors } = mode === "folders" && active ? await keepReportFiles(active.id, turn.files, note, uploadFile) : { kept: [], errors: [] };
+    updateTurn(turn.id, { state: "saved", saved: list, skipped, date, ...(kept.length ? { kept: kept.join(", ") } : {}), ...(errors.length ? { keepError: errors.join("; ") } : {}) });
   }
 
   if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Nothing saved from {turn.fileName}.</p>;
@@ -776,6 +769,11 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
 
   return (
     <div className={cx("border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]")}>
+      {!research && brain.attachments.every((a) => !a.images?.length) && picturesToResend(brain.turns, model) && (
+        <p className="mb-2 px-1 text-xs text-ink-2">
+          While the card above is open, your next question goes with the same pictures, so Brain can look again (for a row it missed or misread).
+        </p>
+      )}
       {!research && brain.attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1.5">
           {brain.attachments.map((a) => (

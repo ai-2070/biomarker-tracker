@@ -498,6 +498,68 @@ describe("results Brain read from photos", () => {
     expect(brain.useBrain().turns.slice(3).map((t) => t.role)).toEqual(["user", "review", "assistant", "habit"]);
   });
 
+  it("sends the pictures again with a follow-up while their card is open, to the same model only", async () => {
+    const photo = new File(["photo"], "report.jpg", { type: "image/jpeg" });
+    await brain.addFiles([photo]);
+    mocks.api.mockResolvedValue({ ...reply("One result."), steps: [proposal([{ marker: "ferritin", value: "45", unit: "µg/L" }])] });
+    await brain.send("Personal model", "Read this");
+    mocks.api.mockResolvedValue({ ...reply("Added the missed row."), steps: [proposal([{ marker: "weight", value: "70", unit: "kg" }])] });
+    await brain.send("Personal model", "You missed my weight");
+    const body = mocks.api.mock.calls[1]?.[2] as { messages: { content: string; images?: unknown[] }[] };
+    expect(body.messages.at(-1)).toMatchObject({ content: "You missed my weight", images: [{ data: "PRIVATE_PHOTO" }] });
+    expect(body.messages[0]!.images).toBeUndefined();
+    const turns = brain.useBrain().turns;
+    expect(turns.map((t) => t.role)).toEqual(["user", "review", "assistant", "user", "review", "assistant"]);
+    expect(turns[3]).toMatchObject({ photos: 1, photosAgain: true });
+    expect(turns[4]).toMatchObject({ files: [photo] });
+
+    // Another model, or no open card: the pictures aren't sent again.
+    expect(brain.picturesToResend(turns, "Other model")).toBeUndefined();
+    for (const t of turns) if (t.role === "review") brain.updateTurn(t.id, { state: "dismissed" });
+    expect(brain.picturesToResend(brain.useBrain().turns, "Personal model")).toBeUndefined();
+    await brain.send("Personal model", "Thanks");
+    expect((mocks.api.mock.calls[2]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
+  });
+
+  it("keeps sending the pictures with each follow-up while their card is open, and stops after a question without them", async () => {
+    await brain.addFiles([new File(["photo"], "report.jpg", { type: "image/jpeg" })]);
+    mocks.api.mockResolvedValue({ ...reply("One result."), steps: [proposal([{ marker: "ferritin", value: "45", unit: "µg/L" }])] });
+    await brain.send("Personal model", "Read this");
+    mocks.api.mockResolvedValue(reply("Sure."));
+    await brain.send("Personal model", "You missed one");
+    await brain.send("Personal model", "What is ferritin?");
+    expect((mocks.api.mock.calls[2]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeDefined();
+    // The re-sent question also counts as the picture question, while the card stays open.
+    expect(brain.useBrain().turns.filter((t) => t.role === "user").map((t) => t.role === "user" && !!t.photosAgain)).toEqual([false, true, true]);
+    // A question that went to another model breaks the chain, even if the card is still open.
+    await brain.send("Other model", "And this?");
+    await brain.send("Personal model", "Back again");
+    expect((mocks.api.mock.calls[4]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
+  });
+
+  it("doesn't save a reading typed with pictures as today's: it belongs on the card", async () => {
+    await brain.addFiles([new File(["photo"], "report.jpg", { type: "image/jpeg" })]);
+    await brain.send("Personal model", "My ferritin is 45 µg/L, read the rest");
+    expect(mocks.fillProfile).not.toHaveBeenCalled();
+    await brain.send("Personal model", "My ferritin is 45 µg/L");
+    expect(mocks.fillProfile).toHaveBeenCalledOnce();
+  });
+
+  it("keeps each report file once per profile, however many cards share it, and retries a failed one", async () => {
+    const a = new File(["a"], "page-1.jpg");
+    const b = new File(["b"], "page-2.jpg");
+    const upload = vi.fn(async (_profile: string, file: File) => {
+      if (file === b && upload.mock.calls.filter(([, f]) => f === b).length === 1) throw new Error("disk full");
+      return { originalName: `2026-11-05 ${file.name}` };
+    });
+    expect(await brain.keepReportFiles("p1", [a, b], "note", upload)).toEqual({ kept: ["2026-11-05 page-1.jpg"], errors: ["page-2.jpg: disk full"] });
+    expect(await brain.keepReportFiles("p1", [a, b], "note", upload)).toEqual({ kept: ["2026-11-05 page-1.jpg", "2026-11-05 page-2.jpg"], errors: [] });
+    expect(await brain.keepReportFiles("p1", [a, b], "note", upload)).toEqual({ kept: ["2026-11-05 page-1.jpg", "2026-11-05 page-2.jpg"], errors: [] });
+    expect(upload.mock.calls.map(([, f]) => f.name)).toEqual(["page-1.jpg", "page-2.jpg", "page-2.jpg"]);
+    await brain.keepReportFiles("p2", [a], "note", upload);
+    expect(upload).toHaveBeenCalledTimes(4);
+  });
+
   it("uses body wording for body measurements", () => {
     const [card] = brain.resultTurns([proposal([{ marker: "weight", value: "70.4", unit: "kg" }, { marker: "body_fat", value: "21", unit: "%" }])], [], "2026-10-30");
     expect(card).toMatchObject({ role: "review", kind: "body", fileName: "your pictures", report: { date: "2026-10-30" } });

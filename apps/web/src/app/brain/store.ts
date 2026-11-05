@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from "react";
 import { parseLabText, type ParsedReport } from "@bt/shared/core/importers/labText";
 import { assistantProfile } from "@bt/shared/core/profile";
-import type { Measurement, Profile } from "@bt/shared/core/types";
+import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
 import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
 import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
 import type { LiveAnswer } from "./stream";
@@ -33,7 +33,20 @@ export interface Step {
 }
 
 export type Turn =
-  | { id: string; role: "user"; content: string; /** what went to the model, with file text */ sent: string; files: string[]; /** photos sent with it (not kept) */ photos?: number }
+  | {
+      id: string;
+      role: "user";
+      content: string;
+      /** what went to the model, with file text */
+      sent: string;
+      files: string[];
+      /** photos sent with it */
+      photos?: number;
+      /** The pictures were the previous question's, sent again (`picturesToResend`). */
+      photosAgain?: boolean;
+      /** The pictures themselves, the files they came from and the model they went to: sent again with a follow-up while their card is open. */
+      pictures?: { images: PreparedPhoto[]; files: File[]; model: string };
+    }
   | { id: string; role: "assistant"; content: string; model: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
   /** The answer while it streams: replaced by the final turn (or an error) when the reply arrives. */
   | ({ id: string; role: "live"; model: string } & LiveAnswer)
@@ -285,6 +298,39 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
   });
 }
 
+/** Report files already kept (or being kept) per profile, so several cards from the same pictures keep each file once. */
+const keptFiles = new WeakMap<File, Map<string, Promise<string>>>();
+
+/**
+ * Keeps a review card's report files in the profile folder after its results are saved. A file another card
+ * already kept (several cards from one answer, or a follow-up's card) isn't kept again; a failed one can be retried.
+ */
+export async function keepReportFiles(
+  profileId: string,
+  files: readonly File[],
+  note: string,
+  upload: (profileId: string, file: File, note: string) => Promise<{ originalName: string }>,
+): Promise<{ kept: string[]; errors: string[] }> {
+  const kept: string[] = [];
+  const errors: string[] = [];
+  for (const file of files) {
+    let byProfile = keptFiles.get(file);
+    if (!byProfile) keptFiles.set(file, (byProfile = new Map()));
+    let pending = byProfile.get(profileId);
+    if (!pending) {
+      pending = upload(profileId, file, note).then((f) => f.originalName);
+      byProfile.set(profileId, pending);
+    }
+    try {
+      kept.push(await pending);
+    } catch (e) {
+      if (byProfile.get(profileId) === pending) byProfile.delete(profileId);
+      errors.push(`${file.name}: ${e instanceof Error ? e.message : "unknown error"}`);
+    }
+  }
+  return { kept: [...new Set(kept)], errors };
+}
+
 /**
  * Review cards from Brain's propose_results calls: results it read from the pictures sent with the question,
  * checked again here. Nothing is saved until the person checks each value and presses Save.
@@ -382,6 +428,19 @@ async function snapshot() {
   });
 }
 
+/**
+ * The previous question's pictures, to send again with a follow-up ("you missed HbA1c"): only when the previous
+ * question had them, to the same model, while a review card read from them is still open. Each follow-up that
+ * sends them again keeps them, so a second correction works too; closing or saving the card ends it.
+ */
+export function picturesToResend(turns: readonly Turn[], model: string): { images: PreparedPhoto[]; files: File[] } | undefined {
+  const question = turns.findLast((t) => t.role === "user");
+  if (question?.role !== "user" || !question.pictures || question.pictures.model !== model) return undefined;
+  const { images, files } = question.pictures;
+  const open = turns.some((t) => t.role === "review" && t.fromPicture && t.state === "open" && t.files.some((f) => files.includes(f)));
+  return open ? { images, files } : undefined;
+}
+
 /** Sends only this thread's question and, in personal mode, its profile and attachments. */
 export async function send(model: string, text?: string): Promise<void> {
   const scope = state.scope;
@@ -391,12 +450,15 @@ export async function send(model: string, text?: string): Promise<void> {
   const ready = scope === "personal" ? state.attachments.filter((a) => a.status === "ready" && (a.images?.length || (a.text ?? "").trim())) : [];
   if ((!question && ready.length === 0) || state.busy || (scope === "personal" && state.attachments.some((a) => a.status === "reading"))) return;
   const pictures = ready.filter((a) => a.images?.length);
-  const images = pictures.flatMap((a) => a.images!);
-  if (images.length > MAX_PHOTOS) {
+  const attached = pictures.flatMap((a) => a.images!);
+  if (attached.length > MAX_PHOTOS) {
     set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: `Send up to ${MAX_PHOTOS} photos or pages at a time. Remove some and try again; your attachments are still here.` }] }));
     return;
   }
-  const pictureFiles = pictures.flatMap((a) => (a.file ? [a.file] : []));
+  // A follow-up about an open card read from pictures sends those pictures again, so Brain can look again.
+  const again = scope === "personal" && attached.length === 0 && question ? picturesToResend(state.turns, model) : undefined;
+  const images = again?.images ?? attached;
+  const pictureFiles = again?.files ?? pictures.flatMap((a) => (a.file ? [a.file] : []));
   // Claim the request before any await: Stop/scope changes also cancel snapshot preparation.
   const mine: Request = { controller: new AbortController(), scope, epoch: epochs[scope], submitted: false };
   request = mine;
@@ -419,7 +481,11 @@ export async function send(model: string, text?: string): Promise<void> {
         ready.filter((a) => !a.images?.length).map((d) => ({ name: redactName(d.name, snap?.name), text: redactName(d.text ?? "", snap?.name) })),
       );
     }
-    const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(images.length ? { photos: images.length } : {}) };
+    const user: Turn = {
+      id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name),
+      ...(images.length ? { photos: images.length, pictures: { images, files: pictureFiles, model } } : {}),
+      ...(again ? { photosAgain: true } : {}),
+    };
     mine.submitted = true;
     set((s) => ({
       turns: [...s.turns, user],
@@ -469,9 +535,11 @@ export async function send(model: string, text?: string): Promise<void> {
         if (step.server !== undefined || step.tool !== "save_profile_details" || step.validated !== true) continue;
         try { inputs.push(JSON.parse(step.input)); } catch { /* Invalid tool payloads cannot update a profile. */ }
       }
-      if (inputs.length || measurementsIn(question, questionDate, BIOMARKER_MAP).length) {
+      // With pictures, typed readings ("my HbA1c is 5.6%") go on the picture's card, dated by the report, not saved as today's.
+      const readingDefs: ReadonlyMap<string, BiomarkerDef> = images.length ? new Map() : BIOMARKER_MAP;
+      if (inputs.length || measurementsIn(question, questionDate, readingDefs).length) {
         try {
-          const result = await fillPersonalDetails(inputs, question, questionDate, snap.identity, BIOMARKER_MAP, mine.controller.signal);
+          const result = await fillPersonalDetails(inputs, question, questionDate, snap.identity, readingDefs, mine.controller.signal);
           if (!isCurrent(mine)) return;
           // Another profile was opened while Brain answered: this answer isn't about the open one.
           if (!result.sameProfile) return dropLive();
