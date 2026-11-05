@@ -4,7 +4,7 @@ import path from "node:path";
 import { DefaultChatTransport, readUIMessageStream, type UIMessage, type UIMessageChunk } from "ai";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { ask } from "../../apps/server/assistant";
-import type { BrainEvent } from "../../apps/server/brain/events";
+import { toolFinished, type BrainEvent } from "../../apps/server/brain/events";
 import { claudeLines, codexLines, hermesLines } from "../../apps/server/agents";
 import type { HealthSnapshot } from "../../apps/server/healthTools";
 import { createServer } from "../../apps/server/http";
@@ -32,6 +32,17 @@ describe("events to UI message chunks", () => {
       "tool-input-available", "tool-output-available", "data-studies", "text-start", "text-delta", "text-end", "data-reply", "finish-step", "finish",
     ]);
     expect(chunks.find((c) => c.type === "data-status")).toMatchObject({ transient: true });
+  });
+
+  it("marks a picture's critical results on the tool's output, so the page can warn before Brain's text", () => {
+    const shown = { shownToPerson: { results: [] } };
+    expect(toolFinished("c1", "propose_results", {}, { ...shown, critical: [{ marker: "Potassium" }] })).toMatchObject({ kind: "tool_result", ok: true, critical: true });
+    expect(toolFinished("c1", "propose_results", {}, shown)).not.toHaveProperty("critical");
+    expect(toolFinished("c1", "get_results", {}, { critical: ["Potassium"] })).not.toHaveProperty("critical");
+    expect(toolFinished("c1", "propose_results", {}, { error: "x", critical: [{}] })).not.toHaveProperty("critical");
+    const chunks: UIMessageChunk[] = [];
+    new TurnChunks((c) => chunks.push(c)).event({ kind: "tool_result", id: "c1", ok: true, studyIds: [], critical: true });
+    expect(chunks).toEqual([{ type: "tool-output-available", toolCallId: "c1", output: { ok: true, critical: true }, dynamic: true }]);
   });
 });
 

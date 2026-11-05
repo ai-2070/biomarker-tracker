@@ -9,7 +9,7 @@ import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
 import { isImage, isPdf, monthFirst } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
 import { shrinkPhoto, type PreparedPhoto } from "./photo";
-import { parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
+import { criticalResults, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { todayIso } from "@bt/shared/core/dates";
 import { parseHabitProposal, type HabitProposal } from "@bt/shared/core/habitProposal";
@@ -484,15 +484,19 @@ export async function send(model: string, text?: string): Promise<void> {
         }
       }
     }
+    // Results read from pictures go first: a critical one's urgent banner comes before Brain's commentary,
+    // and no habit is suggested next to it.
+    const results = r.ok && snap && images.length ? resultTurns(r.steps, pictureFiles, questionDate) : [];
+    const pictureCritical = results.some((t) => t.role === "review" && criticalResults(t.report, BIOMARKER_MAP).length > 0);
     set((s) => ({
       turns: [
         ...s.turns.filter((t) => t.id !== liveId),
         ...(r.ok
           ? [
+              ...results,
               { id: newId(), role: "assistant" as const, content: r.text, model: r.model ?? model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
               ...profileTurns,
-              ...(snap && images.length ? resultTurns(r.steps, pictureFiles, questionDate) : []),
-              ...(snap ? habitTurns(r.steps, effectiveMeasurements, questionDate, { requestText: sent, safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id) }) : []),
+              ...(snap && !pictureCritical ? habitTurns(r.steps, effectiveMeasurements, questionDate, { requestText: sent, safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id) }) : []),
             ]
           : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],

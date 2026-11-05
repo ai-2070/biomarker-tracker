@@ -221,6 +221,17 @@ describe("results read from pictures", () => {
     });
   });
 
+  it("reports critical values read from the picture and blocks habit, protocol and meal cards after them", async () => {
+    const tools = healthTools(empty(), undefined, { requestText: "Read this and suggest a habit", images: true });
+    expect((await call(tools, "propose_habit", habit)).shownToPerson).toBeTruthy();
+    const r = await call(tools, "propose_results", { results: [ferritin, { marker: "potassium", value: "7.2", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" }] });
+    expect(r).toMatchObject({ critical: [{ marker: "Potassium", value: "7.2 mmol/L", level: "very high" }], criticalNote: expect.stringMatching(/contact a doctor/) });
+    for (const [name, input] of [["propose_protocol", walking], ["propose_meal", { intent: "recommend", name: "Meal", items: [] }], ["propose_habit", habit]] as const) {
+      expect((await call(tools, name, input)).error).toBeTruthy();
+    }
+    expect(await call(healthTools(empty(), undefined, { requestText: "Read this", images: true }), "propose_results", { results: [ferritin] })).not.toHaveProperty("critical");
+  });
+
   it("returns a checked proposal through the real tool loop when photos are sent", async () => {
     const r = await ask([{ role: "user", content: "Read this report", images: [{ mediaType: "image/jpeg", data: "AAAA" }] }], empty(), {
       ready: scripted([{ tool: "propose_results", input: { results: [ferritin] } }]),

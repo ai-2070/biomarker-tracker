@@ -12,6 +12,8 @@ export interface LiveAnswer {
   /** Study IDs a tool actually returned so far: only these may show as checked citations. */
   studyIds: string[];
   status?: string;
+  /** Results Brain read from a picture are far outside the usual range: the urgent banner comes before its text. */
+  critical?: boolean;
 }
 
 interface ToolInput {
@@ -25,6 +27,7 @@ export function liveAnswer(message: UIMessage, status?: string): LiveAnswer {
   let text = "";
   const steps: Step[] = [];
   const studyIds = new Set<string>();
+  let critical = false;
   for (const part of message.parts) {
     if (part.type === "text") text += part.text;
     else if (part.type === "dynamic-tool") {
@@ -37,11 +40,12 @@ export function liveAnswer(message: UIMessage, status?: string): LiveAnswer {
         input: input.input ?? "{}",
         ...(part.state === "output-available" ? { success: true } : part.state === "output-error" ? { success: false } : {}),
       });
+      if (part.state === "output-available" && (part.output as { critical?: unknown } | undefined)?.critical === true) critical = true;
     } else if (part.type === "data-studies") {
       for (const id of (part.data as { ids?: unknown }).ids as string[] ?? []) if (typeof id === "string") studyIds.add(id);
     }
   }
-  return { text, steps, studyIds: [...studyIds], ...(status ? { status } : {}) };
+  return { text, steps, studyIds: [...studyIds], ...(status ? { status } : {}), ...(critical ? { critical } : {}) };
 }
 
 /** Turns the server's JSON error replies into plain messages (the SDK would show the raw body). */

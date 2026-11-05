@@ -1,4 +1,5 @@
 import { isIsoDate } from "../dates";
+import { flagValue } from "../trends";
 import type { BiomarkerDef } from "../types";
 import { listUnits, matchUnit, toCanonical } from "../units";
 import { candidateUnits, decimalProblem, type ParsedReport, type ParsedRow } from "./labText";
@@ -156,4 +157,30 @@ export function parseResultProposal(
 /** "body" when every result is a body measurement (review wording, no lab range fields). */
 export function proposalKind(report: ParsedReport, defs: ReadonlyMap<string, BiomarkerDef>): "lab" | "body" {
   return report.rows.every((r) => defs.get(r.biomarkerId)?.category === "Body") ? "body" : "lab";
+}
+
+/** A result read from a picture that is far outside the usual range (the marker's critical limits). */
+export interface CriticalResult {
+  biomarkerId: string;
+  /** In the marker's canonical unit. */
+  value: number;
+  qualifier?: "<" | ">";
+  low: boolean;
+}
+
+/**
+ * Results in the report beyond a marker's critical limits, as read (before the person checks them). They get the
+ * urgent "contact a doctor" banner before any of Brain's commentary. Rows without a readable number and unit
+ * can't be judged and are left out.
+ */
+export function criticalResults(report: ParsedReport, defs: ReadonlyMap<string, BiomarkerDef>): CriticalResult[] {
+  return report.rows.flatMap((r): CriticalResult[] => {
+    const def = defs.get(r.biomarkerId);
+    const number = parseLabNumber(r.value);
+    if (!def?.criticalRange || !number || !r.unit) return [];
+    const value = toCanonical(def, number.value, r.unit);
+    const flag = flagValue(value, undefined, def.criticalRange, number.qualifier);
+    if (flag !== "critical-low" && flag !== "critical-high") return [];
+    return [{ biomarkerId: def.id, value, ...(number.qualifier ? { qualifier: number.qualifier } : {}), low: flag === "critical-low" }];
+  });
 }
