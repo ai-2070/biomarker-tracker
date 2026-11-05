@@ -1,0 +1,25 @@
+.github/workflows/desktop.yml
+  s_f33e4faebe7d0e::t_d25a90e60e6c6d 26-27
+tests/server/devTelemetry.test.ts
+  s_f33e4faebe7d0e::t_fcbeec18a3ffe0 1-20
+CLAUDE.md
+  s_f33e4faebe7d0e::t_3471e74bfdbace 12
+package.json
+  s_f33e4faebe7d0e::t_d25a90e60e6c6d 12-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b76f9f107473aadcafb455ae3b5d593e95613342",
+  "prompts": {},
+  "sessions": {
+    "s_f33e4faebe7d0e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a47b807f-d517-47da-8446-0644d1aa8835",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
