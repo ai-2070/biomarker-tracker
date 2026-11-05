@@ -150,7 +150,7 @@ function Launcher({ onOpen }: { onOpen: () => void }) {
         if (e.dataTransfer.types.includes("Files")) openBrain();
       }}
       title={`Ask Brain (Space, or ${isMac ? "⌘K" : "Ctrl+K"})`}
-      className="fixed bottom-5 left-[calc(50%+8rem)] z-40 hidden -translate-x-1/2 animate-brain-pop items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
+      className="fixed bottom-5 left-1/2 z-40 hidden -translate-x-1/2 animate-brain-pop items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
     >
       <BrainIcon className="text-accent" />
       <span>Ask Brain…</span>
@@ -249,7 +249,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         "fixed z-50 flex flex-col overflow-hidden border-line bg-surface text-ink shadow-2xl shadow-black/15",
         closing ? "animate-brain-sheet-out lg:animate-brain-shrink" : "animate-brain-sheet-in lg:animate-brain-grow",
         "inset-0 sm:inset-x-3 sm:top-14 sm:bottom-3 sm:rounded-2xl sm:border",
-        "lg:inset-auto lg:bottom-5 lg:left-[calc(50%+8rem)] lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-19rem))] lg:origin-bottom lg:-translate-x-1/2",
+        "lg:inset-auto lg:bottom-5 lg:left-1/2 lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-3rem))] lg:origin-bottom lg:-translate-x-1/2",
       )}
     >
       <header className={cx("flex items-center gap-2 border-b border-line py-2 pr-2 pl-4", closing ? "animate-brain-content-out" : "animate-brain-content lg:[animation-delay:90ms]")}>
