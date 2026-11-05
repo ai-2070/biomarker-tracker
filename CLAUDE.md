@@ -9,7 +9,7 @@ A free, open-source, local-first web app where anyone can track their bloodwork 
 ## Core principles (never violate these)
 
 1. **Local-first.** All user data stays on the user's computer. With the local server (`apps/server/`, 127.0.0.1 only) each person is a **profile folder** on disk (see "Profiles"); without it (a static copy of the app) there is one profile in the browser (IndexedDB). No cloud backend, no database server, no user accounts.
-2. **No telemetry.** No analytics, no tracking pixels, no error reporting services, no third-party scripts beyond what is listed in this file.
+2. **No telemetry.** No analytics, no tracking pixels, no error reporting services, no third-party scripts beyond what is listed in this file. Developer tools too: turbo runs with `TURBO_TELEMETRY_DISABLED=1` (root scripts and CI, checked by `tests/server/devTelemetry.test.ts`; set it yourself when calling `turbo` directly), and eve's build sets `EVE_TELEMETRY_DISABLED=1`.
 3. **Allowed network calls only:**
    - Europe PMC REST API (research search, open-access full text)
    - NCBI E-utilities / PubMed (research search, backup)

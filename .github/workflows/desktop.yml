@@ -23,6 +23,8 @@ concurrency:
 
 env:
   RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag || (github.ref_type == 'tag' && github.ref_name) || '' }}
+  # No telemetry (CLAUDE.md): Turborepo reports anonymous usage unless told not to.
+  TURBO_TELEMETRY_DISABLED: '1'
 
 jobs:
   validate:
