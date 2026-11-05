@@ -1,0 +1,48 @@
+tests/app/brainStream.test.ts
+  s_739035987a7025::t_856b0d3b30fc3e 96-101
+packages/shared/src/core/importers/resultProposal.ts
+  s_739035987a7025::t_9a56f70aec98f9 2,161-186
+apps/web/src/app/brain/Brain.tsx
+  s_739035987a7025::t_a81d72f5be3227 500-505,621-629,632-637
+  s_739035987a7025::t_62bfd1e3d305ed 14
+tests/server/brainStream.test.ts
+  s_739035987a7025::t_856b0d3b30fc3e 7,36-45
+  s_739035987a7025::t_82a846e38bd0d0 46
+CLAUDE.md
+  s_739035987a7025::t_8536368aa69f6c 264
+apps/web/src/app/brain/stream.ts
+  s_739035987a7025::t_94696a8f8d7815 15-16,30,43,48
+apps/server/uistream.ts
+  s_739035987a7025::t_58245a3e79dd85 44
+apps/server/healthTools.ts
+  s_739035987a7025::t_ab8f9a79058664 457-458,462,790
+  s_739035987a7025::t_58245a3e79dd85 26,786-789,793-798
+apps/web/src/app/brain/store.ts
+  s_739035987a7025::t_ab8f9a79058664 12,487-490,496,499
+apps/server/brain/events.ts
+  s_739035987a7025::t_58245a3e79dd85 10-11,28-30
+tests/server/actions.test.ts
+  s_739035987a7025::t_856b0d3b30fc3e 224-234
+tests/app/brainStore.test.ts
+  s_739035987a7025::t_5df87d56c85fd9 8,44,488-498
+  s_739035987a7025::t_50ab351554a38e 499-500
+tests/core/resultProposal.test.ts
+  s_739035987a7025::t_9a56f70aec98f9 2,108-133
+  s_739035987a7025::t_036308f3d533fa 134
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "21fdb009cabb19f4701ab231ddce542c253d455f",
+  "prompts": {},
+  "sessions": {
+    "s_739035987a7025": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b3f75394-4d2e-4175-9b22-4bb6cc634f98",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
