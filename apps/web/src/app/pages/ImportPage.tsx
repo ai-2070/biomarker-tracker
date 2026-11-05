@@ -13,6 +13,8 @@ import { href } from "../router";
 import { Review, isImage, isPdf, monthFirst } from "../components/LabReview";
 import { readWithBrain } from "../brain/store";
 import type { PreparedPhoto } from "../brain/photo";
+import { modelLabel, useBrainSettings } from "../brain/menus";
+import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 
 type Step =
   | { name: "pick" }
@@ -70,15 +72,24 @@ export function ImportPage() {
   );
 }
 
+/** A photo or scanned PDF waiting for the person to send it to Brain. */
+interface PictureFile {
+  file: File;
+  /** A scanned PDF's pages, already drawn. */
+  pages?: PreparedPhoto[];
+}
+
 function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined) => void }) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState<{ fraction: number; stage: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [picture, setPicture] = useState<PictureFile | null>(null);
   const [toBrain, setToBrain] = useState<string | null>(null);
   const [pasted, setPasted] = useState("");
 
-  /** Photos and scanned PDFs go to Brain as pictures; it reads the results and shows them for checking. */
-  async function sendToBrain(file: File, pages?: PreparedPhoto[]) {
+  /** Photos and scanned PDFs go to Brain as pictures, once the person confirms; it reads the results and shows them for checking. */
+  async function sendToBrain({ file, pages }: PictureFile) {
+    setPicture(null);
     setToBrain(file.name);
     await readWithBrain(file, pages);
   }
@@ -87,14 +98,15 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
     if (!file) return;
     setError(null);
     setToBrain(null);
-    if (isImage(file)) return void sendToBrain(file);
+    setPicture(null);
+    if (isImage(file)) return setPicture({ file });
     if (!isPdf(file)) return setError("Choose a PDF or a photo (JPG, PNG or WebP).");
     setBusy(true);
     setProgress(null);
     try {
       const { readPdf } = await import("../pdf");
       const pdf = await readPdf(file, (fraction, stage) => setProgress({ fraction, stage }));
-      if (pdf.kind === "pages") await sendToBrain(file, pdf.pages);
+      if (pdf.kind === "pages") setPicture({ file, pages: pdf.pages });
       else onParsed(file.name, pdf.text, file);
     } catch (e) {
       setError(e instanceof Error ? e.message : "This file couldn't be read.");
@@ -109,8 +121,8 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
       <Card className="flex flex-col gap-3">
         <h2 className="font-serif text-2xl font-normal">Choose a PDF or a photo</h2>
         <p className="text-ink-2">
-          A PDF with text is read on this device: nothing is uploaded. A photo or a scanned PDF is sent to Brain, the AI model you chose, which reads the
-          results and shows them to you to check. Only the values you confirm are saved.
+          A PDF with text is read on this device: nothing is uploaded. A photo or a scanned PDF can be sent to Brain, the AI model you chose, which reads the
+          results and shows them to you to check. You're asked first. Only the values you confirm are saved.
         </p>
         <p className="text-sm text-ink-2">
           For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take
@@ -139,6 +151,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
             )}
           </div>
         )}
+        {picture && <SendPicture picture={picture} onSend={() => void sendToBrain(picture)} onCancel={() => setPicture(null)} />}
         {toBrain && (
           <Notice role="status">
             <span className="font-medium text-ink">{toBrain}</span> is open in Brain. Brain reads the results and shows them in a card for you to check and
@@ -217,5 +230,66 @@ function Done({ saved, skipped, onAnother }: { saved: Measurement[]; skipped: nu
         </Button>
       </div>
     </div>
+  );
+}
+
+/**
+ * Asks before a photo or scanned PDF leaves this computer: which model gets it and what it can see. Without the
+ * local server, a model, or a model that takes pictures, it says what to do instead (typing the values in works).
+ */
+export function SendPicture({ picture, onSend, onCancel }: { picture: PictureFile; onSend: () => void; onCancel: () => void }) {
+  const { settings, fresh } = useBrainSettings(true);
+  const what = picture.pages ? `${picture.file.name} (${picture.pages.length} scanned ${picture.pages.length === 1 ? "page" : "pages"})` : picture.file.name;
+  const typeIn = (
+    <LinkButton variant="secondary" href={href({ name: "add" })}>
+      Type the values in
+    </LinkButton>
+  );
+  if (!fresh && settings === undefined) return <p className="text-ink-2" role="status">Checking which AI model is set up…</p>;
+  if (settings === null) {
+    return (
+      <Notice tone="warn" title="Photos and scans need Brain">
+        Brain reads photos and scanned PDFs through the app's small server on this computer, which isn't running. Start the app with{" "}
+        <code className="font-mono">bun run start</code> or use the desktop app, or type the values in.
+        <span className="mt-3 flex flex-wrap gap-2">{typeIn}</span>
+      </Notice>
+    );
+  }
+  const info = settings ? providerInfo(settings.assistant.provider) : undefined;
+  if (!settings?.ready.ok) {
+    return (
+      <Notice tone="warn" title="Set up a model to read photos and scans">
+        Photos and scanned PDFs are read by Brain, the AI model you choose. {settings?.ready.reason ?? ""} You can also type the values in.
+        <span className="mt-3 flex flex-wrap gap-2">
+          <LinkButton href={href({ name: "data", tab: "models" })}>Set up a model</LinkButton>
+          {typeIn}
+        </span>
+      </Notice>
+    );
+  }
+  if (!takesPictures(settings.assistant.provider)) {
+    return (
+      <Notice tone="warn" title={`${info?.label ?? "This model"} can't read pictures`}>
+        Choose Claude Code, Codex, or a model with an API key or on this computer in Settings → AI models, or type the values in.
+        <span className="mt-3 flex flex-wrap gap-2">
+          <LinkButton href={href({ name: "data", tab: "models" })}>Choose a model</LinkButton>
+          {typeIn}
+        </span>
+      </Notice>
+    );
+  }
+  return (
+    <Notice title="Send to Brain to read?">
+      <span className="font-medium text-ink">{what}</span> goes to {modelLabel(settings.assistant)} as {picture.pages && picture.pages.length > 1 ? "pictures" : "a picture"}
+      {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. The model sees everything printed on it, including your
+      name, birth date and ID numbers; crop or cover them first if you prefer. Location data in photos is removed. Nothing is saved until you check
+      the values.
+      <span className="mt-3 flex flex-wrap gap-2">
+        <Button onClick={onSend}>Send to Brain</Button>
+        <Button variant="quiet" onClick={onCancel}>
+          Cancel
+        </Button>
+      </span>
+    </Notice>
   );
 }

@@ -1,18 +1,19 @@
 # Privacy and network disclosure
 
-Checked: **2026-11-02**. This describes the implementation, configured defaults and a bounded synthetic-data network smoke—not an exhaustive egress audit or a promise about third-party retention. See [DATA-LICENSES.md](DATA-LICENSES.md) for reuse rights and [MEDICAL-DISCLOSURE.md](MEDICAL-DISCLOSURE.md) for purpose and risk-feature limits. Settings → About links to these Markdown files on GitHub.
+Checked: **2026-11-05**. This describes the implementation, configured defaults and a bounded synthetic-data network smoke—not an exhaustive egress audit or a promise about third-party retention. See [DATA-LICENSES.md](DATA-LICENSES.md) for reuse rights and [MEDICAL-DISCLOSURE.md](MEDICAL-DISCLOSURE.md) for purpose and risk-feature limits. Settings → About links to these Markdown files on GitHub.
 
 ## What stays local
 
 - Profiles, measurements, habits, protocols, meals, settings, saved evidence checks and imported report files are stored on this computer: in profile folders with the local server, or IndexedDB in browser-only use. There is no app account, cloud database, analytics or app telemetry service.
 - The browser working copy synchronises to the selected local profile folder. Backups, doctor reports and shared protocol files leave only through the export/share action the person chooses. The receiving application/location is outside this app’s control.
-- PDF extraction, OCR and device-export parsing run on this computer. OCR engines/languages ship locally rather than loading from a CDN. Recognised lab-report text becomes a local review card, not an AI attachment.
+- Text extraction from PDFs and device-export parsing run on this computer. Lab results found in a PDF's text become a local review card, not an AI attachment.
+- Photos and scanned PDFs are **not** read on this computer: they are sent to the AI model you chose (see below).
 - API keys are stored by the local server, not returned to the page or included in profile backups. Local storage is not a promise of encryption or protection from other software/users with access to the computer.
 - Opening an ordinary tracking page does not ask an AI model a question. Saved claim checks can trigger at-most-daily public PubMed newer-record metadata queries, but not automatic AI reassessment.
 
 **Local storage does not mean personal chat never sends health information.** When you ask personal Brain, the chosen model can receive conversation text, relevant health-tool results and calculated summaries: measurements, habits, medicines, conditions, protocols, meals and other permitted profile facts. The server strips the profile name/private profile notes and turns birth month into age before supplying profile context to the model. Free text you type can still identify you; this is not a general-purpose de-identification guarantee.
 
-Non-lab document attachments can send text with the question. The app replaces the configured profile name in that attachment text and shortens it to fit; it does not prove that every name/identifier was removed. A photo is sent only after its explicit “Send the photo itself” choice, only to supported API/local models, after browser resizing/JPEG re-encoding that removes EXIF location metadata. Agent programs are not accepted for photo sending.
+Non-lab document attachments can send text with the question. The app replaces the configured profile name in that attachment text and shortens it to fit; it does not prove that every name/identifier was removed. **Photos and scanned PDFs are sent to the chosen model as pictures.** Attaching one in Brain and sending the question sends it; on the Import page the app first asks, naming the model. Pictures are resized and re-encoded as JPEG in the browser, which removes EXIF location metadata, but nothing printed on them is removed: the model sees names, birth dates, addresses, ID numbers and anything else visible. Crop or cover what you don't want to send. Pictures go to API-key and local models, and to Claude Code and Codex, whose retention depends on your own login; Hermes and OpenClaw are refused. The model is told not to repeat identifying details, which is an instruction, not a guarantee.
 
 Research-only Brain excludes profile, results, prior personal conversation, attachments and photos. Astaxanthin claim evidence requests contain only public supplement/claim/topic fields. The configured model and enabled research tools still handle that public research request.
 

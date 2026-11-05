@@ -74,7 +74,7 @@ try {
   child.stdin.end();
   const [code] = await exited;
   assert.equal(code, 0, errors);
-  console.log("Compiled desktop sidecar: frontend, OCR, API, security, bundled skills, profile persistence, backups and shutdown passed.");
+  console.log("Compiled desktop sidecar: frontend, API, security, bundled skills, profile persistence, backups and shutdown passed.");
 } finally {
   clearTimeout(deadline);
   if (child.exitCode === null && child.signalCode === null) {

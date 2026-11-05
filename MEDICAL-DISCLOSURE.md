@@ -10,7 +10,7 @@
 ## Your records, imports and alerts
 
 
-Results are entered by you or imported from reports and devices. The app does not verify them with a laboratory or healthcare professional. Check the person, sample date, marker, value, unit, reference range and fasting status before saving an import. Text recognition (OCR) can confuse digits, miss decimal points or read the wrong line. Device exports can have different units, overlapping devices, incomplete days and measurements that do not mean the same thing.
+Results are entered by you or imported from reports and devices. The app does not verify them with a laboratory or healthcare professional. Check the person, sample date, marker, value, unit, reference range and fasting status before saving an import. Photos and scanned PDFs are read by the AI model you chose, which can misread a digit, unit or decimal point, put a value on the wrong row, or report a value that is not on the page. Device exports can have different units, overlapping devices, incomplete days and measurements that do not mean the same thing.
 
 
 Wearable estimates, sleep stages and home body-fat readings have measurement limits. A device's daily walking-speed average is not a short timed walking test. A chart, comparison or calculation cannot correct an inaccurate source reading.

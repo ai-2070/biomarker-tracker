@@ -36,7 +36,7 @@ Lab portals show one test at a time, and every lab prints the same marker differ
 
 ### Blood tests over the years
 
-Add results by hand, from a lab report PDF, or from a photo of one. Text recognition runs on your device (English, German and Hungarian), and you check every value on a review screen before anything is saved. Markers are recognised in English, German, Hungarian, French, Spanish and Italian, and converted to one unit, so results from different labs line up on one chart.
+Add results by hand, from a lab report PDF, or from a photo of one. PDFs with text are read on your device; photos and scanned PDFs are sent, after you confirm, to the AI model you set up for Brain, which reads the values. Either way you check every value on a review screen before anything is saved. Markers are recognised in English, German, Hungarian, French, Spanish and Italian, and converted to one unit, so results from different labs line up on one chart.
 
 The review for PDFs and photos includes the sample date, lab name, **Were you fasting?** (Yes / No / Not sure), and an optional note. Fasting status and the note apply to every selected result saved from that report.
 

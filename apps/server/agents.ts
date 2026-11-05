@@ -7,7 +7,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import type { ToolSet } from "ai";
-import { providerInfo, type Effort, type ProviderId } from "@bt/shared/core/aiProviders";
+import { providerInfo, takesPictures, type Effort, type ProviderId } from "@bt/shared/core/aiProviders";
 import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
 import { which } from "./which";
 import { killTree, spawnTree } from "./processTree";
@@ -119,8 +119,6 @@ export interface AgentImage {
   data: string;
 }
 
-/** Programs that can be given photos: Claude Code as message content, Codex as files. */
-export const takesPhotos = (id: AgentId) => id === "claude-code" || id === "codex";
 
 /** Claude Code's stream-json input: one user message with the question and the photos. */
 export function claudeMessage(question: string, images: AgentImage[]): string {
@@ -380,7 +378,7 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const info = providerInfo(provider)!;
   if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
   const images = req.images ?? [];
-  if (images.length && !takesPhotos(provider)) {
+  if (images.length && !takesPictures(provider)) {
     return { ok: false, error: `${info.label} can't be given photos by this app. To send photos or scanned pages, choose Claude Code, Codex, or a model with an API key or on this computer in Settings → AI models.` };
   }
   const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
