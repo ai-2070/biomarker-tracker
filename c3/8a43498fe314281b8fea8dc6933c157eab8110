@@ -1,0 +1,59 @@
+apps/desktop/scripts/smoke.ts
+  s_739035987a7025::t_3d4f18652613db 77
+tests/app/importPicture.test.tsx
+  s_739035987a7025::t_9ce371b249b63a 1-66
+apps/web/src/app/pages/ImportPage.tsx
+  s_739035987a7025::t_66fa7de9d9f299 16-17,75-81,86,90-92,101-102,109,124-125,154,235-239,241-295
+  s_739035987a7025::t_9ce371b249b63a 240
+apps/web/public/medical-disclosure.html
+  s_739035987a7025::t_3d4f18652613db 29
+tests/core/labText.test.ts
+  s_739035987a7025::t_46c6b3e5fd5452 176
+packages/shared/src/core/importers/labText.ts
+  s_739035987a7025::t_46c6b3e5fd5452 47,88
+CLAUDE.md
+  s_739035987a7025::t_04c2c03bb20f3d 28,264,376
+apps/server/agents.ts
+  s_739035987a7025::t_ca5e9c23fdba57 381
+  s_739035987a7025::t_44899ff1766e58 10
+apps/web/src/app/brain/Brain.tsx
+  s_739035987a7025::t_498bb9a4fc2414 690,692,698-704,714,734-735,760
+  s_739035987a7025::t_8c205bd2a21a4a 315,397-398,708
+  s_739035987a7025::t_8af343fbe0ef32 4
+tests/core/aiProviders.test.ts
+  s_739035987a7025::t_6d2a68361f19c4 2,120-128
+  s_739035987a7025::t_11181b0fb3d692 129-130
+apps/web/src/app/components/DoctorReportDocument.tsx
+  s_739035987a7025::t_3d4f18652613db 12
+PRIVACY.md
+  s_739035987a7025::t_3d4f18652613db 3,9-10
+  s_739035987a7025::t_46c6b3e5fd5452 16
+packages/shared/src/core/aiProviders.ts
+  s_739035987a7025::t_ca5e9c23fdba57 289-297
+README.md
+  s_739035987a7025::t_3d4f18652613db 39
+apps/server/brain/prompt.ts
+  s_739035987a7025::t_37cfda1a44bf61 74
+apps/server/healthTools.ts
+  s_739035987a7025::t_37cfda1a44bf61 772
+PRODUCT.md
+  s_739035987a7025::t_3d4f18652613db 24
+MEDICAL-DISCLOSURE.md
+  s_739035987a7025::t_3d4f18652613db 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c38a43498fe314281b8fea8dc6933c157eab8110",
+  "prompts": {},
+  "sessions": {
+    "s_739035987a7025": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b3f75394-4d2e-4175-9b22-4bb6cc634f98",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
