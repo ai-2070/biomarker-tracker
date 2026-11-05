@@ -3,8 +3,8 @@ import type http from "node:http";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { allowedHost, allowedWrite, createServer } from "../../server/http";
-import { getSecrets, getSettings } from "../../server/store";
+import { allowedHost, allowedWrite, createServer } from "../../apps/server/http";
+import { getSecrets, getSettings } from "../../apps/server/store";
 
 let server: http.Server;
 let port = 0;

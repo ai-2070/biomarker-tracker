@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { durationHours, parseHealthScreenshot } from "../../src/core/importers/screenshot";
+import { durationHours, parseHealthScreenshot } from "@bt/core/importers/screenshot";
 
 // Text as on-device recognition returns it from synthetic screenshots of health apps.
 const today = "2026-10-29";

@@ -1,13 +1,13 @@
 import "fake-indexeddb/auto";
 import Dexie from "dexie";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { createBackup, parseBackup } from "../../src/core/backup";
-import { dayNumber, todayIso } from "../../src/core/dates";
-import type { Plan } from "../../src/core/plans";
-import type { Meal } from "../../src/core/meals";
-import { profilesInFolder } from "../../src/core/zipStore";
-import { sortByDate } from "../../src/core/trends";
-import { addMeasurement, addMeasurements, createHabit, getProfile, importBackup, saveMeal, savePlan, startPlan, stopPlan, TrackerDB, updateMeal, updatePlan } from "../../src/db/db";
+import { createBackup, parseBackup } from "@bt/core/backup";
+import { dayNumber, todayIso } from "@bt/core/dates";
+import type { Plan } from "@bt/core/plans";
+import type { Meal } from "@bt/core/meals";
+import { profilesInFolder } from "@bt/core/zipStore";
+import { sortByDate } from "@bt/core/trends";
+import { addMeasurement, addMeasurements, createHabit, getProfile, importBackup, saveMeal, savePlan, startPlan, stopPlan, TrackerDB, updateMeal, updatePlan } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;
 beforeEach(async () => { database = new TrackerDB(`integrity-${crypto.randomUUID()}`); await database.open(); });

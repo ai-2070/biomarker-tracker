@@ -1,6 +1,6 @@
 # Desktop app
 
-The desktop app (`src-tauri/`, Tauri 2) is a window around the local server: it starts the bundled server
+The desktop app (`apps/desktop/src-tauri/`, Tauri 2) is a window around the local server: it starts the bundled server
 (`biomarker-server`, the Bun server compiled by `bun run desktop:prepare`) on `127.0.0.1:4821`, waits for it
 to be ready and opens it. Profiles live in the app's local data folder (or `BT_DATA`).
 
@@ -10,11 +10,11 @@ to be ready and opens it. Profiles live in the app's local data folder (or `BT_D
 - `bun run desktop:build`: installers for this computer. Without the signing key these can't be used as
   updates, which is fine for local builds.
 - To try signed update files locally: set `TAURI_SIGNING_PRIVATE_KEY` (the key file's contents, or its path)
-  and add `--config src-tauri/tauri.updater.conf.json`.
+  and add `--config src-tauri/tauri.updater.conf.json` (relative to `apps/desktop`, where the Tauri commands run).
 
 ## Releases
 
-1. Bump the version in `package.json`, `src-tauri/Cargo.toml` and `src-tauri/tauri.conf.json` (they must
+1. Bump the version in the root `package.json`, `apps/desktop/src-tauri/Cargo.toml` and `apps/desktop/src-tauri/tauri.conf.json` (they must
    match; `bun run desktop:check-version` checks).
 2. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
 3. `.github/workflows/desktop.yml` builds and signs every platform, attaches the installers, the update files
@@ -26,7 +26,7 @@ could never update.
 
 ## Updates
 
-`src-tauri/src/updater.rs`, after ai-dashboard. Release builds check 30 seconds after start and then every
+`apps/desktop/src-tauri/src/updater.rs`, after ai-dashboard. Release builds check 30 seconds after start and then every
 6 hours (never in development builds, or with `BT_NO_UPDATES` set). When a newer version is out, a native
 dialog asks **Install and restart** or **Later** (Later skips that version until the app opens again). The
 download's progress shows in the window title. Before installing, the app stops the local server and

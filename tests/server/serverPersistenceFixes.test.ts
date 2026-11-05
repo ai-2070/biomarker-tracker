@@ -5,11 +5,11 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import type { ChildProcess } from "node:child_process";
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import * as profiles from "../../server/profiles";
-import { dataPath, readJSON, updateSecrets, writeJSON } from "../../server/store";
-import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip } from "../../server/zip";
-import { browserData, fileUrl, loadIntoBrowser } from "../../src/app/profiles";
-import { db } from "../../src/db/db";
+import * as profiles from "../../apps/server/profiles";
+import { dataPath, readJSON, updateSecrets, writeJSON } from "../../apps/server/store";
+import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip } from "../../apps/server/zip";
+import { browserData, fileUrl, loadIntoBrowser } from "../../apps/web/src/app/profiles";
+import { db } from "../../apps/web/src/db/db";
 
 vi.mock("node:child_process", () => ({ spawn: vi.fn() }));
 

@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { prescribes, validateLifestyleDef, type LifestyleDef } from "../../src/core/lifestyle";
+import { prescribes, validateLifestyleDef, type LifestyleDef } from "@bt/core/lifestyle";
 import { loadDefs } from "../helpers";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "lifestyle");

@@ -2,13 +2,13 @@ import { writeFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { todayIso, addDays } from "../../src/core/dates";
-import type { Measurement } from "../../src/core/types";
+import { todayIso, addDays } from "@bt/core/dates";
+import type { Measurement } from "@bt/core/types";
 
 const state = vi.hoisted(() => ({ all: [] as Measurement[] }));
-vi.mock("../../src/app/hooks", () => ({ useAllMeasurements: () => state.all, useProfile: () => ({ sex: "f" }), useDisplayUnits: () => ({}) }));
-vi.mock("../../src/app/brain/store", () => ({ askBrain: vi.fn() }));
-import { PeriodSummaryPage } from "../../src/app/pages/PeriodSummaryPage";
+vi.mock("../../apps/web/src/app/hooks", () => ({ useAllMeasurements: () => state.all, useProfile: () => ({ sex: "f" }), useDisplayUnits: () => ({}) }));
+vi.mock("../../apps/web/src/app/brain/store", () => ({ askBrain: vi.fn() }));
+import { PeriodSummaryPage } from "../../apps/web/src/app/pages/PeriodSummaryPage";
 
 let n = 0;
 const ago = (days: number) => addDays(todayIso(), -days);

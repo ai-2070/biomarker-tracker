@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { HUNT_VO2MAX, fitnessAge, vo2maxForAge } from "../../src/core/fitnessAge";
+import { HUNT_VO2MAX, fitnessAge, vo2maxForAge } from "@bt/core/fitnessAge";
 
 describe("fitness age (HUNT 3 Fitness Study reference data)", () => {
   it("uses the means from Loe et al. 2013, Table 2", () => {

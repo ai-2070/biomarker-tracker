@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { crc32 as browserCrc, profilesInFolder, zipStore } from "../../src/core/zipStore";
-import * as profiles from "../../server/profiles";
-import { crc32, readZip } from "../../server/zip";
+import { crc32 as browserCrc, profilesInFolder, zipStore } from "@bt/core/zipStore";
+import * as profiles from "../../apps/server/profiles";
+import { crc32, readZip } from "../../apps/server/zip";
 
 const enc = new TextEncoder();
 

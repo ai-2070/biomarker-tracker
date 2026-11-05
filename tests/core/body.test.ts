@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmiTerms, bmrMifflin, bmrMifflinTerms, heightInCm, heightInFeet, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "../../src/core/body";
-import type { Measurement } from "../../src/core/types";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
+import { BODY_FIELDS, recentAverage, bmi, bmiTerms, bmrMifflin, bmrMifflinTerms, heightInCm, heightInFeet, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "@bt/core/body";
+import type { Measurement } from "@bt/core/types";
 
 const today = "2026-10-28";
 const m = (biomarkerId: string, date: string, value: number): Measurement => ({ id: `${biomarkerId}-${date}-${value}`, biomarkerId, date, value, originalValue: value, originalUnit: "", source: "manual" });

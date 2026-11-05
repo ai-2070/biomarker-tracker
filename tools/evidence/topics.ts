@@ -4,7 +4,7 @@
  * in the food comparison). Changing a search means changing it here, in review, so every map can be
  * re-run and compared.
  */
-import type { MapKind, Question } from "../../src/core/evidenceMap";
+import type { MapKind, Question } from "@bt/core/evidenceMap";
 import { FOOD_TOPICS } from "./foodTopics";
 import { LIFESTYLE_TOPICS } from "./lifestyleTopics";
 import { WHOLE_FOOD_TOPICS } from "./wholeFoodTopics";

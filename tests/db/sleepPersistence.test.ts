@@ -1,12 +1,12 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { createBackup, parseBackup } from "../../src/core/backup";
-import { sortByDate } from "../../src/core/trends";
-import type { Measurement, SleepSession } from "../../src/core/types";
+import { createBackup, parseBackup } from "@bt/core/backup";
+import { sortByDate } from "@bt/core/trends";
+import type { Measurement, SleepSession } from "@bt/core/types";
 import {
   addMeasurement, addMeasurements, deleteMeasurements, exportAll, importBackup,
   saveDeviceMeasurements, TrackerDB, updateMeasurement,
-} from "../../src/db/db";
+} from "../../apps/web/src/db/db";
 
 let database: TrackerDB;
 beforeEach(async () => {

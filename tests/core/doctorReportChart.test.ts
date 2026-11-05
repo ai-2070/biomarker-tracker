@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { reportChartGeometry } from "../../src/core/doctorReportChart";
-import { fromCanonical, toCanonical } from "../../src/core/units";
+import { reportChartGeometry } from "@bt/core/doctorReportChart";
+import { fromCanonical, toCanonical } from "@bt/core/units";
 import { def, measurement } from "../helpers";
 
 const box = { left: 92, top: 28, width: 524, height: 146 };

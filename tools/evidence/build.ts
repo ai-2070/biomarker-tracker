@@ -1,12 +1,12 @@
 /**
  * Evidence map, step 3: from the downloaded records (fetch.ts), classify, choose and compare by the rules
- * in src/core/evidenceMap.ts. Bibliographies cannot establish included-study overlap,
+ * in packages/core/src/evidenceMap.ts. Bibliographies cannot establish included-study overlap,
  * and write the distilled map the app reads: knowledge/evidence-maps/<topic>.json.
  * `bun tools/evidence/build.ts vitamin_d`
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { chooseFrom, compareWithPage, currentDecisions, largeTrialsSince, perYear, splitByScreening, type Chosen } from "../../src/core/evidenceMap";
+import { chooseFrom, compareWithPage, currentDecisions, largeTrialsSince, perYear, splitByScreening, type Chosen } from "@bt/core/evidenceMap";
 import { ROOT, loadTopic } from "./load";
 
 const { topic, raw, food, studiesFor, records, eligible: eligibleFor, screening, topicTitle } = loadTopic(process.argv[2]);

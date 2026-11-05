@@ -2,12 +2,12 @@ import "fake-indexeddb/auto";
 import { isValidElement, type ReactElement, type ReactNode } from "react";
 import type * as ReactModule from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { DeviceImportPage } from "../../src/app/pages/DeviceImportPage";
-import { Review } from "../../src/app/components/LabReview";
-import { parseLabText } from "../../src/core/importers/labText";
-import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { db } from "../../src/db/db";
-import type { Measurement } from "../../src/core/types";
+import { DeviceImportPage } from "../../apps/web/src/app/pages/DeviceImportPage";
+import { Review } from "../../apps/web/src/app/components/LabReview";
+import { parseLabText } from "@bt/core/importers/labText";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
+import { db } from "../../apps/web/src/db/db";
+import type { Measurement } from "@bt/core/types";
 
 // Exercise the real review event handlers and IndexedDB writes without a browser DOM.
 // Hooks are an explicit state harness; the browser smoke still covers Base UI interaction.
@@ -27,7 +27,7 @@ vi.mock("react", async (original) => ({
   useMemo: (compute: () => unknown) => compute(),
   useId: () => "import-review-test",
 }));
-vi.mock("../../src/app/hooks", () => ({ useAllMeasurements: () => state.existing }));
+vi.mock("../../apps/web/src/app/hooks", () => ({ useAllMeasurements: () => state.existing }));
 
 type Node = ReactElement<Record<string, unknown>>;
 function elements(tree: ReactNode): Node[] {

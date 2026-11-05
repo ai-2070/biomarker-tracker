@@ -3,17 +3,17 @@ import { once } from "node:events";
 import { APICallError } from "ai";
 import { MockModel } from "./mockModel";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ask } from "../../server/assistant";
-import { runAgent } from "../../server/agents";
-import { callTool, closeRun, openRun } from "../../server/bridge";
-import { checkClaimEvidence, parseClaimRequest } from "../../server/claimEvidence";
-import { createServer } from "../../server/http";
-import { findNutrient, knowledge } from "../../server/knowledge";
-import { assistantCheck, currentChoice, readyModel } from "../../server/models";
-import { claimCheckLabel } from "../../src/core/claimEvidence";
+import { ask } from "../../apps/server/assistant";
+import { runAgent } from "../../apps/server/agents";
+import { callTool, closeRun, openRun } from "../../apps/server/bridge";
+import { checkClaimEvidence, parseClaimRequest } from "../../apps/server/claimEvidence";
+import { createServer } from "../../apps/server/http";
+import { findNutrient, knowledge } from "../../apps/server/knowledge";
+import { assistantCheck, currentChoice, readyModel } from "../../apps/server/models";
+import { claimCheckLabel } from "@bt/core/claimEvidence";
 
-vi.mock(import("../../server/agents"), async (original) => ({ ...await original(), runAgent: vi.fn() }));
-vi.mock(import("../../server/models"), async (original) => ({ ...await original(), currentChoice: vi.fn(), readyModel: vi.fn(), assistantCheck: vi.fn() }));
+vi.mock(import("../../apps/server/agents"), async (original) => ({ ...await original(), runAgent: vi.fn() }));
+vi.mock(import("../../apps/server/models"), async (original) => ({ ...await original(), currentChoice: vi.fn(), readyModel: vi.fn(), assistantCheck: vi.fn() }));
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
 const assessment = { verdict: "mixed", grade: "low", summary: "Synthetic trial results remain uncertain [PMID:12345678].", limitations: "Synthetic fixtures test the pipeline, not a clinical claim.", citations: ["PMID:12345678"] };

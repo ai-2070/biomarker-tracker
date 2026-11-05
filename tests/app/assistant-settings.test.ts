@@ -1,7 +1,7 @@
 import { beforeEach, expect, it, vi } from "vitest";
 import type * as React from "react";
 import type { ReactElement, ReactNode } from "react";
-import { PROVIDERS } from "../../src/core/aiProviders";
+import { PROVIDERS } from "@bt/core/aiProviders";
 
 // A synchronous hook host exercises these components' actual state/effect logic without a DOM dependency.
 const host = vi.hoisted(() => ({ slots: [] as unknown[], cursor: 0, effects: [] as (() => void)[], dirty: false, api: vi.fn() }));
@@ -26,10 +26,10 @@ vi.mock("react", async (original) => ({
   },
   useCallback: (callback: unknown) => callback,
 }));
-vi.mock("../../src/app/api", () => ({ api: host.api }));
-vi.mock("../../src/app/brain/store", () => ({ closeBrain: vi.fn() }));
-import { ModelsSettings } from "../../src/app/components/settings/ModelsSettings";
-import { useBrainSettings } from "../../src/app/brain/menus";
+vi.mock("../../apps/web/src/app/api", () => ({ api: host.api }));
+vi.mock("../../apps/web/src/app/brain/store", () => ({ closeBrain: vi.fn() }));
+import { ModelsSettings } from "../../apps/web/src/app/components/settings/ModelsSettings";
+import { useBrainSettings } from "../../apps/web/src/app/brain/menus";
 
 function render<T>(component: () => T): T {
   let result!: T;

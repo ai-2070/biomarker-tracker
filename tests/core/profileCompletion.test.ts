@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { completeProfileDetails, profileDetailsIn, type ProfileDetailField } from "../../src/core/profileCompletion";
-import type { Profile } from "../../src/core/types";
+import { completeProfileDetails, profileDetailsIn, type ProfileDetailField } from "@bt/core/profileCompletion";
+import type { Profile } from "@bt/core/types";
 
 const today = "2026-10-30";
 const read = (field: ProfileDetailField, quote: string, text = quote, profile: Profile = {}) =>

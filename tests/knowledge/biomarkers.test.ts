@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { foldLabName } from "../../src/core/importers/labText";
-import { validateBiomarkerDef } from "../../src/core/knowledge";
-import type { BiomarkerDef } from "../../src/core/types";
+import { foldLabName } from "@bt/core/importers/labText";
+import { validateBiomarkerDef } from "@bt/core/knowledge";
+import type { BiomarkerDef } from "@bt/core/types";
 import { loadKnowledgeFiles } from "../helpers";
 
 const files = loadKnowledgeFiles();

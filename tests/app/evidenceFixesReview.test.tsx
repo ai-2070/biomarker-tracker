@@ -3,11 +3,11 @@ import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { anyDesignKind, validateEvidenceMap, type EvidenceMapFile, type EvidenceMapOutcome } from "../../src/core/evidenceMap";
+import { anyDesignKind, validateEvidenceMap, type EvidenceMapFile, type EvidenceMapOutcome } from "@bt/core/evidenceMap";
 import { TOPICS } from "../../tools/evidence/topics";
 import participantCorrections from "../fixtures/evidenceFixesTrialCounts.json";
-vi.mock("../../src/app/components/timeControls", () => ({ useWidth: () => 0 }));
-import { EvidenceOutcome } from "../../src/app/components/EvidenceMap";
+vi.mock("../../apps/web/src/app/components/timeControls", () => ({ useWidth: () => 0 }));
+import { EvidenceOutcome } from "../../apps/web/src/app/components/EvidenceMap";
 
 const root = join(import.meta.dirname, "../../knowledge/evidence-maps");
 const readMap = (id: string) => JSON.parse(readFileSync(join(root, `${id}.json`), "utf8")) as EvidenceMapFile;

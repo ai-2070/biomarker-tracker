@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { buildPeriodSummary, periodBounds, PERIOD_LIMITS, type Period } from "../../src/core/periodSummary";
-import type { Measurement } from "../../src/core/types";
+import { buildPeriodSummary, periodBounds, PERIOD_LIMITS, type Period } from "@bt/core/periodSummary";
+import type { Measurement } from "@bt/core/types";
 import { loadDefs, measurement } from "../helpers";
 
 const defs = loadDefs();

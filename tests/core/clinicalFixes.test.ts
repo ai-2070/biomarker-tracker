@@ -1,16 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { analyzeMarker, personalBand, t95 } from "../../src/core/experiments";
-import { phenoAgePace } from "../../src/core/agePace";
-import { bodySummary } from "../../src/core/bodySummary";
-import { ageMatch, describePlace, fitnessSummary, placeInRow, placeResult, type FitnessTestDef } from "../../src/core/fitnessTests";
-import { framinghamRisk, heartAgeData } from "../../src/core/heartAge";
-import { personalRange } from "../../src/core/personalRange";
-import { summarizePhenoAge } from "../../src/core/phenoageDraws";
-import { dayNumber } from "../../src/core/dates";
-import { timeTicks } from "../../src/core/timeWindow";
-import { computeTrend, flagLatest, flagMeasurement, flagValue, isAlreadySaved, latestByBiomarker, recentAverage, recentTotal, sortByDate } from "../../src/core/trends";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "../../src/core/types";
+import { analyzeMarker, personalBand, t95 } from "@bt/core/experiments";
+import { phenoAgePace } from "@bt/core/agePace";
+import { bodySummary } from "@bt/core/bodySummary";
+import { ageMatch, describePlace, fitnessSummary, placeInRow, placeResult, type FitnessTestDef } from "@bt/core/fitnessTests";
+import { framinghamRisk, heartAgeData } from "@bt/core/heartAge";
+import { personalRange } from "@bt/core/personalRange";
+import { summarizePhenoAge } from "@bt/core/phenoageDraws";
+import { dayNumber } from "@bt/core/dates";
+import { timeTicks } from "@bt/core/timeWindow";
+import { computeTrend, flagLatest, flagMeasurement, flagValue, isAlreadySaved, latestByBiomarker, recentAverage, recentTotal, sortByDate } from "@bt/core/trends";
+import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
 import { def, measurement } from "../helpers";
 
 const m = (biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}) => measurement({ biomarkerId, date, value, ...extra });

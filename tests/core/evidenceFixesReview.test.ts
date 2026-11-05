@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { chooseFrom, classify, currentDecisions, designOf, largeTrialsSince, plainText, sampleSize, screeningInput, screeningPrompt, splitByScreening, type Decision, type EvidenceRecord, type Question, type ScreeningMode } from "../../src/core/evidenceMap";
+import { chooseFrom, classify, currentDecisions, designOf, largeTrialsSince, plainText, sampleSize, screeningInput, screeningPrompt, splitByScreening, type Decision, type EvidenceRecord, type Question, type ScreeningMode } from "@bt/core/evidenceMap";
 import { screenOutcome } from "../../tools/evidence/screening";
 
 const question: Question = { population: "Adults", intervention: "Vitamin D", comparison: "Placebo", outcome: "Fractures" };

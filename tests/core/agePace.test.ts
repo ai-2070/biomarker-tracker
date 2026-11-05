@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dunedinSummary, phenoAgePace } from "../../src/core/agePace";
+import { dunedinSummary, phenoAgePace } from "@bt/core/agePace";
 
 /** A test every 6 months, PhenoAge rising `rate` years per calendar year from 40, with an optional wobble. */
 const series = (rate: number, n: number, wobble: number[] = []) =>

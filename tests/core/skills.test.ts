@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { MAX_SKILL_CHARS, parseSkill, skillId, skillIndex } from "../../src/core/skills";
+import { MAX_SKILL_CHARS, parseSkill, skillId, skillIndex } from "@bt/core/skills";
 
 const SKILLS_DIR = join(import.meta.dirname, "..", "..", "skills");
 

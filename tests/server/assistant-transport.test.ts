@@ -5,9 +5,9 @@ import path from "node:path";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 const { ask } = vi.hoisted(() => ({ ask: vi.fn(async (_messages: unknown, _snapshot: unknown) => ({ ok: true, answer: "accepted" })) }));
-vi.mock("../../server/assistant", () => ({ ask }));
-import { createServer } from "../../server/http";
-import { updateSettings } from "../../server/store";
+vi.mock("../../apps/server/assistant", () => ({ ask }));
+import { createServer } from "../../apps/server/http";
+import { updateSettings } from "../../apps/server/store";
 
 let server: http.Server;
 let port = 0;

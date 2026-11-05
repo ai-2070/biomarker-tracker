@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { bodyFatBand, bodyFatComparison, bodyFatGuide, fatMassAt, fitnessFatBand } from "../../src/core/bodyFat";
-import type { Measurement, Profile } from "../../src/core/types";
-import { flagLatest, flagMeasurement, flagValue, isOutOfRange, resolveRange } from "../../src/core/trends";
-import { isBiomarkerDef } from "../../src/core/knowledge";
+import { bodyFatBand, bodyFatComparison, bodyFatGuide, fatMassAt, fitnessFatBand } from "@bt/core/bodyFat";
+import type { Measurement, Profile } from "@bt/core/types";
+import { flagLatest, flagMeasurement, flagValue, isOutOfRange, resolveRange } from "@bt/core/trends";
+import { isBiomarkerDef } from "@bt/core/knowledge";
 import { def } from "../helpers";
 
 const reading = (biomarkerId: string, value: number, date = "2026-10-24"): Measurement => ({

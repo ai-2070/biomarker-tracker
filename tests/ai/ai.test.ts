@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkCitations, normalizeId } from "../../src/ai/citations";
+import { checkCitations, normalizeId } from "@bt/ai/citations";
 
 
 describe("citation checker", () => {

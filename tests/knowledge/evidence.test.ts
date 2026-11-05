@@ -1,9 +1,9 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { selectLevers, validateEvidenceClaim } from "../../src/core/evidence";
-import { amountIn, selectFoods, validateFoodTable } from "../../src/core/foods";
-import type { EvidenceClaim, FoodTable } from "../../src/core/types";
+import { selectLevers, validateEvidenceClaim } from "@bt/core/evidence";
+import { amountIn, selectFoods, validateFoodTable } from "@bt/core/foods";
+import type { EvidenceClaim, FoodTable } from "@bt/core/types";
 import { loadDefs } from "../helpers";
 
 const ROOT = join(import.meta.dirname, "..", "..", "knowledge");

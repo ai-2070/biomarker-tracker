@@ -11,8 +11,8 @@ import {
   validateExperiment,
   personalBand,
   t95,
-} from "../../src/core/experiments";
-import type { Experiment } from "../../src/core/types";
+} from "@bt/core/experiments";
+import type { Experiment } from "@bt/core/types";
 import { def, measurement } from "../helpers";
 
 const exp = (extra: Partial<Experiment> = {}): Experiment => ({

@@ -4,7 +4,7 @@
  * each claim has its own search, reviews of any design count, and the question asks about a food or an
  * exposure rather than a supplement.
  */
-import type { Question } from "../../src/core/evidenceMap";
+import type { Question } from "@bt/core/evidenceMap";
 import type { TopicDef } from "./topics";
 
 /** Any of these words or patterns in a title, as whole words. */
