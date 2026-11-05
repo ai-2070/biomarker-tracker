@@ -1,0 +1,899 @@
+packages/core/src/mortalityModel.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-227
+apps/web/src/app/pages/SettingsPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-92
+tests/app/brainLogic.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/desktop/src-tauri/build.rs
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-3
+tsconfig.json
+  s_f33e4faebe7d0e::t_9969e0b3824f50 6
+  s_f33e4faebe7d0e::t_f1c2c3e72b2542 2,4
+apps/web/src/app/components/KnowledgeName.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-4
+tests/server/eve.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 6-14
+apps/web/src/app/components/DueExperiments.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-41
+apps/desktop/src-tauri/src/main.rs
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-193
+apps/server/uistream.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-4,6-89
+  s_f33e4faebe7d0e::t_17d61a4253037e 5
+apps/web/src/app/components/settings/SkillsSettings.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-140
+apps/eve/package.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-17
+tests/core/phenoageDraws.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+packages/core/src/foodComparison.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-72
+apps/web/src/app/claimEvidence.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-254
+packages/core/src/importers/ocrText.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-36
+apps/web/src/app/components/ConfirmDialog.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-43
+tests/core/deviceBrands.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-8
+tests/knowledge/clocks.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4
+tests/app/assistant-brain.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 8,10-11,16-18,21-23
+tests/server/skills-mcp.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+tools/data-licenses.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+  s_f33e4faebe7d0e::t_17d61a4253037e 8,22
+tools/longevity/features.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+apps/desktop/tsconfig.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-5
+apps/web/src/app/brain/stream.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-3,5-91
+  s_f33e4faebe7d0e::t_17d61a4253037e 4
+apps/web/src/app/brain/photo.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-18
+packages/core/src/aiProviders.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-371
+tests/core/bodyFat.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-5
+apps/web/src/app/components/BiomarkerPicker.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-106
+packages/core/src/agePace.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-118
+tests/knowledge/nutrients.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-7
+tests/core/profileCompletion.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+apps/web/src/app/components/PaperLink.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-79
+apps/server/brain/cache.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-51
+tests/app/nutritionEditorReview.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 6-8,11,15-16,19-21
+tests/server/serverPersistenceFixes.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 8-12
+packages/core/src/heartAge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-139
+apps/server/profiles.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-531
+packages/core/src/evidenceMap.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-475
+packages/core/src/units.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-96
+tests/core/scanClean.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/db/sleepPersistence.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-5,9
+tests/core/agePace.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/core/sleepTiming.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+apps/web/src/app/pages/DashboardPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-125
+tests/core/body.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+packages/research/src/papers.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-276
+tests/core/deviceFiles.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 14
+tests/core/periodSummary.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+apps/desktop/src-tauri/Cargo.toml
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-22
+apps/web/src/app/dataLicenses.json
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-872
+apps/server/eve/host.ts
+  s_f33e4faebe7d0e::t_f71320037859cc 1
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 22
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-21,23-135
+apps/web/src/app/components/ClockEvidence.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-50
+packages/core/src/importers/pdfText.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-51
+apps/eve/agent/instructions/a-rules.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-5
+apps/server/claimSearchSession.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-172
+apps/web/src/app/components/evidence.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-59
+apps/web/src/app/pages/HabitsPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-674
+apps/desktop/scripts/smoke.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-9,11,13-17,19-88
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 10
+  s_f33e4faebe7d0e::t_17d61a4253037e 12,18
+apps/web/src/app/pages/PeriodSummaryPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-215
+tests/app/claimEvidencePanel.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-10,13-14
+packages/core/src/body.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-296
+apps/desktop/scripts/check-version.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-3,5,8-12
+  s_f33e4faebe7d0e::t_17d61a4253037e 6-7
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 4
+apps/web/src/app/pages/NutrientPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-594
+packages/core/src/doctorReport.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-184
+packages/core/src/fitnessAge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-50
+tests/app/assistant-privacy-regressions.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+tests/app/testSummaryPage.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5,8,11-12
+apps/web/src/app/pages/SoonPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-39
+apps/server/eve/run.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-99
+apps/server/models.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-99
+apps/web/src/app/components/dashboard/AgesChart.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-441
+apps/eve/launch.mjs
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-5
+apps/web/src/app/components/settings/ModelsSettings.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-595
+tests/core/clinicalFixes.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-13
+tests/core/evidenceFixesReview.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/web/src/app/components/ui.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-123
+tests/core/knowledgeNames.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/web/src/app/components/settings/McpSettings.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-301
+apps/server/brain/prompt.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-106
+apps/web/src/app/api.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-35
+apps/web/src/app/components/CitedAnswer.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-105
+tests/server/processTree.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-6
+.gitignore
+  s_f33e4faebe7d0e::t_17d61a4253037e 4-7,25-26
+  s_f33e4faebe7d0e::t_9969e0b3824f50 27-29
+apps/web/src/app/pages/ImportPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-201
+apps/web/src/app/components/dashboard/waistToHeight.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-262
+packages/core/src/chartSeries.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-111
+CLAUDE.md
+  s_f33e4faebe7d0e::t_17d61a4253037e 20,94,180,191,195-196,199,202-203,208,210,216,221-222,228,237-247,249,251-252,258,261-262,265-267,275-282,294,305-306,310,319,321,329-330,334,336-337,339,344,349,354,359,363-369,372,384,387-388,398,430-431,445,448,460
+  s_f33e4faebe7d0e::t_e588a5573891cc 42,456
+  s_f33e4faebe7d0e::t_24993461cb2355 51-52,54-68,73-75,78-82,454-455,457
+  s_f33e4faebe7d0e::t_60cd661ea53e4c 11,43,236
+packages/core/src/wholeFoods.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-201
+bunfig.toml
+  s_f33e4faebe7d0e::t_f1c2c3e72b2542 1-4
+apps/web/src/app/pages/PlanPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-473
+tsconfig.base.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-20
+tests/knowledge/lifestyle.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4
+apps/web/src/app/components/DoctorReportExport.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-176
+apps/web/src/app/pages/IntakePage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-850
+apps/web/src/app/components/InlineCountry.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-43
+apps/web/src/app/pages/TestSummaryPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-268
+apps/web/src/app/components/dashboard/heartAge.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-143
+packages/core/src/clocks.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-67
+packages/core/src/bodyFat.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-132
+apps/server/skills.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-82
+apps/web/src/app/pages/NotFound.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-11
+packages/core/src/importers/deviceFiles.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-982
+packages/core/src/doctorReportChart.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-110
+packages/core/src/mcpPresets.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-123
+packages/core/src/zipStore.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-92
+apps/server/index.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 1
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-48
+apps/web/src/app/components/SavedResults.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-200
+apps/web/src/app/components/timeControls.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-374
+packages/research/src/claimUpdates.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-72
+packages/core/src/importers/scanClean.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-132
+apps/server/brain/dataPack.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-21
+apps/web/src/app/components/InlineBirthMonth.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-40
+tests/ai/assistant-doi-boundaries.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+packages/core/src/experiments.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-236
+tests/ai/ai.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/web/src/app/pages/MealsPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-166
+tests/core/habitProposal.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/core/countryComparison.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/core/dashboard.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/core/meals.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-7,105,115
+packages/core/src/knowledgeNames.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-11
+tools/evidence/foodTopics.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 7
+apps/web/src/app/components/AppShell.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-339
+tests/core/chartSeries.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/server/store.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-6,9-115
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 7-8
+tests/core/heartAge.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/core/timeWindow.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/core/skills.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4
+tests/core/plans.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+tests/research/claimUpdates.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/server/actions.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-9,11
+tests/server/claimEvidence.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 6-13,15-16
+tests/server/claimEvidenceControls.live.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 8-15
+tests/server/research.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 9-16,19,23,29
+tests/core/lipidMarkers.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+tests/core/ocrText.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+packages/ai/src/citations.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-80
+tests/knowledge/evidenceTopics.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-7
+PRIVACY.md
+  s_f33e4faebe7d0e::t_17d61a4253037e 30,36,123
+tests/server/agents.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 21-24
+apps/eve/tsconfig.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-6
+apps/web/src/app/components/DoctorReportDocument.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-257
+turbo.json
+  s_f33e4faebe7d0e::t_f1c2c3e72b2542 1-25
+apps/web/src/app/components/DoctorReportChart.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-110
+apps/server/tsconfig.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-5
+tests/server/api.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 6-7
+tests/knowledge/evidence.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-6
+apps/desktop/src-tauri/tauri.conf.json
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-8,10-33
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 9
+apps/server/processTree.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-116
+apps/web/src/app/pages/DataPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-339
+tests/server/assistant-safety-regressions.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 8-14
+apps/eve/agent/agent.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-16
+tests/app/router.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2,82
+tests/core/habits.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-5
+apps/web/src/app/hooks.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-127
+tests/server/countryPopulationReference.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-8,128
+packages/research/package.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-9
+apps/web/src/app/pages/AddResult.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-386
+packages/core/src/phenoageWatch.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-40
+apps/web/src/app/components/TrendChart.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-382
+tests/app/importFixesReview.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-10,30
+apps/web/src/app/components/ProfileForm.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-232
+tests/server/mcp-defaults.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-7
+packages/core/src/importers/labText.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-419
+apps/web/src/app/components/ChoiceGroup.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-56
+packages/core/tsconfig.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-5
+apps/web/src/app/components/SummaryTabs.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-18
+tests/app/periodSummaryPage.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-6,9-11
+tests/core/testSummary.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-6
+packages/core/src/phenoage.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-112
+apps/server/agents.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-471
+apps/web/src/app/pages/MarkerPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-466
+packages/core/src/evidence.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-63
+tests/core/profile.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-5
+apps/web/src/app/pages/SetupPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-250
+packages/core/src/scale.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-25
+apps/web/public/medical-disclosure.html
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-76
+apps/web/src/app/format.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-128
+apps/web/src/app/components/ProtocolLanes.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-90
+apps/web/src/app/router.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-218
+apps/web/src/app/components/dashboard/CountryPopulationReference.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-123
+tests/app/brainStore.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3,9-10,25,27-28,42-43,46,52,71
+tests/core/nutritionEditorReview.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-9
+apps/desktop/src-tauri/src/updater.rs
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-191
+packages/core/src/meals.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-356
+apps/web/tsconfig.node.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-5
+tests/core/screenshot.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/web/src/app/components/AddToProtocol.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-97
+apps/eve/build.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2,4-8,10-26
+  s_f33e4faebe7d0e::t_17d61a4253037e 1,3,27
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 9
+apps/web/vite.config.ts
+  s_f33e4faebe7d0e::t_37719f9b15c9ab 2-3,7-9,50-57,63-70,72-74
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1,4-6,10-49,71,75-99,103
+  s_f33e4faebe7d0e::t_9969e0b3824f50 58-62,100
+  s_f33e4faebe7d0e::t_d8f1110397c7d4 101-102
+apps/web/src/app/components/dashboard/fitness.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-373
+packages/core/src/sleepSessions.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-34
+apps/web/src/app/components/dashboard/body.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-747
+tests/app/brainStream.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3
+  s_f33e4faebe7d0e::t_17d61a4253037e 5
+apps/web/src/app/components/LoadProfile.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-48
+apps/server/brain/events.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-29
+packages/core/src/testSummary.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-275
+tools/evidence/wholeFoodTopics.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 8
+apps/web/src/app/components/dashboard/agePace.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-160
+tests/core/demo.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-10
+README.md
+  s_f33e4faebe7d0e::t_17d61a4253037e 213,309
+  s_f33e4faebe7d0e::t_f0982c56de6e81 216,243-244,246-250,253-254,283-294,297
+  s_f33e4faebe7d0e::t_f123dd032f75d8 222
+  s_f33e4faebe7d0e::t_5309e9a0c8565d 298
+packages/core/src/personalRange.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-60
+apps/web/src/app/components/FoodResults.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-40
+apps/web/src/app/components/SafetyNotices.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-22
+apps/web/src/app/components/LabReview.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-344
+apps/server/zip.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-144
+apps/web/src/app/brain/menus.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-277
+apps/web/src/app/components/UnitSelect.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-114
+tests/core/phenoage.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 9
+apps/web/tsconfig.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-8
+apps/web/src/app/components/icons.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-228
+tests/core/experiments.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 14-15
+.github/workflows/desktop.yml
+  s_f33e4faebe7d0e::t_d07e9730f5f22c 162
+  s_f33e4faebe7d0e::t_17d61a4253037e 119,122,139
+apps/web/src/app/pages/BodyPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-221
+apps/server/package.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-29
+apps/server/healthTools.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-804
+  s_f33e4faebe7d0e::t_17d61a4253037e 1
+tests/core/lifestyle.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/server/openrouter.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-52
+apps/web/src/app/ocr.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 3
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-2,4-119
+tests/core/doctorReport.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+apps/desktop/scripts/prepare.ts
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 6,33-34
+  s_f33e4faebe7d0e::t_17d61a4253037e 21,25,28,30,36
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-5,7-20,22-24,26-27,29,31-32,35,37-38
+packages/core/src/periodSummary.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-206
+tests/core/labText.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-6
+tests/research/paperPreviews.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/server/assistant-transport.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 8-10
+apps/web/src/app/components/LifestyleVisuals.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-480
+tests/server/brainWorkflow.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-9
+apps/web/src/app/paperPreviews.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-90
+packages/core/src/protocols.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-177
+tests/server/desktopUpdates.test.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 7,21,37-39,50
+apps/web/src/app/components/ExampleProfileButton.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-34
+apps/web/src/app/pages/WholeFoodsPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-540
+.impeccable/surfaces/src-app-pages-dashboardpage-tsx.md
+  s_f33e4faebe7d0e::t_17d61a4253037e 4-5
+tools/longevity/train.py
+  s_f33e4faebe7d0e::t_17d61a4253037e 1024
+tests/core/phenoageWatch.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-7
+tests/db/measurementEdits.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-4
+packages/core/src/measurementCompletion.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-53
+apps/eve/agent/lib/model.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-59
+packages/core/src/foods.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-70
+apps/web/src/app/components/NormChart.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-268
+packages/core/src/types.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-267,269-270
+  s_f33e4faebe7d0e::t_17d61a4253037e 268
+tests/app/claimEvidence.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-6,9
+tests/knowledge/wholeFoods.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+tests/server/zipstore.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+apps/server/eve/bridge.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 1
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-134
+tests/core/aiProviders.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/server/assistant-terminal.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+tests/server/brainStream.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 6-11
+tests/server/assistant-models.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-5
+tools/evidence/screening.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1
+apps/web/src/app/components/FoodComparison.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-169
+apps/web/src/db/db.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-547
+apps/server/which.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-63
+apps/eve/agent/instructions/b-request.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-8
+apps/web/src/app/components/MeasurementEditor.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-176
+packages/core/src/dashboard.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-141
+tests/knowledge/biomarkers.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-4
+apps/desktop/src-tauri/tauri.updater.conf.json
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-4
+apps/web/src/index.css
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-315
+apps/web/src/app/components/dashboard/widgets.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-342
+apps/web/src/app/components/chartHabits.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-76
+apps/web/src/app/components/EvidenceMap.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-401
+tests/core/lifeTable.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4
+tests/core/trends.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 17
+packages/core/src/phenoageDraws.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-110
+apps/server/steps.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-89
+apps/server/brain/tools.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-32
+apps/web/src/app/pages/DeviceImportPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-485
+apps/web/src/app/pages/MealPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-365
+packages/core/src/ageHistory.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-59
+packages/core/src/backup.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-194
+tests/core/personalRange.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/core/intake.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-8
+tools/evidence/lifestyleTopics.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 7
+apps/desktop/package.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-22
+apps/server/mcp.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-315
+  s_f33e4faebe7d0e::t_17d61a4253037e 1
+tests/core/fitnessTests.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/server/assistant.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-9
+apps/web/src/app/components/LeversPanel.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-202
+apps/web/src/app/components/dashboard/Sparkline.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-34
+packages/core/src/knowledge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-124
+apps/web/src/app/components/ClaimEvidencePanel.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-259
+packages/core/src/profile.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-28
+tests/core/mcpPresets.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/core/sleepImport.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-5
+tests/server/profiles.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-8,255
+tools/evidence/screen.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 13
+apps/server/http.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-28,30-240,242-515
+  s_f33e4faebe7d0e::t_a917e347d1a7b7 29
+  s_f33e4faebe7d0e::t_17d61a4253037e 241
+tests/core/bodySummary.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3,5-7
+packages/core/src/demo.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-366
+apps/web/src/app/components/BodyFatComparison.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-165
+apps/eve/agent/lib/bridge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1,3-59
+  s_f33e4faebe7d0e::t_17d61a4253037e 2
+apps/web/src/app/brain/store.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-495
+apps/web/src/app/components/chartAggregate.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-26
+apps/web/src/app/components/SupplementGuide.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-115
+apps/web/src/app/pages/ProfilesPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-153
+apps/web/src/app/brain/Brain.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-1195
+apps/web/src/app/pages/SupplementsPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-218
+apps/web/src/main.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-17
+packages/core/src/assistantProposal.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-83
+packages/core/src/importers/screenshot.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-148
+packages/core/src/habitProposal.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-61
+packages/core/src/nutrients.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-372
+apps/server/brain/agentRun.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-68
+tests/core/measurementCompletion.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/db/dataIntegrityFixes.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-10
+tests/db/exampleSleep.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-6
+apps/eve/agent/channels/eve.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-27
+tests/knowledge/fitness.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+packages/core/src/mortalityProjection.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-142
+apps/web/src/app/brain/logic.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-72
+apps/web/src/app/components/BirthMonthField.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-67
+apps/web/src/app/components/dashboard/ExpirationDate.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-22
+apps/web/src/app/easterEggs.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-2
+vitest.config.ts
+  s_f33e4faebe7d0e::t_9969e0b3824f50 1-18
+tests/core/evidenceFixesGenerators.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3
+tests/core/assistantProposal.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-7
+tests/app/importFixesPdf.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2,10
+packages/core/src/importers/zipRead.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-109
+DATA-LICENSES.md
+  s_f33e4faebe7d0e::t_17d61a4253037e 3,19,30-40,113,152
+package.json
+  s_f33e4faebe7d0e::t_f1c2c3e72b2542 7-10,12-25,36
+packages/core/src/profileCompletion.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-249
+apps/server/knowledge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-111
+tests/knowledge/foodComparison.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+PRODUCT.md
+  s_f33e4faebe7d0e::t_17d61a4253037e 45
+apps/eve/agent/tools/brain.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-15
+apps/web/src/app/components/DarkMatter.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-107
+packages/core/src/bodySummary.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-199
+tests/core/chartsFormsFixes.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-9,65
+packages/core/src/trends.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-264
+apps/web/src/app/components/dashboard/CountryComparison.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-37
+apps/web/src/app/pages/LifestylePage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-364
+tests/core/evidenceMap.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/server/bridge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-133
+apps/web/src/app/components/settings/AppearanceSettings.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-45
+tests/knowledge/names.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3
+apps/web/index.html
+  s_f33e4faebe7d0e::t_17d61a4253037e 1-15
+apps/web/src/app/components/SleepTimingPanel.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-322
+apps/web/src/app/components/CriticalBanner.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-48
+apps/web/src/app/components/dashboard/activity.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-86
+packages/ai/tsconfig.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-5
+apps/web/src/app/profiles.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 337
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-336,338-392
+tests/core/manual.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 7
+tests/core/nutrients.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/core/units.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 13
+packages/core/src/habits.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-131
+packages/core/src/importers/manual.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-146
+apps/web/src/app/lifeTables.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-22
+tests/core/importFixes.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-5,7
+tests/knowledge/evidenceMaps.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4
+apps/web/src/app/knowledge.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-162
+tests/core/mortality.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-7
+apps/web/src/app/theme.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-34
+apps/web/src/app/pdf.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-86
+tests/core/ageHistory.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-7
+tests/app/evidenceFixesReview.test.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 6,9-10
+apps/web/src/app/components/dashboard/Timeline.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-440
+tests/core/claimEvidence.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+packages/core/src/intake.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-544
+apps/web/src/app/components/dashboard/fitnessAge.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-122
+packages/core/src/timeWindow.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-95
+tests/core/sleepSessions.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/helpers.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3
+tools/evidence/build.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 3
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 9
+tests/server/assistant-mcp.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3,20,26
+apps/web/src/app/components/ProfileMenu.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-70
+apps/web/src/app/components/settings/AboutSettings.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-73
+apps/web/src/app/pages/HomePage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-236
+tools/evidence/load.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-9
+tools/evidence/topics.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 7
+packages/core/package.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-9
+tests/core/protocols.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 14-15
+tests/db/db.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-4,8-9,36
+apps/server/claimEvidence.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-45
+apps/web/src/app/pages/PlansPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-159
+packages/core/src/plans.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-269
+packages/core/src/lifestyle.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-248
+packages/core/src/skills.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-55
+tests/core/assistant-provider-policy.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/web/src/app/components/disclosure.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-73
+apps/web/src/app/pages/Overview.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-285
+apps/web/src/app/App.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-219
+packages/core/src/fitnessTests.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-411
+apps/web/src/app/components/findings.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-139
+apps/web/src/app/components/PlanWhen.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-88
+apps/web/src/env.d.ts
+  s_f33e4faebe7d0e::t_17d61a4253037e 1
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/server/terminal.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1,3-54
+  s_f33e4faebe7d0e::t_17d61a4253037e 2
+tests/core/scale.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+apps/server/brain/apiModel.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-97
+packages/core/src/sleepTiming.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-148
+packages/core/src/claimEvidence.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-199
+tests/core/format.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+tests/core/nutritionEditorPersistenceReview.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-7
+tools/claims/watch.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4-5
+apps/web/src/app/foodDb.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-25
+apps/server/brain/claimReview.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-108
+packages/core/src/dates.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-34
+apps/web/src/app/components/ResearchPanel.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-201
+tools/lifetables/build.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 10
+tests/app/assistant-settings.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 4,29-32
+tests/core/backup.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-5
+apps/server/assistant.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-15
+tests/core/doctorReportChart.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2-3
+apps/web/src/app/components/dashboard/bestBefore.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-256
+apps/web/src/app/pages/PhenoAgePage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-251
+packages/core/src/lifeTable.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-256
+tests/server/assistant-mcp-process.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 5-6
+packages/research/tsconfig.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-5
+packages/ai/package.json
+  s_f33e4faebe7d0e::t_d026e7be6c6215 1-8
+apps/web/package.json
+  s_f33e4faebe7d0e::t_b9420ad4a50f4b 1-41
+docs/desktop.md
+  s_f33e4faebe7d0e::t_f123dd032f75d8 13,17
+  s_f33e4faebe7d0e::t_17d61a4253037e 3,29
+apps/web/src/app/components/glance.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-58
+tests/research/papers.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 19
+apps/web/src/app/pages/ExperimentsPage.tsx
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-312
+apps/server/brain/ask.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 1-162
+tests/core/importFixesZip.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-4
+tests/core/fitnessAge.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 2
+tests/app/profileRemediation.test.ts
+  s_f33e4faebe7d0e::t_b5a36a0f7c6577 3-5
+bun.lock
+  s_f33e4faebe7d0e::t_be0944960ced4f 7-42,49-65,67-69,94-117,144-157,310-321,762-763
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "68ab6e3f2faff6465b490876bf2d823804f541e2",
+  "prompts": {},
+  "sessions": {
+    "s_f33e4faebe7d0e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a47b807f-d517-47da-8446-0644d1aa8835",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
