@@ -9,10 +9,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build typecheck typecheck:tests",
-    "eve:build": "turbo run build --filter=@bt/eve",
-    "typecheck": "turbo run typecheck typecheck:tests",
+    "dev": "TURBO_TELEMETRY_DISABLED=1 turbo run dev",
+    "build": "TURBO_TELEMETRY_DISABLED=1 turbo run build typecheck typecheck:tests",
+    "eve:build": "TURBO_TELEMETRY_DISABLED=1 turbo run build --filter=@bt/eve",
+    "typecheck": "TURBO_TELEMETRY_DISABLED=1 turbo run typecheck typecheck:tests",
     "typecheck:tests": "tsc -p tsconfig.json",
     "preview": "bun run --cwd apps/web preview",
     "server": "bun apps/server/index.ts",
